@@ -1,0 +1,54 @@
+<aiconfig>
+
+<ai type="cecp">
+  <name>GNUchess</name>
+  <binary>gnuchess</binary>
+  <option>hard</option>
+</ai>
+
+<ai type="cecp">
+  <name>Sjeng</name>
+  <binary>sjeng</binary>
+  <option>easy</option>
+  <option>depth 2</option>
+</ai>
+
+<ai type="cecp">
+  <name>Amy</name>
+  <binary>Amy</binary>
+  <option>easy</option>
+  <option>depth 2</option>
+</ai>
+
+<ai type="cecp">
+  <name>Crafty</name>
+  <binary>crafty</binary>
+  <option>easy</option>
+  <option>depth 2</option>
+</ai>
+
+<ai type="cecp">
+  <name>Faile</name>
+  <binary>faile</binary>
+  <option>easy</option>
+  <option>depth 2</option>
+</ai>
+
+<ai type="cecp">
+  <name>Phalanx</name>
+  <binary>phalanx</binary>
+  <option>easy</option>
+  <option>level 5</option>
+  <option>depth 2</option>
+</ai>
+
+<ai type="uci">
+  <name>Glaurung</name>
+  <binary>glaurung</binary>
+  <option name="Hash" type="spin" min="4" max="1024">32</option>
+  <option name="Aggressiveness" type="spin" min="0" max="300">130</option>
+  <option name="Cowardice" type="spin" min="0" max="300">100</option>
+  <option name="Ponder" type="check">true</option>
+</ai>
+
+</aiconfig>

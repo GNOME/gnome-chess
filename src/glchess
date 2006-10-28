@@ -1,0 +1,10 @@
+#! /usr/bin/env python
+
+try:
+    from glchess.glchess import start_game
+except ImportError:
+    import sys
+    sys.path.append('/usr/share/glchess/')
+    from glchess.glchess import start_game
+
+start_game()
