@@ -911,9 +911,11 @@ class GtkUI(glchess.ui.UI):
             self.__aboutDialog = loadGladeFile('about.glade', domain = 'glchess')
             self.__aboutDialog.signal_autoconnect(self)
         
-    def _on_glchess_about_dialog_close(self, widget, data = None):
-        """Gtk+ callback"""
-        self.__aboutDialog = None
+   def _on_glchess_about_dialog_close(self, widget, data = None):
+       """Gtk+ callback"""
+       self.__aboutDialog.get_widget('glchess_about_dialog').destroy()
+       self.__aboutDialog = None
+       return False
         
     def _on_ai_window_delete_event(self, widget, data = None):
         """Gtk+ callback"""
