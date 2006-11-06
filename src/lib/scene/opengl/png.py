@@ -92,6 +92,8 @@ def interleave_planes(ipixels, apixels, ipsize, apsize):
         out[i+ipsize:newtotal:newpsize] = apixels[i:atotal:apsize]
     return out
 
+class Error(Exception):
+    pass
 
 class Writer:
     """
@@ -447,14 +449,25 @@ class Reader:
         Read a PNG chunk from the input file, return tag name and data.
         """
         # http://www.w3.org/TR/PNG/#5Chunk-layout
-        data_bytes, tag = struct.unpack('!I4s', self.file.read(8))
+        try:
+            data_bytes, tag = struct.unpack('!I4s', self.file.read(8))
+        except struct.error:
+            raise ValueError('Chunk too short for header')
         data = self.file.read(data_bytes)
-        checksum = struct.unpack('!i', self.file.read(4))[0]
+        if len(data) != data_bytes:
+            raise ValueError('Chunk %s too short for required %i data octets' % (tag, data_bytes))
+        checksum = self.file.read(4)
+        if len(checksum) != 4:
+            raise ValueError('Chunk %s too short for checksum', tag)
         verify = zlib.crc32(tag)
         verify = zlib.crc32(data, verify)
+        verify = struct.pack('!i', verify)
         if checksum != verify:
-            raise ValueError("checksum error in %s chunk: %x != %x"
-                             % (tag, checksum, verify))
+            print repr(checksum)
+            (a,) = struct.unpack('!I', checksum)
+            (b,) = struct.unpack('!I', verify)
+            raise ValueError("Checksum error in %s chunk: 0x%X != 0x%X"
+                             % (tag, a, b))
         return tag, data
 
     def _reconstruct_sub(self, offset, xstep, ystep):
@@ -656,11 +669,15 @@ class Reader:
         """
         signature = self.file.read(8)
         if (signature != struct.pack("8B", 137, 80, 78, 71, 13, 10, 26, 10)):
-            raise Exception("PNG file has invalid header")
+            raise Error("PNG file has invalid header")
         compressed = []
         image_metadata = {}
         while True:
-            tag, data = self.read_chunk()
+            try:
+                tag, data = self.read_chunk()
+            except ValueError, e:
+                raise Error('Chunk error: ' + e.args[0])
+
             # print >> sys.stderr, tag, len(data)
             if tag == 'IHDR': # http://www.w3.org/TR/PNG/#11IHDR
                 (width, height, bits_per_sample, color_type,
@@ -668,9 +685,9 @@ class Reader:
                  interlaced) = struct.unpack("!2I5B", data)
                 bps = bits_per_sample / 8
                 if bps == 0:
-                    raise Exception("unsupported pixel depth")
+                    raise Error("unsupported pixel depth")
                 if bps > 2 or bits_per_sample != (bps * 8):
-                    raise Exception("invalid pixel depth")
+                    raise Error("invalid pixel depth")
                 if color_type == 0:
                     greyscale = True
                     has_alpha = False
@@ -688,11 +705,11 @@ class Reader:
                     has_alpha = True
                     planes = 4
                 else:
-                    raise Exception("unknown PNG colour type %s" % color_type)
+                    raise Error("unknown PNG colour type %s" % color_type)
                 if compression_method != 0:
-                    raise Exception("unknown compression method")
+                    raise Error("unknown compression method")
                 if filter_method != 0:
-                    raise Exception("unknown filter method")
+                    raise Error("unknown filter method")
                 self.bps = bps
                 self.planes = planes
                 self.psize = bps * planes

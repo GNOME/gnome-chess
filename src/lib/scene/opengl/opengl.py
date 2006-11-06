@@ -342,6 +342,9 @@ class Scene(glchess.scene.Scene):
         glLoadIdentity()
         gluPerspective(60.0, float(viewport[2]) / float(viewport[3]), 0.1, 1000)
         
+        if coord is None:
+            return None
+        
         # Convert from co-ordinates to LAN format
         rank = chr(ord('a') + coord[0])
         file = chr(ord('1') + coord[1])

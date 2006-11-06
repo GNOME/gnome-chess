@@ -49,7 +49,12 @@ class Texture:
         """
         """
         reader = png.Reader(fileName)
-        (width, height, data, metaData) = reader.read()
+        try:
+            (width, height, data, metaData) = reader.read()
+        except png.Error, e:
+            print 'Error loading texture %s: %s' % (fileName, e.args[0])
+            self.__data = None
+            return
         
         self.__width = width
         self.__height = height
@@ -87,6 +92,10 @@ class Texture:
     def __generate(self):
         """
         """
+        # Return null texture if failed to load data
+        if self.__data is None:
+            return 0
+        
         # FIXME: Can fail
         texture = glGenTextures(1)
             

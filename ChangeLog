@@ -1,6 +1,15 @@
 ------------------------------------------------------------------------------
 CHANGELOG
 ------------------------------------------------------------------------------
+2006-11-06  Robert Ancell  <bob27@users.sourceforge.net>
+	* Ported fixes from glChess 1.0RC2:
+	* src/lib/scene/opengl/opengl.py: Fix bug selecting outside board
+	* src/lib/scene/opengl/png.py: Fix to make CRC checking work on 64
+	  bit systems, handle corrupt PNG files.
+ 	* src/lib/scene/opengl/texture.py: Handle corrupt PNG files.
+	* data/ai.xml: Added Diablo, HoiChess, BBChess to list of autodetected
+	  engines.
+
 2006-10-31  Andreas Røsdal  <andrearo@pvv.ntnu.no>
 
 	* data/Makefile.am:
