@@ -188,12 +188,11 @@ class Player(game.ChessPlayer):
     
     # The profile we are using
     __profile = None
-    
-    __pipeFromEngine = None
-    __pipeToEngine = None
-    
-    # PID of the subprocess containing the engine
-    __pid = None
+        
+    # Pipes connecting engine
+    __stdin  = None
+    __stdout = None
+    __stderr = None
     
     __connection = None
     
@@ -209,20 +208,7 @@ class Player(game.ChessPlayer):
 
         game.ChessPlayer.__init__(self, name)
         
-        # Create pipes for communication with AI process
-        self.__pipeToEngine = os.pipe()
-        self.__pipeFromEngine = os.pipe()
-        
-        # Fork sub-process for engine
-        self.__pid = os.fork()
-
-        # This is the forked process, replace it with the engine
-        if self.__pid == 0:
-            self.__startEngine(profile.path, profile.arguments)
-
-        # Close the ends of the pipe we are not using
-        os.close(self.__pipeFromEngine[1]);
-        os.close(self.__pipeToEngine[0]);
+        (self.__stdin, self.__stdout, self.__stderr) = os.popen3(profile.arguments)
         
         if profile.protocol == CECP:
             self.connection = CECPConnection(self)
@@ -250,7 +236,7 @@ class Player(game.ChessPlayer):
      
     def fileno(self):
         """Returns the file descriptor for communicating with the engine (integer)"""
-        return self.__pipeFromEngine[0]
+        return self.__stdout.fileno()
 
     def read(self):
         """Read an process data from the engine.
@@ -259,21 +245,21 @@ class Player(game.ChessPlayer):
         """
         while True:
             # Check if data is available
-            (rlist, _, _) = select.select([self.__pipeFromEngine[0]], [], [], 0)
+            (rlist, _, _) = select.select([self.__stdout], [], [], 0)
             if len(rlist) == 0:
                 return
             
             # Read a chunk and process
-            data = os.read(self.__pipeFromEngine[0], 256)
+            data = os.read(self.__stdout.fileno(), 256)
             if data == '':
                 return
             self.connection.registerIncomingData(data)
-            
+
     def sendToEngine(self, data):
         """
         """
         try:
-            os.write(self.__pipeToEngine[1], data)
+            os.write(self.__stdin.fileno(), data)
         except OSError, e:
             print 'Failed to write to engine: ' + str(e)
 
@@ -285,15 +271,15 @@ class Player(game.ChessPlayer):
         while True:
             select.select([], [], [], 0.1)
             try:
-                os.write(self.__pipeToEngine[1], '\nquit\n') # FIXME: CECP specific
+                os.write(self.__stdin.fileno(), '\nquit\n') # FIXME: CECP specific
             except OSError:
                 return
             count += 1
             if count > 5:
                 break
         
-        print 'Killing AI ' + str(self.__pid)
-        os.kill(self.__pid, 9)
+        print 'Killing AI'
+        self.__stdout.close()
 
     # Extended methods
     
@@ -310,26 +296,3 @@ class Player(game.ChessPlayer):
     def onGameEnded(self, winningPlayer = None):
         """Called by game.ChessPlayer"""
         self.quit()
-
-    # Private methods
-    
-    def __startEngine(self, executable, arguments):
-        """
-        """
-        # Connect stdin and stdout to the pipes to the main process
-        os.dup2(self.__pipeFromEngine[1], sys.stdout.fileno())
-        os.dup2(self.__pipeToEngine[0], sys.stdin.fileno())
-        
-        # Close the ends of the pipe we are not using
-        os.close(self.__pipeFromEngine[0]);
-        os.close(self.__pipeToEngine[1]);
-        
-        # Make the process nice so it doesn't hog the CPU
-        os.nice(15)
-
-        # Start the AI
-        try:
-            os.execv(executable, arguments)
-        except OSError:
-            select.select([], [], [], None)
-            os._exit(os.EX_UNAVAILABLE)
