@@ -903,8 +903,21 @@ class GtkUI(glchess.ui.UI):
 
     def _on_help_clicked(self, widget, data = None):
         """Gtk+ callback"""
-	gnome.help_display('glchess')
-
+        gnome.help_display('glchess')
+        
+    def _on_view_fullscreen_clicked(self, widget, data = None):
+        """Gtk+ callback"""
+        window = self._gui.get_widget('glchess_app')
+        window.fullscreen()
+        self._gui.get_widget('menu_fullscreen').hide()
+        self._gui.get_widget('menu_leave_fullscreen').show()
+        
+    def _on_view_unfullscreen_clicked(self, widget, data = None):
+        """Gtk+ callback"""
+        window = self._gui.get_widget('glchess_app')
+        window.unfullscreen()
+        self._gui.get_widget('menu_leave_fullscreen').hide()
+        self._gui.get_widget('menu_fullscreen').show()
 
     def _on_about_clicked(self, widget, data = None):
         """Gtk+ callback"""
