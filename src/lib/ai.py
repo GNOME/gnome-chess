@@ -108,7 +108,7 @@ def loadProfiles():
             arguments = [executable]
             n = p.getElementsByTagName('argument')
             for x in n:
-                args.append(_getXMLText(x))
+                arguments.append(_getXMLText(x))
             
             options = []
             n = p.getElementsByTagName('option')
