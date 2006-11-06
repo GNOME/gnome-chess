@@ -15,6 +15,8 @@ CHANGELOG
 	  Gnome games provide debian package support.
 	* data/ai.xml, src/lib/ai.py: Correctly use arguments for AIs, GNUChess
 	  now executed with --xboard by default.
+	* Use os.forkpty() to make engine processes - this causes the engines
+	  to die _whenever_ glChess dies.
 
 2006-10-31  Andreas Røsdal  <andrearo@pvv.ntnu.no>
 

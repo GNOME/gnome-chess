@@ -5,6 +5,8 @@ __copyright__ = 'Copyright 2005-2006  Robert Ancell'
 import os
 import sys
 import select
+import signal
+import termios
 import xml.dom.minidom
 
 import game
@@ -189,10 +191,8 @@ class Player(game.ChessPlayer):
     # The profile we are using
     __profile = None
         
-    # Pipes connecting engine
-    __stdin  = None
-    __stdout = None
-    __stderr = None
+    # File object to engine stdin/out/err
+    __fd = None
     
     __connection = None
     
@@ -208,7 +208,19 @@ class Player(game.ChessPlayer):
 
         game.ChessPlayer.__init__(self, name)
         
-        (self.__stdin, self.__stdout, self.__stderr) = os.popen3(profile.arguments)
+        (self.__pid, self.__fd) = os.forkpty()
+        if self.__pid == 0:
+            os.nice(10)
+            try:
+                os.execv(profile.path, profile.arguments)
+            except OSError:
+                pass
+            os._exit(0)
+            
+        # Stop our commands being echod back
+        (iflag, oflag, cflag, lflag, ispeed, ospeed, cc) = termios.tcgetattr(self.__fd)
+        lflag &= ~termios.ECHO
+        termios.tcsetattr(self.__fd, termios.TCSANOW, [iflag, oflag, cflag, lflag, ispeed, ospeed, cc])
         
         if profile.protocol == CECP:
             self.connection = CECPConnection(self)
@@ -236,7 +248,7 @@ class Player(game.ChessPlayer):
      
     def fileno(self):
         """Returns the file descriptor for communicating with the engine (integer)"""
-        return self.__stdout.fileno()
+        return self.__fd
 
     def read(self):
         """Read an process data from the engine.
@@ -245,12 +257,12 @@ class Player(game.ChessPlayer):
         """
         while True:
             # Check if data is available
-            (rlist, _, _) = select.select([self.__stdout], [], [], 0)
+            (rlist, _, _) = select.select([self.__fd], [], [], 0)
             if len(rlist) == 0:
                 return
             
             # Read a chunk and process
-            data = os.read(self.__stdout.fileno(), 256)
+            data = os.read(self.__fd, 256)
             if data == '':
                 return
             self.connection.registerIncomingData(data)
@@ -259,7 +271,7 @@ class Player(game.ChessPlayer):
         """
         """
         try:
-            os.write(self.__stdin.fileno(), data)
+            os.write(self.__fd, data)
         except OSError, e:
             print 'Failed to write to engine: ' + str(e)
 
@@ -271,7 +283,7 @@ class Player(game.ChessPlayer):
         while True:
             select.select([], [], [], 0.1)
             try:
-                os.write(self.__stdin.fileno(), '\nquit\n') # FIXME: CECP specific
+                os.write(self.__fd, '\nquit\n') # FIXME: CECP specific
             except OSError:
                 return
             count += 1
@@ -279,7 +291,7 @@ class Player(game.ChessPlayer):
                 break
         
         print 'Killing AI'
-        self.__stdout.close()
+        os.kill(self.__pid, signal.SIGKILL)
 
     # Extended methods
     

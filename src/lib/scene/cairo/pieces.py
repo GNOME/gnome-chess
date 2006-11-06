@@ -2,6 +2,14 @@ __author__ = 'Thomas Dybdahl Ahle <thomas@ahle.dk>'
 __license__ = 'GNU General Public License Version 2'
 __copyright__ = ''
 
+# Images are based on original work of Max Froumentin (mf@w3.org) which
+# can be downloaded from:
+#    
+# http://people.w3.org/maxf/ChessGML/ChessSophia.svg
+#
+# These images are under the W3C Software Notice and License, see
+# COPYING.2D for details.
+
 import re
 
 elemExpr = re.compile(r"([a-zA-Z])\s*([0-9\.,\s]*)\s+")
