@@ -99,7 +99,10 @@ class AIPlayer(ai.Player):
     def __init__(self, application, name, profile, description):
         """
         """
-        self.window = application.ui.addAIWindow(profile.name, profile.path, description)
+        executable = profile.path
+        for arg in profile.arguments[1:]:
+            executable += ' ' + arg
+        self.window = application.ui.addAIWindow(profile.name, executable, description)
         ai.Player.__init__(self, name, profile)
         
     def logText(self, text, style):
