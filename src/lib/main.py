@@ -867,7 +867,7 @@ class Application:
         
         This method does not return.
         """
-        print 'This is glChess 1.0RC1'
+        print 'This is glChess 2.17.1'
         
         # Load AI profiles
         profiles = ai.loadProfiles()
