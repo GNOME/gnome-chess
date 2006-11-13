@@ -25,8 +25,11 @@ from glchess.defaults import *
 # Optionally use OpenGL support
 try:
     import gtk.gtkgl
+    import OpenGL
 except ImportError:
-    pass
+    haveGLSupport = False
+else:
+    haveGLSupport = True
 
 # Stop PyGTK from catching exceptions
 os.environ['PYGTK_FATAL_EXCEPTIONS'] = '1'
@@ -41,12 +44,13 @@ class GtkViewArea(gtk.DrawingArea):
     """Custom widget to render an OpenGL scene"""
     # The view this widget is rendering
     view = None
-    
-    renderGL = False
 
     # Pixmaps to use for double buffering
     pixmap = None
     dynamicPixmap = None
+    
+    # Flag to show if this scene is to be rendered using OpenGL
+    renderGL = False
     
     # TODO...
     __glDrawable = None
@@ -83,10 +87,10 @@ class GtkViewArea(gtk.DrawingArea):
         """Request this widget is redrawn"""
         #FIXME: Check this is valid
         self.window.invalidate_rect(self.allocation, False)
-        
+
     def setRenderGL(self, renderGL):
         """Enable OpenGL rendering"""
-        if not hasattr(gtk, 'gtkgl'):
+        if not haveGLSupport:
             renderGL = False
         
         if self.renderGL == renderGL:
@@ -113,8 +117,7 @@ class GtkViewArea(gtk.DrawingArea):
             return
         
         self.__glDrawable = glDrawable
-        
-        import OpenGL
+
         if not self.view.ui.openGLInfoPrinted:
             print 'Using OpenGL:'
             print 'VENDOR=' + OpenGL.GL.glGetString(OpenGL.GL.GL_VENDOR)
@@ -155,7 +158,7 @@ class GtkViewArea(gtk.DrawingArea):
             try:
                 if self.view.feedback is not None:
                     self.view.feedback.renderGL()
-            except GLerror, e:
+            except OpenGL.GLerror, e:
                 print 'Rendering Error: ' + str(e)
                 traceback.print_exc(file = sys.stdout)
 
@@ -547,7 +550,7 @@ class GtkUI(glchess.ui.UI):
         """
         iconTheme = gtk.icon_theme_get_default()
         try:
-            icon = iconTheme.load_icon("stock_notebook", 24, gtk.ICON_LOOKUP_USE_BUILTIN)
+            icon = iconTheme.load_icon('stock_notebook', 24, gtk.ICON_LOOKUP_USE_BUILTIN)
         except gobject.GError:
             icon = None
         iter = self.__playerModel.append()
@@ -857,9 +860,9 @@ class GtkUI(glchess.ui.UI):
         self.__getWidget('menu_end_game_item').set_sensitive(enableWidgets)
 
         combo = self.__getWidget('history_combo')
-        if view is None: 
-	    if combo.get_model() != None:
-	        combo.set_model(None)
+        if view is None:
+            if combo.get_model() != None:
+                combo.set_model(None)
         else:
             (model, selected) = view._getModel()
             combo.set_model(model)
@@ -904,7 +907,7 @@ class GtkUI(glchess.ui.UI):
     def _on_help_clicked(self, widget, data = None):
         """Gtk+ callback"""
         gnome.help_display('glchess')
-        
+
     def _on_view_fullscreen_clicked(self, widget, data = None):
         """Gtk+ callback"""
         window = self._gui.get_widget('glchess_app')

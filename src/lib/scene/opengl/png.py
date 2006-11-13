@@ -49,12 +49,6 @@ from the netpbm package. Type "python png.py --help" at the shell
 prompt for usage and a list of options.
 """
 
-
-__revision__ = '$Rev$'
-__date__ = '$Date$'
-__author__ = '$Author$'
-
-
 import sys, zlib, struct, math
 from array import array
 
