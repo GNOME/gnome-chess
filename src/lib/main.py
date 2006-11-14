@@ -22,6 +22,8 @@ import chess.board
 import chess.lan
 import ai
 
+from defaults import *
+
 #import dbus.glib
 #import network
 
@@ -867,7 +869,7 @@ class Application:
         
         This method does not return.
         """
-        print 'This is glChess 2.17.1'
+        print 'This is glChess ' + VERSION
         
         # Load AI profiles
         profiles = ai.loadProfiles()

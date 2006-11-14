@@ -1,0 +1,25 @@
+import os, os.path
+import gettext
+#DOMAIN = 'glchess'
+DOMAIN = 'gnome-games'
+gettext.bindtextdomain(DOMAIN)
+gettext.textdomain(DOMAIN)
+from gettext import gettext as _
+import gtk.glade
+gtk.glade.bindtextdomain (DOMAIN)
+gtk.glade.textdomain (DOMAIN)
+
+VERSION = "@VERSION@"
+APPNAME = _("glChess")
+
+APP_DATA_DIR = os.path.join('@prefix@', 'share') 
+ICON_DIR =     os.path.join(APP_DATA_DIR,'pixmaps')
+IMAGE_DIR = os.path.join(ICON_DIR,'glchess')
+GLADE_DIR = os.path.join(APP_DATA_DIR,'glchess')
+BASE_DIR = os.path.join(APP_DATA_DIR,'glchess')
+
+DATA_DIR = os.path.expanduser('~/.gnome2/glchess/')
+
+def initialize_games_dir ():
+    if not os.path.exists(DATA_DIR): os.makedirs(DATA_DIR)
+
