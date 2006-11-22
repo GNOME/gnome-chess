@@ -1,4 +1,5 @@
 import math
+import os.path
 
 from OpenGL.GL import *
 from OpenGL.GLU import *
@@ -31,9 +32,6 @@ BACKGROUND_COLOUR    = (0.53, 0.63, 0.75, 0.0)
 BORDER_COLOUR        = (0.72, 0.33, 0.0)
 BLACK_SQUARE_COLOURS = {None: (0.8, 0.8, 0.8), glchess.scene.HIGHLIGHT_SELECTED: (0.3, 1.0, 0.3), glchess.scene.HIGHLIGHT_CAN_MOVE: (0.3, 0.3, 1.0)}
 WHITE_SQUARE_COLOURS = {None: (1.0, 1.0, 1.0), glchess.scene.HIGHLIGHT_SELECTED: (0.2, 1.0, 0.0), glchess.scene.HIGHLIGHT_CAN_MOVE: (0.2, 0.2, 0.8)}
-
-# HACK
-import os.path
 
 class ChessPiece(glchess.scene.ChessPiece):
     """
@@ -149,10 +147,10 @@ class Scene(glchess.scene.Scene):
         
         self.__chessSets = {'white': builtin_models.WhiteBuiltinSet(), 'black': builtin_models.BlackBuiltinSet()}
         
-        self.__whiteTexture = texture.Texture(os.path.join(IMAGE_DIR, 'board.png'),
+        self.__whiteTexture = texture.Texture(os.path.join(TEXTURE_DIR, 'board.png'),
                                               ambient = BOARD_AMBIENT, diffuse = BOARD_DIFFUSE,
                                               specular = BOARD_SPECULAR, shininess = BOARD_SHININESS)
-        self.__blackTexture = texture.Texture(os.path.join(IMAGE_DIR, 'board.png'),
+        self.__blackTexture = texture.Texture(os.path.join(TEXTURE_DIR, 'board.png'),
                                               ambient = BOARD_AMBIENT, diffuse = BOARD_DIFFUSE,
                                               specular = BOARD_SPECULAR, shininess = BOARD_SHININESS)
         

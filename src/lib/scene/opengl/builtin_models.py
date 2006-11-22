@@ -3,15 +3,13 @@ __license__ = 'GNU General Public License Version 2'
 __copyright__ = 'Copyright 2005-2006  Robert Ancell'
 
 import math
+import os.path
 from OpenGL.GL import *
 
 import glchess.scene
 import texture
 
 from glchess.defaults import *
-
-# HACK
-import os.path
     
 WHITE_BASE      = (0.95, 0.81, 0.64)
 WHITE_AMBIENT   = (0.4*WHITE_BASE[0], 0.4*WHITE_BASE[1], 0.4*WHITE_BASE[2], 1.0)
@@ -131,7 +129,7 @@ class WhiteBuiltinSet(BuiltinSet):
     """
     
     def __init__(self):
-        BuiltinSet.__init__(self, os.path.join(IMAGE_DIR, 'piece.png'), WHITE_AMBIENT, WHITE_DIFFUSE, WHITE_SPECULAR, WHITE_SHININESS)
+        BuiltinSet.__init__(self, os.path.join(TEXTURE_DIR, 'piece.png'), WHITE_AMBIENT, WHITE_DIFFUSE, WHITE_SPECULAR, WHITE_SHININESS)
         self.setRotation(180.0)
         self.addState('unselected', (0.9, 0.9, 0.9), default = True)
 
@@ -140,7 +138,7 @@ class BlackBuiltinSet(BuiltinSet):
     """
     
     def __init__(self):
-        BuiltinSet.__init__(self, os.path.join(IMAGE_DIR, 'piece.png'), BLACK_AMBIENT, BLACK_DIFFUSE, BLACK_SPECULAR, BLACK_SHININESS)
+        BuiltinSet.__init__(self, os.path.join(TEXTURE_DIR, 'piece.png'), BLACK_AMBIENT, BLACK_DIFFUSE, BLACK_SPECULAR, BLACK_SHININESS)
         self.addState('unselected', (0.2, 0.2, 0.2), default = True)
 
 class SimpleModel:

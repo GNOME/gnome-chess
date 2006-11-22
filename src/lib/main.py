@@ -21,7 +21,6 @@ import game
 import chess.board
 import chess.lan
 import ai
-
 from defaults import *
 
 #import dbus.glib
@@ -798,7 +797,7 @@ class Application:
         """
         self.aiPlayers[player.fileno()] = player
         self.ui.watchFileDescriptor(player.fileno())
-        
+
     def unwatchAIPlayer(self, player):
         """
         """
@@ -992,6 +991,5 @@ class Application:
         f.close()
 
 if __name__ == '__main__':
-    gettext.textdomain('gnome-games')
     app = Application()
     app.start()

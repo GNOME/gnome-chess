@@ -18,7 +18,12 @@ import gtk
 import gtk.glade
 import gtk.gdk
 import pango
-import gnome, gnome.ui
+try:
+    import gnome, gnome.ui
+except ImportError:
+    haveGnomeSupport = False
+else:
+    haveGnomeSupport = True
 
 from glchess.defaults import *
 
@@ -62,10 +67,9 @@ class GtkViewArea(gtk.DrawingArea):
         
         self.view = view
 
-	gnome.program_init('glchess',VERSION,
-                           properties={gnome.PARAM_APP_DATADIR:APP_DATA_DIR}
-                           )
-
+        if haveGnomeSupport:
+            gnome.program_init('glchess', VERSION,
+                               properties={gnome.PARAM_APP_DATADIR: APP_DATA_DIR})
 
         # Allow notification of button presses
         self.add_events(gtk.gdk.BUTTON_PRESS_MASK | gtk.gdk.BUTTON_RELEASE_MASK | gtk.gdk.BUTTON_MOTION_MASK)

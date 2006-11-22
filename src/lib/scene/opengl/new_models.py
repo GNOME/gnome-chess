@@ -7,6 +7,7 @@ from OpenGL.GL import *
 from glchess.defaults import *
 import glchess.scene
 import texture
+import os.path
 
 WHITE_BASE      = (0.95, 0.81, 0.64)
 WHITE_AMBIENT   = (0.7*WHITE_BASE[0], 0.7*WHITE_BASE[1], 0.7*WHITE_BASE[2], 1.0)
@@ -24,9 +25,6 @@ BLACK_SHININESS = 64.0
 # NOTE: This will not work if rendered in different openGL contexts
 _displayLists = {}
 
-# HACK
-import os.path
-    
 # Vector methods
     
 def vectordiff(a, b):
@@ -150,7 +148,7 @@ class WhiteBuiltinSet(BuiltinSet):
     """
     
     def __init__(self):
-        BuiltinSet.__init__(self, os.path.join(IMAGE_DIR, 'piece.png'), WHITE_AMBIENT, WHITE_DIFFUSE, WHITE_SPECULAR, WHITE_SHININESS)
+        BuiltinSet.__init__(self, os.path.join(TEXTURE_DIR, 'piece.png'), WHITE_AMBIENT, WHITE_DIFFUSE, WHITE_SPECULAR, WHITE_SHININESS)
         self.setRotation(180.0)
         self.addState('unselected', (0.9, 0.9, 0.9), default = True)
 
@@ -159,7 +157,7 @@ class BlackBuiltinSet(BuiltinSet):
     """
     
     def __init__(self):
-        BuiltinSet.__init__(self, os.path.join(IMAGE_DIR, 'piece.png'), BLACK_AMBIENT, BLACK_DIFFUSE, BLACK_SPECULAR, BLACK_SHININESS)
+        BuiltinSet.__init__(self, os.path.join(TEXTURE_DIR, 'piece.png'), BLACK_AMBIENT, BLACK_DIFFUSE, BLACK_SPECULAR, BLACK_SHININESS)
         self.addState('unselected', (0.2, 0.2, 0.2), default = True)
 
 ENDOFDATA      = 65535
