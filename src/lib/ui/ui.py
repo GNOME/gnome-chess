@@ -65,11 +65,25 @@ class ViewFeedback:
         'moveNumber' is the moveNumber to watch (integer, negative numbers index from latest move).
         """
         pass
+
+    def getFileName(self):
+        """Get the file name to save to.
+        
+        Returns the file name (string) or None if game is not saved.
+        """
+        return None
     
-    def save(self, filename):
+    def needsSaving(self):
+        """Check if this game needs saving.
+        
+        Return True if it does otherwise False.
+        """
+        return False
+    
+    def save(self, filename = None):
         """Save the game using this view.
         
-        'filename' is the file to save to (string).
+        'filename' is the file to save to (string or None to save to last filename).
         """
         pass
 

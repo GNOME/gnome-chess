@@ -479,7 +479,7 @@ class GtkSaveGameDialog:
     # The GUI
     __gui = None
     
-    def __init__(self, mainUI, view):
+    def __init__(self, mainUI, view, path = None):
         """
         """
         self.__mainUI = mainUI
@@ -500,6 +500,9 @@ class GtkSaveGameDialog:
         allFilter.set_name('All files')
         allFilter.add_pattern('*')
         dialog.add_filter(allFilter)
+        
+        if path is not None:
+            dialog.set_current_name(path)
         
     def _on_save(self, widget, data = None):
         """Gtk+ callback"""

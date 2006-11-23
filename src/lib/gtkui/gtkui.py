@@ -216,6 +216,9 @@ class GtkView(glchess.ui.ViewController):
     # The UI this view belongs to
     ui            = None
     
+    # The title of this view
+    title         = None
+    
     # The widget to render the scene to
     widget        = None
     
@@ -223,13 +226,14 @@ class GtkView(glchess.ui.ViewController):
     moveModel    = None
     selectedMove = -1
     
-    def __init__(self, ui, feedback, isActive = True):
+    def __init__(self, ui, title, feedback, isActive = True):
         """Constructor for a view.
         
         'feedback' is the feedback object for this view (extends ui.ViewFeedback).
         'isActive' is a flag showing if this view can be controlled by the user (True) or not (False).
         """
         self.ui = ui
+        self.title = title
         self.feedback = feedback
         self.isActive = isActive
         self.widget = GtkViewArea(self)
@@ -281,7 +285,7 @@ class GtkView(glchess.ui.ViewController):
         self.selectedMove = moveNumber
         if self.feedback is not None:
             self.feedback.setMoveNumber(moveNumber)
-        
+
 class GtkGameNotebook(gtk.Notebook):
     """
     """
@@ -289,12 +293,14 @@ class GtkGameNotebook(gtk.Notebook):
     glConfig          = None
 
     defaultView       = None
+    views             = None
     viewsByWidget     = None
     
     def __init__(self, ui):
         """
         """
         self.ui = ui
+        self.views = []
         self.viewsByWidget = {}
         
         gtk.Notebook.__init__(self)
@@ -322,7 +328,7 @@ class GtkGameNotebook(gtk.Notebook):
         """
         """
         assert(self.defaultView is None)
-        self.defaultView = GtkView(self.ui, feedback)
+        self.defaultView = GtkView(self.ui, '', feedback)
         page = self.append_page(self.defaultView.widget)
         self.set_current_page(page)
         
@@ -333,7 +339,8 @@ class GtkGameNotebook(gtk.Notebook):
     def addView(self, title, feedback):
         """
         """
-        view = GtkView(self.ui, feedback)
+        view = GtkView(self.ui, title, feedback)
+        self.views.append(view)
         self.viewsByWidget[view.widget] = view
         page = self.append_page(view.widget)
         self.set_tab_label_text(view.widget, title)
@@ -343,25 +350,19 @@ class GtkGameNotebook(gtk.Notebook):
         
         return view
     
-    def getView(self, pageNumber = None):
-        """Get the view at a given page number.
+    def getView(self):
+        """Get the currently selected view.
         
-        'pageNumber' is the page to check or None to get the selected page.
-        
-        Return the view (GtkView) on this page or None if no view here.
+        Returns the view (GtkView) on this page or None if no view here.
         """
-        if pageNumber is None:
-            # If splashscreen present then there is no view
-            if len(self.viewsByWidget) > 0:
-                num = self.get_current_page()
-                if num < 0:
-                    return None
-                widget = self.get_nth_page(num)
-            else:
-                return None
-        else:
-            widget = self.get_nth_page(pageNumber)
-            
+        # If splashscreen present then there is no view
+        if len(self.viewsByWidget) == 0:
+            return None
+        
+        num = self.get_current_page()
+        if num < 0:
+            return None
+        widget = self.get_nth_page(num)
         return self.viewsByWidget[widget]
     
     def removeView(self, view):
@@ -370,6 +371,7 @@ class GtkGameNotebook(gtk.Notebook):
         'view' is the view to remove.
         """
         self.remove_page(self.page_num(view.widget))
+        self.views.remove(view)
         self.viewsByWidget.pop(view.widget)
         self.__updateTabVisibleState()
 
@@ -455,6 +457,54 @@ class AIView:
         if self.window.pageCount == 0:
             self.window.defaultPage.show()
             self.window.notebook.set_show_tabs(False)
+            
+class SaveDialog:
+    """
+    """
+
+    def __init__(self, ui):
+        """Constructor"""
+        self.ui = ui
+        self.model = gtk.ListStore(gobject.TYPE_PYOBJECT, gobject.TYPE_BOOLEAN, str)
+        
+        self.view = ui._gui.get_widget('save_games_treeview')
+        self.view.set_model(self.model)
+        
+        selection = self.view.get_selection()
+        selection.set_mode(gtk.SELECTION_NONE)
+
+        cell = gtk.CellRendererToggle()
+        cell.set_property('activatable', True)
+        cell.connect('toggled', self._toggle_cb)
+        column = gtk.TreeViewColumn('Save', cell)
+        column.add_attribute(cell, 'active', 1)
+        self.view.append_column(column)
+        
+        cell = gtk.CellRendererText()
+        column = gtk.TreeViewColumn('Game', cell)
+        column.add_attribute(cell, 'text', 2)
+        self.view.append_column(column)
+        
+    def setViews(self, views):
+        """
+        """
+        self.model.clear()
+        for view in views:
+            iter = self.model.append()
+            self.model.set(iter, 0, view, 1, True, 2, view.title)
+
+    def setVisible(self, isVisible):
+        """
+        """
+        widget = self.ui._gui.get_widget('save_dialog')
+        if isVisible:
+            widget.show_all()
+        else:
+            widget.hide()
+            
+    def _toggle_cb(self, widget, path, data = None):
+        """Gtk+ callback"""
+        self.model[path][1] = not self.model[path][1]
 
 class GtkUI(glchess.ui.UI):
     """
@@ -536,6 +586,8 @@ class GtkUI(glchess.ui.UI):
         self.__loadConfig()
         
         self.defaultViewController.widget.setRenderGL(self.__renderGL)
+        
+        self.saveDialog = SaveDialog(self)
 
     # Public methods
     
@@ -718,7 +770,7 @@ class GtkUI(glchess.ui.UI):
         menuItem = self.__getWidget('menu_view_3d')
         menuItem.set_active(self.__renderGL)
         self.notebook.defaultView.widget.setRenderGL(self.__renderGL)
-        for view in self.notebook.viewsByWidget.itervalues():
+        for view in self.notebook.views:
             view.widget.setRenderGL(self.__renderGL)
             
         self.__applyingConfig = False
@@ -898,9 +950,17 @@ class GtkUI(glchess.ui.UI):
     def _on_save_game_button_clicked(self, widget, data = None):
         """Gtk+ callback"""
         view = self.notebook.getView()
-        if not self.__saveGameDialogs.has_key(view):
-            self.__saveGameDialogs[view] = dialogs.GtkSaveGameDialog(self, view)
         
+        if view.feedback.getFileName() is not None:
+            view.feedback.save()
+        elif not self.__saveGameDialogs.has_key(view):
+            self.__saveGameDialogs[view] = dialogs.GtkSaveGameDialog(self, view)
+            
+    def _on_save_as_game_button_clicked(self, widget, data = None):
+        view = self.notebook.getView()
+        if not self.__saveGameDialogs.has_key(view):
+            self.__saveGameDialogs[view] = dialogs.GtkSaveGameDialog(self, view, view.feedback.getFileName())
+
     def _on_end_game_button_clicked(self, widget, data = None):
         """Gtk+ callback"""
         view = self.notebook.getView()
@@ -944,10 +1004,42 @@ class GtkUI(glchess.ui.UI):
         
         # Stop the event - the window will be closed by the menu event
         return True
+   
+    def _on_save_dialog_response(self, widget, response_id, data = None):
+        """Gtk+ callback"""
+        self.saveDialog.setVisible(False)
+        
+        if response_id != gtk.RESPONSE_OK:
+            return
+        
+        # Save the requested games
+        for (view, save, _) in self.saveDialog.model:
+            if save:
+                view.feedback.save()
+
+        self.onQuit()
+        
+    def _on_save_dialog_delete(self, widget, data = None):
+        """Gtk+ callback"""
+        # Leave it to use to hide the dialog
+        return True
 
     def _on_quit(self, widget, data = None):
         """Gtk+ callback"""
-        self.onQuit()
+        # Check if any views need saving
+        viewsToSave = []
+        for view in self.notebook.views:
+            if view.feedback.needsSaving():
+                viewsToSave.append(view)
+             
+        if len(viewsToSave) == 0:
+            self.onQuit()
+        else:
+            self.saveDialog.setViews(viewsToSave)
+            self.saveDialog.setVisible(True)
+
+        # Don't close the window, we will do it ourself
+        return True
 
 if __name__ == '__main__':
     ui = GtkUI()

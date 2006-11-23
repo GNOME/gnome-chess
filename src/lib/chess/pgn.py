@@ -611,6 +611,9 @@ class PGN:
             
         f.close()
         
+    def __len__(self):
+        return len(self.__games)
+        
     def __getitem__(self, index):
         return self.__games[index]
 

@@ -469,14 +469,20 @@ class View(ui.ViewFeedback):
         self.game.scene.setMoveNumber(moveNumber)
         self.game.cairoScene.setMoveNumber(moveNumber)
         
-    def save(self, filename):
+    def save(self, fileName = None):
         """Called by ui.ViewFeedback"""
+        if fileName is None:
+            fileName = self.game.fileName
+            assert(fileName is not None)
+
         try:
-            f = file(filename, 'w')
+            f = file(fileName, 'w')
         except IOError, e:
-            self.reportError('Unable to save PGN file ' + filename, str(e))
+            self.reportError('Unable to save PGN file ' + fileName, str(e))
             return
         
+        print 'Saving game ' + repr(self.game.name) + ' to ' + fileName
+
         pgnGame = chess.pgn.PGNGame()
         self.game.toPGN(pgnGame)
             
@@ -485,6 +491,17 @@ class View(ui.ViewFeedback):
             f.write(line + '\n')
         f.write('\n')
         f.close()
+        
+        self.game.fileName = fileName
+        self.game.needsSaving = False
+        
+    def getFileName(self):
+        """Called by ui.ViewFeedback"""
+        return self.game.fileName
+        
+    def needsSaving(self):
+        """Called by ui.ViewFeedback"""
+        return self.game.needsSaving and (self.game.fileName is not None)
 
     def close(self):
         """Called by ui.ViewFeedback"""
@@ -498,7 +515,7 @@ class ChessGame(game.ChessGame):
     application    = None
     
     # The name of the game
-    __name         = None
+    name           = None
     
     # The scene for this game
     scene          = None
@@ -510,6 +527,10 @@ class ChessGame(game.ChessGame):
     __movePlayer   = None
     __aiPlayers    = None
     __humanPlayers = None
+    
+    # The file this is saved to
+    fileName       = None
+    needsSaving    = True
 
     def __init__(self, application, name):
         """Constructor for a chess game.
@@ -518,7 +539,7 @@ class ChessGame(game.ChessGame):
         'name' is the name of the game (string).
         """
         self.application = application
-        self.__name = name
+        self.name = name
         self.__aiPlayers = []
         self.__humanPlayers = []
         
@@ -535,10 +556,6 @@ class ChessGame(game.ChessGame):
         self.__movePlayer = MovePlayer(self)
         self.addSpectator(self.__movePlayer)
 
-    def getName(self):
-        """Returns the name of the game (string)"""
-        return self.__name
-    
     def addAIPlayer(self, name, profile):
         """Create an AI player.
         
@@ -547,7 +564,7 @@ class ChessGame(game.ChessGame):
         
         Returns an AI player to use (game.ChessPlayer).
         """
-        description = "'" + name + "' in '" + self.__name + "'"
+        description = "'" + name + "' in '" + self.name + "'"
         player = AIPlayer(self.application, name, profile, description)
         self.__aiPlayers.append(player)
         self.application.watchAIPlayer(player)
@@ -587,7 +604,7 @@ class ChessGame(game.ChessGame):
         white = self.getWhite()
         black = self.getBlack()
         
-        pgnGame.setTag(pgnGame.PGN_TAG_EVENT, self.getName())
+        pgnGame.setTag(pgnGame.PGN_TAG_EVENT, self.name)
         pgnGame.setTag(pgnGame.PGN_TAG_WHITE, white.getName())
         pgnGame.setTag(pgnGame.PGN_TAG_BLACK, black.getName())
 
@@ -631,6 +648,7 @@ class ChessGame(game.ChessGame):
     def _onPlayerMoved(self, player, move):
         """FIXME: Rename this
         """
+        self.needsSaving = True
         self.view.controller.addMove(move)
 
 class UI(gtkui.GtkUI):
@@ -705,12 +723,7 @@ class UI(gtkui.GtkUI):
             if len(msg) > 0:
                 self.reportError('Game modified', msg)
         else:
-            g = self.__application.addPGNGame(pgnGame)
-            moves = pgnGame.getMoves()
-            if moves:
-                g.start(moves)
-            else:
-                g.start()
+            self.__application.addPGNGame(pgnGame, path)
 
     def onGameJoin(self, localName, localType, game):
         """Called by UI"""
@@ -846,19 +859,31 @@ class Application:
 
         return g
     
-    def addPGNGame(self, pgnGame):
+    def addPGNGame(self, pgnGame, path):
         """Add a PGN game.
         
         'pgnGame' is the game to add (chess.pgn.PGNGame).
+        'path' is the path this game was loaded from (string or None).
         
         Returns the game object. Use game.start() to start the game.
         """
-        return self.addGame(pgnGame.getTag(pgnGame.PGN_TAG_EVENT),
-                            pgnGame.getTag(pgnGame.PGN_TAG_WHITE),
-                            pgnGame.getTag('WhiteAI'),
-                            pgnGame.getTag(pgnGame.PGN_TAG_BLACK),
-                            pgnGame.getTag('BlackAI'))
-                            
+        g = self.addGame(pgnGame.getTag(pgnGame.PGN_TAG_EVENT),
+                         pgnGame.getTag(pgnGame.PGN_TAG_WHITE),
+                         pgnGame.getTag('WhiteAI'),
+                         pgnGame.getTag(pgnGame.PGN_TAG_BLACK),
+                         pgnGame.getTag('BlackAI'))
+        g.fileName = path
+        moves = pgnGame.getMoves()
+        if moves:
+            g.start(moves)
+        else:
+            g.start()
+            
+        # No change from when loaded
+        g.needsSaving = False
+
+        return g
+
     def addMove(self, view, move):
         # TEMP
         self.ui.addMove(view, move)
@@ -885,10 +910,8 @@ class Application:
         if nArgs == 1:
             self.__autoload()
         
-        # Load requested game
-        # TODO: Merge this with the UI requested load games
-        elif nArgs == 2:
-            path = sys.argv[1]
+        # Load requested games
+        for path in sys.argv[1:]:
             try:
                 p = chess.pgn.PGN(path, 1)
             except chess.pgn.Error, e:
@@ -896,16 +919,8 @@ class Application:
                 print e
             else:
                 # Use the first game
-                pgnGame = p[0]
-                g = self.addPGNGame(pgnGame)
-                moves = pgnGame.getMoves()
-                if moves:
-                    g.start(moves)
-                else:
-                    g.start()
-        else:
-            print 'Usage: ' + sys.argv[0] + ' [PGN file]'
-            sys.exit()
+                if len(p) > 0:
+                    g = self.addPGNGame(p[0], path)
 
         # Start UI (does not return)
         try:
@@ -928,7 +943,7 @@ class Application:
 
     def quit(self):
         """Quit glChess"""
-        # Save any open games
+        # Save any games not saved to a file
         self.__autosave()
         
         # End current games (will delete AIs etc)
@@ -968,8 +983,7 @@ class Application:
 
         # Restore each game
         for pgnGame in games:
-            g = self.addPGNGame(pgnGame)
-            g.start(pgnGame.getMoves())
+            self.addPGNGame(pgnGame, None)
     
     def __autosave(self):
         """Save any open games to the autosave file"""
@@ -981,6 +995,10 @@ class Application:
         
         f = file(fname, 'a')
         for g in self.__games:
+            # Ignore games that are saved to a file
+            if g.fileName is not None:
+                continue
+            
             pgnGame = chess.pgn.PGNGame()
             g.toPGN(pgnGame)
             
