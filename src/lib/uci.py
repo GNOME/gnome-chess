@@ -139,6 +139,8 @@ class StateMachine:
             if len(args) != 0:
                 print 'WARNING: Arguments on readyok: ' + str(args)
             self.__ready = True
+            self.__sendCommand('ucinewgame')
+            self.__sendCommand('position startpos')
             return 'info'
         
         elif command == 'bestmove':
