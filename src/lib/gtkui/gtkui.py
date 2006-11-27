@@ -913,6 +913,7 @@ class GtkUI(glchess.ui.UI):
         self.__getWidget('end_game_button').set_sensitive(enableWidgets)
         self.__getWidget('save_game_button').set_sensitive(enableWidgets)
         self.__getWidget('menu_save_item').set_sensitive(enableWidgets)
+        self.__getWidget('menu_save_as_item').set_sensitive(enableWidgets)
         self.__getWidget('menu_end_game_item').set_sensitive(enableWidgets)
 
         combo = self.__getWidget('history_combo')

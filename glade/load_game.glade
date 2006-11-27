@@ -4,7 +4,7 @@
 <glade-interface>
 
 <widget class="GtkDialog" id="game_load_dialog">
-  <property name="border_width">6</property>
+  <property name="border_width">5</property>
   <property name="visible">True</property>
   <property name="title" translatable="yes">Load a chess game</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
@@ -20,14 +20,14 @@
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="focus_on_map">True</property>
   <property name="urgency_hint">False</property>
-  <property name="has_separator">True</property>
+  <property name="has_separator">False</property>
   <signal name="close" handler="_on_close" last_modification_time="Thu, 09 Feb 2006 19:38:50 GMT"/>
 
   <child internal-child="vbox">
     <widget class="GtkVBox" id="dialog-vbox2">
       <property name="visible">True</property>
       <property name="homogeneous">False</property>
-      <property name="spacing">0</property>
+      <property name="spacing">2</property>
 
       <child internal-child="action_area">
 	<widget class="GtkHButtonBox" id="dialog-action_area2">
@@ -88,6 +88,7 @@
 
       <child>
 	<widget class="GtkFileChooserWidget" id="filechooserwidget">
+	  <property name="border_width">5</property>
 	  <property name="width_request">600</property>
 	  <property name="height_request">400</property>
 	  <property name="visible">True</property>

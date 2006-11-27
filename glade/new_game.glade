@@ -4,6 +4,7 @@
 <glade-interface>
 
 <widget class="GtkDialog" id="new_game_dialog">
+  <property name="border_width">5</property>
   <property name="title" translatable="yes">New Game</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
@@ -18,14 +19,14 @@
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="focus_on_map">True</property>
   <property name="urgency_hint">False</property>
-  <property name="has_separator">True</property>
+  <property name="has_separator">False</property>
   <signal name="response" handler="_on_response" last_modification_time="Sun, 30 Jul 2006 14:36:33 GMT"/>
 
   <child internal-child="vbox">
     <widget class="GtkVBox" id="dialog-vbox3">
       <property name="visible">True</property>
       <property name="homogeneous">False</property>
-      <property name="spacing">6</property>
+      <property name="spacing">2</property>
 
       <child internal-child="action_area">
 	<widget class="GtkHButtonBox" id="dialog-action_area3">
@@ -133,7 +134,7 @@
 
       <child>
 	<widget class="GtkVBox" id="vbox1">
-	  <property name="border_width">12</property>
+	  <property name="border_width">5</property>
 	  <property name="visible">True</property>
 	  <property name="homogeneous">False</property>
 	  <property name="spacing">12</property>
@@ -164,13 +165,13 @@
 		      <property name="n_columns">2</property>
 		      <property name="homogeneous">False</property>
 		      <property name="row_spacing">6</property>
-		      <property name="column_spacing">6</property>
+		      <property name="column_spacing">12</property>
 
 		      <child>
 			<widget class="GtkLabel" id="label54">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Game name:</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Game name:</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -179,6 +180,7 @@
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">game_name_entry</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -189,33 +191,6 @@
 			  <property name="right_attach">1</property>
 			  <property name="top_attach">0</property>
 			  <property name="bottom_attach">1</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkLabel" id="label55">
-			  <property name="label" translatable="yes">Allow Spectators:</property>
-			  <property name="use_underline">False</property>
-			  <property name="use_markup">False</property>
-			  <property name="justify">GTK_JUSTIFY_LEFT</property>
-			  <property name="wrap">False</property>
-			  <property name="selectable">False</property>
-			  <property name="xalign">0</property>
-			  <property name="yalign">0.5</property>
-			  <property name="xpad">0</property>
-			  <property name="ypad">0</property>
-			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-			  <property name="width_chars">-1</property>
-			  <property name="single_line_mode">False</property>
-			  <property name="angle">0</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">1</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
 			  <property name="x_options">fill</property>
 			  <property name="y_options"></property>
 			</packing>
@@ -249,7 +224,7 @@
 			<widget class="GtkCheckButton" id="spectator_checkbutton">
 			  <property name="tooltip" translatable="yes">Allow remote clients to watch this game</property>
 			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes"></property>
+			  <property name="label" translatable="yes">_Allow spectators</property>
 			  <property name="use_underline">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
@@ -258,7 +233,7 @@
 			  <property name="draw_indicator">True</property>
 			</widget>
 			<packing>
-			  <property name="left_attach">1</property>
+			  <property name="left_attach">0</property>
 			  <property name="right_attach">2</property>
 			  <property name="top_attach">1</property>
 			  <property name="bottom_attach">2</property>
@@ -326,7 +301,7 @@
 		      <property name="n_columns">2</property>
 		      <property name="homogeneous">False</property>
 		      <property name="row_spacing">6</property>
-		      <property name="column_spacing">6</property>
+		      <property name="column_spacing">12</property>
 
 		      <child>
 			<widget class="GtkComboBox" id="white_type_combo">
@@ -346,8 +321,8 @@
 		      <child>
 			<widget class="GtkLabel" id="label40">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Type:</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Type:</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -356,6 +331,7 @@
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">white_type_combo</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -373,8 +349,8 @@
 
 		      <child>
 			<widget class="GtkLabel" id="label41">
-			  <property name="label" translatable="yes">Difficulty:</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Difficulty:</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -383,6 +359,7 @@
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">hscale1</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -443,8 +420,8 @@
 		      <child>
 			<widget class="GtkLabel" id="label38">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Name:</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Name:</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -453,6 +430,7 @@
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">white_name_entry</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -528,7 +506,7 @@
 		      <property name="n_columns">2</property>
 		      <property name="homogeneous">False</property>
 		      <property name="row_spacing">6</property>
-		      <property name="column_spacing">6</property>
+		      <property name="column_spacing">12</property>
 
 		      <child>
 			<widget class="GtkComboBox" id="black_type_combo">
@@ -548,8 +526,8 @@
 		      <child>
 			<widget class="GtkLabel" id="label43">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Type:</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Type:</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -558,6 +536,7 @@
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">black_type_combo</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -575,8 +554,8 @@
 
 		      <child>
 			<widget class="GtkLabel" id="label44">
-			  <property name="label" translatable="yes">Difficulty:</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Difficulty:</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -585,6 +564,7 @@
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">hscale2</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -645,8 +625,8 @@
 		      <child>
 			<widget class="GtkLabel" id="label37">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Name:</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Name:</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -655,6 +635,7 @@
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">black_name_entry</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -715,6 +696,7 @@
 </widget>
 
 <widget class="GtkDialog" id="join_game_dialog">
+  <property name="border_width">5</property>
   <property name="visible">True</property>
   <property name="title" translatable="yes">Join Game</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
@@ -730,14 +712,14 @@
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="focus_on_map">True</property>
   <property name="urgency_hint">False</property>
-  <property name="has_separator">True</property>
+  <property name="has_separator">False</property>
   <signal name="response" handler="_on_response" last_modification_time="Sun, 30 Jul 2006 14:36:46 GMT"/>
 
   <child internal-child="vbox">
     <widget class="GtkVBox" id="dialog-vbox4">
       <property name="visible">True</property>
       <property name="homogeneous">False</property>
-      <property name="spacing">0</property>
+      <property name="spacing">2</property>
 
       <child internal-child="action_area">
 	<widget class="GtkHButtonBox" id="dialog-action_area4">
@@ -842,7 +824,6 @@
 
       <child>
 	<widget class="GtkVBox" id="vbox9">
-	  <property name="border_width">12</property>
 	  <property name="visible">True</property>
 	  <property name="homogeneous">False</property>
 	  <property name="spacing">12</property>
@@ -873,7 +854,7 @@
 		      <property name="n_columns">3</property>
 		      <property name="homogeneous">False</property>
 		      <property name="row_spacing">6</property>
-		      <property name="column_spacing">6</property>
+		      <property name="column_spacing">12</property>
 
 		      <child>
 			<widget class="GtkLabel" id="label24">
@@ -976,7 +957,6 @@
 			  <property name="top_attach">0</property>
 			  <property name="bottom_attach">1</property>
 			  <property name="x_options">fill</property>
-			  <property name="y_options">fill</property>
 			</packing>
 		      </child>
 		    </widget>
@@ -1009,7 +989,7 @@
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
-	      <property name="expand">False</property>
+	      <property name="expand">True</property>
 	      <property name="fill">True</property>
 	    </packing>
 	  </child>
@@ -1040,7 +1020,7 @@
 		      <property name="n_columns">2</property>
 		      <property name="homogeneous">False</property>
 		      <property name="row_spacing">6</property>
-		      <property name="column_spacing">6</property>
+		      <property name="column_spacing">12</property>
 
 		      <child>
 			<widget class="GtkComboBox" id="local_type_combo">
@@ -1060,8 +1040,8 @@
 		      <child>
 			<widget class="GtkLabel" id="label46">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Type:</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Type:</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -1070,6 +1050,7 @@
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">local_type_combo</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -1087,8 +1068,8 @@
 
 		      <child>
 			<widget class="GtkLabel" id="label47">
-			  <property name="label" translatable="yes">Difficulty:</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Difficulty:</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -1097,6 +1078,7 @@
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">hscale3</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -1158,8 +1140,8 @@
 		      <child>
 			<widget class="GtkLabel" id="label35">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Name:</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Name:</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -1168,6 +1150,7 @@
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">local_name_entry</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
