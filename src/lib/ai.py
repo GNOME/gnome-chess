@@ -66,7 +66,7 @@ def loadProfiles():
     """
     profiles = []
     
-    fileNames = [os.path.expanduser('~/.glchess/ai.xml'), os.path.join(BASE_DIR, 'ai.xml'), 'ai.xml']
+    fileNames = [os.path.expanduser(LOCAL_AI_CONFIG), os.path.join(BASE_DIR, 'ai.xml'), 'ai.xml']
     document = None
     for f in fileNames:
         try:

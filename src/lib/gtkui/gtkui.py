@@ -11,7 +11,6 @@ import sys
 import traceback
 import time
 import gettext
-import ConfigParser
 
 import gobject
 import gtk
@@ -39,6 +38,7 @@ else:
 # Stop PyGTK from catching exceptions
 os.environ['PYGTK_FATAL_EXCEPTIONS'] = '1'
 
+import glchess.config
 import glchess.ui
 import dialogs
 
@@ -528,10 +528,6 @@ class GtkUI(glchess.ui.UI):
     # Dictionary of save game dialogs keyed by view
     __saveGameDialogs = None
     
-    # Dictionary of configuration options
-    __config          = None
-    __applyingConfig  = False
-    
     __renderGL        = False
     openGLInfoPrinted = False
 
@@ -581,13 +577,15 @@ class GtkUI(glchess.ui.UI):
         if not hasattr(gtk, 'gtkgl'):
             self._gui.get_widget('menu_view_3d').set_sensitive(False)
         
-        # Load UI preferences
-        self.__config = {}
-        self.__loadConfig()
-        
         self.defaultViewController.widget.setRenderGL(self.__renderGL)
-        
+
         self.saveDialog = SaveDialog(self)
+        
+        # Watch for config changes
+        glchess.config.watch('show_toolbar', self.__applyConfig)
+        glchess.config.watch('show_history', self.__applyConfig)
+        glchess.config.watch('fullscreen', self.__applyConfig)
+        glchess.config.watch('show_3d', self.__applyConfig)
 
     # Public methods
     
@@ -636,7 +634,11 @@ class GtkUI(glchess.ui.UI):
         """Run the UI.
         
         This method will not return.
-        """        
+        """
+        # Load configuration
+        for name in ['show_toolbar', 'show_history', 'fullscreen', 'show_3d']:
+            self.__applyConfig(name, glchess.config.get(name))
+        
         gtk.main()
         
     # Extended methods
@@ -690,90 +692,52 @@ class GtkUI(glchess.ui.UI):
         self._updateViewButtons()
 
     # Private methods
-    
-    def __loadConfig(self):
-        """
-        """
-        # Set defaults
-        self.__config = {'show_toolbar': 'True',
-                         'show_history': 'True',
-                         'show_3d': 'False'}
-        
-        name = os.path.expanduser('~/.glchess/gtkui.ini')
-        cp = ConfigParser.ConfigParser()
-        cp.read(name)
-        
-        try:
-            items = cp.items('ui')
-        except ConfigParser.NoSectionError:
-            self.__saveConfig()
-        else:
-            for (name, value) in items:
-                self.__config[name] = value
 
-        self.__applyConfig()
-
-    def __setConfig(self, name, value):
+    def __applyConfig(self, name, value):
         """
         """
-        if self.__applyingConfig:
-            return
-        
-        self.__config[name] = value
-        self.__applyConfig()
-        self.__saveConfig()
-        
-    def __saveConfig(self):
-        """
-        """
-        name = os.path.expanduser('~/.glchess/gtkui.ini')
-        try:
-            f = file(name, 'w')
-        except IOError, e:
-            print 'Unable to save config: ' + str(e)
-            return
-        
-        cp = ConfigParser.ConfigParser()
-        cp.add_section('ui')
-        for (name, value) in self.__config.iteritems():
-            cp.set('ui', name, value)
-        cp.write(f)
-        
-    def __applyConfig(self):
-        """
-        """
-        # Stop recursion
-        self.__applyingConfig = True
-        
         # Show/hide the toolbar
-        toolbar = self.__getWidget('toolbar')
-        menu = self.__getWidget('menu_view_toolbar')
-        if self.__config['show_toolbar'] == 'True':
-            menu.set_active(True)
-            toolbar.show()
-        else:
-            menu.set_active(False)
-            toolbar.hide()
+        if name == 'show_toolbar':
+            toolbar = self.__getWidget('toolbar')
+            menu = self.__getWidget('menu_view_toolbar')
+            if value is True:
+                menu.set_active(True)
+                toolbar.show()
+            else:
+                menu.set_active(False)
+                toolbar.hide()
             
         # Show/hide the history
-        box = self.__getWidget('navigation_box')
-        menu = self.__getWidget('menu_view_history')
-        if self.__config['show_history'] == 'True':
-            menu.set_active(True)
-            box.show()
-        else:
-            menu.set_active(False)
-            box.hide()
+        elif name == 'show_history':
+            box = self.__getWidget('navigation_box')
+            menu = self.__getWidget('menu_view_history')
+            if value is True:
+                menu.set_active(True)
+                box.show()
+            else:
+                menu.set_active(False)
+                box.hide()
+                
+        # Fullscreen mode
+        elif name == 'fullscreen':
+            window = self._gui.get_widget('glchess_app')
+            if value is True:
+                window.fullscreen()
+                self._gui.get_widget('menu_fullscreen').hide()
+                self._gui.get_widget('menu_leave_fullscreen').show()
+            else:
+                window.unfullscreen()
+                self._gui.get_widget('menu_leave_fullscreen').hide()
+                self._gui.get_widget('menu_fullscreen').show()
 
         # Enable/disable OpenGL rendering
-        self.__renderGL = self.__config['show_3d'] == 'True'
-        menuItem = self.__getWidget('menu_view_3d')
-        menuItem.set_active(self.__renderGL)
-        self.notebook.defaultView.widget.setRenderGL(self.__renderGL)
-        for view in self.notebook.views:
-            view.widget.setRenderGL(self.__renderGL)
-            
-        self.__applyingConfig = False
+        elif name == 'show_3d':
+            self.__renderGL = value
+            menuItem = self.__getWidget('menu_view_3d')
+            menuItem.set_active(self.__renderGL)
+            self.notebook.defaultView.widget.setRenderGL(self.__renderGL)
+            for view in self.notebook.views:
+                view.widget.setRenderGL(self.__renderGL)
         
     def startAnimation(self):
         """Start the animation callback"""
@@ -806,26 +770,26 @@ class GtkUI(glchess.ui.UI):
     def _on_show_toolbar_clicked(self, widget, data = None):
         """Gtk+ callback"""
         if widget.get_active():
-            value = 'True'
+            value = True
         else:
-            value = 'False'
-        self.__setConfig('show_toolbar', value)
+            value = False
+        glchess.config.set('show_toolbar', value)
 
     def _on_show_history_clicked(self, widget, data = None):
         """Gtk+ callback"""
         if widget.get_active():
-            value = 'True'
+            value = True
         else:
-            value = 'False'
-        self.__setConfig('show_history', value)
+            value = False
+        glchess.config.set('show_history', value)
 
     def _on_toggle_3d_clicked(self, widget, data = None):
         """Gtk+ callback"""
         if widget.get_active():
-            value = 'True'
+            value = True
         else:
-            value = 'False'
-        self.__setConfig('show_3d', value)
+            value = False
+        glchess.config.set('show_3d', value)
 
     def _on_show_ai_stats_clicked(self, widget, data = None):
         """Gtk+ callback"""
@@ -975,17 +939,11 @@ class GtkUI(glchess.ui.UI):
 
     def _on_view_fullscreen_clicked(self, widget, data = None):
         """Gtk+ callback"""
-        window = self._gui.get_widget('glchess_app')
-        window.fullscreen()
-        self._gui.get_widget('menu_fullscreen').hide()
-        self._gui.get_widget('menu_leave_fullscreen').show()
+        glchess.config.set('fullscreen', True)
         
     def _on_view_unfullscreen_clicked(self, widget, data = None):
         """Gtk+ callback"""
-        window = self._gui.get_widget('glchess_app')
-        window.unfullscreen()
-        self._gui.get_widget('menu_leave_fullscreen').hide()
-        self._gui.get_widget('menu_fullscreen').show()
+        glchess.config.set('fullscreen', False)
 
     def _on_about_clicked(self, widget, data = None):
         """Gtk+ callback"""

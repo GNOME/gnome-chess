@@ -4,6 +4,7 @@ glchessdir = $(pythondir)/glchess
 glchess_PYTHON = \
 	ai.py		\
 	cecp.py		\
+	config.py       \
 	defaults.py	\
 	game.py		\
 	glchess.py 	\
