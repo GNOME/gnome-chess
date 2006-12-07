@@ -98,7 +98,7 @@ class StateMachine:
     def requestMove(self):
         """
         """
-        self.__sendCommand('go')
+        self.__sendCommand('go wtime 300000 btime 300000')
 
     def reportMove(self, move, isSelf):
         """
