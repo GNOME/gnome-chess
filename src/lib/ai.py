@@ -263,7 +263,11 @@ class Player(game.ChessPlayer):
                 return
             
             # Read a chunk and process
-            data = os.read(self.__fd, 256)
+            try:
+                data = os.read(self.__fd, 256)
+            except OSError, e:
+                print 'Error reading from chess engine: ' + str(e)
+                return
             if data == '':
                 return
             self.connection.registerIncomingData(data)

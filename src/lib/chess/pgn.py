@@ -51,6 +51,7 @@ class PGNToken:
     # Token types
     LINE_COMMENT = 'Line comment'
     COMMENT      = 'Comment'
+    ESCAPED      = 'Escaped data'
     PERIOD       = 'Period'
     TAG_START    = 'Tag start'
     TAG_END      = 'Tag end'
@@ -130,6 +131,10 @@ class PGNParser:
         
         Return an array of tokens extracted from the line.
         """
+        # Ignore line if contains escaped data
+        if line[0] == '%':
+            return [PGNToken(lineNumber, self.__startOffset, PGNToken.ESCAPED, line[1:])]
+        
         tokens = []
         inSymbol = False
         inNAG = False
@@ -331,6 +336,9 @@ class PGNGameParser:
                 self.__lastTokenIsMoveNumber = False
                 self.__ravDepth = 0
                 self.__state = self.STATE_MOVETEXT
+                
+            elif token.type is PGNToken.ESCAPED:
+                pass
             
             else:
                 raise Error('Unexpected token ' + token.type + ' on line ' + str(token.lineNumber) + ':' + str(token.characterNumber))
