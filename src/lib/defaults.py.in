@@ -12,6 +12,28 @@ gtk.glade.textdomain (DOMAIN)
 VERSION = "@VERSION@"
 APPNAME = _("glChess")
 
+COPYRIGHT     = _('Copyright 2005-2006 Robert Ancell (and contributors)')
+DESCRIPTION   = _('A 2D/3D chess interface for Gnome')
+WEBSITE       = 'http://glchess.sourceforge.net'
+WEBSITE_LABEL = _('glChess homepage')
+AUTHORS       = ['Robert Ancell <bob27@users.sourceforge.net>']
+ARTISTS       = ['John-Paul Gignac (3D Models)', 'Max Froumentin (2D Models)', 'Hylke Bons <h.bons@student.rug.nl> (icon)']
+TRANSLATORS   = """Luca Marturana <lucamarturana@gmail.com> (It)
+Hakan Bekdas <hakanbekdas@yahoo.com> (tr)
+A S Alam <apbrar@gmail.com> (pa)
+Michał Bentkowski <mr.ecik@mail.com> (pl)
+Daniel Nylander <po@danielnylander.se> (sv)
+Translators on Rosetta (launchpad.net)
+Gnome Translation Team"""
+LICENSE = """This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License version 2 as published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details. 
+
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+2D Models:
+Copyright World Wide Web Consortium, (Massachusetts Institute of Technology, Institut National de Recherche en Informatique et en Automatique, Keio University). All Rights Reserved. http://www.w3.org/Consortium/Legal/"""
+
 APP_DATA_DIR    = os.path.join('@prefix@', 'share') 
 ICON_DIR        = os.path.join(APP_DATA_DIR, 'pixmaps')
 TEXTURE_DIR     = os.path.join(ICON_DIR, 'glchess')

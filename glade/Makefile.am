@@ -1,7 +1,6 @@
 
 uidir = $(datadir)/glchess
 ui_DATA = \
-	about.glade		\
 	ai.glade		\
 	chess_view.glade	\
 	error_dialog.glade	\

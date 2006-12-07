@@ -947,13 +947,29 @@ class GtkUI(glchess.ui.UI):
 
     def _on_about_clicked(self, widget, data = None):
         """Gtk+ callback"""
-        if self.__aboutDialog is None:
-            self.__aboutDialog = loadGladeFile('about.glade', domain = 'glchess')
-            self.__aboutDialog.signal_autoconnect(self)
+        if self.__aboutDialog is not None:
+            return
+        
+        dialog = self.__aboutDialog = gtk.AboutDialog()
+        dialog.set_name(APPNAME)
+        dialog.set_version(VERSION)
+        dialog.set_copyright(COPYRIGHT)
+        dialog.set_license(LICENSE)
+        dialog.set_wrap_license(True)
+        dialog.set_comments(DESCRIPTION)
+        dialog.set_authors(AUTHORS)
+        dialog.set_artists(ARTISTS)
+        dialog.set_translator_credits(TRANSLATORS)
+        dialog.set_website(WEBSITE)
+        dialog.set_website_label(WEBSITE_LABEL)
+        dialog.set_logo_icon_name('glchess')
+        dialog.set_translator_credits(TRANSLATORS)
+        dialog.connect('response', self._on_glchess_about_dialog_close)
+        dialog.show()
         
     def _on_glchess_about_dialog_close(self, widget, data = None):
         """Gtk+ callback"""
-        self.__aboutDialog.get_widget('glchess_about_dialog').destroy()
+        self.__aboutDialog.destroy()
         self.__aboutDialog = None
         return False
         
