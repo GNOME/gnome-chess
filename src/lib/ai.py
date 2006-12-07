@@ -230,6 +230,7 @@ class Player(game.ChessPlayer):
             assert(False)
             
         self.connection.start()
+        self.connection.startGame()
         self.connection.configure(profile.options)
 
     # Methods to extend

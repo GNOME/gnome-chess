@@ -142,8 +142,6 @@ class CECPProtocol:
             
         self.logText(line + '\n', 'input')
 
-import select
-
 class Connection(CECPProtocol):
     """
     """
@@ -171,6 +169,11 @@ class Connection(CECPProtocol):
     # Public methods
     
     def start(self):
+        """
+        """
+        pass
+    
+    def startGame(self):
         """
         """
         pass

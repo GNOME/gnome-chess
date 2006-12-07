@@ -58,7 +58,7 @@ class StateMachine:
             options = self.__options
             self.__options = None
             self.configure(options)
-            
+
         # Send queued commands once have OK
         if len(self.__queuedCommands) > 0 and self.__ready:
             commands = self.__queuedCommands
@@ -78,6 +78,12 @@ class StateMachine:
         """
         """
         self.onOutgoingData('uci\n')
+        
+    def startGame(self):
+        """
+        """
+        self.__sendCommand('ucinewgame')
+        self.__sendCommand('position startpos')
         
     def configure(self, options):
         """
@@ -139,8 +145,6 @@ class StateMachine:
             if len(args) != 0:
                 print 'WARNING: Arguments on readyok: ' + str(args)
             self.__ready = True
-            self.__sendCommand('ucinewgame')
-            self.__sendCommand('position startpos')
             return 'info'
         
         elif command == 'bestmove':
