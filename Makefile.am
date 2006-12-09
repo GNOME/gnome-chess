@@ -7,9 +7,3 @@ EXTRA_DIST = $(desktop_in_files)
 CLEANFILES = $(desktop_DATA)
 
 @INTLTOOL_DESKTOP_RULE@
-
-#################################################################
-
-## Executable
-bin_SCRIPTS = src/glchess
-EXTRA_DIST += src/glchess

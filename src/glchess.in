@@ -4,7 +4,9 @@ try:
     from glchess.glchess import start_game
 except ImportError:
     import sys
-    sys.path.append('/usr/share/glchess/')
+    if "@pyexecdir@" not in sys.path:
+      sys.path.insert(0, "@pyexecdir@")
+
     from glchess.glchess import start_game
 
 start_game()
