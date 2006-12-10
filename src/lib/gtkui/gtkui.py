@@ -586,6 +586,8 @@ class GtkUI(glchess.ui.UI):
         glchess.config.watch('show_history', self.__applyConfig)
         glchess.config.watch('fullscreen', self.__applyConfig)
         glchess.config.watch('show_3d', self.__applyConfig)
+        glchess.config.watch('width', self.__applyConfig)
+        glchess.config.watch('height', self.__applyConfig)
 
     # Public methods
     
@@ -634,10 +636,24 @@ class GtkUI(glchess.ui.UI):
         """Run the UI.
         
         This method will not return.
-        """
+        """        
         # Load configuration
-        for name in ['show_toolbar', 'show_history', 'fullscreen', 'show_3d']:
-            self.__applyConfig(name, glchess.config.get(name))
+        for name in ['show_toolbar', 'show_history', 'show_3d']:
+            try:
+                value = glchess.config.get(name)
+            except glchess.config.Error:
+                pass
+            else:
+                self.__applyConfig(name, value)
+        self.__resize()
+        
+        self._gui.get_widget('glchess_app').show()
+
+        # Apply the fullscreen flag after the window has been shown otherwise
+        # gtk.Window.unfullscreen() stops working if the window is set to fullscreen
+        # before being shown. I haven't been able to reproduce this in the simple
+        # case (GTK+ 2.10.6-0ubuntu3).
+        self.__applyConfig('fullscreen', glchess.config.get('fullscreen'))
         
         gtk.main()
         
@@ -693,9 +709,22 @@ class GtkUI(glchess.ui.UI):
 
     # Private methods
 
+    def __resize(self):
+        try:
+            width = glchess.config.get('width')
+            height = glchess.config.get('height')
+        except glchess.config.Error:
+            return
+        
+        self._gui.get_widget('glchess_app').resize(width, height)
+
     def __applyConfig(self, name, value):
         """
         """
+        if name == 'width' or name == 'height':
+            self.__resize()
+            return
+        
         # Show/hide the toolbar
         if name == 'show_toolbar':
             toolbar = self.__getWidget('toolbar')
@@ -998,6 +1027,11 @@ class GtkUI(glchess.ui.UI):
         """Gtk+ callback"""
         # Leave it to use to hide the dialog
         return True
+    
+    def _on_resize(self, widget, event, data = None):
+        """Gtk+ callback"""
+        glchess.config.set('width', event.width)
+        glchess.config.set('height', event.height)
 
     def _on_quit(self, widget, data = None):
         """Gtk+ callback"""

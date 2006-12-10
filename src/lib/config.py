@@ -1,7 +1,7 @@
 from defaults import *
 
 try:
-    import gconfy
+    import gconf
 except ImportError:
     haveGConfSupport = False
     _notifiers = {}
