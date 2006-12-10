@@ -7,8 +7,7 @@ bin_SCRIPTS = glchess
 EXTRA_DIST  = glchess
 CLEANFILES  = glchess
 
-glchess: glchess.in
+glchess: $(srcdir)/glchess.in
 	sed \
 		-e "s|\@pyexecdir\@|$(pyexecdir)|" \
-		glchess.in > glchess
-
+	    	$< > $@
