@@ -8,6 +8,9 @@ class StateMachine:
     
     options = None
     
+    __positionCommand = 'position startpos'
+    __haveMoves = False
+    
     buffer = ''
     
     __readyToConfigure = False
@@ -83,8 +86,8 @@ class StateMachine:
         """
         """
         self.__sendCommand('ucinewgame')
-        self.__sendCommand('position startpos')
-        
+        self.__sendCommand(self.__positionCommand)
+
     def configure(self, options):
         """
         """
@@ -109,7 +112,11 @@ class StateMachine:
     def reportMove(self, move, isSelf):
         """
         """
-        self.__sendCommand('position moves ' + move)
+        if not self.__haveMoves:
+            self.__positionCommand += ' moves'
+        self.__haveMoves = True
+        self.__positionCommand += ' ' + move
+        self.__sendCommand(self.__positionCommand)
         
     def parseLine(self, line):
         """
