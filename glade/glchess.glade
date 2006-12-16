@@ -253,6 +253,26 @@
 
 	      <child>
 		<widget class="GtkMenu" id="help2_menu">
+		  <child>
+		    <widget class="GtkImageMenuItem" id="about3">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">_Contents</property>
+		      <property name="use_underline">True</property>
+		      <signal name="activate" handler="_on_help_clicked" last_modification_time="Fri, 11 Aug 2006 12:43:28 GMT"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image17">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-help</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
+		    </widget>
+		  </child>
 
 		  <child>
 		    <widget class="GtkImageMenuItem" id="about2">

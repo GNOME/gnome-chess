@@ -1,15 +1,363 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
-          "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
- [
- ]
->
-<article>
-  <articleinfo>
-    <title>glChess documentation</title>
-    <pubdate>April 17th, 2004</pubdate>
-  </articleinfo>
+<?xml version="1.0"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY appversion "2.18">
+  <!ENTITY manrevision "2.18">
+  <!ENTITY date "December">
+  <!ENTITY app "<application>glChess</application>">
+  <!ENTITY appname "glChess">
+  <!ENTITY version "2.18">
+]>
+
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Feb 12, 2002
+-->
+
+<!-- 
+  This initial draft of documentation for glchess, so that
+  the game at least has *some* documentation. Feal free to rewrite 
+  this document, anyone! 
+
+  - Andreas R.
+-->
+
+
+<!-- =============Document Header ============================= -->
+<article id="index" lang="en">
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
+<articleinfo>
+ <title>&app; Manual V&manrevision;</title>
+
+ <copyright>
+  <year>2006</year>
+  <holder>Andreas Røsdal</holder>
+ </copyright>
+<!-- translators: uncomment this:
+
+  <copyright>
+   <year>2002</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+
+   -->
+<!-- An address can be added to the publisher information.  If a role is 
+     not specified, the publisher/author is the same for all versions of the 
+     document.  -->
+    <publisher> 
+      <publishername> GNOME Documentation Project </publishername> 
+    </publisher> 
+
+   &legal;
+   <!-- This file  contains link to license for the documentation (GNU FDL), and 
+        other legal stuff such as "NO WARRANTY" statement. Please do not change 
+	any of this. -->
+
+    <authorgroup> 
+      <author> 
+	<firstname>Andreas</firstname> 
+	<surname>Røsdal</surname> 
+	<affiliation> 
+	  <address> <email>andrearo@pvv.ntnu.no</email> </address> 
+	</affiliation> 
+      </author> 
+<!-- This is appropriate place for other contributors: translators,
+      maintainers,  etc. Commented out by default.
+       <othercredit role="translator">
+	<firstname>Latin</firstname> 
+	<surname>Translator 1</surname> 
+	<affiliation> 
+	  <orgname>Latin Translation Team</orgname> 
+	  <address> <email>translator@gnome.org</email> </address> 
+	</affiliation>
+	<contrib>Latin translation</contrib>
+      </othercredit>
+-->
+    </authorgroup>
+    
+<revhistory>
+      <revision> 
+	<revnumber>&appname; Manual V&manrevision;</revnumber> 
+	<date>&date;</date> 
+	<revdescription> 
+	  <para role="author">Andreas Røsdal
+	    <email>andrearo@pvv.ntnu.no</email>
+	  </para>
+	  <para role="publisher">GNOME Documentation Project</para>
+	</revdescription> 
+      </revision>
+  <revision>
+   <revnumber>1</revnumber>
+   <date>December 2006</date>
+   <authorinitials>AR</authorinitials>
+   <revremark>
+   First draft completed.
+   </revremark>
+  </revision>
+ </revhistory>
+
+    <releaseinfo>This manual describes version &appversion; of &appname;.
+    </releaseinfo>
+    <!-- The following feedback information only applies to appliactions
+    listed in bugzilla.gnome.org and bugzilla.ximian.com. For other
+    applications, please provide your own feedback info or remove thsi
+    section altogether -->
+    <legalnotice> 
+      <title>Feedback</title> 
+      <para>To report a bug or make a suggestion regarding the &app; application or
+	this manual, follow the directions in the 
+	<ulink url="ghelp:gnome-feedback"
+	  type="help">GNOME Feedback Page</ulink>. 
+      </para>
+<!-- Translators may also add here feedback address for translations -->
+    </legalnotice>
+
+</articleinfo>
+
+  <indexterm zone="index"> 
+    <primary>Iagno</primary> 
+  </indexterm>
+
+<!-- ============= Document Body ============================= -->
+<!-- ============= Introduction ============================== -->
+<sect1 id="intro">
+ <title>Introduction</title>
+ <sect2 id="what">
+  <title>Overview of Chess</title>
+  
   <para>
-	TODO!
- </para>
+	Chess is a two-player strategy board game. <application>glChess</application> is a 2D/3D chess game, where games
+	can be played between a combination of human and computer players. glChess detects known third party chess engines
+	for computer players. The game was originally developed by Robert Ancell, now the game is included in gnome-games.
+  </para>
+
+  <para>
+	<application>glChess</application> is written in Python and uses GTK+ and Cairo to render the chess board. 3D support is 
+	optionally available using OpenGl,
+	using the Python OpenGL and GtkGLExt libraries. As with most modern 3D programs hardware acceleration is recommended but it should
+	run OK in software. glChess is bundled with GNU Chess as the default chess AI.  
+  </para>
+  <para>
+	Chess is played on a square chessboard, consisting of 64 squares of alternating color. Each player begins the game with sixteen pieces: one king, one queen, two rooks, two knights, two bishops, and eight pawns. One player controls the white pieces and the other player controls the black pieces; the player that controls white is the first to move. The players take turns moving pieces; certain moves involve a "capturing" of an opponent's piece, removing it from the chessboard. The object of the game is to checkmate the opponent's king. This occurs when the king is under immediate attack (in check) and there is no way to remove it from attack on the next move. Theoreticians have developed extensive chess strategies and tactics since the game's inception.
+</para>
+<para>
+The current form of the game emerged in South Europe in the second half of the 15th century after evolving from similar, much older games of Asian origin. Chess is one of the world's most popular board games. The tradition of competitive chess began in the 16th century. The first official World Chess Champion, Wilhelm Steinitz, claimed his title in 1886; his modern equivalent, Vladimir Kramnik, is the 14th Champion in the lineage. There are also biennial world team events called Chess Olympiads. Since the 20th century, two international organizations, the World Chess Federation and the International Correspondence Chess Federation have organized and overseen the top chess competitions and international titles.
+</para>
+<para>
+One of the goals of early computer scientists was to create a chess-playing machine, and today's chess is deeply influenced by the overwhelming abilities of current chess programs. In 1997, a match between Garry Kasparov, then World Champion, and IBM's Deep Blue chess program proved that computers are able to beat even the strongest human players.
+</para>
+
+  <para>
+   To run <application>glChess</application>, select
+   <guimenuitem>Chess</guimenuitem> from the
+   <guisubmenu>Games</guisubmenu> submenu of the <guimenu>Main
+   Menu</guimenu>, or type <command>glchess</command> on the
+   command line. 
+  </para>
+ </sect2>
+
+</sect1>
+
+<sect1 id="chess-rules">
+ <title>Chess Rules</title>
+ <sect2 id="rules-of-chess">
+  <title>The Rules of Chess</title>
+  <para>
+Chess is played on a square board of eight rows (called ranks and denoted with numbers 1 to 8) and eight columns (called files and denoted with letters a to h) of squares. The colors of the sixty-four squares alternate between light and dark, and are referred to as "light squares" and "dark squares". The chessboard is placed so that each player has a white square in the near right hand corner, and the pieces are set out as shown in the diagram, with each queen on a square that matches its color.
+</para><para>
+Each player begins the game with sixteen pieces: each player's pieces comprise one king, one queen, two rooks, two bishops, two knights and eight pawns. One player, referred to as White, controls the white pieces and the other player, Black, controls the black pieces; White is always the first player to move. The colors are chosen either by a friendly agreement, by a game of chance or by a tournament director. The players alternate moving one piece at a time (with the exception of castling, when two pieces are moved at the same time). Pieces are moved to either an unoccupied square, or one occupied by an opponent's piece, capturing it and removing it from play. With one exception (en passant), all pieces capture opponent's pieces by moving to the square that the opponent's piece occupies.
+</para><para>
+  <title>King</title>
+When a king is under direct attack by one (or possibly two) of the opponent's pieces, the player is said to be in check. When in check, only moves that remove the king from attack are permitted. The player must not make any move that would place his king in check. The object of the game is to checkmate the opponent; this occurs when the opponent's king is in check, and there are no moves that remove the king from attack.
+
+</para><para>
+    The king can move only one square horizontally, vertically, or diagonally. Once in the game, each king is allowed to make a special double move, to castle. Castling consists of moving the king two squares towards a rook, then moving the rook onto the square over which the king crossed. Castling is only permissible if all of the following conditions hold:
+</para><para>
+<itemizedlist spacing="compact">
+  <listitem>
+   The player must never have moved both the king and the rook involved in castling.
+  </listitem>
+  <listitem>
+   There must be no pieces between the king and the rook.
+  </listitem>
+  <listitem>
+   The king may not currently be in check, nor may the king pass through squares that are under attack by enemy pieces. As with any move, castling is illegal if it would place the king in check. 
+ </listitem>
+  <listitem>
+   The king and the rook must be on the same rank (to exclude castling with a promoted pawn).
+  </listitem>
+</itemizedlist>
+
+</para>
+<para>
+  <title>Rook</title>
+   The rook moves any number of vacant squares vertically or horizontally (it is also involved in the king's special move of castling).
+</para>
+<para>
+  <title>Bishop</title>
+    The bishop moves any number of vacant squares in any direction diagonally. Note that a bishop never changes square color, therefore players speak about "light-squared" or "dark-squared" bishops.
+</para>
+<para>
+  <title>Queen</title>
+    The queen can move any number of vacant squares diagonally, horizontally, or vertically.
+</para>
+<para>
+  <title>Knight</title>
+    The knight can jump over occupied squares and moves two spaces horizontally and one space vertically or vice versa, making an "L" shape. A knight in the middle of the board has eight squares to which it can move. Note that every time a knight moves, it changes square color.
+
+</para>
+<para>
+  <title>Pawns</title>
+
+    Pawns have the most complex rules of movement: A pawn can move forward one square, if that square is unoccupied. If it has not moved yet, the pawn has the option of moving two squares forward, if both squares in front of the pawn are unoccupied. A pawn cannot move backward. When such an initial two square advance is made that puts that pawn horizontally adjacent to an opponent's pawn, the opponent's pawn can capture that pawn "en passant" as if it moved forward only one square rather than two, but only on the immediately subsequent move. Pawns are the only pieces that capture differently than they move. They can capture an enemy piece on either of the two spaces adjacent to the space in front of them (i.e., the two squares diagonally in front of them), but cannot move to these spaces if they are vacant. If a pawn advances all the way to its eighth rank, it is then promoted (converted) to a queen, rook, bishop, or knight of the same color. In practice, the pawn is almost always promoted to a queen.
+
+</para><para>
+With the exception of the knight, pieces cannot jump over each other. One's own pieces ("friendly pieces") cannot be passed if they are in the line of movement, and a friendly piece can never replace another friendly piece. Enemy pieces cannot be passed, but they can be "captured". When a piece is captured (or taken), the attacking piece replaces the enemy piece on its square (en passant being the only exception). The captured piece is thus removed from the game and may not be returned to play for the remainder of the game. The king cannot be captured, only put in check. If a player is unable to get the king out of check, checkmate results, with the loss of the game.
+
+</para><para>
+Chess games do not have to end in checkmate — either player may resign if the situation looks hopeless. Games also may end in a draw (tie). A draw can occur in several situations, including draw by agreement, stalemate, threefold repetition of a position, the fifty move rule, or a draw by impossibility of checkmate (usually because of insufficient material to checkmate).
+</para>
+ </sect2>
+</sect1>
+
+
+<sect1 id="engines">
+ <title>Chess Engines</title>
+
+     <para>
+	glChess should be able to use any Chess Engine Communication Protocol or Universal Chess Interface compatible chess engines, including these chess engines:
+
+     </para>
+
+<itemizedlist spacing="compact">
+  <listitem>
+	GNUChess
+  </listitem>
+  <listitem>
+	Sjeng
+  </listitem>
+  <listitem>
+	Amy
+ </listitem>
+  <listitem>
+	Crafty
+  </listitem>
+  <listitem>
+	Faile
+  </listitem>
+  <listitem>
+	Phalanx
+  </listitem>
+  <listitem>
+	Glaurung
+  </listitem>
+  <listitem>
+	HoiChess
+  </listitem>
+  <listitem>
+	Diablo
+  </listitem>
+  <listitem>
+	BBChess	
+  </listitem>
+  <listitem>
+	Fruit
+  </listitem>
+  <listitem>
+	Amundsen
+  </listitem>
+</itemizedlist>
+
+</sect1>
+
+
+<sect1 id="bugs">
+ <title>Known Bugs and Limitations</title>
+
+ <itemizedlist mark="opencircle">
+    <listitem>
+     <para>
+	There are no documented bugs or limitations in glChess. 	
+     </para>
+    </listitem>
+ </itemizedlist>
+
+</sect1>
+
+<sect1 id="credits">
+ <title>Authors</title>
+  <para>
+   <application>glChess</application> was written by Robert Ancell,
+   and is now maintained in gnome-games. 
+   To report a bug or make a suggestion regarding this application or
+   this manual, follow the directions in this 
+   <ulink url="ghelp:gnome-feedback" type="help">document</ulink>.
+  </para>
+
+  <!-- For translations: uncomment this:
+
+  <para>
+   Latin translation was done by ME
+   (<email>MYNAME@MYADDRESS</email>). Please send all  comments  and
+   suggestions regarding this translation to SOMEWHERE.
+  </para>
+
+  -->
+
+ </sect1>
+
+
+ <!-- ============= Application License ============================= -->
+
+ <sect1 id="license">
+  <title>License</title>
+  <para>
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the <citetitle>GNU General Public
+   License</citetitle> as published by the Free Software Foundation;
+   either version 2 of the License, or (at your option) any later
+   version.
+  </para>
+  <para>
+   This program is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   <citetitle>GNU General Public License</citetitle> for more details.
+  </para>
+  <para>
+   A copy of the <citetitle>GNU General Public License</citetitle> is
+   included as an appendix to the <citetitle>GNOME Users
+   Guide</citetitle>.  You may also obtain a copy of the
+   <citetitle>GNU General Public License</citetitle> from the Free
+   Software Foundation by visiting <ulink type="http"
+   url="http://www.fsf.org">their Web site</ulink> or by writing to
+   <address>
+    Free Software Foundation, Inc.
+    <street>59 Temple Place</street> - Suite 330
+    <city>Boston</city>, <state>MA</state> <postcode>02111-1307</postcode>
+    <country>USA</country>
+   </address>
+  </para>
+ </sect1>
 </article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
