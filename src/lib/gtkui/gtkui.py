@@ -89,8 +89,9 @@ class GtkViewArea(gtk.DrawingArea):
         
     def redraw(self):
         """Request this widget is redrawn"""
-        #FIXME: Check this is valid
-        self.window.invalidate_rect(self.allocation, False)
+        # If the window is visible prepare it for redrawing
+        if self.window is not None:
+            self.window.invalidate_rect(self.allocation, False)
 
     def setRenderGL(self, renderGL):
         """Enable OpenGL rendering"""
