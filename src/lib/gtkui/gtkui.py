@@ -27,10 +27,12 @@ else:
 from glchess.defaults import *
 
 # Optionally use OpenGL support
+# gtk.gtkgl throws RuntimeError when there is no OpenGL support
+# It should really just throw ImportError
 try:
     import gtk.gtkgl
     import OpenGL
-except ImportError:
+except (ImportError, RuntimeError):
     haveGLSupport = False
 else:
     haveGLSupport = True
