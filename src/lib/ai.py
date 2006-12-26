@@ -19,9 +19,17 @@ CECP = 'CECP'
 UCI  = 'UCI'
 
 class Option:
+    """
+    """
     value = ''
+
+class Level:
+    """
+    """
+    options = None
     
-    pass
+    def __init__(self):
+        self.options = []
 
 class Profile:
     """
@@ -31,11 +39,11 @@ class Profile:
     executable = ''
     path       = ''
     arguments  = None
-    options    = None
+    profiles   = None
     
     def __init__(self):
         self.arguments = []
-        self.options = []
+        self.profiles = {}
 
     def detect(self):
         """
@@ -59,7 +67,29 @@ def _getXMLText(node):
         return ''
     if len(node.childNodes) > 1 or node.childNodes[0].nodeType != node.TEXT_NODE:
         raise ValueError
-    return node.childNodes[0].nodeValue 
+    return node.childNodes[0].nodeValue
+
+def _loadLevel(node):
+    """
+    """
+    level = Level()
+    n = node.getElementsByTagName('name')
+    if len(n) != 1:
+        return None
+    level.name = _getXMLText(n[0])
+    
+    for e in node.getElementsByTagName('option'):
+        option = Option()
+        option.value = _getXMLText(e)
+        try:
+            attribute = e.attributes['name']
+        except KeyError:
+            pass
+        else:
+            option.name = _getXMLText(attribute)
+        level.options.append(option)
+        
+    return level
 
 def loadProfiles():
     """
@@ -108,29 +138,21 @@ def loadProfiles():
             executable = _getXMLText(n[0])
             
             arguments = [executable]
-            n = p.getElementsByTagName('argument')
-            for x in n:
+            for x in p.getElementsByTagName('argument'):
                 arguments.append(_getXMLText(x))
-            
-            options = []
-            n = p.getElementsByTagName('option')
-            for x in n:
-                option = Option()
-                option.value = _getXMLText(x)
-                try:
-                    attribute = x.attributes['name']
-                except KeyError:
-                    pass
-                else:
-                    option.name = _getXMLText(attribute)
-                options.append(option)
+
+            levels = {}
+            for x in p.getElementsByTagName('level'):
+                level = _loadLevel(x)
+                if level is not None:
+                    levels[level.name] = level
 
             profile = Profile()
             profile.name       = name
             profile.protocol   = protocol
             profile.executable = executable
             profile.arguments  = arguments
-            profile.options    = options
+            profile.levels     = levels
             profiles.append(profile)
     
     return profiles
@@ -186,10 +208,10 @@ class UCIConnection(uci.StateMachine):
 
 class Player(game.ChessPlayer):
     """
-    """
-    
+    """    
     # The profile we are using
-    __profile = None
+    __profile    = None
+    __level = None
         
     # File object to engine stdin/out/err
     __fd = None
@@ -198,13 +220,18 @@ class Player(game.ChessPlayer):
     
     moving = False
     
-    def __init__(self, name, profile):
+    def __init__(self, name, profile, level = 'normal'):
         """Constructor for an AI player.
         
         'name' is the name of the player (string).
         'profile' is the profile to use for the AI (Profile).
+        'level' is the difficulty level to use (string).
         """
         self.__profile = profile
+        try:
+            self.__level = profile.levels[level]
+        except KeyError:
+            self.__level = None
 
         game.ChessPlayer.__init__(self, name)
         
@@ -231,7 +258,10 @@ class Player(game.ChessPlayer):
             
         self.connection.start()
         self.connection.startGame()
-        self.connection.configure(profile.options)
+        if self.__level is None:
+            self.connection.configure()
+        else:
+            self.connection.configure(self.__level.options)
 
     # Methods to extend
     

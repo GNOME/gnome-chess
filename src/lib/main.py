@@ -97,14 +97,14 @@ class AIPlayer(ai.Player):
     """
     """
     
-    def __init__(self, application, name, profile, description):
+    def __init__(self, application, name, profile, level, description):
         """
         """
         executable = profile.path
         for arg in profile.arguments[1:]:
             executable += ' ' + arg
         self.window = application.ui.addAIWindow(profile.name, executable, description)
-        ai.Player.__init__(self, name, profile)
+        ai.Player.__init__(self, name, profile, level)
         
     def logText(self, text, style):
         """Called by ai.Player"""
@@ -556,16 +556,17 @@ class ChessGame(game.ChessGame):
         self.__movePlayer = MovePlayer(self)
         self.addSpectator(self.__movePlayer)
 
-    def addAIPlayer(self, name, profile):
+    def addAIPlayer(self, name, profile, level):
         """Create an AI player.
         
         'name' is the name of the player to create (string).
         'profile' is the the AI profile to use (ai.Profile).
+        'level' is the difficulty level to use (string).
         
         Returns an AI player to use (game.ChessPlayer).
         """
         description = "'" + name + "' in '" + self.name + "'"
-        player = AIPlayer(self.application, name, profile, description)
+        player = AIPlayer(self.application, name, profile, level, description)
         self.__aiPlayers.append(player)
         self.application.watchAIPlayer(player)
         return player
@@ -608,6 +609,7 @@ class ChessGame(game.ChessGame):
         pgnGame.setTag(pgnGame.PGN_TAG_WHITE, white.getName())
         pgnGame.setTag(pgnGame.PGN_TAG_BLACK, black.getName())
 
+        # FIXME: AI levels
         if isinstance(white, ai.Player):
             pgnGame.setTag('WhiteAI', white.getProfile().name)
         if isinstance(black, ai.Player):
@@ -681,10 +683,18 @@ class UI(gtkui.GtkUI):
             player.read()
             return True
 
-    def onGameStart(self, gameName, allowSpectators, whiteName, whiteType, blackName, blackType, moves = None):
+    def onGameStart(self, gameName, allowSpectators, duration, white, black, moves = None):
         """Called by UI"""
-        g = self.__application.addGame(gameName, whiteName, whiteType, blackName, blackType)
-        print 'Starting game ' + gameName + ' between ' + whiteName + '(' + str(whiteType) + ') and ' + blackName + '(' + str(blackType) + ')'
+        if white.type is None:
+            w = None
+        else:
+            w = (white.type, white.level)
+        if black.type is None:
+            b = None
+        else:
+            b = (black.type, black.level)
+        g = self.__application.addGame(gameName, white.name, w, black.name, b)
+        print 'Starting game ' + gameName + ' between ' + white.name + '(' + str(white.type) + ') and ' + black.name + '(' + str(black.type) + ')'
         if moves:
             g.start(moves)
         else:
@@ -724,10 +734,6 @@ class UI(gtkui.GtkUI):
                 self.reportError('Game modified', msg)
         else:
             self.__application.addPGNGame(pgnGame, path)
-
-    def onGameJoin(self, localName, localType, game):
-        """Called by UI"""
-        print 'Joining game ' + str(game) + ' as ' + localName + '(' + str(localType) + ')'
 
     def onQuit(self):
         """Called by UI"""
@@ -821,12 +827,14 @@ class Application:
         
         'name' is the name of the game (string).
         'whiteName' is the name of the white player (string).
-        'whiteType' is the AI profile to use for white (string) or None if white is human.
+        'whiteType' is a 2-tuple containing the AI profile name and difficulty level (str, str) or None for human players.
         'blackName' is the name of the black player (string).
-        'blackType' is the AI profile to use for black (string) or None if black is human.
+        'blackType' is a 2-tuple containing the AI profile name and difficulty level (str, str) or None for human players.
         
         Returns the game object. Use game.start() to start the game.
         """
+        # FIXME: Replace arguments with player objects
+        
         # Create the game
         g = ChessGame(self, name)
         self.__games.append(g)
@@ -835,23 +843,27 @@ class Application:
         if whiteType is None:
             player = g.addHumanPlayer(whiteName)
         else:
+            (profileName, level) = whiteType
             try:
-                profile = self.__aiProfiles[whiteType]
-                player = g.addAIPlayer(whiteName, profile)
+                profile = self.__aiProfiles[profileName]
             except KeyError:
                 msg += "AI '" + whiteType + "' is not installed, white player is now human"
                 player = g.addHumanPlayer(whiteName)
+            else:
+                player = g.addAIPlayer(whiteName, profile, level)
         g.setWhite(player)
 
         if blackType is None:
             player = g.addHumanPlayer(blackName)
         else:
+            (profileName, level) = blackType
             try:
-                profile = self.__aiProfiles[blackType]
-                player = g.addAIPlayer(blackName, profile)
+                profile = self.__aiProfiles[profileName]
             except KeyError:
                 msg += "AI '" + blackType + "' is not installed, black player is now human"
                 player = g.addHumanPlayer(blackName)
+            else:
+                player = g.addAIPlayer(blackName, profile, level)
         g.setBlack(player)
                 
         if len(msg) > 0:
@@ -867,11 +879,27 @@ class Application:
         
         Returns the game object. Use game.start() to start the game.
         """
+        whiteType = pgnGame.getTag('WhiteAI')
+        if whiteType is None:
+            w = None
+        else:
+            level = pgnGame.getTag('WhiteLevel')
+            if level is None:
+                level = 'normal'
+            w = (whiteType, level)
+
+        blackType = pgnGame.getTag('BlackAI')
+        if blackType is None:
+            b = None
+        else:
+            level = pgnGame.getTag('BlackLevel')
+            if level is None:
+                level = 'normal'
+            b = (blackType, level)
+
         g = self.addGame(pgnGame.getTag(pgnGame.PGN_TAG_EVENT),
-                         pgnGame.getTag(pgnGame.PGN_TAG_WHITE),
-                         pgnGame.getTag('WhiteAI'),
-                         pgnGame.getTag(pgnGame.PGN_TAG_BLACK),
-                         pgnGame.getTag('BlackAI'))
+                         pgnGame.getTag(pgnGame.PGN_TAG_WHITE), w,
+                         pgnGame.getTag(pgnGame.PGN_TAG_BLACK), b)
         g.fileName = path
         moves = pgnGame.getMoves()
         if moves:

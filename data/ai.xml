@@ -1,74 +1,191 @@
 <aiconfig>
 
+<!-- gnome-gnuchess is bundled with gnome-games -->
+<ai type="cecp">
+  <name>GNUchess for GNOME</name>
+  <binary>gnome-gnuchess</binary>
+  <argument>--xboard</argument>
+  <level>
+     <name>easy</name>
+     <option>easy</option>
+     <option>depth 1</option>
+  </level>
+  <level>
+     <name>normal</name>
+     <option>depth 4</option>
+  </level>
+  <level>
+     <name>hard</name>
+     <option>hard</option>
+  </level>
+</ai>
+
 <ai type="cecp">
   <name>GNUchess</name>
   <binary>gnuchess</binary>
-  <option>hard</option>
   <argument>--xboard</argument>
+  <level>
+     <name>easy</name>
+     <option>easy</option>
+     <option>depth 1</option>
+  </level>
+  <level>
+     <name>normal</name>
+     <option>depth 4</option>
+  </level>
+  <level>
+     <name>hard</name>
+     <option>hard</option>
+  </level>
 </ai>
 
 <ai type="cecp">
   <name>Sjeng</name>
   <binary>sjeng</binary>
-  <option>easy</option>
-  <option>depth 2</option>
+  <level>
+     <name>easy</name>
+     <option>easy</option>
+     <option>depth 1</option>
+  </level>
+  <level>
+     <name>normal</name>
+     <option>depth 4</option>
+  </level>
+  <level>
+     <name>hard</name>
+     <option>hard</option>
+  </level>
 </ai>
 
 <ai type="cecp">
   <name>Amy</name>
   <binary>Amy</binary>
-  <option>easy</option>
-  <option>depth 2</option>
+  <level>
+     <name>easy</name>
+     <option>easy</option>
+     <option>depth 1</option>
+  </level>
+  <level>
+     <name>normal</name>
+     <option>depth 4</option>
+  </level>
+  <level>
+     <name>hard</name>
+     <option>hard</option>
+  </level>
 </ai>
 
 <ai type="cecp">
   <name>Crafty</name>
   <binary>crafty</binary>
-  <option>easy</option>
-  <option>depth 2</option>
+  <level>
+     <name>easy</name>
+     <option>easy</option>
+     <option>depth 1</option>
+  </level>
+  <level>
+     <name>normal</name>
+     <option>depth 4</option>
+  </level>
+  <level>
+     <name>hard</name>
+     <option>hard</option>
+  </level>
 </ai>
 
 <ai type="cecp">
   <name>Faile</name>
   <binary>faile</binary>
-  <option>easy</option>
-  <option>depth 2</option>
+  <level>
+     <name>easy</name>
+     <option>easy</option>
+     <option>depth 1</option>
+  </level>
+  <level>
+     <name>normal</name>
+     <option>depth 4</option>
+  </level>
+  <level>
+     <name>hard</name>
+     <option>hard</option>
+  </level>
 </ai>
 
 <ai type="cecp">
   <name>Phalanx</name>
   <binary>phalanx</binary>
-  <option>easy</option>
-  <option>level 5</option>
-  <option>depth 2</option>
-</ai>
-
-<!-- gnome-gnuchess is bundled with gnome-games -->
-<ai type="cecp">
-  <name>GNUchess for GNOME</name>
-  <binary>gnome-gnuchess</binary>
-  <option>hard</option>
-  <argument>--xboard</argument>
-  <option>depth 2</option>
+  <level>
+     <name>easy</name>
+     <option>easy</option>
+     <option>depth 1</option>
+     <option>level 5</option>
+  </level>
+  <level>
+     <name>normal</name>
+     <option>depth 4</option>
+  </level>
+  <level>
+     <name>hard</name>
+     <option>hard</option>
+  </level>
 </ai>
 
 <ai type="uci">
   <name>Glaurung</name>
   <binary>glaurung</binary>
-  <option name="Hash" type="spin" min="4" max="1024">32</option>
-  <option name="Aggressiveness" type="spin" min="0" max="300">130</option>
-  <option name="Cowardice" type="spin" min="0" max="300">100</option>
-  <option name="Ponder" type="check">true</option>
+  <level>
+    <name>easy</name>
+    <option name="Aggressiveness">50</option>
+    <option name="Cowardice">200</option>
+    <option name="Ponder">false</option>
+  </level>
+  <level>
+    <name>normal</name>
+    <option name="Aggressiveness">130</option>
+    <option name="Cowardice">100</option>
+    <option name="Ponder">false</option>
+  </level>
+  <hard>
+    <name>hard</name>
+    <option name="Aggressiveness">200</option>
+    <option name="Cowardice">50</option>
+    <option name="Ponder">true</option>
+  </hard>
 </ai>
 
 <ai type="cecp">
   <name>HoiChess</name>
   <binary>hoichess</binary>
+  <level>
+     <name>easy</name>
+     <option>easy</option>
+     <option>depth 1</option>
+  </level>
+  <level>
+     <name>normal</name>
+     <option>depth 4</option>
+  </level>
+  <level>
+     <name>hard</name>
+     <option>hard</option>
+  </level>
 </ai>
 
 <ai type="uci">
   <name>Diablo</name>
   <binary>diablo</binary>
+  <level>
+    <name>easy</name>
+    <option name="Ponder">false</option>
+  </level>
+  <level>
+    <name>normal</name>
+    <option name="Ponder">true</option>
+  </level>
+  <level>
+    <name>hard</name>
+    <option name="Ponder">true</option>
+  </level>
 </ai>
 
 <ai type="uci">
@@ -77,13 +194,27 @@
 </ai>
 
 <ai type="uci">
-   <name>Fruit</name>
-   <binary>fruit</binary>
+  <name>Fruit</name>
+  <binary>fruit</binary>
+  <!-- FIXME: Add some difficulty levels -->
 </ai>
 
 <ai type="cecp">
-   <name>Amundsen</name>
-   <binary>amundsen</binary>
+  <name>Amundsen</name>
+  <binary>amundsen</binary>
+  <level>
+     <name>easy</name>
+     <option>easy</option>
+     <option>depth 1</option>
+  </level>
+  <level>
+     <name>normal</name>
+     <option>depth 4</option>
+  </level>
+  <level>
+     <name>hard</name>
+     <option>hard</option>
+  </level>
 </ai>
 
 </aiconfig>

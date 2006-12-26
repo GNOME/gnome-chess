@@ -2,11 +2,12 @@
 
 import os, os.path
 import gettext
-#DOMAIN = 'glchess'
+
 DOMAIN = 'gnome-games'
 gettext.bindtextdomain(DOMAIN)
 gettext.textdomain(DOMAIN)
 from gettext import gettext as _
+
 import gtk.glade
 gtk.glade.bindtextdomain (DOMAIN)
 gtk.glade.textdomain (DOMAIN)
@@ -20,13 +21,15 @@ WEBSITE       = 'http://glchess.sourceforge.net'
 WEBSITE_LABEL = _('glChess homepage')
 AUTHORS       = ['Robert Ancell <bob27@users.sourceforge.net>']
 ARTISTS       = ['John-Paul Gignac (3D Models)', 'Max Froumentin (2D Models)', 'Hylke Bons <h.bons@student.rug.nl> (icon)']
-TRANSLATORS   = """Luca Marturana <lucamarturana@gmail.com> (It)
-Hakan Bekdas <hakanbekdas@yahoo.com> (tr)
-A S Alam <apbrar@gmail.com> (pa)
-Michał Bentkowski <mr.ecik@mail.com> (pl)
-Daniel Nylander <po@danielnylander.se> (sv)
-Translators on Rosetta (launchpad.net)
-Gnome Translation Team"""
+TRANSLATORS   = [u"Luca Marturana <lucamarturana@gmail.com> (It)",
+                 u"Hakan Bekdas <hakanbekdas@yahoo.com> (tr)",
+                 u"A S Alam <apbrar@gmail.com> (pa)",
+                 u"Michał Bentkowski <mr.ecik@mail.com> (pl)",
+                 u"Daniel Nylander <po@danielnylander.se> (sv)",
+                 u"Zoraks <skatala4ever@gmail.com> (ca)",
+                 u"Elxan İsmayılov <elxan.i@gmail.com> (az)",
+                 u"Translators on Rosetta (launchpad.net)",
+                 u"Gnome Translation Team"]
 LICENSE = """This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License version 2 as published by the Free Software Foundation.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details. 

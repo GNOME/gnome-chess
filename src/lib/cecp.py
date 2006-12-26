@@ -178,7 +178,7 @@ class Connection(CECPProtocol):
         """
         pass
     
-    def configure(self, options):
+    def configure(self, options = []):
         """
         """
         for option in options:

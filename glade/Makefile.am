@@ -6,7 +6,6 @@ ui_DATA = \
 	error_dialog.glade	\
 	glchess.glade		\
 	load_game.glade		\
-	network_game.glade	\
 	new_game.glade		\
 	save_game.glade
 

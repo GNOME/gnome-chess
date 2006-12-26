@@ -88,7 +88,7 @@ class StateMachine:
         self.__sendCommand('ucinewgame')
         self.__sendCommand(self.__positionCommand)
 
-    def configure(self, options):
+    def configure(self, options = []):
         """
         """
         if not self.__readyToConfigure:

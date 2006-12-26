@@ -576,10 +576,10 @@ class GtkUI(glchess.ui.UI):
         combo.add_attribute(cell, 'text', 1)
 
         self.defaultViewController = self.notebook.setDefault(None)
-        
-        # Disable OpenGL support
-        if not hasattr(gtk, 'gtkgl'):
-            self._gui.get_widget('menu_view_3d').set_sensitive(False)
+
+        # Disble help support
+        if haveGnomeSupport:
+            self._gui.get_widget('menu_help').show()
         
         self.defaultViewController.widget.setRenderGL(self.__renderGL)
 
@@ -728,7 +728,7 @@ class GtkUI(glchess.ui.UI):
         if name == 'width' or name == 'height':
             self.__resize()
             return
-        
+
         # Show/hide the toolbar
         if name == 'show_toolbar':
             toolbar = self.__getWidget('toolbar')
@@ -764,7 +764,11 @@ class GtkUI(glchess.ui.UI):
                 self._gui.get_widget('menu_fullscreen').show()
 
         # Enable/disable OpenGL rendering
-        elif name == 'show_3d':
+        elif name == 'show_3d':            
+            if value and not haveGLSupport:
+                self._gui.get_widget('3d_support_dialog').show()
+                glchess.config.set('show_3d', False)
+                value = False
             self.__renderGL = value
             menuItem = self.__getWidget('menu_view_3d')
             menuItem.set_active(self.__renderGL)
@@ -977,6 +981,18 @@ class GtkUI(glchess.ui.UI):
     def _on_view_unfullscreen_clicked(self, widget, data = None):
         """Gtk+ callback"""
         glchess.config.set('fullscreen', False)
+        
+    def _on_3d_support_dialog_delete_event(self, widget, data = None):
+        """Gtk+ callback"""
+        # Stop the dialog from deleting itself
+        return True
+        
+    def _on_3d_support_dialog_response(self, widget, data = None):
+        """Gtk+ callback"""
+        if self.__aboutDialog is not None:
+            return
+        widget.hide()
+        return False
 
     def _on_about_clicked(self, widget, data = None):
         """Gtk+ callback"""
@@ -992,11 +1008,13 @@ class GtkUI(glchess.ui.UI):
         dialog.set_comments(DESCRIPTION)
         dialog.set_authors(AUTHORS)
         dialog.set_artists(ARTISTS)
-        dialog.set_translator_credits(TRANSLATORS)
+        string = ''
+        for t in TRANSLATORS:
+            string += t + '\n'
+        dialog.set_translator_credits(string[:-1])
         dialog.set_website(WEBSITE)
         dialog.set_website_label(WEBSITE_LABEL)
         dialog.set_logo_icon_name('glchess')
-        dialog.set_translator_credits(TRANSLATORS)
         dialog.connect('response', self._on_glchess_about_dialog_close)
         dialog.show()
         

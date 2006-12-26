@@ -5,6 +5,16 @@ __author__ = 'Robert Ancell <bob27@users.sourceforge.net>'
 __license__ = 'GNU General Public License Version 2'
 __copyright__ = 'Copyright 2005-2006  Robert Ancell'
 
+class Player:
+    # Name of the player
+    name = ''
+    
+    # The AI type or None for human
+    type = None
+    
+    # The AI difficulty level
+    level = ''
+
 class ViewFeedback:
     """Template class for feedback from a view object"""
     
@@ -133,15 +143,14 @@ class UI:
         """
         pass
 
-    def onGameStart(self, gameName, allowSpectators, whiteName, whiteType, blackName, blackType, moves = None):
+    def onGameStart(self, gameName, allowSpectators, duration, white, black, moves = None):
         """Called when a local game is started.
         
         'gameName' is the name of the game to create (string).
         'allowSpectators' is a flag to show if remote clients can watch this game (True or False).
-        'whiteName' is the name of the white player.
-        'whiteType' is the local player type. PLAYER_* or the AI type (string) or None for open.
-        'blackName' is the name of the black player.
-        'blackType' is the black player type. PLAYER_* or the AI type (string) or None for open.
+        'duration' is the number of seconds each player is allowed (0 for unlimited).
+        'white' is the properties for the white player (Player).
+        'black' is the properties for the black player (Player).
         'moves' is a list of moves (strings) to start the game with.
         """
         pass
@@ -157,42 +166,6 @@ class UI:
         if configureGame:
             msg += ' after configuring'
         print msg
-    
-    def onGameJoin(self, localName, localType, game):
-        """Called when a network game is started (remote server).
-        
-        'localName' is the name of the local player (string).
-        'localType' is the local player type. PLAYER_* or the AI type (string).
-        'game' is the game to join (as passed in addNetworkGame).
-        """
-        pass
-    
-    def onNetworkServerSearch(self, hostName=None):
-        """Called when the user searches for servers.
-        
-        'hostName' is the name of the host to look for servers on (string) or
-                   None if search whole network.
-        """
-        pass
-    
-    def onNetworkGameStart(self, localName, localType, serverHost, serverId):
-        """Called when a network game is started (remote server).
-        
-        'localName' is the name of the local player (string).
-        'localType' is the local player type. PLAYER_* or the AI type (string).
-        'serverHost' is the hostname of the server to connect to.
-        'serverId' is the ID of the server to connect to.
-        """
-        pass
-    
-    def onNetworkGameServerStart(self, localName, localType, serverName):
-        """Called when a network game is started (local server).
-        
-        'localName' is the name of the local player (string).
-        'localType' is the local player type. PLAYER_* or the AI type (string).
-        'serverName' is the name of the server to start.
-        """
-        pass
 
     def onQuit(self):
         """Called when the user quits the program"""
