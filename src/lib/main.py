@@ -611,9 +611,13 @@ class ChessGame(game.ChessGame):
 
         # FIXME: AI levels
         if isinstance(white, ai.Player):
-            pgnGame.setTag('WhiteAI', white.getProfile().name)
+            (profile, level) = white.getProfile()
+            pgnGame.setTag('WhiteAI', profile)
+            pgnGame.setTag('WhiteLevel', level)
         if isinstance(black, ai.Player):
-            pgnGame.setTag('BlackAI', black.getProfile().name)
+            (profile, level) = black.getProfile()
+            pgnGame.setTag('BlackAI', profile)
+            pgnGame.setTag('BlackLevel', level)
 
         moves = self.getMoves()
         while len(moves) > 0:

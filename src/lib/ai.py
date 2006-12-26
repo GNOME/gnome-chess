@@ -211,10 +211,10 @@ class Player(game.ChessPlayer):
     """    
     # The profile we are using
     __profile    = None
-    __level = None
+    __level      = None
         
     # File object to engine stdin/out/err
-    __fd = None
+    __fd         = None
     
     __connection = None
     
@@ -228,10 +228,7 @@ class Player(game.ChessPlayer):
         'level' is the difficulty level to use (string).
         """
         self.__profile = profile
-        try:
-            self.__level = profile.levels[level]
-        except KeyError:
-            self.__level = None
+        self.__level = level
 
         game.ChessPlayer.__init__(self, name)
         
@@ -258,10 +255,12 @@ class Player(game.ChessPlayer):
             
         self.connection.start()
         self.connection.startGame()
-        if self.__level is None:
+        try:
+            level = self.__profile.levels[self.__level]
+        except KeyError:
             self.connection.configure()
         else:
-            self.connection.configure(self.__level.options)
+            self.connection.configure(level.options)
 
     # Methods to extend
     
@@ -273,10 +272,12 @@ class Player(game.ChessPlayer):
     # Public methods
     
     def getProfile(self):
+        """Get the AI profile this AI is using.
+        
+        Returns a 2-tuple containing the profile name (str) and the difficulty level (str).
         """
-        """
-        return self.__profile
-     
+        return (self.__profile.name, self.__level)
+    
     def fileno(self):
         """Returns the file descriptor for communicating with the engine (integer)"""
         return self.__fd
