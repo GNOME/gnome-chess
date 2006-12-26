@@ -12,6 +12,12 @@ import traceback
 import time
 import gettext
 
+try:
+    import pygtk
+    pygtk.require('2.0')
+except ImportError, err:
+    print ("PyGTK not found. Please make sure it is installed properly and referenced in your PYTHONPATH environment variable.")
+
 import gobject
 import gtk
 import gtk.glade
