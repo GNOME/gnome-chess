@@ -171,57 +171,71 @@ One of the goals of early computer scientists was to create a chess-playing mach
 Chess is played on a square board of eight rows (called ranks and denoted with numbers 1 to 8) and eight columns (called files and denoted with letters a to h) of squares. The colors of the sixty-four squares alternate between light and dark, and are referred to as "light squares" and "dark squares". The chessboard is placed so that each player has a white square in the near right hand corner, and the pieces are set out as shown in the diagram, with each queen on a square that matches its color.
 </para><para>
 Each player begins the game with sixteen pieces: each player's pieces comprise one king, one queen, two rooks, two bishops, two knights and eight pawns. One player, referred to as White, controls the white pieces and the other player, Black, controls the black pieces; White is always the first player to move. The colors are chosen either by a friendly agreement, by a game of chance or by a tournament director. The players alternate moving one piece at a time (with the exception of castling, when two pieces are moved at the same time). Pieces are moved to either an unoccupied square, or one occupied by an opponent's piece, capturing it and removing it from play. With one exception (en passant), all pieces capture opponent's pieces by moving to the square that the opponent's piece occupies.
-</para><para>
+</para>
+ <sect3 id="rules-piece-king">
   <title>King</title>
-When a king is under direct attack by one (or possibly two) of the opponent's pieces, the player is said to be in check. When in check, only moves that remove the king from attack are permitted. The player must not make any move that would place his king in check. The object of the game is to checkmate the opponent; this occurs when the opponent's king is in check, and there are no moves that remove the king from attack.
+<para>When a king is under direct attack by one (or possibly two) of the opponent's pieces, the player is said to be in check. When in check, only moves that remove the king from attack are permitted. The player must not make any move that would place his king in check. The object of the game is to checkmate the opponent; this occurs when the opponent's king is in check, and there are no moves that remove the king from attack.
 
 </para><para>
     The king can move only one square horizontally, vertically, or diagonally. Once in the game, each king is allowed to make a special double move, to castle. Castling consists of moving the king two squares towards a rook, then moving the rook onto the square over which the king crossed. Castling is only permissible if all of the following conditions hold:
-</para><para>
+</para>
 <itemizedlist spacing="compact">
   <listitem>
-   The player must never have moved both the king and the rook involved in castling.
+   <para>The player must never have moved both the king and the rook involved in castling.</para>
   </listitem>
   <listitem>
-   There must be no pieces between the king and the rook.
+   <para>There must be no pieces between the king and the rook.</para>
   </listitem>
   <listitem>
-   The king may not currently be in check, nor may the king pass through squares that are under attack by enemy pieces. As with any move, castling is illegal if it would place the king in check. 
+   <para>The king may not currently be in check, nor may the king pass through squares that are under attack by enemy pieces. As with any move, castling is illegal if it would place the king in check.</para>
  </listitem>
   <listitem>
-   The king and the rook must be on the same rank (to exclude castling with a promoted pawn).
+   <para>The king and the rook must be on the same rank (to exclude castling with a promoted pawn).</para>
   </listitem>
 </itemizedlist>
-
-</para>
-<para>
+</sect3>
+ <sect3 id="rules-piece-rook">
   <title>Rook</title>
+<para>
    The rook moves any number of vacant squares vertically or horizontally (it is also involved in the king's special move of castling).
 </para>
-<para>
+</sect3>
+ <sect3 id="rules-piece-bishop">
   <title>Bishop</title>
+<para>
     The bishop moves any number of vacant squares in any direction diagonally. Note that a bishop never changes square color, therefore players speak about "light-squared" or "dark-squared" bishops.
 </para>
-<para>
+</sect3>
+ <sect3 id="rules-piece-queen">
   <title>Queen</title>
+<para>
     The queen can move any number of vacant squares diagonally, horizontally, or vertically.
 </para>
-<para>
+</sect3>
+ <sect3 id="rules-piece-knight">
   <title>Knight</title>
+<para>
     The knight can jump over occupied squares and moves two spaces horizontally and one space vertically or vice versa, making an "L" shape. A knight in the middle of the board has eight squares to which it can move. Note that every time a knight moves, it changes square color.
 
 </para>
-<para>
+</sect3>
+ <sect3 id="rules-piece-pawns">
   <title>Pawns</title>
+<para>
 
     Pawns have the most complex rules of movement: A pawn can move forward one square, if that square is unoccupied. If it has not moved yet, the pawn has the option of moving two squares forward, if both squares in front of the pawn are unoccupied. A pawn cannot move backward. When such an initial two square advance is made that puts that pawn horizontally adjacent to an opponent's pawn, the opponent's pawn can capture that pawn "en passant" as if it moved forward only one square rather than two, but only on the immediately subsequent move. Pawns are the only pieces that capture differently than they move. They can capture an enemy piece on either of the two spaces adjacent to the space in front of them (i.e., the two squares diagonally in front of them), but cannot move to these spaces if they are vacant. If a pawn advances all the way to its eighth rank, it is then promoted (converted) to a queen, rook, bishop, or knight of the same color. In practice, the pawn is almost always promoted to a queen.
+</para>
+</sect3>
 
-</para><para>
+<sect3 id="rules-movement-others">
+<title>Remaining movement rules</title>
+<para>
 With the exception of the knight, pieces cannot jump over each other. One's own pieces ("friendly pieces") cannot be passed if they are in the line of movement, and a friendly piece can never replace another friendly piece. Enemy pieces cannot be passed, but they can be "captured". When a piece is captured (or taken), the attacking piece replaces the enemy piece on its square (en passant being the only exception). The captured piece is thus removed from the game and may not be returned to play for the remainder of the game. The king cannot be captured, only put in check. If a player is unable to get the king out of check, checkmate results, with the loss of the game.
 
 </para><para>
 Chess games do not have to end in checkmate — either player may resign if the situation looks hopeless. Games also may end in a draw (tie). A draw can occur in several situations, including draw by agreement, stalemate, threefold repetition of a position, the fifty move rule, or a draw by impossibility of checkmate (usually because of insufficient material to checkmate).
 </para>
+</sect3>
  </sect2>
 </sect1>
 
@@ -236,40 +250,40 @@ Chess games do not have to end in checkmate — either player may resign if the 
 
 <itemizedlist spacing="compact">
   <listitem>
-	GNUChess
+	<para>GNUChess</para>
   </listitem>
   <listitem>
-	Sjeng
+	<para>Sjeng</para>
   </listitem>
   <listitem>
-	Amy
+	<para>Amy</para>
  </listitem>
   <listitem>
-	Crafty
+	<para>Crafty</para>
   </listitem>
   <listitem>
-	Faile
+	<para>Faile</para>
   </listitem>
   <listitem>
-	Phalanx
+	<para>Phalanx</para>
   </listitem>
   <listitem>
-	Glaurung
+	<para>Glaurung</para>
   </listitem>
   <listitem>
-	HoiChess
+	<para>HoiChess</para>
   </listitem>
   <listitem>
-	Diablo
+	<para>Diablo</para>
   </listitem>
   <listitem>
-	BBChess	
+	<para>BBChess	</para>
   </listitem>
   <listitem>
-	Fruit
+	<para>Fruit</para>
   </listitem>
   <listitem>
-	Amundsen
+	<para>Amundsen</para>
   </listitem>
 </itemizedlist>
 
