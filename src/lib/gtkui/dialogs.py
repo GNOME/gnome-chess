@@ -199,10 +199,10 @@ class GtkNewGameDialog:
 
         # Configure AIs
         try:
-            whiteType = glchess.config.get('new_game_dialog/white_type')
-            whiteLevel = glchess.config.get('new_game_dialog/white_difficulty')
-            blackType = glchess.config.get('new_game_dialog/black_type')
-            blackLevel = glchess.config.get('new_game_dialog/black_difficulty')
+            whiteType = glchess.config.get('new_game_dialog/white/type')
+            whiteLevel = glchess.config.get('new_game_dialog/white/difficulty')
+            blackType = glchess.config.get('new_game_dialog/black/type')
+            blackLevel = glchess.config.get('new_game_dialog/black/difficulty')
         except glchess.config.Error:
             pass
         else:
@@ -308,11 +308,10 @@ class GtkNewGameDialog:
             duration = self.__getComboData(self.__gui.get_widget('custom_time_spin'), 1) * multiplier
             
         # Save properties
-        glchess.config.set('new_game_dialog/white_type', white.type)
-        glchess.config.set('new_game_dialog/white_difficulty', white.level)
-        print repr(black.type)
-        glchess.config.set('new_game_dialog/black_type', black.type)
-        glchess.config.set('new_game_dialog/black_difficulty', black.level)
+        glchess.config.set('new_game_dialog/white/type', white.type)
+        glchess.config.set('new_game_dialog/white/difficulty', white.level)
+        glchess.config.set('new_game_dialog/black/type', black.type)
+        glchess.config.set('new_game_dialog/black/difficulty', black.level)
 
         # Inform the child class
         self.__mainUI.onGameStart(gameName, allowSpectators, duration, white, black)
