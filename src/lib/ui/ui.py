@@ -117,6 +117,13 @@ class ViewController:
         """Request this view is redrawn"""
         pass
     
+    def setAttention(self, requiresAttention):
+        """Get the users attention for this view.
+        
+        'requiresAttention' is a flag to show if this view requires attention.
+        """
+        pass
+    
     def close(self):
         """Close this view"""
         pass

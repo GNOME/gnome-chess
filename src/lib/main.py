@@ -87,9 +87,10 @@ class HumanPlayer(game.ChessPlayer):
         """
         game.ChessPlayer.__init__(self, name)
         self.__game = chessGame
-        
+
     def readyToMove(self):
         # FIXME: ???
+        self.__game.view.controller.setAttention(True)
         self.__game.scene.setHumanPlayer(self)
         self.__game.cairoScene.setHumanPlayer(self)
 
@@ -245,6 +246,7 @@ class SceneCairo(scene.cairo.Scene, scene.human.SceneHumanInput):
             colour = chess.board.BLACK
         move = chess.lan.encode(colour, start, end, promotionType = chess.board.QUEEN) # FIXME: Promotion type
         player.move(move)
+        self.__game.view.controller.setAttention(False)
 
 class SceneOpenGL(scene.opengl.Scene, scene.human.SceneHumanInput):
     """
@@ -385,6 +387,7 @@ class SceneOpenGL(scene.opengl.Scene, scene.human.SceneHumanInput):
             colour = chess.board.BLACK
         move = chess.lan.encode(colour, start, end, promotionType = chess.board.QUEEN) # FIXME: Promotion type
         player.move(move)
+        self.__game.view.controller.setAttention(False)
 
 class Splashscreen(ui.ViewFeedback):
     """

@@ -224,17 +224,20 @@ class GtkView(glchess.ui.ViewController):
     """
     """
     # The UI this view belongs to
-    ui            = None
+    ui               = None
     
     # The title of this view
-    title         = None
+    title            = None
     
     # The widget to render the scene to
-    widget        = None
+    widget           = None
     
     # A Gtk+ tree model to store the move history
-    moveModel    = None
-    selectedMove = -1
+    moveModel        = None
+    selectedMove     = -1
+    
+    # Flag to show if requesting attention
+    requireAttention = False
     
     def __init__(self, ui, title, feedback, isActive = True):
         """Constructor for a view.
@@ -261,7 +264,17 @@ class GtkView(glchess.ui.ViewController):
     def render(self):
         """Extends glchess.ui.ViewController"""
         self.widget.redraw()
-        
+
+    def setAttention(self, requiresAttention):
+        """Extends glchess.ui.ViewController"""
+        if self.requireAttention == requiresAttention:
+            return
+        self.requireAttention = requiresAttention
+        if requiresAttention:
+            self.ui._incAttentionCounter(1)
+        else:
+            self.ui._incAttentionCounter(-1)
+
     def addMove(self, move):
         """Extends glchess.ui.ViewController"""
         # FIXME: Make a '@ui' player who watches for these itself?
@@ -278,6 +291,8 @@ class GtkView(glchess.ui.ViewController):
     
     def close(self):
         """Extends glchess.ui.ViewController"""
+        if self.requireAttention:
+            self.ui._incAttentionCounter(-1)
         self.ui._removeView(self)
     
     # Public methods
@@ -520,33 +535,35 @@ class GtkUI(glchess.ui.UI):
     """
     """
     # The Gtk+ GUI
-    _gui              = None
+    _gui               = None
     
     # The time stored for animation
-    __lastTime        = None
-    __animationTimer  = None
+    __lastTime         = None
+    __animationTimer   = None
 
     # The notebook containing games
-    notebook        = None
+    notebook           = None
     
     # The Gtk+ list model of the available player types
-    __playerModel     = None
+    __playerModel      = None
     
     # The about dialog open
-    __aboutDialog     = None
+    __aboutDialog      = None
     
     # Dictionary of save game dialogs keyed by view
-    __saveGameDialogs = None
+    __saveGameDialogs  = None
     
-    __renderGL        = False
-    openGLInfoPrinted = False
+    __renderGL         = False
+    openGLInfoPrinted  = False
 
     # TODO
-    __joinGameDialogs = None
-    __networkGames    = None
+    __joinGameDialogs  = None
+    __networkGames     = None
     
-    __defaultWhiteAI  = None
-    __defaultBlackAI  = None
+    __defaultWhiteAI   = None
+    __defaultBlackAI   = None
+    
+    __attentionCounter = 0
     
     def __init__(self):
         """Constructor for a GTK+ glChess GUI"""
@@ -698,6 +715,22 @@ class GtkUI(glchess.ui.UI):
             dialog.removeNetworkGame(game)
 
     # Protected methods
+    
+    def _incAttentionCounter(self, offset):
+        """
+        """
+        self.__attentionCounter += offset
+        self.__updateAttention()
+        
+    def __updateAttention(self):
+        """
+        """
+        widget = self._gui.get_widget('glchess_app')
+        widget.set_urgency_hint(self.__attentionCounter != 0 and not widget.is_active())
+        
+    def _on_focus_changed(self, widget, data = None):
+        """Gtk+ callback"""
+        self.__updateAttention()
 
     def _saveView(self, view, path):
         """
