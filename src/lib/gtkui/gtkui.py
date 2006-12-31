@@ -50,8 +50,8 @@ import glchess.config
 import glchess.ui
 import dialogs
 
-def loadGladeFile(name, root = None, domain = None):
-    return gtk.glade.XML(os.path.join(GLADE_DIR, name), root, domain = domain)
+def loadGladeFile(name, root = None):
+    return gtk.glade.XML(os.path.join(GLADE_DIR, name), root, domain = DOMAIN)
 
 class GtkViewArea(gtk.DrawingArea):
     """Custom widget to render an OpenGL scene"""
@@ -434,7 +434,7 @@ class AIView:
         """
         """
         self.window = window
-        self.__gui = loadGladeFile('ai.glade', 'ai_table', domain = 'glchess')
+        self.__gui = loadGladeFile('ai.glade', 'ai_table')
         self.__gui.get_widget('executable_label').set_text(executable)
         self.__gui.get_widget('game_label').set_text(description)
 
@@ -554,7 +554,7 @@ class GtkUI(glchess.ui.UI):
         self.__saveGameDialogs = {}
         self.__joinGameDialogs = []
         
-        self._gui = loadGladeFile('glchess.glade', domain = 'glchess')
+        self._gui = loadGladeFile('glchess.glade')
         self._gui.signal_autoconnect(self)
 
         # Make a notebook for the games

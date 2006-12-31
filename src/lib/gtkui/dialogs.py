@@ -102,7 +102,7 @@ class GtkNewGameDialog:
         self.__moves = moves
         
         # Load the UI
-        self.__gui = gtkui.loadGladeFile('new_game.glade', 'new_game_dialog', domain = 'glchess')
+        self.__gui = gtkui.loadGladeFile('new_game.glade', 'new_game_dialog')
         self.__gui.signal_autoconnect(self)
         
         # Make all the labels the same width
@@ -361,7 +361,7 @@ class GtkLoadGameDialog:
         self.__mainUI = mainUI
         
         # Load the UI
-        self.__gui = gtkui.loadGladeFile('load_game.glade', domain = 'glchess')
+        self.__gui = gtkui.loadGladeFile('load_game.glade')
         self.__gui.signal_autoconnect(self)
         
         fileChooser = self.__gui.get_widget('filechooserwidget')
@@ -430,7 +430,7 @@ class GtkSaveGameDialog:
         self.__view = view
         
         # Load the UI
-        self.__gui = gtkui.loadGladeFile('save_game.glade', domain = 'glchess')
+        self.__gui = gtkui.loadGladeFile('save_game.glade')
         self.__gui.signal_autoconnect(self)
         
         # Filter out non PGN files by default
@@ -474,7 +474,7 @@ class GtkErrorDialog:
     def __init__(self, title, contents):
         """
         """
-        self.__gui = gtkui.loadGladeFile('error_dialog.glade', domain = 'glchess')
+        self.__gui = gtkui.loadGladeFile('error_dialog.glade')
         self.__gui.signal_autoconnect(self)
         
         self.__gui.get_widget('title_label').set_markup('<b><big>' + title + '</big></b>')
