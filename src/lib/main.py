@@ -687,24 +687,21 @@ class UI(gtkui.GtkUI):
             player.read()
             return True
 
-    def onGameStart(self, gameName, allowSpectators, duration, white, black, moves = None):
+    def onGameStart(self, gameName, allowSpectators, duration, white, black):
         """Called by UI"""
-        if white.type is None:
+        if white.type is ui.HUMAN:
             w = None
         else:
             w = (white.type, white.level)
-        if black.type is None:
+        if black.type is ui.HUMAN:
             b = None
         else:
             b = (black.type, black.level)
         g = self.__application.addGame(gameName, white.name, w, black.name, b)
         print 'Starting game ' + gameName + ' between ' + white.name + '(' + str(white.type) + ') and ' + black.name + '(' + str(black.type) + ')'
-        if moves:
-            g.start(moves)
-        else:
-            g.start()
+        g.start()
         
-    def loadGame(self, path, returnResult):
+    def loadGame(self, path):
         """Called by ui.UI"""
         try:
             p = chess.pgn.PGN(path, 1)
@@ -713,31 +710,7 @@ class UI(gtkui.GtkUI):
             return
         
         # Use the first game
-        pgnGame = p[0]
-        
-        if returnResult is True:
-            whiteAI = pgnGame.getTag('WhiteAI')
-            blackAI = pgnGame.getTag('BlackAI')
-            msg = ''
-            if whiteAI and self.__application.getAIProfile(whiteAI) is None:
-                msg += "AI '" + whiteAI + "' is not installed, white player is now human"
-                whiteAI = None
-            if blackAI and self.__application.getAIProfile(blackAI) is None:
-                if msg != '':
-                    msg += '\n'
-                msg += "AI '" + blackAI + "' is not installed, black player is now human"
-                blackAI = None
-
-            self.reportGameLoaded(gameName = pgnGame.getTag(pgnGame.PGN_TAG_EVENT),
-                                  whiteName = pgnGame.getTag(pgnGame.PGN_TAG_WHITE),
-                                  blackName = pgnGame.getTag(pgnGame.PGN_TAG_BLACK),
-                                  whiteAI = whiteAI, blackAI = blackAI,
-                                  moves = pgnGame.getMoves())
-                                  
-            if len(msg) > 0:
-                self.reportError('Game modified', msg)
-        else:
-            self.__application.addPGNGame(pgnGame, path)
+        self.__application.addPGNGame(p[0], path)
 
     def onQuit(self):
         """Called by UI"""

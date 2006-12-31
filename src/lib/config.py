@@ -61,7 +61,8 @@ else:
     _gconfSetFunction = {bool: _config.set_bool,
                          float: _config.set_float,
                          int: _config.set_int,
-                         str: _config.set_string}
+                         str: _config.set_string,
+                         unicode: _config.set_string}
               
 # Config default values
 _defaults = {'show_toolbar': True,
@@ -175,7 +176,7 @@ def _save():
     root = document.createElement('config')
     document.appendChild(root)
     
-    valueNames = {int: 'int', bool: 'bool', float: 'float', str: 'str'}
+    valueNames = {int: 'int', bool: 'bool', float: 'float', str: 'str', unicode: 'str'}
 
     names = _values.keys()
     names.sort()

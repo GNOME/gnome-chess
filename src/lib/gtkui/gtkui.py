@@ -945,8 +945,7 @@ class GtkUI(glchess.ui.UI):
 
     def _on_new_game_button_clicked(self, widget, data = None):
         """Gtk+ callback"""
-        
-        dialogs.GtkNewGameDialog(self, self.__playerModel, whiteAI = self.__defaultWhiteAI, blackAI = self.__defaultBlackAI)
+        dialogs.GtkNewGameDialog(self, self.__playerModel)
 
     def _on_join_game_button_clicked(self, widget, data = None):
         """Gtk+ callback"""

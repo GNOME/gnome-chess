@@ -5,12 +5,14 @@ __author__ = 'Robert Ancell <bob27@users.sourceforge.net>'
 __license__ = 'GNU General Public License Version 2'
 __copyright__ = 'Copyright 2005-2006  Robert Ancell'
 
+HUMAN = 'HUMAN'
+
 class Player:
     # Name of the player
     name = ''
     
     # The AI type or None for human
-    type = None
+    type = HUMAN
     
     # The AI difficulty level
     level = ''
@@ -143,7 +145,7 @@ class UI:
         """
         pass
 
-    def onGameStart(self, gameName, allowSpectators, duration, white, black, moves = None):
+    def onGameStart(self, gameName, allowSpectators, duration, white, black):
         """Called when a local game is started.
         
         'gameName' is the name of the game to create (string).
@@ -151,21 +153,15 @@ class UI:
         'duration' is the number of seconds each player is allowed (0 for unlimited).
         'white' is the properties for the white player (Player).
         'black' is the properties for the black player (Player).
-        'moves' is a list of moves (strings) to start the game with.
         """
         pass
     
-    def loadGame(self, path, returnResult):
+    def loadGame(self, path):
         """Called when a game is loaded.
         
         'path' is the path to the game to load (string).
-        'returnResult' is a flag to show if the UI requires the result of the load.
-                       If True call reportGameLoaded() if the game can be loaded.
         """
-        msg = 'Loading game ' + path
-        if configureGame:
-            msg += ' after configuring'
-        print msg
+        print 'Loading game ' + path
 
     def onQuit(self):
         """Called when the user quits the program"""

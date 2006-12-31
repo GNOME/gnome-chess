@@ -78,28 +78,17 @@ class GtkNewGameDialog:
     # The main UI and the ???
     __mainUI = None
     __gui = None
-    
-    __moves = None
 
     __customName = False
     __checking = False
     
-    def __init__(self, mainUI, aiModel, gameName = None,
-                 whiteName = None, blackName = None,
-                 whiteAI = None, blackAI = None, moves = None):
+    def __init__(self, mainUI, aiModel):
         """Constructor for a new game dialog.
         
         'mainUI' is the main UI.
         'aiModel' is the AI models to use.
-        'gameName' is the name of the game (string) or None if unknown.
-        'whiteName' is the name of the white player (string) or None if unknown.
-        'blackName' is the name of the white player (string) or None if unknown.
-        'whiteAI' is the type of AI the white player is (string) or None if no AI.
-        'blackAI' is the type of AI the black player is (string) or None if no AI.
-        'moves' is a list of moves (strings) that the have already been made.
         """
         self.__mainUI = mainUI
-        self.__moves = moves
         
         # Load the UI
         self.__gui = gtkui.loadGladeFile('new_game.glade', 'new_game_dialog')
@@ -159,9 +148,9 @@ class GtkNewGameDialog:
 
         # Create the model for difficulty options
         levelModel = gtk.ListStore(str, gtk.gdk.Pixbuf, str)
-        levels = [('easy', gettext.gettext('Easy'), 'weather-few-clouds'),
+        levels = [('easy',   gettext.gettext('Easy'),   'weather-few-clouds'),
                   ('normal', gettext.gettext('Normal'), 'weather-overcast'),
-                  ('hard', gettext.gettext('Hard'), 'weather-storm')]
+                  ('hard',   gettext.gettext('Hard'),   'weather-storm')]
         iconTheme = gtk.icon_theme_get_default()
         for (key, label, iconName) in levels:
             try:
@@ -206,47 +195,44 @@ class GtkNewGameDialog:
             widget.add_attribute(cell, 'text', 2)
             
             widget.set_active(0)
-            
-        # Use the supplied properties
-        if moves:
-            self.__getWidget('new_game_dialog').set_title('Restore game (%i moves)' % len(moves))
-        if gameName:
-            self.__getWidget('game_name_entry').set_text(gameName)
-            
-        if whiteName:
-            self.__getWidget('white_name_entry').set_text(whiteName)
-        if blackName:
-            self.__getWidget('black_name_entry').set_text(blackName)
-            
+
         # Configure AIs
-        if whiteAI:
-            self.__getWidget('white_type_combo').set_active_iter(self.__getAIIter(aiModel, whiteAI))
-        if blackAI:
-            self.__getWidget('black_type_combo').set_active_iter(self.__getAIIter(aiModel, blackAI))
-        
+        try:
+            whiteType = glchess.config.get('new_game_dialog/white_type')
+            whiteLevel = glchess.config.get('new_game_dialog/white_difficulty')
+            blackType = glchess.config.get('new_game_dialog/black_type')
+            blackLevel = glchess.config.get('new_game_dialog/black_difficulty')
+        except glchess.config.Error:
+            pass
+        else:
+            self.__setCombo('white_type_combo', whiteType)
+            self.__setCombo('white_difficulty_combo', whiteLevel)
+            self.__setCombo('black_type_combo', blackType)
+            self.__setCombo('black_difficulty_combo', blackLevel)
+
         # Show the dialog
         self.__getWidget('new_game_dialog').show()
         self.__testReady()
         
     # Private methods
     
-    def __getAIIter(self, model, name):
-        """Get an AI engine.
-        
-        'name' is the name of the AI engine to find.
-        
-        Return the iter for this AI or None if no AI of this name.
+    def __setCombo(self, comboName, key):
+        widget = self.__getWidget(comboName)
+        iter = self.__getIter(widget.get_model(), key)
+        if iter is not None:
+            widget.set_active_iter(iter)
+    
+    def __getIter(self, model, key, default = None):
         """
-        # FIXME: I'm sure there is a more efficient way of doing this...
+        """
         iter = model.get_iter_first()
-        while True:
-            if name == model.get_value(iter, 0):
+        while iter:
+            if model.get_value(iter, 0) == key:
                 return iter
-            
-            iter = model.iter_next(iter)
-            if iter is None:
-                return None
 
+            iter = model.iter_next(iter)
+        return default
+                
     def __getWidget(self, name):
         """
         """
@@ -301,26 +287,34 @@ class GtkNewGameDialog:
 
         # Get the players
         white.type  = self.__getComboData(self.__getWidget('white_type_combo'), 0)
-        white.level = self.__getComboData(self.__getWidget('white_difficulty_combo'), 0)
-        black.type  = self.__getComboData(self.__getWidget('black_type_combo'), 0)
-        black.level = self.__getComboData(self.__getWidget('black_difficulty_combo'), 0)
-
         if white.type is None:
+            white.type = glchess.ui.HUMAN
             white.name = gettext.gettext('White')
         else:
             white.name = self.__getComboData(self.__getWidget('white_type_combo'), 2)
+        white.level = self.__getComboData(self.__getWidget('white_difficulty_combo'), 0)
+        black.type  = self.__getComboData(self.__getWidget('black_type_combo'), 0)
         if black.type is None:
+            black.type = glchess.ui.HUMAN
             black.name = gettext.gettext('Black')
         else:
             black.name = self.__getComboData(self.__getWidget('black_type_combo'), 2)
+        black.level = self.__getComboData(self.__getWidget('black_difficulty_combo'), 0)
 
         duration = self.__getComboData(self.__gui.get_widget('time_combo'), 1)
         if duration < 0:
             multplier = self.__getComboData(self.__gui.get_widget('custom_time_units_combo'), 1)
             duration = self.__getComboData(self.__gui.get_widget('custom_time_spin'), 1) * multiplier
+            
+        # Save properties
+        glchess.config.set('new_game_dialog/white_type', white.type)
+        glchess.config.set('new_game_dialog/white_difficulty', white.level)
+        print repr(black.type)
+        glchess.config.set('new_game_dialog/black_type', black.type)
+        glchess.config.set('new_game_dialog/black_difficulty', black.level)
 
         # Inform the child class
-        self.__mainUI.onGameStart(gameName, allowSpectators, duration, white, black, self.__moves)
+        self.__mainUI.onGameStart(gameName, allowSpectators, duration, white, black)
         
     # Gtk+ signal handlers
     
@@ -410,12 +404,7 @@ class GtkLoadGameDialog:
         dialog = self.__gui.get_widget('filechooserwidget')
         glchess.config.set('load_directory', dialog.get_current_folder())
         
-        self.__mainUI.loadGame(self.__getFilename(), False)
-        self._on_close(widget, data)
-    
-    def _on_configure_game(self, widget, data = None):
-        """Gtk+ callback"""
-        self.__mainUI.loadGame(self.__getFilename(), True)
+        self.__mainUI.loadGame(self.__getFilename())
         self._on_close(widget, data)
         
     def _on_close(self, widget, data = None):
