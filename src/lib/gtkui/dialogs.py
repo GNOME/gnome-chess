@@ -366,6 +366,13 @@ class GtkLoadGameDialog:
         
         fileChooser = self.__gui.get_widget('filechooserwidget')
         
+        try:
+            directory = str(glchess.config.get('load_directory'))
+        except glchess.config.Error:
+            pass
+        else:
+            fileChooser.set_current_folder(directory)
+
         # Filter out non PGN files by default
         pgnFilter = gtk.FileFilter()
         pgnFilter.set_name('PGN files')
@@ -399,6 +406,10 @@ class GtkLoadGameDialog:
         
     def _on_load_game(self, widget, data = None):
         """Gtk+ callback"""
+        # Save the directory we used
+        dialog = self.__gui.get_widget('filechooserwidget')
+        glchess.config.set('load_directory', dialog.get_current_folder())
+        
         self.__mainUI.loadGame(self.__getFilename(), False)
         self._on_close(widget, data)
     
@@ -433,8 +444,16 @@ class GtkSaveGameDialog:
         self.__gui = gtkui.loadGladeFile('save_game.glade')
         self.__gui.signal_autoconnect(self)
         
-        # Filter out non PGN files by default
         dialog = self.__gui.get_widget('dialog')
+        
+        try:
+            directory = str(glchess.config.get('save_directory'))
+        except glchess.config.Error:
+            pass
+        else:
+            dialog.set_current_folder(directory)       
+        
+        # Filter out non PGN files by default
         pgnFilter = gtk.FileFilter()
         pgnFilter.set_name('PGN files')
         pgnFilter.add_pattern('*.pgn')
@@ -456,6 +475,10 @@ class GtkSaveGameDialog:
         fname = dialog.get_filename()
         if fname[-4:].lower() != '.pgn':
             fname += '.pgn'
+            
+        # Save the directory we used
+        dialog = self.__gui.get_widget('dialog')
+        glchess.config.set('save_directory', dialog.get_current_folder())
         
         self.__mainUI._saveView(self.__view, fname)
         dialog.destroy()
