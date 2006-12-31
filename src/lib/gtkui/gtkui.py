@@ -910,6 +910,14 @@ class GtkUI(glchess.ui.UI):
 
     def _on_view_changed(self, widget, page, pageNum, data = None):
         """Gtk+ callback"""
+        # Set the window title to the name of the game
+        view = self.notebook.getView()
+        title = gettext.gettext('Chess')
+        if view is not None:
+            title += " - %s" % view.title
+        self._gui.get_widget('glchess_app').set_title(title)
+        
+        # Set toolbar/menu buttons to state for this game
         self._updateViewButtons()
     
     def _updateViewButtons(self):
