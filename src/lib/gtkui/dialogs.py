@@ -179,7 +179,8 @@ class GtkNewGameDialog:
             widget.set_active(1)
 
         # Make all the AI combo boxes use one list of AI types
-        for name in ['black_type_combo', 'white_type_combo']:
+        firstAIIndex = min(1, len(aiModel))
+        for (name, index) in [('white_type_combo', 0), ('black_type_combo', firstAIIndex)]:
             widget = self.__gui.get_widget(name)
             if widget is None:
                 continue
@@ -194,7 +195,7 @@ class GtkNewGameDialog:
             widget.pack_start(cell, False)
             widget.add_attribute(cell, 'text', 2)
             
-            widget.set_active(0)
+            widget.set_active(index)
 
         # Configure AIs
         try:
