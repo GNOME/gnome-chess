@@ -296,7 +296,6 @@ class ChessBoardState:
         """
         # Find the location of this players king(s)
         for kingCoord, king in self.squares.iteritems():
-            
             # Not our king
             if king.getType() != KING or king.getColour() != colour:
                 continue
@@ -382,7 +381,7 @@ class ChessBoardState:
         
         # Copy the player state before it is changed
         originalPlayerState = ChessPlayerState(playerState)
-        
+
         # Check if moving onto another piece (must be enemy)
         try:
             target = self.squares[end]
@@ -412,8 +411,8 @@ class ChessBoardState:
         # King can move one square or castle
         if piece.getType() is KING:
             # Castling:
-            shortCastle = ('e' + baseFile, 'c' + baseFile)
-            longCastle  = ('e' + baseFile, 'g' + baseFile)
+            shortCastle = ('e' + baseFile, 'g' + baseFile)
+            longCastle  = ('e' + baseFile, 'c' + baseFile)
             if (playerState.canShortCastle and (start, end) == shortCastle) or (playerState.canLongCastle and (start, end) == longCastle):
                 if end[0] == 'c':
                     rookLocation = 'a' + baseFile
@@ -431,7 +430,7 @@ class ChessBoardState:
                     return (MOVE_RESULT_ILLEGAL, None)
                 if rook is None or rook.getType() is not ROOK or rook.getColour() != piece.getColour():
                     return (MOVE_RESULT_ILLEGAL, None)
-                
+
                 # Check no pieces between the rook and king
                 for rank in kingRanks:
                     if self.squares.has_key(rank + start[1]):
@@ -557,7 +556,7 @@ class ChessBoardState:
         self.lastMove = (piece, start, end)
         oldEnPassantSquare = self.enPassantSquare
         self.enPassantSquare = enPassantSquare
-            
+
         # Delete a victim
         if victim is not None:
             moves.append((victim, end, None))
@@ -762,7 +761,7 @@ class ChessBoard:
 
         # Push the board state
         self.__boardStates.append(state)
-        return result[0]
+        return result
 
     def __str__(self):
         """Returns a representation of the current board state"""
