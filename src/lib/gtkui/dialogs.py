@@ -396,7 +396,6 @@ class GtkLoadGameDialog:
         else:
             isFile = os.path.isfile(name)
         self.__gui.get_widget('open_button').set_sensitive(isFile)
-        self.__gui.get_widget('properties_button').set_sensitive(isFile)
         
     def _on_load_game(self, widget, data = None):
         """Gtk+ callback"""
@@ -432,7 +431,7 @@ class GtkSaveGameDialog:
         # Load the UI
         self.__gui = gtkui.loadGladeFile('save_game.glade')
         self.__gui.signal_autoconnect(self)
-        
+
         dialog = self.__gui.get_widget('dialog')
         
         try:

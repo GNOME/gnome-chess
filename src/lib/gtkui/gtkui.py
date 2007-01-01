@@ -543,16 +543,16 @@ class GtkUI(glchess.ui.UI):
 
     # The notebook containing games
     notebook           = None
-    
+
     # The Gtk+ list model of the available player types
     __playerModel      = None
-    
+
     # The about dialog open
     __aboutDialog      = None
-    
+
     # Dictionary of save game dialogs keyed by view
     __saveGameDialogs  = None
-    
+
     __renderGL         = False
     openGLInfoPrinted  = False
 
@@ -562,9 +562,9 @@ class GtkUI(glchess.ui.UI):
     
     __defaultWhiteAI   = None
     __defaultBlackAI   = None
-    
+
     __attentionCounter = 0
-    
+
     def __init__(self):
         """Constructor for a GTK+ glChess GUI"""
         self.__networkGames = {}
