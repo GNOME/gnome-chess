@@ -1,8 +1,9 @@
 schemadir   = @GCONF_SCHEMA_FILE_DIR@
-schema_DATA = glchess.schemas
+schema_in_files = glchess.schemas.in
+schema_DATA = $(schema_in_files:.schemas.in=.schemas)
 @INTLTOOL_SCHEMAS_RULE@
 
-EXTRA_DIST = ai.xml glchess.svg  
+EXTRA_DIST = ai.xml glchess.svg $(schema_in_files)
 aidir = $(datadir)/glchess/
 ai_DATA = ai.xml glchess.svg
 
