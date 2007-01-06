@@ -9,3 +9,5 @@ ai_DATA = ai.xml glchess.svg
 
 icondir = $(datadir)/pixmaps
 icon_DATA = glchess.svg
+
+DISTCLEANFILES = $(schema_DATA)
