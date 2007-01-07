@@ -266,7 +266,7 @@ class GtkNewGameDialog:
         else:
             whiteName = self.__getComboData(self.__getWidget('white_type_combo'), 2)
             blackName = self.__getComboData(self.__getWidget('black_type_combo'), 2)
-            self.__getWidget('game_name_entry').set_text(_('%s versus %s') % (whiteName, blackName))
+            self.__getWidget('game_name_entry').set_text(gettext.gettext('%s versus %s') % (whiteName, blackName))
             
         # Disable difficulty for human players
         whiteType = self.__getComboData(self.__getWidget('white_type_combo'), 0)
