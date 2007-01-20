@@ -481,7 +481,7 @@ class View(ui.ViewFeedback):
         try:
             f = file(fileName, 'w')
         except IOError, e:
-            self.game.application.ui.reportError(gettext.gettext('Unable to save PGN file ') + fileName, e.args[1])
+            self.game.application.ui.reportError('Unable to save PGN file %s' % fileName, e.args[1])
             return
         
         print 'Saving game ' + repr(self.game.name) + ' to ' + fileName
@@ -709,7 +709,7 @@ class UI(gtkui.GtkUI):
         try:
             p = chess.pgn.PGN(path, 1)
         except chess.pgn.Error, e:
-            self.reportError('Unable to open PGN file ' + path, e.description)
+            self.reportError('Unable to open PGN file %s' % path, e.description)
             return
         
         # Use the first game
