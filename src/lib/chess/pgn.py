@@ -37,12 +37,32 @@ class Error(Exception):
     
     __errorType = 'Unknown'
     
-    def __init__(self, error = None):
-        self.__errorType = error
+    # Text description of the error
+    description = ''
+    
+    # The Unix error number
+    errno = -1
+    
+    # The file being opened
+    fileName = ''
+    
+    def __init__(self, description = '', errno = -1, fileName = ''):
+        """
+        """
+        self.description = description
+        self.errno = errno
+        self.fileName = fileName
         Exception.__init__(self)
         
     def __str__(self):
-        return repr(self.__errorType)
+        if self.fileName != '':
+            string = self.fileName + ': '
+        else:
+            string = ''
+        if self.errno >= 0:
+            string += '[Error %i] ' % self.errno
+        string += description
+        return string
 
 class PGNToken:
     """
@@ -207,7 +227,7 @@ class PGNParser:
                 inSymbol = True
                 self.__startOffset = offset
             else:
-                raise Error('Unknown character ' + repr(c))
+                raise Error('Unknown character %s' % repr(c))
 
             offset += 1
 
@@ -272,7 +292,7 @@ class PGNGameParser:
                 
         if token.type is PGNToken.PERIOD:
             if self.__lastTokenIsMoveNumber is False:
-                raise Error('Unexpected period on line ' + str(token.lineNumber) + ':' + str(token.characterNumber))
+                raise Error('Unexpected period on line %i:%i' % (token.lineNumber, token.characterNumber))
 
         elif token.type is PGNToken.SYMBOL:
             # See if this is a game terminate
@@ -296,7 +316,7 @@ class PGNGameParser:
                     moveNumber = int(token.data)
                     self.__lastTokenIsMoveNumber = True
                     if moveNumber != self.__expectedMoveNumber:
-                        raise Error('Expected move number ' + str(self.__expectedMoveNumber) + ', got ' + str(moveNumber) + ' on line ' + str(token.lineNumber) + ':' + str(token.characterNumber))
+                        raise Error('Expected move number %i, got %i on line %i:%i' % (self.__expectedMoveNumber, moveNumber, token.lineNumber, token.characterNumber))
                 except ValueError:
                     self.__lastTokenIsMoveNumber = False
                     if self.__whiteMove is None:
@@ -310,7 +330,7 @@ class PGNGameParser:
             pass
                 
         else:
-            raise Error('Unknown token ' + token.type + ' in movetext on line ' + str(token.lineNumber) + ':' + str(token.characterNumber))
+            raise Error('Unknown token %s in movetext on line %i:%i' % (str(token.type), token.lineNumber, token.characterNumber))
     
     def parseToken(self, token):
         """TODO
@@ -341,28 +361,28 @@ class PGNGameParser:
                 pass
             
             else:
-                raise Error('Unexpected token ' + token.type + ' on line ' + str(token.lineNumber) + ':' + str(token.characterNumber))
+                raise Error('Unexpected token %s on line %i:%i' % (str(token.type), token.lineNumber, token.characterNumber))
             
         if self.__state is self.STATE_TAG_NAME:
             if token.type is PGNToken.SYMBOL:
                 self.__tagName = token.data
                 self.__state = self.STATE_TAG_VALUE
             else:
-                raise Error()
-                    
+                raise Error('Not a valid file')
+
         elif self.__state is self.STATE_TAG_VALUE:
             if token.type is PGNToken.STRING:
                 self.__tagValue = token.data
                 self.__state = self.STATE_TAG_END
             else:
-                raise Error()
+                raise Error('Not a valid file')
             
         elif self.__state is self.STATE_TAG_END:
             if token.type is PGNToken.TAG_END:
                 self.__game.setTag(self.__tagName, self.__tagValue)
                 self.__state = self.STATE_IDLE
             else:
-                raise Error()
+                raise Error('Not a valid file')
                     
         elif self.__state is self.STATE_MOVETEXT:
             game = self.__parseTokenMovetext(token)
@@ -467,13 +487,13 @@ class PGNGame:
         Deleting a STR tag or setting one to an invalid value will raise an Error exception.
         """
         if self.__isValidTagName(name) is False:
-            raise Error(str(name) + ' is an invalid tag name')
+            raise Error('%s is an invalid tag name' % str(name))
         
         # If no value delete
         if value is None:
             # If is a STR tag throw an exception
             if self.__strTags.has_key(name):
-                raise Error(name + ' is a PGN STR tag and cannot be deleted')
+                raise Error('%s is a PGN STR tag and cannot be deleted' % name)
             
             # Delete the tag
             try:
@@ -605,7 +625,7 @@ class PGN:
         try:
             f = file(fileName, 'w')
         except IOError, e:
-            raise Error('Unable to write to PGN file: ' + str(e))
+            raise Error(e.args[1], errno = e.args[0])
         # FIXME: Set the newline characters to the correct type?
         
         # Sign it from glChess
@@ -636,8 +656,8 @@ class PGN:
         # Convert the file into PGN tokens
         try:
             f = file(fileName, 'r')
-        except IOError, e:
-            raise Error('Unable to open PGN file: ' + str(e))
+        except IOError, e:            
+            raise Error(e.args[1], errno = e.args[0])
         p = PGNParser()
         gp = PGNGameParser()
         lineNumber = 1
