@@ -1,3 +1,7 @@
+2007-01-21  Robert Ancell  <bob27@users.sourceforge.net>
+	* Fix error in testing for check - copy board before checking to avoid
+	  iterating across list that is changing (sf.net bug #106348)
+
 2007-01-20  Robert Ancell  <bob27@users.sourceforge.net>
 	* Fix exception when a save error occurs (Bug #389960)
 	* Tidied up error dialogs and PGN error messages

@@ -305,9 +305,10 @@ class ChessBoardState:
                 # Ignore friendly pieces
                 if enemyPiece.getColour() == colour:
                     continue
-                    
+
                 # See if this piece can take the king
-                (result, moves) = self.movePiece(enemyPiece.getColour(), enemyCoord, kingCoord,
+                board = ChessBoardState(self)
+                (result, moves) = board.movePiece(enemyPiece.getColour(), enemyCoord, kingCoord,
                                                  testCheck = False, testCheckMate = False,
                                                  applyMove = False)
                 if result is not MOVE_RESULT_ILLEGAL:
@@ -331,10 +332,12 @@ class ChessBoardState:
             # See if this piece can be moved anywhere
             for rank in 'abcdefgh':
                 for file in '12345678':
-                    (result, moves) = self.movePiece(colour, coord, rank + file,
+                    board = ChessBoardState(self)
+                    (result, moves) = board.movePiece(colour, coord, rank + file,
                                                      testCheckMate = False, applyMove = False)
                     if result is not MOVE_RESULT_ILLEGAL:
                         return False
+
         return True
     
     def movePiece(self, colour, start, end, promotionType = QUEEN, testCheck = True, testCheckMate = True, allowSuicide = False, applyMove = True):
@@ -407,7 +410,7 @@ class ChessBoardState:
         enPassantSquare = None
 
         # Check move is valid:
-        
+
         # King can move one square or castle
         if piece.getType() is KING:
             # Castling:
@@ -454,7 +457,7 @@ class ChessBoardState:
             else:
                 if len(rankRange) > 2 or len(fileRange) > 2:
                     return (MOVE_RESULT_ILLEGAL, None)
-                
+
             # Can no longer castle if moved the king
             playerState.canShortCastle = False
             playerState.canLongCastle = False
