@@ -61,7 +61,7 @@ class Error(Exception):
             string = ''
         if self.errno >= 0:
             string += '[Error %i] ' % self.errno
-        string += description
+        string += self.description
         return string
 
 class PGNToken:
