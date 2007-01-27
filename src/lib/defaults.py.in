@@ -40,14 +40,23 @@ TRANSLATORS   = [u"Luca Marturana <lucamarturana@gmail.com> (It)",
                  u"Elxan İsmayılov <elxan.i@gmail.com> (az)",
                  u"Translators on Rosetta (launchpad.net)",
                  u"Gnome Translation Team"]
-LICENSE = """This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License version 2 as published by the Free Software Foundation.
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details. 
+# The GPL license string will be translated, and the game name inserted.
+# This license is the same as in libgames-support/games-stock.c 
+LICENSE = [_("%s is free software; you can redistribute it and/or modify " 
+       "it under the terms of the GNU General Public License as published by " 
+       "the Free Software Foundation; either version 2 of the License, or " 
+       "(at your option) any later version.").replace("%s", APPNAME),
+_("%s is distributed in the hope that it will be useful, "
+       "but WITHOUT ANY WARRANTY; without even the implied warranty of "
+       "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
+       "GNU General Public License for more details.").replace("%s", APPNAME),
+_("You should have received a copy of the GNU General Public License "
+       "along with %s; if not, write to the Free Software Foundation, Inc., "
+       "51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA").replace("%s", APPNAME)]
 
-You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-2D Models:
-Copyright World Wide Web Consortium, (Massachusetts Institute of Technology, Institut National de Recherche en Informatique et en Automatique, Keio University). All Rights Reserved. http://www.w3.org/Consortium/Legal/"""
-
+# License for 2D models is the following, which is GPL compatible, and therefore not included in the license dialog:
+#2D Models:
+#Copyright World Wide Web Consortium, (Massachusetts Institute of Technology, Institut National de Recherche en Informatique et en Automatique, Keio University). All Rights Reserved. http://www.w3.org/Consortium/Legal/"""
 
 if not os.path.exists(DATA_DIR): os.makedirs(DATA_DIR)

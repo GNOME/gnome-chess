@@ -1049,7 +1049,7 @@ class GtkUI(glchess.ui.UI):
         dialog.set_name(APPNAME)
         dialog.set_version(VERSION)
         dialog.set_copyright(COPYRIGHT)
-        dialog.set_license(LICENSE)
+        dialog.set_license(LICENSE[0] + '\n\n' + LICENSE[1] + '\n\n' +LICENSE[2])
         dialog.set_wrap_license(True)
         dialog.set_comments(DESCRIPTION)
         dialog.set_authors(AUTHORS)
