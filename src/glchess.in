@@ -1,5 +1,13 @@
 #! /usr/bin/env python
 
+# Setup bugbuddy to report unhandled exceptions.
+try: 
+  import bugbuddy
+  bugbuddy.install('glchess')
+except:
+  #No bugbuddy support
+  none 
+
 try:
     from glchess.glchess import start_game
 except ImportError:
