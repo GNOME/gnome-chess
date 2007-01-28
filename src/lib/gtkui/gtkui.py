@@ -276,13 +276,22 @@ class GtkView(glchess.ui.ViewController):
             self.ui._incAttentionCounter(-1)
 
     def addMove(self, move):
-        """Extends glchess.ui.ViewController"""
+        """Extends glchess.ui.ViewController
+	Based on the current move, this method creates a string
+	describing the move, and displays it in the GUI.
+	"""
         # FIXME: Make a '@ui' player who watches for these itself?
         iter = self.moveModel.append()
         string = '%2i. ' % ((move.number - 1) / 2 + 1)
         if move.number % 2 == 0:
             string += '... '
         string += move.sanMove
+
+	if move.result is glchess.chess.board.MOVE_RESULT_OPPONENT_CHECK:
+	    string += " - " + gettext.gettext('Check')
+	if move.result is glchess.chess.board.MOVE_RESULT_OPPONENT_CHECKMATE:
+	    string += " - " + gettext.gettext('Checkmate, %s wins.' % (move.player.getName()))
+
         self.moveModel.set(iter, 0, move.number, 1, string)
         
         # If is the current view and tracking the game select this

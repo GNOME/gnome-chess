@@ -326,7 +326,7 @@ class Player(game.ChessPlayer):
             if count > 5:
                 break
         
-        print 'Killing AI'
+        #print 'Killing AI'
         os.kill(self.__pid, signal.SIGKILL)
 
     # Extended methods

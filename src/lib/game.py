@@ -26,6 +26,9 @@ class ChessMove:
     canMove    = ''
     sanMove    = ''
 
+    # The overall game result of this move
+    result = None
+
 class ChessPlayer:
     """
     """
@@ -419,6 +422,7 @@ class ChessGame:
         move.end     = end
         move.canMove = canMove
         move.sanMove = sanMove
+	move.result = moveResult
         self.__moves.append(move)
 
         # This player has now moved
