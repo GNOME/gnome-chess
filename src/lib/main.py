@@ -827,7 +827,7 @@ class Application:
             try:
                 profile = self.__aiProfiles[profileName]
             except KeyError:
-                msg += "AI '" + whiteType + "' is not installed, white player is now human"
+                msg += "AI '%s' is not installed, white player is now human" % profileName
                 player = g.addHumanPlayer(whiteName)
             else:
                 player = g.addAIPlayer(whiteName, profile, level)
@@ -840,7 +840,7 @@ class Application:
             try:
                 profile = self.__aiProfiles[profileName]
             except KeyError:
-                msg += "AI '" + blackType + "' is not installed, black player is now human"
+                msg += "AI '%s' is not installed, black player is now human" % profileName
                 player = g.addHumanPlayer(blackName)
             else:
                 player = g.addAIPlayer(blackName, profile, level)
