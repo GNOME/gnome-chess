@@ -422,7 +422,7 @@ class ChessGame:
         move.end     = end
         move.canMove = canMove
         move.sanMove = sanMove
-	move.result = moveResult
+        move.result  = moveResult
         self.__moves.append(move)
 
         # This player has now moved

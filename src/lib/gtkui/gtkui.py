@@ -287,10 +287,10 @@ class GtkView(glchess.ui.ViewController):
             string += '... '
         string += move.sanMove
 
-	if move.result is glchess.chess.board.MOVE_RESULT_OPPONENT_CHECK:
-	    string += " - " + gettext.gettext('Check')
-	if move.result is glchess.chess.board.MOVE_RESULT_OPPONENT_CHECKMATE:
-	    string += " - " + gettext.gettext('Checkmate, %s wins.' % (move.player.getName()))
+        if move.result is glchess.chess.board.MOVE_RESULT_OPPONENT_CHECK:
+            string += " - " + gettext.gettext('Check')
+        if move.result is glchess.chess.board.MOVE_RESULT_OPPONENT_CHECKMATE:
+            string += " - " + gettext.gettext('Checkmate, %s wins.' % (move.player.getName()))
 
         self.moveModel.set(iter, 0, move.number, 1, string)
         
