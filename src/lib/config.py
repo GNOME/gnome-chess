@@ -68,7 +68,8 @@ else:
 _defaults = {'show_toolbar': True,
              'show_history': True,
              'fullscreen':   False,
-             'show_3d':      False}
+             'show_3d':      False,
+             'move_format':  'human'}
 
 class Error(Exception):
     """Exception for configuration use"""

@@ -96,7 +96,19 @@
         <long>The directory to open the load game dialog in</long>
       </locale>
     </schema>
-  
+
+    <schema>
+      <key>/schemas/apps/glchess/move_format</key>
+      <applyto>/apps/glchess/move_format</applyto>
+      <owner>glchess</owner>
+      <type>string</type>
+      <default>human</default>
+      <locale name="C">
+        <short>The format to display moves in</short>
+        <long>The format to display moves in, can be either 'human' (human readable), 'lan' (long algebraic notation) or 'san' (standard algebraic notation)</long>
+      </locale>
+    </schema>
+
     <schema>
       <key>/schemas/apps/glchess/new_game_dialog/move_time</key>
       <applyto>/apps/glchess/new_game_dialog/move_time</applyto>
