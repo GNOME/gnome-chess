@@ -507,17 +507,18 @@ class PGNGame:
             
             self.__tagsByName[name] = value
     
-    def getTag(self, name):
+    def getTag(self, name, default = None):
         """Get a PGN tag.
         
         'name' is the name of the tag to get (string).
+        'default' is the default value to return if this valid is missing (user-defined).
         
-        Return the value of the tag (string) or None if the tag does not exist.
+        Return the value of the tag (string) or the default if the tag does not exist.
         """
         try:
             return self.__tagsByName[name]
         except KeyError:
-            return None
+            return default
         
     def addMove(self, whiteMove, blackMove):
         self.__moves.append((whiteMove, blackMove))
