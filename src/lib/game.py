@@ -17,6 +17,12 @@ class ChessMove:
     # The player and piece that moved
     player     = None
     piece      = None
+    
+    # The piece that was promoted to (or None)
+    promotion  = None
+    
+    # The victim piece (or None)
+    victim     = None
 
     # The start and end position of the move
     start      = None
@@ -26,8 +32,8 @@ class ChessMove:
     canMove    = ''
     sanMove    = ''
 
-    # The overall game result of this move
-    result = None
+    # The game result after this move
+    result     = None
 
 class ChessPlayer:
     """
@@ -393,6 +399,7 @@ class ChessGame:
                 return
 
         # Only use promotion type if a pawn move to far file
+        victim = self.__board.getPiece(end)
         piece = self.__board.getPiece(start)
         promotion = None
         if piece is not None and piece.getType() is chess.board.PAWN:
@@ -411,13 +418,15 @@ class ChessGame:
         if moveResult is chess.board.MOVE_RESULT_ILLEGAL:
             print 'Illegal move: ' + str(move)
             return
-            
+
         move = ChessMove()
         if len(self.__moves) == 0:
             move.number = 1
         else:
             move.number = self.__moves[-1].number + 1
         move.player  = self.__currentPlayer
+        move.piece   = piece
+        move.victim  = victim
         move.start   = start
         move.end     = end
         move.canMove = canMove
@@ -431,6 +440,9 @@ class ChessGame:
         # Inform other players of the result
         for player in self.__players:
             player.onPlayerMoved(self.__currentPlayer, move)
+            
+        # Check if the game has ended
+        # ...
             
         # Notify the next player they can move
         self.__currentPlayer = nextPlayer
