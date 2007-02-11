@@ -549,6 +549,9 @@ class GtkUI(glchess.ui.UI):
     # The time stored for animation
     __lastTime         = None
     __animationTimer   = None
+    
+    # Timers
+    timers             = None
 
     # The notebook containing games
     notebook           = None
@@ -630,6 +633,20 @@ class GtkUI(glchess.ui.UI):
     def watchFileDescriptor(self, fd):
         """Extends ui.UI"""
         gobject.io_add_watch(fd, gobject.IO_IN, self.__readData)
+        
+    def addTimer(self, method, timeUsec):
+        """Extends ui.UI"""
+        timer = gobject.timeout_add(timeUsec / 1000, self.__timerExpired, method)
+        self.timers[method] = timer
+
+    def __timerExpired(self, method):
+        method()
+        return True
+
+    def removeTimer(self, method):
+        """Extends ui.UI"""
+        timer = self.timers.pop(method)
+        gobject.source_remove(timer)
 
     def __readData(self, fd, condition):
         return self.onReadFileDescriptor(fd)
@@ -714,7 +731,7 @@ class GtkUI(glchess.ui.UI):
         # Update the open dialogs
         for dialog in self.__joinGameDialogs:
             dialog.addNetworkGame(name, game)
-    
+
     def removeNetworkGame(self, game):
         """Extends glchess.ui.UI"""
         self.__networkGames.pop(game)
