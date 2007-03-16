@@ -119,7 +119,7 @@ def decode(colour, move):
                 pass
             else:
                 move = move[1:]
-            
+
     if len(move) > 0:
         if move[0] == CHECK or move[0] == CHECKMATE:
             result = move[0]

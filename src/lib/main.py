@@ -12,6 +12,7 @@ import os
 import gettext
 import traceback
 
+import config
 import ui
 import gtkui
 import scene.cairo
@@ -32,9 +33,9 @@ class Config:
     """
     """    
     __directory = None
-    
+
     def __init__(self):
-        """Constructor for a confgiuration object"""
+        """Constructor for a configuration object"""
         self.__directory = os.path.expanduser('~/.glchess')
         
         # Create the directory if it does not exist
@@ -52,8 +53,7 @@ class MovePlayer(game.ChessPlayer):
     # The game to control
     __game = None
     
-    # A dictionary of pieces added into the scene
-    __pieces = None
+    waitForMoves = False
 
     def __init__(self, chessGame):
         """Constructor for a move player.
@@ -65,14 +65,28 @@ class MovePlayer(game.ChessPlayer):
         
     # Extended methods
 
-    def onPieceMoved(self, piece, start, end):
+    def onPieceMoved(self, piece, start, end, delete):
         """Called by chess.board.ChessPlayer"""
-        self.__game.scene._movePiece(piece, start, end)
-        self.__game.cairoScene._movePiece(piece, start, end)
+        if self.__game.view.moveNumber != -1:
+            return
+        p = self.__game.view.scene.movePiece(piece, end, delete, self.__game.isStarted())
+
+        # If a player move notify when animation completes
+        if self.__game.isStarted() and self.__game.view.moveNumber == -1 and start is not None and start != end:
+            self.__game.view.scene.waitingPiece = p
         
     def onPlayerMoved(self, player, move):
         """Called by chess.board.ChessPlayer"""
-        self.__game._onPlayerMoved(player, move)
+        self.__game.needsSaving = True
+        self.__game.view.controller.addMove(move)
+        
+        # Complete move if not waiting for visual indication of move end
+        if self.__game.view.moveNumber != -1:
+            player.endMove()
+
+    def onGameEnded(self, game):
+        """Called by chess.board.ChessPlayer"""
+        self.__game.view.controller.endGame(game)
 
 class HumanPlayer(game.ChessPlayer):
     """
@@ -91,8 +105,7 @@ class HumanPlayer(game.ChessPlayer):
     def readyToMove(self):
         # FIXME: ???
         self.__game.view.controller.setAttention(True)
-        self.__game.scene.setHumanPlayer(self)
-        self.__game.cairoScene.setHumanPlayer(self)
+        self.__game.view.setHumanPlayer(self)
 
 class AIPlayer(ai.Player):
     """
@@ -104,290 +117,234 @@ class AIPlayer(ai.Player):
         executable = profile.path
         for arg in profile.arguments[1:]:
             executable += ' ' + arg
-        self.window = application.ui.addAIWindow(profile.name, executable, description)
+        self.window = application.ui.controller.addAIWindow(profile.name, executable, description)
         ai.Player.__init__(self, name, profile, level)
         
     def logText(self, text, style):
         """Called by ai.Player"""
         self.window.addText(text, style)
+    
+class CairoPiece(scene.ChessPieceFeedback):
+    """
+    """
+    
+    model = None
+    
+    location = ''
+    
+    def __init__(self, scene, piece):
+        self.scene = scene
+        self.piece = piece
 
-class SceneCairo(scene.cairo.Scene, scene.human.SceneHumanInput):
+    def onDeleted(self):
+        """Called by scene.ChessPieceFeedback"""
+        self.scene.pieces.pop(self.piece)
+
+    def onMoved(self):
+        """Called by scene.ChessPieceFeedback"""
+        # If waiting for this piece then end players turn
+        if self.scene.waitingPiece is self:
+            self.scene.game.view.pieceMoved()
+
+class SceneCairo(scene.SceneFeedback, scene.human.SceneHumanInput):
     """
     """
+    controller = None
+    
     # The game this scene is rendering
-    __game = None
+    game = None
     
     # TODO
-    __moveNumber   = -1
-    __pieceModels  = None
+    moveNumber   = None
+    pieces       = None
     
-    # The current human player or None if not a player in play
-    __humanPlayer = None
+    # FIXME: Abort when scenes changed
+    waitingPiece = None
 
     def __init__(self, chessGame):
         """
         """
-        self.__game = chessGame
-        self.__pieceModels = {}
-
-        # Call parent constructors
+        self.controller = scene.cairo.Scene(self)
+        self.game = chessGame
+        self.pieces = {}
         scene.human.SceneHumanInput.__init__(self)
-        scene.cairo.Scene.__init__(self)
+        
+    def getPieces(self):
+        return self.pieces.values()
 
-    def setHumanPlayer(self, player):
-        """TODO
-        """
-        self.__humanPlayer = player
-        
-        # Animate the board
-        if player is self.__game.getWhite():
-            self.setBoardRotation(0.0)
-        elif player is self.__game.getBlack():
-            self.setBoardRotation(180.0)
-        else:
-            assert(False), 'Human player is not white or black'
-
-    def setMoveNumber(self, moveNumber):
-        """Set the move number to watch.
-
-        'moveNumber' is the move to watch (integer).
-        """
-        if self.__moveNumber == moveNumber:
-            return
-        self.__moveNumber = moveNumber
-        
-        # Lock the scene if not tracking the game
-        self.enableHumanInput(moveNumber == -1)
-        
-        # Get the state of this scene
-        piecesByLocation = self.__game.getAlivePieces(moveNumber)
-        
-        # Remove any models not present
-        requiredPieces = piecesByLocation.values()
-        for (piece, model) in self.__pieceModels.items():
-            try:
-                requiredPieces.index(piece)
-            except ValueError:
-                self.__pieceModels.pop(piece)
-                self.removeChessPiece(model)
-        
-        # Move the models in the scene
-        for (location, piece) in piecesByLocation.iteritems():
-            self.__movePiece(piece, location)
-            
-    def _movePiece(self, piece, start, end):
-        """TODO
-        """
-        # Only allow then watching the active game
-        if self.__moveNumber == -1:
-            self.__movePiece(piece, end)
-
-    def __movePiece(self, piece, location):
+    def movePiece(self, piece, location, delete, animate):
         """
         """
         # Get the model for this piece creating one if it doesn't exist
         try:
-            model = self.__pieceModels[piece]
+            p = self.pieces[piece]
         except KeyError:
-            # No need to create if didn't exist anyway
-            if location is None:
-                return
-            
             # Make the new model
             pieceName = {chess.board.PAWN: 'pawn', chess.board.ROOK: 'rook', chess.board.KNIGHT: 'knight',
                          chess.board.BISHOP: 'bishop', chess.board.QUEEN: 'queen', chess.board.KING: 'king'}[piece.getType()]
             chessSet = {chess.board.WHITE: 'white', chess.board.BLACK: 'black'}[piece.getColour()]
-            model = self.addChessPiece(chessSet, pieceName, location)
-            self.__pieceModels[piece] = model
-            
-        # Delete or move the model
-        if location is None:
-            self.__pieceModels.pop(piece)
-            self.removeChessPiece(model)
-        else:
-            model.move(location)
+            p = CairoPiece(self, piece)
+            p.model = self.controller.addChessPiece(chessSet, pieceName, location, p)
+            self.pieces[piece] = p
+
+        # Move the model
+        p.location = location
+        p.model.move(location, delete, animate)
+        
+        return p
 
     # Extended methods
 
     def onRedraw(self):
         """Called by scene.cairo.Scene"""
-        if self.__game.view.activeScene is self and self.__game.view is not None:
-            self.__game.view.controller.render()
+        if self.game.view.controller is not None:
+            self.game.view.controller.render()
 
     def startAnimation(self):
         """Called by scene.cairo.Scene"""
-        self.__game.application.ui.startAnimation()
+        self.game.application.ui.controller.startAnimation()
+        
+    def getSquare(self, x, y):
+        """Called by scene.human.SceneHumanInput"""
+        return self.controller.getSquare(x, y)
+
+    def setBoardHighlight(self, coords):
+        """Called by scene.human.SceneHumanInput"""
+        self.controller.setBoardHighlight(coords)
 
     def playerIsHuman(self):
         """Called by scene.human.SceneHumanInput"""
-        return self.__humanPlayer is not None
+        return self.game.view.humanPlayer is not None
 
     def squareIsFriendly(self, coord):
         """Called by scene.human.SceneHumanInput"""
-        owner = self.__game.getSquareOwner(coord)
+        owner = self.game.getSquareOwner(coord)
         if owner is None:
             return False
-        return owner is self.__humanPlayer
+        return owner is self.game.view.humanPlayer
     
     def canMove(self, start, end):
         """Called by scene.human.SceneHumanInput"""
-        if self.__humanPlayer is None:
+        if self.game.view.humanPlayer is None:
             return False
 
-        return self.__humanPlayer.canMove(start, end) # FIXME: Promotion type
+        return self.game.view.humanPlayer.canMove(start, end) # FIXME: Promotion type
     
     def moveHuman(self, start, end):
         """Called by scene.human.SceneHumanInput"""
-        player = self.__humanPlayer
-        self.__humanPlayer = None
-        if player is self.__game.getWhite():
-            colour = chess.board.WHITE
-        else:
-            colour = chess.board.BLACK
-        move = chess.lan.encode(colour, start, end, promotionType = chess.board.QUEEN) # FIXME: Promotion type
-        player.move(move)
-        self.__game.view.controller.setAttention(False)
+        self.game.moveHuman(start, end)
+        
+class OpenGLPiece(scene.ChessPieceFeedback):
+    """
+    """
+    
+    model = None
+    
+    location = ''
+    
+    def __init__(self, scene, piece):
+        self.scene = scene
+        self.piece = piece
 
-class SceneOpenGL(scene.opengl.Scene, scene.human.SceneHumanInput):
+    def onDeleted(self):
+        """Called by scene.ChessPieceFeedback"""
+        self.scene.pieces.pop(self.piece)
+
+    def onMoved(self):
+        """Called by scene.ChessPieceFeedback"""
+        # If waiting for this piece then end players turn
+        if self.scene.waitingPiece is self:
+            self.scene.waitingPiece = None
+            self.scene.game.getCurrentPlayer().endMove()
+
+class SceneOpenGL(scene.SceneFeedback, scene.human.SceneHumanInput):
     """
     """
     # The game this scene is rendering
-    __game = None
+    game          = None
     
     # TODO
-    __moveNumber   = -1
-    __pieceModels  = None
+    pieces        = None
     
-    # The current human player or None if not a player in play
-    __humanPlayer = None
+    # FIXME: Abort when scenes changed
+    waitingPiece = None
 
     def __init__(self, chessGame):
         """Constructor for a glChess scene.
         
         'chessGame' is the game the scene is rendering (game.ChessGame).
         """
-        self.__game = chessGame
-        self.__pieceModels = {}
+        self.game = chessGame
+        self.pieces = {}
 
         # Call parent constructors
         scene.human.SceneHumanInput.__init__(self)
-        scene.opengl.Scene.__init__(self)
+        self.controller = scene.opengl.Scene(self)
 
-    def setHumanPlayer(self, player):
-        """TODO
-        """
-        self.__humanPlayer = player
+    def getPieces(self):
+        return self.pieces.values()
         
-        # Animate the board
-        if player is self.__game.getWhite():
-            self.setBoardRotation(0.0)
-        elif player is self.__game.getBlack():
-            self.setBoardRotation(180.0)
-        else:
-            assert(False), 'Human player is not white or black'
-            
-    def setMoveNumber(self, moveNumber):
-        """Set the move number to watch.
-
-        'moveNumber' is the move to watch (integer).
-        """
-        if self.__moveNumber == moveNumber:
-            return
-        self.__moveNumber = moveNumber
-        
-        # Lock the scene if not tracking the game
-        self.enableHumanInput(moveNumber == -1)
-        
-        # Get the state of this scene
-        piecesByLocation = self.__game.getAlivePieces(moveNumber)
-        
-        # Remove any models not present
-        requiredPieces = piecesByLocation.values()
-        for (piece, model) in self.__pieceModels.items():
-            try:
-                requiredPieces.index(piece)
-            except ValueError:
-                self.__pieceModels.pop(piece)
-                self.removeChessPiece(model)
-        
-        # Move the models in the scene
-        for (location, piece) in piecesByLocation.iteritems():
-            self.__movePiece(piece, location)
-            
-    def _movePiece(self, piece, start, end):
-        """TODO
-        """
-        # Ignore if not watching the active game
-        if self.__moveNumber != -1:
-            return
-        
-        self.__movePiece(piece, end)
-        
-    def __movePiece(self, piece, location):
+    def movePiece(self, piece, location, delete, animate):
         """
         """
         # Get the model for this piece creating one if it doesn't exist
         try:
-            model = self.__pieceModels[piece]
+            p = self.pieces[piece]
         except KeyError:
-            # No need to create if didn't exist anyway
-            if location is None:
-                return
-            
             # Make the new model
             pieceName = {chess.board.PAWN: 'pawn', chess.board.ROOK: 'rook', chess.board.KNIGHT: 'knight',
                          chess.board.BISHOP: 'bishop', chess.board.QUEEN: 'queen', chess.board.KING: 'king'}[piece.getType()]
             chessSet = {chess.board.WHITE: 'white', chess.board.BLACK: 'black'}[piece.getColour()]
-            model = self.addChessPiece(chessSet, pieceName, location)
-            self.__pieceModels[piece] = model
+            p = OpenGLPiece(self, piece)
+            p.model = self.controller.addChessPiece(chessSet, pieceName, location, p)
+            self.pieces[piece] = p
             
-        # Delete or move the model
-        if location is None:
-            self.__pieceModels.pop(piece)
-            self.removeChessPiece(model)
-        else:
-            model.move(location)
+        # Move the model
+        p.location = location
+        p.model.move(location, delete)
+
+        return p
 
     # Extended methods
 
     def onRedraw(self):
         """Called by scene.opengl.Scene"""
-        if self.__game.view.activeScene is self and self.__game.view is not None:
-            self.__game.view.controller.render()
+        if self.game.view.controller is not None:
+            self.game.view.controller.render()
 
     def startAnimation(self):
         """Called by scene.opengl.Scene"""
-        self.__game.application.ui.startAnimation()
+        self.game.application.ui.controller.startAnimation()
+        
+    def getSquare(self, x, y):
+        """Called by scene.human.SceneHumanInput"""
+        return self.controller.getSquare(x, y)
+
+    def setBoardHighlight(self, coords):
+        """Called by scene.human.SceneHumanInput"""
+        self.controller.setBoardHighlight(coords)
 
     def playerIsHuman(self):
         """Called by scene.human.SceneHumanInput"""
-        return self.__humanPlayer is not None
+        return self.game.view.humanPlayer is not None
 
     def squareIsFriendly(self, coord):
         """Called by scene.human.SceneHumanInput"""
-        owner = self.__game.getSquareOwner(coord)
+        owner = self.game.getSquareOwner(coord)
         if owner is None:
             return False
-        return owner is self.__humanPlayer
+        return owner is self.game.view.humanPlayer
     
     def canMove(self, start, end):
         """Called by scene.human.SceneHumanInput"""
-        if self.__humanPlayer is None:
+        if self.game.view.humanPlayer is None:
             return False
 
-        return self.__humanPlayer.canMove(start, end) # FIXME: Promotion type
+        return self.game.view.humanPlayer.canMove(start, end) # FIXME: Promotion type
     
     def moveHuman(self, start, end):
         """Called by scene.human.SceneHumanInput"""
-        player = self.__humanPlayer
-        self.__humanPlayer = None
-        if player is self.__game.getWhite():
-            colour = chess.board.WHITE
-        else:
-            colour = chess.board.BLACK
-        move = chess.lan.encode(colour, start, end, promotionType = chess.board.QUEEN) # FIXME: Promotion type
-        player.move(move)
-        self.__game.view.controller.setAttention(False)
+        self.game.moveHuman(start, end)
 
 class Splashscreen(ui.ViewFeedback):
     """
@@ -401,8 +358,13 @@ class Splashscreen(ui.ViewFeedback):
         'application' is ???
         """
         self.application = application
-        self.cairoScene = scene.cairo.Scene()
-        self.scene = scene.opengl.Scene()
+        self.cairoScene = scene.cairo.Scene(self)
+        self.scene = scene.opengl.Scene(self)
+        
+    def onRedraw(self):
+        """
+        """
+        # FIXME: Need for scene.cairo.Scene
 
     def renderGL(self):
         """Called by ui.ViewFeedback"""
@@ -420,18 +382,22 @@ class Splashscreen(ui.ViewFeedback):
         """Called by ui.View"""
         self.scene.reshape(width, height)
         self.cairoScene.reshape(width, height)
-        
+
 class View(ui.ViewFeedback):
     """
     """
     # The game this view is rendering
     game        = None
     
-    # TEMP: The scene to render (switches between OpenGL and Cairo).
-    activeScene = None
+    # The scene for this view
+    scene       = None
     
     # The controller object for this view
     controller  = None
+    
+    moveNumber  = None
+    
+    humanPlayer = None
     
     def __init__(self, game):
         """Constructor.
@@ -439,39 +405,98 @@ class View(ui.ViewFeedback):
         'game' is ???
         """
         self.game = game
+        self.scene = SceneCairo(game)
+        
+    def setHumanPlayer(self, player):
+        """TODO
+        """
+        self.humanPlayer = player
+        
+        # Animate the board
+        if player is self.game.getWhite():
+            self.scene.controller.setBoardRotation(0.0)
+        elif player is self.game.getBlack():
+            self.scene.controller.setBoardRotation(180.0)
+        else:
+            assert(False), 'Human player is not white or black'
+            
+    def pieceMoved(self):
+        """
+        """
+        if self.scene.waitingPiece is None:
+            return
+        self.scene.waitingPiece = None
+        self.game.getCurrentPlayer().endMove()
+
+    def showMoveHints(self, showHints):
+        """Called by ui.UIFeedback"""
+        self.scene.showMoveHints(showHints)
+    
+    def updateScene(self, sceneClass):
+        """
+        """
+        if isinstance(self.scene, sceneClass):
+            return
+        self.pieceMoved()
+        self.scene = sceneClass(self.game)
+        self.reshape(self.width, self.height)
+        self.setMoveNumber(self.moveNumber)
         
     def renderGL(self):
         """Called by ui.ViewFeedback"""
-        self.activeScene = self.game.scene
-        self.activeScene.render()
-        
+        self.updateScene(SceneOpenGL)
+        self.scene.controller.render()
+
     def renderCairoStatic(self, context):
         """Called by ui.ViewFeedback"""
-        self.activeScene = self.game.cairoScene
-        return self.activeScene.renderStatic(context)
+        self.updateScene(SceneCairo)
+        return self.scene.controller.renderStatic(context)
         
     def renderCairoDynamic(self, context):
         """Called by ui.ViewFeedback"""
-        self.activeScene.renderDynamic(context)
+        self.updateScene(SceneCairo)
+        self.scene.controller.renderDynamic(context)
 
     def reshape(self, width, height):
         """Called by ui.ViewFeedback"""
-        self.game.scene.reshape(width, height)
-        self.game.cairoScene.reshape(width, height)
+        self.width = width
+        self.height = height
+        self.scene.controller.reshape(width, height)
     
     def select(self, x, y):
         """Called by ui.ViewFeedback"""
-        self.activeScene.select(x, y)
+        self.scene.select(x, y)
     
     def deselect(self, x, y):
         """Called by ui.ViewFeedback"""
-        self.activeScene.deselect(x, y)
+        self.scene.deselect(x, y)
     
     def setMoveNumber(self, moveNumber):
         """Called by ui.ViewFeedback"""
-        self.game.scene.setMoveNumber(moveNumber)
-        self.game.cairoScene.setMoveNumber(moveNumber)
+        self.moveNumber = moveNumber
         
+        # Lock the scene if not tracking the game
+        self.scene.enableHumanInput(moveNumber == -1)
+        
+        # Get the state of this scene
+        piecesByLocation = self.game.getAlivePieces(moveNumber)
+        
+        # Remove any models not present
+        requiredPieces = piecesByLocation.values()
+        for piece in self.scene.getPieces():
+            try:
+                requiredPieces.index(piece.piece)
+            except ValueError:
+                piece.model.move(piece.location, True)
+        
+        # Move the models in the scene
+        for (location, piece) in piecesByLocation.iteritems():
+            self.scene.movePiece(piece, location, False, True)
+        
+        # Can't wait for animation if not looking at the latest move
+        if moveNumber != -1:
+            self.pieceMoved()
+
     def save(self, fileName = None):
         """Called by ui.ViewFeedback"""
         if fileName is None:
@@ -481,8 +506,7 @@ class View(ui.ViewFeedback):
         try:
             f = file(fileName, 'w')
         except IOError, e:
-            self.game.application.ui.reportError('Unable to save PGN file %s' % fileName, e.args[1])
-            return
+            return e.args[1]
         
         print 'Saving game ' + repr(self.game.name) + ' to ' + fileName
 
@@ -519,12 +543,9 @@ class ChessGame(game.ChessGame):
     
     # The name of the game
     name           = None
-    
-    # The scene for this game
-    scene          = None
-    
+
     # The view watching this scene
-    view            = None
+    view           = None
     
     # The players in the game
     __movePlayer   = None
@@ -534,6 +555,9 @@ class ChessGame(game.ChessGame):
     # The file this is saved to
     fileName       = None
     needsSaving    = True
+
+    # Mapping between piece names and promotion types
+    __promotionMapping = {'queen': chess.board.QUEEN, 'knight': chess.board.KNIGHT, 'bishop': chess.board.BISHOP, 'rook': chess.board.ROOK}
 
     def __init__(self, application, name):
         """Constructor for a chess game.
@@ -549,11 +573,10 @@ class ChessGame(game.ChessGame):
         # Call parent constructor
         game.ChessGame.__init__(self)
 
-        # Create a scene to render to
-        self.scene = SceneOpenGL(self)
-        self.cairoScene = SceneCairo(self)
         self.view = View(self)
-        self.view.controller = application.ui.addView(name, self.view)
+        self.view.controller = application.ui.controller.addView(name, self.view)
+        
+        self.view.showMoveHints(config.get('show_move_hints') is True)
         
         # Watch for piece moves with a player
         self.__movePlayer = MovePlayer(self)
@@ -599,6 +622,29 @@ class ChessGame(game.ChessGame):
                 return True
         except ValueError:
             return False
+        
+    def moveHuman(self, start, end):
+        """
+        """
+        player = self.view.humanPlayer
+        self.view.humanPlayer = None
+        if player is self.getWhite():
+            colour = chess.board.WHITE
+        else:
+            colour = chess.board.BLACK
+
+        # Use configured promotion type
+        try:
+            promotionType = self.__promotionMapping[config.get('promotion_type')]
+        except KeyError:
+            promotionType = chess.board.QUEEN
+
+        # Make the move
+        move = chess.lan.encode(colour, start, end, promotionType = promotionType)
+        player.move(move)
+
+        # Notify move
+        self.view.controller.setAttention(False)
 
     def toPGN(self, pgnGame):
         """Write the properties of this game into a PGN game.
@@ -611,6 +657,13 @@ class ChessGame(game.ChessGame):
         pgnGame.setTag(pgnGame.PGN_TAG_EVENT, self.name)
         pgnGame.setTag(pgnGame.PGN_TAG_WHITE, white.getName())
         pgnGame.setTag(pgnGame.PGN_TAG_BLACK, black.getName())
+
+        if self.result is game.RESULT_WHITE_WINS:
+            pgnGame.setTag(pgnGame.PGN_TAG_RESULT, chess.pgn.PGNToken.GAME_TERMINATE_WHITE_WIN)
+        elif self.result is game.RESULT_BLACK_WINS:
+            pgnGame.setTag(pgnGame.PGN_TAG_RESULT, chess.pgn.PGNToken.GAME_TERMINATE_BLACK_WIN)
+        elif self.result is game.RESULT_DRAW:
+            pgnGame.setTag(pgnGame.PGN_TAG_RESULT, chess.pgn.PGNToken.GAME_TERMINATE_DRAW)
 
         # FIXME: AI levels
         if isinstance(white, ai.Player):
@@ -634,9 +687,7 @@ class ChessGame(game.ChessGame):
     def animate(self, timeStep):
         """
         """
-        animating1 = self.scene.animate(timeStep)
-        animating2 = self.cairoScene.animate(timeStep)
-        return animating1 or animating2
+        return self.view.scene.controller.animate(timeStep)
             
     def remove(self):
         """Remove this game"""
@@ -645,102 +696,242 @@ class ChessGame(game.ChessGame):
             player.window.close()
             self.application.unwatchAIPlayer(player)
 
-        # End the game
-        self.end()
+        # Stop the game
+        self.abort()
         
         # Remove the game from the UI
         self.application._removeGame(self)
         self.view.controller.close()
-
-    # Private methods
+        
+class Advert:
+    pass
+        
+class FICSConnection(chess.fics.Decoder):
     
-    def _onPlayerMoved(self, player, move):
-        """FIXME: Rename this
-        """
-        self.needsSaving = True
-        self.view.controller.addMove(move)
+    def __init__(self, dialog):
+        self.dialog = dialog
+        self.messageQueue = []
+        self.havePrompt = False
+        self.adverts = {}
+        chess.fics.Decoder.__init__(self)
 
-class UI(gtkui.GtkUI):
+    def send(self, message):
+        if self.havePrompt:
+            self.dialog.socket.send(message)
+            self.havePrompt = False
+        else:
+            self.messageQueue.append(message)
+
+    def onUnknownLine(self, text):
+        self.dialog.controller.addText(text + '\n', 'info')
+
+    def onPrompt(self):
+        if len(self.messageQueue) > 0:
+            message = self.messageQueue[0]
+            self.messageQueue = self.messageQueue[1:]
+            self.dialog.socket.send(message)
+            self.havePrompt = False
+        else:
+            self.havePrompt = True
+
+    def onLogin(self):
+        self.dialog.socket.send('guest\n')
+        self.dialog.controller.addText('Logging in as guest...\n', 'info')
+
+    def onNameAssign(self, name):
+        self.dialog.controller.addText('Assigned name %s\n' % name, 'info')
+        self.dialog.socket.send('\n')
+        self.send('set seek 0\n')
+        self.send('iset seekremove 1\n')
+        self.send('iset seekinfo 1\n')
+        self.send('iset lock 1\n')
+        self.send('style 12\n')
+        
+    def onSeekClear(self):
+        for advert in self.adverts.iteritems():
+            if not advert.hidden:
+                self.dialog.controller.removeAdvert(advert)
+        self.adverts = {}
+    
+    def onSeekAdd(self, number, game, player):
+        assert(not self.adverts.has_key(number))
+        advert = Advert()
+        self.adverts[number] = advert
+        advert.hidden = True
+        for variant in ['untimed', 'standard', 'blitz', 'lightning']:
+            if game.type == variant:
+                advert.hidden = False
+                break
+
+        advert.number = number
+        advert.game = game
+        advert.player = player
+        if not advert.hidden:
+            self.dialog.controller.addAdvert(player.name, player.rating, game.type, advert)       
+        
+    def onSeekRemove(self, numbers):
+        # NOTE: Ignore removes for ads we don't know about (they were hidden because we didn't meet the requirements)
+        for number in numbers:
+            try:
+                advert = self.adverts.pop(number)
+            except KeyError:
+                pass
+            else:
+                if not advert.hidden:
+                    self.dialog.controller.removeAdvert(advert)
+
+    def onAnnounce(self, number, game, player):
+        new = False
+        try:
+            advert = self.adverts[number]
+        except KeyError:
+            advert = Advert()
+            self.adverts[number] = advert
+            advert.hidden = True
+            for variant in ['untimed', 'standard', 'blitz', 'lightning']:
+                if game.type == variant:
+                    advert.hidden = False
+                    break
+            new = True
+
+        advert.number = number
+        advert.game = game
+        advert.player = player
+        if new and not advert.hidden:
+            self.dialog.controller.addAdvert(player.name, player.rating, game.type, advert)
+
+    def onEndSeek(self, nSeeks):
+        # Delete expired seeks
+        expired = []
+        for (number, advert) in self.adverts.iteritems():
+            if advert.marker != self.advertMarker:
+                expired.append(advert)
+        for advert in expired:
+            self.adverts.pop(advert.number)
+            if not advert.hidden:
+                self.dialog.controller.removeAdvert(advert)
+
+        if len(self.adverts) != nSeeks:
+            print 'WARNING: There should be %i seeks, we have only %i' % (nSeeks, len(self.adverts))
+
+        self.advertMarker = not self.advertMarker
+
+    def onChallenge(self, game, player):
+        self.dialog.controller.addText('%s(%s) challenges you to a %s match\n' % (player.name, player.rating, game.type), 'info')
+        self.dialog.challengeGame = game
+        self.dialog.challengePlayer = player
+        self.dialog.controller.requestGame(player.name)
+        
+    def onChat(self, channel, playerName, text):
+        self.dialog.controller.addText('%s: %s\n' % (playerName, text), 'chat')
+        
+class NetworkDialog(ui.NetworkFeedback):
+    """
+    """
+    
+    def __init__(self, ui):
+        self.ui = ui
+        
+        import socket
+        
+        self.decoder = FICSConnection(self)
+        
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        ui.application.ioHandlers[self.socket.fileno()] = self
+        ui.controller.watchFileDescriptor(self.socket.fileno())
+        
+        self.socket.connect(('freechess.org', 23))
+        
+    def read(self):
+        (data, address) = self.socket.recvfrom(65535)
+        self.decoder.registerIncomingData(data)
+        
+    def sendCommand(self, command):
+        # TODO: Validate the command
+        self.decoder.send(command + '\n')
+        
+    def acceptGame(self):
+        self.controller.addText('Accepting challenge from %s\n' % self.challengePlayer.name, 'info')
+        self.decoder.send('accept\n')
+        
+    def declineGame(self):
+        self.controller.addText('Declining challenge from %s\n' % self.challengePlayer.name, 'info')
+        self.decoder.send('decline\n')
+
+class UI(ui.UIFeedback):
     """
     """    
-    __application = None
+    application = None
     
     splashscreen = None
+    
+    controller = None
     
     def __init__(self, application):
         """
         """
-        self.__application = application
-        gtkui.GtkUI.__init__(self)
+        self.controller = gtkui.GtkUI(self)
+        self.application = application
         
         self.splashscreen = Splashscreen(self)
-        self.setDefaultView(self.splashscreen)
-        
+        self.controller.setDefaultView(self.splashscreen)
+
     def onAnimate(self, timeStep):
-        """Called by UI"""
-        return self.__application.animate(timeStep)
+        """Called by ui.UIFeedback"""
+        return self.application.animate(timeStep)
     
     def onReadFileDescriptor(self, fd):
-        """Called by UI"""
+        """Called by ui.UIFeedback"""
         try:
-            player = self.__application.aiPlayers[fd]
+            handler = self.application.ioHandlers[fd]
         except KeyError:
             return False
         else:
-            player.read()
+            handler.read()
             return True
 
-    def onGameStart(self, gameName, allowSpectators, duration, white, black):
-        """Called by UI"""
-        if white.type is ui.HUMAN:
+    def onGameStart(self, game):
+        """Called by ui.UIFeedback"""
+        if game.white.type == '':
             w = None
         else:
-            w = (white.type, white.level)
-        if black.type is ui.HUMAN:
+            w = (game.white.type, game.white.level)
+        if game.black.type == '':
             b = None
         else:
-            b = (black.type, black.level)
-        g = self.__application.addGame(gameName, white.name, w, black.name, b)
-        print 'Starting game ' + gameName + ' between ' + white.name + '(' + str(white.type) + ') and ' + black.name + '(' + str(black.type) + ')'
-        g.start()
+            b = (game.black.type, game.black.level)
+        g = self.application.addGame(game.name, game.white.name, w, game.black.name, b)
+        print 'Starting game %s between %s (%s) and %s (%s). (%i moves)' % \
+              (game.name, game.white.name, str(game.white.type), game.black.name, str(game.black.type), len(game.moves))
+        g.start(game.moves)
         
-    def loadGame(self, path):
+    def loadGame(self, path, configure):
         """Called by ui.UI"""
         try:
             p = chess.pgn.PGN(path, 1)
         except chess.pgn.Error, e:
-            self.reportError('Unable to open PGN file %s' % path, e.description)
-            return
+            return e.description
         
         # Use the first game
-        self.__application.addPGNGame(p[0], path)
+        self.application.addPGNGame(p[0], path, configure)
+        
+        return None
+
+    def onNewNetworkGame(self):
+        """Called by ui.UIFeedback"""
+        dialog = NetworkDialog(self)
+        controller = self.controller.addNetworkDialog(dialog)
+        dialog.controller = controller
 
     def onQuit(self):
-        """Called by UI"""
-        self.__application.quit()
-
-#class GameDetector(network.GameDetector):
-#    """
-#    """
-#    def __init__(self, app):
-#        """
-#        """
-#        self.__app = app
-#        network.GameDetector.__init__(self)
-#    
-#    def onGameDetected(self, game):
-#        """Called by network.GameDetector"""
-#        self.__app.ui.addNetworkGame(game.name, game)
-#    
-#    def onGameRemoved(self, game):
-#        """Called by network.GameDetector"""
-#        self.__app.ui.removeNetworkGame(game)
+        """Called by ui.UIFeedback"""
+        self.application.quit()
 
 class Application:
     """
     """
     # The configuration
-    __config = None
+    config = None
 
     # The glChess UI
     ui = None
@@ -748,8 +939,11 @@ class Application:
     # The AI types
     __aiProfiles = None
     
-    # AI players keyed by file descriptor
-    aiPlayers = None
+    # Objects with IO keyed by file descriptor
+    ioHandlers = None
+    
+    # Network connections keyed by file descriptor
+    networkConnections = None
     
     # The network game detector
     __detector = None
@@ -761,9 +955,10 @@ class Application:
         """Constructor for glChess application"""
         self.__aiProfiles = {}
         self.__games = []
-        self.aiPlayers = {}
+        self.ioHandlers = {}
+        self.networkConnections = {}
         
-        self.__config = Config()
+        self.config = Config()
         
         self.__detector = None#GameDetector(self)
 
@@ -777,7 +972,7 @@ class Application:
         name = profile.name
         assert(self.__aiProfiles.has_key(name) is False)
         self.__aiProfiles[name] = profile
-        self.ui.addAIEngine(name)
+        self.ui.controller.addAIEngine(name)
 
     def getAIProfile(self, name):
         """Get an installed AI profile.
@@ -794,13 +989,13 @@ class Application:
     def watchAIPlayer(self, player):
         """
         """
-        self.aiPlayers[player.fileno()] = player
-        self.ui.watchFileDescriptor(player.fileno())
+        self.ioHandlers[player.fileno()] = player
+        self.ui.controller.watchFileDescriptor(player.fileno())
 
     def unwatchAIPlayer(self, player):
         """
         """
-        self.aiPlayers.pop(player.fileno())
+        self.ioHandlers.pop(player.fileno())
 
     def addGame(self, name, whiteName, whiteType, blackName, blackType):
         """Add a chess game into glChess.
@@ -823,35 +1018,20 @@ class Application:
         if whiteType is None:
             player = g.addHumanPlayer(whiteName)
         else:
-            (profileName, level) = whiteType
-            try:
-                profile = self.__aiProfiles[profileName]
-            except KeyError:
-                msg += "AI '%s' is not installed, white player is now human" % profileName
-                player = g.addHumanPlayer(whiteName)
-            else:
-                player = g.addAIPlayer(whiteName, profile, level)
+            (profile, level) = whiteType
+            player = g.addAIPlayer(whiteName, self.__aiProfiles[profile], level)
         g.setWhite(player)
 
         if blackType is None:
             player = g.addHumanPlayer(blackName)
         else:
-            (profileName, level) = blackType
-            try:
-                profile = self.__aiProfiles[profileName]
-            except KeyError:
-                msg += "AI '%s' is not installed, black player is now human" % profileName
-                player = g.addHumanPlayer(blackName)
-            else:
-                player = g.addAIPlayer(blackName, profile, level)
+            (profile, level) = blackType
+            player = g.addAIPlayer(blackName, self.__aiProfiles[profile], level)
         g.setBlack(player)
-                
-        if len(msg) > 0:
-            self.ui.reportError('Game modified', msg)
 
         return g
     
-    def addPGNGame(self, pgnGame, path):
+    def addPGNGame(self, pgnGame, path, configure = False):
         """Add a PGN game.
         
         'pgnGame' is the game to add (chess.pgn.PGNGame).
@@ -859,42 +1039,64 @@ class Application:
         
         Returns the game object. Use game.start() to start the game.
         """
-        whiteType = pgnGame.getTag('WhiteAI')
-        if whiteType is None:
+        gameProperties = ui.Game()
+
+        gameProperties.path = path
+        gameProperties.name = pgnGame.getTag(pgnGame.PGN_TAG_EVENT)
+        gameProperties.white.name = pgnGame.getTag(pgnGame.PGN_TAG_WHITE)
+        gameProperties.black.name = pgnGame.getTag(pgnGame.PGN_TAG_BLACK)
+        gameProperties.moves = pgnGame.getMoves()
+        
+        missingEngines = False
+        gameProperties.white.type = pgnGame.getTag('WhiteAI', '')
+        if gameProperties.white.type == '':
             w = None
         else:
-            level = pgnGame.getTag('WhiteLevel')
-            if level is None:
-                level = 'normal'
-            w = (whiteType, level)
+            if not self.__aiProfiles.has_key(gameProperties.white.type):
+                missingEngines = True
+            gameProperties.white.level = pgnGame.getTag('WhiteLevel')
+            if gameProperties.white.level is None:
+                gameProperties.white.level = 'normal'
+            w = (gameProperties.white.type, gameProperties.white.level)
 
-        blackType = pgnGame.getTag('BlackAI')
-        if blackType is None:
+        gameProperties.black.type = pgnGame.getTag('BlackAI', '')
+        if gameProperties.black.type == '':
             b = None
         else:
-            level = pgnGame.getTag('BlackLevel')
-            if level is None:
-                level = 'normal'
-            b = (blackType, level)
+            if not self.__aiProfiles.has_key(gameProperties.black.type):
+                missingEngines = True
+            gameProperties.black.level = pgnGame.getTag('BlackLevel')
+            if gameProperties.black.level is None:
+                gameProperties.black.level = 'normal'
+            b = (gameProperties.black.type, gameProperties.black.level)
 
-        g = self.addGame(pgnGame.getTag(pgnGame.PGN_TAG_EVENT),
-                         pgnGame.getTag(pgnGame.PGN_TAG_WHITE), w,
-                         pgnGame.getTag(pgnGame.PGN_TAG_BLACK), b)
-        g.fileName = path
-        moves = pgnGame.getMoves()
-        if moves:
-            g.start(moves)
+        # If some of the properties were invalid display the new game dialog
+        if missingEngines or configure:
+            self.ui.controller.reportGameLoaded(game)
+            return
+
+        newGame = self.addGame(gameProperties.name, gameProperties.white.name, w, gameProperties.black.name, b)
+        newGame.fileName = path
+        if gameProperties.moves:
+            newGame.start(gameProperties.moves)
         else:
-            g.start()
+            newGame.start()
+
+        # Get the last player to resign if the file specifies it
+        if pgnGame.getTag(pgnGame.PGN_TAG_RESULT, None) == chess.pgn.PGNToken.GAME_TERMINATE_DRAW:
+            if newGame.result == game.RESULT_IN_PROGRESS:
+                newGame.getCurrentPlayer().resign()
+            elif newGame.result != game.RESULT_DRAW:
+                print 'PGN file specifies draw, glChess expects a win'
             
         # No change from when loaded
-        g.needsSaving = False
+        newGame.needsSaving = False
 
-        return g
+        return newGame
 
     def addMove(self, view, move):
         # TEMP
-        self.ui.addMove(view, move)
+        self.ui.controller.addMove(view, move)
 
     def start(self):
         """Run glChess.
@@ -920,6 +1122,9 @@ class Application:
         
         # Load requested games
         for path in sys.argv[1:]:
+            import time
+            print 'loading...'
+            s = time.time()
             try:
                 p = chess.pgn.PGN(path, 1)
             except chess.pgn.Error, e:
@@ -929,10 +1134,11 @@ class Application:
                 # Use the first game
                 if len(p) > 0:
                     g = self.addPGNGame(p[0], path)
+            print 'loaded in %f seconds' % (time.time() - s)
 
         # Start UI (does not return)
         try:
-            self.ui.run()
+            self.ui.controller.run()
         except:
             print 'glChess has crashed. Please report this bug to http://glchess.sourceforge.net'
             print 'Debug output:'
@@ -954,9 +1160,9 @@ class Application:
         # Save any games not saved to a file
         self.__autosave()
         
-        # End current games (will delete AIs etc)
+        # Abort current games (will delete AIs etc)
         for game in self.__games[:]:
-            game.end()
+            game.abort()
 
         # Exit the application
         sys.exit()
@@ -970,7 +1176,7 @@ class Application:
 
     def __autoload(self):
         """Restore games from the autosave file"""
-        path = self.__config.getAutosavePath()
+        path = self.config.getAutosavePath()
         print 'Auto-loading from ' + path + '...'
         
         try:
@@ -998,7 +1204,7 @@ class Application:
         if len(self.__games) == 0:
             return
         
-        fname = self.__config.getAutosavePath()
+        fname = self.config.getAutosavePath()
         print 'Auto-saving to ' + fname + '...'
         
         f = file(fname, 'a')

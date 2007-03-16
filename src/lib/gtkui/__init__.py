@@ -1,3 +1,4 @@
 #!/usr/bin/env python
 
-from gtkui import GtkView, GtkUI
+from gtkui import GtkUI
+from chessview import GtkView

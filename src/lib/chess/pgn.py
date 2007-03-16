@@ -112,6 +112,9 @@ class PGNToken:
             string += ': ' + self.data
         return string
     
+    def __repr__(self):
+        return self.__str__()
+    
 class PGNParser:
     """
     """
@@ -119,6 +122,51 @@ class PGNParser:
     __inComment = False
     __comment = ''
     __startOffset = -1
+    
+    def __init__(self):
+        self.tokens = {' ':  (None,                  1),
+                       '\t': (None,                  1),
+                       '\n': (None,                  1),
+                       ';':  (PGNToken.LINE_COMMENT, self.__lineComment),
+                       '{':  (PGNToken.LINE_COMMENT, self.__collectComment),
+                       '.':  (PGNToken.PERIOD,       1),
+                       '[':  (PGNToken.TAG_START,    1),
+                       ']':  (PGNToken.TAG_END,      1),
+                       '"':  (PGNToken.STRING,       self.__extractPGNString),
+                       '(':  (PGNToken.RAV_START,    1),
+                       ')':  (PGNToken.RAV_END,      1),
+                       '<':  (PGNToken.XML_START,    1),
+                       '>':  (PGNToken.XML_END,      1),
+                       '$':  (PGNToken.NAG,          self.__extractNAG),
+                       '*':  (PGNToken.SYMBOL,       1)}
+
+        for c in '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ':
+            self.tokens[c] = (PGNToken.SYMBOL, self.__extractSymbol)
+            
+    def __lineComment(self, data):
+        return (data, len(data))
+
+    def __collectComment(self, data):
+        index = data.find('}')
+        # TODO: Handle multiline comments
+        assert(index > 0)
+        return (data[:index+1], index+1)
+            
+    def __extractSymbol(self, data):
+        for offset in xrange(1, len(data)):
+            if PGNToken.SYMBOL_CONTINUATION_CHARACTERS.find(data[offset]) < 0:
+                return (data[:offset], offset)
+
+        return (data, offset)
+            
+    def __extractNAG(self, data):
+        index = PGNToken.NAG_CONTINUATION_CHARACTERS.find(data)
+        if index < 0:
+            raise Error('Unterminated PGN string')            
+
+            # FIXME: Should be at least one character
+            tokens.append(PGNToken(lineNumber, self.__startOffset, PGNToken.NAG, nag))
+            inNAG = False
     
     def __extractPGNString(self, data):
         #"""Extract a PGN string.
@@ -132,20 +180,17 @@ class PGNParser:
         if data[0] != '"':
             raise Error('PGN string does not start with "')
         
-        offset = 1
-        escaped = False
-        while True:
-            try:
-                c = data[offset]
-                escaped = (c == '\\')
-                if c == '"' and escaped is False:
-                    pgnString = data[1:offset]
-                    pgnString.replace('\\"', '"')
-                    return (pgnString, offset + 1)
-            except IndexError:
-                raise Error('Unterminated PGN string')
-            offset += 1
-    
+        for offset in xrange(1, len(data)):
+            c = data[offset]
+            escaped = (c == '\\')
+            if c == '"' and escaped is False:
+                pgnString = data[1:offset]
+                pgnString.replace('\\"', '"')
+                pgnString.replace('\\\\', '\\')
+                return (pgnString, offset + 1)
+
+        raise Error('Unterminated PGN string')
+            
     def parseLine(self, line, lineNumber):
         """TODO
         
@@ -155,89 +200,26 @@ class PGNParser:
         if line[0] == '%':
             return [PGNToken(lineNumber, self.__startOffset, PGNToken.ESCAPED, line[1:])]
         
-        tokens = []
-        inSymbol = False
-        inNAG = False
-        symbol = ''
-        nag = ''
         offset = 0
+        tokens = []
         while offset < len(line):
             c = line[offset]
-            
-            if self.__inComment is True:
-                if c == '}':
-                    tokens.append(PGNToken(lineNumber, self.__startOffset, PGNToken.LINE_COMMENT, self.__comment))
-                    self.__inComment = False
-                else:
-                    self.__comment += c
-                offset += 1
-                continue
-            
-            if inSymbol:
-                if PGNToken.SYMBOL_CONTINUATION_CHARACTERS.find(c) >= 0:
-                    symbol += c
-                    offset += 1
-                    continue
-                else:
-                    tokens.append(PGNToken(lineNumber, self.__startOffset, PGNToken.SYMBOL, symbol))
-                    inSymbol = False
-            elif inNAG:
-                if PGNToken.NAG_CONTINUATION_CHARACTERS.find(c) >= 0:
-                    symbol += c
-                    offset += 1
-                    continue
-                else:
-                    # FIXME: Should be at least one character
-                    tokens.append(PGNToken(lineNumber, self.__startOffset, PGNToken.NAG, nag))
-                    inNAG = False
-            
-            if c.isspace():
-                pass
-            elif c == ';':
-                tokens.append(PGNToken(lineNumber, offset+1, PGNToken.LINE_COMMENT, line[offset:]))
-                return tokens
-            elif c == '{':
-                self.__comment = ''
-                self.__inComment = True
-                self.__startOffset = offset
-            elif c == '.':
-                tokens.append(PGNToken(lineNumber, offset+1, PGNToken.PERIOD))
-            elif c == '[':
-                tokens.append(PGNToken(lineNumber, offset+1, PGNToken.TAG_START))
-            elif c == ']':
-                tokens.append(PGNToken(lineNumber, offset+1, PGNToken.TAG_END))
-            elif c == '"':
-                (string, newOffset) = self.__extractPGNString(line[offset:])
-                tokens.append(PGNToken(lineNumber, offset+1, PGNToken.STRING, string))
-                offset += newOffset
-                continue
-            elif c == '(':
-                tokens.append(PGNToken(lineNumber, offset+1, PGNToken.RAV_START))
-            elif c == ')':
-                tokens.append(PGNToken(lineNumber, offset+1, PGNToken.RAV_END))
-            elif c == '<':
-                tokens.append(PGNToken(lineNumber, offset+1, PGNToken.XML_START))
-            elif c == '>':
-                tokens.append(PGNToken(lineNumber, offset+1, PGNToken.XML_END))
-            elif c == '$':
-                inNAG = True
-                self.__startOffset = offset
-            elif PGNToken.SYMBOL_START_CHARACTERS.find(c) >= 0:
-                symbol = c
-                inSymbol = True
-                self.__startOffset = offset
-            else:
+            try:
+                (tokenType, length) = self.tokens[c]
+            except KeyError:
                 raise Error('Unknown character %s' % repr(c))
 
-            offset += 1
-
-        # Complete any symbols or NAGs
-        if inSymbol:
-            tokens.append(PGNToken(lineNumber, self.__startOffset+1, PGNToken.SYMBOL, symbol))
-        if inNAG:
-            # FIXME: Must be 1 or more char..
-            tokens.append(PGNToken(lineNumber, self.__startOffset+1, PGNToken.NAG, nag))
+            startOffset = offset
+            if type(length) is int:
+                data = line[offset:offset+length]
+                offset += length
+            else:
+                (data, o) = length(line[offset:])
+                offset += o
             
+            if tokenType is not None:
+                tokens.append(PGNToken(lineNumber, startOffset, tokenType, data))
+
         return tokens
             
     def endParse(self):

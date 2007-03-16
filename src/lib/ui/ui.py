@@ -5,27 +5,106 @@ __author__ = 'Robert Ancell <bob27@users.sourceforge.net>'
 __license__ = 'GNU General Public License Version 2'
 __copyright__ = 'Copyright 2005-2006  Robert Ancell'
 
-HUMAN = 'HUMAN'
-
 class Player:
     # Name of the player
     name = ''
     
-    # The AI type or None for human
-    type = HUMAN
+    # The AI type or '' for human
+    type = ''
     
     # The AI difficulty level
     level = ''
+    
+class Game:
+    name = ''
+    
+    path = ''
+    
+    duration = 0
+    
+    allowSpectators = False
+    
+    def __init__(self):
+        self.white = Player()
+        self.black = Player()
+        self.moves = []
+    
+class NetworkFeedback:
+    """Template class for feedback from a network game selector"""
+    
+    def setServer(self, server):
+        """Set the server.
+        """
+        pass
+    
+    def sendCommand(self, command):
+        """
+        """
+        pass
+    
+    def answerAdvert(self, advert):
+        """
+        """
+        pass
+
+    def acceptGame(self):
+        """Accept the last requested game."""
+        pass
+    
+    def declineGame(self):
+        """Decline the last requested game."""
+        pass
+    
+class NetworkController:
+    """"""
+    
+    def addChat(self, user, channel, text):
+        """Add chat 
+        """
+        pass
+    
+    def addAdvert(self, title, rating, advert):
+        """Add a game advert.
+        
+        'title' is the title of the advert (string).
+        'rating' is the rating for this game (string).
+        'advert' is an object to key this advert with (user-defined).
+        """
+        pass
+        
+    def removeAdvert(self, advert):
+        """Remove a game advert.
+        
+        'advert' is an object that was passed into addAdvert().
+        """
+        pass
+    
+    def requestGame(self, gameName):
+        """Request this player joins a game.
+        
+        'gameName' is the name of the game this player requested to join (string).
+        """
+        pass
 
 class ViewFeedback:
     """Template class for feedback from a view object"""
+    
+    def showMoveHints(self, showHints):
+        """Configure move hinting.
+        
+        'showHints' sets if move hints should be shown (boolean).
+        """
+        pass
     
     def saveGame(self, path):
         """Called when the user requests the game in this view to be saved.
         
         'path' is the path to the file to save to (string).
+        
+        Returns the error that occured (string) or None if successful.
         """
         print 'Save game to ' + path
+        return None
     
     def renderGL(self):
         """Render the scene using OpenGL"""
@@ -127,12 +206,9 @@ class ViewController:
     def close(self):
         """Close this view"""
         pass
-
-class UI:
-    """Template class for a glChess UI.
-    """
     
-    # Methods for glChess to implement
+class UIFeedback:
+    """Template class for feedback from a UI"""
     
     def onAnimate(self, timeStep):
         """Called when an animation tick occurs.
@@ -152,14 +228,10 @@ class UI:
         """
         pass
 
-    def onGameStart(self, gameName, allowSpectators, duration, white, black):
+    def onGameStart(self, game):
         """Called when a local game is started.
         
-        'gameName' is the name of the game to create (string).
-        'allowSpectators' is a flag to show if remote clients can watch this game (True or False).
-        'duration' is the number of seconds each player is allowed (0 for unlimited).
-        'white' is the properties for the white player (Player).
-        'black' is the properties for the black player (Player).
+        'game' is the game propertied (Game).
         """
         pass
     
@@ -167,14 +239,31 @@ class UI:
         """Called when a game is loaded.
         
         'path' is the path to the game to load (string).
+        
+        Returns the error that occured (string) or None if successful.
         """
         print 'Loading game ' + path
+        return None
+
+    def onNewNetworkGame(self):
+        """
+        """
+        pass
 
     def onQuit(self):
         """Called when the user quits the program"""
-        pass
+        pass   
+
+class UI:
+    """Template class for a glChess UI.
+    """
     
-    # Methods for the UI to implement
+    def __init__(self, feedback):
+        """Constructor.
+        
+        'feedback' is the feedback object for this UI to report with (extends UIFeedback).
+        """
+        pass
     
     def startAnimation(self):
         """Start the animation callback"""
@@ -189,6 +278,21 @@ class UI:
         """
         pass
     
+    def addTimer(self, method, timeUsec):
+        """Add/update a timer.
+        
+        'method' is the method to call when the timer expires.
+        'timeUsec' is the period to call this method at in microseconds (integer).
+        """
+        pass
+    
+    def removeTimer(self, method):
+        """Remove a timer.
+        
+        'method' is the timer method as added by addTimer()
+        """
+        pass
+
     def setDefaultView(self, feedback):
         """Set the default view to render.
         
@@ -210,25 +314,18 @@ class UI:
         """
         return None
     
-    def reportError(self, title, error):
-        """Report an error.
-        
-        'title' is the title of the error (string).
-        'error' is the description of the error (string).
+    def addNetworkDialog(self, feedback):
         """
-        pass
-
-    def reportGameLoaded(self, gameName = None,
-                         whiteName = None, blackName = None,
-                         whiteAI = None, blackAI = None, moves = None):
+        'feedback' is a object to report view events with (extends NetworkFeedback).
+        
+        Returns a network controller object (excends NetworkController).
+        """
+        return None
+    
+    def reportGameLoaded(self, game):
         """Report a loaded game as required by onGameLoad().
         
-        'gameName' is the name of the game (string) or None if unknown.
-        'whiteName' is the name of the white player (string) or None if unknown.
-        'blackName' is the name of the white player (string) or None if unknown.
-        'whiteAI' is the type of AI the white player is (string) or None if no AI.
-        'blackAI' is the type of AI the black player is (string) or None if no AI.
-        'moves' is a list of moves (strings) that the have already been made.
+        'game' is the game properties (Game).
         """
         pass
     

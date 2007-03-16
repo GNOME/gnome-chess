@@ -36,48 +36,83 @@ WHITE_SQUARE_COLOURS = {None: (1.0, 1.0, 1.0), glchess.scene.HIGHLIGHT_SELECTED:
 class ChessPiece(glchess.scene.ChessPiece):
     """
     """    
-    __scene = None
+    scene     = None
     
-    __chessSet = None
-    __name = None
+    # The piece to render
+    chessSet  = None
+    name      = None
     
-    pos         = None
-    __targetPos = None
+    # The algebraic square location
+    location  = ''
     
-    def __init__(self, scene, chessSet, name, startPos = (0.0, 0.0, 0.0)):
+    # The OpenGL co-ordinate location
+    pos       = None
+    targetPos = None
+    
+    # Is the piece moving?
+    moving    = False
+    
+    # Delete once moved?
+    delete    = False
+    
+    def __init__(self, scene, chessSet, name, location, feedback):
         """
         """
-        self.__scene = scene
-        self.__chessSet = chessSet
-        self.__name = name
-        self.pos = startPos
+        self.scene = scene
+        self.feedback = feedback
+        self.chessSet = chessSet
+        self.name = name
+        self.location = location
+        self.pos = self.scene._coordToLocation(location)
 
-    def move(self, coord):
+    def move(self, coord, delete, animate = True):
         """Extends glchess.scene.ChessPiece"""
-        self.__targetPos = self.__scene._coordToLocation(coord)
-        self.__scene._startAnimation()
+        self.delete = delete
+        self.location = coord
+        self.targetPos = self.scene._coordToLocation(coord)
+        
+        # If already there then delete
+        if self.pos == self.targetPos:
+            if delete:
+                self.scene.pieces.remove(self)
+                self.feedback.onDeleted()
+                self.scene.feedback.onRedraw()
+            return
+            
+        # If not currently moving then start
+        if not self.moving:
+            self.scene._animationQueue.append(self)
+            self.moving = True
+            
+            # Start animation
+            if self.scene.animating is False:
+                self.scene.animating = True
+                self.scene.feedback.startAnimation()
     
     def draw(self, state = 'default'):
         """
         """
-        self.__chessSet.drawPiece(self.__name, state, self.__scene)
+        self.chessSet.drawPiece(self.name, state, self.scene)
         
     def animate(self, timeStep):
         """
         
         Return True if the piece has moved otherwise False.
         """
-        if self.__targetPos is None:
+        if self.targetPos is None:
             return False
         
-        if self.pos == self.__targetPos:
-            self.__targetPos = None
+        if self.pos == self.targetPos:
+            self.targetPos = None
+            if self.delete:
+                self.scene.pieces.remove(self)
+                self.feedback.onDeleted()
             return False
         
         # Get distance to target
-        dx = self.__targetPos[0] - self.pos[0]
-        dy = self.__targetPos[1] - self.pos[1]
-        dz = self.__targetPos[2] - self.pos[2]
+        dx = self.targetPos[0] - self.pos[0]
+        dy = self.targetPos[1] - self.pos[1]
+        dz = self.targetPos[2] - self.pos[2]
         
         # Get movement step in each direction
         SPEED = 50.0 # FIXME
@@ -105,52 +140,56 @@ class Scene(glchess.scene.Scene):
     """
     """
     # The viewport dimensions
-    __viewportWidth    = 0
-    __viewportHeight   = 0
-    __viewportAspect   = 1.0
+    viewportWidth    = 0
+    viewportHeight   = 0
+    viewportAspect   = 1.0
     
-    __animating        = False
+    animating        = False
     
     # Loading screen properties
-    __throbberEnabled  = False
-    __throbberAngle    = 0.0
+    throbberEnabled  = False
+    throbberAngle    = 0.0
     
     # The scene light position
-    __lightPos         = None
+    lightPos         = None
 
     # The board angle in degrees
-    __boardAngle       = 0.0
-    __oldBoardAngle    = 0.0
-    __targetBoardAngle = 0.0
+    boardAngle       = 0.0
+    oldBoardAngle    = 0.0
+    targetBoardAngle = 0.0
     
     # OpenGL display list for the board and a flag to regenerate it
-    __boardList        = None
-    __regenerateBoard  = False
+    boardList        = None
+    regenerateBoard  = False
     
     # Texture objects for the board
-    __whiteTexture     = None
-    __blackTexture     = None
+    whiteTexture     = None
+    blackTexture     = None
 
     # ...
-    __pieces           = None
-    __chessSets        = None
-    __piecesMoving     = False
+    pieces           = None
+    chessSets        = None
+    piecesMoving     = False
     
     # Dictionary of co-ordinates to highlight
-    __highlights       = None
+    highlights       = None
+    
+    _animationQueue  = []
 
-    def __init__(self):
+    def __init__(self, feedback):
         """Constructor for an OpenGL scene"""
-        self.__lightPos = [100.0, 100.0, 100.0, 1.0]
-        self.__pieces = []
-        self.__highlights = {}
+        self.feedback = feedback
+        self.lightPos = [100.0, 100.0, 100.0, 1.0]
+        self.pieces = []
+        self.highlights = {}
+        self._animationQueue = []
         
-        self.__chessSets = {'white': builtin_models.WhiteBuiltinSet(), 'black': builtin_models.BlackBuiltinSet()}
+        self.chessSets = {'white': builtin_models.WhiteBuiltinSet(), 'black': builtin_models.BlackBuiltinSet()}
         
-        self.__whiteTexture = texture.Texture(os.path.join(TEXTURE_DIR, 'board.png'),
+        self.whiteTexture = texture.Texture(os.path.join(TEXTURE_DIR, 'board.png'),
                                               ambient = BOARD_AMBIENT, diffuse = BOARD_DIFFUSE,
                                               specular = BOARD_SPECULAR, shininess = BOARD_SHININESS)
-        self.__blackTexture = texture.Texture(os.path.join(TEXTURE_DIR, 'board.png'),
+        self.blackTexture = texture.Texture(os.path.join(TEXTURE_DIR, 'board.png'),
                                               ambient = BOARD_AMBIENT, diffuse = BOARD_DIFFUSE,
                                               specular = BOARD_SPECULAR, shininess = BOARD_SHININESS)
         
@@ -158,29 +197,22 @@ class Scene(glchess.scene.Scene):
         """This method is called when the scene needs redrawing"""
         pass
     
-    def _startAnimation(self):
-        """
-        """
-        self.__changed = True
-        if self.__animating is False:
-            self.__animating = True
-            self.startAnimation()
-
-    def addChessPiece(self, chessSet, name, coord):
+    def addChessPiece(self, chessSet, name, coord, feedback):
         """Add a chess piece model into the scene.
         
         'chessSet' is the name of the chess set (string).
         'name' is the name of the piece (string).
         'coord' is the the chess board location of the piece in LAN format (string).
+        'feedback' is the feedback object (extends scene.ChessPieceFeedback).
 
         Returns a reference to this chess piece or raises an exception.
         """
-        chessSet = self.__chessSets[chessSet]
-        piece = ChessPiece(self, chessSet, name, self._coordToLocation(coord))
-        self.__pieces.append(piece)
+        chessSet = self.chessSets[chessSet]
+        piece = ChessPiece(self, chessSet, name, coord, feedback)
+        self.pieces.append(piece)
         
         # Redraw the scene
-        self.onRedraw()
+        self.feedback.onRedraw()
         
         return piece
     
@@ -189,8 +221,8 @@ class Scene(glchess.scene.Scene):
         
         'piece' is a chess piece instance as returned by addChessPiece().
         """
-        self.__pieces.remove(piece)
-        self.onRedraw()
+        self.pieces.remove(piece)
+        self.feedback.onRedraw()
 
     def setBoardHighlight(self, coords):
         """Highlight a square on the board.
@@ -200,14 +232,14 @@ class Scene(glchess.scene.Scene):
                  If None the highlight will be cleared.
         """
         if coords is None:
-            self.__highlights = {}
+            self.highlights = {}
         else:
-            self.__highlights = coords.copy()
+            self.highlights = coords.copy()
             
         # Regenerate the optimised board model
-        self.__regenerateBoard = True
+        self.regenerateBoard = True
 
-        self.onRedraw()
+        self.feedback.onRedraw()
     
     def reshape(self, width, height):
         """Resize the viewport into the scene.
@@ -215,30 +247,30 @@ class Scene(glchess.scene.Scene):
         'width' is the width of the viewport in pixels.
         'height' is the width of the viewport in pixels.
         """
-        self.__viewportWidth = int(width)
-        self.__viewportHeight = int(height)
-        self.__viewportAspect = float(self.__viewportWidth) / float(self.__viewportHeight)
-        self.onRedraw()
+        self.viewportWidth = int(width)
+        self.viewportHeight = int(height)
+        self.viewportAspect = float(self.viewportWidth) / float(self.viewportHeight)
+        self.feedback.onRedraw()
         
     def setBoardRotation(self, angle):
         """Set the rotation on the board.
         
         'angle' is the angle the board should be drawn at in degress (float, [0.0, 360.0]).
         """
-        self.__targetBoardAngle = angle
+        self.targetBoardAngle = angle
         self._startAnimation()
 
     def animate(self, timeStep):
         """Extends glchess.scene.Scene"""
-        redraw1 = self.__animateThrobber(timeStep)
-        self.__piecesMoving = self.__animatePieces(timeStep)
-        redraw2 = self.__animateRotation(timeStep)
-        if redraw1 or redraw2 or self.__piecesMoving:
-            self.__animating = True
-            self.onRedraw()
+        redraw1 = self.animateThrobber(timeStep)
+        self.piecesMoving = self.animatePieces(timeStep)
+        redraw2 = self.animateRotation(timeStep)
+        if redraw1 or redraw2 or self.piecesMoving:
+            self.animating = True
+            self.feedback.onRedraw()
         else:
-            self.__animating = False
-        return self.__animating
+            self.animating = False
+        return self.animating
 
     def render(self):
         """Render the scene.
@@ -249,29 +281,29 @@ class Scene(glchess.scene.Scene):
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
         # Set the projection for this scene
-        self.__setViewport()
+        self.setViewport()
 
         # Do camera and board rotation/translation
         glEnable(GL_DEPTH_TEST)
         glMatrixMode(GL_MODELVIEW)
         glLoadIdentity()
-        self.__transformCamera()
+        self.transformCamera()
         
         glLightfv(GL_LIGHT0, GL_AMBIENT, LIGHT_AMBIENT_COLOUR)
         glLightfv(GL_LIGHT0, GL_DIFFUSE, LIGHT_DIFFUSE_COLOUR)
         glLightfv(GL_LIGHT0, GL_SPECULAR, LIGHT_SPECULAR_COLOUR)
-        glLightfv(GL_LIGHT0, GL_POSITION, self.__lightPos)
+        glLightfv(GL_LIGHT0, GL_POSITION, self.lightPos)
         glEnable(GL_LIGHTING)
         glEnable(GL_LIGHT0)
         
-        self.__transformBoard()
+        self.transformBoard()
     
         glEnable(GL_DEPTH_TEST)
         glEnable(GL_CULL_FACE)
         
         glEnable(GL_TEXTURE_2D)
         glEnable(GL_COLOR_MATERIAL)
-        self.__drawBoard()
+        self.drawBoard()
         glDisable(GL_COLOR_MATERIAL)
         glDisable(GL_TEXTURE_2D)
         
@@ -279,10 +311,10 @@ class Scene(glchess.scene.Scene):
         # It could be because the depth buffer has a low bit depth?
         glClear(GL_DEPTH_BUFFER_BIT)
         
-        if self.__throbberEnabled:
-            self.__drawThrobber()
+        if self.throbberEnabled:
+            self.drawThrobber()
         else:
-            self.__drawPieces()
+            self.drawPieces()
 
     def getSquare(self, x, y):
         """Find the chess square at a given 2D location.
@@ -313,12 +345,12 @@ class Scene(glchess.scene.Scene):
 
         glMatrixMode(GL_MODELVIEW)
         glLoadIdentity()
-        self.__transformCamera()
+        self.transformCamera()
 
         # Draw board
 
-        self.__transformBoard()
-        self.__drawSquares()
+        self.transformBoard()
+        self.drawSquares()
 
         # Render and check for hits
         # Catch the exception in case we select more than we can fit in the selection buffer
@@ -361,56 +393,74 @@ class Scene(glchess.scene.Scene):
         
         return (x, 0.0, z)
         
-    def __animateThrobber(self, timeStep):
+    def animateThrobber(self, timeStep):
         """
         """
-        if self.__throbberEnabled is False:
+        if self.throbberEnabled is False:
             return False
         
-        self.__throbberAngle += timeStep * (math.pi * 2.0) / 2.0
-        while self.__throbberAngle > (math.pi * 2.0):
-            self.__throbberAngle -= 2.0 * math.pi
+        self.throbberAngle += timeStep * (math.pi * 2.0) / 2.0
+        while self.throbberAngle > (math.pi * 2.0):
+            self.throbberAngle -= 2.0 * math.pi
         return True
         
-    def __animateRotation(self, timeStep):
+    def animateRotation(self, timeStep):
         """
         """
-        if self.__boardAngle == self.__targetBoardAngle:
+        if self.boardAngle == self.targetBoardAngle:
             return False
         
         # Wait unti pieces have stopped moving
-        if self.__piecesMoving:
+        if self.piecesMoving:
             return False
 
         # Rotate board to the chosen angle
-        length = abs(self.__targetBoardAngle - self.__oldBoardAngle)
-        self.__boardAngle += timeStep * length / 0.8
-        while self.__boardAngle > 360.0:
-            self.__boardAngle -= 360.0
-        travelled = self.__targetBoardAngle - self.__boardAngle
+        length = abs(self.targetBoardAngle - self.oldBoardAngle)
+        self.boardAngle += timeStep * length / 0.8
+        while self.boardAngle > 360.0:
+            self.boardAngle -= 360.0
+        travelled = self.targetBoardAngle - self.boardAngle
         while travelled < 0.0:
             travelled += 360.0
             
         # If have moved through the remaining angle then clip to the target
         if travelled >= length:
-            self.__oldBoardAngle = self.__boardAngle = self.__targetBoardAngle
+            self.oldBoardAngle = self.boardAngle = self.targetBoardAngle
 
         return True
     
-    def __animatePieces(self, timeStep):
+    def animatePieces(self, timeStep):
         """
         """
-        active = False
-        for piece in self.__pieces:
-            if piece.animate(timeStep):
-                active = True
+        if len(self._animationQueue) == 0:
+            return False
         
-        # If the throbber is enabled the pieces are hidden so don't redraw
-        if active and not self.__throbberEnabled:
-            return True
-        return False
+        redraw = False
+        animationQueue = []
+        for piece in self._animationQueue:
+            if piece.animate(timeStep):
+                piece.moving = True
+                redraw = True
+                assert(animationQueue.count(piece) == 0)
+                animationQueue.append(piece)
+            else:
+                # Redraw static scene once pieces stop
+                if piece.moving:
+                    redraw = True
+                    self.redrawStatic = True
+                piece.moving = False
+
+                # Notify higher classes
+                piece.feedback.onMoved()
+
+        self._animationQueue = animationQueue
+
+        if redraw:
+            self.feedback.onRedraw()
+
+        return len(self._animationQueue) > 0
             
-    def __drawThrobber(self):
+    def drawThrobber(self):
         """
         """
         glDisable(GL_LIGHTING)
@@ -420,11 +470,11 @@ class Scene(glchess.scene.Scene):
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
             
-        if self.__viewportWidth > self.__viewportHeight:
+        if self.viewportWidth > self.viewportHeight:
             h = 1.0
-            w = 1.0 * self.__viewportWidth / self.__viewportHeight
+            w = 1.0 * self.viewportWidth / self.viewportHeight
         else:
-            h = 1.0 * self.__viewportHeight / self.__viewportWidth
+            h = 1.0 * self.viewportHeight / self.viewportWidth
             w = 1.0
         gluOrtho2D(0, w, 0, h)
             
@@ -465,7 +515,7 @@ class Scene(glchess.scene.Scene):
             x2 = math.sin(lagTheta)
             y2 = math.cos(lagTheta)
                 
-            angleDifference = self.__throbberAngle - theta
+            angleDifference = self.throbberAngle - theta
             if angleDifference > math.pi:
                 angleDifference -= 2.0 * math.pi
             elif angleDifference < -math.pi:
@@ -492,35 +542,35 @@ class Scene(glchess.scene.Scene):
             
         glDisable(GL_BLEND)
 
-    def __setViewport(self):
+    def setViewport(self):
         """Perform the projection matrix transformation for the current viewport"""
-        glViewport(0, 0, self.__viewportWidth, self.__viewportHeight)
+        glViewport(0, 0, self.viewportWidth, self.viewportHeight)
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
-        gluPerspective(60.0, self.__viewportAspect, 0.1, 1000)
+        gluPerspective(60.0, self.viewportAspect, 0.1, 1000)
 
-    def __transformCamera(self):
+    def transformCamera(self):
         """Perform the camera matrix transformation"""
         gluLookAt(0.0, 90.0, 45.0,
                   0.0,  0.0, 5.0,
                   0.0,  1.0,  0.0)
 
-    def __drawBoard(self):
+    def drawBoard(self):
         """Draw a chessboard"""        
         # Use pre-rendered version if available
-        if self.__regenerateBoard is False and self.__boardList is not None:
-            glCallList(self.__boardList)
+        if self.regenerateBoard is False and self.boardList is not None:
+            glCallList(self.boardList)
             return
         
         # Attempt to store the board as a display list
-        if self.__boardList is None:
+        if self.boardList is None:
             list = glGenLists(1)
             if list != 0:
-                self.__boardList = list
+                self.boardList = list
 
         # If have a list store there
-        if self.__boardList is not None:
-            glNewList(self.__boardList, GL_COMPILE_AND_EXECUTE)
+        if self.boardList is not None:
+            glNewList(self.boardList, GL_COMPILE_AND_EXECUTE)
             
         # Board verticies
         # (lower 12-15 are under 8-11)
@@ -599,16 +649,16 @@ class Scene(glchess.scene.Scene):
                 # Get the highlight type
                 coord = chr(ord('a') + x) + chr(ord('1') + y)
                 try:
-                    highlight = self.__highlights[coord]
+                    highlight = self.highlights[coord]
                 except KeyError:
                     highlight = None
                 
                 if isBlack:
                     colour = BLACK_SQUARE_COLOURS[highlight]
-                    self.__whiteTexture.bind() #blackTexture
+                    self.whiteTexture.bind() #blackTexture
                 else:
                     colour = WHITE_SQUARE_COLOURS[highlight]
-                    self.__whiteTexture.bind()
+                    self.whiteTexture.bind()
 
                 x0 = BOARD_BORDER + (x * SQUARE_WIDTH)
                 x1 = x0 + SQUARE_WIDTH
@@ -628,11 +678,11 @@ class Scene(glchess.scene.Scene):
                 glVertex3f(x0, 0.0, -z1)
                 glEnd()
         
-        if self.__boardList is not None:
+        if self.boardList is not None:
             glEndList()
-            glCallList(self.__boardList)
+            glCallList(self.boardList)
         
-    def __drawSquares(self):
+    def drawSquares(self):
         """Draw the board squares for picking"""
 
         # draw the floor squares
@@ -657,11 +707,11 @@ class Scene(glchess.scene.Scene):
 
                 glPopName()
         
-    def __drawPieces(self):
+    def drawPieces(self):
         """Draw the pieces in the scene"""
         glEnable(GL_TEXTURE_2D)
 
-        for piece in self.__pieces:
+        for piece in self.pieces:
             glPushMatrix()
             glTranslatef(piece.pos[0], piece.pos[1], piece.pos[2])
 
@@ -672,10 +722,10 @@ class Scene(glchess.scene.Scene):
         
         glDisable(GL_TEXTURE_2D)
 
-    def __transformBoard(self):
+    def transformBoard(self):
         """Perform the board transform"""
         # Rotate the board
-        glRotatef(self.__boardAngle, 0.0, 1.0, 0.0)
+        glRotatef(self.boardAngle, 0.0, 1.0, 0.0)
 
         # Offset board so centre is (0.0,0.0)
         glTranslatef(-OFFSET, 0.0, OFFSET)

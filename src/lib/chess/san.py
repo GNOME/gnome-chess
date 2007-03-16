@@ -71,7 +71,7 @@ class SANConverter:
     __pieceTypes = PAWN + KNIGHT + BISHOP + ROOK + QUEEN + KING
     
     # Valid promotion types
-    __promotionTypes = [PAWN, KNIGHT, BISHOP, ROOK, QUEEN]
+    __promotionTypes = PAWN + KNIGHT + BISHOP + ROOK + QUEEN
     
     # Move results
     CHECK     = '+'
@@ -134,10 +134,13 @@ class SANConverter:
         if copy[-2] == SAN_PROMOTE:
             promotionType = copy[-1]
             copy = copy[:-2]
-            try:
-                self.__promotionTypes.index(promotionType)
-            except ValueError:
+            if self.__promotionTypes.find(promotionType) < 0:
                 raise Error(san, 'Invalid promotion type ' + promotionType)
+            
+        # Some people miss out the '='
+        elif self.__promotionTypes.find(copy[-1]) >= 0:
+            promotionType = copy[-1]
+            copy = copy[:-1]
 
         # Check for castling moves
         if colour is self.WHITE:

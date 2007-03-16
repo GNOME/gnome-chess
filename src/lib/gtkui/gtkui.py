@@ -2,13 +2,12 @@ __author__ = 'Robert Ancell <bob27@users.sourceforge.net>'
 __license__ = 'GNU General Public License Version 2'
 __copyright__ = 'Copyright 2005-2006  Robert Ancell'
 
-__all__ = ['GtkView', 'GtkUI']
+__all__ = ['GtkUI']
 
 # TODO: Extend base UI classes?
 
 import os
 import sys
-import traceback
 import time
 import gettext
 
@@ -32,293 +31,17 @@ else:
 
 from glchess.defaults import *
 
-# Optionally use OpenGL support
-# gtk.gtkgl throws RuntimeError when there is no OpenGL support
-# It should really just throw ImportError
-try:
-    import gtk.gtkgl
-    import OpenGL
-except (ImportError, RuntimeError):
-    haveGLSupport = False
-else:
-    haveGLSupport = True
-
 # Stop PyGTK from catching exceptions
 os.environ['PYGTK_FATAL_EXCEPTIONS'] = '1'
 
 import glchess.config
 import glchess.ui
+import glchess.chess.board
 import dialogs
+import chessview
 
 def loadGladeFile(name, root = None):
     return gtk.glade.XML(os.path.join(GLADE_DIR, name), root, domain = DOMAIN)
-
-class GtkViewArea(gtk.DrawingArea):
-    """Custom widget to render an OpenGL scene"""
-    # The view this widget is rendering
-    view = None
-
-    # Pixmaps to use for double buffering
-    pixmap = None
-    dynamicPixmap = None
-    
-    # Flag to show if this scene is to be rendered using OpenGL
-    renderGL = False
-    
-    # TODO...
-    __glDrawable = None
-    
-    def __init__(self, view):
-        """
-        """
-        gtk.DrawingArea.__init__(self)
-        
-        self.view = view
-
-        if haveGnomeSupport:
-            gnome.program_init('glchess', VERSION,
-                               properties={gnome.PARAM_APP_DATADIR: APP_DATA_DIR})
-
-        # Allow notification of button presses
-        self.add_events(gtk.gdk.BUTTON_PRESS_MASK | gtk.gdk.BUTTON_RELEASE_MASK | gtk.gdk.BUTTON_MOTION_MASK)
-        
-        # Make openGL drawable
-        if hasattr(gtk, 'gtkgl'):
-            gtk.gtkgl.widget_set_gl_capability(self, self.view.ui.notebook.glConfig)# FIXME:, share_list=glContext)
-
-        # Connect signals
-        self.connect('realize', self.__init)
-        self.connect('configure_event', self.__configure)
-        self.connect('expose_event', self.__expose)
-        self.connect('button_press_event', self.__button_press)
-        self.connect('button_release_event', self.__button_release)
-        
-    # Public methods
-        
-    def redraw(self):
-        """Request this widget is redrawn"""
-        # If the window is visible prepare it for redrawing
-        area = gtk.gdk.Rectangle(0, 0, self.allocation.width, self.allocation.height)
-        if self.window is not None:
-            self.window.invalidate_rect(area, False)
-
-    def setRenderGL(self, renderGL):
-        """Enable OpenGL rendering"""
-        if not haveGLSupport:
-            renderGL = False
-        
-        if self.renderGL == renderGL:
-            return
-        self.renderGL = renderGL
-        self.redraw()
-    
-    # Private methods
-
-    def __startGL(self):
-        """Get the OpenGL context"""
-        if not self.renderGL:
-            return
-
-        assert(self.__glDrawable is None)
-        
-        # Obtain a reference to the OpenGL drawable
-        # and rendering context.
-        glDrawable = gtk.gtkgl.widget_get_gl_drawable(self)
-        glContext = gtk.gtkgl.widget_get_gl_context(self)
-
-        # OpenGL begin.
-        if not glDrawable.gl_begin(glContext):
-            return
-        
-        self.__glDrawable = glDrawable
-
-        if not self.view.ui.openGLInfoPrinted:
-            print 'Using OpenGL:'
-            print 'VENDOR=' + OpenGL.GL.glGetString(OpenGL.GL.GL_VENDOR)
-            print 'RENDERER=' + OpenGL.GL.glGetString(OpenGL.GL.GL_RENDERER)
-            print 'VERSION=' + OpenGL.GL.glGetString(OpenGL.GL.GL_VERSION)
-            print 'EXTENSIONS=' + OpenGL.GL.glGetString(OpenGL.GL.GL_EXTENSIONS)
-            self.view.ui.openGLInfoPrinted = True
-        
-    def __endGL(self):
-        """Free the OpenGL context"""
-        if not self.renderGL:
-            return
-        
-        assert(self.__glDrawable is not None)
-        self.__glDrawable.gl_end()
-        self.__glDrawable = None
-        
-    def __init(self, widget):
-        """Gtk+ signal"""
-        if self.view.feedback is not None:
-            self.view.feedback.reshape(widget.allocation.width, widget.allocation.height)
-        
-    def __configure(self, widget, event):
-        """Gtk+ signal"""
-        self.pixmap = gtk.gdk.Pixmap(widget.window, event.width, event.height)
-        self.dynamicPixmap = gtk.gdk.Pixmap(widget.window, event.width, event.height)
-        self.__startGL()
-        if self.view.feedback is not None:
-            self.view.feedback.reshape(event.width, event.height)
-        self.__endGL()
-
-    def __expose(self, widget, event):
-        """Gtk+ signal"""
-        if self.renderGL:
-            self.__startGL()
-        
-            # Get the scene rendered
-            try:
-                if self.view.feedback is not None:
-                    self.view.feedback.renderGL()
-            except OpenGL.GLerror, e:
-                print 'Rendering Error: ' + str(e)
-                traceback.print_exc(file = sys.stdout)
-
-            # Paint this
-            if self.__glDrawable.is_double_buffered():
-                self.__glDrawable.swap_buffers()
-            else:
-                glFlush()
-
-            self.__endGL()
-            
-        else:
-            context = self.pixmap.cairo_create()
-            if self.view.feedback is not None:
-                self.view.feedback.renderCairoStatic(context)
-            
-            # Copy the background to render the dynamic elements on top
-            self.dynamicPixmap.draw_drawable(widget.get_style().white_gc, self.pixmap, 0, 0, 0, 0, -1, -1)
-            context = self.dynamicPixmap.cairo_create()
-        
-            # Set a clip region for the expose event
-            context.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
-            context.clip()
-           
-            # Render the dynamic elements
-            if self.view.feedback is not None:
-                self.view.feedback.renderCairoDynamic(context)
-                
-            # Draw the window
-            widget.window.draw_drawable(widget.get_style().white_gc, self.dynamicPixmap,
-                                        event.area.x, event.area.y,
-                                        event.area.x, event.area.y, event.area.width, event.area.height)
-
-    def __button_press(self, widget, event):
-        """Gtk+ signal"""
-        self.__startGL()
-        if self.view.feedback is not None:
-            self.view.feedback.select(event.x, event.y)
-        self.__endGL()
-        
-    def __button_release(self, widget, event):
-        """Gtk+ signal"""
-        self.__startGL()
-        if self.view.feedback is not None:
-            self.view.feedback.deselect(event.x, event.y)
-        self.__endGL()
-        
-class GtkView(glchess.ui.ViewController):
-    """
-    """
-    # The UI this view belongs to
-    ui               = None
-    
-    # The title of this view
-    title            = None
-    
-    # The widget to render the scene to
-    widget           = None
-    
-    # A Gtk+ tree model to store the move history
-    moveModel        = None
-    selectedMove     = -1
-    
-    # Flag to show if requesting attention
-    requireAttention = False
-    
-    def __init__(self, ui, title, feedback, isActive = True):
-        """Constructor for a view.
-        
-        'feedback' is the feedback object for this view (extends ui.ViewFeedback).
-        'isActive' is a flag showing if this view can be controlled by the user (True) or not (False).
-        """
-        self.ui = ui
-        self.title = title
-        self.feedback = feedback
-        self.isActive = isActive
-        self.widget = GtkViewArea(self)
-
-        # Make a model for navigation
-        model = gtk.ListStore(int, str)
-        iter = model.append()
-        model.set(iter, 0, 0, 1, gettext.gettext('Game Start'))
-        self.moveModel = model
-
-        self.widget.show_all()
-    
-    # Extended methods
-    
-    def render(self):
-        """Extends glchess.ui.ViewController"""
-        self.widget.redraw()
-
-    def setAttention(self, requiresAttention):
-        """Extends glchess.ui.ViewController"""
-        if self.requireAttention == requiresAttention:
-            return
-        self.requireAttention = requiresAttention
-        if requiresAttention:
-            self.ui._incAttentionCounter(1)
-        else:
-            self.ui._incAttentionCounter(-1)
-
-    def addMove(self, move):
-        """Extends glchess.ui.ViewController
-	Based on the current move, this method creates a string
-	describing the move, and displays it in the GUI.
-	"""
-        # FIXME: Make a '@ui' player who watches for these itself?
-        iter = self.moveModel.append()
-        string = '%2i. ' % ((move.number - 1) / 2 + 1)
-        if move.number % 2 == 0:
-            string += '... '
-        string += move.sanMove
-
-        if move.result is glchess.chess.board.MOVE_RESULT_OPPONENT_CHECK:
-            string += " - " + gettext.gettext('Check')
-        if move.result is glchess.chess.board.MOVE_RESULT_OPPONENT_CHECKMATE:
-            string += " - " + gettext.gettext('Checkmate, %s wins.' % (move.player.getName()))
-
-        self.moveModel.set(iter, 0, move.number, 1, string)
-        
-        # If is the current view and tracking the game select this
-        if self.selectedMove == -1:
-            self.ui._updateViewButtons()
-    
-    def close(self):
-        """Extends glchess.ui.ViewController"""
-        if self.requireAttention:
-            self.ui._incAttentionCounter(-1)
-        self.ui._removeView(self)
-    
-    # Public methods
-
-    def _getModel(self):
-        """
-        """
-        return (self.moveModel, self.selectedMove)
-        
-    def _setMoveNumber(self, moveNumber):
-        """Set the move number this view requests.
-        
-        'moveNumber' is the move number to use (integer).
-        """
-        self.selectedMove = moveNumber
-        if self.feedback is not None:
-            self.feedback.setMoveNumber(moveNumber)
 
 class GtkGameNotebook(gtk.Notebook):
     """
@@ -362,7 +85,7 @@ class GtkGameNotebook(gtk.Notebook):
         """
         """
         assert(self.defaultView is None)
-        self.defaultView = GtkView(self.ui, '', feedback)
+        self.defaultView = chessview.GtkView(self.ui, '', feedback)
         page = self.append_page(self.defaultView.widget)
         self.set_current_page(page)
         
@@ -373,7 +96,7 @@ class GtkGameNotebook(gtk.Notebook):
     def addView(self, title, feedback):
         """
         """
-        view = GtkView(self.ui, title, feedback)
+        view = chessview.GtkView(self.ui, title, feedback, moveFormat = self.ui.moveFormat)
         self.views.append(view)
         self.viewsByWidget[view.widget] = view
         page = self.append_page(view.widget)
@@ -491,54 +214,6 @@ class AIView:
         if self.window.pageCount == 0:
             self.window.defaultPage.show()
             self.window.notebook.set_show_tabs(False)
-            
-class SaveDialog:
-    """
-    """
-
-    def __init__(self, ui):
-        """Constructor"""
-        self.ui = ui
-        self.model = gtk.ListStore(gobject.TYPE_PYOBJECT, gobject.TYPE_BOOLEAN, str)
-        
-        self.view = ui._gui.get_widget('save_games_treeview')
-        self.view.set_model(self.model)
-        
-        selection = self.view.get_selection()
-        selection.set_mode(gtk.SELECTION_NONE)
-
-        cell = gtk.CellRendererToggle()
-        cell.set_property('activatable', True)
-        cell.connect('toggled', self._toggle_cb)
-        column = gtk.TreeViewColumn('Save', cell)
-        column.add_attribute(cell, 'active', 1)
-        self.view.append_column(column)
-        
-        cell = gtk.CellRendererText()
-        column = gtk.TreeViewColumn('Game', cell)
-        column.add_attribute(cell, 'text', 2)
-        self.view.append_column(column)
-        
-    def setViews(self, views):
-        """
-        """
-        self.model.clear()
-        for view in views:
-            iter = self.model.append()
-            self.model.set(iter, 0, view, 1, True, 2, view.title)
-
-    def setVisible(self, isVisible):
-        """
-        """
-        widget = self.ui._gui.get_widget('save_dialog')
-        if isVisible:
-            widget.show_all()
-        else:
-            widget.hide()
-            
-    def _toggle_cb(self, widget, path, data = None):
-        """Gtk+ callback"""
-        self.model[path][1] = not self.model[path][1]
 
 class GtkUI(glchess.ui.UI):
     """
@@ -577,14 +252,37 @@ class GtkUI(glchess.ui.UI):
 
     __attentionCounter = 0
 
-    def __init__(self):
+    moveFormat         = 'human'
+
+    def __init__(self, feedback):
         """Constructor for a GTK+ glChess GUI"""
+        if haveGnomeSupport:
+            gnome.program_init('glchess', VERSION,
+                               properties={gnome.PARAM_APP_DATADIR: APP_DATA_DIR})
+
+        self.feedback = feedback
         self.__networkGames = {}
         self.__saveGameDialogs = {}
         self.__joinGameDialogs = []
+        self.timers = {}
+
+        # Set the message panel to the tooltip style
+        # (copied from Gedit)
+        tooltip = gtk.Tooltips()
+        tooltip.force_window()
+        tooltip.tip_window.ensure_style()
+        self.tooltipStyle = tooltip.tip_window.get_style()
         
         self._gui = loadGladeFile('glchess.glade')
         self._gui.signal_autoconnect(self)
+        
+        # Create mappings between the promotion radio buttons and the promotion types
+        self.__promotionTypeByRadio = {}
+        self.__promotionRadioByType = {}
+        for piece in ['queen', 'knight', 'rook', 'bishop']:
+            widget = self.__getWidget('promotion_%s_radio' % piece)
+            self.__promotionTypeByRadio[widget] = piece
+            self.__promotionRadioByType[piece] = widget
 
         # Make a notebook for the games
         self.notebook = GtkGameNotebook(self)
@@ -593,22 +291,27 @@ class GtkUI(glchess.ui.UI):
         self.notebook.show_all()
         
         # Create the model for the player types
-        self.__playerModel = gtk.ListStore(gobject.TYPE_PYOBJECT, gtk.gdk.Pixbuf, str)
+        self.__playerModel = gtk.ListStore(str, gtk.gdk.Pixbuf, str)
         iconTheme = gtk.icon_theme_get_default()
         try:
             icon = iconTheme.load_icon('stock_people', 24, gtk.ICON_LOOKUP_USE_BUILTIN)
         except gobject.GError:
             icon = None
         iter = self.__playerModel.append()
-        self.__playerModel.set(iter, 0, None, 1, icon, 2, gettext.gettext('Human'))
-        # FIXME: Add spectators for network games
+        self.__playerModel.set(iter, 0, '', 1, icon, 2, gettext.gettext('Human'))
+        #try:
+        #    icon = iconTheme.load_icon(gtk.STOCK_NETWORK, 24, gtk.ICON_LOOKUP_USE_BUILTIN)
+        #except gobject.GError:
+        #    icon = None
+        #iter = self.__playerModel.append()
+        #self.__playerModel.set(iter, 0, None, 1, icon, 2, gettext.gettext('Network'))
         
         self.__aiWindow = AIWindow(self._gui.get_widget('ai_notebook'))
         
         combo = self.__getWidget('history_combo')
         cell = gtk.CellRendererText()
         combo.pack_start(cell, False)
-        combo.add_attribute(cell, 'text', 1)
+        combo.add_attribute(cell, 'text', 2)
 
         self.defaultViewController = self.notebook.setDefault(None)
 
@@ -616,17 +319,13 @@ class GtkUI(glchess.ui.UI):
         if haveGnomeSupport:
             self._gui.get_widget('menu_help').show()
         
-        self.defaultViewController.widget.setRenderGL(self.__renderGL)
+        self.defaultViewController.viewWidget.setRenderGL(self.__renderGL)
 
-        self.saveDialog = SaveDialog(self)
+        self.saveDialog = dialogs.SaveDialog(self)
         
         # Watch for config changes
-        glchess.config.watch('show_toolbar', self.__applyConfig)
-        glchess.config.watch('show_history', self.__applyConfig)
-        glchess.config.watch('fullscreen', self.__applyConfig)
-        glchess.config.watch('show_3d', self.__applyConfig)
-        glchess.config.watch('width', self.__applyConfig)
-        glchess.config.watch('height', self.__applyConfig)
+        for key in ['show_toolbar', 'show_history', 'fullscreen', 'show_3d', 'show_move_hints', 'width', 'height', 'move_format', 'promotion_type']:
+            glchess.config.watch(key, self.__applyConfig)
 
     # Public methods
     
@@ -649,7 +348,7 @@ class GtkUI(glchess.ui.UI):
         gobject.source_remove(timer)
 
     def __readData(self, fd, condition):
-        return self.onReadFileDescriptor(fd)
+        return self.feedback.onReadFileDescriptor(fd)
 
     def addAIEngine(self, name):
         """Register an AI engine.
@@ -677,7 +376,7 @@ class GtkUI(glchess.ui.UI):
     def addView(self, title, feedback):
         """Extends ui.UI"""
         view = self.notebook.addView(title, feedback)
-        view.widget.setRenderGL(self.__renderGL)
+        view.viewWidget.setRenderGL(self.__renderGL)
         return view
 
     def addAIWindow(self, title, executable, description):
@@ -691,7 +390,7 @@ class GtkUI(glchess.ui.UI):
         This method will not return.
         """        
         # Load configuration
-        for name in ['show_toolbar', 'show_history', 'show_3d']:
+        for name in ['show_toolbar', 'show_history', 'show_3d', 'show_move_hints', 'move_format', 'promotion_type']:
             try:
                 value = glchess.config.get(name)
             except glchess.config.Error:
@@ -712,17 +411,21 @@ class GtkUI(glchess.ui.UI):
         
     # Extended methods
 
-    def reportError(self, title, error):
+    def reportGameLoaded(self, game):
         """Extends glchess.ui.UI"""
-        dialogs.GtkErrorDialog(title, error)
+        dialogs.GtkNewGameDialog(self, self.__playerModel, game)
+
+    def addNetworkDialog(self, feedback):
+        """Extends glchess.ui.UI"""
+        # Create the dialog
+        dialog = dialogs.GtkNetworkGameDialog(self, feedback, self.__playerModel)
+        self.__joinGameDialogs.append(dialog)
         
-    def reportGameLoaded(self, gameName = None,
-                         whiteName = None, blackName = None,
-                         whiteAI = None, blackAI = None, moves = None):
-        """Extends glchess.ui.UI"""
-        dialogs.GtkNewGameDialog(self, self.__playerModel, gameName = gameName,
-                                 whiteName = whiteName, whiteAI = whiteAI,
-                                 blackName = blackName, blackAI = blackAI, moves = moves)
+        # Add the detected games into the dialog
+        #for (game, name) in self.__networkGames.iteritems():
+        #    dialog.addNetworkGame(name, game)
+        
+        return dialog
                                  
     def addNetworkGame(self, name, game):
         """Extends glchess.ui.UI"""
@@ -754,20 +457,22 @@ class GtkUI(glchess.ui.UI):
         widget = self._gui.get_widget('glchess_app')
         widget.set_urgency_hint(self.__attentionCounter != 0 and not widget.is_active())
         
-    def _on_focus_changed(self, widget, data = None):
+    def _on_focus_changed(self, widget, event):
         """Gtk+ callback"""
         self.__updateAttention()
 
     def _saveView(self, view, path):
         """
         """
-        self.__saveGameDialogs.pop(view)
         if path is None:
-            return
-        
-        if view.feedback is not None:
-            view.feedback.save(path)
-            
+            error = None
+        else:
+            error = view.feedback.save(path)
+
+        if error is not None:
+            return error        
+        self.__saveGameDialogs.pop(view)
+
     def _removeView(self, view):
         """Remove a view from the UI.
         
@@ -830,16 +535,36 @@ class GtkUI(glchess.ui.UI):
 
         # Enable/disable OpenGL rendering
         elif name == 'show_3d':            
-            if value and not haveGLSupport:
+            if value and not chessview.haveGLSupport:
                 self._gui.get_widget('3d_support_dialog').show()
                 glchess.config.set('show_3d', False)
                 value = False
             self.__renderGL = value
             menuItem = self.__getWidget('menu_view_3d')
             menuItem.set_active(self.__renderGL)
-            self.notebook.defaultView.widget.setRenderGL(self.__renderGL)
+            self.notebook.defaultView.viewWidget.setRenderGL(self.__renderGL)
             for view in self.notebook.views:
-                view.widget.setRenderGL(self.__renderGL)
+                view.viewWidget.setRenderGL(self.__renderGL)
+                
+        elif name == 'show_move_hints':
+            menuItem = self.__getWidget('menu_view_move_hints')
+            menuItem.set_active(value)
+            for view in self.notebook.views:
+                view.feedback.showMoveHints(value)
+        
+        elif name == 'move_format':
+            self._gui.get_widget('menu_movef_%s' % value).set_active(True)
+            self.moveFormat = value
+            for view in self.notebook.views:
+                view.setMoveFormat(value)
+                
+        elif name == 'promotion_type':
+            try:
+                radio = self.__promotionRadioByType[value]
+            except KeyError:
+                glchess.config.default('promotion_type')
+            else:
+                radio.set_active(True)
         
     def startAnimation(self):
         """Start the animation callback"""
@@ -859,7 +584,7 @@ class GtkUI(glchess.ui.UI):
         self.__lastTime = now
         
         # Animate!
-        animating = self.onAnimate(step)
+        animating = self.feedback.onAnimate(step)
         if not animating:
             self.__animationTimer = None
         
@@ -867,9 +592,11 @@ class GtkUI(glchess.ui.UI):
         return animating
 
     def __getWidget(self, name):
-        return self._gui.get_widget(name)
+        widget = self._gui.get_widget(name)
+        assert(widget is not None)
+        return widget
     
-    def _on_show_toolbar_clicked(self, widget, data = None):
+    def _on_show_toolbar_clicked(self, widget):
         """Gtk+ callback"""
         if widget.get_active():
             value = True
@@ -877,7 +604,7 @@ class GtkUI(glchess.ui.UI):
             value = False
         glchess.config.set('show_toolbar', value)
 
-    def _on_show_history_clicked(self, widget, data = None):
+    def _on_show_history_clicked(self, widget):
         """Gtk+ callback"""
         if widget.get_active():
             value = True
@@ -885,7 +612,7 @@ class GtkUI(glchess.ui.UI):
             value = False
         glchess.config.set('show_history', value)
 
-    def _on_toggle_3d_clicked(self, widget, data = None):
+    def _on_toggle_3d_clicked(self, widget):
         """Gtk+ callback"""
         if widget.get_active():
             value = True
@@ -893,7 +620,15 @@ class GtkUI(glchess.ui.UI):
             value = False
         glchess.config.set('show_3d', value)
 
-    def _on_show_ai_stats_clicked(self, widget, data = None):
+    def _on_toggle_move_hints_clicked(self, widget):
+        """Gtk+ callback"""
+        if widget.get_active():
+            value = True
+        else:
+            value = False
+        glchess.config.set('show_move_hints', value)       
+
+    def _on_show_ai_stats_clicked(self, widget):
         """Gtk+ callback"""
         window = self._gui.get_widget('ai_window')
         if widget.get_active():
@@ -901,7 +636,7 @@ class GtkUI(glchess.ui.UI):
         else:
             window.hide()
 
-    def _on_history_combo_changed(self, widget, data = None):
+    def _on_history_combo_changed(self, widget):
         """Gtk+ callback"""
         model = widget.get_model()
         iter = widget.get_active_iter()
@@ -909,7 +644,7 @@ class GtkUI(glchess.ui.UI):
             return
         
         # Get the move number
-        moveNumber = model.get_value(iter, 0)
+        moveNumber = model.get_value(iter, 1)
         
         string = 'Show move number: ' + str(moveNumber)
         if moveNumber == len(model) - 1:
@@ -919,6 +654,23 @@ class GtkUI(glchess.ui.UI):
         view = self.notebook.getView()
         if view is not None:
             view._setMoveNumber(moveNumber)
+            
+    def _on_menu_movef_human_activate(self, widget):
+        """Gtk+ callback"""
+        glchess.config.set('move_format', 'human')
+
+    def _on_menu_movef_lan_activate(self, widget):
+        """Gtk+ callback"""
+        glchess.config.set('move_format', 'lan')
+
+    def _on_menu_movef_san_activate(self, widget):
+        """Gtk+ callback"""
+        glchess.config.set('move_format', 'san')
+        
+    def _on_promotion_type_changed(self, widget):
+        """Gtk+ callback"""
+        if widget.get_active():
+            glchess.config.set('promotion_type', self.__promotionTypeByRadio[widget])
         
     def __selectMoveNumber(self, moveNumber):
         """FIXME
@@ -951,23 +703,23 @@ class GtkUI(glchess.ui.UI):
             new = maxNumber - 1
         self.__selectMoveNumber(new)
 
-    def _on_history_start_clicked(self, widget, data = None):
+    def _on_history_start_clicked(self, widget):
         """Gtk+ callback"""
         self.__selectMoveNumber(0)
 
-    def _on_history_previous_clicked(self, widget, data = None):
+    def _on_history_previous_clicked(self, widget):
         """Gtk+ callback"""
         self.__selectMoveNumberRelative(-1)
 
-    def _on_history_next_clicked(self, widget, data = None):
+    def _on_history_next_clicked(self, widget):
         """Gtk+ callback"""
         self.__selectMoveNumberRelative(1)
 
-    def _on_history_latest_clicked(self, widget, data = None):
+    def _on_history_latest_clicked(self, widget):
         """Gtk+ callback"""
         self.__selectMoveNumber(-1)
 
-    def _on_view_changed(self, widget, page, pageNum, data = None):
+    def _on_view_changed(self, widget, page, pageNum):
         """Gtk+ callback"""
         # Set the window title to the name of the game
         view = self.notebook.getView()
@@ -1002,26 +754,19 @@ class GtkUI(glchess.ui.UI):
             combo.set_active(selected)
         self.__getWidget('navigation_box').set_sensitive(enableWidgets)
 
-    def _on_new_game_button_clicked(self, widget, data = None):
+    def _on_new_game_button_clicked(self, widget):
         """Gtk+ callback"""
         dialogs.GtkNewGameDialog(self, self.__playerModel)
 
-    def _on_join_game_button_clicked(self, widget, data = None):
+    def _on_join_game_button_clicked(self, widget):
         """Gtk+ callback"""
-        # Create the dialog
-        dialog = dialogs.GtkJoinGameDialog(self, self.__playerModel)
-        self.__joinGameDialogs.append(dialog)
-        # FIXME: Remove from this list when they dissapear
-        
-        # Add the detected games into the dialog
-        for (game, name) in self.__networkGames.iteritems():
-            dialog.addNetworkGame(name, game)
+        self.feedback.onNewNetworkGame()
 
-    def _on_open_game_button_clicked(self, widget, data = None):
+    def _on_open_game_button_clicked(self, widget):
         """Gtk+ callback"""
         dialogs.GtkLoadGameDialog(self)
         
-    def _on_save_game_button_clicked(self, widget, data = None):
+    def _on_save_game_button_clicked(self, widget):
         """Gtk+ callback"""
         view = self.notebook.getView()
         
@@ -1030,43 +775,44 @@ class GtkUI(glchess.ui.UI):
         elif not self.__saveGameDialogs.has_key(view):
             self.__saveGameDialogs[view] = dialogs.GtkSaveGameDialog(self, view)
             
-    def _on_save_as_game_button_clicked(self, widget, data = None):
+    def _on_save_as_game_button_clicked(self, widget):
+        """Gtk+ callback"""
         view = self.notebook.getView()
         if not self.__saveGameDialogs.has_key(view):
             self.__saveGameDialogs[view] = dialogs.GtkSaveGameDialog(self, view, view.feedback.getFileName())
 
-    def _on_end_game_button_clicked(self, widget, data = None):
+    def _on_end_game_button_clicked(self, widget):
         """Gtk+ callback"""
         view = self.notebook.getView()
         assert(view is not None)
         if view.feedback is not None:
             view.feedback.close()
 
-    def _on_help_clicked(self, widget, data = None):
+    def _on_help_clicked(self, widget):
         """Gtk+ callback"""
         gnome.help_display('glchess')
 
-    def _on_view_fullscreen_clicked(self, widget, data = None):
+    def _on_view_fullscreen_clicked(self, widget):
         """Gtk+ callback"""
         glchess.config.set('fullscreen', True)
         
-    def _on_view_unfullscreen_clicked(self, widget, data = None):
+    def _on_view_unfullscreen_clicked(self, widget):
         """Gtk+ callback"""
         glchess.config.set('fullscreen', False)
         
-    def _on_3d_support_dialog_delete_event(self, widget, data = None):
+    def _on_3d_support_dialog_delete_event(self, widget, event):
         """Gtk+ callback"""
         # Stop the dialog from deleting itself
         return True
-        
-    def _on_3d_support_dialog_response(self, widget, data = None):
+
+    def _on_3d_support_dialog_response(self, widget, responseId):
         """Gtk+ callback"""
         if self.__aboutDialog is not None:
             return
         widget.hide()
         return False
 
-    def _on_about_clicked(self, widget, data = None):
+    def _on_about_clicked(self, widget):
         """Gtk+ callback"""
         if self.__aboutDialog is not None:
             return
@@ -1090,24 +836,24 @@ class GtkUI(glchess.ui.UI):
         dialog.connect('response', self._on_glchess_about_dialog_close)
         dialog.show()
         
-    def _on_glchess_about_dialog_close(self, widget, data = None):
+    def _on_glchess_about_dialog_close(self, widget, event):
         """Gtk+ callback"""
         self.__aboutDialog.destroy()
         self.__aboutDialog = None
         return False
         
-    def _on_ai_window_delete_event(self, widget, data = None):
+    def _on_ai_window_delete_event(self, widget, event):
         """Gtk+ callback"""
         self._gui.get_widget('menu_view_ai').set_active(False)
         
         # Stop the event - the window will be closed by the menu event
         return True
    
-    def _on_save_dialog_response(self, widget, response_id, data = None):
+    def _on_save_dialog_response(self, widget, responseId):
         """Gtk+ callback"""
         self.saveDialog.setVisible(False)
         
-        if response_id != gtk.RESPONSE_OK:
+        if responseId != gtk.RESPONSE_OK:
             return
         
         # Save the requested games
@@ -1115,20 +861,27 @@ class GtkUI(glchess.ui.UI):
             if save:
                 view.feedback.save()
 
-        self.onQuit()
+        self.feedback.onQuit()
         
-    def _on_save_dialog_delete(self, widget, data = None):
+    def _on_save_dialog_delete(self, widget, event):
         """Gtk+ callback"""
         # Leave it to use to hide the dialog
         return True
     
-    def _on_resize(self, widget, event, data = None):
+    def _on_resize(self, widget, event):
         """Gtk+ callback"""
         glchess.config.set('width', event.width)
         glchess.config.set('height', event.height)
 
-    def _on_quit(self, widget, data = None):
+    def _on_close_window(self, widget, event):
         """Gtk+ callback"""
+        self._quit()
+        
+    def _on_menu_quit(self, widget):
+        """Gtk+ callback"""
+        self._quit()
+        
+    def _quit(self):
         # Check if any views need saving
         viewsToSave = []
         for view in self.notebook.views:
@@ -1136,7 +889,7 @@ class GtkUI(glchess.ui.UI):
                 viewsToSave.append(view)
              
         if len(viewsToSave) == 0:
-            self.onQuit()
+            self.feedback.onQuit()
         else:
             self.saveDialog.setViews(viewsToSave)
             self.saveDialog.setVisible(True)

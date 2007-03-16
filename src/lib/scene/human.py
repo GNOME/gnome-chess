@@ -16,6 +16,9 @@ class SceneHumanInput:
     # The selected square to move from
     __startSquare = None
     
+    __showHints       = True
+    __boardHighlights = None
+    
     def __init__(self):
         """Constructor for a scene with human selectable components"""
         pass
@@ -87,6 +90,18 @@ class SceneHumanInput:
             self.__startSquare = None
             self.setBoardHighlight(None)
         self.__inputEnabled = inputEnabled
+        
+    def showMoveHints(self, showHints):
+        """
+        """
+        self.__showHints = showHints
+        if showHints:
+            self.setBoardHighlight(self.__boardHighlights)
+        else:
+            if self.__startSquare is not None:
+                self.setBoardHighlight({self.__startSquare: glchess.scene.HIGHLIGHT_SELECTED})
+            else:
+                self.setBoardHighlight(None)
     
     def select(self, x, y):
         """
@@ -108,13 +123,16 @@ class SceneHumanInput:
             self.__startSquare = coord
             
             # Highlight the squares that can be moved to
-            highlights = {}
+            self.__boardHighlights = {}
             for file in '12345678':
                 for rank in 'abcdefgh':
                     if self.canMove(coord, rank + file):
-                        highlights[rank + file] = glchess.scene.HIGHLIGHT_CAN_MOVE
-            highlights[coord] = glchess.scene.HIGHLIGHT_SELECTED
-            self.setBoardHighlight(highlights)
+                        self.__boardHighlights[rank + file] = glchess.scene.HIGHLIGHT_CAN_MOVE
+            self.__boardHighlights[coord] = glchess.scene.HIGHLIGHT_SELECTED
+            if self.__showHints:
+                self.setBoardHighlight(self.__boardHighlights)
+            else:
+                self.setBoardHighlight({coord: glchess.scene.HIGHLIGHT_SELECTED})
 
         else:
             # If we have already selected a start move try

@@ -36,12 +36,12 @@ class Profile:
     """
     name       = ''
     protocol   = ''
-    executable = ''
     path       = ''
     arguments  = None
     profiles   = None
     
     def __init__(self):
+        self.executables = []
         self.arguments = []
         self.profiles = {}
 
@@ -54,10 +54,11 @@ class Profile:
             path = []
 
         for directory in path:
-            b = directory + os.sep + self.executable
-            if os.path.isfile(b):
-                self.path = b
-                return
+            for executable in self.executables:
+                b = directory + os.sep + executable
+                if os.path.isfile(b):
+                    self.path = b
+                    return
         self.path = None
         
 def _getXMLText(node):
@@ -132,12 +133,14 @@ def loadProfiles():
             n = p.getElementsByTagName('name')
             assert(len(n) > 0)
             name = _getXMLText(n[0])
-            
+
+            executables = []
             n = p.getElementsByTagName('binary')
             assert(len(n) > 0)
-            executable = _getXMLText(n[0])
-            
-            arguments = [executable]
+            for x in n:
+                executables.append(_getXMLText(x))
+
+            arguments = []
             for x in p.getElementsByTagName('argument'):
                 arguments.append(_getXMLText(x))
 
@@ -148,11 +151,11 @@ def loadProfiles():
                     levels[level.name] = level
 
             profile = Profile()
-            profile.name       = name
-            profile.protocol   = protocol
-            profile.executable = executable
-            profile.arguments  = arguments
-            profile.levels     = levels
+            profile.name        = name
+            profile.protocol    = protocol
+            profile.executables = executables
+            profile.arguments   = arguments
+            profile.levels      = levels
             profiles.append(profile)
     
     return profiles
@@ -175,8 +178,12 @@ class CECPConnection(cecp.Connection):
 
     def onMove(self, move):
         """Called by cecp.Connection"""
-        self.player.moving = True
-        self.player.move(move)
+        if self.player.isReadyToMove():
+            self.player.moving = True
+            self.player.move(move)
+        else:
+            assert(self.player.suppliedMove is None)
+            self.player.suppliedMove = move
         
     def logText(self, text, style):
         """Called by cecp.Connection"""
@@ -218,7 +225,9 @@ class Player(game.ChessPlayer):
     
     __connection = None
     
-    moving = False
+    moving       = False
+    
+    suppliedMove = None
     
     def __init__(self, name, profile, level = 'normal'):
         """Constructor for an AI player.
@@ -236,7 +245,7 @@ class Player(game.ChessPlayer):
         if self.__pid == 0:
             os.nice(10)
             try:
-                os.execv(profile.path, profile.arguments)
+                os.execv(profile.path, [profile.path] + profile.arguments)
             except OSError:
                 pass
             os._exit(0)
@@ -326,7 +335,7 @@ class Player(game.ChessPlayer):
             if count > 5:
                 break
         
-        #print 'Killing AI'
+        print 'Killing AI'
         os.kill(self.__pid, signal.SIGKILL)
 
     # Extended methods
@@ -336,11 +345,17 @@ class Player(game.ChessPlayer):
         isSelf = player is self and self.moving
         self.moving = False
         self.connection.reportMove(move.canMove, isSelf)
-    
+
     def readyToMove(self):
         """Called by game.ChessPlayer"""
-        self.connection.requestMove()
+        if self.suppliedMove is None:
+            self.connection.requestMove()
+        else:
+            self.moving = True
+            move = self.suppliedMove
+            self.suppliedMove = None
+            self.move(move)
         
-    def onGameEnded(self, winningPlayer = None):
+    def onGameEnded(self, game):
         """Called by game.ChessPlayer"""
         self.quit()

@@ -1,3 +1,18 @@
+2007-03-16  Robert Ancell  <robert.ancell@gmail.com>
+
+	* Merged changes from glChess 1.0.4:
+	 o Added menu selectable promotion type
+	 o AI players now wait for piece animation to end before making moves
+	 o Refactored game/scene code
+	 o Made move hints optional. (menu item: view->move hints)
+	 o Added support for Boo's Chess Engine.
+	 o Changed chess engine to using bitboards (33% faster)
+	 o Added detection for stalemate, resignation, threefold repetition,
+	   fifty move rule. (Still insufficient material to be done).
+	 o Tooltip style panel appears when game ends.
+	 o Removed all pop-up error dialogs and integrated the error reporting
+	   into the load/save dialogs.
+
 2007-02-01  Robert Ancell  <robert.ancell@gmail.com>
 
 	* main.py: Fixed printf error when AI cannot be found (Bug #402751)

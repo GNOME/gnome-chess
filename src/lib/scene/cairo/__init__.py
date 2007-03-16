@@ -13,21 +13,31 @@ PIECE_COLOUR         = (0.0, 0.0, 0.0)
 class ChessPiece(glchess.scene.ChessPiece):
     """
     """
+    scene       = None
+    name        = None
     
-    __scene = None
-    name = None
+    # Co-ordinate being moved to
+    coord       = None
     
-    __targetPos = None
+    targetPos   = None
+    
+    # Current position
     pos         = None
+    moving      = False
+
+    # Delete once moved to location
+    delete      = False
     
-    moving       = False
+    deleted     = False
     
-    def __init__(self, scene, name, startPos = (0.0, 0.0)):
+    def __init__(self, scene, name, coord, feedback):
         """
         """
-        self.__scene = scene
+        self.scene = scene
+        self.feedback = feedback
         self.name = name
-        self.pos = self.__coordToLocation(startPos)
+        self.coord = coord
+        self.pos = self.__coordToLocation(coord)
         
     def __coordToLocation(self, coord):
         """
@@ -37,32 +47,68 @@ class ChessPiece(glchess.scene.ChessPiece):
         
         return (float(rank), float(file))
 
-    def move(self, coord):
+    def move(self, coord, delete, animate = True):
         """Extends glchess.scene.ChessPiece"""
-        self.__targetPos = self.__coordToLocation(coord)
-        self.moving = True
-        self.__scene._startAnimation()
-    
-    def draw(self, state = 'default'):
-        """
-        """
-        pass
+        assert(self.deleted is False)
+        self.coord = coord
+        self.delete = delete
+        self.targetPos = self.__coordToLocation(coord)
+
+        redraw = (self.pos != self.targetPos) or delete
+
+        # If not animating this move immediately
+        if not animate:
+            self.pos = self.targetPos
         
+        # If already there then check for deletion
+        if self.pos == self.targetPos:
+            if delete:
+                self.deleted = True
+                self.scene.pieces.remove(self)
+                self.feedback.onDeleted()
+            if redraw:
+                self.scene.redrawStatic = True
+                self.scene.feedback.onRedraw()
+            return
+        
+        # If not currently moving then start
+        if not self.moving:
+            self.scene._animationQueue.append(self)
+            self.moving = True
+
+            # Remove piece from static scene
+            self.scene.redrawStatic = True            
+            
+            # Start animation
+            if self.scene.animating is False:
+                self.scene.animating = True
+                self.scene.feedback.startAnimation()
+
     def animate(self, timeStep):
         """
         
         Return True if the piece has moved otherwise False.
         """
-        if self.__targetPos is None:
+        # FIXME
+        if self.deleted:
+            return False
+        assert(self.deleted is False)
+        #end FIXME
+        
+        if self.targetPos is None:
             return False
         
-        if self.pos == self.__targetPos:
-            self.__targetPos = None
+        if self.pos == self.targetPos:
+            self.targetPos = None
+            if self.delete:
+                self.deleted = True
+                self.scene.pieces.remove(self)
+                self.feedback.onDeleted()
             return False
         
         # Get distance to target
-        dx = self.__targetPos[0] - self.pos[0]
-        dy = self.__targetPos[1] - self.pos[1]
+        dx = self.targetPos[0] - self.pos[0]
+        dy = self.targetPos[1] - self.pos[1]
         
         # Get movement step in each direction
         SPEED = 4.0 # FIXME
@@ -76,7 +122,7 @@ class ChessPiece(glchess.scene.ChessPiece):
             yStep = dy
         else:
             yStep *= cmp(dy, 0.0)
-            
+
         # Move the piece
         self.pos = (self.pos[0] + xStep, self.pos[1] + yStep)
         return True
@@ -84,41 +130,35 @@ class ChessPiece(glchess.scene.ChessPiece):
     def render(self, offset, context):
         """
         """
-        x = offset[0] + self.pos[0] * self.__scene.squareSize + self.__scene.PIECE_BORDER
-        y = offset[1] + (7 - self.pos[1]) * self.__scene.squareSize + self.__scene.PIECE_BORDER
-        pieces.piece(self.name, context, self.__scene.pieceSize, x, y)
+        x = offset[0] + self.pos[0] * self.scene.squareSize + self.scene.PIECE_BORDER
+        y = offset[1] + (7 - self.pos[1]) * self.scene.squareSize + self.scene.PIECE_BORDER
+        pieces.piece(self.name, context, self.scene.pieceSize, x, y)
         context.fill()
 
 class Scene(glchess.scene.Scene):
     """
     """
-    __pieces     = None
-    __highlights = None
+    feedback    = None
     
-    __animating = False
-    __changed   = True
+    pieces      = None
+    highlights  = None
+    
+    animating   = False
+    redrawStatic     = True
+    
+    _animationQueue = None
     
     BORDER = 6.0
     PIECE_BORDER = 2.0
 
-    def __init__(self):
+    def __init__(self, feedback):
         """Constructor for a Cairo scene"""
-        self.__highlight = {}
-        self.__pieces = []
-        
-    def onRedraw(self):
-        """This method is called when the scene needs redrawing"""
-        pass
+        self.feedback = feedback
+        self.highlight = {}
+        self.pieces = []
+        self._animationQueue = []
     
-    def _startAnimation(self):
-        """
-        """
-        self.__changed = True
-        if self.__animating is False:
-            self.__animating = True
-            self.startAnimation()
-
-    def addChessPiece(self, chessSet, name, coord):
+    def addChessPiece(self, chessSet, name, coord, feedback):
         """Add a chess piece model into the scene.
         
         'chessSet' is the name of the chess set (string).
@@ -128,23 +168,14 @@ class Scene(glchess.scene.Scene):
         Returns a reference to this chess piece or raises an exception.
         """
         name = chessSet + name[0].upper() + name[1:]
-        piece = ChessPiece(self, name, coord)
-        self.__pieces.append(piece)
+        piece = ChessPiece(self, name, coord, feedback)
+        self.pieces.append(piece)
         
         # Redraw the scene
-        self.__changed = True
-        self.onRedraw()
+        self.redrawStatic = True
+        self.feedback.onRedraw()
         
         return piece
-    
-    def removeChessPiece(self, piece):
-        """Remove chess piece.
-        
-        'piece' is a chess piece instance as returned by addChessPiece().
-        """
-        self.__pieces.remove(piece)
-        self.__changed = True
-        self.onRedraw()
 
     def setBoardHighlight(self, coords):
         """Highlight a square on the board.
@@ -153,12 +184,12 @@ class Scene(glchess.scene.Scene):
                  The co-ordinates are a tuple in the form (file,rank).
                  If None the highlight will be cleared.
         """
-        self.__changed = True
+        self.redrawStatic = True
         if coords is None:
-            self.__highlight = {}
+            self.highlight = {}
         else:
-            self.__highlight = coords.copy()
-        self.onRedraw()
+            self.highlight = coords.copy()
+        self.feedback.onRedraw()
     
     def reshape(self, width, height):
         """Resize the viewport into the scene.
@@ -166,7 +197,6 @@ class Scene(glchess.scene.Scene):
         'width' is the width of the viewport in pixels.
         'height' is the width of the viewport in pixels.
         """
-        self.__changed = True
         self.width = width
         self.height = height
         
@@ -177,44 +207,50 @@ class Scene(glchess.scene.Scene):
         boardWidth = self.squareSize * 9.0
         self.offset = ((self.width - boardWidth) / 2.0, (self.height - boardWidth) / 2.0)
         
-        self.__changed = True
-        self.onRedraw()
+        self.redrawStatic = True
+        self.feedback.onRedraw()
         
     def setBoardRotation(self, angle):
-        """Set the rotation on the board.
-        
-        'angle' is the angle the board should be drawn at in degress (float, [0.0, 360.0]).
-        """
+        """Extends glchess.scene.Scene"""
         pass
         
     def animate(self, timeStep):
         """Extends glchess.scene.Scene"""
+        if len(self._animationQueue) == 0:
+            return False
+        
         redraw = False
-        for piece in self.__pieces:
+        animationQueue = []
+        for piece in self._animationQueue:
             if piece.animate(timeStep):
                 piece.moving = True
                 redraw = True
+                assert(animationQueue.count(piece) == 0)
+                animationQueue.append(piece)
             else:
                 # Redraw static scene once pieces stop
                 if piece.moving:
                     redraw = True
-                    self.__changed = True
+                    self.redrawStatic = True
                 piece.moving = False
-                
-        # Redraw scene or stop animation
+
+                # Notify higher classes
+                piece.feedback.onMoved()
+
+        self._animationQueue = animationQueue
+        self.animating = len(self._animationQueue) > 0
+
         if redraw:
-            self.__animating = True
-            self.onRedraw()
-        else:
-            self.__animating = False
-        return self.__animating
+            self.feedback.onRedraw()
+
+        return self.animating
 
     def renderStatic(self, context):
         """Render the static elements in a scene.
         """
-        if self.__changed is False:
+        if self.redrawStatic is False:
             return False
-        self.__changed = False
+        self.redrawStatic = False
 
         # Clear background
         context.set_source_rgb(*BACKGROUND_COLOUR)
@@ -234,7 +270,7 @@ class Scene(glchess.scene.Scene):
                 
                 coord = chr(ord('a') + i) + chr(ord('1') + j)
                 try:
-                    highlight = self.__highlight[coord]
+                    highlight = self.highlight[coord]
                 except KeyError:
                     highlight = None
                 
@@ -247,7 +283,7 @@ class Scene(glchess.scene.Scene):
                 context.fill()
                 
         context.set_source_rgb(*PIECE_COLOUR)
-        for piece in self.__pieces:
+        for piece in self.pieces:
             if piece.moving:
                 continue
             piece.render(offset, context)
@@ -262,11 +298,11 @@ class Scene(glchess.scene.Scene):
         offset = (self.offset[0] + self.squareSize * 0.5, self.offset[1] + self.squareSize * 0.5)
         
         context.set_source_rgb(*PIECE_COLOUR)
-        for piece in self.__pieces:
+        for piece in self.pieces:
             if not piece.moving:
                 continue
             piece.render(offset, context)
-            
+
     def getSquare(self, x, y):
         """Find the chess square at a given 2D location.
         

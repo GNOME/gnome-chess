@@ -58,18 +58,20 @@ else:
                          gconf.VALUE_INT: gconf.Value.get_int,
                          gconf.VALUE_STRING: gconf.Value.get_string}
                          
-    _gconfSetFunction = {bool: _config.set_bool,
-                         float: _config.set_float,
-                         int: _config.set_int,
-                         str: _config.set_string,
+    _gconfSetFunction = {bool:    _config.set_bool,
+                         float:   _config.set_float,
+                         int:     _config.set_int,
+                         str:     _config.set_string,
                          unicode: _config.set_string}
               
 # Config default values
-_defaults = {'show_toolbar': True,
-             'show_history': True,
-             'fullscreen':   False,
-             'show_3d':      False,
-             'move_format':  'human'}
+_defaults = {'show_toolbar':    True,
+             'show_history':    True,
+             'fullscreen':      False,
+             'show_3d':         False,
+             'show_move_hints': True,
+             'move_format':     'human',
+             'promotion_type':  'queen'}
 
 class Error(Exception):
     """Exception for configuration use"""
@@ -142,6 +144,9 @@ def set(name, value):
                 
         # Save configuration
         _save()
+        
+def default(name):
+    set(name, _defaults[name])
                 
 def _watch(client, _, entry, (function, name)):
     value = get(name)

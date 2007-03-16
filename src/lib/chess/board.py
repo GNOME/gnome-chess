@@ -35,10 +35,10 @@ The chess board with rank and file numbers:
              White Pieces
              
 Pieces are moved by:
->>> result = b.movePiece(board.WHITE, 'd1', 'd3')
-If the result is not MOVE_RESULT_ILLEGAL then the internal
-state is updated and the next player can move.
-If the result is MOVE_RESULT_ILLEGAL then the request is ignored.
+>>> move = b.movePiece(board.WHITE, 'd1', 'd3')
+If the move is not None then the internal state is updated and the
+next player can move.
+If the result is None then the request is ignored.
 
 A move can be checked if it is legal first by:
 >>> result = b.testMove(board.WHITE, 'd1', 'd3')
@@ -75,7 +75,9 @@ __author__ = 'Robert Ancell <bob27@users.sourceforge.net>'
 __license__ = 'GNU General Public License Version 2'
 __copyright__ = 'Copyright 2005-2006  Robert Ancell'
 
-__all__ = ['ChessPiece', 'ChessBoard']
+__all__ = ['ChessPiece', 'ChessBoard', 'Move']
+
+import bitboard
 
 # The two players
 WHITE = 'White'
@@ -88,12 +90,6 @@ KNIGHT = 'N'
 BISHOP = 'B'
 QUEEN  = 'Q'
 KING   = 'K'
-
-# Move results
-MOVE_RESULT_ILLEGAL            = 'Illegal move'
-MOVE_RESULT_OPPONENT_CHECK     = 'Opponent put into check'
-MOVE_RESULT_OPPONENT_CHECKMATE = 'Opponent put into checkmate'
-MOVE_RESULT_ALLOWED            = 'Valid move'
 
 class ChessPiece:
     """An object representing a chess piece"""
@@ -131,13 +127,18 @@ class ChessPiece:
         """Returns a string representation of this piece"""
         return self.__colour + ' ' + self.__type
     
+    def __repr__(self):
+        return '<%s>' % str(self)
+    
 class ChessPlayerState:
     """
     """
-    
     # Flags to show if still able to castle
     canShortCastle = True
-    canLongCastle = True
+    canLongCastle  = True
+    
+    # Flag to show if this player is in check
+    inCheck        = False
     
     def __init__(self, state = None):
         """
@@ -148,28 +149,72 @@ class ChessPlayerState:
         # Copy the exisiting state
         self.canShortCastle = state.canShortCastle
         self.canLongCastle = state.canLongCastle
+        
+    def __eq__(self, state):
+        """Compare two states are equal"""
+        if self.canShortCastle != state.canShortCastle:
+            return False
+        if self.canLongCastle != state.canLongCastle:
+            return False
+        return True
+    
+    def __ne__(self, state):
+        return not self == state
+
+class Move:
+    """
+    """
+    # List of pieces that have moved
+    # (start, end, piece)
+    # state = None for new pieces
+    # end = None for taken pieces
+    moves  = []
+
+    # Flag to show if the opponent is in check
+    opponentInCheck = False
+    
+    # Flag to show if the opponent can move
+    opponentCanMove = False
+    
+    # Flag to show if this move has caused a three-fold repetition
+    threeFoldRepetition = False
+    
+    # Flag to show if this is the fiftith move in a row
+    # without a pawn being moved or a piece taken
+    fiftyMoveRule = False
 
 class ChessBoardState:
     """
     """    
     # The move number 
-    moveNumber = 0
+    moveNumber      = 0
     
     # A dictionary of piece by location
-    squares = None
+    squares         = None
     
     # The dead pieces in the order they were killed
-    casualties = None
+    casualties      = None
     
     # The move that got us to this state
-    lastMove = None
+    lastMove        = None
 
-    # If the last move was a pawn martch The location where it can be taken by en-passant
+    # If the last move was a pawn march the location where it can be taken by en-passant
     enPassantSquare = None
 
     # The state of the players
-    whiteState = None
-    blackState = None
+    whiteState      = None
+    blackState      = None
+    
+    # Counter of the number of moves taken made where no pawn has moved
+    # and no piece has been taken
+    fiftyMoveCount  = 0
+    
+    # Flag to show if the previous move has caused a three fold repition
+    threeFoldRepetition = False
+    
+    whiteBitBoard = 0
+    blackBitBoard = 0
+    allBitBoard = 0
 
     def __init__(self, lastState = None):
         """Constuctor for storing the state of a chess board.
@@ -188,6 +233,9 @@ class ChessBoardState:
         """
         # Start empty
         if lastState is None:
+            self.whiteBitBoard = 0
+            self.blackBitBoard = 0
+            self.allBitBoard = 0
             self.moveNumber = 0
             self.squares = {}
             self.casualties = []
@@ -199,13 +247,26 @@ class ChessBoardState:
             self.moveNumber = 0
             self.squares = {}
             self.casualties = []
+            self.whiteBitBoard = 0
+            self.blackBitBoard = 0
+            self.allBitBoard = 0
             for coord, piece in lastState.iteritems():
                 self.squares[coord] = piece
+                field = bitboard.LOCATIONS[bitboard.getIndex(coord)]
+                if piece.getColour() is WHITE:
+                    self.whiteBitBoard |= field
+                else:
+                    self.blackBitBoard |= field
+                self.allBitBoard |= field
+
             self.whiteState = ChessPlayerState()
             self.blackState = ChessPlayerState()
 
         # Copy exisiting state
         elif isinstance(lastState, ChessBoardState):
+            self.whiteBitBoard = lastState.whiteBitBoard
+            self.blackBitBoard = lastState.blackBitBoard
+            self.allBitBoard = lastState.allBitBoard
             self.moveNumber = lastState.moveNumber + 1
             self.squares = lastState.squares.copy()
             self.casualties = lastState.casualties[:]
@@ -213,14 +274,34 @@ class ChessBoardState:
             self.enPassantSquare = lastState.enPassantSquare
             self.whiteState = ChessPlayerState(lastState.whiteState)
             self.blackState = ChessPlayerState(lastState.blackState)
+            self.fiftyMoveCount = lastState.fiftyMoveCount
 
         else:
             raise TypeError('ChessBoardState(oldState) or ChessBoardState({(0,0):pawn, ...})')
+        
+    def addPiece(self, location, colour, pieceType):
+        # Create the piece
+        piece = ChessPiece(colour, pieceType)
+
+        # Put the piece in it's initial location
+        assert(self.squares.has_key(location) is False)
+        assert(type(location) == str)
+        self.squares[location] = piece
+        
+        # Update the bitboards
+        field = bitboard.LOCATIONS[bitboard.getIndex(location)]
+        if colour is WHITE:
+            self.whiteBitBoard |= field
+        else:
+            self.blackBitBoard |= field
+        self.allBitBoard |= field
+
+        return piece
 
     def getPiece(self, location):
         """Get the piece at a given location.
         
-        'location' is the location in LAN format (string).
+        'location' is the location in algebraic format (string).
         
         Return the piece at this location or None if there is no piece there.
         """
@@ -229,63 +310,6 @@ class ChessBoardState:
             return self.squares[location]
         except KeyError:
             return None
-
-    def __range(self, start, end):
-        """
-        """
-        startNum = ord(start)
-        endNum = ord(end)
-        rangeString = ''
-        if startNum > endNum:
-            step = -1
-            a = startNum
-            b = endNum - 1
-        else:
-            step = 1
-            a = startNum
-            b = endNum + 1
-        for i in xrange(a, b, step):
-            rangeString += chr(i)
-        return rangeString
-    
-    def __checkOrtho(self, rankRange, fileRange):
-        """Check if the space between two squares is empty.
-        
-        'start' is the first square in the form (file,rank).
-        'end' is the last square in the form (file,rank).
-        
-        Return True if the squares between these two are empty and the move is a
-        valid orthogonal move.
-        """
-        if len(rankRange) == 1:
-            for file in fileRange[1:-1]:
-                coord = rankRange[0] + file
-                if self.squares.has_key(coord):
-                    return False
-            
-        elif len(fileRange) == 1:
-            for rank in rankRange[1:-1]:
-                coord = rank + fileRange[0]
-                if self.squares.has_key(coord):
-                    return False
-            
-        else:
-            return False
-
-        return True
-
-    def __checkDiag(self, rankRange, fileRange):
-        # For diagonal moves change in co-ordinates must be identical
-        if len(rankRange) != len(fileRange):
-            return False
-        
-        # Check the squares between the start and end moves
-        for i in xrange(1, len(rankRange) - 1):
-            coord = rankRange[i] + fileRange[i]
-            if self.squares.has_key(coord):
-                return False
-        
-        return True
     
     def inCheck(self, colour):
         """Test if the player with the given colour is in check.
@@ -299,24 +323,34 @@ class ChessBoardState:
             # Not our king
             if king.getType() != KING or king.getColour() != colour:
                 continue
-            
-            # See if any enemy pieces can take this king
-            for enemyCoord, enemyPiece in self.squares.iteritems():
-                # Ignore friendly pieces
-                if enemyPiece.getColour() == colour:
-                    continue
-
-                # See if this piece can take the king
-                board = ChessBoardState(self)
-                (result, moves) = board.movePiece(enemyPiece.getColour(), enemyCoord, kingCoord,
-                                                 testCheck = False, testCheckMate = False,
-                                                 applyMove = False)
-                if result is not MOVE_RESULT_ILLEGAL:
-                    return True
+            if self.squareUnderAttack(colour, kingCoord):
+                return True
 
         return False
     
-    def inCheckMate(self, colour):
+    def squareUnderAttack(self, colour, location):
+        """Check if a square is under attack according to FIDE chess rules (Article 3.1)
+        
+        'colour' is the colour considered to own this square.
+        'location' is the location to check.
+        
+        Return True if there is an enemy piece that can attach this square.
+        """
+        # See if any enemy pieces can take this king
+        for enemyCoord, enemyPiece in self.squares.iteritems():
+            # Ignore friendly pieces
+            if enemyPiece.getColour() == colour:
+                continue
+
+            # See if this piece can take
+            board = ChessBoardState(self)
+            move = board.movePiece(enemyPiece.getColour(), enemyCoord, location, testCheck = False, applyMove = False)
+            if move is not None:
+                return True
+            
+        return False
+
+    def canMove(self, colour):
         """Test if the player with the given colour is in checkmate.
         
         'colour' is the colour of the player to check.
@@ -333,50 +367,74 @@ class ChessBoardState:
             for rank in 'abcdefgh':
                 for file in '12345678':
                     board = ChessBoardState(self)
-                    (result, moves) = board.movePiece(colour, coord, rank + file,
-                                                     testCheckMate = False, applyMove = False)
-                    if result is not MOVE_RESULT_ILLEGAL:
-                        return False
+                    move = board.movePiece(colour, coord, rank + file, applyMove = False)
+                    if move is not None:
+                        return True
 
-        return True
+        return False
     
-    def movePiece(self, colour, start, end, promotionType = QUEEN, testCheck = True, testCheckMate = True, allowSuicide = False, applyMove = True):
+    allowedMoves = {WHITE: {PAWN:   bitboard.WHITE_PAWN_MOVES,
+                            ROOK:   bitboard.ROOK_MOVES,
+                            BISHOP: bitboard.BISHOP_MOVES,
+                            KNIGHT: bitboard.KNIGHT_MOVES,
+                            QUEEN:  bitboard.QUEEN_MOVES,
+                            KING:   bitboard.WHITE_KING_MOVES},
+                    BLACK: {PAWN:   bitboard.BLACK_PAWN_MOVES,
+                            ROOK:   bitboard.ROOK_MOVES,
+                            BISHOP: bitboard.BISHOP_MOVES,
+                            KNIGHT: bitboard.KNIGHT_MOVES,
+                            QUEEN:  bitboard.QUEEN_MOVES,
+                            KING:   bitboard.BLACK_KING_MOVES}}
+    
+    def movePiece(self, colour, start, end, promotionType = QUEEN, testCheck = True, allowSuicide = False, applyMove = True):
         """Move a piece.
         
         'colour' is the colour of the player moving.
-        'start' is a the location to move from in LAN format (string).
-        'end' is a the location to move to in LAN format (string).
+        'start' is a the location to move from in algebraic format (string).
+        'end' is a the location to move to in algebraic format (string).
         'promotionType' is the type of piece to promote to if required.
         'testCheck' is a flag to control if the opponent will be in check after this move.
-        'testCheckMate' is a flag to control if the opponent will be in checkmate after this move.
         'allowSuicide' if True means a move is considered valid even
                        if it would put the moving player in check.
         'applyMove' is a flag to control if the move is applied to the board (True) or just tested (False).
         
-        Return a tuple containing the result of this move and the pieces moved in the form (result, moves).
+        Returns the pieces moved in the form (result, moves).
         The moves are a list containing tuples of the form (piece, start, end). If a piece was removed
         'end' is None. If the result is successful the pieces on the board are modified.
+        If the move is illegal None is returned.
         """
         assert(promotionType is not KING)
         assert(type(start) is str and len(start) == 2)
         assert(type(end) is str and len(end) == 2)
-        
-        # A list of pieces that have been moved
-        moves = []
-        
+
         # Get the piece to move
         try:
             piece = self.squares[start]
         except KeyError:
-            return (MOVE_RESULT_ILLEGAL, None)
+            return None
         if piece.getColour() is not colour:
-            return (MOVE_RESULT_ILLEGAL, None)
+            return None
+
+        # BitBoard indexes
+        startIndex = bitboard.getIndex(start)
+        endIndex = bitboard.getIndex(end)
         
+        # Check if this move is possible
+        field = self.allowedMoves[colour][piece.getType()]
+        if field[startIndex] & bitboard.LOCATIONS[endIndex] == 0:
+            return None
+            
+        # Check if there are any pieces between the two moves
+        # Note this only checks horizontal, vertical and diagonal moves so
+        # has no effect on the knights
+        if self.allBitBoard & bitboard.INBETWEEN_SQUARES[startIndex][endIndex]:
+            return None
+
         # Get the players
-        if piece.getColour() is WHITE:
+        if colour is WHITE:
             enemyColour = BLACK
             playerState = self.whiteState
-        elif piece.getColour() is BLACK:
+        elif colour is BLACK:
             enemyColour = WHITE
             playerState = self.blackState
         else:
@@ -384,31 +442,32 @@ class ChessBoardState:
         
         # Copy the player state before it is changed
         originalPlayerState = ChessPlayerState(playerState)
+        
+        whiteBitBoard = self.whiteBitBoard
+        blackBitBoard = self.blackBitBoard
+        allBitBoard = self.allBitBoard
 
         # Check if moving onto another piece (must be enemy)
         try:
             target = self.squares[end]
-            if target.getColour() == piece.getColour():
-                return (MOVE_RESULT_ILLEGAL, None)
+            if target.getColour() == colour:
+                return None
         except KeyError:
             target = None
         victim = target
         
-        # Get the range of rank and files being moved over
-        rankRange = self.__range(start[0], end[0])
-        fileRange = self.__range(start[1], end[1])
-        assert(len(rankRange) >= 1)
-        assert(len(fileRange) >= 1)
-
         # Get the rank relative to this colour's start rank
-        if piece.getColour() == BLACK:
+        if colour == BLACK:
             baseFile = '8'
         else:
             baseFile = '1'
             
         # The new en-passant square
         enPassantSquare = None
-
+        
+        # A list of pieces that have been moved
+        moves = []
+        
         # Check move is valid:
 
         # King can move one square or castle
@@ -416,96 +475,64 @@ class ChessBoardState:
             # Castling:
             shortCastle = ('e' + baseFile, 'g' + baseFile)
             longCastle  = ('e' + baseFile, 'c' + baseFile)
-            if (playerState.canShortCastle and (start, end) == shortCastle) or (playerState.canLongCastle and (start, end) == longCastle):
+            if (start, end) == shortCastle or (start, end) == longCastle:
+                # Cannot castle out of check
+                if self.inCheck(colour):
+                    return None
+
+                # Cannot castle if required pieces have moved
                 if end[0] == 'c':
+                    if not playerState.canLongCastle:
+                        return None
                     rookLocation = 'a' + baseFile
                     rookEndLocation = 'd' + baseFile
-                    kingRanks = 'cd'
                 else:
+                    if not playerState.canShortCastle:
+                        return None
                     rookLocation = 'h' + baseFile
                     rookEndLocation = 'f' + baseFile
-                    kingRanks = 'fg'
 
                 # Check rook is still there
                 try:
                     rook = self.squares[rookLocation]
                 except KeyError:
-                    return (MOVE_RESULT_ILLEGAL, None)
+                    return None
                 if rook is None or rook.getType() is not ROOK or rook.getColour() != piece.getColour():
-                    return (MOVE_RESULT_ILLEGAL, None)
+                    return None
 
                 # Check no pieces between the rook and king
-                for rank in kingRanks:
-                    if self.squares.has_key(rank + start[1]):
-                        return (MOVE_RESULT_ILLEGAL, None)
+                a = bitboard.getIndex(rookLocation)
+                b = bitboard.getIndex(rookEndLocation)
+                if self.allBitBoard & bitboard.INBETWEEN_SQUARES[a][b]:
+                    return None
+                
+                # The square the king moves over cannot be attackable
+                if self.squareUnderAttack(colour, rookEndLocation):
+                    return None
 
-                # Test if in check on any of the squares the king moves
-                # through by filling these squares with cloned kings
-                for rank in kingRanks:
-                    self.squares[rank + start[1]] = piece
-                inCheck =  self.inCheck(piece.getColour())
-                for rank in kingRanks:
-                    self.squares.pop(rank + start[1])
+                # Rook moves with the king
+                moves.append((rook, rookLocation, rookEndLocation, False))
 
-                if inCheck:
-                    return (MOVE_RESULT_ILLEGAL, None)
-
-                # Move rook and record so can be undone
-                moves.append((rook, rookLocation, rookEndLocation))
-
-            # Otherwise can only move one square
-            else:
-                if len(rankRange) > 2 or len(fileRange) > 2:
-                    return (MOVE_RESULT_ILLEGAL, None)
-
-            # Can no longer castle if moved the king
+            # Can no longer castle once the king is moved
             playerState.canShortCastle = False
             playerState.canLongCastle = False
             
-            moves.append((piece, start, end))
+            moves.append((piece, start, end, False))
                 
-        # Queen moves orthogonal or diagonal
-        elif piece.getType() is QUEEN:
-            if (not self.__checkOrtho(rankRange, fileRange)) and (not self.__checkDiag(rankRange, fileRange)):
-                return (MOVE_RESULT_ILLEGAL, None)
-            moves.append((piece, start, end))
-
         # Rooks move orthogonal
         elif piece.getType() is ROOK:
-            if not self.__checkOrtho(rankRange, fileRange):
-                return (MOVE_RESULT_ILLEGAL, None)
-            
             # Can no longer castle once have move the required rook
             if start == 'a' + baseFile:
                 playerState.canLongCastle = False
             elif start == 'h' + baseFile:
                 playerState.canShortCastle = False
-            moves.append((piece, start, end))
-
-        # Bishops move diagonal
-        elif piece.getType() is BISHOP:
-            if not self.__checkDiag(rankRange, fileRange):
-                return (MOVE_RESULT_ILLEGAL, None)
-            moves.append((piece, start, end))
-
-        # Knights can move through other pieces
-        elif piece.getType() is KNIGHT:
-            if (len(rankRange) - 1) * (len(fileRange) - 1) != 2:
-                return (MOVE_RESULT_ILLEGAL, None)
-            moves.append((piece, start, end))
+            moves.append((piece, start, end, False))
 
         # On base rank pawns move on or two squares forwards.
         # Pawns take other pieces diagonally (1 square).
         # Pawns can take other pawns moving two ranks using 'en passant'.
         # Pawns are promoted on reaching the other side of the board.
         elif piece.getType() is PAWN:
-            # Pawns must move forwards
-            if colour is WHITE:
-                if end[1] < start[1]:
-                    return (MOVE_RESULT_ILLEGAL, None)
-            elif start[1] < end[1]:
-                return (MOVE_RESULT_ILLEGAL, None)
-
             # Calculate the files that pawns start on and move over on marches
             if baseFile == '1':
                 pawnFile  = '2'
@@ -515,45 +542,36 @@ class ChessBoardState:
                 pawnFile  = '7'
                 marchFile = '6'
                 farFile   = '1'
-            
-            # Moving one square forwards with nothing in the way
-            if len(rankRange) == 1 and len(fileRange) == 2 and victim is None:
-                pass
-
-            # Moving two squares forward from start rank (march)
-            elif len(rankRange) == 1 and start[1] == pawnFile and len(fileRange) == 3 and victim is None:
-                # If two steps check nothing inbetween
-                if not self.__checkOrtho(rankRange, fileRange):
-                    return (MOVE_RESULT_ILLEGAL, None)
                 
-                # The square we moved over can be attacked by en-passant
+            # When marching the square that is moved over can be taken by en-passant
+            if (start[1] == '2' and end[1] == '4') or (start[1] == '7' and end[1] == '5'):
                 enPassantSquare = start[0] + marchFile
     
-            # Moving diagonally forwards to take another piece
-            elif len(rankRange) == 2 and len(fileRange) == 2:
+            # Can only take when moving diagonally
+            if start[0] != end[0]:
+                # FIXME: Set victim
                 # We either need a victim or be attacking the en-passant square
                 if victim is None:
                     if end != self.enPassantSquare:
-                        return (MOVE_RESULT_ILLEGAL, None)
+                        return None
                     
                     # Kill the pawn that moved
-                    moves.append((self.lastMove[0], self.lastMove[2], None))
-
-            else:
-                return (MOVE_RESULT_ILLEGAL, None)
+                    moves.append((self.lastMove[0], self.lastMove[2], self.lastMove[2], True))
+            elif victim is not None:
+                return None
             
             # Promote pawns when they hit the far rank
             if end[1] == farFile:
                 # Delete the current piece and create a new piece
-                moves.append((piece, start, None))
-                moves.append((ChessPiece(piece.getColour(), promotionType), None, end))
+                moves.append((piece, start, end, True))
+                moves.append((ChessPiece(colour, promotionType), None, end, False))
             else:
-                moves.append((piece, start, end))
+                moves.append((piece, start, end, False))
 
-        # Unknown piece
+        # Other pieces are well behaved
         else:
-            assert(False)
-            
+            moves.append((piece, start, end, False))
+
         # Store this move
         oldLastMove = self.lastMove
         self.lastMove = (piece, start, end)
@@ -562,49 +580,56 @@ class ChessBoardState:
 
         # Delete a victim
         if victim is not None:
-            moves.append((victim, end, None))
+            moves.append((victim, end, end, True))
             
         # Move the pieces:
 
         # Remove the moving pieces from the board
-        for (p, s, e) in moves:
-            if s is not None:
-                self.squares.pop(s)
+        for (p, s, e, d) in moves:
+            if s is None:
+                continue
+            self.squares.pop(s)
+            
+            field = bitboard.LOCATIONS[bitboard.getIndex(s)]
+            self.whiteBitBoard &= ~field
+            self.blackBitBoard &= ~field
+            self.allBitBoard &= ~field
                 
         # Put pieces in their new locations
-        for (p, s, e) in moves:
-            if e is not None:
-                self.squares[e] = p
+        for (p, s, e, d) in moves:
+            if d:
+                continue
+            self.squares[e] = p
+
+            field = bitboard.LOCATIONS[bitboard.getIndex(e)]
+            if p.getColour() is WHITE:
+                self.whiteBitBoard |= field
+            else:
+                self.blackBitBoard |= field
+            self.allBitBoard |= field
 
         # Test for check and checkmate
-        result = MOVE_RESULT_ALLOWED
+        result = moves
         if testCheck:
             # Cannot move into check, if would be then undo move
-            if self.inCheck(piece.getColour()):
+            if self.inCheck(colour):
                 applyMove = False
-                result = MOVE_RESULT_ILLEGAL
-            # Test if the oponent is in check
-            else:
-                if self.inCheck(enemyColour):
-                    if testCheckMate and self.inCheckMate(enemyColour):
-                        result = MOVE_RESULT_OPPONENT_CHECKMATE
-                    else:
-                        result = MOVE_RESULT_OPPONENT_CHECK
+                result = None
 
         # Undo the moves if only a test
         if applyMove is False:
             # Empty any squares moved into
-            for (p, s, e) in moves:
-                if e is not None:
+            for (p, s, e, d) in moves:
+                if not d:
                     self.squares.pop(e)
                         
             # Put pieces back into their original locatons
-            for (p, s, e) in moves:
+            for (p, s, e, d) in moves:
                 if s is not None:
                     self.squares[s] = p
 
             # Undo player state
-            if piece.getColour() == WHITE:
+            if colour == WHITE:
                 self.whiteState = originalPlayerState
             else:
                 self.blackState = originalPlayerState
@@ -612,13 +637,47 @@ class ChessBoardState:
             # Undo stored move and en-passant location
             self.lastMove = oldLastMove
             self.enPassantSquare = oldEnPassantSquare
+
+            # Revert bitboards
+            self.whiteBitBoard = whiteBitBoard
+            self.blackBitBoard = blackBitBoard
+            self.allBitBoard = allBitBoard
             
         else:
             # Remember the casualties
             if victim is not None:
                 self.casualties.append(victim)
+
+            # If a piece taken or a pawn moved 50 move count is reset
+            if victim is not None or piece.getType() is PAWN:
+                self.fiftyMoveCount = 0
+            else:
+                self.fiftyMoveCount += 1
+                
+        return result
+
+    def __eq__(self, board):
+        """Compare if two boards are the same"""
+        if len(self.squares) != len(board.squares):
+            return False
+
+        if self.enPassantSquare != board.enPassantSquare:
+            return False
+        if self.whiteState != board.whiteState or self.blackState != board.blackState:
+            return False
         
-        return (result, moves)
+        for (coord, piece) in self.squares.iteritems():
+            try:
+                p = board.squares[coord]
+            except KeyError:
+                return False
+            if piece.getType() is not p.getType() or piece.getColour() is not p.getColour():
+                return False
+            
+        return True
+    
+    def __ne__(self, board):
+        return not self == board
         
     def __str__(self):
         """Covert the board state to a string"""
@@ -680,12 +739,13 @@ class ChessBoard:
         self.__boardStates = []
         self.__resetBoard()
         
-    def onPieceMoved(self, piece, start, end):
+    def onPieceMoved(self, piece, start, end, delete):
         """Called when a piece is moved on the chess board.
         
         'piece' is the piece being moved.
         'start' is the start location of the piece (tuple (file,rank) or None if the piece is being created.
-        'end' is the end location of the piece (tuple (file,rank) or None if the piece is being created.
+        'end' is the end location of the piece (tuple (file,rank)
+        'delete' is a flag to show if the piece should be deleted when it arrives there (boolean).
         """
         pass
 
@@ -694,7 +754,7 @@ class ChessBoard:
     def getPiece(self, location, moveNumber = -1):
         """Get the piece at a given location.
         
-        'location' is the board location to check in LAN format (string).
+        'location' is the board location to check in algebraic format (string).
         'moveNumber' is the move to get the pieces from (integer).
         
         Return the piece (ChessPiece) at this location or None if there is no piece there.
@@ -728,43 +788,64 @@ class ChessBoard:
         """Test if a move is allowed.
         
         'colour' is the colour of the player moving.
-        'start' is a the location to move from in LAN format (string).
-        'end' is a the location to move to in LAN format (string).
+        'start' is a the location to move from in algebraic format (string).
+        'end' is a the location to move to in algebraic format (string).
         'allowSuicide' if True means a move is considered valid even
                        if it would put the moving player in check. This is
                        provided for SAN move calculation.
         
-        Return the move result (MOVE_RESULT_*)
+        Returns the same as movePiece() except the move is not recorded.
         """
-        assert(self.__inCallback is False)
-        
-        state = ChessBoardState(self.__boardStates[-1])
-        (result, moves) = state.movePiece(colour, start, end, promotionType = promotionType, allowSuicide = allowSuicide, applyMove = False)
-        return result
-        
-    def movePiece(self, colour, start, end, promotionType = QUEEN):
+        return self.movePiece(colour, start, end, promotionType = promotionType, allowSuicide = allowSuicide, test = True)
+
+    def movePiece(self, colour, start, end, promotionType = QUEEN, allowSuicide = False, test = False):
         """Move a piece.
         
         'colour' is the colour of the player moving.
-        'start' is a the location to move from in LAN format (string).
-        'end' is a the location to move to in LAN format (string).
+        'start' is a the location to move from in algebraic format (string).
+        'end' is a the location to move to in algebraic format (string).
+        'allowSuicide' if True means a move is considered valid even
+                       if it would put the moving player in check. This is
+                       provided for SAN move calculation.
         
-        Return the result of the move (MOVE_RESULT_*).
+        Return information about the move performed (Move) or None if the move is illegal.
         """
         assert(self.__inCallback is False)
         
         state = ChessBoardState(self.__boardStates[-1])
-        (result, moves) = state.movePiece(colour, start, end, promotionType = promotionType)
-        if result is MOVE_RESULT_ILLEGAL:
-            return result
-        
+        moves = state.movePiece(colour, start, end, promotionType = promotionType, allowSuicide = False)
+        if moves is None:
+            return None
+
         # Notify the child class of the moves
-        for (piece, start, end) in moves:
-            self.__onPieceMoved(piece, start, end)
+        if not test:
+            for (piece, start, end, delete) in moves:
+                self.__onPieceMoved(piece, start, end, delete)
+
+        # Check if this board state has been repeated three times
+        sameCount = 0
+        for s in self.__boardStates:
+            if state == s:
+                sameCount += 1
+                if sameCount >= 2:
+                    state.threeFoldRepetition = True
+                    break
+                
+        if colour is WHITE:
+            opponentColour = BLACK
+        else:
+            opponentColour = WHITE
 
         # Push the board state
-        self.__boardStates.append(state)
-        return result
+        if not test:
+            self.__boardStates.append(state)
+        move = Move()
+        move.moves = moves
+        move.opponentInCheck = state.inCheck(opponentColour)
+        move.opponentCanMove = state.canMove(opponentColour)
+        move.threeFoldRepetition = state.threeFoldRepetition
+        move.fiftyMoveRule = state.fiftyMoveCount >= 50
+        return move
 
     def __str__(self):
         """Returns a representation of the current board state"""
@@ -772,11 +853,11 @@ class ChessBoard:
     
     # Private methods
     
-    def __onPieceMoved(self, piece, start, end):
+    def __onPieceMoved(self, piece, start, end, delete):
         """
         """
         self.__inCallback = True
-        self.onPieceMoved(piece, start, end)
+        self.onPieceMoved(piece, start, end, delete)
         self.__inCallback = False
     
     def __addPiece(self, state, colour, pieceType, location):
@@ -785,19 +866,13 @@ class ChessBoard:
         'state' is the board state to add the piece into.
         'colour' is the colour of the piece.
         'pieceType' is the type of piece to add.
-        'location' is the start location of the piece in LAN format (string).
+        'location' is the start location of the piece in algebraic format (string).
         """
-        # Create the piece
-        piece = ChessPiece(colour, pieceType)
+        piece = state.addPiece(location, colour, pieceType)
         self.__pieces.append(piece)
         
-        # Put the piece in it's initial location
-        assert(state.squares.has_key(location) is False)
-        assert(type(location) == str)
-        state.squares[location] = piece
-
         # Notify a child class the piece creation
-        self.__onPieceMoved(piece, None, location)
+        self.__onPieceMoved(piece, None, location, False)
 
     def __resetBoard(self):
         """Set up the chess board.
@@ -807,9 +882,9 @@ class ChessBoard:
         """
         # Delete any existing pieces
         for piece in self.__pieces:
-            self.__onPieceMoved(piece, piece.getLocation(), None) # FIXME: getLocation() not defined
+            self.__onPieceMoved(piece, piece.getLocation(), piece.getLocation(), True) # FIXME: getLocation() not defined
         self.__pieces = []
-
+        
         # Make the board
         initialState = ChessBoardState()
         self.__boardStates = [initialState]

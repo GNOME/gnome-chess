@@ -8,6 +8,21 @@ __copyright__ = 'Copyright 2005-2006  Robert Ancell'
 import chess.board
 import chess.san
 
+# Game results
+RESULT_IN_PROGRESS         = '*'
+RESULT_WHITE_WINS          = '1-0'
+RESULT_BLACK_WINS          = '0-1'
+RESULT_DRAW                = '1/2-1/2'
+
+# Reasons for the result
+RULE_CHECKMATE             = 'CHECKMATE'
+RULE_STALEMATE             = 'STALEMATE'
+RULE_TIMEOUT               = 'TIMEOUT'
+RULE_FIFTY_MOVES           = 'FIFTY_MOVES'
+RULE_THREE_FOLD_REPETITION = 'THREE_FOLD_REPETITION'
+RULE_INSUFFICIENT_MATERIAL = 'INSUFFICIENT_MATERIAL'
+RULE_RESIGN                = 'RESIGN'
+
 class ChessMove:
     """
     """
@@ -33,7 +48,12 @@ class ChessMove:
     sanMove    = ''
 
     # The game result after this move
-    result     = None
+    opponentInCheck = False
+    opponentCanMove = False
+    
+    # If this move can be used as a resignation
+    fiftyMoveRule = False
+    threeFoldRepetition = False
 
 class ChessPlayer:
     """
@@ -57,12 +77,13 @@ class ChessPlayer:
 
     # Methods to extend
 
-    def onPieceMoved(self, piece, start, end):
+    def onPieceMoved(self, piece, start, end, delete):
         """Called when a chess piece is moved.
         
         'piece' is the piece that has been moved (chess.board.ChessPiece).
         'start' is the location the piece in LAN format (string) or None if the piece has been created.
-        'end' is the location the piece has moved to in LAN format (string) or None if the piece has been deleted.
+        'end' is the location the piece has moved to in LAN format (string).
+        'delete' is a flag to show if the piece should be deleted when it arrives there (boolean).
         """
         pass
     
@@ -73,11 +94,11 @@ class ChessPlayer:
         'move' is the record for this move (ChessMove).
         """
         pass
-    
-    def onGameEnded(self, winningPlayer = None):
+
+    def onGameEnded(self, game):
         """Called when a chess game has ended.
         
-        'winningPlayer' is the player that won or None if the game was a draw.
+        'game' is the game that has ended (Game).
         """
         pass
 
@@ -90,7 +111,7 @@ class ChessPlayer:
         """
         return self.__name
 
-    def readyToMove(self):
+    def isReadyToMove(self):
         """
         """
         return self.__readyToMove
@@ -101,10 +122,20 @@ class ChessPlayer:
         return self.__game.canMove(self, start, end, promotionType)
 
     def move(self, move):
-        """
+        """Move a piece.
+        
+        'move' is the move to make in Normal/Long/Standard Algebraic format (string).
         """
         self.__game.move(self, move)
         
+    def endMove(self):
+        """Complete this players turn"""
+        self.__game.endMove(self)
+        
+    def resign(self):
+        """Resign from the game"""
+        self.__game.resign(self)
+
     # Private methods
     
     def _setGame(self, game):
@@ -113,6 +144,8 @@ class ChessPlayer:
         self.__game = game
         
     def _setReadyToMove(self, readyToMove):
+        if self.__readyToMove == readyToMove:
+            return
         self.__readyToMove = readyToMove
         if readyToMove is True:
             self.readyToMove()
@@ -130,9 +163,9 @@ class ChessGameBoard(chess.board.ChessBoard):
         self.__game = game
         chess.board.ChessBoard.__init__(self)
 
-    def onPieceMoved(self, piece, start, end):
+    def onPieceMoved(self, piece, start, end, delete):
         """Called by chess.board.ChessBoard"""
-        self.__game._onPieceMoved(piece, start, end)
+        self.__game._onPieceMoved(piece, start, end, delete)
 
 class ChessGameSANConverter(chess.san.SANConverter):
     """
@@ -153,11 +186,6 @@ class ChessGameSANConverter(chess.san.SANConverter):
     __sanToType = {}
     for (a, b) in __typeToSAN.iteritems():
         __sanToType[b] = a
-        
-    __resultToSAN = {chess.board.MOVE_RESULT_ILLEGAL: False,
-                     chess.board.MOVE_RESULT_ALLOWED: True,
-                     chess.board.MOVE_RESULT_OPPONENT_CHECK: chess.san.SANConverter.CHECK,
-                     chess.board.MOVE_RESULT_OPPONENT_CHECKMATE: chess.san.SANConverter.CHECKMATE}
         
     __board = None
         
@@ -185,9 +213,15 @@ class ChessGameSANConverter(chess.san.SANConverter):
     
     def testMove(self, colour, start, end, promotionType, allowSuicide = False):
         """Called by chess.san.SANConverter"""
-        moveResult = self.__board.testMove(self.__sanToColour[colour], start, end, self.__sanToType[promotionType], allowSuicide)
+        move = self.__board.testMove(self.__sanToColour[colour], start, end, self.__sanToType[promotionType], allowSuicide)
+        if move is None:
+            return False
         
-        return self.__resultToSAN[moveResult]
+        if move.opponentInCheck:
+            if not move.opponentCanMove:
+                return chess.san.SANConverter.CHECKMATE
+            return chess.san.SANConverter.CHECK
+        return True
 
 class ChessGame:
     """
@@ -207,12 +241,14 @@ class ChessGame:
     # The game state (started and player to move)
     __started = False
     __currentPlayer = None
-
-    # Flag to show if calling a player and the queued up moves
-    __notifyingPlayer = False
-    __queuedMoves = None
     
     __moves = None
+    
+    __inCallback = False
+    __queuedCalls = None
+    
+    result  = RESULT_IN_PROGRESS
+    rule    = None
     
     def __init__(self):
         """Game constructor"""
@@ -221,6 +257,7 @@ class ChessGame:
         self.__board = ChessGameBoard(self)
         self.__sanConverter = ChessGameSANConverter(self.__board)
         self.__moves = []
+        self.__queuedCalls = []
         
     def getAlivePieces(self, moveNumber = -1):
         """Get the alive pieces on the board.
@@ -254,6 +291,10 @@ class ChessGame:
         self.__whitePlayer = player
         self.__connectPlayer(player)
         
+    def getCurrentPlayer(self):
+        """Get the player to move"""
+        return self.__currentPlayer
+        
     def getWhite(self):
         """Returns the current white player (player.Player)"""
         return self.__whitePlayer
@@ -283,6 +324,10 @@ class ChessGame:
         """
         self.__spectators.append(player)
         self.__connectPlayer(player)
+
+    def isStarted(self):
+        """Returns True if the game has been started"""
+        return self.__started
         
     def start(self, moves = []):
         """Start the game.
@@ -297,22 +342,24 @@ class ChessGame:
         #import network
         #self.x = network.GameReporter('Test Game', 12345)
         #print 'Reporting'
-        
-        # Set initial state
-        self.__queuedMoves = []
-        self.__currentPlayer = self.__whitePlayer
-        
+
         # Load starting moves
-        try:
-            for move in moves:
-                self.move(self.__currentPlayer, move)
-        except chess.san.Error, e:
-            print e
-            
+        self.__currentPlayer = self.__whitePlayer
+        for move in moves:
+            self.move(self.__currentPlayer, move)
+            if self.__currentPlayer is self.__whitePlayer:
+                self.__currentPlayer = self.__blackPlayer
+            else:
+                self.__currentPlayer = self.__whitePlayer
+
         self.__started = True
+        
+        self.startLock()
         
         # Get the next player to move
         self.__currentPlayer._setReadyToMove(True)
+
+        self.endLock()
         
     def getSquareOwner(self, coord):
         """TODO
@@ -349,9 +396,9 @@ class ChessGame:
         else:
             assert(False)
 
-        moveResult = self.__board.testMove(colour, start, end, promotionType = promotionType)
-         
-        return moveResult is not chess.board.MOVE_RESULT_ILLEGAL
+        move = self.__board.testMove(colour, start, end, promotionType = promotionType)
+
+        return move is not None
     
     def move(self, player, move):
         """Get a player to make a move.
@@ -359,35 +406,38 @@ class ChessGame:
         'player' is the player making the move.
         'move' is the move to make in SAN or LAN format (string).
         """
-        self.__queuedMoves.append((player, move))
-        
-        # Don't process if still finishing the last move
-        if self.__notifyingPlayer:
+        if self.__inCallback:
+            self.__queuedCalls.append((self.move, (player, move)))
             return
         
-        while True:
-            try:
-                (movingPlayer, move) = self.__queuedMoves.pop(0)
-            except IndexError:
-                return
+        self.startLock()
+        
+        if player is not self.__currentPlayer:
+            print 'Player attempted to move out of turn'
+        else:
+            self._move(player, move)
 
-            if movingPlayer is not self.__currentPlayer:
-                print 'Player attempted to move out of turn'
-            else:
-                self.__notifyingPlayer = True
-                self._move(movingPlayer, move)
-                self.__notifyingPlayer = False
-            
+        self.endLock()
+        
+    def startLock(self):
+        assert(self.__inCallback is False)
+        self.__inCallback = True
+        
+    def endLock(self):
+        self.__inCallback = False
+        while len(self.__queuedCalls) > 0:
+            (call, args) = self.__queuedCalls[0]
+            self.__queuedCalls = self.__queuedCalls[1:]
+            call(*args)
+
     def _move(self, player, move):
         """
         """
         if self.__currentPlayer is self.__whitePlayer:
-            nextPlayer = self.__blackPlayer
             colour = chess.board.WHITE
         else:
-            nextPlayer = self.__whitePlayer
             colour = chess.board.BLACK
-
+        
         # If move is SAN process it as such
         try:
             (start, end, _, _, promotionType, _) = chess.lan.decode(colour, move)
@@ -414,51 +464,116 @@ class ChessGame:
         sanMove = self.__sanConverter.encodeSAN(start, end, promotionType)
         canMove = chess.lan.encode(colour, start, end, promotionType = promotion)
         moveResult = self.__board.movePiece(colour, start, end, promotionType)
-            
-        if moveResult is chess.board.MOVE_RESULT_ILLEGAL:
+
+        if moveResult is None:
             print 'Illegal move: ' + str(move)
             return
 
-        move = ChessMove()
+        m = ChessMove()
         if len(self.__moves) == 0:
-            move.number = 1
+            m.number = 1
         else:
-            move.number = self.__moves[-1].number + 1
-        move.player  = self.__currentPlayer
-        move.piece   = piece
-        move.victim  = victim
-        move.start   = start
-        move.end     = end
-        move.canMove = canMove
-        move.sanMove = sanMove
-        move.result  = moveResult
-        self.__moves.append(move)
+            m.number = self.__moves[-1].number + 1
+        m.player              = self.__currentPlayer
+        m.piece               = piece
+        m.victim              = victim
+        m.start               = start
+        m.end                 = end
+        m.canMove             = canMove
+        m.sanMove             = sanMove
+        m.opponentInCheck     = moveResult.opponentInCheck
+        m.opponentCanMove     = moveResult.opponentCanMove
+        m.fiftyMoveRule       = moveResult.fiftyMoveRule
+        m.threeFoldRepetition = moveResult.threeFoldRepetition
+
+        self.__moves.append(m)
 
         # This player has now moved
         self.__currentPlayer._setReadyToMove(False)
-            
+
         # Inform other players of the result
         for player in self.__players:
-            player.onPlayerMoved(self.__currentPlayer, move)
-            
+            player.onPlayerMoved(self.__currentPlayer, m)
+
         # Check if the game has ended
-        # ...
-            
+        if not m.opponentCanMove:
+            if self.__currentPlayer is self.__whitePlayer:
+                self.result = RESULT_WHITE_WINS
+            else:
+                self.result = RESULT_BLACK_WINS
+            if m.opponentInCheck:
+                self.rule = RULE_CHECKMATE
+            else:
+                self.result = RESULT_DRAW
+                self.rule = RULE_STALEMATE
+        
+        if self.result is not RESULT_IN_PROGRESS:
+            for player in self.__players:
+                player.onGameEnded(self)
+
+    def endMove(self, player):
+        """
+        """
+        if self.__inCallback:
+            self.__queuedCalls.append((self.endMove, (player,)))
+            return
+        
+        if player is not self.__currentPlayer:
+            print 'Player attempted to move out of turn'
+            return
+        if player.move is None:
+            print "Ending move when haven't made one"
+            return
+
+        if self.__currentPlayer is self.__whitePlayer:
+            self.__currentPlayer = self.__blackPlayer
+        else:
+            self.__currentPlayer = self.__whitePlayer
+        
+        self.startLock()
+
         # Notify the next player they can move
-        self.__currentPlayer = nextPlayer
         if self.__started is True:
-            nextPlayer._setReadyToMove(True)
+            self.__currentPlayer._setReadyToMove(True)
+
+        self.endLock()
+
+    def resign(self, player):
+        """Get a player to resign.
+        
+        'player' is the player resigning.
+        """
+        if player is not self.__currentPlayer:
+            print 'Player attempted to resign out of turn'
+            return
+
+        self.result = RESULT_DRAW
+        self.rule = RULE_RESIGN
+        
+        # See if the resignation can be done without requesting
+        try:
+            move = self.__moves[-1]
+        except IndexError:
+            pass
+        else:
+            if move.fiftyMoveRule:
+                self.rule = RULE_FIFTY_MOVES
+            elif move.threeFoldRepetition:
+                self.rule = RULE_THREE_FOLD_REPETITION
+        
+        for player in self.__players:
+            player.onGameEnded(self)
 
     def getMoves(self):
         """
         """
         return self.__moves[:]
     
-    def end(self):
+    def abort(self):
         """End the game"""
         # Inform players
         for player in self.__players:
-            player.onGameEnded()
+            player.onGameEnded(self)
 
     # Private methods:
 
@@ -482,16 +597,16 @@ class ChessGame:
                     continue
 
                 # These are moves from nowhere to their current location
-                player.onPieceMoved(piece, None, coord)
-                
-    def _onPieceMoved(self, piece, start, end):
+                player.onPieceMoved(piece, None, coord, False)
+
+    def _onPieceMoved(self, piece, start, end, delete):
         """Called by the chess board"""
         
         # Notify all players of creations and deletions
         # NOTE: Normal moves are done above since the SAN moves are calculated before the move...
         # FIXME: Change this so the SAN moves are done afterwards...
         for player in self.__players:
-            player.onPieceMoved(piece, start, end)
+            player.onPieceMoved(piece, start, end, delete)
 
 class NetworkChessGame(ChessGame):
     """
