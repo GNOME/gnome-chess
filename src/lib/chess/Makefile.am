@@ -1,3 +1,5 @@
+SUBDIRS = fics
+
 glchessdir = $(pythondir)/glchess/chess
 glchess_PYTHON = \
 	board.py	\
