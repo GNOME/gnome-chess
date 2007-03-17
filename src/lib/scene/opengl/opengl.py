@@ -258,7 +258,9 @@ class Scene(glchess.scene.Scene):
         'angle' is the angle the board should be drawn at in degress (float, [0.0, 360.0]).
         """
         self.targetBoardAngle = angle
-        self._startAnimation()
+        if self.animating is False:
+            self.animating = True
+            self.feedback.startAnimation()
 
     def animate(self, timeStep):
         """Extends glchess.scene.Scene"""
