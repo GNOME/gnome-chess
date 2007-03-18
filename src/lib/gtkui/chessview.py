@@ -14,7 +14,7 @@ import glchess.game
 # It should really just throw ImportError
 try:
     import gtk.gtkgl
-    import OpenGL
+    import OpenGL.GL
 except (ImportError, RuntimeError):
     haveGLSupport = False
 else:
