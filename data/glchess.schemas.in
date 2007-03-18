@@ -36,6 +36,18 @@
         <long>A flag to enable fullscreen mode</long>
       </locale>
     </schema>
+    
+    <schema>
+      <key>/schemas/apps/glchess/promotion_type</key>
+      <applyto>/apps/glchess/promotion_type</applyto>
+      <owner>glchess</owner>
+      <type>string</type>
+      <default>human</default>
+      <locale name="C">
+        <short>The piece to promote pawns to</short>
+        <long>The piece to promote to when a human player moves a pawn to the far rank. Can be one of: 'queen', 'knight', 'rook', 'bishop'.</long>
+      </locale>
+    </schema>
 
     <schema>
       <key>/schemas/apps/glchess/show_3d</key>
@@ -48,7 +60,19 @@
         <long>A flag to enable 3D mode</long>
       </locale>
     </schema>
-    
+
+    <schema>
+      <key>/schemas/apps/glchess/show_move_hints</key>
+      <applyto>/apps/glchess/show_move_hints</applyto>
+      <owner>glchess</owner>
+      <type>bool</type>
+      <default>TRUE</default>
+      <locale name="C">
+        <short>A flag to enable move hints</short>
+        <long>A flag to enable move hints</long>
+      </locale>
+    </schema>
+
     <schema>
       <key>/schemas/apps/glchess/show_history</key>
       <applyto>/apps/glchess/show_history</applyto>
