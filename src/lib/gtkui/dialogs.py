@@ -843,9 +843,16 @@ class GtkSaveGameDialog:
         
     def _on_file_activated(self, widget):
         """Gtk+ callback"""
-        print '!'
         self._on_response(self.__gui.get_widget('save_dialog'), gtk.RESPONSE_OK)
 
+    def __setError(self, title, content):
+        """
+        """
+        self.firstExpose = True
+        self.__gui.get_widget('error_box').show()
+        self.__gui.get_widget('error_title_label').set_markup('<big><b>%s</b></big>' % title)
+        self.__gui.get_widget('error_description_label').set_markup('<i>%s</i>' % content)
+        
     def _on_response(self, dialog, responseId):
         """Gtk+ callback"""
         chooser = self.__gui.get_widget('filechooser')
@@ -853,6 +860,9 @@ class GtkSaveGameDialog:
         if responseId == gtk.RESPONSE_OK:
             # Append .pgn to the end if not provided
             fname = chooser.get_filename()
+            if fname is None:
+                self.__setError(gettext.gettext('Please enter a file name'), '')
+                return
             if fname[-4:].lower() != '.pgn':
                 fname += '.pgn'
 
@@ -861,10 +871,7 @@ class GtkSaveGameDialog:
         
             error = self.__mainUI._saveView(self.__view, fname)
             if error is not None:
-                self.firstExpose = True
-                self.__gui.get_widget('error_box').show()
-                self.__gui.get_widget('error_title_label').set_markup('<big><b>%s</b></big>' % gettext.gettext('Unabled to save game'))
-                self.__gui.get_widget('error_description_label').set_markup('<i>%s</i>' % error)
+                self.__setError(gettext.gettext('Unabled to save game'), error)
                 return
         else:
             self.__mainUI._saveView(self.__view, None)
