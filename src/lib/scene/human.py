@@ -102,7 +102,7 @@ class SceneHumanInput:
                 self.setBoardHighlight({self.__startSquare: glchess.scene.HIGHLIGHT_SELECTED})
             else:
                 self.setBoardHighlight(None)
-    
+
     def select(self, x, y):
         """
         """

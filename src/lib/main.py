@@ -164,10 +164,10 @@ class SceneCairo(scene.SceneFeedback, scene.human.SceneHumanInput):
     def __init__(self, chessGame):
         """
         """
-        self.controller = scene.cairo.Scene(self)
         self.game = chessGame
         self.pieces = {}
         scene.human.SceneHumanInput.__init__(self)
+        self.controller = scene.cairo.Scene(self)
         
     def getPieces(self):
         return self.pieces.values()
@@ -395,7 +395,9 @@ class View(ui.ViewFeedback):
     # The controller object for this view
     controller  = None
     
-    moveNumber  = None
+    moveNumber  = -1
+    width = 0
+    height = 0
     
     humanPlayer = None
     
@@ -405,6 +407,10 @@ class View(ui.ViewFeedback):
         'game' is ???
         """
         self.game = game
+        
+        # Use a Cairo scene by default - it will be replaced by an OpenGL one if that is the requested view
+        # I wanted to remove this but then scene is None and there are a number of issues...
+        # This should be cleaned up
         self.scene = SceneCairo(game)
         
     def setHumanPlayer(self, player):
@@ -437,10 +443,11 @@ class View(ui.ViewFeedback):
         """
         if isinstance(self.scene, sceneClass):
             return
-        self.pieceMoved()
         self.scene = sceneClass(self.game)
         self.reshape(self.width, self.height)
         self.setMoveNumber(self.moveNumber)
+        self.showMoveHints(config.get('show_move_hints') is True)
+        self.pieceMoved()
         
     def renderGL(self):
         """Called by ui.ViewFeedback"""
@@ -575,7 +582,6 @@ class ChessGame(game.ChessGame):
 
         self.view = View(self)
         self.view.controller = application.ui.controller.addView(name, self.view)
-        
         self.view.showMoveHints(config.get('show_move_hints') is True)
         
         # Watch for piece moves with a player
