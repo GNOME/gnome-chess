@@ -80,10 +80,22 @@ class MovePlayer(game.ChessPlayer):
         self.__game.needsSaving = True
         self.__game.view.controller.addMove(move)
         
+        # Update clocks
+        if player is self.__game.getWhite():
+            if self.__game.wT is not None:
+                self.__game.wT.controller.pause()
+            if self.__game.bT is not None:
+                self.__game.bT.controller.run()
+        else:
+            if self.__game.bT is not None:
+                self.__game.bT.controller.pause()
+            if self.__game.wT is not None:
+                self.__game.wT.controller.run()
+        
         # Complete move if not waiting for visual indication of move end
         if self.__game.view.moveNumber != -1:
             player.endMove()
-
+            
     def onGameEnded(self, game):
         """Called by chess.board.ChessPlayer"""
         self.__game.view.controller.endGame(game)
@@ -105,7 +117,6 @@ class HumanPlayer(game.ChessPlayer):
     def readyToMove(self):
         # FIXME: ???
         self.__game.view.controller.setAttention(True)
-        self.__game.view.setHumanPlayer(self)
 
 class AIPlayer(ai.Player):
     """
@@ -164,10 +175,10 @@ class SceneCairo(scene.SceneFeedback, scene.human.SceneHumanInput):
     def __init__(self, chessGame):
         """
         """
+        self.controller = scene.cairo.Scene(self)
         self.game = chessGame
         self.pieces = {}
         scene.human.SceneHumanInput.__init__(self)
-        self.controller = scene.cairo.Scene(self)
         
     def getPieces(self):
         return self.pieces.values()
@@ -214,21 +225,15 @@ class SceneCairo(scene.SceneFeedback, scene.human.SceneHumanInput):
 
     def playerIsHuman(self):
         """Called by scene.human.SceneHumanInput"""
-        return self.game.view.humanPlayer is not None
+        return self.game.currentPlayerIsHuman()
 
     def squareIsFriendly(self, coord):
         """Called by scene.human.SceneHumanInput"""
-        owner = self.game.getSquareOwner(coord)
-        if owner is None:
-            return False
-        return owner is self.game.view.humanPlayer
+        return self.playerIsHuman() and self.game.squareIsFriendly(coord)
     
     def canMove(self, start, end):
         """Called by scene.human.SceneHumanInput"""
-        if self.game.view.humanPlayer is None:
-            return False
-
-        return self.game.view.humanPlayer.canMove(start, end) # FIXME: Promotion type
+        return self.playerIsHuman() and self.game.getCurrentPlayer().canMove(start, end) # FIXME: Promotion type
     
     def moveHuman(self, start, end):
         """Called by scene.human.SceneHumanInput"""
@@ -326,21 +331,15 @@ class SceneOpenGL(scene.SceneFeedback, scene.human.SceneHumanInput):
 
     def playerIsHuman(self):
         """Called by scene.human.SceneHumanInput"""
-        return self.game.view.humanPlayer is not None
+        return self.game.currentPlayerIsHuman()
 
     def squareIsFriendly(self, coord):
         """Called by scene.human.SceneHumanInput"""
-        owner = self.game.getSquareOwner(coord)
-        if owner is None:
-            return False
-        return owner is self.game.view.humanPlayer
+        return self.playerIsHuman() and self.game.squareIsFriendly(coord)
     
     def canMove(self, start, end):
         """Called by scene.human.SceneHumanInput"""
-        if self.game.view.humanPlayer is None:
-            return False
-
-        return self.game.view.humanPlayer.canMove(start, end) # FIXME: Promotion type
+        return self.playerIsHuman() and self.game.getCurrentPlayer().canMove(start, end) # FIXME: Promotion type
     
     def moveHuman(self, start, end):
         """Called by scene.human.SceneHumanInput"""
@@ -395,11 +394,7 @@ class View(ui.ViewFeedback):
     # The controller object for this view
     controller  = None
     
-    moveNumber  = -1
-    width = 0
-    height = 0
-    
-    humanPlayer = None
+    moveNumber  = None
     
     def __init__(self, game):
         """Constructor.
@@ -412,20 +407,34 @@ class View(ui.ViewFeedback):
         # I wanted to remove this but then scene is None and there are a number of issues...
         # This should be cleaned up
         self.scene = SceneCairo(game)
-        
-    def setHumanPlayer(self, player):
-        """TODO
+        config.watch('board_view', self.__onBoardViewChanged)
+        self.updateRotation()
+
+    def __onBoardViewChanged(self, key, value):
+        self.updateRotation()
+
+    def updateRotation(self):
         """
-        self.humanPlayer = player
-        
-        # Animate the board
+        """
+        # Get the angle to face
+        player = self.game.getCurrentPlayer()
         if player is self.game.getWhite():
-            self.scene.controller.setBoardRotation(0.0)
+            rotation = 0.0
         elif player is self.game.getBlack():
-            self.scene.controller.setBoardRotation(180.0)
-        else:
-            assert(False), 'Human player is not white or black'
-            
+            rotation = 180.0
+        
+        # Decide if we should face this angle
+        boardView = config.get('board_view')
+        if boardView == 'white':
+            rotation = 0.0
+        elif boardView == 'black':
+            rotation = 180.0
+        elif boardView == 'human':
+            if not isinstance(player, HumanPlayer):
+                return
+
+        self.scene.controller.setBoardRotation(rotation)
+
     def pieceMoved(self):
         """
         """
@@ -443,11 +452,10 @@ class View(ui.ViewFeedback):
         """
         if isinstance(self.scene, sceneClass):
             return
+        self.pieceMoved()
         self.scene = sceneClass(self.game)
         self.reshape(self.width, self.height)
         self.setMoveNumber(self.moveNumber)
-        self.showMoveHints(config.get('show_move_hints') is True)
-        self.pieceMoved()
         
     def renderGL(self):
         """Called by ui.ViewFeedback"""
@@ -541,6 +549,30 @@ class View(ui.ViewFeedback):
         """Called by ui.ViewFeedback"""
         # The user requests the game to end, for now we just do it
         self.game.remove()
+        
+class PlayerTimer(ui.TimerFeedback):
+    """
+    """
+
+    def __init__(self, game, colour, duration):
+        self.game = game
+        self.colour = colour
+        self.duration = duration
+        self.controller = game.application.ui.controller.addTimer(self, duration)
+    
+    def onTick(self, t):
+        """Called by ui.TimerFeedback"""
+        if self.colour is chess.board.WHITE:
+            self.game.view.controller.setWhiteTime(self.duration, t)
+        else:
+            self.game.view.controller.setBlackTime(self.duration, t)
+
+    def onExpired(self):
+        """Called by ui.TimerFeedback"""
+        if self.colour is chess.board.WHITE:
+            self.game.getWhite().outOfTime()
+        else:
+            self.game.getBlack().outOfTime()
 
 class ChessGame(game.ChessGame):
     """
@@ -557,7 +589,6 @@ class ChessGame(game.ChessGame):
     # The players in the game
     __movePlayer   = None
     __aiPlayers    = None
-    __humanPlayers = None
     
     # The file this is saved to
     fileName       = None
@@ -565,6 +596,11 @@ class ChessGame(game.ChessGame):
 
     # Mapping between piece names and promotion types
     __promotionMapping = {'queen': chess.board.QUEEN, 'knight': chess.board.KNIGHT, 'bishop': chess.board.BISHOP, 'rook': chess.board.ROOK}
+    
+    # TEMP
+    duration = 0
+    wT = None
+    bT = None
 
     def __init__(self, application, name):
         """Constructor for a chess game.
@@ -575,13 +611,13 @@ class ChessGame(game.ChessGame):
         self.application = application
         self.name = name
         self.__aiPlayers = []
-        self.__humanPlayers = []
         
         # Call parent constructor
         game.ChessGame.__init__(self)
 
         self.view = View(self)
         self.view.controller = application.ui.controller.addView(name, self.view)
+        
         self.view.showMoveHints(config.get('show_move_hints') is True)
         
         # Watch for piece moves with a player
@@ -611,29 +647,44 @@ class ChessGame(game.ChessGame):
         Returns a human player to use (game.ChessPlayer).
         """
         player = HumanPlayer(self, name)
-        self.__humanPlayers.append(player)
         return player
+    
+    def setTimer(self, duration, whiteTime, blackTime):
+        self.duration = duration
+        if duration <= 0:
+            return
 
-    def playerIsHuman(self, player):
+        self.view.controller.setWhiteTime(duration, whiteTime)
+        self.view.controller.setBlackTime(duration, blackTime)
+
+        self.wT = PlayerTimer(self, chess.board.WHITE, whiteTime)
+        self.bT = PlayerTimer(self, chess.board.BLACK, blackTime)
+        self.wT.controller.run()
+        
+        self.setTimers(self.wT, self.bT)
+
+    def currentPlayerIsHuman(self):
         """Test if a player is human.
         
         'player' is the player to check (game.ChessPlayer).
         
         Returns True if this is a human player in this game otherwise False.
         """
-        try:
-            if self.__humanPlayers.index(player) < 0:
-                return False
-            else:
-                return True
-        except ValueError:
+        return isinstance(self.getCurrentPlayer(), HumanPlayer)
+        
+    def squareIsFriendly(self, coord):
+        """
+        """
+        owner = self.getSquareOwner(coord)
+        if owner is None:
             return False
+        return owner is self.getCurrentPlayer()
         
     def moveHuman(self, start, end):
         """
         """
-        player = self.view.humanPlayer
-        self.view.humanPlayer = None
+        assert(self.currentPlayerIsHuman())
+        player = self.getCurrentPlayer()
         if player is self.getWhite():
             colour = chess.board.WHITE
         else:
@@ -664,12 +715,31 @@ class ChessGame(game.ChessGame):
         pgnGame.setTag(pgnGame.PGN_TAG_WHITE, white.getName())
         pgnGame.setTag(pgnGame.PGN_TAG_BLACK, black.getName())
 
-        if self.result is game.RESULT_WHITE_WINS:
-            pgnGame.setTag(pgnGame.PGN_TAG_RESULT, chess.pgn.PGNToken.GAME_TERMINATE_WHITE_WIN)
-        elif self.result is game.RESULT_BLACK_WINS:
-            pgnGame.setTag(pgnGame.PGN_TAG_RESULT, chess.pgn.PGNToken.GAME_TERMINATE_BLACK_WIN)
-        elif self.result is game.RESULT_DRAW:
-            pgnGame.setTag(pgnGame.PGN_TAG_RESULT, chess.pgn.PGNToken.GAME_TERMINATE_DRAW)
+        results = {game.RESULT_WHITE_WINS: chess.pgn.PGNToken.GAME_TERMINATE_WHITE_WIN,
+                   game.RESULT_BLACK_WINS: chess.pgn.PGNToken.GAME_TERMINATE_BLACK_WIN,
+                   game.RESULT_DRAW:       chess.pgn.PGNToken.GAME_TERMINATE_DRAW}
+        try:
+            value = results[self.result]
+        except KeyError:
+            pass
+        else:
+            pgnGame.setTag(pgnGame.PGN_TAG_RESULT, value)
+
+        rules = {game.RULE_RESIGN:  pgnGame.PGN_TERMINATE_ABANDONED,
+                 game.RULE_TIMEOUT: pgnGame.PGN_TERMINATE_TIME_FORFEIT}
+        try:
+            value = rules[self.rule]
+        except KeyError:
+            pass
+        else:
+            pgnGame.setTag(pgnGame.PGN_TAG_TERMINATION, value)
+
+        if self.duration > 0:
+            pgnGame.setTag(pgnGame.PGN_TAG_TIME_CONTROL, str(self.duration))
+        if self.wT is not None:
+            pgnGame.setTag('WhiteTime', str(self.wT.controller.getRemaining()))
+        if self.bT is not None:
+            pgnGame.setTag('BlackTime', str(self.bT.controller.getRemaining()))
 
         # FIXME: AI levels
         if isinstance(white, ai.Player):
@@ -694,7 +764,11 @@ class ChessGame(game.ChessGame):
         """
         """
         return self.view.scene.controller.animate(timeStep)
-            
+    
+    def endMove(self, player):
+        game.ChessGame.endMove(self, player)
+        self.view.updateRotation()
+
     def remove(self):
         """Remove this game"""
         # Remove AI player windows
@@ -909,6 +983,8 @@ class UI(ui.UIFeedback):
         g = self.application.addGame(game.name, game.white.name, w, game.black.name, b)
         print 'Starting game %s between %s (%s) and %s (%s). (%i moves)' % \
               (game.name, game.white.name, str(game.white.type), game.black.name, str(game.black.type), len(game.moves))
+
+        g.setTimer(game.duration, game.duration, game.duration)
         g.start(game.moves)
         
     def loadGame(self, path, configure):
@@ -1089,12 +1165,38 @@ class Application:
             newGame.start()
 
         # Get the last player to resign if the file specifies it
-        if pgnGame.getTag(pgnGame.PGN_TAG_RESULT, None) == chess.pgn.PGNToken.GAME_TERMINATE_DRAW:
+        result = pgnGame.getTag(pgnGame.PGN_TAG_RESULT, None)
+        if result == chess.pgn.PGNToken.GAME_TERMINATE_DRAW:
             if newGame.result == game.RESULT_IN_PROGRESS:
                 newGame.getCurrentPlayer().resign()
             elif newGame.result != game.RESULT_DRAW:
                 print 'PGN file specifies draw, glChess expects a win'
-            
+        elif result == chess.pgn.PGNToken.GAME_TERMINATE_WHITE_WIN:
+            print 'FIXME: Handle white win in PGN'
+        elif result == chess.pgn.PGNToken.GAME_TERMINATE_BLACK_WIN:
+            print 'FIXME: Handle black win in PGN'
+
+        duration = 0
+        value = pgnGame.getTag(pgnGame.PGN_TAG_TIME_CONTROL)
+        if value is not None:
+            timers = value.split(':')
+            try:
+                duration = int(timers[0])
+            except ValueError:
+                print 'Unknown time control: ' + value
+                
+        value = pgnGame.getTag('WhiteTime', duration * 1000)
+        try:
+            whiteTime = int(value)
+        except ValueError:
+            whiteTime = duration
+        value = pgnGame.getTag('BlackTime', duration * 1000)
+        try:
+            blackTime = int(value)
+        except ValuError:
+            blackTime = duration
+        newGame.setTimer(duration, whiteTime / 1000, blackTime / 1000)
+
         # No change from when loaded
         newGame.needsSaving = False
 

@@ -122,30 +122,42 @@ class GtkNewGameDialog:
             i += 1
             
         # Create model for game time
-        times = [(gettext.gettext('Unlimited'), 0),
-                 (gettext.gettext('One minute'), 60),
-                 (gettext.gettext('Five minutes'), 300),
-                 (gettext.gettext('30 minutes'), 1800),
-                 (gettext.gettext('One hour'), 3600),
-                 (gettext.gettext('Custom'), -1)]
+        defaultTime = glchess.config.get('new_game_dialog/move_time')
+        times = [(gettext.gettext('Unlimited'),       0),
+                 (gettext.gettext('One minute'),     60),
+                 (gettext.gettext('Five minutes'),  300),
+                 (gettext.gettext('30 minutes'),   1800),
+                 (gettext.gettext('One hour'),     3600),
+                 (gettext.gettext('Custom'),         -1)]
         timeModel = gtk.ListStore(str, int)
+        activeIter = None
         for (name, time) in times:
             iter = timeModel.append()
+            if time == defaultTime:
+                activeIter = iter
             timeModel.set(iter, 0, name, 1, time)
+
         widget = self.__gui.get_widget('time_combo')
         widget.set_model(timeModel)
+        if activeIter is None:
+            widget.set_active_iter(iter)
+        else:
+            widget.set_active_iter(activeIter)
         cell = gtk.CellRendererText()
         widget.pack_start(cell, False)
         widget.add_attribute(cell, 'text', 0)
-        widget.set_active(0)
 
         model = gtk.ListStore(str, int)
-        units = [(gettext.gettext('seconds'), 1),
+        units = [(gettext.gettext('seconds'),  1),
                  (gettext.gettext('minutes'), 60),
                  (gettext.gettext('hours'), 3600)]
         for (name, multiplier) in units:
             iter = model.append()
             model.set(iter, 0, name, 1, multiplier)
+
+        # FIXME: Handle time units
+        self.__gui.get_widget('custom_time_spin').set_value(defaultTime)
+
         widget = self.__gui.get_widget('custom_time_units_combo')
         widget.set_model(model)
         cell = gtk.CellRendererText()
@@ -332,12 +344,10 @@ class GtkNewGameDialog:
             game.black.name = self.__getComboData(self.__gui.get_widget('black_type_combo'), 2)
         game.black.level = self.__getComboData(self.__gui.get_widget('black_difficulty_combo'), 0)
 
-        game.duration = self.__getComboData(self.__gui.get_widget('time_combo'), 1)
-        if game.duration < 0:
-            multplier = self.__getComboData(self.__gui.get_widget('custom_time_units_combo'), 1)
-            game.duration = self.__getComboData(self.__gui.get_widget('custom_time_spin'), 1) * multiplier
+        game.duration = self.__getGameDuration()
             
         # Save properties
+        glchess.config.set('new_game_dialog/move_time', game.duration)
         glchess.config.set('new_game_dialog/white/type', game.white.type)
         glchess.config.set('new_game_dialog/white/difficulty', game.white.level)
         glchess.config.set('new_game_dialog/black/type', game.black.type)
@@ -345,6 +355,13 @@ class GtkNewGameDialog:
 
         # Inform the child class
         self.__mainUI.feedback.onGameStart(game)
+    
+    def __getGameDuration(self):
+        duration = self.__getComboData(self.__gui.get_widget('time_combo'), 1)
+        if duration < 0:
+            multiplier = self.__getComboData(self.__gui.get_widget('custom_time_units_combo'), 1)
+            duration = self.__gui.get_widget('custom_time_spin').get_value_as_int() * multiplier
+        return duration
         
     # Gtk+ signal handlers
     

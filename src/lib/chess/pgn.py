@@ -392,6 +392,30 @@ class PGNGame:
     PGN_TAG_BLACK  = 'Black'
     PGN_TAG_RESULT = 'Result'
     
+    """Optional tags"""
+    PGN_TAG_TIME         = 'Time'
+    PGN_TAG_FEN          = 'FEN'
+    PGN_TAG_WHITE_TYPE   = 'WhiteType'
+    PGN_TAG_WHITE_ELO    = 'WhiteElo'
+    PGN_TAG_BLACK_TYPE   = 'BlackType'
+    PGN_TAG_BLACK_ELO    = 'BlackElo'
+    PGN_TAG_TIME_CONTROL = 'TimeControl'
+    PGN_TAG_TERMINATION  = 'Termination'
+    
+    # Values for the WhiteType and BlackType tag
+    PGN_TYPE_HUMAN       = 'human'
+    PGN_TYPE_AI          = 'program'
+    
+    # Values for the Termination tag
+    PGN_TERMINATE_ABANDONED        = 'abandoned'
+    PGN_TERMINATE_ADJUDICATION     = 'adjudication'
+    PGN_TERMINATE_DEATH            = 'death'
+    PGN_TERMINATE_EMERGENCY        = 'emergency'
+    PGN_TERMINATE_NORMAL           = 'normal'
+    PGN_TERMINATE_RULES_INFRACTION = 'rules infraction'
+    PGN_TERMINATE_TIME_FORFEIT     = 'time forfeit'
+    PGN_TERMINATE_UNTERMINATED     = 'unterminated'
+    
     # The seven tag roster in the required order (REFERENCE)
     __strTags = [PGN_TAG_EVENT, PGN_TAG_SITE, PGN_TAG_DATE, PGN_TAG_ROUND, PGN_TAG_WHITE, PGN_TAG_BLACK, PGN_TAG_RESULT]
 

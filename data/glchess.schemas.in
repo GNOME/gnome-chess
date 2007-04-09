@@ -134,6 +134,18 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/glchess/board_side</key>
+      <applyto>/apps/glchess/board_side</applyto>
+      <owner>glchess</owner>
+      <type>string</type>
+      <default>human</default>
+      <locale name="C">
+        <short>The board side to display</short>
+        <long>The side of the board that is in the foreground, either 'white', 'black', 'current' (the current player) or 'human' (the side of the current human player)</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/glchess/new_game_dialog/move_time</key>
       <applyto>/apps/glchess/new_game_dialog/move_time</applyto>
       <owner>glchess</owner>

@@ -71,7 +71,8 @@ _defaults = {'show_toolbar':    True,
              'show_3d':         False,
              'show_move_hints': True,
              'move_format':     'human',
-             'promotion_type':  'queen'}
+             'promotion_type':  'queen',
+             'board_view':      'human'}
 
 class Error(Exception):
     """Exception for configuration use"""

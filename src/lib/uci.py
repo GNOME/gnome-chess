@@ -104,10 +104,17 @@ class StateMachine:
             self.onOutgoingData('setoption ' + option.name + ' value ' + option.value + '\n')
         self.onOutgoingData('isready\n')
 
-    def requestMove(self):
+    def requestMove(self, whiteTime, blackTime, ownTime):
         """
         """
-        self.__sendCommand('go wtime 300000 btime 300000')
+        # Some AI's don't work unless assigned some time
+        # TODO: which ones? I think Glaurung had issues
+        if whiteTime == 0:
+            whiteTime = 30000
+        if blackTime == 0:
+            blackTime = 30000
+            
+        self.__sendCommand('go wtime %d btime %d' % (whiteTime, blackTime))
 
     def reportMove(self, move, isSelf):
         """

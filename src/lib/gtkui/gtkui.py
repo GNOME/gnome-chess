@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 __author__ = 'Robert Ancell <bob27@users.sourceforge.net>'
 __license__ = 'GNU General Public License Version 2'
 __copyright__ = 'Copyright 2005-2006  Robert Ancell'
@@ -21,6 +23,7 @@ import gobject
 import gtk
 import gtk.glade
 import gtk.gdk
+import cairo
 import pango
 try:
     import gnome, gnome.ui
@@ -214,6 +217,113 @@ class AIView:
         if self.window.pageCount == 0:
             self.window.defaultPage.show()
             self.window.notebook.set_show_tabs(False)
+            
+class GLibTimer(glchess.ui.Timer):
+    """
+    """
+    
+    # FIXME: time.time() is _not_ monotonic so this is not really safe at all...
+
+    def __init__(self, ui, feedback, duration):
+        self.ui        = ui
+        self.feedback  = feedback
+        self.tickTime  = 0
+        self.reportedTickTime = 0
+        
+        self.timer     = None
+        self.tickTimer = None
+        self.startTime = None
+        self.set(duration * 1000)
+        
+    def set(self, duration):
+        """
+        """
+        if self.timer is not None:
+            gobject.source_remove(self.timer)
+        if self.tickTimer is not None:
+            gobject.source_remove(self.tickTimer)
+        self.duration = duration
+        self.consumed = 0
+        
+        # Notified if the second has changed      
+        
+    def __consumed(self, now):
+        # Total time - time at last start - time since start
+        if self.startTime is None:
+            return self.consumed
+        else:
+            return self.consumed + (now - self.startTime)
+        
+    def getRemaining(self):
+        """Extends ui.Timer"""
+        return self.duration - self.__consumed(int(1000 * time.time()))
+
+    def pause(self):
+        """Extends ui.Timer"""
+        if self.timer is None:
+            return
+        
+        # Calculate the amount of time to use when restarted
+        self.consumed = self.__consumed(int(1000 * time.time()))
+        
+        # Remove timers
+        gobject.source_remove(self.timer)
+        if self.tickTimer is not None:
+            gobject.source_remove(self.tickTimer)
+        self.timer = None
+        self.tickTimer = None
+    
+    def run(self):
+        """Extends ui.Timer"""
+        if self.timer is not None:
+            return
+        
+        # Notify when all time runs out
+        self.startTime = int(1000 * time.time())
+        self.timer = gobject.timeout_add(self.duration - self.consumed, self.__expired)
+        
+        # Notify on the next second boundary
+        self.__setSecondTimer(self.startTime)
+
+    def __setSecondTimer(self, now):
+        """Set a timer to expire on the next second boundary"""
+        assert(self.tickTimer is None)
+        
+        # Round the remaining time up to the nearest second
+        consumed = self.__consumed(now)
+        t = 1000 * (consumed / 1000 + 1)
+        if t <= self.reportedTickTime:
+            self.tickTime = self.reportedTickTime + 1000
+        else:
+            self.tickTime = t
+        
+        # Notify on this time
+        if self.tickTime > self.duration:
+            self.tickTimer = None
+        else:
+            self.tickTimer = gobject.timeout_add(self.tickTime - consumed, self.__tick)
+
+    def __expired(self):
+        """Called by GLib main loop"""
+        self.feedback.onTick(0)
+        self.feedback.onExpired()
+        if self.tickTimer is not None:
+            gobject.source_remove(self.tickTimer)
+        self.timer = None
+        self.tickTimer = None
+        return False
+
+    def __tick(self):
+        """Called by GLib main loop"""
+        self.reportedTickTime = self.tickTime
+        self.feedback.onTick((self.duration - self.tickTime) / 1000)
+        self.tickTimer = None
+        self.__setSecondTimer(int(1000 * time.time()))
+        return False
+
+    def delete(self):
+        """Extends ui.Timer"""
+        gobject.source_remove(self.timer)
 
 class GtkUI(glchess.ui.UI):
     """
@@ -225,9 +335,6 @@ class GtkUI(glchess.ui.UI):
     __lastTime         = None
     __animationTimer   = None
     
-    # Timers
-    timers             = None
-
     # The notebook containing games
     notebook           = None
 
@@ -253,6 +360,9 @@ class GtkUI(glchess.ui.UI):
     __attentionCounter = 0
 
     moveFormat         = 'human'
+    
+    whiteTimeString    = '∞'
+    blackTimeString    = '∞'
 
     def __init__(self, feedback):
         """Constructor for a GTK+ glChess GUI"""
@@ -264,7 +374,6 @@ class GtkUI(glchess.ui.UI):
         self.__networkGames = {}
         self.__saveGameDialogs = {}
         self.__joinGameDialogs = []
-        self.timers = {}
 
         # Set the message panel to the tooltip style
         # (copied from Gedit)
@@ -283,6 +392,14 @@ class GtkUI(glchess.ui.UI):
             widget = self.__getWidget('promotion_%s_radio' % piece)
             self.__promotionTypeByRadio[widget] = piece
             self.__promotionRadioByType[piece] = widget
+
+        # Create mappings between the board view radio buttons and the config names
+        self.__boardViewRadioByType = {}
+        self.__boardViewTypeByRadio = {}
+        for name in ['white', 'black', 'human', 'current']:
+            widget = self.__getWidget('menu_side_%s' % name)
+            self.__boardViewTypeByRadio[widget] = name
+            self.__boardViewRadioByType[name] = widget
 
         # Make a notebook for the games
         self.notebook = GtkGameNotebook(self)
@@ -307,7 +424,13 @@ class GtkUI(glchess.ui.UI):
         #self.__playerModel.set(iter, 0, None, 1, icon, 2, gettext.gettext('Network'))
         
         self.__aiWindow = AIWindow(self._gui.get_widget('ai_notebook'))
-        
+
+        # Balance space on each side of the history combo
+        group = gtk.SizeGroup(gtk.SIZE_GROUP_BOTH)
+        group.add_widget(self.__getWidget('left_nav_box'))
+        group.add_widget(self.__getWidget('right_nav_box'))
+
+        # History combo displays text data
         combo = self.__getWidget('history_combo')
         cell = gtk.CellRendererText()
         combo.pack_start(cell, False)
@@ -324,7 +447,7 @@ class GtkUI(glchess.ui.UI):
         self.saveDialog = dialogs.SaveDialog(self)
         
         # Watch for config changes
-        for key in ['show_toolbar', 'show_history', 'fullscreen', 'show_3d', 'show_move_hints', 'width', 'height', 'move_format', 'promotion_type']:
+        for key in ['show_toolbar', 'show_history', 'fullscreen', 'show_3d', 'show_move_hints', 'width', 'height', 'move_format', 'promotion_type', 'board_view']:
             glchess.config.watch(key, self.__applyConfig)
 
     # Public methods
@@ -333,19 +456,13 @@ class GtkUI(glchess.ui.UI):
         """Extends ui.UI"""
         gobject.io_add_watch(fd, gobject.IO_IN, self.__readData)
         
-    def addTimer(self, method, timeUsec):
+    def addTimer(self, feedback, duration):
         """Extends ui.UI"""
-        timer = gobject.timeout_add(timeUsec / 1000, self.__timerExpired, method)
-        self.timers[method] = timer
+        return GLibTimer(self, feedback, duration)
 
     def __timerExpired(self, method):
         method()
         return True
-
-    def removeTimer(self, method):
-        """Extends ui.UI"""
-        timer = self.timers.pop(method)
-        gobject.source_remove(timer)
 
     def __readData(self, fd, condition):
         return self.feedback.onReadFileDescriptor(fd)
@@ -383,6 +500,27 @@ class GtkUI(glchess.ui.UI):
         """
         """
         return self.__aiWindow.addView(title, executable, description)
+    
+    def setTimers(self, whiteTime, blackTime):
+        """
+        """
+        if whiteTime is None:
+            whiteString = '∞'
+        else:
+            t = whiteTime[1]
+            whiteString = '%i:%02i' % (t / 60, t % 60)
+        if blackTime is None:
+            blackString = '∞'
+        else:
+            t = blackTime[1]
+            blackString = '%i:%02i' % (t / 60, t % 60)
+            
+        if whiteString != self.whiteTimeString:
+            self.whiteTimeString = whiteString
+            self._gui.get_widget('white_time_label').queue_draw()
+        if blackString != self.blackTimeString:
+            self.blackTimeString = blackString
+            self._gui.get_widget('black_time_label').queue_draw()
 
     def run(self):
         """Run the UI.
@@ -390,7 +528,7 @@ class GtkUI(glchess.ui.UI):
         This method will not return.
         """        
         # Load configuration
-        for name in ['show_toolbar', 'show_history', 'show_3d', 'show_move_hints', 'move_format', 'promotion_type']:
+        for name in ['show_toolbar', 'show_history', 'show_3d', 'show_move_hints', 'move_format', 'promotion_type', 'board_view']:
             try:
                 value = glchess.config.get(name)
             except glchess.config.Error:
@@ -565,7 +703,18 @@ class GtkUI(glchess.ui.UI):
                 glchess.config.default('promotion_type')
             else:
                 radio.set_active(True)
-        
+                
+        elif name == 'board_view':
+            try:
+                radio = self.__boardViewRadioByType[value]
+            except KeyError:
+                glchess.config.default('board_view')
+            else:
+                radio.set_active(True)
+                
+        else:
+            assert(False), 'Unknown config item: %s' % name
+
     def startAnimation(self):
         """Start the animation callback"""
         if self.__animationTimer is None:
@@ -593,9 +742,40 @@ class GtkUI(glchess.ui.UI):
 
     def __getWidget(self, name):
         widget = self._gui.get_widget(name)
-        assert(widget is not None)
+        assert(widget is not None), 'Unable to find widget: %s' % name
         return widget
     
+    def _on_white_time_paint(self, widget, event):
+        """Gtk+ callback"""
+        self.__drawTime(self.whiteTimeString, widget, (0.0, 0.0, 0.0), (1.0, 1.0, 1.0))
+
+    def _on_black_time_paint(self, widget, event):
+        """Gtk+ callback"""
+        self.__drawTime(self.blackTimeString, widget, (1.0, 1.0, 1.0), (0.0, 0.0, 0.0))
+
+    def __drawTime(self, text, widget, fg, bg):
+        """
+        """
+        if widget.state == gtk.STATE_INSENSITIVE:
+            alpha = 0.5
+        else:
+            alpha = 1.0
+        context = widget.window.cairo_create()
+        context.set_source_rgba(bg[0], bg[1], bg[2], alpha)
+        context.paint()
+        
+        (_, _, w, h) = widget.get_allocation()
+        
+        context.set_source_rgba(fg[0], fg[1], fg[2], alpha)
+        context.select_font_face('fixed', cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
+        context.set_font_size(0.6 * h)
+        (x_bearing, y_bearing, width, height, _, _) = context.text_extents(text)
+        context.move_to((w - width) / 2 - x_bearing, (h - height) / 2 - y_bearing)
+        context.show_text(text)
+        
+        # Resize to fit text
+        widget.set_size_request(int(width) + 6, -1)
+
     def _on_show_toolbar_clicked(self, widget):
         """Gtk+ callback"""
         if widget.get_active():
@@ -667,6 +847,11 @@ class GtkUI(glchess.ui.UI):
         """Gtk+ callback"""
         glchess.config.set('move_format', 'san')
         
+    def _on_board_view_changed(self, widget):
+        """Gtk+ callback"""
+        if widget.get_active():
+            glchess.config.set('board_view', self.__boardViewTypeByRadio[widget])
+
     def _on_promotion_type_changed(self, widget):
         """Gtk+ callback"""
         if widget.get_active():
@@ -727,9 +912,13 @@ class GtkUI(glchess.ui.UI):
         if view is not None:
             title += " - %s" % view.title
         self._gui.get_widget('glchess_app').set_title(title)
-        
+
         # Set toolbar/menu buttons to state for this game
         self._updateViewButtons()
+        
+        # Update timers
+        if view is not None:
+            self.setTimers(view.whiteTime, view.blackTime)
     
     def _updateViewButtons(self):
         """

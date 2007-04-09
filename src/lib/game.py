@@ -60,7 +60,6 @@ class ChessPlayer:
     """
     # The name of the player
     __name = None
-    __type = None
     
     # The game this player is in
     __game = None
@@ -110,6 +109,30 @@ class ChessPlayer:
         Returns the player name (string).
         """
         return self.__name
+    
+    def getGame(self):
+        """Get the game this player is in.
+        
+        Returns the game (Game) or None if not in a game.
+        """
+        return self.__game
+    
+    def getRemainingTime(self):
+        """Get the amount of time this player has remaining.
+        
+        Returns the amount of time in milliseconds.
+        """
+        if self is self.__game.getWhite():
+            timer = self.__game.whiteTimer
+        elif self is self.__game.getBlack():
+            timer = self.__game.blackTimer
+        else:
+            return 0
+        
+        if timer is None:
+            return 0
+        else:
+            return timer.controller.getRemaining()
 
     def isReadyToMove(self):
         """
@@ -135,6 +158,10 @@ class ChessPlayer:
     def resign(self):
         """Resign from the game"""
         self.__game.resign(self)
+        
+    def outOfTime(self):
+        """Report this players timer has expired"""
+        self.__game.outOfTime(self)
 
     # Private methods
     
@@ -250,6 +277,9 @@ class ChessGame:
     result  = RESULT_IN_PROGRESS
     rule    = None
     
+    whiteTimer = None
+    blackTimer = None
+    
     def __init__(self):
         """Game constructor"""
         self.__players = []
@@ -278,6 +308,12 @@ class ChessGame:
         Raises an IndexError exception if moveNumber is invalid.
         """
         return self.__board.getDeadPieces(moveNumber)
+    
+    def setTimers(self, whiteTimer, blackTimer):
+        """
+        """
+        self.whiteTimer = whiteTimer
+        self.blackTimer = blackTimer
 
     def setWhite(self, player):
         """Set the white player in the game.
@@ -290,11 +326,7 @@ class ChessGame:
         assert(self.__whitePlayer is None)
         self.__whitePlayer = player
         self.__connectPlayer(player)
-        
-    def getCurrentPlayer(self):
-        """Get the player to move"""
-        return self.__currentPlayer
-        
+
     def getWhite(self):
         """Returns the current white player (player.Player)"""
         return self.__whitePlayer
@@ -314,6 +346,10 @@ class ChessGame:
     def getBlack(self):
         """Returns the current white player (player.Player)"""
         return self.__blackPlayer
+    
+    def getCurrentPlayer(self):
+        """Get the player to move"""
+        return self.__currentPlayer
     
     def addSpectator(self, player):
         """Add a spectator to the game.
@@ -496,20 +532,20 @@ class ChessGame:
             player.onPlayerMoved(self.__currentPlayer, m)
 
         # Check if the game has ended
+        result = RESULT_IN_PROGRESS
         if not m.opponentCanMove:
             if self.__currentPlayer is self.__whitePlayer:
-                self.result = RESULT_WHITE_WINS
+                result = RESULT_WHITE_WINS
             else:
-                self.result = RESULT_BLACK_WINS
+                result = RESULT_BLACK_WINS
             if m.opponentInCheck:
-                self.rule = RULE_CHECKMATE
+                rule = RULE_CHECKMATE
             else:
-                self.result = RESULT_DRAW
-                self.rule = RULE_STALEMATE
+                result = RESULT_DRAW
+                rule = RULE_STALEMATE
         
-        if self.result is not RESULT_IN_PROGRESS:
-            for player in self.__players:
-                player.onGameEnded(self)
+        if result is not RESULT_IN_PROGRESS:
+            self.endGame(result, rule)
 
     def endMove(self, player):
         """
@@ -547,20 +583,33 @@ class ChessGame:
             print 'Player attempted to resign out of turn'
             return
 
-        self.result = RESULT_DRAW
-        self.rule = RULE_RESIGN
-        
         # See if the resignation can be done without requesting
+        rule = RULE_RESIGN
         try:
             move = self.__moves[-1]
         except IndexError:
             pass
         else:
             if move.fiftyMoveRule:
-                self.rule = RULE_FIFTY_MOVES
+                rule = RULE_FIFTY_MOVES
             elif move.threeFoldRepetition:
-                self.rule = RULE_THREE_FOLD_REPETITION
+                rule = RULE_THREE_FOLD_REPETITION
+
+        self.endGame(RESULT_DRAW, rule)
+
+    def outOfTime(self, player):
+        """Report a player's timer has expired"""
+        if player is self.__whitePlayer:
+            result = RESULT_BLACK_WINS
+        elif player is self.__blackPlayer:
+            result = RESULT_WHITE_WINS
+        else:
+            assert(False)
+        self.endGame(result, RULE_TIMEOUT)
         
+    def endGame(self, result, rule):
+        self.result = result
+        self.rule = rule
         for player in self.__players:
             player.onGameEnded(self)
 

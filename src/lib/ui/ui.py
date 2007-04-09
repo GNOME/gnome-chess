@@ -196,6 +196,22 @@ class ViewController:
         """Request this view is redrawn"""
         pass
     
+    def setWhiteTimer(self, total, remaining):
+        """Set the time remaining for the white player.
+        
+        'total' FIXME TODO
+        'remaining' FIXME TODO
+        """
+        pass
+
+    def setBlackTimer(self, total, remaining):
+        """Set the time remaining for the black player.
+        
+        'total' FIXME TODO
+        'remaining' FIXME TODO
+        """
+        pass
+
     def setAttention(self, requiresAttention):
         """Get the users attention for this view.
         
@@ -252,7 +268,45 @@ class UIFeedback:
 
     def onQuit(self):
         """Called when the user quits the program"""
-        pass   
+        pass
+    
+class TimerFeedback:
+    """
+    """
+    
+    def onTick(self, time):
+        """Called when the timer hits a one second boundary.
+        
+        'time' is the boundary time in seconds.
+        """
+        pass
+    
+    def onExpired(self):
+        """Called when this timer expires"""
+        pass
+    
+class Timer:
+    """
+    """
+    
+    def getRemaining(self):
+        """Get the amount of time remaining on this clock.
+        
+        returns the amount of time in milliseconds (int)
+        """
+        pass
+       
+    def pause(self):
+        """Stop this timer from counting down"""
+        pass
+    
+    def run(self):
+        """Continue counting down"""
+        pass
+    
+    def delete(self):
+        """Delete this timer"""
+        pass
 
 class UI:
     """Template class for a glChess UI.
@@ -278,20 +332,15 @@ class UI:
         """
         pass
     
-    def addTimer(self, method, timeUsec):
-        """Add/update a timer.
+    def addTimer(self, feedback, duration):
+        """Add a timer.
         
-        'method' is the method to call when the timer expires.
-        'timeUsec' is the period to call this method at in microseconds (integer).
-        """
-        pass
-    
-    def removeTimer(self, method):
-        """Remove a timer.
+        'feedback' is an object containing methods to call for feedback (extends TimerFeedback).
+        'duration' is the period to call this method at in seconds (integer).
         
-        'method' is the timer method as added by addTimer()
+        returns a timer object to control this timer (extends Timer).
         """
-        pass
+        return None
 
     def setDefaultView(self, feedback):
         """Set the default view to render.

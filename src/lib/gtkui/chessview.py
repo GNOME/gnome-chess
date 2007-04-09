@@ -212,7 +212,10 @@ class GtkView(glchess.ui.ViewController):
     requireAttention = False
 
     # The format to report moves in
-    moveFormat     = 'human'
+    moveFormat       = 'human'
+
+    whiteTime        = None
+    blackTime        = None
     
     def __init__(self, ui, title, feedback, isActive = True, moveFormat = 'human'):
         """Constructor for a view.
@@ -276,6 +279,18 @@ class GtkView(glchess.ui.ViewController):
     def render(self):
         """Extends glchess.ui.ViewController"""
         self.viewWidget.redraw()
+        
+    def setWhiteTime(self, total, current):
+        """Extends glchess.ui.ViewController"""
+        self.whiteTime = (total, current)
+        if self.ui.notebook.getView() is self:
+            self.ui.setTimers(self.whiteTime, self.blackTime)
+
+    def setBlackTime(self, total, current):
+        """Extends glchess.ui.ViewController"""
+        self.blackTime = (total, current)
+        if self.ui.notebook.getView() is self:
+            self.ui.setTimers(self.whiteTime, self.blackTime)
 
     def setAttention(self, requiresAttention):
         """Extends glchess.ui.ViewController"""

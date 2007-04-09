@@ -243,7 +243,7 @@ class Player(game.ChessPlayer):
         
         (self.__pid, self.__fd) = os.forkpty()
         if self.__pid == 0:
-            os.nice(10)
+            os.nice(19)
             try:
                 os.execv(profile.path, [profile.path] + profile.arguments)
             except OSError:
@@ -348,8 +348,16 @@ class Player(game.ChessPlayer):
 
     def readyToMove(self):
         """Called by game.ChessPlayer"""
+        game = self.getGame()
+        whiteTime = game.getWhite().getRemainingTime()
+        blackTime = game.getBlack().getRemainingTime()
+        if game.getWhite() is self:
+            ownTime = whiteTime
+        else:
+            ownTime = blackTime
+        
         if self.suppliedMove is None:
-            self.connection.requestMove()
+            self.connection.requestMove(whiteTime, blackTime, ownTime)
         else:
             self.moving = True
             move = self.suppliedMove

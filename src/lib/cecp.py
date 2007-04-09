@@ -95,6 +95,15 @@ class CECPProtocol:
     def sendMovePrompt(self):
         """Get the AI to move for the current player"""
         self.onOutgoingData('go\n')
+        
+    def sendConventionalClock(self, moveCount, base, increment):
+        """
+        
+        'moveCount' ???
+        'base' ??? (seconds)
+        'increment' ??? (seconds)
+        """
+        self.onOutgoingData('level %d %d:%02d %d:%02d\n' % (moveCount, base / 60, base % 60, increment / 60, increment % 60))
 
     def sendQuit(self):
         """Quit the engine"""
@@ -184,8 +193,12 @@ class Connection(CECPProtocol):
         for option in options:
             self.onOutgoingData(option.value + '\n')
 
-    def requestMove(self):
+    def requestMove(self, whiteTime, blackTime, ownTime):
         """Request the AI moves for the current player"""
+        # Set the clock
+        if ownTime > 0:
+            self.sendConventionalClock(0, ownTime / 1000, 0)
+        
         # Prompt the AI to move
         self.sendMovePrompt()
         

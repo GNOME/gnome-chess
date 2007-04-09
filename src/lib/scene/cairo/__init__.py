@@ -127,13 +127,19 @@ class ChessPiece(glchess.scene.ChessPiece):
         self.pos = (self.pos[0] + xStep, self.pos[1] + yStep)
         return True
     
-    def render(self, offset, context):
+    def render(self, context):
         """
         """
-        x = offset[0] + self.pos[0] * self.scene.squareSize + self.scene.PIECE_BORDER
-        y = offset[1] + (7 - self.pos[1]) * self.scene.squareSize + self.scene.PIECE_BORDER
-        pieces.piece(self.name, context, self.scene.pieceSize, x, y)
+        matrix = context.get_matrix()
+        x = (self.pos[0] - 4) * self.scene.squareSize
+        y = (3 - self.pos[1]) * self.scene.squareSize
+        context.translate(x, y)
+        context.translate(self.scene.squareSize / 2, self.scene.squareSize / 2)
+        context.rotate(-self.scene.angle)
+        context.translate(-self.scene.squareSize / 2, -self.scene.squareSize / 2)
+        pieces.piece(self.name, context, self.scene.pieceSize, 0, 0)
         context.fill()
+        context.set_matrix(matrix)
 
 class Scene(glchess.scene.Scene):
     """
@@ -142,6 +148,9 @@ class Scene(glchess.scene.Scene):
     
     pieces      = None
     highlights  = None
+    
+    angle       = 0.0
+    targetAngle = 0.0
     
     animating   = False
     redrawStatic     = True
@@ -203,23 +212,45 @@ class Scene(glchess.scene.Scene):
         shortEdge = min(self.width, self.height)
         self.squareSize = (shortEdge - 2.0*self.BORDER) / 9.0
         self.pieceSize = self.squareSize - 2.0*self.PIECE_BORDER
-        
-        boardWidth = self.squareSize * 9.0
-        self.offset = ((self.width - boardWidth) / 2.0, (self.height - boardWidth) / 2.0)
-        
+
         self.redrawStatic = True
         self.feedback.onRedraw()
         
     def setBoardRotation(self, angle):
         """Extends glchess.scene.Scene"""
-        pass
+        # Convert from degrees to radians
+        a = angle * math.pi / 180.0
         
+        if self.angle == a:
+            return
+        self.targetAngle = a
+        
+        # Start animation
+        if self.animating is False:
+            self.animating = True
+            self.feedback.startAnimation()
+
     def animate(self, timeStep):
         """Extends glchess.scene.Scene"""
-        if len(self._animationQueue) == 0:
+        if self.angle == self.targetAngle and len(self._animationQueue) == 0:
             return False
-        
+
         redraw = False
+        
+        if self.angle != self.targetAngle:
+            offset = self.targetAngle - self.angle
+            if offset < 0:
+                offset += 2 * math.pi
+            step = timeStep * math.pi * 0.3#7
+            if step > offset:
+                self.angle = self.targetAngle
+            else:
+                self.angle += step
+                if self.angle > 2 * math.pi:
+                    self.angle -= 2 * math.pi
+            self.redrawStatic = True
+            redraw = True
+        
         animationQueue = []
         for piece in self._animationQueue:
             if piece.animate(timeStep):
@@ -238,12 +269,62 @@ class Scene(glchess.scene.Scene):
                 piece.feedback.onMoved()
 
         self._animationQueue = animationQueue
-        self.animating = len(self._animationQueue) > 0
+        self.animating = len(self._animationQueue) > 0 or self.angle != self.targetAngle
 
         if redraw:
             self.feedback.onRedraw()
 
         return self.animating
+    
+    def __rotate(self, context):
+        """
+        """
+        context.translate(self.width / 2, self.height / 2)
+        
+        # Shrink board so it is always visible:
+        #
+        # a  b
+        # +-----------------+
+        # |  |    ```----__ |
+        # |  |             ||
+        # | ,`            ,`|
+        # | |      o      | |
+        # |,`      c      | |
+        # ||___          ,` |
+        # |    ----...   |  |
+        # +-----------------+
+        #
+        # To calculate the scaling factor compare lengths a-c and b-c
+        #
+        # Rotation angle (r) is angle between a-c and b-c.
+        #
+        # Make two triangles:
+        #
+        #   +------+-------+
+        #    `.     \      |        r = angle rotated
+        #      `.    \     |       r' = 45deg - r
+        #        `.  y\    | z    z/x = cos(45) = 1/sqrt(2)
+        #       x  `.  \   |      z/y = cos(r') = cos(45 - r)
+        #            `.r\r'|
+        #              `.\ |  s = y/x = 1 / (sqrt(2) * cos(45 - r)
+        #                `\|
+        #                              QED
+        #
+        # Finally clip the angles so the board does not expand
+        # in the middle of the rotation.
+        a = self.angle
+        if a > math.pi:
+            a -= math.pi
+        if a > math.pi / 4:
+            if a > math.pi * 3 / 4:
+                a = math.pi / 4 - (a - (math.pi * 3 / 4))
+            else:
+                a = math.pi / 4
+        s = 1.0 / (math.sqrt(2) * math.cos(math.pi / 4 - a))
+        
+        context.scale(s, s)
+        
+        context.rotate(self.angle);
 
     def renderStatic(self, context):
         """Render the static elements in a scene.
@@ -256,17 +337,18 @@ class Scene(glchess.scene.Scene):
         context.set_source_rgb(*BACKGROUND_COLOUR)
         context.paint()
         
+        # Rotate board
+        self.__rotate(context)
+        
         # Draw border
         context.set_source_rgb(*BORDER_COLOUR)
-        context.rectangle(self.offset[0], self.offset[1], self.squareSize * 9.0, self.squareSize * 9.0)
+        context.rectangle(-self.squareSize * 4.5, -self.squareSize * 4.5, self.squareSize * 9.0, self.squareSize * 9.0)
         context.fill()
-        
-        offset = (self.offset[0] + self.squareSize * 0.5, self.offset[1] + self.squareSize * 0.5)
         
         for i in xrange(8):
             for j in xrange(8):
-                x = offset[0] + i * self.squareSize
-                y = offset[1] + (7 - j) * self.squareSize
+                x = (i - 4) * self.squareSize
+                y = (3 - j) * self.squareSize
                 
                 coord = chr(ord('a') + i) + chr(ord('1') + j)
                 try:
@@ -286,7 +368,7 @@ class Scene(glchess.scene.Scene):
         for piece in self.pieces:
             if piece.moving:
                 continue
-            piece.render(offset, context)
+            piece.render(context)
         
         return True
 
@@ -295,13 +377,15 @@ class Scene(glchess.scene.Scene):
         
         This requires a Cairo context.
         """
-        offset = (self.offset[0] + self.squareSize * 0.5, self.offset[1] + self.squareSize * 0.5)
-        
+        # Rotate board
+        self.__rotate(context)
+
         context.set_source_rgb(*PIECE_COLOUR)
         for piece in self.pieces:
-            if not piece.moving:
+            # If not rotating and piece not moving then was rendered in the static phase
+            if self.angle == self.targetAngle and not piece.moving:
                 continue
-            piece.render(offset, context)
+            piece.render(context)
 
     def getSquare(self, x, y):
         """Find the chess square at a given 2D location.
@@ -311,7 +395,12 @@ class Scene(glchess.scene.Scene):
         
         Return the co-ordinate in LAN format (string) or None if no square at this point.
         """
-        offset = (self.offset[0] + self.squareSize * 0.5, self.offset[1] + self.squareSize * 0.5)
+        # FIXME: Should use cairo rotation matrix but we don't have a context here
+        if self.angle != self.targetAngle:
+            return None
+        
+        boardWidth = self.squareSize * 9.0
+        offset = ((self.width - boardWidth) / 2.0 + self.squareSize * 0.5, (self.height - boardWidth) / 2.0 + self.squareSize * 0.5)
         
         rank = (x - offset[0]) / self.squareSize
         if rank < 0 or rank >= 8.0:
@@ -322,6 +411,11 @@ class Scene(glchess.scene.Scene):
         if file < 0 or file >= 8.0:
             return None
         file = 7 - int(file)
+        
+        # FIXME: See above
+        if self.angle == math.pi:
+            rank = 7 - rank
+            file = 7 - file
 
         # Convert from co-ordinates to LAN format
         rank = chr(ord('a') + rank)
