@@ -391,6 +391,8 @@ class GtkView(glchess.ui.ViewController):
                 description = gettext.gettext('Opponent is unable to cause checkmate (insufficient material)')
         elif game.rule is glchess.game.RULE_RESIGN:
             description = gettext.gettext('One of the players has resigned')
+        elif game.rule is glchess.game.RULE_DEATH:
+            description = gettext.gettext('One of the players has died')
 
         self.gui.get_widget('panel_title_label').set_markup('<big><b>%s</b></big>' % title)
         self.gui.get_widget('panel_description_label').set_markup('<i>%s</i>' % description)

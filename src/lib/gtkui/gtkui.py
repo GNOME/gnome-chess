@@ -454,7 +454,7 @@ class GtkUI(glchess.ui.UI):
     
     def watchFileDescriptor(self, fd):
         """Extends ui.UI"""
-        gobject.io_add_watch(fd, gobject.IO_IN, self.__readData)
+        gobject.io_add_watch(fd, gobject.IO_IN | gobject.IO_HUP, self.__readData)
         
     def addTimer(self, feedback, duration):
         """Extends ui.UI"""

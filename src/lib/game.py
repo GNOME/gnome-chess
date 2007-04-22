@@ -22,6 +22,7 @@ RULE_FIFTY_MOVES           = 'FIFTY_MOVES'
 RULE_THREE_FOLD_REPETITION = 'THREE_FOLD_REPETITION'
 RULE_INSUFFICIENT_MATERIAL = 'INSUFFICIENT_MATERIAL'
 RULE_RESIGN                = 'RESIGN'
+RULE_DEATH                 = 'DEATH'
 
 class ChessMove:
     """
@@ -162,6 +163,10 @@ class ChessPlayer:
     def outOfTime(self):
         """Report this players timer has expired"""
         self.__game.outOfTime(self)
+        
+    def die(self):
+        """Report this player has died"""
+        self.__game.killPlayer(self)
 
     # Private methods
     
@@ -596,6 +601,17 @@ class ChessGame:
                 rule = RULE_THREE_FOLD_REPETITION
 
         self.endGame(RESULT_DRAW, rule)
+        
+    def killPlayer(self, player):
+        """Report a player has died
+        
+        'player' is the player that has died.
+        """
+        if player is self.__whitePlayer:
+            result = RESULT_BLACK_WINS
+        elif player is self.__blackPlayer:
+            result = RESULT_WHITE_WINS       
+        self.endGame(result, RULE_DEATH)
 
     def outOfTime(self, player):
         """Report a player's timer has expired"""

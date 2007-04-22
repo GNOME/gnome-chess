@@ -726,7 +726,8 @@ class ChessGame(game.ChessGame):
             pgnGame.setTag(pgnGame.PGN_TAG_RESULT, value)
 
         rules = {game.RULE_RESIGN:  pgnGame.PGN_TERMINATE_ABANDONED,
-                 game.RULE_TIMEOUT: pgnGame.PGN_TERMINATE_TIME_FORFEIT}
+                 game.RULE_TIMEOUT: pgnGame.PGN_TERMINATE_TIME_FORFEIT,
+                 game.RULE_DEATH:   pgnGame.PGN_TERMINATE_DEATH}
         try:
             value = rules[self.rule]
         except KeyError:
@@ -925,6 +926,7 @@ class NetworkDialog(ui.NetworkFeedback):
     def read(self):
         (data, address) = self.socket.recvfrom(65535)
         self.decoder.registerIncomingData(data)
+        return True
         
     def sendCommand(self, command):
         # TODO: Validate the command
@@ -967,8 +969,7 @@ class UI(ui.UIFeedback):
         except KeyError:
             return False
         else:
-            handler.read()
-            return True
+            return handler.read()
 
     def onGameStart(self, game):
         """Called by ui.UIFeedback"""

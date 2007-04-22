@@ -6,7 +6,6 @@ import os
 import sys
 import select
 import signal
-import termios
 import xml.dom.minidom
 
 import game
@@ -221,7 +220,8 @@ class Player(game.ChessPlayer):
     __level      = None
         
     # File object to engine stdin/out/err
-    __fd         = None
+    __fromEngineFd = None
+    __toEngineFd   = None
     
     __connection = None
     
@@ -241,20 +241,86 @@ class Player(game.ChessPlayer):
 
         game.ChessPlayer.__init__(self, name)
         
-        (self.__pid, self.__fd) = os.forkpty()
+        # Pipe to communicate to engine with
+        toManagerPipe = os.pipe()
+        fromManagerPipe = os.pipe()
+        
+        # Store the file descripter for reading/writing
+        self.__toEngineFd = toManagerPipe[1]
+        self.__fromEngineFd = fromManagerPipe[0]
+        
+        # Catch if the child dies
+        def cDied(sig, stackFrame):
+            os.wait()
+        signal.signal(signal.SIGCHLD, cDied)
+
+        # Fork off a child process to manage the engine
+        self.__pid = os.fork()
         if self.__pid == 0:
-            os.nice(19)
-            try:
-                os.execv(profile.path, [profile.path] + profile.arguments)
-            except OSError:
-                pass
+            # ..
+            os.close(toManagerPipe[1])
+            os.close(fromManagerPipe[0])
+            
+            # Make pipes to the engine
+            stdinPipe = os.pipe()
+            stdoutPipe = os.pipe()
+            stderrPipe = os.pipe()
+            
+            # Fork off the engine
+            engineFd = os.fork()
+            if engineFd == 0:
+                # Make the engine low priority for CPU usage
+                os.nice(19)
+                
+                # Connect stdin, stdout and stderr to the manager process
+                os.dup2(stdinPipe[0], sys.stdin.fileno())
+                os.dup2(stdoutPipe[1], sys.stdout.fileno())
+                os.dup2(stderrPipe[1], sys.stderr.fileno())
+                
+                # Execute the engine
+                try:
+                    os.execv(profile.path, [profile.path] + profile.arguments)
+                except OSError:
+                    pass
+                os._exit(0)
+                
+            # Catch if the child dies
+            def childDied(sig, stackFrame):
+                os.wait()
+                
+                # Close connection to the application
+                os.close(fromManagerPipe[1])
+                    
+                os._exit(0)
+            signal.signal(signal.SIGCHLD, childDied)
+
+            # Forward data between the application and the engine and wait for closed pipes
+            inputPipes = [toManagerPipe[0], stdoutPipe[0], stderrPipe[0]]
+            pipes = [toManagerPipe[0], toManagerPipe[1], stdinPipe[0], stdinPipe[1], stdoutPipe[0], stdoutPipe[1], stderrPipe[0], stderrPipe[1]]
+            while True:                
+                # Wait for data
+                (rfds, _, xfds) = select.select(inputPipes, [], pipes, None)
+                
+                for fd in rfds:
+                    data = os.read(fd, 65535)
+                    
+                    # One of the connections has closed - kill the engine and quit
+                    if len(data) == 0:
+                        os.kill(self.__pid, signal.SIGQUIT)
+                        os._exit(0)
+                    
+                    # Send data from the application to the engines stdin
+                    if fd == toManagerPipe[0]:
+                        os.write(stdinPipe[1], data)
+                    # Send engine output to the application
+                    else:
+                        os.write(fromManagerPipe[1], data)
+
             os._exit(0)
             
-        # Stop our commands being echod back
-        (iflag, oflag, cflag, lflag, ispeed, ospeed, cc) = termios.tcgetattr(self.__fd)
-        lflag &= ~termios.ECHO
-        termios.tcsetattr(self.__fd, termios.TCSANOW, [iflag, oflag, cflag, lflag, ispeed, ospeed, cc])
-        
+        os.close(toManagerPipe[0])
+        os.close(fromManagerPipe[1])
+
         if profile.protocol == CECP:
             self.connection = CECPConnection(self)
         elif profile.protocol == UCI:
@@ -289,7 +355,7 @@ class Player(game.ChessPlayer):
     
     def fileno(self):
         """Returns the file descriptor for communicating with the engine (integer)"""
-        return self.__fd
+        return self.__fromEngineFd
 
     def read(self):
         """Read an process data from the engine.
@@ -298,45 +364,41 @@ class Player(game.ChessPlayer):
         """
         while True:
             # Check if data is available
-            (rlist, _, _) = select.select([self.__fd], [], [], 0)
+            (rlist, _, _) = select.select([self.__fromEngineFd], [], [], 0)
             if len(rlist) == 0:
-                return
+                return True
             
             # Read a chunk and process
             try:
-                data = os.read(self.__fd, 256)
+                data = os.read(self.__fromEngineFd, 256)
             except OSError, e:
                 print 'Error reading from chess engine: ' + str(e)
-                return
-            if data == '':
-                return
+                self.die()
+                return False
+            if len(data) == 0:
+                print 'Engine has died'
+                self.die()
+                return False
             self.connection.registerIncomingData(data)
 
     def sendToEngine(self, data):
         """
         """
         try:
-            os.write(self.__fd, data)
+            os.write(self.__toEngineFd, data)
         except OSError, e:
             print 'Failed to write to engine: ' + str(e)
 
     def quit(self):
         """Disconnect the AI"""
-        # Wait for the pipe to close
-        # There must be a better way of doing this!
-        count = 0
-        while True:
-            select.select([], [], [], 0.1)
-            try:
-                os.write(self.__fd, '\nquit\n') # FIXME: CECP specific
-            except OSError:
-                return
-            count += 1
-            if count > 5:
-                break
+        fd = self.__toEngineFd
+        self.__toEngineFd = None
         
-        print 'Killing AI'
-        os.kill(self.__pid, signal.SIGKILL)
+        # Send quit
+        try:
+            os.write(fd, '\nquit\n') # FIXME: CECP specific
+        except:
+            return
 
     # Extended methods
     
