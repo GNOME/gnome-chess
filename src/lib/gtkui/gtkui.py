@@ -979,7 +979,11 @@ class GtkUI(glchess.ui.UI):
 
     def _on_help_clicked(self, widget):
         """Gtk+ callback"""
-        gnome.help_display('glchess')
+        try:
+            gnome.help_display('glchess')
+        except gobject.GError, e:
+            # TODO: This should be a pop-up dialog
+            print gettext.gettext('Unable to display help: %s') % str(e)
 
     def _on_view_fullscreen_clicked(self, widget):
         """Gtk+ callback"""
