@@ -1320,20 +1320,24 @@ class Application:
         fname = self.config.getAutosavePath()
         print 'Auto-saving to ' + fname + '...'
         
-        f = file(fname, 'a')
-        for g in self.__games:
-            # Ignore games that are saved to a file
-            if g.fileName is not None:
-                continue
+        try:
+            f = file(fname, 'a')
+            for g in self.__games:
+                # Ignore games that are saved to a file
+                if g.fileName is not None:
+                    continue
             
-            pgnGame = chess.pgn.PGNGame()
-            g.toPGN(pgnGame)
+                pgnGame = chess.pgn.PGNGame()
+                g.toPGN(pgnGame)
             
-            lines = pgnGame.getLines()
-            for line in lines:
-                f.write(line + '\n')
-            f.write('\n')
-        f.close()
+                lines = pgnGame.getLines()
+                for line in lines:
+                    f.write(line + '\n')
+                f.write('\n')
+            f.close()
+        except IOError, e:
+            # FIXME: This should be in a dialog
+            print 'Unable to autosave to %s: %s' % (fname, str(e))
 
 if __name__ == '__main__':
     app = Application()
