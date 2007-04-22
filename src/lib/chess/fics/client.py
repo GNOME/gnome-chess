@@ -1,4 +1,4 @@
-import sre
+import re
 import socket
 import select
 
@@ -91,40 +91,40 @@ class Decoder:
         # (that compiles to regexp if regexp is faster)
         
         #Press return to enter the server as "GuestVRDG":
-        self.nameAssignPattern = sre.compile('Press return to enter the server as "(\S+)":')
+        self.nameAssignPattern = re.compile('Press return to enter the server as "(\S+)":')
                 
         #jibbjibb(U)(53): i like cheese
-        self.chatPattern = sre.compile('^(\S+)[(](\d+)[)]: (.*)$')
+        self.chatPattern = re.compile('^(\S+)[(](\d+)[)]: (.*)$')
         #GuestTLNX(U) tells you: hello!
-        self.tellPattern = sre.compile('^(\S+)[(](\S+)[)] tells you: (.*)$')
+        self.tellPattern = re.compile('^(\S+)[(](\S+)[)] tells you: (.*)$')
         #'GuestTLNX(U)[26] says: hello'
-        self.sayPattern = sre.compile('^(\S+)[(](\S+)[)][[](\d+)[]] says: (.*)$')
+        self.sayPattern = re.compile('^(\S+)[(](\S+)[)][[](\d+)[]] says: (.*)$')
 
         #Challenge: GuestKWWN (----) GuestDRJK (----) unrated blitz 2 12.
-        self.challengePattern = sre.compile('Challenge: (\S+) [(](\S{4})[)] \S+ [(]\S{4}[)] (\w+) (\w+) (\d+) (\d+)[.]$')
+        self.challengePattern = re.compile('Challenge: (\S+) [(](\S{4})[)] \S+ [(]\S{4}[)] (\w+) (\w+) (\d+) (\d+)[.]$')
         
         # 19  716 milkhope            5  14 unrated blitz                  0-9999 mf
         # 41 1812 CrazyBeukiBot(C)    2  12 unrated blitz                  0-9999 
         # 50 1190 rauschdesign       10   0 unrated blitz      [white]     0-9999 f
         # 70 1157 stshot             12   1 unrated blitz                  0-1300
-        self.seekPattern = sre.compile('^\s*(\d+)\s+(\S{4}) (\S+)\s+(\d+)\s+(\d+) (\S+) (\S+)\s+(\S*)\s+(\d+)-\s*(\d+)\s*(\S*)$')
+        self.seekPattern = re.compile('^\s*(\d+)\s+(\S{4}) (\S+)\s+(\d+)\s+(\d+) (\S+) (\S+)\s+(\S*)\s+(\d+)-\s*(\d+)\s*(\S*)$')
         
         #1 ad displayed.
         #9 ads displayed.
-        self.endSeekPattern = sre.compile('^(\d+) ads? displayed.$')
+        self.endSeekPattern = re.compile('^(\d+) ads? displayed.$')
         
         #GuestJXJT (++++) seeking 0 1 unrated lightning ("play 15" to respond)
-        self.announcePattern = sre.compile('^(\S+) [(](\S{4})[)] seeking (\d+) (\d+) (\w+) (\w+)(.*) [(]"play (\d+)" to respond[)]$')
+        self.announcePattern = re.compile('^(\S+) [(](\S{4})[)] seeking (\d+) (\d+) (\w+) (\w+)(.*) [(]"play (\d+)" to respond[)]$')
 
         #{Game 109 (GuestKSBS vs. GuestXKQX) Creating unrated blitz match.}
         #{Game 109 (GuestKSBS vs. GuestXKQX) GuestXKQX forfeits by disconnection} 1-0
         #{Game 109 (GuestXKQX vs. GuestKSBS) GuestKSBS resigns} 1-0
-        self.gameResultPattern = sre.compile('^{Game (\d+) [(](\S+) vs. (\S+)[)] (.+)}\s*(.*)$')
+        self.gameResultPattern = re.compile('^{Game (\d+) [(](\S+) vs. (\S+)[)] (.+)}\s*(.*)$')
 
         # 1 (Exam.    0 Kupreichik     0 talpa     ) [ uu  0   0] W: 22
         # 2 2274 OldManII    ++++ Peshkin    [ bu  2  12]   2:34 -  1:47 (39-39) B:  3
-        self.exampleGamePattern = sre.compile('\s*(\d+) [(]Exam[.] (\S{4}) (\S+)\s+(\S{4}) (\S+)\s+ [)] [[]\s*(\S+)\s+(\d+)\s+(\d+)[]] ([WB]):\s+(\d+)$')
-        self.gamePattern = sre.compile('\s*(\d+) (\S{4}) (\S+)\s+(\S{4}) (\S+)\s+[[]\s*(\S+)\s+(\d+)\s+(\d+)[]]\s+(\d+):(\d+) -\s+(\d+):(\d+) [(](\d+)-(\d+)[)] ([WB]):\s+(\d+)$')
+        self.exampleGamePattern = re.compile('\s*(\d+) [(]Exam[.] (\S{4}) (\S+)\s+(\S{4}) (\S+)\s+ [)] [[]\s*(\S+)\s+(\d+)\s+(\d+)[]] ([WB]):\s+(\d+)$')
+        self.gamePattern = re.compile('\s*(\d+) (\S{4}) (\S+)\s+(\S{4}) (\S+)\s+[[]\s*(\S+)\s+(\d+)\s+(\d+)[]]\s+(\d+):(\d+) -\s+(\d+):(\d+) [(](\d+)-(\d+)[)] ([WB]):\s+(\d+)$')
         
         #GuestDRJK, whom you were challenging, has departed.
         #Challenge to GuestDRJK withdrawn.

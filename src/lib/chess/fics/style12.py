@@ -1,4 +1,4 @@
-import sre
+import re
 
 """See: http://www.unix-ag.uni-kl.de/~chess/gicshelp/node197.html"""
 
@@ -46,39 +46,39 @@ RELATIONSHIP_EXAMINER              = '2'
 #0 
 #0 
 #0
-movePattern = sre.compile('<12> ' +
-                          '([prnbqkPRNBQK-]{8}) ' +
-                          '([prnbqkPRNBQK-]{8}) ' +
-                          '([prnbqkPRNBQK-]{8}) ' +
-                          '([prnbqkPRNBQK-]{8}) ' +
-                          '([prnbqkPRNBQK-]{8}) ' +
-                          '([prnbqkPRNBQK-]{8}) ' +
-                          '([prnbqkPRNBQK-]{8}) ' +
-                          '([prnbqkPRNBQK-]{8}) ' +
-                          '([BW]{1}) ' +             # Colour to move
-                          '([-]?\d+) ' +             # Pawn file or -1
-                          '([01]{1}) ' +             # Can white short castle
-                          '([01]{1}) ' +             # Can white long castle
-                          '([01]{1}) ' +             # Can black short castle
-                          '([01]{1}) ' +             # Can black long castle
-                          '(\d+) ' +                 # Number of irreversable moves
-                          '(\d+) ' +                 # Game number
-                          '(.+) ' +                  # White name
-                          '(.+) ' +                  # Black name
-                          '([-]?\d+) ' +             # Relationship to game (-2, 2, -1, 1, 0)
-                          '(\d+) ' +
-                          '(\d+) ' +
-                          '(\d+) ' +                 # White strength
-                          '(\d+) ' +                 # Black strength
-                          '(\d+) ' +                 # White time
-                          '(\d+) ' +                 # Black black
-                          '(\d+) ' +                 # Move number
-                          '(.+) ' +                  # Move
-                          '[(](\d+)[:](\d+)[)] ' +   # Move duration
-                          '(.+) ' +                  # Pretty move
-                          '([01]{1})' +
-                          '([01]{1})' +
-                          '([01]{1})')
+movePattern = re.compile('<12> ' +
+                         '([prnbqkPRNBQK-]{8}) ' +
+                         '([prnbqkPRNBQK-]{8}) ' +
+                         '([prnbqkPRNBQK-]{8}) ' +
+                         '([prnbqkPRNBQK-]{8}) ' +
+                         '([prnbqkPRNBQK-]{8}) ' +
+                         '([prnbqkPRNBQK-]{8}) ' +
+                         '([prnbqkPRNBQK-]{8}) ' +
+                         '([prnbqkPRNBQK-]{8}) ' +
+                         '([BW]{1}) ' +             # Colour to move
+                         '([-]?\d+) ' +             # Pawn file or -1
+                         '([01]{1}) ' +             # Can white short castle
+                         '([01]{1}) ' +             # Can white long castle
+                         '([01]{1}) ' +             # Can black short castle
+                         '([01]{1}) ' +             # Can black long castle
+                         '(\d+) ' +                 # Number of irreversable moves
+                         '(\d+) ' +                 # Game number
+                         '(.+) ' +                  # White name
+                         '(.+) ' +                  # Black name
+                         '([-]?\d+) ' +             # Relationship to game (-2, 2, -1, 1, 0)
+                         '(\d+) ' +
+                         '(\d+) ' +
+                         '(\d+) ' +                 # White strength
+                         '(\d+) ' +                 # Black strength
+                         '(\d+) ' +                 # White time
+                         '(\d+) ' +                 # Black black
+                         '(\d+) ' +                 # Move number
+                         '(.+) ' +                  # Move
+                         '[(](\d+)[:](\d+)[)] ' +   # Move duration
+                         '(.+) ' +                  # Pretty move
+                         '([01]{1})' +
+                         '([01]{1})' +
+                         '([01]{1})')
 
 def _decodeFile(string):
     # FIXME: Only allow 'prnbqkPRNBQK-'
