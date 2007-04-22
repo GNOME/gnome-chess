@@ -105,11 +105,15 @@ class GtkViewArea(gtk.DrawingArea):
         self.__glDrawable = glDrawable
 
         if not self.view.ui.openGLInfoPrinted:
+            vendor     = OpenGL.GL.glGetString(OpenGL.GL.GL_VENDOR)
+            renderer   = OpenGL.GL.glGetString(OpenGL.GL.GL_RENDERER)
+            version    = OpenGL.GL.glGetString(OpenGL.GL.GL_VERSION)
+            extensions = OpenGL.GL.glGetString(OpenGL.GL.GL_EXTENSIONS)
             print 'Using OpenGL:'
-            print 'VENDOR=' + OpenGL.GL.glGetString(OpenGL.GL.GL_VENDOR)
-            print 'RENDERER=' + OpenGL.GL.glGetString(OpenGL.GL.GL_RENDERER)
-            print 'VERSION=' + OpenGL.GL.glGetString(OpenGL.GL.GL_VERSION)
-            print 'EXTENSIONS=' + OpenGL.GL.glGetString(OpenGL.GL.GL_EXTENSIONS)
+            print 'VENDOR=%s' % vendor
+            print 'RENDERER=%s' % renderer
+            print 'VERSION=%s' % version
+            print 'EXTENSIONS=%s' % extensions
             self.view.ui.openGLInfoPrinted = True
         
     def __endGL(self):
