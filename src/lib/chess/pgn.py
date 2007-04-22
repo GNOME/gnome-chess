@@ -40,17 +40,13 @@ class Error(Exception):
     # Text description of the error
     description = ''
     
-    # The Unix error number
-    errno = -1
-    
     # The file being opened
     fileName = ''
     
-    def __init__(self, description = '', errno = -1, fileName = ''):
+    def __init__(self, description = '', fileName = ''):
         """
         """
         self.description = description
-        self.errno = errno
         self.fileName = fileName
         Exception.__init__(self)
         
@@ -59,8 +55,6 @@ class Error(Exception):
             string = self.fileName + ': '
         else:
             string = ''
-        if self.errno >= 0:
-            string += '[Error %i] ' % self.errno
         string += self.description
         return string
 
@@ -629,10 +623,7 @@ class PGN:
         
         'fileName' is the name of the file to save to.
         """
-        try:
-            f = file(fileName, 'w')
-        except IOError, e:
-            raise Error(e.args[1], errno = e.args[0])
+        f = file(fileName, 'w')
         # FIXME: Set the newline characters to the correct type?
         
         # Sign it from glChess
@@ -661,10 +652,7 @@ class PGN:
         """
         """
         # Convert the file into PGN tokens
-        try:
-            f = file(fileName, 'r')
-        except IOError, e:            
-            raise Error(e.args[1], errno = e.args[0])
+        f = file(fileName, 'r')
         p = PGNParser()
         gp = PGNGameParser()
         lineNumber = 1

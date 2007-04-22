@@ -9,6 +9,7 @@ __all__ = ['Application']
 
 import sys
 import os
+import errno
 import gettext
 import traceback
 
@@ -1286,17 +1287,20 @@ class Application:
     def __autoload(self):
         """Restore games from the autosave file"""
         path = self.config.getAutosavePath()
-        print 'Auto-loading from ' + path + '...'
         
         try:
             p = chess.pgn.PGN(path)
             games = p[:]
         except chess.pgn.Error, e:
-            print 'Invalid autoload file ' + path + ': ' + str(e)
-            games = []
+            print 'Ignoring invalid autoload file %s: %s' % (path, str(e))
+            return
         except IOError, e:
-            print 'Unable to autoload from ' + path + ': ' + str(e)
-            games = []
+            # The file doesn't have to exist...
+            if e.errno != errno.ENOENT:
+                print 'Unable to autoload from %s: %s' % (path, str(e))
+            return
+        
+        print 'Auto-loading from ' + path + '...'
             
         # Delete the file once loaded
         try:
