@@ -8,10 +8,10 @@ except ImportError:
     
     class Scene(glchess.scene.Scene):
         
-        def __init__(self):
+        def __init__(self, feedback):
             pass
         
-        def addChessPiece(self, chessSet, name, coord):
+        def addChessPiece(self, chessSet, name, coord, feedback):
             return Piece()
 else:
     from opengl import *
