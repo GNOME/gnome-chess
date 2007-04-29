@@ -272,6 +272,16 @@ class Player(game.ChessPlayer):
                 # Make the engine low priority for CPU usage
                 os.nice(19)
                 
+                # Change directory so any log files are not in the users home directory
+                try:
+                    os.mkdir(LOG_DIR)
+                except OSError:
+                    pass
+                try:
+                    os.chdir(LOG_DIR)
+                except OSError:
+                    pass
+                
                 # Connect stdin, stdout and stderr to the manager process
                 os.dup2(stdinPipe[0], sys.stdin.fileno())
                 os.dup2(stdoutPipe[1], sys.stdout.fileno())

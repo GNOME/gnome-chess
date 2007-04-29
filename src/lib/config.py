@@ -79,8 +79,7 @@ _defaults = {'show_toolbar':                     True,
              'new_game_dialog/white/type':       '',
              'new_game_dialog/white/difficulty': '',
              'new_game_dialog/black/type':       '',
-             'new_game_dialog/black/difficulty': '',
-             
+             'new_game_dialog/black/difficulty': ''}
 
 class Error(Exception):
     """Exception for configuration use"""
