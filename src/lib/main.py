@@ -30,25 +30,6 @@ from defaults import *
 
 import chess.pgn
 
-class Config:
-    """
-    """    
-    __directory = None
-
-    def __init__(self):
-        """Constructor for a configuration object"""
-        self.__directory = os.path.expanduser('~/.glchess')
-        
-        # Create the directory if it does not exist
-        if not os.path.exists(self.__directory):
-            os.mkdir(self.__directory)
-        else:
-            assert(os.path.isdir(self.__directory))
-
-    def getAutosavePath(self):
-        """Get the path to the autosave file"""
-        return self.__directory + '/autosave.pgn'
-
 class MovePlayer(game.ChessPlayer):
     """This class provides a pseudo-player to watch for piece movements"""
     # The game to control
@@ -1014,9 +995,6 @@ class UI(ui.UIFeedback):
 class Application:
     """
     """
-    # The configuration
-    config = None
-
     # The glChess UI
     ui = None
     
@@ -1041,8 +1019,6 @@ class Application:
         self.__games = []
         self.ioHandlers = {}
         self.networkConnections = {}
-        
-        self.config = Config()
         
         self.__detector = None#GameDetector(self)
 
@@ -1286,7 +1262,7 @@ class Application:
 
     def __autoload(self):
         """Restore games from the autosave file"""
-        path = self.config.getAutosavePath()
+        path = AUTOSAVE_FILE
         
         try:
             p = chess.pgn.PGN(path)
@@ -1317,7 +1293,7 @@ class Application:
         if len(self.__games) == 0:
             return
         
-        fname = self.config.getAutosavePath()
+        fname = AUTOSAVE_FILE
         print 'Auto-saving to ' + fname + '...'
         
         try:
