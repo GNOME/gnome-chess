@@ -4,7 +4,7 @@
 <glade-interface>
 
 <widget class="GtkWindow" id="glchess_app">
-  <property name="visible">True</property>
+  <property name="visible">False</property>
   <property name="title">glChess</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
@@ -22,6 +22,7 @@
   <property name="urgency_hint">False</property>
   <signal name="delete_event" handler="_on_close_window" last_modification_time="Sat, 21 Jan 2006 19:25:59 GMT"/>
   <signal name="configure_event" handler="_on_resize" last_modification_time="Sat, 09 Dec 2006 13:28:27 GMT"/>
+  <signal name="window_state_event" handler="_on_window_state_changed" last_modification_time="Sat, 09 Dec 2006 13:28:27 GMT"/>
   <signal name="focus-in-event" handler="_on_focus_changed" after="yes" last_modification_time="Sun, 31 Dec 2006 03:39:01 GMT"/>
 
   <child>

@@ -1249,6 +1249,9 @@ class Application:
 
     def quit(self):
         """Quit glChess"""
+        # Notify the UI
+        self.ui.controller.close()
+        
         # Save any games not saved to a file
         self.__autosave()
         

@@ -363,6 +363,12 @@ class GtkUI(glchess.ui.UI):
     
     whiteTimeString    = '∞'
     blackTimeString    = '∞'
+    
+    # The window width and height when unmaximised and not fullscreen
+    width              = None
+    height             = None
+    isFullscreen       = False
+    isMaximised        = False
 
     def __init__(self, feedback):
         """Constructor for a GTK+ glChess GUI"""
@@ -528,7 +534,7 @@ class GtkUI(glchess.ui.UI):
         This method will not return.
         """        
         # Load configuration
-        for name in ['show_toolbar', 'show_history', 'show_3d', 'show_move_hints', 'move_format', 'promotion_type', 'board_view']:
+        for name in ['show_toolbar', 'show_history', 'show_3d', 'show_move_hints', 'move_format', 'promotion_type', 'board_view', 'maximised']:
             try:
                 value = glchess.config.get(name)
             except glchess.config.Error:
@@ -580,6 +586,14 @@ class GtkUI(glchess.ui.UI):
         # Update the open dialogs
         for dialog in self.__joinGameDialogs:
             dialog.removeNetworkGame(game)
+        
+    def close(self):
+        """Extends glchess.ui.UI"""
+        # Save the window size
+        if self.width is not None:
+            glchess.config.set('width', self.width)
+        if self.height is not None:
+            glchess.config.set('height', self.height)
 
     # Protected methods
     
@@ -659,17 +673,21 @@ class GtkUI(glchess.ui.UI):
                 menu.set_active(False)
                 box.hide()
                 
+        # Maximised mode
+        elif name == 'maximised':
+            window = self._gui.get_widget('glchess_app')
+            if value is True:
+                window.maximize()
+            else:
+                window.unmaximize()
+
         # Fullscreen mode
         elif name == 'fullscreen':
             window = self._gui.get_widget('glchess_app')
             if value is True:
                 window.fullscreen()
-                self._gui.get_widget('menu_fullscreen').hide()
-                self._gui.get_widget('menu_leave_fullscreen').show()
             else:
                 window.unfullscreen()
-                self._gui.get_widget('menu_leave_fullscreen').hide()
-                self._gui.get_widget('menu_fullscreen').show()
 
         # Enable/disable OpenGL rendering
         elif name == 'show_3d':            
@@ -1063,32 +1081,47 @@ class GtkUI(glchess.ui.UI):
     
     def _on_resize(self, widget, event):
         """Gtk+ callback"""
-        glchess.config.set('width', event.width)
-        glchess.config.set('height', event.height)
+        if self.isMaximised or self.isFullscreen:
+            return
+        self.width = event.width
+        self.height = event.height
+
+    def _on_window_state_changed(self, widget, event):
+        """Gtk+ callback"""
+        if event.changed_mask & gtk.gdk.WINDOW_STATE_MAXIMIZED:
+            self.isMaximised = event.new_window_state & gtk.gdk.WINDOW_STATE_MAXIMIZED != 0
+            glchess.config.set('maximised', self.isMaximised)
+            
+        if event.changed_mask & gtk.gdk.WINDOW_STATE_FULLSCREEN:
+            self.isFullscreen = event.new_window_state & gtk.gdk.WINDOW_STATE_FULLSCREEN != 0
+            if self.isFullscreen:
+                self._gui.get_widget('menu_fullscreen').hide()
+                self._gui.get_widget('menu_leave_fullscreen').show()
+            else:
+                self._gui.get_widget('menu_leave_fullscreen').hide()
+                self._gui.get_widget('menu_fullscreen').show()
 
     def _on_close_window(self, widget, event):
         """Gtk+ callback"""
         self._quit()
+        return True
         
     def _on_menu_quit(self, widget):
         """Gtk+ callback"""
         self._quit()
         
-    def _quit(self):
+    def _quit(self):        
         # Check if any views need saving
         viewsToSave = []
         for view in self.notebook.views:
             if view.feedback.needsSaving():
                 viewsToSave.append(view)
-             
+
         if len(viewsToSave) == 0:
             self.feedback.onQuit()
         else:
             self.saveDialog.setViews(viewsToSave)
             self.saveDialog.setVisible(True)
-
-        # Don't close the window, we will do it ourself
-        return True
 
 if __name__ == '__main__':
     ui = GtkUI()

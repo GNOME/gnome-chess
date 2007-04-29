@@ -393,3 +393,6 @@ class UI:
         """
         pass
         
+    def close(self):
+        """Report the application has ended"""
+        pass

@@ -67,6 +67,7 @@ else:
 # Config default values
 _defaults = {'show_toolbar':                     True,
              'show_history':                     True,
+             'maximised':                        False,
              'fullscreen':                       False,
              'show_3d':                          False,
              'show_move_hints':                  True,
