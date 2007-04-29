@@ -229,7 +229,7 @@ class GtkNewGameDialog:
             self.__setCombo('white_difficulty_combo', whiteLevel)
             self.__setCombo('black_type_combo', blackType)
             self.__setCombo('black_difficulty_combo', blackLevel)
-            
+
         # Use supplied settings
         errorText = ''
         g = self.game

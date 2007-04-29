@@ -65,14 +65,22 @@ else:
                          unicode: _config.set_string}
               
 # Config default values
-_defaults = {'show_toolbar':    True,
-             'show_history':    True,
-             'fullscreen':      False,
-             'show_3d':         False,
-             'show_move_hints': True,
-             'move_format':     'human',
-             'promotion_type':  'queen',
-             'board_view':      'human'}
+_defaults = {'show_toolbar':                     True,
+             'show_history':                     True,
+             'fullscreen':                       False,
+             'show_3d':                          False,
+             'show_move_hints':                  True,
+             'move_format':                      'human',
+             'promotion_type':                   'queen',
+             'board_view':                       'human',
+             'load_directory':                   '',
+             'save_directory':                   '',
+             'new_game_dialog/move_time':        0,
+             'new_game_dialog/white/type':       '',
+             'new_game_dialog/white/difficulty': '',
+             'new_game_dialog/black/type':       '',
+             'new_game_dialog/black/difficulty': '',
+             
 
 class Error(Exception):
     """Exception for configuration use"""
