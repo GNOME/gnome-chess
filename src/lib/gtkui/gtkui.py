@@ -1037,10 +1037,7 @@ class GtkUI(glchess.ui.UI):
         dialog.set_comments(DESCRIPTION)
         dialog.set_authors(AUTHORS)
         dialog.set_artists(ARTISTS)
-        string = ''
-        for t in TRANSLATORS:
-            string += t + '\n'
-        dialog.set_translator_credits(string[:-1])
+        dialog.set_translator_credits(gettext.gettext("translator-credits"))
         dialog.set_website(WEBSITE)
         dialog.set_website_label(WEBSITE_LABEL)
         dialog.set_logo_icon_name('glchess')
