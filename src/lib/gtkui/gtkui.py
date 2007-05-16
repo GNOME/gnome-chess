@@ -1040,7 +1040,7 @@ class GtkUI(glchess.ui.UI):
         dialog.set_translator_credits(gettext.gettext("translator-credits"))
         dialog.set_website(WEBSITE)
         dialog.set_website_label(WEBSITE_LABEL)
-        dialog.set_logo_icon_name('glchess')
+        dialog.set_logo_icon_name('gnome-glchess')
         dialog.connect('response', self._on_glchess_about_dialog_close)
         dialog.show()
         
