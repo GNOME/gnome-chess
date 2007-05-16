@@ -5,4 +5,4 @@ DOC_MODULE = glchess
 DOC_ENTITIES = legal.xml
 DOC_INCLUDES =
 DOC_FIGURES =
-DOC_LINGUAS = es sv
+DOC_LINGUAS = es fr sv
