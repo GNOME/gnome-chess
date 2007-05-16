@@ -428,7 +428,11 @@ class View(ui.ViewFeedback):
     def showMoveHints(self, showHints):
         """Called by ui.UIFeedback"""
         self.scene.showMoveHints(showHints)
-    
+
+    def showBoardNumbering(self, showNumbering):
+        """Called by ui.UIFeedback"""
+        self.scene.controller.showBoardNumbering(showNumbering)
+
     def updateScene(self, sceneClass):
         """
         """
@@ -735,13 +739,8 @@ class ChessGame(game.ChessGame):
             pgnGame.setTag('BlackLevel', level)
 
         moves = self.getMoves()
-        while len(moves) > 0:
-            if len(moves) == 1:
-                pgnGame.addMove(moves[0].sanMove, None)
-                break
-            else:
-                pgnGame.addMove(moves[0].sanMove, moves[1].sanMove)
-                moves = moves[2:]
+        for m in moves:
+            pgnGame.addMove(m.sanMove)
 
     def animate(self, timeStep):
         """

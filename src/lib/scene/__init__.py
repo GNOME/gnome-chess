@@ -100,6 +100,11 @@ class Scene:
         'angle' is the angle the board should be drawn at in degress (float, [0.0, 360.0]).
         """
         pass
+    
+    def showBoardNumbering(self, showNumbering):
+        """
+        """
+        pass
 
     def animate(self, timeStep):
         """Animate the scene.

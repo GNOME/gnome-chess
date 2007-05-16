@@ -1,4 +1,5 @@
 import math
+import cairo
 
 import glchess.scene
 
@@ -6,6 +7,7 @@ import pieces
 
 BACKGROUND_COLOUR    = (0.53, 0.63, 0.75)
 BORDER_COLOUR        = (0.808, 0.361, 0.0)#(0.757, 0.490, 0.067)#(0.36, 0.21, 0.05)
+NUMBERING_COLOUR     = (249.0/255, 172.0/255, 109.0/255)#(249.0/255, 132.0/255, 38.0/255)
 BLACK_SQUARE_COLOURS = {None: (0.8, 0.8, 0.8), glchess.scene.HIGHLIGHT_SELECTED: (0.3, 1.0, 0.3), glchess.scene.HIGHLIGHT_CAN_MOVE: (0.3, 0.3, 1.0)}
 WHITE_SQUARE_COLOURS = {None: (1.0, 1.0, 1.0), glchess.scene.HIGHLIGHT_SELECTED: (0.2, 1.0, 0.0), glchess.scene.HIGHLIGHT_CAN_MOVE: (0.2, 0.2, 0.8)}
 PIECE_COLOUR         = (0.0, 0.0, 0.0)
@@ -154,6 +156,8 @@ class Scene(glchess.scene.Scene):
     
     animating   = False
     redrawStatic     = True
+
+    showNumbering = False
     
     _animationQueue = None
     
@@ -199,7 +203,13 @@ class Scene(glchess.scene.Scene):
         else:
             self.highlight = coords.copy()
         self.feedback.onRedraw()
-    
+
+    def showBoardNumbering(self, showNumbering):
+        """Extends glchess.scene.Scene"""
+        self.showNumbering = showNumbering
+        self.redrawStatic = True
+        self.feedback.onRedraw()
+
     def reshape(self, width, height):
         """Resize the viewport into the scene.
         
@@ -228,7 +238,7 @@ class Scene(glchess.scene.Scene):
         # Start animation
         if self.animating is False:
             self.animating = True
-            self.feedback.startAnimation()
+            self.feedback.startAnimation()            
 
     def animate(self, timeStep):
         """Extends glchess.scene.Scene"""
@@ -241,7 +251,7 @@ class Scene(glchess.scene.Scene):
             offset = self.targetAngle - self.angle
             if offset < 0:
                 offset += 2 * math.pi
-            step = timeStep * math.pi * 0.3#7
+            step = timeStep * math.pi * 0.7
             if step > offset:
                 self.angle = self.targetAngle
             else:
@@ -344,7 +354,31 @@ class Scene(glchess.scene.Scene):
         context.set_source_rgb(*BORDER_COLOUR)
         context.rectangle(-self.squareSize * 4.5, -self.squareSize * 4.5, self.squareSize * 9.0, self.squareSize * 9.0)
         context.fill()
+
+        # Draw numbering
+        if self.showNumbering:
+            offset = 0
+            context.set_source_rgb(*NUMBERING_COLOUR)
+            context.set_font_size(self.squareSize * 0.4)
+            context.select_font_face("sans-serif", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
+            files = 'hgfedcba'
+            ranks = '12345678'
+            def drawCenteredText(x, y, text):
+                (_, _, w, h, _, _) = context.text_extents('b')
+                matrix = context.get_matrix()
+                context.translate(x, y)
+                context.rotate(-self.angle)
+                context.move_to(-w/2, h/2)
+                context.show_text(text)
+                context.set_matrix(matrix)
+            for i in xrange(8):
+                drawCenteredText(offset - self.squareSize * 3.5, -self.squareSize * 4.25, ranks[i])
+                drawCenteredText(offset - self.squareSize * 3.5, self.squareSize * 4.25, ranks[i])
+                drawCenteredText(-self.squareSize * 4.25, offset - self.squareSize * 3.5, files[i])
+                drawCenteredText(self.squareSize * 4.25, offset - self.squareSize * 3.5, files[i])
+                offset += self.squareSize
         
+        # Draw squares
         for i in xrange(8):
             for j in xrange(8):
                 x = (i - 4) * self.squareSize

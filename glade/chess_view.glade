@@ -116,13 +116,42 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkButton" id="info_ok_button">
-		  <property name="can_focus">True</property>
-		  <property name="label">gtk-ok</property>
-		  <property name="use_stock">True</property>
-		  <property name="relief">GTK_RELIEF_NORMAL</property>
-		  <property name="focus_on_click">True</property>
-		  <signal name="clicked" handler="_on_info_ok_button_clicked" last_modification_time="Sat, 10 Feb 2007 09:35:00 GMT"/>
+		<widget class="GtkHBox" id="hbox1">
+		  <property name="visible">False</property>
+		  <property name="homogeneous">False</property>
+		  <property name="spacing">0</property>
+
+		  <child>
+		    <widget class="GtkButton" id="info_edit_button">
+		      <property name="can_focus">True</property>
+		      <property name="label">gtk-edit</property>
+		      <property name="use_stock">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <property name="focus_on_click">True</property>
+		      <signal name="clicked" handler="_on_info_edit_button_clicked" last_modification_time="Sat, 12 May 2007 09:26:39 GMT"/>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkButton" id="info_ok_button">
+		      <property name="can_focus">True</property>
+		      <property name="label">gtk-ok</property>
+		      <property name="use_stock">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <property name="focus_on_click">True</property>
+		      <signal name="clicked" handler="_on_info_ok_button_clicked" last_modification_time="Sat, 10 Feb 2007 09:35:00 GMT"/>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
+		    </packing>
+		  </child>
 		</widget>
 		<packing>
 		  <property name="left_attach">2</property>

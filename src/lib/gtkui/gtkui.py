@@ -453,7 +453,7 @@ class GtkUI(glchess.ui.UI):
         self.saveDialog = dialogs.SaveDialog(self)
         
         # Watch for config changes
-        for key in ['show_toolbar', 'show_history', 'fullscreen', 'show_3d', 'show_move_hints', 'width', 'height', 'move_format', 'promotion_type', 'board_view']:
+        for key in ['show_toolbar', 'show_history', 'fullscreen', 'show_3d', 'show_comments', 'show_numbering', 'show_move_hints', 'width', 'height', 'move_format', 'promotion_type', 'board_view']:
             glchess.config.watch(key, self.__applyConfig)
 
     # Public methods
@@ -534,7 +534,7 @@ class GtkUI(glchess.ui.UI):
         This method will not return.
         """        
         # Load configuration
-        for name in ['show_toolbar', 'show_history', 'show_3d', 'show_move_hints', 'move_format', 'promotion_type', 'board_view', 'maximised']:
+        for name in ['show_toolbar', 'show_history', 'show_3d', 'show_comments', 'show_numbering', 'show_move_hints', 'move_format', 'promotion_type', 'board_view', 'maximised']:
             try:
                 value = glchess.config.get(name)
             except glchess.config.Error:
@@ -702,12 +702,24 @@ class GtkUI(glchess.ui.UI):
             for view in self.notebook.views:
                 view.viewWidget.setRenderGL(self.__renderGL)
                 
+        elif name == 'show_comments':
+            menuItem = self.__getWidget('menu_view_comment')
+            menuItem.set_active(value)
+            for view in self.notebook.views:
+                view.setShowComment(value)
+
         elif name == 'show_move_hints':
             menuItem = self.__getWidget('menu_view_move_hints')
             menuItem.set_active(value)
             for view in self.notebook.views:
                 view.feedback.showMoveHints(value)
-        
+
+        elif name == 'show_numbering':
+            menuItem = self.__getWidget('menu_view_numbering')
+            menuItem.set_active(value)
+            for view in self.notebook.views:
+                view.feedback.showBoardNumbering(value)
+
         elif name == 'move_format':
             self._gui.get_widget('menu_movef_%s' % value).set_active(True)
             self.moveFormat = value
@@ -817,6 +829,22 @@ class GtkUI(glchess.ui.UI):
         else:
             value = False
         glchess.config.set('show_3d', value)
+
+    def _on_menu_view_comment_clicked(self, widget):
+        """Gtk+ callback"""
+        if widget.get_active():
+            value = True
+        else:
+            value = False
+        glchess.config.set('show_comments', value)
+
+    def _on_menu_view_numbering_clicked(self, widget):
+        """Gtk+ callback"""
+        if widget.get_active():
+            value = True
+        else:
+            value = False
+        glchess.config.set('show_numbering', value)       
 
     def _on_toggle_move_hints_clicked(self, widget):
         """Gtk+ callback"""
