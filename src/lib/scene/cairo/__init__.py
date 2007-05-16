@@ -361,8 +361,8 @@ class Scene(glchess.scene.Scene):
             context.set_source_rgb(*NUMBERING_COLOUR)
             context.set_font_size(self.squareSize * 0.4)
             context.select_font_face("sans-serif", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
-            files = 'hgfedcba'
-            ranks = '12345678'
+            files = 'abcdefgh'
+            ranks = '87654321'
             def drawCenteredText(x, y, text):
                 (_, _, w, h, _, _) = context.text_extents('b')
                 matrix = context.get_matrix()
@@ -372,10 +372,10 @@ class Scene(glchess.scene.Scene):
                 context.show_text(text)
                 context.set_matrix(matrix)
             for i in xrange(8):
-                drawCenteredText(offset - self.squareSize * 3.5, -self.squareSize * 4.25, ranks[i])
-                drawCenteredText(offset - self.squareSize * 3.5, self.squareSize * 4.25, ranks[i])
-                drawCenteredText(-self.squareSize * 4.25, offset - self.squareSize * 3.5, files[i])
-                drawCenteredText(self.squareSize * 4.25, offset - self.squareSize * 3.5, files[i])
+                drawCenteredText(offset - self.squareSize * 3.5, -self.squareSize * 4.25, files[i])
+                drawCenteredText(offset - self.squareSize * 3.5, self.squareSize * 4.25, files[i])
+                drawCenteredText(-self.squareSize * 4.25, offset - self.squareSize * 3.5, ranks[i])
+                drawCenteredText(self.squareSize * 4.25, offset - self.squareSize * 3.5, ranks[i])
                 offset += self.squareSize
         
         # Draw squares
