@@ -3,7 +3,7 @@ __license__ = 'GNU General Public License Version 2'
 __copyright__ = 'Copyright 2005-2006  Robert Ancell'
 
 import os
-import gettext
+from gettext import gettext as _
 
 import gobject
 import gtk
@@ -123,12 +123,12 @@ class GtkNewGameDialog:
             
         # Create model for game time
         defaultTime = glchess.config.get('new_game_dialog/move_time')
-        times = [(gettext.gettext('Unlimited'),       0),
-                 (gettext.gettext('One minute'),     60),
-                 (gettext.gettext('Five minutes'),  300),
-                 (gettext.gettext('30 minutes'),   1800),
-                 (gettext.gettext('One hour'),     3600),
-                 (gettext.gettext('Custom'),         -1)]
+        times = [(_('Unlimited'),       0),
+                 (_('One minute'),     60),
+                 (_('Five minutes'),  300),
+                 (_('30 minutes'),   1800),
+                 (_('One hour'),     3600),
+                 (_('Custom'),         -1)]
         timeModel = gtk.ListStore(str, int)
         activeIter = None
         for (name, time) in times:
@@ -148,9 +148,9 @@ class GtkNewGameDialog:
         widget.add_attribute(cell, 'text', 0)
 
         model = gtk.ListStore(str, int)
-        units = [(gettext.gettext('seconds'),  1),
-                 (gettext.gettext('minutes'), 60),
-                 (gettext.gettext('hours'), 3600)]
+        units = [(_('seconds'),  1),
+                 (_('minutes'), 60),
+                 (_('hours'), 3600)]
         for (name, multiplier) in units:
             iter = model.append()
             model.set(iter, 0, name, 1, multiplier)
@@ -167,9 +167,9 @@ class GtkNewGameDialog:
 
         # Create the model for difficulty options
         levelModel = gtk.ListStore(str, gtk.gdk.Pixbuf, str)
-        levels = [('easy',   gettext.gettext('Easy'),   'weather-few-clouds'),
-                  ('normal', gettext.gettext('Normal'), 'weather-overcast'),
-                  ('hard',   gettext.gettext('Hard'),   'weather-storm')]
+        levels = [('easy',   _('Easy'),   'weather-few-clouds'),
+                  ('normal', _('Normal'), 'weather-overcast'),
+                  ('hard',   _('Hard'),   'weather-storm')]
         iconTheme = gtk.icon_theme_get_default()
         for (key, label, iconName) in levels:
             try:
@@ -237,20 +237,20 @@ class GtkNewGameDialog:
             self.__gui.get_widget('game_name_entry').set_text(g.name)
             self.__customName = True
             if not self.__setCombo('white_type_combo', g.white.type):
-                errorText += gettext.gettext('Unable to find %s engine\n') % repr(g.white.type)
+                errorText += _('Unable to find %s engine\n') % repr(g.white.type)
             self.__setCombo('white_difficulty_combo', g.white.level)
             if not self.__setCombo('black_type_combo', g.black.type):
-                errorText += gettext.gettext('Unable to find %s engine\n') % repr(g.black.type)
+                errorText += _('Unable to find %s engine\n') % repr(g.black.type)
             self.__setCombo('black_difficulty_combo', g.black.level)
             # TODO: Others
             
             # Change title for loaded games
             if len(g.path) > 0:
-                self.__gui.get_widget('new_game_dialog').set_title(gettext.gettext('Configure loaded game (%i moves)') % len(g.moves))
+                self.__gui.get_widget('new_game_dialog').set_title(_('Configure loaded game (%i moves)') % len(g.moves))
 
         # Display warning if missing the AIs
         if len(errorText) > 0:
-            self.__gui.get_widget('info_title_label').set_markup('<big><b>%s</b></big>' % gettext.gettext('Game settings changed'))
+            self.__gui.get_widget('info_title_label').set_markup('<big><b>%s</b></big>' % _('Game settings changed'))
             self.__gui.get_widget('info_description_label').set_markup('<i>%s</i>' % errorText[:-1])
             self.__gui.get_widget('info_box').show()
 
@@ -310,7 +310,7 @@ class GtkNewGameDialog:
         else:
             whiteName = self.__getComboData(self.__gui.get_widget('white_type_combo'), 2)
             blackName = self.__getComboData(self.__gui.get_widget('black_type_combo'), 2)
-            format = gettext.gettext('%(white)s versus %(black)s')
+            format = _('%(white)s versus %(black)s')
             self.__gui.get_widget('game_name_entry').set_text(format % {'white': whiteName, 'black': blackName})
             
         # Disable difficulty for human players
@@ -333,13 +333,13 @@ class GtkNewGameDialog:
         # Get the players
         game.white.type  = self.__getComboData(self.__gui.get_widget('white_type_combo'), 0)
         if game.white.type == '':
-            game.white.name = gettext.gettext('White')
+            game.white.name = _('White')
         else:
             game.white.name = self.__getComboData(self.__gui.get_widget('white_type_combo'), 2)
         game.white.level = self.__getComboData(self.__gui.get_widget('white_difficulty_combo'), 0)
         game.black.type  = self.__getComboData(self.__gui.get_widget('black_type_combo'), 0)
         if game.black.type == '':
-            game.black.name = gettext.gettext('Black')
+            game.black.name = _('Black')
         else:
             game.black.name = self.__getComboData(self.__gui.get_widget('black_type_combo'), 2)
         game.black.level = self.__getComboData(self.__gui.get_widget('black_difficulty_combo'), 0)
@@ -443,9 +443,9 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
 
         # Create the model for difficulty options
         levelModel = gtk.ListStore(str, gtk.gdk.Pixbuf, str)
-        levels = [('easy',   gettext.gettext('Easy'),   'weather-few-clouds'),
-                  ('normal', gettext.gettext('Normal'), 'weather-overcast'),
-                  ('hard',   gettext.gettext('Hard'),   'weather-storm')]
+        levels = [('easy',   _('Easy'),   'weather-few-clouds'),
+                  ('normal', _('Normal'), 'weather-overcast'),
+                  ('hard',   _('Hard'),   'weather-storm')]
         iconTheme = gtk.icon_theme_get_default()
         for (key, label, iconName) in levels:
             try:
@@ -610,13 +610,13 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         # Get the players
         game.white.type  = self.__getComboData(self.__gui.get_widget('white_type_combo'), 0)
         if game.white.type is '':
-            game.white.name = gettext.gettext('White')
+            game.white.name = _('White')
         else:
             game.white.name = self.__getComboData(self.__gui.get_widget('white_type_combo'), 2)
         game.white.level = self.__getComboData(self.__gui.get_widget('white_difficulty_combo'), 0)
         game.black.type  = self.__getComboData(self.__gui.get_widget('black_type_combo'), 0)
         if game.black.type == '':
-            game.black.name = gettext.gettext('Black')
+            game.black.name = _('Black')
         else:
             game.black.name = self.__getComboData(self.__gui.get_widget('black_type_combo'), 2)
         game.black.level = self.__getComboData(self.__gui.get_widget('black_difficulty_combo'), 0)
@@ -731,7 +731,7 @@ class GtkLoadGameDialog:
             if error is not None:
                 self.firstExpose = True
                 self.__gui.get_widget('error_box').show()
-                self.__gui.get_widget('error_title_label').set_markup('<big><b>%s</b></big>' % gettext.gettext('Unabled to load game'))
+                self.__gui.get_widget('error_title_label').set_markup('<big><b>%s</b></big>' % _('Unabled to load game'))
                 self.__gui.get_widget('error_description_label').set_markup('<i>%s</i>' % error)
                 return
 
@@ -878,7 +878,7 @@ class GtkSaveGameDialog:
             # Append .pgn to the end if not provided
             fname = chooser.get_filename()
             if fname is None:
-                self.__setError(gettext.gettext('Please enter a file name'), '')
+                self.__setError(_('Please enter a file name'), '')
                 return
             if fname[-4:].lower() != '.pgn':
                 fname += '.pgn'
@@ -888,7 +888,7 @@ class GtkSaveGameDialog:
         
             error = self.__mainUI._saveView(self.__view, fname)
             if error is not None:
-                self.__setError(gettext.gettext('Unabled to save game'), error)
+                self.__setError(_('Unabled to save game'), error)
                 return
         else:
             self.__mainUI._saveView(self.__view, None)

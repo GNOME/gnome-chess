@@ -11,7 +11,7 @@ __all__ = ['GtkUI']
 import os
 import sys
 import time
-import gettext
+from gettext import gettext as _
 
 try:
     import pygtk
@@ -421,13 +421,13 @@ class GtkUI(glchess.ui.UI):
         except gobject.GError:
             icon = None
         iter = self.__playerModel.append()
-        self.__playerModel.set(iter, 0, '', 1, icon, 2, gettext.gettext('Human'))
+        self.__playerModel.set(iter, 0, '', 1, icon, 2, _('Human'))
         #try:
         #    icon = iconTheme.load_icon(gtk.STOCK_NETWORK, 24, gtk.ICON_LOOKUP_USE_BUILTIN)
         #except gobject.GError:
         #    icon = None
         #iter = self.__playerModel.append()
-        #self.__playerModel.set(iter, 0, None, 1, icon, 2, gettext.gettext('Network'))
+        #self.__playerModel.set(iter, 0, None, 1, icon, 2, _('Network'))
         
         self.__aiWindow = AIWindow(self._gui.get_widget('ai_notebook'))
 
@@ -954,7 +954,7 @@ class GtkUI(glchess.ui.UI):
         """Gtk+ callback"""
         # Set the window title to the name of the game
         view = self.notebook.getView()
-        title = gettext.gettext('Chess')
+        title = _('Chess')
         if view is not None:
             title += " - %s" % view.title
         self._gui.get_widget('glchess_app').set_title(title)
@@ -1029,7 +1029,7 @@ class GtkUI(glchess.ui.UI):
             gnome.help_display('glchess')
         except gobject.GError, e:
             # TODO: This should be a pop-up dialog
-            print gettext.gettext('Unable to display help: %s') % str(e)
+            print _('Unable to display help: %s') % str(e)
 
     def _on_view_fullscreen_clicked(self, widget):
         """Gtk+ callback"""
@@ -1065,7 +1065,7 @@ class GtkUI(glchess.ui.UI):
         dialog.set_comments(DESCRIPTION)
         dialog.set_authors(AUTHORS)
         dialog.set_artists(ARTISTS)
-        dialog.set_translator_credits(gettext.gettext("translator-credits"))
+        dialog.set_translator_credits(_("translator-credits"))
         dialog.set_website(WEBSITE)
         dialog.set_website_label(WEBSITE_LABEL)
         dialog.set_logo_icon_name('gnome-glchess')

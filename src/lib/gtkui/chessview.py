@@ -1,5 +1,5 @@
 import sys
-import gettext
+from gettext import gettext as _
 import traceback
 import gobject
 import gtk
@@ -22,12 +22,12 @@ else:
 
 __all__ = ['GtkView']
 
-pieceNames = {glchess.chess.board.PAWN:   gettext.gettext('pawn'),
-              glchess.chess.board.ROOK:   gettext.gettext('rook'),
-              glchess.chess.board.KNIGHT: gettext.gettext('knight'),
-              glchess.chess.board.BISHOP: gettext.gettext('bishop'),
-              glchess.chess.board.QUEEN:  gettext.gettext('queen'),
-              glchess.chess.board.KING:   gettext.gettext('king')}
+pieceNames = {glchess.chess.board.PAWN:   _('pawn'),
+              glchess.chess.board.ROOK:   _('rook'),
+              glchess.chess.board.KNIGHT: _('knight'),
+              glchess.chess.board.BISHOP: _('bishop'),
+              glchess.chess.board.QUEEN:  _('queen'),
+              glchess.chess.board.KING:   _('king')}
 
 class GtkViewArea(gtk.DrawingArea):
     """Custom widget to render an OpenGL scene"""
@@ -251,7 +251,7 @@ class GtkView(glchess.ui.ViewController):
         # Make a model for navigation
         model = gtk.ListStore(gobject.TYPE_PYOBJECT, int, str)
         iter = model.append()
-        model.set(iter, 0, None, 1, 0, 2, gettext.gettext('Game Start'))
+        model.set(iter, 0, None, 1, 0, 2, _('Game Start'))
         self.moveModel = model
 
         self.viewWidget.show_all()
@@ -261,6 +261,49 @@ class GtkView(glchess.ui.ViewController):
         allocation = widget.allocation
         widget.style.paint_flat_box(widget.window, gtk.STATE_NORMAL, gtk.SHADOW_OUT, None, widget, "tooltip",
                                     allocation.x, allocation.y, allocation.width, allocation.height)
+                                    
+    def _on_info_edit_button_clicked(self, widget):
+        """Gtk+ callback"""
+        labelComment = self.gui.get_widget('panel_description_label')
+        self.__editComment.set_text(labelComment.get_text())
+        self.__editComment.grab_focus()
+        self.gui.get_widget('info_edit_button').set_sensitive(False)
+        labelComment.hide()        
+        self.__editComment.show()
+    
+    def _comment_editing_done(self, widget):
+        """Gtk+ callback"""
+        if self.__editComment.get_property('visible') is not True:
+            return
+        labelComment = self.gui.get_widget('panel_description_label')
+        self.gui.get_widget('info_edit_button').set_sensitive(True)
+        self.__editComment.hide()
+        labelComment.show()
+        labelComment.set_text(self.__editComment.get_text())
+        if self.selectedMove == -1:
+            iter = self.moveModel.get_iter_from_string(str(len(self.moveModel) - 1))
+        else:
+            iter = self.moveModel.get_iter_from_string(str(self.selectedMove))
+        move = self.moveModel.get_value(iter, 0)
+        if move is not None:
+            move.comment = labelComment.get_text()
+    
+    def setShowComment(self, showComment):
+        """Enable comments on this view.
+        
+        'showComment' is true when move comments are visible.
+        """
+        # FIXME: Disabled for now
+        return
+        
+        if showComment:
+            self.gui.get_widget('info_ok_button').hide()        
+            self.gui.get_widget('info_edit_button').show()            
+            self.gui.get_widget('info_panel').show()
+        else:
+            self.gui.get_widget('info_ok_button').hide()
+            self.gui.get_widget('info_edit_button').hide()
+            self.gui.get_widget('info_panel').hide()        
 
     def setMoveFormat(self, format):
         """Set the format to display the moves in.
@@ -309,51 +352,57 @@ class GtkView(glchess.ui.ViewController):
     def generateMoveString(self, move):
         """
         """
-        if self.moveFormat == 'san':
-            string = '%2i. ' % ((move.number - 1) / 2 + 1)
-            if move.number % 2 == 0:
-                string += '... '
-            string += move.sanMove
-            return string
-        
-        if self.moveFormat == 'lan':
-            string = '%2i. ' % ((move.number - 1) / 2 + 1)
-            if move.number % 2 == 0:
-                string += '... '
-            string += move.canMove
-            return string
-        
-        colour = gettext.gettext('White')
-        victimColour = gettext.gettext('Black')
+        subs = {'movenum': (move.number - 1) / 2 + 1,
+                'move_can': move.canMove, 'move_san': move.sanMove,
+                'piece', pieceNames[move.piece.getType()],
+                'victim_piece': pieceNames[move.victim.getType()],
+                'start': move.start, 'end': move.end}
+        subs['colour'] = _('White')
+        subs['victim_colour'] = _('Black')
         if move.number % 2 == 1:
-            shortColour = 'a'
+            subs['short_colour'] = 'a'
         else:
-            shortColour = 'b'
-            t = colour
-            colour = victimColour
-            victimColour = t
-        string = '%2i%s.' % ((move.number - 1) / 2 + 1, shortColour)
+            subs['short_colour'] = 'b'
+            t = subs['colour']
+            subs['colour'] = subs['victim_colour']
+            subs['victim_colour'] = t
+        
+        if self.moveFormat == 'san':
+            if move.number % 2 == 0:
+                return '%(movenum)2i. ... %(move_san)s' % subs
+            else:
+                return '%(movenum)2i. %(move_san)s' % subs
 
-        if move.sanMove.startswith('O-O-O'):
-            string += ' %s castles long' % colour
-        elif move.sanMove.startswith('O-O'):
-            string += ' %s castles short' % colour
-        elif move.victim is not None:
-            string += ' %s %s at %s takes %s %s at %s' % \
-                      (colour, pieceNames[move.piece.getType()],
-                       move.start, victimColour, pieceNames[move.victim.getType()], move.end)
-        else:
-            string += ' %s %s moves from %s to %s' % (colour, pieceNames[move.piece.getType()], move.start, move.end)
-
-        # FIXME: Promotion
-
+        if self.moveFormat == 'lan':
+            string = '%(movenum)2i. ' % subs
+            if move.number % 2 == 0:
+                return '%(movenum)2i. ... %(move_can)s' % subs
+            else:
+                return '%(movenum)2i. %(move_can)s' % subs
+            
+        status = None
         if move.opponentInCheck:
             if move.opponentCanMove:
-                string += ' - ' + gettext.gettext('Check')
+                status = _('Check')
             else:
-                string += ' - ' + gettext.gettext('Checkmate')
+                status = _('Checkmate')
         elif not move.opponentCanMove:
-            string += ' - ' + gettext.gettext('Stalemate')
+            status = _('Stalemate')
+        if status is not None:
+            subs['suffix'] = _(' - %(check_status)s' % status
+        else:
+            subs['suffix'] = ''
+
+        if move.sanMove.startswith('O-O-O'):
+            string = _('%(movenum)2i%(short_colour)s. %(colour)s castles long%(suffix)s') % subs
+        elif move.sanMove.startswith('O-O'):
+            string = _('%(movenum)2i%(short_colour)s. %(colour)s castles short%(suffix)s') % subs
+        elif move.victim is not None:
+            string = _('%(movenum)2i%(short_colour)s. %(colour)s %(piece)s at %(start)s takes %(victim_colour)s %(victim_piece)s at %(end)s%(suffix)s') % subs
+        else:
+            string = _('%(movenum)2i%(short_colour)s. %(colour)s %(piece)s moves from %(start)s to %(end)s%(suffix)s') % subs
+
+        # FIXME: Promotion
 
         return string
 
@@ -363,7 +412,14 @@ class GtkView(glchess.ui.ViewController):
         iter = self.moveModel.append()
         string = self.generateMoveString(move)
         self.moveModel.set(iter, 0, move, 1, move.number, 2, string)
-        
+
+        # Show the comments        
+        self.gui.get_widget('panel_title_label').set_markup('<big><b>%s</b></big>' % string)
+        if move.comment is not None:
+            self.gui.get_widget('panel_description_label').set_markup('<i>%s</i>' % move.comment)
+        else:
+            self.gui.get_widget('panel_description_label').set_markup('')
+
         # If is the current view and tracking the game select this
         if self.selectedMove == -1:
             self.ui._updateViewButtons()
@@ -371,32 +427,32 @@ class GtkView(glchess.ui.ViewController):
     def endGame(self, game):
         # If game completed show this in the GUI
         if game.result is glchess.game.RESULT_WHITE_WINS:
-            title = gettext.gettext('%s wins') % game.getWhite().getName()
+            title = _('%s wins') % game.getWhite().getName()
         elif game.result is glchess.game.RESULT_BLACK_WINS:
-            title = gettext.gettext('%s wins') % game.getBlack().getName()
+            title = _('%s wins') % game.getBlack().getName()
         else:
-            title = gettext.gettext('Game is drawn')
+            title = _('Game is drawn')
 
         description = ''
         if game.rule is glchess.game.RULE_CHECKMATE:
-            description = gettext.gettext('Opponent is in check and cannot move (checkmate)')
+            description = _('Opponent is in check and cannot move (checkmate)')
         elif game.rule is glchess.game.RULE_STALEMATE:
-            description = gettext.gettext('Opponent cannot move (stalemate)')
+            description = _('Opponent cannot move (stalemate)')
         elif game.rule is glchess.game.RULE_FIFTY_MOVES:
-            description = gettext.gettext('No piece has been taken or pawn moved in the last fifty moves')
+            description = _('No piece has been taken or pawn moved in the last fifty moves')
         elif game.rule is glchess.game.RULE_TIMEOUT:
-            description = gettext.gettext('Opponent has run out of time')
+            description = _('Opponent has run out of time')
         elif game.rule is glchess.game.RULE_THREE_FOLD_REPETITION:
-            description = gettext.gettext('The same board state has occured three times (three fold repetition)')
+            description = _('The same board state has occured three times (three fold repetition)')
         elif game.rule is glchess.game.RULE_INSUFFICIENT_MATERIAL:
             if game.result is glchess.game.RESULT_DRAW:
-                description = gettext.gettext('Neither player can cause checkmate (insufficient material)')
+                description = _('Neither player can cause checkmate (insufficient material)')
             else:
-                description = gettext.gettext('Opponent is unable to cause checkmate (insufficient material)')
+                description = _('Opponent is unable to cause checkmate (insufficient material)')
         elif game.rule is glchess.game.RULE_RESIGN:
-            description = gettext.gettext('One of the players has resigned')
+            description = _('One of the players has resigned')
         elif game.rule is glchess.game.RULE_DEATH:
-            description = gettext.gettext('One of the players has died')
+            description = _('One of the players has died')
 
         self.gui.get_widget('panel_title_label').set_markup('<big><b>%s</b></big>' % title)
         self.gui.get_widget('panel_description_label').set_markup('<i>%s</i>' % description)
@@ -423,3 +479,20 @@ class GtkView(glchess.ui.ViewController):
         self.selectedMove = moveNumber
         if self.feedback is not None:
             self.feedback.setMoveNumber(moveNumber)
+            
+        try:
+            if self.selectedMove == -1:
+                iter = self.moveModel.get_iter_from_string(str(len(self.moveModel)-1))
+            else:
+                iter = self.moveModel.get_iter_from_string(str(self.selectedMove))
+            
+            move = self.moveModel.get_value(iter, 0)
+            if move is not None:
+                string = self.generateMoveString(move)
+                self.gui.get_widget('panel_title_label').set_markup('<big><b>%s</b></big>' % string)
+                if move.comment is not None:
+                    self.gui.get_widget('panel_description_label').set_markup('<i>%s</i>' % move.comment)
+                else:
+                    self.gui.get_widget('panel_description_label').set_markup('')
+        except ValueError:
+            pass

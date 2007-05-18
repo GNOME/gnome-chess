@@ -55,6 +55,9 @@ class ChessMove:
     # If this move can be used as a resignation
     fiftyMoveRule = False
     threeFoldRepetition = False
+    
+    # A comment about this move
+    comment = None
 
 class ChessPlayer:
     """
@@ -686,37 +689,3 @@ class NetworkChessGame(ChessGame):
                A SAN move (string).
         """
         # Send to the server
-        
-            
-if __name__ == '__main__':
-    game = ChessGame()
-    
-    import pgn
-    
-    p = pgn.PGN('black.pgn')
-    g = p.getGame(0)
-
-    class PGNPlayer(ChessPlayer):
-        __moveNumber = 1
-        
-        __isWhite = True
-        
-        def __init__(self, isWhite):
-            self.__isWhite = isWhite
-        
-        def readyToMove(self):
-            if self.__isWhite:
-                move = g.getWhiteMove(self.__moveNumber)
-            else:
-                move = g.getBlackMove(self.__moveNumber)
-            self.__moveNumber += 1
-            self.move(move)
-            
-    white = PGNPlayer(True)
-    black = PGNPlayer(False)
-    
-    game.setWhite(white)
-    game.setBlack(black)
-    
-    game.start()
-    

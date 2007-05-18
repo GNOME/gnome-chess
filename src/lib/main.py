@@ -10,7 +10,7 @@ __all__ = ['Application']
 import sys
 import os
 import errno
-import gettext
+from gettext import gettext as _
 import traceback
 
 import config
@@ -619,7 +619,7 @@ class ChessGame(game.ChessGame):
         
         Returns an AI player to use (game.ChessPlayer).
         """
-        description = "'" + name + "' in '" + self.name + "'"
+        description = _("'%s(name)' in '%(game)'") % {'name': name, 'game': self.name}
         player = AIPlayer(self.application, name, profile, level, description)
         self.__aiPlayers.append(player)
         self.application.watchAIPlayer(player)
@@ -1231,8 +1231,8 @@ class Application:
         try:
             self.ui.controller.run()
         except:
-            print 'glChess has crashed. Please report this bug to http://glchess.sourceforge.net'
-            print 'Debug output:'
+            print _('glChess has crashed. Please report this bug to http://bugzilla.gnome.org')
+            print _('Debug output:')
             print traceback.format_exc()
             self.quit()
             sys.exit(1)
@@ -1302,7 +1302,7 @@ class Application:
             return
         
         fname = AUTOSAVE_FILE
-        print 'Auto-saving to ' + fname + '...'
+        print 'Auto-saving to %s...' % fname
         
         try:
             f = file(fname, 'a')
