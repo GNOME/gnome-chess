@@ -277,8 +277,7 @@ class PGNGameParser:
                token.data == PGNToken.GAME_TERMINATE_BLACK_WIN or \
                token.data == PGNToken.GAME_TERMINATE_DRAW:
                 # Complete any half moves
-                if self.__whiteMove is not None:
-                    self.__game.addMove(self.__whiteMove, None)
+                self.__game.addMove(self.__whiteMove)
 
                 game = self.__game
                 self.__game = None
@@ -298,7 +297,8 @@ class PGNGameParser:
                     if self.__whiteMove is None:
                         self.__whiteMove = token.data
                     else:
-                        self.__game.addMove(self.__whiteMove, token.data)
+                        self.__game.addMove(self.__whiteMove)
+                        self.__game.addMove(token.data)
                         self.__whiteMove = None
                         self.__expectedMoveNumber += 1
 
@@ -372,7 +372,19 @@ class PGNGameParser:
         pass
         # Raise an error if there was a partial game
         #raise Error()
+        
+class PGNMove:
+    """
+    """
+    #
+    moveNumber = 0
     
+    #
+    move       = ''
+    
+    #
+    comment    = ''
+
 class PGNGame:
     """
     """
@@ -447,13 +459,12 @@ class PGNGame:
         
         # Insert numbers in-between moves
         tokens = []
-        moveNumber = 1
+        moveNumber = 0
         for m in self.__moves:
-            tokens.append('%i.' % moveNumber)
+            if moveNumber % 2 == 0:
+                tokens.append('%i.' % (moveNumber / 2 + 1))
             moveNumber += 1
-            tokens.append(m[0])
-            if m[1] is not None:
-                tokens.append(m[1])
+            tokens.append(m)
                 
         # Add result token to the end
         tokens.append(self.__tagsByName[self.PGN_TAG_RESULT])
@@ -520,22 +531,14 @@ class PGNGame:
         except KeyError:
             return default
         
-    def addMove(self, whiteMove, blackMove):
-        self.__moves.append((whiteMove, blackMove))
+    def addMove(self, move):
+        self.__moves.append(move)
         
-    def getWhiteMove(self, moveNumber):
-        return self.__moves[moveNumber - 1][0]
-    
-    def getBlackMove(self, moveNumber):
-        return self.__moves[moveNumber - 1][1]
+    def getMove(self, moveNumber):
+        return self.__moves[moveNumber1]
     
     def getMoves(self):
-        moves = []
-        for m in self.__moves:
-            moves.append(m[0])
-            if m[1] is not None:
-                moves.append(m[1])
-        return moves
+        return self.__moves
 
     def __str__(self):
         
