@@ -354,9 +354,10 @@ class GtkView(glchess.ui.ViewController):
         """
         subs = {'movenum': (move.number - 1) / 2 + 1,
                 'move_can': move.canMove, 'move_san': move.sanMove,
-                'piece', pieceNames[move.piece.getType()],
-                'victim_piece': pieceNames[move.victim.getType()],
+                'piece': pieceNames[move.piece.getType()],
                 'start': move.start, 'end': move.end}
+        if move.victim is not None:
+            subs['victim_piece'] = pieceNames[move.victim.getType()]
         subs['colour'] = _('White')
         subs['victim_colour'] = _('Black')
         if move.number % 2 == 1:
@@ -389,7 +390,7 @@ class GtkView(glchess.ui.ViewController):
         elif not move.opponentCanMove:
             status = _('Stalemate')
         if status is not None:
-            subs['suffix'] = _(' - %(check_status)s' % status
+            subs['suffix'] = _(' - %(check_status)s') % status
         else:
             subs['suffix'] = ''
 
