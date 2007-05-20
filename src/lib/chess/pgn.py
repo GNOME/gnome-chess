@@ -277,7 +277,8 @@ class PGNGameParser:
                token.data == PGNToken.GAME_TERMINATE_BLACK_WIN or \
                token.data == PGNToken.GAME_TERMINATE_DRAW:
                 # Complete any half moves
-                self.__game.addMove(self.__whiteMove)
+                if self.__whiteMove:
+                    self.__game.addMove(self.__whiteMove)
 
                 game = self.__game
                 self.__game = None
@@ -533,9 +534,9 @@ class PGNGame:
         
     def addMove(self, move):
         self.__moves.append(move)
-        
+
     def getMove(self, moveNumber):
-        return self.__moves[moveNumber1]
+        return self.__moves[moveNumber]
     
     def getMoves(self):
         return self.__moves
