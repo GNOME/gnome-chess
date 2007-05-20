@@ -390,7 +390,7 @@ class GtkView(glchess.ui.ViewController):
         elif not move.opponentCanMove:
             status = _('Stalemate')
         if status is not None:
-            subs['suffix'] = _(' - %(check_status)s') % status
+            subs['suffix'] = _(' - %(check_status)s') % {'check_status': status}
         else:
             subs['suffix'] = ''
 
