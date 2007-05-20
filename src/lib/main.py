@@ -61,7 +61,7 @@ class MovePlayer(game.ChessPlayer):
         """Called by chess.board.ChessPlayer"""
         self.__game.needsSaving = True
         self.__game.view.controller.addMove(move)
-        
+
         # Update clocks
         if player is self.__game.getWhite():
             if self.__game.wT is not None:
@@ -619,12 +619,12 @@ class ChessGame(game.ChessGame):
         
         Returns an AI player to use (game.ChessPlayer).
         """
-        description = _("'%s(name)' in '%(game)'") % {'name': name, 'game': self.name}
+        description = _("'%(name)s' in '%(game)s'") % {'name': name, 'game': self.name}
         player = AIPlayer(self.application, name, profile, level, description)
         self.__aiPlayers.append(player)
         self.application.watchAIPlayer(player)
         return player
-    
+
     def addHumanPlayer(self, name):
         """Create a human player.
         
@@ -634,7 +634,7 @@ class ChessGame(game.ChessGame):
         """
         player = HumanPlayer(self, name)
         return player
-    
+
     def setTimer(self, duration, whiteTime, blackTime):
         self.duration = duration
         if duration <= 0:
@@ -1111,7 +1111,7 @@ class Application:
         gameProperties.white.name = pgnGame.getTag(pgnGame.PGN_TAG_WHITE)
         gameProperties.black.name = pgnGame.getTag(pgnGame.PGN_TAG_BLACK)
         gameProperties.moves = pgnGame.getMoves()
-        
+
         missingEngines = False
         gameProperties.white.type = pgnGame.getTag('WhiteAI', '')
         if gameProperties.white.type == '':

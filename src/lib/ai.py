@@ -371,13 +371,17 @@ class Player(game.ChessPlayer):
         """Read an process data from the engine.
         
         This is non-blocking.
-        """
+        """       
         while True:
+            # Connection was closed
+            if self.__fromEngineFd == None:
+                return False
+
             # Check if data is available
             (rlist, _, _) = select.select([self.__fromEngineFd], [], [], 0)
             if len(rlist) == 0:
                 return True
-            
+
             # Read a chunk and process
             try:
                 data = os.read(self.__fromEngineFd, 256)
@@ -394,6 +398,9 @@ class Player(game.ChessPlayer):
     def sendToEngine(self, data):
         """
         """
+        if self.__toEngineFd == None:
+            return
+        
         try:
             os.write(self.__toEngineFd, data)
         except OSError, e:
@@ -403,6 +410,7 @@ class Player(game.ChessPlayer):
         """Disconnect the AI"""
         fd = self.__toEngineFd
         self.__toEngineFd = None
+        self.__fromEngineFd = None
         
         # Send quit
         try:
