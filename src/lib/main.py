@@ -1018,13 +1018,7 @@ class Application:
         self.__games = []
         self.ioHandlers = {}
         self.networkConnections = {}
-
-        try:
-            os.mkdir(DATA_DIR)
-        except OSError:
-            pass
-        assert(os.path.isdir(DATA_DIR))
-        
+       
         self.__detector = None#GameDetector(self)
 
         self.ui = UI(self)

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os, os.path
+import errno
 import gettext
 
 APP_DATA_DIR    = os.path.join('@prefix@', 'share') 
@@ -52,4 +53,8 @@ _("You should have received a copy of the GNU General Public License "
 #2D Models:
 #Copyright World Wide Web Consortium, (Massachusetts Institute of Technology, Institut National de Recherche en Informatique et en Automatique, Keio University). All Rights Reserved. http://www.w3.org/Consortium/Legal/"""
 
-if not os.path.exists(DATA_DIR): os.makedirs(DATA_DIR)
+try:
+    os.makedirs(DATA_DIR)
+except OSError, e:
+    if e.errno != errno.EEXIST:
+       print _('Unable to make data directiory %(dir)s: %(error)s') % {'dir': DATA_DIR, 'error': e.strerror}
