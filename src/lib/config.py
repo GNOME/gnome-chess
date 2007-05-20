@@ -17,7 +17,7 @@ except ImportError:
         print 'Configuration at ' + CONFIG_FILE + ' is invalid, ignoring'
     else:
         print 'Loading configuration from ' + CONFIG_FILE
-        
+
     def _bool(string):
         return string == 'True'
         

@@ -57,4 +57,4 @@ try:
     os.makedirs(DATA_DIR)
 except OSError, e:
     if e.errno != errno.EEXIST:
-       print _('Unable to make data directiory %(dir)s: %(error)s') % {'dir': DATA_DIR, 'error': e.strerror}
+       print _('Unable to make data directory %(dir)s: %(error)s') % {'dir': DATA_DIR, 'error': e.strerror}
