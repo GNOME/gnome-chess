@@ -719,6 +719,7 @@ class GtkUI(glchess.ui.UI):
             menuItem.set_active(value)
             for view in self.notebook.views:
                 view.feedback.showBoardNumbering(value)
+            self.notebook.defaultView.feedback.showBoardNumbering(value)
 
         elif name == 'move_format':
             self._gui.get_widget('menu_movef_%s' % value).set_active(True)

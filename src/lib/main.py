@@ -341,11 +341,15 @@ class Splashscreen(ui.ViewFeedback):
         self.application = application
         self.cairoScene = scene.cairo.Scene(self)
         self.scene = scene.opengl.Scene(self)
-        
+
     def onRedraw(self):
-        """
-        """
-        # FIXME: Need for scene.cairo.Scene
+        """Called by scene.SceneFeedback"""
+        self.controller.render()
+        
+    def showBoardNumbering(self, showNumbering):
+        """Called by ui.ViewFeedback"""
+        self.scene.showBoardNumbering(showNumbering)
+        self.cairoScene.showBoardNumbering(showNumbering)
 
     def renderGL(self):
         """Called by ui.ViewFeedback"""
@@ -426,11 +430,11 @@ class View(ui.ViewFeedback):
         self.game.getCurrentPlayer().endMove()
 
     def showMoveHints(self, showHints):
-        """Called by ui.UIFeedback"""
+        """Called by ui.ViewFeedback"""
         self.scene.showMoveHints(showHints)
 
     def showBoardNumbering(self, showNumbering):
-        """Called by ui.UIFeedback"""
+        """Called by ui.ViewFeedback"""
         self.scene.controller.showBoardNumbering(showNumbering)
 
     def updateScene(self, sceneClass):
@@ -442,7 +446,7 @@ class View(ui.ViewFeedback):
         self.scene = sceneClass(self.game)
         self.reshape(self.width, self.height)
         self.setMoveNumber(self.moveNumber)
-        
+
     def renderGL(self):
         """Called by ui.ViewFeedback"""
         self.updateScene(SceneOpenGL)
@@ -605,6 +609,7 @@ class ChessGame(game.ChessGame):
         self.view.controller = application.ui.controller.addView(name, self.view)
         
         self.view.showMoveHints(config.get('show_move_hints') is True)
+        self.view.showBoardNumbering(config.get('show_numbering') is True)
         
         # Watch for piece moves with a player
         self.__movePlayer = MovePlayer(self)
@@ -937,7 +942,7 @@ class UI(ui.UIFeedback):
         self.application = application
         
         self.splashscreen = Splashscreen(self)
-        self.controller.setDefaultView(self.splashscreen)
+        self.splashscreen.controller = self.controller.setDefaultView(self.splashscreen)
 
     def onAnimate(self, timeStep):
         """Called by ui.UIFeedback"""
