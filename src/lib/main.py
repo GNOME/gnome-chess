@@ -394,12 +394,11 @@ class View(ui.ViewFeedback):
         # This should be cleaned up
         self.scene = SceneCairo(game)
         config.watch('board_view', self.__onBoardViewChanged)
-        self.updateRotation()
 
     def __onBoardViewChanged(self, key, value):
         self.updateRotation()
 
-    def updateRotation(self):
+    def updateRotation(self, animate = True):
         """
         """
         # Get the angle to face
@@ -419,7 +418,7 @@ class View(ui.ViewFeedback):
             if not isinstance(player, HumanPlayer):
                 return
 
-        self.scene.controller.setBoardRotation(rotation)
+        self.scene.controller.setBoardRotation(rotation, animate)
 
     def pieceMoved(self):
         """
@@ -446,6 +445,7 @@ class View(ui.ViewFeedback):
         self.scene = sceneClass(self.game)
         self.reshape(self.width, self.height)
         self.setMoveNumber(self.moveNumber)
+        self.updateRotation(animate = False)
 
     def renderGL(self):
         """Called by ui.ViewFeedback"""
@@ -607,7 +607,8 @@ class ChessGame(game.ChessGame):
 
         self.view = View(self)
         self.view.controller = application.ui.controller.addView(name, self.view)
-        
+        self.view.updateRotation(animate = False)
+
         self.view.showMoveHints(config.get('show_move_hints') is True)
         self.view.showBoardNumbering(config.get('show_numbering') is True)
         

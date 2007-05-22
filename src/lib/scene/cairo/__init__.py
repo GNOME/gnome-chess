@@ -154,8 +154,8 @@ class Scene(glchess.scene.Scene):
     angle       = 0.0
     targetAngle = 0.0
     
-    animating   = False
-    redrawStatic     = True
+    animating     = False
+    redrawStatic  = True
 
     showNumbering = False
     
@@ -225,8 +225,8 @@ class Scene(glchess.scene.Scene):
 
         self.redrawStatic = True
         self.feedback.onRedraw()
-        
-    def setBoardRotation(self, angle):
+
+    def setBoardRotation(self, angle, animate = True):
         """Extends glchess.scene.Scene"""
         # Convert from degrees to radians
         a = angle * math.pi / 180.0
@@ -235,6 +235,11 @@ class Scene(glchess.scene.Scene):
             return
         self.targetAngle = a
         
+        if not animate:
+            self.angle = a
+            self.feedback.onRedraw()
+            return
+
         # Start animation
         if self.animating is False:
             self.animating = True

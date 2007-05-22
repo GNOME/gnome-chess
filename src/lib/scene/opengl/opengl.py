@@ -251,13 +251,19 @@ class Scene(glchess.scene.Scene):
         self.viewportHeight = int(height)
         self.viewportAspect = float(self.viewportWidth) / float(self.viewportHeight)
         self.feedback.onRedraw()
-        
-    def setBoardRotation(self, angle):
+
+    def setBoardRotation(self, angle, animate = True):
         """Set the rotation on the board.
         
         'angle' is the angle the board should be drawn at in degress (float, [0.0, 360.0]).
         """
         self.targetBoardAngle = angle
+        
+        if not animate:
+            self.boardAngle = angle
+            self.feedback.onRedraw()
+            return
+        
         if self.animating is False:
             self.animating = True
             self.feedback.startAnimation()
