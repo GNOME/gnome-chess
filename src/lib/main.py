@@ -950,7 +950,10 @@ class UI(ui.UIFeedback):
         except KeyError:
             return False
         else:
-            return handler.read()
+            result = handler.read()
+            if result is False:
+                self.application.ioHandlers.pop(fd)
+            return result
 
     def onGameStart(self, game):
         """Called by ui.UIFeedback"""
@@ -1054,7 +1057,9 @@ class Application:
     def unwatchAIPlayer(self, player):
         """
         """
-        self.ioHandlers.pop(player.fileno())
+        fd = player.fileno()
+        if fd is not None:
+            self.ioHandlers.pop(fd)
 
     def addGame(self, name, whiteName, whiteType, blackName, blackType):
         """Add a chess game into glChess.
