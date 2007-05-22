@@ -251,7 +251,10 @@ class Player(game.ChessPlayer):
         
         # Catch if the child dies
         def cDied(sig, stackFrame):
-            os.wait()
+            try:
+                os.wait()
+            except OSError:
+                pass
         signal.signal(signal.SIGCHLD, cDied)
 
         # Fork off a child process to manage the engine
@@ -296,7 +299,10 @@ class Player(game.ChessPlayer):
                 
             # Catch if the child dies
             def childDied(sig, stackFrame):
-                os.wait()
+                try:
+                    os.wait()
+                except OSError:
+                    return
                 
                 # Close connection to the application
                 os.close(fromManagerPipe[1])
