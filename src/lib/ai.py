@@ -252,7 +252,7 @@ class Player(game.ChessPlayer):
         # Catch if the child dies
         def cDied(sig, stackFrame):
             try:
-                os.wait()
+                os.waitpid(-1, os.WNOHANG)
             except OSError:
                 pass
         signal.signal(signal.SIGCHLD, cDied)
@@ -300,7 +300,7 @@ class Player(game.ChessPlayer):
             # Catch if the child dies
             def childDied(sig, stackFrame):
                 try:
-                    os.wait()
+                    os.waitpid(-1, os.WNOHANG)
                 except OSError:
                     return
                 
