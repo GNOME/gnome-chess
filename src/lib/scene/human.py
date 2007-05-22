@@ -129,10 +129,7 @@ class SceneHumanInput:
                     if self.canMove(coord, rank + file):
                         self.__boardHighlights[rank + file] = glchess.scene.HIGHLIGHT_CAN_MOVE
             self.__boardHighlights[coord] = glchess.scene.HIGHLIGHT_SELECTED
-            if self.__showHints:
-                self.setBoardHighlight(self.__boardHighlights)
-            else:
-                self.setBoardHighlight({coord: glchess.scene.HIGHLIGHT_SELECTED})
+            self.showMoveHints(self.__showHints)
 
         else:
             # If we have already selected a start move try
@@ -178,6 +175,8 @@ class SceneHumanInput:
         """
         if self.canMove(start, end) is False:
             return
+        self.__startSquare = None
         self.__selectedSquare = None
+        self.__boardHighlights = None
         self.setBoardHighlight(None)
         self.moveHuman(start, end)
