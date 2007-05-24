@@ -240,20 +240,24 @@ class GtkView(glchess.ui.ViewController):
         self.widget = self.gui.get_widget('chess_view')
         self.viewWidget = GtkViewArea(self)
         self.gui.get_widget('view_container').add(self.viewWidget)
-        
+
         # Set the message panel to the tooltip style
         # (copied from Gedit)
         tooltip = gtk.Tooltips()
         tooltip.force_window()
         tooltip.tip_window.ensure_style()
         self.gui.get_widget('info_panel').set_style(tooltip.tip_window.get_style())
-        
+
         # Make a model for navigation
         model = gtk.ListStore(gobject.TYPE_PYOBJECT, int, str)
         iter = model.append()
         model.set(iter, 0, None, 1, 0, 2, _('Game Start'))
         self.moveModel = model
+        
+        # Tabs are enabled to make editing the UI easier
+        self.gui.get_widget('comment_notebook').set_show_tabs(False)
 
+        self.widget.show()
         self.viewWidget.show_all()
         
     def _on_info_panel_expose_event(self, widget, event):
@@ -261,32 +265,19 @@ class GtkView(glchess.ui.ViewController):
         allocation = widget.allocation
         widget.style.paint_flat_box(widget.window, gtk.STATE_NORMAL, gtk.SHADOW_OUT, None, widget, "tooltip",
                                     allocation.x, allocation.y, allocation.width, allocation.height)
-                                    
-    def _on_info_edit_button_clicked(self, widget):
+
+    def _on_comment_edit_button_toggled(self, widget):
         """Gtk+ callback"""
-        labelComment = self.gui.get_widget('panel_description_label')
-        self.__editComment.set_text(labelComment.get_text())
-        self.__editComment.grab_focus()
-        self.gui.get_widget('info_edit_button').set_sensitive(False)
-        labelComment.hide()        
-        self.__editComment.show()
-    
-    def _comment_editing_done(self, widget):
-        """Gtk+ callback"""
-        if self.__editComment.get_property('visible') is not True:
-            return
-        labelComment = self.gui.get_widget('panel_description_label')
-        self.gui.get_widget('info_edit_button').set_sensitive(True)
-        self.__editComment.hide()
-        labelComment.show()
-        labelComment.set_text(self.__editComment.get_text())
-        if self.selectedMove == -1:
-            iter = self.moveModel.get_iter_from_string(str(len(self.moveModel) - 1))
+        label = self.gui.get_widget('panel_description_label')
+        entry = self.gui.get_widget('comment_text')
+        
+        if widget.get_active():
+            entry.get_buffer().set_text(label.get_text())
+            entry.grab_focus()
+            page = 1
         else:
-            iter = self.moveModel.get_iter_from_string(str(self.selectedMove))
-        move = self.moveModel.get_value(iter, 0)
-        if move is not None:
-            move.comment = labelComment.get_text()
+            page = 0
+        self.gui.get_widget('comment_notebook').set_current_page(page)
     
     def setShowComment(self, showComment):
         """Enable comments on this view.
@@ -295,15 +286,6 @@ class GtkView(glchess.ui.ViewController):
         """
         # FIXME: Disabled for now
         return
-        
-        if showComment:
-            self.gui.get_widget('info_ok_button').hide()        
-            self.gui.get_widget('info_edit_button').show()            
-            self.gui.get_widget('info_panel').show()
-        else:
-            self.gui.get_widget('info_ok_button').hide()
-            self.gui.get_widget('info_edit_button').hide()
-            self.gui.get_widget('info_panel').hide()        
 
     def setMoveFormat(self, format):
         """Set the format to display the moves in.
