@@ -57,7 +57,10 @@ class ChessMove:
     threeFoldRepetition = False
     
     # A comment about this move
-    comment = None
+    comment = ''
+
+    # FIXME
+    nag     = ''
 
 class ChessPlayer:
     """
@@ -481,7 +484,7 @@ class ChessGame:
             colour = chess.board.WHITE
         else:
             colour = chess.board.BLACK
-        
+
         # If move is SAN process it as such
         try:
             (start, end, _, _, promotionType, _) = chess.lan.decode(colour, move)
@@ -529,6 +532,8 @@ class ChessGame:
         m.opponentCanMove     = moveResult.opponentCanMove
         m.fiftyMoveRule       = moveResult.fiftyMoveRule
         m.threeFoldRepetition = moveResult.threeFoldRepetition
+        #FIXME: m.comment             = move.comment
+        #FIXME: m.nag                 = move.nag
 
         self.__moves.append(m)
 
@@ -635,8 +640,8 @@ class ChessGame:
     def getMoves(self):
         """
         """
-        return self.__moves[:]
-    
+        return self.__moves
+
     def abort(self):
         """End the game"""
         # Inform players

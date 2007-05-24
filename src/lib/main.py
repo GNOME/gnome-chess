@@ -342,6 +342,15 @@ class Splashscreen(ui.ViewFeedback):
         self.cairoScene = scene.cairo.Scene(self)
         self.scene = scene.opengl.Scene(self)
 
+    def updateRotation(self, animate = True):
+        boardView = config.get('board_view')
+        if boardView == 'black':
+            rotation = 180.0
+        else:
+            rotation = 0.0
+        self.cairoScene.controller.setBoardRotation(rotation, animate)
+        self.scene.controller.setBoardRotation(rotation, animate)
+
     def onRedraw(self):
         """Called by scene.SceneFeedback"""
         self.controller.render()
@@ -746,7 +755,11 @@ class ChessGame(game.ChessGame):
 
         moves = self.getMoves()
         for m in moves:
-            pgnGame.addMove(m.sanMove)
+            pgnMove = chess.pgn.PGNMove()
+            pgnMove.move = m.sanMove
+            pgnMove.nag = m.nag
+            pgnMove.comment = m.comment
+            pgnGame.addMove(pgnMove)
 
     def animate(self, timeStep):
         """
@@ -1115,7 +1128,10 @@ class Application:
         gameProperties.name = pgnGame.getTag(pgnGame.PGN_TAG_EVENT)
         gameProperties.white.name = pgnGame.getTag(pgnGame.PGN_TAG_WHITE)
         gameProperties.black.name = pgnGame.getTag(pgnGame.PGN_TAG_BLACK)
-        gameProperties.moves = pgnGame.getMoves()
+        moves = []
+        for pgnMove in pgnGame.getMoves():
+            moves.append(pgnMove.move)
+        gameProperties.moves = moves            
 
         missingEngines = False
         gameProperties.white.type = pgnGame.getTag('WhiteAI', '')
@@ -1151,6 +1167,14 @@ class Application:
             newGame.start(gameProperties.moves)
         else:
             newGame.start()
+            
+        # Comment on each move
+        # FIXME: This should be done through a method so the UI can update better
+        moves = newGame.getMoves()
+        pgnMoves = pgnGame.getMoves()
+        for i in xrange(len(moves)):
+            moves[i].comment = pgnMoves[i].comment
+            moves[i].nag = pgnMoves[i].nag
 
         # Get the last player to resign if the file specifies it
         result = pgnGame.getTag(pgnGame.PGN_TAG_RESULT, None)

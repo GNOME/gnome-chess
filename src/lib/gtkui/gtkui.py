@@ -146,7 +146,7 @@ class GtkGameNotebook(gtk.Notebook):
             self.defaultView.widget.show()
         else:
             self.defaultView.widget.hide()
-        
+
 class AIWindow:
     """
     """

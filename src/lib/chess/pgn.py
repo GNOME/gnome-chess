@@ -142,9 +142,16 @@ class PGNParser:
 
     def __collectComment(self, data):
         index = data.find('}')
-        # TODO: Handle multiline comments
-        assert(index > 0)
-        return (data[:index+1], index+1)
+        if index < 0:
+           self.__inComment = True
+           index = data.find('\n')
+           self.__comment = self.__comment + data[:index+1]
+           return (data[:index+1], index+1)
+        else:
+            self.__comment = self.__comment + data[:index+1]
+            self.__inComment = False
+                 
+        return (self.__comment, index+1)
             
     def __extractSymbol(self, data):
         for offset in xrange(1, len(data)):
@@ -154,13 +161,12 @@ class PGNParser:
         return (data, offset)
             
     def __extractNAG(self, data):
-        index = PGNToken.NAG_CONTINUATION_CHARACTERS.find(data)
-        if index < 0:
-            raise Error('Unterminated PGN string')            
-
-            # FIXME: Should be at least one character
-            tokens.append(PGNToken(lineNumber, self.__startOffset, PGNToken.NAG, nag))
-            inNAG = False
+        index = PGNToken.NAG_CONTINUATION_CHARACTERS.find(data[1])
+        for offset in xrange(1, len(data)):            
+            if PGNToken.NAG_CONTINUATION_CHARACTERS.find(data[offset]) < 0:
+            	#FIXME: Should be at lest one character and less than $255
+                return (data[:offset], offset)
+        return (data, offset)
     
     def __extractPGNString(self, data):
         #"""Extract a PGN string.
@@ -198,10 +204,18 @@ class PGNParser:
         tokens = []
         while offset < len(line):
             c = line[offset]
-            try:
-                (tokenType, length) = self.tokens[c]
-            except KeyError:
-                raise Error('Unknown character %s' % repr(c))
+
+            if self.__inComment:
+                try:
+                    (tokenType, length) = self.tokens['{']
+                except KeyError:
+                    raise Error('Unknown character %s' % repr(c))
+            else:
+                self.__comment = ''
+                try:
+                    (tokenType, length) = self.tokens[c]
+                except KeyError:
+                    raise Error('Unknown character %s' % repr(c))
 
             startOffset = offset
             if type(length) is int:
@@ -211,7 +225,7 @@ class PGNParser:
                 (data, o) = length(line[offset:])
                 offset += o
             
-            if tokenType is not None:
+            if tokenType is not None and not self.__inComment:
                 tokens.append(PGNToken(lineNumber, startOffset, tokenType, data))
 
         return tokens
@@ -243,6 +257,8 @@ class PGNGameParser:
     __expectedMoveNumber = 0
     __lastTokenIsMoveNumber = False
     
+    __currentMoveNumber = 0
+
     # The last white move
     __whiteMove = None
     
@@ -276,10 +292,6 @@ class PGNGameParser:
                token.data == PGNToken.GAME_TERMINATE_WHITE_WIN or \
                token.data == PGNToken.GAME_TERMINATE_BLACK_WIN or \
                token.data == PGNToken.GAME_TERMINATE_DRAW:
-                # Complete any half moves
-                if self.__whiteMove:
-                    self.__game.addMove(self.__whiteMove)
-
                 game = self.__game
                 self.__game = None
                 
@@ -297,10 +309,19 @@ class PGNGameParser:
                     self.__lastTokenIsMoveNumber = False
                     if self.__whiteMove is None:
                         self.__whiteMove = token.data
+                        move = PGNMove()
+                        move.number = self.__currentMoveNumber
+                        move.move = self.__whiteMove
+                        self.__game.addMove(move)
+                        self.__currentMoveNumber += 1
+
                     else:
-                        self.__game.addMove(self.__whiteMove)
-                        self.__game.addMove(token.data)
+                        move = PGNMove()
+                        move.move = token.data
+                        move.number = self.__currentMoveNumber
+                        self.__game.addMove(move)
                         self.__whiteMove = None
+                        self.__currentMoveNumber += 1
                         self.__expectedMoveNumber += 1
 
         elif token.type is PGNToken.NAG:
@@ -317,6 +338,14 @@ class PGNGameParser:
         
         # Ignore all comments at any time
         if token.type is PGNToken.LINE_COMMENT or token.type is PGNToken.COMMENT:
+            if self.__currentMoveNumber > 0:
+                move = self.__game.getMove(self.__currentMoveNumber)
+                move.comment = token.data[1:-1]
+            return None
+
+        if token.type is PGNToken.NAG:
+            move = self.__game.getMove(self.__currentMoveNumber)
+            move.nag = token.data               
             return None
             
         if self.__state is self.STATE_IDLE:
@@ -378,13 +407,13 @@ class PGNMove:
     """
     """
     #
-    moveNumber = 0
-    
-    #
     move       = ''
     
     #
     comment    = ''
+
+    #
+    nag        = ''
 
 class PGNGame:
     """
@@ -465,7 +494,11 @@ class PGNGame:
             if moveNumber % 2 == 0:
                 tokens.append('%i.' % (moveNumber / 2 + 1))
             moveNumber += 1
-            tokens.append(m)
+            tokens.append(m.move)
+            if m.nag != '':
+                tokens.append(m.nag)
+            if m.comment != '':
+                tokens.append('{' + m.comment + '}')
                 
         # Add result token to the end
         tokens.append(self.__tagsByName[self.PGN_TAG_RESULT])
@@ -536,7 +569,7 @@ class PGNGame:
         self.__moves.append(move)
 
     def getMove(self, moveNumber):
-        return self.__moves[moveNumber]
+        return self.__moves[moveNumber - 1]
     
     def getMoves(self):
         return self.__moves
