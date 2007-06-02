@@ -59,7 +59,7 @@ class ChessMove:
     # A comment about this move
     comment = ''
 
-    # FIXME
+    # Numeric annotation glyph for move
     nag     = ''
 
 class ChessPlayer:

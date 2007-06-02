@@ -99,7 +99,9 @@ class GtkGameNotebook(gtk.Notebook):
     def addView(self, title, feedback):
         """
         """
-        view = chessview.GtkView(self.ui, title, feedback, moveFormat = self.ui.moveFormat)
+        moveFormat = glchess.config.get('move_format')
+        showComments = glchess.config.get('show_comments')
+        view = chessview.GtkView(self.ui, title, feedback, moveFormat = moveFormat, showComments = showComments)
         self.views.append(view)
         self.viewsByWidget[view.widget] = view
         page = self.append_page(view.widget)
@@ -359,8 +361,6 @@ class GtkUI(glchess.ui.UI):
 
     __attentionCounter = 0
 
-    moveFormat         = 'human'
-    
     whiteTimeString    = '∞'
     blackTimeString    = '∞'
     
@@ -706,7 +706,7 @@ class GtkUI(glchess.ui.UI):
             menuItem = self.__getWidget('menu_view_comment')
             menuItem.set_active(value)
             for view in self.notebook.views:
-                view.setShowComment(value)
+                view.setShowComments(value)
 
         elif name == 'show_move_hints':
             menuItem = self.__getWidget('menu_view_move_hints')
@@ -723,7 +723,6 @@ class GtkUI(glchess.ui.UI):
 
         elif name == 'move_format':
             self._gui.get_widget('menu_movef_%s' % value).set_active(True)
-            self.moveFormat = value
             for view in self.notebook.views:
                 view.setMoveFormat(value)
                 

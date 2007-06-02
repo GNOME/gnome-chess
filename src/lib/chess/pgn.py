@@ -255,7 +255,7 @@ class PGNGameParser:
     
     # The move number being decoded
     __expectedMoveNumber = 0
-    __lastTokenIsMoveNumber = False
+    __prevTokenIsMoveNumber = False
     
     __currentMoveNumber = 0
 
@@ -283,7 +283,7 @@ class PGNGameParser:
             return
                 
         if token.type is PGNToken.PERIOD:
-            if self.__lastTokenIsMoveNumber is False:
+            if self.__prevTokenIsMoveNumber is False:
                 raise Error('Unexpected period on line %i:%i' % (token.lineNumber, token.characterNumber))
 
         elif token.type is PGNToken.SYMBOL:
@@ -302,11 +302,11 @@ class PGNGameParser:
                 # See if this is a move number or a SAN move
                 try:
                     moveNumber = int(token.data)
-                    self.__lastTokenIsMoveNumber = True
+                    self.__prevTokenIsMoveNumber = True
                     if moveNumber != self.__expectedMoveNumber:
                         raise Error('Expected move number %i, got %i on line %i:%i' % (self.__expectedMoveNumber, moveNumber, token.lineNumber, token.characterNumber))
                 except ValueError:
-                    self.__lastTokenIsMoveNumber = False
+                    self.__prevTokenIsMoveNumber = False
                     if self.__whiteMove is None:
                         self.__whiteMove = token.data
                         move = PGNMove()
@@ -335,7 +335,6 @@ class PGNGameParser:
         
         Return a game object if a game is complete otherwise None.
         """
-        
         # Ignore all comments at any time
         if token.type is PGNToken.LINE_COMMENT or token.type is PGNToken.COMMENT:
             if self.__currentMoveNumber > 0:
@@ -344,8 +343,9 @@ class PGNGameParser:
             return None
 
         if token.type is PGNToken.NAG:
-            move = self.__game.getMove(self.__currentMoveNumber)
-            move.nag = token.data               
+            if self.__currentMoveNumber > 0:
+                move = self.__game.getMove(self.__currentMoveNumber)
+                move.nag = token.data               
             return None
             
         if self.__state is self.STATE_IDLE:
@@ -359,7 +359,7 @@ class PGNGameParser:
             elif token.type is PGNToken.SYMBOL:
                 self.__expectedMoveNumber = 1
                 self.__whiteMove = None
-                self.__lastTokenIsMoveNumber = False
+                self.__prevTokenIsMoveNumber = False
                 self.__ravDepth = 0
                 self.__state = self.STATE_MOVETEXT
                 
@@ -709,6 +709,7 @@ class PGN:
                 
                 # Store this game and stop if only required to parse a certain number
                 if game is not None:
+                    gp = PGNGameParser()
                     self.__games.append(game)
                     gameCount += 1
 

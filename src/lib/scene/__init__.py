@@ -105,6 +105,11 @@ class Scene:
         """
         """
         pass
+        
+    def showBoardDarker(self, showDarker):
+        """
+        """
+        pass
 
     def animate(self, timeStep):
         """Animate the scene.

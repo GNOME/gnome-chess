@@ -10,12 +10,10 @@ import glchess.chess
 import glchess.game
 
 # Optionally use OpenGL support
-# gtk.gtkgl throws RuntimeError when there is no OpenGL support
-# It should really just throw ImportError
 try:
     import gtk.gtkgl
     import OpenGL.GL
-except (ImportError, RuntimeError):
+except:
     haveGLSupport = False
 else:
     haveGLSupport = True
@@ -212,6 +210,11 @@ class GtkView(glchess.ui.ViewController):
     moveModel        = None
     selectedMove     = -1
     
+    showComments     = False
+    editingComment   = False
+    
+    gameResult       = None
+    
     # Flag to show if requesting attention
     requireAttention = False
 
@@ -221,7 +224,7 @@ class GtkView(glchess.ui.ViewController):
     whiteTime        = None
     blackTime        = None
     
-    def __init__(self, ui, title, feedback, isActive = True, moveFormat = 'human'):
+    def __init__(self, ui, title, feedback, isActive = True, moveFormat = 'human', showComments = False):
         """Constructor for a view.
         
         'feedback' is the feedback object for this view (extends ui.ViewFeedback).
@@ -233,6 +236,7 @@ class GtkView(glchess.ui.ViewController):
         self.feedback = feedback
         self.isActive = isActive
         self.moveFormat = moveFormat
+        self.showComments = showComments
         
         # The GTK+ elements
         self.gui = gtkui.loadGladeFile('chess_view.glade', 'chess_view')
@@ -248,7 +252,7 @@ class GtkView(glchess.ui.ViewController):
         tooltip.tip_window.ensure_style()
         self.gui.get_widget('info_panel').set_style(tooltip.tip_window.get_style())
 
-        # Make a model for navigation
+        # Make a model for navigation (move object, number, description) 
         model = gtk.ListStore(gobject.TYPE_PYOBJECT, int, str)
         iter = model.append()
         model.set(iter, 0, None, 1, 0, 2, _('Game Start'))
@@ -256,6 +260,8 @@ class GtkView(glchess.ui.ViewController):
         
         # Tabs are enabled to make editing the UI easier
         self.gui.get_widget('comment_notebook').set_show_tabs(False)
+        
+        self.updateInfoPanel()
 
         self.widget.show()
         self.viewWidget.show_all()
@@ -270,22 +276,84 @@ class GtkView(glchess.ui.ViewController):
         """Gtk+ callback"""
         label = self.gui.get_widget('panel_description_label')
         entry = self.gui.get_widget('comment_text')
+        buffer = entry.get_buffer()
         
-        if widget.get_active():
-            entry.get_buffer().set_text(label.get_text())
+        move = self._getCurrentMove()
+        
+        # FIXME
+        if move is None:
+            return
+        
+        self.editingComment = widget.get_active()
+        if self.editingComment:
+            buffer.set_text(move.comment)
             entry.grab_focus()
             page = 1
         else:
+            comment = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter())
+            
+            # FIXME: This should be notified so the game is considered modified for saving purposes
+            # self.feedback.setComment(move, comment)
+
+            move.comment = comment
+            label.set_text(comment)
+            buffer.set_text('')
             page = 0
         self.gui.get_widget('comment_notebook').set_current_page(page)
-    
-    def setShowComment(self, showComment):
+
+    def _getCurrentMove(self):
+        if self.selectedMove == -1:
+            iter = self.moveModel.get_iter_from_string(str(len(self.moveModel) - 1))
+        else:
+            iter = self.moveModel.get_iter_from_string(str(self.selectedMove))
+        return self.moveModel.get_value(iter, 0)
+
+    def updateInfoPanel(self):
+        """
+        """
+        showPanel = False
+        
+        panel = self.gui.get_widget('info_panel')
+        titleLabel = self.gui.get_widget('panel_title_label')
+        descriptionLabel = self.gui.get_widget('panel_description_label')
+        
+        move = self._getCurrentMove()
+        if self.gameResult is not None:
+            (title, description) = self.gameResult
+            titleLabel.set_markup('<big><b>%s</b></big>' % title)
+            descriptionLabel.set_markup('<i>%s</i>' % description)
+            showPanel = True
+
+        editToggle = self.gui.get_widget('comment_edit_toggle')
+        if self.showComments:
+            # Show the comments
+            if move is None:
+                titleLabel.set_markup('<big><b>%s</b></big>' % _('Game start'))
+            else:
+                titleLabel.set_markup('<big><b>%s</b></big>' % self.generateMoveString(move))
+            
+            comment = _('No comment')
+            if move is not None and len(move.comment) > 0:
+                comment = move.comment
+
+            descriptionLabel.set_markup('<i>%s</i>' % comment)
+            editToggle.show()
+            showPanel = True
+        else:
+            editToggle.hide()
+
+        if showPanel:
+            panel.show()
+        else:
+            panel.hide()
+
+    def setShowComments(self, showComments):
         """Enable comments on this view.
         
-        'showComment' is true when move comments are visible.
+        'showComments' is true when move comments are visible.
         """
-        # FIXME: Disabled for now
-        return
+        self.showComments = showComments
+        self.updateInfoPanel()
 
     def setMoveFormat(self, format):
         """Set the format to display the moves in.
@@ -390,23 +458,21 @@ class GtkView(glchess.ui.ViewController):
         return string
 
     def addMove(self, move):
-        """Extends glchess.ui.ViewController"""
+        """Extends glchess.ui.ViewController"""        
         # FIXME: Make a '@ui' player who watches for these itself?
         iter = self.moveModel.append()
         string = self.generateMoveString(move)
         self.moveModel.set(iter, 0, move, 1, move.number, 2, string)
 
-        # Show the comments        
-        self.gui.get_widget('panel_title_label').set_markup('<big><b>%s</b></big>' % string)
-        if move.comment is not None:
-            self.gui.get_widget('panel_description_label').set_markup('<i>%s</i>' % move.comment)
-        else:
-            self.gui.get_widget('panel_description_label').set_markup('')
-
         # If is the current view and tracking the game select this
         if self.selectedMove == -1:
+            # If editing comments don't stay on current move
+            if self.editingComment:
+                self._setMoveNumber(move.number - 1)
+                return
+            
             self.ui._updateViewButtons()
-        
+
     def endGame(self, game):
         # If game completed show this in the GUI
         if game.result is glchess.game.RESULT_WHITE_WINS:
@@ -437,9 +503,8 @@ class GtkView(glchess.ui.ViewController):
         elif game.rule is glchess.game.RULE_DEATH:
             description = _('One of the players has died')
 
-        self.gui.get_widget('panel_title_label').set_markup('<big><b>%s</b></big>' % title)
-        self.gui.get_widget('panel_description_label').set_markup('<i>%s</i>' % description)
-        self.gui.get_widget('info_panel').show()
+        self.gameResult = (title, description)
+        self.updateInfoPanel()
     
     def close(self):
         """Extends glchess.ui.ViewController"""
@@ -453,7 +518,7 @@ class GtkView(glchess.ui.ViewController):
         """
         """
         return (self.moveModel, self.selectedMove)
-        
+
     def _setMoveNumber(self, moveNumber):
         """Set the move number this view requests.
         
@@ -462,20 +527,4 @@ class GtkView(glchess.ui.ViewController):
         self.selectedMove = moveNumber
         if self.feedback is not None:
             self.feedback.setMoveNumber(moveNumber)
-            
-        try:
-            if self.selectedMove == -1:
-                iter = self.moveModel.get_iter_from_string(str(len(self.moveModel)-1))
-            else:
-                iter = self.moveModel.get_iter_from_string(str(self.selectedMove))
-            
-            move = self.moveModel.get_value(iter, 0)
-            if move is not None:
-                string = self.generateMoveString(move)
-                self.gui.get_widget('panel_title_label').set_markup('<big><b>%s</b></big>' % string)
-                if move.comment is not None:
-                    self.gui.get_widget('panel_description_label').set_markup('<i>%s</i>' % move.comment)
-                else:
-                    self.gui.get_widget('panel_description_label').set_markup('')
-        except ValueError:
-            pass
+        self.updateInfoPanel()
