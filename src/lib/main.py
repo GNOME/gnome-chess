@@ -998,6 +998,8 @@ class UI(ui.UIFeedback):
             p = chess.pgn.PGN(path, 1)
         except chess.pgn.Error, e:
             return e.description
+        except IOError, e:
+            return e.strerror
         
         # Use the first game
         self.application.addPGNGame(p[0], path, configure)
@@ -1250,7 +1252,9 @@ class Application:
                 p = chess.pgn.PGN(path, 1)
             except chess.pgn.Error, e:
                 # TODO: Pop-up dialog
-                print 'Unable to open PGN file ' + path + ':' + str(e)
+                print 'Unable to open PGN file %s: %s' % (path, str(e))
+            except IOError, e:
+                print 'Unable to open PGN file %s: %s' % (path, str(e))
             else:
                 # Use the first game
                 if len(p) > 0:
