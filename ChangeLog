@@ -1,3 +1,9 @@
+2007-06-10  Robert Ancell  <robert.ancell@gmail.com>
+
+	* src/lib/ai.py: Use correct pid not 0 for killing AIs (Bug #443073)
+                         This is a severe bug that causes the X server to be
+                         killed accidentally on some systems
+
 2007-06-03  Robert Ancell  <robert.ancell@gmail.com>
 
 	* src/lib/main.py: Catch IOError on explicitly loaded games (Bug #442383)

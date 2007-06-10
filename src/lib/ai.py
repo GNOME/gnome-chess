@@ -258,8 +258,7 @@ class Player(game.ChessPlayer):
         signal.signal(signal.SIGCHLD, cDied)
 
         # Fork off a child process to manage the engine
-        self.__pid = os.fork()
-        if self.__pid == 0:
+        if os.fork() == 0:
             # ..
             os.close(toManagerPipe[1])
             os.close(fromManagerPipe[0])
@@ -322,7 +321,7 @@ class Player(game.ChessPlayer):
                     
                     # One of the connections has closed - kill the engine and quit
                     if len(data) == 0:
-                        os.kill(self.__pid, signal.SIGQUIT)
+                        os.kill(engineFd, signal.SIGQUIT)
                         os._exit(0)
                     
                     # Send data from the application to the engines stdin
