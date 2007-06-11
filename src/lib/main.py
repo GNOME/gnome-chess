@@ -667,14 +667,13 @@ class ChessGame(game.ChessGame):
         self.setTimers(self.wT, self.bT)
 
     def currentPlayerIsHuman(self):
-        """Test if a player is human.
-        
-        'player' is the player to check (game.ChessPlayer).
-        
-        Returns True if this is a human player in this game otherwise False.
+        """Test if the player to move is human.
+
+        Returns True if the current player is human and able to move.
         """
-        return isinstance(self.getCurrentPlayer(), HumanPlayer)
-        
+        player = self.getCurrentPlayer()
+        return isinstance(player, HumanPlayer) and player.isReadyToMove()
+
     def squareIsFriendly(self, coord):
         """
         """
