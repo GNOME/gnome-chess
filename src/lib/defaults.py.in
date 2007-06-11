@@ -9,7 +9,7 @@ ICON_DIR        = os.path.join(APP_DATA_DIR, 'pixmaps')
 TEXTURE_DIR     = os.path.join(ICON_DIR, 'glchess')
 GLADE_DIR       = os.path.join(APP_DATA_DIR, 'glchess')
 BASE_DIR        = os.path.join(APP_DATA_DIR, 'glchess')
-LOCALEDIR 	= os.path.join(APP_DATA_DIR, 'locale')
+LOCALEDIR       = os.path.join(APP_DATA_DIR, 'locale')
 DATA_DIR        = os.path.expanduser('~/.gnome2/glchess/')
 LOG_DIR         = os.path.join(DATA_DIR, 'logs')
 CONFIG_FILE     = os.path.join(DATA_DIR, 'config.xml')
@@ -22,11 +22,12 @@ gettext.textdomain(DOMAIN)
 from gettext import gettext as _
 
 import gtk.glade
-gtk.glade.bindtextdomain (DOMAIN, LOCALEDIR)
-gtk.glade.textdomain (DOMAIN)
+gtk.glade.bindtextdomain(DOMAIN, LOCALEDIR)
+gtk.glade.textdomain(DOMAIN)
 
-VERSION = "@VERSION@"
-APPNAME = _("glChess")
+VERSION   = "@VERSION@"
+APPNAME   = _("glChess")
+ICON_NAME = 'gnome-glchess'
 
 COPYRIGHT     = _('Copyright 2005-2007 Robert Ancell (and contributors)')
 DESCRIPTION   = _('The 2D/3D chess game for GNOME')

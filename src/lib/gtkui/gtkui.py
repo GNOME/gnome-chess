@@ -42,6 +42,7 @@ import glchess.ui
 import glchess.chess.board
 import dialogs
 import chessview
+import network
 
 def loadGladeFile(name, root = None):
     return gtk.glade.XML(os.path.join(GLADE_DIR, name), root, domain = DOMAIN)
@@ -562,7 +563,7 @@ class GtkUI(glchess.ui.UI):
     def addNetworkDialog(self, feedback):
         """Extends glchess.ui.UI"""
         # Create the dialog
-        dialog = dialogs.GtkNetworkGameDialog(self, feedback, self.__playerModel)
+        dialog = network.GtkNetworkGameDialog(self, feedback, self.__playerModel)
         self.__joinGameDialogs.append(dialog)
         
         # Add the detected games into the dialog
@@ -1068,7 +1069,7 @@ class GtkUI(glchess.ui.UI):
         dialog.set_translator_credits(_("translator-credits"))
         dialog.set_website(WEBSITE)
         dialog.set_website_label(WEBSITE_LABEL)
-        dialog.set_logo_icon_name('gnome-glchess')
+        dialog.set_logo_icon_name(ICON_NAME)
         dialog.connect('response', self._on_glchess_about_dialog_close)
         dialog.show()
         
@@ -1135,7 +1136,7 @@ class GtkUI(glchess.ui.UI):
         """Gtk+ callback"""
         self._quit()
         
-    def _quit(self):        
+    def _quit(self):
         # Check if any views need saving
         viewsToSave = []
         for view in self.notebook.views:

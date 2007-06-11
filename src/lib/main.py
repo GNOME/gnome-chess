@@ -27,6 +27,7 @@ from defaults import *
 
 #import dbus.glib
 #import network
+import ggz
 
 import chess.pgn
 
@@ -787,159 +788,188 @@ class ChessGame(game.ChessGame):
         
 class Advert:
     pass
-        
-class FICSConnection(chess.fics.Decoder):
-    
+
+import xml.sax.saxutils;
+
+class GGZConnection:
+
     def __init__(self, dialog):
         self.dialog = dialog
-        self.messageQueue = []
-        self.havePrompt = False
-        self.adverts = {}
-        chess.fics.Decoder.__init__(self)
+        self.client = ggz.Client(self)
+        self.commands = []
+        self.sending = False
+        self.players = {}
 
-    def send(self, message):
-        if self.havePrompt:
-            self.dialog.socket.send(message)
-            self.havePrompt = False
-        else:
-            self.messageQueue.append(message)
+    def start(self):
+        self.client.start()
 
-    def onUnknownLine(self, text):
-        self.dialog.controller.addText(text + '\n', 'info')
+    def roomAdded(self, room):
+        isChess = room.game is None or (room.game.protocol_engine == 'Chess' and room.game.protocol_version == '3')
+        self.dialog.controller.addRoom(int(room.id), room.name, room.nPlayers, room.description, room, isChess)
 
-    def onPrompt(self):
-        if len(self.messageQueue) > 0:
-            message = self.messageQueue[0]
-            self.messageQueue = self.messageQueue[1:]
-            self.dialog.socket.send(message)
-            self.havePrompt = False
-        else:
-            self.havePrompt = True
+    def roomUpdated(self, room):
+        self.dialog.controller.updateRoom(room, room.nPlayers)
 
-    def onLogin(self):
-        self.dialog.socket.send('guest\n')
-        self.dialog.controller.addText('Logging in as guest...\n', 'info')
+    def roomJoined(self, room):
+        self.room = room
+        self.dialog.controller.clearPlayers()
+        self.dialog.controller.clearTables()
 
-    def onNameAssign(self, name):
-        self.dialog.controller.addText('Assigned name %s\n' % name, 'info')
-        self.dialog.socket.send('\n')
-        self.send('set seek 0\n')
-        self.send('iset seekremove 1\n')
-        self.send('iset seekinfo 1\n')
-        self.send('iset lock 1\n')
-        self.send('style 12\n')
-        
-    def onSeekClear(self):
-        for advert in self.adverts.iteritems():
-            if not advert.hidden:
-                self.dialog.controller.removeAdvert(advert)
-        self.adverts = {}
-    
-    def onSeekAdd(self, number, game, player):
-        assert(not self.adverts.has_key(number))
-        advert = Advert()
-        self.adverts[number] = advert
-        advert.hidden = True
-        for variant in ['untimed', 'standard', 'blitz', 'lightning']:
-            if game.type == variant:
-                advert.hidden = False
-                break
+    def tableAdded(self, table):
+        self.tableUpdated(table)
 
-        advert.number = number
-        advert.game = game
-        advert.player = player
-        if not advert.hidden:
-            self.dialog.controller.addAdvert(player.name, player.rating, game.type, advert)       
-        
-    def onSeekRemove(self, numbers):
-        # NOTE: Ignore removes for ads we don't know about (they were hidden because we didn't meet the requirements)
-        for number in numbers:
-            try:
-                advert = self.adverts.pop(number)
-            except KeyError:
-                pass
-            else:
-                if not advert.hidden:
-                    self.dialog.controller.removeAdvert(advert)
+    def tableUpdated(self, table):
+        if table.room != self.room:
+            return
+        description = table.description
+        if len(description) == 0:
+            description = gettext.gettext('No description')
+        nUsed = 0
+        for seat in table.seats:
+            if seat.type == 'bot' or seat.user != '':
+                nUsed += 1
+        self.dialog.controller.updateTable(table, '%s' % table.id, '%i/%i' % (nUsed, len(table.seats)), description)
 
-    def onAnnounce(self, number, game, player):
-        new = False
-        try:
-            advert = self.adverts[number]
-        except KeyError:
-            advert = Advert()
-            self.adverts[number] = advert
-            advert.hidden = True
-            for variant in ['untimed', 'standard', 'blitz', 'lightning']:
-                if game.type == variant:
-                    advert.hidden = False
-                    break
-            new = True
+    def tableRemoved(self, table):
+        if table.room == self.room:
+            self.dialog.controller.removeTable(table)
 
-        advert.number = number
-        advert.game = game
-        advert.player = player
-        if new and not advert.hidden:
-            self.dialog.controller.addAdvert(player.name, player.rating, game.type, advert)
+    def playerAdded(self, player):
+        self.dialog.controller.addPlayer(player.name, player)
 
-    def onEndSeek(self, nSeeks):
-        # Delete expired seeks
-        expired = []
-        for (number, advert) in self.adverts.iteritems():
-            if advert.marker != self.advertMarker:
-                expired.append(advert)
-        for advert in expired:
-            self.adverts.pop(advert.number)
-            if not advert.hidden:
-                self.dialog.controller.removeAdvert(advert)
+    def playerRemoved(self, player):
+        self.dialog.controller.removePlayer(player)
 
-        if len(self.adverts) != nSeeks:
-            print 'WARNING: There should be %i seeks, we have only %i' % (nSeeks, len(self.adverts))
+    def registerIncomingData(self, data):
+        if len(data) == 0:
+            # FIXME
+            return
+        print 'rx: %s' % repr(data)
+        self.client.registerIncomingData(data)
 
-        self.advertMarker = not self.advertMarker
+    def onOutgoingData(self, data):
+        print 'tx: %s' % repr(data)
+        self.dialog.socket.send(data)
 
-    def onChallenge(self, game, player):
-        self.dialog.controller.addText('%s(%s) challenges you to a %s match\n' % (player.name, player.rating, game.type), 'info')
-        self.dialog.challengeGame = game
-        self.dialog.challengePlayer = player
-        self.dialog.controller.requestGame(player.name)
-        
-    def onChat(self, channel, playerName, text):
-        self.dialog.controller.addText('%s: %s\n' % (playerName, text), 'chat')
-        
-class NetworkDialog(ui.NetworkFeedback):
+    def onChat(self, chatType, sender, text):
+        self.dialog.controller.addText('%s: %s\n' % (sender, text), 'chat')
+
+import socket
+
+class GGZChannel:
     """
     """
     
     def __init__(self, ui):
         self.ui = ui
-        
-        import socket
-        
-        self.decoder = FICSConnection(self)
+        self.protocol = ggz.Chess(self)
+        self.decoder = ggz.Channel(self.protocol)
         
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         ui.application.ioHandlers[self.socket.fileno()] = self
         ui.controller.watchFileDescriptor(self.socket.fileno())
+        self.socket.connect(('gnome.ggzgamingzone.org', 5688))
         
-        self.socket.connect(('freechess.org', 23))
+        self.send("<?xml version='1.0' encoding='UTF-8'?>\n<SESSION>\n<CHANNEL ID='glchess-test' /></SESSION>")
+
+    def send(self, data):
+        print 'tx-channel: %s' % repr(data)
+        self.socket.send(data);
+
+    def read(self):
+        (data, address) = self.socket.recvfrom(65535)
+        if len(data) == 0:
+            # FIXME
+            return False
+        print 'rx-channel: %s' % repr(data)
+        self.decoder.feed(data)
+        return True
+
+    def onSeat(self, seatNum, version):
+        self.seatNum = seatNum
+        print ('onSeat', seatNum, version)
+        
+    def seatIsFull(self, seatType):
+        return seatType == self.protocol.GGZ_SEAT_PLAYER or seatType == self.protocol.GGZ_SEAT_BOT
+
+    def onPlayers(self, whiteType, whiteName, blackType, blackName):
+        print ('onPlayers', whiteType, whiteName, blackType, blackName)
+        self.whiteName = whiteName
+        self.blackName = blackName
+
+    def onClockRequest(self):
+        print ('onTimeRequest',)
+        self.send(self.protocol.sendClock(self.protocol.CLOCK_NONE, 0))
+    
+    def onClock(self, mode, seconds):
+        print ('onClock', mode, seconds)
+
+    def onStart(self):
+        print ('onStart',)
+        g = self.ui.application.addNetworkGame('Network Game')
+        
+        # Create remote player
+        if self.seatNum == 0:
+            name = self.blackName
+        else:
+            name = self.whiteName
+        self.remotePlayer = game.ChessPlayer(name)
+        self.remotePlayer.onPlayerMoved = self.onPlayerMoved # FIXME: HACK HACK HACK!
+
+        p = g.addHumanPlayer('Human')
+        if self.seatNum == 0:
+            g.setWhite(p)
+            g.setBlack(self.remotePlayer)
+        else:
+            g.setWhite(self.remotePlayer)
+            g.setBlack(p)
+
+        g.start()
+
+    def onPlayerMoved(self, player, move):
+        #FIXME: HACK HACK HACK!
+        if player is not self.remotePlayer:
+            self.send(self.protocol.sendMove(move.canMove.upper()))
+
+    def onMove(self, move):
+        print ('onMove', move)
+        # FIXME: Only remote players should be used
+        self.remotePlayer.move(move.lower())
+
+class GGZNetworkDialog(ui.NetworkFeedback):
+    """
+    """
+    
+    def __init__(self, ui):
+        self.ui = ui
+                
+        self.decoder = GGZConnection(self)
+        
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        ui.application.ioHandlers[self.socket.fileno()] = self
+        ui.controller.watchFileDescriptor(self.socket.fileno())
+        self.socket.connect(('gnome.ggzgamingzone.org', 5688))
+        
+        self.decoder.start()
         
     def read(self):
         (data, address) = self.socket.recvfrom(65535)
         self.decoder.registerIncomingData(data)
         return True
+
+    def joinRoom(self, room):
+        self.decoder.client.joinRoom(room)
+    
+    def joinTable(self, table):
+        self.channel = GGZChannel(self.ui) # FIXME: Make openChannel() feedback
+        self.decoder.client.joinTable(table)
         
-    def sendCommand(self, command):
-        # TODO: Validate the command
-        self.decoder.send(command + '\n')
-        
-    def acceptGame(self):
-        self.controller.addText('Accepting challenge from %s\n' % self.challengePlayer.name, 'info')
-        self.decoder.send('accept\n')
-        
-    def declineGame(self):
-        self.controller.addText('Declining challenge from %s\n' % self.challengePlayer.name, 'info')
-        self.decoder.send('decline\n')
+    def startTable(self):
+        self.channel = GGZChannel(self.ui)
+        self.decoder.client.startTable('30', 'glChess test game (do not join!)', 'glchess-test')
+    
+    def sendChat(self, text):
+        self.decoder.client.sendChat(text)
 
 class UI(ui.UIFeedback):
     """
@@ -1008,9 +1038,8 @@ class UI(ui.UIFeedback):
 
     def onNewNetworkGame(self):
         """Called by ui.UIFeedback"""
-        dialog = NetworkDialog(self)
-        controller = self.controller.addNetworkDialog(dialog)
-        dialog.controller = controller
+        dialog = GGZNetworkDialog(self)
+        dialog.controller = self.controller.addNetworkDialog(dialog)
 
     def onQuit(self):
         """Called by ui.UIFeedback"""
@@ -1161,7 +1190,7 @@ class Application:
 
         # If some of the properties were invalid display the new game dialog
         if missingEngines or configure:
-            self.ui.controller.reportGameLoaded(game)
+            self.ui.controller.reportGameLoaded(gameProperties)
             return
 
         newGame = self.addGame(gameProperties.name, gameProperties.white.name, w, gameProperties.black.name, b)

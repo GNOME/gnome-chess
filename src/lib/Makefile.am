@@ -1,4 +1,4 @@
-SUBDIRS = chess gtkui network scene ui
+SUBDIRS = chess ggz gtkui network scene ui
 
 glchessdir = $(pythondir)/glchess
 glchess_PYTHON = \

@@ -32,27 +32,10 @@ class Game:
 class NetworkFeedback:
     """Template class for feedback from a network game selector"""
     
-    def setServer(self, server):
-        """Set the server.
-        """
+    def joinRoom(self, room):
         pass
     
-    def sendCommand(self, command):
-        """
-        """
-        pass
-    
-    def answerAdvert(self, advert):
-        """
-        """
-        pass
-
-    def acceptGame(self):
-        """Accept the last requested game."""
-        pass
-    
-    def declineGame(self):
-        """Decline the last requested game."""
+    def joinTable(self, table):
         pass
     
 class NetworkController:
@@ -63,6 +46,36 @@ class NetworkController:
         """
         pass
     
+    def addRoom(self, index, name, description, room):
+        """Add a game room.
+        
+        'name' is the name of the room (string).
+        'description' is a description of the room (string).
+        'room' is the room to add (user-defined)
+        """
+        pass
+    
+    def removeRoom(self, room):
+        pass
+    
+    def addTable(self, name, table):
+        pass
+
+    def removeTable(self, table):
+        pass
+    
+    def clearTables(self):
+        pass
+    
+    def addPlayer(self, name, player):
+        pass
+    
+    def removePlayer(self, player):
+        pass
+    
+    def clearPlayers(self):
+        pass
+
     def addAdvert(self, title, rating, advert):
         """Add a game advert.
         
@@ -84,6 +97,9 @@ class NetworkController:
         
         'gameName' is the name of the game this player requested to join (string).
         """
+        pass
+    
+    def close(self):
         pass
 
 class ViewFeedback:
