@@ -44,6 +44,9 @@ import dialogs
 import chessview
 import network
 
+# Mark all windows with our icon
+gtk.window_set_default_icon_name(ICON_NAME)
+
 def loadGladeFile(name, root = None):
     return gtk.glade.XML(os.path.join(GLADE_DIR, name), root, domain = DOMAIN)
 
@@ -454,7 +457,12 @@ class GtkUI(glchess.ui.UI):
         self.saveDialog = dialogs.SaveDialog(self)
         
         # Watch for config changes
-        for key in ['show_toolbar', 'show_history', 'fullscreen', 'show_3d', 'show_comments', 'show_numbering', 'show_move_hints', 'width', 'height', 'move_format', 'promotion_type', 'board_view']:
+        for key in ['show_toolbar', 'show_history', 'fullscreen',
+                    'show_3d', 'show_comments', 'show_numbering',
+                    'show_move_hints',
+                    'width', 'height',
+                    'move_format', 'promotion_type', 'board_view',
+                    'enable_networking']:
             glchess.config.watch(key, self.__applyConfig)
 
     # Public methods
@@ -535,7 +543,10 @@ class GtkUI(glchess.ui.UI):
         This method will not return.
         """        
         # Load configuration
-        for name in ['show_toolbar', 'show_history', 'show_3d', 'show_comments', 'show_numbering', 'show_move_hints', 'move_format', 'promotion_type', 'board_view', 'maximised']:
+        for name in ['show_toolbar', 'show_history', 'show_3d',
+                     'show_comments', 'show_numbering', 'show_move_hints',
+                     'move_format', 'promotion_type', 'board_view', 'maximised',
+                     'enable_networking']:
             try:
                 value = glchess.config.get(name)
             except glchess.config.Error:
@@ -662,6 +673,16 @@ class GtkUI(glchess.ui.UI):
             else:
                 menu.set_active(False)
                 toolbar.hide()
+                
+        elif name == 'enable_networking':
+            menuItem = self.__getWidget('menu_play_online_item')
+            toolbarButton = self.__getWidget('play_online_button')
+            if value is True:
+                menuItem.show()
+                toolbarButton.show()
+            else:
+                menuItem.hide()
+                toolbarButton.hide()
             
         # Show/hide the history
         elif name == 'show_history':

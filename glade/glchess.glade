@@ -11,7 +11,6 @@
   <property name="default_width">400</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
-  <property name="icon_name">gnome-glchess</property>
   <property name="decorated">True</property>
   <property name="skip_taskbar_hint">False</property>
   <property name="skip_pager_hint">False</property>
@@ -55,16 +54,17 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkImageMenuItem" id="join_game1">
-		      <property name="label" translatable="yes">_Join Game</property>
+		    <widget class="GtkImageMenuItem" id="menu_play_online_item">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">Play On_line</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="_on_join_game_button_clicked" last_modification_time="Sun, 30 Jul 2006 14:16:15 GMT"/>
-		      <accelerator key="J" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+		      <accelerator key="L" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image56">
+			<widget class="GtkImage" id="image52">
 			  <property name="visible">True</property>
-			  <property name="stock">gtk-connect</property>
+			  <property name="stock">gtk-network</property>
 			  <property name="icon_size">1</property>
 			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
@@ -113,7 +113,7 @@
 		      <accelerator key="W" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image57">
+			<widget class="GtkImage" id="image53">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-close</property>
 			  <property name="icon_size">1</property>
@@ -163,7 +163,7 @@
 		      <accelerator key="F11" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image58">
+			<widget class="GtkImage" id="image54">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-fullscreen</property>
 			  <property name="icon_size">1</property>
@@ -184,7 +184,7 @@
 		      <accelerator key="F11" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image59">
+			<widget class="GtkImage" id="image55">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-leave-fullscreen</property>
 			  <property name="icon_size">1</property>
@@ -229,7 +229,7 @@
 
 		  <child>
 		    <widget class="GtkCheckMenuItem" id="menu_view_move_hints">
-       		      <property name="visible">True</property>
+		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Move _Hints</property>
 		      <property name="use_underline">True</property>
 		      <property name="active">False</property>
@@ -464,7 +464,7 @@
 		      <signal name="activate" handler="_on_help_clicked" last_modification_time="Fri, 11 Aug 2006 12:43:28 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image60">
+			<widget class="GtkImage" id="image56">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-help</property>
 			  <property name="icon_size">1</property>
@@ -524,13 +524,14 @@
 	  </child>
 
 	  <child>
-	    <widget class="GtkToolButton" id="toolbutton2">
+	    <widget class="GtkToolButton" id="play_online_button">
+	      <property name="visible">True</property>
 	      <property name="tooltip" translatable="yes">Join an existing game</property>
-	      <property name="label" translatable="yes">Join Game</property>
+	      <property name="label" translatable="yes">Play Online</property>
 	      <property name="use_underline">True</property>
-	      <property name="stock_id">gtk-connect</property>
+	      <property name="stock_id">gtk-network</property>
 	      <property name="visible_horizontal">True</property>
-	      <property name="visible_vertical">True</property>
+	      <property name="visible_vertical">False</property>
 	      <property name="is_important">False</property>
 	      <signal name="clicked" handler="_on_join_game_button_clicked" last_modification_time="Sun, 30 Jul 2006 14:16:54 GMT"/>
 	    </widget>
@@ -878,7 +879,6 @@
   <property name="default_height">200</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
-  <property name="icon_name">gnome-glchess</property>
   <property name="decorated">True</property>
   <property name="skip_taskbar_hint">False</property>
   <property name="skip_pager_hint">False</property>
