@@ -117,7 +117,14 @@ class SceneHumanInput:
         coord = self.getSquare(x, y)
         if coord is None:
             return
-                
+        
+        # Deselect when clicking on piece a second time
+        if self.__startSquare == coord:
+            self.__boardHighlights = None
+            self.setBoardHighlight(None)
+            self.__startSquare = None
+            return
+
         # If this is a friendly piece then select it
         if self.squareIsFriendly(coord):
             self.__startSquare = coord
@@ -176,7 +183,6 @@ class SceneHumanInput:
         if self.canMove(start, end) is False:
             return
         self.__startSquare = None
-        self.__selectedSquare = None
         self.__boardHighlights = None
         self.setBoardHighlight(None)
         self.moveHuman(start, end)
