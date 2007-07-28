@@ -99,7 +99,8 @@ class GtkNewGameDialog:
         self.__gui.signal_autoconnect(self)
         
         # Set style of error panel
-        self.__gui.get_widget('info_box').set_style(mainUI.tooltipStyle)
+        if mainUI.tooltipStyle is not None:
+            self.__gui.get_widget('info_box').set_style(mainUI.tooltipStyle)
         
         # Make all the labels the same width
         group = gtk.SizeGroup(gtk.SIZE_GROUP_HORIZONTAL)
@@ -417,7 +418,8 @@ class GtkLoadGameDialog:
         self.__gui.signal_autoconnect(self)
         
         # Set style of error panel
-        self.__gui.get_widget('error_box').set_style(mainUI.tooltipStyle)
+        if mainUI.tooltipStyle is not None:
+            self.__gui.get_widget('error_box').set_style(mainUI.tooltipStyle)
         
         fileChooser = self.__gui.get_widget('filechooserwidget')
         
@@ -562,7 +564,8 @@ class GtkSaveGameDialog:
         self.__gui.signal_autoconnect(self)
         
         # Set style of error panel
-        self.__gui.get_widget('error_box').set_style(mainUI.tooltipStyle)
+        if mainUI.tooltipStyle is not None:
+            self.__gui.get_widget('error_box').set_style(mainUI.tooltipStyle)
 
         dialog = self.__gui.get_widget('save_dialog')
         chooser = self.__gui.get_widget('filechooser')
