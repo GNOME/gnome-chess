@@ -387,7 +387,7 @@ class GtkUI(glchess.ui.UI):
 
         # Set the message panel to the tooltip style
         # (copied from Gedit)
-        # In Gtk+ 2.11+ (I think) tip_window is now private so skip if it's not there
+        # In Gtk+ 2.11+ (I think) tip_window is now private so skip if it's not there (bug #459740)
         tooltip = gtk.Tooltips()
         tooltip.force_window()
         if hasattr(tooltip, 'tip_window') and tooltip.tip_window != None:
