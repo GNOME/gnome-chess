@@ -245,12 +245,8 @@ class GtkView(glchess.ui.ViewController):
         self.viewWidget = GtkViewArea(self)
         self.gui.get_widget('view_container').add(self.viewWidget)
 
-        # Set the message panel to the tooltip style
-        # (copied from Gedit)
-        tooltip = gtk.Tooltips()
-        tooltip.force_window()
-        tooltip.tip_window.ensure_style()
-        self.gui.get_widget('info_panel').set_style(tooltip.tip_window.get_style())
+	if self.ui.tooltipStyle is not None:
+	    self.gui.get_widget('info_panel').set_style(self.ui.tooltipStyle)
 
         # Make a model for navigation (move object, number, description) 
         model = gtk.ListStore(gobject.TYPE_PYOBJECT, int, str)
