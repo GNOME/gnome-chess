@@ -253,3 +253,6 @@ class Client:
         
     def onJoin(self, tableId, isSpectator):
         print 'Joined table %s' % tableId
+        
+    def onLeave(self, reason):
+        print 'Left table: %s' % reason

@@ -491,6 +491,14 @@ class JoinParser(GGZParser):
         self.decoder.feedback.onJoin(tableId, isSpectator)
         self.pop()
 
+class LeaveParser(GGZParser):
+    "<LEAVE REASON='gameover'/>"
+    
+    def end_leave(self):
+        reason = self.attributes['REASON']
+        self.decoder.feedback.onLeave(reason)
+        self.pop()
+
 class SessionParser(GGZParser):
     
     def start_server(self, attributes):
@@ -512,6 +520,9 @@ class SessionParser(GGZParser):
             
     def start_join(self, attributes):
         self.push(JoinParser(), attributes)
+        
+    def start_leave(self, attributes):
+        self.push(LeaveParser(), attributes)
 
     def start_result(self, attributes):
         self.push(ResultParser(), attributes)

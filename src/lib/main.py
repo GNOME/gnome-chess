@@ -1003,7 +1003,7 @@ class GGZNetworkDialog(ui.NetworkFeedback):
         
     def startTable(self):
         self.channel = GGZChannel(self.ui)
-        self.decoder.client.startTable('30', 'glChess test game (do not join!)', 'glchess-test')
+        self.decoder.client.startTable(self.decoder.room.game.id, 'glChess test game (do not join!)', 'glchess-test')
     
     def sendChat(self, text):
         self.decoder.client.sendChat(text)
