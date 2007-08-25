@@ -34,6 +34,7 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
 
         self.roomModel = gtk.TreeStore(gobject.TYPE_PYOBJECT, int, str, str, str)
         self.otherRoomIter = None
+        self.roomIters = {}
         view = self.__gui.get_widget('room_list')
         view.set_model(self.roomModel)
         cell = gtk.CellRendererText()
@@ -103,16 +104,12 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
             parent = self.otherRoomIter
             iter = self.roomModel.append(self.otherRoomIter)
 
+        self.roomIters[room] = iter
         self.roomModel.set(iter, 0, room, 1, index, 2, name, 3, nPlayers, 4, description)
 
     def updateRoom(self, room, nPlayers):
-        iter = self.roomModel.get_iter_first()
-        while iter is not None:
-            if room is self.roomModel.get_value(iter, 0):
-                break
-            iter = self.roomModel.iter_next(iter)
-        if iter is not None:
-            self.roomModel.set(iter, 3, nPlayers)
+        iter = self.roomIters[room]
+        self.roomModel.set(iter, 3, nPlayers)
     
     def removeRoom(self, room):
         """Called by glchess.ui.UIController"""

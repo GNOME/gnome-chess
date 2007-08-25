@@ -848,7 +848,7 @@ class GGZConnection:
 
     def onOutgoingData(self, data):
         print 'tx: %s' % repr(data)
-        self.dialog.socket.send(data)
+        self.dialog.send(data)
 
     def onChat(self, chatType, sender, text):
         self.dialog.controller.addText('%s: %s\n' % (sender, text), 'chat')
@@ -865,9 +865,17 @@ class GGZChannel:
         self.decoder = ggz.Channel(self.protocol)
         
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.socket.setblocking(False)
         ui.application.ioHandlers[self.socket.fileno()] = self
         ui.controller.watchFileDescriptor(self.socket.fileno())
-        self.socket.connect(('gnome.ggzgamingzone.org', 5688))
+        try:
+            self.socket.connect(('localhost', 5688))
+        except socket.error:
+            # FIXME: Abort/retry if error
+            if e.args[0] == errno.EINPROGRESS:
+                print 'connecting...'
+            else:
+                print e
         
         self.send("<?xml version='1.0' encoding='UTF-8'?>\n<SESSION>\n<CHANNEL ID='glchess-test' /></SESSION>")
 
@@ -876,12 +884,16 @@ class GGZChannel:
         self.socket.send(data);
 
     def read(self):
-        (data, address) = self.socket.recvfrom(65535)
-        if len(data) == 0:
-            # FIXME
-            return False
-        print 'rx-channel: %s' % repr(data)
-        self.decoder.feed(data)
+        try:
+            (data, address) = self.socket.recvfrom(65535)
+        except socket.error:
+            pass
+        else:
+            if len(data) == 0:
+                print 'Disconnected'
+                return False
+            print 'rx-channel: %s' % repr(data)
+            self.decoder.feed(data)
         return True
 
     def onSeat(self, seatNum, version):
@@ -944,16 +956,42 @@ class GGZNetworkDialog(ui.NetworkFeedback):
                 
         self.decoder = GGZConnection(self)
         
+        self.buffer = ''
+        
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.socket.setblocking(False)
         ui.application.ioHandlers[self.socket.fileno()] = self
         ui.controller.watchFileDescriptor(self.socket.fileno())
-        self.socket.connect(('gnome.ggzgamingzone.org', 5688))
+        try:
+            #'gnome.ggzgamingzone.org', 'games.gnome.org'
+            self.socket.connect(('localhost', 5688))
+        except socket.error, e:
+            # FIXME: Abort/retry if error
+            if e.args[0] == errno.EINPROGRESS:
+                print 'connecting...'
+            else:
+                print e
         
         self.decoder.start()
         
+    def send(self, data):
+        self.buffer += data
+        try:
+            nSent = self.socket.send(self.buffer)
+        except socket.error:
+            nSent = 0
+        self.buffer = self.buffer[nSent:]
+
     def read(self):
-        (data, address) = self.socket.recvfrom(65535)
-        self.decoder.registerIncomingData(data)
+        try:
+            (data, address) = self.socket.recvfrom(65535)
+        except socket.error:
+            pass
+        else:
+            if len(data) == 0:
+                print 'disconnected'
+                return False
+            self.decoder.registerIncomingData(data)
         return True
 
     def joinRoom(self, room):
@@ -1110,6 +1148,11 @@ class Application:
         fd = player.fileno()
         if fd is not None:
             self.ioHandlers.pop(fd)
+            
+    def addNetworkGame(self, name):
+        g = ChessGame(self, name)
+        self.__games.append(g)
+        return g
 
     def addGame(self, name, whiteName, whiteType, blackName, blackType):
         """Add a chess game into glChess.

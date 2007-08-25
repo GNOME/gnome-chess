@@ -69,6 +69,7 @@ class Client:
         self.rooms = {}
         self.tables = {}
         self.players = {}
+        self.room = None
 
     def start(self):
         # Start session
@@ -172,7 +173,7 @@ class Client:
         except KeyError:
             player.room = None
         else:
-            player.room.nPlayers -= 1
+            player.room.nPlayers += 1
             self.feedback.roomUpdated(player.room)
         
         self.feedback.roomUpdated(player.lastRoom)
@@ -216,6 +217,11 @@ class Client:
         self.sendCommand("<LIST TYPE='player'/>")
 
     def joinRoom(self, room):
+        if self.room is not None:
+            self.room.nPlayers -= 1
+            self.feedback.roomUpdated(self.room)
+
+        self.room = room
         self.players = {}
         self.tables = {}
         room.nPlayers = 0

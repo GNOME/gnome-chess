@@ -18,6 +18,15 @@ import xml.sax.handler
 "<TABLE ID='1' STATUS='-1' SEATS='2'/>"
 "</UPDATE>"
 
+"<GAME ID=\'24\' NAME=\'TicTacToe\' VERSION=\'0.0.9\'>"
+"<PROTOCOL ENGINE=\'TicTacToe\' VERSION=\'4\'/>"
+"<ALLOW PLAYERS=\'2\' BOTS=\'1\' SPECTATORS=\'true\' PEERS=\'false\'/>"
+"<BOT NAME=\'Alfred\' CLASS=\'easy\'/>"
+"<BOT NAME=\'Tarantula\' CLASS=\'hard\'/>"
+"<ABOUT AUTHOR=\'Brent Hendricks\' URL=\'http://www.ggzgamingzone.org/games/tictactoe/\'/>"
+"<DESC>Simple GGZ game module for playing Tic-Tac-Toe</DESC>"
+"</GAME>"
+
 class GGZParser:
     
     parent = None
@@ -100,6 +109,14 @@ class GameAllowParser(GGZParser):
         self.numPlayers = self.attributes['PLAYERS']
         self.pop()
 
+class GameBotParser(GGZParser):
+    
+    def end_bot(self):
+        self.parent.bots.append(self)
+        self.name = self.attributes['NAME']
+        self.difficulty = self.attributes['CLASS']
+        self.pop()
+
 class GameAboutParser(GGZParser):
     
     def end_about(self):
@@ -110,6 +127,9 @@ class GameAboutParser(GGZParser):
 
 class GameParser(GGZParser):
     
+    def __init__(self):
+        self.bots = []
+    
     def start_desc(self, attributes):
         self.push(DescriptionParser(), attributes)
         
@@ -118,6 +138,9 @@ class GameParser(GGZParser):
 
     def start_allow(self, attributes):
         self.push(GameAllowParser(), attributes)
+        
+    def start_bot(self, attributes):
+        self.push(GameBotParser(), attributes)
     
     def start_about(self, attributes):
         self.push(GameAboutParser(), attributes)
@@ -232,7 +255,10 @@ class PlayerListParser(GGZParser):
         playerParser.name = playerParser.attributes['ID']
         playerParser.type = playerParser.attributes['TYPE']
         playerParser.table = playerParser.attributes['TABLE']
-        playerParser.perms = playerParser.attributes['PERMS']
+        try:
+            playerParser.perms = playerParser.attributes['PERMS']
+        except KeyError:
+            playerParser.perms = ''
         playerParser.lag = playerParser.attributes['LAG']
         self.players.append(playerParser)
 
@@ -317,7 +343,10 @@ class PlayerUpdateParser(GGZParser):
             name = parser.attributes['ID']
             playerType = parser.attributes['TYPE']
             table = parser.attributes['TABLE']
-            perms = parser.attributes['PERMS']
+            try:
+                perms = parser.attributes['PERMS']
+            except KeyError:
+                perms = ''
             lag = parser.attributes['LAG']
             room = self.attributes['ROOM']
             fromRoom = self.attributes['FROMROOM']
