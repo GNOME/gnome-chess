@@ -32,6 +32,9 @@ class Game:
 class NetworkFeedback:
     """Template class for feedback from a network game selector"""
     
+    def setProfile(self, profile):
+        pass
+    
     def joinRoom(self, room):
         pass
     
@@ -40,6 +43,9 @@ class NetworkFeedback:
     
 class NetworkController:
     """"""
+    
+    def addProfile(self, profile, name):
+        pass
     
     def addChat(self, user, channel, text):
         """Add chat 
@@ -254,12 +260,21 @@ class UIFeedback:
     def onReadFileDescriptor(self, fd):
         """Called when a file descriptor is able to be read.
         
-        'fds' is the file descriptor with available data to read (integer).
+        'fd' is the file descriptor with available data to read (integer).
         
         Return False when finished otherwise True.
         """
-        pass
+        return False
 
+    def onWriteFileDescriptor(self, fd):
+        """Called when a file descriptor can be written to.
+        
+        'fd' is the file descriptor that can be written to (integer).
+        
+        Return False if writing is completed otherwise True
+        """
+        return False
+    
     def onGameStart(self, game):
         """Called when a local game is started.
         
@@ -345,6 +360,15 @@ class UI:
         'fd' is the file descriptor to watch (integer).
         
         When data is available onReadFileDescriptor() is called.
+        """
+        pass
+    
+    def writeFileDescriptor(self, fd):
+        """Notify when a file descriptor can be written to.
+        
+        'fd' is the file descriptor to write (integer).
+        
+        When data can be written onWriteFileDescriptor is called.
         """
         pass
     

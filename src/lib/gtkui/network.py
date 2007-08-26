@@ -31,6 +31,17 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         # Load the UI
         self.__gui = gtkui.loadGladeFile('network_game.glade', 'network_game_dialog')
         self.__gui.signal_autoconnect(self)
+        
+        self.profileModel = gtk.ListStore(gobject.TYPE_PYOBJECT, str)
+        iter = self.profileModel.append()
+        self.profileModel.set(iter, 0, None, 1, 'Disconnected')
+        
+        widget = self.__gui.get_widget('server_combo')
+        widget.set_model(self.profileModel)
+        cell = gtk.CellRendererText()
+        widget.pack_start(cell, False)
+        widget.add_attribute(cell, 'text', 1)
+        widget.set_active_iter(iter)
 
         self.roomModel = gtk.TreeStore(gobject.TYPE_PYOBJECT, int, str, str, str)
         self.otherRoomIter = None
@@ -92,6 +103,11 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         self.__gui.get_widget('network_game_dialog').show()
 
     # Extended methods
+    
+    def addProfile(self, profile, name):
+        """Called by glchess.ui.UIController"""
+        iter = self.profileModel.append()
+        self.profileModel.set(iter, 0, profile, 1, name)
 
     def addRoom(self, index, name, nPlayers, description, room, isChess = True):
         """Called by glchess.ui.UIController"""
@@ -235,6 +251,13 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         self.__mainUI.feedback.onGameStart(game)
         
     # Gtk+ signal handlers
+    
+    def _on_server_combo_changed(self, widget):
+        """Gtk+ callback"""
+        model = widget.get_model()
+        iter = widget.get_active_iter()
+        (profile,) = model.get(iter, 0)
+        self.feedback.setProfile(profile)
     
     def _on_game_name_edited(self, widget):
         """Gtk+ callback"""

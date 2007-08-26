@@ -71,10 +71,10 @@ class Client:
         self.players = {}
         self.room = None
 
-    def start(self):
+    def start(self, login):
         # Start session
         self.send("<?xml version='1.0' encoding='UTF-8'?>\n<SESSION>\n<LANGUAGE>en_NZ.UTF-8</LANGUAGE>")
-        self.sendCommand("<LOGIN TYPE='guest'>\n<NAME>glchess-test</NAME>\n</LOGIN>");
+        self.sendCommand("<LOGIN TYPE='guest'>\n<NAME>%s</NAME>\n</LOGIN>" % login);
         self.requestGames()
         self.requestRooms()
         

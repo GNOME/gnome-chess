@@ -475,6 +475,10 @@ class GtkUI(glchess.ui.UI):
         """Extends ui.UI"""
         gobject.io_add_watch(fd, gobject.IO_IN | gobject.IO_HUP, self.__readData)
         
+    def writeFileDescriptor(self, fd):
+        """Extends ui.UI"""
+        gobject.io_add_watch(fd, gobject.IO_OUT, self.__writeData)
+        
     def addTimer(self, feedback, duration):
         """Extends ui.UI"""
         return GLibTimer(self, feedback, duration)
@@ -484,7 +488,12 @@ class GtkUI(glchess.ui.UI):
         return True
 
     def __readData(self, fd, condition):
+        #print (fd, condition)
         return self.feedback.onReadFileDescriptor(fd)
+
+    def __writeData(self, fd, condition):
+        #print (fd, condition)
+        return self.feedback.onWriteFileDescriptor(fd)
 
     def addAIEngine(self, name):
         """Register an AI engine.

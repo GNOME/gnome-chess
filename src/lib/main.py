@@ -788,7 +788,30 @@ class ChessGame(game.ChessGame):
 class Advert:
     pass
 
-import xml.sax.saxutils;
+import ConfigParser
+
+class GGZServer:
+    pass
+
+class GGZConfig:
+    
+    def __init__(self):
+        parser = ConfigParser.SafeConfigParser()
+        parser.read(os.path.expanduser('~/.ggz/ggz-gtk.rc'))
+        
+        value = parser.get('Servers', 'profilelist')
+        
+        self.servers = []
+        for n in value.replace('\\ ', '\x00').split(' '):
+            server = GGZServer()
+            server.name = n.replace('\x00', ' ')
+            server.host = parser.get(server.name, 'Host')
+            server.port = parser.getint(server.name, 'Port')
+            server.login = parser.get(server.name, 'Login')
+
+            self.servers.append(server)
+            
+            print (server.name, server.host, server.port, server.login)
 
 class GGZConnection:
 
@@ -799,8 +822,8 @@ class GGZConnection:
         self.sending = False
         self.players = {}
 
-    def start(self):
-        self.client.start()
+    def start(self, login):
+        self.client.start(login)
 
     def roomAdded(self, room):
         isChess = room.game is None or (room.game.protocol_engine == 'Chess' and room.game.protocol_version == '3')
@@ -864,6 +887,8 @@ class GGZChannel:
         self.protocol = ggz.Chess(self)
         self.decoder = ggz.Channel(self.protocol)
         
+        self.isConnected = False
+        self.buffer = ''
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socket.setblocking(False)
         ui.application.ioHandlers[self.socket.fileno()] = self
@@ -876,18 +901,30 @@ class GGZChannel:
                 print 'connecting...'
             else:
                 print e
-        
+                
         self.send("<?xml version='1.0' encoding='UTF-8'?>\n<SESSION>\n<CHANNEL ID='glchess-test' /></SESSION>")
 
     def send(self, data):
         print 'tx-channel: %s' % repr(data)
-        self.socket.send(data);
+        origLength = len(self.buffer)
+        
+        self.buffer += data
+        # FIXME: g_io_watch() doesn't seem to work for both read and write
+        #if origLength == 0:
+        #    self.ui.controller.writeFileDescriptor(self.socket.fileno())
+        self.write()
+        
+    def write(self):
+        nWritten = self.socket.send(self.buffer)
+        print 'wrote %d octets' % nWritten
+        self.buffer = self.buffer[nWritten:]
+        return len(self.buffer) > 0
 
     def read(self):
         try:
             (data, address) = self.socket.recvfrom(65535)
         except socket.error:
-            pass
+            print 'Error reading from channel'
         else:
             if len(data) == 0:
                 print 'Disconnected'
@@ -953,26 +990,9 @@ class GGZNetworkDialog(ui.NetworkFeedback):
     
     def __init__(self, ui):
         self.ui = ui
-                
-        self.decoder = GGZConnection(self)
-        
         self.buffer = ''
-        
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.socket.setblocking(False)
-        ui.application.ioHandlers[self.socket.fileno()] = self
-        ui.controller.watchFileDescriptor(self.socket.fileno())
-        try:
-            #'gnome.ggzgamingzone.org', 'games.gnome.org'
-            self.socket.connect(('localhost', 5688))
-        except socket.error, e:
-            # FIXME: Abort/retry if error
-            if e.args[0] == errno.EINPROGRESS:
-                print 'connecting...'
-            else:
-                print e
-        
-        self.decoder.start()
+        self.profile = None
+        self.socket = None
         
     def send(self, data):
         self.buffer += data
@@ -993,7 +1013,39 @@ class GGZNetworkDialog(ui.NetworkFeedback):
                 return False
             self.decoder.registerIncomingData(data)
         return True
-
+    
+    def setProfile(self, profile):
+        if profile is None:
+            name = '(none)'
+        else:
+            name = profile.name
+        print 'Profile=%s' % name
+        
+        if self.socket is not None:
+            # FIXME: Unregister fd events
+            self.socket.close()
+        self.socket = None
+        
+        self.profile = profile
+        if profile is None:
+            return
+        
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.socket.setblocking(False)
+        self.ui.application.ioHandlers[self.socket.fileno()] = self
+        self.ui.controller.watchFileDescriptor(self.socket.fileno())
+        try:
+            self.socket.connect((profile.host, profile.port))
+        except socket.error, e:
+            # FIXME: Abort/retry if error
+            if e.args[0] == errno.EINPROGRESS:
+                print 'connecting...'
+            else:
+                print e
+        
+        self.decoder = GGZConnection(self)
+        self.decoder.start(profile.login)
+    
     def joinRoom(self, room):
         self.decoder.client.joinRoom(room)
     
@@ -1022,6 +1074,7 @@ class UI(ui.UIFeedback):
         """
         self.controller = gtkui.GtkUI(self)
         self.application = application
+        self.ggzConfig = GGZConfig()
         
         self.splashscreen = Splashscreen(self)
         self.splashscreen.controller = self.controller.setDefaultView(self.splashscreen)
@@ -1038,6 +1091,18 @@ class UI(ui.UIFeedback):
             return False
         else:
             result = handler.read()
+            if result is False:
+                self.application.ioHandlers.pop(fd)
+            return result
+
+    def onWriteFileDescriptor(self, fd):
+        """Called by ui.UIFeedback"""
+        try:
+            handler = self.application.ioHandlers[fd]
+        except KeyError:
+            return False
+        else:
+            result = handler.write()
             if result is False:
                 self.application.ioHandlers.pop(fd)
             return result
@@ -1077,6 +1142,8 @@ class UI(ui.UIFeedback):
         """Called by ui.UIFeedback"""
         dialog = GGZNetworkDialog(self)
         dialog.controller = self.controller.addNetworkDialog(dialog)
+        for server in self.ggzConfig.servers:
+            dialog.controller.addProfile(server, server.name)
 
     def onQuit(self):
         """Called by ui.UIFeedback"""
