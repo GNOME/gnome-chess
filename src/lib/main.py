@@ -793,6 +793,9 @@ import ConfigParser
 class GGZServer:
     pass
 
+'''
+FIXME: See bug#471238. This code doesn't work at the moment.
+
 class GGZConfig:
     
     def __init__(self):
@@ -812,6 +815,7 @@ class GGZConfig:
             self.servers.append(server)
             
             print (server.name, server.host, server.port, server.login)
+'''
 
 class GGZConnection:
 
@@ -1074,7 +1078,7 @@ class UI(ui.UIFeedback):
         """
         self.controller = gtkui.GtkUI(self)
         self.application = application
-        self.ggzConfig = GGZConfig()
+        #self.ggzConfig = GGZConfig()
         
         self.splashscreen = Splashscreen(self)
         self.splashscreen.controller = self.controller.setDefaultView(self.splashscreen)
