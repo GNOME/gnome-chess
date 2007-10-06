@@ -395,21 +395,16 @@ class GtkView(glchess.ui.ViewController):
     def generateMoveString(self, move):
         """
         """
+        isWhite = move.number % 2 == 1
+        
         subs = {'movenum': (move.number - 1) / 2 + 1,
-                'move_can': move.canMove, 'move_san': move.sanMove,
+                'move_can': move.canMove,
+                'move_san': move.sanMove,
                 'piece': pieceNames[move.piece.getType()],
-                'start': move.start, 'end': move.end}
+                'start': move.start,
+                'end': move.end}
         if move.victim is not None:
             subs['victim_piece'] = pieceNames[move.victim.getType()]
-        subs['colour'] = _('White')
-        subs['victim_colour'] = _('Black')
-        if move.number % 2 == 1:
-            subs['short_colour'] = 'a'
-        else:
-            subs['short_colour'] = 'b'
-            t = subs['colour']
-            subs['colour'] = subs['victim_colour']
-            subs['victim_colour'] = t
         
         if self.moveFormat == 'san':
             if move.number % 2 == 0:
@@ -433,22 +428,36 @@ class GtkView(glchess.ui.ViewController):
         elif not move.opponentCanMove:
             status = _('Stalemate')
         if status is not None:
-            subs['suffix'] = _(' - %(check_status)s') % {'check_status': status}
-        else:
-            subs['suffix'] = ''
+            subs['result'] = status
+        haveResult = status is not None
+            
+        subs['move'] = {True:  '%(movenum)2iw.' % subs,
+                        False: '%(movenum)2ib.' % subs}[isWhite]
 
         if move.sanMove.startswith('O-O-O'):
-            string = _('%(movenum)2i%(short_colour)s. %(colour)s castles long%(suffix)s') % subs
+            string = {(True, True):   _('%(move)s White castles long (%(result)s)'),
+                      (True, False):  _('%(move)s White castles long'),
+                      (False, True):  _('%(move)s Black castles long (%(result)s)'),
+                      (False, False): _('%(move)s Black castles long')}[(isWhite, haveResult)]
         elif move.sanMove.startswith('O-O'):
-            string = _('%(movenum)2i%(short_colour)s. %(colour)s castles short%(suffix)s') % subs
+            string = {(True, True):   _('%(move)s White castles short (%(result)s)'),
+                      (True, False):  _('%(move)s White castles short'),
+                      (False, True):  _('%(move)s Black castles short (%(result)s)'),
+                      (False, False): _('%(move)s Black castles short')}[(isWhite, haveResult)]
         elif move.victim is not None:
-            string = _('%(movenum)2i%(short_colour)s. %(colour)s %(piece)s at %(start)s takes %(victim_colour)s %(victim_piece)s at %(end)s%(suffix)s') % subs
+            string = {(True, True):   _('%(move)s White %(piece)s at %(start)s takes the black %(victim_piece)s at %(end)s (%(result)s)'),
+                      (True, False):  _('%(move)s White %(piece)s at %(start)s takes the black %(victim_piece)s at %(end)s'),
+                      (False, True):  _('%(move)s Black %(piece)s at %(start)s takes the white %(victim_piece)s at %(end)s (%(result)s)'),
+                      (False, False): _('%(move)s Black %(piece)s at %(start)s takes the white %(victim_piece)s at %(end)s')}[(isWhite, haveResult)]
         else:
-            string = _('%(movenum)2i%(short_colour)s. %(colour)s %(piece)s moves from %(start)s to %(end)s%(suffix)s') % subs
+            string = {(True, True):   _('%(move)s White %(piece)s moves from %(start)s to %(end)s (%(result)s)'),
+                      (True, False):  _('%(move)s White %(piece)s moves from %(start)s to %(end)s'),
+                      (False, True):  _('%(move)s Black %(piece)s moves from %(start)s to %(end)s (%(result)s)'),
+                      (False, False): _('%(move)s Black %(piece)s moves from %(start)s to %(end)s')}[(isWhite, haveResult)]
 
         # FIXME: Promotion
 
-        return string
+        return string % subs
 
     def addMove(self, move):
         """Extends glchess.ui.ViewController"""        
