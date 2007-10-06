@@ -159,6 +159,7 @@ class GGZConnection(ggz.ClientFeedback):
 
     def onConnected(self):
         self.dialog.controller.setSensitive(True)
+        self.dialog.controller.clearError()
 
     def onDisconnected(self):
         self.dialog.controller.setError('Disconnected', 'You have been disconnected from the server')

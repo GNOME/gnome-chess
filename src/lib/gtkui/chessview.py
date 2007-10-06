@@ -431,8 +431,8 @@ class GtkView(glchess.ui.ViewController):
             subs['result'] = status
         haveResult = status is not None
             
-        subs['move'] = {True:  '%(movenum)2iw.' % subs,
-                        False: '%(movenum)2ib.' % subs}[isWhite]
+        subs['move'] = {True:  _('%(movenum)2iw.') % subs,
+                        False: _('%(movenum)2ib.') % subs}[isWhite]
 
         if move.sanMove.startswith('O-O-O'):
             string = {(True, True):   _('%(move)s White castles long (%(result)s)'),

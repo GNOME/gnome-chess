@@ -143,6 +143,9 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         self.__gui.get_widget('info_panel_title').set_markup('<big><b>%s</b></big>' % title)
         self.__gui.get_widget('info_panel_description').set_markup('<i>%s</i>' % description)
         self.__gui.get_widget('info_panel').show()
+        
+    def clearError(self):
+        self.__gui.get_widget('info_panel').hide()
 
     def addProfile(self, profile, name):
         """Called by glchess.ui.UIController"""
