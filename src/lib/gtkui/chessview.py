@@ -224,19 +224,18 @@ class GtkView(glchess.ui.ViewController):
     whiteTime        = None
     blackTime        = None
     
-    def __init__(self, ui, title, feedback, isActive = True, moveFormat = 'human', showComments = False):
+    def __init__(self, ui, title, feedback, moveFormat = 'human', showComments = False):
         """Constructor for a view.
         
         'feedback' is the feedback object for this view (extends ui.ViewFeedback).
-        'isActive' is a flag showing if this view can be controlled by the user (True) or not (False).
         'moveFormat' is the format name to display moves in (string).
         """
         self.ui = ui
         self.title = title
         self.feedback = feedback
-        self.isActive = isActive
         self.moveFormat = moveFormat
         self.showComments = showComments
+        self.hasFile = False
         
         # The GTK+ elements
         self.gui = gtkui.loadGladeFile('chess_view.glade', 'chess_view')
@@ -377,7 +376,12 @@ class GtkView(glchess.ui.ViewController):
         self.blackTime = (total, current)
         if self.ui.view is self:
             self.ui.setTimers(self.whiteTime, self.blackTime)
-
+            
+    def setHasFile(self, hasFile):
+        """Extends glchess.ui.ViewController"""
+        self.hasFile = hasFile
+        self.ui._updateViewButtons()
+            
     def setAttention(self, requiresAttention):
         """Extends glchess.ui.ViewController"""
         if self.requireAttention == requiresAttention:
@@ -485,15 +489,23 @@ class GtkView(glchess.ui.ViewController):
         elif game.rule is glchess.game.RULE_INSUFFICIENT_MATERIAL:
             if game.result is glchess.game.RESULT_DRAW:
                 description = _('Neither player can cause checkmate (insufficient material)')
-            else:
-                description = _('Opponent is unable to cause checkmate (insufficient material)')
+            elif game.result is glchess.game.RESULT_WHITE_WINS:
+                description = _('Black player is unable to cause checkmate (insufficient material)')
+            elif game.result is glchess.game.RESULT_BLACK_WINS:
+                description = _('White player is unable to cause checkmate (insufficient material)')
         elif game.rule is glchess.game.RULE_RESIGN:
-            description = _('One of the players has resigned')
+            if game.result is glchess.game.RESULT_WHITE_WINS:
+                description = _('The black player has resigned')
+            elif game.result is glchess.game.RESULT_BLACK_WINS:
+                description = _('The white player has resigned')
+            else:
+                assert(False)
         elif game.rule is glchess.game.RULE_DEATH:
             description = _('One of the players has died')
 
         self.gameResult = (title, description)
         self.updateInfoPanel()
+        self.ui._updateViewButtons()
     
     def close(self):
         """Extends glchess.ui.ViewController"""

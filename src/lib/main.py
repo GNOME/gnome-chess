@@ -147,6 +147,25 @@ class ChessGame(game.ChessGame):
         self.wT.controller.run()
         
         self.setTimers(self.wT, self.bT)
+        
+    def getHumanPlayer(self):
+        """Get the human player.
+        
+        Returns the human player (HumanPlayer) or None if no human players.
+        If both players are human the current player is returned.
+        """
+        c = self.getCurrentPlayer()
+        if isinstance(c, player.HumanPlayer):
+            return c
+        white = self.getWhite()
+        black = self.getWhite()
+        if c is white:
+            opponent = black
+        else:
+            opponent = white
+        if isinstance(opponent, player.HumanPlayer):
+            return opponent
+        return None
 
     def currentPlayerIsHuman(self):
         """Test if the player to move is human.
@@ -284,7 +303,7 @@ class UI(ui.UIFeedback):
         self.application = application
         
         self.splashscreen = display.Splashscreen(self)
-        self.splashscreen.controller = self.controller.setView('SPLASHSCREEN', self.splashscreen) # FIXME
+        self.splashscreen.controller = self.controller.setView('', self.splashscreen, isPlayable = False)
 
         self.ggzConfig = network.GGZConfig()
         dialog = network.GGZNetworkDialog(self)
@@ -657,13 +676,13 @@ class Application:
             return
         pgnGame = chess.pgn.PGNGame()
         g.toPGN(pgnGame)
-        self.history.save(pgnGame)
+        self.history.save(pgnGame, g.fileName)
 
     def __autoload(self):
         """Restore games from the autosave file"""
-        pgnGame = self.history.getUnfinishedGame()
+        (pgnGame, fileName) = self.history.getUnfinishedGame()
         if pgnGame is not None:
-            self.addPGNGame(pgnGame, None)
+            self.addPGNGame(pgnGame, fileName)
 
 if __name__ == '__main__':
     app = Application()

@@ -207,6 +207,14 @@ class ViewFeedback:
         'filename' is the file to save to (string or None to save to last filename).
         """
         pass
+    
+    def regsign(self):
+        """Indicates the human player wants to resign"""
+        pass
+    
+    def claimDraw(self):
+        """Indicates the human player wants to claim a draw"""
+        pass
 
 class ViewController:
     """Template class for methods to control a view"""
@@ -408,11 +416,12 @@ class UI:
         """
         return None
 
-    def setView(self, title, feedback):
+    def setView(self, title, feedback, isPlayable = True):
         """Set the view to display.
         
         'title' is the title for the view (string).
         'feedback' is a object to report view events with (extends ViewFeedback).
+        'isPlayable' is True if this view can be played.
         
         Returns a view controller object (extends ViewController).
         """

@@ -269,6 +269,8 @@ class GtkUI(glchess.ui.UI):
         
         self.saveDialog = dialogs.SaveDialog(self)
         
+        self._updateViewButtons()
+        
         # Watch for config changes
         for key in ['show_toolbar', 'show_history', 'fullscreen',
                     'show_3d', 'show_comments', 'show_numbering',
@@ -355,17 +357,32 @@ class GtkUI(glchess.ui.UI):
         if self.__defaultBlackAI is None:
             self.__defaultBlackAI = name
 
-    def setView(self, title, feedback):
+    def setView(self, title, feedback, isPlayable = True):
         """Extends ui.UI"""
         moveFormat = glchess.config.get('move_format')
         showComments = glchess.config.get('show_comments')
         self.view = chessview.GtkView(self, title, feedback, moveFormat = moveFormat, showComments = showComments)
+        self.view.isPlayable = isPlayable
         self.view.viewWidget.setRenderGL(self.__renderGL)
         viewport = self.__getWidget('game_viewport')
         child = viewport.get_child()
         if child is not None:
             viewport.remove(child)
         viewport.add(self.view.widget)
+        
+        # Set the window title to the name of the game
+        title = _('Chess')
+        if self.view is not None and len(self.view.title) > 0:
+            title += " - %s" % self.view.title
+        self._gui.get_widget('glchess_app').set_title(title)
+
+        # Set toolbar/menu buttons to state for this game
+        self._updateViewButtons()
+        
+        # Update timers
+        if self.view is not None:
+            self.setTimers(self.view.whiteTime, self.view.blackTime)
+
         return self.view
 
     def addLogWindow(self, title, executable, description):
@@ -812,28 +829,12 @@ class GtkUI(glchess.ui.UI):
         """Gtk+ callback"""
         self.__selectMoveNumber(-1)
 
-    def _on_view_changed(self, widget, page, pageNum):
-        """Gtk+ callback"""
-        # Set the window title to the name of the game
-        title = _('Chess')
-        if self.view is not None:
-            title += " - %s" % self.view.title
-        self._gui.get_widget('glchess_app').set_title(title)
-
-        # Set toolbar/menu buttons to state for this game
-        self._updateViewButtons()
-        
-        # Update timers
-        if self.view is not None:
-            self.setTimers(self.view.whiteTime, self.view.blackTime)
-    
     def _updateViewButtons(self):
         """
         """
-        enableWidgets = self.view is not None and self.view.isActive
-        self.__getWidget('save_game_button').set_sensitive(enableWidgets)
-        self.__getWidget('menu_save_item').set_sensitive(enableWidgets)
-        self.__getWidget('menu_save_as_item').set_sensitive(enableWidgets)
+        enable = self.view is not None and self.view.isPlayable
+        for widget in ('save_game_button', 'menu_save_item', 'menu_save_as_item'):
+            self.__getWidget(widget).set_sensitive(enable)
 
         combo = self.__getWidget('history_combo')
         if self.view is None:
@@ -845,7 +846,11 @@ class GtkUI(glchess.ui.UI):
             if selected < 0:
                 selected = len(model) + selected
             combo.set_active(selected)
-        self.__getWidget('navigation_box').set_sensitive(enableWidgets)
+        self.__getWidget('navigation_box').set_sensitive(enable)
+        
+        enable = enable and self.view.gameResult is None
+        for widget in ('menu_resign', 'resign_button', 'menu_claim_draw'):
+            self.__getWidget(widget).set_sensitive(enable)
 
     def _on_new_game_button_clicked(self, widget):
         """Gtk+ callback"""
@@ -870,6 +875,14 @@ class GtkUI(glchess.ui.UI):
         """Gtk+ callback"""
         if not self.__saveGameDialogs.has_key(self.view):
             self.__saveGameDialogs[self.view] = dialogs.GtkSaveGameDialog(self, self.view, self.view.feedback.getFileName())
+
+    def _on_resign_clicked(self, widget):
+        """Gtk+ callback"""
+        self.view.feedback.resign()
+
+    def _on_claim_draw_clicked(self, widget):
+        """Gtk+ callback"""
+        self.view.feedback.claimDraw()
 
     def _on_help_clicked(self, widget):
         """Gtk+ callback"""

@@ -171,6 +171,10 @@ class ChessPlayer:
         """Resign from the game"""
         self.__game.resign(self)
         
+    def claimDraw(self):
+        """Claim a draw"""
+        self.__game.claimDraw(self)
+
     def outOfTime(self):
         """Report this players timer has expired"""
         self.__game.outOfTime(self)
@@ -597,24 +601,31 @@ class ChessGame:
         
         'player' is the player resigning.
         """
-        if player is not self.__currentPlayer:
-            print 'Player attempted to resign out of turn'
-            return
-
-        # See if the resignation can be done without requesting
         rule = RULE_RESIGN
+        if player is self.__whitePlayer:
+            self.endGame(RESULT_BLACK_WINS, rule)
+        else:
+            self.endGame(RESULT_WHITE_WINS, rule)
+            
+    def claimDraw(self, player):
+        """
+        """
+        # TODO: Penalise if make an incorrect attempt
         try:
             move = self.__moves[-1]
         except IndexError:
-            pass
+            return False
         else:
             if move.fiftyMoveRule:
                 rule = RULE_FIFTY_MOVES
             elif move.threeFoldRepetition:
                 rule = RULE_THREE_FOLD_REPETITION
+            else:
+                return False
 
         self.endGame(RESULT_DRAW, rule)
-        
+        return True
+
     def killPlayer(self, player):
         """Report a player has died
         

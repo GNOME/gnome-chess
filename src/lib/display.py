@@ -266,9 +266,17 @@ class Splashscreen(ui.ViewFeedback):
         self.cairoScene.renderDynamic(context)
     
     def reshape(self, width, height):
-        """Called by ui.View"""
+        """Called by ui.ViewFeedback"""
         self.scene.reshape(width, height)
         self.cairoScene.reshape(width, height)
+
+    def resign(self):
+        """Called by ui.ViewFeedback"""
+        pass
+    
+    def claimDraw(self):
+        """Called by ui.ViewFeedback"""
+        pass
 
 class View(ui.ViewFeedback):
     """
@@ -436,3 +444,14 @@ class View(ui.ViewFeedback):
     def needsSaving(self):
         """Called by ui.ViewFeedback"""
         return self.game.needsSaving and (self.game.fileName is not None)
+    
+    def resign(self):
+        """Called by ui.ViewFeedback"""
+        p = self.game.getHumanPlayer()
+        if p is not None:
+            p.resign()
+            
+    def claimDraw(self):
+        """Called by ui.ViewFeedback"""
+        if p is not None:
+            p.claimDraw()
