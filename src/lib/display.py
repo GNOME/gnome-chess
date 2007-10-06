@@ -453,5 +453,7 @@ class View(ui.ViewFeedback):
             
     def claimDraw(self):
         """Called by ui.ViewFeedback"""
+        # TODO: Have the UI ask if the player wants to make a move first or claim now (or abort)
+        p = self.game.getHumanPlayer()
         if p is not None:
             p.claimDraw()
