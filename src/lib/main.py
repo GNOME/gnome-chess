@@ -23,11 +23,8 @@ import game
 import chess.board
 import chess.lan
 import ai
+import network
 from defaults import *
-
-#import dbus.glib
-#import network
-import ggz
 
 import chess.pgn
 
@@ -112,10 +109,10 @@ class AIPlayer(ai.Player):
         executable = profile.path
         for arg in profile.arguments[1:]:
             executable += ' ' + arg
-        self.window = application.ui.controller.addAIWindow(profile.name, executable, description)
+        self.window = application.ui.controller.addLogWindow(profile.name, executable, description)
         ai.Player.__init__(self, name, profile, level)
         
-    def logText(self, text, style):
+    def addText(self, text, style):
         """Called by ai.Player"""
         self.window.addText(text, style)
     
@@ -524,7 +521,7 @@ class View(ui.ViewFeedback):
         except IOError, e:
             return e.args[1]
         
-        print 'Saving game ' + repr(self.game.name) + ' to ' + fileName
+        self.game.application.logger.addLine('Saving game %s to %s' % (repr(self.game.name), fileName))
 
         pgnGame = chess.pgn.PGNGame()
         self.game.toPGN(pgnGame)
@@ -785,285 +782,6 @@ class ChessGame(game.ChessGame):
         self.application._removeGame(self)
         self.view.controller.close()
         
-class Advert:
-    pass
-
-import ConfigParser
-
-class GGZServer:
-    pass
-
-'''
-FIXME: See bug#471238. This code doesn't work at the moment.
-
-class GGZConfig:
-    
-    def __init__(self):
-        parser = ConfigParser.SafeConfigParser()
-        parser.read(os.path.expanduser('~/.ggz/ggz-gtk.rc'))
-        
-        value = parser.get('Servers', 'profilelist')
-        
-        self.servers = []
-        for n in value.replace('\\ ', '\x00').split(' '):
-            server = GGZServer()
-            server.name = n.replace('\x00', ' ')
-            server.host = parser.get(server.name, 'Host')
-            server.port = parser.getint(server.name, 'Port')
-            server.login = parser.get(server.name, 'Login')
-
-            self.servers.append(server)
-            
-            print (server.name, server.host, server.port, server.login)
-'''
-
-class GGZConnection:
-
-    def __init__(self, dialog):
-        self.dialog = dialog
-        self.client = ggz.Client(self)
-        self.commands = []
-        self.sending = False
-        self.players = {}
-
-    def start(self, login):
-        self.client.start(login)
-
-    def roomAdded(self, room):
-        isChess = room.game is None or (room.game.protocol_engine == 'Chess' and room.game.protocol_version == '3')
-        self.dialog.controller.addRoom(int(room.id), room.name, room.nPlayers, room.description, room, isChess)
-
-    def roomUpdated(self, room):
-        self.dialog.controller.updateRoom(room, room.nPlayers)
-
-    def roomJoined(self, room):
-        self.room = room
-        self.dialog.controller.clearPlayers()
-        self.dialog.controller.clearTables()
-
-    def tableAdded(self, table):
-        self.tableUpdated(table)
-
-    def tableUpdated(self, table):
-        if table.room != self.room:
-            return
-        description = table.description
-        if len(description) == 0:
-            description = gettext.gettext('No description')
-        nUsed = 0
-        for seat in table.seats:
-            if seat.type == 'bot' or seat.user != '':
-                nUsed += 1
-        self.dialog.controller.updateTable(table, '%s' % table.id, '%i/%i' % (nUsed, len(table.seats)), description)
-
-    def tableRemoved(self, table):
-        if table.room == self.room:
-            self.dialog.controller.removeTable(table)
-
-    def playerAdded(self, player):
-        self.dialog.controller.addPlayer(player.name, player)
-
-    def playerRemoved(self, player):
-        self.dialog.controller.removePlayer(player)
-
-    def registerIncomingData(self, data):
-        if len(data) == 0:
-            # FIXME
-            return
-        print 'rx: %s' % repr(data)
-        self.client.registerIncomingData(data)
-
-    def onOutgoingData(self, data):
-        print 'tx: %s' % repr(data)
-        self.dialog.send(data)
-
-    def onChat(self, chatType, sender, text):
-        self.dialog.controller.addText('%s: %s\n' % (sender, text), 'chat')
-
-import socket
-
-class GGZChannel:
-    """
-    """
-    
-    def __init__(self, ui):
-        self.ui = ui
-        self.protocol = ggz.Chess(self)
-        self.decoder = ggz.Channel(self.protocol)
-        
-        self.isConnected = False
-        self.buffer = ''
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.socket.setblocking(False)
-        ui.application.ioHandlers[self.socket.fileno()] = self
-        ui.controller.watchFileDescriptor(self.socket.fileno())
-        try:
-            self.socket.connect(('localhost', 5688))
-        except socket.error:
-            # FIXME: Abort/retry if error
-            if e.args[0] == errno.EINPROGRESS:
-                print 'connecting...'
-            else:
-                print e
-                
-        self.send("<?xml version='1.0' encoding='UTF-8'?>\n<SESSION>\n<CHANNEL ID='glchess-test' /></SESSION>")
-
-    def send(self, data):
-        print 'tx-channel: %s' % repr(data)
-        origLength = len(self.buffer)
-        
-        self.buffer += data
-        # FIXME: g_io_watch() doesn't seem to work for both read and write
-        #if origLength == 0:
-        #    self.ui.controller.writeFileDescriptor(self.socket.fileno())
-        self.write()
-        
-    def write(self):
-        nWritten = self.socket.send(self.buffer)
-        print 'wrote %d octets' % nWritten
-        self.buffer = self.buffer[nWritten:]
-        return len(self.buffer) > 0
-
-    def read(self):
-        try:
-            (data, address) = self.socket.recvfrom(65535)
-        except socket.error:
-            print 'Error reading from channel'
-        else:
-            if len(data) == 0:
-                print 'Disconnected'
-                return False
-            print 'rx-channel: %s' % repr(data)
-            self.decoder.feed(data)
-        return True
-
-    def onSeat(self, seatNum, version):
-        self.seatNum = seatNum
-        print ('onSeat', seatNum, version)
-        
-    def seatIsFull(self, seatType):
-        return seatType == self.protocol.GGZ_SEAT_PLAYER or seatType == self.protocol.GGZ_SEAT_BOT
-
-    def onPlayers(self, whiteType, whiteName, blackType, blackName):
-        print ('onPlayers', whiteType, whiteName, blackType, blackName)
-        self.whiteName = whiteName
-        self.blackName = blackName
-
-    def onClockRequest(self):
-        print ('onTimeRequest',)
-        self.send(self.protocol.sendClock(self.protocol.CLOCK_NONE, 0))
-    
-    def onClock(self, mode, seconds):
-        print ('onClock', mode, seconds)
-
-    def onStart(self):
-        print ('onStart',)
-        g = self.ui.application.addNetworkGame('Network Game')
-        
-        # Create remote player
-        if self.seatNum == 0:
-            name = self.blackName
-        else:
-            name = self.whiteName
-        self.remotePlayer = game.ChessPlayer(name)
-        self.remotePlayer.onPlayerMoved = self.onPlayerMoved # FIXME: HACK HACK HACK!
-
-        p = g.addHumanPlayer('Human')
-        if self.seatNum == 0:
-            g.setWhite(p)
-            g.setBlack(self.remotePlayer)
-        else:
-            g.setWhite(self.remotePlayer)
-            g.setBlack(p)
-
-        g.start()
-
-    def onPlayerMoved(self, player, move):
-        #FIXME: HACK HACK HACK!
-        if player is not self.remotePlayer:
-            self.send(self.protocol.sendMove(move.canMove.upper()))
-
-    def onMove(self, move):
-        print ('onMove', move)
-        # FIXME: Only remote players should be used
-        self.remotePlayer.move(move.lower())
-
-class GGZNetworkDialog(ui.NetworkFeedback):
-    """
-    """
-    
-    def __init__(self, ui):
-        self.ui = ui
-        self.buffer = ''
-        self.profile = None
-        self.socket = None
-        
-    def send(self, data):
-        self.buffer += data
-        try:
-            nSent = self.socket.send(self.buffer)
-        except socket.error:
-            nSent = 0
-        self.buffer = self.buffer[nSent:]
-
-    def read(self):
-        try:
-            (data, address) = self.socket.recvfrom(65535)
-        except socket.error:
-            pass
-        else:
-            if len(data) == 0:
-                print 'disconnected'
-                return False
-            self.decoder.registerIncomingData(data)
-        return True
-    
-    def setProfile(self, profile):
-        if profile is None:
-            name = '(none)'
-        else:
-            name = profile.name
-        print 'Profile=%s' % name
-        
-        if self.socket is not None:
-            # FIXME: Unregister fd events
-            self.socket.close()
-        self.socket = None
-        
-        self.profile = profile
-        if profile is None:
-            return
-        
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.socket.setblocking(False)
-        self.ui.application.ioHandlers[self.socket.fileno()] = self
-        self.ui.controller.watchFileDescriptor(self.socket.fileno())
-        try:
-            self.socket.connect((profile.host, profile.port))
-        except socket.error, e:
-            # FIXME: Abort/retry if error
-            if e.args[0] == errno.EINPROGRESS:
-                print 'connecting...'
-            else:
-                print e
-        
-        self.decoder = GGZConnection(self)
-        self.decoder.start(profile.login)
-    
-    def joinRoom(self, room):
-        self.decoder.client.joinRoom(room)
-    
-    def joinTable(self, table):
-        self.channel = GGZChannel(self.ui) # FIXME: Make openChannel() feedback
-        self.decoder.client.joinTable(table)
-        
-    def startTable(self):
-        self.channel = GGZChannel(self.ui)
-        self.decoder.client.startTable(self.decoder.room.game.id, 'glChess test game (do not join!)', 'glchess-test')
-    
-    def sendChat(self, text):
-        self.decoder.client.sendChat(text)
-
 class UI(ui.UIFeedback):
     """
     """    
@@ -1078,10 +796,15 @@ class UI(ui.UIFeedback):
         """
         self.controller = gtkui.GtkUI(self)
         self.application = application
-        #self.ggzConfig = GGZConfig()
         
         self.splashscreen = Splashscreen(self)
         self.splashscreen.controller = self.controller.setDefaultView(self.splashscreen)
+
+        self.ggzConfig = network.GGZConfig()
+        dialog = network.GGZNetworkDialog(self)
+        self.networkDialog = dialog.controller = self.controller.addNetworkDialog(dialog)
+        for server in self.ggzConfig.servers:
+            dialog.controller.addProfile(server, server.name)
 
     def onAnimate(self, timeStep):
         """Called by ui.UIFeedback"""
@@ -1122,8 +845,10 @@ class UI(ui.UIFeedback):
         else:
             b = (game.black.type, game.black.level)
         g = self.application.addGame(game.name, game.white.name, w, game.black.name, b)
-        print 'Starting game %s between %s (%s) and %s (%s). (%i moves)' % \
-              (game.name, game.white.name, str(game.white.type), game.black.name, str(game.black.type), len(game.moves))
+        self.application.logger.addLine('Starting game %s between %s (%s) and %s (%s). (%i moves)' % \
+                                        (game.name,
+                                         game.white.name, str(game.white.type),
+                                         game.black.name, str(game.black.type), len(game.moves)))
 
         g.setTimer(game.duration, game.duration, game.duration)
         g.start(game.moves)
@@ -1144,10 +869,7 @@ class UI(ui.UIFeedback):
 
     def onNewNetworkGame(self):
         """Called by ui.UIFeedback"""
-        dialog = GGZNetworkDialog(self)
-        dialog.controller = self.controller.addNetworkDialog(dialog)
-        for server in self.ggzConfig.servers:
-            dialog.controller.addProfile(server, server.name)
+        self.networkDialog.setVisible(True)
 
     def onQuit(self):
         """Called by ui.UIFeedback"""
@@ -1185,6 +907,8 @@ class Application:
 
         self.ui = UI(self)
         
+        self.logger = self.ui.controller.addLogWindow('Application Log', '', '')
+
     def addAIProfile(self, profile):
         """Add a new AI profile into glChess.
         
@@ -1368,7 +1092,7 @@ class Application:
         
         This method does not return.
         """
-        print 'This is glChess ' + VERSION
+        self.logger.addLine('This is glChess %s' % VERSION)
         
         # Load AI profiles
         profiles = ai.loadProfiles()
@@ -1376,7 +1100,7 @@ class Application:
         for p in profiles:
             p.detect()
             if p.path is not None:
-                print 'Detected AI: ' + p.name + ' at ' + p.path
+                self.logger.addLine('Detected AI: %s at %s' % (p.name, p.path))
                 self.addAIProfile(p)
 
         nArgs = len(sys.argv)
@@ -1388,20 +1112,20 @@ class Application:
         # Load requested games
         for path in sys.argv[1:]:
             import time
-            print 'loading...'
+            self.logger.addLine('loading...')
             s = time.time()
             try:
                 p = chess.pgn.PGN(path, 1)
             except chess.pgn.Error, e:
                 # TODO: Pop-up dialog
-                print 'Unable to open PGN file %s: %s' % (path, str(e))
+                self.logger.addLine('Unable to open PGN file %s: %s' % (path, str(e)))
             except IOError, e:
-                print 'Unable to open PGN file %s: %s' % (path, str(e))
+                self.logger.addLine('Unable to open PGN file %s: %s' % (path, str(e)))
             else:
                 # Use the first game
                 if len(p) > 0:
                     g = self.addPGNGame(p[0], path)
-            print 'loaded in %f seconds' % (time.time() - s)
+            self.logger.addLine('loaded in %f seconds' % (time.time() - s))
 
         # Start UI (does not return)
         try:
@@ -1452,15 +1176,15 @@ class Application:
             p = chess.pgn.PGN(path)
             games = p[:]
         except chess.pgn.Error, e:
-            print 'Ignoring invalid autoload file %s: %s' % (path, str(e))
+            self.logger.addLine('Ignoring invalid autoload file %s: %s' % (path, str(e)))
             return
         except IOError, e:
             # The file doesn't have to exist...
             if e.errno != errno.ENOENT:
-                print 'Unable to autoload from %s: %s' % (path, str(e))
+                self.logger.addLine('Unable to autoload from %s: %s' % (path, str(e)))
             return
         
-        print 'Auto-loading from ' + path + '...'
+        self.logger.addLine('Auto-loading from %s...' % path)
             
         # Delete the file once loaded
         try:
@@ -1478,7 +1202,7 @@ class Application:
             return
         
         fname = AUTOSAVE_FILE
-        print 'Auto-saving to %s...' % fname
+        self.logger.addLine('Auto-saving to %s...' % fname)
         
         try:
             f = file(fname, 'a')
@@ -1497,7 +1221,7 @@ class Application:
             f.close()
         except IOError, e:
             # FIXME: This should be in a dialog
-            print 'Unable to autosave to %s: %s' % (fname, str(e))
+            self.logger.addLine('Unable to autosave to %s: %s' % (fname, str(e)))
 
 if __name__ == '__main__':
     app = Application()

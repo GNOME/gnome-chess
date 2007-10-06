@@ -18,26 +18,58 @@ import xml.sax.handler
 "<TABLE ID='1' STATUS='-1' SEATS='2'/>"
 "</UPDATE>"
 
-"<GAME ID=\'24\' NAME=\'TicTacToe\' VERSION=\'0.0.9\'>"
-"<PROTOCOL ENGINE=\'TicTacToe\' VERSION=\'4\'/>"
-"<ALLOW PLAYERS=\'2\' BOTS=\'1\' SPECTATORS=\'true\' PEERS=\'false\'/>"
-"<BOT NAME=\'Alfred\' CLASS=\'easy\'/>"
-"<BOT NAME=\'Tarantula\' CLASS=\'hard\'/>"
-"<ABOUT AUTHOR=\'Brent Hendricks\' URL=\'http://www.ggzgamingzone.org/games/tictactoe/\'/>"
-"<DESC>Simple GGZ game module for playing Tic-Tac-Toe</DESC>"
-"</GAME>"
+class ParserFeedback:
+    def onResult(self, action, code):
+        pass
+    
+    def onMOTD(self, motd):
+        pass
+
+    def onChat(self, chatType, sender, text):
+        pass
+        
+    def onJoin(self, tableId, isSpectator):
+        pass
+        
+    def onLeave(self, reason):
+        pass
+        
+    def gameAdded(self, gameId, name, version, author, url, numPlayers, protocol_engine, protocol_version):
+        pass
+
+    def roomAdded(self, roomId, gameId, name, description, nPlayers):
+        pass
+
+    def roomPlayersUpdate(self, roomId, nPlayers):
+        pass
+
+    def tableAdded(self, roomId, tableId, gameId, status, nSeats, description):
+        pass
+
+    def tableStatusChanged(self, tableId, status):
+        pass
+
+    def seatChanged(self, roomId, tableId, seatId, seatType, user):
+        pass
+
+    def tableRemoved(self, tableId):
+        pass
+
+    def onPlayerList(self, room, players):
+        pass
+
+    def playerAdded(self, name, playerType, tableId, perms, lag, room, fromRoom):
+        pass
+
+    def playerRemoved(self, name, room, toRoom):
+        pass
 
 class GGZParser:
-    
+    """
+    """
     parent = None
 
     parser = None
-    
-    def getAttribute(self, attributes, name, default = None):
-        try:
-            return attributes[name]
-        except KeyError:
-            return default
     
     def startElement(self, name, attributes):
         if self.parser is not None:
@@ -49,7 +81,7 @@ class GGZParser:
             print 'Unknown start element: %s' % name
         else:
             method(attributes)
-    
+
     def characters(self, data):
         if self.parser is not None:
             self.parser.characters(data)
@@ -86,46 +118,17 @@ class GGZParser:
     def childFinished(self, parser):
         pass
     
-class DescriptionParser(GGZParser):
-    
-    def handle_data(self, data):
-        self.parent.description = data
-        
-    def end_desc(self):
-        self.pop()
-
-class GameProtocolParser(GGZParser):
-    
-    def end_protocol(self):
-        self.parent.protocol = self
-        self.engine = self.attributes['ENGINE']
-        self.version = self.attributes['VERSION']
-        self.pop()
-
-class GameAllowParser(GGZParser):
-    
-    def end_allow(self):
-        self.parent.allow = self
-        self.numPlayers = self.attributes['PLAYERS']
-        self.pop()
-
-class GameBotParser(GGZParser):
-    
-    def end_bot(self):
-        self.parent.bots.append(self)
-        self.name = self.attributes['NAME']
-        self.difficulty = self.attributes['CLASS']
-        self.pop()
-
-class GameAboutParser(GGZParser):
-    
-    def end_about(self):
-        self.parent.about = self
-        self.author = self.attributes['AUTHOR']
-        self.url = self.attributes['URL']
-        self.pop()
-
 class GameParser(GGZParser):
+    """
+    <GAME ID='24' NAME='TicTacToe' VERSION='0.0.9'>
+    <PROTOCOL ENGINE='TicTacToe' VERSION='4'/>
+    <ALLOW PLAYERS='2' BOTS='1' SPECTATORS='true' PEERS='false'/>
+    <BOT NAME='Alfred' CLASS='easy'/>
+    <BOT NAME='Tarantula' CLASS='hard'/>
+    <ABOUT AUTHOR='Brent Hendricks' URL='http://www.ggzgamingzone.org/games/tictactoe/'/>
+    <DESC>Simple GGZ game module for playing Tic-Tac-Toe</DESC>
+    </GAME>
+    """
     
     def __init__(self):
         self.bots = []
@@ -153,6 +156,61 @@ class GameParser(GGZParser):
 
     def __str__(self):
         return 'GGZ Game id=%s protocol=%s (%s) description=%s' % (self.gameId, repr(self.protocol.engine), self.protocol.version, repr(self.description))
+    
+class DescriptionParser(GGZParser):
+    """   
+    <DESC>Simple GGZ game module for playing Tic-Tac-Toe</DESC>
+    """
+
+    def handle_data(self, data):
+        self.parent.description = data
+        
+    def end_desc(self):
+        self.pop()
+
+class GameProtocolParser(GGZParser):
+    """
+    <PROTOCOL ENGINE='TicTacToe' VERSION='4'/>
+    """
+    
+    def end_protocol(self):
+        self.parent.protocol = self
+        self.engine = self.attributes['ENGINE']
+        self.version = self.attributes['VERSION']
+        self.pop()
+
+class GameAllowParser(GGZParser):
+    """
+    <ALLOW PLAYERS='2' BOTS='1' SPECTATORS='true' PEERS='false'/>
+    """
+    
+    def end_allow(self):
+        self.parent.allow = self
+        self.numPlayers = self.attributes['PLAYERS']
+        self.pop()
+
+class GameBotParser(GGZParser):
+    """
+    <BOT NAME='Alfred' CLASS='easy'/>
+    <BOT NAME='Tarantula' CLASS='hard'/>
+    """
+    
+    def end_bot(self):
+        self.parent.bots.append(self)
+        self.name = self.attributes['NAME']
+        self.difficulty = self.attributes['CLASS']
+        self.pop()
+
+class GameAboutParser(GGZParser):
+    """
+    <ABOUT AUTHOR='Brent Hendricks' URL='http://www.ggzgamingzone.org/games/tictactoe/'/>
+    """
+
+    def end_about(self):
+        self.parent.about = self
+        self.author = self.attributes['AUTHOR']
+        self.url = self.attributes['URL']
+        self.pop()
 
 class RoomParser(GGZParser):
     
@@ -263,8 +321,7 @@ class PlayerListParser(GGZParser):
         self.players.append(playerParser)
 
     def end_list(self):
-        for p in self.players:
-            self.decoder.feedback.playerAdded(p.name, p.type, p.table, p.perms, p.lag, self.attributes['ROOM'], '-1')
+        self.decoder.feedback.onPlayerList(self.attributes['ROOM'], self.players)
         self.pop()
 
 class RoomListParser(GGZParser):
@@ -298,6 +355,7 @@ class ServerParser(GGZParser):
         self.push(ServerOptionsParser(), attributes)
     
     def end_server(self):
+        self.decoder.feedback.onConnected()
         self.pop()
 
 class MOTDParser(GGZParser):
@@ -309,7 +367,7 @@ class MOTDParser(GGZParser):
         self.motd += data
     
     def end_motd(self):
-        print 'MOTD: %s' % repr(self.motd)
+        self.decoder.feedback.onMOTD(self.motd)
         self.pop()
 
 class RoomUpdateParser(GGZParser):
@@ -355,6 +413,14 @@ class PlayerUpdateParser(GGZParser):
             playerId = parser.attributes['ID']
             lag = parser.attributes['LAG']
             print 'Player %s lag changed to %s' % (playerId, lag)
+        elif action == 'join':
+            pass
+        elif action == 'leave':
+            pass
+        elif action == 'desc':
+            pass
+        elif action == 'seat':
+            pass
         elif action == 'delete':
             playerId = parser.attributes['ID']
             room = self.attributes['ROOM']
@@ -479,8 +545,13 @@ class ResultParser(GGZParser):
             self.push(GameListParser(), attributes)
         elif t == 'table':
             self.push(TableListParser(), attributes)
+        else:
+            print 'Unknown list: %s' % t
 
     def end_result(self):
+        action = self.attributes['ACTION']
+        code = self.attributes['CODE']
+        self.decoder.feedback.onResult(action, code)
         self.pop()
         
 class JoinParser(GGZParser):
@@ -526,18 +597,18 @@ class SessionParser(GGZParser):
 
     def start_result(self, attributes):
         self.push(ResultParser(), attributes)
-        self.decoder.feedback.sendNextCommand()
         
     def start_chat(self, attributes):
         self.push(ChatParser(), attributes)
     
     def start_ping(self, attributes):
-        self.decoder.feedback.send("<PONG/>")
+        self.decoder.feedback.send("<PONG/>\n")
         
     def end_ping(self):
         pass
 
     def end_session(self):
+        self.decoder.feedback.onSessionEnded()
         pass
 
 class BaseParser(GGZParser):
@@ -568,35 +639,22 @@ class Decoder(xml.sax.handler.ContentHandler):
         self.handler.endElement(name)
 
     def feed(self, data):
-        self.xparser.feed(data)
-
-class Channel(xml.sax.handler.ContentHandler):
-
-    def __init__(self, decoder):
-        xml.sax.handler.ContentHandler.__init__(self)
+        """Feed data into the decoder.
         
-        self.inSession = True
-        self.decoder = decoder
-        self.xparser = xml.sax.make_parser()
-        self.xparser.setContentHandler(self)
+        'data' is the raw data to feed.
+        
+        Returns the next block of data to process, keep feeding until '' is returned.
+        """
+        index = data.find('\n')
+        if index < 0:
+            index = len(data) - 1
 
-    def endElement(self, name):
-        if name == 'SESSION':
-            self.inSession = False
-
-    def feed(self, data):
-        # Decode each line so can stop XML when session ends
-        while self.inSession and len(data) > 0:
-            index = data.find('\n')
-            if index < 0:
-                self.xparser.feed(data)
-                return
-            else:
-                self.xparser.feed(data[:index+1])
-                data = data[index+1:]
-
-        for c in data:
-            self.decoder.decode(c)
+        chunk = data[:index+1]
+        try:
+            self.xparser.feed(chunk)
+        except xml.sax.SAXParseException:
+            print 'Invalid XML: %s' % repr(chunk)
+        return data[index+1:]
 
 if __name__ == '__main__':
     class F:

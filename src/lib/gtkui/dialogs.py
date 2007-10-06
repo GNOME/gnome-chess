@@ -99,8 +99,7 @@ class GtkNewGameDialog:
         self.__gui.signal_autoconnect(self)
         
         # Set style of error panel
-        if mainUI.tooltipStyle is not None:
-            self.__gui.get_widget('info_box').set_style(mainUI.tooltipStyle)
+        mainUI.setTooltipStyle(self.__gui.get_widget('info_box'))
         
         # Make all the labels the same width
         group = gtk.SizeGroup(gtk.SIZE_GROUP_HORIZONTAL)
@@ -167,19 +166,15 @@ class GtkNewGameDialog:
         widget.set_active(0)
 
         # Create the model for difficulty options
-        levelModel = gtk.ListStore(str, gtk.gdk.Pixbuf, str)
+        levelModel = gtk.ListStore(str, str, str)
         levels = [('easy',   _('Easy'),   'weather-few-clouds'),
                   ('normal', _('Normal'), 'weather-overcast'),
                   ('hard',   _('Hard'),   'weather-storm')]
         iconTheme = gtk.icon_theme_get_default()
-        for (key, label, iconName) in levels:
-            try:
-                icon = iconTheme.load_icon(iconName, 24, gtk.ICON_LOOKUP_USE_BUILTIN)
-            except gobject.GError:
-                icon = None
+        for (key, label, icon) in levels:
             iter = levelModel.append()
             levelModel.set(iter, 0, key, 1, icon, 2, label)
-        
+
         # Set the difficulty settings
         for name in ['black_difficulty_combo', 'white_difficulty_combo']:
             widget = self.__gui.get_widget(name)
@@ -190,7 +185,7 @@ class GtkNewGameDialog:
             
             cell = gtk.CellRendererPixbuf()
             widget.pack_start(cell, False)
-            widget.add_attribute(cell, 'pixbuf', 1)
+            widget.add_attribute(cell, 'icon-name', 1)
             
             cell = gtk.CellRendererText()
             widget.pack_start(cell, False)
@@ -209,7 +204,7 @@ class GtkNewGameDialog:
             
             cell = gtk.CellRendererPixbuf()
             widget.pack_start(cell, False)
-            widget.add_attribute(cell, 'pixbuf', 1)
+            widget.add_attribute(cell, 'icon-name', 1)
             
             cell = gtk.CellRendererText()
             widget.pack_start(cell, False)
@@ -366,17 +361,6 @@ class GtkNewGameDialog:
         
     # Gtk+ signal handlers
     
-    def _on_info_box_expose_event(self, widget, event):
-        allocation = widget.allocation
-        widget.style.paint_flat_box(widget.window, gtk.STATE_NORMAL, gtk.SHADOW_OUT, None, widget, "tooltip",
-                                    allocation.x, allocation.y, allocation.width, allocation.height)
-
-        # The first draw is corrupt for me so draw it twice.
-        # Bonus points to anyone who tracks down the problem and fixes it
-        #if self.firstExpose:
-        #    self.firstExpose = False
-        #    widget.queue_draw()
-    
     def _on_game_name_edited(self, widget):
         """Gtk+ callback"""
         if self.__checking:
@@ -418,8 +402,7 @@ class GtkLoadGameDialog:
         self.__gui.signal_autoconnect(self)
         
         # Set style of error panel
-        if mainUI.tooltipStyle is not None:
-            self.__gui.get_widget('error_box').set_style(mainUI.tooltipStyle)
+        mainUI.setTooltipStyle(self.__gui.get_widget('error_box'))
         
         fileChooser = self.__gui.get_widget('filechooserwidget')
         
@@ -480,18 +463,6 @@ class GtkLoadGameDialog:
                 return
 
         dialog.destroy()
-
-    def _on_error_box_expose_event(self, widget, event):
-        """Gtk+ callback"""
-        allocation = widget.allocation
-        widget.style.paint_flat_box(widget.window, gtk.STATE_NORMAL, gtk.SHADOW_OUT, None, widget, "tooltip",
-                                    allocation.x, allocation.y, allocation.width, allocation.height)
-
-        # The first draw is corrupt for me so draw it twice.
-        # Bonus points to anyone who tracks down the problem and fixes it
-        if self.firstExpose:
-            self.firstExpose = False
-            widget.queue_draw()
 
 class SaveDialog:
     """
@@ -564,8 +535,7 @@ class GtkSaveGameDialog:
         self.__gui.signal_autoconnect(self)
         
         # Set style of error panel
-        if mainUI.tooltipStyle is not None:
-            self.__gui.get_widget('error_box').set_style(mainUI.tooltipStyle)
+        mainUI.setTooltipStyle(self.__gui.get_widget('error_box'))
 
         dialog = self.__gui.get_widget('save_dialog')
         chooser = self.__gui.get_widget('filechooser')
@@ -590,18 +560,6 @@ class GtkSaveGameDialog:
         
         if path is not None:
             chooser.set_current_name(path)
-
-    def _on_error_box_expose_event(self, widget, event):
-        """Gtk+ callback"""
-        allocation = widget.allocation
-        widget.style.paint_flat_box(widget.window, gtk.STATE_NORMAL, gtk.SHADOW_OUT, None, widget, "tooltip",
-                                    allocation.x, allocation.y, allocation.width, allocation.height)
-
-        # The first draw is corrupt for me so draw it twice.
-        # Bonus points to anyone who tracks down the problem and fixes it
-        if self.firstExpose:
-            self.firstExpose = False
-            widget.queue_draw()
         
     def _on_file_activated(self, widget):
         """Gtk+ callback"""

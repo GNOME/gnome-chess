@@ -3,8 +3,8 @@
 
 <glade-interface>
 
-<widget class="GtkWindow" id="ai_entry">
-  <property name="title" translatable="no">(dummy window)</property>
+<widget class="GtkWindow" id="log_entry">
+  <property name="title">(dummy window)</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -19,7 +19,7 @@
   <property name="urgency_hint">False</property>
 
   <child>
-    <widget class="GtkTable" id="ai_table">
+    <widget class="GtkTable" id="log_table">
       <property name="border_width">12</property>
       <property name="visible">True</property>
       <property name="n_rows">4</property>
@@ -60,7 +60,7 @@
 	<widget class="GtkLabel" id="executable_label">
 	  <property name="visible">True</property>
 	  <property name="can_focus">True</property>
-	  <property name="label" translatable="no">(executable name)</property>
+	  <property name="label">(executable name)</property>
 	  <property name="use_underline">False</property>
 	  <property name="use_markup">False</property>
 	  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -115,7 +115,7 @@
       <child>
 	<widget class="GtkLabel" id="game_label">
 	  <property name="visible">True</property>
-	  <property name="label" translatable="no">(player in game)</property>
+	  <property name="label">(player in game)</property>
 	  <property name="use_underline">False</property>
 	  <property name="use_markup">False</property>
 	  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -141,7 +141,7 @@
       </child>
 
       <child>
-	<widget class="GtkScrolledWindow" id="scrolledwindow2">
+	<widget class="GtkScrolledWindow" id="comms_scrolled_window">
 	  <property name="visible">True</property>
 	  <property name="can_focus">True</property>
 	  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
@@ -153,7 +153,7 @@
 	    <widget class="GtkTextView" id="comms_textview">
 	      <property name="visible">True</property>
 	      <property name="can_focus">True</property>
-	      <property name="editable">True</property>
+	      <property name="editable">False</property>
 	      <property name="overwrite">False</property>
 	      <property name="accepts_tab">True</property>
 	      <property name="justification">GTK_JUSTIFY_LEFT</property>

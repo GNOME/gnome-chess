@@ -41,6 +41,7 @@ import glchess.config
 import glchess.ui
 import glchess.chess.board
 import dialogs
+import log
 import chessview
 import network
 
@@ -152,77 +153,6 @@ class GtkGameNotebook(gtk.Notebook):
             self.defaultView.widget.show()
         else:
             self.defaultView.widget.hide()
-
-class AIWindow:
-    """
-    """
-    
-    notebook    = None
-    defaultPage = None
-    
-    # We keep track of the number of pages as there is a bug 
-    # in GtkNotebook (Gnome bug #331785).
-    pageCount   = 0
-    
-    def __init__(self, notebook):
-        """
-        """
-        self.notebook = notebook
-        self.defaultPage = notebook.get_nth_page(0)
-    
-    def addView(self, title, executable, description):
-        """
-        """
-        # Hide the default page
-        self.defaultPage.hide()
-        self.notebook.set_show_tabs(True)
-        
-        self.pageCount += 1
-        return AIView(self, title, executable, description)
-
-class AIView:
-    """
-    """
-    
-    __gui = None
-    
-    def __init__(self, window, title, executable, description):
-        """
-        """
-        self.window = window
-        self.__gui = loadGladeFile('ai.glade', 'ai_table')
-        self.__gui.get_widget('executable_label').set_text(executable)
-        self.__gui.get_widget('game_label').set_text(description)
-
-        # Add into the notebook
-        self.root = self.__gui.get_widget('ai_table')
-        notebook = window.notebook
-        notebook.append_page(self.root, gtk.Label(title))
-                
-        # Create styles for the buffer
-        buffer = self.__gui.get_widget('comms_textview').get_buffer()
-        buffer.create_tag('input', family='Monospace')
-        buffer.create_tag('output', family='Monospace', weight = pango.WEIGHT_BOLD)
-        buffer.create_tag('move', family='Monospace', foreground = 'blue')
-        buffer.create_tag('info', family='Monospace', foreground = 'green')
-        buffer.create_tag('error', family='Monospace', foreground = 'red')
-
-    def addText(self, text, style):
-        """FIXME: Define style
-        """
-        buffer = self.__gui.get_widget('comms_textview').get_buffer()
-        buffer.insert_with_tags_by_name(buffer.get_end_iter(), text, style)
-        
-    def close(self):
-        """
-        """
-        self.window.pageCount -= 1
-        self.window.notebook.remove_page(self.window.notebook.page_num(self.root))
-        
-        # Show the default page
-        if self.window.pageCount == 0:
-            self.window.defaultPage.show()
-            self.window.notebook.set_show_tabs(False)
             
 class GLibTimer(glchess.ui.Timer):
     """
@@ -392,9 +322,10 @@ class GtkUI(glchess.ui.UI):
         tooltip.force_window()
         if hasattr(tooltip, 'tip_window') and tooltip.tip_window != None:
             tooltip.tip_window.ensure_style()
-            self.tooltipStyle = tooltip.tip_window.get_style()
+            self._tooltipStyle = tooltip.tip_window.get_style()
         else:
-            self.tooltipStyle = None
+            self._tooltipStyle = None
+        self._tooltipWidgetsDrawn = {}
         
         self._gui = loadGladeFile('glchess.glade')
         self._gui.signal_autoconnect(self)
@@ -422,22 +353,12 @@ class GtkUI(glchess.ui.UI):
         self.notebook.show_all()
         
         # Create the model for the player types
-        self.__playerModel = gtk.ListStore(str, gtk.gdk.Pixbuf, str)
+        self.__playerModel = gtk.ListStore(str, str, str)
         iconTheme = gtk.icon_theme_get_default()
-        try:
-            icon = iconTheme.load_icon('stock_people', 24, gtk.ICON_LOOKUP_USE_BUILTIN)
-        except gobject.GError:
-            icon = None
         iter = self.__playerModel.append()
-        self.__playerModel.set(iter, 0, '', 1, icon, 2, _('Human'))
-        #try:
-        #    icon = iconTheme.load_icon(gtk.STOCK_NETWORK, 24, gtk.ICON_LOOKUP_USE_BUILTIN)
-        #except gobject.GError:
-        #    icon = None
-        #iter = self.__playerModel.append()
-        #self.__playerModel.set(iter, 0, None, 1, icon, 2, _('Network'))
+        self.__playerModel.set(iter, 0, '', 1, 'stock_person', 2, _('Human'))
         
-        self.__aiWindow = AIWindow(self._gui.get_widget('ai_notebook'))
+        self.__logWindow = log.LogWindow(self._gui.get_widget('log_notebook'))
 
         # Balance space on each side of the history combo
         group = gtk.SizeGroup(gtk.SIZE_GROUP_BOTH)
@@ -471,6 +392,29 @@ class GtkUI(glchess.ui.UI):
 
     # Public methods
     
+    def setTooltipStyle(self, widget):
+        """Set a widget to be in the tooltip style.
+        
+        'widget' is the widget to modify.
+        """
+        if self._tooltipStyle is None:
+            return
+        widget.set_style(self._tooltipStyle)
+        widget.connect("expose_event", self._on_tooltip_expose_event)
+        widget.queue_draw()
+
+    def _on_tooltip_expose_event(self, widget, event):
+        """Gtk+ callback"""
+        allocation = widget.allocation
+        widget.style.paint_flat_box(widget.window, gtk.STATE_NORMAL, gtk.SHADOW_OUT, None, widget, "tooltip",
+                                    allocation.x, allocation.y, allocation.width, allocation.height)
+                                    
+        # The first draw is corrupt for me so draw it twice.
+        # Bonus points to anyone who tracks down the problem and fixes it
+        if not self._tooltipWidgetsDrawn.has_key(widget):
+            self._tooltipWidgetsDrawn[widget] = True
+            widget.queue_draw()
+    
     def watchFileDescriptor(self, fd):
         """Extends ui.UI"""
         gobject.io_add_watch(fd, gobject.IO_IN | gobject.IO_HUP, self.__readData)
@@ -502,12 +446,8 @@ class GtkUI(glchess.ui.UI):
         TODO: difficulty etc etc
         """
         iconTheme = gtk.icon_theme_get_default()
-        try:
-            icon = iconTheme.load_icon('stock_notebook', 24, gtk.ICON_LOOKUP_USE_BUILTIN)
-        except gobject.GError:
-            icon = None
         iter = self.__playerModel.append()
-        self.__playerModel.set(iter, 0, name, 1, icon, 2, name)
+        self.__playerModel.set(iter, 0, name, 1, 'stock_notebook', 2, name)
         
         # Get the human to play against this AI
         if self.__defaultBlackAI is None:
@@ -524,10 +464,10 @@ class GtkUI(glchess.ui.UI):
         view.viewWidget.setRenderGL(self.__renderGL)
         return view
 
-    def addAIWindow(self, title, executable, description):
+    def addLogWindow(self, title, executable, description):
         """
         """
-        return self.__aiWindow.addView(title, executable, description)
+        return self.__logWindow.addView(title, executable, description)
     
     def setTimers(self, whiteTime, blackTime):
         """
@@ -889,9 +829,9 @@ class GtkUI(glchess.ui.UI):
             value = False
         glchess.config.set('show_move_hints', value)       
 
-    def _on_show_ai_stats_clicked(self, widget):
+    def _on_show_logs_clicked(self, widget):
         """Gtk+ callback"""
-        window = self._gui.get_widget('ai_window')
+        window = self._gui.get_widget('log_window')
         if widget.get_active():
             window.show()
         else:
@@ -1113,9 +1053,9 @@ class GtkUI(glchess.ui.UI):
         self.__aboutDialog = None
         return False
         
-    def _on_ai_window_delete_event(self, widget, event):
+    def _on_log_window_delete_event(self, widget, event):
         """Gtk+ callback"""
-        self._gui.get_widget('menu_view_ai').set_active(False)
+        self._gui.get_widget('menu_view_logs').set_active(False)
         
         # Stop the event - the window will be closed by the menu event
         return True

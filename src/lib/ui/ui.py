@@ -44,7 +44,13 @@ class NetworkFeedback:
 class NetworkController:
     """"""
     
+    def setVisible(self, isVisible):
+        pass
+    
     def addProfile(self, profile, name):
+        pass
+    
+    def setBusy(self, isBusy):
         pass
     
     def addChat(self, user, channel, text):
@@ -52,16 +58,21 @@ class NetworkController:
         """
         pass
     
-    def addRoom(self, index, name, description, room):
+    def addRoom(self, index, name, description, room, protocol):
         """Add a game room.
         
+        'index' ???
         'name' is the name of the room (string).
         'description' is a description of the room (string).
         'room' is the room to add (user-defined)
+        'protocol' ???
         """
         pass
-    
+
     def removeRoom(self, room):
+        pass
+    
+    def clearRooms(self):
         pass
     
     def addTable(self, name, table):
@@ -73,7 +84,7 @@ class NetworkController:
     def clearTables(self):
         pass
     
-    def addPlayer(self, name, player):
+    def addPlayer(self, player, name, icon):
         pass
     
     def removePlayer(self, player):
@@ -338,6 +349,29 @@ class Timer:
     def delete(self):
         """Delete this timer"""
         pass
+    
+class Log:
+    """
+    """
+        
+    def addBinary(self, data, style = None):
+        """
+        """
+        pass
+
+    def addText(self, text, style = None):
+        """
+        """
+        pass
+    
+    def addLine(self, text, style = None):
+        """
+        """
+        pass
+
+    def close(self):
+        """
+        """
 
 class UI:
     """Template class for a glChess UI.
@@ -348,6 +382,9 @@ class UI:
         
         'feedback' is the feedback object for this UI to report with (extends UIFeedback).
         """
+        pass
+    
+    def addLogWindow(self, title, executable, description):
         pass
     
     def startAnimation(self):

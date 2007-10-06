@@ -245,8 +245,7 @@ class GtkView(glchess.ui.ViewController):
         self.viewWidget = GtkViewArea(self)
         self.gui.get_widget('view_container').add(self.viewWidget)
 
-	if self.ui.tooltipStyle is not None:
-	    self.gui.get_widget('info_panel').set_style(self.ui.tooltipStyle)
+        self.ui.setTooltipStyle(self.gui.get_widget('info_panel'))
 
         # Make a model for navigation (move object, number, description) 
         model = gtk.ListStore(gobject.TYPE_PYOBJECT, int, str)
@@ -262,12 +261,6 @@ class GtkView(glchess.ui.ViewController):
         self.widget.show()
         self.viewWidget.show_all()
         
-    def _on_info_panel_expose_event(self, widget, event):
-        """Gtk+ callback"""
-        allocation = widget.allocation
-        widget.style.paint_flat_box(widget.window, gtk.STATE_NORMAL, gtk.SHADOW_OUT, None, widget, "tooltip",
-                                    allocation.x, allocation.y, allocation.width, allocation.height)
-
     def _on_comment_edit_button_toggled(self, widget):
         """Gtk+ callback"""
         label = self.gui.get_widget('panel_description_label')

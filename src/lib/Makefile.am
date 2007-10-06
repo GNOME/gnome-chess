@@ -1,4 +1,4 @@
-SUBDIRS = chess ggz gtkui network scene ui
+SUBDIRS = chess ggz gtkui scene ui
 
 glchessdir = $(pythondir)/glchess
 glchess_PYTHON = \
@@ -10,4 +10,5 @@ glchess_PYTHON = \
 	glchess.py 	\
 	__init__.py	\
 	main.py		\
+	network.py	\
 	uci.py

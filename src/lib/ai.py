@@ -104,9 +104,9 @@ def loadProfiles():
         except IOError:
             pass
         except xml.parsers.expat.ExpatError:
-            print 'AI configuration at ' + f + ' is invalid, ignoring'
+            print 'AI configuration from %s is invalid, ignoring' % f
         else:
-            print 'Loading AI configuration from ' + f
+            print 'Loading AI configuration from %s' % f
             break
     if document is None:
         print 'WARNING: No AI configuration'
@@ -127,7 +127,7 @@ def loadProfiles():
             elif protocolName == 'uci':
                 protocol = UCI
             else:
-                assert(False), 'Uknown AI type: ' + repr(protocolName)
+                assert(False), 'Uknown AI type: %s' % repr(protocolName)
             
             n = p.getElementsByTagName('name')
             assert(len(n) > 0)
