@@ -54,7 +54,7 @@ class GtkViewArea(gtk.DrawingArea):
         
         # Make openGL drawable
         if hasattr(gtk, 'gtkgl'):
-            gtk.gtkgl.widget_set_gl_capability(self, self.view.ui.notebook.glConfig)# FIXME:, share_list=glContext)
+            gtk.gtkgl.widget_set_gl_capability(self, self.view.ui.glConfig)# FIXME:, share_list=glContext)
 
         # Connect signals
         self.connect('realize', self.__init)
@@ -369,13 +369,13 @@ class GtkView(glchess.ui.ViewController):
     def setWhiteTime(self, total, current):
         """Extends glchess.ui.ViewController"""
         self.whiteTime = (total, current)
-        if self.ui.notebook.getView() is self:
+        if self.ui.view is self:
             self.ui.setTimers(self.whiteTime, self.blackTime)
 
     def setBlackTime(self, total, current):
         """Extends glchess.ui.ViewController"""
         self.blackTime = (total, current)
-        if self.ui.notebook.getView() is self:
+        if self.ui.view is self:
             self.ui.setTimers(self.whiteTime, self.blackTime)
 
     def setAttention(self, requiresAttention):

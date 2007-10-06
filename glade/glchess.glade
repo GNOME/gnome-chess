@@ -62,7 +62,7 @@
 		      <accelerator key="L" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image60">
+			<widget class="GtkImage" id="image64">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-network</property>
 			  <property name="icon_size">1</property>
@@ -104,29 +104,6 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkImageMenuItem" id="menu_end_game_item">
-		      <property name="visible">True</property>
-		      <property name="sensitive">False</property>
-		      <property name="label" translatable="yes">_End Game</property>
-		      <property name="use_underline">True</property>
-		      <signal name="activate" handler="_on_end_game_button_clicked" last_modification_time="Sun, 14 May 2006 14:07:07 GMT"/>
-		      <accelerator key="W" modifiers="GDK_CONTROL_MASK" signal="activate"/>
-
-		      <child internal-child="image">
-			<widget class="GtkImage" id="image61">
-			  <property name="visible">True</property>
-			  <property name="stock">gtk-close</property>
-			  <property name="icon_size">1</property>
-			  <property name="xalign">0.5</property>
-			  <property name="yalign">0.5</property>
-			  <property name="xpad">0</property>
-			  <property name="ypad">0</property>
-			</widget>
-		      </child>
-		    </widget>
-		  </child>
-
-		  <child>
 		    <widget class="GtkSeparatorMenuItem" id="separatormenuitem1">
 		      <property name="visible">True</property>
 		    </widget>
@@ -163,7 +140,7 @@
 		      <accelerator key="F11" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image62">
+			<widget class="GtkImage" id="image65">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-fullscreen</property>
 			  <property name="icon_size">1</property>
@@ -184,7 +161,7 @@
 		      <accelerator key="F11" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image63">
+			<widget class="GtkImage" id="image66">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-leave-fullscreen</property>
 			  <property name="icon_size">1</property>
@@ -271,7 +248,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">_White Side</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <signal name="activate" handler="_on_board_view_changed" last_modification_time="Sun, 18 Mar 2007 02:42:01 GMT"/>
 			    </widget>
 			  </child>
@@ -281,7 +258,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">_Black Side</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <property name="group">menu_side_white</property>
 			      <signal name="activate" handler="_on_board_view_changed" last_modification_time="Sun, 18 Mar 2007 02:42:01 GMT"/>
 			    </widget>
@@ -303,7 +280,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">_Current Player</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <property name="group">menu_side_white</property>
 			      <signal name="activate" handler="_on_board_view_changed" last_modification_time="Sun, 18 Mar 2007 02:42:01 GMT"/>
 			    </widget>
@@ -338,7 +315,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">_Long Algebraic</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <property name="group">menu_movef_human</property>
 			      <signal name="activate" handler="_on_menu_movef_lan_activate" last_modification_time="Sat, 10 Feb 2007 03:06:49 GMT"/>
 			    </widget>
@@ -349,7 +326,7 @@
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">_Standard Algebraic</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <property name="group">menu_movef_human</property>
 			      <signal name="activate" handler="_on_menu_movef_san_activate" last_modification_time="Sat, 10 Feb 2007 03:06:49 GMT"/>
 			    </widget>
@@ -448,7 +425,7 @@
 		      <signal name="activate" handler="_on_help_clicked" last_modification_time="Fri, 11 Aug 2006 12:43:28 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image64">
+			<widget class="GtkImage" id="image67">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-help</property>
 			  <property name="icon_size">1</property>
@@ -596,34 +573,16 @@
 	  </child>
 
 	  <child>
-	    <widget class="GtkToolButton" id="surrender_button">
+	    <widget class="GtkToolButton" id="resign_button">
+	      <property name="visible">True</property>
 	      <property name="sensitive">False</property>
-	      <property name="label" translatable="yes">Surrender</property>
+	      <property name="label" translatable="yes">Resign</property>
 	      <property name="use_underline">True</property>
 	      <property name="stock_id">gtk-dialog-warning</property>
 	      <property name="visible_horizontal">True</property>
 	      <property name="visible_vertical">True</property>
 	      <property name="is_important">False</property>
-	      <signal name="clicked" handler="_on_surrender_button_clicked" last_modification_time="Sun, 15 Jan 2006 18:21:18 GMT"/>
-	    </widget>
-	    <packing>
-	      <property name="expand">False</property>
-	      <property name="homogeneous">True</property>
-	    </packing>
-	  </child>
-
-	  <child>
-	    <widget class="GtkToolButton" id="end_game_button">
-	      <property name="visible">True</property>
-	      <property name="sensitive">False</property>
-	      <property name="tooltip" translatable="yes">End the current game</property>
-	      <property name="label" translatable="yes">End Game</property>
-	      <property name="use_underline">True</property>
-	      <property name="stock_id">gtk-close</property>
-	      <property name="visible_horizontal">True</property>
-	      <property name="visible_vertical">True</property>
-	      <property name="is_important">False</property>
-	      <signal name="clicked" handler="_on_end_game_button_clicked" last_modification_time="Sun, 15 Jan 2006 18:21:10 GMT"/>
+	      <signal name="clicked" handler="_on_resign_button_clicked" last_modification_time="Sun, 15 Jan 2006 18:21:18 GMT"/>
 	    </widget>
 	    <packing>
 	      <property name="expand">False</property>

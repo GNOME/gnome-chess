@@ -28,6 +28,44 @@ f3 Bc8 34. Kf2 Bf5 35. Ra7 g6 36. Ra6+ Kc5 37. Ke1 Nf4 38. g3 Nxh3 39. Kd2 Kb5
 40. Rd6 Kc5 41. Ra6 Nf2 42. g4 Bd3 43. Re6 1/2-1/2
 """
 
+RESULT_INCOMPLETE = '*'
+RESULT_WHITE_WIN  = '1-0'
+RESULT_BLACK_WIN  = '0-1'
+RESULT_DRAW       = '1/2-1/2'
+
+"""The required tags in a PGN file (the seven tag roster, STR)"""
+TAG_EVENT  = 'Event'
+TAG_SITE   = 'Site'
+TAG_DATE   = 'Date'
+TAG_ROUND  = 'Round'
+TAG_WHITE  = 'White'
+TAG_BLACK  = 'Black'
+TAG_RESULT = 'Result'
+
+"""Optional tags"""
+TAG_TIME         = 'Time'
+TAG_FEN          = 'FEN'
+TAG_WHITE_TYPE   = 'WhiteType'
+TAG_WHITE_ELO    = 'WhiteElo'
+TAG_BLACK_TYPE   = 'BlackType'
+TAG_BLACK_ELO    = 'BlackElo'
+TAG_TIME_CONTROL = 'TimeControl'
+TAG_TERMINATION  = 'Termination'
+
+# Values for the WhiteType and BlackType tag
+PLAYER_HUMAN     = 'human'
+PLAYER_AI        = 'program'
+
+# Values for the Termination tag
+TERMINATE_ABANDONED        = 'abandoned'
+TERMINATE_ADJUDICATION     = 'adjudication'
+TERMINATE_DEATH            = 'death'
+TERMINATE_EMERGENCY        = 'emergency'
+TERMINATE_NORMAL           = 'normal'
+TERMINATE_RULES_INFRACTION = 'rules infraction'
+TERMINATE_TIME_FORFEIT     = 'time forfeit'
+TERMINATE_UNTERMINATED     = 'unterminated'
+
 # Comments are bounded by ';' to '\n' or '{' to '}'
 # Lines starting with '%' are ignored and are used as an extension mechanism
 # Strings are bounded by '"' and '"' and quotes inside the strings are escaped with '\"'
@@ -82,11 +120,6 @@ class PGNToken:
     SYMBOL_CONTINUATION_CHARACTERS = SYMBOL_START_CHARACTERS + '_+#=:-' + '/' # Not in spec but required from game draw and imcomplete
     NAG_CONTINUATION_CHARACTERS = '0123456789'
     
-    GAME_TERMINATE_INCOMPLETE = '*'
-    GAME_TERMINATE_WHITE_WIN  = '1-0'
-    GAME_TERMINATE_BLACK_WIN  = '0-1'
-    GAME_TERMINATE_DRAW       = '1/2-1/2'
-
     data = None
     
     lineNumber = -1
@@ -288,10 +321,10 @@ class PGNGameParser:
 
         elif token.type is PGNToken.SYMBOL:
             # See if this is a game terminate
-            if token.data == PGNToken.GAME_TERMINATE_INCOMPLETE or \
-               token.data == PGNToken.GAME_TERMINATE_WHITE_WIN or \
-               token.data == PGNToken.GAME_TERMINATE_BLACK_WIN or \
-               token.data == PGNToken.GAME_TERMINATE_DRAW:
+            if token.data == RESULT_INCOMPLETE or \
+               token.data == RESULT_WHITE_WIN or \
+               token.data == RESULT_BLACK_WIN or \
+               token.data == RESULT_DRAW:
                 game = self.__game
                 self.__game = None
                 
@@ -418,42 +451,9 @@ class PGNMove:
 class PGNGame:
     """
     """
-    
-    """The required tags in a PGN file (the seven tag roster, STR)"""
-    PGN_TAG_EVENT  = 'Event'
-    PGN_TAG_SITE   = 'Site'
-    PGN_TAG_DATE   = 'Date'
-    PGN_TAG_ROUND  = 'Round'
-    PGN_TAG_WHITE  = 'White'
-    PGN_TAG_BLACK  = 'Black'
-    PGN_TAG_RESULT = 'Result'
-    
-    """Optional tags"""
-    PGN_TAG_TIME         = 'Time'
-    PGN_TAG_FEN          = 'FEN'
-    PGN_TAG_WHITE_TYPE   = 'WhiteType'
-    PGN_TAG_WHITE_ELO    = 'WhiteElo'
-    PGN_TAG_BLACK_TYPE   = 'BlackType'
-    PGN_TAG_BLACK_ELO    = 'BlackElo'
-    PGN_TAG_TIME_CONTROL = 'TimeControl'
-    PGN_TAG_TERMINATION  = 'Termination'
-    
-    # Values for the WhiteType and BlackType tag
-    PGN_TYPE_HUMAN       = 'human'
-    PGN_TYPE_AI          = 'program'
-    
-    # Values for the Termination tag
-    PGN_TERMINATE_ABANDONED        = 'abandoned'
-    PGN_TERMINATE_ADJUDICATION     = 'adjudication'
-    PGN_TERMINATE_DEATH            = 'death'
-    PGN_TERMINATE_EMERGENCY        = 'emergency'
-    PGN_TERMINATE_NORMAL           = 'normal'
-    PGN_TERMINATE_RULES_INFRACTION = 'rules infraction'
-    PGN_TERMINATE_TIME_FORFEIT     = 'time forfeit'
-    PGN_TERMINATE_UNTERMINATED     = 'unterminated'
-    
+
     # The seven tag roster in the required order (REFERENCE)
-    __strTags = [PGN_TAG_EVENT, PGN_TAG_SITE, PGN_TAG_DATE, PGN_TAG_ROUND, PGN_TAG_WHITE, PGN_TAG_BLACK, PGN_TAG_RESULT]
+    __strTags = [TAG_EVENT, TAG_SITE, TAG_DATE, TAG_ROUND, TAG_WHITE, TAG_BLACK, TAG_RESULT]
 
     # The tags in this game
     __tagsByName = None
@@ -463,13 +463,13 @@ class PGNGame:
     def __init__(self):
         # Set the default STR tags
         self.__tagsByName = {}
-        self.setTag(self.PGN_TAG_EVENT, '?')
-        self.setTag(self.PGN_TAG_SITE, '?')
-        self.setTag(self.PGN_TAG_DATE, '????.??.??')
-        self.setTag(self.PGN_TAG_ROUND, '?')
-        self.setTag(self.PGN_TAG_WHITE, '?')
-        self.setTag(self.PGN_TAG_BLACK, '?')
-        self.setTag(self.PGN_TAG_RESULT, '*')
+        self.setTag(TAG_EVENT, '?')
+        self.setTag(TAG_SITE, '?')
+        self.setTag(TAG_DATE, '????.??.??')
+        self.setTag(TAG_ROUND, '?')
+        self.setTag(TAG_WHITE, '?')
+        self.setTag(TAG_BLACK, '?')
+        self.setTag(TAG_RESULT, '*')
         
         self.__moves = []
         
@@ -501,7 +501,7 @@ class PGNGame:
                 tokens.append('{' + m.comment + '}')
                 
         # Add result token to the end
-        tokens.append(self.__tagsByName[self.PGN_TAG_RESULT])
+        tokens.append(self.__tagsByName[TAG_RESULT])
 
         # Print moves keeping the line length to less than 256 characters (PGN requirement)
         line = ''

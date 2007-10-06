@@ -51,109 +51,6 @@ gtk.window_set_default_icon_name(ICON_NAME)
 def loadGladeFile(name, root = None):
     return gtk.glade.XML(os.path.join(GLADE_DIR, name), root, domain = DOMAIN)
 
-class GtkGameNotebook(gtk.Notebook):
-    """
-    """
-    
-    glConfig          = None
-
-    defaultView       = None
-    views             = None
-    viewsByWidget     = None
-    
-    def __init__(self, ui):
-        """
-        """
-        self.ui = ui
-        self.views = []
-        self.viewsByWidget = {}
-        
-        gtk.Notebook.__init__(self)
-        self.set_show_border(False)
-        
-        # Make the tabs scrollable so the area is not resized
-        self.set_scrollable(True)
-        
-        # Configure openGL
-        try:
-            gtk.gdkgl
-        except AttributeError:
-            self.glConfig = None
-        else:
-            display_mode = (gtk.gdkgl.MODE_RGB | gtk.gdkgl.MODE_DEPTH | gtk.gdkgl.MODE_DOUBLE)
-            try:
-                self.glConfig = gtk.gdkgl.Config(mode = display_mode)
-            except gtk.gdkgl.NoMatches:
-                display_mode &= ~gtk.gdkgl.MODE_DOUBLE
-                self.glConfig = gtk.gdkgl.Config(mode = display_mode)
-            
-        self.set_show_tabs(False)
-        
-    def setDefault(self, feedback):
-        """
-        """
-        assert(self.defaultView is None)
-        self.defaultView = chessview.GtkView(self.ui, '', feedback)
-        page = self.append_page(self.defaultView.widget)
-        self.set_current_page(page)
-        
-        self.__updateTabVisibleState()
-        
-        return self.defaultView
-
-    def addView(self, title, feedback):
-        """
-        """
-        moveFormat = glchess.config.get('move_format')
-        showComments = glchess.config.get('show_comments')
-        view = chessview.GtkView(self.ui, title, feedback, moveFormat = moveFormat, showComments = showComments)
-        self.views.append(view)
-        self.viewsByWidget[view.widget] = view
-        page = self.append_page(view.widget)
-        self.set_tab_label_text(view.widget, title)
-        self.set_current_page(page)
-        
-        self.__updateTabVisibleState()
-        
-        return view
-    
-    def getView(self):
-        """Get the currently selected view.
-        
-        Returns the view (GtkView) on this page or None if no view here.
-        """
-        # If splashscreen present then there is no view
-        if len(self.viewsByWidget) == 0:
-            return None
-        
-        num = self.get_current_page()
-        if num < 0:
-            return None
-        widget = self.get_nth_page(num)
-        return self.viewsByWidget[widget]
-    
-    def removeView(self, view):
-        """Remove a view from the notebook.
-        
-        'view' is the view to remove.
-        """
-        self.remove_page(self.page_num(view.widget))
-        self.views.remove(view)
-        self.viewsByWidget.pop(view.widget)
-        self.__updateTabVisibleState()
-
-    def __updateTabVisibleState(self):
-        """
-        """
-        # Only show tabs if there is more than one game
-        self.set_show_tabs(len(self.viewsByWidget) > 1)
-        
-        # Show/hide the default view
-        if len(self.viewsByWidget) == 0:
-            self.defaultView.widget.show()
-        else:
-            self.defaultView.widget.hide()
-            
 class GLibTimer(glchess.ui.Timer):
     """
     """
@@ -271,9 +168,6 @@ class GtkUI(glchess.ui.UI):
     __lastTime         = None
     __animationTimer   = None
     
-    # The notebook containing games
-    notebook           = None
-
     # The Gtk+ list model of the available player types
     __playerModel      = None
 
@@ -303,6 +197,8 @@ class GtkUI(glchess.ui.UI):
     height             = None
     isFullscreen       = False
     isMaximised        = False
+    
+    view               = None
 
     def __init__(self, feedback):
         """Constructor for a GTK+ glChess GUI"""
@@ -314,6 +210,8 @@ class GtkUI(glchess.ui.UI):
         self.__networkGames = {}
         self.__saveGameDialogs = {}
         self.__joinGameDialogs = []
+        
+        self._initOpenGL()
 
         # Set the message panel to the tooltip style
         # (copied from Gedit)
@@ -346,12 +244,6 @@ class GtkUI(glchess.ui.UI):
             self.__boardViewTypeByRadio[widget] = name
             self.__boardViewRadioByType[name] = widget
 
-        # Make a notebook for the games
-        self.notebook = GtkGameNotebook(self)
-        self.notebook.connect_after('switch-page', self._on_view_changed)
-        self.__getWidget('game_viewport').add(self.notebook)
-        self.notebook.show_all()
-        
         # Create the model for the player types
         self.__playerModel = gtk.ListStore(str, str, str)
         iconTheme = gtk.icon_theme_get_default()
@@ -371,14 +263,10 @@ class GtkUI(glchess.ui.UI):
         combo.pack_start(cell, False)
         combo.add_attribute(cell, 'text', 2)
 
-        self.defaultViewController = self.notebook.setDefault(None)
-
         # Disble help support
         if haveGnomeSupport:
             self._gui.get_widget('menu_help').show()
         
-        self.defaultViewController.viewWidget.setRenderGL(self.__renderGL)
-
         self.saveDialog = dialogs.SaveDialog(self)
         
         # Watch for config changes
@@ -389,6 +277,20 @@ class GtkUI(glchess.ui.UI):
                     'move_format', 'promotion_type', 'board_view',
                     'enable_networking']:
             glchess.config.watch(key, self.__applyConfig)
+            
+    def _initOpenGL(self):
+        # Configure openGL
+        try:
+            gtk.gdkgl
+        except AttributeError:
+            self.glConfig = None
+        else:
+            display_mode = (gtk.gdkgl.MODE_RGB | gtk.gdkgl.MODE_DEPTH | gtk.gdkgl.MODE_DOUBLE)
+            try:
+                self.glConfig = gtk.gdkgl.Config(mode = display_mode)
+            except gtk.gdkgl.NoMatches:
+                display_mode &= ~gtk.gdkgl.MODE_DOUBLE
+                self.glConfig = gtk.gdkgl.Config(mode = display_mode)
 
     # Public methods
     
@@ -452,17 +354,19 @@ class GtkUI(glchess.ui.UI):
         # Get the human to play against this AI
         if self.__defaultBlackAI is None:
             self.__defaultBlackAI = name
-        
-    def setDefaultView(self, feedback):
+
+    def setView(self, title, feedback):
         """Extends ui.UI"""
-        self.defaultViewController.feedback = feedback
-        return self.defaultViewController
-        
-    def addView(self, title, feedback):
-        """Extends ui.UI"""
-        view = self.notebook.addView(title, feedback)
-        view.viewWidget.setRenderGL(self.__renderGL)
-        return view
+        moveFormat = glchess.config.get('move_format')
+        showComments = glchess.config.get('show_comments')
+        self.view = chessview.GtkView(self, title, feedback, moveFormat = moveFormat, showComments = showComments)
+        self.view.viewWidget.setRenderGL(self.__renderGL)
+        viewport = self.__getWidget('game_viewport')
+        child = viewport.get_child()
+        if child is not None:
+            viewport.remove(child)
+        viewport.add(self.view.widget)
+        return self.view
 
     def addLogWindow(self, title, executable, description):
         """
@@ -590,14 +494,6 @@ class GtkUI(glchess.ui.UI):
             return error        
         self.__saveGameDialogs.pop(view)
 
-    def _removeView(self, view):
-        """Remove a view from the UI.
-        
-        'view' is the view to remove.
-        """
-        self.notebook.removeView(view)
-        self._updateViewButtons()
-
     # Private methods
 
     def __resize(self):
@@ -673,33 +569,26 @@ class GtkUI(glchess.ui.UI):
             self.__renderGL = value
             menuItem = self.__getWidget('menu_view_3d')
             menuItem.set_active(self.__renderGL)
-            self.notebook.defaultView.viewWidget.setRenderGL(self.__renderGL)
-            for view in self.notebook.views:
-                view.viewWidget.setRenderGL(self.__renderGL)
+            self.view.viewWidget.setRenderGL(self.__renderGL)
                 
         elif name == 'show_comments':
             menuItem = self.__getWidget('menu_view_comment')
             menuItem.set_active(value)
-            for view in self.notebook.views:
-                view.setShowComments(value)
+            self.view.setShowComments(value)
 
         elif name == 'show_move_hints':
             menuItem = self.__getWidget('menu_view_move_hints')
             menuItem.set_active(value)
-            for view in self.notebook.views:
-                view.feedback.showMoveHints(value)
+            self.view.feedback.showMoveHints(value)
 
         elif name == 'show_numbering':
             menuItem = self.__getWidget('menu_view_numbering')
             menuItem.set_active(value)
-            for view in self.notebook.views:
-                view.feedback.showBoardNumbering(value)
-            self.notebook.defaultView.feedback.showBoardNumbering(value)
+            self.view.feedback.showBoardNumbering(value)
 
         elif name == 'move_format':
             self._gui.get_widget('menu_movef_%s' % value).set_active(True)
-            for view in self.notebook.views:
-                view.setMoveFormat(value)
+            self.view.setMoveFormat(value)
                 
         elif name == 'promotion_type':
             try:
@@ -852,9 +741,7 @@ class GtkUI(glchess.ui.UI):
             string += ' (latest)'
             moveNumber = -1
         
-        view = self.notebook.getView()
-        if view is not None:
-            view._setMoveNumber(moveNumber)
+        self.view._setMoveNumber(moveNumber)
             
     def _on_menu_movef_human_activate(self, widget):
         """Gtk+ callback"""
@@ -928,36 +815,32 @@ class GtkUI(glchess.ui.UI):
     def _on_view_changed(self, widget, page, pageNum):
         """Gtk+ callback"""
         # Set the window title to the name of the game
-        view = self.notebook.getView()
         title = _('Chess')
-        if view is not None:
-            title += " - %s" % view.title
+        if self.view is not None:
+            title += " - %s" % self.view.title
         self._gui.get_widget('glchess_app').set_title(title)
 
         # Set toolbar/menu buttons to state for this game
         self._updateViewButtons()
         
         # Update timers
-        if view is not None:
-            self.setTimers(view.whiteTime, view.blackTime)
+        if self.view is not None:
+            self.setTimers(self.view.whiteTime, self.view.blackTime)
     
     def _updateViewButtons(self):
         """
         """
-        view = self.notebook.getView()
-        enableWidgets = (view is not None) and view.isActive
-        self.__getWidget('end_game_button').set_sensitive(enableWidgets)
+        enableWidgets = self.view is not None and self.view.isActive
         self.__getWidget('save_game_button').set_sensitive(enableWidgets)
         self.__getWidget('menu_save_item').set_sensitive(enableWidgets)
         self.__getWidget('menu_save_as_item').set_sensitive(enableWidgets)
-        self.__getWidget('menu_end_game_item').set_sensitive(enableWidgets)
 
         combo = self.__getWidget('history_combo')
-        if view is None:
+        if self.view is None:
             if combo.get_model() != None:
                 combo.set_model(None)
         else:
-            (model, selected) = view._getModel()
+            (model, selected) = self.view._getModel()
             combo.set_model(model)
             if selected < 0:
                 selected = len(model) + selected
@@ -978,25 +861,15 @@ class GtkUI(glchess.ui.UI):
         
     def _on_save_game_button_clicked(self, widget):
         """Gtk+ callback"""
-        view = self.notebook.getView()
-        
-        if view.feedback.getFileName() is not None:
-            view.feedback.save()
-        elif not self.__saveGameDialogs.has_key(view):
-            self.__saveGameDialogs[view] = dialogs.GtkSaveGameDialog(self, view)
+        if self.view.feedback.getFileName() is not None:
+            self.view.feedback.save()
+        elif not self.__saveGameDialogs.has_key(self.view):
+            self.__saveGameDialogs[self.view] = dialogs.GtkSaveGameDialog(self, self.view)
             
     def _on_save_as_game_button_clicked(self, widget):
         """Gtk+ callback"""
-        view = self.notebook.getView()
-        if not self.__saveGameDialogs.has_key(view):
-            self.__saveGameDialogs[view] = dialogs.GtkSaveGameDialog(self, view, view.feedback.getFileName())
-
-    def _on_end_game_button_clicked(self, widget):
-        """Gtk+ callback"""
-        view = self.notebook.getView()
-        assert(view is not None)
-        if view.feedback is not None:
-            view.feedback.close()
+        if not self.__saveGameDialogs.has_key(self.view):
+            self.__saveGameDialogs[self.view] = dialogs.GtkSaveGameDialog(self, self.view, self.view.feedback.getFileName())
 
     def _on_help_clicked(self, widget):
         """Gtk+ callback"""
@@ -1113,9 +986,8 @@ class GtkUI(glchess.ui.UI):
     def _quit(self):
         # Check if any views need saving
         viewsToSave = []
-        for view in self.notebook.views:
-            if view.feedback.needsSaving():
-                viewsToSave.append(view)
+        if self.view.feedback.needsSaving():
+            viewsToSave.append(self.view)
 
         if len(viewsToSave) == 0:
             self.feedback.onQuit()

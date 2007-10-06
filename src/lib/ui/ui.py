@@ -116,9 +116,6 @@ class NetworkController:
         """
         pass
     
-    def close(self):
-        pass
-
 class ViewFeedback:
     """Template class for feedback from a view object"""
     
@@ -211,10 +208,6 @@ class ViewFeedback:
         """
         pass
 
-    def close(self):
-        """This method is called when the user requests this view be closed"""
-        pass
-
 class ViewController:
     """Template class for methods to control a view"""
     
@@ -251,11 +244,7 @@ class ViewController:
         'requiresAttention' is a flag to show if this view requires attention.
         """
         pass
-    
-    def close(self):
-        """Close this view"""
-        pass
-    
+
 class UIFeedback:
     """Template class for feedback from a UI"""
     
@@ -419,19 +408,8 @@ class UI:
         """
         return None
 
-    def setDefaultView(self, feedback):
-        """Set the default view to render.
-        
-        'feedback' is a object to report view events with (extends ViewFeedback).
-        
-        This will override the previous default view.
-        
-        Returns a view controller object (extends ViewController).
-        """
-        return None
-    
-    def addView(self, title, feedback):
-        """Add a view to the UI.
+    def setView(self, title, feedback):
+        """Set the view to display.
         
         'title' is the title for the view (string).
         'feedback' is a object to report view events with (extends ViewFeedback).
