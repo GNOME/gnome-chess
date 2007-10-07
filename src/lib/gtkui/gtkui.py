@@ -753,13 +753,21 @@ class GtkUI(glchess.ui.UI):
         # Get the move number
         moveNumber = model.get_value(iter, 1)
         
-        string = 'Show move number: ' + str(moveNumber)
+        string = 'Showing move number %d ' % moveNumber
         if moveNumber == len(model) - 1:
             string += ' (latest)'
             moveNumber = -1
-        
+        print string
+
+        # Disable buttons when at the end
+        haveMoves = len(model) > 1
+        for widget in ('first_move_button', 'prev_move_button'):
+            self.__getWidget(widget).set_sensitive(haveMoves and moveNumber != 0)
+        for widget in ('last_move_button', 'next_move_button'):
+            self.__getWidget(widget).set_sensitive(haveMoves and moveNumber != -1)
+
         self.view._setMoveNumber(moveNumber)
-            
+
     def _on_menu_movef_human_activate(self, widget):
         """Gtk+ callback"""
         glchess.config.set('move_format', 'human')

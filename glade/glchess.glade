@@ -683,8 +683,9 @@
 		  <property name="spacing">0</property>
 
 		  <child>
-		    <widget class="GtkButton" id="button1">
+		    <widget class="GtkButton" id="first_move_button">
 		      <property name="visible">True</property>
+		      <property name="sensitive">False</property>
 		      <property name="tooltip" translatable="yes">Rewind to the game start</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
@@ -711,8 +712,9 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkButton" id="button2">
+		    <widget class="GtkButton" id="prev_move_button">
 		      <property name="visible">True</property>
+		      <property name="sensitive">False</property>
 		      <property name="tooltip" translatable="yes">Show the previous move</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
@@ -739,8 +741,9 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkButton" id="button3">
+		    <widget class="GtkButton" id="next_move_button">
 		      <property name="visible">True</property>
+		      <property name="sensitive">False</property>
 		      <property name="tooltip" translatable="yes">Show the next move</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
@@ -767,8 +770,9 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkButton" id="button4">
+		    <widget class="GtkButton" id="last_move_button">
 		      <property name="visible">True</property>
+		      <property name="sensitive">False</property>
 		      <property name="tooltip" translatable="yes">Show the current move</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
