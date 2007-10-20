@@ -118,13 +118,13 @@ def decode(colour, move):
             if len(move) < 2:
                 raise DecodeError('Too short')
             try:
-                promotionType = _lanToType[move[1].upper()]
+                promotionType = _lanToType[move[1]]
             except KeyError:
                 raise DecodeError('Unknown promotion type')
             move = move[2:]
         else:
             try:
-                promotionType = _lanToType[move[0].upper()]
+                promotionType = _lanToType[move[0]]
             except KeyError:
                 pass
             else:

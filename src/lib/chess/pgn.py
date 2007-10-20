@@ -191,8 +191,8 @@ class PGNParser:
             if PGNToken.SYMBOL_CONTINUATION_CHARACTERS.find(data[offset]) < 0:
                 return (data[:offset], offset)
 
-        return (data, len(data))
-
+        return (data, offset)
+            
     def __extractNAG(self, data):
         index = PGNToken.NAG_CONTINUATION_CHARACTERS.find(data[1])
         for offset in xrange(1, len(data)):            
@@ -200,7 +200,7 @@ class PGNParser:
             	#FIXME: Should be at lest one character and less than $255
                 return (data[:offset], offset)
 
-        return (data, len(data))
+        return (data, offset)
     
     def __extractPGNString(self, data):
         #"""Extract a PGN string.
@@ -695,7 +695,6 @@ class PGN:
         gp = PGNGameParser()
         lineNumber = 1
         gameCount = 0
-        games = []
         while True:
             # Read a line from the file
             line = f.readline()
@@ -717,7 +716,7 @@ class PGN:
                     gp = PGNGameParser()
                     self.__games.append(game)
                     gameCount += 1
-                        
+
                     if maxGames is not None and gameCount >= maxGames:
                         break
 
