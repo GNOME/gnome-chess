@@ -169,6 +169,9 @@ class Move:
     # state = None for new pieces
     # end = None for taken pieces
     moves  = []
+    
+    # The piece that was taken in this move or None if no victim
+    victim = None
 
     # Flag to show if the opponent is in check
     opponentInCheck = False
@@ -336,6 +339,9 @@ class ChessBoardState:
         
         Return True if there is an enemy piece that can attach this square.
         """
+        if self.getPiece(location) is None:
+            return False
+        
         # See if any enemy pieces can take this king
         for enemyCoord, enemyPiece in self.squares.iteritems():
             # Ignore friendly pieces
@@ -797,6 +803,10 @@ class ChessBoard:
         Returns the same as movePiece() except the move is not recorded.
         """
         return self.movePiece(colour, start, end, promotionType = promotionType, allowSuicide = allowSuicide, test = True)
+    
+    def squareUnderAttack(self, colour, location, moveNumber = -1):
+        state = self.__boardStates[moveNumber]
+        return state.squareUnderAttack(colour, location)
 
     def movePiece(self, colour, start, end, promotionType = QUEEN, allowSuicide = False, test = False):
         """Move a piece.
@@ -807,7 +817,7 @@ class ChessBoard:
         'allowSuicide' if True means a move is considered valid even
                        if it would put the moving player in check. This is
                        provided for SAN move calculation.
-        
+
         Return information about the move performed (Move) or None if the move is illegal.
         """
         assert(self.__inCallback is False)
@@ -817,9 +827,13 @@ class ChessBoard:
         if moves is None:
             return None
 
-        # Notify the child class of the moves
-        if not test:
-            for (piece, start, end, delete) in moves:
+        victim = None
+        for (piece, start, end, delete) in moves:
+            if delete:
+                victim = piece
+            
+            # Notify the child class of the moves
+            if not test:
                 self.__onPieceMoved(piece, start, end, delete)
 
         # Check if this board state has been repeated three times
@@ -841,6 +855,7 @@ class ChessBoard:
             self.__boardStates.append(state)
         move = Move()
         move.moves = moves
+        move.victim = victim
         move.opponentInCheck = state.inCheck(opponentColour)
         move.opponentCanMove = state.canMove(opponentColour)
         move.threeFoldRepetition = state.threeFoldRepetition

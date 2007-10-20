@@ -17,7 +17,6 @@ class SceneHumanInput:
     __startSquare = None
     
     __showHints       = True
-    __boardHighlights = None
     
     def __init__(self):
         """Constructor for a scene with human selectable components"""
@@ -70,15 +69,6 @@ class SceneHumanInput:
         """
         pass
     
-    def setBoardHighlight(self, coords):
-        """Called when a human player changes the highlighted squares.
-        
-        'coords' is a list or tuple of co-ordinates to highlight.
-                 The co-ordinates are in LAN format (string).
-                 If None the highlight should be cleared.
-        """
-        pass
-    
     # Public methods
     
     def enableHumanInput(self, inputEnabled):
@@ -87,21 +77,14 @@ class SceneHumanInput:
         'inputEnabled' is a flag to show if human input is enabled (True) or disabled (False).
         """
         if inputEnabled is False:
-            self.__startSquare = None
-            self.setBoardHighlight(None)
+            self.__selectSquare(None)
         self.__inputEnabled = inputEnabled
+        self.updateHighlight(None)
         
     def showMoveHints(self, showHints):
         """
         """
-        self.__showHints = showHints
-        if showHints:
-            self.setBoardHighlight(self.__boardHighlights)
-        else:
-            if self.__startSquare is not None:
-                self.setBoardHighlight({self.__startSquare: glchess.scene.HIGHLIGHT_SELECTED})
-            else:
-                self.setBoardHighlight(None)
+        pass # FIXME
 
     def select(self, x, y):
         """
@@ -120,23 +103,12 @@ class SceneHumanInput:
         
         # Deselect when clicking on piece a second time
         if self.__startSquare == coord:
-            self.__boardHighlights = None
-            self.setBoardHighlight(None)
-            self.__startSquare = None
+            self.__selectSquare(None)
             return
 
         # If this is a friendly piece then select it
         if self.squareIsFriendly(coord):
-            self.__startSquare = coord
-            
-            # Highlight the squares that can be moved to
-            self.__boardHighlights = {}
-            for file in '12345678':
-                for rank in 'abcdefgh':
-                    if self.canMove(coord, rank + file):
-                        self.__boardHighlights[rank + file] = glchess.scene.HIGHLIGHT_CAN_MOVE
-            self.__boardHighlights[coord] = glchess.scene.HIGHLIGHT_SELECTED
-            self.showMoveHints(self.__showHints)
+            self.__selectSquare(coord)
 
         else:
             # If we have already selected a start move try
@@ -175,6 +147,12 @@ class SceneHumanInput:
     
     # Private methods
     
+    def __selectSquare(self, coord):
+        if self.__startSquare == coord:
+            return
+        self.__startSquare = coord
+        self.updateHighlight(coord)
+    
     def __move(self, start, end):
         """Attempt to make a move.
         
@@ -182,7 +160,5 @@ class SceneHumanInput:
         """
         if self.canMove(start, end) is False:
             return
-        self.__startSquare = None
-        self.__boardHighlights = None
-        self.setBoardHighlight(None)
+        self.__selectSquare(None)
         self.moveHuman(start, end)

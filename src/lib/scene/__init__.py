@@ -3,8 +3,10 @@ __license__ = 'GNU General Public License Version 2'
 __copyright__ = 'Copyright 2005-2006  Robert Ancell'
 
 # Highlight types
-HIGHLIGHT_SELECTED = 'selected'
-HIGHLIGHT_CAN_MOVE = 'canMove'
+HIGHLIGHT_SELECTED   = 'selected'
+HIGHLIGHT_CAN_MOVE   = 'canMove'
+HIGHLIGHT_THREATENED = 'threatened'
+HIGHLIGHT_CAN_TAKE   = 'canTake'
 
 class ChessSet:
     """

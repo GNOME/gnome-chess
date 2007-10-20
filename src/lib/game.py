@@ -280,7 +280,7 @@ class ChessGame:
     __spectators = None
     
     # The board to move on
-    __board = None
+    board = None
     
     # SAN en/decoders
     __sanConverter = None
@@ -304,8 +304,8 @@ class ChessGame:
         """Game constructor"""
         self.__players = []
         self.__spectators = []
-        self.__board = ChessGameBoard(self)
-        self.__sanConverter = ChessGameSANConverter(self.__board)
+        self.board = ChessGameBoard(self)
+        self.__sanConverter = ChessGameSANConverter(self.board)
         self.__moves = []
         self.__queuedCalls = []
         
@@ -317,7 +317,7 @@ class ChessGame:
         Returns a dictionary of the alive pieces (board.ChessPiece) keyed by location.
         Raises an IndexError exception if moveNumber is invalid.
         """
-        return self.__board.getAlivePieces(moveNumber)
+        return self.board.getAlivePieces(moveNumber)
     
     def getDeadPieces(self, moveNumber = -1):
         """Get the dead pieces from the game.
@@ -327,7 +327,7 @@ class ChessGame:
         Returns a list of the pieces (board.ChessPiece) in the order they were killed.
         Raises an IndexError exception if moveNumber is invalid.
         """
-        return self.__board.getDeadPieces(moveNumber)
+        return self.board.getDeadPieces(moveNumber)
     
     def setTimers(self, whiteTimer, blackTimer):
         """
@@ -420,7 +420,7 @@ class ChessGame:
     def getSquareOwner(self, coord):
         """TODO
         """
-        piece = self.__board.getPiece(coord)
+        piece = self.board.getPiece(coord)
         if piece is None:
             return None
         
@@ -452,7 +452,7 @@ class ChessGame:
         else:
             assert(False)
 
-        move = self.__board.testMove(colour, start, end, promotionType = promotionType)
+        move = self.board.testMove(colour, start, end, promotionType = promotionType)
 
         return move is not None
     
@@ -505,8 +505,8 @@ class ChessGame:
                 return
 
         # Only use promotion type if a pawn move to far file
-        victim = self.__board.getPiece(end)
-        piece = self.__board.getPiece(start)
+        victim = self.board.getPiece(end)
+        piece = self.board.getPiece(start)
         promotion = None
         if piece is not None and piece.getType() is chess.board.PAWN:
             if colour is chess.board.WHITE:
@@ -519,7 +519,7 @@ class ChessGame:
         # Re-encode for storing and reporting
         sanMove = self.__sanConverter.encodeSAN(start, end, promotionType)
         canMove = chess.lan.encode(colour, start, end, promotionType = promotion)
-        moveResult = self.__board.movePiece(colour, start, end, promotionType)
+        moveResult = self.board.movePiece(colour, start, end, promotionType)
 
         if moveResult is None:
             print 'Illegal move: ' + str(move)
@@ -681,7 +681,7 @@ class ChessGame:
         for file in '12345678':
             for rank in 'abcdefgh':
                 coord = rank + file
-                piece = self.__board.getPiece(coord)
+                piece = self.board.getPiece(coord)
                 if piece is None:
                     continue
 
