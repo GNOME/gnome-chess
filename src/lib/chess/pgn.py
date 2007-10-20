@@ -117,7 +117,7 @@ class PGNToken:
     type = None
 
     SYMBOL_START_CHARACTERS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' + '*'
-    SYMBOL_CONTINUATION_CHARACTERS = SYMBOL_START_CHARACTERS + '_+#=:-' + '/' # Not in spec but required from game draw and imcomplete
+    SYMBOL_CONTINUATION_CHARACTERS = SYMBOL_START_CHARACTERS + '_+#=:-' + '/' # Not in spec but required from game draw and incomplete
     NAG_CONTINUATION_CHARACTERS = '0123456789'
     
     data = None
@@ -191,15 +191,16 @@ class PGNParser:
             if PGNToken.SYMBOL_CONTINUATION_CHARACTERS.find(data[offset]) < 0:
                 return (data[:offset], offset)
 
-        return (data, offset)
-            
+        return (data, len(data))
+
     def __extractNAG(self, data):
         index = PGNToken.NAG_CONTINUATION_CHARACTERS.find(data[1])
         for offset in xrange(1, len(data)):            
             if PGNToken.NAG_CONTINUATION_CHARACTERS.find(data[offset]) < 0:
             	#FIXME: Should be at lest one character and less than $255
                 return (data[:offset], offset)
-        return (data, offset)
+
+        return (data, len(data))
     
     def __extractPGNString(self, data):
         #"""Extract a PGN string.
@@ -335,9 +336,6 @@ class PGNGameParser:
                 # See if this is a move number or a SAN move
                 try:
                     moveNumber = int(token.data)
-                    self.__prevTokenIsMoveNumber = True
-                    if moveNumber != self.__expectedMoveNumber:
-                        raise Error('Expected move number %i, got %i on line %i:%i' % (self.__expectedMoveNumber, moveNumber, token.lineNumber, token.characterNumber))
                 except ValueError:
                     self.__prevTokenIsMoveNumber = False
                     if self.__whiteMove is None:
@@ -356,6 +354,10 @@ class PGNGameParser:
                         self.__whiteMove = None
                         self.__currentMoveNumber += 1
                         self.__expectedMoveNumber += 1
+                else:
+                    self.__prevTokenIsMoveNumber = True
+                    if moveNumber != self.__expectedMoveNumber:
+                        raise Error('Expected move number %i, got %i on line %i:%i' % (self.__expectedMoveNumber, moveNumber, token.lineNumber, token.characterNumber))
 
         elif token.type is PGNToken.NAG:
             pass
@@ -401,7 +403,7 @@ class PGNGameParser:
             
             else:
                 raise Error('Unexpected token %s on line %i:%i' % (str(token.type), token.lineNumber, token.characterNumber))
-            
+
         if self.__state is self.STATE_TAG_NAME:
             if token.type is PGNToken.SYMBOL:
                 self.__tagName = token.data
@@ -422,7 +424,7 @@ class PGNGameParser:
                 self.__state = self.STATE_IDLE
             else:
                 raise Error('Not a valid file')
-                    
+
         elif self.__state is self.STATE_MOVETEXT:
             game = self.__parseTokenMovetext(token)
             if game is not None:
@@ -432,9 +434,8 @@ class PGNGameParser:
     def complete(self):
         """
         """
-        pass
-        # Raise an error if there was a partial game
-        #raise Error()
+        self.__state = self.STATE_IDLE
+        return self.__game
         
 class PGNMove:
     """
@@ -694,12 +695,16 @@ class PGN:
         gp = PGNGameParser()
         lineNumber = 1
         gameCount = 0
+        games = []
         while True:
             # Read a line from the file
             line = f.readline()
             if line == '':
+                game = gp.complete()
+                if game is not None:
+                    self.__games.append(game)
                 break
-            
+
             # Parse the line into tokens
             tokens = p.parseLine(line, lineNumber)
 
@@ -712,10 +717,10 @@ class PGN:
                     gp = PGNGameParser()
                     self.__games.append(game)
                     gameCount += 1
-
+                        
                     if maxGames is not None and gameCount >= maxGames:
                         break
-                    
+
             # YUCK... FIXME
             if maxGames is not None and gameCount >= maxGames:
                 break
@@ -723,11 +728,10 @@ class PGN:
             lineNumber += 1
             
         # Must be at least one game in the PGN file
-        if gameCount == 0:
+        if len(self.__games) == 0:
             raise Error('Empty PGN file')
 
         # Tidy up
-        gp.complete()
         p.endParse()
         f.close()
 

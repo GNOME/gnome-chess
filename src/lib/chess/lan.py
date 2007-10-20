@@ -15,16 +15,16 @@ MOVE         = '-'
 TAKE         = 'x'
 
 # Castling moves
-CASTLE_SHORT = 'O-O'
-CASTLE_LONG  = 'O-O-O'
+CASTLE_SHORT = 'o-o'
+CASTLE_LONG  = 'o-o-o'
 
 # Characters used to describe pieces
-_typeToLAN = {board.PAWN:   'P',
-              board.KNIGHT: 'N',
-              board.BISHOP: 'B',
-              board.ROOK:   'R',
-              board.QUEEN:  'Q',
-              board.KING:   'K'}
+_typeToLAN = {board.PAWN:   'p',
+              board.KNIGHT: 'n',
+              board.BISHOP: 'b',
+              board.ROOK:   'r',
+              board.QUEEN:  'q',
+              board.KING:   'k'}
 _lanToType = {}
 for (pieceType, character) in _typeToLAN.iteritems():
     _lanToType[character] = pieceType
@@ -65,8 +65,9 @@ def decode(colour, move):
     promotionType = None
     moveType      = None
     result        = None
-        
-    # FIXME: Get 'result' from the end of the move description
+    
+    move = move.lower()
+
     if colour is board.WHITE:
         baseFile = '1'
     else:
@@ -85,10 +86,19 @@ def decode(colour, move):
         pieceType = None
     else:
         move = move[1:]
-        
+
     if len(move) < 2:
         raise DecodeError('Too short')
-    start = _checkLocation(move[:2])
+    try:
+        start = _checkLocation(move[:2])
+    except DecodeError, e:
+        if pieceType is None:
+            raise e
+        # Perhaps the first character wasn't a piece type
+        else:
+            move = _typeToLAN[pieceType] + move
+            start = _checkLocation(move[:2])
+            pieceType = None
     move = move[2:]
         
     if len(move) < 1:
@@ -120,10 +130,14 @@ def decode(colour, move):
             else:
                 move = move[1:]
 
-    if len(move) > 0:
-        if move[0] == CHECK or move[0] == CHECKMATE:
-            result = move[0]
-            move = move[1:]
+    if len(move) == 1:
+        if move == CHECK or move == CHECKMATE:
+            result = move
+            move = ''
+    elif len(move) == 2:
+        if move == '++':
+            result = CHECKMATE
+            move = ''
 
     if len(move) != 0:
         raise DecodeError('Extra characters')

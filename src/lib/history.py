@@ -111,7 +111,7 @@ class GameHistory:
             f.close()
         except IOError, e:
             # FIXME: This should be in a dialog
-            self.logger.addLine('Unable to autosave to %s: %s' % (fileName, str(e)))
+            print 'Unable to autosave to %s: %s' % (fileName, str(e))
             
         # Update unfinished list
         result = g.getTag(chess.pgn.TAG_RESULT)
