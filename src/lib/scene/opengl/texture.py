@@ -107,18 +107,19 @@ class Texture:
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
 
-        #glTexImage2D(GL_TEXTURE_2D,
-        #             0,      # Level
-        #             3,      # Depth
-        #             width,  # Width
-        #             height, # Height
-        #             0,      # Border
-        #             GL_RGB, # Format
-        #             GL_UNSIGNED_BYTE, # Type
-        #             data)
-                     
         # Generate mipmaps
-        gluBuild2DMipmaps(GL_TEXTURE_2D, GL_LUMINANCE, self.__width, self.__height, self.__format, GL_UNSIGNED_BYTE, self.__data)
+        try:
+            gluBuild2DMipmaps(GL_TEXTURE_2D, GL_LUMINANCE, self.__width, self.__height, self.__format, GL_UNSIGNED_BYTE, self.__data)
+        except GLUError, e:
+            glTexImage2D(GL_TEXTURE_2D,
+                         0,                # Level
+                         3,                # Depth
+                         self.__width,     # Width
+                         self.__height,    # Height
+                         0,                # Border
+                         GL_RGB,           # Format
+                         GL_UNSIGNED_BYTE, # Type
+                         self.__data)
         
         return texture
 

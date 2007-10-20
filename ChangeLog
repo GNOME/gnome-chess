@@ -2,7 +2,8 @@
 
 	* Added tests/ dir containing PGN test files
 	* lib/chess/lan.py, pgn.py: Add better support for informal PGN files (Bug #488244)
-        * lib/gtkui/dialogs.py: GtkFileChooser.get_current_folder() can return None, handle this case (Bug #488244)
+	* lib/gtkui/dialogs.py: GtkFileChooser.get_current_folder() can return None, handle this case (Bug #488244)
+	* lib/scene/opengl/texture.py: Catch GLU exception building mipmaps and fallback to standard textures (Bug #442933)
 
 2007-10-07  Robert Ancell  <robert.ancell@gmail.com>
 
