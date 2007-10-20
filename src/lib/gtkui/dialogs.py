@@ -453,7 +453,9 @@ class GtkLoadGameDialog:
         chooser= self.__gui.get_widget('filechooserwidget')
 
         if responseId == gtk.RESPONSE_OK or responseId == gtk.RESPONSE_YES:
-            glchess.config.set('load_directory', chooser.get_current_folder())
+            folder = chooser.get_current_folder()
+            if folder is not None:
+                glchess.config.set('load_directory', folder)
             error = self.__mainUI.feedback.loadGame(self.__getFilename(), responseId == gtk.RESPONSE_YES)
             if error is not None:
                 self.firstExpose = True
@@ -587,8 +589,10 @@ class GtkSaveGameDialog:
                 fname += '.pgn'
 
             # Save the directory we used
-            glchess.config.set('save_directory', chooser.get_current_folder())
-        
+            folder = chooser.get_current_folder()
+            if folder is not None:
+                glchess.config.set('save_directory')
+
             error = self.__mainUI._saveView(self.__view, fname)
             if error is not None:
                 self.__setError(_('Unabled to save game'), error)
