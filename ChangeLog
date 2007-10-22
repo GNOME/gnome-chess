@@ -3,6 +3,7 @@
 	* lib/glchess.py: Catch and ignore all exceptions writing to stdout (Bug #426461)
 	* lib/ai.py: Catch exception killing AI (Bug #456829)
 	* lib/gtkui/dialogs.py: Fix exception when autoloading games with invalid AIs (Bug #486254)
+	* lib/gtkui/gtkui.py, glchess.in: Moved pygtk.require() to glchess.in so it is always called first (Bug #483556)
 
 2007-10-21  Robert Ancell  <robert.ancell@gmail.com>
 
