@@ -321,7 +321,10 @@ class Player(game.ChessPlayer):
                     
                     # One of the connections has closed - kill the engine and quit
                     if len(data) == 0:
-                        os.kill(engineFd, signal.SIGQUIT)
+                        try:
+                            os.kill(engineFd, signal.SIGQUIT)
+                        except OSError:
+                            pass
                         os._exit(0)
                     
                     # Send data from the application to the engines stdin
