@@ -241,7 +241,7 @@ class GtkNewGameDialog:
             # TODO: Others
             
             # Change title for loaded games
-            if len(g.path) > 0:
+            if g.path is not None:
                 self.__gui.get_widget('new_game_dialog').set_title(_('Configure loaded game (%i moves)') % len(g.moves))
 
         # Display warning if missing the AIs
@@ -591,7 +591,7 @@ class GtkSaveGameDialog:
             # Save the directory we used
             folder = chooser.get_current_folder()
             if folder is not None:
-                glchess.config.set('save_directory')
+                glchess.config.set('save_directory', folder)
 
             error = self.__mainUI._saveView(self.__view, fname)
             if error is not None:

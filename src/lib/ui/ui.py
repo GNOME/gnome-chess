@@ -18,7 +18,7 @@ class Player:
 class Game:
     name = ''
     
-    path = ''
+    path = None
     
     duration = 0
     
