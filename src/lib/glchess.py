@@ -2,18 +2,18 @@ import sys
 
 # Ignore any exceptions writing to stdout using print statements
 class SafeStdout:
+    def __init__(self):
+        self.stdout = sys.stdout
+    
     def fileno(self):
-        global stdout
-        return stdout.fileno()
+        return self.stdout.fileno()
 
     def write(self, data):
-        global stdout
         try:
-            stdout.write(data)
+            self.stdout.write(data)
         except:
             pass
 
-stdout = sys.stdout
 sys.stdout = SafeStdout()
 
 def start_game ():
