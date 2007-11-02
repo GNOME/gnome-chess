@@ -465,54 +465,6 @@ class GtkLoadGameDialog:
                 return
 
         dialog.destroy()
-
-class SaveDialog:
-    """
-    """
-
-    def __init__(self, ui):
-        """Constructor"""
-        self.ui = ui
-        self.model = gtk.ListStore(gobject.TYPE_PYOBJECT, gobject.TYPE_BOOLEAN, str)
-        
-        self.view = ui._gui.get_widget('save_games_treeview')
-        self.view.set_model(self.model)
-        
-        selection = self.view.get_selection()
-        selection.set_mode(gtk.SELECTION_NONE)
-
-        cell = gtk.CellRendererToggle()
-        cell.set_property('activatable', True)
-        cell.connect('toggled', self._toggle_cb)
-        column = gtk.TreeViewColumn('Save', cell)
-        column.add_attribute(cell, 'active', 1)
-        self.view.append_column(column)
-        
-        cell = gtk.CellRendererText()
-        column = gtk.TreeViewColumn('Game', cell)
-        column.add_attribute(cell, 'text', 2)
-        self.view.append_column(column)
-        
-    def setViews(self, views):
-        """
-        """
-        self.model.clear()
-        for view in views:
-            iter = self.model.append()
-            self.model.set(iter, 0, view, 1, True, 2, view.title)
-
-    def setVisible(self, isVisible):
-        """
-        """
-        widget = self.ui._gui.get_widget('save_dialog')
-        if isVisible:
-            widget.show_all()
-        else:
-            widget.hide()
-            
-    def _toggle_cb(self, widget, path):
-        """Gtk+ callback"""
-        self.model[path][1] = not self.model[path][1]
         
 class GtkSaveGameDialog:
     """

@@ -261,8 +261,6 @@ class GtkUI(glchess.ui.UI):
         if haveGnomeSupport:
             self._gui.get_widget('menu_help').show()
         
-        self.saveDialog = dialogs.SaveDialog(self)
-        
         self._updateViewButtons()
         
         # Watch for config changes
@@ -944,25 +942,6 @@ class GtkUI(glchess.ui.UI):
         
         # Stop the event - the window will be closed by the menu event
         return True
-   
-    def _on_save_dialog_response(self, widget, responseId):
-        """Gtk+ callback"""
-        self.saveDialog.setVisible(False)
-        
-        if responseId != gtk.RESPONSE_OK:
-            return
-        
-        # Save the requested games
-        for (view, save, _) in self.saveDialog.model:
-            if save:
-                view.feedback.save()
-
-        self.feedback.onQuit()
-        
-    def _on_save_dialog_delete(self, widget, event):
-        """Gtk+ callback"""
-        # Leave it to use to hide the dialog
-        return True
     
     def _on_resize(self, widget, event):
         """Gtk+ callback"""
@@ -996,16 +975,24 @@ class GtkUI(glchess.ui.UI):
         self._quit()
         
     def _quit(self):
-        # Check if any views need saving
-        viewsToSave = []
+        # Check if the current view needs saving
         if self.view.feedback.needsSaving():
-            viewsToSave.append(self.view)
+            dialog = gtk.MessageDialog(flags = gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                                       type = gtk.MESSAGE_WARNING,
+                                       message_format = _('Save game before closing?'))
+            dialog.format_secondary_text("If you don't save the changes to this game will be permanently lost")
+            dialog.add_button(_('Close _without saving'), gtk.RESPONSE_OK)
+            dialog.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
+            dialog.add_button(gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT)
+            
+            response = dialog.run()
+            if response == gtk.RESPONSE_ACCEPT:
+                self.view.feedback.save()
+            elif response == gtk.RESPONSE_REJECT:
+                dialog.destroy()
+                return
 
-        if len(viewsToSave) == 0:
-            self.feedback.onQuit()
-        else:
-            self.saveDialog.setViews(viewsToSave)
-            self.saveDialog.setVisible(True)
+        self.feedback.onQuit()
 
 if __name__ == '__main__':
     ui = GtkUI()
