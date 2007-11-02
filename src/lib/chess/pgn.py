@@ -153,6 +153,7 @@ class PGNParser:
     def __init__(self):
         self.tokens = {' ':  (None,                  1),
                        '\t': (None,                  1),
+                       '\r': (None,                  1),
                        '\n': (None,                  1),
                        ';':  (PGNToken.LINE_COMMENT, self.__lineComment),
                        '{':  (PGNToken.LINE_COMMENT, self.__collectComment),
@@ -169,7 +170,7 @@ class PGNParser:
 
         for c in '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ':
             self.tokens[c] = (PGNToken.SYMBOL, self.__extractSymbol)
-            
+
     def __lineComment(self, data):
         return (data, len(data))
 
@@ -191,7 +192,7 @@ class PGNParser:
             if PGNToken.SYMBOL_CONTINUATION_CHARACTERS.find(data[offset]) < 0:
                 return (data[:offset], offset)
 
-        return (data, offset)
+        return (data, len(data))
             
     def __extractNAG(self, data):
         index = PGNToken.NAG_CONTINUATION_CHARACTERS.find(data[1])
@@ -200,7 +201,7 @@ class PGNParser:
             	#FIXME: Should be at lest one character and less than $255
                 return (data[:offset], offset)
 
-        return (data, offset)
+        return (data, len(data))
     
     def __extractPGNString(self, data):
         #"""Extract a PGN string.

@@ -789,8 +789,8 @@ class ChessBoard:
         """
         state = self.__boardStates[moveNumber]
         return state.casualties[:]
-    
-    def testMove(self, colour, start, end, promotionType = QUEEN, allowSuicide = False):
+
+    def testMove(self, colour, start, end, promotionType = QUEEN, allowSuicide = False, moveNumber = -1):
         """Test if a move is allowed.
         
         'colour' is the colour of the player moving.
@@ -802,13 +802,13 @@ class ChessBoard:
         
         Returns the same as movePiece() except the move is not recorded.
         """
-        return self.movePiece(colour, start, end, promotionType = promotionType, allowSuicide = allowSuicide, test = True)
+        return self.movePiece(colour, start, end, promotionType = promotionType, allowSuicide = allowSuicide, test = True, moveNumber = moveNumber)
     
     def squareUnderAttack(self, colour, location, moveNumber = -1):
         state = self.__boardStates[moveNumber]
         return state.squareUnderAttack(colour, location)
 
-    def movePiece(self, colour, start, end, promotionType = QUEEN, allowSuicide = False, test = False):
+    def movePiece(self, colour, start, end, promotionType = QUEEN, allowSuicide = False, test = False, moveNumber = -1):
         """Move a piece.
         
         'colour' is the colour of the player moving.
@@ -822,7 +822,7 @@ class ChessBoard:
         """
         assert(self.__inCallback is False)
         
-        state = ChessBoardState(self.__boardStates[-1])
+        state = ChessBoardState(self.__boardStates[moveNumber])
         moves = state.movePiece(colour, start, end, promotionType = promotionType, allowSuicide = False)
         if moves is None:
             return None

@@ -8,10 +8,16 @@ import pieces
 BACKGROUND_COLOUR    = (0.53, 0.63, 0.75)
 BORDER_COLOUR        = (0.808, 0.361, 0.0)#(0.757, 0.490, 0.067)#(0.36, 0.21, 0.05)
 NUMBERING_COLOUR     = (249.0/255, 172.0/255, 109.0/255)#(249.0/255, 132.0/255, 38.0/255)
-BLACK_SQUARE_COLOURS = {None: (0.8, 0.8, 0.8), glchess.scene.HIGHLIGHT_SELECTED: (0.3, 1.0, 0.3), glchess.scene.HIGHLIGHT_CAN_MOVE: (0.3, 0.3, 0.8),
-                        glchess.scene.HIGHLIGHT_THREATENED: (0.8, 0.3, 0.3), glchess.scene.HIGHLIGHT_CAN_TAKE: (0.3, 0.8, 0.8)}
-WHITE_SQUARE_COLOURS = {None: (1.0, 1.0, 1.0), glchess.scene.HIGHLIGHT_SELECTED: (0.2, 1.0, 0.0), glchess.scene.HIGHLIGHT_CAN_MOVE: (0.2, 0.2, 0.8),
-                        glchess.scene.HIGHLIGHT_THREATENED: (0.8, 0.2, 0.2), glchess.scene.HIGHLIGHT_CAN_TAKE: (0.2, 0.8, 0.8)}
+BLACK_SQUARE_COLOURS = {None:                               (0.8, 0.8, 0.8),
+                        glchess.scene.HIGHLIGHT_SELECTED:   (0.3, 1.0, 0.3),
+                        glchess.scene.HIGHLIGHT_CAN_MOVE:   (0.3, 0.3, 0.8),
+                        glchess.scene.HIGHLIGHT_THREATENED: (1.0, 0.8, 0.8),
+                        glchess.scene.HIGHLIGHT_CAN_TAKE:   (1.0, 0.3, 0.3)}
+WHITE_SQUARE_COLOURS = {None:                               (1.0, 1.0, 1.0),
+                        glchess.scene.HIGHLIGHT_SELECTED:   (0.2, 1.0, 0.0),
+                        glchess.scene.HIGHLIGHT_CAN_MOVE:   (0.2, 0.2, 0.8),
+                        glchess.scene.HIGHLIGHT_THREATENED: (1.0, 0.8, 0.8),
+                        glchess.scene.HIGHLIGHT_CAN_TAKE:   (1.0, 0.2, 0.2)}
 PIECE_COLOUR         = (0.0, 0.0, 0.0)
 
 class ChessPiece(glchess.scene.ChessPiece):

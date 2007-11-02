@@ -9,7 +9,38 @@ import scene.cairo
 import scene.opengl
 import scene.human
 import ui
+import game
 import chess.board
+
+class MovePlayer(game.ChessPlayer):
+    """This class provides a pseudo-player to watch for piece movements"""
+    
+    def __init__(self, view):
+        """Constructor for a move player.
+        
+        'view' is the view to update
+        """
+        self.view = view
+        game.ChessPlayer.__init__(self, '@view')
+
+    # Extended methods
+
+    def onPieceMoved(self, piece, start, end, delete):
+        """Called by chess.board.ChessPlayer"""
+        if self.view.moveNumber != -1:
+            return
+        animate = self.view.game.isStarted()
+        p = self.view.scene.movePiece(piece, end, delete, animate)
+
+        # If a player move notify when animation completes
+        if animate and self.view.moveNumber == -1 and start is not None and start != end:
+            self.view.scene.waitingPiece = p
+
+    def onPlayerMoved(self, p, move):
+        self.view._redrawHighlight()
+            
+    def onPlayerStartTurn(self, player):
+        self.view._redrawHighlight()
 
 class CairoPiece(scene.ChessPieceFeedback):
     """
@@ -29,9 +60,7 @@ class CairoPiece(scene.ChessPieceFeedback):
 
     def onMoved(self):
         """Called by scene.ChessPieceFeedback"""
-        # If waiting for this piece then end players turn
-        if self.scene.waitingPiece is self:
-            self.scene.game.view.pieceMoved()
+        self.scene.view._pieceMoved(self)
 
 class SceneCairo(scene.SceneFeedback, scene.human.SceneHumanInput):
     """
@@ -84,7 +113,7 @@ class SceneCairo(scene.SceneFeedback, scene.human.SceneHumanInput):
 
     def onRedraw(self):
         """Called by scene.cairo.Scene"""
-        if self.game.view.controller is not None:
+        if self.game.view is not None and self.game.view.controller is not None:
             self.game.view.controller.render()
 
     def startAnimation(self):
@@ -107,9 +136,9 @@ class SceneCairo(scene.SceneFeedback, scene.human.SceneHumanInput):
         """Called by scene.human.SceneHumanInput"""
         return self.playerIsHuman() and self.game.getCurrentPlayer().canMove(start, end) # FIXME: Promotion type
 
-    def updateHighlight(self, coord):
+    def selectSquare(self, coord):
         """Called by scene.human.SceneHumanInput"""
-        self.view.updateHighlight(coord)
+        self.view.setSelectedSquare(coord)
 
     def moveHuman(self, start, end):
         """Called by scene.human.SceneHumanInput"""
@@ -133,10 +162,7 @@ class OpenGLPiece(scene.ChessPieceFeedback):
 
     def onMoved(self):
         """Called by scene.ChessPieceFeedback"""
-        # If waiting for this piece then end players turn
-        if self.scene.waitingPiece is self:
-            self.scene.waitingPiece = None
-            self.scene.game.getCurrentPlayer().endMove()
+        self.scene.view._pieceMoved(self)
 
 class SceneOpenGL(scene.SceneFeedback, scene.human.SceneHumanInput):
     """
@@ -191,7 +217,7 @@ class SceneOpenGL(scene.SceneFeedback, scene.human.SceneHumanInput):
 
     def onRedraw(self):
         """Called by scene.opengl.Scene"""
-        if self.game.view.controller is not None:
+        if self.game.view is not None and self.game.view.controller is not None:
             self.game.view.controller.render()
 
     def startAnimation(self):
@@ -210,9 +236,9 @@ class SceneOpenGL(scene.SceneFeedback, scene.human.SceneHumanInput):
         """Called by scene.human.SceneHumanInput"""
         return self.playerIsHuman() and self.game.squareIsFriendly(coord)
     
-    def updateHighlight(self, coord):
+    def selectSquare(self, coord):
         """Called by scene.human.SceneHumanInput"""
-        self.view.updateHighlight(coord)
+        self.view.setSelectedSquare(coord)
     
     def moveHuman(self, start, end):
         """Called by scene.human.SceneHumanInput"""
@@ -244,7 +270,8 @@ class Splashscreen(ui.ViewFeedback):
 
     def onRedraw(self):
         """Called by scene.SceneFeedback"""
-        self.controller.render()
+        if self.controller is not None:
+            self.controller.render()
         
     def showBoardNumbering(self, showNumbering):
         """Called by ui.ViewFeedback"""
@@ -267,8 +294,8 @@ class Splashscreen(ui.ViewFeedback):
         """Called by ui.ViewFeedback"""
         self.scene.reshape(width, height)
         self.cairoScene.reshape(width, height)
-        
-    def updateHighlight(self, coord):
+
+    def selectSquare(self, coord):
         pass
 
     def resign(self):
@@ -282,23 +309,24 @@ class Splashscreen(ui.ViewFeedback):
 class View(ui.ViewFeedback):
     """
     """
-    # The game this view is rendering
-    game        = None
-    
-    # The scene for this view
-    scene       = None
-    
     # The controller object for this view
     controller  = None
-    
-    moveNumber  = -1
     
     def __init__(self, game):
         """Constructor.
         
-        'game' is ???
+        'game' is the game this view is rendering
         """
         self.game = game
+        
+        # The move we are watching
+        self.moveNumber = -1
+        
+        # The selected square
+        self.selectedCoord = None
+        self.showHints = False
+        self.highlightParams = (None, None, None, None)
+        self.changedHighlight = True
         
         # Use a Cairo scene by default - it will be replaced by an OpenGL one if that is the requested view
         # I wanted to remove this but then scene is None and there are a number of issues...
@@ -306,38 +334,63 @@ class View(ui.ViewFeedback):
         self.scene = SceneCairo(self)
         config.watch('board_view', self.__onBoardViewChanged)
 
+        # Look for game events to update the scene
+        movePlayer = MovePlayer(self)
+        game.addSpectator(movePlayer)
+
+    def setSelectedSquare(self, coord):
+        if self.selectedCoord == coord:
+            return
+        self.selectedCoord = coord
+        self._redrawHighlight()
+
+    def _redrawHighlight(self):
+        self.changedHighlight = True
+        if self.controller is not None:
+            self.controller.render()
+
     def __onBoardViewChanged(self, key, value):
         self.updateRotation()
-        
-    def updateHighlight(self, coord):
-        """Called by scene.human.SceneHumanInput"""
-        player = self.game.getCurrentPlayer()
-        if player is self.game.getWhite():
-            colour = chess.board.WHITE
-            other  = chess.board.BLACK
+
+    def _updateHighlight(self, coord):
+        if self.moveNumber == -1:
+            player = self.game.getCurrentPlayer()
+            if player is self.game.getWhite():
+                colour = chess.board.WHITE
+            else:
+                colour = chess.board.BLACK
         else:
-            colour = chess.board.BLACK
-            other  = chess.board.WHITE
+            if self.moveNumber % 2 == 0:
+                colour = chess.board.WHITE
+            else:
+                colour = chess.board.BLACK
+
+        # Don't update if nothing has changed
+        params = (colour, self.moveNumber, self.selectedCoord, self.showHints)
+        if self.highlightParams == params:
+            return
+        self.highlightParams = params
 
         highlights = {}
+        if self.showHints:
+            for file in '12345678':
+                for rank in 'abcdefgh':
+                    c = rank + file
+                    highlight = None
+                    if self.game.board.squareUnderAttack(colour, c, moveNumber = self.moveNumber):
+                        highlight = scene.HIGHLIGHT_THREATENED
+                    elif coord is not None:
+                        move = self.game.board.testMove(colour, coord, c, moveNumber = self.moveNumber)
+                        if move is not None:
+                            if self.game.board.getPiece(c, self.moveNumber):
+                                highlight = scene.HIGHLIGHT_CAN_TAKE
+                            else:
+                                highlight = scene.HIGHLIGHT_CAN_MOVE
+
+                    if highlight is not None:
+                        highlights[c] = highlight
         if coord is not None:
             highlights[coord] = scene.HIGHLIGHT_SELECTED
-
-        for file in '12345678':
-            for rank in 'abcdefgh':
-                c = rank + file
-                highlight = None
-                if self.game.board.squareUnderAttack(colour, c):
-                    highlight = scene.HIGHLIGHT_THREATENED
-                elif self.game.board.squareUnderAttack(other, c):
-                    highlight = scene.HIGHLIGHT_CAN_TAKE
-                elif coord is not None:
-                    move = self.game.board.testMove(colour, coord, c)
-                    if move is not None:
-                        highlight = scene.HIGHLIGHT_CAN_MOVE
-
-                if highlight is not None:
-                    highlights[c] = highlight
 
         self.scene.controller.setBoardHighlight(highlights)
 
@@ -363,17 +416,20 @@ class View(ui.ViewFeedback):
 
         self.scene.controller.setBoardRotation(rotation, animate)
 
-    def pieceMoved(self):
+    def _pieceMoved(self, piece):
         """
         """
-        if self.scene.waitingPiece is None:
-            return
-        self.scene.waitingPiece = None
-        self.game.getCurrentPlayer().endMove()
+        self._redrawHighlight()
+        
+        # If waiting for this piece then end players turn
+        if piece is self.scene.waitingPiece:
+            self.scene.waitingPiece = None
+            self.game.getCurrentPlayer().endMove()
 
     def showMoveHints(self, showHints):
         """Called by ui.ViewFeedback"""
-        self.scene.showMoveHints(showHints)
+        self.showHints = showHints
+        self._redrawHighlight()
 
     def showBoardNumbering(self, showNumbering):
         """Called by ui.ViewFeedback"""
@@ -382,9 +438,13 @@ class View(ui.ViewFeedback):
     def updateScene(self, sceneClass):
         """
         """
+        if self.changedHighlight:
+            self._updateHighlight(self.selectedCoord)
+        self.changedHighlight = False
+        
         if isinstance(self.scene, sceneClass):
             return
-        self.pieceMoved()
+        self._pieceMoved(None)
         self.scene = sceneClass(self)
         self.reshape(self.width, self.height)
         self.setMoveNumber(self.moveNumber)
@@ -441,11 +501,11 @@ class View(ui.ViewFeedback):
         for (location, piece) in piecesByLocation.iteritems():
             self.scene.movePiece(piece, location, False, True)
 
-        self.updateHighlight(None)
-        
         # Can't wait for animation if not looking at the latest move
         if moveNumber != -1:
-            self.pieceMoved()
+            self._pieceMoved(piece)
+
+        self._redrawHighlight()
 
     def save(self, fileName = None):
         """Called by ui.ViewFeedback"""

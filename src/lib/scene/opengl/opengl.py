@@ -30,12 +30,16 @@ BOARD_SHININESS = 128.0
 
 BACKGROUND_COLOUR    = (0.53, 0.63, 0.75, 0.0)
 BORDER_COLOUR        = (0.72, 0.33, 0.0)
-BLACK_SQUARE_COLOURS = {None: (0.8, 0.8, 0.8),
-                        glchess.scene.HIGHLIGHT_SELECTED: (0.3, 1.0, 0.3),
-                        glchess.scene.HIGHLIGHT_CAN_MOVE: (0.3, 0.3, 1.0)}
-WHITE_SQUARE_COLOURS = {None: (1.0, 1.0, 1.0),
-                        glchess.scene.HIGHLIGHT_SELECTED: (0.2, 1.0, 0.0),
-                        glchess.scene.HIGHLIGHT_CAN_MOVE: (0.2, 0.2, 0.8)}
+BLACK_SQUARE_COLOURS = {None:                               (0.8, 0.8, 0.8),
+                        glchess.scene.HIGHLIGHT_SELECTED:   (0.3, 1.0, 0.3),
+                        glchess.scene.HIGHLIGHT_CAN_MOVE:   (0.3, 0.3, 1.0),
+                        glchess.scene.HIGHLIGHT_THREATENED: (1.0, 0.8, 0.8),
+                        glchess.scene.HIGHLIGHT_CAN_TAKE:   (1.0, 0.3, 0.3)}
+WHITE_SQUARE_COLOURS = {None:                               (1.0, 1.0, 1.0),
+                        glchess.scene.HIGHLIGHT_SELECTED:   (0.2, 1.0, 0.0),
+                        glchess.scene.HIGHLIGHT_CAN_MOVE:   (0.2, 0.2, 0.8),
+                        glchess.scene.HIGHLIGHT_THREATENED: (1.0, 0.8, 0.8),
+                        glchess.scene.HIGHLIGHT_CAN_TAKE:   (1.0, 0.2, 0.2)}
 
 class ChessPiece(glchess.scene.ChessPiece):
     """

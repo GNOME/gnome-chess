@@ -100,6 +100,9 @@ class ChessPlayer:
         'move' is the record for this move (ChessMove).
         """
         pass
+    
+    def onPlayerStartTurn(self, player):
+        pass
 
     def onGameEnded(self, game):
         """Called when a chess game has ended.
@@ -589,6 +592,10 @@ class ChessGame:
             self.__currentPlayer = self.__whitePlayer
         
         self.startLock()
+        
+        # Inform other players of the result
+        for player in self.__players:
+            player.onPlayerStartTurn(self.__currentPlayer)
 
         # Notify the next player they can move
         if self.__started is True:

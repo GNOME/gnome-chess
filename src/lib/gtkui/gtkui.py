@@ -747,11 +747,8 @@ class GtkUI(glchess.ui.UI):
         # Get the move number
         moveNumber = model.get_value(iter, 1)
         
-        string = 'Showing move number %d ' % moveNumber
         if moveNumber == len(model) - 1:
-            string += ' (latest)'
             moveNumber = -1
-        print string
 
         # Disable buttons when at the end
         haveMoves = len(model) > 1

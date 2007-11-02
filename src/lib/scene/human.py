@@ -79,13 +79,8 @@ class SceneHumanInput:
         if inputEnabled is False:
             self.__selectSquare(None)
         self.__inputEnabled = inputEnabled
-        self.updateHighlight(None)
+        self.selectSquare(None)
         
-    def showMoveHints(self, showHints):
-        """
-        """
-        pass # FIXME
-
     def select(self, x, y):
         """
         """
@@ -151,7 +146,7 @@ class SceneHumanInput:
         if self.__startSquare == coord:
             return
         self.__startSquare = coord
-        self.updateHighlight(coord)
+        self.selectSquare(coord)
     
     def __move(self, start, end):
         """Attempt to make a move.

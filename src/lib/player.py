@@ -7,10 +7,6 @@ import ai
 
 class MovePlayer(game.ChessPlayer):
     """This class provides a pseudo-player to watch for piece movements"""
-    # The game to control
-    __game = None
-    
-    waitForMoves = False
 
     def __init__(self, chessGame):
         """Constructor for a move player.
@@ -21,16 +17,6 @@ class MovePlayer(game.ChessPlayer):
         game.ChessPlayer.__init__(self, '@move')
         
     # Extended methods
-
-    def onPieceMoved(self, piece, start, end, delete):
-        """Called by chess.board.ChessPlayer"""
-        if self.__game.view.moveNumber != -1:
-            return
-        p = self.__game.view.scene.movePiece(piece, end, delete, self.__game.isStarted())
-
-        # If a player move notify when animation completes
-        if self.__game.isStarted() and self.__game.view.moveNumber == -1 and start is not None and start != end:
-            self.__game.view.scene.waitingPiece = p
         
     def onPlayerMoved(self, p, move):
         """Called by chess.board.ChessPlayer"""
