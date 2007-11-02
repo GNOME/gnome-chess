@@ -467,11 +467,30 @@ class GtkUI(glchess.ui.UI):
         
     def close(self):
         """Extends glchess.ui.UI"""
+        # Check if the current view needs saving
+        if self.view.feedback.needsSaving():
+            dialog = gtk.MessageDialog(flags = gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                                       type = gtk.MESSAGE_WARNING,
+                                       message_format = _('Save game before closing?'))
+            dialog.format_secondary_text("If you don't save the changes to this game will be permanently lost")
+            dialog.add_button(_('Close _without saving'), gtk.RESPONSE_OK)
+            dialog.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
+            dialog.add_button(gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT)
+            
+            response = dialog.run()
+            if response == gtk.RESPONSE_ACCEPT:
+                self.view.feedback.save()
+            elif response == gtk.RESPONSE_REJECT:
+                dialog.destroy()
+                return False
+        
         # Save the window size
         if self.width is not None:
             glchess.config.set('width', self.width)
         if self.height is not None:
             glchess.config.set('height', self.height)
+            
+        return True
 
     # Protected methods
     
@@ -967,31 +986,11 @@ class GtkUI(glchess.ui.UI):
 
     def _on_close_window(self, widget, event):
         """Gtk+ callback"""
-        self._quit()
+        self.feedback.onQuit()
         return True
         
     def _on_menu_quit(self, widget):
         """Gtk+ callback"""
-        self._quit()
-        
-    def _quit(self):
-        # Check if the current view needs saving
-        if self.view.feedback.needsSaving():
-            dialog = gtk.MessageDialog(flags = gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
-                                       type = gtk.MESSAGE_WARNING,
-                                       message_format = _('Save game before closing?'))
-            dialog.format_secondary_text("If you don't save the changes to this game will be permanently lost")
-            dialog.add_button(_('Close _without saving'), gtk.RESPONSE_OK)
-            dialog.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
-            dialog.add_button(gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT)
-            
-            response = dialog.run()
-            if response == gtk.RESPONSE_ACCEPT:
-                self.view.feedback.save()
-            elif response == gtk.RESPONSE_REJECT:
-                dialog.destroy()
-                return
-
         self.feedback.onQuit()
 
 if __name__ == '__main__':

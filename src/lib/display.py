@@ -538,7 +538,7 @@ class View(ui.ViewFeedback):
         
     def needsSaving(self):
         """Called by ui.ViewFeedback"""
-        return self.game.needsSaving and (self.game.fileName is not None)
+        return self.game.needsSaving
     
     def resign(self):
         """Called by ui.ViewFeedback"""

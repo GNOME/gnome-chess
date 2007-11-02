@@ -56,25 +56,12 @@ class PlayerTimer(ui.TimerFeedback):
 class ChessGame(game.ChessGame):
     """
     """
-    # Link back to the main application
-    application    = None
-    
-    # The name of the game
-    name           = None
-
     # The view watching this scene
     view           = None
     
     # The players in the game
     __movePlayer   = None
     __aiPlayers    = None
-    
-    # The file this is saved to
-    fileName       = None
-    needsSaving    = True
-    
-    # Date this game started
-    date           = '????.??.??'
 
     # Mapping between piece names and promotion types
     __promotionMapping = {'queen': chess.board.QUEEN, 'knight': chess.board.KNIGHT, 'bishop': chess.board.BISHOP, 'rook': chess.board.ROOK}
@@ -93,6 +80,10 @@ class ChessGame(game.ChessGame):
         self.application = application
         self.name = name
         self.__aiPlayers = []
+        
+        self.fileName    = None
+        self.inHistory   = False
+        self.needsSaving = True
         
         # Call parent constructor
         game.ChessGame.__init__(self)
@@ -452,6 +443,7 @@ class Application:
             
     def setGame(self, g):
         if self.__game is not None:
+            # FIXME: Ask user if not a history game
             self._save(self.__game)
         self.__game = g
             
@@ -656,14 +648,16 @@ class Application:
 
     def quit(self):
         """Quit glChess"""
-        # Notify the UI
-        self.ui.controller.close()
-
-        if self.__game is not None:
-            # Save the current game to the history
+        # Save the current game to the history
+        if self.__game is not None and self.__game.inHistory:
             self._save(self.__game)
-        
-            # Abort current game (will delete AIs etc)
+
+        # Notify the UI
+        if not self.ui.controller.close():
+            return
+
+        # Abort current game (will delete AIs etc)
+        if self.__game is not None:
             self.__game.abort()
 
         # Exit the application
@@ -677,12 +671,14 @@ class Application:
         pgnGame = chess.pgn.PGNGame()
         g.toPGN(pgnGame)
         self.history.save(pgnGame, g.fileName)
+        g.needsSaving = False
 
     def __autoload(self):
         """Restore games from the autosave file"""
         (pgnGame, fileName) = self.history.getUnfinishedGame()
         if pgnGame is not None:
-            self.addPGNGame(pgnGame, fileName)
+            g = self.addPGNGame(pgnGame, fileName)
+            g.inHistory = True
 
 if __name__ == '__main__':
     app = Application()
