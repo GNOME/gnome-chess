@@ -230,7 +230,7 @@ class GGZConnection(ggz.ClientFeedback):
 
     def onJoin(self, table, isSpectator, channel):
         self.dialog.controller.joinTable(table)
-        g = GGZChess(self.dialog.ui, channel)
+        g = GGZChess(self.dialog.game, channel)
         return g
 
     def onLeave(self, reason):
@@ -250,8 +250,8 @@ class GGZChess:
     """
     """
     
-    def __init__(self, ui, channel):
-        self.ui = ui
+    def __init__(self, game, channel):
+        self.game = game
         self.channel = channel
         self.protocol = ggz.Chess(self)
 
@@ -280,8 +280,6 @@ class GGZChess:
 
     def onStart(self):
         print ('onStart',)
-        g = self.ui.application.addNetworkGame('Network Game')
-        
         # Create remote player
         if self.seatNum == 0:
             name = self.blackName
@@ -290,15 +288,15 @@ class GGZChess:
         self.remotePlayer = game.ChessPlayer(name)
         self.remotePlayer.onPlayerMoved = self.onPlayerMoved # FIXME: HACK HACK HACK!
 
-        p = g.addHumanPlayer('Human')
+        p = self.game.addHumanPlayer('Human')
         if self.seatNum == 0:
-            g.setWhite(p)
-            g.setBlack(self.remotePlayer)
+            self.game.setWhite(p)
+            self.game.setBlack(self.remotePlayer)
         else:
-            g.setWhite(self.remotePlayer)
-            g.setBlack(p)
+            self.game.setWhite(self.remotePlayer)
+            self.game.setBlack(p)
 
-        g.start()
+        self.game.start()
 
     def onPlayerMoved(self, player, move):
         #FIXME: HACK HACK HACK!
@@ -349,14 +347,29 @@ class GGZNetworkDialog(ui.NetworkFeedback):
         print 'Entering room %s' % room.id
         self.decoder._performAction(self.decoder.client.enterRoom, (room,))
         
+    def _addGame(self):
+        self.game = self.ui.application.addGame('Network Game')
+        if self.game is None:
+            # FIXME: Notify user game aborted
+            return False
+        return True
+        
     def startTable(self):
         """Called by ui.NetworkFeedback"""
-        if self.decoder.room.game is not None:
-            print 'Starting table'
-            self.decoder.client.startTable(self.decoder.room.game.id, 'glChess test game (do not join!)', self.profile.login)
+        if self.decoder.room.game is None:
+            return
+        
+        if not self._addGame():
+            return
+        
+        print 'Starting table'
+        self.decoder.client.startTable(self.decoder.room.game.id, 'glChess test game (do not join!)', self.profile.login)
     
     def joinTable(self, table):
         """Called by ui.NetworkFeedback"""
+        if not self._addGame():
+            return
+        
         print 'Starting table %s' % table.id
         self.decoder.client.joinTable(table)
 

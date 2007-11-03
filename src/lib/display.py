@@ -530,16 +530,11 @@ class View(ui.ViewFeedback):
         f.close()
         
         self.game.fileName = fileName
-        self.game.needsSaving = False
         
     def getFileName(self):
         """Called by ui.ViewFeedback"""
         return self.game.fileName
         
-    def needsSaving(self):
-        """Called by ui.ViewFeedback"""
-        return self.game.needsSaving
-    
     def resign(self):
         """Called by ui.ViewFeedback"""
         p = self.game.getHumanPlayer()

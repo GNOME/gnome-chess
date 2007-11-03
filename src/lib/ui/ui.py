@@ -193,14 +193,7 @@ class ViewFeedback:
         Returns the file name (string) or None if game is not saved.
         """
         return None
-    
-    def needsSaving(self):
-        """Check if this game needs saving.
-        
-        Return True if it does otherwise False.
-        """
-        return False
-    
+
     def save(self, filename = None):
         """Save the game using this view.
         
@@ -369,6 +362,11 @@ class Log:
     def close(self):
         """
         """
+        pass
+        
+SAVE_YES   = 'SAVE_YES'
+SAVE_NO    = 'SAVE_NO'
+SAVE_ABORT = 'SAVE_ABORT'
 
 class UI:
     """Template class for a glChess UI.
@@ -454,6 +452,15 @@ class UI:
         """Report a network game as terminated.
         
         'game' is the game that has removed (as registered with addNetworkGame()).
+        """
+        pass
+    
+    def requestSave(self, title):
+        """Request a game is saved.
+        
+        'title' is the request to make to the user.
+        
+        Returns SAVE_YES, SAVE_NO or SAVE_ABORT.
         """
         pass
         

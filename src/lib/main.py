@@ -83,7 +83,7 @@ class ChessGame(game.ChessGame):
         
         self.fileName    = None
         self.inHistory   = False
-        self.needsSaving = True
+        self.needsSaving = False
         
         # Call parent constructor
         game.ChessGame.__init__(self)
@@ -278,6 +278,15 @@ class ChessGame(game.ChessGame):
         self.application._removeGame(self)
         self.view.controller.close()
         
+    def save(self):
+        """Save this game"""
+        if len(self.getMoves()) < 2:
+            return
+        pgnGame = chess.pgn.PGNGame()
+        self.toPGN(pgnGame)
+        self.application.history.save(pgnGame, self.fileName)
+        self.needsSaving = False
+        
 class UI(ui.UIFeedback):
     """
     """    
@@ -340,7 +349,9 @@ class UI(ui.UIFeedback):
             b = None
         else:
             b = (game.black.type, game.black.level)
-        g = self.application.addGame(game.name, game.white.name, w, game.black.name, b)
+        g = self.application.addLocalGame(game.name, game.white.name, w, game.black.name, b)
+        if g is None:
+            return
         self.application.logger.addLine('Starting game %s between %s (%s) and %s (%s). (%i moves)' % \
                                         (game.name,
                                          game.white.name, str(game.white.type),
@@ -441,18 +452,24 @@ class Application:
         if fd is not None:
             self.ioHandlers.pop(fd)
             
-    def setGame(self, g):
+    def addGame(self, name):
         if self.__game is not None:
-            # FIXME: Ask user if not a history game
-            self._save(self.__game)
-        self.__game = g
-            
-    def addNetworkGame(self, name):
-        g = ChessGame(self, name)
-        self.setGame(g)
-        return g
+            # Save the current game to the history
+            if self.__game.inHistory:
+                response = ui.SAVE_YES
+            elif self.__game.needsSaving:
+                response = self.ui.controller.requestSave('Save current game?')
+            else:
+                response = ui.SAVE_NO
 
-    def addGame(self, name, whiteName, whiteType, blackName, blackType):
+            if response is ui.SAVE_YES:
+                self.__game.save()
+            elif response is ui.SAVE_ABORT:
+                return None
+        self.__game = ChessGame(self, name)
+        return self.__game
+
+    def addLocalGame(self, name, whiteName, whiteType, blackName, blackType):
         """Add a chess game into glChess.
         
         'name' is the name of the game (string).
@@ -466,8 +483,10 @@ class Application:
         # FIXME: Replace arguments with player objects
         
         # Create the game
-        g = ChessGame(self, name)
-        self.setGame(g)
+        g = self.addGame(name)
+        if g is None:
+            return None
+        g.inHistory = True
 
         msg = ''
         if whiteType is None:
@@ -533,7 +552,9 @@ class Application:
             self.ui.controller.reportGameLoaded(gameProperties)
             return
 
-        newGame = self.addGame(gameProperties.name, gameProperties.white.name, w, gameProperties.black.name, b)
+        newGame = self.addLocalGame(gameProperties.name, gameProperties.white.name, w, gameProperties.black.name, b)
+        if newGame is None:
+            return
         newGame.date = pgnGame.getTag(chess.pgn.TAG_DATE)
         newGame.fileName = path
         if gameProperties.moves:
@@ -581,8 +602,8 @@ class Application:
         except ValuError:
             blackTime = duration
         newGame.setTimer(duration, whiteTime / 1000, blackTime / 1000)
-
-        # No change from when loaded
+        
+        # No need to save freshly loaded game
         newGame.needsSaving = False
 
         return newGame
@@ -648,30 +669,29 @@ class Application:
 
     def quit(self):
         """Quit glChess"""
-        # Save the current game to the history
-        if self.__game is not None and self.__game.inHistory:
-            self._save(self.__game)
+        if self.__game is not None:
+            if self.__game.inHistory:
+                response = ui.SAVE_YES
+            elif self.__game.needsSaving:
+                response = self.ui.controller.requestSave(_('Save game before closing?'))
+            else:
+                response = ui.SAVE_NO
+
+            if response == ui.SAVE_YES:
+                self.__game.save()
+            elif response == ui.SAVE_ABORT:
+                return
+
+            # Abort current game (will delete AIs etc)
+            self.__game.abort()
 
         # Notify the UI
-        if not self.ui.controller.close():
-            return
-
-        # Abort current game (will delete AIs etc)
-        if self.__game is not None:
-            self.__game.abort()
+        self.ui.controller.close()
 
         # Exit the application
         sys.exit()
         
     # Private methods
-    
-    def _save(self, g):
-        if len(g.getMoves()) < 2:
-            return
-        pgnGame = chess.pgn.PGNGame()
-        g.toPGN(pgnGame)
-        self.history.save(pgnGame, g.fileName)
-        g.needsSaving = False
 
     def __autoload(self):
         """Restore games from the autosave file"""
