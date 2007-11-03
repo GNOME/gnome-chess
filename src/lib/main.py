@@ -352,6 +352,7 @@ class UI(ui.UIFeedback):
         g = self.application.addLocalGame(game.name, game.white.name, w, game.black.name, b)
         if g is None:
             return
+        g.inHistory = True
         self.application.logger.addLine('Starting game %s between %s (%s) and %s (%s). (%i moves)' % \
                                         (game.name,
                                          game.white.name, str(game.white.type),
@@ -486,7 +487,6 @@ class Application:
         g = self.addGame(name)
         if g is None:
             return None
-        g.inHistory = True
 
         msg = ''
         if whiteType is None:
