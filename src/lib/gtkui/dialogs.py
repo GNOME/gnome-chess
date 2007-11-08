@@ -300,6 +300,8 @@ class GtkNewGameDialog:
         if self.__customName:
             name = self.__gui.get_widget('game_name_entry').get_text()
             if len(name) == 0:
+                # Next time the something changes generate a name
+                self.__customName = False
                 ready = False
 
         # Name the game based on the players
@@ -308,7 +310,7 @@ class GtkNewGameDialog:
             blackName = self.__getComboData(self.__gui.get_widget('black_type_combo'), 2)
             format = _('%(white)s versus %(black)s')
             self.__gui.get_widget('game_name_entry').set_text(format % {'white': whiteName, 'black': blackName})
-            
+
         # Disable difficulty for human players
         whiteType = self.__getComboData(self.__gui.get_widget('white_type_combo'), 0)
         blackType = self.__getComboData(self.__gui.get_widget('black_type_combo'), 0)
@@ -365,7 +367,8 @@ class GtkNewGameDialog:
         """Gtk+ callback"""
         if self.__checking:
             return
-        self.__customName = len(widget.get_text()) != 0
+        self.__customName = True
+        self.__testReady()
 
     def _on_time_changed(self, widget):
         """Gtk+ callback"""
