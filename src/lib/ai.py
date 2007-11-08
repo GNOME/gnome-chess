@@ -33,13 +33,11 @@ class Level:
 class Profile:
     """
     """
-    name       = ''
-    protocol   = ''
-    path       = ''
-    arguments  = None
-    profiles   = None
     
     def __init__(self):
+        self.name = ''
+        self.protocol = ''
+        self.path = ''
         self.executables = []
         self.arguments = []
         self.profiles = {}

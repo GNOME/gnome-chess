@@ -634,8 +634,9 @@ class Application:
         if nArgs == 1:
             self.__autoload()
         
-        # Load requested games
-        for path in sys.argv[1:]:
+        # Load requested game
+        elif nArgs == 2:
+            path = sys.argv[1]
             import time
             self.logger.addLine('loading...')
             s = time.time()
@@ -651,6 +652,18 @@ class Application:
                 if len(p) > 0:
                     g = self.addPGNGame(p[0], path)
             self.logger.addLine('loaded in %f seconds' % (time.time() - s))
+
+        else:
+            print _('Usage: %s [game]') % sys.argv[0]
+            sys.exit(0)
+
+        # Start default game if no game present
+        if self.__game is None:
+            black = (profiles[0].name, 'easy')
+            name = _('Human versus %s') % profiles[0].name
+            g = self.addLocalGame(name, _('White'), None, _('Black'), black)
+            g.inHistory = True
+            g.start()
 
         # Start UI (does not return)
         try:
