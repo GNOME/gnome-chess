@@ -25,15 +25,12 @@ class Option:
 class Level:
     """
     """
-    options = None
-    
     def __init__(self):
         self.options = []
 
 class Profile:
     """
-    """
-    
+    """   
     def __init__(self):
         self.name = ''
         self.protocol = ''
@@ -160,8 +157,6 @@ def loadProfiles():
 class CECPConnection(cecp.Connection):
     """
     """
-    player = None
-    
     def __init__(self, player):
         """
         """
@@ -189,8 +184,6 @@ class CECPConnection(cecp.Connection):
 class UCIConnection(uci.StateMachine):
     """
     """
-    player = None
-    
     def __init__(self, player):
         """
         """
@@ -212,21 +205,7 @@ class UCIConnection(uci.StateMachine):
 
 class Player(game.ChessPlayer):
     """
-    """    
-    # The profile we are using
-    __profile    = None
-    __level      = None
-        
-    # File object to engine stdin/out/err
-    __fromEngineFd = None
-    __toEngineFd   = None
-    
-    __connection = None
-    
-    moving       = False
-    
-    suppliedMove = None
-    
+    """
     def __init__(self, name, profile, level = 'normal'):
         """Constructor for an AI player.
         
@@ -236,6 +215,9 @@ class Player(game.ChessPlayer):
         """
         self.__profile = profile
         self.__level = level
+        
+        self.moving = False
+        self.suppliedMove = None
 
         game.ChessPlayer.__init__(self, name)
         

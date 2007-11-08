@@ -76,6 +76,6 @@ class AIPlayer(ai.Player):
         self.window = application.ui.controller.addLogWindow(profile.name, executable, description)
         ai.Player.__init__(self, name, profile, level)
         
-    def addText(self, text, style):
+    def logText(self, text, style):
         """Called by ai.Player"""
         self.window.addText(text, style)
