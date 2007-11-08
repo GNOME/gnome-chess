@@ -42,6 +42,7 @@ class MovePlayer(game.ChessPlayer):
 
     def onGameEnded(self, game):
         """Called by chess.board.ChessPlayer"""
+        self.__game.needsSaving = True
         self.__game.view.controller.endGame(game)
 
 class HumanPlayer(game.ChessPlayer):
