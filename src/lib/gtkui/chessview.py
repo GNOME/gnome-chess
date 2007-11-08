@@ -10,13 +10,27 @@ import glchess.chess
 import glchess.game
 
 # Optionally use OpenGL support
+openGLErrors = []
 try:
-    import gtk.gtkgl
     import OpenGL.GL
 except:
-    haveGLSupport = False
+    openGLErrors.append(_('No Python OpenGL support'))
+try:
+    import gtk.gtkgl
+    import gtk.gdkgl
+except:
+    openGLErrors.append(_('No Python GTKGLExt support'))
 else:
-    haveGLSupport = True
+    display_mode = (gtk.gdkgl.MODE_RGB | gtk.gdkgl.MODE_DEPTH | gtk.gdkgl.MODE_DOUBLE)
+    try:
+        glConfig = gtk.gdkgl.Config(mode = display_mode)
+    except gtk.gdkgl.NoMatches:
+        display_mode &= ~gtk.gdkgl.MODE_DOUBLE
+        try:
+            glConfig = gtk.gdkgl.Config(mode = display_mode)
+        except gtk.gdkgl.NoMatches:
+            openGLErrors(_('OpenGL libraries do not support required display mode'))
+haveGLSupport = len(openGLErrors) == 0
 
 __all__ = ['GtkView']
 
@@ -54,7 +68,7 @@ class GtkViewArea(gtk.DrawingArea):
         
         # Make openGL drawable
         if hasattr(gtk, 'gtkgl'):
-            gtk.gtkgl.widget_set_gl_capability(self, self.view.ui.glConfig)# FIXME:, share_list=glContext)
+            gtk.gtkgl.widget_set_gl_capability(self, glConfig)# FIXME:, share_list=glContext)
 
         # Connect signals
         self.connect('realize', self.__init)

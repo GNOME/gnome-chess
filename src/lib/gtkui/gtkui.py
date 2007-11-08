@@ -205,8 +205,6 @@ class GtkUI(glchess.ui.UI):
         self.__saveGameDialogs = {}
         self.__joinGameDialogs = []
         
-        self._initOpenGL()
-
         # Set the message panel to the tooltip style
         # (copied from Gedit)
         # In Gtk+ 2.11+ (I think) tip_window is now private so skip if it's not there (bug #459740)
@@ -271,20 +269,6 @@ class GtkUI(glchess.ui.UI):
                     'move_format', 'promotion_type', 'board_view',
                     'enable_networking']:
             glchess.config.watch(key, self.__applyConfig)
-            
-    def _initOpenGL(self):
-        # Configure openGL
-        try:
-            gtk.gdkgl
-        except AttributeError:
-            self.glConfig = None
-        else:
-            display_mode = (gtk.gdkgl.MODE_RGB | gtk.gdkgl.MODE_DEPTH | gtk.gdkgl.MODE_DOUBLE)
-            try:
-                self.glConfig = gtk.gdkgl.Config(mode = display_mode)
-            except gtk.gdkgl.NoMatches:
-                display_mode &= ~gtk.gdkgl.MODE_DOUBLE
-                self.glConfig = gtk.gdkgl.Config(mode = display_mode)
 
     # Public methods
     
@@ -591,7 +575,17 @@ class GtkUI(glchess.ui.UI):
         # Enable/disable OpenGL rendering
         elif name == 'show_3d':            
             if value and not chessview.haveGLSupport:
-                self._gui.get_widget('3d_support_dialog').show()
+                title = _('Unable to enable 3D mode')
+                errors = '\n'.join(chessview.openGLErrors)
+                description = _("""You are unable to play in 3D mode due to the following problems:
+%(errors)s
+
+Please contact your system administrator to resolve these problems, until then you will be able to play chess in 2D mode.""" % {'errors': errors})
+                dialog = gtk.MessageDialog(type = gtk.MESSAGE_WARNING, message_format = title)
+                dialog.format_secondary_text(description)
+                dialog.add_button(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
+                dialog.run()
+                dialog.destroy()
                 glchess.config.set('show_3d', False)
                 value = False
             self.__renderGL = value
@@ -666,7 +660,7 @@ class GtkUI(glchess.ui.UI):
         widget = self._gui.get_widget(name)
         assert(widget is not None), 'Unable to find widget: %s' % name
         return widget
-    
+
     def _on_white_time_paint(self, widget, event):
         """Gtk+ callback"""
         self.__drawTime(self.whiteTimeString, widget, (0.0, 0.0, 0.0), (1.0, 1.0, 1.0))

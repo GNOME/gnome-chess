@@ -2,6 +2,9 @@
 
 	* lib/main.py: If no game on startup start default game of human vs AI (Bug #446950)
         * lib/gtkui/dialogs.py: Fix overzealous game name autogeneration (Bug #479445)
+        * lib/gtkui/chessview.py: Don't allow 3D mode if cannot get a valid OpenGL configuration (Bug #491035)
+        * glade/glchess.glade, lib/gtkui/gtkui.py: Reworked "No 3D" dialog to list reasons why 3D mode cannot
+          be entered.
 
 2007-11-02  Robert Ancell  <robert.ancell@gmail.com>
 
