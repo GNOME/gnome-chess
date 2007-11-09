@@ -566,7 +566,7 @@ class Application:
 
         newGame = self.addLocalGame(gameProperties.name, gameProperties.white.name, w, gameProperties.black.name, b)
         if newGame is None:
-            return
+            return None
         newGame.date = pgnGame.getTag(chess.pgn.TAG_DATE)
         newGame.fileName = path
         if gameProperties.moves:
@@ -723,7 +723,8 @@ class Application:
         (pgnGame, fileName) = self.history.getUnfinishedGame()
         if pgnGame is not None:
             g = self.addPGNGame(pgnGame, fileName)
-            g.inHistory = True
+            if g is not None:
+                g.inHistory = True
 
 if __name__ == '__main__':
     app = Application()
