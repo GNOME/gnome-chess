@@ -277,7 +277,19 @@ class ChessGame(game.ChessGame):
         # Remove the game from the UI
         self.application._removeGame(self)
         self.view.controller.close()
-        
+
+    def setNeedsSaving(self, needsSaving):
+        """
+        """
+        # Autosaved games don't need saving
+        if self.inHistory:
+            needsSaving = False
+
+        if self.needsSaving == needsSaving:
+            return
+        self.needsSaving = needsSaving
+        self.view.controller.setNeedsSaving(needsSaving)
+
     def save(self):
         """Save this game"""
         if len(self.getMoves()) < 2:
@@ -285,7 +297,7 @@ class ChessGame(game.ChessGame):
         pgnGame = chess.pgn.PGNGame()
         self.toPGN(pgnGame)
         self.application.history.save(pgnGame, self.fileName)
-        self.needsSaving = False
+        self.setNeedsSaving(False)
         
 class UI(ui.UIFeedback):
     """
@@ -604,7 +616,7 @@ class Application:
         newGame.setTimer(duration, whiteTime / 1000, blackTime / 1000)
         
         # No need to save freshly loaded game
-        newGame.needsSaving = False
+        newGame.setNeedsSaving(False)
 
         return newGame
 

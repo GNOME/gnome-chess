@@ -33,30 +33,30 @@ class NetworkFeedback:
     """Template class for feedback from a network game selector"""
     
     def setProfile(self, profile):
-        pass
+        assert(False)
     
     def joinRoom(self, room):
-        pass
+        assert(False)
     
     def joinTable(self, table):
-        pass
+        assert(False)
     
 class NetworkController:
     """"""
     
     def setVisible(self, isVisible):
-        pass
+        assert(False)
     
     def addProfile(self, profile, name):
-        pass
+        assert(False)
     
     def setBusy(self, isBusy):
-        pass
+        assert(False)
     
     def addChat(self, user, channel, text):
         """Add chat 
         """
-        pass
+        assert(False)
     
     def addRoom(self, index, name, description, room, protocol):
         """Add a game room.
@@ -67,31 +67,31 @@ class NetworkController:
         'room' is the room to add (user-defined)
         'protocol' ???
         """
-        pass
+        assert(False)
 
     def removeRoom(self, room):
-        pass
+        assert(False)
     
     def clearRooms(self):
-        pass
+        assert(False)
     
     def addTable(self, name, table):
-        pass
+        assert(False)
 
     def removeTable(self, table):
-        pass
+        assert(False)
     
     def clearTables(self):
-        pass
+        assert(False)
     
     def addPlayer(self, player, name, icon):
-        pass
+        assert(False)
     
     def removePlayer(self, player):
-        pass
+        assert(False)
     
     def clearPlayers(self):
-        pass
+        assert(False)
 
     def addAdvert(self, title, rating, advert):
         """Add a game advert.
@@ -100,21 +100,21 @@ class NetworkController:
         'rating' is the rating for this game (string).
         'advert' is an object to key this advert with (user-defined).
         """
-        pass
+        assert(False)
         
     def removeAdvert(self, advert):
         """Remove a game advert.
         
         'advert' is an object that was passed into addAdvert().
         """
-        pass
+        assert(False)
     
     def requestGame(self, gameName):
         """Request this player joins a game.
         
         'gameName' is the name of the game this player requested to join (string).
         """
-        pass
+        assert(False)
     
 class ViewFeedback:
     """Template class for feedback from a view object"""
@@ -124,7 +124,7 @@ class ViewFeedback:
         
         'showHints' sets if move hints should be shown (boolean).
         """
-        pass
+        assert(False)
     
     def saveGame(self, path):
         """Called when the user requests the game in this view to be saved.
@@ -133,12 +133,11 @@ class ViewFeedback:
         
         Returns the error that occured (string) or None if successful.
         """
-        print 'Save game to ' + path
-        return None
+        assert(False)
     
     def renderGL(self):
         """Render the scene using OpenGL"""
-        pass
+        assert(False)
     
     def renderCairoStatic(self, context):
         """Render the static elements of the scene.
@@ -147,14 +146,14 @@ class ViewFeedback:
         
         Return False if the static elements have not changed otherwise True.
         """
-        return False
+        assert(False)
     
     def renderCairoDynamic(self, context):
         """Render the dynamic elements of the scene.
         
         'context' is the cairo context to modify.
         """
-        pass
+        assert(False)
     
     def reshape(self, width, height):
         """This method is called when the UI resizes the scene.
@@ -162,7 +161,7 @@ class ViewFeedback:
         'width' is the new width of the scene in pixels (integer).
         'height' is the new height of the scene in pixels (integer).
         """
-        pass
+        assert(False)
     
     def select(self, x, y):
         """This method is called when the UI selects a position on the scene.
@@ -170,7 +169,7 @@ class ViewFeedback:
         'x' is the horizontal pixel location when the user has selected (integer, 0 = left pixel).
         'y' is the vertical pixel location when the user has selected (integer, 0 = top pixel).
         """
-        pass
+        assert(False)
     
     def deselect(self, x, y):
         """This method is called when the UI deselects a position on the scene.
@@ -178,50 +177,64 @@ class ViewFeedback:
         'x' is the horizontal pixel location when the user has selected (integer, 0 = left pixel).
         'y' is the vertical pixel location when the user has selected (integer, 0 = top pixel).
         """
-        pass
+        assert(False)
     
     def setMoveNumber(self, moveNumber):
         """This method is called when the UI changes the move to render.
         
         'moveNumber' is the moveNumber to watch (integer, negative numbers index from latest move).
         """
-        pass
+        assert(False)
 
     def getFileName(self):
         """Get the file name to save to.
         
         Returns the file name (string) or None if game is not saved.
         """
-        return None
+        assert(False)
 
     def save(self, filename = None):
         """Save the game using this view.
         
         'filename' is the file to save to (string or None to save to last filename).
         """
-        pass
+        assert(False)
     
     def regsign(self):
         """Indicates the human player wants to resign"""
-        pass
+        assert(False)
     
     def claimDraw(self):
         """Indicates the human player wants to claim a draw"""
-        pass
+        assert(False)
 
 class ViewController:
     """Template class for methods to control a view"""
     
+    def setTitle(self, title):
+        """Set the title for this view.
+        
+        'title' is the title to use (string).
+        """
+        assert(False)
+        
+    def setNeedsSaving(self, needsSaving):
+        """Mark if this view needs saving.
+        
+        'needsSaving' True if this view needs saving.
+        """
+        assert(False)
+
     def addMove(self, move):
         """Register a move with this view.
         
-        'move' TODO
+        'move' is the move made (string).
         """
-        pass
+        assert(False)
     
     def render(self):
         """Request this view is redrawn"""
-        pass
+        assert(False)
     
     def setWhiteTimer(self, total, remaining):
         """Set the time remaining for the white player.
@@ -229,7 +242,7 @@ class ViewController:
         'total' FIXME TODO
         'remaining' FIXME TODO
         """
-        pass
+        assert(False)
 
     def setBlackTimer(self, total, remaining):
         """Set the time remaining for the black player.
@@ -237,14 +250,14 @@ class ViewController:
         'total' FIXME TODO
         'remaining' FIXME TODO
         """
-        pass
+        assert(False)
 
     def setAttention(self, requiresAttention):
         """Get the users attention for this view.
         
         'requiresAttention' is a flag to show if this view requires attention.
         """
-        pass
+        assert(False)
 
 class UIFeedback:
     """Template class for feedback from a UI"""
@@ -256,7 +269,7 @@ class UIFeedback:
         
         Return True if animation should continue otherwise False
         """
-        return False
+        assert(False)
 
     def onReadFileDescriptor(self, fd):
         """Called when a file descriptor is able to be read.
@@ -265,7 +278,7 @@ class UIFeedback:
         
         Return False when finished otherwise True.
         """
-        return False
+        assert(False)
 
     def onWriteFileDescriptor(self, fd):
         """Called when a file descriptor can be written to.
@@ -281,7 +294,7 @@ class UIFeedback:
         
         'game' is the game propertied (Game).
         """
-        pass
+        assert(False)
     
     def loadGame(self, path):
         """Called when a game is loaded.
@@ -290,17 +303,16 @@ class UIFeedback:
         
         Returns the error that occured (string) or None if successful.
         """
-        print 'Loading game ' + path
-        return None
+        assert(False)
 
     def onNewNetworkGame(self):
         """
         """
-        pass
+        assert(False)
 
     def onQuit(self):
         """Called when the user quits the program"""
-        pass
+        assert(False)
     
 class TimerFeedback:
     """
@@ -311,11 +323,11 @@ class TimerFeedback:
         
         'time' is the boundary time in seconds.
         """
-        pass
+        assert(False)
     
     def onExpired(self):
         """Called when this timer expires"""
-        pass
+        assert(False)
     
 class Timer:
     """
@@ -326,19 +338,19 @@ class Timer:
         
         returns the amount of time in milliseconds (int)
         """
-        pass
+        assert(False)
        
     def pause(self):
         """Stop this timer from counting down"""
-        pass
+        assert(False)
     
     def run(self):
         """Continue counting down"""
-        pass
+        assert(False)
     
     def delete(self):
         """Delete this timer"""
-        pass
+        assert(False)
     
 class Log:
     """
@@ -347,22 +359,22 @@ class Log:
     def addBinary(self, data, style = None):
         """
         """
-        pass
+        assert(False)
 
     def addText(self, text, style = None):
         """
         """
-        pass
+        assert(False)
     
     def addLine(self, text, style = None):
         """
         """
-        pass
+        assert(False)
 
     def close(self):
         """
         """
-        pass
+        assert(False)
         
 SAVE_YES   = 'SAVE_YES'
 SAVE_NO    = 'SAVE_NO'
@@ -377,14 +389,14 @@ class UI:
         
         'feedback' is the feedback object for this UI to report with (extends UIFeedback).
         """
-        pass
+        assert(False)
     
     def addLogWindow(self, title, executable, description):
-        pass
+        assert(False)
     
     def startAnimation(self):
         """Start the animation callback"""
-        pass
+        assert(False)
     
     def watchFileDescriptor(self, fd):
         """Notify when a file descriptor is able to be read.
@@ -393,7 +405,7 @@ class UI:
         
         When data is available onReadFileDescriptor() is called.
         """
-        pass
+        assert(False)
     
     def writeFileDescriptor(self, fd):
         """Notify when a file descriptor can be written to.
@@ -402,7 +414,7 @@ class UI:
         
         When data can be written onWriteFileDescriptor is called.
         """
-        pass
+        assert(False)
     
     def addTimer(self, feedback, duration):
         """Add a timer.
@@ -412,7 +424,7 @@ class UI:
         
         returns a timer object to control this timer (extends Timer).
         """
-        return None
+        assert(False)
 
     def setView(self, title, feedback, isPlayable = True):
         """Set the view to display.
@@ -423,7 +435,7 @@ class UI:
         
         Returns a view controller object (extends ViewController).
         """
-        return None
+        assert(False)
     
     def addNetworkDialog(self, feedback):
         """
@@ -431,14 +443,14 @@ class UI:
         
         Returns a network controller object (excends NetworkController).
         """
-        return None
+        assert(False)
     
     def reportGameLoaded(self, game):
         """Report a loaded game as required by onGameLoad().
         
         'game' is the game properties (Game).
         """
-        pass
+        assert(False)
     
     def addNetworkGame(self, name, game):
         """Report a detected network game.
@@ -446,14 +458,14 @@ class UI:
         'name' is the name of the network game (string).
         'game' is the game detected (user-defined).
         """
-        pass
+        assert(False)
     
     def removeNetworkGame(self, game):
         """Report a network game as terminated.
         
         'game' is the game that has removed (as registered with addNetworkGame()).
         """
-        pass
+        assert(False)
     
     def requestSave(self, title):
         """Request a game is saved.
@@ -462,8 +474,8 @@ class UI:
         
         Returns SAVE_YES, SAVE_NO or SAVE_ABORT.
         """
-        pass
+        assert(False)
         
     def close(self):
         """Report the application has ended"""
-        pass
+        assert(False)

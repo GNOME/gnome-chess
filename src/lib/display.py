@@ -305,6 +305,10 @@ class Splashscreen(ui.ViewFeedback):
     def claimDraw(self):
         """Called by ui.ViewFeedback"""
         pass
+    
+    def setMoveNumber(self, moveNumber):
+        """Called by ui.ViewFeedback"""
+        pass
 
 class View(ui.ViewFeedback):
     """

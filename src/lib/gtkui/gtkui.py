@@ -337,7 +337,8 @@ class GtkUI(glchess.ui.UI):
         """Extends ui.UI"""
         moveFormat = glchess.config.get('move_format')
         showComments = glchess.config.get('show_comments')
-        self.view = chessview.GtkView(self, title, feedback, moveFormat = moveFormat, showComments = showComments)
+        self.view = chessview.GtkView(self, feedback, moveFormat = moveFormat, showComments = showComments)
+        self.view.setTitle(title)
         self.view.isPlayable = isPlayable
         self.view.viewWidget.setRenderGL(self.__renderGL)
         viewport = self.__getWidget('game_viewport')
@@ -345,12 +346,6 @@ class GtkUI(glchess.ui.UI):
         if child is not None:
             viewport.remove(child)
         viewport.add(self.view.widget)
-        
-        # Set the window title to the name of the game
-        title = _('Chess')
-        if self.view is not None and len(self.view.title) > 0:
-            title += " - %s" % self.view.title
-        self._gui.get_widget('glchess_app').set_title(title)
 
         # Set toolbar/menu buttons to state for this game
         self._updateViewButtons()
@@ -360,6 +355,22 @@ class GtkUI(glchess.ui.UI):
             self.setTimers(self.view.whiteTime, self.view.blackTime)
 
         return self.view
+
+    def updateTitle(self):
+        """
+        """
+        # Set the window title to the name of the game
+        if self.view is not None and len(self.view.title) > 0:
+            if self.view.needsSaving:
+                # Translators: This is the window title when playing a game that needs saving
+                title = _('Chess - *%(game_name)s') % {'game_name': self.view.title}
+            else:
+                # Translators: This is the window title when playing a game that is saved
+                title = _('Chess - %(game_name)s') % {'game_name': self.view.title}
+        else:
+            # Translators: This is the window title when not playing a game
+            title = _('Chess')            
+        self._gui.get_widget('glchess_app').set_title(title)
 
     def addLogWindow(self, title, executable, description):
         """

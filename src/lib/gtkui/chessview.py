@@ -211,50 +211,31 @@ class GtkViewArea(gtk.DrawingArea):
 class GtkView(glchess.ui.ViewController):
     """
     """
-    # The UI this view belongs to
-    ui               = None
-    
-    # The title of this view
-    title            = None
-    
-    # The widget to render the scene to
-    widget           = None
-    
-    # A Gtk+ tree model to store the move history
-    moveModel        = None
-    selectedMove     = -1
-    
-    showComments     = False
-    editingComment   = False
-    
-    gameResult       = None
-    
-    # Flag to show if requesting attention
-    requireAttention = False
-
-    # The format to report moves in
-    moveFormat       = 'human'
-
-    whiteTime        = None
-    blackTime        = None
-    
-    def __init__(self, ui, title, feedback, moveFormat = 'human', showComments = False):
+    def __init__(self, ui, feedback, moveFormat = 'human', showComments = False):
         """Constructor for a view.
         
         'feedback' is the feedback object for this view (extends ui.ViewFeedback).
         'moveFormat' is the format name to display moves in (string).
         """
         self.ui = ui
-        self.title = title
         self.feedback = feedback
         self.moveFormat = moveFormat
         self.showComments = showComments
+        self.editingComment = False
         self.hasFile = False
+        self.selectedMove = -1
+        self.requireAttention = False
+        self.gameResult = None
+        self.whiteTime = None
+        self.blackTime = None
+        self.title = ''
+        self.needsSaving = False
         
         # The GTK+ elements
         self.gui = gtkui.loadGladeFile('chess_view.glade', 'chess_view')
         self.gui.signal_autoconnect(self)
         self.widget = self.gui.get_widget('chess_view')
+
         self.viewWidget = GtkViewArea(self)
         self.gui.get_widget('view_container').add(self.viewWidget)
 
@@ -265,7 +246,7 @@ class GtkView(glchess.ui.ViewController):
         iter = model.append()
         model.set(iter, 0, None, 1, 0, 2, _('Game Start'))
         self.moveModel = model
-        
+
         # Tabs are enabled to make editing the UI easier
         self.gui.get_widget('comment_notebook').set_show_tabs(False)
         
@@ -274,41 +255,7 @@ class GtkView(glchess.ui.ViewController):
         self.widget.show()
         self.viewWidget.show_all()
         
-    def _on_comment_edit_button_toggled(self, widget):
-        """Gtk+ callback"""
-        label = self.gui.get_widget('panel_description_label')
-        entry = self.gui.get_widget('comment_text')
-        buffer = entry.get_buffer()
-        
-        move = self._getCurrentMove()
-        
-        # FIXME
-        if move is None:
-            return
-        
-        self.editingComment = widget.get_active()
-        if self.editingComment:
-            buffer.set_text(move.comment)
-            entry.grab_focus()
-            page = 1
-        else:
-            comment = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter())
-            
-            # FIXME: This should be notified so the game is considered modified for saving purposes
-            # self.feedback.setComment(move, comment)
-
-            move.comment = comment
-            label.set_text(comment)
-            buffer.set_text('')
-            page = 0
-        self.gui.get_widget('comment_notebook').set_current_page(page)
-
-    def _getCurrentMove(self):
-        if self.selectedMove == -1:
-            iter = self.moveModel.get_iter_from_string(str(len(self.moveModel) - 1))
-        else:
-            iter = self.moveModel.get_iter_from_string(str(self.selectedMove))
-        return self.moveModel.get_value(iter, 0)
+        self.ui.updateTitle()
 
     def updateInfoPanel(self):
         """
@@ -375,6 +322,20 @@ class GtkView(glchess.ui.ViewController):
     
     # Extended methods
     
+    def setTitle(self, title):
+        """Extends glchess.ui.ViewController"""
+        self.title = title
+        if self.ui.view is self:
+            self.ui.updateTitle()
+
+    def setNeedsSaving(self, needsSaving):
+        """Extends glchess.ui.ViewController"""
+        if self.needsSaving == needsSaving:
+            return
+        self.needsSaving = needsSaving
+        if self.ui.view is self:
+            self.ui.updateTitle()
+
     def render(self):
         """Extends glchess.ui.ViewController"""
         self.viewWidget.redraw()
@@ -537,6 +498,13 @@ class GtkView(glchess.ui.ViewController):
         self.ui._removeView(self)
     
     # Public methods
+    
+    def _getCurrentMove(self):
+        if self.selectedMove == -1:
+            iter = self.moveModel.get_iter_from_string(str(len(self.moveModel) - 1))
+        else:
+            iter = self.moveModel.get_iter_from_string(str(self.selectedMove))
+        return self.moveModel.get_value(iter, 0)
 
     def _getModel(self):
         """
@@ -552,3 +520,34 @@ class GtkView(glchess.ui.ViewController):
         if self.feedback is not None:
             self.feedback.setMoveNumber(moveNumber)
         self.updateInfoPanel()
+
+    # Callbacks
+    
+    def _on_comment_edit_button_toggled(self, widget):
+        """Gtk+ callback"""
+        label = self.gui.get_widget('panel_description_label')
+        entry = self.gui.get_widget('comment_text')
+        buffer = entry.get_buffer()
+        
+        move = self._getCurrentMove()
+        
+        # FIXME
+        if move is None:
+            return
+        
+        self.editingComment = widget.get_active()
+        if self.editingComment:
+            buffer.set_text(move.comment)
+            entry.grab_focus()
+            page = 1
+        else:
+            comment = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter())
+            
+            # FIXME: This should be notified so the game is considered modified for saving purposes
+            # self.feedback.setComment(move, comment)
+
+            move.comment = comment
+            label.set_text(comment)
+            buffer.set_text('')
+            page = 0
+        self.gui.get_widget('comment_notebook').set_current_page(page)

@@ -20,7 +20,7 @@ class MovePlayer(game.ChessPlayer):
         
     def onPlayerMoved(self, p, move):
         """Called by chess.board.ChessPlayer"""
-        self.__game.needsSaving = True
+        self.__game.setNeedsSaving(True)
 
         # Update clocks
         if p is self.__game.getWhite():
@@ -42,7 +42,7 @@ class MovePlayer(game.ChessPlayer):
 
     def onGameEnded(self, game):
         """Called by chess.board.ChessPlayer"""
-        self.__game.needsSaving = True
+        self.__game.setNeedsSaving(True)
         self.__game.view.controller.endGame(game)
 
 class HumanPlayer(game.ChessPlayer):
