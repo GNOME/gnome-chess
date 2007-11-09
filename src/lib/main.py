@@ -658,7 +658,7 @@ class Application:
             sys.exit(0)
 
         # Start default game if no game present
-        if self.__game is None:
+        if self.__game is None and len(profiles) > 0:
             black = (profiles[0].name, 'easy')
             name = _('Human versus %s') % profiles[0].name
             g = self.addLocalGame(name, _('White'), None, _('Black'), black)
