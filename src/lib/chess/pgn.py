@@ -313,7 +313,7 @@ class PGNGame:
     """
 
     # The seven tag roster in the required order (REFERENCE)
-    __strTags = [TAG_EVENT, TAG_SITE, TAG_DATE, TAG_ROUND, TAG_WHITE, TAG_BLACK, TAG_RESULT]
+    _strTags = [TAG_EVENT, TAG_SITE, TAG_DATE, TAG_ROUND, TAG_WHITE, TAG_BLACK, TAG_RESULT]
 
     def __init__(self):
         # Set the default STR tags
@@ -331,12 +331,12 @@ class PGNGame:
         lines = []
         
         # Get the names of the non STR tags
-        otherTags = list(set(self.tagsByName).difference(self.strTags))
+        otherTags = list(set(self.tagsByName).difference(self._strTags))
 
         # Write seven tag roster and the additional tags
-        for name in self.strTags + otherTags:
+        for name in self._strTags + otherTags:
             value = self.tagsByName[name]
-            lines.append('['+ name + ' ' + self.makePGNString(value) + ']')
+            lines.append('['+ name + ' ' + self._makePGNString(value) + ']')
 
         lines.append('')
         
@@ -390,12 +390,12 @@ class PGNGame:
         # If no value delete
         if value is None:
             # If is a STR tag throw an exception
-            if self.strTags.has_key(name):
+            if self._strTags.has_key(name):
                 raise Error('%s is a PGN STR tag and cannot be deleted' % name)
             
             # Delete the tag
             try:
-                self.strTags.pop(name)
+                self._strTags.pop(name)
             except KeyError:
                 pass
         
@@ -445,7 +445,7 @@ class PGNGame:
         return string
     
     # Private methods    
-    def __makePGNString(self, string):
+    def _makePGNString(self, string):
         """Make a PGN string.
         
         'string' is the string to convert to a PGN string (string).
@@ -547,7 +547,6 @@ class PGN:
         # Convert the file into PGN tokens
         f = file(fileName, 'r')
         p = PGNParser(maxGames)
-        gameCount = 0
         lineNumber = 0
         try:
             for line in f.readlines():
