@@ -220,6 +220,9 @@ class GtkUI(glchess.ui.UI):
         self._gui = loadGladeFile('glchess.glade')
         self._gui.signal_autoconnect(self)
         
+        # Workaround as Glade 2 always overrides the system style for toolbars
+        self.__getWidget('toolbar').unset_style()
+        
         # Create mappings between the promotion radio buttons and the promotion types
         self.__promotionTypeByRadio = {}
         self.__promotionRadioByType = {}
