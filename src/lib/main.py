@@ -670,9 +670,13 @@ class Application:
             sys.exit(0)
 
         # Start default game if no game present
-        if self.__game is None and len(profiles) > 0:
-            black = (profiles[0].name, 'easy')
-            name = _('Human versus %s') % profiles[0].name
+        if self.__game is None and len(self.__aiProfiles) > 0:
+            for p in profiles:
+                if self.__aiProfiles.has_key(p.name):
+                    aiName = p.name
+                    break
+            black = (aiName, 'easy')
+            name = _('Human versus %s') % aiName
             g = self.addLocalGame(name, _('White'), None, _('Black'), black)
             g.inHistory = True
             g.start()
