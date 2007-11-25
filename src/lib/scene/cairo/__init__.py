@@ -5,6 +5,8 @@ import glchess.scene
 
 import pieces
 
+from gettext import gettext as _
+
 BACKGROUND_COLOUR    = (0.53, 0.63, 0.75)
 BORDER_COLOUR        = (0.808, 0.361, 0.0)#(0.757, 0.490, 0.067)#(0.36, 0.21, 0.05)
 NUMBERING_COLOUR     = (249.0/255, 172.0/255, 109.0/255)#(249.0/255, 132.0/255, 38.0/255)
@@ -374,8 +376,10 @@ class Scene(glchess.scene.Scene):
             context.set_source_rgb(*NUMBERING_COLOUR)
             context.set_font_size(self.squareSize * 0.4)
             context.select_font_face("sans-serif", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
-            files = 'abcdefgh'
-            ranks = '87654321'
+	    # Chess board columns (files) label marked for translation. 
+            files = [_('a'), _('b'), _('c'), _('d'), _('e'), _('f'), _('g'), _('h')]
+	    # Chess board rows (ranks) label marked for translation.
+            ranks = [_('8'), _('7'), _('6'), _('5'), _('4'), _('3'), _('2'), _('1')]
             def drawCenteredText(x, y, text):
                 (_, _, w, h, _, _) = context.text_extents('b')
                 matrix = context.get_matrix()
