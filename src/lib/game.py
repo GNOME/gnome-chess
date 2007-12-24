@@ -523,6 +523,10 @@ class ChessGame:
         sanMove = self.__sanConverter.encodeSAN(start, end, promotionType)
         canMove = chess.lan.encode(colour, start, end, promotionType = promotion)
         moveResult = self.board.movePiece(colour, start, end, promotionType)
+        
+        # If for some reason we couldn't make the SAN move the use the CAN move instead
+        if sanMove is None:
+            sanMove = canMove
 
         if moveResult is None:
             print 'Illegal move: ' + str(move)
