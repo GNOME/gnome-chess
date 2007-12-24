@@ -40,8 +40,6 @@ class ChessPiece(glchess.scene.ChessPiece):
     # Delete once moved to location
     delete      = False
     
-    deleted     = False
-    
     def __init__(self, scene, name, coord, feedback):
         """
         """
@@ -61,7 +59,6 @@ class ChessPiece(glchess.scene.ChessPiece):
 
     def move(self, coord, delete, animate = True):
         """Extends glchess.scene.ChessPiece"""
-        assert(self.deleted is False)
         self.coord = coord
         self.delete = delete
         self.targetPos = self.__coordToLocation(coord)
@@ -74,15 +71,15 @@ class ChessPiece(glchess.scene.ChessPiece):
         
         # If already there then check for deletion
         if self.pos == self.targetPos:
+            self.targetPos = None
             if delete:
-                self.deleted = True
                 self.scene.pieces.remove(self)
                 self.feedback.onDeleted()
             if redraw:
                 self.scene.redrawStatic = True
                 self.scene.feedback.onRedraw()
             return
-        
+
         # If not currently moving then start
         if not self.moving:
             self.scene._animationQueue.append(self)
@@ -101,19 +98,12 @@ class ChessPiece(glchess.scene.ChessPiece):
         
         Return True if the piece has moved otherwise False.
         """
-        # FIXME
-        if self.deleted:
-            return False
-        assert(self.deleted is False)
-        #end FIXME
-        
         if self.targetPos is None:
             return False
         
         if self.pos == self.targetPos:
             self.targetPos = None
             if self.delete:
-                self.deleted = True
                 self.scene.pieces.remove(self)
                 self.feedback.onDeleted()
             return False

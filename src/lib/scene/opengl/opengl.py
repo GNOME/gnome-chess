@@ -81,6 +81,7 @@ class ChessPiece(glchess.scene.ChessPiece):
         
         # If already there then delete
         if self.pos == self.targetPos:
+            self.targetPos = None
             if delete:
                 self.scene.pieces.remove(self)
                 self.feedback.onDeleted()
@@ -223,14 +224,6 @@ class Scene(glchess.scene.Scene):
         self.feedback.onRedraw()
         
         return piece
-    
-    def removeChessPiece(self, piece):
-        """Remove chess piece.
-        
-        'piece' is a chess piece instance as returned by addChessPiece().
-        """
-        self.pieces.remove(piece)
-        self.feedback.onRedraw()
 
     def setBoardHighlight(self, coords):
         """Highlight a square on the board.
