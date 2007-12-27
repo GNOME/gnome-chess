@@ -23,6 +23,7 @@ RULE_THREE_FOLD_REPETITION = 'THREE_FOLD_REPETITION'
 RULE_INSUFFICIENT_MATERIAL = 'INSUFFICIENT_MATERIAL'
 RULE_RESIGN                = 'RESIGN'
 RULE_DEATH                 = 'DEATH'
+RULE_AGREEMENT             = 'AGREEMENT'
 
 class ChessMove:
     """
@@ -176,7 +177,7 @@ class ChessPlayer:
         
     def claimDraw(self):
         """Claim a draw"""
-        self.__game.claimDraw(self)
+        self.__game.claimDraw()
 
     def outOfTime(self):
         """Report this players timer has expired"""
@@ -237,36 +238,36 @@ class ChessGameSANConverter(chess.san.SANConverter):
     for (a, b) in __typeToSAN.iteritems():
         __sanToType[b] = a
         
-    __board = None
-        
-    def __init__(self, board):
-        self.__board = board
+    def __init__(self, board, moveNumber):
+        self.board = board
+        self.moveNumber = moveNumber
         chess.san.SANConverter.__init__(self)
     
     def decodeSAN(self, colour, move):
         (start, end, result, promotionType) = chess.san.SANConverter.decodeSAN(self, self.__colourToSAN[colour], move)
         return (start, end, self.__sanToType[promotionType])
     
-    def encodeSAN(self, start, end, promotionType):
+    def encodeSAN(self, start, end, isTake, promotionType):
         if promotionType is None:
             promotion = self.QUEEN
         else:
             promotion = self.__typeToSAN[promotionType]
-        return chess.san.SANConverter.encode(self, start, end, promotion)
+        return self.encode(start, end, isTake, promotion)
 
     def getPiece(self, location):
         """Called by chess.san.SANConverter"""
-        piece = self.__board.getPiece(location)
+        piece = self.board.getPiece(location, self.moveNumber)
         if piece is None:
             return None
         return (self.__colourToSAN[piece.getColour()], self.__typeToSAN[piece.getType()])
     
     def testMove(self, colour, start, end, promotionType, allowSuicide = False):
         """Called by chess.san.SANConverter"""
-        move = self.__board.testMove(self.__sanToColour[colour], start, end, self.__sanToType[promotionType], allowSuicide)
+        move = self.board.testMove(self.__sanToColour[colour], start, end,
+                                     self.__sanToType[promotionType], allowSuicide, self.moveNumber)
         if move is None:
             return False
-        
+
         if move.opponentInCheck:
             if not move.opponentCanMove:
                 return chess.san.SANConverter.CHECKMATE
@@ -284,9 +285,6 @@ class ChessGame:
     
     # The board to move on
     board = None
-    
-    # SAN en/decoders
-    __sanConverter = None
     
     # The game state (started and player to move)
     __started = False
@@ -308,7 +306,6 @@ class ChessGame:
         self.__players = []
         self.__spectators = []
         self.board = ChessGameBoard(self)
-        self.__sanConverter = ChessGameSANConverter(self.board)
         self.__moves = []
         self.__queuedCalls = []
         
@@ -416,7 +413,8 @@ class ChessGame:
         self.startLock()
         
         # Get the next player to move
-        self.__currentPlayer._setReadyToMove(True)
+        if self.result == RESULT_IN_PROGRESS:
+            self.__currentPlayer._setReadyToMove(True)
 
         self.endLock()
         
@@ -492,6 +490,10 @@ class ChessGame:
     def _move(self, player, move):
         """
         """
+        if self.result != RESULT_IN_PROGRESS:
+            print 'Game completed'
+            return
+        
         if self.__currentPlayer is self.__whitePlayer:
             colour = chess.board.WHITE
         else:
@@ -501,14 +503,14 @@ class ChessGame:
         try:
             (start, end, _, _, promotionType, _) = chess.lan.decode(colour, move)
         except chess.lan.DecodeError, e:
+            converter = ChessGameSANConverter(self.board, len(self.__moves))
             try:
-                (start, end, promotionType) = self.__sanConverter.decodeSAN(colour, move)
+                (start, end, promotionType) = converter.decodeSAN(colour, move)
             except chess.san.Error, e:
                 print 'Invalid move: ' + move
                 return
 
         # Only use promotion type if a pawn move to far file
-        victim = self.board.getPiece(end)
         piece = self.board.getPiece(start)
         promotion = None
         if piece is not None and piece.getType() is chess.board.PAWN:
@@ -519,18 +521,19 @@ class ChessGame:
                 if end[1] == '1':
                     promotion = promotionType
 
-        # Re-encode for storing and reporting
-        sanMove = self.__sanConverter.encodeSAN(start, end, promotionType)
-        canMove = chess.lan.encode(colour, start, end, promotionType = promotion)
         moveResult = self.board.movePiece(colour, start, end, promotionType)
-        
-        # If for some reason we couldn't make the SAN move the use the CAN move instead
-        if sanMove is None:
-            sanMove = canMove
-
         if moveResult is None:
             print 'Illegal move: ' + str(move)
             return
+        
+        # Re-encode for storing and reporting
+        canMove = chess.lan.encode(colour, start, end, promotionType = promotion)
+        converter = ChessGameSANConverter(self.board, len(self.__moves))
+        try:
+            sanMove = converter.encodeSAN(start, end, moveResult.victim != None, promotionType)
+        except chess.san.Error:
+            # If for some reason we couldn't make the SAN move the use the CAN move instead
+            sanMove = canMove
 
         m = ChessMove()
         if len(self.__moves) == 0:
@@ -539,7 +542,7 @@ class ChessGame:
             m.number = self.__moves[-1].number + 1
         m.player              = self.__currentPlayer
         m.piece               = piece
-        m.victim              = victim
+        m.victim              = moveResult.victim
         m.start               = start
         m.end                 = end
         m.canMove             = canMove
@@ -602,7 +605,7 @@ class ChessGame:
             player.onPlayerStartTurn(self.__currentPlayer)
 
         # Notify the next player they can move
-        if self.__started is True:
+        if self.__started is True and self.result == RESULT_IN_PROGRESS:
             self.__currentPlayer._setReadyToMove(True)
 
         self.endLock()
@@ -618,7 +621,7 @@ class ChessGame:
         else:
             self.endGame(RESULT_WHITE_WINS, rule)
             
-    def claimDraw(self, player):
+    def claimDraw(self):
         """
         """
         # TODO: Penalise if make an incorrect attempt
@@ -661,6 +664,7 @@ class ChessGame:
     def endGame(self, result, rule):
         self.result = result
         self.rule = rule
+        self.__currentPlayer._setReadyToMove(False)
         for player in self.__players:
             player.onGameEnded(self)
 

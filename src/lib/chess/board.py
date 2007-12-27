@@ -756,7 +756,7 @@ class ChessBoard:
         pass
 
     # Public methods
-        
+
     def getPiece(self, location, moveNumber = -1):
         """Get the piece at a given location.
         
@@ -829,7 +829,8 @@ class ChessBoard:
 
         victim = None
         for (piece, start, end, delete) in moves:
-            if delete:
+            # The victim is the enemy piece that has been deleted
+            if delete and piece.getColour() != colour:
                 victim = piece
             
             # Notify the child class of the moves

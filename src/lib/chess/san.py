@@ -32,24 +32,7 @@ SAN_PROMOTE   = '='
 class Error(Exception):
     """
     """
-    
-    # Properties of the error
-    __move = ''
-    __description = ''
-    
-    def __init__(self, move, description):
-        """Constructor for a SAN exception.
-        
-        'move' is the SAN move that generated the exception (string).
-        'description' is the description of the exception that occured (string).
-        """
-        self.__move = str(move)
-        self.__description = str(description)
-        Exception.__init__(self)
-    
-    def __str__(self):
-        """Convert the SAN exception to a string"""
-        return 'Error parsing SAN move ' + repr(self.__move) + ': ' + self.__description
+    pass
 
 class SANConverter:
     """
@@ -135,7 +118,7 @@ class SANConverter:
             promotionType = copy[-1]
             copy = copy[:-2]
             if self.__promotionTypes.find(promotionType) < 0:
-                raise Error(san, 'Invalid promotion type ' + promotionType)
+                raise Error("Error decoding '%s', Invalid promotion type %s" % (repr(san), repr(promotionType)))
             
         # Some people miss out the '='
         elif self.__promotionTypes.find(copy[-1]) >= 0:
@@ -157,7 +140,7 @@ class SANConverter:
         end = copy[-2:]
         copy = copy[:-2]
         if RANKS.find(end[0]) < 0 or FILES.find(end[1]) < 0:
-            raise Error(san, 'Invalid destination: ' + end)
+            raise Error("Error decoding '%s', Invalid destination type %s" % (repr(san), repr(end)))
 
         # Check if is a take move (use try in case there are no more characters)
         isTake = False
@@ -191,8 +174,8 @@ class SANConverter:
 
         # There should be no more characters
         if len(copy) != 0:
-            raise Error(san, 'Unexpected extra characters: ' + copy)
-    
+            raise Error('Error decoding %s, Unexpected extra characters %s' % (repr(san), repr(end)))
+
         # If have both rank and file for source then we have the move completely defined
         moveResult = None
         move = None
@@ -230,34 +213,33 @@ class SANConverter:
                 
                     # Multiple matches
                     if moveResult is not None:
-                        raise Error(san, 'Move is ambiguous, at least ' + str(move) + ' and ' + str([start, end]) + ' are possible')
+                        raise Error('Error decoding %s, Move is ambiguous, at least %s and %s are possible' % (repr(san), repr(move), repr([start, end])))
                     moveResult = result
                     move = [start, end]
 
         # Failed to find a match
         if moveResult is None:
-            raise Error(san, 'Not a valid move')
+            raise Error('Error decoding %s, Not a valid move' % repr(san))
 
         return (move[0], move[1], expectedResult, promotionType)
 
-    def encode(self, start, end, promotionType = QUEEN):
+    def encode(self, start, end, isTake = False, promotionType = QUEEN):
         """Convert glChess co-ordinate move to SAN notation.
 
         'start' is the square to move from (string, e.g. 'a1', 'h8').
         'end' is the square to move to (string, e.g. 'a1', 'h8').
-        'promotionType' is the piece used for pawn promotion (if necesasary).
-        
+        'promotionType' is the piece used for pawn promotion (if necessary).
+
         Return the move in SAN notation or None if unable to convert.
         """
         piece = self.getPiece(start)
         if piece is None:
-            return None
+            raise Error('Encode error, no piece to move at %s' % repr(start))
         (pieceColour, pieceType) = piece
-        victim = self.getPiece(end)
 
         # Test the move is valid
         if self.testMove(pieceColour, start, end, promotionType) is False:
-            return None
+            raise Error('Encode error, move %s%s is invalid' % (start, end))
 
         # Check for castling
         if pieceType is self.KING:
@@ -268,18 +250,26 @@ class SANConverter:
                 baseFile = '8'
             shortCastle = ('e' + baseFile, 'g' + baseFile)
             longCastle = ('e' + baseFile, 'c' + baseFile)
-            # FIXME: Add check result
+
+            san = None
             if (start, end) == shortCastle:
-                return SAN_CASTLE_SHORT
+                san = SAN_CASTLE_SHORT
             elif (start, end) == longCastle:
-                return SAN_CASTLE_LONG
+                san = SAN_CASTLE_LONG
+            if san is not None:
+                result = self.testMove(pieceColour, start, end, promotionType = promotionType, allowSuicide = True)
+                if result is self.CHECK:
+                    san += self.CHECK
+                elif result is self.CHECKMATE:
+                    san += self.CHECKMATE
+                return san
 
         # Try and describe this piece with the minimum of information
         file = '?'
         rank = '?'
     
         # Pawns always explicitly provide rank when taking
-        if pieceType is self.PAWN and victim is not None:
+        if pieceType is self.PAWN and isTake:
             rank = start[0]
 
         # First try no rank or file, then just file, then just rank, then both
@@ -302,7 +292,7 @@ class SANConverter:
             
                     # This move is illegal
                     if result is None:
-                        return None
+                        raise Error('Encode error, unable to find unique move for %s%s' % (start, end))
 
         # Store the piece that is being moved, note pawns are not marked
         san = ''
@@ -314,9 +304,9 @@ class SANConverter:
             san += rank
         if file != '?':
             san += file
-                
+
         # Mark if taking a piece
-        if victim is not None:
+        if isTake:
             san += SAN_TAKE
 
         # Write target co-ordinate

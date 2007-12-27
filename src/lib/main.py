@@ -584,15 +584,20 @@ class Application:
 
         # Get the last player to resign if the file specifies it
         result = pgnGame.getTag(chess.pgn.TAG_RESULT, None)
+        loser = None
         if result == chess.pgn.RESULT_DRAW:
-            if newGame.result == game.RESULT_IN_PROGRESS:
-                newGame.getCurrentPlayer().resign()
-            elif newGame.result != game.RESULT_DRAW:
-                print 'PGN file specifies draw, glChess expects a win'
+            newGame.claimDraw()
+            if newGame.result != game.RESULT_DRAW:
+                newGame.endGame(game.RESULT_DRAW, game.RULE_AGREEMENT)
+        elif result == chess.pgn.RESULT_INCOMPLETE:
+            if newGame.result != game.RESULT_IN_PROGRESS:
+                print "WARNING: PGN file specifies game in progress, glChess does't..."            
         elif result == chess.pgn.RESULT_WHITE_WIN:
-            print 'FIXME: Handle white win in PGN'
+            loser = newGame.getBlack()
         elif result == chess.pgn.RESULT_BLACK_WIN:
-            print 'FIXME: Handle black win in PGN'
+            loser = newGame.getWhite()
+        if newGame.result == game.RESULT_IN_PROGRESS and loser is not None:
+            loser.resign()
 
         duration = 0
         value = pgnGame.getTag(chess.pgn.TAG_TIME_CONTROL)
