@@ -368,7 +368,7 @@ class Scene(glchess.scene.Scene):
             context.select_font_face("sans-serif", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
 	    # Chess board columns (files) label marked for translation. Please translate to the first eight letters of your alphabet, or the most appropriate eight characters/symbols for labelling the columns of a chess board. 
             files = [_('a'), _('b'), _('c'), _('d'), _('e'), _('f'), _('g'), _('h')]
-	    # Chess board rows (ranks) label marked for translation. Please translate to the first eight numbers with your native number symbols, or the most appropriate eight numbers/symbols for labelling the ows of a chess board.
+	    # Chess board rows (ranks) label marked for translation. Please translate to the first eight numbers with your native number symbols, or the most appropriate eight numbers/symbols for labelling the rows of a chess board.
             ranks = [_('8'), _('7'), _('6'), _('5'), _('4'), _('3'), _('2'), _('1')]
             def drawCenteredText(x, y, text):
                 (_, _, w, h, _, _) = context.text_extents('b')
