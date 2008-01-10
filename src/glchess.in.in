@@ -1,0 +1,52 @@
+#! /usr/bin/env python
+
+# Setup bugbuddy to report unhandled exceptions.
+try: 
+  import bugbuddy
+  bugbuddy.install('glchess')
+except:
+  #No bugbuddy support
+  pass
+
+import sys
+installed_mode = True
+
+try:
+    # Import glchess from system installation.
+    from glchess.glchess import start_game
+except ImportError:
+    import sys
+    if "@pyexecdir@" not in sys.path:
+        sys.path.insert(0, "@pyexecdir@")
+
+    try:
+	# Import glchess from system installation (with pyexecdir in path).
+        from glchess.glchess import start_game
+    except ImportError:
+
+      try:
+	  # Import glchess module from source distribution.
+          import lib;
+          sys.modules["glchess"] = sys.modules["lib"];
+          from glchess.glchess import start_game
+	  installed_mode = False
+      except ImportError:
+	  # Import of glchess failed. Show error message.
+          import gtk
+  	  import os.path
+	  import gettext
+          from gettext import gettext as _
+        
+	  gettext.bindtextdomain('gnome-games', os.path.join('@prefix@', 'share', 'locale'))
+	  gettext.textdomain('gnome-games')
+          title = _("Chess incorrectly installed")
+          description = _("""Chess is not able to start because required application files are not installed. If you are currently upgrading your system please wait until the upgrade has completed.""")
+          dialog = gtk.MessageDialog(type = gtk.MESSAGE_ERROR, message_format = title)
+          dialog.format_secondary_text(description)
+          dialog.add_button(gtk.STOCK_QUIT, gtk.RESPONSE_CLOSE)
+          dialog.run()
+          sys.exit(0)
+
+sys.modules["glchess"].installed_mode = installed_mode
+
+start_game()

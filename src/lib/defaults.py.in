@@ -1,21 +1,35 @@
 # -*- coding: utf-8 -*-
 
-import os, os.path
+import sys, os, os.path
 import errno
 import gettext 
 
-APP_DATA_DIR     = os.path.join('@prefix@', 'share') 
-ICON_DIR         = os.path.join(APP_DATA_DIR, 'pixmaps')
-TEXTURE_DIR      = os.path.join(ICON_DIR, 'glchess')
-GLADE_DIR        = os.path.join(APP_DATA_DIR, 'glchess')
-BASE_DIR         = os.path.join(APP_DATA_DIR, 'glchess')
-LOCALEDIR        = os.path.join(APP_DATA_DIR, 'locale')
-DATA_DIR         = os.path.expanduser('~/.gnome2/glchess/')
-LOG_DIR          = os.path.join(DATA_DIR, 'logs')
-CONFIG_FILE      = os.path.join(DATA_DIR, 'config.xml')
-HISTORY_DIR      = os.path.join(DATA_DIR, 'history')
-UNFINISHED_FILE  = os.path.join(HISTORY_DIR, 'unfinished')
-LOCAL_AI_CONFIG  = os.path.join(DATA_DIR, 'ai.xml')
+if sys.modules["glchess"].installed_mode:
+    APP_DATA_DIR     = os.path.join('@prefix@', 'share') 
+    ICON_DIR         = os.path.join(APP_DATA_DIR, 'pixmaps')
+    TEXTURE_DIR      = os.path.join(ICON_DIR, 'glchess')
+    GLADE_DIR        = os.path.join(APP_DATA_DIR, 'glchess')
+    BASE_DIR         = os.path.join(APP_DATA_DIR, 'glchess')
+    LOCALEDIR        = os.path.join(APP_DATA_DIR, 'locale')
+    DATA_DIR         = os.path.expanduser('~/.gnome2/glchess/')
+    LOG_DIR          = os.path.join(DATA_DIR, 'logs')
+    CONFIG_FILE      = os.path.join(DATA_DIR, 'config.xml')
+    HISTORY_DIR      = os.path.join(DATA_DIR, 'history')
+    UNFINISHED_FILE  = os.path.join(HISTORY_DIR, 'unfinished')
+    LOCAL_AI_CONFIG  = os.path.join(DATA_DIR, 'ai.xml')
+else:
+    APP_DATA_DIR     = os.path.join('@abs_top_builddir@', 'glchess', 'data')
+    ICON_DIR         = os.path.join('@abs_top_builddir@', 'glchess', 'textures')
+    TEXTURE_DIR      = os.path.join('@abs_top_builddir@', 'glchess', 'textures')
+    GLADE_DIR        = os.path.join('@abs_top_builddir@', 'glchess', 'glade')
+    BASE_DIR         = os.path.join('@abs_top_builddir@', 'glchess', 'data')
+    LOCALEDIR        = os.path.join(APP_DATA_DIR, 'locale')
+    DATA_DIR         = os.path.expanduser('~/.gnome2/glchess/')
+    LOG_DIR          = os.path.join(DATA_DIR, 'logs')
+    CONFIG_FILE      = os.path.join(DATA_DIR, 'config.xml')
+    HISTORY_DIR      = os.path.join(DATA_DIR, 'history')
+    UNFINISHED_FILE  = os.path.join(HISTORY_DIR, 'unfinished')
+    LOCAL_AI_CONFIG  = os.path.join(DATA_DIR, 'ai.xml')
 
 DOMAIN = 'gnome-games'
 gettext.bindtextdomain(DOMAIN, LOCALEDIR)
