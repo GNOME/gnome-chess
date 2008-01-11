@@ -101,7 +101,7 @@ def loadProfiles():
         except xml.parsers.expat.ExpatError:
             print 'AI configuration from %s is invalid, ignoring' % f
         else:
-            print 'Loading AI configuration from %s' % f
+            #print 'Loading AI configuration from %s' % f
             break
     if document is None:
         print 'WARNING: No AI configuration'
