@@ -12,24 +12,26 @@ import sys
 installed_mode = True
 
 try:
-    # Import glchess from system installation.
+    # Import glchess module from source distribution.
+    import lib;
+    sys.modules["glchess"] = sys.modules["lib"];
     from glchess.glchess import start_game
-except ImportError:
-    import sys
-    if "@pyexecdir@" not in sys.path:
-        sys.path.insert(0, "@pyexecdir@")
+    installed_mode = False
 
+except ImportError:
     try:
-	# Import glchess from system installation (with pyexecdir in path).
-        from glchess.glchess import start_game
+      # Import glchess from system installation.
+      installed_mode = True
+      from glchess.glchess import start_game
     except ImportError:
+      import sys
+      if "@pyexecdir@" not in sys.path:
+          sys.path.insert(0, "@pyexecdir@")
 
       try:
-	  # Import glchess module from source distribution.
-          import lib;
-          sys.modules["glchess"] = sys.modules["lib"];
+          # Import glchess from system installation (with pyexecdir in path).
           from glchess.glchess import start_game
-	  installed_mode = False
+
       except ImportError:
 	  # Import of glchess failed. Show error message.
           import gtk
