@@ -234,6 +234,16 @@
 		  </child>
 
 		  <child>
+		    <widget class="GtkCheckMenuItem" id="menu_view_logs">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">Show _Logs</property>
+		      <property name="use_underline">True</property>
+		      <property name="active">False</property>
+		      <signal name="activate" handler="_on_show_logs_clicked" last_modification_time="Sat, 01 Sep 2007 15:42:25 GMT"/>
+		    </widget>
+		  </child>
+
+		  <child>
 		    <widget class="GtkMenuItem" id="chess_board1">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Chess _Board</property>
@@ -485,16 +495,6 @@
 			  <property name="ypad">0</property>
 			</widget>
 		      </child>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkCheckMenuItem" id="menu_view_logs">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Show _Logs</property>
-		      <property name="use_underline">True</property>
-		      <property name="active">False</property>
-		      <signal name="activate" handler="_on_show_logs_clicked" last_modification_time="Sat, 01 Sep 2007 15:42:25 GMT"/>
 		    </widget>
 		  </child>
 
