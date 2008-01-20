@@ -7,6 +7,7 @@ ui_DATA = \
 	log.glade		\
 	new_game.glade		\
 	network_game.glade	\
+	preferences.glade	\
 	save_game.glade
 
 EXTRA_DIST = $(ui_DATA)

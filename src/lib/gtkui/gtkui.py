@@ -223,22 +223,6 @@ class GtkUI(glchess.ui.UI):
         # Workaround as Glade 2 always overrides the system style for toolbars
         self.__getWidget('toolbar').unset_style()
         
-        # Create mappings between the promotion radio buttons and the promotion types
-        self.__promotionTypeByRadio = {}
-        self.__promotionRadioByType = {}
-        for piece in ['queen', 'knight', 'rook', 'bishop']:
-            widget = self.__getWidget('promotion_%s_radio' % piece)
-            self.__promotionTypeByRadio[widget] = piece
-            self.__promotionRadioByType[piece] = widget
-
-        # Create mappings between the board view radio buttons and the config names
-        self.__boardViewRadioByType = {}
-        self.__boardViewTypeByRadio = {}
-        for name in ['white', 'black', 'human', 'current']:
-            widget = self.__getWidget('menu_side_%s' % name)
-            self.__boardViewTypeByRadio[widget] = name
-            self.__boardViewRadioByType[name] = widget
-
         # Create the model for the player types
         self.__playerModel = gtk.ListStore(str, str, str)
         iconTheme = gtk.icon_theme_get_default()
@@ -541,12 +525,9 @@ class GtkUI(glchess.ui.UI):
         # Show/hide the toolbar
         if name == 'show_toolbar':
             toolbar = self.__getWidget('toolbar')
-            menu = self.__getWidget('menu_view_toolbar')
             if value is True:
-                menu.set_active(True)
                 toolbar.show()
             else:
-                menu.set_active(False)
                 toolbar.hide()
                 
         elif name == 'enable_networking':
@@ -562,12 +543,9 @@ class GtkUI(glchess.ui.UI):
         # Show/hide the history
         elif name == 'show_history':
             box = self.__getWidget('navigation_box')
-            menu = self.__getWidget('menu_view_history')
             if value is True:
-                menu.set_active(True)
                 box.show()
             else:
-                menu.set_active(False)
                 box.hide()
                 
         # Maximised mode
@@ -608,40 +586,23 @@ Please contact your system administrator to resolve these problems, until then y
             self.view.viewWidget.setRenderGL(self.__renderGL)
                 
         elif name == 'show_comments':
-            menuItem = self.__getWidget('menu_view_comment')
-            menuItem.set_active(value)
             self.view.setShowComments(value)
 
         elif name == 'show_move_hints':
-            menuItem = self.__getWidget('menu_view_move_hints')
-            menuItem.set_active(value)
             self.view.feedback.showMoveHints(value)
 
         elif name == 'show_numbering':
-            menuItem = self.__getWidget('menu_view_numbering')
-            menuItem.set_active(value)
             self.view.feedback.showBoardNumbering(value)
 
         elif name == 'move_format':
-            self._gui.get_widget('menu_movef_%s' % value).set_active(True)
             self.view.setMoveFormat(value)
                 
         elif name == 'promotion_type':
-            try:
-                radio = self.__promotionRadioByType[value]
-            except KeyError:
-                glchess.config.default('promotion_type')
-            else:
-                radio.set_active(True)
-                
+            pass
+    
         elif name == 'board_view':
-            try:
-                radio = self.__boardViewRadioByType[value]
-            except KeyError:
-                glchess.config.default('board_view')
-            else:
-                radio.set_active(True)
-                
+            pass
+
         else:
             assert(False), 'Unknown config item: %s' % name
 
@@ -873,8 +834,8 @@ Please contact your system administrator to resolve these problems, until then y
         self.__getWidget('navigation_box').set_sensitive(enable)
         
         enable = enable and self.view.gameResult is None
-        for widget in ('menu_resign', 'resign_button', 'menu_claim_draw'):
-            self.__getWidget(widget).set_sensitive(enable)
+        '''FIXME! for widget in ('menu_resign', 'resign_button', 'menu_claim_draw'):
+            self.__getWidget(widget).set_sensitive(enable)'''
 
     def _on_new_game_button_clicked(self, widget):
         """Gtk+ callback"""
@@ -907,6 +868,10 @@ Please contact your system administrator to resolve these problems, until then y
     def _on_claim_draw_clicked(self, widget):
         """Gtk+ callback"""
         self.view.feedback.claimDraw()
+
+    def _on_preferences_clicked(self, widget):
+        """Gtk+ callback"""
+        dialogs.GtkPreferencesDialog(self, self.__playerModel)
 
     def _on_help_clicked(self, widget):
         """Gtk+ callback"""
