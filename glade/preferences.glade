@@ -5,11 +5,10 @@
 <requires lib="gnome"/>
 
 <widget class="GtkDialog" id="preferences">
-  <property name="visible">True</property>
   <property name="title" translatable="yes">Preferences</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
-  <property name="modal">True</property>
+  <property name="modal">False</property>
   <property name="resizable">False</property>
   <property name="destroy_with_parent">True</property>
   <property name="decorated">True</property>
@@ -20,6 +19,8 @@
   <property name="focus_on_map">True</property>
   <property name="urgency_hint">False</property>
   <property name="has_separator">True</property>
+  <signal name="delete_event" handler="_on_delete" last_modification_time="Thu, 24 Jan 2008 22:53:01 GMT"/>
+  <signal name="response" handler="_on_response" last_modification_time="Thu, 24 Jan 2008 22:53:53 GMT"/>
 
   <child internal-child="vbox">
     <widget class="GtkVBox" id="dialog-vbox1">
@@ -42,7 +43,6 @@
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">-7</property>
-	      <signal name="clicked" handler="_on_response" last_modification_time="Sun, 20 Jan 2008 17:40:42 GMT"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -162,10 +162,9 @@
 		<widget class="GtkComboBox" id="board_combo">
 		  <property name="visible">True</property>
 		  <property name="items" translatable="yes"></property>
-		  <property name="tooltip" translatable="yes">Choose the orientation of the chess board.</property>
 		  <property name="add_tearoffs">False</property>
 		  <property name="focus_on_click">True</property>
-		  <signal name="changed" handler="on_board_combo_changed" last_modification_time="Sun, 20 Jan 2008 12:51:36 GMT"/>
+		  <signal name="changed" handler="_on_board_combo_changed" last_modification_time="Sun, 20 Jan 2008 12:51:36 GMT"/>
 		</widget>
 		<packing>
 		  <property name="left_attach">1</property>
@@ -180,10 +179,9 @@
 		<widget class="GtkComboBox" id="move_format_combo">
 		  <property name="visible">True</property>
 		  <property name="items" translatable="yes"></property>
-		  <property name="tooltip" translatable="yes">Choose the move format for the game history panel.</property>
 		  <property name="add_tearoffs">False</property>
 		  <property name="focus_on_click">True</property>
-		  <signal name="changed" handler="on_move_format_combo_changed" last_modification_time="Sun, 20 Jan 2008 18:45:14 GMT"/>
+		  <signal name="changed" handler="_on_move_format_combo_changed" last_modification_time="Sun, 20 Jan 2008 18:45:14 GMT"/>
 		</widget>
 		<packing>
 		  <property name="left_attach">1</property>
@@ -199,10 +197,9 @@
 		<widget class="GtkComboBox" id="promotion_type_combo">
 		  <property name="visible">True</property>
 		  <property name="items" translatable="yes"></property>
-		  <property name="tooltip" translatable="yes">Choose the transformation of a pawn that reaches the eighth rank.</property>
 		  <property name="add_tearoffs">False</property>
 		  <property name="focus_on_click">True</property>
-		  <signal name="changed" handler="on_promotion_type_combo_changed" last_modification_time="Sun, 20 Jan 2008 12:52:19 GMT"/>
+		  <signal name="changed" handler="_on_promotion_type_combo_changed" last_modification_time="Sun, 20 Jan 2008 12:52:19 GMT"/>
 		</widget>
 		<packing>
 		  <property name="left_attach">1</property>
@@ -245,24 +242,24 @@
 
 	  <child>
 	    <widget class="GtkVBox" id="view_box">
+	      <property name="border_width">10</property>
 	      <property name="visible">True</property>
 	      <property name="homogeneous">False</property>
 	      <property name="spacing">0</property>
-	      <property name="border_width">10</property>
 
 	      <child>
 		<widget class="GtkCheckButton" id="show_3d">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">View the chess board by default in 2D mode, or optionally in 3D mode using OpenGL.</property>
 		  <property name="can_focus">True</property>
 		  <property name="label" translatable="yes">3_D Chess View</property>
-		  <property name="tooltip" translatable="yes">View the chess board by default in 2D mode, or optionally in 3D mode using OpenGL.</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
 		  <property name="active">False</property>
 		  <property name="inconsistent">False</property>
 		  <property name="draw_indicator">True</property>
-		  <signal name="toggled" handler="on_3d_view_activate" last_modification_time="Sun, 20 Jan 2008 19:36:35 GMT"/>
+		  <signal name="toggled" handler="_on_3d_view_activate" last_modification_time="Sun, 20 Jan 2008 19:36:35 GMT"/>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -274,16 +271,16 @@
 	      <child>
 		<widget class="GtkCheckButton" id="show_toolbar">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Show or hide the toolbar</property>
 		  <property name="can_focus">True</property>
 		  <property name="label" translatable="yes">Show _Toolbar</property>
-		  <property name="tooltip" translatable="yes">Show or hide the toolbar</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
 		  <property name="active">False</property>
 		  <property name="inconsistent">False</property>
 		  <property name="draw_indicator">True</property>
-		  <signal name="toggled" handler="on_show_toolbar_activate" last_modification_time="Sun, 20 Jan 2008 19:35:47 GMT"/>
+		  <signal name="toggled" handler="_on_show_toolbar_activate" last_modification_time="Sun, 20 Jan 2008 19:35:47 GMT"/>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -295,16 +292,16 @@
 	      <child>
 		<widget class="GtkCheckButton" id="show_history">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Show or hide the game history panel</property>
 		  <property name="can_focus">True</property>
 		  <property name="label" translatable="yes">Show _History</property>
-		  <property name="tooltip" translatable="yes">Show or hide the game history panel</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
 		  <property name="active">False</property>
 		  <property name="inconsistent">False</property>
 		  <property name="draw_indicator">True</property>
-		  <signal name="toggled" handler="on_show_history_activate" last_modification_time="Sun, 20 Jan 2008 19:36:41 GMT"/>
+		  <signal name="toggled" handler="_on_show_history_activate" last_modification_time="Sun, 20 Jan 2008 19:36:41 GMT"/>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -316,16 +313,16 @@
 	      <child>
 		<widget class="GtkCheckButton" id="show_move_hints">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Shows hints during chess games</property>
 		  <property name="can_focus">True</property>
 		  <property name="label" translatable="yes">_Move Hints</property>
-		  <property name="tooltip" translatable="yes">Shows hints during chess games</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
 		  <property name="active">False</property>
 		  <property name="inconsistent">False</property>
 		  <property name="draw_indicator">True</property>
-		  <signal name="toggled" handler="on_move_hints_activate" last_modification_time="Sun, 20 Jan 2008 19:36:46 GMT"/>
+		  <signal name="toggled" handler="_on_move_hints_activate" last_modification_time="Sun, 20 Jan 2008 19:36:46 GMT"/>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -337,16 +334,16 @@
 	      <child>
 		<widget class="GtkCheckButton" id="show_numbering">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Show or hide numbering on the chess board</property>
 		  <property name="can_focus">True</property>
 		  <property name="label" translatable="yes">_Board Numbering</property>
-		  <property name="tooltip" translatable="yes">Show or hide numbering on the chess board</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
 		  <property name="active">False</property>
 		  <property name="inconsistent">False</property>
 		  <property name="draw_indicator">True</property>
-		  <signal name="toggled" handler="on_board_numbering_activate" last_modification_time="Sun, 20 Jan 2008 19:36:51 GMT"/>
+		  <signal name="toggled" handler="_on_board_numbering_activate" last_modification_time="Sun, 20 Jan 2008 19:36:51 GMT"/>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>

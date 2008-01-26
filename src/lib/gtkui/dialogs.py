@@ -75,13 +75,6 @@ class GtkServerList:
 class GtkNewGameDialog:
     """
     """    
-    # The main UI and the ???
-    __mainUI = None
-    __gui = None
-
-    __customName = False
-    __checking = False
-    
     def __init__(self, mainUI, aiModel, game = None):
         """Constructor for a new game dialog.
         
@@ -93,11 +86,15 @@ class GtkNewGameDialog:
         self.game = game
         
         self.__checking = True
-        
+        self.__customName = False
+
         # Load the UI
         self.__gui = gtkui.loadGladeFile('new_game.glade', 'new_game_dialog')
         self.__gui.signal_autoconnect(self)
-        
+
+        self.window = self.__gui.get_widget('new_game_dialog')
+        self.window.set_transient_for(mainUI.mainWindow)
+
         # Set style of error panel
         mainUI.setTooltipStyle(self.__gui.get_widget('info_box'))
         
@@ -242,7 +239,7 @@ class GtkNewGameDialog:
             
             # Change title for loaded games
             if g.path is not None:
-                self.__gui.get_widget('new_game_dialog').set_title(_('Configure loaded game (%i moves)') % len(g.moves))
+                self.window.set_title(_('Configure loaded game (%i moves)') % len(g.moves))
 
         # Display warning if missing the AIs
         if len(errorText) > 0:
@@ -251,7 +248,7 @@ class GtkNewGameDialog:
             self.__gui.get_widget('info_box').show()
 
         # Show the dialog
-        self.__gui.get_widget('new_game_dialog').show()
+        self.window.present()
         self.__checking = False
         self.__testReady()
         
@@ -383,18 +380,15 @@ class GtkNewGameDialog:
         """Gtk+ callback"""
         self.__testReady()
 
-    def _on_response(self, dialog, response_id):
+    def _on_response(self, dialog, responseId):
         """Gtk+ callback"""
-        if response_id == gtk.RESPONSE_OK:
+        if responseId == gtk.RESPONSE_OK:
             self.__startGame()
         dialog.destroy()
 
 class GtkLoadGameDialog:
     """
     """    
-    __mainUI = None
-    __gui = None
-    
     def __init__(self, mainUI):
         """
         """
@@ -403,6 +397,9 @@ class GtkLoadGameDialog:
         # Load the UI
         self.__gui = gtkui.loadGladeFile('load_game.glade')
         self.__gui.signal_autoconnect(self)
+        
+        self.window = self.__gui.get_widget('game_load_dialog')
+        self.window.set_transient_for(mainUI.mainWindow)
         
         # Set style of error panel
         mainUI.setTooltipStyle(self.__gui.get_widget('error_box'))
@@ -427,8 +424,7 @@ class GtkLoadGameDialog:
         allFilter.add_pattern('*')
         fileChooser.add_filter(allFilter)
         
-        dialog = self.__gui.get_widget('game_load_dialog')
-        dialog.show()
+        self.window.present()
         
     def __getFilename(self):
         """Get the currently selected filename.
@@ -449,7 +445,7 @@ class GtkLoadGameDialog:
         
     def _on_file_activated(self, widget):
         """Gtk+ callback"""
-        self._on_response(self.__gui.get_widget('game_load_dialog'), gtk.RESPONSE_OK)
+        self._on_response(self.window, gtk.RESPONSE_OK)
 
     def _on_response(self, dialog, responseId):
         """Gtk+ callback"""
@@ -471,16 +467,7 @@ class GtkLoadGameDialog:
         
 class GtkSaveGameDialog:
     """
-    """    
-    # The main UI
-    __mainUI = None
-
-    # The view that is being saved
-    __view = None
-    
-    # The GUI
-    __gui = None
-    
+    """
     def __init__(self, mainUI, view, path = None):
         """
         """
@@ -494,7 +481,8 @@ class GtkSaveGameDialog:
         # Set style of error panel
         mainUI.setTooltipStyle(self.__gui.get_widget('error_box'))
 
-        dialog = self.__gui.get_widget('save_dialog')
+        self.window = self.__gui.get_widget('save_dialog')
+        self.window.set_transient_for(mainUI.mainWindow)
         chooser = self.__gui.get_widget('filechooser')
         
         try:
@@ -520,7 +508,7 @@ class GtkSaveGameDialog:
         
     def _on_file_activated(self, widget):
         """Gtk+ callback"""
-        self._on_response(self.__gui.get_widget('save_dialog'), gtk.RESPONSE_OK)
+        self._on_response(self.window, gtk.RESPONSE_OK)
 
     def __setError(self, title, content):
         """
@@ -557,34 +545,24 @@ class GtkSaveGameDialog:
 
         dialog.destroy()
 
-
 class GtkPreferencesDialog:
     """
-    """    
-    # The main UI and the ???
-    __mainUI = None
-    __gui = None
-
-    __customName = False
-    __checking = False
-    
-    def __init__(self, mainUI, aiModel, game = None):
+    """
+    def __init__(self, mainUI, aiModel):
         """Constructor for the preferences dialog.
         
         'mainUI' is the main UI.
         'aiModel' is the AI models to use.
-        'game' is the game properties to use (ui.Game).
         """
-        self.__mainUI = mainUI
-        self.game = game
-
-	# Load the UI
+        # Load the UI
         self.__gui = gtkui.loadGladeFile('preferences.glade', 'preferences')
         self.__gui.signal_autoconnect(self)
+        
+        self.__gui.get_widget('preferences').set_transient_for(mainUI.mainWindow)
 
         # Load preferences for move_format
         moveFormat = glchess.config.get('move_format')
-	moveModel = gtk.ListStore(str, str)
+        moveModel = gtk.ListStore(str, str)
         widget = self.__gui.get_widget('move_format_combo')
         widget.set_model(moveModel)
         move_formats = [('human', _('Human')),
@@ -593,110 +571,116 @@ class GtkPreferencesDialog:
         for (key, label) in move_formats:
             iter = moveModel.append()
             if key == moveFormat:
-              widget.set_active_iter(iter)
+                widget.set_active_iter(iter)
             moveModel.set(iter, 0, label, 1, key)
 
-       # Load preferences for board orientation
+        # Load preferences for board orientation
         boardView = glchess.config.get('board_view')
-	boardModel = gtk.ListStore(str, str)
+        boardModel = gtk.ListStore(str, str)
         widget = self.__gui.get_widget('board_combo')
         widget.set_model(boardModel)
         view_list = [('white', _('White Side')),
                      ('black', _('Black Side')),
                      ('human', _('Human Side')),
-		     ('current', _('Current Player'))]
+                     ('current', _('Current Player'))]
         for (key, label) in view_list:
             iter = boardModel.append()
             if key == boardView:
-              widget.set_active_iter(iter)
+                widget.set_active_iter(iter)
             boardModel.set(iter, 0, label, 1, key)
 
         # Load preferences for promotion type
         promotionType = glchess.config.get('promotion_type')
-	promotionModel = gtk.ListStore(str, str)
+        promotionModel = gtk.ListStore(str, str)
         widget = self.__gui.get_widget('promotion_type_combo')
         widget.set_model(promotionModel)
         promotion_list = [('queen', _('Queen')),
-                     ('knight', _('Knight')),
-                     ('rook', _('Rook')),
-		     ('bishop', _('Bishop'))]
+                          ('knight', _('Knight')),
+                          ('rook', _('Rook')),
+                          ('bishop', _('Bishop'))]
         for (key, label) in promotion_list:
             iter = promotionModel.append()
             if key == promotionType:
-              widget.set_active_iter(iter)
+                widget.set_active_iter(iter)
             promotionModel.set(iter, 0, label, 1, key)
 
-	# Load preferences for View settings.
+        # Load preferences for View settings.
         pref = glchess.config.get('show_3d')
         widget = self.__gui.get_widget('show_3d')
-	widget.set_active(pref)
+        widget.set_active(pref)
 
         pref = glchess.config.get('show_toolbar')
         widget = self.__gui.get_widget('show_toolbar')
-	widget.set_active(pref)
+        widget.set_active(pref)
 
         pref = glchess.config.get('show_history')
         widget = self.__gui.get_widget('show_history')
-	widget.set_active(pref)
+        widget.set_active(pref)
 
         pref = glchess.config.get('show_move_hints')
         widget = self.__gui.get_widget('show_move_hints')
-	widget.set_active(pref)
+        widget.set_active(pref)
 
         pref = glchess.config.get('show_numbering')
         widget = self.__gui.get_widget('show_numbering')
-	widget.set_active(pref)
+        widget.set_active(pref)
 
-	self.__gui.get_widget('preferences').show()
+    def setVisible(self, isVisible):
+        window = self.__gui.get_widget('preferences')
+        if isVisible:
+            window.present()
+        else:
+            window.hide()
 
-
-    def _on_response(self, dialog):
+    def _on_response(self, dialog, responseId):
         """Gtk+ callback"""
-	self.__gui.get_widget('preferences').destroy()
-
-    def on_move_format_combo_changed(self, widget):
+        self.setVisible(False)
+        
+    def _on_delete(self, dialog, event):
         """Gtk+ callback"""
-        model = widget.get_model()
-        iter = widget.get_active_iter()
-        data = model.get(iter, 1)
-	if data[0] is not None:
-	  glchess.config.set('move_format', data[0])
+        self.setVisible(False)
+        return True
 
-    def on_board_combo_changed(self, widget):
-        """Gtk+ callback"""
-        model = widget.get_model()
-        iter = widget.get_active_iter()
-        data = model.get(iter, 1)
-	if data[0] is not None:
-	  glchess.config.set('board_view', data[0])
-
-    def on_promotion_type_combo_changed(self, widget):
+    def _on_move_format_combo_changed(self, widget):
         """Gtk+ callback"""
         model = widget.get_model()
         iter = widget.get_active_iter()
         data = model.get(iter, 1)
-	if data[0] is not None:
-	  glchess.config.set('promotion_type', data[0])
+        if data[0] is not None:
+            glchess.config.set('move_format', data[0])
 
-    def on_3d_view_activate(self, widget):
+    def _on_board_combo_changed(self, widget):
         """Gtk+ callback"""
-	glchess.config.set('show_3d', widget.get_active())
+        model = widget.get_model()
+        iter = widget.get_active_iter()
+        data = model.get(iter, 1)
+        if data[0] is not None:
+            glchess.config.set('board_view', data[0])
 
-    def on_show_toolbar_activate(self, widget):
+    def _on_promotion_type_combo_changed(self, widget):
         """Gtk+ callback"""
-	glchess.config.set('show_toolbar', widget.get_active())
+        model = widget.get_model()
+        iter = widget.get_active_iter()
+        data = model.get(iter, 1)
+        if data[0] is not None:
+            glchess.config.set('promotion_type', data[0])
 
-    def on_show_history_activate(self, widget):
+    def _on_3d_view_activate(self, widget):
         """Gtk+ callback"""
-	glchess.config.set('show_history', widget.get_active())
+        glchess.config.set('show_3d', widget.get_active())
 
-
-    def on_move_hints_activate(self, widget):
+    def _on_show_toolbar_activate(self, widget):
         """Gtk+ callback"""
-	glchess.config.set('show_move_hints', widget.get_active())
+        glchess.config.set('show_toolbar', widget.get_active())
 
-
-    def on_board_numbering_activate(self, widget):
+    def _on_show_history_activate(self, widget):
         """Gtk+ callback"""
-	glchess.config.set('show_numbering', widget.get_active())
+        glchess.config.set('show_history', widget.get_active())
 
+    def _on_move_hints_activate(self, widget):
+        """Gtk+ callback"""
+        glchess.config.set('show_move_hints', widget.get_active())
+
+    def _on_board_numbering_activate(self, widget):
+        """Gtk+ callback"""
+        glchess.config.set('show_numbering', widget.get_active())

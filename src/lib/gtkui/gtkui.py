@@ -220,6 +220,8 @@ class GtkUI(glchess.ui.UI):
         self._gui = loadGladeFile('glchess.glade')
         self._gui.signal_autoconnect(self)
         
+        self.mainWindow = self._gui.get_widget('glchess_app')
+        
         # Workaround as Glade 2 always overrides the system style for toolbars
         self.__getWidget('toolbar').unset_style()
         
@@ -230,6 +232,9 @@ class GtkUI(glchess.ui.UI):
         self.__playerModel.set(iter, 0, '', 1, 'stock_person', 2, _('Human'))
         
         self.__logWindow = log.LogWindow(self._gui.get_widget('log_notebook'))
+        
+        # Make preferences dialog
+        self.preferences = dialogs.GtkPreferencesDialog(self, self.__playerModel)
 
         # Balance space on each side of the history combo
         group = gtk.SizeGroup(gtk.SIZE_GROUP_BOTH)
@@ -357,7 +362,7 @@ class GtkUI(glchess.ui.UI):
         else:
             # Translators: This is the window title when not playing a game
             title = _('Chess')            
-        self._gui.get_widget('glchess_app').set_title(title)
+        self.mainWindow.set_title(title)
 
     def addLogWindow(self, title, executable, description):
         """
@@ -403,7 +408,7 @@ class GtkUI(glchess.ui.UI):
                 self.__applyConfig(name, value)
         self.__resize()
         
-        self._gui.get_widget('glchess_app').show()
+        self.mainWindow.show()
 
         # Apply the fullscreen flag after the window has been shown otherwise
         # gtk.Window.unfullscreen() stops working if the window is set to fullscreen
@@ -485,7 +490,7 @@ class GtkUI(glchess.ui.UI):
     def __updateAttention(self):
         """
         """
-        widget = self._gui.get_widget('glchess_app')
+        widget = self.mainWindow
         widget.set_urgency_hint(self.__attentionCounter != 0 and not widget.is_active())
         
     def _on_focus_changed(self, widget, event):
@@ -513,7 +518,7 @@ class GtkUI(glchess.ui.UI):
         except glchess.config.Error:
             return
         
-        self._gui.get_widget('glchess_app').resize(width, height)
+        self.mainWindow.resize(width, height)
 
     def __applyConfig(self, name, value):
         """
@@ -550,7 +555,7 @@ class GtkUI(glchess.ui.UI):
                 
         # Maximised mode
         elif name == 'maximised':
-            window = self._gui.get_widget('glchess_app')
+            window = self.mainWindow
             if value is True:
                 window.maximize()
             else:
@@ -558,7 +563,7 @@ class GtkUI(glchess.ui.UI):
 
         # Fullscreen mode
         elif name == 'fullscreen':
-            window = self._gui.get_widget('glchess_app')
+            window = self.mainWindow
             if value is True:
                 window.fullscreen()
             else:
@@ -719,7 +724,7 @@ Please contact your system administrator to resolve these problems, until then y
         """Gtk+ callback"""
         window = self._gui.get_widget('log_window')
         if widget.get_active():
-            window.show()
+            window.present()
         else:
             window.hide()
 
@@ -871,7 +876,7 @@ Please contact your system administrator to resolve these problems, until then y
 
     def _on_preferences_clicked(self, widget):
         """Gtk+ callback"""
-        dialogs.GtkPreferencesDialog(self, self.__playerModel)
+        self.preferences.setVisible(True)
 
     def _on_help_clicked(self, widget):
         """Gtk+ callback"""
@@ -907,6 +912,7 @@ Please contact your system administrator to resolve these problems, until then y
             return
         
         dialog = self.__aboutDialog = gtk.AboutDialog()
+        dialog.set_transient_for(self.mainWindow)
         dialog.set_name(APPNAME)
         dialog.set_version(VERSION)
         dialog.set_copyright(COPYRIGHT)
