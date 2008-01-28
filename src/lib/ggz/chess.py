@@ -67,7 +67,11 @@ class Chess:
 
     def decode(self, char):
         if self.decodeMethod is None:
-            self.decodeMethod = self.decodeMethods[char]
+            try:
+                self.decodeMethod = self.decodeMethods[char]
+            except KeyError:
+                print 'Unknown data received: %s' % repr(char)                
+                return
             self.command = ''
         self.command += char
         self.decodeMethod()
