@@ -234,7 +234,7 @@ class GtkUI(glchess.ui.UI):
         self.__logWindow = log.LogWindow(self._gui.get_widget('log_notebook'))
         
         # Make preferences dialog
-        self.preferences = dialogs.GtkPreferencesDialog(self, self.__playerModel)
+        self.preferences = dialogs.GtkPreferencesDialog(self)
 
         # Balance space on each side of the history combo
         group = gtk.SizeGroup(gtk.SIZE_GROUP_BOTH)

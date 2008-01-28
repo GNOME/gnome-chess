@@ -548,11 +548,10 @@ class GtkSaveGameDialog:
 class GtkPreferencesDialog:
     """
     """
-    def __init__(self, mainUI, aiModel):
+    def __init__(self, mainUI):
         """Constructor for the preferences dialog.
         
         'mainUI' is the main UI.
-        'aiModel' is the AI models to use.
         """
         # Load the UI
         self.__gui = gtkui.loadGladeFile('preferences.glade', 'preferences')
