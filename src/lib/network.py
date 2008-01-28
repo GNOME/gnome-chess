@@ -363,8 +363,8 @@ class GGZNetworkDialog(ui.NetworkFeedback):
             return
         
         print 'Starting table'
-        self.decoder.client.startTable(self.decoder.room.game.id, 'glChess test game (do not join!)', self.profile.login)
-    
+        self.decoder.client.startTable(self.decoder.room.game.id, '', self.profile.login)
+
     def joinTable(self, table):
         """Called by ui.NetworkFeedback"""
         if not self._addGame():
