@@ -7,7 +7,7 @@
   <!ENTITY date "December">
   <!ENTITY app "<application>Chess</application>">
   <!ENTITY appname "Chess">
-  <!ENTITY version "2.18">
+  <!ENTITY version "2.22">
 ]>
 
 <!-- 
@@ -17,15 +17,6 @@
   Template version: 2.0 beta
   Template last modified Feb 12, 2002
 -->
-
-<!-- 
-  This initial draft of documentation for glchess, so that
-  the game at least has *some* documentation. Feal free to rewrite 
-  this document, anyone! 
-
-  - Andreas R.
--->
-
 
 <!-- =============Document Header ============================= -->
 <article id="index" lang="en">
@@ -43,7 +34,7 @@
        </para>
  </abstract>
  <copyright>
-  <year>2006</year>
+  <year>2006-2008</year>
   <holder>Andreas Røsdal</holder>
  </copyright>
 <!-- translators: uncomment this:
@@ -148,7 +139,8 @@
 	<application>glChess</application> is written in Python and uses GTK+ and Cairo to render the chess board. 3D support is 
 	optionally available using OpenGl,
 	using the Python OpenGL and GtkGLExt libraries. As with most modern 3D programs hardware acceleration is recommended but it should
-	run OK in software. glChess is bundled with GNU Chess as the default chess AI.  
+	run OK in software. glChess is bundled with GNU Chess as the default chess AI. glChess can be played in network mode against 
+	other players on the Internet.
   </para>
   <para>
 	Chess is played on a square chessboard, consisting of 64 squares of alternating color. Each player begins the game with sixteen pieces: one king, one queen, two rooks, two knights, two bishops, and eight pawns. One player controls the white pieces and the other player controls the black pieces; the player that controls white is the first to move. The players take turns moving pieces; certain moves involve a "capturing" of an opponent's piece, removing it from the chessboard. The object of the game is to checkmate the opponent's king. This occurs when the king is under immediate attack (in check) and there is no way to remove it from attack on the next move. Theoreticians have developed extensive chess strategies and tactics since the game's inception.
@@ -171,10 +163,262 @@ One of the goals of early computer scientists was to create a chess-playing mach
 
 </sect1>
 
+
+<sect1 id="playing-glchess">
+ <title>Playing glChess</title>
+ <sect2 id="main-game-window">
+<title>Main game window</title>
+
+     <para>
+Starting glChess displays the main game window as shown below. The game is played
+by moving chess pieces using the mouse. Each player alternates to move a piece in the appropriate
+colour, from one board position to another valid board position. 
+The main game window is organized in three main areas: In the top menu and toolbar area,
+most common game actions can be made. The chess board is in the middle of the window,
+where the game is played by moving chess pieces using the mouse. Finally, the game
+history panel is shown at the bottom, where information about the game history, the remaining
+move time and buttons for showing previous or next moves are available.
+</para>
+
+ <figure id="main-game-shot">
+  <title>Main window in glChess</title>
+  <screenshot>
+    <mediaobject> 
+    <imageobject>
+  <imagedata fileref="figures/game.png" format="PNG" srccredit="Andreas"/>
+   </imageobject>
+    <textobject> 
+      <phrase>Main window in glChess.</phrase> 
+    </textobject> 
+  </mediaobject>
+  </screenshot>
+ </figure>
+</sect2>
+
+<sect2>
+<title>Starting a new game</title>
+<para>
+To start a new game, press the <guibutton>New Game</guibutton> buttton on the toolbar. 
+The new game dialog is then shown, which allows you to setup a new game with the settings
+of your choice. In the <interface>game properties</interface> section, the game name and time-limit for
+each player's move is set. In the <interface>players</interface> section, it is possible to setup the
+number of human and AI players. If you have installed any supported chess engines as AI players,
+these will be displayed in the list of available players. Finally, the difficulty setting of the AI
+players is set in the <interface>difficulty</interface> section.
+</para>
+
+ <figure id="new-game-shot">
+  <title>Start new game dialog</title>
+  <screenshot>
+    <mediaobject> 
+    <imageobject>
+  <imagedata fileref="figures/new_game.png" format="PNG" srccredit="Andreas"/>
+   </imageobject>
+    <textobject> 
+      <phrase>Start new game dialog for glChess.</phrase> 
+    </textobject> 
+  </mediaobject>
+  </screenshot>
+ </figure>
+
+</sect2>
+
+
+
+
+<sect2 id="menubar">
+   <title>Menus</title>
+   <para>
+    The menu bar, located at the top of the <interface>Main
+    Window</interface>, contains the following menus:
+   </para>
+
+   <variablelist>
+    <varlistentry>
+     <term><guimenu>Game</guimenu></term>
+     <listitem>
+      <para>
+       This menu contains:
+       <itemizedlist>
+        <listitem>
+         <para>
+          <menuchoice>
+           <shortcut>
+            <keysym>Ctrl+N</keysym>
+           </shortcut>
+           <guimenuitem>New</guimenuitem>
+          </menuchoice>
+           This starts a new game of <application>Chess</application>.
+         </para>
+        </listitem>
+	<listitem>
+         <para>
+          <menuchoice>
+           <shortcut>
+            <keysym>Ctrl+O</keysym>
+           </shortcut>
+           <guimenuitem>Open</guimenuitem>
+          </menuchoice>
+           Loads a previously saved game.
+         </para>
+        </listitem>
+	<listitem>
+         <para>
+          <menuchoice>
+           <shortcut>
+            <keysym>Ctrl+S</keysym>
+           </shortcut>
+           <guimenuitem>Save</guimenuitem>
+          </menuchoice>
+           Saves the current game of chess.
+         </para>
+        </listitem>
+	<listitem>
+         <para>
+          <menuchoice>
+           <guimenuitem>Save AS</guimenuitem>
+          </menuchoice>
+           Saves the current game of chess with a new filename.
+         </para>
+        </listitem>
+
+        <listitem>
+         <para>
+          <menuchoice>
+           <shortcut>
+            <keysym>Ctrl+L</keysym>
+           </shortcut>
+           <guimenuitem>Network Game</guimenuitem>
+          </menuchoice>
+           This starts a network multiplayer game using GGZ Gaming Zone.
+         </para>
+        </listitem>
+        <listitem>
+         <para>
+          <menuchoice>
+           <guimenuitem>Resign</guimenuitem>
+          </menuchoice>
+           To concede loss of the game, so that the opponent wins the game. 
+         </para>
+        </listitem>
+        <listitem>
+         <para>
+          <menuchoice>
+           <guimenuitem>Claim Draw</guimenuitem>
+          </menuchoice>
+	    If a claimed draw is accepted, the game ends without victory for either player. 
+          </para>
+        </listitem>
+       </itemizedlist>
+      </para>
+     </listitem>
+    </varlistentry>
+
+
+    <varlistentry>
+     <term><guimenu>View</guimenu></term>
+     <listitem>
+      <para>
+       This menu contains:
+       <itemizedlist>
+        <listitem>
+         <para>
+          <menuchoice>
+           <shortcut>
+            <keysym>F11</keysym>
+           </shortcut>
+           <guimenuitem>Fullscreen</guimenuitem>
+          </menuchoice>
+           Shows the game window in fullscreen mode.
+         </para>
+        </listitem>
+	<listitem>
+         <para>
+          <menuchoice>
+           <guimenuitem>3D Chess View</guimenuitem>
+          </menuchoice>
+           Enables 3D chess view mode using OpenGL. This requires Python OpenGL and Python GTKGLExt installed,
+	   in addition to a 3D graphics card setup properly. Please contact your system administrator if you have problems,
+	   either way you will always be able to play chess in 2D mode.
+         </para>
+        </listitem>
+	 <listitem>
+         <para>
+          <menuchoice>
+           <guimenuitem>Show Logs</guimenuitem>
+          </menuchoice>
+	  Show logs for debugging glChess and the active chess AI engines.
+         </para>
+        </listitem>
+     </itemizedlist>
+      </para>
+     </listitem>
+    </varlistentry>
+
+   <varlistentry>
+     <term><guimenu>Settings</guimenu></term>
+     <listitem>
+      <para>
+       This menu contains:
+       <itemizedlist>
+        <listitem>
+         <para>
+          <menuchoice>
+           <guimenuitem>Preferences</guimenuitem>
+          </menuchoice>
+            This opens your window to edit <link linkend="prefs">
+           preferences.</link>
+         </para>
+        </listitem>
+       </itemizedlist>
+      </para>
+     </listitem>
+    </varlistentry>   
+
+    <varlistentry>
+     <term><guimenu>Help</guimenu></term>
+     <listitem>
+      <para>
+       This menu contains:
+       <itemizedlist>
+        <listitem>
+          <para>
+          <menuchoice>
+           <shortcut>
+            <keysym>F1</keysym>
+           </shortcut>
+           <guimenuitem>Contents</guimenuitem>
+          </menuchoice>
+           Display this manual.
+         </para>
+         <para>
+          <guimenuitem>About</guimenuitem>  This opens the
+          <interface>About</interface> dialog which shows
+          basic information about
+          <application>glChess</application>, such as
+          the author's name, the version number of the game.
+         </para>
+        </listitem>
+       </itemizedlist>
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+
+
+</sect2>
+
+
+</sect1>
+
+
 <sect1 id="chess-rules">
  <title>Chess Rules</title>
  <sect2 id="rules-of-chess">
   <title>The Rules of Chess</title>
+<!--
+The reference for this chapter is http://en.wikipedia.org/wiki/Chess
+-->
   <para>
 Chess is played on a square board of eight rows (called ranks and denoted with numbers 1 to 8) and eight columns (called files and denoted with letters a to h) of squares. The colors of the sixty-four squares alternate between light and dark, and are referred to as "light squares" and "dark squares". The chessboard is placed so that each player has a white square in the near right hand corner, and the pieces are set out as shown in the diagram, with each queen on a square that matches its color.
 </para><para>
@@ -244,7 +488,112 @@ With the exception of the knight, pieces cannot jump over each other. One's own 
 Chess games do not have to end in checkmate — either player may resign if the situation looks hopeless. Games also may end in a draw (tie). A draw can occur in several situations, including draw by agreement, stalemate, threefold repetition of a position, the fifty move rule, or a draw by impossibility of checkmate (usually because of insufficient material to checkmate).
 </para>
 </sect3>
- </sect2>
+</sect2>
+
+
+<sect2 id="timed-games">
+<title>Timed Games</title>
+<para>
+Games can be played with a time-limit by setting a move time when creating a new game. The enables a time control which makes it possible for a player to avoid having an ever-decreasing amount of time remaining (as is the case with sudden death). 
+</para>
+</sect2>
+
+<sect2 id="draw">
+<title>Game Draw</title>
+<para>
+A game that ends without victory for either player. Most drawn games are draws by agreement based upon the rules. The other ways that a game can end in a draw are stalemate, three-fold repetition, the fifty-move rule, and insufficient material. A position is said to be a draw (or a drawn position) if either player can, through correct play, eventually force the game into a position where the game must end in a draw, regardless of the moves made by the other player.
+</para>
+
+
+<sect3 id="stalemate">
+<title>Stalemate</title>
+<para>
+A stalemate is a position in which the player whose turn it is to move has no legal move and his king is not in check. A stalemate results in an immediate draw.
+</para>
+</sect3>
+
+<sect3 id="threefold-repetition">
+<title>Threefold repetetion</title>
+<para>
+The game is drawn if the same position occurs three times with the same player to move, and with each player having the same set of legal moves each time (the latter includes the right to take en passant and the right to castle).
+</para>
+</sect3>
+
+
+<sect3 id="fifty-move-rule">
+<title>Fifty move rule</title>
+<para>
+The fifty move rule states that the game is drawn after fifty moves from each side without a pawn move or capture.
+</para>
+</sect3>
+
+<sect3 id="insuff-material">
+<title>Insufficient material</title>
+<para>
+An endgame scenario in which all pawns have been captured, and one side has only its king remaining while the other is down to just a king or a king plus one knight or one bishop. The position is a draw because it is impossible for the dominant side to deliver checkmate regardless of play. Situations where checkmate is possible only if the inferior side blunders are covered by the fifty-move rule.
+</para>
+</sect3>
+
+
+</sect2>
+
+</sect1>
+
+
+
+
+<sect1 id="prefs">
+ <title>Game Settings</title>
+
+
+<sect2 id="game-prefs">
+  <title>Game Preferences</title>
+  <para>
+  This preference dialog allows you to modify board orientation, move format and promotion type.
+  </para>
+
+ <figure id="preferences-game-shot">
+  <title>Game preferences dialog for glChess</title>
+  <screenshot>
+    <mediaobject> 
+    <imageobject>
+  <imagedata fileref="figures/preferences_game.png" format="PNG" srccredit="Andreas"/>
+   </imageobject>
+    <textobject> 
+      <phrase>Game preferences dialog for glChes.</phrase> 
+    </textobject> 
+  </mediaobject>
+  </screenshot>
+ </figure>
+
+
+</sect2>
+
+
+
+<sect2 id="view-prefs">
+  <title>View Preferences</title>
+  <para>
+  This preference dialog allows you to modify the look and feel of glChess. 
+  </para>
+
+ <figure id="preferences-view-shot">
+  <title>View preferences dialog for glChess</title>
+  <screenshot>
+    <mediaobject> 
+    <imageobject>
+  <imagedata fileref="figures/preferences_view.png" format="PNG" srccredit="Andreas"/>
+   </imageobject>
+    <textobject> 
+      <phrase>View preferences dialog for glChess.</phrase> 
+    </textobject> 
+  </mediaobject>
+  </screenshot>
+ </figure>
+
+
+</sect2>
+
 </sect1>
 
 
@@ -256,6 +605,7 @@ Chess games do not have to end in checkmate — either player may resign if the 
 
      </para>
 
+<!-- Please keep AI list synchronized with glchess/data/ai.xml -->
 <itemizedlist spacing="compact">
   <listitem>
 	<para>GNUChess</para>
@@ -315,7 +665,8 @@ Chess games do not have to end in checkmate — either player may resign if the 
  <itemizedlist mark="opencircle">
     <listitem>
      <para>
-	There are no documented bugs or limitations in glChess. 	
+	There are no documented bugs or limitations in glChess. To find areas where you can help improve  
+        glChess, please refer to the TODO file which is distributed with the game.	
      </para>
     </listitem>
  </itemizedlist>
@@ -326,7 +677,8 @@ Chess games do not have to end in checkmate — either player may resign if the 
  <title>Authors</title>
   <para>
    <application>glChess</application> was written by Robert Ancell,
-   and is now maintained in gnome-games. 
+   and is now maintained in gnome-games. This documentation was originally written
+   by Andreas Røsdal, with input from several GPL sources. 
    To report a bug or make a suggestion regarding this application or
    this manual, follow the directions in this 
    <ulink url="ghelp:gnome-feedback" type="help">document</ulink>.
