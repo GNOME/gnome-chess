@@ -1,10 +1,20 @@
 # -*- coding: utf-8 -*-
+#
+# defaults.py.in sets many important default global variables
+# used throughout the game. Note that this file is processed by
+# automake to set prefix paths etc. Please keep defaults.py.in
+# in sync between glchess and gnome-sudoku. 
 
 import sys, os, os.path
 import errno
 import gettext 
 
-if sys.modules["glchess"].installed_mode:
+if (sys.modules.has_key('glchess') and
+    hasattr(sys.modules["glchess"],'installed_mode') and
+    sys.modules["glchess"].installed_mode):
+    # If the installed_mode attribute is not set, then we are
+    # importing from something other than the glchess script; we
+    # assume anyone importing in this way is doing testing etc.
     APP_DATA_DIR     = os.path.join('@prefix@', 'share') 
     ICON_DIR         = os.path.join(APP_DATA_DIR, 'pixmaps')
     TEXTURE_DIR      = os.path.join(ICON_DIR, 'glchess')
