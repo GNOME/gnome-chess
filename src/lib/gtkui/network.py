@@ -191,7 +191,7 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
 
         self.roomIters[room] = iter
         self.roomModel.set(iter, 0, room, 1, index, 2, name, 3, nPlayers, 4, description, 5, pango.WEIGHT_NORMAL, 6, style, 7, icon)
-        
+
     def enterRoom(self, room):
         """Called by glchess.ui.UIController"""
         for (r, iter) in self.roomIters.iteritems():
@@ -335,26 +335,36 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         self._throbberTimer = None
         theme = gtk.icon_theme_get_default()
         size = 32
-        icon = theme.load_icon('process-working', size, 0)
         self._throbberFrames = []
-        for i in xrange(icon.get_height() / size):
-            for j in xrange(icon.get_width() / size):
-                frame = icon.subpixbuf(j * size, i * size, size, size)
-                self._throbberFrames.append(frame)
-                
-        # The throbber image should contain 1 idle image and N animation images.
-        # If the image is invalid (i.e. there is only one 32x32 icon) then duplicate
-        # that image as a 1 frame animation.
-        if len(self._throbberFrames) == 1:
-            self.throbberFrames.append(self._throbberFrames[0])
+        
+        icon = theme.load_icon('process-idle', size, 0)
+        if icon is not None:
+            self._throbberFrames.append(icon)
 
+        icon = theme.load_icon('process-working', size, 0)
+        if icon is not None:
+            # If a smaller icon was received than expected then use that size
+            height = icon.get_height()
+            width = icon.get_width()
+            size = min(size, height, width)
+
+            for i in xrange(height / size):
+                for j in xrange(width / size):
+                    frame = icon.subpixbuf(j * size, i * size, size, size)
+                    self._throbberFrames.append(frame)
+                
         # Display idle frame
         self._throbberFrame = 0
         self._updateThrobber()
 
     def _updateThrobber(self):
         widget = self.__gui.get_widget('throbber_image')
-        widget.set_from_pixbuf(self._throbberFrames[self._throbberFrame])
+        try:
+            icon = self._throbberFrames[self._throbberFrame]
+        except IndexError:
+            pass
+        else:
+            widget.set_from_pixbuf(icon)
         
         # Move to next frame restarting animation after idle frame
         self._throbberFrame += 1

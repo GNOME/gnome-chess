@@ -591,7 +591,7 @@ class Client:
         command = "<JOIN TABLE='%s' SPECTATOR='false'/>\n" % table.id
         self.channel = GameChannel(self, command)
         self.channel.controller = self.feedback.openChannel(self.channel)
-        
+
     def leaveTable(self):
         assert(self.state is self.STATE_AT_TABLE)
         self.setState(self.STATE_LEAVE_TABLE)
