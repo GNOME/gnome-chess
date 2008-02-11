@@ -406,7 +406,10 @@ class UI:
         When data is available onReadFileDescriptor() is called.
         """
         assert(False)
-    
+
+    def unwatchFileDescriptor(self, fd):
+        assert(False)
+        
     def writeFileDescriptor(self, fd):
         """Notify when a file descriptor can be written to.
         

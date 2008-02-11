@@ -410,7 +410,7 @@ class MainChannel(ChannelFeedback, protocol.ParserFeedback):
         
         self.client.feedback.roomUpdated(player.lastRoom)
         self.client.feedback.playerRemoved(player)
-            
+
     def closed(self, errno = 0):
         print 'SEVERE: GGZ connection closed: error %d' % errno
         self.client.setState(self.client.STATE_DISCONNECTED)

@@ -201,6 +201,7 @@ class GtkUI(glchess.ui.UI):
                                properties={gnome.PARAM_APP_DATADIR: APP_DATA_DIR})
 
         self.feedback = feedback
+        self._watches = {}
         self.__networkGames = {}
         self.__saveGameDialogs = {}
         self.__joinGameDialogs = []
@@ -289,7 +290,11 @@ class GtkUI(glchess.ui.UI):
     
     def watchFileDescriptor(self, fd):
         """Extends ui.UI"""
-        gobject.io_add_watch(fd, gobject.IO_IN | gobject.IO_HUP, self.__readData)
+        self._watches[fd] = gobject.io_add_watch(fd, gobject.IO_IN | gobject.IO_HUP, self.__readData)
+        
+    def unwatchFileDescriptor(self, fd):
+        """Extends ui.UI"""
+        gobject.source_remove(self._watches.pop(fd))
         
     def writeFileDescriptor(self, fd):
         """Extends ui.UI"""

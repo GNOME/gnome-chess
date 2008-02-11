@@ -8,6 +8,8 @@ import ggz
 import ui
 import game
 
+_ = gettext.gettext
+
 class GGZServer:
     pass
 
@@ -57,19 +59,21 @@ class GGZChannel(ggz.Channel):
         self.ui = ui
         self.feedback = feedback
         self.socket = None
+        self.fd = -1
         
     def logXML(self, text):
         self.logWindow.addText(text, 'input')
-        
+
     def logBinary(self, data):
         self.logWindow.addBinary(data, 'input')
 
     def connect(self, host, port):
         self.close()
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.fd = self.socket.fileno()
         self.socket.setblocking(False)
-        self.ui.application.ioHandlers[self.socket.fileno()] = self
-        self.ui.controller.watchFileDescriptor(self.socket.fileno())
+        self.ui.application.ioHandlers[self.fd] = self
+        self.ui.controller.watchFileDescriptor(self.fd)
         
         try:
             self.socket.connect((host, port))
@@ -99,9 +103,10 @@ class GGZChannel(ggz.Channel):
     def close(self):
         if self.socket is None:
             return
-        # FIXME: Unregister fd events
+        self.ui.controller.unwatchFileDescriptor(self.fd)
         self.socket.close()
         self.socket = None
+        self.fd = -1
         
     def read(self):
         try:
@@ -162,10 +167,11 @@ class GGZConnection(ggz.ClientFeedback):
         self.dialog.controller.clearError()
 
     def onDisconnected(self):
-        self.dialog.controller.setError('Disconnected', 'You have been disconnected from the server')
+        self.dialog.controller.setError(_('Disconnected'), _('You have been disconnected from the server'))
 
     def openChannel(self, feedback):
         print 'Open Channel'
+        self.setBusy(True)
         socket = GGZChannel(self.dialog.ui, feedback)
         socket.connect(self.profile.host, self.profile.port)
         return socket
@@ -210,7 +216,7 @@ class GGZConnection(ggz.ClientFeedback):
             return
         description = table.description
         if len(description) == 0:
-            description = gettext.gettext('No description')
+            description = _('No description')
         nUsed = 0
         for seat in table.seats:
             if seat.type == 'bot' or seat.user != '':
@@ -330,10 +336,12 @@ class GGZNetworkDialog(ui.NetworkFeedback):
             self.decoder.close()
         self.decoder = None
 
+        self.controller.clearError()       
         self.controller.setSensitive(False)
         self.controller.clearRooms()
         self.controller.clearPlayers()
         self.controller.clearTables()
+        self.controller.clearText()
         
         self.profile = profile
         if profile is None:

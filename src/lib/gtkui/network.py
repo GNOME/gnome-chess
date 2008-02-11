@@ -32,7 +32,7 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         
         self.profileModel = gtk.ListStore(gobject.TYPE_PYOBJECT, str)
         iter = self.profileModel.append()
-        self.profileModel.set(iter, 0, None, 1, 'Disconnected')
+        self.profileModel.set(iter, 0, None, 1, _('Disconnected'))
         
         widget = self.__gui.get_widget('server_combo')
         widget.set_model(self.profileModel)
@@ -324,6 +324,10 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         buffer.insert_with_tags_by_name(buffer.get_iter_at_mark(mark), text, style)
         if atBottom:
             view.scroll_mark_onscreen(mark)
+
+    def clearText(self):
+        buffer = self.__gui.get_widget('chat_textview').get_buffer()
+        buffer.delete(buffer.get_start_iter(), buffer.get_end_iter())
 
     def close(self):
         """Called by glchess.ui.UIController"""
