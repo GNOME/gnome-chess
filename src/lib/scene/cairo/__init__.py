@@ -219,8 +219,9 @@ class Scene(glchess.scene.Scene):
         self.width = width
         self.height = height
         
+        # Make the squares as large as possible while still pixel aligned
         shortEdge = min(self.width, self.height)
-        self.squareSize = (shortEdge - 2.0*self.BORDER) / 9.0
+        self.squareSize = math.floor((shortEdge - 2.0*self.BORDER) / 9.0)
         self.pieceSize = self.squareSize - 2.0*self.PIECE_BORDER
 
         self.redrawStatic = True
@@ -357,7 +358,8 @@ class Scene(glchess.scene.Scene):
         
         # Draw border
         context.set_source_rgb(*BORDER_COLOUR)
-        context.rectangle(-self.squareSize * 4.5, -self.squareSize * 4.5, self.squareSize * 9.0, self.squareSize * 9.0)
+        borderSize = math.ceil(self.squareSize * 4.5)
+        context.rectangle(-borderSize, -borderSize, borderSize * 2, borderSize * 2)
         context.fill()
 
         # Draw numbering
@@ -366,9 +368,9 @@ class Scene(glchess.scene.Scene):
             context.set_source_rgb(*NUMBERING_COLOUR)
             context.set_font_size(self.squareSize * 0.4)
             context.select_font_face("sans-serif", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
-	    # Chess board columns (files) label marked for translation. Please translate to the first eight letters of your alphabet, or the most appropriate eight characters/symbols for labelling the columns of a chess board. 
+            # Chess board columns (files) label marked for translation. Please translate to the first eight letters of your alphabet, or the most appropriate eight characters/symbols for labelling the columns of a chess board. 
             files = [_('a'), _('b'), _('c'), _('d'), _('e'), _('f'), _('g'), _('h')]
-	    # Chess board rows (ranks) label marked for translation. Please translate to the first eight numbers with your native number symbols, or the most appropriate eight numbers/symbols for labelling the rows of a chess board.
+            # Chess board rows (ranks) label marked for translation. Please translate to the first eight numbers with your native number symbols, or the most appropriate eight numbers/symbols for labelling the rows of a chess board.
             ranks = [_('8'), _('7'), _('6'), _('5'), _('4'), _('3'), _('2'), _('1')]
             def drawCenteredText(x, y, text):
                 (_, _, w, h, _, _) = context.text_extents('b')
