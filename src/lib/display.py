@@ -186,8 +186,8 @@ class SceneOpenGL(scene.SceneFeedback, scene.human.SceneHumanInput):
         self.pieces = {}
 
         # Call parent constructors
-        scene.human.SceneHumanInput.__init__(self)
         self.controller = scene.opengl.Scene(self)
+        scene.human.SceneHumanInput.__init__(self)
 
     def getPieces(self):
         return self.pieces.values()
@@ -235,6 +235,10 @@ class SceneOpenGL(scene.SceneFeedback, scene.human.SceneHumanInput):
     def squareIsFriendly(self, coord):
         """Called by scene.human.SceneHumanInput"""
         return self.playerIsHuman() and self.game.squareIsFriendly(coord)
+    
+    def canMove(self, start, end):
+        """Called by scene.human.SceneHumanInput"""
+        return self.playerIsHuman() and self.game.getCurrentPlayer().canMove(start, end) # FIXME: Promotion type
     
     def selectSquare(self, coord):
         """Called by scene.human.SceneHumanInput"""
@@ -426,7 +430,7 @@ class View(ui.ViewFeedback):
         self._redrawHighlight()
         
         # If waiting for this piece then end players turn
-        if piece is self.scene.waitingPiece:
+        if piece is not None and piece is self.scene.waitingPiece:
             self.scene.waitingPiece = None
             self.game.getCurrentPlayer().endMove()
 
