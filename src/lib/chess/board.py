@@ -331,15 +331,16 @@ class ChessBoardState:
 
         return False
     
-    def squareUnderAttack(self, colour, location):
+    def squareUnderAttack(self, colour, location, requirePiece = True):
         """Check if a square is under attack according to FIDE chess rules (Article 3.1)
         
         'colour' is the colour considered to own this square.
         'location' is the location to check.
+        'requirePiece' if True only considers this square under attack if there is a piece in it.
         
         Return True if there is an enemy piece that can attach this square.
         """
-        if self.getPiece(location) is None:
+        if requirePiece and self.getPiece(location) is None:
             return False
         
         # See if any enemy pieces can take this king
@@ -513,7 +514,7 @@ class ChessBoardState:
                     return None
                 
                 # The square the king moves over cannot be attackable
-                if self.squareUnderAttack(colour, rookEndLocation):
+                if self.squareUnderAttack(colour, rookEndLocation, requirePiece = False):
                     return None
 
                 # Rook moves with the king
@@ -730,20 +731,13 @@ class ChessBoard:
     
     This class contains a chess board and all its previous states.
     """
-    # Pieces on the chess board
-    __pieces = None
-    
-    # A list of board states
-    __boardStates = None
-    
-    # Flag to stop methods being called from inside a callback.
-    __inCallback = True
-    
-    def __init__(self):
+    def __init__(self, initialState = None):
         """Constructor for a chess board"""
-        self.__pieces = []
-        self.__boardStates = []
-        self.__resetBoard()
+        self.__inCallback = False
+        if initialState is None:
+            self.__resetBoard()
+        else:
+            self.__boardStates = [initialState]
         
     def onPieceMoved(self, piece, start, end, delete):
         """Called when a piece is moved on the chess board.
@@ -885,7 +879,6 @@ class ChessBoard:
         'location' is the start location of the piece in algebraic format (string).
         """
         piece = state.addPiece(location, colour, pieceType)
-        self.__pieces.append(piece)
         
         # Notify a child class the piece creation
         self.__onPieceMoved(piece, None, location, False)
@@ -896,11 +889,6 @@ class ChessBoard:
         Any exisiting states are deleted.
         The user will be notified of the piece deletions.
         """
-        # Delete any existing pieces
-        for piece in self.__pieces:
-            self.__onPieceMoved(piece, piece.getLocation(), piece.getLocation(), True) # FIXME: getLocation() not defined
-        self.__pieces = []
-        
         # Make the board
         initialState = ChessBoardState()
         self.__boardStates = [initialState]
@@ -914,7 +902,7 @@ class ChessBoard:
             self.__addPiece(initialState, WHITE, PAWN,  rank + '2')
             self.__addPiece(initialState, BLACK, piece, rank + '8')
             self.__addPiece(initialState, BLACK, PAWN,  rank + '7')
-    
+
 if __name__ == '__main__':
     p = ChessPiece(WHITE, QUEEN)
     print p
@@ -935,12 +923,15 @@ if __name__ == '__main__':
                 try:
                     expected = validResults[end]
                 except:
-                    expected = MOVE_RESULT_ILLEGAL
+                    expected = None
                 x = ChessBoardState(s)
-                (result, moves) = x.movePiece(colour, start, end)
-                resultMatrix[end] = result
-                if result != expected:
-                    print 'Unexpected result: ' + str(start) + '-' + str(end) + ' is a ' + str(result) + ', should be ' + str(expected)
+                b = ChessBoard(x)
+                move = b.movePiece(colour, start, end)
+                resultMatrix[end] = move
+                
+                isAllowed = validResults.__contains__(end)
+                if (move is None and isAllowed) or (move is not None and not isAllowed):
+                    print 'Unexpected result: ' + str(start) + '-' + str(end) # + ' is a ' + str(result) + ', should be ' + str(expected)
         
         out = ''
         for file in '87654321':
@@ -950,18 +941,17 @@ if __name__ == '__main__':
             for rank in 'abcdefgh':
                 coord = rank + file
                 try:
-                    result = resultMatrix[coord]
+                    move = resultMatrix[coord]
                 except:
-                    result = None
-
-                if result is MOVE_RESULT_ILLEGAL:
                     p = 'X'
-                elif result is MOVE_RESULT_OPPONENT_CHECK:
-                    p = '+'
-                elif result is MOVE_RESULT_OPPONENT_CHECKMATE:
-                    p = '#'
                 else:
-                    p = ' '
+                    if move is not None and move.opponentInCheck:
+                        if move.opponentCanMove:
+                            p = '+'
+                        else:
+                            p = '#'
+                    else:
+                        p = ' '
                     
                 piece = s.getPiece(rank + file)
                 if piece is not None:
@@ -1016,102 +1006,102 @@ if __name__ == '__main__':
     print str(c)
 
     # Test pawn moves
-    test_moves('Pawn', WHITE, 'e4', {'e4': PAWN}, {}, {'e5': MOVE_RESULT_ALLOWED})
-    test_moves('Pawn on base rank', WHITE, 'e2', {'e2': PAWN}, {}, {'e3': MOVE_RESULT_ALLOWED, 'e4': MOVE_RESULT_ALLOWED})
+    test_moves('Pawn', WHITE, 'e4', {'e4': PAWN}, {}, ['e5'])
+    test_moves('Pawn on base rank', WHITE, 'e2', {'e2': PAWN}, {}, ['e3','e4'])
     
     # Test rook moves
     test_moves('Rook', WHITE, 'e4', {'e4': ROOK}, {},
-               {'a4': MOVE_RESULT_ALLOWED, 'b4': MOVE_RESULT_ALLOWED, 'c4': MOVE_RESULT_ALLOWED,
-                'd4': MOVE_RESULT_ALLOWED, 'f4': MOVE_RESULT_ALLOWED, 'g4': MOVE_RESULT_ALLOWED,
-                'h4': MOVE_RESULT_ALLOWED, 'e1': MOVE_RESULT_ALLOWED, 'e2': MOVE_RESULT_ALLOWED,
-                'e3': MOVE_RESULT_ALLOWED, 'e5': MOVE_RESULT_ALLOWED, 'e6': MOVE_RESULT_ALLOWED,
-                'e7': MOVE_RESULT_ALLOWED, 'e8': MOVE_RESULT_ALLOWED})
+               ['a4', 'b4', 'c4',
+                'd4', 'f4', 'g4',
+                'h4', 'e1', 'e2',
+                'e3', 'e5', 'e6',
+                'e7', 'e8'])
 
     # Test knight moves
     test_moves('Knight', WHITE, 'e4', {'e4': KNIGHT}, {},
-               {'d6': MOVE_RESULT_ALLOWED, 'f6': MOVE_RESULT_ALLOWED, 'g5': MOVE_RESULT_ALLOWED,
-                'g3': MOVE_RESULT_ALLOWED, 'f2': MOVE_RESULT_ALLOWED, 'd2': MOVE_RESULT_ALLOWED,
-                'c3': MOVE_RESULT_ALLOWED, 'c5': MOVE_RESULT_ALLOWED})
+               ['d6', 'f6', 'g5',
+                'g3', 'f2', 'd2',
+                'c3', 'c5'])
                
     # Test bishop moves
     test_moves('Bishop', WHITE, 'e4', {'e4': BISHOP}, {},
-               {'a8': MOVE_RESULT_ALLOWED, 'b7': MOVE_RESULT_ALLOWED, 'c6': MOVE_RESULT_ALLOWED,
-                'd5': MOVE_RESULT_ALLOWED, 'f3': MOVE_RESULT_ALLOWED, 'g2': MOVE_RESULT_ALLOWED,
-                'h1': MOVE_RESULT_ALLOWED, 'b1': MOVE_RESULT_ALLOWED, 'c2': MOVE_RESULT_ALLOWED,
-                'd3': MOVE_RESULT_ALLOWED, 'f5': MOVE_RESULT_ALLOWED, 'g6': MOVE_RESULT_ALLOWED,
-                'h7': MOVE_RESULT_ALLOWED})
+               ['a8', 'b7', 'c6',
+                'd5', 'f3', 'g2',
+                'h1', 'b1', 'c2',
+                'd3', 'f5', 'g6',
+                'h7'])
     
     # Test queen moves
     test_moves('Queen', WHITE, 'e4', {'e4': QUEEN}, {},
-               {'a8': MOVE_RESULT_ALLOWED, 'b7': MOVE_RESULT_ALLOWED, 'c6': MOVE_RESULT_ALLOWED,
-                'd5': MOVE_RESULT_ALLOWED, 'f3': MOVE_RESULT_ALLOWED, 'g2': MOVE_RESULT_ALLOWED,
-                'h1': MOVE_RESULT_ALLOWED, 'b1': MOVE_RESULT_ALLOWED, 'c2': MOVE_RESULT_ALLOWED,
-                'd3': MOVE_RESULT_ALLOWED, 'f5': MOVE_RESULT_ALLOWED, 'g6': MOVE_RESULT_ALLOWED,
-                'h7': MOVE_RESULT_ALLOWED, 'a4': MOVE_RESULT_ALLOWED, 'b4': MOVE_RESULT_ALLOWED,
-                'c4': MOVE_RESULT_ALLOWED, 'd4': MOVE_RESULT_ALLOWED, 'f4': MOVE_RESULT_ALLOWED,
-                'g4': MOVE_RESULT_ALLOWED, 'h4': MOVE_RESULT_ALLOWED, 'e1': MOVE_RESULT_ALLOWED,
-                'e2': MOVE_RESULT_ALLOWED, 'e3': MOVE_RESULT_ALLOWED, 'e5': MOVE_RESULT_ALLOWED,
-                'e6': MOVE_RESULT_ALLOWED, 'e7': MOVE_RESULT_ALLOWED, 'e8': MOVE_RESULT_ALLOWED})
+               ['a8', 'b7', 'c6',
+                'd5', 'f3', 'g2',
+                'h1', 'b1', 'c2',
+                'd3', 'f5', 'g6',
+                'h7', 'a4', 'b4',
+                'c4', 'd4', 'f4',
+                'g4', 'h4', 'e1',
+                'e2', 'e3', 'e5',
+                'e6', 'e7', 'e8'])
     
     # Test king moves
     test_moves('King', WHITE, 'e4', {'e4': KING}, {},
-               {'d5': MOVE_RESULT_ALLOWED, 'e5': MOVE_RESULT_ALLOWED, 'f5': MOVE_RESULT_ALLOWED,
-                'd4': MOVE_RESULT_ALLOWED, 'f4': MOVE_RESULT_ALLOWED, 'd3': MOVE_RESULT_ALLOWED,
-                'e3': MOVE_RESULT_ALLOWED, 'f3': MOVE_RESULT_ALLOWED})
+               ['d5', 'e5', 'f5',
+                'd4', 'f4', 'd3',
+                'e3', 'f3'])
                 
     # Test pieces blocking moves
     test_moves('Blocking', WHITE, 'd4',
                {'d4': QUEEN, 'e4': PAWN, 'd6': KNIGHT, 'd2': ROOK, 'f6': BISHOP, 'e3': BISHOP,
                 'b4':PAWN, 'b2': PAWN, 'a7': PAWN},
                {'d8': KNIGHT, 'c4': PAWN},
-               {'b6': MOVE_RESULT_ALLOWED, 'c5': MOVE_RESULT_ALLOWED, 'd5': MOVE_RESULT_ALLOWED,
-                'e5': MOVE_RESULT_ALLOWED, 'c4': MOVE_RESULT_ALLOWED, 'c3': MOVE_RESULT_ALLOWED,
-                'd3': MOVE_RESULT_ALLOWED})
+               ['b6', 'c5', 'd5',
+                'e5', 'c4', 'c3',
+                'd3'])
     
     # Test moving in/out of check
     test_moves('Moving into check', WHITE, 'e4', {'e4': KING}, {'e6': ROOK},
-               {'d5': MOVE_RESULT_ALLOWED, 'f5': MOVE_RESULT_ALLOWED,
-                'd4': MOVE_RESULT_ALLOWED, 'f4': MOVE_RESULT_ALLOWED,
-                'd3': MOVE_RESULT_ALLOWED, 'f3': MOVE_RESULT_ALLOWED})
+               ['d5', 'f5',
+                'd4', 'f4',
+                'd3', 'f3'])
     test_moves('Held in check', WHITE, 'e4', {'e4': KING}, {'f6': ROOK},
-               {'d5': MOVE_RESULT_ALLOWED, 'e5': MOVE_RESULT_ALLOWED, 'd4': MOVE_RESULT_ALLOWED,
-                'd3': MOVE_RESULT_ALLOWED, 'e3': MOVE_RESULT_ALLOWED})
+               ['d5', 'e5', 'd4',
+                'd3', 'e3'])
     
     # Test putting opponent in check
     test_moves('Putting opponent in check', WHITE, 'd3', {'d3': BISHOP}, {'d7': KING, 'd6': ROOK},
-               {'a6': MOVE_RESULT_ALLOWED, 'b5': MOVE_RESULT_OPPONENT_CHECK, 'c4': MOVE_RESULT_ALLOWED,
-                'e2': MOVE_RESULT_ALLOWED, 'f1': MOVE_RESULT_ALLOWED, 'b1': MOVE_RESULT_ALLOWED,
-                'c2': MOVE_RESULT_ALLOWED, 'e4': MOVE_RESULT_ALLOWED, 'f5': MOVE_RESULT_OPPONENT_CHECK,
-                'g6': MOVE_RESULT_ALLOWED, 'h7': MOVE_RESULT_ALLOWED})
+               ['a6', 'b5', 'c4',
+                'e2', 'f1', 'b1',
+                'c2', 'e4', 'f5',
+                'g6', 'h7']) # check=b5,f5
     
     # Test putting opponent into checkmate
     test_moves('Putting opponent into checkmate', WHITE, 'c1', {'c1': BISHOP, 'g1': ROOK, 'a7': ROOK}, {'h8': KING},
-               {'b2': MOVE_RESULT_OPPONENT_CHECKMATE, 'a3': MOVE_RESULT_ALLOWED,
-                'd2': MOVE_RESULT_ALLOWED, 'e3': MOVE_RESULT_ALLOWED, 'f4': MOVE_RESULT_ALLOWED,
-                'g5': MOVE_RESULT_ALLOWED, 'h6': MOVE_RESULT_ALLOWED})
+               ['b2', 'a3',
+                'd2', 'e3', 'f4',
+                'g5', 'h6']) # checkmate=b2
     #FIXME
                 
     # Test putting own player in check by putting oppononent in check (i.e. can't move)
     test_moves('Cannot put opponent in check if we would go into check',
-               WHITE, 'd3', {'d2': KING, 'd3': BISHOP}, {'d7': KING, 'd6': ROOK}, {})
+               WHITE, 'd3', {'d2': KING, 'd3': BISHOP}, {'d7': KING, 'd6': ROOK}, [])
 
     # Test castling
     test_moves('Castle1', WHITE, 'e1', {'e1': KING, 'a1': ROOK}, {},
-               {'d2': MOVE_RESULT_ALLOWED, 'e2': MOVE_RESULT_ALLOWED, 'f2': MOVE_RESULT_ALLOWED,
-                'd1': MOVE_RESULT_ALLOWED, 'f1': MOVE_RESULT_ALLOWED, 'c1': MOVE_RESULT_ALLOWED})
+               ['d2', 'e2', 'f2',
+                'd1', 'f1', 'c1'])
     test_moves('Castle2', BLACK, 'e8', {}, {'e8': KING, 'h8': ROOK},
-               {'d7': MOVE_RESULT_ALLOWED, 'e7': MOVE_RESULT_ALLOWED, 'f7': MOVE_RESULT_ALLOWED,
-               'd8': MOVE_RESULT_ALLOWED, 'f8': MOVE_RESULT_ALLOWED, 'g8': MOVE_RESULT_ALLOWED})
+               ['d7', 'e7', 'f7',
+                'd8', 'f8', 'g8'])
     
     # Test castling while in check
     test_moves('Castle in check1', BLACK, 'e8', {'f1': ROOK}, {'e8': KING, 'h8': ROOK},
-               {'d7': MOVE_RESULT_ALLOWED, 'e7': MOVE_RESULT_ALLOWED, 'd8': MOVE_RESULT_ALLOWED})
+               ['d7', 'e7', 'd8'])
     test_moves('Castle in check2', BLACK, 'e8', {'e1': ROOK}, {'e8': KING, 'h8': ROOK},
-               {'d7': MOVE_RESULT_ALLOWED, 'd8': MOVE_RESULT_ALLOWED,
-                'f7': MOVE_RESULT_ALLOWED, 'f8': MOVE_RESULT_ALLOWED})
+               ['d7', 'd8',
+                'f7', 'f8'])
     test_moves('Castle in check3', BLACK, 'e8', {'h1': ROOK}, {'e8': KING, 'h8': ROOK},
-               {'d7': MOVE_RESULT_ALLOWED, 'e7': MOVE_RESULT_ALLOWED, 'f7': MOVE_RESULT_ALLOWED,
-               'd8': MOVE_RESULT_ALLOWED, 'f8': MOVE_RESULT_ALLOWED, 'g8': MOVE_RESULT_ALLOWED})
+               ['d7', 'e7', 'f7',
+                'd8', 'f8', 'g8'])
                
     # Test en-passant
     #FIXME
