@@ -2,6 +2,7 @@ from defaults import *
 
 try:
     import gconf
+    import gobject
 except ImportError:
     haveGConfSupport = False
     _notifiers = {}
@@ -51,7 +52,10 @@ else:
     haveGConfSupport = True
     _GCONF_DIR = '/apps/glchess/'
     _config = gconf.client_get_default()
-    _config.add_dir(_GCONF_DIR[:-1], gconf.CLIENT_PRELOAD_NONE)
+    try:
+        _config.add_dir(_GCONF_DIR[:-1], gconf.CLIENT_PRELOAD_NONE)
+    except gobject.GError:
+        pass
     
     _gconfGetFunction = {gconf.VALUE_BOOL: gconf.Value.get_bool,
                          gconf.VALUE_FLOAT: gconf.Value.get_float,
@@ -97,7 +101,11 @@ def get(name):
     Raises an Error exception if the value does not exist.
     """
     if haveGConfSupport:
-        entry = _config.get(_GCONF_DIR + name)
+        try:
+            entry = _config.get(_GCONF_DIR + name)
+        except gobject.GError:
+            entry = None
+        
         if entry is None:
             try:
                 return _defaults[name]
@@ -131,8 +139,10 @@ def set(name, value):
             function = _gconfSetFunction[type(value)]
         except KeyError:
             raise TypeError('Only config values of type: int, str, float, bool supported')
-        
-        function(_GCONF_DIR + name, value)
+        except gobject.GError:
+            pass
+        else:
+            function(_GCONF_DIR + name, value)
 
     else:
         # Debounce
@@ -168,7 +178,10 @@ def watch(name, function):
     """
     """
     if haveGConfSupport:
-        _config.notify_add(_GCONF_DIR + name, _watch, (function, name))
+        try:
+            _config.notify_add(_GCONF_DIR + name, _watch, (function, name))
+        except gobject.GError:
+            pass
     else:
         try:
             watchers = _notifiers[name]
