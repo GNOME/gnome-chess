@@ -17,6 +17,6 @@ class SafeStdout:
 sys.stdout = SafeStdout()
 
 def start_game ():
-	import main
-	app = main.Application()
-	app.start()
+    import main
+    app = main.Application()
+    app.start()
