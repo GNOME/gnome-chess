@@ -405,9 +405,15 @@ class GtkView(glchess.ui.ViewController):
         if status is not None:
             subs['result'] = status
         haveResult = status is not None
-            
-        subs['move'] = {True:  _('%(movenum)2iw.') % subs,
-                        False: _('%(movenum)2ib.') % subs}[isWhite]
+        
+        # Translators: This string is used in the move history to indicate which white move is being described.
+        # In a chess game the turns are '1w.', '1b.', '2w.', ...
+        whiteMovePrefix = _('%(movenum)2iw.') % subs
+        # Translators: This string is used in the move history to indicate which black move is being described.
+        # In a chess game the turns are '1w.', '1b.', '2w.', ...
+        blackMovePrefix = _('%(movenum)2ib.') % subs
+        subs['move'] = {True:  whiteMovePrefix,
+                        False: blackMovePrefix}[isWhite]
 
         if move.sanMove.startswith('O-O-O'):
             string = {(True, True):   _('%(move)s White castles long (%(result)s)'),
