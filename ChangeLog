@@ -1,3 +1,8 @@
+2008-02-19  Robert Ancell  <robert.ancell@gmail.com>
+
+	* src/lib/scene/opengl/new_models.py: Use OpenGL vertex arrays to speed up initial
+	  rendering time ~6x. Reduces startup time in 3D mode from 5s to 2s on my system.
+
 2008-02-16  Robert Ancell  <robert.ancell@gmail.com>
 
         * src/lib/chess/board.py: Fix castling regression (Bug #516459)

@@ -206,15 +206,23 @@ class SimpleModel:
         # Collect the vertex coordinates
         # FIXME: How does the scaling work?
         vertices = []
+        texcoords = []
         for v in self.__vertices( 11.0 * 0.3 / 8192):
-            vertices.append( v)
+            vertices.append(v)
+            texcoords.append(self.__getTextureCoord(v, 16.783)) # FIXME: Max height not calculated
 
         # Zero out the normals
         normals = [(0,0,0)] * len(vertices)
 
         # Add up all the face normals at each vertex
+        tris = []
+        quads = []
         for f in self.__faces():
             if len(f) == 3:
+                tris.append(f[0])
+                tris.append(f[1])
+                tris.append(f[2])
+
                 d1 = vectordiff(vertices[f[1]], vertices[f[0]])
                 d2 = vectordiff(vertices[f[2]], vertices[f[0]])
                 normal = normalize(crossprod(d1,d2))
@@ -222,6 +230,11 @@ class SimpleModel:
                 normals[f[1]] = vectoradd(normals[f[1]],normal)
                 normals[f[2]] = vectoradd(normals[f[2]],normal)
             else:
+                quads.append(f[0])
+                quads.append(f[1])
+                quads.append(f[2])
+                quads.append(f[3])
+
                 d1 = vectordiff(vertices[f[1]], vertices[f[0]])
                 d2 = vectordiff(vertices[f[3]], vertices[f[0]])
                 normal = normalize(crossprod(d1,d2))
@@ -242,25 +255,17 @@ class SimpleModel:
         # Normalize the vertex normals
         for i in xrange(len(normals)):
             normals[i] = normalize(normals[i])
+                
+        glEnableClientState(GL_VERTEX_ARRAY)
+        glEnableClientState(GL_NORMAL_ARRAY)
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY)
 
-        # Now draw the faces
-        for f in self.__faces():
-            if len(f) == 3:
-                glBegin(GL_TRIANGLES)
-            elif len(f) == 4:
-                glBegin(GL_QUADS)
-            elif len(f) == 0:
-                continue
-            else:
-                assert(False)
+        glVertexPointer(3, GL_FLOAT, 0, vertices)
+        glNormalPointer(GL_FLOAT, 0, normals)
+        glTexCoordPointer(2, GL_FLOAT, 0, texcoords)
 
-            for v in f:
-                glNormal3fv(normals[v])
-                vertex = vertices[v]
-                glTexCoord2fv(self.__getTextureCoord(vertex, 16.783)) # FIXME: Max height not calculated
-                glVertex3fv(vertex)
-
-            glEnd()
+        glDrawElementsui(GL_TRIANGLES, tris)
+        glDrawElementsui(GL_QUADS, quads)
 
     def end(self):
         pass
