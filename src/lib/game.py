@@ -417,7 +417,7 @@ class ChessGame:
             self.__currentPlayer._setReadyToMove(True)
 
         self.endLock()
-        
+
     def getSquareOwner(self, coord):
         """TODO
         """
