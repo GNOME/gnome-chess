@@ -286,35 +286,6 @@ class Scene(glchess.scene.Scene):
         
         This requires an OpenGL context.
         """
-        import cairo
-        surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, 32, 32)
-        context = cairo.Context(surface)
-        context.set_source_rgb(1.0, 1.0, 0.0)
-        context.rectangle(0, 0, 32, 32)
-        context.fill()
-        
-        context.move_to(2, 2)
-        context.line_to(30, 16)
-        context.line_to(2, 30)
-        context.close_path()
-        context.set_source_rgb(0.0, 0.0, 1.0)
-        context.fill()
-        context.set_source_rgb(0.0, 1.0, 0.0)
-        context.set_line_width(4)
-        context.stroke()
-        
-        t = glGenTextures(1)
-        glBindTexture(GL_TEXTURE_2D, t)
-        glPixelStorei(GL_UNPACK_ALIGNMENT, 1)
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT)
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT)
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
-        data = surface.get_data()
-        gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, 32, 32, GL_BGRA, GL_UNSIGNED_BYTE, str(data))
-        
-        self.whiteTexture.setT(t)       
-
         glClearColor(*BACKGROUND_COLOUR)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
@@ -354,9 +325,6 @@ class Scene(glchess.scene.Scene):
         else:
             self.drawPieces()
             
-        import time
-        print time.time()
-
     def getSquare(self, x, y):
         """Find the chess square at a given 2D location.
         
