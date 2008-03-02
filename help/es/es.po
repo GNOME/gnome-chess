@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: glchess.HEAD\n"
-"POT-Creation-Date: 2008-02-10 09:53+0000\n"
-"PO-Revision-Date: 2008-02-12 11:28+0100\n"
+"POT-Creation-Date: 2008-03-02 03:47+0000\n"
+"PO-Revision-Date: 2008-03-02 13:55+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,13 +27,13 @@ msgstr "@@image: 'figures/new_game.png'; md5=6e8c77ee96b3810693b2c7ff5ab62dd3"
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
-#: C/glchess.xml:571(None)
+#: C/glchess.xml:573(None)
 msgid "@@image: 'figures/preferences_game.png'; md5=cfc33e3282db5c47cc598dd7ea6b3bad"
 msgstr "@@image: 'figures/preferences_game.png'; md5=cfc33e3282db5c47cc598dd7ea6b3bad"
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
-#: C/glchess.xml:596(None)
+#: C/glchess.xml:598(None)
 msgid "@@image: 'figures/preferences_view.png'; md5=b59e2c72a675d517bbfce6c3f826a344"
 msgstr "@@image: 'figures/preferences_view.png'; md5=b59e2c72a675d517bbfce6c3f826a344"
 
@@ -348,7 +348,7 @@ msgid ""
 msgstr ""
 "Para ejecutar <application>Ajedrez</application>, seleccione "
 "<guimenuitem>Ajedrez</guimenuitem> del submenú <guisubmenu>Juegos</"
-"guisubmenu> del menú <guimenu>Aplicaciones</guimenu>, o ecriba "
+"guisubmenu> del menú <guimenu>Aplicaciones</guimenu>, o escriba "
 "<command>glchess</command> en la línea de comandos."
 
 #: C/glchess.xml:168(title)
@@ -509,7 +509,9 @@ msgstr ""
 msgid ""
 "<menuchoice><shortcut><keysym>Ctrl+Q</keysym></shortcut><guimenuitem>Quit</"
 "guimenuitem></menuchoice> Ends the game."
-msgstr "<menuchoice><shortcut><keysym>Ctrl+Q</keysym></shortcut><guimenuitem>Salir</guimenuitem></menuchoice> termina el juego."
+msgstr ""
+"<menuchoice><shortcut><keysym>Ctrl+Q</keysym></shortcut><guimenuitem>Salir</"
+"guimenuitem></menuchoice> termina el juego."
 
 #: C/glchess.xml:240(para) C/glchess.xml:332(para) C/glchess.xml:372(para)
 #: C/glchess.xml:392(para)
@@ -729,7 +731,7 @@ msgid ""
 "Note that a bishop never changes square color, therefore players speak about "
 "\"light-squared\" or \"dark-squared\" bishops."
 msgstr ""
-"El alfil se puede mvoer cualquier número de casillas vacías en cualquier "
+"El alfil se puede mover cualquier número de casillas vacías en cualquier "
 "dirección diagonal. Nótese que el alfil nunca cambia de color de casilla, de "
 "tal forma que los jugadores hablan de alfiles «negros» o «blancos»."
 
@@ -849,20 +851,20 @@ msgstr "Partidas con control de tiempo"
 #: C/glchess.xml:507(para)
 msgid ""
 "Games can be played with a time-limit by setting a move time when creating a "
-"new game. The enables a time control which makes it possible for a player to "
-"avoid having an ever-decreasing amount of time remaining (as is the case "
-"with sudden death)."
+"new game. In timed games each player has a certain amount of time available "
+"for deciding which moves to make, and the time remaining for each player "
+"decreases only when it is their turn to move."
 msgstr ""
 "Las partidas se pueden jugar con un límite de tiempo estableciendo un tiempo "
-"para la jugada al crear una partida nueva. Esto activa un control de tiempo "
-"que hace posible que un jugador evite caer en tiempos siempre decrecientes "
-"(como el caso de la muerte súbita)."
+"para la jugada al crear una partida nueva. En las partidas con límite de tiempo cada "
+"jugador tiene cierto tiempo disponible para decidir qué movimientos hacer, y el "
+"tiempo restante para cada jugador disminuye sólo cuando le toca mover."
 
-#: C/glchess.xml:513(title)
+#: C/glchess.xml:515(title)
 msgid "Game Draw"
 msgstr "Tablas"
 
-#: C/glchess.xml:514(para)
+#: C/glchess.xml:516(para)
 msgid ""
 "A game that ends without victory for either player. Most drawn games are "
 "draws by agreement based upon the rules. The other ways that a game can end "
@@ -881,11 +883,11 @@ msgstr ""
 "una posición donde la partida deba acabar en tabalas, independientemente de "
 "los movimientos realizados por el otro jugador."
 
-#: C/glchess.xml:520(title)
+#: C/glchess.xml:522(title)
 msgid "Stalemate"
 msgstr "Ahogado"
 
-#: C/glchess.xml:521(para)
+#: C/glchess.xml:523(para)
 msgid ""
 "A stalemate is a position in which the player whose turn it is to move has "
 "no legal move and his king is not in check. A stalemate results in an "
@@ -895,11 +897,11 @@ msgstr ""
 "movimientos legales y su rey no está en jaque. Un ahogamiento acaba en "
 "tablas."
 
-#: C/glchess.xml:527(title)
+#: C/glchess.xml:529(title)
 msgid "Threefold repetetion"
 msgstr "Repetición triple"
 
-#: C/glchess.xml:528(para)
+#: C/glchess.xml:530(para)
 msgid ""
 "The game is drawn if the same position occurs three times with the same "
 "player to move, and with each player having the same set of legal moves each "
@@ -911,11 +913,11 @@ msgstr ""
 "tres veces (la última incluye el derecho a comer al paso y el derecho de "
 "enroque)."
 
-#: C/glchess.xml:535(title)
+#: C/glchess.xml:537(title)
 msgid "Fifty move rule"
 msgstr "La regla de los cincuenta movimientos"
 
-#: C/glchess.xml:536(para)
+#: C/glchess.xml:538(para)
 msgid ""
 "The fifty move rule states that the game is drawn after fifty moves from "
 "each side without a pawn move or capture."
@@ -924,11 +926,11 @@ msgstr ""
 "después de cincuenta movimientos de cada jugador sin un movimiento o captura "
 "de peón."
 
-#: C/glchess.xml:542(title)
+#: C/glchess.xml:544(title)
 msgid "Insufficient material"
 msgstr "Piezas insuficientes"
 
-#: C/glchess.xml:543(para)
+#: C/glchess.xml:545(para)
 msgid ""
 "An endgame scenario in which all pawns have been captured, and one side has "
 "only its king remaining while the other is down to just a king or a king "
@@ -945,15 +947,15 @@ msgstr ""
 "jugador en inferioridad comete un error garrafal están cubiertas por la "
 "regla de los cincuenta movimientos."
 
-#: C/glchess.xml:557(title)
+#: C/glchess.xml:559(title)
 msgid "Game Settings"
 msgstr "Ajustes del juego"
 
-#: C/glchess.xml:561(title)
+#: C/glchess.xml:563(title)
 msgid "Game Preferences"
 msgstr "Preferencias de Juego"
 
-#: C/glchess.xml:562(para)
+#: C/glchess.xml:564(para)
 msgid ""
 "This preference dialog allows you to modify board orientation, move format "
 "and promotion type."
@@ -961,35 +963,35 @@ msgstr ""
 "Este diálogo de preferencias le permite modificar la orientación del "
 "tablero, el formato de movimiento y el tipo de promoción."
 
-#: C/glchess.xml:567(title)
+#: C/glchess.xml:569(title)
 msgid "Game preferences dialog for glChess"
 msgstr "Diálogo de preferencias Juego de Ajedrez"
 
-#: C/glchess.xml:574(phrase)
+#: C/glchess.xml:576(phrase)
 msgid "Game preferences dialog for glChes."
 msgstr "Diálogo de preferencias Juego de Ajedrez."
 
-#: C/glchess.xml:586(title)
+#: C/glchess.xml:588(title)
 msgid "View Preferences"
 msgstr "Preferencias de Ver"
 
-#: C/glchess.xml:587(para)
+#: C/glchess.xml:589(para)
 msgid "This preference dialog allows you to modify the look and feel of glChess."
 msgstr "Este diálogo de preferencias le permite modificar el aspecto de Ajedrez."
 
-#: C/glchess.xml:592(title)
+#: C/glchess.xml:594(title)
 msgid "View preferences dialog for glChess"
 msgstr "Diálogo Ver de las preferencias de Ajedrez"
 
-#: C/glchess.xml:599(phrase)
+#: C/glchess.xml:601(phrase)
 msgid "View preferences dialog for glChess."
 msgstr "Diálogo Ver de las preferencias de Ajedrez."
 
-#: C/glchess.xml:612(title)
+#: C/glchess.xml:614(title)
 msgid "Chess Engines"
 msgstr "Motores del ajedrez"
 
-#: C/glchess.xml:614(para)
+#: C/glchess.xml:616(para)
 msgid ""
 "glChess should be able to use any Chess Engine Communication Protocol or "
 "Universal Chess Interface compatible chess engines, including these chess "
@@ -999,71 +1001,71 @@ msgstr ""
 "ajedrez o motores de ajedrez con interfaces de ajedrez universal, incluyendo "
 "estos motores de ajedrez:"
 
-#: C/glchess.xml:622(para)
+#: C/glchess.xml:624(para)
 msgid "GNUChess"
 msgstr "GNUChess"
 
-#: C/glchess.xml:625(para)
+#: C/glchess.xml:627(para)
 msgid "Sjeng"
 msgstr "Sjeng"
 
-#: C/glchess.xml:628(para)
+#: C/glchess.xml:630(para)
 msgid "Amy"
 msgstr "Amy"
 
-#: C/glchess.xml:631(para)
+#: C/glchess.xml:633(para)
 msgid "Crafty"
 msgstr "Crafty"
 
-#: C/glchess.xml:634(para)
+#: C/glchess.xml:636(para)
 msgid "Faile"
 msgstr "Faile"
 
-#: C/glchess.xml:637(para)
+#: C/glchess.xml:639(para)
 msgid "Phalanx"
 msgstr "Phalanx"
 
-#: C/glchess.xml:640(para)
+#: C/glchess.xml:642(para)
 msgid "Glaurung"
 msgstr "Glaurung"
 
-#: C/glchess.xml:643(para)
+#: C/glchess.xml:645(para)
 msgid "HoiChess"
 msgstr "HoiChess"
 
-#: C/glchess.xml:646(para)
+#: C/glchess.xml:648(para)
 msgid "Diablo"
 msgstr "Diablo"
 
-#: C/glchess.xml:649(para)
+#: C/glchess.xml:651(para)
 msgid "BBChess"
 msgstr "BBChess"
 
-#: C/glchess.xml:652(para)
+#: C/glchess.xml:654(para)
 msgid "Fruit"
 msgstr "Fruit"
 
-#: C/glchess.xml:655(para)
+#: C/glchess.xml:657(para)
 msgid "Amundsen"
 msgstr "Amundsen"
 
-#: C/glchess.xml:658(para)
+#: C/glchess.xml:660(para)
 msgid "Shredder"
 msgstr "Shredder"
 
-#: C/glchess.xml:661(para)
+#: C/glchess.xml:663(para)
 msgid "Toga II"
 msgstr "Toga II"
 
-#: C/glchess.xml:664(para)
+#: C/glchess.xml:666(para)
 msgid "Boo's Chess Engine"
 msgstr "Motor de ajedrez Boo"
 
-#: C/glchess.xml:674(title)
+#: C/glchess.xml:676(title)
 msgid "Known Bugs and Limitations"
 msgstr "Errores conocidos y limitaciones"
 
-#: C/glchess.xml:678(para)
+#: C/glchess.xml:680(para)
 msgid ""
 "There are no documented bugs or limitations in glChess. To find areas where "
 "you can help improve glChess, please refer to the TODO file which is "
@@ -1073,11 +1075,11 @@ msgstr ""
 "donde pueda ayudar a mejorar glChess, consulte el archivo TODO distribuido "
 "con el juego."
 
-#: C/glchess.xml:688(title)
+#: C/glchess.xml:690(title)
 msgid "Authors"
 msgstr "Autores"
 
-#: C/glchess.xml:689(para)
+#: C/glchess.xml:691(para)
 msgid ""
 "<application>glChess</application> was written by Robert Ancell, and is now "
 "maintained in gnome-games. This documentation was originally written by "
@@ -1093,11 +1095,11 @@ msgstr ""
 "indicaciones en este <ulink url=\"ghelp:gnome-feedback\" type=\"help"
 "\">documento</ulink>."
 
-#: C/glchess.xml:714(title)
+#: C/glchess.xml:716(title)
 msgid "License"
 msgstr "Licencia"
 
-#: C/glchess.xml:715(para)
+#: C/glchess.xml:717(para)
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the <citetitle>GNU General Public License</citetitle> as "
@@ -1109,7 +1111,7 @@ msgstr ""
 "como se publica por la Free Software Foundation; ya sea la versión 2 de la "
 "Licencia, o (a su elección) cualquier versión posterior."
 
-#: C/glchess.xml:722(para)
+#: C/glchess.xml:724(para)
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -1121,7 +1123,7 @@ msgstr ""
 "IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Vea la <citetitle>Licencia Pública "
 "General GNU</citetitle> para más detalles."
 
-#: C/glchess.xml:728(para)
+#: C/glchess.xml:730(para)
 msgid ""
 "A copy of the <citetitle>GNU General Public License</citetitle> is included "
 "as an appendix to the <citetitle>GNOME Users Guide</citetitle>. You may also "
@@ -1137,9 +1139,9 @@ msgstr ""
 "citetitle>. También puede obtener una copia de la <citetitle>Licencia "
 "Pública General GNU</citetitle> de la Free Software Foundation visitando "
 "<ulink url=\"http://www.fsf.org\" type=\"http\">su página web</ulink> o "
-"escribiendo a la <address>Free Software Foundation, Inc. <street>59 Temple Place</"
-"street> - Suite 330 <city>Boston</city>, <state>MA</state><postcode>02111-"
-"1307</postcode><country>EE. UU.</country></address>"
+"escribiendo a la <address>Free Software Foundation, Inc. <street>59 Temple "
+"Place</street> - Suite 330 <city>Boston</city>, <state>MA</"
+"state><postcode>02111-1307</postcode><country>EE. UU.</country></address>"
 
 #. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2.
 #: C/glchess.xml:0(None)
