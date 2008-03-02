@@ -222,12 +222,12 @@ class Player(game.ChessPlayer):
         game.ChessPlayer.__init__(self, name)
         
         # Pipe to communicate to engine with
-        toManagerPipe = os.pipe()
-        fromManagerPipe = os.pipe()
+        (toManagerOutput, toManagerInput) = os.pipe()
+        (fromManagerOutput, fromManagerInput) = os.pipe()
         
         # Store the file descripter for reading/writing
-        self.__toEngineFd = toManagerPipe[1]
-        self.__fromEngineFd = fromManagerPipe[0]
+        self.__toEngineFd = toManagerInput
+        self.__fromEngineFd = fromManagerOutput
         
         # Catch if the child dies
         def cDied(sig, stackFrame):
@@ -235,89 +235,22 @@ class Player(game.ChessPlayer):
                 os.waitpid(-1, os.WNOHANG)
             except OSError:
                 pass
+            
+            print 'Monitor died'
+            self.die()
         signal.signal(signal.SIGCHLD, cDied)
 
         # Fork off a child process to manage the engine
         if os.fork() == 0:
-            # ..
-            os.close(toManagerPipe[1])
-            os.close(fromManagerPipe[0])
-            
-            # Make pipes to the engine
-            stdinPipe = os.pipe()
-            stdoutPipe = os.pipe()
-            stderrPipe = os.pipe()
-            
-            # Fork off the engine
-            engineFd = os.fork()
-            if engineFd == 0:
-                # Make the engine low priority for CPU usage
-                os.nice(19)
-                
-                # Change directory so any log files are not in the users home directory
-                try:
-                    os.mkdir(LOG_DIR)
-                except OSError:
-                    pass
-                try:
-                    os.chdir(LOG_DIR)
-                except OSError:
-                    pass
-                
-                # Connect stdin, stdout and stderr to the manager process
-                os.dup2(stdinPipe[0], sys.stdin.fileno())
-                os.dup2(stdoutPipe[1], sys.stdout.fileno())
-                os.dup2(stderrPipe[1], sys.stderr.fileno())
-                
-                # Execute the engine
-                try:
-                    os.execv(profile.path, [profile.path] + profile.arguments)
-                except OSError:
-                    pass
-                os._exit(0)
-                
-            # Catch if the child dies
-            def childDied(sig, stackFrame):
-                try:
-                    os.waitpid(-1, os.WNOHANG)
-                except OSError:
-                    return
-                
-                # Close connection to the application
-                os.close(fromManagerPipe[1])
-                    
-                os._exit(0)
-            signal.signal(signal.SIGCHLD, childDied)
-
-            # Forward data between the application and the engine and wait for closed pipes
-            inputPipes = [toManagerPipe[0], stdoutPipe[0], stderrPipe[0]]
-            pipes = [toManagerPipe[0], toManagerPipe[1], stdinPipe[0], stdinPipe[1], stdoutPipe[0], stdoutPipe[1], stderrPipe[0], stderrPipe[1]]
-            while True:                
-                # Wait for data
-                (rfds, _, xfds) = select.select(inputPipes, [], pipes, None)
-                
-                for fd in rfds:
-                    data = os.read(fd, 65535)
-                    
-                    # One of the connections has closed - kill the engine and quit
-                    if len(data) == 0:
-                        try:
-                            os.kill(engineFd, signal.SIGQUIT)
-                        except OSError:
-                            pass
-                        os._exit(0)
-                    
-                    # Send data from the application to the engines stdin
-                    if fd == toManagerPipe[0]:
-                        os.write(stdinPipe[1], data)
-                    # Send engine output to the application
-                    else:
-                        os.write(fromManagerPipe[1], data)
-
+            os.close(toManagerInput)
+            os.close(fromManagerOutput)
+            self._runMonitor(fromManagerInput, toManagerOutput)
+            os.close(toManagerOutput)
+            os.close(fromManagerInput)
             os._exit(0)
-            
-        os.close(toManagerPipe[0])
-        os.close(fromManagerPipe[1])
+        else:
+            os.close(toManagerOutput)
+            os.close(fromManagerInput)
 
         if profile.protocol == CECP:
             self.connection = CECPConnection(self)
@@ -435,3 +368,71 @@ class Player(game.ChessPlayer):
     def onGameEnded(self, game):
         """Called by game.ChessPlayer"""
         self.quit()
+
+    def _runEngine(self, toEngineFd, fromEngineFd):
+        # Make the engine low priority for CPU usage
+        os.nice(19)
+                
+        # Change directory so any log files are not in the users home directory
+        try:
+            os.mkdir(LOG_DIR)
+        except OSError:
+            pass
+        try:
+            os.chdir(LOG_DIR)
+        except OSError:
+            pass
+                
+        # Connect stdin, stdout and stderr to the manager process
+        os.dup2(toEngineFd, sys.stdin.fileno())
+        os.dup2(fromEngineFd, sys.stdout.fileno())
+        os.dup2(fromEngineFd, sys.stderr.fileno())
+                
+        # Execute the engine
+        try:
+            os.execv(self.__profile.path, [self.__profile.path] + self.__profile.arguments)
+        except OSError:
+            pass
+
+    def _runMonitor(self, toApplicationFd, fromApplicationFd):
+        # Make pipes to the child process
+        (toEngineOutput, toEngineInput) = os.pipe()
+        (fromEngineOutput, fromEngineInput) = os.pipe()
+
+        # Fork and execute the child
+        enginePID = os.fork()
+        if enginePID == 0:
+            os.close(toEngineInput)
+            os.close(fromEngineOutput)
+            self._runEngine(toEngineOutput, fromEngineInput)
+            os._exit(0)
+        else:
+            os.close(toEngineOutput)
+            os.close(fromEngineInput)
+
+        # Forward data between the application and the child process and wait for closed pipes
+        inputPipes = (fromApplicationFd, fromEngineOutput)
+        targets = {fromApplicationFd: toEngineInput,
+                   fromEngineOutput: toApplicationFd}
+        pipes = (toApplicationFd, fromApplicationFd,
+                 toEngineInput, fromEngineOutput)
+                 
+        try:
+            while True:                
+                # Wait for data
+                (rfds, _, xfds) = select.select(inputPipes, [], pipes, None)
+                
+                for fd in rfds:
+                    data = os.read(fd, 65535)
+                    if len(data) == 0:
+                        raise OSError('End of data')
+                
+                    # Bridge information between the application and the engine
+                    os.write(targets[fd], data)
+        except Exception, e:
+            # Kill the child and exit
+            try:
+                os.kill(enginePID, signal.SIGQUIT)
+            except OSError:
+                pass
+            os._exit(0)
