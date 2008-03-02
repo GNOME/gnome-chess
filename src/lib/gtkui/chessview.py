@@ -111,7 +111,7 @@ class GtkViewArea(gtk.DrawingArea):
         glContext = gtk.gtkgl.widget_get_gl_context(self)
 
         # OpenGL begin.
-        if not glDrawable.gl_begin(glContext):
+        if glDrawable is None or not glDrawable.gl_begin(glContext):
             return
         
         self.__glDrawable = glDrawable
@@ -130,10 +130,8 @@ class GtkViewArea(gtk.DrawingArea):
         
     def __endGL(self):
         """Free the OpenGL context"""
-        if not self.renderGL:
+        if self.__glDrawable is None or not self.renderGL:
             return
-        
-        assert(self.__glDrawable is not None)
         self.__glDrawable.gl_end()
         self.__glDrawable = None
         
@@ -155,7 +153,9 @@ class GtkViewArea(gtk.DrawingArea):
         """Gtk+ signal"""
         if self.renderGL:
             self.__startGL()
-        
+            if self.__glDrawable is None:
+                return
+
             # Get the scene rendered
             try:
                 if self.view.feedback is not None:
