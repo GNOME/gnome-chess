@@ -235,9 +235,11 @@ class Player(game.ChessPlayer):
                 os.waitpid(-1, os.WNOHANG)
             except OSError:
                 pass
-            
-            print 'Monitor died'
-            self.die()
+           
+            # If unexpected then AI has died
+            if self.__fromEngineFd != None:
+                print 'Monitor died'
+                self.die()
         signal.signal(signal.SIGCHLD, cDied)
 
         # Fork off a child process to manage the engine
