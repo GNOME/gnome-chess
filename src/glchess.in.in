@@ -8,6 +8,10 @@
 # software under the terms of the GNU General Public License, 
 # version 2 or later.
 
+# Some version of PyGTK require this to be called before importing the gtk module
+import pygtk
+pygtk.require('2.0')
+
 # Setup bugbuddy to report unhandled exceptions.
 try: 
   import bugbuddy
