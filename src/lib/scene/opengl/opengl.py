@@ -1,6 +1,8 @@
 import math
 import os.path
+from gettext import gettext as _
 
+import cairo
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
@@ -10,6 +12,9 @@ import glchess.scene
 import texture
 import new_models
 builtin_models = new_models
+
+PIECE_MOVE_SPEED    = 50.0 # FIXME: Define units
+BOARD_ROTATION_TIME = 0.8
 
 SQUARE_WIDTH      = 10.0
 BOARD_DEPTH       = 3.0
@@ -124,18 +129,17 @@ class ChessPiece(glchess.scene.ChessPiece):
         dz = self.targetPos[2] - self.pos[2]
         
         # Get movement step in each direction
-        SPEED = 50.0 # FIXME
-        xStep = timeStep * SPEED
+        xStep = timeStep * PIECE_MOVE_SPEED
         if xStep > abs(dx):
             xStep = dx
         else:
             xStep *= cmp(dx, 0.0)
-        yStep = timeStep * SPEED
+        yStep = timeStep * PIECE_MOVE_SPEED
         if yStep > abs(dy):
             yStep = dy
         else:
             yStep *= cmp(dy, 0.0)
-        zStep = timeStep * SPEED
+        zStep = timeStep * PIECE_MOVE_SPEED
         if zStep > abs(dz):
             zStep = dz
         else:
@@ -184,6 +188,9 @@ class Scene(glchess.scene.Scene):
     highlights       = None
     
     _animationQueue  = []
+
+    showNumbering = False
+    numberingTexture = None
 
     def __init__(self, feedback):
         """Constructor for an OpenGL scene"""
@@ -241,6 +248,11 @@ class Scene(glchess.scene.Scene):
         self.regenerateBoard = True
 
         self.feedback.onRedraw()
+
+    def showBoardNumbering(self, showNumbering):
+        """Extends glchess.scene.Scene"""
+        self.showNumbering = showNumbering
+        self.feedback.onRedraw()
     
     def reshape(self, width, height):
         """Resize the viewport into the scene.
@@ -261,7 +273,7 @@ class Scene(glchess.scene.Scene):
         self.targetBoardAngle = angle
         
         if not animate:
-            self.boardAngle = angle
+            self.oldBoardAngle = self.boardAngle = angle
             self.feedback.onRedraw()
             return
         
@@ -315,6 +327,9 @@ class Scene(glchess.scene.Scene):
         self.drawBoard()
         glDisable(GL_COLOR_MATERIAL)
         glDisable(GL_TEXTURE_2D)
+        
+        if self.showNumbering:
+            self.drawNumbering()
         
         # WORKAROUND: Mesa is corrupting polygons on the bottom of the models
         # It could be because the depth buffer has a low bit depth?
@@ -425,7 +440,7 @@ class Scene(glchess.scene.Scene):
 
         # Rotate board to the chosen angle
         length = abs(self.targetBoardAngle - self.oldBoardAngle)
-        self.boardAngle += timeStep * length / 0.8
+        self.boardAngle += timeStep * length / BOARD_ROTATION_TIME
         while self.boardAngle > 360.0:
             self.boardAngle -= 360.0
         travelled = self.targetBoardAngle - self.boardAngle
@@ -563,9 +578,109 @@ class Scene(glchess.scene.Scene):
         gluLookAt(0.0, 90.0, 45.0,
                   0.0,  0.0, 5.0,
                   0.0,  1.0,  0.0)
+                  
+    def _makeNumberingTexture(self):
+        WIDTH = 64
+        HEIGHT = 64
+        TEXTURE_WIDTH = WIDTH*16
+        TEXTURE_HEIGHT = HEIGHT
+
+        # Chess board columns (files) label marked for translation. Please translate to the first eight letters of your alphabet, or the most appropriate eight characters/symbols for labelling the columns of a chess board. 
+        files = [_('a'), _('b'), _('c'), _('d'), _('e'), _('f'), _('g'), _('h')]
+        # Chess board rows (ranks) label marked for translation. Please translate to the first eight numbers with your native number symbols, or the most appropriate eight numbers/symbols for labelling the rows of a chess board.
+        ranks = [_('1'), _('2'), _('3'), _('4'), _('5'), _('6'), _('7'), _('8')]
+
+        surface = cairo.ImageSurface(cairo.FORMAT_A8, TEXTURE_WIDTH, TEXTURE_HEIGHT)
+        context = cairo.Context(surface)
+        context.set_source_rgba(1.0, 1.0, 1.0, 1.0)
+        context.select_font_face("sans-serif", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
+        context.set_font_size(WIDTH)
+        (ascent, descent, x, x, x) = context.font_extents()
+        scale = WIDTH / (ascent + descent)
+
+        def drawCenteredText(x, y, scale, text):
+            (w2, h2, w, h, _, _) = context.text_extents(text)
+            matrix = context.get_matrix()
+            context.translate(x, y)
+            context.move_to(-w*scale/2, h*scale/2)
+            context.scale(scale, scale)
+            context.show_text(text)
+            context.set_matrix(matrix)
+
+        xoffset = WIDTH * 0.5
+        yoffset = HEIGHT * 0.5
+        for i in xrange(8):
+            drawCenteredText(xoffset, yoffset, scale, files[i])
+            drawCenteredText(xoffset + (WIDTH * 8), yoffset, scale, ranks[i])
+            xoffset += WIDTH
+        data = surface.get_data()
+
+        t = glGenTextures(1)
+        glBindTexture(GL_TEXTURE_2D, t)
+        glPixelStorei(GL_UNPACK_ALIGNMENT, 1)
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT)
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT)
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
+        gluBuild2DMipmaps(GL_TEXTURE_2D, GL_ALPHA, TEXTURE_WIDTH, TEXTURE_HEIGHT,
+                          GL_ALPHA, GL_UNSIGNED_BYTE, str(data))
+                          
+        return t
+    
+    def drawNumbering(self):
+        if self.numberingTexture is None:
+            self.numberingTexture = self._makeNumberingTexture()
+            
+        TEXT_WIDTH = BOARD_BORDER * 0.8
+        TEXT_OFFSET = (BOARD_BORDER + BOARD_CHAMFER) * 0.5
+        offset = BOARD_BORDER + SQUARE_WIDTH * 0.5
+        whiteZOffset = -TEXT_OFFSET
+        blackZOffset = -BOARD_OUTER_WIDTH + TEXT_OFFSET
+        leftOffset = TEXT_OFFSET
+        rightOffset = BOARD_OUTER_WIDTH - TEXT_OFFSET
+
+        def drawLabel(x, z, cell):
+            w = 1.0 / 16
+            l = cell / 16.0
+            
+            glPushMatrix()
+            glTranslatef(x, 0.0, z)
+            glRotatef(-self.boardAngle, 0.0, 1.0, 0.0)
+
+            glBegin(GL_QUADS)            
+            glTexCoord2f(l, 0.0)
+            glVertex3f(-TEXT_WIDTH/2, 0.0, -TEXT_WIDTH/2)
+            glTexCoord2f(l, 1.0)
+            glVertex3f(-TEXT_WIDTH/2, 0.0, TEXT_WIDTH/2)
+            glTexCoord2f(l + w, 1.0)
+            glVertex3f(TEXT_WIDTH/2, 0.0, TEXT_WIDTH/2)
+            glTexCoord2f(l + w, 0.0)
+            glVertex3f(TEXT_WIDTH/2, 0.0, -TEXT_WIDTH/2)
+            glEnd()
+            
+            glPopMatrix()
+
+        glNormal3f(0.0, 1.0, 0.0)
+        glDisable(GL_DEPTH_TEST)
+        glEnable(GL_TEXTURE_2D)
+        glEnable(GL_BLEND)
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+        glBindTexture(GL_TEXTURE_2D, self.numberingTexture)
+
+        for i in xrange(8):
+            drawLabel(leftOffset, -offset, i + 8)
+            drawLabel(rightOffset, -offset, i + 8)
+            drawLabel(offset, whiteZOffset, i)
+            drawLabel(offset, blackZOffset, i)
+
+            offset += SQUARE_WIDTH
+
+        glEnable(GL_DEPTH_TEST)
+        glDisable(GL_BLEND)
+        glDisable(GL_TEXTURE_2D)
 
     def drawBoard(self):
-        """Draw a chessboard"""        
+        """Draw a chessboard"""
         # Use pre-rendered version if available
         if self.regenerateBoard is False and self.boardList is not None:
             glCallList(self.boardList)
