@@ -333,6 +333,7 @@ class View(ui.ViewFeedback):
         # The selected square
         self.selectedCoord = None
         self.showHints = False
+        self.showNumbering = False
         self.highlightParams = (None, None, None, None)
         self.changedHighlight = True
         
@@ -441,6 +442,7 @@ class View(ui.ViewFeedback):
 
     def showBoardNumbering(self, showNumbering):
         """Called by ui.ViewFeedback"""
+        self.showNumbering = showNumbering
         self.scene.controller.showBoardNumbering(showNumbering)
 
     def updateScene(self, sceneClass):
@@ -456,6 +458,7 @@ class View(ui.ViewFeedback):
         self.scene = sceneClass(self)
         self.reshape(self.width, self.height)
         self.setMoveNumber(self.moveNumber)
+        self.showBoardNumbering(self.showNumbering)
         self.updateRotation(animate = False)
 
     def renderGL(self):
