@@ -123,9 +123,6 @@ class Texture:
         
         return texture
     
-    def setT(self, t):
-        self.__texture = t
-
     def bind(self):
         """Bind this texture to the current surface.
         
