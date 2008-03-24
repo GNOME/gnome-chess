@@ -110,7 +110,7 @@ class Texture:
         # Generate mipmaps
         try:
             gluBuild2DMipmaps(GL_TEXTURE_2D, GL_LUMINANCE, self.__width, self.__height, self.__format, GL_UNSIGNED_BYTE, self.__data)
-        except GLUError, e:
+        except GLUerror, e:
             glTexImage2D(GL_TEXTURE_2D,
                          0,                # Level
                          3,                # Depth

@@ -1,5 +1,6 @@
 try:
     import OpenGL.GL
+    import OpenGL.GLU    
 except ImportError:
     import glchess.scene
     
@@ -14,4 +15,10 @@ except ImportError:
         def addChessPiece(self, chessSet, name, coord, feedback):
             return Piece()
 else:
+    # PyOpenGL 3.0 renamed GLError -> GLerror, support 2.0
+    if not hasattr(OpenGL.GL, 'GLerror'):
+        OpenGL.GL.GLerror = OpenGL.GLError
+    if not hasattr(OpenGL.GLU, 'GLUerror'):
+        OpenGL.GLU.GLUerror = OpenGL.GLU.GLUError        
+
     from opengl import *
