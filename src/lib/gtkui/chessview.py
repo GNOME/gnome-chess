@@ -110,8 +110,12 @@ class GtkViewArea(gtk.DrawingArea):
         glDrawable = gtk.gtkgl.widget_get_gl_drawable(self)
         glContext = gtk.gtkgl.widget_get_gl_context(self)
 
-        # OpenGL begin.
-        if glDrawable is None or not glDrawable.gl_begin(glContext):
+        # Check were able to get context
+        if glDrawable is None or glContext is None:
+            return
+
+        # OpenGL begin (can fail)
+        if not glDrawable.gl_begin(glContext):
             return
         
         self.__glDrawable = glDrawable
