@@ -81,6 +81,7 @@ class ChessPlayer:
         'name' is the name of the player.
         """
         self.__name = str(name)
+        self.isAlive = True
 
     # Methods to extend
 
@@ -185,7 +186,9 @@ class ChessPlayer:
         
     def die(self):
         """Report this player has died"""
-        self.__game.killPlayer(self)
+        self.isAlive = False
+        if self.__game is not None:
+            self.__game.killPlayer(self)
 
     # Private methods
     
@@ -409,9 +412,21 @@ class ChessGame:
                 self.__currentPlayer = self.__whitePlayer
 
         self.__started = True
-        
+
+        # Stop if both players aren't alive
+        if not self.__whitePlayer.isAlive:
+            self.killPlayer(self.__whitePlayer)
+            return
+        if not self.__blackPlayer.isAlive:
+            self.killPlayer(self.__blackPlayer)
+            return
+
         self.startLock()
         
+        # Inform other players of the result
+        for player in self.__players:
+            player.onPlayerStartTurn(self.__currentPlayer)
+
         # Get the next player to move
         if self.result == RESULT_IN_PROGRESS:
             self.__currentPlayer._setReadyToMove(True)
@@ -660,13 +675,16 @@ class ChessGame:
         else:
             assert(False)
         self.endGame(result, RULE_TIMEOUT)
-        
+
     def endGame(self, result, rule):
+        if self.result != RESULT_IN_PROGRESS:
+            return
         self.result = result
         self.rule = rule
-        self.__currentPlayer._setReadyToMove(False)
-        for player in self.__players:
-            player.onGameEnded(self)
+        if self.isStarted():
+            self.__currentPlayer._setReadyToMove(False)
+            for player in self.__players:
+                player.onGameEnded(self)
 
     def getMoves(self):
         """
