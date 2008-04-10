@@ -101,6 +101,10 @@ class GameHistory:
         """
         if fileName is None:
             fileName = self._getFilename(g)
+            if fileName is None:
+                # FIXME: This should be in a dialog
+                print 'Unable to find location to save to'
+                return
 
         lines = g.getLines()
         try:
