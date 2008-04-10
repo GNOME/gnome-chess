@@ -157,6 +157,10 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         if self._throbberTimer is not None:
             gobject.source_remove(self._throbberTimer)
             self._throbberTimer = None
+
+        # Disable room buttons when busy
+        widget = self.__gui.get_widget('room_button_box')
+        widget.set_sensitive(not isBusy)
         
         # Display animating frames if busy or idle frame if not
         if isBusy:
