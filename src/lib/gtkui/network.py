@@ -341,12 +341,18 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         size = 32
         self._throbberFrames = []
         
-        icon = theme.load_icon('process-idle', size, 0)
-        if icon is not None:
+        try:
+            icon = theme.load_icon('process-idle', size, 0)
+        except gobject.GError:
+            pass
+        else:
             self._throbberFrames.append(icon)
 
-        icon = theme.load_icon('process-working', size, 0)
-        if icon is not None:
+        try:
+            icon = theme.load_icon('process-working', size, 0)
+        except gobject.GError:
+            pass
+        else:
             # If a smaller icon was received than expected then use that size
             height = icon.get_height()
             width = icon.get_width()

@@ -167,7 +167,6 @@ class GtkNewGameDialog:
         levels = [('easy',   _('Easy'),   'weather-few-clouds'),
                   ('normal', _('Normal'), 'weather-overcast'),
                   ('hard',   _('Hard'),   'weather-storm')]
-        iconTheme = gtk.icon_theme_get_default()
         for (key, label, icon) in levels:
             iter = levelModel.append()
             levelModel.set(iter, 0, key, 1, icon, 2, label)

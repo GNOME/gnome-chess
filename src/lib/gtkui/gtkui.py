@@ -228,7 +228,6 @@ class GtkUI(glchess.ui.UI):
         
         # Create the model for the player types
         self.__playerModel = gtk.ListStore(str, str, str)
-        iconTheme = gtk.icon_theme_get_default()
         iter = self.__playerModel.append()
         self.__playerModel.set(iter, 0, '', 1, 'stock_person', 2, _('Human'))
         
@@ -322,7 +321,6 @@ class GtkUI(glchess.ui.UI):
         'name' is the name of the engine.
         TODO: difficulty etc etc
         """
-        iconTheme = gtk.icon_theme_get_default()
         iter = self.__playerModel.append()
         self.__playerModel.set(iter, 0, name, 1, 'stock_notebook', 2, name)
         
