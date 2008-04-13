@@ -428,7 +428,7 @@ class Application:
         
         self.history = history.GameHistory()
         
-        self.logger = self.ui.controller.addLogWindow('Application Log', '', '')
+        self.logger = self.ui.controller.addLogWindow(_('Application Log'), '', '')
 
     def addAIProfile(self, profile):
         """Add a new AI profile into glChess.
@@ -455,8 +455,10 @@ class Application:
     def watchAIPlayer(self, p):
         """
         """
-        self.ioHandlers[p.fileno()] = p
-        self.ui.controller.watchFileDescriptor(p.fileno())
+        fd = p.fileno()
+        if fd is not None:
+            self.ioHandlers[fd] = p
+            self.ui.controller.watchFileDescriptor(fd)
 
     def unwatchAIPlayer(self, p):
         """

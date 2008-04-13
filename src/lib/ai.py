@@ -230,29 +230,31 @@ class Player(game.ChessPlayer):
         self.__fromEngineFd = fromManagerOutput
         
         # Catch if the child dies
+        self.__pid = None
         def cDied(sig, stackFrame):
             try:
-                os.waitpid(-1, os.WNOHANG)
+                (pid, status) = os.waitpid(-1, os.WNOHANG)
             except OSError:
                 pass
-           
-            # If unexpected then AI has died
-            if self.__fromEngineFd != None:
-                print 'Monitor died'
-                self.die()
+            else:
+                # If unexpected then AI has died
+                if pid == self.__pid and self.__fromEngineFd != None:
+                    print 'Monitor died'
+                    self._die()
         signal.signal(signal.SIGCHLD, cDied)
 
         # Fork off a child process to manage the engine
-        if os.fork() == 0:
+        self.__pid = os.fork()
+        if self.__pid == 0:
             os.close(toManagerInput)
             os.close(fromManagerOutput)
             self._runMonitor(fromManagerInput, toManagerOutput)
             os.close(toManagerOutput)
             os.close(fromManagerInput)
             os._exit(0)
-        else:
-            os.close(toManagerOutput)
-            os.close(fromManagerInput)
+
+        os.close(toManagerOutput)
+        os.close(fromManagerInput)
 
         if profile.protocol == CECP:
             self.connection = CECPConnection(self)
@@ -310,11 +312,11 @@ class Player(game.ChessPlayer):
                 data = os.read(self.__fromEngineFd, 256)
             except OSError, e:
                 print 'Error reading from chess engine: ' + str(e)
-                self.die()
+                self._die()
                 return False
             if len(data) == 0:
                 print 'Engine has died'
-                self.die()
+                self._die()
                 return False
             self.connection.registerIncomingData(data)
 
@@ -337,8 +339,9 @@ class Player(game.ChessPlayer):
         
         # Send quit
         try:
-            os.write(fd, '\nquit\n') # FIXME: CECP specific
-        except:
+            if fd is not None:
+                os.write(fd, '\nquit\n') # FIXME: CECP specific
+        except OSError:
             return
 
     # Extended methods
@@ -370,6 +373,10 @@ class Player(game.ChessPlayer):
     def onGameEnded(self, game):
         """Called by game.ChessPlayer"""
         self.quit()
+        
+    def _die(self):
+        self.quit()
+        self.die()
 
     def _runEngine(self, toEngineFd, fromEngineFd):
         # Make the engine low priority for CPU usage
@@ -420,7 +427,7 @@ class Player(game.ChessPlayer):
                  toEngineInput, fromEngineOutput)
                  
         try:
-            while True:                
+            while True:
                 # Wait for data
                 (rfds, _, xfds) = select.select(inputPipes, [], pipes, None)
                 
