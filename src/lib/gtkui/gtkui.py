@@ -675,22 +675,6 @@ Please contact your system administrator to resolve these problems, until then y
         # Resize to fit text
         widget.set_size_request(int(width) + 6, -1)
 
-    def _on_show_toolbar_clicked(self, widget):
-        """Gtk+ callback"""
-        if widget.get_active():
-            value = True
-        else:
-            value = False
-        glchess.config.set('show_toolbar', value)
-
-    def _on_show_history_clicked(self, widget):
-        """Gtk+ callback"""
-        if widget.get_active():
-            value = True
-        else:
-            value = False
-        glchess.config.set('show_history', value)
-
     def _on_toggle_3d_clicked(self, widget):
         """Gtk+ callback"""
         if widget.get_active():
@@ -698,30 +682,6 @@ Please contact your system administrator to resolve these problems, until then y
         else:
             value = False
         glchess.config.set('show_3d', value)
-
-    def _on_menu_view_comment_clicked(self, widget):
-        """Gtk+ callback"""
-        if widget.get_active():
-            value = True
-        else:
-            value = False
-        glchess.config.set('show_comments', value)
-
-    def _on_menu_view_numbering_clicked(self, widget):
-        """Gtk+ callback"""
-        if widget.get_active():
-            value = True
-        else:
-            value = False
-        glchess.config.set('show_numbering', value)       
-
-    def _on_toggle_move_hints_clicked(self, widget):
-        """Gtk+ callback"""
-        if widget.get_active():
-            value = True
-        else:
-            value = False
-        glchess.config.set('show_move_hints', value)       
 
     def _on_show_logs_clicked(self, widget):
         """Gtk+ callback"""
@@ -753,28 +713,6 @@ Please contact your system administrator to resolve these problems, until then y
 
         self.view._setMoveNumber(moveNumber)
 
-    def _on_menu_movef_human_activate(self, widget):
-        """Gtk+ callback"""
-        glchess.config.set('move_format', 'human')
-
-    def _on_menu_movef_lan_activate(self, widget):
-        """Gtk+ callback"""
-        glchess.config.set('move_format', 'lan')
-
-    def _on_menu_movef_san_activate(self, widget):
-        """Gtk+ callback"""
-        glchess.config.set('move_format', 'san')
-        
-    def _on_board_view_changed(self, widget):
-        """Gtk+ callback"""
-        if widget.get_active():
-            glchess.config.set('board_view', self.__boardViewTypeByRadio[widget])
-
-    def _on_promotion_type_changed(self, widget):
-        """Gtk+ callback"""
-        if widget.get_active():
-            glchess.config.set('promotion_type', self.__promotionTypeByRadio[widget])
-        
     def __selectMoveNumber(self, moveNumber):
         """FIXME
         """
