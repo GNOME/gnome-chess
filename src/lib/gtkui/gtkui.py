@@ -813,7 +813,16 @@ Please contact your system administrator to resolve these problems, until then y
 
     def _on_claim_draw_clicked(self, widget):
         """Gtk+ callback"""
-        self.view.feedback.claimDraw()
+        if not self.view.feedback.claimDraw():
+            dialog = gtk.MessageDialog(flags = gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                                       type = gtk.MESSAGE_WARNING,
+                                       message_format = _("Unable to claim draw"))
+        dialog.format_secondary_text(_("""You may claim a draw when:
+a) The board has been in the same state three times (Three fold repitition)
+b) Fifty moves have occured where no pawn has moved and no piece has been captured (50 move rule)"""))
+        dialog.add_button(gtk.STOCK_CLOSE, gtk.RESPONSE_ACCEPT)
+        dialog.run()
+        dialog.destroy()
 
     def _on_preferences_clicked(self, widget):
         """Gtk+ callback"""
