@@ -85,7 +85,9 @@ class Chess:
             return (None, 0)
         
         string = buffer[4:length + 4]
-        if string[-1] == '\x00':
+        
+        # Strip C null characters
+        while string.endswith('\x00'):
             string = string[:-1]
         
         return (string, length + 4)
