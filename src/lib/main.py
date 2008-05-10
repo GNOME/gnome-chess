@@ -378,7 +378,7 @@ class UI(ui.UIFeedback):
         try:
             p = chess.pgn.PGN(path, 1)
         except chess.pgn.Error, e:
-            return e.description
+            return e.message
         except IOError, e:
             return e.strerror
         

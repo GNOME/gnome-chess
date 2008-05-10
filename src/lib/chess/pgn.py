@@ -286,9 +286,12 @@ class PGNParser:
                     self.comment = ''
                     break
                 else:
-                    tokenType = self.tokens[text[0]]
+                    try:
+                        tokenType = self.tokens[text[0]]
+                    except KeyError:
+                        raise Error("Unknown token %s" % repr(text))                        
                     self.parseToken(tokenType, text)
-                    
+
             if self.comment is None:
                 return True
             
