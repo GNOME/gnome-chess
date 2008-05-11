@@ -481,12 +481,7 @@ class GtkView(glchess.ui.ViewController):
         elif game.rule is glchess.game.RULE_THREE_FOLD_REPETITION:
             description = _('The same board state has occured three times (three fold repetition)')
         elif game.rule is glchess.game.RULE_INSUFFICIENT_MATERIAL:
-            if game.result is glchess.game.RESULT_DRAW:
-                description = _('Neither player can cause checkmate (insufficient material)')
-            elif game.result is glchess.game.RESULT_WHITE_WINS:
-                description = _('Black player is unable to cause checkmate (insufficient material)')
-            elif game.result is glchess.game.RESULT_BLACK_WINS:
-                description = _('White player is unable to cause checkmate (insufficient material)')
+            description = _('Neither player can cause checkmate (insufficient material)')
         elif game.rule is glchess.game.RULE_RESIGN:
             if game.result is glchess.game.RESULT_WHITE_WINS:
                 description = _('The black player has resigned')

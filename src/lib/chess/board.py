@@ -229,7 +229,7 @@ class ChessBoardState:
         Example:
             
         pawn = ChessPiece(WHITE, PAWN)
-        ChessBoardState({'a2'': pawn, ...})
+        ChessBoardState({'a2': pawn, ...})
         
         Note if a dictionary is provided the casualties will only record the pieces
         killed from this point onwards.
@@ -380,6 +380,47 @@ class ChessBoardState:
 
         return False
     
+    def _getSquareColour(self, coord):
+        return {'a8': WHITE, 'b8': BLACK, 'c8': WHITE, 'd8': BLACK, 'e8': WHITE, 'f8': BLACK, 'g8': WHITE, 'h8': BLACK,
+                'a7': BLACK, 'b7': WHITE, 'c7': BLACK, 'd7': WHITE, 'e7': BLACK, 'f7': WHITE, 'g7': BLACK, 'h7': WHITE,
+                'a6': WHITE, 'b6': BLACK, 'c6': WHITE, 'd6': BLACK, 'e6': WHITE, 'f6': BLACK, 'g6': WHITE, 'h6': BLACK,
+                'a5': BLACK, 'b5': WHITE, 'c5': BLACK, 'd5': WHITE, 'e5': BLACK, 'f5': WHITE, 'g5': BLACK, 'h5': WHITE,
+                'a4': WHITE, 'b4': BLACK, 'c4': WHITE, 'd4': BLACK, 'e4': WHITE, 'f4': BLACK, 'g4': WHITE, 'h4': BLACK,
+                'a3': BLACK, 'b3': WHITE, 'c3': BLACK, 'd3': WHITE, 'e3': BLACK, 'f3': WHITE, 'g3': BLACK, 'h3': WHITE,
+                'a2': WHITE, 'b2': BLACK, 'c2': WHITE, 'd2': BLACK, 'e2': WHITE, 'f2': BLACK, 'g2': WHITE, 'h2': BLACK,
+                'a1': BLACK, 'b1': WHITE, 'c1': BLACK, 'd1': WHITE, 'e1': BLACK, 'f1': WHITE, 'g1': BLACK, 'h1': WHITE}[coord]
+
+    def sufficientMaterial(self):
+        """Test if there are sufficient pieces to be able to perform checkmate.
+        
+        Return True if sufficient pieces to make checkmate or False otherwise.
+        """
+        knightCount = 0
+        bishopCount = 0
+        for coord, piece in self.squares.iteritems():
+            pieceType = piece.getType()
+            
+            # Any pawns, rooks or queens can perform check
+            if pieceType == PAWN or pieceType == ROOK or pieceType == QUEEN:
+                return True
+
+            # Multiple knights can check
+            if pieceType == KNIGHT:
+                knightCount += 1
+                if knightCount > 1:
+                    return True
+
+            # Bishops on different colours can check
+            if pieceType == BISHOP:
+                bishopCount += 1 
+                colour = self._getSquareColour(coord)
+                if bishopCount > 1:
+                    if colour != bishopSquareColour:
+                        return True
+                bishopSquareColour = colour
+
+        return False
+        
     allowedMoves = {WHITE: {PAWN:   bitboard.WHITE_PAWN_MOVES,
                             ROOK:   bitboard.ROOK_MOVES,
                             BISHOP: bitboard.BISHOP_MOVES,
@@ -801,6 +842,14 @@ class ChessBoard:
     def squareUnderAttack(self, colour, location, moveNumber = -1):
         state = self.__boardStates[moveNumber]
         return state.squareUnderAttack(colour, location)
+    
+    def sufficientMaterial(self, moveNumber = -1):
+        """Test if there are sufficient pieces to be able to perform checkmate.
+        
+        Return True if sufficient pieces to make checkmate or False otherwise.
+        """
+        state = self.__boardStates[moveNumber]
+        return state.sufficientMaterial()
 
     def movePiece(self, colour, start, end, promotionType = QUEEN, allowSuicide = False, test = False, moveNumber = -1):
         """Move a piece.

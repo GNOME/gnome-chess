@@ -421,6 +421,11 @@ class ChessGame:
             self.killPlayer(self.__blackPlayer)
             return
 
+        # Stop if game ended on loaded moves
+        if self.result != RESULT_IN_PROGRESS:
+            self._notifyEndGame()
+            return
+
         self.startLock()
         
         # Inform other players of the result
@@ -428,8 +433,7 @@ class ChessGame:
             player.onPlayerStartTurn(self.__currentPlayer)
 
         # Get the next player to move
-        if self.result == RESULT_IN_PROGRESS:
-            self.__currentPlayer._setReadyToMove(True)
+        self.__currentPlayer._setReadyToMove(True)
 
         self.endLock()
 
@@ -590,7 +594,12 @@ class ChessGame:
             else:
                 result = RESULT_DRAW
                 rule = RULE_STALEMATE
-        
+
+        # Check able to complete
+        if not self.board.sufficientMaterial():
+            result = RESULT_DRAW
+            rule = RULE_INSUFFICIENT_MATERIAL
+
         if result is not RESULT_IN_PROGRESS:
             self.endGame(result, rule)
 
@@ -682,9 +691,12 @@ class ChessGame:
         self.result = result
         self.rule = rule
         if self.isStarted():
-            self.__currentPlayer._setReadyToMove(False)
-            for player in self.__players:
-                player.onGameEnded(self)
+            self._notifyEndGame()
+
+    def _notifyEndGame(self):
+        self.__currentPlayer._setReadyToMove(False)
+        for player in self.__players:
+            player.onGameEnded(self)
 
     def getMoves(self):
         """
