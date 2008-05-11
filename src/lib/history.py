@@ -93,6 +93,28 @@ class GameHistory:
         
         return fileName
     
+    def rename(self, oldName, newName):
+        try:
+            os.unlink(oldName)
+        except OSError:
+            print 'Failed to remove game from history'
+
+        try:
+            f = file(UNFINISHED_FILE, 'r')
+            lines = f.readlines()
+            f.close()
+            
+            f = file(UNFINISHED_FILE, 'w')
+            for line in lines:
+                l = line.strip()
+                if l == oldName:
+                    f.write(newName + '\n')
+                else:
+                    f.write(l + '\n')
+            f.close()
+        except IOError:
+            print 'Failed to update unfinished list'
+    
     def save(self, g, fileName):
         """Save a game in the history.
         
@@ -127,7 +149,7 @@ class GameHistory:
             f = file(UNFINISHED_FILE, 'w')
             for line in lines:
                 l = line.strip()
-                if l == fileName and result != chess.pgn.RESULT_INCOMPLETE:
+                if l == fileName and result == chess.pgn.RESULT_INCOMPLETE:
                     continue
                 f.write(l + '\n')
             if result == chess.pgn.RESULT_INCOMPLETE:

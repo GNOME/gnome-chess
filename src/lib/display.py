@@ -520,30 +520,20 @@ class View(ui.ViewFeedback):
 
     def save(self, fileName = None):
         """Called by ui.ViewFeedback"""
-        if fileName is None:
-            fileName = self.game.fileName
-            assert(fileName is not None)
+        # If filename supplied take out of the history
+        if fileName is not None:
+            if self.game.inHistory:
+                self.game.inHistory = False
+                if self.game.fileName is not None:
+                    self.game.application.history.rename(self.game.fileName, fileName)
+            self.game.fileName = fileName
+        return self.game.save()
 
-        try:
-            f = file(fileName, 'w')
-        except IOError, e:
-            return e.args[1]
-        
-        self.game.application.logger.addLine('Saving game %s to %s' % (repr(self.game.name), fileName))
-
-        pgnGame = chess.pgn.PGNGame()
-        self.game.toPGN(pgnGame)
-            
-        lines = pgnGame.getLines()
-        for line in lines:
-            f.write(line + '\n')
-        f.write('\n')
-        f.close()
-        
-        self.game.fileName = fileName
-        
     def getFileName(self):
         """Called by ui.ViewFeedback"""
+        # If in the history then prompt for a new name
+        if self.game.inHistory:
+            return None
         return self.game.fileName
         
     def resign(self):
@@ -551,7 +541,7 @@ class View(ui.ViewFeedback):
         p = self.game.getHumanPlayer()
         if p is not None:
             p.resign()
-
+            
     def claimDraw(self):
         """Called by ui.ViewFeedback"""
         # TODO: Have the UI ask if the player wants to make a move first or claim now (or abort)

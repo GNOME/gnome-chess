@@ -292,12 +292,26 @@ class ChessGame(game.ChessGame):
 
     def save(self):
         """Save this game"""
-        if len(self.getMoves()) < 2:
-            return
         pgnGame = chess.pgn.PGNGame()
         self.toPGN(pgnGame)
-        self.application.history.save(pgnGame, self.fileName)
+        if self.inHistory:
+            # Don't bother if haven't made any significant moves
+            if len(self.getMoves()) < 2:
+                return
+            self.application.history.save(pgnGame, self.fileName)
+        else:
+            try:
+                f = file(self.fileName, 'w')
+                lines = pgnGame.getLines()
+                for line in lines:
+                    f.write(line + '\n')
+                f.write('\n')
+                f.close()
+            except IOError, e:
+                return e.args[1]
+
         self.setNeedsSaving(False)
+        self.application.logger.addLine('Saved game %s to %s' % (repr(self.name), self.fileName))
         
 class UI(ui.UIFeedback):
     """
