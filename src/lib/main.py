@@ -745,11 +745,11 @@ class Application:
 
     def __autoload(self):
         """Restore games from the autosave file"""
-        (pgnGame, fileName) = self.history.getUnfinishedGame()
+        (pgnGame, fileName, inHistory) = self.history.getUnfinishedGame()
         if pgnGame is not None:
             g = self.addPGNGame(pgnGame, fileName)
             if g is not None:
-                g.inHistory = True
+                g.inHistory = inHistory
 
 if __name__ == '__main__':
     app = Application()

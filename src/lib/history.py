@@ -20,7 +20,7 @@ class GameHistory:
     def getUnfinishedGame(self):
         """Get the last game that is unfinished.
         
-        Returns the (PGN game, fileName) or (None, None) if no unfinished games.
+        Returns the (PGN game, fileName, inHistory) or (None, None, False) if no unfinished games.
         """
         g = None
         fileName = None
@@ -29,41 +29,40 @@ class GameHistory:
             lines = f.readlines()
             f.close()
 
-            lines.reverse()
             index = 0
-            for line in lines:
-                fileName = line.strip()
+            while len(lines) > 0:
+                fileName = lines[0].strip()
+
                 try:
                     p = chess.pgn.PGN(fileName, 1)
                 except chess.pgn.Error, e:
                     print e.description
-                    continue
                 except IOError, e:
                     print e.strerror
-                    continue
                 else:
-                    g = p[0]
-                    break
-                index += 1
+                    result = p[0].getTag(chess.pgn.TAG_RESULT)
+                    if result == chess.pgn.RESULT_INCOMPLETE:
+                        g = p[0]
+                        break
+                lines = lines[1:]
+
         except IOError, e:
             if e.errno != errno.ENOENT:
                 print e.errno
                 print 'Failed to read unfinished list'
-                return (None, None)
+                return (None, None, False)
             lines = []
-        else:
-            lines = lines[index:]
 
         # Write the list back
         try:
             f = file(UNFINISHED_FILE, 'w')
-            lines.reverse()
             f.writelines(lines)
             f.close()
         except IOError:
             print 'Failed to write unfinished list'
 
-        return (g, fileName)
+        inHistory = fileName.startswith(HISTORY_DIR)
+        return (g, fileName, inHistory)
 
     def load(self, date):
         return
@@ -147,13 +146,13 @@ class GameHistory:
             f.close()
             
             f = file(UNFINISHED_FILE, 'w')
+            if result == chess.pgn.RESULT_INCOMPLETE:
+                f.write(fileName + '\n')
             for line in lines:
                 l = line.strip()
                 if l == fileName and result == chess.pgn.RESULT_INCOMPLETE:
                     continue
                 f.write(l + '\n')
-            if result == chess.pgn.RESULT_INCOMPLETE:
-                f.write(fileName + '\n')
             f.close()
         except IOError:
             print 'Failed to update unfinished list'
