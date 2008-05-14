@@ -49,7 +49,16 @@ from the netpbm package. Type "python png.py --help" at the shell
 prompt for usage and a list of options.
 """
 
-import sys, zlib, struct, math
+
+__revision__ = '$Rev$'
+__date__ = '$Date$'
+__author__ = '$Author$'
+
+
+import sys
+import zlib
+import struct
+import math
 from array import array
 
 
@@ -93,7 +102,7 @@ class Writer:
     """
     PNG encoder in pure Python.
     """
-	
+
     def __init__(self, width, height,
                  transparent=None,
                  background=None,
@@ -430,7 +439,7 @@ class Reader:
                 kw["file"] = _guess
 
         if "filename" in kw:
-            self.file = file(kw["filename"])
+            self.file = file(kw["filename"], "rb")
         elif "file" in kw:
             self.file = kw["file"]
         elif "pixels" in kw:
@@ -449,7 +458,8 @@ class Reader:
             raise ValueError('Chunk too short for header')
         data = self.file.read(data_bytes)
         if len(data) != data_bytes:
-            raise ValueError('Chunk %s too short for required %i data octets' % (tag, data_bytes))
+            raise ValueError('Chunk %s too short for required %i data octets'
+                             % (tag, data_bytes))
         checksum = self.file.read(4)
         if len(checksum) != 4:
             raise ValueError('Chunk %s too short for checksum', tag)
@@ -457,7 +467,7 @@ class Reader:
         verify = zlib.crc32(data, verify)
         verify = struct.pack('!i', verify)
         if checksum != verify:
-            print repr(checksum)
+            # print repr(checksum)
             (a,) = struct.unpack('!I', checksum)
             (b,) = struct.unpack('!I', verify)
             raise ValueError("Checksum error in %s chunk: 0x%X != 0x%X"
@@ -591,7 +601,11 @@ class Reader:
     # filter and for paeth we map to the sub filter.
 
     def reconstruct_line(self, filter_type, first_line, offset, xstep, ystep):
-        # print >> sys.stderr, "Filter type %s, first_line=%s" % (filter_type, first_line)
+        """
+        Reverse the filtering for a scanline.
+        """
+        # print >> sys.stderr, "Filter type %s, first_line=%s" % (
+        #                      filter_type, first_line)
         filter_type += (first_line << 8)
         if filter_type == 1 or filter_type == 0x101 or filter_type == 0x104:
             self._reconstruct_sub(offset, xstep, ystep)
@@ -604,7 +618,11 @@ class Reader:
         return
 
     def deinterlace(self, scanlines):
-        # print >> sys.stderr, "Reading interlaced, w=%s, r=%s, planes=%s, bpp=%s" % (self.width, self.height, self.planes, self.bps)
+        """
+        Read pixel data and remove interlacing.
+        """
+        # print >> sys.stderr, ("Reading interlaced, w=%s, r=%s, planes=%s," +
+        #     " bpp=%s") % (self.width, self.height, self.planes, self.bps)
         a = array('B')
         self.pixels = a
         # Make the array big enough
@@ -612,7 +630,8 @@ class Reader:
         a.extend(temp)
         source_offset = 0
         for xstart, ystart, xstep, ystep in _adam7:
-            # print >> sys.stderr, "Adam7: start=%s,%s step=%s,%s" % (xstart, ystart, xstep, ystep)
+            # print >> sys.stderr, "Adam7: start=%s,%s step=%s,%s" % (
+            #     xstart, ystart, xstep, ystep)
             filter_first_line = 1
             for y in range(ystart, self.height, ystep):
                 if xstart >= self.width:
@@ -621,23 +640,32 @@ class Reader:
                 source_offset += 1
                 if xstep == 1:
                     offset = y * self.row_bytes
-                    a[offset:offset+self.row_bytes] = scanlines[source_offset:source_offset + self.row_bytes]
+                    a[offset:offset+self.row_bytes] = \
+                        scanlines[source_offset:source_offset + self.row_bytes]
                     source_offset += self.row_bytes
                 else:
                     # Note we want the ceiling of (width - xstart) / xtep
-                    row_len = self.psize * ((self.width - xstart + xstep - 1) / xstep)
+                    row_len = self.psize * (
+                        (self.width - xstart + xstep - 1) / xstep)
                     offset = y * self.row_bytes + xstart * self.psize
                     end_offset = (y+1) * self.row_bytes
                     skip = self.psize * xstep
                     for i in range(self.psize):
-                        a[offset+i:end_offset:skip] = scanlines[source_offset + i: source_offset + row_len: self.psize]
+                        a[offset+i:end_offset:skip] = \
+                            scanlines[source_offset + i:
+                                      source_offset + row_len:
+                                      self.psize]
                     source_offset += row_len
                 if filter_type:
-                    self.reconstruct_line(filter_type, filter_first_line, offset, xstep, ystep)
+                    self.reconstruct_line(filter_type, filter_first_line,
+                                          offset, xstep, ystep)
                 filter_first_line = 0
         return a
 
     def read_flat(self, scanlines):
+        """
+        Read pixel data without de-interlacing.
+        """
         a = array('B')
         self.pixels = a
         offset = 0
@@ -648,7 +676,8 @@ class Reader:
             source_offset += 1
             a.extend(scanlines[source_offset: source_offset + self.row_bytes])
             if filter_type:
-                self.reconstruct_line(filter_type, filter_first_line, offset, 1, 1)
+                self.reconstruct_line(filter_type, filter_first_line,
+                                      offset, 1, 1)
             filter_first_line = 0
             offset += self.row_bytes
             source_offset += self.row_bytes
@@ -723,7 +752,8 @@ class Reader:
                 else:
                     image_metadata["transparent"] = struct.unpack("!3H", data)
             elif tag == 'gAMA':
-                image_metadata["gamma"] = (struct.unpack("!L", data)[0]) / 100000.0
+                image_metadata["gamma"] = (
+                    struct.unpack("!L", data)[0]) / 100000.0
             elif tag == 'IEND': # http://www.w3.org/TR/PNG/#11IEND
                 break
         scanlines = array('B', zlib.decompress(''.join(compressed)))
@@ -736,7 +766,8 @@ class Reader:
         image_metadata["bytes_per_sample"] = bps
         image_metadata["interlaced"] = interlaced
         return width, height, pixels, image_metadata
-	
+
+
 def test_suite(options):
     """
     Run regression test and write PNG file to stdout.
@@ -814,30 +845,33 @@ def test_suite(options):
         return 1
 
     test_patterns = {
-        "GLR" : test_gradient_horizontal_lr,
-        "GRL" : test_gradient_horizontal_rl,
-        "GTB" : test_gradient_vertical_tb,
-        "GBT" : test_gradient_vertical_bt,
-        "RTL" : test_radial_tl,
-        "RTR" : test_radial_tr,
-        "RBL" : test_radial_bl,
-        "RBR" : test_radial_br,
-        "RCTR" : test_radial_center,
-        "HS2" : test_stripe_h_2,
-        "HS4" : test_stripe_h_4,
-        "HS10" : test_stripe_h_10,
-        "VS2" : test_stripe_v_2,
-        "VS4" : test_stripe_v_4,
-        "VS10" : test_stripe_v_10,
-        "LRS" : test_stripe_lr_10,
-        "RLS" : test_stripe_rl_10,
-        "CK8" : test_checker_8,
-        "CK15" : test_checker_15,
-        "ZERO" : test_zero,
-        "ONE" : test_one,
+        "GLR": test_gradient_horizontal_lr,
+        "GRL": test_gradient_horizontal_rl,
+        "GTB": test_gradient_vertical_tb,
+        "GBT": test_gradient_vertical_bt,
+        "RTL": test_radial_tl,
+        "RTR": test_radial_tr,
+        "RBL": test_radial_bl,
+        "RBR": test_radial_br,
+        "RCTR": test_radial_center,
+        "HS2": test_stripe_h_2,
+        "HS4": test_stripe_h_4,
+        "HS10": test_stripe_h_10,
+        "VS2": test_stripe_v_2,
+        "VS4": test_stripe_v_4,
+        "VS10": test_stripe_v_10,
+        "LRS": test_stripe_lr_10,
+        "RLS": test_stripe_rl_10,
+        "CK8": test_checker_8,
+        "CK15": test_checker_15,
+        "ZERO": test_zero,
+        "ONE": test_one,
         }
 
     def test_pattern(width, height, depth, pattern):
+        """
+        Create a single plane (monochrome) test pattern.
+        """
         a = array('B')
         fw = float(width)
         fh = float(height)
@@ -856,6 +890,9 @@ def test_suite(options):
 
     def test_rgba(size=256, depth=1,
                     red="GTB", green="GLR", blue="RTL", alpha=None):
+        """
+        Create a test image.
+        """
         r = test_pattern(size, size, depth, red)
         g = test_pattern(size, size, depth, green)
         b = test_pattern(size, size, depth, blue)
@@ -917,10 +954,10 @@ def read_pnm_header(infile, supported='P6'):
     return int(header[1]), int(header[2])
 
 
-# FIXME: Somewhere we need support for greyscale backgrounds etc.
 def color_triple(color):
     """
     Convert a command line color value to a RGB triple of integers.
+    FIXME: Somewhere we need support for greyscale backgrounds etc.
     """
     if color.startswith('#') and len(color) == 4:
         return (int(color[1], 16),
@@ -1010,11 +1047,12 @@ def _main():
     # Encode PNM to PNG
     width, height = read_pnm_header(ppmfile)
     writer = Writer(width, height,
-                   transparent=options.transparent,
-                   background=options.background,
-                   has_alpha=options.alpha is not None,
-                   gamma=options.gamma,
-                   compression=options.compression)
+                    interlaced=options.interlace,
+                    transparent=options.transparent,
+                    background=options.background,
+                    has_alpha=options.alpha is not None,
+                    gamma=options.gamma,
+                    compression=options.compression)
     if options.alpha is not None:
         pgmfile = open(options.alpha, 'rb')
         awidth, aheight = read_pnm_header(pgmfile, 'P5')
@@ -1023,11 +1061,10 @@ def _main():
                              " (%s has %sx%s but %s has %sx%s)"
                              % (ppmfilename, width, height,
                                 options.alpha, awidth, aheight))
-        writer.convert_ppm_and_pgm(ppmfile, pgmfile, outfile,
-                                   interlace=options.interlace)
+        writer.convert_ppm_and_pgm(ppmfile, pgmfile, outfile)
     else:
-        writer.convert_ppm(ppmfile, outfile,
-                           interlace=options.interlace)
+        writer.convert_ppm(ppmfile, outfile)
+
 
 if __name__ == '__main__':
     _main()
