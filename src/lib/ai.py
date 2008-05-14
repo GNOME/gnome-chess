@@ -203,6 +203,14 @@ class UCIConnection(uci.StateMachine):
         """Called by uci.StateMachine"""
         self.player.move(move)
 
+# Catch zombie processes
+def _cDied(sig, stackFrame):
+    try:
+        (pid, status) = os.waitpid(-1, os.WNOHANG)
+    except OSError:
+        pass
+signal.signal(signal.SIGCHLD, _cDied)      
+
 class Player(game.ChessPlayer):
     """
     """
@@ -228,20 +236,6 @@ class Player(game.ChessPlayer):
         # Store the file descripter for reading/writing
         self.__toEngineFd = toManagerInput
         self.__fromEngineFd = fromManagerOutput
-        
-        # Catch if the child dies
-        self.__pid = None
-        def cDied(sig, stackFrame):
-            try:
-                (pid, status) = os.waitpid(-1, os.WNOHANG)
-            except OSError:
-                pass
-            else:
-                # If unexpected then AI has died
-                if pid == self.__pid and self.__fromEngineFd != None:
-                    print 'Monitor died'
-                    self._die()
-        signal.signal(signal.SIGCHLD, cDied)
 
         # Fork off a child process to manage the engine
         self.__pid = os.fork()
@@ -293,7 +287,7 @@ class Player(game.ChessPlayer):
         return self.__fromEngineFd
 
     def read(self):
-        """Read an process data from the engine.
+        """Read and process data from the engine.
         
         This is non-blocking.
         """       
@@ -303,8 +297,8 @@ class Player(game.ChessPlayer):
                 return False
 
             # Check if data is available
-            (rlist, _, _) = select.select([self.__fromEngineFd], [], [], 0)
-            if len(rlist) == 0:
+            (rlist, _, xlist) = select.select([self.__fromEngineFd], [], [self.__fromEngineFd], 0)
+            if (len(rlist) + len(xlist)) == 0:
                 return True
 
             # Read a chunk and process
@@ -411,6 +405,8 @@ class Player(game.ChessPlayer):
         # Fork and execute the child
         enginePID = os.fork()
         if enginePID == 0:
+            os.close(toApplicationFd)
+            os.close(fromApplicationFd)            
             os.close(toEngineInput)
             os.close(fromEngineOutput)
             self._runEngine(toEngineOutput, fromEngineInput)
