@@ -27,6 +27,8 @@ if (sys.modules.has_key('glchess') and
     HISTORY_DIR      = os.path.join(DATA_DIR, 'history')
     UNFINISHED_FILE  = os.path.join(HISTORY_DIR, 'unfinished')
     LOCAL_AI_CONFIG  = os.path.join(DATA_DIR, 'ai.xml')
+    GGZ_DIR          = os.path.expanduser('~/.ggz')
+    GGZ_CONFIG_FILE  = os.path.join(GGZ_DIR, 'ggz-gtk.rc')
 else:
     APP_DATA_DIR     = os.path.join('@abs_top_builddir@', 'glchess', 'data')
     ICON_DIR         = os.path.join('@abs_top_builddir@', 'glchess', 'textures')
@@ -40,6 +42,8 @@ else:
     HISTORY_DIR      = os.path.join(DATA_DIR, 'history')
     UNFINISHED_FILE  = os.path.join(HISTORY_DIR, 'unfinished')
     LOCAL_AI_CONFIG  = os.path.join(DATA_DIR, 'ai.xml')
+    GGZ_DIR          = os.path.expanduser('~/.ggz')
+    GGZ_CONFIG_FILE  = os.path.join(GGZ_DIR, 'ggz-gtk.rc')
 
 DOMAIN = 'gnome-games'
 gettext.bindtextdomain(DOMAIN, LOCALEDIR)

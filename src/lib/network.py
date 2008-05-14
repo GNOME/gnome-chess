@@ -8,6 +8,8 @@ import ggz
 import ui
 import game
 
+from defaults import *
+
 _ = gettext.gettext
 
 class GGZServer:
@@ -21,7 +23,7 @@ class GGZConfig:
     
     def __init__(self):
         parser = ConfigParser.SafeConfigParser()
-        parser.read(os.path.expanduser('~/.ggz/ggz-gtk.rc'))
+        parser.read(GGZ_CONFIG_FILE)
 
         self.servers = []
         try:
