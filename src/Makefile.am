@@ -4,8 +4,7 @@ SUBDIRS = lib
 
 ## Executable
 bin_SCRIPTS = glchess
-EXTRA_DIST  = glchess glchess.in
-CLEANFILES  = glchess
+CLEANFILES  = glchess glchess.in
 
 glchess: glchess.in
 	sed \

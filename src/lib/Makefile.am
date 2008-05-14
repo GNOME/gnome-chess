@@ -1,5 +1,12 @@
 SUBDIRS = chess ggz gtkui scene ui
 
+CLEANFILES = defaults.py
+
+# Don't distribute generated defaults.py. If you know a simpler way that works
+# e.g. nodist_glchess_PYTHON=defaults.py then please fix this
+dist-hook:
+	rm $(distdir)/defaults.py
+
 glchessdir = $(pythondir)/glchess
 glchess_PYTHON = \
 	ai.py		\
