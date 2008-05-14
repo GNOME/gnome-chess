@@ -24,6 +24,7 @@ class GameHistory:
         """
         g = None
         fileName = None
+        inHistory = False
         try:
             f = file(UNFINISHED_FILE, 'r')
             lines = f.readlines()
@@ -43,6 +44,7 @@ class GameHistory:
                     result = p[0].getTag(chess.pgn.TAG_RESULT)
                     if result == chess.pgn.RESULT_INCOMPLETE:
                         g = p[0]
+                        inHistory = fileName.startswith(HISTORY_DIR)
                         break
                 lines = lines[1:]
 
@@ -61,7 +63,6 @@ class GameHistory:
         except IOError:
             print 'Failed to write unfinished list'
 
-        inHistory = fileName.startswith(HISTORY_DIR)
         return (g, fileName, inHistory)
 
     def load(self, date):
