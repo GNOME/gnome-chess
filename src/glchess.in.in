@@ -34,9 +34,6 @@ except ImportError:
     try:
       # Import glChess from pyexecdir or system installation.
       installed_mode = True
-      import sys
-      if "#pyexecdir#" not in sys.path:
-          sys.path.insert(0, "#pyexecdir#")
       from glchess.glchess import start_game
 
     except ImportError:

@@ -2,6 +2,8 @@
 
 	* src/lib/scene/opengl/png.py: Updated to latest version from pypng. Open files in binary
 	  mode so they work in Windows.
+	* src/glchess.in.in: Don't modify sys.path as this can cause modules to be loaded that
+	  don't match the intepreter version (Bug #528953)
 
 2008-05-10  Robert Ancell  <robert.ancell@gmail.com>
 
