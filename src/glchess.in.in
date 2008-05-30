@@ -8,6 +8,9 @@
 # software under the terms of the GNU General Public License, 
 # version 2 or later.
 
+import sys
+import os
+
 # Some version of PyGTK require this to be called before importing the gtk module
 import pygtk
 pygtk.require('2.0')
@@ -20,39 +23,31 @@ except:
   #No bugbuddy support
   pass
 
-import sys
-installed_mode = True
+# Chek if we are installed
+root_dir = os.path.dirname(__file__)
+if os.path.exists(os.path.join(root_dir, 'Makefile.am')):
+    sys.path.insert(0, os.path.abspath(root_dir))
+    import lib
+    sys.modules['glchess'] = sys.modules['lib']
 
 try:
-    # Import glchess module from source distribution.
-    import lib;
-    sys.modules["glchess"] = sys.modules["lib"];
+    # Import glChess from pyexecdir or system installation.
     from glchess.glchess import start_game
-    installed_mode = False
-
 except ImportError:
-    try:
-      # Import glChess from pyexecdir or system installation.
-      installed_mode = True
-      from glchess.glchess import start_game
-
-    except ImportError:
-      # Import of glChess failed. Show error message.
-      import gtk
-      import os.path
-      import gettext
-      from gettext import gettext as _
+    # Import of glChess failed. Show error message.
+    import gtk
+    import os.path
+    import gettext
+    from gettext import gettext as _
         
-      gettext.bindtextdomain('gnome-games', os.path.join('@prefix@', 'share', 'locale'))
-      gettext.textdomain('gnome-games')
-      title = _("Chess incorrectly installed")
-      description = _("""Chess is not able to start because required application files are not installed. If you are currently upgrading your system please wait until the upgrade has completed.""")
-      dialog = gtk.MessageDialog(type = gtk.MESSAGE_ERROR, message_format = title)
-      dialog.format_secondary_text(description)
-      dialog.add_button(gtk.STOCK_QUIT, gtk.RESPONSE_CLOSE)
-      dialog.run()
-      sys.exit(0)
-
-sys.modules["glchess"].installed_mode = installed_mode
+    gettext.bindtextdomain('gnome-games', os.path.join('@prefix@', 'share', 'locale'))
+    gettext.textdomain('gnome-games')
+    title = _("Chess incorrectly installed")
+    description = _("""Chess is not able to start because required application files are not installed. If you are currently upgrading your system please wait until the upgrade has completed.""")
+    dialog = gtk.MessageDialog(type = gtk.MESSAGE_ERROR, message_format = title)
+    dialog.format_secondary_text(description)
+    dialog.add_button(gtk.STOCK_QUIT, gtk.RESPONSE_CLOSE)
+    dialog.run()
+    sys.exit(0)
 
 start_game()

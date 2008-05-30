@@ -9,12 +9,9 @@ import sys, os, os.path
 import errno
 import gettext 
 
-if (sys.modules.has_key('glchess') and
-    hasattr(sys.modules["glchess"],'installed_mode') and
-    sys.modules["glchess"].installed_mode):
-    # If the installed_mode attribute is not set, then we are
-    # importing from something other than the glchess script; we
-    # assume anyone importing in this way is doing testing etc.
+root_dir = os.path.dirname(__file__)
+if not os.path.exists(os.path.join(root_dir, 'Makefile.am')):
+    # Running in installed mode
     APP_DATA_DIR     = os.path.join('@prefix@', 'share') 
     ICON_DIR         = os.path.join(APP_DATA_DIR, 'pixmaps')
     TEXTURE_DIR      = os.path.join(ICON_DIR, 'glchess')
@@ -30,11 +27,12 @@ if (sys.modules.has_key('glchess') and
     GGZ_DIR          = os.path.expanduser('~/.ggz')
     GGZ_CONFIG_FILE  = os.path.join(GGZ_DIR, 'ggz-gtk.rc')
 else:
-    APP_DATA_DIR     = os.path.join('@abs_top_builddir@', 'glchess', 'data')
-    ICON_DIR         = os.path.join('@abs_top_builddir@', 'glchess', 'textures')
-    TEXTURE_DIR      = os.path.join('@abs_top_builddir@', 'glchess', 'textures')
-    GLADE_DIR        = os.path.join('@abs_top_builddir@', 'glchess', 'glade')
-    BASE_DIR         = os.path.join('@abs_top_builddir@', 'glchess', 'data')
+    # Running in uninstalled mode
+    APP_DATA_DIR     = os.path.join(root_dir, '../../data')
+    ICON_DIR         = os.path.join(root_dir, '../../textures')
+    TEXTURE_DIR      = os.path.join(root_dir, '../../textures')
+    GLADE_DIR        = os.path.join(root_dir, '../../glade')
+    BASE_DIR         = os.path.join(root_dir, '../../data')
     LOCALEDIR        = os.path.join(APP_DATA_DIR, 'locale')
     DATA_DIR         = os.path.expanduser('~/.gnome2/glchess/')
     LOG_DIR          = os.path.join(DATA_DIR, 'logs')
