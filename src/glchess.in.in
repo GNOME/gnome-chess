@@ -17,11 +17,11 @@ pygtk.require('2.0')
 
 # Setup bugbuddy to report unhandled exceptions.
 try: 
-  import bugbuddy
-  bugbuddy.install('glchess')
+    import bugbuddy
+    bugbuddy.install('glchess')
 except:
-  #No bugbuddy support
-  pass
+    #No bugbuddy support
+    pass
 
 def report_error():
     import gtk
