@@ -23,18 +23,7 @@ except:
   #No bugbuddy support
   pass
 
-# Chek if we are installed
-root_dir = os.path.dirname(__file__)
-if os.path.exists(os.path.join(root_dir, 'Makefile.am')):
-    sys.path.insert(0, os.path.abspath(root_dir))
-    import lib
-    sys.modules['glchess'] = sys.modules['lib']
-
-try:
-    # Import glChess from pyexecdir or system installation.
-    from glchess.glchess import start_game
-except ImportError:
-    # Import of glChess failed. Show error message.
+def report_error():
     import gtk
     import os.path
     import gettext
@@ -50,4 +39,23 @@ except ImportError:
     dialog.run()
     sys.exit(0)
 
-start_game()
+# Chek if we are installed
+root_dir = os.path.dirname(__file__)
+if os.path.exists(os.path.join(root_dir, 'Makefile.am')):
+    sys.path.insert(0, os.path.abspath(root_dir))
+    import lib
+    sys.modules['glchess'] = sys.modules['lib']
+
+try:
+    # Import glChess from pyexecdir or system installation.
+    from glchess.glchess import start_game
+except ImportError:
+    # Import of glChess failed. Show error message.
+    report_error()
+    
+try:
+    start_game()
+except ImportError:
+    # the game is not entirely installed
+    report_error()
+
