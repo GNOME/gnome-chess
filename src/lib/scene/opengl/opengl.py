@@ -694,7 +694,7 @@ class Scene(glchess.scene.Scene):
 
         # If have a list store there
         if self.boardList is not None:
-            glNewList(self.boardList, GL_COMPILE_AND_EXECUTE)
+            glNewList(self.boardList, GL_COMPILE)
             
         # Board verticies
         # (lower 12-15 are under 8-11)
