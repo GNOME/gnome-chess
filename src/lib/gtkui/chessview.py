@@ -29,7 +29,7 @@ else:
         try:
             glConfig = gtk.gdkgl.Config(mode = display_mode)
         except gtk.gdkgl.NoMatches:
-            openGLErrors(_('OpenGL libraries do not support required display mode'))
+            openGLErrors.append(_('OpenGL libraries do not support required display mode'))
 haveGLSupport = len(openGLErrors) == 0
 
 __all__ = ['GtkView']
