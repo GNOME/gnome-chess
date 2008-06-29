@@ -424,37 +424,26 @@ class GtkLoadGameDialog:
         fileChooser.add_filter(allFilter)
         
         self.window.present()
-        
-    def __getFilename(self):
-        """Get the currently selected filename.
-        
-        Returns the filename (string) or None if none selected.
-        """
-        return self.__gui.get_widget('filechooserwidget').get_filename()
-    
-    def _on_file_changed(self, widget):
-        """Gtk+ callback"""
-        name = self.__getFilename()
-        if name is None:
-            isFile = False
-        else:
-            isFile = os.path.isfile(name)
-        self.__gui.get_widget('properties_button').set_sensitive(isFile)
-        self.__gui.get_widget('open_button').set_sensitive(isFile)
-        
+            
     def _on_file_activated(self, widget):
         """Gtk+ callback"""
         self._on_response(self.window, gtk.RESPONSE_OK)
 
     def _on_response(self, dialog, responseId):
         """Gtk+ callback"""
-        chooser= self.__gui.get_widget('filechooserwidget')
+        chooser = self.__gui.get_widget('filechooserwidget')
 
         if responseId == gtk.RESPONSE_OK or responseId == gtk.RESPONSE_YES:
             folder = chooser.get_current_folder()
             if folder is not None:
                 glchess.config.set('load_directory', folder)
-            error = self.__mainUI.feedback.loadGame(self.__getFilename(), responseId == gtk.RESPONSE_YES)
+
+            fileName = self.__gui.get_widget('filechooserwidget').get_filename()
+            if fileName is None:
+                error = _('Please select a file to load')
+            else:
+                error = self.__mainUI.feedback.loadGame(fileName, responseId == gtk.RESPONSE_YES)
+
             if error is not None:
                 self.firstExpose = True
                 self.__gui.get_widget('error_box').show()
