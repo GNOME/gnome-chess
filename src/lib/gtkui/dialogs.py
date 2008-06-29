@@ -643,6 +643,8 @@ class GtkPreferencesDialog:
         """Gtk+ callback"""
         model = widget.get_model()
         iter = widget.get_active_iter()
+        if iter is None:
+            return
         data = model.get(iter, 1)
         if data[0] is not None:
             glchess.config.set('move_format', data[0])
@@ -651,6 +653,8 @@ class GtkPreferencesDialog:
         """Gtk+ callback"""
         model = widget.get_model()
         iter = widget.get_active_iter()
+        if iter is None:
+            return
         data = model.get(iter, 1)
         if data[0] is not None:
             glchess.config.set('board_view', data[0])
@@ -659,6 +663,8 @@ class GtkPreferencesDialog:
         """Gtk+ callback"""
         model = widget.get_model()
         iter = widget.get_active_iter()
+        if iter is None:
+            return
         data = model.get(iter, 1)
         if data[0] is not None:
             glchess.config.set('promotion_type', data[0])
