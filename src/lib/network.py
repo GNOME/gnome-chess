@@ -170,6 +170,7 @@ class GGZConnection(ggz.ClientFeedback):
 
     def onDisconnected(self):
         self.dialog.controller.setError(_('Disconnected'), _('You have been disconnected from the server'))
+        self.dialog.controller.setSensitive(False)
 
     def openChannel(self, feedback):
         print 'Open Channel'
@@ -207,7 +208,7 @@ class GGZConnection(ggz.ClientFeedback):
             self.dialog.controller.addPlayer(player, player.name, self._getPlayerIcon(player))
         for table in self.client.tables.itervalues():
             self.tableAdded(table)
-            
+
         self.dialog.controller.enterRoom(room)
 
     def tableAdded(self, table):
