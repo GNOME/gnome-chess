@@ -622,9 +622,13 @@ class Scene(glchess.scene.Scene):
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT)
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
-        gluBuild2DMipmaps(GL_TEXTURE_2D, GL_ALPHA, TEXTURE_WIDTH, TEXTURE_HEIGHT,
-                          GL_ALPHA, GL_UNSIGNED_BYTE, str(data))
-                          
+        
+        try:
+            gluBuild2DMipmaps(GL_TEXTURE_2D, GL_ALPHA, TEXTURE_WIDTH, TEXTURE_HEIGHT,
+                              GL_ALPHA, GL_UNSIGNED_BYTE, str(data))
+        except GLUerror, e:
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, TEXTURE_WIDTH, TEXTURE_HEIGHT, 0, GL_ALPHA, GL_UNSIGNED_BYTE, str(data))
+            
         return t
     
     def drawNumbering(self):
