@@ -359,7 +359,6 @@ class Scene(glchess.scene.Scene):
         glRenderMode(GL_SELECT)
 
         glInitNames()
-        glPushName(0)
 
         # Create pixel picking region near cursor location
         glMatrixMode(GL_PROJECTION)
@@ -382,14 +381,13 @@ class Scene(glchess.scene.Scene):
         try:
             records = glRenderMode(GL_RENDER)
         except GLerror:
-            records = None
-
-        # Get the first record and use this as the selected square
-        coord = None
-        if records is not None:
-            for record in records:
-                coord = record[2]
-                break
+            coord = None
+        else:
+            # Get the first record and use this as the selected square
+            if len(records) > 0:
+                (_, _, coord) = records[0]
+            else:
+                coord = None
 
         # Reset projection matrix
         glMatrixMode(GL_PROJECTION)
@@ -812,10 +810,10 @@ class Scene(glchess.scene.Scene):
         
     def drawSquares(self):
         """Draw the board squares for picking"""
-
+        
         # draw the floor squares
         for u in [0, 1, 2, 3, 4, 5, 6, 7]:
-            glLoadName(u)
+            glPushName(u)
 
             for v in [0, 1, 2, 3, 4, 5, 6, 7]:
                 glPushName(v)
@@ -834,6 +832,7 @@ class Scene(glchess.scene.Scene):
                 glEnd()
 
                 glPopName()
+            glPopName()
         
     def drawPieces(self):
         """Draw the pieces in the scene"""
