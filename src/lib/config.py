@@ -139,10 +139,11 @@ def set(name, value):
             function = _gconfSetFunction[type(value)]
         except KeyError:
             raise TypeError('Only config values of type: int, str, float, bool supported')
-        except gobject.GError:
-            pass
         else:
-            function(_GCONF_DIR + name, value)
+            try:
+                function(_GCONF_DIR + name, value)
+            except gobject.GError:
+                pass
 
     else:
         # Debounce
