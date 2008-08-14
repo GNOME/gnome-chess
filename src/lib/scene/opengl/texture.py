@@ -52,7 +52,7 @@ class Texture:
         try:
             (width, height, data, metaData) = reader.read()
         except png.Error, e:
-            print 'Error loading texture %s: %s' % (fileName, e.args[0])
+            print 'Error loading texture %s: %s' % (fileName, e.message)
             self.__data = None
             return
         

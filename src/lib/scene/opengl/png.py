@@ -699,7 +699,7 @@ class Reader:
             try:
                 tag, data = self.read_chunk()
             except ValueError, e:
-                raise Error('Chunk error: ' + e.args[0])
+                raise Error('Chunk error: ' + e.message)
 
             # print >> sys.stderr, tag, len(data)
             if tag == 'IHDR': # http://www.w3.org/TR/PNG/#11IHDR

@@ -389,7 +389,7 @@ class PGNGame:
         """
         if self._isValidTagName(name) is False:
             raise Error('%s is an invalid tag name' % str(name))
-        
+
         # If no value delete
         if value is None:
             # If is a STR tag throw an exception
@@ -557,7 +557,7 @@ class PGN:
                 p.parseLine(line)
             p.complete()
         except Error, e:
-            raise Error('Error on line %d: %s' % (lineNumber, e.args[0]))
+            raise Error('Error on line %d: %s' % (lineNumber, e.message))
 
         # Must be at least one game in the PGN file
         self.__games = p.games

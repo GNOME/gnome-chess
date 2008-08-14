@@ -308,7 +308,7 @@ class ChessGame(game.ChessGame):
                 f.write('\n')
                 f.close()
             except IOError, e:
-                return e.args[1]
+                return e.strerror
 
         self.setNeedsSaving(False)
         self.application.logger.addLine('Saved game %s to %s' % (repr(self.name), self.fileName))
