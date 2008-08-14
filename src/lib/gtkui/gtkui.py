@@ -589,9 +589,8 @@ Please contact your system administrator to resolve these problems, until then y
                 glchess.config.set('show_3d', False)
                 value = False
             self.__renderGL = value
-            menuItem = self.__getWidget('menu_view_3d')
-            menuItem.set_active(self.__renderGL)
-            self.view.viewWidget.setRenderGL(self.__renderGL)
+            self.__getWidget('menu_view_3d').set_active(value)
+            self.view.viewWidget.setRenderGL(value)
                 
         elif name == 'show_comments':
             self.view.setShowComments(value)

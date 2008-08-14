@@ -187,11 +187,8 @@ def watch(name, function):
         try:
             watchers = _notifiers[name]
         except KeyError:
-            watchers = []
-            
+            watchers = _notifiers[name] = []            
         watchers.append(function)
-            
-        _notifiers[name] = watchers
 
 def _save():
     """Save the current configuration"""

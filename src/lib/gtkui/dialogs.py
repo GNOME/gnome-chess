@@ -547,8 +547,7 @@ class GtkPreferencesDialog:
         
         self.__gui.get_widget('preferences').set_transient_for(mainUI.mainWindow)
 
-        # Load preferences for move_format
-        moveFormat = glchess.config.get('move_format')
+        # Make model for move format
         moveModel = gtk.ListStore(str, str)
         widget = self.__gui.get_widget('move_format_combo')
         widget.set_model(moveModel)
@@ -557,12 +556,9 @@ class GtkPreferencesDialog:
                         ('san', _('Standard Algebraic'))]
         for (key, label) in move_formats:
             iter = moveModel.append()
-            if key == moveFormat:
-                widget.set_active_iter(iter)
             moveModel.set(iter, 0, label, 1, key)
 
-        # Load preferences for board orientation
-        boardView = glchess.config.get('board_view')
+        # Make modelfor board orientation
         boardModel = gtk.ListStore(str, str)
         widget = self.__gui.get_widget('board_combo')
         widget.set_model(boardModel)
@@ -572,12 +568,9 @@ class GtkPreferencesDialog:
                      ('current', _('Current Player'))]
         for (key, label) in view_list:
             iter = boardModel.append()
-            if key == boardView:
-                widget.set_active_iter(iter)
             boardModel.set(iter, 0, label, 1, key)
 
-        # Load preferences for promotion type
-        promotionType = glchess.config.get('promotion_type')
+        # Make modelfor promotion type
         promotionModel = gtk.ListStore(str, str)
         widget = self.__gui.get_widget('promotion_type_combo')
         widget.set_model(promotionModel)
@@ -587,30 +580,58 @@ class GtkPreferencesDialog:
                           ('bishop', _('Bishop'))]
         for (key, label) in promotion_list:
             iter = promotionModel.append()
-            if key == promotionType:
-                widget.set_active_iter(iter)
             promotionModel.set(iter, 0, label, 1, key)
+            
+        # Watch for config changes
+        for key in ['show_3d', 'show_toolbar', 'show_history', 
+                    'show_move_hints', 'show_numbering',
+                    'move_format', 'board_view', 'promotion_type']:
+            glchess.config.watch(key, self.__applyConfig)
+            try:
+                value = glchess.config.get(key)
+            except glchess.config.Error:
+                pass
+            else:
+                self.__applyConfig(key, value)
+        
+    def __applyConfig(self, name, value):
+        """
+        """        
+        if name == 'show_3d':
+            self.__gui.get_widget('show_3d').set_active(value)
 
-        # Load preferences for View settings.
-        pref = glchess.config.get('show_3d')
-        widget = self.__gui.get_widget('show_3d')
-        widget.set_active(pref)
+        elif name == 'show_toolbar':
+            self.__gui.get_widget('show_toolbar').set_active(value)
+                
+        elif name == 'show_history':
+            self.__gui.get_widget('show_history').set_active(value)
 
-        pref = glchess.config.get('show_toolbar')
-        widget = self.__gui.get_widget('show_toolbar')
-        widget.set_active(pref)
+        elif name == 'show_move_hints':
+            self.__gui.get_widget('show_move_hints').set_active(value)
 
-        pref = glchess.config.get('show_history')
-        widget = self.__gui.get_widget('show_history')
-        widget.set_active(pref)
+        elif name == 'show_numbering':
+            self.__gui.get_widget('show_numbering').set_active(value)
 
-        pref = glchess.config.get('show_move_hints')
-        widget = self.__gui.get_widget('show_move_hints')
-        widget.set_active(pref)
+        elif name == 'move_format':
+            widget = self.__gui.get_widget('move_format_combo')
+            for row in widget.get_model():
+                if row[1] == value:
+                    widget.set_active_iter(row.iter)
+                
+        elif name == 'promotion_type':
+            widget = self.__gui.get_widget('promotion_type_combo')
+            for row in widget.get_model():
+                if row[1] == value:
+                    widget.set_active_iter(row.iter)
+    
+        elif name == 'board_view':
+            widget = self.__gui.get_widget('board_combo')
+            for row in widget.get_model():
+                if row[1] == value:
+                    widget.set_active_iter(row.iter)
 
-        pref = glchess.config.get('show_numbering')
-        widget = self.__gui.get_widget('show_numbering')
-        widget.set_active(pref)
+        else:
+            assert(False), 'Unknown config item: %s' % name
 
     def setVisible(self, isVisible):
         window = self.__gui.get_widget('preferences')
