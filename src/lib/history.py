@@ -37,7 +37,7 @@ class GameHistory:
                 try:
                     p = chess.pgn.PGN(fileName, 1)
                 except chess.pgn.Error, e:
-                    print e.description
+                    print e.message
                 except IOError, e:
                     print e.strerror
                 else:
