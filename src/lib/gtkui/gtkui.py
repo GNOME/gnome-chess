@@ -817,7 +817,7 @@ Please contact your system administrator to resolve these problems, until then y
                                        type = gtk.MESSAGE_WARNING,
                                        message_format = _("Unable to claim draw"))
         dialog.format_secondary_text(_("""You may claim a draw when:
-a) The board has been in the same state three times (Three fold repitition)
+a) The board has been in the same state three times (Three fold repetition)
 b) Fifty moves have occured where no pawn has moved and no piece has been captured (50 move rule)"""))
         dialog.add_button(gtk.STOCK_CLOSE, gtk.RESPONSE_ACCEPT)
         dialog.run()
