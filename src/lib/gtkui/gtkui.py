@@ -580,7 +580,7 @@ class GtkUI(glchess.ui.UI):
                 description = _("""You are unable to play in 3D mode due to the following problems:
 %(errors)s
 
-Please contact your system administrator to resolve these problems, until then you will be able to play chess in 2D mode.""" % {'errors': errors})
+Please contact your system administrator to resolve these problems, until then you will be able to play chess in 2D mode.""") % {'errors': errors}
                 dialog = gtk.MessageDialog(type = gtk.MESSAGE_WARNING, message_format = title)
                 dialog.format_secondary_text(description)
                 dialog.add_button(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
