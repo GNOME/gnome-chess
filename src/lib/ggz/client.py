@@ -463,7 +463,7 @@ class GameChannel(ChannelFeedback, protocol.ParserFeedback):
         self.inSession = False
         self.client.mainChannel.send(self.command)
 
-    def closed(self):
+    def closed(self, errno = 0):
         print 'SEVERE: GGZ channel closed'
 
 class Client:
