@@ -67,7 +67,7 @@ class GtkViewArea(gtk.DrawingArea):
         self.add_events(gtk.gdk.BUTTON_PRESS_MASK | gtk.gdk.BUTTON_RELEASE_MASK | gtk.gdk.BUTTON_MOTION_MASK)
         
         # Make openGL drawable
-        if hasattr(gtk, 'gtkgl'):
+        if haveGLSupport:
             gtk.gtkgl.widget_set_gl_capability(self, glConfig)# FIXME:, share_list=glContext)
 
         # Connect signals
