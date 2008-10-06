@@ -282,6 +282,10 @@ class Splashscreen(ui.ViewFeedback):
         self.scene.showBoardNumbering(showNumbering)
         self.cairoScene.showBoardNumbering(showNumbering)
 
+    def showMoveHints(self, showHints):
+        """Called by ui.ViewFeedback"""
+        pass
+
     def renderGL(self):
         """Called by ui.ViewFeedback"""
         self.scene.render()
@@ -298,6 +302,12 @@ class Splashscreen(ui.ViewFeedback):
         """Called by ui.ViewFeedback"""
         self.scene.reshape(width, height)
         self.cairoScene.reshape(width, height)
+        
+    def select(self, x, y):
+        pass
+    
+    def deselect(self, x, y):
+        pass    
 
     def selectSquare(self, coord):
         pass
