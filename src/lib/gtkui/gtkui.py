@@ -203,6 +203,8 @@ class GtkUI(glchess.ui.UI):
         self.feedback = feedback
         self._watches = {}
         self.__networkGames = {}
+        self.newGameDialog = None
+        self.loadGameDialog = None
         self.__saveGameDialogs = {}
         self.__joinGameDialogs = []
         
@@ -784,7 +786,10 @@ Please contact your system administrator to resolve these problems, until then y
 
     def _on_new_game_button_clicked(self, widget):
         """Gtk+ callback"""
-        dialogs.GtkNewGameDialog(self, self.__playerModel)
+        if self.newGameDialog:
+            self.newGameDialog.window.present()
+        else:
+            self.newGameDialog = dialogs.GtkNewGameDialog(self, self.__playerModel)
 
     def _on_join_game_button_clicked(self, widget):
         """Gtk+ callback"""
@@ -792,19 +797,30 @@ Please contact your system administrator to resolve these problems, until then y
 
     def _on_open_game_button_clicked(self, widget):
         """Gtk+ callback"""
-        dialogs.GtkLoadGameDialog(self)
+        if self.loadGameDialog:
+            self.loadGameDialog.window.present()
+        else:
+            self.loadGameDialog = dialogs.GtkLoadGameDialog(self)
         
     def _on_save_game_button_clicked(self, widget):
         """Gtk+ callback"""
         if self.view.feedback.getFileName() is not None:
             self.view.feedback.save()
-        elif not self.__saveGameDialogs.has_key(self.view):
-            self.__saveGameDialogs[self.view] = dialogs.GtkSaveGameDialog(self, self.view)
-            
+            return
+        
+        try:
+            dialog = self.__saveGameDialogs[self.view]
+        except KeyError:
+            dialog = self.__saveGameDialogs[self.view] = dialogs.GtkSaveGameDialog(self, self.view)
+        dialog.window.present()
+
     def _on_save_as_game_button_clicked(self, widget):
         """Gtk+ callback"""
-        if not self.__saveGameDialogs.has_key(self.view):
-            self.__saveGameDialogs[self.view] = dialogs.GtkSaveGameDialog(self, self.view, self.view.feedback.getFileName())
+        try:
+            dialog = self.__saveGameDialogs[self.view]
+        except KeyError:
+            dialog = self.__saveGameDialogs[self.view] = dialogs.GtkSaveGameDialog(self, self.view, self.view.feedback.getFileName())
+        dialog.window.present()
 
     def _on_resign_clicked(self, widget):
         """Gtk+ callback"""

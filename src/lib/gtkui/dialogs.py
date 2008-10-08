@@ -250,7 +250,7 @@ class GtkNewGameDialog:
         self.window.present()
         self.__checking = False
         self.__testReady()
-        
+
     # Private methods
     
     def __setCombo(self, comboName, key):
@@ -384,6 +384,8 @@ class GtkNewGameDialog:
         if responseId == gtk.RESPONSE_OK:
             self.__startGame()
         dialog.destroy()
+        if self.__mainUI.newGameDialog is self:
+            self.__mainUI.newGameDialog = None
 
 class GtkLoadGameDialog:
     """
@@ -452,6 +454,8 @@ class GtkLoadGameDialog:
                 return
 
         dialog.destroy()
+        if self.__mainUI.loadGameDialog is self:
+            self.__mainUI.loadGameDialog = None
         
 class GtkSaveGameDialog:
     """
