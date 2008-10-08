@@ -1,4 +1,3 @@
-import ConfigParser
 import os
 import socket
 import errno
@@ -22,35 +21,63 @@ class GGZConfig:
     TYPE_FIRST  = 2
     
     def __init__(self):
-        parser = ConfigParser.SafeConfigParser()
-        parser.read(GGZ_CONFIG_FILE)
+        try:
+            lines = file(GGZ_CONFIG_FILE).readlines()
+        except IOError:
+            print 'Failed to load GGZ config'
+            lines = []
+        fields = {}
+        section = None
+        for l in lines:
+            l = l.strip()
+            
+            # Skip empty lines or comments
+            if len(l) == 0 or l[0] == '#':
+                continue
+            
+            # Look for section headers
+            if l[0] == '[':
+                if l[-1] != ']':
+                    print 'Invalid section line: %s' % repr(l)
+                    continue
+                section = l[1:-1]
+                if not fields.has_key(section):
+                    fields[section] = {}
+                continue
+            
+            try:
+                (name, value) = l.split('=', 1)
+            except ValueError:
+                print 'Invalid field line: %s' % repr(l)
+            else:
+                fields[section][name.strip()] = value.strip()
 
         self.servers = []
         try:
-            value = parser.get('Servers', 'profilelist')
-        except ConfigParser.NoSectionError:
+            value = fields['Servers']['ProfileList']
+        except KeyError:
             pass
         else:
             for n in value.replace('\\ ', '\x00').split(' '):
                 server = GGZServer()
                 server.name = n.replace('\x00', ' ')
                 
-                if not parser.has_section(server.name):
+                if not fields.has_key(server.name):
                     print 'Missing server section %s' % repr(server.name)
                     continue
             
                 try:
-                    server.host = parser.get(server.name, 'Host')
-                    server.port = parser.getint(server.name, 'Port')
-                    server.login = parser.get(server.name, 'Login')
-                    server.loginType = parser.getint(server.name, 'Type')
-                except ConfigParser.NoOptionError:
-                    print 'Missing basic configuration for server %s' % repr(server.name)
+                    server.host = fields[server.name]['Host']
+                    server.port = int(fields[server.name]['Port'])
+                    server.login = fields[server.name]['Login']
+                    server.loginType = int(fields[server.name]['Type'])
+                except (KeyError, ValueError):
+                    print 'Missing/invalid basic configuration for server %s' % repr(server.name)
                     continue
-                
+
                 try:
-                    server.password = parser.get(server.name, 'Password')
-                except ConfigParser.NoOptionError:
+                    server.password = fields[server.name]['Password']
+                except KeyError:
                     server.password = ''
 
                 self.servers.append(server)
