@@ -48,11 +48,17 @@ class Texture:
     def __loadPNG(self, fileName):
         """
         """
-        reader = png.Reader(fileName)
+        try:
+            reader = png.Reader(fileName)
+        except IOError, e:
+            print 'Error loading texture file: %s: %s' % (fileName, e.strerror)
+            self.__data = None
+            return
+
         try:
             (width, height, data, metaData) = reader.read()
         except png.Error, e:
-            print 'Error loading texture %s: %s' % (fileName, e.message)
+            print 'Error parsing PNG file %s: %s' % (fileName, e.message)
             self.__data = None
             return
         
@@ -71,7 +77,12 @@ class Texture:
         import Image
         
         # Load the image file
-        image = Image.open(fileName)
+        try:
+            image = Image.open(fileName)
+        except IOError, e:
+            print 'Error loading texture file: %s: %s' % (fileName, e.strerror)
+            self.__data = None
+            return            
 
         # Crop the image so it has height/width a multiple of 2
         width = image.size[0]
