@@ -349,7 +349,12 @@ class MainChannel(ChannelFeedback, protocol.ParserFeedback):
         self.client.feedback.tableUpdated(table)
 
     def tableRemoved(self, tableId):
-        table = self.client.tables.pop(tableId)
+        try:
+            table = self.client.tables.pop(tableId)
+        except KeyError:
+            # We do not know of this table - this could occur if we receive a
+            # table remove event before we get the table list.
+            return
         self.client.feedback.tableRemoved(table)
         
     def onPlayerList(self, room, players):
@@ -397,7 +402,13 @@ class MainChannel(ChannelFeedback, protocol.ParserFeedback):
         self.client.feedback.playerAdded(player)
 
     def playerRemoved(self, name, room, toRoom):
-        player = self.client.players.pop(name)
+        try:
+            player = self.client.players.pop(name)
+        except KeyError:
+            # We do not know of this player - this could occur if we receive a
+            # player remove event before we get the player list.
+            return
+            
         player.room.nPlayers -= 1
         player.lastRoom = player.room
         try:
