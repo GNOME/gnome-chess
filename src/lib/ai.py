@@ -239,33 +239,43 @@ class Player(game.ChessPlayer):
         self.__fromEngineFd = fromManagerOutput
 
         # Fork off a child process to manage the engine
-        self.__pid = os.fork()
-        if self.__pid == 0:
+        try:
+            self.__pid = os.fork()
+        except OSError, e:
+            print 'Monitor failed to fork: %s' % e.message
             os.close(toManagerInput)
-            os.close(fromManagerOutput)
-            self._runMonitor(fromManagerInput, toManagerOutput)
             os.close(toManagerOutput)
             os.close(fromManagerInput)
-            os._exit(0)
-
-        os.close(toManagerOutput)
-        os.close(fromManagerInput)
-
-        if profile.protocol == CECP:
-            self.connection = CECPConnection(self)
-        elif profile.protocol == UCI:
-            self.connection = UCIConnection(self)
+            os.close(fromManagerOutput)
+            self.__toEngineFd = None
+            self.__fromEngineFd = None
         else:
-            assert(False)
+            if self.__pid == 0:
+                os.close(toManagerInput)
+                os.close(fromManagerOutput)
+                self._runMonitor(fromManagerInput, toManagerOutput)
+                os.close(toManagerOutput)
+                os.close(fromManagerInput)
+                os._exit(0)
+
+            os.close(toManagerOutput)
+            os.close(fromManagerInput)
+
+            if profile.protocol == CECP:
+                self.connection = CECPConnection(self)
+            elif profile.protocol == UCI:
+                self.connection = UCIConnection(self)
+            else:
+                assert(False)
             
-        self.connection.start()
-        self.connection.startGame()
-        try:
-            level = self.__profile.levels[self.__level]
-        except KeyError:
-            self.connection.configure()
-        else:
-            self.connection.configure(level.options)
+            self.connection.start()
+            self.connection.startGame()
+            try:
+                level = self.__profile.levels[self.__level]
+            except KeyError:
+                self.connection.configure()
+            else:
+                self.connection.configure(level.options)
 
     # Methods to extend
     
@@ -343,12 +353,17 @@ class Player(game.ChessPlayer):
     
     def onPlayerMoved(self, player, move):
         """Called by game.ChessPlayer"""
+        if self.__toEngineFd == None:
+            return
         isSelf = player is self and self.moving
         self.moving = False
         self.connection.reportMove(move.canMove, isSelf)
 
     def readyToMove(self):
         """Called by game.ChessPlayer"""
+        if self.__toEngineFd == None:
+            self.die()
+            return
         game = self.getGame()
         whiteTime = game.getWhite().getRemainingTime()
         blackTime = game.getBlack().getRemainingTime()
@@ -404,7 +419,11 @@ class Player(game.ChessPlayer):
         (fromEngineOutput, fromEngineInput) = os.pipe()
 
         # Fork and execute the child
-        enginePID = os.fork()
+        try:
+            enginePID = os.fork()
+        except OSError, e:
+            print 'Monitor failed to fork: %s' % e.message
+            os._exit(1);
         if enginePID == 0:
             os.close(toApplicationFd)
             os.close(fromApplicationFd)            
