@@ -209,7 +209,7 @@ class Writer:
         outfile.write(data)
         checksum = zlib.crc32(tag)
         checksum = zlib.crc32(data, checksum)
-        outfile.write(struct.pack("!I", checksum))
+        outfile.write(struct.pack("!i", checksum))
 
     def write(self, outfile, scanlines):
         """
@@ -403,10 +403,10 @@ class _readable:
         self.offset = 0
 
     def read(self, n):
-        r = buf[offset:offset+n]
+        r = self.buf[self.offset:self.offset+n]
         if isinstance(r, array):
             r = r.tostring()
-        offset += n
+        self.offset += n
         return r
 
 class Reader:
@@ -468,8 +468,8 @@ class Reader:
         verify = struct.pack('!i', verify)
         if checksum != verify:
             # print repr(checksum)
-            (a,) = struct.unpack('!I', checksum)
-            (b,) = struct.unpack('!I', verify)
+            (a, ) = struct.unpack('!I', checksum)
+            (b, ) = struct.unpack('!I', verify)
             raise ValueError("Checksum error in %s chunk: 0x%X != 0x%X"
                              % (tag, a, b))
         return tag, data
