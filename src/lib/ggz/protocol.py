@@ -657,6 +657,8 @@ class Decoder(xml.sax.handler.ContentHandler):
         return data[index+1:]
 
 if __name__ == '__main__':
+    import chess
+    
     class F:
         
         def onSeat(self, seatNum, version):
@@ -678,7 +680,7 @@ if __name__ == '__main__':
             print ('onMove', move)    
 
     f = F()
-    d = GGZChess(f);
+    d = chess.Chess(f);
 
     for c in '\x01\x01\x06': # Seat seat=1 version=6
         d.decode(c)

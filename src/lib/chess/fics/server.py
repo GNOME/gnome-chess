@@ -411,12 +411,14 @@ class Client:
                 self.send('%i ads displayed.\n' % len(self.server.adverts))
         
         elif command == 'match' and len(args) == 1:
+            user = args[0]
             try:
                 client = self.server.clientsByUserName[user]
             except KeyError:
                 pass
             else:
                 advert = Challenge(self)
+                advertLine = '?' # FIXME
                 self.send('Issuing: %s.' % advertLine)
                 client.send('\n')
                 client.send('Challenge: %s.\n' % advertLine)

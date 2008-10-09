@@ -79,7 +79,6 @@ class SceneHumanInput:
         if inputEnabled is False:
             self.__selectSquare(None)
         self.__inputEnabled = inputEnabled
-        self.selectSquare(None)
         
     def select(self, x, y):
         """

@@ -217,7 +217,7 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         """Called by glchess.ui.UIController"""
         iter = self.roomModel.get_iter_first()
         while iter is not None:
-            if table is self.roomModel.get_value(iter, 0):
+            if room is self.roomModel.get_value(iter, 0):
                 self.roomModel.remove(iter)
                 return
             iter = self.roomModel.iter_next(iter)
@@ -421,7 +421,7 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         
         # Get the players
         game.white.type  = self.__getComboData(self.__gui.get_widget('white_type_combo'), 0)
-        if game.white.type is '':
+        if game.white.type == '':
             game.white.name = _('White')
         else:
             game.white.name = self.__getComboData(self.__gui.get_widget('white_type_combo'), 2)
@@ -435,7 +435,7 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
 
         game.duration = self.__getComboData(self.__gui.get_widget('time_combo'), 1)
         if game.duration < 0:
-            multplier = self.__getComboData(self.__gui.get_widget('custom_time_units_combo'), 1)
+            multiplier = self.__getComboData(self.__gui.get_widget('custom_time_units_combo'), 1)
             game.duration = self.__getComboData(self.__gui.get_widget('custom_time_spin'), 1) * multiplier
             
         # Save properties
@@ -459,7 +459,7 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         widget = self.__gui.get_widget('table_join_button')
         widget.set_sensitive(isSensitive)
         
-    def _on_table_list_activated():
+    def _on_table_list_activated(self):
         pass
     
     def _on_server_combo_changed(self, widget):

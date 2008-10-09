@@ -58,6 +58,9 @@ class CECPProtocol:
         """Called when the AI resigns"""
         print 'CECP AI resigns'
         
+    def logText(self, text, style):
+        print 'LOG: %s' % text
+        
     # Public methods
     
     def sendSetSearchDepth(self, searchDepth):
@@ -227,8 +230,3 @@ class Connection(CECPProtocol):
     def onIllegalMove(self, move):
         """Called by CECPProtocol"""
         print 'CECP illegal move: ' + move
-
-if __name__ == '__main__':
-    c = CECPConnection('gnuchess')
-    while True:
-        c.read()

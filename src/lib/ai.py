@@ -7,6 +7,7 @@ import sys
 import select
 import signal
 import xml.dom.minidom
+import xml.parsers.expat
 
 import game
 import cecp

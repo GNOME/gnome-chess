@@ -35,7 +35,7 @@ class ChannelFeedback:
     
 class ClientFeedback:
     
-    def setBusy(self):
+    def setBusy(self, isBusy):
         """Called when the client is busy (unable to take requests)"""
         pass
     
