@@ -172,7 +172,7 @@ class GtkViewArea(gtk.DrawingArea):
             if self.__glDrawable.is_double_buffered():
                 self.__glDrawable.swap_buffers()
             else:
-                glFlush()
+                OpenGL.GL.glFlush()
 
             self.__endGL()
             
