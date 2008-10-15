@@ -839,7 +839,7 @@ Please contact your system administrator to resolve these problems, until then y
         title = _("Unable to claim draw")
         # Translators: This is the message that is displayed in a dialog when a user requests a draw but one is not available
         message = _("""You may claim a draw when:
-a) The board has been in the same state three times (Three fold repitition)
+a) The board has been in the same state three times (Three fold repetition)
 b) Fifty moves have occured where no pawn has moved and no piece has been captured (50 move rule)""")
         
         dialog = gtk.MessageDialog(flags = gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
