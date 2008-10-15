@@ -378,12 +378,12 @@ class GtkUI(glchess.ui.UI):
         """
         """
         if whiteTime is None:
-            whiteString = '∞'
+            whiteString = _('∞')
         else:
             t = whiteTime[1]
             whiteString = '%i:%02i' % (t / 60, t % 60)
         if blackTime is None:
-            blackString = '∞'
+            blackString = _('∞')
         else:
             t = blackTime[1]
             blackString = '%i:%02i' % (t / 60, t % 60)
@@ -462,7 +462,7 @@ class GtkUI(glchess.ui.UI):
         dialog = gtk.MessageDialog(flags = gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                    type = gtk.MESSAGE_WARNING,
                                    message_format = title)
-        dialog.format_secondary_text("If you don't save the changes to this game will be permanently lost")
+        dialog.format_secondary_text(_("If you don't save the changes to this game will be permanently lost")
         dialog.add_button(_('Close _without saving'), gtk.RESPONSE_OK)
         dialog.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
         dialog.add_button(gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT)
@@ -828,10 +828,11 @@ Please contact your system administrator to resolve these problems, until then y
 
     def _on_claim_draw_clicked(self, widget):
         """Gtk+ callback"""
-        if not self.view.feedback.claimDraw():
-            dialog = gtk.MessageDialog(flags = gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
-                                       type = gtk.MESSAGE_WARNING,
-                                       message_format = _("Unable to claim draw"))
+        if self.view.feedback.claimDraw():
+            return
+        dialog = gtk.MessageDialog(flags = gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                                   type = gtk.MESSAGE_WARNING,
+                                   message_format = _("Unable to claim draw"))
         dialog.format_secondary_text(_("""You may claim a draw when:
 a) The board has been in the same state three times (Three fold repetition)
 b) Fifty moves have occured where no pawn has moved and no piece has been captured (50 move rule)"""))
