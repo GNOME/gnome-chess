@@ -411,7 +411,6 @@ class ChessBoardState:
                     return True
 
             # Bishops on different colours can check
-            bishopSquareColour = None
             if pieceType == BISHOP:
                 bishopCount += 1 
                 colour = self._getSquareColour(coord)
