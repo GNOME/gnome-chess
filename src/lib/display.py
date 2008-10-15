@@ -302,7 +302,7 @@ class Splashscreen(ui.ViewFeedback):
         """Called by ui.ViewFeedback"""
         self.scene.reshape(width, height)
         self.cairoScene.reshape(width, height)
-        
+
     def select(self, x, y):
         pass
     

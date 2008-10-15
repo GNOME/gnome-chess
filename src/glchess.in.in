@@ -15,6 +15,21 @@ import os
 import pygtk
 pygtk.require('2.0')
 
+# Ignore any exceptions writing to stdout using print statements
+class SafeStdout:
+    def __init__(self):
+        self.stdout = sys.stdout
+    
+    def fileno(self):
+        return self.stdout.fileno()
+
+    def write(self, data):
+        try:
+            self.stdout.write(data)
+        except:
+            pass
+sys.stdout = SafeStdout()
+
 # Setup bugbuddy to report unhandled exceptions.
 try: 
     import bugbuddy
@@ -24,19 +39,28 @@ except:
     pass
 
 def report_error():
-    import gtk
     import os.path
     import gettext
     from gettext import gettext as _
-        
+
     gettext.bindtextdomain('gnome-games', os.path.join('@prefix@', 'share', 'locale'))
     gettext.textdomain('gnome-games')
+    # Translators: This is the title of the dialog displayed if glChess cannot start
     title = _("Chess incorrectly installed")
+    # Translators: This is the contents of the dialog displayed if glChess cannot start
     description = _("""Chess is not able to start because required application files are not installed. If you are currently upgrading your system please wait until the upgrade has completed.""")
-    dialog = gtk.MessageDialog(type = gtk.MESSAGE_ERROR, message_format = title)
-    dialog.format_secondary_text(description)
-    dialog.add_button(gtk.STOCK_QUIT, gtk.RESPONSE_CLOSE)
-    dialog.run()
+
+    try:
+        import gtk
+    except ImportError:
+        print title
+        print '-' * len(title)
+        print description
+    else:
+        dialog = gtk.MessageDialog(type = gtk.MESSAGE_ERROR, message_format = title)
+        dialog.format_secondary_text(description)
+        dialog.add_button(gtk.STOCK_QUIT, gtk.RESPONSE_CLOSE)
+        dialog.run()
     sys.exit(0)
 
 # Chek if we are installed
@@ -49,13 +73,8 @@ if os.path.exists(os.path.join(root_dir, 'Makefile.am')):
 try:
     # Import glChess from pyexecdir or system installation.
     from glchess.glchess import start_game
-except ImportError:
-    # Import of glChess failed. Show error message.
-    report_error()
-    
-try:
     start_game()
 except ImportError:
-    # the game is not entirely installed
+    # Import of glChess failed. Show error message.
     report_error()
 

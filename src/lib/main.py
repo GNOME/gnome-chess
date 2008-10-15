@@ -442,7 +442,9 @@ class Application:
         
         self.history = history.GameHistory()
         
-        self.logger = self.ui.controller.addLogWindow(_('Application Log'), '', '')
+        # Translators: This is the name of the log that displays application events
+        title = _('Application Log')
+        self.logger = self.ui.controller.addLogWindow(title, '', '')
 
     def addAIProfile(self, profile):
         """Add a new AI profile into glChess.
@@ -687,6 +689,8 @@ class Application:
             self.logger.addLine('loaded in %f seconds' % (time.time() - s))
 
         else:
+            # Translators: This is the text displayed on the command-line if an unknown argument is passed
+            # FIXME: Should be in a dialog
             print _('Usage: %s [game]') % sys.argv[0]
             sys.exit(0)
 
@@ -697,8 +701,11 @@ class Application:
                     aiName = p.name
                     break
             black = (aiName, 'easy')
-            name = _('Human versus %s') % aiName
-            g = self.addLocalGame(name, _('White'), None, _('Black'), black)
+            # Translators: This is the name of a human versus AI game. The %s is replaced with the name of the AI player
+            gameName = _('Human versus %s') % aiName
+            whiteName =  _('White')
+            blackName = _('Black')
+            g = self.addLocalGame(gameName, whiteName, None, blackName, black)
             g.inHistory = True
             g.start()
 
@@ -706,8 +713,9 @@ class Application:
         try:
             self.ui.controller.run()
         except:
-            print _('glChess has crashed. Please report this bug to http://bugzilla.gnome.org')
-            print _('Debug output:')
+            # FIXME: Isn't this done by bug-buddy?
+            print _("""glChess has crashed. Please report this bug to http://bugzilla.gnome.org
+Debug output:""")
             print traceback.format_exc()
             self.quit()
             sys.exit(1)

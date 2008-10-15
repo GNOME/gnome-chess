@@ -120,6 +120,7 @@ class GtkNewGameDialog:
             
         # Create model for game time
         defaultTime = glchess.config.get('new_game_dialog/move_time')
+        # Translators: This is one of the options game duration combo box in the new game dialog
         times = [(_('Unlimited'),       0),
                  (_('One minute'),     60),
                  (_('Five minutes'),  300),
@@ -238,6 +239,7 @@ class GtkNewGameDialog:
             
             # Change title for loaded games
             if g.path is not None:
+                # Translators: This is the title of the dialog when continuing a loaded game
                 self.window.set_title(_('Configure loaded game (%i moves)') % len(g.moves))
 
         # Display warning if missing the AIs
@@ -296,7 +298,7 @@ class GtkNewGameDialog:
         if self.__customName:
             name = self.__gui.get_widget('game_name_entry').get_text()
             if len(name) == 0:
-                # Next time the something changes generate a name
+                # Next time something changes generate a name
                 self.__customName = False
                 ready = False
 
@@ -304,6 +306,7 @@ class GtkNewGameDialog:
         else:
             whiteName = self.__getComboData(self.__gui.get_widget('white_type_combo'), 2)
             blackName = self.__getComboData(self.__gui.get_widget('black_type_combo'), 2)
+            # Translators: This is the default name for a new game. %(white) and %(black) are substituted for the names of the white and black players.
             format = _('%(white)s versus %(black)s')
             self.__gui.get_widget('game_name_entry').set_text(format % {'white': whiteName, 'black': blackName})
 
@@ -327,12 +330,14 @@ class GtkNewGameDialog:
         # Get the players
         game.white.type  = self.__getComboData(self.__gui.get_widget('white_type_combo'), 0)
         if game.white.type == '':
+            # Translators: This is the default name for the white player
             game.white.name = _('White')
         else:
             game.white.name = self.__getComboData(self.__gui.get_widget('white_type_combo'), 2)
         game.white.level = self.__getComboData(self.__gui.get_widget('white_difficulty_combo'), 0)
         game.black.type  = self.__getComboData(self.__gui.get_widget('black_type_combo'), 0)
         if game.black.type == '':
+            # Translators: This is the default name for the black player
             game.black.name = _('Black')
         else:
             game.black.name = self.__getComboData(self.__gui.get_widget('black_type_combo'), 2)
@@ -442,6 +447,7 @@ class GtkLoadGameDialog:
 
             fileName = self.__gui.get_widget('filechooserwidget').get_filename()
             if fileName is None:
+                # Translators: This message is displayed in the load dialog when no file is selected
                 error = _('Please select a file to load')
             else:
                 error = self.__mainUI.feedback.loadGame(fileName, responseId == gtk.RESPONSE_YES)

@@ -462,7 +462,9 @@ class GtkUI(glchess.ui.UI):
         dialog = gtk.MessageDialog(flags = gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                    type = gtk.MESSAGE_WARNING,
                                    message_format = title)
-        dialog.format_secondary_text(_("If you don't save the changes to this game will be permanently lost")
+        # Translators: This text is displayed in a dialog asking the user to save the current game
+        dialog.format_secondary_text("If you don't save the changes to this game will be permanently lost")
+        # Translators: This is the button text in the save game dialog to decline to save the game
         dialog.add_button(_('Close _without saving'), gtk.RESPONSE_OK)
         dialog.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
         dialog.add_button(gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT)
@@ -577,8 +579,10 @@ class GtkUI(glchess.ui.UI):
         # Enable/disable OpenGL rendering
         elif name == 'show_3d':            
             if value and not chessview.haveGLSupport:
+                # Translators: This is the title of the dialog that is displayed when a user tries to enable 3D without the required libraries
                 title = _('Unable to enable 3D mode')
                 errors = '\n'.join(chessview.openGLErrors)
+                # Translators: This is displayed in a dialog when a user tries to enable 3D without the required libraries. %(error)s will be replaced with a list of reasons why 3D is not available.
                 description = _("""You are unable to play in 3D mode due to the following problems:
 %(errors)s
 
@@ -830,12 +834,18 @@ Please contact your system administrator to resolve these problems, until then y
         """Gtk+ callback"""
         if self.view.feedback.claimDraw():
             return
+        
+        # Translators: This is the title of the dialog that is displayed when a user requests a draw but one is not available
+        title = _("Unable to claim draw")
+        # Translators: This is the message that is displayed in a dialog when a user requests a draw but one is not available
+        message = _("""You may claim a draw when:
+a) The board has been in the same state three times (Three fold repitition)
+b) Fifty moves have occured where no pawn has moved and no piece has been captured (50 move rule)""")
+        
         dialog = gtk.MessageDialog(flags = gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                    type = gtk.MESSAGE_WARNING,
-                                   message_format = _("Unable to claim draw"))
-        dialog.format_secondary_text(_("""You may claim a draw when:
-a) The board has been in the same state three times (Three fold repetition)
-b) Fifty moves have occured where no pawn has moved and no piece has been captured (50 move rule)"""))
+                                   message_format = title)
+        dialog.format_secondary_text(message)
         dialog.add_button(gtk.STOCK_CLOSE, gtk.RESPONSE_ACCEPT)
         dialog.run()
         dialog.destroy()

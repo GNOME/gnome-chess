@@ -14,11 +14,13 @@ openGLErrors = []
 try:
     import OpenGL.GL
 except:
+    # Translators: This message is displayed when 3D mode is not available due to no Python OpenGL libraries
     openGLErrors.append(_('No Python OpenGL support'))
 try:
     import gtk.gtkgl
     import gtk.gdkgl
 except:
+    # Translators: This message is displayed when 3D mode is not available due to no Python GTKGLExt libraries
     openGLErrors.append(_('No Python GTKGLExt support'))
 else:
     display_mode = (gtk.gdkgl.MODE_RGB | gtk.gdkgl.MODE_DEPTH | gtk.gdkgl.MODE_DOUBLE)
@@ -29,6 +31,7 @@ else:
         try:
             glConfig = gtk.gdkgl.Config(mode = display_mode)
         except gtk.gdkgl.NoMatches:
+            # Translators: This message is displayed when 3D mode is not available due to their 3D drivers not being able to provide a suitable display mode
             openGLErrors.append(_('OpenGL libraries do not support required display mode'))
 haveGLSupport = len(openGLErrors) == 0
 
@@ -461,35 +464,48 @@ class GtkView(glchess.ui.ViewController):
             self.ui._updateViewButtons()
 
     def endGame(self, game):
+        # Translators: This message is displayed when a player wins. The %s is substituted with the winning player's name
+        format = _('%s wins')
+        
         # If game completed show this in the GUI
         if game.result is glchess.game.RESULT_WHITE_WINS:
-            title = _('%s wins') % game.getWhite().getName()
+            title = format % game.getWhite().getName()
         elif game.result is glchess.game.RESULT_BLACK_WINS:
-            title = _('%s wins') % game.getBlack().getName()
+            title = format % game.getBlack().getName()
         else:
+            # Translators: This message is displayed when a game is drawn
             title = _('Game is drawn')
 
         description = ''
         if game.rule is glchess.game.RULE_CHECKMATE:
+            # Translators: This message is displayed when the game ends due to a player being checkmated
             description = _('Opponent is in check and cannot move (checkmate)')
         elif game.rule is glchess.game.RULE_STALEMATE:
+            # Translators: This message is displayed when the game terminates due to a stalemate
             description = _('Opponent cannot move (stalemate)')
         elif game.rule is glchess.game.RULE_FIFTY_MOVES:
+            # Translators: This message is displayed when the game is drawn due to the fifty move rule
             description = _('No piece has been taken or pawn moved in the last fifty moves')
         elif game.rule is glchess.game.RULE_TIMEOUT:
+            # Translators: This message is displayed when the game ends due to one player's clock stopping
             description = _('Opponent has run out of time')
         elif game.rule is glchess.game.RULE_THREE_FOLD_REPETITION:
+            # Translators: This message is displayed when the game is drawn due to the three-fold-repitition rule
             description = _('The same board state has occured three times (three fold repetition)')
         elif game.rule is glchess.game.RULE_INSUFFICIENT_MATERIAL:
+            # Translators: This message is displayed when the game is drawn due to the insufficient material rule
             description = _('Neither player can cause checkmate (insufficient material)')
         elif game.rule is glchess.game.RULE_RESIGN:
             if game.result is glchess.game.RESULT_WHITE_WINS:
+                # Translators: This message is displayed when the game ends due to the black player resigning
                 description = _('The black player has resigned')
             elif game.result is glchess.game.RESULT_BLACK_WINS:
+                # Translators: This message is displayed when the game ends due to the white player resigning
                 description = _('The white player has resigned')
             else:
                 assert(False)
         elif game.rule is glchess.game.RULE_DEATH:
+            # Translators: This message is displayed when the game ends due to a player dying
             description = _('One of the players has died')
 
         self.gameResult = (title, description)
