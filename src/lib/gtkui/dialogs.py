@@ -223,16 +223,16 @@ class GtkNewGameDialog:
             self.__setCombo('black_difficulty_combo', blackLevel)
 
         # Use supplied settings
-        errorText = ''
+        errors = []
         g = self.game
         if g is not None:
             self.__gui.get_widget('game_name_entry').set_text(g.name)
             self.__customName = True
             if not self.__setCombo('white_type_combo', g.white.type):
-                errorText += _('Unable to find %s engine\n') % repr(g.white.type)
+                errors.append(_('Unable to find %s engine') % repr(g.white.type))
             self.__setCombo('white_difficulty_combo', g.white.level)
             if not self.__setCombo('black_type_combo', g.black.type):
-                errorText += _('Unable to find %s engine\n') % repr(g.black.type)
+                errors.append(_('Unable to find %s engine') % repr(g.black.type))
             self.__setCombo('black_difficulty_combo', g.black.level)
             # TODO: Others
             
@@ -241,9 +241,9 @@ class GtkNewGameDialog:
                 self.window.set_title(_('Configure loaded game (%i moves)') % len(g.moves))
 
         # Display warning if missing the AIs
-        if len(errorText) > 0:
+        if len(errors) > 0:
             self.__gui.get_widget('info_title_label').set_markup('<big><b>%s</b></big>' % _('Game settings changed'))
-            self.__gui.get_widget('info_description_label').set_markup('<i>%s</i>' % errorText[:-1])
+            self.__gui.get_widget('info_description_label').set_markup('<i>%s</i>' % '\n'.join(errors))
             self.__gui.get_widget('info_box').show()
 
         # Show the dialog
