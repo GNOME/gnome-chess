@@ -377,7 +377,7 @@
 				  <property name="sensitive">False</property>
 				  <property name="can_default">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes" comments="Network Game Dialog: Button to join a table">Join</property>
+				  <property name="label" translatable="yes" comments="Network Game Dialog: Button to join a table">_Join</property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -569,7 +569,7 @@
 				  <property name="visible">True</property>
 				  <property name="can_default">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes" comments="Network Game Dialog: Leave table button">Leave</property>
+				  <property name="label" translatable="yes" comments="Network Game Dialog: Leave table button">_Leave</property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -758,8 +758,8 @@
 		  <child>
 		    <widget class="GtkLabel" id="label7">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes" comments="Network Game Dialog: Title above the chat text. Do not translate the &lt;b&gt; tag.">&lt;b&gt;Status/Chat&lt;/b&gt;</property>
-		      <property name="use_underline">False</property>
+		      <property name="label" translatable="yes" comments="Network Game Dialog: Title above the chat text. Do not translate the &lt;b&gt; tag.">&lt;b&gt;Status/_Chat&lt;/b&gt;</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
@@ -768,6 +768,7 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">chat_entry</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
