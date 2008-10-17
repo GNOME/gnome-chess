@@ -32,6 +32,7 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         
         self.profileModel = gtk.ListStore(gobject.TYPE_PYOBJECT, str)
         iter = self.profileModel.append()
+        # Translators: Server Combo Box: Not connected to a server
         self.profileModel.set(iter, 0, None, 1, _('Disconnected'))
         
         widget = self.__gui.get_widget('server_combo')
@@ -89,23 +90,28 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         view.set_model(self.tableModel)
         
         cell = gtk.CellRendererText()
+        # Translators: Available GGZ Tables: Table name column title
         column = gtk.TreeViewColumn(_('Table'), cell)
         column.add_attribute(cell, 'text', 1)
         view.append_column(column)
         cell = gtk.CellRendererText()
+        # Translators: Available GGZ Tables: Seat status column title
         column = gtk.TreeViewColumn(_('Seats'), cell)
         column.add_attribute(cell, 'text', 2)
         view.append_column(column)
         cell = gtk.CellRendererText()
+        # Translators: Available GGZ Tables: Table description column title        
         column = gtk.TreeViewColumn(_('Description'), cell)
         column.add_attribute(cell, 'text', 3)
         view.append_column(column)
 
         view = self.__gui.get_widget('seat_list')
         cell = gtk.CellRendererText()
+        # Translators: Current GGZ Table: Seat name column title
         column = gtk.TreeViewColumn(_('Seat'), cell)
         column.add_attribute(cell, 'text', 2)
         view.append_column(column)
+        # Translators: Current GGZ Table: Player name column title        
         column = gtk.TreeViewColumn(_('Player'), cell)
         column.add_attribute(cell, 'text', 3)
         column.add_attribute(cell, 'style', 4)
@@ -252,10 +258,13 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
             iter = seatModel.append()
             
         if number == 0:
+            # Translators: GGZ seat is occupied by the white player
             seatName = _('White')
         elif number == 1:
+            # Translators: GGZ seat is occupied by the black player            
             seatName = _('Black')
         else:
+            # Translators: GGZ seat is occupied by a spectator
             seatName = _('Spectator')
 
         style = pango.STYLE_ITALIC
@@ -263,11 +272,16 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         if type == 'player':
             style = pango.STYLE_NORMAL
         elif type == 'reserved':
-            occupant = _('Reserved for %s' % name)
+            # Translators: GGZ seat status: This seat is reserved. %s is replaced with
+            # the name of the player the seat is reserved for.
+            occupant = _('Reserved for %s') % name
         elif type == 'open':
+            # Translators: GGZ seat status: This seat is not taken
             occupant = _('Seat empty')
         elif type == 'bot':
-            occupant = _('AI (%s)' % name)
+            # Translators: GGZ seat status: This seat contains an AI player.
+            # %s is replaced with the name of the AI.
+            occupant = _('AI (%s)') % name
 
         seatModel.set(iter, 0, number, 1, type, 2, seatName, 3, occupant, 4, style)
 

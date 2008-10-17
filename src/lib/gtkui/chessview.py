@@ -14,13 +14,13 @@ openGLErrors = []
 try:
     import OpenGL.GL
 except:
-    # Translators: This message is displayed when 3D mode is not available due to no Python OpenGL libraries
+    # Translators: Error message displayed when 3D mode is not available due to no Python OpenGL libraries
     openGLErrors.append(_('No Python OpenGL support'))
 try:
     import gtk.gtkgl
     import gtk.gdkgl
 except:
-    # Translators: This message is displayed when 3D mode is not available due to no Python GTKGLExt libraries
+    # Translators: Error message displayed when 3D mode is not available due to no Python GTKGLExt libraries
     openGLErrors.append(_('No Python GTKGLExt support'))
 else:
     display_mode = (gtk.gdkgl.MODE_RGB | gtk.gdkgl.MODE_DEPTH | gtk.gdkgl.MODE_DOUBLE)
@@ -31,17 +31,23 @@ else:
         try:
             glConfig = gtk.gdkgl.Config(mode = display_mode)
         except gtk.gdkgl.NoMatches:
-            # Translators: This message is displayed when 3D mode is not available due to their 3D drivers not being able to provide a suitable display mode
+            # Translators: Error message displayed when 3D mode is not available due to their 3D drivers not being able to provide a suitable display mode
             openGLErrors.append(_('OpenGL libraries do not support required display mode'))
 haveGLSupport = len(openGLErrors) == 0
 
 __all__ = ['GtkView']
 
+              # Translators: pawn name used in human readable move format
 pieceNames = {glchess.chess.board.PAWN:   _('pawn'),
+              # Translators: rook name used in human readable move format
               glchess.chess.board.ROOK:   _('rook'),
+              # Translators: knight name used in human readable move format
               glchess.chess.board.KNIGHT: _('knight'),
+              # Translators: bishop name used in human readable move format
               glchess.chess.board.BISHOP: _('bishop'),
+              # Translators: queen name used in human readable move format
               glchess.chess.board.QUEEN:  _('queen'),
+              # Translators: king name used in human readable move format
               glchess.chess.board.KING:   _('king')}
 
 class GtkViewArea(gtk.DrawingArea):
@@ -251,6 +257,7 @@ class GtkView(glchess.ui.ViewController):
         # Make a model for navigation (move object, number, description) 
         model = gtk.ListStore(gobject.TYPE_PYOBJECT, int, str)
         iter = model.append()
+        # Translators: Move History Combo: Go to the start of the game
         model.set(iter, 0, None, 1, 0, 2, _('Game Start'))
         self.moveModel = model
 
@@ -284,10 +291,11 @@ class GtkView(glchess.ui.ViewController):
         if self.showComments:
             # Show the comments
             if move is None:
-                titleLabel.set_markup('<big><b>%s</b></big>' % _('Game start'))
+                titleLabel.set_markup('<big><b>%s</b></big>' % _('Game Start'))
             else:
                 titleLabel.set_markup('<big><b>%s</b></big>' % self.generateMoveString(move))
             
+            # Translators: Comment text when move has no comment
             comment = _('No comment')
             if move is not None and len(move.comment) > 0:
                 comment = move.comment
@@ -464,7 +472,7 @@ class GtkView(glchess.ui.ViewController):
             self.ui._updateViewButtons()
 
     def endGame(self, game):
-        # Translators: This message is displayed when a player wins. The %s is substituted with the winning player's name
+        # Translators: Message displayed when a player wins. The %s is substituted with the winning player's name
         format = _('%s wins')
         
         # If game completed show this in the GUI
@@ -473,39 +481,39 @@ class GtkView(glchess.ui.ViewController):
         elif game.result is glchess.game.RESULT_BLACK_WINS:
             title = format % game.getBlack().getName()
         else:
-            # Translators: This message is displayed when a game is drawn
+            # Translators: Message displayed when a game is drawn
             title = _('Game is drawn')
 
         description = ''
         if game.rule is glchess.game.RULE_CHECKMATE:
-            # Translators: This message is displayed when the game ends due to a player being checkmated
+            # Translators: Message displayed when the game ends due to a player being checkmated
             description = _('Opponent is in check and cannot move (checkmate)')
         elif game.rule is glchess.game.RULE_STALEMATE:
-            # Translators: This message is displayed when the game terminates due to a stalemate
+            # Translators: Message displayed when the game terminates due to a stalemate
             description = _('Opponent cannot move (stalemate)')
         elif game.rule is glchess.game.RULE_FIFTY_MOVES:
-            # Translators: This message is displayed when the game is drawn due to the fifty move rule
+            # Translators: Message displayed when the game is drawn due to the fifty move rule
             description = _('No piece has been taken or pawn moved in the last fifty moves')
         elif game.rule is glchess.game.RULE_TIMEOUT:
-            # Translators: This message is displayed when the game ends due to one player's clock stopping
+            # Translators: Message displayed when the game ends due to one player's clock stopping
             description = _('Opponent has run out of time')
         elif game.rule is glchess.game.RULE_THREE_FOLD_REPETITION:
-            # Translators: This message is displayed when the game is drawn due to the three-fold-repitition rule
+            # Translators: Message displayed when the game is drawn due to the three-fold-repitition rule
             description = _('The same board state has occured three times (three fold repetition)')
         elif game.rule is glchess.game.RULE_INSUFFICIENT_MATERIAL:
-            # Translators: This message is displayed when the game is drawn due to the insufficient material rule
+            # Translators: Message displayed when the game is drawn due to the insufficient material rule
             description = _('Neither player can cause checkmate (insufficient material)')
         elif game.rule is glchess.game.RULE_RESIGN:
             if game.result is glchess.game.RESULT_WHITE_WINS:
-                # Translators: This message is displayed when the game ends due to the black player resigning
+                # Translators: Message displayed when the game ends due to the black player resigning
                 description = _('The black player has resigned')
             elif game.result is glchess.game.RESULT_BLACK_WINS:
-                # Translators: This message is displayed when the game ends due to the white player resigning
+                # Translators: Message displayed when the game ends due to the white player resigning
                 description = _('The white player has resigned')
             else:
                 assert(False)
         elif game.rule is glchess.game.RULE_DEATH:
-            # Translators: This message is displayed when the game ends due to a player dying
+            # Translators: Message displayed when the game ends due to a player dying
             description = _('One of the players has died')
 
         self.gameResult = (title, description)

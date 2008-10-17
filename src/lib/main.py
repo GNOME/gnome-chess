@@ -110,6 +110,9 @@ class ChessGame(game.ChessGame):
         
         Returns an AI player to use (game.ChessPlayer).
         """
+        # Translators: Description of an AI player used in log window. %(name)s is replaced with
+        # the name of the AI player. %(game)s is replaced with the name of the game the AI player
+        # is in.
         description = _("'%(name)s' in '%(game)s'") % {'name': name, 'game': self.name}
         p = player.AIPlayer(self.application, name, profile, level, description)
         self.__aiPlayers.append(p)
@@ -442,7 +445,7 @@ class Application:
         
         self.history = history.GameHistory()
         
-        # Translators: This is the name of the log that displays application events
+        # Translators: Name of the log that displays application events
         title = _('Application Log')
         self.logger = self.ui.controller.addLogWindow(title, '', '')
 
@@ -689,8 +692,8 @@ class Application:
             self.logger.addLine('loaded in %f seconds' % (time.time() - s))
 
         else:
-            # Translators: This is the text displayed on the command-line if an unknown argument is passed
             # FIXME: Should be in a dialog
+            # Translators: Text displayed on the command-line if an unknown argument is passed
             print _('Usage: %s [game]') % sys.argv[0]
             sys.exit(0)
 
@@ -701,9 +704,11 @@ class Application:
                     aiName = p.name
                     break
             black = (aiName, 'easy')
-            # Translators: This is the name of a human versus AI game. The %s is replaced with the name of the AI player
+            # Translators: Name of a human versus AI game. The %s is replaced with the name of the AI player
             gameName = _('Human versus %s') % aiName
+            # Translators: Name of white player in a default game
             whiteName =  _('White')
+            # Translators: Name of black player in a default game            
             blackName = _('Black')
             g = self.addLocalGame(gameName, whiteName, None, blackName, black)
             g.inHistory = True

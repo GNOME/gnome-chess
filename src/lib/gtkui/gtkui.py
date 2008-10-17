@@ -359,13 +359,13 @@ class GtkUI(glchess.ui.UI):
         # Set the window title to the name of the game
         if self.view is not None and len(self.view.title) > 0:
             if self.view.needsSaving:
-                # Translators: This is the window title when playing a game that needs saving
+                # Translators: Window title when playing a game that needs saving
                 title = _('Chess - *%(game_name)s') % {'game_name': self.view.title}
             else:
-                # Translators: This is the window title when playing a game that is saved
+                # Translators: Window title when playing a game that is saved
                 title = _('Chess - %(game_name)s') % {'game_name': self.view.title}
         else:
-            # Translators: This is the window title when not playing a game
+            # Translators: Window title when not playing a game
             title = _('Chess')            
         self.mainWindow.set_title(title)
 
@@ -377,13 +377,16 @@ class GtkUI(glchess.ui.UI):
     def setTimers(self, whiteTime, blackTime):
         """
         """
+        # Translators: Game Timer Label: Indicates that game has no time limit
+        unlimitedTimeText = _('∞')
+        
         if whiteTime is None:
-            whiteString = _('∞')
+            whiteString = unlimitedTimeText
         else:
             t = whiteTime[1]
             whiteString = '%i:%02i' % (t / 60, t % 60)
         if blackTime is None:
-            blackString = _('∞')
+            blackString = unlimitedTimeText
         else:
             t = blackTime[1]
             blackString = '%i:%02i' % (t / 60, t % 60)
@@ -462,9 +465,9 @@ class GtkUI(glchess.ui.UI):
         dialog = gtk.MessageDialog(flags = gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                    type = gtk.MESSAGE_WARNING,
                                    message_format = title)
-        # Translators: This text is displayed in a dialog asking the user to save the current game
-        dialog.format_secondary_text("If you don't save the changes to this game will be permanently lost")
-        # Translators: This is the button text in the save game dialog to decline to save the game
+        # Translators: Save Game Dialog: Notice that game needs saving
+        dialog.format_secondary_text(_("If you don't save the changes to this game will be permanently lost"))
+        # Translators: Save Game Dialog: Discard game button
         dialog.add_button(_('Close _without saving'), gtk.RESPONSE_OK)
         dialog.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
         dialog.add_button(gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT)
@@ -579,10 +582,11 @@ class GtkUI(glchess.ui.UI):
         # Enable/disable OpenGL rendering
         elif name == 'show_3d':            
             if value and not chessview.haveGLSupport:
-                # Translators: This is the title of the dialog that is displayed when a user tries to enable 3D without the required libraries
+                # Translators: No 3D Dialog: Title
                 title = _('Unable to enable 3D mode')
                 errors = '\n'.join(chessview.openGLErrors)
-                # Translators: This is displayed in a dialog when a user tries to enable 3D without the required libraries. %(error)s will be replaced with a list of reasons why 3D is not available.
+                # Translators: No 3D Dialog: Notification to user that they do not have libraries required to enable 3D.
+                # %(error)s will be replaced with a list of reasons why 3D is not available.
                 description = _("""You are unable to play in 3D mode due to the following problems:
 %(errors)s
 
@@ -835,9 +839,9 @@ Please contact your system administrator to resolve these problems, until then y
         if self.view.feedback.claimDraw():
             return
         
-        # Translators: This is the title of the dialog that is displayed when a user requests a draw but one is not available
+        # Translators: Draw Dialog: Title
         title = _("Unable to claim draw")
-        # Translators: This is the message that is displayed in a dialog when a user requests a draw but one is not available
+        # Translators: Draw Dialog: Notify user why they cannot claim draw
         message = _("""You may claim a draw when:
 a) The board has been in the same state three times (Three fold repetition)
 b) Fifty moves have occured where no pawn has moved and no piece has been captured (50 move rule)""")
