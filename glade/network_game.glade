@@ -4,7 +4,7 @@
 <glade-interface>
 
 <widget class="GtkDialog" id="network_game_dialog">
-  <property name="title" translatable="yes">Join Game</property>
+  <property name="title" translatable="yes" comments="Title of network game dialog">Join Game</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -200,7 +200,7 @@
 			  <child>
 			    <widget class="GtkLabel" id="label3">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">_Profile:</property>
+			      <property name="label" translatable="yes" comments="Network Game Dialog: Label before the server profile combo box">_Profile:</property>
 			      <property name="use_underline">True</property>
 			      <property name="use_markup">False</property>
 			      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -269,7 +269,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label6">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Server&lt;/b&gt;</property>
+		  <property name="label" translatable="yes" comments="Network Game Dialog: Title above the server settings. Do not translate the &lt;b&gt; tag.">&lt;b&gt;Server&lt;/b&gt;</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -377,7 +377,7 @@
 				  <property name="sensitive">False</property>
 				  <property name="can_default">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">Join</property>
+				  <property name="label" translatable="yes" comments="Network Game Dialog: Button to join a table">Join</property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -446,7 +446,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label9">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">&lt;b&gt;Rooms&lt;/b&gt;</property>
+		      <property name="label" translatable="yes" comments="Network Game Dialog: Title above room list. Do not translate the &lt;b&gt; tag.">&lt;b&gt;Rooms&lt;/b&gt;</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -534,7 +534,7 @@
 			  <child>
 			    <widget class="GtkLabel" id="game_name_label">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Game Name</property>
+			      <property name="label">(game name)</property>
 			      <property name="use_underline">False</property>
 			      <property name="use_markup">False</property>
 			      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -569,7 +569,7 @@
 				  <property name="visible">True</property>
 				  <property name="can_default">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">Leave</property>
+				  <property name="label" translatable="yes" comments="Network Game Dialog: Leave table button">Leave</property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -593,7 +593,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label8">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">&lt;b&gt;Game&lt;/b&gt;</property>
+		      <property name="label" translatable="yes" comments="Network Game Dialog: Title above the game settings. Do not translate the &lt;b&gt; tag.">&lt;b&gt;Game&lt;/b&gt;</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -679,7 +679,7 @@
 				      <property name="left_margin">0</property>
 				      <property name="right_margin">0</property>
 				      <property name="indent">0</property>
-				      <property name="text" translatable="yes"></property>
+				      <property name="text"></property>
 				    </widget>
 				  </child>
 				</widget>
@@ -697,7 +697,7 @@
 				  <property name="editable">True</property>
 				  <property name="visibility">True</property>
 				  <property name="max_length">0</property>
-				  <property name="text" translatable="yes"></property>
+				  <property name="text"></property>
 				  <property name="has_frame">True</property>
 				  <property name="invisible_char">●</property>
 				  <property name="activates_default">False</property>
@@ -758,7 +758,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label7">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">&lt;b&gt;Status/Chat&lt;/b&gt;</property>
+		      <property name="label" translatable="yes" comments="Network Game Dialog: Title above the chat text. Do not translate the &lt;b&gt; tag.">&lt;b&gt;Status/Chat&lt;/b&gt;</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>

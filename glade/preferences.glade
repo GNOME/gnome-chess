@@ -2,10 +2,9 @@
 <!DOCTYPE glade-interface SYSTEM "http://glade.gnome.org/glade-2.0.dtd">
 
 <glade-interface>
-<requires lib="gnome"/>
 
 <widget class="GtkDialog" id="preferences">
-  <property name="title" translatable="yes">Preferences</property>
+  <property name="title" translatable="yes" comments="Title for preferences dialog">Preferences</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -77,7 +76,7 @@
 	      <child>
 		<widget class="GtkLabel" id="board_label">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Board Orientation:</property>
+		  <property name="label" translatable="yes" comments="Preferences Dialog: Label before board orientation combo box">Board Orientation:</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -105,7 +104,7 @@
 	      <child>
 		<widget class="GtkLabel" id="format_label">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Move Format:</property>
+		  <property name="label" translatable="yes" comments="Preferences Dialog: Label before move format combo box">Move Format:</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -133,7 +132,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label5">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Promotion Type:</property>
+		  <property name="label" translatable="yes" comments="Preferences Dialog: Label before promotion type combo box">Promotion Type:</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -161,7 +160,7 @@
 	      <child>
 		<widget class="GtkComboBox" id="board_combo">
 		  <property name="visible">True</property>
-		  <property name="items" translatable="yes"></property>
+		  <property name="items"></property>
 		  <property name="add_tearoffs">False</property>
 		  <property name="focus_on_click">True</property>
 		  <signal name="changed" handler="_on_board_combo_changed" last_modification_time="Sun, 20 Jan 2008 12:51:36 GMT"/>
@@ -178,7 +177,7 @@
 	      <child>
 		<widget class="GtkComboBox" id="move_format_combo">
 		  <property name="visible">True</property>
-		  <property name="items" translatable="yes"></property>
+		  <property name="items"></property>
 		  <property name="add_tearoffs">False</property>
 		  <property name="focus_on_click">True</property>
 		  <signal name="changed" handler="_on_move_format_combo_changed" last_modification_time="Sun, 20 Jan 2008 18:45:14 GMT"/>
@@ -196,7 +195,7 @@
 	      <child>
 		<widget class="GtkComboBox" id="promotion_type_combo">
 		  <property name="visible">True</property>
-		  <property name="items" translatable="yes"></property>
+		  <property name="items"></property>
 		  <property name="add_tearoffs">False</property>
 		  <property name="focus_on_click">True</property>
 		  <signal name="changed" handler="_on_promotion_type_combo_changed" last_modification_time="Sun, 20 Jan 2008 12:52:19 GMT"/>
@@ -220,7 +219,7 @@
 	  <child>
 	    <widget class="GtkLabel" id="game_label">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">_Game</property>
+	      <property name="label" translatable="yes" comments="Preferences Dialog: Title of game options tab">_Game</property>
 	      <property name="use_underline">True</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -250,9 +249,9 @@
 	      <child>
 		<widget class="GtkCheckButton" id="show_3d">
 		  <property name="visible">True</property>
-		  <property name="tooltip" translatable="yes">View the chess board by default in 2D mode, or optionally in 3D mode using OpenGL.</property>
+		  <property name="tooltip" translatable="yes" comments="Preferences Dialog: Tooltip for 3D Chess View option">View the chess board by default in 2D mode, or optionally in 3D mode using OpenGL.</property>
 		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">3_D Chess View</property>
+		  <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if 3D view is available">3_D Chess View</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
@@ -271,9 +270,9 @@
 	      <child>
 		<widget class="GtkCheckButton" id="show_toolbar">
 		  <property name="visible">True</property>
-		  <property name="tooltip" translatable="yes">Show or hide the toolbar</property>
+		  <property name="tooltip" translatable="yes" comments="Preferences Dialog: Tooltip for Show Toolbar option">Show or hide the toolbar</property>
 		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">Show _Toolbar</property>
+		  <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if toolbar is visible">Show _Toolbar</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
@@ -292,9 +291,9 @@
 	      <child>
 		<widget class="GtkCheckButton" id="show_history">
 		  <property name="visible">True</property>
-		  <property name="tooltip" translatable="yes">Show or hide the game history panel</property>
+		  <property name="tooltip" translatable="yes" comments="Preferences Dialog: Tooltip for Show History option">Show or hide the game history panel</property>
 		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">Show _History</property>
+		  <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if history browser is visible">Show _History</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
@@ -313,9 +312,9 @@
 	      <child>
 		<widget class="GtkCheckButton" id="show_move_hints">
 		  <property name="visible">True</property>
-		  <property name="tooltip" translatable="yes">Shows hints during chess games</property>
+		  <property name="tooltip" translatable="yes" comments="Preferences Dialog: Tooltip for Move Hints option">Shows hints during chess games</property>
 		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">_Move Hints</property>
+		  <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if move hints are visible">_Move Hints</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
@@ -334,9 +333,9 @@
 	      <child>
 		<widget class="GtkCheckButton" id="show_numbering">
 		  <property name="visible">True</property>
-		  <property name="tooltip" translatable="yes">Show or hide numbering on the chess board</property>
+		  <property name="tooltip" translatable="yes" comments="Preferences Dialog: Tooltip for Board Numbering option">Show or hide numbering on the chess board</property>
 		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">_Board Numbering</property>
+		  <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if board numbering is visible">_Board Numbering</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
@@ -361,7 +360,7 @@
 	  <child>
 	    <widget class="GtkLabel" id="view_label">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">_View</property>
+	      <property name="label" translatable="yes" comments="Preferences Dialog: Title of view options tab">_View</property>
 	      <property name="use_underline">True</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>

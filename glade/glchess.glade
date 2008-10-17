@@ -38,7 +38,7 @@
 	  <child>
 	    <widget class="GtkMenuItem" id="menuitem1">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">_Game</property>
+	      <property name="label" translatable="yes" comments="The Game menu">_Game</property>
 	      <property name="use_underline">True</property>
 
 	      <child>
@@ -90,7 +90,7 @@
 		  <child>
 		    <widget class="GtkImageMenuItem" id="menu_play_online_item">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Network _Game</property>
+		      <property name="label" translatable="yes" comments="The Game|Network Game menu">Network _Game</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="_on_join_game_button_clicked" last_modification_time="Sun, 30 Jul 2006 14:16:15 GMT"/>
 		      <accelerator key="L" modifiers="GDK_CONTROL_MASK" signal="activate"/>
@@ -118,7 +118,7 @@
 		  <child>
 		    <widget class="GtkImageMenuItem" id="menu_resign">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Resign</property>
+		      <property name="label" translatable="yes" comments="The Game|Resign menu">_Resign</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="_on_resign_clicked" last_modification_time="Sun, 20 Jan 2008 19:45:39 GMT"/>
 
@@ -139,7 +139,7 @@
 		  <child>
 		    <widget class="GtkImageMenuItem" id="menu_claim_draw">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Claim _Draw</property>
+		      <property name="label" translatable="yes" comments="The Game|Claim Draw menu">Claim _Draw</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="_on_claim_draw_clicked" last_modification_time="Sun, 20 Jan 2008 19:45:39 GMT"/>
 
@@ -179,7 +179,7 @@
 	  <child>
 	    <widget class="GtkMenuItem" id="menuitem3">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">_View</property>
+	      <property name="label" translatable="yes" comments="The View menu">_View</property>
 	      <property name="use_underline">True</property>
 
 	      <child>
@@ -188,7 +188,7 @@
 		  <child>
 		    <widget class="GtkImageMenuItem" id="menu_fullscreen">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Fullscreen</property>
+		      <property name="label" translatable="yes" comments="The View|Fullscreen menu">_Fullscreen</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="_on_view_fullscreen_clicked" last_modification_time="Mon, 30 Oct 2006 21:20:40 GMT"/>
 		      <accelerator key="F11" modifiers="0" signal="activate"/>
@@ -209,7 +209,7 @@
 
 		  <child>
 		    <widget class="GtkImageMenuItem" id="menu_leave_fullscreen">
-		      <property name="label" translatable="yes">Leave _Fullscreen</property>
+		      <property name="label" translatable="yes" comments="The View|Leave Fullscreen menu">Leave _Fullscreen</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="_on_view_unfullscreen_clicked" last_modification_time="Mon, 30 Oct 2006 21:43:10 GMT"/>
 		      <accelerator key="F11" modifiers="0" signal="activate"/>
@@ -231,7 +231,7 @@
 		  <child>
 		    <widget class="GtkCheckMenuItem" id="menu_view_3d">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">3_D Chess View</property>
+		      <property name="label" translatable="yes" comments="The View|3D Chess View menu">3_D Chess View</property>
 		      <property name="use_underline">True</property>
 		      <property name="active">False</property>
 		      <signal name="activate" handler="_on_toggle_3d_clicked" last_modification_time="Thu, 14 Sep 2006 19:40:59 GMT"/>
@@ -241,7 +241,7 @@
 		  <child>
 		    <widget class="GtkCheckMenuItem" id="menu_view_logs">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Show _Logs</property>
+		      <property name="label" translatable="yes" comments="The View|Show Logs menu">Show _Logs</property>
 		      <property name="use_underline">True</property>
 		      <property name="active">False</property>
 		      <signal name="activate" handler="_on_show_logs_clicked" last_modification_time="Sat, 01 Sep 2007 15:42:25 GMT"/>
@@ -255,7 +255,7 @@
 	  <child>
 	    <widget class="GtkMenuItem" id="settings">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">_Settings</property>
+	      <property name="label" translatable="yes" comments="The Settings menu">_Settings</property>
 	      <property name="use_underline">True</property>
 
 	      <child>
@@ -280,7 +280,7 @@
 	  <child>
 	    <widget class="GtkMenuItem" id="help2">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">_Help</property>
+	      <property name="label" translatable="yes" comments="The Help menu">_Help</property>
 	      <property name="use_underline">True</property>
 
 	      <child>
@@ -288,7 +288,7 @@
 
 		  <child>
 		    <widget class="GtkImageMenuItem" id="menu_help">
-		      <property name="label" translatable="yes">_Contents</property>
+		      <property name="label" translatable="yes" comments="The Help|Contents menu">_Contents</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="_on_help_clicked" last_modification_time="Fri, 11 Aug 2006 12:43:28 GMT"/>
 
@@ -337,8 +337,8 @@
 	  <child>
 	    <widget class="GtkToolButton" id="new_game_button">
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Start a new game</property>
-	      <property name="label" translatable="yes">New Game</property>
+	      <property name="tooltip" translatable="yes" comments="Tooltip for the New Game toolbar button">Start a new game</property>
+	      <property name="label" translatable="yes" comments="The New Game toolbar button">New Game</property>
 	      <property name="use_underline">True</property>
 	      <property name="stock_id">gtk-new</property>
 	      <property name="visible_horizontal">True</property>
@@ -355,8 +355,8 @@
 	  <child>
 	    <widget class="GtkToolButton" id="play_online_button">
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Start a new multiplayer network game</property>
-	      <property name="label" translatable="yes">Network _Game</property>
+	      <property name="tooltip" translatable="yes" comments="Tooltip for the Network Game toolbar button">Start a new multiplayer network game</property>
+	      <property name="label" translatable="yes" comments="The Network Game toolbar button">Network _Game</property>
 	      <property name="use_underline">True</property>
 	      <property name="stock_id">gtk-network</property>
 	      <property name="visible_horizontal">True</property>
@@ -373,7 +373,7 @@
 	  <child>
 	    <widget class="GtkToolButton" id="toolbutton1">
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Load a saved game</property>
+	      <property name="tooltip" translatable="yes" comments="The tooltip for the Open toolbar button">Load a saved game</property>
 	      <property name="stock_id">gtk-open</property>
 	      <property name="visible_horizontal">True</property>
 	      <property name="visible_vertical">True</property>
@@ -390,7 +390,7 @@
 	    <widget class="GtkToolButton" id="save_game_button">
 	      <property name="visible">True</property>
 	      <property name="sensitive">False</property>
-	      <property name="tooltip" translatable="yes">Save the current game</property>
+	      <property name="tooltip" translatable="yes" comments="The tooltip for the Save toolbar button">Save the current game</property>
 	      <property name="stock_id">gtk-save</property>
 	      <property name="visible_horizontal">True</property>
 	      <property name="visible_vertical">True</property>
@@ -406,7 +406,7 @@
 	  <child>
 	    <widget class="GtkToolButton" id="resign_button">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Resign</property>
+	      <property name="label" translatable="yes" comments="The tooltip for the Resign toolbar button">Resign</property>
 	      <property name="use_underline">True</property>
 	      <property name="stock_id">gtk-dialog-warning</property>
 	      <property name="visible_horizontal">True</property>
@@ -467,7 +467,7 @@
 		    <widget class="GtkButton" id="first_move_button">
 		      <property name="visible">True</property>
 		      <property name="sensitive">False</property>
-		      <property name="tooltip" translatable="yes">Rewind to the game start</property>
+		      <property name="tooltip" translatable="yes" comments="The tooltip for the go to start button on the move navigator">Rewind to the game start</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
@@ -496,7 +496,7 @@
 		    <widget class="GtkButton" id="prev_move_button">
 		      <property name="visible">True</property>
 		      <property name="sensitive">False</property>
-		      <property name="tooltip" translatable="yes">Show the previous move</property>
+		      <property name="tooltip" translatable="yes" comments="The tooltip for the go to previous move button on the move navigator">Show the previous move</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
@@ -525,7 +525,7 @@
 		    <widget class="GtkButton" id="next_move_button">
 		      <property name="visible">True</property>
 		      <property name="sensitive">False</property>
-		      <property name="tooltip" translatable="yes">Show the next move</property>
+		      <property name="tooltip" translatable="yes" comments="The tooltip for the go to next move button on the move navigator">Show the next move</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
@@ -554,7 +554,7 @@
 		    <widget class="GtkButton" id="last_move_button">
 		      <property name="visible">True</property>
 		      <property name="sensitive">False</property>
-		      <property name="tooltip" translatable="yes">Show the current move</property>
+		      <property name="tooltip" translatable="yes" comments="The tooltip for the show current move button on the move navigator">Show the current move</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
@@ -658,7 +658,7 @@
 
 <widget class="GtkWindow" id="log_window">
   <property name="border_width">6</property>
-  <property name="title" translatable="yes">Logs</property>
+  <property name="title" translatable="yes" comments="The title of the log dialaog">Logs</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -711,7 +711,7 @@
 	  <child>
 	    <widget class="GtkLabel" id="label57">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">There are no active logs.</property>
+	      <property name="label" translatable="yes" comments="Message displayed in log window when no logs are present">There are no active logs.</property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -742,7 +742,7 @@
       <child>
 	<widget class="GtkLabel" id="label51">
 	  <property name="visible">True</property>
-	  <property name="label" translatable="yes">Summary</property>
+	  <property name="label"></property>
 	  <property name="use_underline">False</property>
 	  <property name="use_markup">False</property>
 	  <property name="justify">GTK_JUSTIFY_LEFT</property>

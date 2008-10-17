@@ -2,7 +2,6 @@
 <!DOCTYPE glade-interface SYSTEM "http://glade.gnome.org/glade-2.0.dtd">
 
 <glade-interface>
-<requires lib="gnome"/>
 
 <widget class="GtkWindow" id="window1">
   <property name="width_request">300</property>
@@ -174,7 +173,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label1">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">label1</property>
+		      <property name="label">(message tab)</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -210,7 +209,7 @@
 		      <property name="left_margin">0</property>
 		      <property name="right_margin">0</property>
 		      <property name="indent">0</property>
-		      <property name="text" translatable="yes"></property>
+		      <property name="text"></property>
 		    </widget>
 		    <packing>
 		      <property name="tab_expand">True</property>
@@ -221,7 +220,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label2">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">label2</property>
+		      <property name="label">(comment tab)</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>

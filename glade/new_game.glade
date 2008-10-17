@@ -5,7 +5,7 @@
 
 <widget class="GtkDialog" id="new_game_dialog">
   <property name="border_width">5</property>
-  <property name="title" translatable="yes">New Game</property>
+  <property name="title" translatable="yes" comments="Title of the new game dialog">New Game</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -48,7 +48,7 @@
 	  <child>
 	    <widget class="GtkButton" id="start_button">
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Start the game. The game can be started once all fields are complete</property>
+	      <property name="tooltip" translatable="yes" comments="New Game Dialog: Tooltip on start game button">Start the game. The game can be started once all fields are complete</property>
 	      <property name="can_default">True</property>
 	      <property name="has_default">True</property>
 	      <property name="can_focus">True</property>
@@ -95,7 +95,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label57">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">_Start</property>
+			  <property name="label" translatable="yes" comments="New Game Dialog: Button to start a new game">_Start</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -237,7 +237,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label60">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Game Properties&lt;/b&gt;</property>
+		  <property name="label" translatable="yes" comments="New Game Dialog: Title above the game properties widgets">&lt;b&gt;Game Properties&lt;/b&gt;</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -283,7 +283,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label1">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">_Game name:</property>
+			  <property name="label" translatable="yes" comments="New Game Dialog: Label before the game name entry">_Game name:</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -312,12 +312,12 @@
 		      <child>
 			<widget class="GtkEntry" id="game_name_entry">
 			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Enter the title for this game</property>
+			  <property name="tooltip" translatable="yes" comments="New Game Dialog: Tooltip for the game name entry">Enter the title for this game</property>
 			  <property name="can_focus">True</property>
 			  <property name="editable">True</property>
 			  <property name="visibility">True</property>
 			  <property name="max_length">0</property>
-			  <property name="text" translatable="yes">Local chess game</property>
+			  <property name="text" translatable="yes" comments="Default name for a new game">Local chess game</property>
 			  <property name="has_frame">True</property>
 			  <property name="invisible_char">*</property>
 			  <property name="activates_default">False</property>
@@ -335,9 +335,9 @@
 
 		      <child>
 			<widget class="GtkCheckButton" id="spectator_checkbutton">
-			  <property name="tooltip" translatable="yes">Allow remote clients to watch this game</property>
+			  <property name="tooltip" translatable="yes" comments="New Game Dialog: Tooltip for Allow Spectators option">Allow remote clients to watch this game</property>
 			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">_Allow spectators</property>
+			  <property name="label" translatable="yes" comments="New Game Dialog: Check box to allow other people to watch this game">_Allow spectators</property>
 			  <property name="use_underline">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
@@ -357,7 +357,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label2">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Move _Time:</property>
+			  <property name="label" translatable="yes" comments="New Game Dialog: Label before game timer settings">Move _Time:</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -505,7 +505,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label58">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Players&lt;/b&gt;</property>
+		  <property name="label" translatable="yes" comments="New Game Dialog: Title above player options">&lt;b&gt;Players&lt;/b&gt;</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -551,7 +551,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label4">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">_Black:</property>
+			  <property name="label" translatable="yes" comments="New Game Dialog: Label before black player combo box">_Black:</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -580,7 +580,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label3">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">_White:</property>
+			  <property name="label" translatable="yes" comments="New Game Dialog: Label before white player combo box">_White:</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -683,7 +683,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label59">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Difficulty&lt;/b&gt;</property>
+		  <property name="label" translatable="yes" comments="New Game Dialog: Title above difficulty options">&lt;b&gt;Difficulty&lt;/b&gt;</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -749,7 +749,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label5">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">W_hite:</property>
+			  <property name="label" translatable="yes" comments="New Game Dialog: Label before white player difficulty">W_hite:</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -778,7 +778,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label6">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">B_lack:</property>
+			  <property name="label" translatable="yes" comments="New Game Dialog: Label before black player difficulty">B_lack:</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
