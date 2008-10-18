@@ -124,3 +124,30 @@ def translate_notation(notation):
         except KeyError:
             out += c
     return out
+
+_figurineMap = {(board.WHITE, 'P'): '♙', (board.WHITE, 'N'): '♘', (board.WHITE, 'B'): '♗',
+                (board.WHITE, 'R'): '♖', (board.WHITE, 'Q'): '♕', (board.WHITE, 'K'): '♔',
+                (board.BLACK, 'P'): '♟', (board.BLACK, 'N'): '♞', (board.BLACK, 'B'): '♝',
+                (board.BLACK, 'R'): '♜', (board.BLACK, 'Q'): '♛', (board.BLACK, 'K'): '♚'}
+
+def translate_figurine_notation(colour, notation):
+    """Get the translated form of a chess move in FAN notation
+    
+    'colour' is the colour of the player making the move (board.WHITE or board.BLACK).
+    'notation' is the notation to translate (e.g. 'Nxc6', 'f2f4').
+    
+    Returns a translated form of this notation.
+    """
+    out = ''
+    isTake = False
+    oppositeColour = {board.WHITE: board.BLACK, board.BLACK: board.WHITE}[colour]
+    for c in notation:
+        try:
+            if isTake:
+                out += _figurineMap[(oppositeColour, c)]
+            else:
+                out += _figurineMap[(colour, c)]                
+        except KeyError:
+            out += c
+        isTake = (c == 'x')
+    return out

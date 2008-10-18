@@ -373,6 +373,9 @@ class GtkView(glchess.ui.ViewController):
         """
         """
         moveNumber = (move.number - 1) / 2 + 1
+        WHITE  = glchess.chess.board.WHITE
+        BLACK  = glchess.chess.board.BLACK
+        colour = {0: BLACK, 1: WHITE}[move.number % 2]
         
         # Note SAN format is intentionally not translated
         if self.moveFormat == 'san':
@@ -382,6 +385,14 @@ class GtkView(glchess.ui.ViewController):
                 format = '%(movenum)2i. %(move_san)s'
             return format % {'movenum': moveNumber, 'move_san': glchess.chess.translate_notation(move.sanMove)}
         
+        # Note SAN format is intentionally not translated
+        if self.moveFormat == 'fan':
+            if move.number % 2 == 0:
+                format = '%(movenum)2i. ... %(move_san)s'
+            else:
+                format = '%(movenum)2i. %(move_san)s'
+            return format % {'movenum': moveNumber, 'move_san': glchess.chess.translate_figurine_notation(colour, move.sanMove)}
+
         # Note LAN format is intentionally not translated
         if self.moveFormat == 'lan':
             if move.number % 2 == 0:
@@ -390,15 +401,12 @@ class GtkView(glchess.ui.ViewController):
                 format = '%(movenum)2i. %(move_can)s'
             return format % {'movenum': moveNumber, 'move_can': glchess.chess.translate_notation(move.canMove)}
 
-        WHITE  = glchess.chess.board.WHITE
-        BLACK  = glchess.chess.board.BLACK
         PAWN   = glchess.chess.board.PAWN
         ROOK   = glchess.chess.board.ROOK
         KNIGHT = glchess.chess.board.KNIGHT
         BISHOP = glchess.chess.board.BISHOP
         QUEEN  = glchess.chess.board.QUEEN
         KING   = glchess.chess.board.KING
-        colour = {0: BLACK, 1: WHITE}[move.number % 2]
 
         if move.sanMove.startswith('O-O-O'):
                            # Translators: Human Move String: Description of the white player making a long castle

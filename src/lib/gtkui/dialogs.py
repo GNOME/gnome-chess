@@ -582,10 +582,12 @@ class GtkPreferencesDialog:
         widget.set_model(moveModel)
                         # Translators: Move Format Combo: Moves shown in human descriptive notation
         move_formats = [('human', _('Human')),
-                        # Translators: Move Format Combo: Moves shown in long algebraic notation (LAN)
-                        ('lan', _('Long Algebraic')),
                         # Translators: Move Format Combo: Moves shown in standard algebraic notation (SAN)
-                        ('san', _('Standard Algebraic'))]
+                        ('san', _('Standard Algebraic')),
+                        # Translators: Move Format Combo: Moves shown in standard figurine algebraic notation (FAN)
+                        ('fan', _('Figurine')),
+                        # Translators: Move Format Combo: Moves shown in long algebraic notation (LAN)
+                        ('lan', _('Long Algebraic'))]
         for (key, label) in move_formats:
             iter = moveModel.append()
             moveModel.set(iter, 0, label, 1, key)
