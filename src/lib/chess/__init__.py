@@ -54,6 +54,33 @@ for (key, r) in _rankStrings.iteritems():
     except IndexError:
         _rankMap[key] = r
 
+                 # Translators: The notation form of a pawn.
+                 # See http://en.wikipedia.org/wiki/Algebraic_chess_notation#Figurine_Algebraic_Notation for translations.
+                 # Do not translate the 'chess-notation|' text.
+_pieceStrings = {'P': _('chess-notation|P'),
+                 # Translators: The notation form of a knight. Do not translate the 'chess-notation|' text
+                 'N': _('chess-notation|N'),
+                 # Translators: The notation form of a bishop. Do not translate the 'chess-notation|' text
+                 'B': _('chess-notation|B'),
+                 # Translators: The notation form of a rook. Do not translate the 'chess-notation|' text                
+                 'R': _('chess-notation|R'),
+                 # Translators: The notation form of a queen. Do not translate the 'chess-notation|' text
+                 'Q': _('chess-notation|Q'),
+                 # Translators: The notation form of a king. Do not translate the 'chess-notation|' text                
+                 'K': _('chess-notation|K')}
+                 
+_pieceMap = {}
+for (key, r) in _pieceStrings.iteritems():
+    try:
+        _pieceMap[key] = r.split('|', 1)[1]
+    except IndexError:
+        _pieceMap[key] = r
+
+_notationMap = {}
+_notationMap.update(_fileMap)
+_notationMap.update(_rankMap)
+_notationMap.update(_pieceMap)    
+        
 def translate_file(file):
     """Get the translated form of a file.
     
@@ -72,8 +99,6 @@ def translate_rank(rank):
     """
     return _rankMap[rank]
 
-positionStrings = {'a1': 'chess-position|a1'}
-
 def translate_coordinate(coordinate):
     """Get the translated form of a chess board coordinate.
     
@@ -84,3 +109,18 @@ def translate_coordinate(coordinate):
     # FIXME: Assumes files are always before ranks. Should probably make all
     # 64 coordinates translatable to be strictly translatable
     return _fileMap[coordinate[0]] + _rankMap[coordinate[1]]
+
+def translate_notation(notation):
+    """Get the translated form of a chess move in LAN or SAN notation
+    
+    'notation' is the notation to translate (e.g. 'Nxc6', 'f2f4').
+    
+    Returns a translated form of this notation.
+    """
+    out = ''
+    for c in notation:
+        try:
+            out += _notationMap[c]
+        except KeyError:
+            out += c
+    return out

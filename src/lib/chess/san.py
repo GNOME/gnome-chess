@@ -92,7 +92,7 @@ class SANConverter:
         """
         pass
     
-    def decodeSAN(self, colour, san):
+    def decode(self, colour, san):
         """Decode a SAN move.
         
         'colour' is the colour of the player making the move (self.WHITE or self.BLACK).
@@ -408,7 +408,7 @@ if __name__ == '__main__':
             
         def testDecode(self, colour, san):
             try:
-                result = self.decodeSAN(colour, san)
+                result = self.decode(colour, san)
                 print san.ljust(7) + ' => ' + str(result)
             except Error, e:
                 print san.ljust(7) + ' !! ' + str(e)

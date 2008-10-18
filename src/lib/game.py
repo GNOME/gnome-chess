@@ -246,16 +246,16 @@ class ChessGameSANConverter(chess.san.SANConverter):
         self.moveNumber = moveNumber
         chess.san.SANConverter.__init__(self)
     
-    def decodeSAN(self, colour, move):
-        (start, end, result, promotionType) = chess.san.SANConverter.decodeSAN(self, self.__colourToSAN[colour], move)
+    def decode(self, colour, move):
+        (start, end, result, promotionType) = chess.san.SANConverter.decode(self, self.__colourToSAN[colour], move)
         return (start, end, self.__sanToType[promotionType])
     
-    def encodeSAN(self, start, end, isTake, promotionType):
+    def encode(self, start, end, isTake, promotionType):
         if promotionType is None:
             promotion = self.QUEEN
         else:
             promotion = self.__typeToSAN[promotionType]
-        return self.encode(start, end, isTake, promotion)
+        return chess.san.SANConverter.encode(self, start, end, isTake, promotion)
 
     def getPiece(self, location):
         """Called by chess.san.SANConverter"""
@@ -524,7 +524,7 @@ class ChessGame:
         except chess.lan.DecodeError, e:
             converter = ChessGameSANConverter(self.board, len(self.__moves))
             try:
-                (start, end, promotionType) = converter.decodeSAN(colour, move)
+                (start, end, promotionType) = converter.decode(colour, move)
             except chess.san.Error, e:
                 print 'Invalid move: ' + move
                 return
@@ -549,7 +549,7 @@ class ChessGame:
         canMove = chess.lan.encode(colour, start, end, promotionType = promotion)
         converter = ChessGameSANConverter(self.board, len(self.__moves))
         try:
-            sanMove = converter.encodeSAN(start, end, moveResult.victim != None, promotionType)
+            sanMove = converter.encode(start, end, moveResult.victim != None, promotionType)
         except chess.san.Error:
             # If for some reason we couldn't make the SAN move the use the CAN move instead
             sanMove = canMove

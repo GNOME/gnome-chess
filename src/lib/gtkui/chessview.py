@@ -380,15 +380,15 @@ class GtkView(glchess.ui.ViewController):
                 format = '%(movenum)2i. ... %(move_san)s'
             else:
                 format = '%(movenum)2i. %(move_san)s'
-            return format % {'movenum': moveNumber, 'move_san': move.sanMove}
-
+            return format % {'movenum': moveNumber, 'move_san': glchess.chess.translate_notation(move.sanMove)}
+        
         # Note LAN format is intentionally not translated
         if self.moveFormat == 'lan':
             if move.number % 2 == 0:
                 format = '%(movenum)2i. ... %(move_can)s'
             else:
                 format = '%(movenum)2i. %(move_can)s'
-            return format % {'movenum': moveNumber, 'move_can': move.canMove}
+            return format % {'movenum': moveNumber, 'move_can': glchess.chess.translate_notation(move.canMove)}
 
         WHITE  = glchess.chess.board.WHITE
         BLACK  = glchess.chess.board.BLACK

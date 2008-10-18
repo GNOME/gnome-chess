@@ -19,15 +19,16 @@ CASTLE_SHORT = 'o-o'
 CASTLE_LONG  = 'o-o-o'
 
 # Characters used to describe pieces
-_typeToLAN = {board.PAWN:   'p',
-              board.KNIGHT: 'n',
-              board.BISHOP: 'b',
-              board.ROOK:   'r',
-              board.QUEEN:  'q',
-              board.KING:   'k'}
+_typeToLAN = {board.PAWN:   'P',
+              board.KNIGHT: 'N',
+              board.BISHOP: 'B',
+              board.ROOK:   'R',
+              board.QUEEN:  'Q',
+              board.KING:   'K'}
 _lanToType = {}
 for (pieceType, character) in _typeToLAN.iteritems():
     _lanToType[character] = pieceType
+    _lanToType[character.lower()] = pieceType # English pieces are sometimes written in lowercase
 
 class DecodeError(Exception):
     """
@@ -66,80 +67,79 @@ def decode(colour, move):
     moveType      = None
     result        = None
     
-    move = move.lower()
-
+    m = move
+    
     if colour is board.WHITE:
         baseFile = '1'
     else:
         baseFile = '8'
-    if move == CASTLE_SHORT:
+    if m == CASTLE_SHORT:
         return ('e' + baseFile, 'g' + baseFile, None, None, None, None)
-    elif move == CASTLE_LONG:
+    elif m == CASTLE_LONG:
         return ('e' + baseFile, 'c' + baseFile, None, None, None, None)
 
     # First character can be the piece types
-    if len(move) < 1:
+    if len(m) < 1:
         raise DecodeError('Too short')
     try:
-        pieceType = _lanToType[move[0]]
+        pieceType = _lanToType[m[0]]
     except KeyError:
         pieceType = None
     else:
-        move = move[1:]
+        m = m[1:]
 
-    if len(move) < 2:
+    if len(m) < 2:
         raise DecodeError('Too short')
     try:
-        start = _checkLocation(move[:2])
+        start = _checkLocation(m[:2])
     except DecodeError, e:
         if pieceType is None:
             raise e
         # Perhaps the first character wasn't a piece type
-        else:
-            move = _typeToLAN[pieceType] + move
-            start = _checkLocation(move[:2])
-            pieceType = None
-    move = move[2:]
+        m = move
+        start = _checkLocation(m[:2])
+        pieceType = None
+    m = m[2:]
         
-    if len(move) < 1:
+    if len(m) < 1:
         raise DecodeError('Too short')
-    if move[0] == MOVE or move[0] == TAKE:
-        moveType = move[0]
-        move = move[1:]
+    if m[0] == MOVE or m[0] == TAKE:
+        moveType = m[0]
+        m = m[1:]
 
-    if len(move) < 2:
+    if len(m) < 2:
         raise DecodeError('Too short')
-    end = _checkLocation(move[:2])
-    move = move[2:]
+    end = _checkLocation(m[:2])
+    m = m[2:]
 
     # Look for promotion type, note this can be in upper or lower case
-    if len(move) > 0:
-        if move[0] == '=':
-            if len(move) < 2:
+    if len(m) > 0:
+        if m[0] == '=':
+            if len(m) < 2:
                 raise DecodeError('Too short')
             try:
-                promotionType = _lanToType[move[1]]
+                promotionType = _lanToType[m[1]]
             except KeyError:
                 raise DecodeError('Unknown promotion type')
-            move = move[2:]
+            m = m[2:]
         else:
             try:
-                promotionType = _lanToType[move[0]]
+                promotionType = _lanToType[m[0]]
             except KeyError:
                 pass
             else:
-                move = move[1:]
+                m = m[1:]
 
-    if len(move) == 1:
-        if move == CHECK or move == CHECKMATE:
-            result = move
-            move = ''
-    elif len(move) == 2:
-        if move == '++':
+    if len(m) == 1:
+        if m == CHECK or m == CHECKMATE:
+            result = m
+            m = ''
+    elif len(m) == 2:
+        if m == '++':
             result = CHECKMATE
-            move = ''
+            m = ''
 
-    if len(move) != 0:
+    if len(m) != 0:
         raise DecodeError('Extra characters')
     
     return (start, end, pieceType, moveType, promotionType, result)
