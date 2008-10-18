@@ -178,7 +178,7 @@ class ChessPlayer:
         
     def claimDraw(self):
         """Claim a draw"""
-        self.__game.claimDraw()
+        return self.__game.claimDraw()
 
     def outOfTime(self):
         """Report this players timer has expired"""
