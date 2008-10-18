@@ -37,19 +37,6 @@ haveGLSupport = len(openGLErrors) == 0
 
 __all__ = ['GtkView']
 
-              # Translators: pawn name used in human readable move format
-pieceNames = {glchess.chess.board.PAWN:   _('pawn'),
-              # Translators: rook name used in human readable move format
-              glchess.chess.board.ROOK:   _('rook'),
-              # Translators: knight name used in human readable move format
-              glchess.chess.board.KNIGHT: _('knight'),
-              # Translators: bishop name used in human readable move format
-              glchess.chess.board.BISHOP: _('bishop'),
-              # Translators: queen name used in human readable move format
-              glchess.chess.board.QUEEN:  _('queen'),
-              # Translators: king name used in human readable move format
-              glchess.chess.board.KING:   _('king')}
-
 class GtkViewArea(gtk.DrawingArea):
     """Custom widget to render an OpenGL scene"""
     # The view this widget is rendering
@@ -385,75 +372,170 @@ class GtkView(glchess.ui.ViewController):
     def generateMoveString(self, move):
         """
         """
-        isWhite = move.number % 2 == 1
+        moveNumber = (move.number - 1) / 2 + 1
         
-        subs = {'movenum': (move.number - 1) / 2 + 1,
-                'move_can': move.canMove,
-                'move_san': move.sanMove,
-                'piece': pieceNames[move.piece.getType()],
-                'start': move.start,
-                'end': move.end}
-        if move.victim is not None:
-            subs['victim_piece'] = pieceNames[move.victim.getType()]
-        
+        # Note SAN format is intentionally not translated
         if self.moveFormat == 'san':
             if move.number % 2 == 0:
-                return '%(movenum)2i. ... %(move_san)s' % subs
+                format = '%(movenum)2i. ... %(move_san)s'
             else:
-                return '%(movenum)2i. %(move_san)s' % subs
+                format = '%(movenum)2i. %(move_san)s'
+            return format % {'movenum': moveNumber, 'move_san': move.sanMove}
 
+        # Note LAN format is intentionally not translated
         if self.moveFormat == 'lan':
-            string = '%(movenum)2i. ' % subs
             if move.number % 2 == 0:
-                return '%(movenum)2i. ... %(move_can)s' % subs
+                format = '%(movenum)2i. ... %(move_can)s'
             else:
-                return '%(movenum)2i. %(move_can)s' % subs
-            
+                format = '%(movenum)2i. %(move_can)s'
+            return format % {'movenum': moveNumber, 'move_can': move.canMove}
+
+        WHITE  = glchess.chess.board.WHITE
+        BLACK  = glchess.chess.board.BLACK
+        PAWN   = glchess.chess.board.PAWN
+        ROOK   = glchess.chess.board.ROOK
+        KNIGHT = glchess.chess.board.KNIGHT
+        BISHOP = glchess.chess.board.BISHOP
+        QUEEN  = glchess.chess.board.QUEEN
+        KING   = glchess.chess.board.KING
+        colour = {0: BLACK, 1: WHITE}[move.number % 2]
+
+        if move.sanMove.startswith('O-O-O'):
+                           # Translators: Human Move String: Description of the white player making a long castle
+            description = {WHITE: _('White castles long'),
+                           # Translators: Human Move String: Description of the black player making a long castle
+                           BLACK: _('Black castles long')}[colour]
+        elif move.sanMove.startswith('O-O'):
+                           # Translators: Human Move String: Description of the white player making a short castle
+            description = {WHITE: _('White castles short'),
+                           # Translators: Human Move String: Description of the black player making a short castle
+                           BLACK: _('Black castles short')}[colour]
+        else:
+            # Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
+                            # Translators: Human Move String: Description of a white pawn moving from %(start)s to %(end)s, e.g. 'c2 to c4'
+            descriptions = {(WHITE, PAWN,   None):   _('White pawn moves from %(start)s to %(end)s'),
+                            (WHITE, PAWN,   PAWN):   _('White pawn at %(start)s takes the black pawn at %(end)s'),
+                            (WHITE, PAWN,   ROOK):   _('White pawn at %(start)s takes the black rook at %(end)s'),
+                            (WHITE, PAWN,   KNIGHT): _('White pawn at %(start)s takes the black knight at %(end)s'),
+                            (WHITE, PAWN,   BISHOP): _('White pawn at %(start)s takes the black bishop at %(end)s'),
+                            (WHITE, PAWN,   QUEEN):  _('White pawn at %(start)s takes the black queen at %(end)s'),
+                            # Translators: Human Move String: Description of a white rook moving from %(start)s to %(end)s, e.g. 'a1 to a5'
+                            (WHITE, ROOK,   None):   _('White rook moves from %(start)s to %(end)s'),
+                            (WHITE, ROOK,   PAWN):   _('White rook at %(start)s takes the black pawn at %(end)s'),
+                            (WHITE, ROOK,   ROOK):   _('White rook at %(start)s takes the black rook at %(end)s'),
+                            (WHITE, ROOK,   KNIGHT): _('White rook at %(start)s takes the black knight at %(end)s'),
+                            (WHITE, ROOK,   BISHOP): _('White rook at %(start)s takes the black bishop at %(end)s'),
+                            (WHITE, ROOK,   QUEEN):  _('White rook at %(start)s takes the black queen at %(end)s'),
+                            # Translators: Human Move String: Description of a white knight moving from %(start)s to %(end)s, e.g. 'b1 to c3'
+                            (WHITE, KNIGHT, None):   _('White knight moves from %(start)s to %(end)s'),
+                            (WHITE, KNIGHT, PAWN):   _('White knight at %(start)s takes the black pawn at %(end)s'),
+                            (WHITE, KNIGHT, ROOK):   _('White knight at %(start)s takes the black rook at %(end)s'),
+                            (WHITE, KNIGHT, KNIGHT): _('White knight at %(start)s takes the black knight at %(end)s'),
+                            (WHITE, KNIGHT, BISHOP): _('White knight at %(start)s takes the black bishop at %(end)s'),
+                            (WHITE, KNIGHT, QUEEN):  _('White knight at %(start)s takes the black queen at %(end)s'),
+                            # Translators: Human Move String: Description of a white bishop moving from %(start)s to %(end)s, e.g. 'f1 to b5'
+                            (WHITE, BISHOP, None):   _('White bishop moves from %(start)s to %(end)s'),
+                            (WHITE, BISHOP, PAWN):   _('White bishop at %(start)s takes the black pawn at %(end)s'),
+                            (WHITE, BISHOP, ROOK):   _('White bishop at %(start)s takes the black rook at %(end)s'),
+                            (WHITE, BISHOP, KNIGHT): _('White bishop at %(start)s takes the black knight at %(end)s'),
+                            (WHITE, BISHOP, BISHOP): _('White bishop at %(start)s takes the black bishop at %(end)s'),
+                            (WHITE, BISHOP, QUEEN):  _('White bishop at %(start)s takes the black queen at %(end)s'),
+                            # Translators: Human Move String: Description of a white queen moving from %(start)s to %(end)s, e.g. 'd1 to d4'
+                            (WHITE, QUEEN,  None):   _('White queen moves from %(start)s to %(end)s'),
+                            (WHITE, QUEEN,  PAWN):   _('White queen at %(start)s takes the black pawn at %(end)s'),
+                            (WHITE, QUEEN,  ROOK):   _('White queen at %(start)s takes the black rook at %(end)s'),
+                            (WHITE, QUEEN,  KNIGHT): _('White queen at %(start)s takes the black knight at %(end)s'),
+                            (WHITE, QUEEN,  BISHOP): _('White queen at %(start)s takes the black bishop at %(end)s'),
+                            (WHITE, QUEEN,  QUEEN):  _('White queen at %(start)s takes the black queen at %(end)s'),
+                            # Translators: Human Move String: Description of a white king moving from %(start)s to %(end)s, e.g. 'e1 to f1'
+                            (WHITE, KING,   None):   _('White king moves from %(start)s to %(end)s'),
+                            (WHITE, KING,   PAWN):   _('White king at %(start)s takes the black pawn at %(end)s'),
+                            (WHITE, KING,   ROOK):   _('White king at %(start)s takes the black rook at %(end)s'),
+                            (WHITE, KING,   KNIGHT): _('White king at %(start)s takes the black knight at %(end)s'),
+                            (WHITE, KING,   BISHOP): _('White king at %(start)s takes the black bishop at %(end)s'),
+                            (WHITE, KING,   QUEEN):  _('White king at %(start)s takes the black queen at %(end)s'),
+                            # Translators: Human Move String: Description of a black pawn moving from %(start)s to %(end)s, e.g. 'c8 to c6'
+                            (BLACK, PAWN,   None):   _('Black pawn moves from %(start)s to %(end)s'),
+                            (BLACK, PAWN,   PAWN):   _('Black pawn at %(start)s takes the white pawn at %(end)s'),
+                            (BLACK, PAWN,   ROOK):   _('Black pawn at %(start)s takes the white rook at %(end)s'),
+                            (BLACK, PAWN,   KNIGHT): _('Black pawn at %(start)s takes the white knight at %(end)s'),
+                            (BLACK, PAWN,   BISHOP): _('Black pawn at %(start)s takes the white bishop at %(end)s'),
+                            (BLACK, PAWN,   QUEEN):  _('Black pawn at %(start)s takes the white queen at %(end)s'),
+                            # Translators: Human Move String: Description of a black rook moving from %(start)s to %(end)s, e.g. 'a8 to a4'
+                            (BLACK, ROOK,   None):   _('Black rook moves from %(start)s to %(end)s'),
+                            (BLACK, ROOK,   PAWN):   _('Black rook at %(start)s takes the white pawn at %(end)s'),
+                            (BLACK, ROOK,   ROOK):   _('Black rook at %(start)s takes the white rook at %(end)s'),
+                            (BLACK, ROOK,   KNIGHT): _('Black rook at %(start)s takes the white knight at %(end)s'),
+                            (BLACK, ROOK,   BISHOP): _('Black rook at %(start)s takes the white bishop at %(end)s'),
+                            (BLACK, ROOK,   QUEEN):  _('Black rook at %(start)s takes the white queen at %(end)s'),
+                            # Translators: Human Move String: Description of a black knight moving from %(start)s to %(end)s, e.g. 'b8 to c6'
+                            (BLACK, KNIGHT, None):   _('Black knight moves from %(start)s to %(end)s'),
+                            (BLACK, KNIGHT, PAWN):   _('Black knight at %(start)s takes the white pawn at %(end)s'),
+                            (BLACK, KNIGHT, ROOK):   _('Black knight at %(start)s takes the white rook at %(end)s'),
+                            (BLACK, KNIGHT, KNIGHT): _('Black knight at %(start)s takes the white knight at %(end)s'),
+                            (BLACK, KNIGHT, BISHOP): _('Black knight at %(start)s takes the white bishop at %(end)s'),
+                            (BLACK, KNIGHT, QUEEN):  _('Black knight at %(start)s takes the white queen at %(end)s'),
+                            # Translators: Human Move String: Description of a black bishop moving from %(start)s to %(end)s, e.g. 'f8 to b3'
+                            (BLACK, BISHOP, None):   _('Black bishop moves from %(start)s to %(end)s'),
+                            (BLACK, BISHOP, PAWN):   _('Black bishop at %(start)s takes the white pawn at %(end)s'),
+                            (BLACK, BISHOP, ROOK):   _('Black bishop at %(start)s takes the white rook at %(end)s'),
+                            (BLACK, BISHOP, KNIGHT): _('Black bishop at %(start)s takes the white knight at %(end)s'),
+                            (BLACK, BISHOP, BISHOP): _('Black bishop at %(start)s takes the white bishop at %(end)s'),
+                            (BLACK, BISHOP, QUEEN):  _('Black bishop at %(start)s takes the white queen at %(end)s'),
+                            # Translators: Human Move String: Description of a black queen moving from %(start)s to %(end)s, e.g. 'd8 to d5'
+                            (BLACK, QUEEN,  None):   _('Black queen moves from %(start)s to %(end)s'),
+                            (BLACK, QUEEN,  PAWN):   _('Black queen at %(start)s takes the white pawn at %(end)s'),
+                            (BLACK, QUEEN,  ROOK):   _('Black queen at %(start)s takes the white rook at %(end)s'),
+                            (BLACK, QUEEN,  KNIGHT): _('Black queen at %(start)s takes the white knight at %(end)s'),
+                            (BLACK, QUEEN,  BISHOP): _('Black queen at %(start)s takes the white bishop at %(end)s'),
+                            (BLACK, QUEEN,  QUEEN):  _('Black queen at %(start)s takes the white queen at %(end)s'),
+                            # Translators: Human Move String: Description of a black king moving from %(start)s to %(end)s, e.g. 'e8 to f8'
+                            (BLACK, KING,   None):   _('Black king moves from %(start)s to %(end)s'),
+                            (BLACK, KING,   PAWN):   _('Black king at %(start)s takes the white pawn at %(end)s'),
+                            (BLACK, KING,   ROOK):   _('Black king at %(start)s takes the white rook at %(end)s'),
+                            (BLACK, KING,   KNIGHT): _('Black king at %(start)s takes the white knight at %(end)s'),
+                            (BLACK, KING,   BISHOP): _('Black king at %(start)s takes the white bishop at %(end)s'),
+                            (BLACK, KING,   QUEEN):  _('Black king at %(start)s takes the white queen at %(end)s')}
+
+            pieceType = move.piece.getType()                            
+            if move.victim is not None:
+                victimType = move.victim.getType()
+            else:
+                victimType = None
+            description = descriptions[colour, pieceType, victimType] % {'start': move.start, 'end': move.end}
+
+        CHECK     = 'CHECK'
+        CHECKMATE = 'CHECKMATE'
+        STALEMATE = 'STALEMATE'
         status = None
         if move.opponentInCheck:
             if move.opponentCanMove:
-                status = _('Check')
+                status = CHECK
             else:
-                status = _('Checkmate')
+                status = CHECKMATE
         elif not move.opponentCanMove:
-            status = _('Stalemate')
-        if status is not None:
-            subs['result'] = status
-        haveResult = status is not None
-        
-        # Translators: This string is used in the move history to indicate which white move is being described.
-        # In a chess game the turns are '1w.', '1b.', '2w.', ...
-        whiteMovePrefix = _('%(movenum)2iw.') % subs
-        # Translators: This string is used in the move history to indicate which black move is being described.
-        # In a chess game the turns are '1w.', '1b.', '2w.', ...
-        blackMovePrefix = _('%(movenum)2ib.') % subs
-        subs['move'] = {True:  whiteMovePrefix,
-                        False: blackMovePrefix}[isWhite]
+            status = STALEMATE
 
-        if move.sanMove.startswith('O-O-O'):
-            string = {(True, True):   _('%(move)s White castles long (%(result)s)'),
-                      (True, False):  _('%(move)s White castles long'),
-                      (False, True):  _('%(move)s Black castles long (%(result)s)'),
-                      (False, False): _('%(move)s Black castles long')}[(isWhite, haveResult)]
-        elif move.sanMove.startswith('O-O'):
-            string = {(True, True):   _('%(move)s White castles short (%(result)s)'),
-                      (True, False):  _('%(move)s White castles short'),
-                      (False, True):  _('%(move)s Black castles short (%(result)s)'),
-                      (False, False): _('%(move)s Black castles short')}[(isWhite, haveResult)]
-        elif move.victim is not None:
-            string = {(True, True):   _('%(move)s White %(piece)s at %(start)s takes the black %(victim_piece)s at %(end)s (%(result)s)'),
-                      (True, False):  _('%(move)s White %(piece)s at %(start)s takes the black %(victim_piece)s at %(end)s'),
-                      (False, True):  _('%(move)s Black %(piece)s at %(start)s takes the white %(victim_piece)s at %(end)s (%(result)s)'),
-                      (False, False): _('%(move)s Black %(piece)s at %(start)s takes the white %(victim_piece)s at %(end)s')}[(isWhite, haveResult)]
-        else:
-            string = {(True, True):   _('%(move)s White %(piece)s moves from %(start)s to %(end)s (%(result)s)'),
-                      (True, False):  _('%(move)s White %(piece)s moves from %(start)s to %(end)s'),
-                      (False, True):  _('%(move)s Black %(piece)s moves from %(start)s to %(end)s (%(result)s)'),
-                      (False, False): _('%(move)s Black %(piece)s moves from %(start)s to %(end)s')}[(isWhite, haveResult)]
+                        # Translators: Human Move String: White player has made move %(description) and the opponent is in check
+        formatString = {(WHITE, CHECK):      _('%(movenum)2iw. %(description)s (Check)'),
+                        # Translators: Human Move String: White player has made move %(description) and the opponent is in checkmate
+                        (WHITE, CHECKMATE):  _('%(movenum)2iw. %(description)s (Checkmate)'),        
+                        # Translators: Human Move String: White player has made move %(description) and the opponent is in stalemate
+                        (WHITE, STALEMATE):  _('%(movenum)2iw. %(description)s (Stalemate)'),
+                        # Translators: Human Move String: White player has made move %(description) and the opponent is not in check or mate        
+                        (WHITE, None):       _('%(movenum)2iw. %(description)s'),
+                        # Translators: Human Move String: Black player has made move %(description) and the opponent is in check
+                        (BLACK, CHECK):      _('%(movenum)2ib. %(description)s (Check)'),
+                        # Translators: Human Move String: Black player has made move %(description) and the opponent is in checkmate
+                        (BLACK, CHECKMATE):  _('%(movenum)2ib. %(description)s (Checkmate)'),
+                        # Translators: Human Move String: Black player has made move %(description) and the opponent is in stalemate
+                        (BLACK, STALEMATE):  _('%(movenum)2ib. %(description)s (Stalemate)'),
+                        # Translators: Human Move String: Black player has made move %(description) and the opponent is not in check or mate
+                        (BLACK, None):       _('%(movenum)2ib. %(description)s')}[colour, status]
 
         # FIXME: Promotion
 
-        return string % subs
+        return formatString % {'movenum': moveNumber, 'description': description}
 
     def addMove(self, move):
         """Extends glchess.ui.ViewController"""        
