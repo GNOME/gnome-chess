@@ -385,7 +385,7 @@ class GtkView(glchess.ui.ViewController):
                 format = '%(movenum)2i. %(move_san)s'
             return format % {'movenum': moveNumber, 'move_san': glchess.chess.translate_notation(move.sanMove)}
         
-        # Note SAN format is intentionally not translated
+        # Note FAN format is intentionally not translated
         if self.moveFormat == 'fan':
             if move.number % 2 == 0:
                 format = '%(movenum)2i. ... %(move_san)s'
