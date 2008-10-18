@@ -231,6 +231,7 @@ class GtkUI(glchess.ui.UI):
         # Create the model for the player types
         self.__playerModel = gtk.ListStore(str, str, str)
         iter = self.__playerModel.append()
+        # Translators: Player Type Combo: Player is human controlled
         self.__playerModel.set(iter, 0, '', 1, 'stock_person', 2, _('Human'))
         
         self.__logWindow = log.LogWindow(self._gui.get_widget('log_notebook'))
