@@ -364,14 +364,10 @@ class Scene(glchess.scene.Scene):
 
         # Draw numbering
         if self.showNumbering:
-            offset = 0
             context.set_source_rgb(*NUMBERING_COLOUR)
             context.set_font_size(self.squareSize * 0.4)
             context.select_font_face("sans-serif", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
-            # Chess board columns (files) label marked for translation. Please translate to the first eight letters of your alphabet, or the most appropriate eight characters/symbols for labelling the columns of a chess board. 
-            files = [_('a'), _('b'), _('c'), _('d'), _('e'), _('f'), _('g'), _('h')]
-            # Chess board rows (ranks) label marked for translation. Please translate to the first eight numbers with your native number symbols, or the most appropriate eight numbers/symbols for labelling the rows of a chess board.
-            ranks = [_('8'), _('7'), _('6'), _('5'), _('4'), _('3'), _('2'), _('1')]
+            
             def drawCenteredText(x, y, text):
                 (_, _, w, h, _, _) = context.text_extents('b')
                 matrix = context.get_matrix()
@@ -380,11 +376,14 @@ class Scene(glchess.scene.Scene):
                 context.move_to(-w/2, h/2)
                 context.show_text(text)
                 context.set_matrix(matrix)
+            offset = 0
             for i in xrange(8):
-                drawCenteredText(offset - self.squareSize * 3.5, -self.squareSize * 4.25, files[i])
-                drawCenteredText(offset - self.squareSize * 3.5, self.squareSize * 4.25, files[i])
-                drawCenteredText(-self.squareSize * 4.25, offset - self.squareSize * 3.5, ranks[i])
-                drawCenteredText(self.squareSize * 4.25, offset - self.squareSize * 3.5, ranks[i])
+                f = 'abcdefgh'[i]
+                r = '87654321'[i]
+                drawCenteredText(offset - self.squareSize * 3.5, -self.squareSize * 4.25, glchess.chess.translate_file(f))
+                drawCenteredText(offset - self.squareSize * 3.5, self.squareSize * 4.25, glchess.chess.translate_file(f))
+                drawCenteredText(-self.squareSize * 4.25, offset - self.squareSize * 3.5, glchess.chess.translate_rank(r))
+                drawCenteredText(self.squareSize * 4.25, offset - self.squareSize * 3.5, glchess.chess.translate_rank(r))
                 offset += self.squareSize
         
         # Draw squares

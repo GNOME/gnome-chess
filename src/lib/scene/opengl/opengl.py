@@ -583,11 +583,6 @@ class Scene(glchess.scene.Scene):
         TEXTURE_WIDTH = WIDTH*16
         TEXTURE_HEIGHT = HEIGHT
 
-        # Chess board columns (files) label marked for translation. Please translate to the first eight letters of your alphabet, or the most appropriate eight characters/symbols for labelling the columns of a chess board. 
-        files = [_('a'), _('b'), _('c'), _('d'), _('e'), _('f'), _('g'), _('h')]
-        # Chess board rows (ranks) label marked for translation. Please translate to the first eight numbers with your native number symbols, or the most appropriate eight numbers/symbols for labelling the rows of a chess board.
-        ranks = [_('1'), _('2'), _('3'), _('4'), _('5'), _('6'), _('7'), _('8')]
-
         surface = cairo.ImageSurface(cairo.FORMAT_A8, TEXTURE_WIDTH, TEXTURE_HEIGHT)
         context = cairo.Context(surface)
         context.set_source_rgba(1.0, 1.0, 1.0, 1.0)
@@ -605,13 +600,14 @@ class Scene(glchess.scene.Scene):
             context.show_text(text)
             context.set_matrix(matrix)
 
-        xoffset = WIDTH * 0.5
         yoffset = HEIGHT * 0.5
+        xoffset = WIDTH * 0.5
         for i in xrange(8):
-            drawCenteredText(xoffset, yoffset, scale, files[i])
-            drawCenteredText(xoffset + (WIDTH * 8), yoffset, scale, ranks[i])
+            f = 'abcdefgh'[i]
+            r = '12345678'[i]
+            drawCenteredText(xoffset, yoffset, scale, glchess.chess.translate_file(f))
+            drawCenteredText(xoffset + (WIDTH * 8), yoffset, scale, glchess.chess.translate_rank(r))
             xoffset += WIDTH
-        data = surface.get_data()
 
         t = glGenTextures(1)
         glBindTexture(GL_TEXTURE_2D, t)
@@ -620,7 +616,8 @@ class Scene(glchess.scene.Scene):
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT)
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
-        
+
+        data = surface.get_data()        
         try:
             gluBuild2DMipmaps(GL_TEXTURE_2D, GL_ALPHA, TEXTURE_WIDTH, TEXTURE_HEIGHT,
                               GL_ALPHA, GL_UNSIGNED_BYTE, str(data))

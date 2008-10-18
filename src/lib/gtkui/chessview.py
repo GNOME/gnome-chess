@@ -502,7 +502,10 @@ class GtkView(glchess.ui.ViewController):
                 victimType = move.victim.getType()
             else:
                 victimType = None
-            description = descriptions[colour, pieceType, victimType] % {'start': move.start, 'end': move.end}
+            start = glchess.chess.translate_coordinate(move.start)
+            end = glchess.chess.translate_coordinate(move.end)            
+
+            description = descriptions[colour, pieceType, victimType] % {'start': start, 'end': end}
 
         CHECK     = 'CHECK'
         CHECKMATE = 'CHECKMATE'
