@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Module implementing the chess rules.
 
 To use create an instance of the chess board:

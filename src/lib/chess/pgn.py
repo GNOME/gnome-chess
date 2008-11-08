@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Implement a PGN reader/writer.
 

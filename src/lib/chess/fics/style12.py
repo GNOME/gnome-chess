@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 
 """See: http://www.unix-ag.uni-kl.de/~chess/gicshelp/node197.html"""

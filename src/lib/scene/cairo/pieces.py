@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 __author__ = 'Thomas Dybdahl Ahle <thomas@ahle.dk>'
 __license__ = 'GNU General Public License Version 2'
 __copyright__ = ''

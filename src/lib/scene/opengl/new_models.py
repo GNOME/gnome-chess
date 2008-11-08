@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 __author__ = 'Robert Ancell <bob27@users.sourceforge.net>, John-Paul Gignac  <jjgignac@users.sf.net>'
 __license__ = 'GNU General Public License Version 2+'
 __copyright__ = 'Copyright 2005-2006  Robert Ancell, Copyright 2006  John-Paul Gignac'

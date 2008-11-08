@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import math
 import os.path
 from gettext import gettext as _

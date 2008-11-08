@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python
 # png.py - PNG encoder in pure Python
 # Copyright (C) 2006 Johann C. Rocholl <johann@browsershots.org>

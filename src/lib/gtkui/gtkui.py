@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 __author__ = 'Robert Ancell <bob27@users.sourceforge.net>'
 __license__ = 'GNU General Public License Version 2'

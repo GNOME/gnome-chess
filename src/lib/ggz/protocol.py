@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import xml.sax.handler
 
 "<UPDATE TYPE='player' ACTION='delete' ROOM='40' TOROOM='-1'>"

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import sys
 from gettext import gettext as _
 import traceback
