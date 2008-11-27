@@ -105,6 +105,9 @@ class Scene:
         """
         pass
     
+    def showSmooth(self, doNumbering):
+        pass
+    
     def showBoardNumbering(self, showNumbering):
         """
         """

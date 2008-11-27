@@ -47,6 +47,34 @@ WHITE_SQUARE_COLOURS = {None:                               (1.0, 1.0, 1.0),
                         glchess.scene.HIGHLIGHT_THREATENED: (1.0, 0.8, 0.8),
                         glchess.scene.HIGHLIGHT_CAN_TAKE:   (1.0, 0.2, 0.2)}
 
+import math
+def accFrustum(left, right, bottom, top,
+               near, far,
+               pixdx, pixdy,
+               eyedx, eyedy, 
+               focus):
+    viewport = glGetIntegerv(GL_VIEWPORT)
+
+    xwsize = right - left
+    ywsize = top - bottom
+    dx = -(pixdx*xwsize/viewport[2] + eyedx*near/focus)
+    dy = -(pixdy*ywsize/viewport[3] + eyedy*near/focus)
+
+    glFrustum(left + dx, right + dx, bottom + dy, top + dy, near, far)
+    glTranslatef(-eyedx, -eyedy, 0.0)
+
+def accPerspective(fovy, aspect,
+                   near, far,
+                   pixdx, pixdy,
+                   eyedx, eyedy, 
+                   focus):
+    fov2 = ((fovy*math.pi) / 180.0) / 2.0
+    top = near / (math.cos(fov2) / math.sin(fov2))
+    bottom = -top
+    right = top * aspect
+    left = -right
+    accFrustum(left, right, bottom, top, near, far, pixdx, pixdy, eyedx, eyedy, focus)
+
 class ChessPiece(glchess.scene.ChessPiece):
     """
     """    
@@ -189,6 +217,8 @@ class Scene(glchess.scene.Scene):
     highlights       = None
     
     _animationQueue  = []
+    
+    jitters = ((0.0, 0.0),)
 
     showNumbering = False
     numberingTexture = None
@@ -254,7 +284,16 @@ class Scene(glchess.scene.Scene):
         """Extends glchess.scene.Scene"""
         self.showNumbering = showNumbering
         self.feedback.onRedraw()
-    
+
+    def showSmooth(self, doSmooth):
+        if doSmooth:
+            #self.jitters = ((-0.25, 0.25), (0.25, -0.25))
+            self.jitters = ((0.0033922635, 0.3317967229), (0.2806016275, -0.2495619123), (-0.273817106, -0.086844639))
+            #self.jitters = ((-0.175, -0.25), (-0.375, 0.25), (0.375, -0.25), (0.125, 0.25))
+        else:
+            self.jitters = ((0.0, 0.0),)
+        self.feedback.onRedraw()
+
     def reshape(self, width, height):
         """Resize the viewport into the scene.
         
@@ -264,6 +303,7 @@ class Scene(glchess.scene.Scene):
         self.viewportWidth = int(width)
         self.viewportHeight = int(height)
         self.viewportAspect = float(self.viewportWidth) / float(self.viewportHeight)
+        glViewport(0, 0, self.viewportWidth, self.viewportHeight)
         self.feedback.onRedraw()
 
     def setBoardRotation(self, angle, animate = True):
@@ -300,46 +340,61 @@ class Scene(glchess.scene.Scene):
         This requires an OpenGL context.
         """
         glClearColor(*BACKGROUND_COLOUR)
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-
-        # Set the projection for this scene
-        self.setViewport()
-
-        # Do camera and board rotation/translation
-        glEnable(GL_DEPTH_TEST)
-        glMatrixMode(GL_MODELVIEW)
-        glLoadIdentity()
-        self.transformCamera()
+        if len(self.jitters) > 1:
+            glClear(GL_ACCUM_BUFFER_BIT)
         
         glLightfv(GL_LIGHT0, GL_AMBIENT, LIGHT_AMBIENT_COLOUR)
         glLightfv(GL_LIGHT0, GL_DIFFUSE, LIGHT_DIFFUSE_COLOUR)
         glLightfv(GL_LIGHT0, GL_SPECULAR, LIGHT_SPECULAR_COLOUR)
-        glLightfv(GL_LIGHT0, GL_POSITION, self.lightPos)
-        glEnable(GL_LIGHTING)
-        glEnable(GL_LIGHT0)
         
-        self.transformBoard()
-    
-        glEnable(GL_DEPTH_TEST)
-        glEnable(GL_CULL_FACE)
+        for jitter in self.jitters:
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+            
+            # Set the projection for this scene
+            glMatrixMode(GL_PROJECTION)
+            glLoadIdentity()
+            if len(self.jitters) > 1:
+                accPerspective(60.0, self.viewportAspect, 0.1, 1000, jitter[0], jitter[1], 0, 0, 1)
+            else:
+                gluPerspective(60.0, self.viewportAspect, 0.1, 1000)
+
+            # Do camera and board rotation/translation
+            glMatrixMode(GL_MODELVIEW)
+            glLoadIdentity()
+            self.transformCamera()
+
+            glLightfv(GL_LIGHT0, GL_POSITION, self.lightPos)            
+            glEnable(GL_LIGHTING)
+            glEnable(GL_LIGHT0)
+            
+            self.transformBoard()
+            
+            glEnable(GL_DEPTH_TEST)
+            glEnable(GL_CULL_FACE)
         
-        glEnable(GL_TEXTURE_2D)
-        glEnable(GL_COLOR_MATERIAL)
-        self.drawBoard()
-        glDisable(GL_COLOR_MATERIAL)
-        glDisable(GL_TEXTURE_2D)
+            glEnable(GL_TEXTURE_2D)
+            glEnable(GL_COLOR_MATERIAL)
+            self.drawBoard()
+            glDisable(GL_COLOR_MATERIAL)
+            glDisable(GL_TEXTURE_2D)
         
-        if self.showNumbering:
-            self.drawNumbering()
+            if self.showNumbering:
+                self.drawNumbering()
         
-        # WORKAROUND: Mesa is corrupting polygons on the bottom of the models
-        # It could be because the depth buffer has a low bit depth?
-        glClear(GL_DEPTH_BUFFER_BIT)
+            # WORKAROUND: Mesa is corrupting polygons on the bottom of the models
+            # It could be because the depth buffer has a low bit depth?
+            glClear(GL_DEPTH_BUFFER_BIT)
         
-        if self.throbberEnabled:
-            self.drawThrobber()
-        else:
-            self.drawPieces()
+            if self.throbberEnabled:
+                self.drawThrobber()
+            else:
+                self.drawPieces()
+            
+            if len(self.jitters) > 1:
+                glAccum(GL_ACCUM, 1.0 / len(self.jitters))
+
+        if len(self.jitters) > 1:
+            glAccum(GL_RETURN, 1)
             
     def getSquare(self, x, y):
         """Find the chess square at a given 2D location.
@@ -360,7 +415,7 @@ class Scene(glchess.scene.Scene):
         glRenderMode(GL_SELECT)
 
         glInitNames()
-
+        
         # Create pixel picking region near cursor location
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
@@ -564,13 +619,6 @@ class Scene(glchess.scene.Scene):
         glEnd()
             
         glDisable(GL_BLEND)
-
-    def setViewport(self):
-        """Perform the projection matrix transformation for the current viewport"""
-        glViewport(0, 0, self.viewportWidth, self.viewportHeight)
-        glMatrixMode(GL_PROJECTION)
-        glLoadIdentity()
-        gluPerspective(60.0, self.viewportAspect, 0.1, 1000)
 
     def transformCamera(self):
         """Perform the camera matrix transformation"""

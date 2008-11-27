@@ -259,7 +259,7 @@ class GtkUI(glchess.ui.UI):
         
         # Watch for config changes
         for key in ['show_toolbar', 'show_history', 'fullscreen',
-                    'show_3d', 'show_comments', 'show_numbering',
+                    'show_3d', 'show_3d_smooth', 'show_comments', 'show_numbering',
                     'show_move_hints',
                     'width', 'height',
                     'move_format', 'promotion_type', 'board_view',
@@ -406,7 +406,7 @@ class GtkUI(glchess.ui.UI):
         This method will not return.
         """        
         # Load configuration
-        for name in ['show_toolbar', 'show_history', 'show_3d',
+        for name in ['show_toolbar', 'show_history', 'show_3d', 'show_3d_smooth',
                      'show_comments', 'show_numbering', 'show_move_hints',
                      'move_format', 'promotion_type', 'board_view', 'maximised',
                      'enable_networking']:
@@ -603,6 +603,11 @@ Please contact your system administrator to resolve these problems, until then y
             self.__renderGL = value
             self.__getWidget('menu_view_3d').set_active(value)
             self.view.viewWidget.setRenderGL(value)
+
+        elif name == 'show_3d_smooth':
+            if not chessview.haveGLAccumSupport:
+                value = False
+            self.view.feedback.showSmooth(value)
                 
         elif name == 'show_comments':
             self.view.setShowComments(value)

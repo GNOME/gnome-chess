@@ -630,7 +630,7 @@ class GtkPreferencesDialog:
             promotionModel.set(iter, 0, label, 1, key)
             
         # Watch for config changes
-        for key in ['show_3d', 'show_toolbar', 'show_history', 
+        for key in ['show_3d', 'show_3d_smooth', 'show_toolbar', 'show_history', 
                     'show_move_hints', 'show_numbering',
                     'move_format', 'board_view', 'promotion_type']:
             glchess.config.watch(key, self.__applyConfig)
@@ -646,7 +646,11 @@ class GtkPreferencesDialog:
         """        
         if name == 'show_3d':
             self.__gui.get_widget('show_3d').set_active(value)
+            self.__gui.get_widget('show_3d_smooth').set_sensitive(value)            
 
+        elif name == 'show_3d_smooth':
+            self.__gui.get_widget('show_3d_smooth').set_active(value)
+            
         elif name == 'show_toolbar':
             self.__gui.get_widget('show_toolbar').set_active(value)
                 
@@ -729,6 +733,10 @@ class GtkPreferencesDialog:
     def _on_3d_view_activate(self, widget):
         """Gtk+ callback"""
         glchess.config.set('show_3d', widget.get_active())
+        
+    def _on_3d_smooth_toggled(self, widget):
+        """Gtk+ callback"""
+        glchess.config.set('show_3d_smooth', widget.get_active())        
 
     def _on_show_toolbar_activate(self, widget):
         """Gtk+ callback"""

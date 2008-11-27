@@ -126,6 +126,9 @@ class ViewFeedback:
         'showHints' sets if move hints should be shown (boolean).
         """
         assert(False)
+        
+    def showSmooth(self, doNumbering):
+        pass
     
     def saveGame(self, path):
         """Called when the user requests the game in this view to be saved.

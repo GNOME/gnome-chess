@@ -277,7 +277,7 @@ class Splashscreen(ui.ViewFeedback):
         """Called by scene.SceneFeedback"""
         if self.controller is not None:
             self.controller.render()
-        
+            
     def showBoardNumbering(self, showNumbering):
         """Called by ui.ViewFeedback"""
         self.scene.showBoardNumbering(showNumbering)
@@ -345,6 +345,7 @@ class View(ui.ViewFeedback):
         self.selectedCoord = None
         self.showHints = False
         self.showNumbering = False
+        self.doSmooth = False
         self.highlightParams = (None, None, None, None)
         self.changedHighlight = True
         
@@ -455,6 +456,11 @@ class View(ui.ViewFeedback):
         """Called by ui.ViewFeedback"""
         self.showNumbering = showNumbering
         self.scene.controller.showBoardNumbering(showNumbering)
+        
+    def showSmooth(self, doSmooth):
+        """Called by ui.ViewFeedback"""
+        self.doSmooth = doSmooth
+        self.scene.controller.showSmooth(doSmooth)
 
     def updateScene(self, sceneClass):
         """
@@ -470,6 +476,7 @@ class View(ui.ViewFeedback):
         self.reshape(self.width, self.height)
         self.setMoveNumber(self.moveNumber)
         self.showBoardNumbering(self.showNumbering)
+        self.showSmooth(self.doSmooth)
         self.updateRotation(animate = False)
 
     def renderGL(self):

@@ -12,6 +12,8 @@ import glchess.game
 
 # Optionally use OpenGL support
 openGLErrors = []
+haveGLDepthSupport = True
+haveGLAccumSupport = True
 try:
     import OpenGL.GL
 except:
@@ -24,11 +26,14 @@ except:
     # Translators: Error message displayed when 3D mode is not available due to no Python GTKGLExt libraries
     openGLErrors.append(_('No Python GTKGLExt support'))
 else:
-    display_mode = (gtk.gdkgl.MODE_RGB | gtk.gdkgl.MODE_DEPTH | gtk.gdkgl.MODE_DOUBLE)
+    display_mode = (gtk.gdkgl.MODE_RGB | gtk.gdkgl.MODE_DEPTH | gtk.gdkgl.MODE_DOUBLE | gtk.gdkgl.MODE_ACCUM)
     try:
         glConfig = gtk.gdkgl.Config(mode = display_mode)
     except gtk.gdkgl.NoMatches:
         display_mode &= ~gtk.gdkgl.MODE_DOUBLE
+        display_mode &= ~gtk.gdkgl.MODE_ACCUM
+        haveGLAccumSupport = False
+        haveGLDepthSupport = False
         try:
             glConfig = gtk.gdkgl.Config(mode = display_mode)
         except gtk.gdkgl.NoMatches:
