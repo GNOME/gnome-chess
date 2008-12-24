@@ -455,7 +455,7 @@ class Player(game.ChessPlayer):
                 
                     # Bridge information between the application and the engine
                     os.write(targets[fd], data)
-        except Exception, e:
+        except:
             # Kill the child and exit
             try:
                 os.kill(enginePID, signal.SIGQUIT)
