@@ -79,7 +79,7 @@ class GGZConfig:
                 try:
                     server.password = fields[server.name]['Password']
                 except KeyError:
-                    server.password = ''
+                    server.password = None
 
                 self.servers.append(server)
                 
@@ -182,8 +182,8 @@ class GGZConnection(ggz.ClientFeedback):
             method(*args)
 
     def close(self):
-        self.client.close()
-        
+        self.client.close('')
+
     def setBusy(self, isBusy):
         self.dialog.controller.setBusy(isBusy)
         
@@ -196,8 +196,8 @@ class GGZConnection(ggz.ClientFeedback):
         self.dialog.controller.setSensitive(True)
         self.dialog.controller.clearError()
 
-    def onDisconnected(self):
-        self.dialog.controller.setError(_('Disconnected'), _('You have been disconnected from the server'))
+    def onDisconnected(self, reason):
+        self.dialog.controller.setError(_('Disconnected from server'), reason)
         self.dialog.controller.setSensitive(False)
 
     def openChannel(self, feedback):
@@ -207,11 +207,11 @@ class GGZConnection(ggz.ClientFeedback):
         socket.connect(self.profile.host, self.profile.port)
         return socket
 
-    def getUsername(self):
-        return  self.profile.login
+    def getLogin(self):
+        return (self.profile.login, self.profile.password)
     
     def getPassword(self, username):
-        return self.profile.password
+        self.client.setPassword(self.profile.password)
         
     def onMOTD(self, motd):
         self.dialog.controller.addText(motd, 'motd')

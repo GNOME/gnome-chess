@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
+import os
 import protocol
 import xml.sax.saxutils
+import gettext
+
+_ = gettext.gettext
 
 class Channel:
     """
@@ -43,9 +47,8 @@ class ClientFeedback:
     def onConnected(self):
         pass
 
-    def onDisconnected(self):
+    def onDisconnected(self, reason):
         pass
-    
     
     def openChannel(self, feedback):
         """Open a channel to the GGZ server.
@@ -54,19 +57,18 @@ class ClientFeedback:
         """
         pass
     
-    def getUsername(self):
-        """Called when the username is required.
+    def getLogin(self):
+        """Called when the login credentials are required.
         
-        Returns the username to log in with.
+        Returns the username and password to log in with.
+        If the password is None then log in as guest.
         """
-        return 'test'
+        return ('test', None)
     
     def getPassword(self, username):
         """Called when a password is required.
         
         'username' is the username the password is required for.
-        
-        Returns the password for this user or None to abort login.
         """
         return None
     
@@ -188,33 +190,33 @@ class MainChannel(ChannelFeedback, protocol.ParserFeedback):
         self.send("<?xml version='1.0' encoding='UTF-8'?>\n")
         self.send("<SESSION>\n")
         self.send("<LANGUAGE>en_NZ.UTF-8</LANGUAGE>\n")
-        self.client.username = self.client.feedback.getUsername()
-        password = self.client.feedback.getPassword(self.client.username)
-        if password:
-            self.client._login(self.client.username, password)
-        else:
+        (self.client.username, self.client.password) = self.client.feedback.getLogin()
+        if self.client.password is None:
             self.client._loginGuest(self.client.username)
+        else:
+            self.client._login(self.client.username, self.client.password)
         
     def onResult(self, action, code):
         if action == 'login':
             if code == 'ok':
                 self.client.setState(self.client.STATE_LIST_GAMES)
             else:
+                error = code
                 if code == 'usr lookup':
-                    self.client.setState(self.client.STATE_START_SESSION)
-                    password = self.client.feedback.getPassword(self.client.username)
-                    if password is not None:
-                        self.client._login(self.client.username, password)
-                        return
-                    print 'Failed to login: Require password'
+                    # Translators: GGZ disconnection error when the supplied password is incorrect
+                    self.client.close(_('Incorrect password'))
+                    #FIXME: Prompt for a password
+                    #self.client.setState(self.client.STATE_GET_PASSWORD)
 
                 elif code == 'already logged in':
-                    print 'Failed to login: Already logged in'
-
-                else:
-                    print 'Failed to login: %s' % code
+                    # Translators: GGZ disconnection error when the selected account is already in use
+                    self.client.close(_('Account in use'))
                     
-                self.client.setState(self.client.STATE_DISCONNECTED)
+                elif code == 'wrong login type':
+                    self.client.setState(self.client.STATE_GET_PASSWORD)
+                
+                else:
+                    self.client.close(code)
 
         elif action == 'enter':
             if code != 'ok':
@@ -424,8 +426,8 @@ class MainChannel(ChannelFeedback, protocol.ParserFeedback):
         self.client.feedback.playerRemoved(player)
 
     def closed(self, errno = 0):
-        print 'SEVERE: GGZ connection closed: error %d' % errno
-        self.client.setState(self.client.STATE_DISCONNECTED)
+        # Translators: GGZ disconnection error when the network link has broken. %s is the system provided error
+        self.client.close(_('Connection closed: %s') % os.strerror(errno))
         
 class GameChannel(ChannelFeedback, protocol.ParserFeedback):
     
@@ -459,8 +461,8 @@ class GameChannel(ChannelFeedback, protocol.ParserFeedback):
         else:
             self.game.registerIncomingData(data)
 
-    def onDisconnected(self):
-        print '!'
+    def onDisconnected(self, reason):
+        print 'Disconnected: %s' % reason
 
     def send(self, data, isBinary = False):
         self.controller.send(data, isBinary)
@@ -483,6 +485,7 @@ class Client:
     STATE_DISCONNECTED        = 'DISCONNECTED'
     STATE_START_SESSION       = 'START_SESSION'
     STATE_LOGIN               = 'LOGIN'
+    STATE_GET_PASSWORD        = 'GET_PASSWORD'    
     STATE_LIST_GAMES          = 'LIST_GAMES'
     STATE_LIST_ROOMS          = 'LIST_ROOMS'
     STATE_READY               = 'READY'
@@ -514,7 +517,8 @@ class Client:
         """
         return self.state is self.STATE_READY
 
-    def close(self):
+    def close(self, error):
+        self.disconnectionError = error
         self.setState(self.STATE_DISCONNECTED)
         
     def isBusy(self):
@@ -534,8 +538,10 @@ class Client:
             self.mainChannel.send("<LIST TYPE='table'/>\n")
         elif state is self.STATE_LIST_PLAYERS:
             self.mainChannel.send("<LIST TYPE='player'/>\n")
+        elif state is self.STATE_GET_PASSWORD:
+            self.feedback.getPassword(self.username)
         elif state is self.STATE_DISCONNECTED:
-            self.feedback.onDisconnected()
+            self.feedback.onDisconnected(self.disconnectionError)
             self.mainChannel.controller.close()
 
     def start(self):
@@ -543,8 +549,16 @@ class Client:
         self.mainChannel = MainChannel(self)
         self.mainChannel.controller = self.feedback.openChannel(self.mainChannel)
         
+    def setPassword(self, password):
+        assert(self.state is self.STATE_GET_PASSWORD)
+        if password is None:
+            # Translators: GGZ disconnection error when a password was required for the selected account
+            self.close(_('A password is required'))
+        else:
+            self._login(self.username, password)
+        
     def _login(self, username, password):
-        assert(self.state is self.STATE_START_SESSION)
+        assert(self.state is self.STATE_START_SESSION or self.state is self.STATE_GET_PASSWORD)
         self.setState(self.STATE_LOGIN)
         username = xml.sax.saxutils.escape(username)
         password = xml.sax.saxutils.escape(password)
