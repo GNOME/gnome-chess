@@ -438,12 +438,14 @@ class GtkLoadGameDialog:
 
         # Filter out non PGN files by default
         pgnFilter = gtk.FileFilter()
-        pgnFilter.set_name('PGN files')
+        # Translators: Load Game Dialog: Name of filter to show only PGN files
+        pgnFilter.set_name(_('PGN files'))
         pgnFilter.add_pattern('*.pgn')
         fileChooser.add_filter(pgnFilter)
         
         allFilter = gtk.FileFilter()
-        allFilter.set_name('All files')
+        # Translators: Load Game Dialog: Name of filter to show all files
+        allFilter.set_name(_('All files'))
         allFilter.add_pattern('*')
         fileChooser.add_filter(allFilter)
         
@@ -464,7 +466,7 @@ class GtkLoadGameDialog:
 
             fileName = self.__gui.get_widget('filechooserwidget').get_filename()
             if fileName is None:
-                # Translators: Message displayed in load game dialog when no file is selected
+                # Translators: Load Game Dialog: Message displayed when no file is selected
                 error = _('Please select a file to load')
             else:
                 error = self.__mainUI.feedback.loadGame(fileName, responseId == gtk.RESPONSE_YES)
