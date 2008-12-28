@@ -187,9 +187,15 @@ class MainChannel(ChannelFeedback, protocol.ParserFeedback):
         assert(self.client.state is self.client.STATE_DISCONNECTED)
         self.client.feedback.onConnected()
         self.client.setState(self.client.STATE_START_SESSION)
+        
+        try:
+            language = os.environ['LANG']
+        except KeyError:
+            language = 'C'
+
         self.send("<?xml version='1.0' encoding='UTF-8'?>\n")
         self.send("<SESSION>\n")
-        self.send("<LANGUAGE>en_NZ.UTF-8</LANGUAGE>\n")
+        self.send("<LANGUAGE>%s</LANGUAGE>\n" % xml.sax.saxutils.escape(language))
         (self.client.username, self.client.password) = self.client.feedback.getLogin()
         if self.client.password is None:
             self.client._loginGuest(self.client.username)
@@ -443,13 +449,13 @@ class MainChannel(ChannelFeedback, protocol.ParserFeedback):
             # player remove event before we get the player list.
             return
             
-        player.room.nPlayers -= 1
         player.lastRoom = player.room
         player.room = room
         if player.room is not None:
             player.room.nPlayers += 1
             self.client.feedback.roomUpdated(player.room)
         if player.lastRoom is not None:
+            player.lastRoom.nPlayers -= 1
             self.client.feedback.roomUpdated(player.lastRoom)
         self.client.feedback.playerRemoved(player)
 
