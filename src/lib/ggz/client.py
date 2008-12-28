@@ -201,7 +201,6 @@ class MainChannel(ChannelFeedback, protocol.ParserFeedback):
             if code == 'ok':
                 self.client.setState(self.client.STATE_LIST_GAMES)
             else:
-                error = code
                 if code == 'usr lookup':
                     # Translators: GGZ disconnection error when the supplied password is incorrect
                     self.client.close(_('Incorrect password'))
@@ -211,6 +210,7 @@ class MainChannel(ChannelFeedback, protocol.ParserFeedback):
                 elif code == 'already logged in':
                     # Translators: GGZ disconnection error when the selected account is already in use
                     self.client.close(_('Account in use'))
+                    #FIXME: If guest then prompt for a new user or mangle username until one can be found
                     
                 elif code == 'wrong login type':
                     self.client.setState(self.client.STATE_GET_PASSWORD)
@@ -289,8 +289,12 @@ class MainChannel(ChannelFeedback, protocol.ParserFeedback):
         self.client.feedback.onChat(chatType, sender, text)
         
     def onJoin(self, tableId, isSpectator):
+        try:
+            table = self._getTable(tableId)
+        except KeyError:
+            print "Unknown JOIN with TABLE='%s'" % tableId
+            return
         self.client.setState(self.client.STATE_AT_TABLE)
-        table = self.client.tables[tableId]
         g = self.client.feedback.onJoin(table, isSpectator, self.client.channel)
         self.client.channel.setGame(g)
         
@@ -310,12 +314,14 @@ class MainChannel(ChannelFeedback, protocol.ParserFeedback):
         self.client.games[gameId] = game
 
     def roomAdded(self, roomId, gameId, name, description, nPlayers):
+        try:
+            game = self._getGame(gameId, optional = True)
+        except KeyError:
+            print "Unknown ROOM ADD with GAME='%s'" % gameId
+            return
         room = Room()
         room.id = roomId
-        try:
-            room.game = self.client.games[gameId]
-        except KeyError:
-            room.game = None
+        room.game = game
         room.name = name
         room.description = description
         room.nPlayers = int(nPlayers)
@@ -323,27 +329,45 @@ class MainChannel(ChannelFeedback, protocol.ParserFeedback):
         self.client.feedback.roomAdded(room)
 
     def roomPlayersUpdate(self, roomId, nPlayers):
-        room = self.client.rooms[roomId]
+        try:
+            room = self._getRoom(roomId)
+        except KeyError:
+            print "Unknown ROOM PLAYER UPDATE with ROOM='%s'" % roomId
+            return
         room.nPlayers = int(nPlayers)
         self.client.feedback.roomUpdated(room)
 
-    def tableAdded(self, roomId, tableId, gameId, status, nSeats, description):
+    def tableAdded(self, roomId, tableId, gameId, status, nSeats, description): 
+        try:
+            room = self._getRoom(roomId)
+            game = self._getGame(gameId)
+        except KeyError:
+            print "Unknown TABLE ADD with ROOM='%s' GAME='%s'" % (roomId, gameId)
+            return
         table = Table(int(nSeats))
         table.id = tableId
-        table.room = self.client.rooms[roomId]
-        table.game = self.client.games[gameId]
+        table.room = room
+        table.game = game
         table.status = status
         table.description = description
         self.client.tables[tableId] = table
         self.client.feedback.tableAdded(table)
 
     def tableStatusChanged(self, tableId, status):
-        table = self.client.tables[tableId]
+        try:
+            table = self._getTable(tableId)
+        except KeyError:
+            print "Unknown TABLE STATUS with TABLE='%s'" % tableId
+            return
         table.status = status
         self.client.feedback.tableUpdated(table)
 
     def seatChanged(self, roomId, tableId, seatId, seatType, user):
-        table = self.client.tables[tableId]
+        try:
+            table = self._getTable(tableId)
+        except KeyError:
+            print "Unknown SEAT CHANGE with TABLE='%s'" % tableId
+            return
         if table.room.id != roomId:
             return
         seat = table.seats[int(seatId)]
@@ -354,81 +378,100 @@ class MainChannel(ChannelFeedback, protocol.ParserFeedback):
     def tableRemoved(self, tableId):
         try:
             table = self.client.tables.pop(tableId)
-        except KeyError:
+        except KeyError: 
+            print "Unknown TABLE REMOVE with TABLE='%s'" % tableId           
             # We do not know of this table - this could occur if we receive a
             # table remove event before we get the table list.
             return
         self.client.feedback.tableRemoved(table)
         
-    def onPlayerList(self, room, players):
+    def onPlayerList(self, roomId, players):
+        try:
+            room = self._getRoom(roomId)
+            for p in players:
+                _ = self._getTable(p.tableId, optional = True)
+        except KeyError: 
+            print "Unknown PLAYER LIST with ROOM='%s'" % roomId
+            return
         self.client.players = {}
-        r = self.client.rooms[room]
         for p in players:
             player = Player()
             player.name = p.name
             player.type = p.type
-            try:
-                player.table = self.client.tables[p.table]
-            except KeyError:
-                player.table = None
+            player.table = self._getTable(p.tableId, optional = True)
             player.perms = p.perms
             player.lag = p.lag
-            player.room = r
+            player.room = room
             self.client.players[player.name] = player
 
-        r.nPlayers = len(players)
-        self.client.feedback.roomUpdated(r)
+        room.nPlayers = len(players)
+        self.client.feedback.roomUpdated(room)
 
-    def playerAdded(self, name, playerType, tableId, perms, lag, room, fromRoom):
+    def playerAdded(self, name, playerType, tableId, perms, lag, roomId, fromRoomId):
+        try:
+            room = self._getRoom(roomId, optional = True)
+            lastRoom = self.client.rooms[fromRoomId]
+            table = self._getTable(tableId, optional = True)
+        except KeyError:
+            print "Unknown PLAYER ADD with ROOM='%s' LASTROOM='%s' TABLE='%s'" % (roomId, fromRoomId, tableId)
+            return
         player = Player()
         player.name = name
         player.type = playerType
-        try:
-            player.table = self.client.tables[tableId]
-        except KeyError:
-            player.table = None
+        player.table = table
         player.perms = perms
         player.lag = lag
-        player.room = self.client.rooms[room]
-        player.room.nPlayers += 1
+        player.room = room
+        player.lastRoom = lastRoom
         self.client.players[player.name] = player
 
-        try:
-            player.lastRoom = self.client.rooms[fromRoom]
-        except KeyError:
-            player.lastRoom = None
-        else:
+        if player.lastRoom is not None:
             player.lastRoom.nPlayers -= 1
             self.client.feedback.roomUpdated(player.lastRoom)
-
-        self.client.feedback.roomUpdated(player.room)
+        if player.room is not None:
+            player.room.nPlayers += 1
+            self.client.feedback.roomUpdated(player.room)
         self.client.feedback.playerAdded(player)
 
-    def playerRemoved(self, name, room, toRoom):
+    def playerRemoved(self, name, roomId, toRoomId):
         try:
             player = self.client.players.pop(name)
+            room = self._getRoom(toRoomId, optional = True)
         except KeyError:
+            print "Unknown PLAYER REMOVE with NAME='%s' ROOM='%s' TOROOM='%s'" % (name, roomId, toRoomId)
             # We do not know of this player - this could occur if we receive a
             # player remove event before we get the player list.
             return
             
         player.room.nPlayers -= 1
         player.lastRoom = player.room
-        try:
-            player.room = self.client.rooms[toRoom]
-        except KeyError:
-            player.room = None
-        else:
+        player.room = room
+        if player.room is not None:
             player.room.nPlayers += 1
             self.client.feedback.roomUpdated(player.room)
-        
-        self.client.feedback.roomUpdated(player.lastRoom)
+        if player.lastRoom is not None:
+            self.client.feedback.roomUpdated(player.lastRoom)
         self.client.feedback.playerRemoved(player)
 
     def closed(self, errno = 0):
         # Translators: GGZ disconnection error when the network link has broken. %s is the system provided error
         self.client.close(_('Connection closed: %s') % os.strerror(errno))
+       
+    def _getGame(self, gameId, optional = False):
+        if optional and gameId == '-1':
+            return None
+        return self.client.games[gameId]
+
+    def _getRoom(self, roomId, optional = False):
+        if optional and roomId == '-1':
+            return None
+        return self.client.rooms[roomId]    
         
+    def _getTable(self, tableId, optional = False):
+        if optional and tableId == '-1':
+            return None
+        return self.client.tables[tableId]
+    
 class GameChannel(ChannelFeedback, protocol.ParserFeedback):
     
     def __init__(self, client, command):

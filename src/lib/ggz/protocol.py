@@ -313,7 +313,7 @@ class PlayerListParser(GGZParser):
     def childFinished(self, playerParser):
         playerParser.name = playerParser.attributes['ID']
         playerParser.type = playerParser.attributes['TYPE']
-        playerParser.table = playerParser.attributes['TABLE']
+        playerParser.tableId = playerParser.attributes['TABLE']
         try:
             playerParser.perms = playerParser.attributes['PERMS']
         except KeyError:
@@ -407,9 +407,9 @@ class PlayerUpdateParser(GGZParser):
             except KeyError:
                 perms = ''
             lag = parser.attributes['LAG']
-            room = self.attributes['ROOM']
-            fromRoom = self.attributes['FROMROOM']
-            self.decoder.feedback.playerAdded(name, playerType, table, perms, lag, room, fromRoom)
+            roomId = self.attributes['ROOM']
+            fromRoomId = self.attributes['FROMROOM']
+            self.decoder.feedback.playerAdded(name, playerType, table, perms, lag, roomId, fromRoomId)
         elif action == 'lag':
             playerId = parser.attributes['ID']
             lag = parser.attributes['LAG']
@@ -683,19 +683,24 @@ if __name__ == '__main__':
     f = F()
     d = chess.Chess(f);
 
-    for c in '\x01\x01\x06': # Seat seat=1 version=6
+    data = '\x01\x01\x06' # Seat seat=1 version=6
+    for c in data:
+        d.decode(c)
+        
+    data = '\x02\x03\x00\x00\x00\x0eglchess-test2\x00\x03\x00\x00\x00\x0dglchess-test\x00' # players type1=03 name1=glchess-test2 type2=03 name2=glchess-test
+    for c in data:
         d.decode(c)
 
-    for c in '\x02\x03\x00\x00\x00\x0eglchess-test2\x00\x03\x00\x00\x00\x0dglchess-test\x00': # players type1=03 name1=glchess-test2 type2=03 name2=glchess-test
-        d.decode(c)
-
-    for c in '\x04\x00\x00\x00\x00':  # rsp time time=0
+    data = '\x04\x00\x00\x00\x00'  # rsp time time=0
+    for c in data:
         d.decode(c)
 
     d.decode('\x05') # start
 
-    for c in '\x07\x00\x00\x00\x05F2F4\x00': # move move=F2F4
+    data = '\x07\x00\x00\x00\x05F2F4\x00' # move move=F2F4
+    for c in data:
         d.decode(c)
 
-    for c in '\x0a\x00\x00\x00\x00\x00\x00\x00\x00': # update
+    data = '\x0a\x00\x00\x00\x00\x00\x00\x00\x00' # update
+    for c in data:
         d.decode(c)
