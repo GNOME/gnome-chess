@@ -275,7 +275,7 @@ class GGZConnection(ggz.ClientFeedback):
         self.dialog.controller.joinTable(None)
 
     def playerAdded(self, player):
-        self.dialog.controller.addPlayer(player.name, player, self._getPlayerIcon(player))
+        self.dialog.controller.addPlayer(player, player.name, self._getPlayerIcon(player))
 
     def playerRemoved(self, player):
         self.dialog.controller.removePlayer(player)
