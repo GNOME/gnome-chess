@@ -225,9 +225,9 @@ class ChessGame(game.ChessGame):
         else:
             pgnGame.setTag(chess.pgn.TAG_RESULT, value)
 
-        rules = {game.RULE_RESIGN:  chess.pgn.TERMINATE_ABANDONED,
-                 game.RULE_TIMEOUT: chess.pgn.TERMINATE_TIME_FORFEIT,
-                 game.RULE_DEATH:   chess.pgn.TERMINATE_DEATH}
+        rules = {game.RULE_ABANDONMENT: chess.pgn.TERMINATE_ABANDONED,
+                 game.RULE_TIMEOUT:     chess.pgn.TERMINATE_TIME_FORFEIT,
+                 game.RULE_DEATH:       chess.pgn.TERMINATE_DEATH}
         try:
             value = rules[self.rule]
         except KeyError:

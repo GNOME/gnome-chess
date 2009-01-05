@@ -611,6 +611,9 @@ class GtkView(glchess.ui.ViewController):
                 description = _('The white player has resigned')
             else:
                 assert(False)
+        elif game.rule is glchess.game.RULE_ABANDONMENT:
+            # Translators: Message displayed when a game is abandoned
+            description = _('The game has been abandoned')                
         elif game.rule is glchess.game.RULE_DEATH:
             # Translators: Message displayed when the game ends due to a player dying
             description = _('One of the players has died')

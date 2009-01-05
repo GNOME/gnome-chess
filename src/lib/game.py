@@ -25,6 +25,7 @@ RULE_INSUFFICIENT_MATERIAL = 'INSUFFICIENT_MATERIAL'
 RULE_RESIGN                = 'RESIGN'
 RULE_DEATH                 = 'DEATH'
 RULE_AGREEMENT             = 'AGREEMENT'
+RULE_ABANDONMENT           = 'ABANDONMENT'
 
 class ChessMove:
     """
@@ -685,6 +686,9 @@ class ChessGame:
         else:
             assert(False)
         self.endGame(result, RULE_TIMEOUT)
+        
+    def abandon(self):
+        self.endGame(RESULT_DRAW, RULE_ABANDONMENT)
 
     def endGame(self, result, rule):
         if self.result != RESULT_IN_PROGRESS:

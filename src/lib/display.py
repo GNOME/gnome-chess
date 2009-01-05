@@ -557,7 +557,10 @@ class View(ui.ViewFeedback):
     def resign(self):
         """Called by ui.ViewFeedback"""
         p = self.game.getHumanPlayer()
-        if p is not None:
+        if p is None:
+            # If no human players then abandon game
+            self.game.abandon()
+        else:
             p.resign()
             
     def claimDraw(self):
