@@ -13,7 +13,51 @@ from defaults import *
 _ = gettext.gettext
 
 class GGZServer:
-    pass
+    def __init__(self, name):
+        self.name = name
+
+class GGZLine:
+    TYPE_BLANK   = 'BLANK'
+    TYPE_COMMENT = 'COMMENT'
+    TYPE_SECTION = 'SECTION'
+    TYPE_FIELD   = 'FIELD'
+    TYPE_INVALID = 'INVALID'
+    
+    def __init__(self, text):
+        self.text = text
+        self.section = None
+        try:
+            self.decode(text)
+        except ValueError, e:
+            self.type = GGZLine.TYPE_INVALID
+            print e
+
+    def decode(self, text):
+        content = text.strip()
+        if len(content) == 0:
+            self.type = GGZLine.TYPE_BLANK
+        elif content[0] == '#':
+            self.type = GGZLine.TYPE_COMMENT
+        elif content[0] == '[':
+            self.type = GGZLine.TYPE_SECTION
+            if content[-1] != ']':
+                raise ValueError('Invalid section line: %s' % repr(content))
+            self.name = content[1:-1].strip()
+            self.value = None
+        else:
+            self.type = GGZLine.TYPE_FIELD
+            try:
+                (name, value) = content.split('=', 1)
+            except ValueError:
+                raise ValueError('Invalid field line: %s' % repr(content))
+            else:
+                self.name = name.strip()
+                self.value = value.strip()
+            
+    def setValue(self, value):
+        assert(self.type is GGZLine.TYPE_FIELD)
+        self.value = value
+        self.text = '%s=%s' % (self.name, value)
 
 class GGZConfig:
     
@@ -23,66 +67,99 @@ class GGZConfig:
     
     def __init__(self):
         try:
-            lines = file(GGZ_CONFIG_FILE).readlines()
+            f = file(GGZ_CONFIG_FILE)
+            lines = f.readlines()
         except IOError:
-            print 'Failed to load GGZ config'
+            print 'Failed to load GGZ config: %s' % e.message
             lines = []
-        fields = {}
+            
+        self.lines = []
+
         section = None
-        for l in lines:
-            l = l.strip()
-            
-            # Skip empty lines or comments
-            if len(l) == 0 or l[0] == '#':
-                continue
-            
-            # Look for section headers
-            if l[0] == '[':
-                if l[-1] != ']':
-                    print 'Invalid section line: %s' % repr(l)
-                    continue
-                section = l[1:-1]
-                if not fields.has_key(section):
-                    fields[section] = {}
-                continue
-            
-            try:
-                (name, value) = l.split('=', 1)
-            except ValueError:
-                print 'Invalid field line: %s' % repr(l)
+        for text in lines:
+            line = GGZLine(text)
+            self.lines.append(line)
+
+            if line.type is GGZLine.TYPE_SECTION:
+                section = line.name
+                line.section = section
             else:
-                fields[section][name.strip()] = value.strip()
+                line.section = section
 
-        self.servers = []
+    def getField(self, section, name):
+        for line in self.lines:
+            if line.section != section or line.type is not GGZLine.TYPE_FIELD:
+                continue
+            if line.name == name:
+                return line.value
+        raise KeyError('No field %s in section %s' % (name, section))
+    
+    def setField(self, section, name, value):
+        wasInSection = False
+        inSection = False
+        for (index, line) in enumerate(self.lines):
+            wasInSection = inSection
+            if line.section == section:
+                inSection = True
+                if line.type is GGZLine.TYPE_FIELD and line.name == name:
+                    line.setValue(value)
+                    return
+            elif wasInSection and not inSection:
+                self.lines.insert(index, GGZLine('%s=%s' % (name, value), section))
+                return
+    
+    def removeSection(self, name):
+        keptLines = []
+        for line in self.lines:
+            if line.section != name:
+                keptLines.append(line)
+        self.lines = keptLines
+        
+    def getServers(self):        
         try:
-            value = fields['Servers']['ProfileList']
+            value = self.getField('Servers', 'ProfileList')
+        except KeyError, e:
+            return []
+
+        servers = []
+        for n in value.replace('\\ ', '\x00').split(' '):
+            name = n.replace('\x00', ' ')
+            try:
+                server = self.getServer(name)
+            except KeyError, e:
+                print e
+            else:
+                servers.append(server)
+        return servers
+    
+    def getServer(self, name):
+        server = GGZServer(name)
+
+        try:
+            server.host = self.getField(name, 'Host')
+            server.port = int(self.getField(name, 'Port'))
+            server.login = self.getField(name, 'Login')
+            server.loginType = int(self.getField(name, 'Type'))
+        except (KeyError, ValueError):
+            raise KeyError('Missing/invalid basic configuration for server %s' % repr(server.name))
+        
+        try:
+            server.password = self.getField(name, 'Password')
         except KeyError:
-            pass
-        else:
-            for n in value.replace('\\ ', '\x00').split(' '):
-                server = GGZServer()
-                server.name = n.replace('\x00', ' ')
-                
-                if not fields.has_key(server.name):
-                    print 'Missing server section %s' % repr(server.name)
-                    continue
-            
-                try:
-                    server.host = fields[server.name]['Host']
-                    server.port = int(fields[server.name]['Port'])
-                    server.login = fields[server.name]['Login']
-                    server.loginType = int(fields[server.name]['Type'])
-                except (KeyError, ValueError):
-                    print 'Missing/invalid basic configuration for server %s' % repr(server.name)
-                    continue
+            server.password = None
 
-                try:
-                    server.password = fields[server.name]['Password']
-                except KeyError:
-                    server.password = None
-
-                self.servers.append(server)
+        return server
                 
+    def save(self):
+        lines = []
+        for line in self.lines:
+            lines.append(line.text)
+        try:
+            f = file(GGZ_CONFIG_FILE, 'w')
+            f.writelines(lines)
+        except IOError, e:
+            print 'Failed to save GGZ config: %s' % e.message
+
 class GGZChannel(ggz.Channel):
     def __init__(self, ui, feedback):
         self.buffer = ''

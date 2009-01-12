@@ -339,7 +339,7 @@ class UI(ui.UIFeedback):
         self.ggzConfig = network.GGZConfig()
         dialog = network.GGZNetworkDialog(self)
         self.networkDialog = dialog.controller = self.controller.addNetworkDialog(dialog)
-        for server in self.ggzConfig.servers:
+        for server in self.ggzConfig.getServers():
             dialog.controller.addProfile(server, server.name)
 
     def onAnimate(self, timeStep):
