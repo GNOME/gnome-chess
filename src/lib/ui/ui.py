@@ -33,6 +33,9 @@ class Game:
 class NetworkFeedback:
     """Template class for feedback from a network game selector"""
     
+    def addProfile(self, profile):
+        assert(False)
+    
     def setProfile(self, profile):
         assert(False)
     
@@ -313,7 +316,7 @@ class UIFeedback:
         """
         """
         assert(False)
-
+        
     def onQuit(self):
         """Called when the user quits the program"""
         assert(False)

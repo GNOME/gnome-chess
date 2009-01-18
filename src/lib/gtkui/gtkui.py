@@ -436,31 +436,16 @@ class GtkUI(glchess.ui.UI):
 
     def addNetworkDialog(self, feedback):
         """Extends glchess.ui.UI"""
-        # Create the dialog
-        dialog = network.GtkNetworkGameDialog(self, feedback, self.__playerModel)
-        self.__joinGameDialogs.append(dialog)
-        
-        # Add the detected games into the dialog
-        #for (game, name) in self.__networkGames.iteritems():
-        #    dialog.addNetworkGame(name, game)
-        
-        return dialog
+        self.__networkDialog = network.GtkNetworkGameDialog(self, feedback)
+        return self.__networkDialog
                                  
     def addNetworkGame(self, name, game):
         """Extends glchess.ui.UI"""
-        self.__networkGames[game] = name
-        
-        # Update the open dialogs
-        for dialog in self.__joinGameDialogs:
-            dialog.addNetworkGame(name, game)
+        self.__networkDialog.addNetworkGame(name, game)
 
     def removeNetworkGame(self, game):
         """Extends glchess.ui.UI"""
-        self.__networkGames.pop(game)
-
-        # Update the open dialogs
-        for dialog in self.__joinGameDialogs:
-            dialog.removeNetworkGame(game)
+        self.__networkDialog.removeNetworkGame(game)
             
     def requestSave(self, title):
         """Extends glchess.ui.UI"""

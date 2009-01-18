@@ -10,19 +10,95 @@ import glchess.ui
 
 _ = gettext.gettext
 
+class GtkNetworkAddDialog:
+    def __init__(self, networkDialog, parent):
+        self.__networkDialog = networkDialog
+
+        # Load the UI
+        self.__gui = gtkui.loadGladeFile('network_game.glade', 'add_account_dialog')
+        self.__gui.signal_autoconnect(self)
+        
+        self.__gui.get_widget('add_account_dialog').set_transient_for(parent)
+        
+        # FIXME: Hard-coded servers       
+        # name, host, port
+        self.serverModel = gtk.ListStore(str, str, int)
+        # Translators: Add Network Profile Dialog: Connect to the GGZ Gaming Zone server (the default)
+        self.serverModel.set(self.serverModel.append(), 0, _("GGZ Gaming Zone"), 1, "gnome.ggzgamingzone.org", 2, 5688)
+        # Translators: Add Network Profile Dialog: Use a custom server
+        self.serverModel.set(self.serverModel.append(), 0, _("Custom"), 1, "", 2, 5688)
+        
+        widget = self.__gui.get_widget('server_combo')
+        widget.set_model(self.serverModel)
+        cell = gtk.CellRendererText()
+        widget.pack_start(cell, False)
+        widget.add_attribute(cell, 'text', 0)
+        widget.set_model(self.serverModel)
+        widget.set_active(0)
+
+    def setVisible(self, isVisible):
+        widget = self.__gui.get_widget('add_account_dialog')
+        if isVisible:
+            widget.present()
+        else:
+            widget.hide()
+            self.clear()
+            
+    def clear(self):
+        self.__gui.get_widget('server_combo').set_active(0)
+        self.__gui.get_widget('username_entry').set_text('')        
+            
+    def _on_server_changed(self, widget):
+        widget = self.__gui.get_widget('server_combo')
+        model = widget.get_model()
+        iter = widget.get_active_iter()
+        (host,) = model.get(iter, 1)
+        (port,) = model.get(iter, 2)
+        self.__gui.get_widget('host_entry').set_text(host)
+        self.__gui.get_widget('port_spin').set_value(port)
+        table = self.__gui.get_widget('custom_server_table')
+        if host == '':
+            table.show()
+        else:
+            table.hide()
+            
+    def have_data(self):
+        username = self.__gui.get_widget('username_entry').get_text()
+        host = self.__gui.get_widget('host_entry').get_text()
+        return username != '' and host != ''
+
+    def _on_input_changed(self, widget):
+        self.__gui.get_widget('add_button').set_sensitive(self.have_data())
+
+    def _on_username_activate(self, widget):
+        if self.have_data():
+            self._on_response(None, gtk.RESPONSE_OK)
+
+    def _on_response(self, widget, response_id):
+        username = self.__gui.get_widget('username_entry').get_text()
+        host = self.__gui.get_widget('host_entry').get_text()
+        port = self.__gui.get_widget('port_spin').get_value_as_int()
+        name = '%s@%s' % (username, host) # FIXME
+        
+        if response_id == gtk.RESPONSE_OK:
+            profile = self.__networkDialog.feedback.addProfile((name, username, host, port))
+            self.__networkDialog.addProfile(profile, profile.name, useNow = True)
+        
+        self.__gui.get_widget('add_account_dialog').hide()
+        self.clear()
+            
+    def _on_delete(self, widget, event):
+        # Hide; don't delete this window
+        return True
+
 class GtkNetworkGameDialog(glchess.ui.NetworkController):
     """
     """
-    # The main UI and the ???
-    __mainUI = None
-    __gui = None
-
-    def __init__(self, mainUI, feedback, aiModel):
+    def __init__(self, mainUI, feedback):
         """Constructor for a new game dialog.
         
         'mainUI' is the main UI.
         'feedback' is the object to feedback events with.
-        'aiModel' is the AI models to use.
         """
         self.__mainUI = mainUI
         self.feedback = feedback
@@ -31,17 +107,26 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         self.__gui = gtkui.loadGladeFile('network_game.glade', 'network_game_dialog')
         self.__gui.signal_autoconnect(self)
         
-        self.profileModel = gtk.ListStore(gobject.TYPE_PYOBJECT, str)
-        iter = self.profileModel.append()
-        # Translators: Server Combo Box: Not connected to a server
-        self.profileModel.set(iter, 0, None, 1, _('Disconnected'))
+        # Selected profile
+        self.__profile = None
         
+        self.profileModel = gtk.ListStore(gobject.TYPE_PYOBJECT, gobject.TYPE_PYOBJECT, str)
+        # Translators: Server Combo Box: Not connected to a server
+        self.profileModel.set(self.profileModel.append(), 0, None, 1, self._set_profile, 2, _('Disconnected'))
+        self.profileModelSuffixCount = 0
+        self.profileModel.set(self.profileModel.append(), 1, None)
+        self.profileModelSuffixCount += 1
+        # Translators: Server Combo Box: Add new profile
+        self.profileModel.set(self.profileModel.append(), 0, None, 1, self._new_profile, 2, _('New profile...'))
+        self.profileModelSuffixCount += 1
+
         widget = self.__gui.get_widget('server_combo')
         widget.set_model(self.profileModel)
+        widget.set_active(0)
+        widget.set_row_separator_func(self._is_profile_model_separator)
         cell = gtk.CellRendererText()
         widget.pack_start(cell, False)
-        widget.add_attribute(cell, 'text', 1)
-        #FIXME: delay this: widget.set_active_iter(iter)
+        widget.add_attribute(cell, 'text', 2)
 
         # room object, index, name, num players, description, font weight, font style, icon_name
         self.roomModel = gtk.TreeStore(gobject.TYPE_PYOBJECT, int, str, str, str, int, int, str)
@@ -131,6 +216,8 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         buffer.create_mark('end', buffer.get_end_iter())
         
         mainUI.setTooltipStyle(self.__gui.get_widget('info_panel'))
+        
+        self.__addProfileDialog = GtkNetworkAddDialog(self, self.__gui.get_widget('network_game_dialog'))
 
     # Extended methods
         
@@ -138,8 +225,14 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         """Called by glchess.ui.NetworkController"""
         widget = self.__gui.get_widget('network_game_dialog')
         if isVisible:
-            widget.show()
+            widget.present()
+            
+            # Prompt for new profile if none configured
+            # FIXME: Make this clearer this is the count of non-profile elements in the combo
+            if len(self.profileModel) <= (self.profileModelSuffixCount + 1):
+                self.__addProfileDialog.setVisible(True)
         else:
+            self.__addProfileDialog.setVisible(False)
             widget.hide()
             
     def setSensitive(self, isSensitive):
@@ -154,10 +247,12 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
     def clearError(self):
         self.__gui.get_widget('info_panel').hide()
 
-    def addProfile(self, profile, name):
+    def addProfile(self, profile, name, useNow = False):
         """Called by glchess.ui.UIController"""
-        iter = self.profileModel.append()
-        self.profileModel.set(iter, 0, profile, 1, name)
+        iter = self.profileModel.insert(len(self.profileModel) - self.profileModelSuffixCount)
+        self.profileModel.set(iter, 0, profile, 1, self._set_profile, 2, name)        
+        if self.__profile is None and useNow:
+            self.__gui.get_widget('server_combo').set_active_iter(iter)
 
     def setBusy(self, isBusy):
         """Called by glchess.ui.UIController"""
@@ -462,6 +557,26 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         # Inform the child class
         self.__mainUI.feedback.onGameStart(game)
         
+    def _is_profile_model_separator(self, model, iter):
+        return model.get(iter, 1)[0] is None
+
+    def _set_profile(self, profile):
+        if profile != self.__profile:
+            self.__profile = profile
+            self.feedback.setProfile(profile)
+            
+    def __selectActiveProfile(self):
+        iter = self.profileModel.get_iter_first()
+        while iter is not None:
+            if self.__profile == self.profileModel.get_value(iter, 0):
+                break
+            iter = self.profileModel.iter_next(iter)
+        self.__gui.get_widget('server_combo').set_active_iter(iter)
+
+    def _new_profile(self, profile):
+        self.__selectActiveProfile()
+        self.__addProfileDialog.setVisible(True)
+
     # Gtk+ signal handlers
     
     def _on_table_selected(self, selection):
@@ -481,9 +596,10 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         """Gtk+ callback"""
         model = widget.get_model()
         iter = widget.get_active_iter()
+        (method,) = model.get(iter, 1)
         (profile,) = model.get(iter, 0)
-        self.feedback.setProfile(profile)
-    
+        method(profile)
+
     def _on_chat_entry_activate(self, widget):
         """Gtk+ callback"""
         text = widget.get_text()

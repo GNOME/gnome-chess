@@ -57,7 +57,7 @@ class GGZLine:
     def setValue(self, value):
         assert(self.type is GGZLine.TYPE_FIELD)
         self.value = value
-        self.text = '%s=%s' % (self.name, value)
+        self.text = '%s=%s\n' % (self.name, value)
 
 class GGZConfig:
     
@@ -105,8 +105,22 @@ class GGZConfig:
                     line.setValue(value)
                     return
             elif wasInSection and not inSection:
-                self.lines.insert(index, GGZLine('%s=%s' % (name, value), section))
+                line = GGZLine('%s=%s\n' % (name, value))
+                line.section = section
+                self.lines.insert(index, line)
                 return
+        
+        # New section            
+        if not wasInSection:
+            if len(self.lines) > 0:
+                self.lines.append(GGZLine('\n'))
+            line = GGZLine('[%s]\n' % section)
+            line.section = section
+            self.lines.append(line)
+
+        line = GGZLine('%s=%s\n' % (name, value))
+        line.section = section
+        self.lines.append(line)
     
     def removeSection(self, name):
         keptLines = []
@@ -149,6 +163,21 @@ class GGZConfig:
             server.password = None
 
         return server
+    
+    def updateServer(self, name, username, host, port):
+        self.setField(name, 'Host', host)
+        self.setField(name, 'Port', port)
+        self.setField(name, 'Login', username)
+        self.setField(name, 'Type', GGZConfig.TYPE_GUEST) # FIXME: Hardcoded
+        
+        try:
+            servers = self.getField('Servers', 'ProfileList')
+        except KeyError, e:
+            self.setField('Servers', 'ProfileList', name.replace(' ', '\\ '))
+        else:
+            self.setField('Servers', 'ProfileList', servers + ' ' + name.replace(' ', '\\ '))
+
+        self.save()
                 
     def save(self):
         lines = []
@@ -431,6 +460,28 @@ class GGZNetworkDialog(ui.NetworkFeedback):
         self.buffer = ''
         self.profile = None
         self.decoder = None
+        
+    def addProfile(self, profile):
+        """Called by ui.NetworkFeedback"""
+        (name, username, host, port) = profile
+
+        # Make name unique
+        n = name
+        dupCount = 1
+        while True:
+            try:
+                self.ui.ggzConfig.getServer(n)
+            except KeyError:
+                break
+            else:
+                dupCount += 1
+                n = '%s (%d)' % (name, dupCount)
+        name = n
+        
+        self.ui.ggzConfig.updateServer(name, username, host, port)
+        
+        # FIXME: Return value is temporary
+        return self.ui.ggzConfig.getServer(name)
 
     def setProfile(self, profile):
         """Called by ui.NetworkFeedback"""

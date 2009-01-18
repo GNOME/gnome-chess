@@ -409,7 +409,7 @@ class UI(ui.UIFeedback):
     def onNewNetworkGame(self):
         """Called by ui.UIFeedback"""
         self.networkDialog.setVisible(True)
-
+        
     def onQuit(self):
         """Called by ui.UIFeedback"""
         self.application.quit()

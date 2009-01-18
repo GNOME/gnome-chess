@@ -129,7 +129,7 @@ class Texture:
                          self.__width,     # Width
                          self.__height,    # Height
                          0,                # Border
-                         GL_RGB,           # Format
+                         self.__format,    # Format
                          GL_UNSIGNED_BYTE, # Type
                          self.__data)
         
@@ -143,7 +143,7 @@ class Texture:
         if self.__texture is None:
             self.__texture = self.__generate()
             self.__data = None
-        
+
         # Use texture
         glBindTexture(GL_TEXTURE_2D, self.__texture)
         
