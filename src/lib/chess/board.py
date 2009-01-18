@@ -201,6 +201,9 @@ class ChessBoardState:
     
     # The move that got us to this state
     lastMove        = None
+    
+    # Pieces moved that got us to this state
+    moves           = None
 
     # If the last move was a pawn march the location where it can be taken by en-passant
     enPassantSquare = None
@@ -215,10 +218,11 @@ class ChessBoardState:
     
     # Flag to show if the previous move has caused a three fold repition
     threeFoldRepetition = False
-    
+
+    # Bitboards
     whiteBitBoard = 0
     blackBitBoard = 0
-    allBitBoard = 0
+    allBitBoard   = 0
 
     def __init__(self, lastState = None):
         """Constuctor for storing the state of a chess board.
@@ -243,6 +247,7 @@ class ChessBoardState:
             self.moveNumber = 0
             self.squares = {}
             self.casualties = []
+            self.moves = []
             self.whiteState = ChessPlayerState()
             self.blackState = ChessPlayerState()
             
@@ -251,6 +256,7 @@ class ChessBoardState:
             self.moveNumber = 0
             self.squares = {}
             self.casualties = []
+            self.moves = []            
             self.whiteBitBoard = 0
             self.blackBitBoard = 0
             self.allBitBoard = 0
@@ -275,6 +281,7 @@ class ChessBoardState:
             self.squares = lastState.squares.copy()
             self.casualties = lastState.casualties[:]
             self.lastMove = lastState.lastMove
+            self.moves = lastState.moves[:]
             self.enPassantSquare = lastState.enPassantSquare
             self.whiteState = ChessPlayerState(lastState.whiteState)
             self.blackState = ChessPlayerState(lastState.blackState)
@@ -352,8 +359,7 @@ class ChessBoardState:
 
             # See if this piece can take
             board = ChessBoardState(self)
-            move = board.movePiece(enemyPiece.getColour(), enemyCoord, location, testCheck = False, applyMove = False)
-            if move is not None:
+            if board.movePiece(enemyPiece.getColour(), enemyCoord, location, testCheck = False, applyMove = False):
                 return True
             
         return False
@@ -375,8 +381,7 @@ class ChessBoardState:
             for rank in 'abcdefgh':
                 for file in '12345678':
                     board = ChessBoardState(self)
-                    move = board.movePiece(colour, coord, rank + file, applyMove = False)
-                    if move is not None:
+                    if board.movePiece(colour, coord, rank + file, applyMove = False):
                         return True
 
         return False
@@ -693,6 +698,8 @@ class ChessBoardState:
             self.allBitBoard = allBitBoard
             
         else:
+            self.moves = result
+            
             # Remember the casualties
             if victim is not None:
                 self.casualties.append(victim)
@@ -867,12 +874,11 @@ class ChessBoard:
         assert(self.__inCallback is False)
         
         state = ChessBoardState(self.__boardStates[moveNumber])
-        moves = state.movePiece(colour, start, end, promotionType = promotionType, allowSuicide = False)
-        if moves is None:
+        if not state.movePiece(colour, start, end, promotionType = promotionType, allowSuicide = False):
             return None
 
         victim = None
-        for (piece, start, end, delete) in moves:
+        for (piece, start, end, delete) in state.moves:
             # The victim is the enemy piece that has been deleted
             if delete and piece.getColour() != colour:
                 victim = piece
@@ -899,13 +905,22 @@ class ChessBoard:
         if not test:
             self.__boardStates.append(state)
         move = Move()
-        move.moves = moves
+        move.moves = state.moves
         move.victim = victim
         move.opponentInCheck = state.inCheck(opponentColour)
         move.opponentCanMove = state.canMove(opponentColour)
         move.threeFoldRepetition = state.threeFoldRepetition
         move.fiftyMoveRule = state.fiftyMoveCount >= 50
         return move
+    
+    def undo(self):
+        """Undo the last move"""
+        undoState = self.__boardStates[-1]
+        self.__boardStates = self.__boardStates[:-1]
+
+        # Undo the moves
+        for (piece, start, end, delete) in undoState.moves:
+            self.__onPieceMoved(piece, end, start, False)
 
     def __str__(self):
         """Returns a representation of the current board state"""

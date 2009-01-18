@@ -39,7 +39,7 @@ class MovePlayer(game.ChessPlayer):
 
     def onPlayerMoved(self, p, move):
         self.view._redrawHighlight()
-            
+        
     def onPlayerStartTurn(self, player):
         self.view._redrawHighlight()
 
@@ -312,6 +312,10 @@ class Splashscreen(ui.ViewFeedback):
 
     def selectSquare(self, coord):
         pass
+    
+    def undo(self):
+        """Called by ui.ViewFeedback"""
+        pass
 
     def resign(self):
         """Called by ui.ViewFeedback"""
@@ -553,6 +557,12 @@ class View(ui.ViewFeedback):
         if self.game.inHistory:
             return None
         return self.game.fileName
+    
+    def undo(self):
+        """Called by ui.ViewFeedback"""
+        p = self.game.getHumanPlayer()
+        if p is not None:
+            p.undo()
         
     def resign(self):
         """Called by ui.ViewFeedback"""

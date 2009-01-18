@@ -116,6 +116,16 @@ class StateMachine:
             blackTime = 30000
             
         self.__sendCommand('go wtime %d btime %d' % (whiteTime, blackTime))
+        
+    def undoMove(self):
+        """
+        """
+        self.__sendCommand('stop');
+        (self.__positionCommand, _) = self.__positionCommand.rsplit(" ", 1)
+        if self.__positionCommand.endswith(' moves'):
+            self.__haveMoves = False
+            self.__positionCommand = 'position startpos'
+        self.__sendCommand(self.__positionCommand)        
 
     def reportMove(self, move, isSelf):
         """
@@ -125,7 +135,7 @@ class StateMachine:
         self.__haveMoves = True
         self.__positionCommand += ' ' + move
         self.__sendCommand(self.__positionCommand)
-        
+
     def parseLine(self, line):
         """
         """

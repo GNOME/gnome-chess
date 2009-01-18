@@ -359,6 +359,10 @@ class Player(game.ChessPlayer):
         isSelf = player is self and self.moving
         self.moving = False
         self.connection.reportMove(move.canMove, isSelf)
+        
+    def onUndoMove(self):
+        """Called by game.ChessPlayer"""
+        self.connection.undoMove()
 
     def readyToMove(self):
         """Called by game.ChessPlayer"""

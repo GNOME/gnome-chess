@@ -96,6 +96,10 @@ class CECPProtocol:
         """Stop the AI from automatically moving"""
         self.onOutgoingData('force\n')
         
+    def sendUndo(self):
+        """Undo the last move"""
+        self.onOutgoingData('undo\n')
+        
     def sendMovePrompt(self):
         """Get the AI to move for the current player"""
         self.onOutgoingData('go\n')
@@ -206,6 +210,11 @@ class Connection(CECPProtocol):
         # Prompt the AI to move
         self.sendMovePrompt()
         
+    def undoMove(self):
+        """Undo the last move made by this AI"""
+        self.sendWait()
+        self.sendUndo()
+
     def reportMove(self, move, isSelf):
         """Report the move the current player has made.
         

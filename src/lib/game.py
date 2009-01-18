@@ -105,6 +105,9 @@ class ChessPlayer:
         """
         pass
     
+    def onUndoMove(self):
+        pass
+    
     def onPlayerStartTurn(self, player):
         pass
 
@@ -169,6 +172,10 @@ class ChessPlayer:
         'move' is the move to make in Normal/Long/Standard Algebraic format (string).
         """
         self.__game.move(self, move)
+        
+    def undo(self):
+        """Undo moves until it is this players turn"""
+        self.__game.undo(self)
         
     def endMove(self):
         """Complete this players turn"""
@@ -495,6 +502,39 @@ class ChessGame:
         else:
             self._move(player, move)
 
+        self.endLock()
+
+    def undo(self, player):
+        if self.__inCallback:
+            self.__queuedCalls.append((self.undo, (player,)))
+            return
+        
+        self.startLock()
+        
+        self.__whitePlayer._setReadyToMove(False)
+        self.__blackPlayer._setReadyToMove(False)
+        
+        # Pretend the current player is the oponent so when endMove() is called
+        # this player will become the active player.
+        # Yes, this IS a big hack...
+        if player is self.__whitePlayer:
+            self.__currentPlayer = self.__blackPlayer
+        else:
+            self.__currentPlayer = self.__whitePlayer
+        
+        # If this player hasn't moved then undo oponents move before their one
+        if len(self.__moves) > 0 and self.__moves[-1].player is not player:
+            count = 2
+        else:
+            count = 1
+            
+        for i in xrange(count):
+            if len(self.__moves) != 0:
+                self.board.undo()
+                self.__moves = self.__moves[:-1]
+                for p in self.__players:
+                    p.onUndoMove()
+        
         self.endLock()
         
     def startLock(self):

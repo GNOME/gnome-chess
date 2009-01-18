@@ -38,7 +38,7 @@
 	  <child>
 	    <widget class="GtkMenuItem" id="menuitem1">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes" comments="The Game menu">_Game</property>
+	      <property name="label" translatable="yes">_Game</property>
 	      <property name="use_underline">True</property>
 
 	      <child>
@@ -90,13 +90,13 @@
 		  <child>
 		    <widget class="GtkImageMenuItem" id="menu_play_online_item">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes" comments="The Game|Network Game menu">Network _Game</property>
+		      <property name="label" translatable="yes">Network _Game</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="_on_join_game_button_clicked" last_modification_time="Sun, 30 Jul 2006 14:16:15 GMT"/>
 		      <accelerator key="L" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image109">
+			<widget class="GtkImage" id="image121">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-network</property>
 			  <property name="icon_size">1</property>
@@ -116,14 +116,36 @@
 		  </child>
 
 		  <child>
+		    <widget class="GtkImageMenuItem" id="menu_undo_move">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">_Undo Move</property>
+		      <property name="use_underline">True</property>
+		      <signal name="activate" handler="_on_undo_move_clicked" last_modification_time="Fri, 02 Jan 2009 04:57:07 GMT"/>
+		      <accelerator key="Z" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image122">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-undo</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
+		    </widget>
+		  </child>
+
+		  <child>
 		    <widget class="GtkImageMenuItem" id="menu_resign">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes" comments="The Game|Resign menu">_Resign</property>
+		      <property name="label" translatable="yes">_Resign</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="_on_resign_clicked" last_modification_time="Sun, 20 Jan 2008 19:45:39 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image110">
+			<widget class="GtkImage" id="image123">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-dialog-warning</property>
 			  <property name="icon_size">1</property>
@@ -139,12 +161,12 @@
 		  <child>
 		    <widget class="GtkImageMenuItem" id="menu_claim_draw">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes" comments="The Game|Claim Draw menu">Claim _Draw</property>
+		      <property name="label" translatable="yes">Claim _Draw</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="_on_claim_draw_clicked" last_modification_time="Sun, 20 Jan 2008 19:45:39 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image111">
+			<widget class="GtkImage" id="image124">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-delete</property>
 			  <property name="icon_size">1</property>
@@ -179,7 +201,7 @@
 	  <child>
 	    <widget class="GtkMenuItem" id="menuitem3">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes" comments="The View menu">_View</property>
+	      <property name="label" translatable="yes">_View</property>
 	      <property name="use_underline">True</property>
 
 	      <child>
@@ -188,13 +210,13 @@
 		  <child>
 		    <widget class="GtkImageMenuItem" id="menu_fullscreen">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes" comments="The View|Fullscreen menu">_Fullscreen</property>
+		      <property name="label" translatable="yes">_Fullscreen</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="_on_view_fullscreen_clicked" last_modification_time="Mon, 30 Oct 2006 21:20:40 GMT"/>
 		      <accelerator key="F11" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image112">
+			<widget class="GtkImage" id="image125">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-fullscreen</property>
 			  <property name="icon_size">1</property>
@@ -209,13 +231,13 @@
 
 		  <child>
 		    <widget class="GtkImageMenuItem" id="menu_leave_fullscreen">
-		      <property name="label" translatable="yes" comments="The View|Leave Fullscreen menu">Leave _Fullscreen</property>
+		      <property name="label" translatable="yes">Leave _Fullscreen</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="_on_view_unfullscreen_clicked" last_modification_time="Mon, 30 Oct 2006 21:43:10 GMT"/>
 		      <accelerator key="F11" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image113">
+			<widget class="GtkImage" id="image126">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-leave-fullscreen</property>
 			  <property name="icon_size">1</property>
@@ -231,7 +253,7 @@
 		  <child>
 		    <widget class="GtkCheckMenuItem" id="menu_view_3d">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes" comments="The View|3D Chess View menu">3_D Chess View</property>
+		      <property name="label" translatable="yes">3_D Chess View</property>
 		      <property name="use_underline">True</property>
 		      <property name="active">False</property>
 		      <signal name="activate" handler="_on_toggle_3d_clicked" last_modification_time="Thu, 14 Sep 2006 19:40:59 GMT"/>
@@ -241,7 +263,7 @@
 		  <child>
 		    <widget class="GtkCheckMenuItem" id="menu_view_logs">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes" comments="The View|Show Logs menu">Show _Logs</property>
+		      <property name="label" translatable="yes">Show _Logs</property>
 		      <property name="use_underline">True</property>
 		      <property name="active">False</property>
 		      <signal name="activate" handler="_on_show_logs_clicked" last_modification_time="Sat, 01 Sep 2007 15:42:25 GMT"/>
@@ -255,7 +277,7 @@
 	  <child>
 	    <widget class="GtkMenuItem" id="settings">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes" comments="The Settings menu">_Settings</property>
+	      <property name="label" translatable="yes">_Settings</property>
 	      <property name="use_underline">True</property>
 
 	      <child>
@@ -266,10 +288,7 @@
 		      <property name="visible">True</property>
 		      <property name="label">gtk-preferences</property>
 		      <property name="use_stock">True</property>
-		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="_on_preferences_clicked" last_modification_time="Sun, 20 Jan 2008 17:28:02 GMT"/>
-
-		      
 		    </widget>
 		  </child>
 		</widget>
@@ -280,7 +299,7 @@
 	  <child>
 	    <widget class="GtkMenuItem" id="help2">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes" comments="The Help menu">_Help</property>
+	      <property name="label" translatable="yes">_Help</property>
 	      <property name="use_underline">True</property>
 
 	      <child>
@@ -288,12 +307,12 @@
 
 		  <child>
 		    <widget class="GtkImageMenuItem" id="menu_help">
-		      <property name="label" translatable="yes" comments="The Help|Contents menu">_Contents</property>
+		      <property name="label" translatable="yes">_Contents</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="_on_help_clicked" last_modification_time="Fri, 11 Aug 2006 12:43:28 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image115">
+			<widget class="GtkImage" id="image127">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-help</property>
 			  <property name="icon_size">1</property>
@@ -396,6 +415,23 @@
 	      <property name="visible_vertical">True</property>
 	      <property name="is_important">False</property>
 	      <signal name="clicked" handler="_on_save_game_button_clicked" last_modification_time="Thu, 09 Feb 2006 19:53:03 GMT"/>
+	    </widget>
+	    <packing>
+	      <property name="expand">False</property>
+	      <property name="homogeneous">True</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkToolButton" id="undo_move_button">
+	      <property name="visible">True</property>
+	      <property name="label" translatable="yes" comments="The tooltip for the Resign toolbar button">Undo Move</property>
+	      <property name="use_underline">True</property>
+	      <property name="stock_id">gtk-undo</property>
+	      <property name="visible_horizontal">True</property>
+	      <property name="visible_vertical">True</property>
+	      <property name="is_important">False</property>
+	      <signal name="clicked" handler="_on_undo_move_clicked" last_modification_time="Fri, 02 Jan 2009 04:58:33 GMT"/>
 	    </widget>
 	    <packing>
 	      <property name="expand">False</property>

@@ -648,10 +648,6 @@ class Application:
 
         return newGame
 
-    def addMove(self, view, move):
-        # TEMP
-        self.ui.controller.addMove(view, move)
-
     def start(self):
         """Run glChess.
         

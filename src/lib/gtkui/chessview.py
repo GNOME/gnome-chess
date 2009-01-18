@@ -570,6 +570,13 @@ class GtkView(glchess.ui.ViewController):
             
             self.ui._updateViewButtons()
 
+    def undoMove(self):
+        """Extends glchess.ui.ViewController"""
+        iter = self.moveModel.iter_nth_child(None, len(self.moveModel) - 1)
+        self.moveModel.remove(iter)
+        self.selectedMove = -1
+        self.ui._updateViewButtons()        
+
     def endGame(self, game):
         # Translators: Message displayed when a player wins. The %s is substituted with the winning player's name
         format = _('%s wins')

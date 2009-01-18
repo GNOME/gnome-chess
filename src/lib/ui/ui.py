@@ -206,6 +206,10 @@ class ViewFeedback:
         'filename' is the file to save to (string or None to save to last filename).
         """
         assert(False)
+        
+    def undo(self):
+        """Indicates the human player wants to undo their last move"""
+        assert(False)
     
     def regsign(self):
         """Indicates the human player wants to resign"""
@@ -237,6 +241,10 @@ class ViewController:
         
         'move' is the move made (string).
         """
+        assert(False)
+        
+    def undoMove(self):
+        """Remove the last move from this view"""
         assert(False)
     
     def render(self):

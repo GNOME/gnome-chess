@@ -821,6 +821,10 @@ Please contact your system administrator to resolve these problems, until then y
         except KeyError:
             dialog = self.__saveGameDialogs[self.view] = dialogs.GtkSaveGameDialog(self, self.view, self.view.feedback.getFileName())
         dialog.window.present()
+        
+    def _on_undo_move_clicked(self, widget):
+        """Gtk+ callback"""
+        self.view.feedback.undo()
 
     def _on_resign_clicked(self, widget):
         """Gtk+ callback"""

@@ -40,6 +40,9 @@ class MovePlayer(game.ChessPlayer):
             p.endMove()
             
         self.__game.view.controller.addMove(move)
+        
+    def onUndoMove(self):
+        self.__game.view.controller.undoMove()
 
     def onGameEnded(self, game):
         """Called by chess.board.ChessPlayer"""
