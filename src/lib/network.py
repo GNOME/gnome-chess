@@ -69,7 +69,7 @@ class GGZConfig:
         try:
             f = file(GGZ_CONFIG_FILE)
             lines = f.readlines()
-        except IOError:
+        except IOError, e:
             print 'Failed to load GGZ config: %s' % e.message
             lines = []
             
