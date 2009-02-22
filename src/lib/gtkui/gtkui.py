@@ -20,12 +20,6 @@ import gtk.glade
 import gtk.gdk
 import cairo
 import pango
-try:
-    import gnome, gnome.ui
-except ImportError:
-    haveGnomeSupport = False
-else:
-    haveGnomeSupport = True
 
 from glchess.defaults import *
 
@@ -197,10 +191,6 @@ class GtkUI(glchess.ui.UI):
 
     def __init__(self, feedback):
         """Constructor for a GTK+ glChess GUI"""
-        if haveGnomeSupport:
-            gnome.program_init('glchess', VERSION,
-                               properties={gnome.PARAM_APP_DATADIR: APP_DATA_DIR})
-
         self.feedback = feedback
         self._watches = {}
         self.__networkGames = {}
@@ -250,10 +240,6 @@ class GtkUI(glchess.ui.UI):
         cell = gtk.CellRendererText()
         combo.pack_start(cell, False)
         combo.add_attribute(cell, 'text', 2)
-
-        # Disble help support
-        if haveGnomeSupport:
-            self._gui.get_widget('menu_help').show()
         
         self._updateViewButtons()
         
@@ -857,7 +843,7 @@ b) Fifty moves have occured where no pawn has moved and no piece has been captur
     def _on_help_clicked(self, widget):
         """Gtk+ callback"""
         try:
-            gnome.help_display('glchess')
+            gtk.show_uri(self.mainWindow.get_screen(), "ghelp:glchess", gtk.get_current_event_time())
         except gobject.GError, e:
             # TODO: This should be a pop-up dialog
             print _('Unable to display help: %s') % str(e)
