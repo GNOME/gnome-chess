@@ -561,7 +561,7 @@ class ChessBoardState:
                     return None
                 
                 # The square the king moves over cannot be attackable
-                if self.squareUnderAttack(colour, rookEndLocation, requirePiece = False):
+                if self.movePiece(colour, start, rookEndLocation, applyMove = False) is None:
                     return None
 
                 # Rook moves with the king
@@ -572,7 +572,7 @@ class ChessBoardState:
             playerState.canLongCastle = False
             
             moves.append((piece, start, end, False))
-                
+
         # Rooks move orthogonal
         elif piece.getType() is ROOK:
             # Can no longer castle once have move the required rook
