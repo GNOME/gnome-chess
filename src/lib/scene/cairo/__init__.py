@@ -60,6 +60,11 @@ class ChessPiece(glchess.scene.ChessPiece):
 
     def move(self, coord, delete, animate = True):
         """Extends glchess.scene.ChessPiece"""
+        if not coord:
+            self.scene.pieces.remove(self)
+            self.feedback.onDeleted()
+            return
+        
         self.coord = coord
         self.delete = delete
         self.targetPos = self.__coordToLocation(coord)

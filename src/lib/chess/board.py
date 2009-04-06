@@ -793,7 +793,7 @@ class ChessBoard:
         
         'piece' is the piece being moved.
         'start' is the start location of the piece (tuple (file,rank) or None if the piece is being created.
-        'end' is the end location of the piece (tuple (file,rank)
+        'end' is the end location of the piece (tuple (file,rank))
         'delete' is a flag to show if the piece should be deleted when it arrives there (boolean).
         """
         pass
