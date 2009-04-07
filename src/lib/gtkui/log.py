@@ -46,17 +46,17 @@ class LogView(glchess.ui.Log):
         """
         """
         self.window = window
-        self.__gui = gtkui.loadGladeFile('log.glade', 'log_table')
-        self.__gui.get_widget('executable_label').set_text(executable)
-        self.__gui.get_widget('game_label').set_text(description)
+        self.__gui = gtkui.loadUIFile('log.ui')
+        self.__gui.get_object('executable_label').set_text(executable)
+        self.__gui.get_object('game_label').set_text(description)
 
         # Add into the notebook
-        self.root = self.__gui.get_widget('log_table')
+        self.root = self.__gui.get_object('log_table')
         notebook = window.notebook
         notebook.append_page(self.root, gtk.Label(title))
                 
         # Create styles for the buffer
-        buffer = self.__gui.get_widget('comms_textview').get_buffer()
+        buffer = self.__gui.get_object('comms_textview').get_buffer()
         buffer.create_tag('input', family='Monospace')
         buffer.create_tag('output', family='Monospace', weight = pango.WEIGHT_BOLD)
         buffer.create_tag('move', family='Monospace', foreground = 'blue')
@@ -92,8 +92,8 @@ class LogView(glchess.ui.Log):
     def addText(self, text, style = None):
         """FIXME: Define style
         """
-        view = self.__gui.get_widget('comms_textview')
-        scroll = self.__gui.get_widget('comms_scrolled_window')
+        view = self.__gui.get_object('comms_textview')
+        scroll = self.__gui.get_object('comms_scrolled_window')
         buffer = view.get_buffer()
         mark = buffer.get_mark('end')
         adj = scroll.get_vadjustment()

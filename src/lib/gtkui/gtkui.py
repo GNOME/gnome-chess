@@ -16,7 +16,6 @@ from gettext import gettext as _
 
 import gobject
 import gtk
-import gtk.glade
 import gtk.gdk
 import cairo
 import pango
@@ -37,8 +36,10 @@ import network
 # Mark all windows with our icon
 gtk.window_set_default_icon_name(ICON_NAME)
 
-def loadGladeFile(name, root = None):
-    return gtk.glade.XML(os.path.join(GLADE_DIR, name), root, domain = DOMAIN)
+def loadUIFile(name, root = None):
+    ui = gtk.Builder()
+    ui.add_from_file(os.path.join(UI_DIR, name))
+    return ui
 
 class GLibTimer(glchess.ui.Timer):
     """
@@ -211,13 +212,10 @@ class GtkUI(glchess.ui.UI):
             self._tooltipStyle = None
         self._tooltipWidgetsDrawn = {}
         
-        self._gui = loadGladeFile('glchess.glade')
-        self._gui.signal_autoconnect(self)
+        self._gui = loadUIFile('glchess.ui')
+        self._gui.connect_signals(self)
         
-        self.mainWindow = self._gui.get_widget('glchess_app')
-        
-        # Workaround as Glade 2 always overrides the system style for toolbars
-        self.__getWidget('toolbar').unset_style()
+        self.mainWindow = self._gui.get_object('glchess_app')
         
         # Create the model for the player types
         self.__playerModel = gtk.ListStore(str, str, str)
@@ -225,7 +223,7 @@ class GtkUI(glchess.ui.UI):
         # Translators: Player Type Combo: Player is human controlled
         self.__playerModel.set(iter, 0, '', 1, 'stock_person', 2, _('Human'))
         
-        self.__logWindow = log.LogWindow(self._gui.get_widget('log_notebook'))
+        self.__logWindow = log.LogWindow(self._gui.get_object('log_notebook'))
         
         # Make preferences dialog
         self.preferences = dialogs.GtkPreferencesDialog(self)
@@ -381,10 +379,10 @@ class GtkUI(glchess.ui.UI):
             
         if whiteString != self.whiteTimeString:
             self.whiteTimeString = whiteString
-            self._gui.get_widget('white_time_label').queue_draw()
+            self._gui.get_object('white_time_label').queue_draw()
         if blackString != self.blackTimeString:
             self.blackTimeString = blackString
-            self._gui.get_widget('black_time_label').queue_draw()
+            self._gui.get_object('black_time_label').queue_draw()
 
     def run(self):
         """Run the UI.
@@ -627,7 +625,7 @@ Please contact your system administrator to resolve these problems, until then y
         return animating
 
     def __getWidget(self, name):
-        widget = self._gui.get_widget(name)
+        widget = self._gui.get_object(name)
         assert(widget is not None), 'Unable to find widget: %s' % name
         return widget
 
@@ -672,7 +670,7 @@ Please contact your system administrator to resolve these problems, until then y
 
     def _on_show_logs_clicked(self, widget):
         """Gtk+ callback"""
-        window = self._gui.get_widget('log_window')
+        window = self._gui.get_object('log_window')
         if widget.get_active():
             window.present()
         else:
@@ -898,7 +896,7 @@ b) Fifty moves have occured where no pawn has moved and no piece has been captur
         
     def _on_log_window_delete_event(self, widget, event):
         """Gtk+ callback"""
-        self._gui.get_widget('menu_view_logs').set_active(False)
+        self._gui.get_object('menu_view_logs').set_active(False)
         
         # Stop the event - the window will be closed by the menu event
         return True
@@ -919,11 +917,11 @@ b) Fifty moves have occured where no pawn has moved and no piece has been captur
         if event.changed_mask & gtk.gdk.WINDOW_STATE_FULLSCREEN:
             self.isFullscreen = event.new_window_state & gtk.gdk.WINDOW_STATE_FULLSCREEN != 0
             if self.isFullscreen:
-                self._gui.get_widget('menu_fullscreen').hide()
-                self._gui.get_widget('menu_leave_fullscreen').show()
+                self._gui.get_object('menu_fullscreen').hide()
+                self._gui.get_object('menu_leave_fullscreen').show()
             else:
-                self._gui.get_widget('menu_leave_fullscreen').hide()
-                self._gui.get_widget('menu_fullscreen').show()
+                self._gui.get_object('menu_leave_fullscreen').hide()
+                self._gui.get_object('menu_fullscreen').show()
 
     def _on_close_window(self, widget, event):
         """Gtk+ callback"""

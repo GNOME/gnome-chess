@@ -238,14 +238,14 @@ class GtkView(glchess.ui.ViewController):
         self.needsSaving = False
         
         # The GTK+ elements
-        self.gui = gtkui.loadGladeFile('chess_view.glade', 'chess_view')
-        self.gui.signal_autoconnect(self)
-        self.widget = self.gui.get_widget('chess_view')
+        self.gui = gtkui.loadUIFile('chess_view.ui', 'chess_view')
+        self.gui.connect_signals(self)
+        self.widget = self.gui.get_object('chess_view')
 
         self.viewWidget = GtkViewArea(self)
-        self.gui.get_widget('view_container').add(self.viewWidget)
+        self.gui.get_object('view_container').add(self.viewWidget)
 
-        self.ui.setTooltipStyle(self.gui.get_widget('info_panel'))
+        self.ui.setTooltipStyle(self.gui.get_object('info_panel'))
 
         # Make a model for navigation (move object, number, description) 
         model = gtk.ListStore(gobject.TYPE_PYOBJECT, int, str)
@@ -255,7 +255,7 @@ class GtkView(glchess.ui.ViewController):
         self.moveModel = model
 
         # Tabs are enabled to make editing the UI easier
-        self.gui.get_widget('comment_notebook').set_show_tabs(False)
+        self.gui.get_object('comment_notebook').set_show_tabs(False)
         
         self.updateInfoPanel()
 
@@ -269,9 +269,9 @@ class GtkView(glchess.ui.ViewController):
         """
         showPanel = False
         
-        panel = self.gui.get_widget('info_panel')
-        titleLabel = self.gui.get_widget('panel_title_label')
-        descriptionLabel = self.gui.get_widget('panel_description_label')
+        panel = self.gui.get_object('info_panel')
+        titleLabel = self.gui.get_object('panel_title_label')
+        descriptionLabel = self.gui.get_object('panel_description_label')
         
         move = self._getCurrentMove()
         if self.gameResult is not None:
@@ -280,7 +280,7 @@ class GtkView(glchess.ui.ViewController):
             descriptionLabel.set_markup('<i>%s</i>' % description)
             showPanel = True
 
-        editToggle = self.gui.get_widget('comment_edit_toggle')
+        editToggle = self.gui.get_object('comment_edit_toggle')
         if self.showComments:
             # Show the comments
             if move is None:
@@ -663,8 +663,8 @@ class GtkView(glchess.ui.ViewController):
     
     def _on_comment_edit_button_toggled(self, widget):
         """Gtk+ callback"""
-        label = self.gui.get_widget('panel_description_label')
-        entry = self.gui.get_widget('comment_text')
+        label = self.gui.get_object('panel_description_label')
+        entry = self.gui.get_object('comment_text')
         buffer = entry.get_buffer()
         
         move = self._getCurrentMove()
@@ -688,4 +688,4 @@ class GtkView(glchess.ui.ViewController):
             label.set_text(comment)
             buffer.set_text('')
             page = 0
-        self.gui.get_widget('comment_notebook').set_current_page(page)
+        self.gui.get_object('comment_notebook').set_current_page(page)

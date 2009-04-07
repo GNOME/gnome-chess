@@ -15,7 +15,7 @@ if not os.path.exists(os.path.join(root_dir, 'Makefile.am')):
     APP_DATA_DIR     = os.path.join('@prefix@', 'share') 
     ICON_DIR         = os.path.join(APP_DATA_DIR, 'pixmaps')
     TEXTURE_DIR      = os.path.join(ICON_DIR, 'glchess')
-    GLADE_DIR        = os.path.join(APP_DATA_DIR, 'glchess')
+    UI_DIR           = os.path.join(APP_DATA_DIR, 'glchess')
     BASE_DIR         = os.path.join(APP_DATA_DIR, 'glchess')
     LOCALEDIR        = os.path.join(APP_DATA_DIR, 'locale')
     DATA_DIR         = os.path.expanduser('~/.gnome2/glchess/')
@@ -31,7 +31,7 @@ else:
     APP_DATA_DIR     = os.path.join(root_dir, '../../data')
     ICON_DIR         = os.path.join(root_dir, '../../textures')
     TEXTURE_DIR      = os.path.join(root_dir, '../../textures')
-    GLADE_DIR        = os.path.join(root_dir, '../../glade')
+    UI_DIR           = os.path.join(root_dir, '../../data')
     BASE_DIR         = os.path.join(root_dir, '../../data')
     LOCALEDIR        = os.path.join(APP_DATA_DIR, 'locale')
     DATA_DIR         = os.path.expanduser('~/.gnome2/glchess/')
@@ -47,10 +47,6 @@ DOMAIN = 'gnome-games'
 gettext.bindtextdomain(DOMAIN, LOCALEDIR)
 gettext.textdomain(DOMAIN)
 from gettext import gettext as _
-
-import gtk.glade
-gtk.glade.bindtextdomain(DOMAIN, LOCALEDIR)
-gtk.glade.textdomain(DOMAIN)
 
 VERSION   = "@VERSION@"
 APPNAME   = _("glChess")

@@ -8,7 +8,6 @@ from gettext import gettext as _
 
 import gobject
 import gtk
-import gtk.glade
 import gtk.gdk
 
 import gtkui
@@ -21,7 +20,7 @@ class GtkServerList:
         self.__gui = gui
         
         self.__servers = []
-        view = gui.get_widget('server_list')
+        view = gui.get_object('server_list')
         if view is not None:
             store = gtk.ListStore(str, gobject.TYPE_PYOBJECT)
             view.set_model(store)
@@ -34,7 +33,7 @@ class GtkServerList:
     def add(self, name, game):
         """
         """
-        view = self.__gui.get_widget('server_list')
+        view = self.__gui.get_object('server_list')
         if view is None:
             return
         model = view.get_model()
@@ -45,7 +44,7 @@ class GtkServerList:
     def getSelected(self):
         """
         """
-        view = self.__gui.get_widget('server_list')
+        view = self.__gui.get_object('server_list')
         if view is None:
             return None
         selection = view.get_selection()
@@ -59,7 +58,7 @@ class GtkServerList:
     def remove(self, game):
         """
         """
-        view = self.__gui.get_widget('server_list')
+        view = self.__gui.get_object('server_list')
         if view is None:
             return
         model = view.get_model()
@@ -90,20 +89,20 @@ class GtkNewGameDialog:
         self.__customName = False
 
         # Load the UI
-        self.__gui = gtkui.loadGladeFile('new_game.glade', 'new_game_dialog')
-        self.__gui.signal_autoconnect(self)
+        self.__gui = gtkui.loadUIFile('new_game.ui')
+        self.__gui.connect_signals(self)
 
-        self.window = self.__gui.get_widget('new_game_dialog')
+        self.window = self.__gui.get_object('new_game_dialog')
         self.window.set_transient_for(mainUI.mainWindow)
 
         # Set style of error panel
-        mainUI.setTooltipStyle(self.__gui.get_widget('info_box'))
+        mainUI.setTooltipStyle(self.__gui.get_object('info_box'))
         
         # Make all the labels the same width
         group = gtk.SizeGroup(gtk.SIZE_GROUP_HORIZONTAL)
         i = 1
         while True:
-            widget = self.__gui.get_widget('label%i' % i)
+            widget = self.__gui.get_object('label%i' % i)
             if widget is None:
                 break
             group.add_widget(widget)
@@ -113,7 +112,7 @@ class GtkNewGameDialog:
         group = gtk.SizeGroup(gtk.SIZE_GROUP_HORIZONTAL)
         i = 1
         while True:
-            widget = self.__gui.get_widget('image%i' % i)
+            widget = self.__gui.get_object('image%i' % i)
             if widget is None:
                 break
             group.add_widget(widget)
@@ -141,7 +140,7 @@ class GtkNewGameDialog:
                 activeIter = iter
             timeModel.set(iter, 0, name, 1, time)
 
-        widget = self.__gui.get_widget('time_combo')
+        widget = self.__gui.get_object('time_combo')
         widget.set_model(timeModel)
         if activeIter is None:
             widget.set_active_iter(iter)
@@ -163,9 +162,9 @@ class GtkNewGameDialog:
             model.set(iter, 0, name, 1, multiplier)
 
         # FIXME: Handle time units
-        self.__gui.get_widget('custom_time_spin').set_value(defaultTime)
+        self.__gui.get_object('custom_time_spin').set_value(defaultTime)
 
-        widget = self.__gui.get_widget('custom_time_units_combo')
+        widget = self.__gui.get_object('custom_time_units_combo')
         widget.set_model(model)
         cell = gtk.CellRendererText()
         widget.pack_start(cell, False)
@@ -186,7 +185,7 @@ class GtkNewGameDialog:
 
         # Set the difficulty settings
         for name in ['black_difficulty_combo', 'white_difficulty_combo']:
-            widget = self.__gui.get_widget(name)
+            widget = self.__gui.get_object(name)
             if widget is None:
                 continue
             
@@ -205,7 +204,7 @@ class GtkNewGameDialog:
         # Make all the AI combo boxes use one list of AI types
         firstAIIndex = min(1, len(aiModel))
         for (name, index) in [('white_type_combo', 0), ('black_type_combo', firstAIIndex)]:
-            widget = self.__gui.get_widget(name)
+            widget = self.__gui.get_object(name)
             if widget is None:
                 continue
             
@@ -239,7 +238,7 @@ class GtkNewGameDialog:
         errors = []
         g = self.game
         if g is not None:
-            self.__gui.get_widget('game_name_entry').set_text(g.name)
+            self.__gui.get_object('game_name_entry').set_text(g.name)
             self.__customName = True
             # Translators: Error displayed when unable to load a game due to
             # the require game engine not being available. %s is replaced with
@@ -261,9 +260,9 @@ class GtkNewGameDialog:
         # Display warning if missing the AIs
         if len(errors) > 0:
             # Translators: New Game Dialog: Title of error box when loaded game had AI engines missing
-            self.__gui.get_widget('info_title_label').set_markup('<big><b>%s</b></big>' % _('Game settings changed'))
-            self.__gui.get_widget('info_description_label').set_markup('<i>%s</i>' % '\n'.join(errors))
-            self.__gui.get_widget('info_box').show()
+            self.__gui.get_object('info_title_label').set_markup('<big><b>%s</b></big>' % _('Game settings changed'))
+            self.__gui.get_object('info_description_label').set_markup('<i>%s</i>' % '\n'.join(errors))
+            self.__gui.get_object('info_box').show()
 
         # Show the dialog
         self.window.present()
@@ -275,7 +274,7 @@ class GtkNewGameDialog:
     def __setCombo(self, comboName, key):
         """
         """
-        widget = self.__gui.get_widget(comboName)
+        widget = self.__gui.get_object(comboName)
         iter = self.__getIter(widget.get_model(), key)
         if iter is None:
             return False
@@ -313,7 +312,7 @@ class GtkNewGameDialog:
 
         # Must have a name for the game
         if self.__customName:
-            name = self.__gui.get_widget('game_name_entry').get_text()
+            name = self.__gui.get_object('game_name_entry').get_text()
             if len(name) == 0:
                 # Next time something changes generate a name
                 self.__customName = False
@@ -321,44 +320,44 @@ class GtkNewGameDialog:
 
         # Name the game based on the players
         else:
-            whiteName = self.__getComboData(self.__gui.get_widget('white_type_combo'), 2)
-            blackName = self.__getComboData(self.__gui.get_widget('black_type_combo'), 2)
+            whiteName = self.__getComboData(self.__gui.get_object('white_type_combo'), 2)
+            blackName = self.__getComboData(self.__gui.get_object('black_type_combo'), 2)
             # Translators: Default name for a new game. %(white) and %(black) are substituted for the names of the white and black players.
             format = _('%(white)s versus %(black)s')
-            self.__gui.get_widget('game_name_entry').set_text(format % {'white': whiteName, 'black': blackName})
+            self.__gui.get_object('game_name_entry').set_text(format % {'white': whiteName, 'black': blackName})
 
         # Disable difficulty for human players
-        whiteType = self.__getComboData(self.__gui.get_widget('white_type_combo'), 0)
-        blackType = self.__getComboData(self.__gui.get_widget('black_type_combo'), 0)
-        self.__gui.get_widget('white_difficulty_combo').set_sensitive(whiteType != '')
-        self.__gui.get_widget('black_difficulty_combo').set_sensitive(blackType != '')
+        whiteType = self.__getComboData(self.__gui.get_object('white_type_combo'), 0)
+        blackType = self.__getComboData(self.__gui.get_object('black_type_combo'), 0)
+        self.__gui.get_object('white_difficulty_combo').set_sensitive(whiteType != '')
+        self.__gui.get_object('black_difficulty_combo').set_sensitive(blackType != '')
 
         # Can only click OK if have enough information
-        self.__gui.get_widget('start_button').set_sensitive(ready)
+        self.__gui.get_object('start_button').set_sensitive(ready)
         self.__checking = False
         
     def __startGame(self):
         game = self.game
         if game is None:
             game = glchess.ui.Game()
-        game.name = self.__gui.get_widget('game_name_entry').get_text()
+        game.name = self.__gui.get_object('game_name_entry').get_text()
         game.allowSpectators = True
         
         # Get the players
-        game.white.type  = self.__getComboData(self.__gui.get_widget('white_type_combo'), 0)
+        game.white.type  = self.__getComboData(self.__gui.get_object('white_type_combo'), 0)
         if game.white.type == '':
             # Translators: Default name for the white player
             game.white.name = _('White')
         else:
-            game.white.name = self.__getComboData(self.__gui.get_widget('white_type_combo'), 2)
-        game.white.level = self.__getComboData(self.__gui.get_widget('white_difficulty_combo'), 0)
-        game.black.type  = self.__getComboData(self.__gui.get_widget('black_type_combo'), 0)
+            game.white.name = self.__getComboData(self.__gui.get_object('white_type_combo'), 2)
+        game.white.level = self.__getComboData(self.__gui.get_object('white_difficulty_combo'), 0)
+        game.black.type  = self.__getComboData(self.__gui.get_object('black_type_combo'), 0)
         if game.black.type == '':
             # Translators: Default name for the black player
             game.black.name = _('Black')
         else:
-            game.black.name = self.__getComboData(self.__gui.get_widget('black_type_combo'), 2)
-        game.black.level = self.__getComboData(self.__gui.get_widget('black_difficulty_combo'), 0)
+            game.black.name = self.__getComboData(self.__gui.get_object('black_type_combo'), 2)
+        game.black.level = self.__getComboData(self.__gui.get_object('black_difficulty_combo'), 0)
 
         game.duration = self.__getGameDuration()
             
@@ -373,10 +372,10 @@ class GtkNewGameDialog:
         self.__mainUI.feedback.onGameStart(game)
     
     def __getGameDuration(self):
-        duration = self.__getComboData(self.__gui.get_widget('time_combo'), 1)
+        duration = self.__getComboData(self.__gui.get_object('time_combo'), 1)
         if duration < 0:
-            multiplier = self.__getComboData(self.__gui.get_widget('custom_time_units_combo'), 1)
-            duration = self.__gui.get_widget('custom_time_spin').get_value_as_int() * multiplier
+            multiplier = self.__getComboData(self.__gui.get_object('custom_time_units_combo'), 1)
+            duration = self.__gui.get_object('custom_time_spin').get_value_as_int() * multiplier
         return duration
         
     # Gtk+ signal handlers
@@ -391,7 +390,7 @@ class GtkNewGameDialog:
     def _on_time_changed(self, widget):
         """Gtk+ callback"""
         time = self.__getComboData(widget, 1)
-        w = self.__gui.get_widget('custom_time_box')
+        w = self.__gui.get_object('custom_time_box')
         if time < 0:
             w.show()
         else:
@@ -418,16 +417,16 @@ class GtkLoadGameDialog:
         self.__mainUI = mainUI
         
         # Load the UI
-        self.__gui = gtkui.loadGladeFile('load_game.glade')
-        self.__gui.signal_autoconnect(self)
+        self.__gui = gtkui.loadUIFile('load_game.ui')
+        self.__gui.connect_signals(self)
         
-        self.window = self.__gui.get_widget('game_load_dialog')
+        self.window = self.__gui.get_object('game_load_dialog')
         self.window.set_transient_for(mainUI.mainWindow)
         
         # Set style of error panel
-        mainUI.setTooltipStyle(self.__gui.get_widget('error_box'))
+        mainUI.setTooltipStyle(self.__gui.get_object('error_box'))
         
-        fileChooser = self.__gui.get_widget('filechooserwidget')
+        fileChooser = self.__gui.get_object('filechooserwidget')
         
         try:
             directory = str(glchess.config.get('load_directory'))
@@ -457,14 +456,14 @@ class GtkLoadGameDialog:
 
     def _on_response(self, dialog, responseId):
         """Gtk+ callback"""
-        chooser = self.__gui.get_widget('filechooserwidget')
+        chooser = self.__gui.get_object('filechooserwidget')
 
         if responseId == gtk.RESPONSE_OK or responseId == gtk.RESPONSE_YES:
             folder = chooser.get_current_folder()
             if folder is not None:
                 glchess.config.set('load_directory', folder)
 
-            fileName = self.__gui.get_widget('filechooserwidget').get_filename()
+            fileName = self.__gui.get_object('filechooserwidget').get_filename()
             if fileName is None:
                 # Translators: Load Game Dialog: Message displayed when no file is selected
                 error = _('Please select a file to load')
@@ -473,10 +472,10 @@ class GtkLoadGameDialog:
 
             if error is not None:
                 self.firstExpose = True
-                self.__gui.get_widget('error_box').show()
+                self.__gui.get_object('error_box').show()
                 # Translators: Title of error box when unable to load game
-                self.__gui.get_widget('error_title_label').set_markup('<big><b>%s</b></big>' % _('Unabled to load game'))
-                self.__gui.get_widget('error_description_label').set_markup('<i>%s</i>' % error)
+                self.__gui.get_object('error_title_label').set_markup('<big><b>%s</b></big>' % _('Unabled to load game'))
+                self.__gui.get_object('error_description_label').set_markup('<i>%s</i>' % error)
                 return
 
         dialog.destroy()
@@ -493,15 +492,15 @@ class GtkSaveGameDialog:
         self.__view = view
         
         # Load the UI
-        self.__gui = gtkui.loadGladeFile('save_game.glade')
-        self.__gui.signal_autoconnect(self)
+        self.__gui = gtkui.loadUIFile('save_game.ui')
+        self.__gui.connect_signals(self)
         
         # Set style of error panel
-        mainUI.setTooltipStyle(self.__gui.get_widget('error_box'))
+        mainUI.setTooltipStyle(self.__gui.get_object('error_box'))
 
-        self.window = self.__gui.get_widget('save_dialog')
+        self.window = self.__gui.get_object('save_dialog')
         self.window.set_transient_for(mainUI.mainWindow)
-        chooser = self.__gui.get_widget('filechooser')
+        chooser = self.__gui.get_object('filechooser')
         
         try:
             directory = str(glchess.config.get('save_directory'))
@@ -532,13 +531,13 @@ class GtkSaveGameDialog:
         """
         """
         self.firstExpose = True
-        self.__gui.get_widget('error_box').show()
-        self.__gui.get_widget('error_title_label').set_markup('<big><b>%s</b></big>' % title)
-        self.__gui.get_widget('error_description_label').set_markup('<i>%s</i>' % content)
+        self.__gui.get_object('error_box').show()
+        self.__gui.get_object('error_title_label').set_markup('<big><b>%s</b></big>' % title)
+        self.__gui.get_object('error_description_label').set_markup('<i>%s</i>' % content)
         
     def _on_response(self, dialog, responseId):
         """Gtk+ callback"""
-        chooser = self.__gui.get_widget('filechooser')
+        chooser = self.__gui.get_object('filechooser')
         
         if responseId == gtk.RESPONSE_OK:
             # Append .pgn to the end if not provided
@@ -574,14 +573,14 @@ class GtkPreferencesDialog:
         'mainUI' is the main UI.
         """
         # Load the UI
-        self.__gui = gtkui.loadGladeFile('preferences.glade', 'preferences')
-        self.__gui.signal_autoconnect(self)
+        self.__gui = gtkui.loadUIFile('preferences.ui')
+        self.__gui.connect_signals(self)
         
-        self.__gui.get_widget('preferences').set_transient_for(mainUI.mainWindow)
+        self.__gui.get_object('preferences').set_transient_for(mainUI.mainWindow)
 
         # Make model for move format
         moveModel = gtk.ListStore(str, str)
-        widget = self.__gui.get_widget('move_format_combo')
+        widget = self.__gui.get_object('move_format_combo')
         widget.set_model(moveModel)
                         # Translators: Move Format Combo: Moves shown in human descriptive notation
         move_formats = [('human', _('Human')),
@@ -597,7 +596,7 @@ class GtkPreferencesDialog:
 
         # Make model for board orientation
         boardModel = gtk.ListStore(str, str)
-        widget = self.__gui.get_widget('board_combo')
+        widget = self.__gui.get_object('board_combo')
         widget.set_model(boardModel)
                      # Translators: Board Side Combo: Camera will face white player's side
         view_list = [('white', _('White Side')),
@@ -613,7 +612,7 @@ class GtkPreferencesDialog:
 
         # Make modelfor promotion type
         promotionModel = gtk.ListStore(str, str)
-        widget = self.__gui.get_widget('promotion_type_combo')
+        widget = self.__gui.get_object('promotion_type_combo')
         widget.set_model(promotionModel)
                           # Translators: Promotion Combo: Promote to a queen. Do not translate the 'chess-piece|' text.
         promotion_list = [('queen',  _('chess-piece|Queen')),
@@ -647,38 +646,38 @@ class GtkPreferencesDialog:
         """
         """        
         if name == 'show_3d':
-            self.__gui.get_widget('show_3d').set_active(value)
-            self.__gui.get_widget('show_3d_smooth').set_sensitive(value)            
+            self.__gui.get_object('show_3d').set_active(value)
+            self.__gui.get_object('show_3d_smooth').set_sensitive(value)            
 
         elif name == 'show_3d_smooth':
-            self.__gui.get_widget('show_3d_smooth').set_active(value)
+            self.__gui.get_object('show_3d_smooth').set_active(value)
             
         elif name == 'show_toolbar':
-            self.__gui.get_widget('show_toolbar').set_active(value)
+            self.__gui.get_object('show_toolbar').set_active(value)
                 
         elif name == 'show_history':
-            self.__gui.get_widget('show_history').set_active(value)
+            self.__gui.get_object('show_history').set_active(value)
 
         elif name == 'show_move_hints':
-            self.__gui.get_widget('show_move_hints').set_active(value)
+            self.__gui.get_object('show_move_hints').set_active(value)
 
         elif name == 'show_numbering':
-            self.__gui.get_widget('show_numbering').set_active(value)
+            self.__gui.get_object('show_numbering').set_active(value)
 
         elif name == 'move_format':
-            widget = self.__gui.get_widget('move_format_combo')
+            widget = self.__gui.get_object('move_format_combo')
             for row in widget.get_model():
                 if row[1] == value:
                     widget.set_active_iter(row.iter)
                 
         elif name == 'promotion_type':
-            widget = self.__gui.get_widget('promotion_type_combo')
+            widget = self.__gui.get_object('promotion_type_combo')
             for row in widget.get_model():
                 if row[1] == value:
                     widget.set_active_iter(row.iter)
     
         elif name == 'board_view':
-            widget = self.__gui.get_widget('board_combo')
+            widget = self.__gui.get_object('board_combo')
             for row in widget.get_model():
                 if row[1] == value:
                     widget.set_active_iter(row.iter)
@@ -687,7 +686,7 @@ class GtkPreferencesDialog:
             assert(False), 'Unknown config item: %s' % name
 
     def setVisible(self, isVisible):
-        window = self.__gui.get_widget('preferences')
+        window = self.__gui.get_object('preferences')
         if isVisible:
             window.present()
         else:

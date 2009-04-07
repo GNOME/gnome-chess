@@ -1,4 +1,4 @@
-SUBDIRS =  data glade help src textures
+SUBDIRS =  data help src textures
 
 desktopdir = $(datadir)/applications
 desktop_in_files = glchess.desktop.in.in
