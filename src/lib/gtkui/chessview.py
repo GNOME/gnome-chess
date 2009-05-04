@@ -198,10 +198,12 @@ class GtkViewArea(gtk.DrawingArea):
             # Draw the window
             widget.window.draw_drawable(widget.get_style().white_gc, self.dynamicPixmap,
                                         event.area.x, event.area.y,
-                                        event.area.x, event.area.y, event.area.width, event.area.height)
+                                        event.area.x, event.area.y, event.area.width, event.area.height)   
 
     def __button_press(self, widget, event):
         """Gtk+ signal"""
+        if event.button != 1:
+            return
         self.__startGL()
         if self.view.feedback is not None:
             self.view.feedback.select(event.x, event.y)
@@ -209,6 +211,8 @@ class GtkViewArea(gtk.DrawingArea):
         
     def __button_release(self, widget, event):
         """Gtk+ signal"""
+        if event.button != 1:
+            return
         self.__startGL()
         if self.view.feedback is not None:
             self.view.feedback.deselect(event.x, event.y)
