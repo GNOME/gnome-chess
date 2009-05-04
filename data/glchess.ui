@@ -75,8 +75,8 @@
                       <object class="GtkImageMenuItem" id="menu_play_online_item">
                         <property name="label">Network _Game</property>
                         <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="image">image2</property>
+                        <property name="use_stock">False</property>
                         <property name="accel_group">accelgroup1</property>
                         <accelerator key="L" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="_on_join_game_button_clicked"/>
@@ -92,7 +92,8 @@
                         <property name="label">_Undo Move</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="image">image1</property>
+                        <property name="use_stock">False</property>
                         <property name="accel_group">accelgroup1</property>
                         <accelerator key="Z" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="_on_undo_move_clicked"/>
@@ -103,18 +104,17 @@
                         <property name="label">_Resign</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="image">image3</property>
+                        <property name="use_stock">False</property>
                         <property name="accel_group">accelgroup1</property>
                         <signal name="activate" handler="_on_resign_clicked"/>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem" id="menu_claim_draw">
-                        <property name="label">Claim _Draw</property>
+                      <object class="GtkMenuItem" id="menu_claim_draw">
                         <property name="visible">True</property>
+                        <property name="label" translatable="yes">Claim _Draw</property>
                         <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <property name="accel_group">accelgroup1</property>
                         <signal name="activate" handler="_on_claim_draw_clicked"/>
                       </object>
                     </child>
@@ -146,7 +146,7 @@
                   <object class="GtkMenu" id="menuitem3_menu">
                     <child>
                       <object class="GtkImageMenuItem" id="menu_fullscreen">
-                        <property name="label">_Fullscreen</property>
+                        <property name="label">gtk-fullscreen</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
@@ -157,7 +157,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_leave_fullscreen">
-                        <property name="label">Leave _Fullscreen</property>
+                        <property name="label">gtk-leave-fullscreen</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup1</property>
@@ -218,8 +218,10 @@
                         <property name="label">_Contents</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="image">image4</property>
+                        <property name="use_stock">False</property>
                         <property name="accel_group">accelgroup1</property>
+                        <accelerator key="F1" signal="activate"/>
                         <signal name="activate" handler="_on_help_clicked"/>
                       </object>
                     </child>
@@ -373,7 +375,6 @@
                           <object class="GtkImage" id="image2">
                             <property name="visible">True</property>
                             <property name="stock">gtk-goto-first</property>
-                            <property name="icon-size">4</property>
                           </object>
                         </child>
                       </object>
@@ -393,7 +394,6 @@
                           <object class="GtkImage" id="image3">
                             <property name="visible">True</property>
                             <property name="stock">gtk-go-back</property>
-                            <property name="icon-size">4</property>
                           </object>
                         </child>
                       </object>
@@ -413,7 +413,6 @@
                           <object class="GtkImage" id="image4">
                             <property name="visible">True</property>
                             <property name="stock">gtk-go-forward</property>
-                            <property name="icon-size">4</property>
                           </object>
                         </child>
                       </object>
@@ -433,7 +432,6 @@
                           <object class="GtkImage" id="image5">
                             <property name="visible">True</property>
                             <property name="stock">gtk-goto-last</property>
-                            <property name="icon-size">4</property>
                           </object>
                         </child>
                       </object>
@@ -554,4 +552,20 @@
     </child>
   </object>
   <object class="GtkAccelGroup" id="accelgroup1"/>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="stock">gtk-undo</property>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="stock">gtk-network</property>
+  </object>
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="stock">gtk-dialog-warning</property>
+  </object>
+  <object class="GtkImage" id="image4">
+    <property name="visible">True</property>
+    <property name="stock">gtk-help</property>
+  </object>
 </interface>
