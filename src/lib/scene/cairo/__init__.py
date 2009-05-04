@@ -26,29 +26,18 @@ PIECE_COLOUR         = (0.0, 0.0, 0.0)
 class ChessPiece(glchess.scene.ChessPiece):
     """
     """
-    scene       = None
-    name        = None
-    
-    # Co-ordinate being moved to
-    coord       = None
-    
-    targetPos   = None
-    
-    # Current position
-    pos         = None
-    moving      = False
 
-    # Delete once moved to location
-    delete      = False
-    
     def __init__(self, scene, name, coord, feedback):
         """
         """
         self.scene = scene
         self.feedback = feedback
         self.name = name
-        self.coord = coord
-        self.pos = self.__coordToLocation(coord)
+        self.coord = coord # Co-ordinate being moved to
+        self.pos = self.__coordToLocation(coord) # Current position
+        self.targetPos   = None
+        self.moving = False
+        self.delete = False # Delete once moved to location
         
     def __coordToLocation(self, coord):
         """
@@ -138,6 +127,7 @@ class ChessPiece(glchess.scene.ChessPiece):
     def render(self, context):
         """
         """
+        offset = 0
         matrix = context.get_matrix()
         x = (self.pos[0] - 4) * self.scene.squareSize
         y = (3 - self.pos[1]) * self.scene.squareSize
@@ -145,37 +135,33 @@ class ChessPiece(glchess.scene.ChessPiece):
         context.translate(self.scene.squareSize / 2, self.scene.squareSize / 2)
         context.rotate(-self.scene.angle)
         context.translate(-self.scene.squareSize / 2, -self.scene.squareSize / 2)
-        pieces.piece(self.name, context, self.scene.pieceSize, 0, 0)
+
+        # If Face to Face mode is enabled, we rotate the black player's pieces by 180 degrees
+        if self.scene.faceToFace and self.name.find('black') != -1:
+            context.rotate(math.pi)
+            offset -= self.scene.pieceSize
+        pieces.piece(self.name, context, self.scene.pieceSize, offset, offset)
         context.fill()
         context.set_matrix(matrix)
 
 class Scene(glchess.scene.Scene):
     """
-    """
-    feedback    = None
-    
-    pieces      = None
-    highlights  = None
-    
-    angle       = 0.0
-    targetAngle = 0.0
-    
-    animating     = False
-    redrawStatic  = True
-
-    showNumbering = False
-    
-    _animationQueue = None
-    
+    """    
     BORDER = 6.0
     PIECE_BORDER = 2.0
 
     def __init__(self, feedback):
         """Constructor for a Cairo scene"""
-        self.feedback = feedback
-        self.highlight = {}
-        self.pieces = []
+        self.feedback        = feedback
+        self.highlight       = {}
+        self.pieces          = []
         self._animationQueue = []
+        self.angle           = 0.0
+        self.targetAngle     = 0.0
+        self.animating       = False
+        self.redrawStatic    = True
+        self.showNumbering   = False
+        self.faceToFace      = False
     
     def addChessPiece(self, chessSet, name, coord, feedback):
         """Add a chess piece model into the scene.
@@ -233,24 +219,32 @@ class Scene(glchess.scene.Scene):
         self.redrawStatic = True
         self.feedback.onRedraw()
 
-    def setBoardRotation(self, angle, animate = True):
+    def setBoardRotation(self, angle, faceToFace = False, animate = True):
         """Extends glchess.scene.Scene"""
         # Convert from degrees to radians
         a = angle * math.pi / 180.0
         
-        if self.angle == a:
-            return
-        self.targetAngle = a
-        
-        if not animate:
-            self.angle = a
-            self.feedback.onRedraw()
-            return
+        redraw = False
 
-        # Start animation
-        if self.animating is False:
+        if self.faceToFace != faceToFace:
+            redraw = True
+            self.faceToFace = faceToFace
+        
+        if self.angle == a:
+            animate = False
+        else:
+            self.targetAngle = a
+            if not animate:
+                self.angle = a
+                redraw = True
+
+        # Start animation or redraw now
+        if animate and self.animating is False:
             self.animating = True
-            self.feedback.startAnimation()            
+            self.feedback.startAnimation()
+        elif redraw:
+            self.redrawStatic = True
+            self.feedback.onRedraw()
 
     def animate(self, timeStep):
         """Extends glchess.scene.Scene"""
@@ -470,6 +464,3 @@ class Scene(glchess.scene.Scene):
         file = chr(ord('1') + file)
 
         return rank + file
-
-    # Private methods
-    

@@ -311,7 +311,7 @@ class Scene(glchess.scene.Scene):
         glViewport(0, 0, self.viewportWidth, self.viewportHeight)
         self.feedback.onRedraw()
 
-    def setBoardRotation(self, angle, animate = True):
+    def setBoardRotation(self, angle, faceToFace = False, animate = True):
         """Set the rotation on the board.
         
         'angle' is the angle the board should be drawn at in degress (float, [0.0, 360.0]).

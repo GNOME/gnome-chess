@@ -605,7 +605,9 @@ class GtkPreferencesDialog:
                      # Translators: Board Side Combo: Camera will face human player's side
                      ('human', _('Human Side')),
                      # Translators: Board Side Combo: Camera will face current player's side
-                     ('current', _('Current Player'))]
+                     ('current', _('Current Player')),
+                     # Translators: Board Side Combo: Board will be drawn suitable for players on each side of screen, e.g. handhelds
+                     ('facetoface', _('Face to Face'))]
         for (key, label) in view_list:
             iter = boardModel.append()
             boardModel.set(iter, 0, label, 1, key)

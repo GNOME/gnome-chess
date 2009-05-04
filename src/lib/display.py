@@ -270,8 +270,8 @@ class Splashscreen(ui.ViewFeedback):
             rotation = 180.0
         else:
             rotation = 0.0
-        self.cairoScene.controller.setBoardRotation(rotation, animate)
-        self.scene.controller.setBoardRotation(rotation, animate)
+        self.cairoScene.controller.setBoardRotation(rotation, boardView == 'facetoface', animate)
+        self.scene.controller.setBoardRotation(rotation, boardView == 'facetoface', animate)
 
     def onRedraw(self):
         """Called by scene.SceneFeedback"""
@@ -431,7 +431,7 @@ class View(ui.ViewFeedback):
         
         # Decide if we should face this angle
         boardView = config.get('board_view')
-        if boardView == 'white':
+        if boardView == 'white' or boardView == 'facetoface':
             rotation = 0.0
         elif boardView == 'black':
             rotation = 180.0
@@ -439,7 +439,7 @@ class View(ui.ViewFeedback):
             if not isinstance(p, player.HumanPlayer):
                 return
 
-        self.scene.controller.setBoardRotation(rotation, animate)
+        self.scene.controller.setBoardRotation(rotation, boardView == 'facetoface', animate)
 
     def _pieceMoved(self, piece):
         """

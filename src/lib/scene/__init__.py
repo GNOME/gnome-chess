@@ -97,10 +97,11 @@ class Scene:
         """
         pass
     
-    def setBoardRotation(self, angle, animate):
+    def setBoardRotation(self, angle, faceToFace = False, animate = True):
         """Set the rotation on the board.
         
         'angle' is the angle the board should be drawn at in degress (float, [0.0, 360.0]).
+        'faceToFace' is True if the top pieces should be drawn upside down.
         'animate' is True if the rotation shoule be animated.
         """
         pass
