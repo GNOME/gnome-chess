@@ -824,7 +824,7 @@ Please contact your system administrator to resolve these problems, until then y
         # Translators: Draw Dialog: Notify user why they cannot claim draw
         message = _("""You may claim a draw when:
 a) The board has been in the same state three times (Three fold repetition)
-b) Fifty moves have occured where no pawn has moved and no piece has been captured (50 move rule)""")
+b) Fifty moves have occurred where no pawn has moved and no piece has been captured (50 move rule)""")
         
         dialog = gtk.MessageDialog(flags = gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                    type = gtk.MESSAGE_WARNING,
