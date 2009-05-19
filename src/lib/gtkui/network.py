@@ -11,6 +11,7 @@ import glchess.ui
 _ = gettext.gettext
 
 class GtkNetworkAddDialog:
+
     def __init__(self, networkDialog, parent):
         self.__networkDialog = networkDialog
 
@@ -94,6 +95,7 @@ class GtkNetworkAddDialog:
 class GtkNetworkGameDialog(glchess.ui.NetworkController):
     """
     """
+
     def __init__(self, mainUI, feedback):
         """Constructor for a new game dialog.
         

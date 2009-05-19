@@ -30,6 +30,7 @@ RULE_ABANDONMENT           = 'ABANDONMENT'
 class ChessMove:
     """
     """
+
     # The move number (game starts at 0)
     number     = 0
     
@@ -68,21 +69,15 @@ class ChessMove:
 class ChessPlayer:
     """
     """
-    # The name of the player
-    __name = None
-    
-    # The game this player is in
-    __game = None
 
-    # Flag to show if this player is able to move
-    __readyToMove = False
-    
     def __init__(self, name):
         """Constructor for a chess player.
 
         'name' is the name of the player.
         """
         self.__name = str(name)
+        self.__game = None
+        self.__readyToMove = False
         self.isAlive = True
 
     # Methods to extend
@@ -217,9 +212,6 @@ class ChessGameBoard(chess.board.ChessBoard):
     """
     """
     
-    # Reference to the game
-    __game = None
-    
     def __init__(self, game):
         """
         """
@@ -289,37 +281,24 @@ class ChessGameSANConverter(chess.san.SANConverter):
 class ChessGame:
     """
     """    
-    # The players and spectators in the game
-    __players = None
-    __whitePlayer = None
-    __blackPlayer = None
-    __spectators = None
-    
-    # The board to move on
-    board = None
-    
-    # The game state (started and player to move)
-    __started = False
-    __currentPlayer = None
-    
-    __moves = None
-    
-    __inCallback = False
-    __queuedCalls = None
-    
-    result  = RESULT_IN_PROGRESS
-    rule    = None
-    
-    whiteTimer = None
-    blackTimer = None
-    
+
     def __init__(self):
         """Game constructor"""
         self.__players = []
         self.__spectators = []
-        self.board = ChessGameBoard(self)
+        self.__whitePlayer = None
+        self.__blackPlayer = None
+        self.__currentPlayer = None
         self.__moves = []
+        self.__inCallback = False
         self.__queuedCalls = []
+        self.board = ChessGameBoard(self)
+
+        self.__started = False
+        self.result  = RESULT_IN_PROGRESS
+        self.rule    = None    
+        self.whiteTimer = None
+        self.blackTimer = None
         
     def getAlivePieces(self, moveNumber = -1):
         """Get the alive pieces on the board.
@@ -811,12 +790,10 @@ if __name__ == '__main__':
     g = p.getGame(0)
 
     class PGNPlayer(ChessPlayer):
-        __moveNumber = 1
-        
-        __isWhite = True
-        
+
         def __init__(self, isWhite):
             self.__isWhite = isWhite
+            self.__moveNumber = 1
         
         def readyToMove(self):
             if self.__isWhite:

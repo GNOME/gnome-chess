@@ -26,29 +26,7 @@ BLACK_SHININESS = 64.0
 
 class BuiltinSet(glchess.scene.ChessSet):
     """
-    """
-    # The models
-    __pawn   = None
-    __rook   = None
-    __knight = None
-    __bishop = None
-    __queen  = None
-    __king   = None
-    
-    # A dictionary of models indexed by name
-    __modelsByName = None
-    
-    # The rotation in degrees of pieces in the set (i.e. 0.0 for white and 180.0 for black)
-    __rotation = 0.0
-    
-    __stateColours = None
-    __defaultState = None
-    
-    # The display lists for each model
-    __displayLists = None
-    
-    # The model texture
-    __texture = None
+    """    
     
     def __init__(self, textureFileName, ambient, diffuse, specular, shininess):
         self.__pawn = Pawn()
@@ -65,6 +43,9 @@ class BuiltinSet(glchess.scene.ChessSet):
                                'king': self.__king}
         self.__displayLists = {}
         self.__stateColours = {}
+        self.__defaultState = None
+        # The rotation in degrees of pieces in the set (i.e. 0.0 for white and 180.0 for black)
+        self.__rotation = 0.0
         self.__texture = texture.Texture(textureFileName, ambient = ambient, diffuse = diffuse,
                                          specular = specular, shininess = shininess)
 
@@ -146,7 +127,8 @@ class SimpleModel:
     """
     """
     
-    pos = None
+    def __init__(self):
+        self.pos = None
     
     def start(self):
         pass
@@ -373,6 +355,7 @@ class Rook(SimpleModel):
     __revolveCoords = [(3.8, 0.0), (3.8, 2.0), (2.6, 5.0), (2.0, 10.2), (2.8, 10.2), (2.8, 13.6), (2.2, 13.6), (2.2, 13.0), (0.0, 13.0)]
                        
     def __init__(self):
+        SimpleModel.__init__(self)
         self.pos = (0.0, 0.0, 0.0)
         pass
 
@@ -382,8 +365,6 @@ class Rook(SimpleModel):
 class Knight(SimpleModel):
     """
     """
-    
-    __maxHeight = 0.0
     
     # The co-ordinates of the revolution that makes the model
     __revolveCoords = [(4.1, 0.0), (4.1, 2.0), (2.0, 3.6), (2.0, 4.8), (2.6, 5.8)]
@@ -445,6 +426,7 @@ class Knight(SimpleModel):
                (30, (68, 0, 3, 69)), (30, (24, 46, 68, 69)))
 
     def __init__(self):
+        SimpleModel.__init__(self)
         self.pos = (0.0, 0.0, 0.0)
         self.__maxHeight = 0.0
         for v in self.__verticies:
@@ -466,6 +448,7 @@ class Bishop(SimpleModel):
                        (1.7, 12.2), (2.2, 13.2), (2.2, 14.8), (1.0, 16.0), (0.8, 17.0), (1.2, 17.7), (0.8, 18.4), (0.0, 18.4)]
 
     def __init__(self):
+        SimpleModel.__init__(self)
         self.pos = (0.0, 0.0, 0.0)
         pass
 
@@ -483,6 +466,7 @@ class Queen(SimpleModel):
                        (0.95, 20.8), (0.7, 20.8), (0.9, 21.4), (0.7, 22.0), (0.0, 22.0)]
                        
     def __init__(self):
+        SimpleModel.__init__(self)
         self.pos = (0.0, 0.0, 0.0)
         pass
 
@@ -492,8 +476,6 @@ class Queen(SimpleModel):
 class King(SimpleModel):
     """
     """
-    
-    __maxHeight = 0.0
     
     # The co-ordinates of the revolution that makes the model
     
@@ -515,6 +497,7 @@ class King(SimpleModel):
                (4, (18, 7, 6, 19)), (4, (21, 10, 9, 22)), (4, (14, 3, 2, 15))]
 
     def __init__(self):
+        SimpleModel.__init__(self)
         self.pos = (0.0, 0.0, 0.0)
         self.__maxHeight = 0.0
         for v in self.__verticies:

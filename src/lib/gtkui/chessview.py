@@ -45,24 +45,18 @@ __all__ = ['GtkView']
 
 class GtkViewArea(gtk.DrawingArea):
     """Custom widget to render an OpenGL scene"""
-    # The view this widget is rendering
-    view = None
-
-    # Pixmaps to use for double buffering
-    pixmap = None
-    dynamicPixmap = None
-    
-    # Flag to show if this scene is to be rendered using OpenGL
-    renderGL = False
-    
-    # TODO...
-    __glDrawable = None
     
     def __init__(self, view):
         """
         """
         gtk.DrawingArea.__init__(self)
-        
+
+        # Pixmaps to use for double buffering
+        self.pixmap = None
+        self.dynamicPixmap = None
+
+        self.renderGL = False # Flag to show if this scene is to be rendered using OpenGL
+        self.__glDrawable = None
         self.view = view
 
         # Allow notification of button presses
@@ -221,6 +215,7 @@ class GtkViewArea(gtk.DrawingArea):
 class GtkView(glchess.ui.ViewController):
     """
     """
+
     def __init__(self, ui, feedback, moveFormat = 'human', showComments = False):
         """Constructor for a view.
         

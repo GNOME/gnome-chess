@@ -78,24 +78,6 @@ def accPerspective(fovy, aspect,
 class ChessPiece(glchess.scene.ChessPiece):
     """
     """    
-    scene     = None
-    
-    # The piece to render
-    chessSet  = None
-    name      = None
-    
-    # The algebraic square location
-    location  = ''
-    
-    # The OpenGL co-ordinate location
-    pos       = None
-    targetPos = None
-    
-    # Is the piece moving?
-    moving    = False
-    
-    # Delete once moved?
-    delete    = False
     
     def __init__(self, scene, chessSet, name, location, feedback):
         """
@@ -106,6 +88,9 @@ class ChessPiece(glchess.scene.ChessPiece):
         self.name = name
         self.location = location
         self.pos = self.scene._coordToLocation(location)
+        self.targetPos = None  # Position moving to
+        self.moving    = False # Is the piece moving?
+        self.delete    = False # Delete once moved?
 
     def move(self, coord, delete, animate = True):
         """Extends glchess.scene.ChessPiece"""
@@ -186,58 +171,43 @@ class ChessPiece(glchess.scene.ChessPiece):
 class Scene(glchess.scene.Scene):
     """
     """
-    # The viewport dimensions
-    viewportWidth    = 0
-    viewportHeight   = 0
-    viewportAspect   = 1.0
-    
-    animating        = False
-    
-    # Loading screen properties
-    throbberEnabled  = False
-    throbberAngle    = 0.0
-    
-    # The scene light position
-    lightPos         = None
-
-    # The board angle in degrees
-    boardAngle       = 0.0
-    oldBoardAngle    = 0.0
-    targetBoardAngle = 0.0
-    
-    # OpenGL display list for the board and a flag to regenerate it
-    boardList        = None
-    regenerateBoard  = False
-    
-    # Texture objects for the board
-    whiteTexture     = None
-    blackTexture     = None
-
-    # ...
-    pieces           = None
-    chessSets        = None
-    piecesMoving     = False
-    
-    # Dictionary of co-ordinates to highlight
-    highlights       = None
-    
-    _animationQueue  = []
-    
-    jitters = ((0.0, 0.0),)
-
-    showNumbering = False
-    numberingTexture = None
 
     def __init__(self, feedback):
         """Constructor for an OpenGL scene"""
         self.feedback = feedback
-        self.lightPos = [100.0, 100.0, 100.0, 1.0]
+        self.lightPos = [100.0, 100.0, 100.0, 1.0] # The scene light position
         self.pieces = []
         self.highlights = {}
         self._animationQueue = []
+        self.animating = False
+        self.piecesMoving = False
+
+        # The viewport dimensions
+        self.viewportWidth    = 0
+        self.viewportHeight   = 0
+        self.viewportAspect   = 1.0
+    
+        # Loading screen properties
+        self.throbberEnabled  = False
+        self.throbberAngle    = 0.0
+    
+        # The board angle in degrees
+        self.boardAngle       = 0.0
+        self.oldBoardAngle    = 0.0
+        self.targetBoardAngle = 0.0
+    
+        # OpenGL display list for the board and a flag to regenerate it
+        self.boardList        = None
+        self.regenerateBoard  = False
+    
+        self.jitters = ((0.0, 0.0),)
+
+        self.showNumbering = False
+        self.numberingTexture = None
         
         self.chessSets = {'white': builtin_models.WhiteBuiltinSet(), 'black': builtin_models.BlackBuiltinSet()}
         
+        # Texture objects for the board
         self.whiteTexture = texture.Texture(os.path.join(TEXTURE_DIR, 'board.png'),
                                             ambient = BOARD_AMBIENT, diffuse = BOARD_DIFFUSE,
                                             specular = BOARD_SPECULAR, shininess = BOARD_SHININESS)

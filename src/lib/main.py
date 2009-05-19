@@ -57,20 +57,9 @@ class PlayerTimer(ui.TimerFeedback):
 class ChessGame(game.ChessGame):
     """
     """
-    # The view watching this scene
-    view           = None
-    
-    # The players in the game
-    __movePlayer   = None
-    __aiPlayers    = None
 
     # Mapping between piece names and promotion types
     __promotionMapping = {'queen': chess.board.QUEEN, 'knight': chess.board.KNIGHT, 'bishop': chess.board.BISHOP, 'rook': chess.board.ROOK}
-    
-    # TEMP
-    duration = 0
-    wT = None
-    bT = None
 
     def __init__(self, application, name):
         """Constructor for a chess game.
@@ -82,11 +71,17 @@ class ChessGame(game.ChessGame):
         self.name = name
         self.__aiPlayers = []
         
+        # TEMP
+        self.duration = 0
+        self.wT = None
+        self.bT = None
+        
         self.fileName    = None
         self.inHistory   = False
         self.needsSaving = False
         
         # Call parent constructor
+        self.view = None
         game.ChessGame.__init__(self)
 
         self.view = display.View(self)
@@ -320,13 +315,8 @@ class ChessGame(game.ChessGame):
         
 class UI(ui.UIFeedback):
     """
-    """    
-    application = None
-    
-    splashscreen = None
-    
-    controller = None
-    
+    """
+
     def __init__(self, application):
         """
         """
@@ -417,32 +407,14 @@ class UI(ui.UIFeedback):
 class Application:
     """
     """
-    # The glChess UI
-    ui = None
-    
-    # The AI types
-    __aiProfiles = None
-    
-    # Objects with IO keyed by file descriptor
-    ioHandlers = None
-    
-    # Network connections keyed by file descriptor
-    networkConnections = None
-    
-    # The network game detector
-    __detector = None
 
-    # The game in progress
-    __game = None
-    
     def __init__(self):
         """Constructor for glChess application"""
-        self.__aiProfiles = {}
-        self.ioHandlers = {}
-        self.networkConnections = {}
+        self.__aiProfiles = {}       # The AI types
+        self.ioHandlers = {}         # Objects with IO keyed by file descriptor
+        self.networkConnections = {} # Network connections keyed by file descriptor
+        self.__game = None # The game in progress
        
-        self.__detector = None#GameDetector(self)
-
         self.ui = UI(self)
         
         self.history = history.GameHistory()

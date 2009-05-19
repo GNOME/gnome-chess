@@ -95,12 +95,6 @@ KING   = 'K'
 class ChessPiece:
     """An object representing a chess piece"""
     
-    # The colour of the piece
-    __colour = None
-    
-    # The type of the piece (pawn, knight ...) 
-    __type = None
-    
     def __init__(self, colour, type):
         """Constructor for a chess piece.
         
@@ -134,22 +128,18 @@ class ChessPiece:
 class ChessPlayerState:
     """
     """
-    # Flags to show if still able to castle
-    canShortCastle = True
-    canLongCastle  = True
-    
-    # Flag to show if this player is in check
-    inCheck        = False
     
     def __init__(self, state = None):
         """
         """
-        if state is None:
-            return
+        self.canShortCastle = True
+        self.canLongCastle  = True
+        self.inCheck        = False
 
         # Copy the exisiting state
-        self.canShortCastle = state.canShortCastle
-        self.canLongCastle = state.canLongCastle
+        if state is not None:
+            self.canShortCastle = state.canShortCastle
+            self.canLongCastle = state.canLongCastle
         
     def __eq__(self, state):
         """Compare two states are equal"""
@@ -780,6 +770,7 @@ class ChessBoard:
     
     This class contains a chess board and all its previous states.
     """
+
     def __init__(self, initialState = None):
         """Constructor for a chess board"""
         self.__inCallback = False

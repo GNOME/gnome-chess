@@ -11,17 +11,12 @@ import glchess.scene
 class SceneHumanInput:
     """
     """
-    # Flag to control if human input is enabled
-    __inputEnabled = True
-
-    # The selected square to move from
-    __startSquare = None
-    
-    __showHints       = True
     
     def __init__(self):
         """Constructor for a scene with human selectable components"""
-        pass
+        self.__inputEnabled = True # Flag to control if human input is enabled
+        self.__startSquare  = None # The selected square to move from
+        self.__showHints    = True
     
     # Methods to extend
     

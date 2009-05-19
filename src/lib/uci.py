@@ -7,25 +7,18 @@ class StateMachine:
     STATE_IDLE = 'IDLE'
     STATE_CONNECTING = 'CONNECTING'
     
-    options = None
-    
-    __positionCommand = 'position startpos'
-    __haveMoves = False
-    
-    buffer = ''
-    
-    __readyToConfigure = False
-    __options          = None
-    
-    __ready            = False
-    __inCallback       = False
-    __queuedCommands   = None
-    
     def __init__(self):
         """
         """
         self.options = {}
         self.__queuedCommands = []
+        self.buffer = ''
+        self.__haveMoves = False
+        self.__readyToConfigure = False    
+        self.__ready            = False
+        self.__inCallback       = False
+        self.__queuedCommands   = None
+        self.__positionCommand = 'position startpos'
         
     def logText(self, text, style):
         """

@@ -114,63 +114,56 @@ class ClientFeedback:
         pass
 
 class Game:
-    id = ''
     
-    name = ''
-    version = ''
-    
-    protocol_engine = ''
-    protocol_version = ''
-    
-    nPlayers = 0
-    
-    author = ''
-    url = ''
+    def __init__(self):
+        self.id = ''
+        self.name = ''
+        self.version = ''
+        self.protocol_engine = ''
+        self.protocol_version = ''
+        self.nPlayers = 0
+        self.author = ''
+        self.url = ''
 
 class Room:
-    id = ''
     
-    game = None
-    
-    nPlayers = 0
+    def __init__(self):
+        self.id = ''
+        self.game = None    
+        self.nPlayers = 0
 
 class Table:
-    id = ''
-    
-    room = ''
-    
-    game = None
-    
-    status = ''
-    
-    description = ''
     
     def __init__(self, nSeats):
+        self.id = ''
+        self.room = ''
+        self.game = None
+        self.status = ''
+        self.description = ''
         self.seats = []
         for i in xrange(nSeats):
             seat = Seat()
             self.seats.append(seat)
 
 class Seat:
-    type = ''
     
-    user = ''
+    def __init__(self):
+        self.type = ''
+        self.user = ''
 
 class Player:
-    name = ''
     
-    type = ''
-    
-    table = None
-    
-    perms = 0
-    
-    lag = 0
-    
-    room = None
-    lastRoom = None
+    def __init__(self):
+        self.name = ''
+        self.type = ''
+        self.table = None
+        self.perms = 0
+        self.lag = 0
+        self.room = None
+        self.lastRoom = None
     
 class MainChannel(ChannelFeedback, protocol.ParserFeedback):
+
     def __init__(self, client):
         self.client = client
         self.decoder = protocol.Decoder(self)

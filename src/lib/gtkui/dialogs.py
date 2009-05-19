@@ -14,7 +14,6 @@ import gtkui
 import glchess.ui
 
 class GtkServerList:
-    __gui = None
 
     def __init__(self, gui):
         self.__gui = gui
@@ -74,7 +73,8 @@ class GtkServerList:
 
 class GtkNewGameDialog:
     """
-    """    
+    """
+
     def __init__(self, mainUI, aiModel, game = None):
         """Constructor for a new game dialog.
         
@@ -410,7 +410,8 @@ class GtkNewGameDialog:
 
 class GtkLoadGameDialog:
     """
-    """    
+    """
+
     def __init__(self, mainUI):
         """
         """
@@ -485,6 +486,7 @@ class GtkLoadGameDialog:
 class GtkSaveGameDialog:
     """
     """
+
     def __init__(self, mainUI, view, path = None):
         """
         """
@@ -567,6 +569,7 @@ class GtkSaveGameDialog:
 class GtkPreferencesDialog:
     """
     """
+
     def __init__(self, mainUI):
         """Constructor for the preferences dialog.
         

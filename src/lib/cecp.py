@@ -4,13 +4,7 @@ __license__ = 'GNU General Public License Version 2'
 __copyright__ = 'Copyright 2005-2006  Robert Ancell'
 
 class CECPProtocol:
-    """CECP protocol en/decoder.
-    
-    
-    """
-    
-    # Data being accumulated to be parsed
-    __buffer = ''
+    """CECP protocol en/decoder."""
     
     NEWLINE             = '\n'
     MOVE_PREFIXS        = ['My move is: ', 'my move is ', 'move ']
@@ -21,6 +15,7 @@ class CECPProtocol:
     def __init__(self):
         """
         """
+        self.__buffer = '' # Data being accumulated to be parsed
         # Go to simple interface mode
         self.onOutgoingData('xboard\n')
         

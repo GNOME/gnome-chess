@@ -13,10 +13,12 @@ from defaults import *
 _ = gettext.gettext
 
 class GGZServer:
+
     def __init__(self, name):
         self.name = name
 
 class GGZLine:
+
     TYPE_BLANK   = 'BLANK'
     TYPE_COMMENT = 'COMMENT'
     TYPE_SECTION = 'SECTION'
@@ -190,6 +192,7 @@ class GGZConfig:
             print 'Failed to save GGZ config: %s' % e.message
 
 class GGZChannel(ggz.Channel):
+    
     def __init__(self, ui, feedback):
         self.buffer = ''
         self.ui = ui

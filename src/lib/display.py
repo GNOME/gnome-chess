@@ -15,7 +15,7 @@ import chess.board
 
 class MovePlayer(game.ChessPlayer):
     """This class provides a pseudo-player to watch for piece movements"""
-    
+
     def __init__(self, view):
         """Constructor for a move player.
         
@@ -46,14 +46,12 @@ class MovePlayer(game.ChessPlayer):
 class CairoPiece(scene.ChessPieceFeedback):
     """
     """
-    
-    model = None
-    
-    location = ''
-    
+
     def __init__(self, scene, piece):
         self.scene = scene
         self.piece = piece
+        self.model = None
+        self.location = ''
 
     def onDeleted(self):
         """Called by scene.ChessPieceFeedback"""
@@ -66,16 +64,6 @@ class CairoPiece(scene.ChessPieceFeedback):
 class SceneCairo(scene.SceneFeedback, scene.human.SceneHumanInput):
     """
     """
-    controller = None
-    
-    # The game this scene is rendering
-    game = None
-    
-    # TODO
-    pieces       = None
-    
-    # FIXME: Abort when scenes changed
-    waitingPiece = None
 
     def __init__(self, view):
         """
@@ -84,6 +72,7 @@ class SceneCairo(scene.SceneFeedback, scene.human.SceneHumanInput):
         self.controller = scene.cairo.Scene(self)
         self.game = view.game
         self.pieces = {}
+        self.waitingPiece = None
         scene.human.SceneHumanInput.__init__(self)
         
     def getPieces(self):
@@ -148,14 +137,12 @@ class SceneCairo(scene.SceneFeedback, scene.human.SceneHumanInput):
 class OpenGLPiece(scene.ChessPieceFeedback):
     """
     """
-    
-    model = None
-    
-    location = ''
-    
+
     def __init__(self, scene, piece):
         self.scene = scene
         self.piece = piece
+        self.model = None
+        self.location = ''
 
     def onDeleted(self):
         """Called by scene.ChessPieceFeedback"""
@@ -167,15 +154,7 @@ class OpenGLPiece(scene.ChessPieceFeedback):
 
 class SceneOpenGL(scene.SceneFeedback, scene.human.SceneHumanInput):
     """
-    """
-    # The game this scene is rendering
-    game          = None
-    
-    # TODO
-    pieces        = None
-    
-    # FIXME: Abort when scenes changed
-    waitingPiece = None
+    """   
 
     def __init__(self, view):
         """Constructor for a glChess scene.
@@ -185,6 +164,7 @@ class SceneOpenGL(scene.SceneFeedback, scene.human.SceneHumanInput):
         self.view = view
         self.game = view.game
         self.pieces = {}
+        self.waitingPiece = None
 
         # Call parent constructors
         self.controller = scene.opengl.Scene(self)
@@ -251,10 +231,8 @@ class SceneOpenGL(scene.SceneFeedback, scene.human.SceneHumanInput):
 
 class Splashscreen(ui.ViewFeedback):
     """
-    """    
-    application = None
-    scene       = None
-    
+    """
+
     def __init__(self, application):
         """Constructor.
         
@@ -332,9 +310,7 @@ class Splashscreen(ui.ViewFeedback):
 class View(ui.ViewFeedback):
     """
     """
-    # The controller object for this view
-    controller  = None
-    
+
     def __init__(self, game):
         """Constructor.
         
@@ -352,6 +328,8 @@ class View(ui.ViewFeedback):
         self.doSmooth = False
         self.highlightParams = (None, None, None, None)
         self.changedHighlight = True
+        
+        self.controller  = None
         
         # Use a Cairo scene by default - it will be replaced by an OpenGL one if that is the requested view
         # I wanted to remove this but then scene is None and there are a number of issues...

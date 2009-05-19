@@ -483,8 +483,6 @@ class PGNGame:
 class PGN:
     """
     """
-    
-    __games = None
 
     def __init__(self, fileName = None, maxGames = None):
         """Create a PGN reader/writer.

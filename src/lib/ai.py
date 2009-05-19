@@ -22,17 +22,20 @@ UCI  = 'UCI'
 class Option:
     """
     """
+
     value = ''
 
 class Level:
     """
     """
+
     def __init__(self):
         self.options = []
 
 class Profile:
     """
-    """   
+    """
+
     def __init__(self):
         self.name = ''
         self.protocol = ''
@@ -159,6 +162,7 @@ def loadProfiles():
 class CECPConnection(cecp.Connection):
     """
     """
+
     def __init__(self, player):
         """
         """
@@ -186,6 +190,7 @@ class CECPConnection(cecp.Connection):
 class UCIConnection(uci.StateMachine):
     """
     """
+
     def __init__(self, player):
         """
         """
@@ -216,6 +221,7 @@ signal.signal(signal.SIGCHLD, _cDied)
 class Player(game.ChessPlayer):
     """
     """
+
     def __init__(self, name, profile, level = 'normal'):
         """Constructor for an AI player.
         

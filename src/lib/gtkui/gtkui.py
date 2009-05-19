@@ -151,44 +151,6 @@ class GLibTimer(glchess.ui.Timer):
 class GtkUI(glchess.ui.UI):
     """
     """
-    # The Gtk+ GUI
-    _gui               = None
-    
-    # The time stored for animation
-    __lastTime         = None
-    __animationTimer   = None
-    
-    # The Gtk+ list model of the available player types
-    __playerModel      = None
-
-    # The about dialog open
-    __aboutDialog      = None
-
-    # Dictionary of save game dialogs keyed by view
-    __saveGameDialogs  = None
-
-    __renderGL         = False
-    openGLInfoPrinted  = False
-
-    # TODO
-    __joinGameDialogs  = None
-    __networkGames     = None
-    
-    __defaultWhiteAI   = None
-    __defaultBlackAI   = None
-
-    __attentionCounter = 0
-
-    whiteTimeString    = '∞'
-    blackTimeString    = '∞'
-    
-    # The window width and height when unmaximised and not fullscreen
-    width              = None
-    height             = None
-    isFullscreen       = False
-    isMaximised        = False
-    
-    view               = None
 
     def __init__(self, feedback):
         """Constructor for a GTK+ glChess GUI"""
@@ -197,8 +159,29 @@ class GtkUI(glchess.ui.UI):
         self.__networkGames = {}
         self.newGameDialog = None
         self.loadGameDialog = None
+        self.__aboutDialog = None
         self.__saveGameDialogs = {}
         self.__joinGameDialogs = []
+
+        # The time stored for animation
+        self.__lastTime         = None
+        self.__animationTimer   = None
+    
+        self.__renderGL         = False
+        self.openGLInfoPrinted  = False
+
+        self.__attentionCounter = 0
+
+        self.whiteTimeString    = '∞'
+        self.blackTimeString    = '∞'
+    
+        # Theo window width and height when unmaximised and not fullscreen
+        self.width              = None
+        self.height             = None
+        self.isFullscreen       = False
+        self.isMaximised        = False
+    
+        self.view               = None
         
         # Set the message panel to the tooltip style
         # (copied from Gedit)
@@ -308,10 +291,6 @@ class GtkUI(glchess.ui.UI):
         """
         iter = self.__playerModel.append()
         self.__playerModel.set(iter, 0, name, 1, 'stock_notebook', 2, name)
-        
-        # Get the human to play against this AI
-        if self.__defaultBlackAI is None:
-            self.__defaultBlackAI = name
 
     def setView(self, title, feedback, isPlayable = True):
         """Extends ui.UI"""

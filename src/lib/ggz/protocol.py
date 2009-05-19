@@ -20,6 +20,7 @@ import xml.sax.handler
 "</UPDATE>"
 
 class ParserFeedback:
+
     def onResult(self, action, code):
         pass
     
@@ -68,9 +69,10 @@ class ParserFeedback:
 class GGZParser:
     """
     """
-    parent = None
-
-    parser = None
+    
+    def __init__(self):
+        self.parent = None
+        self.parser = None
     
     def startElement(self, name, attributes):
         if self.parser is not None:
@@ -132,6 +134,7 @@ class GameParser(GGZParser):
     """
     
     def __init__(self):
+        GGZParser.__init__(self)
         self.bots = []
     
     def start_desc(self, attributes):
@@ -235,6 +238,7 @@ class PlayerParser(GGZParser):
 class TableSeatParser(GGZParser):
     
     def __init__(self):
+        GGZParser.__init__(self)
         self.label = ''
 
     def handle_data(self, data):
@@ -246,6 +250,7 @@ class TableSeatParser(GGZParser):
 class TableParser(GGZParser):
     
     def __init__(self):
+        GGZParser.__init__(self)
         self.seats = []
         self.description = ''
 
@@ -265,6 +270,7 @@ class TableParser(GGZParser):
 class GameListParser(GGZParser):
     
     def __init__(self):
+        GGZParser.__init__(self)
         self.games = []
     
     def start_game(self, attributes):
@@ -282,6 +288,7 @@ class GameListParser(GGZParser):
 class TableListParser(GGZParser):
     
     def __init__(self):
+        GGZParser.__init__(self)
         self.tables = []
     
     def start_table(self, attributes):
@@ -305,6 +312,7 @@ class TableListParser(GGZParser):
 class PlayerListParser(GGZParser):
     
     def __init__(self):
+        GGZParser.__init__(self)
         self.players = []
     
     def start_player(self, attributes):
@@ -328,6 +336,7 @@ class PlayerListParser(GGZParser):
 class RoomListParser(GGZParser):
     
     def __init__(self):
+        GGZParser.__init__(self)
         self.rooms = []
         
     def start_room(self, attributes):
@@ -362,6 +371,7 @@ class ServerParser(GGZParser):
 class MOTDParser(GGZParser):
     
     def __init__(self):
+        GGZParser.__init__(self)
         self.motd = ''
     
     def handle_data(self, data):
@@ -372,9 +382,6 @@ class MOTDParser(GGZParser):
         self.pop()
 
 class RoomUpdateParser(GGZParser):
-    
-    def __init__(self):
-        pass
     
     def start_room(self, attributes):
         self.push(RoomParser(), attributes)
@@ -436,6 +443,7 @@ class PlayerUpdateParser(GGZParser):
 class TableUpdateParser(GGZParser):   
 
     def __init__(self):
+        GGZParser.__init__(self)
         self.table = None
     
     def start_table(self, attributes):
@@ -523,6 +531,7 @@ class TableUpdateParser(GGZParser):
 class ChatParser(GGZParser):
     
     def __init__(self):
+        GGZParser.__init__(self)
         self.text = ''
     
     def handle_data(self, data):
@@ -615,6 +624,7 @@ class SessionParser(GGZParser):
 class BaseParser(GGZParser):
     
     def __init__(self, decoder):
+        GGZParser.__init__(self)
         self.decoder = decoder
 
     def start_session(self, attributes):

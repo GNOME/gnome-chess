@@ -7,21 +7,6 @@ import array
 class Texture:
     """
     """
-    # Texture data
-    __data   = None
-    __format = GL_RGB
-    __width  = None
-    __height = None
-    
-    # Material properties
-    __ambient   = None
-    __diffuse   = None
-    __specular  = None
-    __emission  = None
-    __shininess = None
-
-    # OpenGL texture ID
-    __texture = None
     
     def __init__(self, fileName,
                  ambient  = (0.2, 0.2, 0.2, 1.0),
@@ -41,6 +26,16 @@ class Texture:
         self.__specular = specular
         self.__emission = emission
         self.__shininess = shininess
+
+        # Texture data
+        self.__data   = None
+        self.__format = GL_RGB
+        self.__width  = None
+        self.__height = None
+
+        # OpenGL texture ID
+        self.__texture = None
+
         try:
             self.__loadPIL(fileName)
         except ImportError:

@@ -52,7 +52,6 @@ class MovePlayer(game.ChessPlayer):
 class HumanPlayer(game.ChessPlayer):
     """
     """    
-    __game = None
     
     def __init__(self, chessGame, name):
         """Constructor.
