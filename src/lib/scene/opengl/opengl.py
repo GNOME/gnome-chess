@@ -11,8 +11,7 @@ from glchess.defaults import *
 
 import glchess.scene
 import texture
-import new_models
-builtin_models = new_models
+import models
 
 PIECE_MOVE_SPEED    = 50.0 # FIXME: Define units
 BOARD_ROTATION_TIME = 0.8
@@ -205,7 +204,7 @@ class Scene(glchess.scene.Scene):
         self.showNumbering = False
         self.numberingTexture = None
         
-        self.chessSets = {'white': builtin_models.WhiteBuiltinSet(), 'black': builtin_models.BlackBuiltinSet()}
+        self.chessSets = {'white': models.WhiteBuiltinSet(), 'black': models.BlackBuiltinSet()}
         
         # Texture objects for the board
         self.whiteTexture = texture.Texture(os.path.join(TEXTURE_DIR, 'board.png'),

@@ -47,25 +47,6 @@ def normalize(a):
 class BuiltinSet(glchess.scene.ChessSet):
     """
     """
-    # The models
-    __pawn   = None
-    __rook   = None
-    __knight = None
-    __bishop = None
-    __queen  = None
-    __king   = None
-    
-    # A dictionary of models indexed by name
-    __modelsByName = None
-    
-    # The rotation in degrees of pieces in the set (i.e. 0.0 for white and 180.0 for black)
-    __rotation = 0.0
-    
-    __stateColours = None
-    __defaultState = None    
-    
-    # The model texture
-    __texture = None
     
     def __init__(self, textureFileName, ambient, diffuse, specular, shininess):
         self.__pawn = Pawn()
@@ -80,7 +61,9 @@ class BuiltinSet(glchess.scene.ChessSet):
                                'bishop': self.__bishop,
                                'queen': self.__queen,
                                'king': self.__king}
+        self.__defaultState = None
         self.__stateColours = {}
+        self.__rotation = 0.0 # The rotation in degrees of pieces in the set (i.e. 0.0 for white and 180.0 for black)
         self.__texture = texture.Texture(textureFileName, ambient = ambient, diffuse = diffuse,
                                          specular = specular, shininess = shininess)
                                          
@@ -494,6 +477,7 @@ class SimpleModel:
 class Pawn(SimpleModel):
     """
     """
+
     data = (SPIN,16,
             7395,0,7395,609,
             SEAM,7102,910,7345,1199,7345,1572,7191,1910,
@@ -576,6 +560,7 @@ class Rook(SimpleModel):
 class Knight(SimpleModel):
     """
     """
+
     data = (VERTICES, SETBACKREF,0, 7910,8863,0, 7790,8863,1326, 7433,8863,2611,
             6850,8863,3817, 6059,8863,4907, 5084,8863,5847, 3955,8863,6611,
             2705,8863,7173, 1373,8863,7517, 0,8863,7633, -1373,8863,7517,
@@ -1386,6 +1371,7 @@ class Knight(SimpleModel):
 class Bishop(SimpleModel):
     """
     """
+
     data = (VERTICES, SETBACKREF,0, 5233,26960,0, 5154,26960,909, 4918,26960,1790,
             4532,26960,2617, 4009,26960,3364, 3364,26960,4009, 2617,26960,4532,
             1790,26960,4918, 909,26960,5154, 0,26833,5233, -909,26960,5154,
@@ -1478,6 +1464,7 @@ class Bishop(SimpleModel):
 class Queen(SimpleModel):
     """
     """
+
     data = (SPIN,24,
             11092,0,11092,914,SEAM,10653,1284,
             11018,1798,11018,2358,10787,2866,
