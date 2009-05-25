@@ -604,7 +604,7 @@ class GtkView(glchess.ui.ViewController):
             description = _('Opponent has run out of time')
         elif game.rule is glchess.game.RULE_THREE_FOLD_REPETITION:
             # Translators: Message displayed when the game is drawn due to the three-fold-repitition rule
-            description = _('The same board state has occured three times (three fold repetition)')
+            description = _('The same board state has occurred three times (three fold repetition)')
         elif game.rule is glchess.game.RULE_INSUFFICIENT_MATERIAL:
             # Translators: Message displayed when the game is drawn due to the insufficient material rule
             description = _('Neither player can cause checkmate (insufficient material)')

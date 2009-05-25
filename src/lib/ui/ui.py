@@ -138,7 +138,7 @@ class ViewFeedback:
         
         'path' is the path to the file to save to (string).
         
-        Returns the error that occured (string) or None if successful.
+        Returns the error that occurred (string) or None if successful.
         """
         assert(False)
     
@@ -316,7 +316,7 @@ class UIFeedback:
         
         'path' is the path to the game to load (string).
         
-        Returns the error that occured (string) or None if successful.
+        Returns the error that occurred (string) or None if successful.
         """
         assert(False)
 

@@ -82,7 +82,7 @@ class Server:
         """Report a move in a game.
         
         'game' is the game that the move is in (?)
-        'move' is the move that has occured (style12.Move)
+        'move' is the move that has occurred (style12.Move)
         """
         pass
     
