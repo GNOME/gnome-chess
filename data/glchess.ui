@@ -75,6 +75,7 @@
                       <object class="GtkImageMenuItem" id="menu_play_online_item">
                         <property name="label">Network _Game</property>
                         <property name="visible">True</property>
+                        <property name="use_underline">True</property>
                         <property name="image">image2</property>
                         <property name="use_stock">False</property>
                         <property name="accel_group">accelgroup1</property>
@@ -375,6 +376,7 @@
                           <object class="GtkImage" id="image2">
                             <property name="visible">True</property>
                             <property name="stock">gtk-goto-first</property>
+                            <property name="icon-size">1</property>
                           </object>
                         </child>
                       </object>
@@ -412,7 +414,8 @@
                         <child>
                           <object class="GtkImage" id="image4">
                             <property name="visible">True</property>
-                            <property name="stock">gtk-go-forward</property>
+                            <property name="stock">gtk-help</property>
+                            <property name="icon-size">1</property>
                           </object>
                         </child>
                       </object>
@@ -555,17 +558,21 @@
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
     <property name="stock">gtk-undo</property>
+    <property name="icon-size">1</property>
   </object>
   <object class="GtkImage" id="image2">
     <property name="visible">True</property>
     <property name="stock">gtk-network</property>
+    <property name="icon-size">1</property>
   </object>
   <object class="GtkImage" id="image3">
     <property name="visible">True</property>
     <property name="stock">gtk-dialog-warning</property>
+    <property name="icon-size">1</property>
   </object>
   <object class="GtkImage" id="image4">
     <property name="visible">True</property>
     <property name="stock">gtk-help</property>
+    <property name="icon-size">1</property>
   </object>
 </interface>
