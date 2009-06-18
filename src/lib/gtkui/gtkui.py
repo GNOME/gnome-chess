@@ -38,6 +38,7 @@ gtk.window_set_default_icon_name(ICON_NAME)
 
 def loadUIFile(name, root = None):
     ui = gtk.Builder()
+    ui.set_translation_domain(DOMAIN)
     ui.add_from_file(os.path.join(UI_DIR, name))
     return ui
 
