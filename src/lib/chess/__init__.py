@@ -5,77 +5,55 @@ import lan
 import san
 import fics
 
-import gettext
-_ = gettext.gettext
+from glchess.i18n import C_
 
-                 # Translators: The first file on the chess board. Do not translate the 'chess-file|' text
-_fileStrings = {'a': _('chess-file|a'),
-                 # Translators: The second file on the chess board. Do not translate the 'chess-file|' text
-                'b': _('chess-file|b'),
-                 # Translators: The third file on the chess board. Do not translate the 'chess-file|' text                
-                'c': _('chess-file|c'),
-                 # Translators: The fourth file on the chess board. Do not translate the 'chess-file|' text                
-                'd': _('chess-file|d'),
-                 # Translators: The fifth file on the chess board. Do not translate the 'chess-file|' text                
-                'e': _('chess-file|e'),
-                 # Translators: The sixth file on the chess board. Do not translate the 'chess-file|' text                
-                'f': _('chess-file|f'),
-                 # Translators: The seventh file on the chess board. Do not translate the 'chess-file|' text                
-                'g': _('chess-file|g'),
-                 # Translators: The eigth file on the chess board. Do not translate the 'chess-file|' text                
-                'h': _('chess-file|h')}
-_fileMap = {}
-for (key, f) in _fileStrings.iteritems():
-    try:
-        _fileMap[key] = f.split('|', 1)[1]
-    except IndexError:
-        _fileMap[key] = f
+             # Translators: The first file on the chess board
+_fileMap = {'a': C_('chess-file', 'a'),
+             # Translators: The second file on the chess board
+            'b': C_('chess-file', 'b'),
+             # Translators: The third file on the chess board
+            'c': C_('chess-file', 'c'),
+             # Translators: The fourth file on the chess board
+            'd': C_('chess-file', 'd'),
+             # Translators: The fifth file on the chess board
+            'e': C_('chess-file', 'e'),
+             # Translators: The sixth file on the chess board
+            'f': C_('chess-file', 'f'),
+             # Translators: The seventh file on the chess board
+            'g': C_('chess-file', 'g'),
+             # Translators: The eigth file on the chess board
+            'h': C_('chess-file', 'h')}
 
-                 # Translators: The first rank on the chess board. Do not translate the 'chess-rank|' text
-_rankStrings = {'1': _('chess-rank|1'),
-                 # Translators: The second rank on the chess board. Do not translate the 'chess-rank|' text                
-                '2': _('chess-rank|2'),
-                 # Translators: The third rank on the chess board. Do not translate the 'chess-rank|' text
-                '3': _('chess-rank|3'),
-                 # Translators: The fourth rank on the chess board. Do not translate the 'chess-rank|' text
-                '4': _('chess-rank|4'),
-                 # Translators: The fifth rank on the chess board. Do not translate the 'chess-rank|' text                
-                '5': _('chess-rank|5'),
-                 # Translators: The sixth rank on the chess board. Do not translate the 'chess-rank|' text                
-                '6': _('chess-rank|6'),
-                 # Translators: The seventh rank on the chess board. Do not translate the 'chess-rank|' text                
-                '7': _('chess-rank|7'),
-                 # Translators: The eigth rank on the chess board. Do not translate the 'chess-rank|' text                
-                '8': _('chess-rank|8')}
-                
-_rankMap = {}
-for (key, r) in _rankStrings.iteritems():
-    try:
-        _rankMap[key] = r.split('|', 1)[1]
-    except IndexError:
-        _rankMap[key] = r
+             # Translators: The first rank on the chess board
+_rankMap = {'1': C_('chess-rank', '1'),
+             # Translators: The second rank on the chess board
+            '2': C_('chess-rank', '2'),
+             # Translators: The third rank on the chess board
+            '3': C_('chess-rank', '3'),
+             # Translators: The fourth rank on the chess board
+            '4': C_('chess-rank', '4'),
+             # Translators: The fifth rank on the chess board
+            '5': C_('chess-rank', '5'),
+             # Translators: The sixth rank on the chess board
+            '6': C_('chess-rank', '6'),
+             # Translators: The seventh rank on the chess board
+            '7': C_('chess-rank', '7'),
+             # Translators: The eigth rank on the chess board
+            '8': C_('chess-rank', '8')}
 
-                 # Translators: The notation form of a pawn.
-                 # See http://en.wikipedia.org/wiki/Algebraic_chess_notation#Figurine_Algebraic_Notation for translations.
-                 # Do not translate the 'chess-notation|' text.
-_pieceStrings = {'P': _('chess-notation|P'),
-                 # Translators: The notation form of a knight. Do not translate the 'chess-notation|' text
-                 'N': _('chess-notation|N'),
-                 # Translators: The notation form of a bishop. Do not translate the 'chess-notation|' text
-                 'B': _('chess-notation|B'),
-                 # Translators: The notation form of a rook. Do not translate the 'chess-notation|' text                
-                 'R': _('chess-notation|R'),
-                 # Translators: The notation form of a queen. Do not translate the 'chess-notation|' text
-                 'Q': _('chess-notation|Q'),
-                 # Translators: The notation form of a king. Do not translate the 'chess-notation|' text                
-                 'K': _('chess-notation|K')}
-                 
-_pieceMap = {}
-for (key, r) in _pieceStrings.iteritems():
-    try:
-        _pieceMap[key] = r.split('|', 1)[1]
-    except IndexError:
-        _pieceMap[key] = r
+             # Translators: The notation form of a pawn.
+             # See http://en.wikipedia.org/wiki/Algebraic_chess_notation#Figurine_Algebraic_Notation for translations.
+_pieceMap = {'P': C_('chess-notation', 'P'),
+             # Translators: The notation form of a knight
+             'N': C_('chess-notation', 'N'),
+             # Translators: The notation form of a bishop
+             'B': C_('chess-notation', 'B'),
+             # Translators: The notation form of a rook
+             'R': C_('chess-notation', 'R'),
+             # Translators: The notation form of a queen
+             'Q': C_('chess-notation', 'Q'),
+             # Translators: The notation form of a king
+             'K': C_('chess-notation', 'K')}
 
 _notationMap = {}
 _notationMap.update(_fileMap)

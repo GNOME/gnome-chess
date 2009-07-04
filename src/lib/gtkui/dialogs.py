@@ -12,6 +12,7 @@ import gtk.gdk
 
 import gtkui
 import glchess.ui
+from glchess.i18n import C_
 
 class GtkServerList:
 
@@ -619,19 +620,15 @@ class GtkPreferencesDialog:
         promotionModel = gtk.ListStore(str, str)
         widget = self.__gui.get_object('promotion_type_combo')
         widget.set_model(promotionModel)
-                          # Translators: Promotion Combo: Promote to a queen. Do not translate the 'chess-piece|' text.
-        promotion_list = [('queen',  _('chess-piece|Queen')),
-                          # Translators: Promotion Combo: Promote to a knight. Do not translate the 'chess-piece|' text.
-                          ('knight', _('chess-piece|Knight')),
-                          # Translators: Promotion Combo: Promote to a rook. Do not translate the 'chess-piece|' text.
-                          ('rook',   _('chess-piece|Rook')),
-                          # Translators: Promotion Combo: Promote to a bishop. Do not translate the 'chess-piece|' text.
-                          ('bishop', _('chess-piece|Bishop'))]
+                          # Translators: Promotion Combo: Promote to a queen
+        promotion_list = [('queen',  C_('chess-piece', 'Queen')),
+                          # Translators: Promotion Combo: Promote to a knight
+                          ('knight', C_('chess-piece', 'Knight')),
+                          # Translators: Promotion Combo: Promote to a rook
+                          ('rook',   C_('chess-piece', 'Rook')),
+                          # Translators: Promotion Combo: Promote to a bishop
+                          ('bishop', C_('chess-piece', 'Bishop'))]
         for (key, label) in promotion_list:
-            try:
-                label = label.split('|', 1)[1]
-            except IndexError:
-                pass
             iter = promotionModel.append()
             promotionModel.set(iter, 0, label, 1, key)
             

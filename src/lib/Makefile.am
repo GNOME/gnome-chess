@@ -17,6 +17,7 @@ glchess_PYTHON = \
 	game.py		\
 	glchess.py 	\
 	history.py 	\
+	i18n.py		\
 	__init__.py	\
 	main.py		\
 	network.py	\
