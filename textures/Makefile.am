@@ -1,4 +1,4 @@
 EXTRA_DIST = board.png piece.png
 
-pixmapdir = $(datadir)/pixmaps/glchess/
+pixmapdir = $(pkgdatadir)/glchess/pixmaps
 pixmap_DATA = board.png piece.png
