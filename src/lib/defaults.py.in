@@ -13,7 +13,7 @@ root_dir = os.path.dirname(__file__)
 if not os.path.exists(os.path.join(root_dir, 'Makefile.am')):
     # Running in installed mode
     APP_DATA_DIR     = os.path.join('@prefix@', 'share') 
-    TEXTURE_DIR      = os.path.join(APP_DATA_DIR, 'gnome-games', 'glchess', 'pixmaps')
+    TEXTURE_DIR      = os.path.join(APP_DATA_DIR, 'gnome-games', 'glchess', 'textures')
     UI_DIR           = os.path.join(APP_DATA_DIR, 'glchess')
     BASE_DIR         = os.path.join(APP_DATA_DIR, 'glchess')
     LOCALEDIR        = os.path.join(APP_DATA_DIR, 'locale')
