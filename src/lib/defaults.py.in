@@ -12,10 +12,10 @@ import gettext
 root_dir = os.path.dirname(__file__)
 if not os.path.exists(os.path.join(root_dir, 'Makefile.am')):
     # Running in installed mode
-    APP_DATA_DIR     = os.path.join('@prefix@', 'share') 
-    TEXTURE_DIR      = os.path.join(APP_DATA_DIR, 'gnome-games', 'glchess', 'textures')
-    UI_DIR           = os.path.join(APP_DATA_DIR, 'glchess')
+    APP_DATA_DIR     = os.path.join('@prefix@', 'share')
     BASE_DIR         = os.path.join(APP_DATA_DIR, 'glchess')
+    TEXTURE_DIR      = os.path.join(BASE_DIR, 'textures')
+    UI_DIR           = BASE_DIR
     LOCALEDIR        = os.path.join(APP_DATA_DIR, 'locale')
     DATA_DIR         = os.path.expanduser('~/.gnome2/glchess/')
     LOG_DIR          = os.path.join(DATA_DIR, 'logs')
