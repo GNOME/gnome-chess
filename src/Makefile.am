@@ -7,7 +7,7 @@ bin_SCRIPTS = glchess
 CLEANFILES  = glchess glchess.in
 
 glchess: glchess.in
-	sed \
+	$(AM_V_GEN) sed \
 		-e "s|\#pyexecdir\#|$(pyexecdir)|" \
-	    	$< > $@
-	if test -f $@; then chmod u+x $@; fi
+	    	$< > $@ && \
+	chmod u+x $@
