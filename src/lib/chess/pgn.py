@@ -556,7 +556,7 @@ class PGN:
                 p.parseLine(line)
             p.complete()
         except Error, e:
-            raise Error('Error on line %d: %s' % (lineNumber, e.message))
+            raise Error('Error on line %d: %s' % (lineNumber, str(e)))
 
         # Must be at least one game in the PGN file
         self.__games = p.games

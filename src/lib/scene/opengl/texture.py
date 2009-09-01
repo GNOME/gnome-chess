@@ -54,7 +54,7 @@ class Texture:
         try:
             (width, height, data, metaData) = reader.read()
         except png.Error, e:
-            print 'Error parsing PNG file %s: %s' % (fileName, e.message)
+            print 'Error parsing PNG file %s: %s' % (fileName, str(e))
             self.__data = None
             return
         

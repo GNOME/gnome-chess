@@ -72,7 +72,7 @@ class GGZConfig:
             f = file(GGZ_CONFIG_FILE)
             lines = f.readlines()
         except IOError, e:
-            print 'Failed to load GGZ config: %s' % e.message
+            print 'Failed to load GGZ config: %s: %s' % (e.strerror, e.filename)
             lines = []
             
         self.lines = []
@@ -189,7 +189,7 @@ class GGZConfig:
             f = file(GGZ_CONFIG_FILE, 'w')
             f.writelines(lines)
         except IOError, e:
-            print 'Failed to save GGZ config: %s' % e.message
+            print 'Failed to save GGZ config: %s: %s' % (e.strerror, e.filename)
 
 class GGZChannel(ggz.Channel):
     
