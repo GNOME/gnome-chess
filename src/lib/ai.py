@@ -182,7 +182,15 @@ class CECPConnection(cecp.Connection):
         else:
             assert(self.player.suppliedMove is None)
             self.player.suppliedMove = move
-        
+
+    def onResign(self):
+        """Called by cecp.Connection"""
+        self.player.resign()
+
+    def onDraw(self):
+        """Called by cecp.Connection"""
+        print self.player.claimDraw()
+
     def logText(self, text, style):
         """Called by cecp.Connection"""
         self.player.logText(text, style)
@@ -375,6 +383,12 @@ class Player(game.ChessPlayer):
         if self.__toEngineFd == None:
             self.die()
             return
+
+        # AI Engines always claim draw due to three-fold-repetition and
+        # 50 move rule
+        if self.claimDraw():
+            return
+        
         game = self.getGame()
         whiteTime = game.getWhite().getRemainingTime()
         blackTime = game.getBlack().getRemainingTime()
@@ -390,7 +404,11 @@ class Player(game.ChessPlayer):
             move = self.suppliedMove
             self.suppliedMove = None
             self.move(move)
-        
+
+            # AI Engines always claim draw due to three-fold-repetition and
+            # 50 move rule
+            self.claimDraw()
+
     def onGameEnded(self, game):
         """Called by game.ChessPlayer"""
         self.quit()
