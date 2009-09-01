@@ -9,9 +9,10 @@ class CECPProtocol:
     NEWLINE             = '\n'
     MOVE_PREFIXS        = ['My move is: ', 'my move is ', 'move ']
     INVALID_MOVE_PREFIX = 'Illegal move: '
-    RESIGN_PREFIX       = 'tellics resign'
-    DRAW_PREFIX         = '1/2-1/2'
-    
+    RESIGN_PREFIX       = 'resign'
+    RESIGN_ICS_PREFIX   = 'tellics resign'    
+    DRAW_PREFIX         = 'offer draw'
+
     def __init__(self):
         """
         """
@@ -53,6 +54,10 @@ class CECPProtocol:
     def onResign(self):
         """Called when the AI resigns"""
         print 'CECP AI resigns'
+        
+    def onDraw(self):
+        """Called when the AI requests a draw"""
+        print 'CECP AI calls a draw'
         
     def logText(self, text, style):
         print 'LOG: %s' % text
@@ -139,15 +144,19 @@ class CECPProtocol:
                 self.logText(line + '\n', 'move')
                 self.onMove(move.strip())
                 return
-            
+
         if line.startswith(self.INVALID_MOVE_PREFIX):
             self.onIllegalMove(line[len(self.INVALID_MOVE_PREFIX):])
     
-        elif line.startswith(self.RESIGN_PREFIX):
+        elif line.startswith(self.RESIGN_PREFIX) or line.startswith(self.RESIGN_ICS_PREFIX):
+            self.logText(line + '\n', 'move')
             self.onResign()
-            
+            return
+
         elif line.startswith(self.DRAW_PREFIX):
-            print 'AI calls a draw'
+            self.logText(line + '\n', 'move')
+            self.onDraw()
+            return
 
         else:
             self.onUnknownLine(line)
