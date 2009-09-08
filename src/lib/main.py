@@ -669,13 +669,20 @@ class Application:
 
         # Start default game if no game present
         if self.__game is None and len(self.__aiProfiles) > 0:
+            # Try the previously used AIs first, then any other AI on easy mode
+            possibleAIs = [(config.get('new_game_dialog/black/type'),
+                            config.get('new_game_dialog/black/difficulty')),
+                           (config.get('new_game_dialog/white/type'),
+                            config.get('new_game_dialog/white/difficulty'))]
             for p in profiles:
-                if self.__aiProfiles.has_key(p.name):
-                    aiName = p.name
+                possibleAIs.append((p.name, 'easy'))
+            
+            for (name, difficulty) in possibleAIs:
+                if self.__aiProfiles.has_key(name):
+                    black = (name, difficulty)
                     break
-            black = (aiName, 'easy')
             # Translators: Name of a human versus AI game. The %s is replaced with the name of the AI player
-            gameName = _('Human versus %s') % aiName
+            gameName = _('Human versus %s') % black[0]
             # Translators: Name of white player in a default game
             whiteName =  _('White')
             # Translators: Name of black player in a default game            
