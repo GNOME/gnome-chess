@@ -9,6 +9,7 @@ import gtkui
 import glchess.ui
 import glchess.chess
 import glchess.game
+import glchess.config
 
 # Optionally use OpenGL support
 openGLErrors = []
@@ -144,34 +145,42 @@ class GtkViewArea(gtk.DrawingArea):
         """Gtk+ signal"""
         self.pixmap = gtk.gdk.Pixmap(widget.window, event.width, event.height)
         self.dynamicPixmap = gtk.gdk.Pixmap(widget.window, event.width, event.height)
-        self.__startGL()
-        if self.view.feedback is not None:
-            self.view.feedback.reshape(event.width, event.height)
-        self.__endGL()
+        try:
+            self.__startGL()
+            if self.view.feedback is not None:
+                self.view.feedback.reshape(event.width, event.height)
+            self.__endGL()
+        except:
+            glchess.config.set('show_3d', False)
+            raise
 
     def __expose(self, widget, event):
         """Gtk+ signal"""
         if self.renderGL:
-            self.__startGL()
-            if self.__glDrawable is None:
-                return
-
-            # Get the scene rendered
             try:
-                if self.view.feedback is not None:
-                    self.view.feedback.renderGL()
-            except OpenGL.GL.GLerror, e:
-                print 'Rendering Error: ' + str(e)
-                traceback.print_exc(file = sys.stdout)
+                self.__startGL()
+                if self.__glDrawable is None:
+                    return
 
-            # Paint this
-            if self.__glDrawable.is_double_buffered():
-                self.__glDrawable.swap_buffers()
-            else:
-                OpenGL.GL.glFlush()
+                # Get the scene rendered
+                try:
+                    if self.view.feedback is not None:
+                        self.view.feedback.renderGL()
+                except OpenGL.GL.GLerror, e:
+                    print 'Rendering Error: ' + str(e)
+                    traceback.print_exc(file = sys.stdout)
 
-            self.__endGL()
-            
+                # Paint this
+                if self.__glDrawable.is_double_buffered():
+                    self.__glDrawable.swap_buffers()
+                else:
+                    OpenGL.GL.glFlush()
+
+                self.__endGL()
+            except:
+                glchess.config.set('show_3d', False)
+                raise
+
         else:
             context = self.pixmap.cairo_create()
             if self.view.feedback is not None:
@@ -198,19 +207,27 @@ class GtkViewArea(gtk.DrawingArea):
         """Gtk+ signal"""
         if event.button != 1:
             return
-        self.__startGL()
-        if self.view.feedback is not None:
-            self.view.feedback.select(event.x, event.y)
-        self.__endGL()
+        try:
+            self.__startGL()
+            if self.view.feedback is not None:
+                self.view.feedback.select(event.x, event.y)
+            self.__endGL()
+        except:
+            glchess.config.set('show_3d', False)
+            raise
         
     def __button_release(self, widget, event):
         """Gtk+ signal"""
         if event.button != 1:
             return
-        self.__startGL()
-        if self.view.feedback is not None:
-            self.view.feedback.deselect(event.x, event.y)
-        self.__endGL()
+        try:
+            self.__startGL()
+            if self.view.feedback is not None:
+                self.view.feedback.deselect(event.x, event.y)
+            self.__endGL()
+        except:
+            glchess.config.set('show_3d', False)
+            raise
 
 class GtkView(glchess.ui.ViewController):
     """
