@@ -9,3 +9,5 @@ DOC_FIGURES = figures/new_game.png \
               figures/preferences_game.png \
 	      figures/preferences_view.png
 DOC_LINGUAS = ca cs de el en_GB es eu fr oc pt_BR ru sv
+
+-include $(top_srcdir)/git.mk

@@ -23,3 +23,5 @@ glchess_PYTHON = \
 	network.py	\
 	player.py	\
 	uci.py
+
+-include $(top_srcdir)/git.mk

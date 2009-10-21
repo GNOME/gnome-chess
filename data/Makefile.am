@@ -26,3 +26,5 @@ aidir = $(datadir)/glchess/
 ai_DATA = ai.xml
 
 DISTCLEANFILES = $(schema_DATA)
+
+-include $(top_srcdir)/git.mk

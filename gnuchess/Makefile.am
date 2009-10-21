@@ -10,3 +10,5 @@ gnome_gnuchess_SOURCES = atak.c book.c cmd.c debug.c epd.c eval.c genmove.c \
 gnome_gnuchess_CFLAGS = $(PTHREAD_CFLAGS) $(AM_CFLAGS)
 
 gnome_gnuchess_LDFLAGS = $(PTHREAD_LDFLAGS) $(PTHREAD_LIBS) $(AM_LDFLAGS)
+
+-include $(top_srcdir)/git.mk

@@ -4,3 +4,5 @@ glchess_PYTHON = \
 	chess.py	\
 	client.py	\
 	protocol.py
+
+-include $(top_srcdir)/git.mk

@@ -6,3 +6,5 @@ glchess_PYTHON = \
 	network.py	\
 	gtkui.py	\
 	__init__.py
+
+-include $(top_srcdir)/git.mk

@@ -8,3 +8,5 @@ glchess_PYTHON = \
 	lan.py		\
 	pgn.py		\
 	san.py
+
+-include $(top_srcdir)/git.mk

@@ -5,3 +5,5 @@ glchess_PYTHON = \
 	opengl.py	\
 	texture.py	\
 	png.py
+
+-include $(top_srcdir)/git.mk
