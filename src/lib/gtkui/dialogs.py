@@ -514,12 +514,14 @@ class GtkSaveGameDialog:
         
         # Filter out non PGN files by default
         pgnFilter = gtk.FileFilter()
-        pgnFilter.set_name('PGN files')
+        # Translators: Save Game Dialog: Name of filter to show only PGN files
+        pgnFilter.set_name(_('PGN files'))
         pgnFilter.add_pattern('*.pgn')
         chooser.add_filter(pgnFilter)
         
         allFilter = gtk.FileFilter()
-        allFilter.set_name('All files')
+        # Translators: Save Game Dialog: Name of filter to show all files
+        allFilter.set_name(_('All files'))
         allFilter.add_pattern('*')
         chooser.add_filter(allFilter)
         
