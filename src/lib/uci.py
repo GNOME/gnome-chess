@@ -17,7 +17,6 @@ class StateMachine:
         self.__readyToConfigure = False    
         self.__ready            = False
         self.__inCallback       = False
-        self.__queuedCommands   = None
         self.__positionCommand = 'position startpos'
         
     def logText(self, text, style):
