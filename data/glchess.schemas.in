@@ -98,6 +98,18 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/glchess/piece_style</key>
+      <applyto>/apps/glchess/piece_style</applyto>
+      <owner>glchess</owner>
+      <type>string</type>
+      <default>simple</default>
+      <locale name="C">
+        <short>The piece style to use</short>
+        <long>The piece style to use.  Can be one of: 'simple' or 'fancy'</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/glchess/show_move_hints</key>
       <applyto>/apps/glchess/show_move_hints</applyto>
       <owner>glchess</owner>

@@ -634,9 +634,21 @@ class GtkPreferencesDialog:
             iter = promotionModel.append()
             promotionModel.set(iter, 0, label, 1, key)
             
+        # Make model for piece styles
+        pieceStyleModel = gtk.ListStore(str, str)
+        widget = self.__gui.get_object('piece_style_combo')
+        widget.set_model(pieceStyleModel)
+                     # Translators: a simple piece set will be used in 2d mode
+        view_list = [('simple', _('Simple')),
+                     # Translators: a fancy piece set will be used in 2d mode
+                     ('fancy',  _('Fancy'))]
+        for (key, label) in view_list:
+            iter = pieceStyleModel.append()
+            pieceStyleModel.set(iter, 0, label, 1, key)
+
         # Watch for config changes
-        for key in ['show_3d', 'show_3d_smooth', 'show_toolbar', 'show_history', 
-                    'show_move_hints', 'show_numbering',
+        for key in ['show_3d', 'show_3d_smooth', 'piece_style', 'show_toolbar',
+                    'show_history', 'show_move_hints', 'show_numbering',
                     'move_format', 'board_view', 'promotion_type']:
             glchess.config.watch(key, self.__applyConfig)
             try:
@@ -652,10 +664,17 @@ class GtkPreferencesDialog:
         if name == 'show_3d':
             self.__gui.get_object('show_3d').set_active(value)
             self.__gui.get_object('show_3d_smooth').set_sensitive(value)            
+            self.__gui.get_object('piece_style_combo').set_sensitive(not value)            
 
         elif name == 'show_3d_smooth':
             self.__gui.get_object('show_3d_smooth').set_active(value)
             
+        elif name == 'piece_style':
+            widget = self.__gui.get_object('piece_style_combo')
+            for row in widget.get_model():
+                if row[1] == value:
+                    widget.set_active_iter(row.iter)
+                
         elif name == 'show_toolbar':
             self.__gui.get_object('show_toolbar').set_active(value)
                 
@@ -704,6 +723,16 @@ class GtkPreferencesDialog:
         """Gtk+ callback"""
         self.setVisible(False)
         return True
+
+    def _on_piece_style_combo_changed(self, widget):
+        """Gtk+ callback"""
+        model = widget.get_model()
+        iter = widget.get_active_iter()
+        if iter is None:
+            return
+        data = model.get(iter, 1)
+        if data[0] is not None:
+            glchess.config.set('piece_style', data[0])
 
     def _on_move_format_combo_changed(self, widget):
         """Gtk+ callback"""
