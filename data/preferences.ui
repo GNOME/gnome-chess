@@ -7,6 +7,7 @@
     <property name="resizable">False</property>
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
+    <property name="has_separator">False</property>
     <signal name="response" handler="_on_response"/>
     <signal name="delete_event" handler="_on_delete"/>
     <child internal-child="vbox">
@@ -16,6 +17,7 @@
           <object class="GtkNotebook" id="notebook1">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="border_width">5</property>
             <child>
               <object class="GtkTable" id="game_table">
                 <property name="visible">True</property>
@@ -139,7 +141,6 @@
               <object class="GtkVBox" id="view_box">
                 <property name="visible">True</property>
                 <property name="border_width">10</property>
-                <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkCheckButton" id="show_3d">
                     <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if 3D view is available">3_D Chess View</property>
