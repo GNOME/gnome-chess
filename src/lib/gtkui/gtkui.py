@@ -224,9 +224,8 @@ class GtkUI(glchess.ui.UI):
         
         # Watch for config changes
         for key in ['show_toolbar', 'show_history', 'fullscreen',
-                    'show_3d', 'show_3d_smooth', 'show_comments', 'show_numbering',
-                    'show_move_hints',
-                    'width', 'height',
+                    'show_3d', 'show_3d_smooth', 'piece_style', 'show_comments',
+                    'show_numbering', 'show_move_hints', 'width', 'height',
                     'move_format', 'promotion_type', 'board_view',
                     'enable_networking']:
             glchess.config.watch(key, self.__applyConfig)
@@ -368,7 +367,7 @@ class GtkUI(glchess.ui.UI):
         """        
         # Load configuration
         for name in ['show_toolbar', 'show_history', 'show_3d', 'show_3d_smooth',
-                     'show_comments', 'show_numbering', 'show_move_hints',
+                     'piece_style', 'show_comments', 'show_numbering', 'show_move_hints',
                      'move_format', 'promotion_type', 'board_view', 'maximised',
                      'enable_networking']:
             try:
@@ -555,6 +554,9 @@ Please contact your system administrator to resolve these problems, until then y
                 value = False
             self.view.feedback.showSmooth(value)
                 
+        elif name == 'piece_style':
+            pass
+
         elif name == 'show_comments':
             self.view.setShowComments(value)
 

@@ -90,7 +90,8 @@ class SceneCairo(scene.SceneFeedback, scene.human.SceneHumanInput):
                          chess.board.BISHOP: 'bishop', chess.board.QUEEN: 'queen', chess.board.KING: 'king'}[piece.getType()]
             chessSet = {chess.board.WHITE: 'white', chess.board.BLACK: 'black'}[piece.getColour()]
             p = CairoPiece(self, piece)
-            p.model = self.controller.addChessPiece(chessSet, pieceName, location, p)
+            style = piecesStyle = config.get('piece_style')
+            p.model = self.controller.addChessPiece(chessSet, pieceName, location, p, style=style)
             self.pieces[piece] = p
 
         # Move the model
@@ -336,6 +337,7 @@ class View(ui.ViewFeedback):
         # This should be cleaned up
         self.scene = SceneCairo(self)
         config.watch('board_view', self.__onBoardViewChanged)
+        config.watch('piece_style', self.__onPiecesStyleChanged)
 
         # Look for game events to update the scene
         movePlayer = MovePlayer(self)
@@ -354,6 +356,9 @@ class View(ui.ViewFeedback):
 
     def __onBoardViewChanged(self, key, value):
         self.updateRotation()
+
+    def __onPiecesStyleChanged(self, key, value):
+        self.updatePiecesStyle()
 
     def _updateHighlight(self, coord):
         if self.moveNumber == -1:
@@ -419,6 +424,10 @@ class View(ui.ViewFeedback):
 
         self.scene.controller.setBoardRotation(rotation, boardView == 'facetoface', animate)
 
+    def updatePiecesStyle(self):
+        piecesStyle = config.get('piece_style')
+        self.scene.controller.setPiecesStyle(piecesStyle)
+    
     def _pieceMoved(self, piece):
         """
         """

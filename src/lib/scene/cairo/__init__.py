@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+import os.path
+
 import math
 import cairo
+import rsvg
 
 import glchess.scene
-
-import pieces
 
 from gettext import gettext as _
 
@@ -27,7 +28,7 @@ class ChessPiece(glchess.scene.ChessPiece):
     """
     """
 
-    def __init__(self, scene, name, coord, feedback):
+    def __init__(self, scene, name, coord, feedback, style='simple'):
         """
         """
         self.scene = scene
@@ -38,6 +39,8 @@ class ChessPiece(glchess.scene.ChessPiece):
         self.targetPos   = None
         self.moving = False
         self.delete = False # Delete once moved to location
+
+        self.setStyle(style)
         
     def __coordToLocation(self, coord):
         """
@@ -46,6 +49,14 @@ class ChessPiece(glchess.scene.ChessPiece):
         file = ord(coord[1]) - ord('1')
         
         return (float(rank), float(file))
+
+    def setStyle(self, style):
+        self.style = style
+        self.path = os.path.join(glchess.defaults.BASE_DIR, 'pieces', style, self.name + '.svg')
+        try:
+            self.svg = rsvg.Handle(file = self.path)
+        except Exception as e:
+            raise Exception('Error reading %s: %s' % (self.path, e))
 
     def move(self, coord, delete, animate = True):
         """Extends glchess.scene.ChessPiece"""
@@ -127,28 +138,31 @@ class ChessPiece(glchess.scene.ChessPiece):
     def render(self, context):
         """
         """
-        offset = 0
+        offset = self.scene.PIECE_BORDER
         matrix = context.get_matrix()
         x = (self.pos[0] - 4) * self.scene.squareSize
         y = (3 - self.pos[1]) * self.scene.squareSize
+
         context.translate(x, y)
         context.translate(self.scene.squareSize / 2, self.scene.squareSize / 2)
         context.rotate(-self.scene.angle)
-        context.translate(-self.scene.squareSize / 2, -self.scene.squareSize / 2)
 
         # If Face to Face mode is enabled, we rotate the black player's pieces by 180 degrees
         if self.scene.faceToFace and self.name.find('black') != -1:
             context.rotate(math.pi)
-            offset -= self.scene.pieceSize
-        pieces.piece(self.name, context, self.scene.pieceSize, offset, offset)
-        context.fill()
+            offset = - offset - self.scene.pieceSize + self.scene.squareSize
+        
+        context.translate(-self.scene.squareSize / 2 + offset, -self.scene.squareSize / 2 + offset)
+        context.scale(self.scene.pieceSize/self.svg.props.width, self.scene.pieceSize/self.svg.props.height)
+
+        self.svg.render_cairo(context)
         context.set_matrix(matrix)
 
 class Scene(glchess.scene.Scene):
     """
     """    
     BORDER = 6.0
-    PIECE_BORDER = 2.0
+    PIECE_BORDER = 0.0
 
     def __init__(self, feedback):
         """Constructor for a Cairo scene"""
@@ -163,7 +177,7 @@ class Scene(glchess.scene.Scene):
         self.showNumbering   = False
         self.faceToFace      = False
     
-    def addChessPiece(self, chessSet, name, coord, feedback):
+    def addChessPiece(self, chessSet, name, coord, feedback, style = 'simple'):
         """Add a chess piece model into the scene.
         
         'chessSet' is the name of the chess set (string).
@@ -173,7 +187,7 @@ class Scene(glchess.scene.Scene):
         Returns a reference to this chess piece or raises an exception.
         """
         name = chessSet + name[0].upper() + name[1:]
-        piece = ChessPiece(self, name, coord, feedback)
+        piece = ChessPiece(self, name, coord, feedback, style=style)
         self.pieces.append(piece)
         
         # Redraw the scene
@@ -246,6 +260,12 @@ class Scene(glchess.scene.Scene):
             self.redrawStatic = True
             self.feedback.onRedraw()
 
+    def setPiecesStyle(self, piecesStyle):
+        for piece in self.pieces:
+            piece.setStyle(piecesStyle)
+        self.redrawStatic = True
+        self.feedback.onRedraw()
+    
     def animate(self, timeStep):
         """Extends glchess.scene.Scene"""
         if self.angle == self.targetAngle and len(self._animationQueue) == 0:

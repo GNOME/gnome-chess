@@ -1,3 +1,5 @@
+SUBDIRS = pieces
+
 uidir = $(datadir)/glchess
 ui_DATA = \
 	chess_view.ui \
