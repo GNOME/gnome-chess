@@ -254,6 +254,7 @@
               <object class="GtkToolButton" id="new_game_button">
                 <property name="visible">True</property>
                 <property name="tooltip_text" translatable="yes">Start a new game</property>
+                <property name="is_important">True</property>
                 <property name="label" translatable="yes" comments="The New Game toolbar button">New Game</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-new</property>
@@ -269,6 +270,7 @@
                 <property name="visible">True</property>
                 <property name="tooltip_text" translatable="yes">Start a new multiplayer network game</property>
                 <property name="visible_vertical">False</property>
+                <property name="is_important">True</property>
                 <property name="label" translatable="yes" comments="The Network Game toolbar button">Network _Game</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-network</property>
@@ -280,33 +282,9 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="toolbutton1">
-                <property name="visible">True</property>
-                <property name="tooltip_text" translatable="yes">Load a saved game</property>
-                <property name="stock_id">gtk-open</property>
-                <signal name="clicked" handler="_on_open_game_button_clicked"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkToolButton" id="save_game_button">
-                <property name="visible">True</property>
-                <property name="sensitive">False</property>
-                <property name="tooltip_text" translatable="yes">Save the current game</property>
-                <property name="stock_id">gtk-save</property>
-                <signal name="clicked" handler="_on_save_game_button_clicked"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkToolButton" id="undo_move_button">
                 <property name="visible">True</property>
+                <property name="is_important">True</property>
                 <property name="label" translatable="yes">Undo Move</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-undo</property>
@@ -320,6 +298,7 @@
             <child>
               <object class="GtkToolButton" id="resign_button">
                 <property name="visible">True</property>
+                <property name="is_important">True</property>
                 <property name="label" translatable="yes" comments="The tooltip for the Resign toolbar button">Resign</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-dialog-warning</property>

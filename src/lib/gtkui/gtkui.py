@@ -728,7 +728,7 @@ Please contact your system administrator to resolve these problems, until then y
         """
         """
         enable = self.view is not None and self.view.isPlayable
-        for widget in ('save_game_button', 'menu_save_item', 'menu_save_as_item'):
+        for widget in ('menu_save_item', 'menu_save_as_item'):
             self.__getWidget(widget).set_sensitive(enable)
 
         combo = self.__getWidget('history_combo')
