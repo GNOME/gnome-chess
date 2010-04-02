@@ -96,9 +96,6 @@ class GtkNewGameDialog:
         self.window = self.__gui.get_object('new_game_dialog')
         self.window.set_transient_for(mainUI.mainWindow)
 
-        # Set style of error panel
-        mainUI.setTooltipStyle(self.__gui.get_object('info_box'))
-        
         # Make all the labels the same width
         group = gtk.SizeGroup(gtk.SIZE_GROUP_HORIZONTAL)
         i = 1
@@ -425,9 +422,6 @@ class GtkLoadGameDialog:
         self.window = self.__gui.get_object('game_load_dialog')
         self.window.set_transient_for(mainUI.mainWindow)
         
-        # Set style of error panel
-        mainUI.setTooltipStyle(self.__gui.get_object('error_box'))
-        
         fileChooser = self.__gui.get_object('filechooserwidget')
         
         try:
@@ -498,9 +492,6 @@ class GtkSaveGameDialog:
         self.__gui = gtkui.loadUIFile('save_game.ui')
         self.__gui.connect_signals(self)
         
-        # Set style of error panel
-        mainUI.setTooltipStyle(self.__gui.get_object('error_box'))
-
         self.window = self.__gui.get_object('save_dialog')
         self.window.set_transient_for(mainUI.mainWindow)
         chooser = self.__gui.get_object('filechooser')

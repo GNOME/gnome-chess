@@ -261,8 +261,6 @@ class GtkView(glchess.ui.ViewController):
         self.viewWidget = GtkViewArea(self)
         self.gui.get_object('view_container').add(self.viewWidget)
 
-        self.ui.setTooltipStyle(self.gui.get_object('info_panel'))
-
         # Make a model for navigation (move object, number, description) 
         model = gtk.ListStore(gobject.TYPE_PYOBJECT, int, str)
         iter = model.append()

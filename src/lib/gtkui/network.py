@@ -217,7 +217,6 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         #buffer.create_tag('error', family='Monospace', foreground = 'red')
         buffer.create_mark('end', buffer.get_end_iter())
         
-        mainUI.setTooltipStyle(self.__gui.get_object('info_panel'))
         self.__addProfileDialog = GtkNetworkAddDialog(self, self.__gui.get_object('network_game_dialog'))
 
     # Extended methods
