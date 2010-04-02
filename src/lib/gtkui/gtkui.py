@@ -231,7 +231,30 @@ class GtkUI(glchess.ui.UI):
             glchess.config.watch(key, self.__applyConfig)
 
     # Public methods
+    
+    def setTooltipStyle(self, widget):
+        """Set a widget to be in the tooltip style.
+        
+        'widget' is the widget to modify.
+        """
+        if self._tooltipStyle is None:
+            return
+        widget.set_style(self._tooltipStyle)
+        widget.connect("expose_event", self._on_tooltip_expose_event)
+        widget.queue_draw()
 
+    def _on_tooltip_expose_event(self, widget, event):
+        """Gtk+ callback"""
+        allocation = widget.allocation
+        widget.style.paint_flat_box(widget.window, gtk.STATE_NORMAL, gtk.SHADOW_OUT, None, widget, "tooltip",
+                                    allocation.x, allocation.y, allocation.width, allocation.height)
+                                    
+        # The first draw is corrupt for me so draw it twice.
+        # Bonus points to anyone who tracks down the problem and fixes it
+        if not self._tooltipWidgetsDrawn.has_key(widget):
+            self._tooltipWidgetsDrawn[widget] = True
+            widget.queue_draw()
+    
     def watchFileDescriptor(self, fd):
         """Extends ui.UI"""
         self._watches[fd] = gobject.io_add_watch(fd, gobject.IO_IN | gobject.IO_PRI | gobject.IO_HUP | gobject.IO_ERR, self.__readData)
