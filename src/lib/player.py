@@ -73,11 +73,9 @@ class AIPlayer(ai.Player):
     def __init__(self, application, name, profile, level, description):
         """
         """
-        executable = profile.path
-        for arg in profile.arguments[1:]:
-            executable += ' ' + arg
-        self.window = application.ui.controller.addLogWindow(profile.name, executable, description)
         ai.Player.__init__(self, name, profile, level)
+        self.window = application.ui.controller.addLogWindow(profile.name, ' '.join(self.arguments), description)
+        self.start()
         
     def logText(self, text, style):
         """Called by ai.Player"""

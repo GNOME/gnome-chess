@@ -30,7 +30,9 @@ class Level:
     """
 
     def __init__(self):
+        self.name = ''
         self.options = []
+        self.arguments = []
 
 class Profile:
     """
@@ -42,7 +44,7 @@ class Profile:
         self.path = ''
         self.executables = []
         self.arguments = []
-        self.profiles = {}
+        self.levels = {}
 
     def detect(self):
         """
@@ -73,23 +75,51 @@ def _loadLevel(node):
     """
     """
     level = Level()
-    n = node.getElementsByTagName('name')
-    if len(n) != 1:
-        return None
-    level.name = _getXMLText(n[0])
-    
-    for e in node.getElementsByTagName('option'):
-        option = Option()
-        option.value = _getXMLText(e)
-        try:
-            attribute = e.attributes['name']
-        except KeyError:
-            pass
-        else:
-            option.name = _getXMLText(attribute)
-        level.options.append(option)
-        
+    for n in node.childNodes:
+        if n.nodeName == 'name':
+            level.name = _getXMLText(n)
+        elif n.nodeName == 'argument':
+            level.arguments.append(_getXMLText(n))
+        elif n.nodeName == 'option':
+            option = Option()
+            option.value = _getXMLText(n)
+            try:
+                attribute = n.attributes['name']
+            except KeyError:
+                pass
+            else:
+                option.name = _getXMLText(attribute)
+            level.options.append(option)
+
     return level
+
+def _loadAIProfile(node):
+    profile = Profile()
+
+    try:
+        protocolName = node.attributes['type'].nodeValue
+    except KeyError:
+        assert(False)
+    if protocolName == 'cecp':
+        profile.protocol = CECP
+    elif protocolName == 'uci':
+        profile.protocol = UCI
+    else:
+        assert(False), 'Unknown AI type: %s' % repr(protocolName)
+
+    for n in node.childNodes:
+        if n.nodeName == 'name':
+            profile.name = _getXMLText(n)
+        elif n.nodeName == 'binary':
+            profile.executables.append(_getXMLText(n))
+        elif n.nodeName == 'argument':
+            profile.arguments.append(_getXMLText(n))
+        elif n.nodeName == 'level':
+            level = _loadLevel(n)
+            if level is not None:
+                profile.levels[level.name] = level
+
+    return profile
 
 def loadProfiles():
     """
@@ -112,50 +142,11 @@ def loadProfiles():
         print 'WARNING: No AI configuration'
         return profiles
 
-    elements = document.getElementsByTagName('aiconfig')
-    if len(elements) == 0:
-        return profiles
-
-    for e in elements:
-        for p in e.getElementsByTagName('ai'):
-            try:
-                protocolName = p.attributes['type'].nodeValue
-            except KeyError:
-                assert(False)
-            if protocolName == 'cecp':
-                protocol = CECP
-            elif protocolName == 'uci':
-                protocol = UCI
-            else:
-                assert(False), 'Uknown AI type: %s' % repr(protocolName)
-            
-            n = p.getElementsByTagName('name')
-            assert(len(n) > 0)
-            name = _getXMLText(n[0])
-
-            executables = []
-            n = p.getElementsByTagName('binary')
-            assert(len(n) > 0)
-            for x in n:
-                executables.append(_getXMLText(x))
-
-            arguments = []
-            for x in p.getElementsByTagName('argument'):
-                arguments.append(_getXMLText(x))
-
-            levels = {}
-            for x in p.getElementsByTagName('level'):
-                level = _loadLevel(x)
-                if level is not None:
-                    levels[level.name] = level
-
-            profile = Profile()
-            profile.name        = name
-            profile.protocol    = protocol
-            profile.executables = executables
-            profile.arguments   = arguments
-            profile.levels      = levels
-            profiles.append(profile)
+    for n in document.childNodes:
+        if n.nodeName == 'aiconfig':
+            for n2 in n.childNodes:
+                if n2.nodeName == 'ai':
+                    profiles.append(_loadAIProfile(n2))
     
     return profiles
 
@@ -240,11 +231,18 @@ class Player(game.ChessPlayer):
         self.__profile = profile
         self.__level = level
         
+        self.arguments = [self.__profile.path] + self.__profile.arguments
+        try:
+            self.arguments += self.__profile.levels[self.__level].arguments
+        except KeyError:
+            pass
+
         self.moving = False
         self.suppliedMove = None
 
         game.ChessPlayer.__init__(self, name)
-        
+
+    def start(self):
         # Pipe to communicate to engine with
         (toManagerOutput, toManagerInput) = os.pipe()
         (fromManagerOutput, fromManagerInput) = os.pipe()
@@ -276,9 +274,9 @@ class Player(game.ChessPlayer):
             os.close(toManagerOutput)
             os.close(fromManagerInput)
 
-            if profile.protocol == CECP:
+            if self.__profile.protocol == CECP:
                 self.connection = CECPConnection(self)
-            elif profile.protocol == UCI:
+            elif self.__profile.protocol == UCI:
                 self.connection = UCIConnection(self)
             else:
                 assert(False)
@@ -435,10 +433,10 @@ class Player(game.ChessPlayer):
         os.dup2(toEngineFd, sys.stdin.fileno())
         os.dup2(fromEngineFd, sys.stdout.fileno())
         os.dup2(fromEngineFd, sys.stderr.fileno())
-                
+
         # Execute the engine
         try:
-            os.execv(self.__profile.path, [self.__profile.path] + self.__profile.arguments)
+            os.execv(self.arguments[0], self.arguments)
         except OSError:
             pass
 
