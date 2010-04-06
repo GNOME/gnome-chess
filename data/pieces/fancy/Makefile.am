@@ -13,4 +13,6 @@ pixmap_DATA = \
 	whiteKnight.svg \
 	whitePawn.svg
 
+EXTRA_DIST = $(pixmap_DATA)
+
 -include $(top_srcdir)/git.mk
