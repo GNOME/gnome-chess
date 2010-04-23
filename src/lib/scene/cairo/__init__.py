@@ -4,6 +4,7 @@ import os.path
 import math
 import cairo
 import rsvg
+import gobject
 import gtk.gdk
 
 import glchess.scene
@@ -193,8 +194,11 @@ class Scene(glchess.scene.Scene):
         self.redrawStatic    = True
         self.showNumbering   = False
         self.faceToFace      = False
-        pixbuf = gtk.gdk.pixbuf_new_from_file('/home/bob/git/gnome-games/build/share/gnome-games/pixmaps/baize.png')
-        (self.background_pixmap, _) = pixbuf.render_pixmap_and_mask()
+        try:
+            pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(glchess.defaults.SHARED_IMAGE_DIR, 'baize.png'))
+            (self.background_pixmap, _) = pixbuf.render_pixmap_and_mask()
+        except gobject.GError:
+            self.background_pixmap = None
 
     def addChessPiece(self, chessSet, name, coord, feedback, style = 'simple'):
         """Add a chess piece model into the scene.
