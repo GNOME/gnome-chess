@@ -24,6 +24,22 @@ BOARD_INNER_WIDTH = (SQUARE_WIDTH * 8.0)
 BOARD_OUTER_WIDTH = (BOARD_INNER_WIDTH + BOARD_BORDER * 2.0)
 OFFSET            = (BOARD_OUTER_WIDTH * 0.5)
 
+def parse_colour(colour):
+    assert colour.startswith('#')
+    assert len(colour) == 7
+    r = int(colour[1:3], 16) / 255.
+    g = int(colour[3:5], 16) / 255.
+    b = int(colour[5:7], 16) / 255.
+    return (r, g, b)
+
+def blend_colour(colour_a, colour_b, alpha):
+    a = parse_colour(colour_a)
+    b = parse_colour(colour_b)
+    r = a[0] * alpha + b[0] * (1 - alpha)
+    g = a[1] * alpha + b[1] * (1 - alpha)
+    b = a[2] * alpha + b[2] * (1 - alpha)
+    return (r, g, b)
+
 LIGHT_AMBIENT_COLOUR  = (0.4, 0.4, 0.4, 1.0)
 LIGHT_DIFFUSE_COLOUR  = (0.7, 0.7, 0.7, 1.0)
 LIGHT_SPECULAR_COLOUR = (1.0, 1.0, 1.0, 1.0)
@@ -33,18 +49,19 @@ BOARD_DIFFUSE   = (0.8, 0.8, 0.8, 1.0)
 BOARD_SPECULAR  = (1.0, 1.0, 1.0, 1.0)
 BOARD_SHININESS = 128.0
 
-BACKGROUND_COLOUR    = (0.53, 0.63, 0.75, 0.0)
-BORDER_COLOUR        = (0.72, 0.33, 0.0)
-BLACK_SQUARE_COLOURS = {None:                               (0.8, 0.8, 0.8),
-                        glchess.scene.HIGHLIGHT_SELECTED:   (0.3, 1.0, 0.3),
-                        glchess.scene.HIGHLIGHT_CAN_MOVE:   (0.3, 0.3, 1.0),
-                        glchess.scene.HIGHLIGHT_THREATENED: (1.0, 0.8, 0.8),
-                        glchess.scene.HIGHLIGHT_CAN_TAKE:   (1.0, 0.3, 0.3)}
-WHITE_SQUARE_COLOURS = {None:                               (1.0, 1.0, 1.0),
-                        glchess.scene.HIGHLIGHT_SELECTED:   (0.2, 1.0, 0.0),
-                        glchess.scene.HIGHLIGHT_CAN_MOVE:   (0.2, 0.2, 0.8),
-                        glchess.scene.HIGHLIGHT_THREATENED: (1.0, 0.8, 0.8),
-                        glchess.scene.HIGHLIGHT_CAN_TAKE:   (1.0, 0.2, 0.2)}
+BACKGROUND_COLOUR    = parse_colour('#0b782f') # Fallback only
+BORDER_COLOUR        = parse_colour('#2e3436')
+NUMBERING_COLOUR     = parse_colour('#888a85')
+BLACK_SQUARE_COLOURS = {None:                               parse_colour('#babdb6'),
+                        glchess.scene.HIGHLIGHT_SELECTED:   parse_colour('#73d216'),
+                        glchess.scene.HIGHLIGHT_CAN_MOVE:   parse_colour('#3465a4'),
+                        glchess.scene.HIGHLIGHT_THREATENED: blend_colour('#af0000', '#babdb6', 0.2),
+                        glchess.scene.HIGHLIGHT_CAN_TAKE:   blend_colour('#af0000', '#babdb6', 0.8)}
+WHITE_SQUARE_COLOURS = {None:                               parse_colour('#eeeeec'),
+                        glchess.scene.HIGHLIGHT_SELECTED:   parse_colour('#8ae234'),
+                        glchess.scene.HIGHLIGHT_CAN_MOVE:   parse_colour('#204a87'),
+                        glchess.scene.HIGHLIGHT_THREATENED: blend_colour('#cc0000', '#eeeeec', 0.2),
+                        glchess.scene.HIGHLIGHT_CAN_TAKE:   blend_colour('#cc0000', '#eeeeec', 0.8)}
 
 import math
 def accFrustum(left, right, bottom, top,
@@ -313,10 +330,10 @@ class Scene(glchess.scene.Scene):
         
         This requires an OpenGL context.
         """
-        glClearColor(*BACKGROUND_COLOUR)
+        glClearColor(BACKGROUND_COLOUR[0], BACKGROUND_COLOUR[1], BACKGROUND_COLOUR[2], 1.0)
         if len(self.jitters) > 1:
             glClear(GL_ACCUM_BUFFER_BIT)
-        
+
         glLightfv(GL_LIGHT0, GL_AMBIENT, LIGHT_AMBIENT_COLOUR)
         glLightfv(GL_LIGHT0, GL_DIFFUSE, LIGHT_DIFFUSE_COLOUR)
         glLightfv(GL_LIGHT0, GL_SPECULAR, LIGHT_SPECULAR_COLOUR)
@@ -369,7 +386,7 @@ class Scene(glchess.scene.Scene):
 
         if len(self.jitters) > 1:
             glAccum(GL_RETURN, 1)
-            
+
     def getSquare(self, x, y):
         """Find the chess square at a given 2D location.
         
@@ -685,9 +702,11 @@ class Scene(glchess.scene.Scene):
         glNormal3f(0.0, 1.0, 0.0)
         glDisable(GL_DEPTH_TEST)
         glEnable(GL_TEXTURE_2D)
+        glEnable(GL_COLOR_MATERIAL)        
         glEnable(GL_BLEND)
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
         glBindTexture(GL_TEXTURE_2D, self.numberingTexture)
+        glColor3f(*NUMBERING_COLOUR)
 
         for i in xrange(8):
             drawLabel(leftOffset, -offset, i + 8)
@@ -699,6 +718,7 @@ class Scene(glchess.scene.Scene):
 
         glEnable(GL_DEPTH_TEST)
         glDisable(GL_BLEND)
+        glDisable(GL_COLOR_MATERIAL)
         glDisable(GL_TEXTURE_2D)
 
     def drawBoard(self):
