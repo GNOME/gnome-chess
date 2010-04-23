@@ -4,20 +4,29 @@ import os.path
 import math
 import cairo
 import rsvg
+import gtk.gdk
 
 import glchess.scene
 
 from gettext import gettext as _
 
+# Tango greys
+#(238/255., 238/255., 236/255.)
+#(211/255., 215/255., 223/255.)
+#(186/255., 189/255., 182/255.)
+#(136/255., 138/255., 133/255.)
+#(85/255., 87/255., 83/255.)
+#(46/255., 52/255., 54/255.)
+
 BACKGROUND_COLOUR    = (0.53, 0.63, 0.75)
-BORDER_COLOUR        = (0.808, 0.361, 0.0)#(0.757, 0.490, 0.067)#(0.36, 0.21, 0.05)
-NUMBERING_COLOUR     = (249.0/255, 172.0/255, 109.0/255)#(249.0/255, 132.0/255, 38.0/255)
-BLACK_SQUARE_COLOURS = {None:                               (0.8, 0.8, 0.8),
+BORDER_COLOUR        = (46/255., 52/255., 54/255.)
+NUMBERING_COLOUR     = (136/255., 138/255., 133/255.)
+BLACK_SQUARE_COLOURS = {None:                               (186/255., 189/255., 182/255.),
                         glchess.scene.HIGHLIGHT_SELECTED:   (0.3, 1.0, 0.3),
                         glchess.scene.HIGHLIGHT_CAN_MOVE:   (0.3, 0.3, 0.8),
                         glchess.scene.HIGHLIGHT_THREATENED: (1.0, 0.8, 0.8),
                         glchess.scene.HIGHLIGHT_CAN_TAKE:   (1.0, 0.3, 0.3)}
-WHITE_SQUARE_COLOURS = {None:                               (1.0, 1.0, 1.0),
+WHITE_SQUARE_COLOURS = {None:                               (238/255., 238/255., 236/255.),
                         glchess.scene.HIGHLIGHT_SELECTED:   (0.2, 1.0, 0.0),
                         glchess.scene.HIGHLIGHT_CAN_MOVE:   (0.2, 0.2, 0.8),
                         glchess.scene.HIGHLIGHT_THREATENED: (1.0, 0.8, 0.8),
@@ -176,7 +185,9 @@ class Scene(glchess.scene.Scene):
         self.redrawStatic    = True
         self.showNumbering   = False
         self.faceToFace      = False
-    
+        pixbuf = gtk.gdk.pixbuf_new_from_file('/home/bob/git/gnome-games/build/share/gnome-games/pixmaps/baize.png')
+        (self.background_pixmap, _) = pixbuf.render_pixmap_and_mask()
+
     def addChessPiece(self, chessSet, name, coord, feedback, style = 'simple'):
         """Add a chess piece model into the scene.
         
@@ -370,7 +381,11 @@ class Scene(glchess.scene.Scene):
         self.redrawStatic = False
 
         # Clear background
-        context.set_source_rgb(*BACKGROUND_COLOUR)
+        if self.background_pixmap:
+            context.set_source_pixmap(self.background_pixmap, 0, 0)
+            context.get_source().set_extend(cairo.EXTEND_REPEAT)
+        else:
+            context.set_source_rgb(*BACKGROUND_COLOUR)        
         context.paint()
         
         # Rotate board
