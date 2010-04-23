@@ -10,28 +10,36 @@ import glchess.scene
 
 from gettext import gettext as _
 
-# Tango greys
-#(238/255., 238/255., 236/255.)
-#(211/255., 215/255., 223/255.)
-#(186/255., 189/255., 182/255.)
-#(136/255., 138/255., 133/255.)
-#(85/255., 87/255., 83/255.)
-#(46/255., 52/255., 54/255.)
+def parse_colour(colour):
+    assert colour.startswith('#')
+    assert len(colour) == 7
+    r = int(colour[1:3], 16) / 255.
+    g = int(colour[3:5], 16) / 255.
+    b = int(colour[5:7], 16) / 255.
+    return (r, g, b)
 
-BACKGROUND_COLOUR    = (0.53, 0.63, 0.75)
-BORDER_COLOUR        = (46/255., 52/255., 54/255.)
-NUMBERING_COLOUR     = (136/255., 138/255., 133/255.)
-BLACK_SQUARE_COLOURS = {None:                               (186/255., 189/255., 182/255.),
-                        glchess.scene.HIGHLIGHT_SELECTED:   (0.3, 1.0, 0.3),
-                        glchess.scene.HIGHLIGHT_CAN_MOVE:   (0.3, 0.3, 0.8),
-                        glchess.scene.HIGHLIGHT_THREATENED: (1.0, 0.8, 0.8),
-                        glchess.scene.HIGHLIGHT_CAN_TAKE:   (1.0, 0.3, 0.3)}
-WHITE_SQUARE_COLOURS = {None:                               (238/255., 238/255., 236/255.),
-                        glchess.scene.HIGHLIGHT_SELECTED:   (0.2, 1.0, 0.0),
-                        glchess.scene.HIGHLIGHT_CAN_MOVE:   (0.2, 0.2, 0.8),
-                        glchess.scene.HIGHLIGHT_THREATENED: (1.0, 0.8, 0.8),
-                        glchess.scene.HIGHLIGHT_CAN_TAKE:   (1.0, 0.2, 0.2)}
-PIECE_COLOUR         = (0.0, 0.0, 0.0)
+def blend_colour(colour_a, colour_b, alpha):
+    a = parse_colour(colour_a)
+    b = parse_colour(colour_b)
+    r = a[0] * alpha + b[0] * (1 - alpha)
+    g = a[1] * alpha + b[1] * (1 - alpha)
+    b = a[2] * alpha + b[2] * (1 - alpha)
+    return (r, g, b)
+
+BACKGROUND_COLOUR    = parse_colour('#0b782f') # Fallback only
+BORDER_COLOUR        = parse_colour('#2e3436')
+NUMBERING_COLOUR     = parse_colour('#888a85')
+BLACK_SQUARE_COLOURS = {None:                               parse_colour('#babdb6'),
+                        glchess.scene.HIGHLIGHT_SELECTED:   parse_colour('#73d216'),
+                        glchess.scene.HIGHLIGHT_CAN_MOVE:   parse_colour('#3465a4'),
+                        glchess.scene.HIGHLIGHT_THREATENED: blend_colour('#af0000', '#babdb6', 0.2),
+                        glchess.scene.HIGHLIGHT_CAN_TAKE:   blend_colour('#af0000', '#babdb6', 0.8)}
+WHITE_SQUARE_COLOURS = {None:                               parse_colour('#eeeeec'),
+                        glchess.scene.HIGHLIGHT_SELECTED:   parse_colour('#8ae234'),
+                        glchess.scene.HIGHLIGHT_CAN_MOVE:   parse_colour('#204a87'),
+                        glchess.scene.HIGHLIGHT_THREATENED: blend_colour('#cc0000', '#eeeeec', 0.2),
+                        glchess.scene.HIGHLIGHT_CAN_TAKE:   blend_colour('#cc0000', '#eeeeec', 0.8)}
+PIECE_COLOUR         = parse_colour('#000000')
 
 class ChessPiece(glchess.scene.ChessPiece):
     """
