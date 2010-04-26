@@ -142,11 +142,11 @@ class ViewFeedback:
         """
         assert(False)
     
-    def renderGL(self):
+    def renderGL(self, background_color = (0, 0, 0)):
         """Render the scene using OpenGL"""
         assert(False)
     
-    def renderCairoStatic(self, context):
+    def renderCairoStatic(self, context, background_color = (0, 0, 0)):
         """Render the static elements of the scene.
         
         'context' is the cairo context to modify.

@@ -49,7 +49,6 @@ BOARD_DIFFUSE   = (0.8, 0.8, 0.8, 1.0)
 BOARD_SPECULAR  = (1.0, 1.0, 1.0, 1.0)
 BOARD_SHININESS = 128.0
 
-BACKGROUND_COLOUR    = parse_colour('#0b782f') # Fallback only
 BORDER_COLOUR        = parse_colour('#2e3436')
 NUMBERING_COLOUR     = parse_colour('#888a85')
 BLACK_SQUARE_COLOURS = {None:                               parse_colour('#babdb6'),
@@ -325,12 +324,12 @@ class Scene(glchess.scene.Scene):
             self.animating = False
         return self.animating
 
-    def render(self):
+    def render(self, background_colour):
         """Render the scene.
         
         This requires an OpenGL context.
         """
-        glClearColor(BACKGROUND_COLOUR[0], BACKGROUND_COLOUR[1], BACKGROUND_COLOUR[2], 1.0)
+        glClearColor(background_colour[0], background_colour[1], background_colour[2], 1.0)
         if len(self.jitters) > 1:
             glClear(GL_ACCUM_BUFFER_BIT)
 
@@ -613,7 +612,7 @@ class Scene(glchess.scene.Scene):
 
     def transformCamera(self):
         """Perform the camera matrix transformation"""
-        gluLookAt(0.0, 90.0, 45.0,
+        gluLookAt(0.0, 80.0, 40.0,
                   0.0,  0.0, 5.0,
                   0.0,  1.0,  0.0)
                   

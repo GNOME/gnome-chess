@@ -266,13 +266,13 @@ class Splashscreen(ui.ViewFeedback):
         """Called by ui.ViewFeedback"""
         pass
 
-    def renderGL(self):
+    def renderGL(self, background_colour = (0, 0, 0)):
         """Called by ui.ViewFeedback"""
-        self.scene.render()
+        self.scene.render(background_colour)
         
-    def renderCairoStatic(self, context):
+    def renderCairoStatic(self, context, background_color = (0, 0, 0)):
         """Called by ui.ViewFeedback"""
-        return self.cairoScene.renderStatic(context)
+        return self.cairoScene.renderStatic(context, background_color)
         
     def renderCairoDynamic(self, context):
         """Called by ui.ViewFeedback"""
@@ -470,15 +470,15 @@ class View(ui.ViewFeedback):
         self.showSmooth(self.doSmooth)
         self.updateRotation(animate = False)
 
-    def renderGL(self):
+    def renderGL(self, background_colour = (0, 0, 0)):
         """Called by ui.ViewFeedback"""
         self.updateScene(SceneOpenGL)
-        self.scene.controller.render()
+        self.scene.controller.render(background_colour)
 
-    def renderCairoStatic(self, context):
+    def renderCairoStatic(self, context, background_color = (0, 0, 0)):
         """Called by ui.ViewFeedback"""
         self.updateScene(SceneCairo)
-        return self.scene.controller.renderStatic(context)
+        return self.scene.controller.renderStatic(context, background_color)
         
     def renderCairoDynamic(self, context):
         """Called by ui.ViewFeedback"""

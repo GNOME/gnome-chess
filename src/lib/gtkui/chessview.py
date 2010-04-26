@@ -156,6 +156,10 @@ class GtkViewArea(gtk.DrawingArea):
 
     def __expose(self, widget, event):
         """Gtk+ signal"""
+        gc = self.style.bg_gc[self.state]
+        c = gc.get_colormap().query_color(gc.foreground.pixel)
+        color = (c.red_float, c.green_float, c.blue_float)
+
         if self.renderGL:
             try:
                 self.__startGL()
@@ -165,7 +169,7 @@ class GtkViewArea(gtk.DrawingArea):
                 # Get the scene rendered
                 try:
                     if self.view.feedback is not None:
-                        self.view.feedback.renderGL()
+                        self.view.feedback.renderGL(color)
                 except OpenGL.GL.GLerror, e:
                     print 'Rendering Error: ' + str(e)
                     traceback.print_exc(file = sys.stdout)
@@ -184,7 +188,7 @@ class GtkViewArea(gtk.DrawingArea):
         else:
             context = self.pixmap.cairo_create()
             if self.view.feedback is not None:
-                self.view.feedback.renderCairoStatic(context)
+                self.view.feedback.renderCairoStatic(context, color)
             
             # Copy the background to render the dynamic elements on top
             self.dynamicPixmap.draw_drawable(widget.get_style().white_gc, self.pixmap, 0, 0, 0, 0, -1, -1)

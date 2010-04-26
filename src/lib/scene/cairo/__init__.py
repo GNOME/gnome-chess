@@ -27,7 +27,6 @@ def blend_colour(colour_a, colour_b, alpha):
     b = a[2] * alpha + b[2] * (1 - alpha)
     return (r, g, b)
 
-BACKGROUND_COLOUR    = parse_colour('#0b782f') # Fallback only
 BORDER_COLOUR        = parse_colour('#2e3436')
 NUMBERING_COLOUR     = parse_colour('#888a85')
 BLACK_SQUARE_COLOURS = {None:                               parse_colour('#babdb6'),
@@ -385,19 +384,14 @@ class Scene(glchess.scene.Scene):
         
         context.rotate(self.angle);
 
-    def renderStatic(self, context):
+    def renderStatic(self, context, background_color):
         """Render the static elements in a scene.
         """
         if self.redrawStatic is False:
             return False
         self.redrawStatic = False
 
-        # Clear background
-        if self.background_pixmap:
-            context.set_source_pixmap(self.background_pixmap, 0, 0)
-            context.get_source().set_extend(cairo.EXTEND_REPEAT)
-        else:
-            context.set_source_rgb(*BACKGROUND_COLOUR)        
+        context.set_source_rgb(*background_color)
         context.paint()
         
         # Rotate board
