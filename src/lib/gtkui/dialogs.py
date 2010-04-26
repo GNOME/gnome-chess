@@ -91,14 +91,24 @@ class GtkNewGameDialog:
 
         # Load the UI
         self.__gui = gtkui.loadUIFile('new_game.ui')
-        self.__gui.connect_signals(self)
 
         self.window = self.__gui.get_object('new_game_dialog')
         self.window.set_transient_for(mainUI.mainWindow)
 
-        # Set style of error panel
-        mainUI.setTooltipStyle(self.__gui.get_object('info_box'))
-        
+        self.infobar = gtk.InfoBar()
+        self.window.get_content_area().pack_start(self.infobar, False, True, 0)
+        vbox = gtk.VBox()
+        self.infobar.add(vbox)
+        vbox.show()
+        self.infoTitleLabel = gtk.Label()
+        vbox.pack_start(self.infoTitleLabel, False, True, 0)
+        self.infoTitleLabel.show()
+        self.infoDescriptionLabel = gtk.Label()
+        vbox.pack_start(self.infoDescriptionLabel, False, True, 0);
+        self.infoDescriptionLabel.show()
+
+        self.__gui.connect_signals(self)
+
         # Make all the labels the same width
         group = gtk.SizeGroup(gtk.SIZE_GROUP_HORIZONTAL)
         i = 1
@@ -261,9 +271,9 @@ class GtkNewGameDialog:
         # Display warning if missing the AIs
         if len(errors) > 0:
             # Translators: New Game Dialog: Title of error box when loaded game had AI engines missing
-            self.__gui.get_object('info_title_label').set_markup('<big><b>%s</b></big>' % _('Game settings changed'))
-            self.__gui.get_object('info_description_label').set_markup('<i>%s</i>' % '\n'.join(errors))
-            self.__gui.get_object('info_box').show()
+            self.infoTitleLabel.set_markup('<big><b>%s</b></big>' % _('Game settings changed'))
+            self.infoDescriptionLabel.set_markup('<i>%s</i>' % '\n'.join(errors))
+            self.infobar.get_object('info_box').show()
 
         # Show the dialog
         self.window.present()
@@ -420,14 +430,24 @@ class GtkLoadGameDialog:
         
         # Load the UI
         self.__gui = gtkui.loadUIFile('load_game.ui')
-        self.__gui.connect_signals(self)
-        
+
         self.window = self.__gui.get_object('game_load_dialog')
         self.window.set_transient_for(mainUI.mainWindow)
-        
-        # Set style of error panel
-        mainUI.setTooltipStyle(self.__gui.get_object('error_box'))
-        
+
+        self.infobar = gtk.InfoBar()
+        self.window.get_content_area().pack_start(self.infobar, False, True, 0)
+        vbox = gtk.VBox()
+        self.infobar.add(vbox)
+        vbox.show()
+        self.infoTitleLabel = gtk.Label()
+        vbox.pack_start(self.infoTitleLabel, False, True, 0)
+        self.infoTitleLabel.show()
+        self.infoDescriptionLabel = gtk.Label()
+        vbox.pack_start(self.infoDescriptionLabel, False, True, 0);
+        self.infoDescriptionLabel.show()
+
+        self.__gui.connect_signals(self)
+
         fileChooser = self.__gui.get_object('filechooserwidget')
         
         try:
@@ -474,10 +494,11 @@ class GtkLoadGameDialog:
 
             if error is not None:
                 self.firstExpose = True
-                self.__gui.get_object('error_box').show()
+                self.infobar.set_message_type(gtk.MESSAGE_ERROR)
                 # Translators: Title of error box when unable to load game
-                self.__gui.get_object('error_title_label').set_markup('<big><b>%s</b></big>' % _('Unabled to load game'))
-                self.__gui.get_object('error_description_label').set_markup('<i>%s</i>' % error)
+                self.infoTitleLabel.set_markup('<big><b>%s</b></big>' % _('Unabled to load game'))
+                self.infoDescriptionLabel.set_markup('<i>%s</i>' % error)
+                self.infobar.show()
                 return
 
         dialog.destroy()
@@ -496,13 +517,24 @@ class GtkSaveGameDialog:
         
         # Load the UI
         self.__gui = gtkui.loadUIFile('save_game.ui')
-        self.__gui.connect_signals(self)
-        
-        # Set style of error panel
-        mainUI.setTooltipStyle(self.__gui.get_object('error_box'))
 
         self.window = self.__gui.get_object('save_dialog')
         self.window.set_transient_for(mainUI.mainWindow)
+        
+        self.infobar = gtk.InfoBar()
+        self.window.get_content_area().pack_start(self.infobar, False, True, 0)
+        vbox = gtk.VBox()
+        self.infobar.add(vbox)
+        vbox.show()
+        self.infoTitleLabel = gtk.Label()
+        vbox.pack_start(self.infoTitleLabel, False, True, 0)
+        self.infoTitleLabel.show()
+        self.infoDescriptionLabel = gtk.Label()
+        vbox.pack_start(self.infoDescriptionLabel, False, True, 0);
+        self.infoDescriptionLabel.show()
+
+        self.__gui.connect_signals(self)
+        
         chooser = self.__gui.get_object('filechooser')
         
         try:
@@ -536,9 +568,10 @@ class GtkSaveGameDialog:
         """
         """
         self.firstExpose = True
-        self.__gui.get_object('error_box').show()
-        self.__gui.get_object('error_title_label').set_markup('<big><b>%s</b></big>' % title)
-        self.__gui.get_object('error_description_label').set_markup('<i>%s</i>' % content)
+        self.infobar.set_message_type(gtk.MESSAGE_ERROR)
+        self.infoTitleLabel.set_markup('<big><b>%s</b></big>' % title)
+        self.infoDescriptionLabel.set_markup('<i>%s</i>' % content)
+        self.infobar.show()
         
     def _on_response(self, dialog, responseId):
         """Gtk+ callback"""

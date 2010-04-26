@@ -2,7 +2,6 @@ SUBDIRS = pieces textures
 
 uidir = $(datadir)/glchess
 ui_DATA = \
-	chess_view.ui \
 	glchess.ui \
 	load_game.ui \
 	log.ui \

@@ -183,16 +183,7 @@ class GtkUI(glchess.ui.UI):
         self.isMaximised        = False
     
         self.view               = None
-        
-        # Set the message panel to the tooltip style
-        # (copied from Gedit)
-        # In Gtk+ 2.11+ (I think) tip_window is now private so skip if it's not there (bug #459740)
-        w = gtk.Window(gtk.WINDOW_POPUP)
-        w.set_name('gtk-tooltip')
-        w.ensure_style()
-        self._tooltipStyle = w.get_style()
-        self._tooltipWidgetsDrawn = {}
-        
+
         self._gui = loadUIFile('glchess.ui')
         self._gui.connect_signals(self)
         
@@ -231,29 +222,6 @@ class GtkUI(glchess.ui.UI):
             glchess.config.watch(key, self.__applyConfig)
 
     # Public methods
-    
-    def setTooltipStyle(self, widget):
-        """Set a widget to be in the tooltip style.
-        
-        'widget' is the widget to modify.
-        """
-        if self._tooltipStyle is None:
-            return
-        widget.set_style(self._tooltipStyle)
-        widget.connect("expose_event", self._on_tooltip_expose_event)
-        widget.queue_draw()
-
-    def _on_tooltip_expose_event(self, widget, event):
-        """Gtk+ callback"""
-        allocation = widget.allocation
-        widget.style.paint_flat_box(widget.window, gtk.STATE_NORMAL, gtk.SHADOW_OUT, None, widget, "tooltip",
-                                    allocation.x, allocation.y, allocation.width, allocation.height)
-                                    
-        # The first draw is corrupt for me so draw it twice.
-        # Bonus points to anyone who tracks down the problem and fixes it
-        if not self._tooltipWidgetsDrawn.has_key(widget):
-            self._tooltipWidgetsDrawn[widget] = True
-            widget.queue_draw()
     
     def watchFileDescriptor(self, fd):
         """Extends ui.UI"""

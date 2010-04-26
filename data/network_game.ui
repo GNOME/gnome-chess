@@ -14,59 +14,6 @@
       <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
         <child>
-          <object class="GtkTable" id="info_panel">
-            <property name="border_width">12</property>
-            <property name="n_rows">2</property>
-            <property name="n_columns">2</property>
-            <property name="column_spacing">6</property>
-            <property name="row_spacing">6</property>
-            <child>
-              <object class="GtkImage" id="image1">
-                <property name="visible">True</property>
-                <property name="yalign">0</property>
-                <property name="stock">gtk-dialog-info</property>
-                <property name="icon-size">6</property>
-              </object>
-              <packing>
-                <property name="bottom_attach">2</property>
-                <property name="x_options">GTK_FILL</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="info_panel_title">
-                <property name="visible">True</property>
-                <property name="xalign">0</property>
-                <property name="label">&lt;big&gt;&lt;b&gt;Error Title&lt;/b&gt;&lt;/big&gt;</property>
-                <property name="use_markup">True</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="y_options">GTK_FILL</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="info_panel_description">
-                <property name="visible">True</property>
-                <property name="xalign">0</property>
-                <property name="yalign">0</property>
-                <property name="label">&lt;i&gt;Error description&lt;/i&gt;</property>
-                <property name="use_markup">True</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkVBox" id="vbox3">
             <property name="visible">True</property>
             <property name="border_width">5</property>
@@ -479,6 +426,7 @@
             </child>
           </object>
           <packing>
+            <property name="pack_type">end</property>
             <property name="position">2</property>
           </packing>
         </child>

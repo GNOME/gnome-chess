@@ -107,6 +107,20 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
 
         # Load the UI
         self.__gui = gtkui.loadUIFile('network_game.ui')
+
+        self.infobar = gtk.InfoBar()
+        vbox = gtk.VBox()
+        self.infobar.add(vbox)
+        vbox.show()
+        self.infoTitleLabel = gtk.Label()
+        vbox.pack_start(self.infoTitleLabel, False, True, 0)
+        self.infoTitleLabel.show()
+        self.infoDescriptionLabel = gtk.Label()
+        vbox.pack_start(self.infoDescriptionLabel, False, True, 0);
+        self.infoDescriptionLabel.show()
+
+        self.__gui.get_object('network_game_dialog').get_content_area().pack_start(self.infobar, False, False, 0)
+
         self.__gui.connect_signals(self)
         
         # Selected profile
@@ -217,7 +231,6 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         #buffer.create_tag('error', family='Monospace', foreground = 'red')
         buffer.create_mark('end', buffer.get_end_iter())
         
-        mainUI.setTooltipStyle(self.__gui.get_object('info_panel'))
         self.__addProfileDialog = GtkNetworkAddDialog(self, self.__gui.get_object('network_game_dialog'))
 
     # Extended methods
@@ -242,12 +255,13 @@ class GtkNetworkGameDialog(glchess.ui.NetworkController):
         widget.set_sensitive(isSensitive)
 
     def setError(self, title, description):
-        self.__gui.get_object('info_panel_title').set_markup('<big><b>%s</b></big>' % title)
-        self.__gui.get_object('info_panel_description').set_markup('<i>%s</i>' % description)
-        self.__gui.get_object('info_panel').show()
-        
+        self.infobar.set_message_type(gtk.MESSAGE_ERROR);
+        self.infoTitleLabel.set_markup('<big><b>%s</b></big>' % title)
+        self.infoDescriptionLabel.set_markup('<i>%s</i>' % description)
+        self.infobar.show()
+
     def clearError(self):
-        self.__gui.get_object('info_panel').hide()
+        self.infobar.hide()
 
     def addProfile(self, profile, name, useNow = False):
         """Called by glchess.ui.UIController"""
