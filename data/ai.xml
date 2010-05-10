@@ -153,6 +153,29 @@
   </level>
 </ai>
 
+<ai type="uci">
+  <name>Stockfish</name>
+  <binary>stockfish</binary>
+  <level>
+    <name>easy</name>
+    <option name="Aggressiveness">50</option>
+    <option name="Cowardice">200</option>
+    <option name="Ponder">false</option>
+  </level>
+  <level>
+    <name>normal</name>
+    <option name="Aggressiveness">130</option>
+    <option name="Cowardice">100</option>
+    <option name="Ponder">false</option>
+  </level>
+  <level>
+    <name>hard</name>
+    <option name="Aggressiveness">200</option>
+    <option name="Cowardice">50</option>
+    <option name="Ponder">true</option>
+  </level>
+</ai>
+
 <ai type="cecp">
   <name>HoiChess</name>
   <binary>hoichess</binary>
