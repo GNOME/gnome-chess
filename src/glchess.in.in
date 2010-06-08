@@ -42,6 +42,7 @@ except:
 def report_error():
     import os.path
     import gettext
+    import traceback
     from gettext import gettext as _
 
     gettext.bindtextdomain('gnome-games', os.path.join('@prefix@', 'share', 'locale'))
@@ -51,6 +52,7 @@ def report_error():
     # Translators: This is the contents of the dialog displayed if glChess cannot start
     description = _("""Chess is not able to start because required application files are not installed. If you are currently upgrading your system please wait until the upgrade has completed.""")
 
+    traceback.print_exc()
     try:
         import gtk
     except ImportError:
