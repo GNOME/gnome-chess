@@ -391,32 +391,61 @@ class ChessBoardState:
         
         Return True if sufficient pieces to make checkmate or False otherwise.
         """
-        knightCount = 0
-        bishopCount = 0
+        whiteKnightCount = 0
+        whiteBishopCount = 0
+        whiteBishopOnWhiteSquare = False
+        whiteBishopOnBlackSquare = False
+        blackKnightCount = 0
+        blackBishopCount = 0
+        blackBishopOnWhiteSquare = False
+        blackBishopOnBlackSquare = False
+
         for coord, piece in self.squares.iteritems():
             pieceType = piece.getType()
-            
-            # Any pawns, rooks or queens can perform check
+            pieceColour = piece.getColour()
+
+            # Any pawns, rooks or queens can perform checkmate
             if pieceType == PAWN or pieceType == ROOK or pieceType == QUEEN:
                 return True
 
-            # Multiple knights can check
+            # Otherwise, count the minor pieces for each colour...
             if pieceType == KNIGHT:
-                knightCount += 1
-                if knightCount > 1:
-                    return True
+                if pieceColour == WHITE:
+                    whiteKnightCount += 1
+                else:
+                    blackKnightCount += 1
 
-            # Bishops on different colours can check
             if pieceType == BISHOP:
-                bishopCount += 1 
-                colour = self._getSquareColour(coord)
-                if bishopCount > 1:
-                    if colour != bishopSquareColour:
-                        return True
-                bishopSquareColour = colour
+                if pieceColour == WHITE:
+                    if self._getSquareColour(coord) == WHITE:
+                        whiteBishopOnWhiteSquare = True
+                    else:
+                        whiteBishopOnBlackSquare = True
+                    whiteBishopCount += 1
+                else:
+                    if self._getSquareColour(coord) == WHITE:
+                        blackBishopOnWhiteSquare = True
+                    else:
+                        blackBishopOnBlackSquare = True
+                    blackBishopCount += 1
+
+            whiteMinorCount = whiteBishopCount + whiteKnightCount
+            blackMinorCount = blackBishopCount + blackKnightCount
+            bishopsOnOppositeSquares = (whiteBishopOnWhiteSquare and blackBishopOnBlackSquare) or \
+                                       (blackBishopOnWhiteSquare and whiteBishopOnBlackSquare)
+
+            # Bishop and knight versus king can checkmate
+            if whiteBishopCount > 0 and whiteKnightCount > 0:
+                return True
+            if blackBishopCount > 0 and blackKnightCount > 0:
+                return True
+
+            # King and bishop versus king and bishop can checkmate as long as the bishops are on opposite colours
+            if whiteBishopCount > 0 and blackBishopCount > 0 and bishopsOnOppositeSquares:
+                return True
 
         return False
-        
+
     allowedMoves = {WHITE: {PAWN:   bitboard.WHITE_PAWN_MOVES,
                             ROOK:   bitboard.ROOK_MOVES,
                             BISHOP: bitboard.BISHOP_MOVES,
