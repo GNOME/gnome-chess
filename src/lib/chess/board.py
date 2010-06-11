@@ -429,18 +429,21 @@ class ChessBoardState:
                         blackBishopOnBlackSquare = True
                     blackBishopCount += 1
 
+            # Three knights versus king can checkmate
+            if whiteKnightCount > 2 or blackKnightCount > 2
+                return True
+
             # Bishop and knight versus king can checkmate
             if whiteBishopCount > 0 and whiteKnightCount > 0:
                 return True
             if blackBishopCount > 0 and blackKnightCount > 0:
                 return True
 
-            # King and bishop versus king and bishop can checkmate as long as the bishops are on opposite colours
-            if whiteBishopCount > 0 and blackBishopCount > 0:
-                bishopsOnOppositeSquares = (whiteBishopOnWhiteSquare and blackBishopOnBlackSquare) or \
-                                        (blackBishopOnWhiteSquare and whiteBishopOnBlackSquare)
-                if bishopsOnOppositeSquares:
-                    return True
+            # King and bishops versus king can checkmate as long as the bishops are on both colours
+            if whiteBishopOnWhiteSquare and whiteBishopOnBlackSquare:
+                return True;
+            if blackBishopOnWhiteSquare and blackBishopOnBlackSquare:
+                return True;
 
         return False
 
