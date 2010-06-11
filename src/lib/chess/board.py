@@ -430,7 +430,7 @@ class ChessBoardState:
                     blackBishopCount += 1
 
             # Three knights versus king can checkmate
-            if whiteKnightCount > 2 or blackKnightCount > 2
+            if whiteKnightCount > 2 or blackKnightCount > 2:
                 return True
 
             # Bishop and knight versus king can checkmate
