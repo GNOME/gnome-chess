@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from OpenGL.GL import *
 from OpenGL.GLU import *
-import png
-import array
+import gtk.gdk
 
 class Texture:
     """
@@ -27,81 +26,25 @@ class Texture:
         self.__emission = emission
         self.__shininess = shininess
 
-        # Texture data
-        self.__data   = None
-        self.__format = GL_RGB
-        self.__width  = None
-        self.__height = None
-
         # OpenGL texture ID
         self.__texture = None
 
         try:
-            self.__loadPIL(fileName)
-        except ImportError:
-            self.__loadPNG(fileName)
-
-    def __loadPNG(self, fileName):
-        """
-        """
-        try:
-            reader = png.Reader(fileName)
+            self.image = gtk.gdk.pixbuf_new_from_file(fileName);
         except IOError, e:
             print 'Error loading texture file: %s: %s' % (fileName, e.strerror)
-            self.__data = None
-            return
-
-        try:
-            (width, height, data, metaData) = reader.read()
-        except png.Error, e:
-            print 'Error parsing PNG file %s: %s' % (fileName, str(e))
-            self.__data = None
-            return
-        
-        self.__width = width
-        self.__height = height
-        self.__data = array.array('B', data).tostring()
-
-        if metaData['has_alpha']:
-            self.__format = GL_RGBA
-        else:
-            self.__format = GL_RGB
-
-    def __loadPIL(self, fileName):
-        """
-        """
-        import Image
-        
-        # Load the image file
-        try:
-            image = Image.open(fileName)
-        except IOError, e:
-            print 'Error loading texture file: %s: %s' % (fileName, e.strerror)
-            self.__data = None
-            return            
-
-        # Crop the image so it has height/width a multiple of 2
-        width = image.size[0]
-        height = image.size[1]
-        w = 1
-        while 2*w <= width:
-            w *= 2
-        h = 1
-        while 2*h <= height:
-            h *= 2
-        (self.__width, self.__height) = (w, h)
-        image = image.crop((0, 0, w, h))
-
-        # Convert to a format that OpenGL can access
-        self.__data = image.tostring('raw', 'RGB', 0, -1)
-        self.__format = GL_RGB
+            self.image = None
 
     def __generate(self):
         """
         """
-        # Return null texture if failed to load data
-        if self.__data is None:
-            return 0
+        if self.__texture is not None:
+            return
+
+        # Return null texture if failed to load data        
+        if self.image is None:
+            self.__texture = 0
+            return
         
         # FIXME: Can fail
         texture = glGenTextures(1)
@@ -114,30 +57,38 @@ class Texture:
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
 
+        format = {1: GL_LUMINANCE, 2: GL_LUMINANCE_ALPHA, 3: GL_RGB, 4: GL_RGBA}[self.image.get_n_channels()]
+        data_type = {1: GL_BITMAP, 8: GL_UNSIGNED_BYTE, 16: GL_UNSIGNED_SHORT}[self.image.get_bits_per_sample()]
+
         # Generate mipmaps
         try:
-            gluBuild2DMipmaps(GL_TEXTURE_2D, GL_LUMINANCE, self.__width, self.__height, self.__format, GL_UNSIGNED_BYTE, self.__data)
+            gluBuild2DMipmaps(GL_TEXTURE_2D,
+                              GL_LUMINANCE,
+                              self.image.get_width(),
+                              self.image.get_height(),
+                              format,
+                              data_type,
+                              self.image.get_pixels())
         except GLUerror, e:
             glTexImage2D(GL_TEXTURE_2D,
-                         0,                # Level
-                         3,                # Depth
-                         self.__width,     # Width
-                         self.__height,    # Height
-                         0,                # Border
-                         self.__format,    # Format
-                         GL_UNSIGNED_BYTE, # Type
-                         self.__data)
-        
-        return texture
-    
+                         0, # Level
+                         self.image.get_depth(),
+                         self.image.get_width(),
+                         self.image.get_height(),
+                         0, # Border
+                         data_type,
+                         GL_UNSIGNED_BYTE,
+                         self.image.get_pixels())
+
+        del self.image
+        self.__texture = texture
+
     def bind(self):
         """Bind this texture to the current surface.
         
         This requires an openGL context.
         """
-        if self.__texture is None:
-            self.__texture = self.__generate()
-            self.__data = None
+        self.__generate()
 
         # Use texture
         glBindTexture(GL_TEXTURE_2D, self.__texture)
