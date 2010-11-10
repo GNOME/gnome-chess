@@ -90,6 +90,7 @@ class ChessGame(game.ChessGame):
 
         self.view.showMoveHints(config.get('show_move_hints') is True)
         self.view.showBoardNumbering(config.get('show_numbering') is True)
+        self.view.showCapturedPieces(config.get('show_captured_pieces') is True)
         self.view.showSmooth(config.get('show_3d_smooth') is True)        
         
         # Watch for piece moves with a player

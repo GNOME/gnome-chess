@@ -78,6 +78,18 @@ class SceneCairo(scene.SceneFeedback, scene.human.SceneHumanInput):
     def getPieces(self):
         return self.pieces.values()
 
+    def addPiece(self, piece, location, captured = False):
+        pieceName = {chess.board.PAWN: 'pawn', chess.board.ROOK: 'rook', chess.board.KNIGHT: 'knight',
+                     chess.board.BISHOP: 'bishop', chess.board.QUEEN: 'queen', chess.board.KING: 'king'}[piece.getType()]
+        chessSet = {chess.board.WHITE: 'white', chess.board.BLACK: 'black'}[piece.getColour()]
+        p = CairoPiece(self, piece)
+        style = config.get('piece_style')
+        p.model = self.controller.addChessPiece(chessSet, pieceName, location, p, style=style, captured=captured)
+        p.location = location
+        if not captured:
+            self.pieces[piece] = p
+        return p
+
     def movePiece(self, piece, location, delete, animate):
         """
         """
@@ -86,19 +98,18 @@ class SceneCairo(scene.SceneFeedback, scene.human.SceneHumanInput):
             p = self.pieces[piece]
         except KeyError:
             # Make the new model
-            pieceName = {chess.board.PAWN: 'pawn', chess.board.ROOK: 'rook', chess.board.KNIGHT: 'knight',
-                         chess.board.BISHOP: 'bishop', chess.board.QUEEN: 'queen', chess.board.KING: 'king'}[piece.getType()]
-            chessSet = {chess.board.WHITE: 'white', chess.board.BLACK: 'black'}[piece.getColour()]
-            p = CairoPiece(self, piece)
-            style = piecesStyle = config.get('piece_style')
-            p.model = self.controller.addChessPiece(chessSet, pieceName, location, p, style=style)
-            self.pieces[piece] = p
+            p = self.addPiece(piece, location)
 
         # Move the model
         p.location = location
         p.model.move(location, delete, animate)
         
         return p
+
+    def clearCapturedPieces(self):
+        """
+        """
+        self.controller.clearCapturedPieces()
 
     # Extended methods
 
@@ -174,6 +185,17 @@ class SceneOpenGL(scene.SceneFeedback, scene.human.SceneHumanInput):
     def getPieces(self):
         return self.pieces.values()
         
+    def addPiece(self, piece, location, captured = False):
+        pieceName = {chess.board.PAWN: 'pawn', chess.board.ROOK: 'rook', chess.board.KNIGHT: 'knight',
+                     chess.board.BISHOP: 'bishop', chess.board.QUEEN: 'queen', chess.board.KING: 'king'}[piece.getType()]
+        chessSet = {chess.board.WHITE: 'white', chess.board.BLACK: 'black'}[piece.getColour()]
+        p = OpenGLPiece(self, piece)
+        p.model = self.controller.addChessPiece(chessSet, pieceName, location, p, captured=captured)
+        p.location = location
+        if not captured:
+            self.pieces[piece] = p
+        return p
+
     def movePiece(self, piece, location, delete, animate):
         """
         """
@@ -182,18 +204,18 @@ class SceneOpenGL(scene.SceneFeedback, scene.human.SceneHumanInput):
             p = self.pieces[piece]
         except KeyError:
             # Make the new model
-            pieceName = {chess.board.PAWN: 'pawn', chess.board.ROOK: 'rook', chess.board.KNIGHT: 'knight',
-                         chess.board.BISHOP: 'bishop', chess.board.QUEEN: 'queen', chess.board.KING: 'king'}[piece.getType()]
-            chessSet = {chess.board.WHITE: 'white', chess.board.BLACK: 'black'}[piece.getColour()]
-            p = OpenGLPiece(self, piece)
-            p.model = self.controller.addChessPiece(chessSet, pieceName, location, p)
-            self.pieces[piece] = p
+            p = self.addPiece(piece, location)
             
         # Move the model
         p.location = location
         p.model.move(location, delete)
 
         return p
+
+    def clearCapturedPieces(self):
+        """
+        """
+        self.controller.clearCapturedPieces()
 
     # Extended methods
 
@@ -262,6 +284,11 @@ class Splashscreen(ui.ViewFeedback):
         self.scene.showBoardNumbering(showNumbering)
         self.cairoScene.showBoardNumbering(showNumbering)
 
+    def showCapturedPieces(self, showCaptured):
+        """Called by ui.ViewFeedback"""
+        self.scene.controller.showCapturedPieces(showCaptured)
+        self.cairoScene.controller.showCapturedPieces(showCaptured)
+
     def showMoveHints(self, showHints):
         """Called by ui.ViewFeedback"""
         pass
@@ -326,6 +353,7 @@ class View(ui.ViewFeedback):
         self.selectedCoord = None
         self.showHints = False
         self.showNumbering = False
+        self.showCaptured = False
         self.doSmooth = False
         self.highlightParams = (None, None, None, None)
         self.changedHighlight = True
@@ -338,6 +366,7 @@ class View(ui.ViewFeedback):
         self.scene = SceneCairo(self)
         config.watch('board_view', self.__onBoardViewChanged)
         config.watch('piece_style', self.__onPiecesStyleChanged)
+        config.watch('show_captured_pieces', self.__onShowCapturedPiecesChanged)
 
         # Look for game events to update the scene
         movePlayer = MovePlayer(self)
@@ -359,6 +388,9 @@ class View(ui.ViewFeedback):
 
     def __onPiecesStyleChanged(self, key, value):
         self.updatePiecesStyle()
+
+    def __onShowCapturedPiecesChanged(self, key, value):
+        self.showCapturedPieces(value)
 
     def _updateHighlight(self, coord):
         if self.moveNumber == -1:
@@ -447,6 +479,11 @@ class View(ui.ViewFeedback):
         """Called by ui.ViewFeedback"""
         self.showNumbering = showNumbering
         self.scene.controller.showBoardNumbering(showNumbering)
+
+    def showCapturedPieces(self, showCaptured):
+        """Called by ui.ViewFeedback and __onShowCapturedPiecesChanged"""
+        self.showCaptured = showCaptured
+        self.scene.controller.showCapturedPieces(showCaptured)
         
     def showSmooth(self, doSmooth):
         """Called by ui.ViewFeedback"""
@@ -467,6 +504,7 @@ class View(ui.ViewFeedback):
         self.reshape(self.width, self.height)
         self.setMoveNumber(self.moveNumber)
         self.showBoardNumbering(self.showNumbering)
+        self.showCapturedPieces(self.showCaptured)
         self.showSmooth(self.doSmooth)
         self.updateRotation(animate = False)
 
@@ -498,6 +536,40 @@ class View(ui.ViewFeedback):
     def deselect(self, x, y):
         """Called by ui.ViewFeedback"""
         self.scene.deselect(x, y)
+        
+    __capturedTypeSortOrder = [
+        chess.board.QUEEN,  chess.board.ROOK, chess.board.BISHOP,
+        chess.board.KNIGHT, chess.board.PAWN
+        ]
+
+    @classmethod
+    def __capturedPieceTypeKey(cls, piece):
+        return cls.__capturedTypeSortOrder.index(piece.getType())
+    
+    @classmethod
+    def __getCapturedPieceLocations(cls, pieces):
+        whitePiece = 0
+        blackPiece = 0
+        
+        pieceLocations = {}
+        
+        # Sort captured pieces by type.
+        for piece in sorted(pieces, key = cls.__capturedPieceTypeKey):
+            if piece.getColour() == chess.board.WHITE:
+                # Captured white pieces go near black's queenside: files
+                # 'a' and 'b' (starting at 'b'), rank 8 to rank 1.
+                rank = ['a', 'b'][(whitePiece + 1) % 2]
+                file = 8 - (whitePiece / 2)
+                whitePiece += 1
+            else:
+                # Captured black pieces go near white's kingside: files
+                # 'g' and 'h' (starting at 'g'), rank 1 to rank 8.
+                rank = ['g', 'h'][blackPiece % 2]
+                file = 1 + (blackPiece / 2)
+                blackPiece += 1
+            pieceLocations[piece] = "%s%s" % (rank, file)
+
+        return pieceLocations
     
     def setMoveNumber(self, moveNumber):
         """Called by ui.ViewFeedback"""
@@ -520,6 +592,12 @@ class View(ui.ViewFeedback):
         # Move the models in the scene
         for (location, piece) in piecesByLocation.iteritems():
             self.scene.movePiece(piece, location, False, True)
+        
+        # Handle captured pieces
+        capturedPieceLocations = self.__getCapturedPieceLocations(self.game.getDeadPieces(moveNumber))
+        self.scene.clearCapturedPieces()
+        for (piece, location) in capturedPieceLocations.iteritems():
+            self.scene.addPiece(piece, location, captured = True)
 
         # Can't wait for animation if not looking at the latest move
         if moveNumber != -1:

@@ -76,7 +76,7 @@ class Scene:
         """
         pass
 
-    def addChessPiece(self, chessSet, name, coord, feedback):
+    def addChessPiece(self, chessSet, name, coord, feedback, captured = False):
         """Add a chess piece model into the scene.
         
         'chessSet' is the name of the chess set (string).
@@ -85,6 +85,14 @@ class Scene:
         'feedback' is th (extends ChessPieceFeedback)
         
         Returns a reference to this chess piece or raises an exception.
+        """
+        raise Exception('Not implemented')
+
+    def clearCapturedPieces(self):
+        """Remove all captured pieces from the scene.
+        
+        This is typically followed by calls to addChessPiece() with
+        captured = True.
         """
         raise Exception('Not implemented')
 
@@ -114,6 +122,11 @@ class Scene:
         """
         pass
         
+    def showCapturedPieces(self, showCaptured):
+        """
+        """
+        pass
+
     def showBoardDarker(self, showDarker):
         """
         """

@@ -94,15 +94,16 @@ class ChessPiece(glchess.scene.ChessPiece):
     """
     """    
     
-    def __init__(self, scene, chessSet, name, location, feedback):
+    def __init__(self, scene, chessSet, name, location, feedback, captured=False):
         """
         """
         self.scene = scene
         self.feedback = feedback
         self.chessSet = chessSet
         self.name = name
+        self.captured = captured
         self.location = location
-        self.pos = self.scene._coordToLocation(location)
+        self.pos = self._coordToLocation(location)
         self.targetPos = None  # Position moving to
         self.moving    = False # Is the piece moving?
         self.delete    = False # Delete once moved?
@@ -116,7 +117,7 @@ class ChessPiece(glchess.scene.ChessPiece):
 
         self.delete = delete
         self.location = coord
-        self.targetPos = self.scene._coordToLocation(coord)
+        self.targetPos = self._coordToLocation(coord)
         
         # If already there then delete
         if self.pos == self.targetPos:
@@ -183,6 +184,31 @@ class ChessPiece(glchess.scene.ChessPiece):
         self.pos = (self.pos[0] + xStep, self.pos[1] + yStep, self.pos[2] + zStep)
         return True
 
+    # Private methods
+
+    def _coordToLocation(self, coord):
+        """
+        """
+        file = ord(coord[0]) - ord('a')
+        rank = ord(coord[1]) - ord('1')
+        
+        if self.captured:
+            # For captured pieces, coordinates refer to a position in
+            # the imaginary 2x8 trays at each side of the table.
+            # Captured white pieces are placed at the queenside (near
+            # files a and b), and captured black pieces are placed at
+            # the kingside (near files g and h). We shift the resulting
+            # positions off the board by 3 files.
+            if coord[0] in ['a', 'b']:
+                file -= 3
+            else:
+                file += 3
+
+        x = BOARD_BORDER + float(file) * SQUARE_WIDTH + 0.5 * SQUARE_WIDTH
+        z = -(BOARD_BORDER + float(rank) * SQUARE_WIDTH + 0.5 * SQUARE_WIDTH)
+
+        return (x, 0.0, z)
+
 class Scene(glchess.scene.Scene):
     """
     """
@@ -214,6 +240,10 @@ class Scene(glchess.scene.Scene):
         # OpenGL display list for the board and a flag to regenerate it
         self.boardList        = None
         self.regenerateBoard  = False
+        
+        # Captured pieces
+        self.capturedPieces  = []
+        self.showCaptured    = False
     
         self.jitters = ((0.0, 0.0),)
 
@@ -234,7 +264,7 @@ class Scene(glchess.scene.Scene):
         """This method is called when the scene needs redrawing"""
         pass
     
-    def addChessPiece(self, chessSet, name, coord, feedback):
+    def addChessPiece(self, chessSet, name, coord, feedback, captured=False):
         """Add a chess piece model into the scene.
         
         'chessSet' is the name of the chess set (string).
@@ -245,13 +275,20 @@ class Scene(glchess.scene.Scene):
         Returns a reference to this chess piece or raises an exception.
         """
         chessSet = self.chessSets[chessSet]
-        piece = ChessPiece(self, chessSet, name, coord, feedback)
-        self.pieces.append(piece)
+        piece = ChessPiece(self, chessSet, name, coord, feedback, captured)
+        
+        if captured:
+            self.capturedPieces.append(piece)
+        else:
+            self.pieces.append(piece)
         
         # Redraw the scene
         self.feedback.onRedraw()
         
         return piece
+
+    def clearCapturedPieces(self):
+        self.capturedPieces = []
 
     def setBoardHighlight(self, coords):
         """Highlight a square on the board.
@@ -269,6 +306,13 @@ class Scene(glchess.scene.Scene):
         self.regenerateBoard = True
 
         self.feedback.onRedraw()
+
+    def showCapturedPieces(self, showCaptured):
+        if self.showCaptured != showCaptured:
+            self.showCaptured = showCaptured
+            self.redrawStatic = True
+            self.reshape(self.viewportWidth, self.viewportHeight)
+            self.feedback.onRedraw()
 
     def showBoardNumbering(self, showNumbering):
         """Extends glchess.scene.Scene"""
@@ -292,7 +336,8 @@ class Scene(glchess.scene.Scene):
         """
         self.viewportWidth = int(width)
         self.viewportHeight = int(height)
-        self.viewportAspect = float(self.viewportWidth) / float(self.viewportHeight)
+        if self.viewportWidth and self.viewportHeight:
+            self.viewportAspect = float(self.viewportWidth) / float(self.viewportHeight)
         glViewport(0, 0, self.viewportWidth, self.viewportHeight)
         self.feedback.onRedraw()
 
@@ -450,16 +495,6 @@ class Scene(glchess.scene.Scene):
         return rank + file
 
     # Private methods
-    
-    def _coordToLocation(self, coord):
-        """
-        """
-        rank = ord(coord[0]) - ord('a')
-        file = ord(coord[1]) - ord('1')
-        x = BOARD_BORDER + float(rank) * SQUARE_WIDTH + 0.5 * SQUARE_WIDTH
-        z = -(BOARD_BORDER + float(file) * SQUARE_WIDTH + 0.5 * SQUARE_WIDTH)
-        
-        return (x, 0.0, z)
         
     def animateThrobber(self, timeStep):
         """
@@ -877,7 +912,7 @@ class Scene(glchess.scene.Scene):
         """Draw the pieces in the scene"""
         glEnable(GL_TEXTURE_2D)
 
-        for piece in self.pieces:
+        for piece in (self.pieces + self.capturedPieces if self.showCaptured else self.pieces):
             glPushMatrix()
             glTranslatef(piece.pos[0], piece.pos[1], piece.pos[2])
 

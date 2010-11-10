@@ -45,12 +45,13 @@ class ChessPiece(glchess.scene.ChessPiece):
     """
     """
 
-    def __init__(self, scene, name, coord, feedback, style='simple'):
+    def __init__(self, scene, name, coord, feedback, style='simple', captured=False):
         """
         """
         self.scene = scene
         self.feedback = feedback
         self.name = name
+        self.captured = captured
         self.coord = coord # Co-ordinate being moved to
         self.pos = self.__coordToLocation(coord) # Current position
         self.targetPos   = None
@@ -62,10 +63,22 @@ class ChessPiece(glchess.scene.ChessPiece):
     def __coordToLocation(self, coord):
         """
         """
-        rank = ord(coord[0]) - ord('a')
-        file = ord(coord[1]) - ord('1')
+        file = ord(coord[0]) - ord('a')
+        rank = ord(coord[1]) - ord('1')
         
-        return (float(rank), float(file))
+        if self.captured:
+            # For captured pieces, coordinates refer to a position in
+            # the imaginary 2x8 trays at each side of the table.
+            # Captured white pieces are placed at the queenside (near
+            # files a and b), and captured black pieces are placed at
+            # the kingside (near files g and h). We shift the resulting
+            # positions off the board by 3 files.
+            if coord[0] in ['a', 'b']:
+                file -= 3
+            else:
+                file += 3
+        
+        return (float(file), float(rank))
 
     def setStyle(self, style):
         self.style = style
@@ -186,6 +199,7 @@ class Scene(glchess.scene.Scene):
         self.feedback        = feedback
         self.highlight       = {}
         self.pieces          = []
+        self.capturedPieces  = []
         self._animationQueue = []
         self.angle           = 0.0
         self.targetAngle     = 0.0
@@ -193,13 +207,16 @@ class Scene(glchess.scene.Scene):
         self.redrawStatic    = True
         self.showNumbering   = False
         self.faceToFace      = False
+        self.showCaptured    = False
+        self.width           = 0
+        self.height          = 0
         try:
             pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(glchess.defaults.SHARED_IMAGE_DIR, 'baize.png'))
             (self.background_pixmap, _) = pixbuf.render_pixmap_and_mask()
         except gobject.GError:
             self.background_pixmap = None
 
-    def addChessPiece(self, chessSet, name, coord, feedback, style = 'simple'):
+    def addChessPiece(self, chessSet, name, coord, feedback, style = 'simple', captured = False):
         """Add a chess piece model into the scene.
         
         'chessSet' is the name of the chess set (string).
@@ -209,14 +226,21 @@ class Scene(glchess.scene.Scene):
         Returns a reference to this chess piece or raises an exception.
         """
         name = chessSet + name[0].upper() + name[1:]
-        piece = ChessPiece(self, name, coord, feedback, style=style)
-        self.pieces.append(piece)
+        piece = ChessPiece(self, name, coord, feedback, style=style, captured=captured)
+        
+        if captured:
+            self.capturedPieces.append(piece)
+        else:
+            self.pieces.append(piece)
         
         # Redraw the scene
         self.redrawStatic = True
         self.feedback.onRedraw()
         
         return piece
+        
+    def clearCapturedPieces(self):
+        self.capturedPieces = []
 
     def setBoardHighlight(self, coords):
         """Highlight a square on the board.
@@ -248,8 +272,23 @@ class Scene(glchess.scene.Scene):
         self.height = height
         
         # Make the squares as large as possible while still pixel aligned
-        shortEdge = min(self.width, self.height)
-        self.squareSize = math.floor((shortEdge - 2.0*self.BORDER) / 9.0)
+        
+        insideWidth = self.width - 2.0*self.BORDER
+        insideHeight = self.height - 2.0*self.BORDER
+        
+        # We need room for 9 squares in each dimension: 8 for the board
+        # and 1 for the board's edges (0.5 squares per side).
+        vSquares = 9
+        hSquares = 9
+        
+        # If we're supposed to show captured pieces, we need room for 6
+        # more squares in the horizontal dimension. Each side of the
+        # board will have two columns of captured pieces, surrounded by
+        # a half-square margin of empty space.
+        if self.showCaptured:
+            hSquares += 6
+        
+        self.squareSize = math.floor(min(insideWidth / hSquares, insideHeight / vSquares))
         self.pieceSize = self.squareSize - 2.0*self.PIECE_BORDER
 
         self.redrawStatic = True
@@ -283,10 +322,17 @@ class Scene(glchess.scene.Scene):
             self.feedback.onRedraw()
 
     def setPiecesStyle(self, piecesStyle):
-        for piece in self.pieces:
+        for piece in self.pieces + self.capturedPieces:
             piece.setStyle(piecesStyle)
         self.redrawStatic = True
         self.feedback.onRedraw()
+
+    def showCapturedPieces(self, showCaptured):
+        if self.showCaptured != showCaptured:
+            self.showCaptured = showCaptured
+            self.redrawStatic = True
+            self.reshape(self.width, self.height)
+            self.feedback.onRedraw()
     
     def animate(self, timeStep):
         """Extends glchess.scene.Scene"""
@@ -448,7 +494,7 @@ class Scene(glchess.scene.Scene):
                 context.fill()
                 
         context.set_source_rgb(*PIECE_COLOUR)
-        for piece in self.pieces:
+        for piece in (self.pieces + self.capturedPieces if self.showCaptured else self.pieces):
             if piece.moving:
                 continue
             piece.render(context)
@@ -464,7 +510,7 @@ class Scene(glchess.scene.Scene):
         self.__rotate(context)
 
         context.set_source_rgb(*PIECE_COLOUR)
-        for piece in self.pieces:
+        for piece in (self.pieces + self.capturedPieces if self.showCaptured else self.pieces):
             # If not rotating and piece not moving then was rendered in the static phase
             if self.angle == self.targetAngle and not piece.moving:
                 continue
