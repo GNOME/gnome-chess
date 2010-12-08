@@ -1,17 +1,15 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkWindow" id="glchess_app">
-    <property name="title">glChess</property>
+    <property name="title">Chess</property>
     <property name="default_width">400</property>
     <accel-groups>
       <group name="accelgroup1"/>
     </accel-groups>
-    <signal name="focus_in_event" handler="_on_focus_changed" after="yes"/>
-    <signal name="configure_event" handler="_on_resize"/>
-    <signal name="delete_event" handler="_on_close_window"/>
-    <signal name="window_state_event" handler="_on_window_state_changed"/>
+    <signal name="delete_event" handler="glchess_app_delete_event_cb"/>
+    <signal name="window_state_event" handler="glchess_app_window_state_event_cb"/>
     <child>
       <object class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
@@ -26,13 +24,13 @@
                 <child type="submenu">
                   <object class="GtkMenu" id="menuitem1_menu">
                     <child>
-                      <object class="GtkImageMenuItem" id="new1">
+                      <object class="GtkImageMenuItem" id="new_menu_item">
                         <property name="label">gtk-new</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup1</property>
-                        <signal name="activate" handler="_on_new_game_button_clicked"/>
+                        <signal name="activate" handler="new_game_cb"/>
                       </object>
                     </child>
                     <child>
@@ -42,7 +40,7 @@
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup1</property>
-                        <signal name="activate" handler="_on_open_game_button_clicked"/>
+                        <signal name="activate" handler="open_game_cb"/>
                       </object>
                     </child>
                     <child>
@@ -53,7 +51,7 @@
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup1</property>
-                        <signal name="activate" handler="_on_save_game_button_clicked"/>
+                        <signal name="activate" handler="save_game_cb"/>
                       </object>
                     </child>
                     <child>
@@ -63,28 +61,11 @@
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup1</property>
-                        <signal name="activate" handler="_on_save_as_game_button_clicked"/>
+                        <signal name="activate" handler="save_game_as_cb"/>
                       </object>
                     </child>
                     <child>
                       <object class="GtkSeparatorMenuItem" id="separator1">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="menu_play_online_item">
-                        <property name="label" translatable="yes">Network _Game</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="image">image2</property>
-                        <property name="use_stock">False</property>
-                        <property name="accel_group">accelgroup1</property>
-                        <accelerator key="L" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                        <signal name="activate" handler="_on_join_game_button_clicked"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="separator2">
                         <property name="visible">True</property>
                       </object>
                     </child>
@@ -97,7 +78,7 @@
                         <property name="use_stock">False</property>
                         <property name="accel_group">accelgroup1</property>
                         <accelerator key="Z" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                        <signal name="activate" handler="_on_undo_move_clicked"/>
+                        <signal name="activate" handler="undo_move_cb"/>
                       </object>
                     </child>
                     <child>
@@ -108,7 +89,7 @@
                         <property name="image">image3</property>
                         <property name="use_stock">False</property>
                         <property name="accel_group">accelgroup1</property>
-                        <signal name="activate" handler="_on_resign_clicked"/>
+                        <signal name="activate" handler="resign_cb"/>
                       </object>
                     </child>
                     <child>
@@ -116,7 +97,7 @@
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">Claim _Draw</property>
                         <property name="use_underline">True</property>
-                        <signal name="activate" handler="_on_claim_draw_clicked"/>
+                        <signal name="activate" handler="claim_draw_cb"/>
                       </object>
                     </child>
                     <child>
@@ -131,7 +112,7 @@
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup1</property>
-                        <signal name="activate" handler="_on_menu_quit"/>
+                        <signal name="activate" handler="quit_cb"/>
                       </object>
                     </child>
                   </object>
@@ -153,33 +134,7 @@
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup1</property>
                         <accelerator key="F11" signal="activate"/>
-                        <signal name="activate" handler="_on_view_fullscreen_clicked"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="menu_leave_fullscreen">
-                        <property name="label">gtk-leave-fullscreen</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <property name="accel_group">accelgroup1</property>
-                        <accelerator key="F11" signal="activate"/>
-                        <signal name="activate" handler="_on_view_unfullscreen_clicked"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkCheckMenuItem" id="menu_view_3d">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">3_D Chess View</property>
-                        <property name="use_underline">True</property>
-                        <signal name="activate" handler="_on_toggle_3d_clicked"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkCheckMenuItem" id="menu_view_logs">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">Show _Logs</property>
-                        <property name="use_underline">True</property>
-                        <signal name="activate" handler="_on_show_logs_clicked"/>
+                        <signal name="activate" handler="toggle_fullscreen_cb"/>
                       </object>
                     </child>
                     <child>
@@ -189,7 +144,7 @@
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup1</property>
-                        <signal name="activate" handler="_on_preferences_clicked"/>
+                        <signal name="activate" handler="preferences_cb"/>
                       </object>
                     </child>
                   </object>
@@ -212,7 +167,7 @@
                         <property name="use_stock">False</property>
                         <property name="accel_group">accelgroup1</property>
                         <accelerator key="F1" signal="activate"/>
-                        <signal name="activate" handler="_on_help_clicked"/>
+                        <signal name="activate" handler="help_cb"/>
                       </object>
                     </child>
                     <child>
@@ -222,7 +177,7 @@
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup1</property>
-                        <signal name="activate" handler="_on_about_clicked"/>
+                        <signal name="activate" handler="about_cb"/>
                       </object>
                     </child>
                   </object>
@@ -247,23 +202,7 @@
                 <property name="label" translatable="yes" comments="The New Game toolbar button">New Game</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-new</property>
-                <signal name="clicked" handler="_on_new_game_button_clicked"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkToolButton" id="play_online_button">
-                <property name="visible">True</property>
-                <property name="tooltip_text" translatable="yes">Start a new multiplayer network game</property>
-                <property name="visible_vertical">False</property>
-                <property name="is_important">True</property>
-                <property name="label" translatable="yes" comments="The Network Game toolbar button">Network _Game</property>
-                <property name="use_underline">True</property>
-                <property name="stock_id">gtk-network</property>
-                <signal name="clicked" handler="_on_join_game_button_clicked"/>
+                <signal name="clicked" handler="new_game_cb"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -277,7 +216,7 @@
                 <property name="label" translatable="yes">Undo Move</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-undo</property>
-                <signal name="clicked" handler="_on_undo_move_clicked"/>
+                <signal name="clicked" handler="undo_move_cb"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -291,7 +230,7 @@
                 <property name="label" translatable="yes" comments="The tooltip for the Resign toolbar button">Resign</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-dialog-warning</property>
-                <signal name="clicked" handler="_on_resign_clicked"/>
+                <signal name="clicked" handler="resign_cb"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -306,26 +245,24 @@
           </packing>
         </child>
         <child>
-          <object class="GtkVBox" id="vbox11">
+          <object class="GtkVBox" id="view_box">
             <property name="visible">True</property>
             <property name="spacing">3</property>
             <child>
-              <object class="GtkViewport" id="game_viewport">
-                <property name="width_request">300</property>
-                <property name="height_request">300</property>
+              <object class="GtkAlignment" id="view_container">
                 <property name="visible">True</property>
-                <property name="shadow_type">none</property>
                 <child>
                   <placeholder/>
                 </child>
               </object>
               <packing>
-                <property name="position">0</property>
+                <property name="pack_type">end</property>
+                <property name="position">1</property>
               </packing>
             </child>
             <child>
               <object class="GtkHBox" id="navigation_box">
-                <property name="sensitive">False</property>
+                <property name="visible">True</property>
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkHBox" id="left_nav_box">
@@ -338,7 +275,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Rewind to the game start</property>
-                        <signal name="clicked" handler="_on_history_start_clicked"/>
+                        <signal name="clicked" handler="history_start_clicked_cb"/>
                         <child>
                           <object class="GtkImage" id="image6">
                             <property name="visible">True</property>
@@ -358,7 +295,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Show the previous move</property>
-                        <signal name="clicked" handler="_on_history_previous_clicked"/>
+                        <signal name="clicked" handler="history_previous_clicked_cb"/>
                         <child>
                           <object class="GtkImage" id="image7">
                             <property name="visible">True</property>
@@ -377,7 +314,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Show the next move</property>
-                        <signal name="clicked" handler="_on_history_next_clicked"/>
+                        <signal name="clicked" handler="history_next_clicked_cb"/>
                         <child>
                           <object class="GtkImage" id="image8">
                             <property name="visible">True</property>
@@ -396,7 +333,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Show the current move</property>
-                        <signal name="clicked" handler="_on_history_latest_clicked"/>
+                        <signal name="clicked" handler="history_latest_clicked_cb"/>
                         <child>
                           <object class="GtkImage" id="image5">
                             <property name="visible">True</property>
@@ -417,7 +354,14 @@
                 <child>
                   <object class="GtkComboBox" id="history_combo">
                     <property name="visible">True</property>
-                    <signal name="changed" handler="_on_history_combo_changed"/>
+                    <property name="model">history_model</property>
+                    <signal name="changed" handler="history_combo_changed_cb"/>
+                    <child>
+                      <object class="GtkCellRendererText" id="history_combo_cellrenderer"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
                   </object>
                   <packing>
                     <property name="position">1</property>
@@ -432,7 +376,7 @@
                       <object class="GtkDrawingArea" id="white_time_label">
                         <property name="width_request">20</property>
                         <property name="visible">True</property>
-                        <signal name="expose_event" handler="_on_white_time_paint"/>
+                        <signal name="draw" handler="white_time_draw_cb"/>
                       </object>
                       <packing>
                         <property name="position">0</property>
@@ -442,7 +386,7 @@
                       <object class="GtkDrawingArea" id="black_time_label">
                         <property name="width_request">20</property>
                         <property name="visible">True</property>
-                        <signal name="expose_event" handler="_on_black_time_paint"/>
+                        <signal name="draw" handler="black_time_draw_cb"/>
                       </object>
                       <packing>
                         <property name="position">1</property>
@@ -457,64 +401,13 @@
               </object>
               <packing>
                 <property name="expand">False</property>
-                <property name="position">1</property>
+                <property name="pack_type">end</property>
+                <property name="position">0</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="position">2</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkWindow" id="log_window">
-    <property name="border_width">6</property>
-    <property name="title" translatable="yes" comments="The title of the log dialaog">Logs</property>
-    <property name="default_width">600</property>
-    <property name="default_height">400</property>
-    <signal name="delete_event" handler="_on_log_window_delete_event"/>
-    <child>
-      <object class="GtkNotebook" id="log_notebook">
-        <property name="visible">True</property>
-        <property name="show_tabs">False</property>
-        <property name="show_border">False</property>
-        <property name="scrollable">True</property>
-        <child>
-          <object class="GtkHBox" id="hbox6">
-            <property name="visible">True</property>
-            <property name="border_width">6</property>
-            <property name="spacing">6</property>
-            <child>
-              <object class="GtkImage" id="image13">
-                <property name="visible">True</property>
-                <property name="stock">gtk-dialog-info</property>
-                <property name="icon-size">6</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label57">
-                <property name="visible">True</property>
-                <property name="xalign">0</property>
-                <property name="label" translatable="yes" comments="Message displayed in log window when no logs are present">There are no active logs.</property>
-                <property name="wrap">True</property>
-              </object>
-              <packing>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-        </child>
-        <child type="tab">
-          <object class="GtkLabel" id="label51">
-            <property name="visible">True</property>
-          </object>
-          <packing>
-            <property name="tab_fill">False</property>
           </packing>
         </child>
       </object>
@@ -526,11 +419,6 @@
     <property name="stock">gtk-undo</property>
     <property name="icon-size">1</property>
   </object>
-  <object class="GtkImage" id="image2">
-    <property name="visible">True</property>
-    <property name="stock">gtk-network</property>
-    <property name="icon-size">1</property>
-  </object>
   <object class="GtkImage" id="image3">
     <property name="visible">True</property>
     <property name="stock">gtk-dialog-warning</property>
@@ -540,5 +428,13 @@
     <property name="visible">True</property>
     <property name="stock">gtk-help</property>
     <property name="icon-size">1</property>
+  </object>
+  <object class="GtkListStore" id="history_model">
+    <columns>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+      <!-- column-name move-number -->
+      <column type="gint"/>
+    </columns>
   </object>
 </interface>

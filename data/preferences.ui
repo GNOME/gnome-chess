@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy toplevel-contextual -->
@@ -7,9 +7,8 @@
     <property name="resizable">False</property>
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
-    <signal name="response" handler="_on_response"/>
-    <signal name="delete_event" handler="_on_delete"/>
+    <signal name="response" handler="preferences_response_cb"/>
+    <signal name="delete_event" handler="preferences_delete_event_cb"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
@@ -19,14 +18,442 @@
             <property name="can_focus">True</property>
             <property name="border_width">5</property>
             <child>
-              <object class="GtkTable" id="game_table">
+              <object class="GtkTable" id="game_table1">
+                <property name="visible">True</property>
+                <property name="border_width">10</property>
+                <property name="n_rows">7</property>
+                <property name="n_columns">2</property>
+                <property name="column_spacing">5</property>
+                <property name="row_spacing">5</property>
+                <child>
+                  <object class="GtkLabel" id="side_label">
+                    <property name="visible">True</property>
+                    <property name="xalign">0</property>
+                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before player side (white/black) combo box">Play as:</property>
+                  </object>
+                  <packing>
+                    <property name="x_options">GTK_FILL</property>
+                    <property name="y_options"></property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="opposing_player_label">
+                    <property name="visible">True</property>
+                    <property name="xalign">0</property>
+                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before opposing player combo box">Opposing Player:</property>
+                  </object>
+                  <packing>
+                    <property name="top_attach">2</property>
+                    <property name="bottom_attach">3</property>
+                    <property name="x_options">GTK_FILL</property>
+                    <property name="y_options"></property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label2">
+                    <property name="visible">True</property>
+                    <property name="xalign">0</property>
+                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before promotion type combo box">Difficulty:</property>
+                  </object>
+                  <packing>
+                    <property name="top_attach">3</property>
+                    <property name="bottom_attach">4</property>
+                    <property name="x_options">GTK_FILL</property>
+                    <property name="y_options"></property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="side_combo">
+                    <property name="visible">True</property>
+                    <property name="model">side_model</property>
+                    <signal name="changed" handler="side_combo_changed_cb"/>
+                    <child>
+                      <object class="GtkCellRendererText" id="side_cellrenderer"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                    <property name="y_options">GTK_FILL</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="opponent_combo">
+                    <property name="visible">True</property>
+                    <property name="model">opponent_model</property>
+                    <signal name="changed" handler="opponent_combo_changed_cb"/>
+                    <child>
+                      <object class="GtkCellRendererText" id="opponent_cellrenderer"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                    <property name="top_attach">2</property>
+                    <property name="bottom_attach">3</property>
+                    <property name="x_options">GTK_FILL</property>
+                    <property name="y_options">GTK_FILL</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="difficulty_combo">
+                    <property name="visible">True</property>
+                    <property name="model">difficulty_model</property>
+                    <signal name="changed" handler="difficulty_combo_changed_cb"/>
+                    <child>
+                      <object class="GtkCellRendererText" id="difficulty_cellrenderer"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                    <property name="top_attach">3</property>
+                    <property name="bottom_attach">4</property>
+                    <property name="x_options">GTK_FILL</property>
+                    <property name="y_options">GTK_FILL</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkAlignment" id="custom_duration_box">
+                    <property name="left_padding">18</property>
+                    <child>
+                      <object class="GtkHBox" id="hbox22">
+                        <property name="visible">True</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkSpinButton" id="custom_duration_spin">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="invisible_char">•</property>
+                            <property name="adjustment">duration_adjustment</property>
+                            <property name="climb_rate">1</property>
+                            <property name="numeric">True</property>
+                          </object>
+                          <packing>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="custom_duration_units_combo">
+                            <property name="visible">True</property>
+                            <property name="model">custom_duration_units_model</property>
+                            <signal name="changed" handler="duration_changed_cb"/>
+                            <child>
+                              <object class="GtkCellRendererText" id="custom_duration_units_cellrenderer"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                    <property name="top_attach">5</property>
+                    <property name="bottom_attach">6</property>
+                    <property name="x_options">GTK_FILL</property>
+                    <property name="y_options">GTK_FILL</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label3">
+                    <property name="visible">True</property>
+                    <property name="xalign">0</property>
+                    <property name="label" translatable="yes" comments="New Game Dialog: Label before game timer settings">Game Duration:</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">duration_combo</property>
+                  </object>
+                  <packing>
+                    <property name="top_attach">4</property>
+                    <property name="bottom_attach">5</property>
+                    <property name="x_options">GTK_FILL</property>
+                    <property name="y_options"></property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="duration_combo">
+                    <property name="visible">True</property>
+                    <property name="model">duration_model</property>
+                    <signal name="changed" handler="duration_combo_changed_cb"/>
+                    <child>
+                      <object class="GtkCellRendererText" id="duration_cellrenderer"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                    <property name="top_attach">4</property>
+                    <property name="bottom_attach">5</property>
+                    <property name="y_options">GTK_FILL</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label5">
+                    <property name="visible">True</property>
+                    <property name="xalign">0</property>
+                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before promotion type combo box">Promotion Type:</property>
+                  </object>
+                  <packing>
+                    <property name="top_attach">1</property>
+                    <property name="bottom_attach">2</property>
+                    <property name="x_options">GTK_FILL</property>
+                    <property name="y_options"></property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="promotion_type_combo">
+                    <property name="visible">True</property>
+                    <property name="model">promotion_type_model</property>
+                    <signal name="changed" handler="promotion_type_combo_changed_cb"/>
+                    <child>
+                      <object class="GtkCellRendererText" id="promotion_type_cellrenderer"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                    <property name="top_attach">1</property>
+                    <property name="bottom_attach">2</property>
+                    <property name="x_options">GTK_FILL</property>
+                    <property name="y_options">GTK_FILL</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkHBox" id="hbox2">
+                    <property name="visible">True</property>
+                    <property name="spacing">5</property>
+                    <child>
+                      <object class="GtkImage" id="image1">
+                        <property name="visible">True</property>
+                        <property name="stock">gtk-dialog-info</property>
+                        <property name="icon-size">6</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label4">
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="label" translatable="yes">Changes will take effect for the next game.</property>
+                      </object>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="right_attach">2</property>
+                    <property name="top_attach">6</property>
+                    <property name="bottom_attach">7</property>
+                    <property name="y_options">GTK_FILL</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="label1">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Game</property>
+              </object>
+              <packing>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkTable" id="table1">
                 <property name="visible">True</property>
                 <property name="border_width">10</property>
                 <property name="n_rows">3</property>
                 <property name="n_columns">2</property>
                 <property name="column_spacing">5</property>
                 <property name="row_spacing">5</property>
-                <property name="homogeneous">True</property>
+                <child>
+                  <object class="GtkVBox" id="view_box">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkCheckButton" id="show_3d_check">
+                        <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if 3D view is available">3_D Chess View</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
+                        <property name="draw_indicator">True</property>
+                        <signal name="toggled" handler="show_3d_toggle_cb"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkHBox" id="hbox1">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkLabel" id="label6">
+                            <property name="visible">True</property>
+                            <property name="label">    </property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="show_3d_smooth_check">
+                            <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)">_Smooth Display</property>
+                            <property name="visible">True</property>
+                            <property name="sensitive">False</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="use_underline">True</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkTable" id="theme_table">
+                        <property name="visible">True</property>
+                        <property name="n_columns">2</property>
+                        <property name="column_spacing">5</property>
+                        <property name="row_spacing">5</property>
+                        <child>
+                          <object class="GtkLabel" id="piece_style_label">
+                            <property name="visible">True</property>
+                            <property name="xalign">0</property>
+                            <property name="label" translatable="yes" comments="Preferences Dialog: Label before piece style combo box">Piece Style:</property>
+                          </object>
+                          <packing>
+                            <property name="x_options">GTK_FILL</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="piece_style_combo">
+                            <property name="visible">True</property>
+                            <property name="model">piece_style_model</property>
+                            <signal name="changed" handler="piece_style_combo_changed_cb"/>
+                            <child>
+                              <object class="GtkCellRendererText" id="piece_style_cellrenderer"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="right_attach">2</property>
+                            <property name="x_options">GTK_FILL</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="show_toolbar_check">
+                        <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if toolbar is visible">Show _Toolbar</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="show_history_check">
+                        <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if history browser is visible">Show _History</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="show_move_hints_check">
+                        <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if move hints are visible">_Move Hints</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="show_numbering_check">
+                        <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if board numbering is visible">_Board Numbering</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">6</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="right_attach">2</property>
+                    <property name="top_attach">2</property>
+                    <property name="bottom_attach">3</property>
+                  </packing>
+                </child>
                 <child>
                   <object class="GtkLabel" id="board_label">
                     <property name="visible">True</property>
@@ -52,25 +479,12 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label5">
+                  <object class="GtkComboBox" id="orientation_combo">
                     <property name="visible">True</property>
-                    <property name="xalign">0</property>
-                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before promotion type combo box">Promotion Type:</property>
-                  </object>
-                  <packing>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="board_combo">
-                    <property name="visible">True</property>
-                    <property name="model">liststore3</property>
-                    <signal name="changed" handler="_on_board_combo_changed"/>
+                    <property name="model">orientation_model</property>
+                    <signal name="changed" handler="orientation_combo_changed_cb"/>
                     <child>
-                      <object class="GtkCellRendererText" id="cellrenderertext3"/>
+                      <object class="GtkCellRendererText" id="orientation_cellrenderer"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -85,10 +499,10 @@
                 <child>
                   <object class="GtkComboBox" id="move_format_combo">
                     <property name="visible">True</property>
-                    <property name="model">liststore2</property>
-                    <signal name="changed" handler="_on_move_format_combo_changed"/>
+                    <property name="model">move_format_model</property>
+                    <signal name="changed" handler="move_format_combo_changed_cb"/>
                     <child>
-                      <object class="GtkCellRendererText" id="cellrenderertext2"/>
+                      <object class="GtkCellRendererText" id="move_format_cellrenderer"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -101,221 +515,6 @@
                     <property name="bottom_attach">2</property>
                     <property name="x_options">GTK_FILL</property>
                     <property name="y_options">GTK_FILL</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="promotion_type_combo">
-                    <property name="visible">True</property>
-                    <property name="model">liststore1</property>
-                    <signal name="changed" handler="_on_promotion_type_combo_changed"/>
-                    <child>
-                      <object class="GtkCellRendererText" id="cellrenderertext1"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options">GTK_FILL</property>
-                  </packing>
-                </child>
-              </object>
-            </child>
-            <child type="tab">
-              <object class="GtkLabel" id="game_label">
-                <property name="visible">True</property>
-                <property name="xalign">0.4699999988079071</property>
-                <property name="label" translatable="yes" comments="Preferences Dialog: Title of game options tab">_Game</property>
-                <property name="use_underline">True</property>
-              </object>
-              <packing>
-                <property name="tab_fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkVBox" id="view_box">
-                <property name="visible">True</property>
-                <property name="border_width">10</property>
-                <child>
-                  <object class="GtkCheckButton" id="show_3d">
-                    <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if 3D view is available">3_D Chess View</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="tooltip_text" translatable="yes">View the chess board by default in 2D mode, or optionally in 3D mode using OpenGL.</property>
-                    <property name="use_underline">True</property>
-                    <property name="draw_indicator">True</property>
-                    <signal name="toggled" handler="_on_3d_view_activate"/>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkHBox" id="hbox1">
-                    <property name="visible">True</property>
-                    <child>
-                      <object class="GtkLabel" id="label6">
-                        <property name="visible">True</property>
-                        <property name="label">    </property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkCheckButton" id="show_3d_smooth">
-                        <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)">_Smooth Display</property>
-                        <property name="visible">True</property>
-                        <property name="sensitive">False</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="tooltip_text" translatable="yes">Smooth edges of the 3D elements (anti-alias)</property>
-                        <property name="use_underline">True</property>
-                        <property name="draw_indicator">True</property>
-                        <signal name="toggled" handler="_on_3d_smooth_toggled"/>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkTable" id="theme_table">
-                    <property name="visible">True</property>
-                    <property name="n_columns">2</property>
-                    <property name="column_spacing">5</property>
-                    <property name="row_spacing">5</property>
-                    <child>
-                      <object class="GtkLabel" id="piece_style_label">
-                        <property name="visible">True</property>
-                        <property name="xalign">0</property>
-                        <property name="label" translatable="yes" comments="Preferences Dialog: Label before piece style combo box">Piece Style:</property>
-                      </object>
-                      <packing>
-                        <property name="x_options">GTK_FILL</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkComboBox" id="piece_style_combo">
-                        <property name="visible">True</property>
-                        <signal name="changed" handler="_on_piece_style_combo_changed"/>
-                        <child>
-                          <object class="GtkCellRendererText" id="cellrenderertext4"/>
-                          <attributes>
-                            <attribute name="text">0</attribute>
-                          </attributes>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
-                        <property name="x_options">GTK_FILL</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="position">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkCheckButton" id="show_captured_pieces">
-                    <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if captured pieces are visible">Show _Captured Pieces</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="tooltip_text" translatable="yes">Show or hide captured pieces</property>
-                    <property name="use_underline">True</property>
-                    <property name="draw_indicator">True</property>
-                    <signal name="toggled" handler="_on_show_captured_pieces_activate"/>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="position">3</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkCheckButton" id="show_toolbar">
-                    <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if toolbar is visible">Show _Toolbar</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="tooltip_text" translatable="yes">Show or hide the toolbar</property>
-                    <property name="use_underline">True</property>
-                    <property name="draw_indicator">True</property>
-                    <signal name="toggled" handler="_on_show_toolbar_activate"/>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="position">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkCheckButton" id="show_history">
-                    <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if history browser is visible">Show _History</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="tooltip_text" translatable="yes">Show or hide the game history panel</property>
-                    <property name="use_underline">True</property>
-                    <property name="draw_indicator">True</property>
-                    <signal name="toggled" handler="_on_show_history_activate"/>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="position">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkCheckButton" id="show_move_hints">
-                    <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if move hints are visible">_Move Hints</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="tooltip_text" translatable="yes">Shows hints during chess games</property>
-                    <property name="use_underline">True</property>
-                    <property name="draw_indicator">True</property>
-                    <signal name="toggled" handler="_on_move_hints_activate"/>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="position">6</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkCheckButton" id="show_numbering">
-                    <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if board numbering is visible">_Board Numbering</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="tooltip_text" translatable="yes">Show or hide numbering on the chess board</property>
-                    <property name="use_underline">True</property>
-                    <property name="draw_indicator">True</property>
-                    <signal name="toggled" handler="_on_board_numbering_activate"/>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="position">7</property>
                   </packing>
                 </child>
               </object>
@@ -371,22 +570,220 @@
       <action-widget response="-7">closebutton1</action-widget>
     </action-widgets>
   </object>
-  <object class="GtkListStore" id="liststore1">
+  <object class="GtkListStore" id="difficulty_model">
     <columns>
-      <!-- column-name item -->
+      <!-- column-name label -->
+      <column type="gchararray"/>
+      <!-- column-name difficulty -->
       <column type="gchararray"/>
     </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Easy</col>
+        <col id="1">easy</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Normal</col>
+        <col id="1">normal</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Hard</col>
+        <col id="1">hard</col>
+      </row>
+    </data>
   </object>
-  <object class="GtkListStore" id="liststore2">
+  <object class="GtkListStore" id="opponent_model">
     <columns>
-      <!-- column-name item -->
+      <!-- column-name label -->
+      <column type="gchararray"/>
+      <!-- column-name opposing-player -->
       <column type="gchararray"/>
     </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Human</col>
+        <col id="1">human</col>
+      </row>
+    </data>
   </object>
-  <object class="GtkListStore" id="liststore3">
+  <object class="GtkListStore" id="side_model">
     <columns>
-      <!-- column-name item -->
+      <!-- column-name label -->
+      <column type="gchararray"/>
+      <!-- column-name play-as-white -->
+      <column type="gboolean"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">White</col>
+        <col id="1">False</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Black</col>
+        <col id="1">False</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="duration_model">
+    <columns>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+      <!-- column-name duration -->
+      <column type="gint"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">No limit</col>
+        <col id="1">0</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">One minute</col>
+        <col id="1">60</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Five minutes</col>
+        <col id="1">300</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">30 minutes</col>
+        <col id="1">1800</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">One hour</col>
+        <col id="1">3600</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Custom</col>
+        <col id="1">-1</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="piece_style_model">
+    <columns>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+      <!-- column-name piece-style -->
       <column type="gchararray"/>
     </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Simple</col>
+        <col id="1">simple</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Fancy</col>
+        <col id="1">fancy</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="orientation_model">
+    <columns>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+      <!-- column-name board-orientation -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">White Side</col>
+        <col id="1">white</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Black Side</col>
+        <col id="1">black</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Human Side</col>
+        <col id="1">human</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Current Player</col>
+        <col id="1">current</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Face to Face</col>
+        <col id="1">facetoface</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="move_format_model">
+    <columns>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+      <!-- column-name move-format -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Human</col>
+        <col id="1">human</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Standard Algebraic</col>
+        <col id="1">san</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Figurine</col>
+        <col id="1">fan</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Long Algebraic</col>
+        <col id="1">lan</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="promotion_type_model">
+    <columns>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+      <!-- column-name piece-type -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Queen</col>
+        <col id="1">queen</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Knight</col>
+        <col id="1">knight</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Rook</col>
+        <col id="1">rook</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Bishop</col>
+        <col id="1">bishop</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="custom_duration_units_model">
+    <columns>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+      <!-- column-name multiplier -->
+      <column type="gint"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">seconds</col>
+        <col id="1">1</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">minutes</col>
+        <col id="1">60</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">hours</col>
+        <col id="1">3600</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkAdjustment" id="duration_adjustment">
+    <property name="upper">86400</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+    <signal name="value_changed" handler="duration_changed_cb"/>
   </object>
 </interface>
