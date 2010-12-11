@@ -883,7 +883,7 @@ public class Application
     }
 
     private const string[] authors = { "Robert Ancell <robert.ancell@gmail.com>" };
-    private const string[] artists = { "" };
+    private const string[] artists = { "John-Paul Gignac (3D Models)", "Max Froumentin (2D Models)", "Hylke Bons <h.bons@student.rug.nl> (icon)" };
 
     [CCode (cname = "G_MODULE_EXPORT about_cb", instance_pos = -1)]
     public void about_cb (Gtk.Widget widget)
@@ -897,15 +897,28 @@ public class Application
         about_dialog = new Gtk.AboutDialog ();
         about_dialog.transient_for = window;
         about_dialog.name = "glchess";
-        about_dialog.version = "TEST";
-        about_dialog.copyright = "Copyright 2010";
-        about_dialog.license = "LICENSE";
+        about_dialog.version = Config.VERSION;
+        about_dialog.copyright = "Copyright 2010 Robert Ancell <robert.ancell@gmail.com>";
+        about_dialog.license = "glchess is free software; you can redistribute it and/or modify " +
+                               "it under the terms of the GNU General Public License as published by " +
+                               "the Free Software Foundation; either version 2 of the License, or " +
+                               "(at your option) any later version.\n" +
+                               "\n" +
+                               "glchess is distributed in the hope that it will be useful, " +
+                               "but WITHOUT ANY WARRANTY; without even the implied warranty of " +
+                               "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the " +
+                               "GNU General Public License for more details.\n" +
+                               "\n" +
+                               "You should have received a copy of the GNU General Public License " +
+                               "along with glchess; if not, write to the Free Software Foundation, Inc., " +
+                               "51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA";
         about_dialog.wrap_license = true;
-        about_dialog.comments = "Description";
+        about_dialog.comments = "The 2D/3D chess game for GNOME. \n\nglChess is a part of GNOME Games.";
         about_dialog.authors = authors;
         about_dialog.artists = artists;
-        about_dialog.translator_credits = "";
-        about_dialog.website = "http://example.com";
+        about_dialog.translator_credits = "translator-credits";
+        about_dialog.website = "http://www.gnome.org/projects/gnome-games/";
+        about_dialog.website_label = "GNOME Games web site";
         about_dialog.logo_icon_name = "glchess";
         about_dialog.response.connect (about_response_cb);
         about_dialog.show ();
