@@ -4,7 +4,7 @@ using GLX;
 
 private class ChessView3D : ChessView
 {
-    private GLX.Context context;
+    private GLX.Context context = (GLX.Context) null;
     private void *display;
     private Drawable drawable;
 
@@ -56,7 +56,15 @@ private class ChessView3D : ChessView
         }
         create_board ();
     }
-    
+
+    private bool start_gl ()
+    {
+        GLX.Context null_context = (GLX.Context) null;
+        if (context == null_context)
+            return false;
+        return glXMakeCurrent (display, drawable, context);
+    }
+
     private void create_board ()
     {
         /* Board vertices
@@ -119,11 +127,23 @@ private class ChessView3D : ChessView
         display = Gdk.x11_display_get_xdisplay (get_window ().get_display ());
         var screen = Gdk.x11_screen_get_screen_number (get_screen ());
         var visual = glXChooseVisual (display, screen, attributes);
-        context = glXCreateContext (display, visual, null, true);
+        if (visual == null)
+            GLib.warning ("Failed to get GLX visual");
+        else
+        {
+            context = glXCreateContext (display, visual, null, true);
+            GLX.Context null_context = (GLX.Context) null;
+            if (context == null_context)
+                GLib.warning ("Failed to create GLX context");
+        }
     }
 
     private void unrealize_cb ()
     {
+        GLX.Context null_context = (GLX.Context) null;
+        if (context == null_context)
+            return;
+    
         /* Wait for any pending GL calls to end */
         if (drawable == glXGetCurrentDrawable ())
         {
@@ -140,7 +160,7 @@ private class ChessView3D : ChessView
 
         square_size = (int) Math.floor ((short_edge - 2 * border) / 9.0);
 
-        if (glXMakeCurrent (display, drawable, context))
+        if (start_gl ())
             glViewport (0, 0, (GLsizei) get_allocated_width (), (GLsizei) get_allocated_height ());
 
         return true;
@@ -175,7 +195,7 @@ private class ChessView3D : ChessView
     {
         GLfloat[] jitters = {0.0033922635f, 0.3317967229f, 0.2806016275f, -0.2495619123f, -0.273817106f, -0.086844639f};
 
-        if (!glXMakeCurrent (display, drawable, context))
+        if (!start_gl ())
             return true;
 
         var n_passes = 1;
@@ -345,7 +365,7 @@ private class ChessView3D : ChessView
         if (options.game == null || event.button != 1)
             return false;
 
-        if (!glXMakeCurrent (display, drawable, context))
+        if (!start_gl ())
             return true;
 
         /* Don't render to screen, just select */
