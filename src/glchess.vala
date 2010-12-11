@@ -104,9 +104,9 @@ public class Application
         {
             if (view != null)
                 view.destroy ();
-            /*if (settings.get_boolean ("show-3d"))
+            if (settings.get_boolean ("show-3d"))
                 view = new ChessView3D ();
-            else*/
+            else
                 view = new ChessView2D ();
             view.set_size_request (300, 300);
             view.options = view_options;

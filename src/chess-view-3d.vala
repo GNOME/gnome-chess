@@ -1,8 +1,13 @@
 using GL;
 using GLU;
+using GLX;
 
 private class ChessView3D : ChessView
 {
+    private GLX.Context context;
+    private void *display;
+    private Drawable drawable;
+
     private int border = 6;
     private int square_size;
     private TDSModel pawn_model;
@@ -33,16 +38,17 @@ private class ChessView3D : ChessView
         OFFSET            = (BOARD_OUTER_WIDTH * 0.5f);
 
         add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
-        var gl_config = new Gdk.GLConfig.by_mode (Gdk.GLConfigMode.RGB | Gdk.GLConfigMode.DEPTH | Gdk.GLConfigMode.DOUBLE | Gdk.GLConfigMode.ACCUM);
-        Gtk.WidgetGL.set_gl_capability (this, gl_config, null, true, Gdk.GLRenderType.RGBA_TYPE);
+        realize.connect (realize_cb);
+
+        double_buffered = false;
         try
         {
-            pawn_model = new TDSModel (File.new_for_path ("data/pawn.3ds"));
-            knight_model = new TDSModel (File.new_for_path ("data/knight.3ds"));
-            bishop_model = new TDSModel (File.new_for_path ("data/bishop.3ds"));
-            rook_model = new TDSModel (File.new_for_path ("data/rook.3ds"));
-            queen_model = new TDSModel (File.new_for_path ("data/queen.3ds"));
-            king_model = new TDSModel (File.new_for_path ("data/king.3ds"));
+            pawn_model = new TDSModel (File.new_for_path ("data/pieces/3d/pawn.3ds"));
+            knight_model = new TDSModel (File.new_for_path ("data/pieces/3d/knight.3ds"));
+            bishop_model = new TDSModel (File.new_for_path ("data/pieces/3d/bishop.3ds"));
+            rook_model = new TDSModel (File.new_for_path ("data/pieces/3d/rook.3ds"));
+            queen_model = new TDSModel (File.new_for_path ("data/pieces/3d/queen.3ds"));
+            king_model = new TDSModel (File.new_for_path ("data/pieces/3d/king.3ds"));
         }
         catch (GLib.Error e)
         {
@@ -95,19 +101,34 @@ private class ChessView3D : ChessView
         board_quads = {0, 1, 5, 4,  0, 4, 7, 3,  3, 7, 6, 2,  2, 6, 5, 1,
                       4, 5, 9, 8,  4, 8, 11, 7,  7, 11, 10, 6,  6, 10, 9, 5};
     }
+    
+    public void realize_cb ()
+    {
+        int[] attributes = { GLX_RGBA,
+                             GLX_RED_SIZE, 1,
+                             GLX_GREEN_SIZE, 1,
+                             GLX_BLUE_SIZE, 1,
+                             GLX_DOUBLEBUFFER,
+                             GLX_DEPTH_SIZE, 1,
+                             GLX_ACCUM_RED_SIZE, 1,
+                             GLX_ACCUM_GREEN_SIZE, 1,
+                             GLX_ACCUM_BLUE_SIZE, 1,
+                             GLX_NONE };
+        drawable = Gdk.x11_window_get_xid (get_window ());
+        display = Gdk.x11_display_get_xdisplay (get_window ().get_display ());
+        var screen = Gdk.x11_screen_get_screen_number (get_screen ());
+        var visual = glXChooseVisual (display, screen, attributes);
+        context = glXCreateContext (display, visual, null, true);
+    }
 
     public override bool configure_event (Gdk.EventConfigure event)
     {
-        int short_edge = int.min (allocation.width, allocation.height);
+        int short_edge = int.min (get_allocated_width (), get_allocated_height ());
 
         square_size = (int) Math.floor ((short_edge - 2 * border) / 9.0);
 
-        var drawable = Gtk.WidgetGL.get_gl_drawable (this);
-        if (drawable.gl_begin (Gtk.WidgetGL.get_gl_context (this)))
-        {
-            glViewport (0, 0, (GLsizei) allocation.width, (GLsizei) allocation.height);
-            drawable.gl_end ();
-        }
+        if (glXMakeCurrent (display, drawable, context))
+            glViewport (0, 0, (GLsizei) get_allocated_width (), (GLsizei) get_allocated_height ());
 
         return true;
     }
@@ -117,8 +138,8 @@ private class ChessView3D : ChessView
     {
         var xwsize = right - left;
         var ywsize = top - bottom;
-        var dx = -(pixdx * xwsize / allocation.width + eyedx * near/focus);
-        var dy = -(pixdy * ywsize / allocation.height + eyedy * near/focus);
+        var dx = -(pixdx * xwsize / get_allocated_width () + eyedx * near/focus);
+        var dy = -(pixdy * ywsize / get_allocated_height () + eyedy * near/focus);
 
         glFrustum (left + dx, right + dx, bottom + dy, top + dy, near, far);
         glTranslatef (-eyedx, -eyedy, 0.0f);
@@ -139,10 +160,9 @@ private class ChessView3D : ChessView
 
     public override bool draw (Cairo.Context c)
     {
-        var drawable = Gtk.WidgetGL.get_gl_drawable (this);
         GLfloat[] jitters = {0.0033922635f, 0.3317967229f, 0.2806016275f, -0.2495619123f, -0.273817106f, -0.086844639f};
 
-        if (!drawable.gl_begin (Gtk.WidgetGL.get_gl_context (this)))
+        if (!glXMakeCurrent (display, drawable, context))
             return true;
 
         var n_passes = 1;
@@ -154,7 +174,7 @@ private class ChessView3D : ChessView
 
         for (var i = 0; i < n_passes; i++)
         {
-            var bg = style.bg[state];
+            var bg = style.bg[get_state ()];
             glClearColor (bg.red / 65535.0f, bg.green / 65535.0f, bg.blue / 65535.0f, 1.0f);
             glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -163,9 +183,9 @@ private class ChessView3D : ChessView
             glMatrixMode (GL_PROJECTION);
             glLoadIdentity ();
             if (options.show_3d_smooth)
-                accPerspective (60.0f, (float) allocation.width / allocation.height, 0.1f, 1000, jitters[i*2], jitters[i*2+1], 0, 0, 1);
+                accPerspective (60.0f, (float) get_allocated_width () / get_allocated_height (), 0.1f, 1000, jitters[i*2], jitters[i*2+1], 0, 0, 1);
             else
-                gluPerspective (60.0f, (float) allocation.width / allocation.height, 0.1f, 1000);
+                gluPerspective (60.0f, (float) get_allocated_width () / get_allocated_height (), 0.1f, 1000);
 
             glMatrixMode(GL_MODELVIEW);
             transform_camera ();
@@ -185,12 +205,7 @@ private class ChessView3D : ChessView
         if (options.show_3d_smooth)
             glAccum (GL_RETURN, 1);
 
-        if (drawable.is_double_buffered ())
-            drawable.swap_buffers ();
-        else
-            glFlush ();
-
-        drawable.gl_end ();
+        glXSwapBuffers (display, drawable);
 
         return true;
     }
@@ -317,9 +332,7 @@ private class ChessView3D : ChessView
         if (options.game == null || event.button != 1)
             return false;
 
-        var drawable = Gtk.WidgetGL.get_gl_drawable (this);
-
-        if (!drawable.gl_begin (Gtk.WidgetGL.get_gl_context (this)))
+        if (!glXMakeCurrent (display, drawable, context))
             return true;
 
         /* Don't render to screen, just select */
@@ -332,9 +345,9 @@ private class ChessView3D : ChessView
         /* Create pixel picking region near cursor location */
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        GLint[] viewport = {0, 0, (GLint) allocation.width, (GLint) allocation.height};
-        gluPickMatrix(event.x, ((float) allocation.height - event.y), 1.0, 1.0, viewport);
-        gluPerspective(60.0, (float) allocation.width / (float) allocation.height, 0, 1);
+        GLint[] viewport = {0, 0, (GLint) get_allocated_width (), (GLint) get_allocated_height ()};
+        gluPickMatrix(event.x, ((float) get_allocated_height () - event.y), 1.0, 1.0, viewport);
+        gluPerspective(60.0, (float) get_allocated_width () / (float) get_allocated_height (), 0, 1);
 
         /* Draw the squares that can be selected */
         glMatrixMode(GL_MODELVIEW);
@@ -376,8 +389,6 @@ private class ChessView3D : ChessView
             var file = buffer[4];
             options.select_square (file, rank);
         }
-
-        drawable.gl_end ();
 
         return true;
     }
