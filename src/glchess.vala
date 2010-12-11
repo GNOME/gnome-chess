@@ -44,7 +44,7 @@ public class Application
         builder = new Gtk.Builder ();
         try
         {
-            builder.add_from_file ("data/glchess.ui");
+            builder.add_from_file (Path.build_filename (Config.PKGDATADIR, "glchess.ui", null));
         }
         catch (GLib.Error e)
         {
@@ -225,7 +225,7 @@ public class Application
 
     public void start ()
     {
-        ai_profiles = load_ai_profiles ("data/engines.conf");
+        ai_profiles = load_ai_profiles (Path.build_filename (Config.PKGDATADIR, "engines.conf", null));
         foreach (var profile in ai_profiles)
             GLib.message ("Detected AI profile %s", profile.name);
 
@@ -609,7 +609,7 @@ public class Application
         preferences_builder = new Gtk.Builder ();
         try
         {
-            preferences_builder.add_from_file ("data/preferences.ui");
+            preferences_builder.add_from_file (Path.build_filename (Config.PKGDATADIR, "preferences.ui", null));
         }
         catch (GLib.Error e)
         {

@@ -175,7 +175,7 @@ private class ChessView2D : ChessView
                 Rsvg.Handle handle;
                 try
                 {
-                    handle = new Rsvg.Handle.from_file ("data/pieces/" + options.theme_name + "/" + file_name + ".svg");
+                    handle = new Rsvg.Handle.from_file (Path.build_filename (Config.PKGDATADIR, "pieces", options.theme_name, file_name + ".svg", null));
                 }
                 catch (GLib.Error e)
                 {

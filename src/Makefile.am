@@ -15,6 +15,7 @@ glchess_SOURCES = \
 	chess-view-options.vala
 
 glchess_CFLAGS = \
+	-DPKGDATADIR=\"@datadir@/glchess\" \
 	$(GMODULE_CFLAGS) \
 	$(GTK_CFLAGS) \
 	$(GDK_X11_CFLAGS) \
@@ -37,12 +38,15 @@ glchess_VALAFLAGS = \
     --pkg gtk+-3.0 \
     --pkg gdk-x11-3.0 \
     --pkg gmodule-2.0 \
-    --pkg glx \
     --pkg librsvg-2.0 \
     --pkg posix \
     --vapidir . \
+    --pkg config \
     --pkg gl \
-    --pkg glu
+    --pkg glu \
+    --pkg glx
+
+EXTRA_DIST = config.vapi gl.vapi glu.vapi glx.vapi
 
 DISTCLEANFILES = \
 	Makefile.in

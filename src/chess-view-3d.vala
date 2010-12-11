@@ -43,12 +43,12 @@ private class ChessView3D : ChessView
         double_buffered = false;
         try
         {
-            pawn_model = new TDSModel (File.new_for_path ("data/pieces/3d/pawn.3ds"));
-            knight_model = new TDSModel (File.new_for_path ("data/pieces/3d/knight.3ds"));
-            bishop_model = new TDSModel (File.new_for_path ("data/pieces/3d/bishop.3ds"));
-            rook_model = new TDSModel (File.new_for_path ("data/pieces/3d/rook.3ds"));
-            queen_model = new TDSModel (File.new_for_path ("data/pieces/3d/queen.3ds"));
-            king_model = new TDSModel (File.new_for_path ("data/pieces/3d/king.3ds"));
+            pawn_model = new TDSModel (File.new_for_path (Path.build_filename (Config.PKGDATADIR, "pieces", "3d", "pawn.3ds", null)));
+            knight_model = new TDSModel (File.new_for_path (Path.build_filename (Config.PKGDATADIR, "pieces", "3d", "knight.3ds", null)));
+            bishop_model = new TDSModel (File.new_for_path (Path.build_filename (Config.PKGDATADIR, "pieces", "3d", "bishop.3ds", null)));
+            rook_model = new TDSModel (File.new_for_path (Path.build_filename (Config.PKGDATADIR, "pieces", "3d", "rook.3ds", null)));
+            queen_model = new TDSModel (File.new_for_path (Path.build_filename (Config.PKGDATADIR, "pieces", "3d", "queen.3ds", null)));
+            king_model = new TDSModel (File.new_for_path (Path.build_filename (Config.PKGDATADIR, "pieces", "3d", "king.3ds", null)));
         }
         catch (GLib.Error e)
         {
