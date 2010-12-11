@@ -103,7 +103,10 @@ public class Application
         if (key == "show-3d")
         {
             if (view != null)
+            {
+                view_container.remove (view);
                 view.destroy ();
+            }
             if (settings.get_boolean ("show-3d"))
                 view = new ChessView3D ();
             else
