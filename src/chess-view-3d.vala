@@ -39,6 +39,7 @@ private class ChessView3D : ChessView
 
         add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
         realize.connect (realize_cb);
+        unrealize.connect (unrealize_cb);
 
         double_buffered = false;
         try
@@ -102,7 +103,7 @@ private class ChessView3D : ChessView
                       4, 5, 9, 8,  4, 8, 11, 7,  7, 11, 10, 6,  6, 10, 9, 5};
     }
     
-    public void realize_cb ()
+    private void realize_cb ()
     {
         int[] attributes = { GLX_RGBA,
                              GLX_RED_SIZE, 1,
@@ -119,6 +120,18 @@ private class ChessView3D : ChessView
         var screen = Gdk.x11_screen_get_screen_number (get_screen ());
         var visual = glXChooseVisual (display, screen, attributes);
         context = glXCreateContext (display, visual, null, true);
+    }
+
+    private void unrealize_cb ()
+    {
+        /* Wait for any pending GL calls to end */
+        if (drawable == glXGetCurrentDrawable ())
+        {
+            glXWaitGL ();
+            glXMakeCurrent (display, X.None, (GLX.Context) null);
+        }
+
+        glXDestroyContext (display, context);
     }
 
     public override bool configure_event (Gdk.EventConfigure event)
