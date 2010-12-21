@@ -46,7 +46,7 @@ public class Application
         {
             builder.add_from_file (Path.build_filename (Config.PKGDATADIR, "glchess.ui", null));
         }
-        catch (GLib.Error e)
+        catch (Error e)
         {
             GLib.warning ("Could not load UI: %s", e.message);
         }
@@ -614,7 +614,7 @@ public class Application
         {
             preferences_builder.add_from_file (Path.build_filename (Config.PKGDATADIR, "preferences.ui", null));
         }
-        catch (GLib.Error e)
+        catch (Error e)
         {
             GLib.warning ("Could not load preferences UI: %s", e.message);
         }
@@ -879,7 +879,7 @@ public class Application
         {
             Gtk.show_uri (window.get_screen (), "ghelp:glchess", Gtk.get_current_event_time ());
         }
-        catch (GLib.Error e)
+        catch (Error e)
         {
             GLib.warning ("Unable to open help: %s", e.message);
         }
@@ -1019,7 +1019,7 @@ public class Application
                 var stream = save_dialog.get_file ().replace (null, false, GLib.FileCreateFlags.NONE);
                 pgn.write (stream);
             }
-            catch (GLib.Error e)
+            catch (Error e)
             {
                 save_dialog_error_label.set_text ("Failed to save game: %s".printf (e.message));
                 save_dialog_info_bar.set_message_type (Gtk.MessageType.ERROR);
@@ -1075,29 +1075,16 @@ public class Application
     {
         if (response_id == Gtk.ResponseType.OK)
         {
-            PGN pgn;        
             try
             {
-                pgn = new PGN.from_file (open_dialog.get_file ());
+                load_file (open_dialog.get_file ());
             }
-            catch (GLib.Error e)
+            catch (Error e)
             {
                 open_dialog_error_label.set_text ("Failed to open game: %s".printf (e.message));
                 open_dialog_info_bar.set_message_type (Gtk.MessageType.ERROR);
                 open_dialog_info_bar.show ();
                 return;
-            }
-
-            var pgn_game = pgn.games.nth_data (0);
-            start_game ();
-            foreach (var move in pgn_game.moves)
-            {
-                GLib.debug ("Move: %s", move);
-                if (!game.current_player.move (move))
-                {
-                    GLib.warning ("Invalid move: %s", move);
-                    break;
-                }
             }
         }
 
@@ -1105,6 +1092,22 @@ public class Application
         open_dialog = null;
         open_dialog_info_bar = null;
         open_dialog_error_label = null;
+    }
+
+    public void load_file (File file) throws Error
+    {
+        var pgn = new PGN.from_file (file);
+        var pgn_game = pgn.games.nth_data (0);
+        start_game ();
+        foreach (var move in pgn_game.moves)
+        {
+            GLib.debug ("Move: %s", move);
+            if (!game.current_player.move (move))
+            {
+                GLib.warning ("Invalid move: %s", move);
+                break;
+            }
+        }
     }
 }
 
@@ -1114,11 +1117,90 @@ class GlChess
     {
         Gtk.init (ref args);
 
+        File? game_file = null;
+        for (int i = 1; i < args.length; i++)
+        {
+            switch (args[i])
+            {
+            case "-v":
+            case "--version":
+                stderr.printf ("glchess %s\n", Config.VERSION);
+                return Posix.EXIT_SUCCESS;
+            case "-h":
+            case "-?":
+            case "--help":
+                usage (args[0], false, true);
+                return Posix.EXIT_SUCCESS;
+            case "--help-gtk":
+                usage (args[0], true, false);
+                return Posix.EXIT_SUCCESS;
+            case "--help-all":
+                usage (args[0], true, true);
+                return Posix.EXIT_SUCCESS;
+            default:
+                if (game_file == null && !args[i].has_prefix ("-"))
+                    game_file = File.new_for_path (args[i]);
+                else
+                {
+                    stderr.printf ("Unknown argument '%s'\n", args[i]);
+                    stderr.printf ("Run '%s --help' to see a full list of available command line options.\n", args[0]);
+                    return Posix.EXIT_FAILURE;
+                }
+                break;
+            }
+        }
+
         Application app = new Application ();
+
+        if (game_file != null)
+        {
+            try
+            {
+                app.load_file (game_file);
+            }
+            catch (Error e)
+            {
+                stderr.printf ("Failed to load %s: %s\n", game_file.get_path (), e.message);
+                return Posix.EXIT_FAILURE;
+            }
+        }
+
         app.start ();
 
         Gtk.main ();
 
-        return 0;
+        return Posix.EXIT_SUCCESS;
+    }
+
+    public static void usage (string appname, bool show_gtk, bool show_application)
+    {
+        stderr.printf ("Usage:\n" +
+                       "  %s [OPTIONS...] [FILE] - Play Chess", appname);
+        stderr.printf ("\n\n");
+
+        stderr.printf ("Help Options:\n" +
+                       "  -h, -?, --help                  Show help options\n" +
+                       "  --help-all                      Show all help options\n" +
+                       "  --help-gtk                      Show GTK+ options");
+        stderr.printf ("\n\n");
+
+        if (show_gtk)
+        {
+            stderr.printf ("GTK+ Options:\n" +
+                           "  --class=CLASS                   Program class as used by the window manager\n" +
+                           "  --name=NAME                     Program name as used by the window manager\n" +
+                           "  --screen=SCREEN                 X screen to use\n" +
+                           "  --sync                          Make X calls synchronous\n" +
+                           "  --gtk-module=MODULES            Load additional GTK+ modules\n" +
+                           "  --g-fatal-warnings              Make all warnings fatal");
+            stderr.printf ("\n\n");
+        }
+
+        if (show_application)
+        {
+            stderr.printf ("Application Options:\n" +
+                           "  -v, --version                   Show release version");
+            stderr.printf ("\n\n");
+        }
     }
 }
