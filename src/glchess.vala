@@ -226,13 +226,17 @@ public class Application
         return engine;
     }
 
-    public void start ()
+    public void start (File? game = null) throws Error
     {
         ai_profiles = load_ai_profiles (Path.build_filename (Config.PKGDATADIR, "engines.conf", null));
         foreach (var profile in ai_profiles)
             GLib.message ("Detected AI profile %s", profile.name);
 
-        start_game ();
+        if (game != null)
+            load_game (game);
+        else
+            start_game ();
+
         if (settings.get_boolean ("fullscreen"))
             window.fullscreen ();
         show ();
@@ -1077,7 +1081,7 @@ public class Application
         {
             try
             {
-                load_file (open_dialog.get_file ());
+                load_game (open_dialog.get_file ());
             }
             catch (Error e)
             {
@@ -1094,7 +1098,7 @@ public class Application
         open_dialog_error_label = null;
     }
 
-    public void load_file (File file) throws Error
+    private void load_game (File file) throws Error
     {
         var pgn = new PGN.from_file (file);
         var pgn_game = pgn.games.nth_data (0);
@@ -1151,21 +1155,15 @@ class GlChess
         }
 
         Application app = new Application ();
-
-        if (game_file != null)
+        try
         {
-            try
-            {
-                app.load_file (game_file);
-            }
-            catch (Error e)
-            {
-                stderr.printf ("Failed to load %s: %s\n", game_file.get_path (), e.message);
-                return Posix.EXIT_FAILURE;
-            }
+            app.start (game_file);
         }
-
-        app.start ();
+        catch (Error e)
+        {
+            stderr.printf ("Failed to load %s: %s\n", game_file.get_path (), e.message);
+            return Posix.EXIT_FAILURE;
+        }
 
         Gtk.main ();
 
