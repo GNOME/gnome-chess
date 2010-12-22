@@ -4,6 +4,7 @@ glchess_SOURCES = \
 	3ds.vala \
 	glchess.vala \
 	ai-profile.vala \
+	chess-bitboard.vala \
 	chess-engine.vala \
 	chess-engine-cecp.vala \
 	chess-engine-uci.vala \
@@ -18,7 +19,6 @@ glchess_CFLAGS = \
 	-DPKGDATADIR=\"@datadir@/glchess\" \
 	$(GMODULE_CFLAGS) \
 	$(GTK_CFLAGS) \
-	$(GDK_X11_CFLAGS) \
 	$(GLX_CFLAGS) \
 	$(OPENGL_CFLAGS) \
 	$(RSVG_CFLAGS) \
