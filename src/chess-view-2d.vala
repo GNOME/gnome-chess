@@ -75,7 +75,7 @@ private class ChessView2D : ChessView
         if (options.show_numbering)
         {
             string[] files = { "a", "b", "c", "d", "e", "f", "g", "h" };
-            string[] ranks = { "1", "2", "3", "4", "5", "6", "7", "8" };
+            string[] ranks = { "8", "7", "6", "5", "4", "3", "2", "1" };
 
             /* Files are centered individiual glyph width and combined glyph height,
              * ranks are centered on individual glyph widths and heights */
