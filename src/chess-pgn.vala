@@ -70,6 +70,21 @@ public class PGNGame
         get { return tags.lookup ("Result"); }
         set { tags.insert ("Result", value); }
     }
+    public bool set_up
+    {
+        get { string? v = tags.lookup ("SetUp"); return v != null && v == "1" ? true : false; }
+        set { tags.insert ("SetUp", value ? "1" : "0"); }
+    }
+    public string? fen
+    {
+        get { return tags.lookup ("FEN"); }
+        set { tags.insert ("FEN", value); }       
+    }
+    public string? termination
+    {
+        get { return tags.lookup ("Termination"); }
+        set { tags.insert ("Termination", value); }
+    }   
 
     public PGNGame ()
     {

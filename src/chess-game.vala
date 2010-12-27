@@ -125,13 +125,16 @@ public class ChessState
     /* Bitmap of all the pieces */
     private int64 piece_masks[2];
 
-    public ChessState (string state = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
+    public ChessState (string? state = null)
     {
         players[Color.WHITE] = new ChessPlayer (Color.WHITE);
         players[Color.BLACK] = new ChessPlayer (Color.BLACK);
         board = new ChessPiece[64];
         for (int i = 0; i < 64; i++)
             board[i] = null;
+
+        if (state == null)
+            return;
 
         string[] fields = state.split (" ");
         //if (fields.length != 6)
@@ -143,9 +146,10 @@ public class ChessState
         //    throw new Error ("Invalid piece placement");
         for (int rank = 0; rank < 8; rank++)
         {
-            for (int file = 0; file < 8;)
+            var rank_string = ranks[7 - rank];
+            for (int file = 0, offset = 0; file < 8 && offset < rank_string.length; offset++)
             {
-                var c = ranks[7 - rank][file];
+                var c = rank_string[offset];
                 if (c >= '1' && c <= '8')
                 {
                     file += c - '0';
@@ -625,10 +629,10 @@ public class ChessGame
         get { return move_stack.data.current_player; }
     }
 
-    public ChessGame ()
+    public ChessGame (string state = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
     {
         is_started = false;
-        move_stack.prepend (new ChessState ());
+        move_stack.prepend (new ChessState (state));
         result = ChessResult.IN_PROGRESS;
 
         white.do_move.connect (move_cb);

@@ -151,9 +151,9 @@ public class Application
         update_history_panel ();
     }
 
-    private void start_game (bool use_ai = false)
+    private void start_game (ChessGame game)
     {
-        game = new ChessGame ();
+        this.game = game;
         game.started.connect (game_start_cb);
         game.turn_started.connect (game_turn_cb);
         game.moved.connect (game_move_cb);
@@ -235,7 +235,7 @@ public class Application
         if (game != null)
             load_game (game);
         else
-            start_game ();
+            start_game (new ChessGame ());
 
         if (settings.get_boolean ("fullscreen"))
             window.fullscreen ();
@@ -512,7 +512,7 @@ public class Application
     [CCode (cname = "G_MODULE_EXPORT new_game_cb", instance_pos = -1)]
     public void new_game_cb (Gtk.Widget widget)
     {
-        start_game ();
+        start_game (new ChessGame ());
     }
 
     [CCode (cname = "G_MODULE_EXPORT resign_cb", instance_pos = -1)]
@@ -1102,7 +1102,22 @@ public class Application
     {
         var pgn = new PGN.from_file (file);
         var pgn_game = pgn.games.nth_data (0);
-        start_game ();
+        
+        ChessGame game;
+        if (pgn_game.set_up)
+        {
+            if (pgn_game.fen != null)
+                game = new ChessGame (pgn_game.fen);
+            else
+            {
+                GLib.warning ("Chess game has SetUp tag but no FEN tag");
+                game = new ChessGame ();            
+            }
+        }
+        else
+            game = new ChessGame ();
+
+        start_game (game);
         foreach (var move in pgn_game.moves)
         {
             GLib.debug ("Move: %s", move);
