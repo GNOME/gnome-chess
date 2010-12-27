@@ -328,7 +328,7 @@ public class ChessState
                 // FIXME: Can only castle if:
                 // King hasn't moved
                 // Rook hasn't moved
-                // Can't be in check while king moved (check if rook can be taken?)
+                // Can't be in check before, during or after move (check if rook can be taken?)
             }
             break;
         default:

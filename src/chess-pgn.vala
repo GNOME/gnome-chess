@@ -70,6 +70,11 @@ public class PGNGame
         get { return tags.lookup ("Result"); }
         set { tags.insert ("Result", value); }
     }
+    public string? annotator
+    {
+        get { return tags.lookup ("Annotator"); }
+        set { tags.insert ("Annotator", value); }
+    }
     public bool set_up
     {
         get { string? v = tags.lookup ("SetUp"); return v != null && v == "1" ? true : false; }
@@ -78,7 +83,7 @@ public class PGNGame
     public string? fen
     {
         get { return tags.lookup ("FEN"); }
-        set { tags.insert ("FEN", value); }       
+        set { tags.insert ("FEN", value); }
     }
     public string? termination
     {

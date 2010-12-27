@@ -1,4 +1,4 @@
-bin_PROGRAMS = glchess
+bin_PROGRAMS = glchess test-chess-game
 
 glchess_SOURCES = \
 	3ds.vala \
@@ -14,6 +14,21 @@ glchess_SOURCES = \
 	chess-view-2d.vala \
 	chess-view-3d.vala \
 	chess-view-options.vala
+
+test_chess_game_SOURCES = \
+	chess-bitboard.vala \
+	chess-game.vala \
+	test-chess-game.vala
+
+test_chess_game_CFLAGS = \
+	$(GOBJECT_CFLAGS)
+
+test_chess_game_LDADD = \
+	$(GOBJECT_LIBS)
+
+test_chess_game_VALAFLAGS = \
+    --pkg gobject-2.0 \
+    --pkg posix
 
 glchess_CFLAGS = \
 	-DPKGDATADIR=\"@datadir@/glchess\" \
