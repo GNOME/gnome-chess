@@ -291,9 +291,9 @@ public class ChessState
 
         /* Update board */
         board[start] = null;
-        //if (piece.type == PieceType.PAWN && r1 == 0 || r1 == 7)
-        //    board[end] = new ChessPiece (old_current_player, promotion_type);
-        //else
+        if (piece.type == PieceType.PAWN && (r1 == 0 || r1 == 7))
+            board[end] = new ChessPiece (old_current_player, promotion_type);
+        else
             board[end] = piece;
         piece_masks[Color.WHITE] &= BitBoard.clear_location_masks[start];
         piece_masks[Color.BLACK] &= BitBoard.clear_location_masks[start];
