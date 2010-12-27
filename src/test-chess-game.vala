@@ -35,6 +35,9 @@ class GlChess
 
         /* Pawn march only allowed from baseline */
         test_bad_move ("8/8/8/8/8/P7/8/8 w KQkr - 0 1", "a2a5");
+        
+        /* En passant */
+        test_good_move ("8/8/8/pP6/8/8/8/8 w KQkr a6 0 1", "b5a6");
 
         /* Castle kingside */
         test_good_move ("8/8/8/8/8/8/8/4K2R w KQkr - 0 1", "Kg1");

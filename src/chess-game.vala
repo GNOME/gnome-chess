@@ -116,6 +116,7 @@ public class ChessState
     public ChessPlayer opponent;
     public bool can_castle_kingside[2];
     public bool can_castle_queenside[2];
+    public int en_passant_index = -1;
 
     public ChessPiece[] board;
     public ChessMove? last_move = null;
@@ -183,31 +184,39 @@ public class ChessState
         //    throw new Error ("Unknown active color: %s", fields[1]);
 
         /* Field 3: Castling availability */
-        for (int i = 0; i < fields[2].length; i++)
+        if (fields[2] != "-")
         {
-            var c = fields[2][i];
-            if (c == '-')
-                ; /* No availability */
-            else if (c == 'K')
-                can_castle_kingside[Color.WHITE] = true;
-            else if (c == 'q')
-                can_castle_queenside[Color.WHITE] = true;
-            else if (c == 'k')
-                can_castle_kingside[Color.BLACK] = true;
-            else if (c == 'q')
-                can_castle_queenside[Color.BLACK] = true;
-            //else
-            //    throw new Error ("");
+            for (int i = 0; i < fields[2].length; i++)
+            {
+                var c = fields[2][i];
+                if (c == 'K')
+                    can_castle_kingside[Color.WHITE] = true;
+                else if (c == 'q')
+                    can_castle_queenside[Color.WHITE] = true;
+                else if (c == 'k')
+                    can_castle_kingside[Color.BLACK] = true;
+                else if (c == 'q')
+                    can_castle_queenside[Color.BLACK] = true;
+                //else
+                //    throw new Error ("");
+            }
         }
 
         /* Field 4: En passant target square */
-        // FIXME
-        
+        if (fields[3] != "-")
+        {
+            //if (fields[3].length != 2)
+            //    throw new Error ("");
+            en_passant_index = get_index (fields[3][1] - '1', fields[3][0] - 'a');
+        }
+
         /* Field 5: Halfmove count */
         // FIXME
 
         /* Field 6: Fullmove number */
-        // FIXME
+        number = (fields[5].to_int () - 1) * 2;
+        if (current_player.color == Color.BLACK)
+            number++;
     }
 
     public ChessState copy ()
@@ -223,6 +232,7 @@ public class ChessState
         state.can_castle_queenside[Color.WHITE] = can_castle_queenside[Color.WHITE];        
         state.can_castle_kingside[Color.BLACK] = can_castle_kingside[Color.BLACK];
         state.can_castle_queenside[Color.BLACK] = can_castle_queenside[Color.BLACK];
+        state.en_passant_index = en_passant_index;
         if (last_move != null)
             state.last_move = last_move.copy();
         for (int i = 0; i < 64; i++)
@@ -282,11 +292,21 @@ public class ChessState
         if ((over_mask & (piece_masks[Color.WHITE] | piece_masks[Color.BLACK])) != 0)
             return false;
 
-        /* Can't take own pieces */
+        /* Get victim of move */
         ChessPiece? victim = board[end];
+        int victim_index = end;
+
+        /* Can't take own pieces */
         if (victim != null && victim.player == current_player)
             return false;
-            
+
+        /* Check if taking an marched pawn */
+        if (victim == null && end == en_passant_index)
+        {
+            victim_index = get_index (r1 == 2 ? 3 : 4, f1);
+            victim = board[victim_index];
+        }
+
         /* Check special moves */
         int rook_start = -1, rook_end = -1;
         switch (piece.type)
@@ -297,7 +317,6 @@ public class ChessState
             {
                 if (victim == null)
                     return false;
-                // FIXME: Check en passant
             }
             else
             {
@@ -353,9 +372,12 @@ public class ChessState
         var old_white_can_castle_queenside = can_castle_queenside[Color.WHITE];
         var old_black_can_castle_kingside = can_castle_kingside[Color.BLACK];
         var old_black_can_castle_queenside = can_castle_queenside[Color.BLACK];
+        var old_en_passant_index = en_passant_index;
 
         /* Update board */
         board[start] = null;
+        if (victim != null)
+            board[victim_index] = null;
         if (piece.type == PieceType.PAWN && (r1 == 0 || r1 == 7))
             board[end] = new ChessPiece (old_current_player, promotion_type);
         else
@@ -394,6 +416,12 @@ public class ChessState
             }
         }
 
+        /* Pawn square moved over is vulnerable */
+        if (piece.type == PieceType.PAWN && over_mask != 0)
+            en_passant_index = get_index ((r0 + r1) / 2, f0);
+        else
+            en_passant_index = -1;
+
         /* Test if this move would leave that player in check */
         bool result = true;
         if (test_check)
@@ -423,7 +451,9 @@ public class ChessState
             current_player = old_current_player;
             opponent = old_opponent;
             board[start] = piece;
-            board[end] = victim;
+            board[end] = null;
+            if (victim != null)
+                board[victim_index] = victim;
             if (rook_start >= 0)
             {
                 var rook = board[rook_end];
@@ -436,6 +466,7 @@ public class ChessState
             can_castle_queenside[Color.WHITE] = old_white_can_castle_queenside;
             can_castle_kingside[Color.BLACK] = old_black_can_castle_kingside;
             can_castle_queenside[Color.BLACK] = old_black_can_castle_queenside;
+            en_passant_index = old_en_passant_index;
         }
 
         if (!apply)
