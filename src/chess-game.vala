@@ -111,8 +111,7 @@ public class ChessMove
 public class ChessState
 {
     public int number = 0;
-    public ChessPlayer white;
-    public ChessPlayer black;    
+    public ChessPlayer players[2];
     public ChessPlayer current_player;
     public ChessPlayer opponent;
 
@@ -122,53 +121,81 @@ public class ChessState
     /* Bitmap of all the pieces */
     private int64 piece_masks[2];
 
-    public ChessState ()
+    public ChessState (string state = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
     {
-        current_player = white = new ChessPlayer (Color.WHITE);
-        opponent = black = new ChessPlayer (Color.BLACK);
-
+        players[Color.WHITE] = new ChessPlayer (Color.WHITE);
+        players[Color.BLACK] = new ChessPlayer (Color.BLACK);
         board = new ChessPiece[64];
         for (int i = 0; i < 64; i++)
             board[i] = null;
 
-        add_piece (get_index (0, 0), white, PieceType.ROOK);
-        add_piece (get_index (0, 1), white, PieceType.KNIGHT);
-        add_piece (get_index (0, 2), white, PieceType.BISHOP);
-        add_piece (get_index (0, 3), white, PieceType.QUEEN);
-        add_piece (get_index (0, 4), white, PieceType.KING);
-        add_piece (get_index (0, 5), white, PieceType.BISHOP);
-        add_piece (get_index (0, 6), white, PieceType.KNIGHT);
-        add_piece (get_index (0, 7), white, PieceType.ROOK);
-        add_piece (get_index (7, 0), black, PieceType.ROOK);
-        add_piece (get_index (7, 1), black, PieceType.KNIGHT);
-        add_piece (get_index (7, 2), black, PieceType.BISHOP);
-        add_piece (get_index (7, 3), black, PieceType.QUEEN);
-        add_piece (get_index (7, 4), black, PieceType.KING);
-        add_piece (get_index (7, 5), black, PieceType.BISHOP);
-        add_piece (get_index (7, 6), black, PieceType.KNIGHT);
-        add_piece (get_index (7, 7), black, PieceType.ROOK);
-        for (int file = 0; file < 8; file++)
+        string[] fields = state.split (" ");
+        //if (fields.length != 6)
+        //    throw new Error ("Invalid FEN string");
+
+        /* Field 1: Piece placement */
+        string[] ranks = fields[0].split ("/");
+        //if (ranks.length != 8)
+        //    throw new Error ("Invalid piece placement");
+        for (int rank = 0; rank < 8; rank++)
         {
-            add_piece (get_index (1, file), white, PieceType.PAWN);
-            add_piece (get_index (6, file), black, PieceType.PAWN);
+            for (int file = 0; file < 8;)
+            {
+                var c = ranks[7 - rank][file];
+                if (c >= '1' && c <= '8')
+                {
+                    file += c - '0';
+                    continue;
+                }
+
+                PieceType type;
+                var color = c.isupper () ? Color.WHITE : Color.BLACK;
+                if (!decode_piece_type (c.toupper (), out type))
+                    ;//throw new Error ("");
+
+                int index = get_index (rank, file);
+                ChessPiece piece = new ChessPiece (players[color], type);
+                board[index] = piece;
+                int64 mask = BitBoard.set_location_masks[index];
+                piece_masks[color] |= mask;
+                file++;
+            }
         }
+
+        /* Field 2: Active color */
+        if (fields[1] == "w")
+        {
+            current_player = players[Color.WHITE];
+            opponent = players[Color.BLACK];
+        }
+        else if (fields[1] == "b")
+        {
+            current_player = players[Color.BLACK];
+            opponent = players[Color.WHITE];
+        }
+        //else
+        //    throw new Error ("Unknown active color: %s", fields[1]);
+
+        /* Field 3: Castling availability */
+        // FIXME
+
+        /* Field 4: En passant target square */
+        // FIXME
+        
+        /* Field 5: Halfmove count */
+        // FIXME
+
+        /* Field 6: Fullmove number */
+        // FIXME
     }
 
-    private void add_piece (int index, ChessPlayer player, PieceType type)
-    {
-        ChessPiece piece = new ChessPiece (player, type);
-        board[index] = piece;
-        int64 mask = BitBoard.set_location_masks[index];
-        piece_masks[player.color] |= mask;
-    }
-    
     public ChessState copy ()
     {
         ChessState state = new ChessState ();
 
         state.number = number;
-        state.white = white;
-        state.black = black;
+        state.players[Color.WHITE] = players[Color.WHITE];
+        state.players[Color.BLACK] = players[Color.BLACK];
         state.current_player = current_player;
         state.opponent = opponent;
         if (last_move != null)
@@ -405,7 +432,7 @@ public class ChessState
         promotion_type = PieceType.QUEEN;
         if (move.has_prefix ("O-O-O"))
         {
-            if (current_player == white)
+            if (current_player.color == Color.WHITE)
                 r0 = r1 = 0;
             else
                 r0 = r1 = 7;
@@ -415,7 +442,7 @@ public class ChessState
         }
         else if (move.has_prefix ("O-O"))
         {
-            if (current_player == white)
+            if (current_player.color == Color.WHITE)
                 r0 = r1 = 0;
             else
                 r0 = r1 = 7;
@@ -564,11 +591,11 @@ public class ChessGame
 
     public ChessPlayer white
     {
-        get { return move_stack.data.white; }
+        get { return move_stack.data.players[Color.WHITE]; }
     }
     public ChessPlayer black
     {
-        get { return move_stack.data.black; }
+        get { return move_stack.data.players[Color.BLACK]; }
     }
     public ChessPlayer current_player
     {
@@ -643,7 +670,7 @@ public class ChessGame
         if (!is_started)
             return false;
 
-        if (player == white)
+        if (player.color == Color.WHITE)
             stop (ChessResult.BLACK_WON, ChessRule.RESIGN);
         else
             stop (ChessResult.WHITE_WON, ChessRule.RESIGN);
