@@ -114,6 +114,10 @@ public class ChessState
     public ChessPlayer players[2];
     public ChessPlayer current_player;
     public ChessPlayer opponent;
+    public bool white_can_castle_kingside;
+    public bool white_can_castle_queenside;
+    public bool black_can_castle_kingside;
+    public bool black_can_castle_queenside;
 
     public ChessPiece[] board;
     public ChessMove? last_move = null;
@@ -177,7 +181,22 @@ public class ChessState
         //    throw new Error ("Unknown active color: %s", fields[1]);
 
         /* Field 3: Castling availability */
-        // FIXME
+        for (int i = 0; i < fields[2].length; i++)
+        {
+            var c = fields[2][i];
+            if (c == '-')
+                ; /* No availability */
+            else if (c == 'K')
+                white_can_castle_kingside = true;
+            else if (c == 'q')
+                white_can_castle_queenside = true;
+            else if (c == 'k')
+                black_can_castle_kingside = true;
+            else if (c == 'q')
+                black_can_castle_queenside = true;
+            //else
+            //    throw new Error ("");
+        }
 
         /* Field 4: En passant target square */
         // FIXME
@@ -198,6 +217,10 @@ public class ChessState
         state.players[Color.BLACK] = players[Color.BLACK];
         state.current_player = current_player;
         state.opponent = opponent;
+        state.white_can_castle_kingside = white_can_castle_kingside;
+        state.white_can_castle_queenside = white_can_castle_queenside;
+        state.black_can_castle_kingside = black_can_castle_kingside;
+        state.black_can_castle_queenside = black_can_castle_queenside;
         if (last_move != null)
             state.last_move = last_move.copy();
         for (int i = 0; i < 64; i++)
