@@ -114,10 +114,8 @@ public class ChessState
     public ChessPlayer players[2];
     public ChessPlayer current_player;
     public ChessPlayer opponent;
-    public bool white_can_castle_kingside;
-    public bool white_can_castle_queenside;
-    public bool black_can_castle_kingside;
-    public bool black_can_castle_queenside;
+    public bool can_castle_kingside[2];
+    public bool can_castle_queenside[2];
 
     public ChessPiece[] board;
     public ChessMove? last_move = null;
@@ -191,13 +189,13 @@ public class ChessState
             if (c == '-')
                 ; /* No availability */
             else if (c == 'K')
-                white_can_castle_kingside = true;
+                can_castle_kingside[Color.WHITE] = true;
             else if (c == 'q')
-                white_can_castle_queenside = true;
+                can_castle_queenside[Color.WHITE] = true;
             else if (c == 'k')
-                black_can_castle_kingside = true;
+                can_castle_kingside[Color.BLACK] = true;
             else if (c == 'q')
-                black_can_castle_queenside = true;
+                can_castle_queenside[Color.BLACK] = true;
             //else
             //    throw new Error ("");
         }
@@ -221,10 +219,10 @@ public class ChessState
         state.players[Color.BLACK] = players[Color.BLACK];
         state.current_player = current_player;
         state.opponent = opponent;
-        state.white_can_castle_kingside = white_can_castle_kingside;
-        state.white_can_castle_queenside = white_can_castle_queenside;
-        state.black_can_castle_kingside = black_can_castle_kingside;
-        state.black_can_castle_queenside = black_can_castle_queenside;
+        state.can_castle_kingside[Color.WHITE] = can_castle_kingside[Color.WHITE];
+        state.can_castle_queenside[Color.WHITE] = can_castle_queenside[Color.WHITE];        
+        state.can_castle_kingside[Color.BLACK] = can_castle_kingside[Color.BLACK];
+        state.can_castle_queenside[Color.BLACK] = can_castle_queenside[Color.BLACK];
         if (last_move != null)
             state.last_move = last_move.copy();
         for (int i = 0; i < 64; i++)
@@ -316,6 +314,18 @@ public class ChessState
                 rook_start = get_index (r0, f1 > f0 ? 7 : 0);
                 rook_end = get_index (r0, f1 > f0 ? f1 - 1 : f1 + 1);
 
+                /* Check if can castle */
+                if (f1 > f0)
+                {
+                    if (!can_castle_kingside[color])
+                        return false;
+                }
+                else
+                {
+                    if (!can_castle_queenside[color])
+                        return false;                
+                }
+
                 ChessPiece? rook = board[rook_start];
                 if (rook == null)
                     return false;
@@ -325,10 +335,7 @@ public class ChessState
                 if ((rook_over_mask & (piece_masks[Color.WHITE] | piece_masks[Color.BLACK])) != 0)
                     return false;
 
-                // FIXME: Can only castle if:
-                // King hasn't moved
-                // Rook hasn't moved
-                // Can't be in check before, during or after move (check if rook can be taken?)
+                // FIXME: Can't be in check before, during or after move (check if rook can be taken?)
             }
             break;
         default:
@@ -342,6 +349,10 @@ public class ChessState
         var old_black_mask = piece_masks[Color.BLACK];
         var old_current_player = current_player;
         var old_opponent = opponent;
+        var old_white_can_castle_kingside = can_castle_kingside[Color.WHITE];
+        var old_white_can_castle_queenside = can_castle_queenside[Color.WHITE];
+        var old_black_can_castle_kingside = can_castle_kingside[Color.BLACK];
+        var old_black_can_castle_queenside = can_castle_queenside[Color.BLACK];
 
         /* Update board */
         board[start] = null;
@@ -363,6 +374,25 @@ public class ChessState
         }
         current_player = old_opponent;
         opponent = old_current_player;
+
+        /* Can't castle once king has moved */
+        if (piece.type == PieceType.KING)
+        {
+            can_castle_kingside[color] = false;
+            can_castle_queenside[color] = false;
+        }
+        /* Can't castle once rooks have moved */
+        else if (piece.type == PieceType.ROOK)
+        {
+            int base_rank = color == Color.WHITE ? 0 : 7;
+            if (r0 == base_rank)
+            {
+                if (f0 == 0)
+                    can_castle_queenside[color] = false;
+                else if (f0 == 7)
+                    can_castle_kingside[color] = false;
+            }
+        }
 
         /* Test if this move would leave that player in check */
         bool result = true;
@@ -402,6 +432,10 @@ public class ChessState
             }
             piece_masks[Color.WHITE] = old_white_mask;
             piece_masks[Color.BLACK] = old_black_mask;
+            can_castle_kingside[Color.WHITE] = old_white_can_castle_kingside;
+            can_castle_queenside[Color.WHITE] = old_white_can_castle_queenside;
+            can_castle_kingside[Color.BLACK] = old_black_can_castle_kingside;
+            can_castle_queenside[Color.BLACK] = old_black_can_castle_queenside;
         }
 
         if (!apply)
