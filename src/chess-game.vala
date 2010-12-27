@@ -199,18 +199,20 @@ public class ChessState
     public bool move (string move, bool apply = true)
     {
         int r0, f0, r1, f1;
-        if (!decode_move (move, out r0, out f0, out r1, out f1))
+        PieceType promotion_type;
+        if (!decode_move (move, out r0, out f0, out r1, out f1, out promotion_type))
             return false;
-        return move_with_coords (r0, f0, r1, f1, apply);
+        return move_with_coords (r0, f0, r1, f1, promotion_type, apply);
     }
 
-    public bool move_with_coords (int r0, int f0, int r1, int f1, bool apply = true, bool test_check = true)
+    public bool move_with_coords (int r0, int f0, int r1, int f1, PieceType promotion_type = PieceType.QUEEN, bool apply = true, bool test_check = true)
     {
         // FIXME: Make this use indexes to be faster
         int start = get_index (r0, f0);
         int end = get_index (r1, f1);
 
         var color = current_player.color;
+        var opponent_color = opponent.color;
 
         /* Must be moving own piece */
         ChessPiece? piece = board[start];
@@ -232,7 +234,7 @@ public class ChessState
         ChessPiece? victim = board[end];
         if (victim != null && victim.player == current_player)
             return false;
-
+            
         /* Check special moves */
         int rook_start = -1, rook_end = -1;
         switch (piece.type)
@@ -244,6 +246,12 @@ public class ChessState
                 if (victim == null)
                     return false;
                 // FIXME: Check en passant
+            }
+            else
+            {
+                /* If moving forward can't take enemy */
+                if (victim != null)
+                    return false;
             }
             break;
         case PieceType.KING:
@@ -276,11 +284,21 @@ public class ChessState
         if (!apply && !test_check)
             return true;
 
+        var old_white_mask = piece_masks[Color.WHITE];
+        var old_black_mask = piece_masks[Color.BLACK];
+        var old_current_player = current_player;
+        var old_opponent = opponent;
+
         /* Update board */
         board[start] = null;
-        board[end] = piece;
-        piece_masks[color] &= BitBoard.clear_location_masks[start];
+        //if (piece.type == PieceType.PAWN && r1 == 0 || r1 == 7)
+        //    board[end] = new ChessPiece (old_current_player, promotion_type);
+        //else
+            board[end] = piece;
+        piece_masks[Color.WHITE] &= BitBoard.clear_location_masks[start];
+        piece_masks[Color.BLACK] &= BitBoard.clear_location_masks[start];
         piece_masks[color] |= end_mask;
+        piece_masks[opponent_color] &= BitBoard.clear_location_masks[end];
         if (rook_start >= 0)
         {
             var rook = board[rook_start];
@@ -289,9 +307,8 @@ public class ChessState
             piece_masks[color] &= BitBoard.clear_location_masks[rook_start];
             piece_masks[color] |= BitBoard.set_location_masks[rook_end];
         }
-        var player = current_player;
-        current_player = opponent;
-        opponent = player;
+        current_player = old_opponent;
+        opponent = old_current_player;
 
         /* Test if this move would leave that player in check */
         bool result = true;
@@ -305,7 +322,8 @@ public class ChessState
                     /* See if any enemy pieces can take the king */
                     for (int i = 0; i < 64; i++)
                     {
-                        if (move_with_coords (get_rank (i), get_file (i), get_rank (king_index), get_file (king_index), false, false))
+                        // FIXME: Should check all promotion types...
+                        if (move_with_coords (get_rank (i), get_file (i), get_rank (king_index), get_file (king_index), PieceType.QUEEN, false, false))
                         {
                             result = false;
                             break;
@@ -318,22 +336,18 @@ public class ChessState
         /* Undo move */
         if (!apply || !result)
         {
-            var t = current_player;
-            current_player = opponent;
-            opponent = t;
+            current_player = old_current_player;
+            opponent = old_opponent;
             board[start] = piece;
             board[end] = victim;
-            piece_masks[color] |= BitBoard.set_location_masks[start];
-            if (victim == null)
-                piece_masks[color] &= BitBoard.clear_location_masks[end];
             if (rook_start >= 0)
             {
                 var rook = board[rook_end];
                 board[rook_start] = rook;
                 board[rook_end] = null;
-                piece_masks[color] |= BitBoard.set_location_masks[rook_start];
-                piece_masks[color] &= BitBoard.clear_location_masks[rook_end];
             }
+            piece_masks[Color.WHITE] = old_white_mask;
+            piece_masks[Color.BLACK] = old_black_mask;
         }
 
         if (!apply)
@@ -384,10 +398,11 @@ public class ChessState
         }
     }
 
-    private bool decode_move (string move, out int r0, out int f0, out int r1, out int f1)
+    private bool decode_move (string move, out int r0, out int f0, out int r1, out int f1, out PieceType promotion_type)
     {
         int i = 0;
-        
+
+        promotion_type = PieceType.QUEEN;
         if (move.has_prefix ("O-O-O"))
         {
             if (current_player == white)
@@ -441,7 +456,6 @@ public class ChessState
             }
             if (move[i] == '=')
                 i++;
-            PieceType promotion_type;
             if (decode_piece_type (move[i], out promotion_type))
                 i++;
 
@@ -473,7 +487,8 @@ public class ChessState
                             continue;
 
                         /* See if can move here */
-                        if (!this.move_with_coords (rank, file, r1, f1, false))
+                        // FIXME: Should check all promotion types...
+                        if (!this.move_with_coords (rank, file, r1, f1, PieceType.QUEEN, false))
                             continue;
 
                         /* Duplicate match */
@@ -602,7 +617,7 @@ public class ChessGame
         }
         else
         {
-            if (!state.move_with_coords (r0, f0, r1, f1, apply))
+            if (!state.move_with_coords (r0, f0, r1, f1, PieceType.QUEEN, apply))
                 return false;
         }
 

@@ -1279,4 +1279,36 @@ public class BitBoard
         0x0203000000000000, 0x0507000000000000, 0x0a0e000000000000, 0x141c000000000000,
         0x6c38000000000000, 0x5070000000000000, 0xa0e0000000000000, 0x40c0000000000000
     };
+
+    public static string to_string (int64 mask)
+    {
+        var string = "+---+---+---+---+---+---+---+---+\n";
+        int rowCount = 0;
+        var colour = " ";
+        for (int rank = 7; rank >= 0; rank--)
+        {
+            for (int file = 0; file < 8; file++)
+            {
+                if ((mask & set_location_masks[rank * 8 + file]) != 0)
+                    string += "|[%s]".printf (colour);
+                else
+                    string += "| %s ".printf (colour);
+                rowCount++;
+                if (rowCount == 8)
+                {
+                    rowCount = 0;
+                    string += "|\n+---+---+---+---+---+---+---+---+\n";
+                }
+                else
+                {
+                    if (colour == " ")
+                        colour = ".";
+                    else
+                        colour = " ";
+                }
+            }
+        }
+
+        return string;
+    }
 }
