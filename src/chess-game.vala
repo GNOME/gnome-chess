@@ -113,10 +113,14 @@ public class ChessState
     public int number = 0;
     public ChessPlayer players[2];
     public ChessPlayer current_player;
-    public ChessPlayer opponent;
+    public ChessPlayer opponent
+    {
+        get { return current_player.color == Color.WHITE ? players[Color.BLACK] : players[Color.WHITE]; }
+    }
     public bool can_castle_kingside[2];
     public bool can_castle_queenside[2];
     public int en_passant_index = -1;
+    public bool in_check;
 
     public ChessPiece[] board;
     public ChessMove? last_move = null;
@@ -171,15 +175,9 @@ public class ChessState
 
         /* Field 2: Active color */
         if (fields[1] == "w")
-        {
             current_player = players[Color.WHITE];
-            opponent = players[Color.BLACK];
-        }
         else if (fields[1] == "b")
-        {
             current_player = players[Color.BLACK];
-            opponent = players[Color.WHITE];
-        }
         //else
         //    throw new Error ("Unknown active color: %s", fields[1]);
 
@@ -191,7 +189,7 @@ public class ChessState
                 var c = fields[2][i];
                 if (c == 'K')
                     can_castle_kingside[Color.WHITE] = true;
-                else if (c == 'q')
+                else if (c == 'Q')
                     can_castle_queenside[Color.WHITE] = true;
                 else if (c == 'k')
                     can_castle_kingside[Color.BLACK] = true;
@@ -217,6 +215,8 @@ public class ChessState
         number = (fields[5].to_int () - 1) * 2;
         if (current_player.color == Color.BLACK)
             number++;
+
+        in_check = is_in_check (current_player);
     }
 
     public ChessState copy ()
@@ -227,12 +227,12 @@ public class ChessState
         state.players[Color.WHITE] = players[Color.WHITE];
         state.players[Color.BLACK] = players[Color.BLACK];
         state.current_player = current_player;
-        state.opponent = opponent;
         state.can_castle_kingside[Color.WHITE] = can_castle_kingside[Color.WHITE];
         state.can_castle_queenside[Color.WHITE] = can_castle_queenside[Color.WHITE];        
         state.can_castle_kingside[Color.BLACK] = can_castle_kingside[Color.BLACK];
         state.can_castle_queenside[Color.BLACK] = can_castle_queenside[Color.BLACK];
         state.en_passant_index = en_passant_index;
+        state.in_check = in_check;
         if (last_move != null)
             state.last_move = last_move.copy();
         for (int i = 0; i < 64; i++)
@@ -262,23 +262,28 @@ public class ChessState
     {
         int r0, f0, r1, f1;
         PieceType promotion_type;
-        if (!decode_move (move, out r0, out f0, out r1, out f1, out promotion_type))
+
+        if (!decode_move (current_player, move, out r0, out f0, out r1, out f1, out promotion_type))
             return false;
-        return move_with_coords (r0, f0, r1, f1, promotion_type, apply);
+
+        if (!move_with_coords (current_player, r0, f0, r1, f1, promotion_type, apply))
+            return false;
+
+        return true;
     }
 
-    public bool move_with_coords (int r0, int f0, int r1, int f1, PieceType promotion_type = PieceType.QUEEN, bool apply = true, bool test_check = true)
+    public bool move_with_coords (ChessPlayer player, int r0, int f0, int r1, int f1, PieceType promotion_type = PieceType.QUEEN, bool apply = true, bool test_check = true)
     {
         // FIXME: Make this use indexes to be faster
         int start = get_index (r0, f0);
         int end = get_index (r1, f1);
 
-        var color = current_player.color;
-        var opponent_color = opponent.color;
+        var color = player.color;
+        var opponent_color = color == Color.WHITE ? Color.BLACK : Color.WHITE;
 
         /* Must be moving own piece */
         ChessPiece? piece = board[start];
-        if (piece == null || piece.player != current_player)
+        if (piece == null || piece.player != player)
             return false;
 
         /* Check valid move */
@@ -297,7 +302,7 @@ public class ChessState
         int victim_index = end;
 
         /* Can't take own pieces */
-        if (victim != null && victim.player == current_player)
+        if (victim != null && victim.player == player)
             return false;
 
         /* Check if taking an marched pawn */
@@ -354,7 +359,16 @@ public class ChessState
                 if ((rook_over_mask & (piece_masks[Color.WHITE] | piece_masks[Color.BLACK])) != 0)
                     return false;
 
-                // FIXME: Can't be in check before, during or after move (check if rook can be taken?)
+                /* Can't castle when in check */
+                if (in_check)
+                    return false;
+
+                /* Square moved across can't be under attack */
+                for (int i = 0; i < 64; i++)
+                {
+                    if (move_with_coords (opponent, get_rank (i), get_file (i), get_rank (rook_end), get_file (rook_end), PieceType.QUEEN, false, false))
+                        return false;
+                }
             }
             break;
         default:
@@ -366,20 +380,19 @@ public class ChessState
 
         var old_white_mask = piece_masks[Color.WHITE];
         var old_black_mask = piece_masks[Color.BLACK];
-        var old_current_player = current_player;
-        var old_opponent = opponent;
         var old_white_can_castle_kingside = can_castle_kingside[Color.WHITE];
         var old_white_can_castle_queenside = can_castle_queenside[Color.WHITE];
         var old_black_can_castle_kingside = can_castle_kingside[Color.BLACK];
         var old_black_can_castle_queenside = can_castle_queenside[Color.BLACK];
         var old_en_passant_index = en_passant_index;
+        var old_in_check = in_check;
 
         /* Update board */
         board[start] = null;
         if (victim != null)
             board[victim_index] = null;
         if (piece.type == PieceType.PAWN && (r1 == 0 || r1 == 7))
-            board[end] = new ChessPiece (old_current_player, promotion_type);
+            board[end] = new ChessPiece (player, promotion_type);
         else
             board[end] = piece;
         piece_masks[Color.WHITE] &= BitBoard.clear_location_masks[start];
@@ -394,8 +407,6 @@ public class ChessState
             piece_masks[color] &= BitBoard.clear_location_masks[rook_start];
             piece_masks[color] |= BitBoard.set_location_masks[rook_end];
         }
-        current_player = old_opponent;
-        opponent = old_current_player;
 
         /* Can't castle once king has moved */
         if (piece.type == PieceType.KING)
@@ -426,30 +437,14 @@ public class ChessState
         bool result = true;
         if (test_check)
         {
-            for (int king_index = 0; king_index < 64; king_index++)
-            {
-                var p = board[king_index];
-                if (p != null && p.player == opponent && p.type == PieceType.KING)
-                {
-                    /* See if any enemy pieces can take the king */
-                    for (int i = 0; i < 64; i++)
-                    {
-                        // FIXME: Should check all promotion types...
-                        if (move_with_coords (get_rank (i), get_file (i), get_rank (king_index), get_file (king_index), PieceType.QUEEN, false, false))
-                        {
-                            result = false;
-                            break;
-                        }
-                    }
-                }
-            }
+            in_check = is_in_check (player);
+            if (in_check)
+                result = false;
         }
 
         /* Undo move */
-        if (!apply || !result)
+        if (!apply || in_check)
         {
-            current_player = old_current_player;
-            opponent = old_opponent;
             board[start] = piece;
             board[end] = null;
             if (victim != null)
@@ -467,10 +462,13 @@ public class ChessState
             can_castle_kingside[Color.BLACK] = old_black_can_castle_kingside;
             can_castle_queenside[Color.BLACK] = old_black_can_castle_queenside;
             en_passant_index = old_en_passant_index;
+            in_check = old_in_check;
         }
 
         if (!apply)
             return result;
+
+        current_player = color == Color.WHITE ? players[Color.BLACK] : players[Color.WHITE];
 
         last_move = new ChessMove ();
         last_move.number = number;
@@ -488,6 +486,27 @@ public class ChessState
         last_move.san = last_move.lan;
 
         return true;
+    }
+
+    private bool is_in_check (ChessPlayer player)
+    {
+        var opponent = player.color == Color.WHITE ? players[Color.BLACK] : players[Color.WHITE];
+
+        for (int king_index = 0; king_index < 64; king_index++)
+        {
+            var p = board[king_index];
+            if (p != null && p.player == player && p.type == PieceType.KING)
+            {
+                /* See if any enemy pieces can take the king */
+                for (int i = 0; i < 64; i++)
+                {
+                    if (move_with_coords (opponent, get_rank (i), get_file (i), get_rank (king_index), get_file (king_index), PieceType.QUEEN, false, false))
+                        return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     private bool decode_piece_type (unichar c, out PieceType type)
@@ -517,14 +536,14 @@ public class ChessState
         }
     }
 
-    private bool decode_move (string move, out int r0, out int f0, out int r1, out int f1, out PieceType promotion_type)
+    private bool decode_move (ChessPlayer player, string move, out int r0, out int f0, out int r1, out int f1, out PieceType promotion_type)
     {
         int i = 0;
 
         promotion_type = PieceType.QUEEN;
         if (move.has_prefix ("O-O-O"))
         {
-            if (current_player.color == Color.WHITE)
+            if (player.color == Color.WHITE)
                 r0 = r1 = 0;
             else
                 r0 = r1 = 7;
@@ -534,7 +553,7 @@ public class ChessState
         }
         else if (move.has_prefix ("O-O"))
         {
-            if (current_player.color == Color.WHITE)
+            if (player.color == Color.WHITE)
                 r0 = r1 = 0;
             else
                 r0 = r1 = 7;
@@ -602,12 +621,11 @@ public class ChessState
 
                         /* Only check this players pieces of the correct type */
                         var piece = board[get_index (rank, file)];
-                        if (piece == null || piece.type != type || piece.player != current_player)
+                        if (piece == null || piece.type != type || piece.player != player)
                             continue;
 
                         /* See if can move here */
-                        // FIXME: Should check all promotion types...
-                        if (!this.move_with_coords (rank, file, r1, f1, PieceType.QUEEN, false))
+                        if (!this.move_with_coords (player, rank, file, r1, f1, PieceType.QUEEN, false))
                             continue;
 
                         /* Duplicate match */
@@ -736,7 +754,7 @@ public class ChessGame
         }
         else
         {
-            if (!state.move_with_coords (r0, f0, r1, f1, PieceType.QUEEN, apply))
+            if (!state.move_with_coords (player, r0, f0, r1, f1, PieceType.QUEEN, apply))
                 return false;
         }
 
