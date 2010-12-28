@@ -58,6 +58,38 @@ public class ChessPiece
     public signal void promoted ();
     public signal void died ();
 
+    public unichar symbol
+    {
+        get
+        {
+            unichar c = ' ';
+            switch (type)
+            {
+            case PieceType.PAWN:
+                c = 'p';
+                break;
+            case PieceType.ROOK:
+                c = 'r';
+                break;
+            case PieceType.KNIGHT:
+                c = 'k';
+                break;
+            case PieceType.BISHOP:
+                c = 'b';
+                break;
+            case PieceType.QUEEN:
+                c = 'q';
+                break;
+            case PieceType.KING:
+                c = 'k';
+                break;
+            }
+            if (player.color == Color.WHITE)
+                c = c.toupper ();
+            return c;
+        }
+    }
+
     public ChessPiece (ChessPlayer player, PieceType type)
     {
         this.player = player;
@@ -122,24 +154,24 @@ public class ChessState
     public int en_passant_index = -1;
     public bool in_check;
 
-    public ChessPiece[] board;
+    public ChessPiece board[64];
     public ChessMove? last_move = null;
 
     /* Bitmap of all the pieces */
     private int64 piece_masks[2];
 
-    public ChessState (string? state = null)
+    private ChessState.empty ()
+    {
+    }
+
+    public ChessState (string fen)
     {
         players[Color.WHITE] = new ChessPlayer (Color.WHITE);
         players[Color.BLACK] = new ChessPlayer (Color.BLACK);
-        board = new ChessPiece[64];
         for (int i = 0; i < 64; i++)
             board[i] = null;
 
-        if (state == null)
-            return;
-
-        string[] fields = state.split (" ");
+        string[] fields = fen.split (" ");
         //if (fields.length != 6)
         //    throw new Error ("Invalid FEN string");
 
@@ -221,7 +253,7 @@ public class ChessState
 
     public ChessState copy ()
     {
-        ChessState state = new ChessState ();
+        ChessState state = new ChessState.empty ();
 
         state.number = number;
         state.players[Color.WHITE] = players[Color.WHITE];
@@ -241,6 +273,71 @@ public class ChessState
         state.piece_masks[Color.BLACK] = piece_masks[Color.BLACK];
 
         return state;
+    }
+
+    public string get_fen ()
+    {
+        var value = new StringBuilder ();
+
+        for (int rank = 7; rank >= 0; rank--)
+        {
+            int skip_count = 0;
+            for (int file = 0; file < 8; file++)
+            {
+                ChessPiece? p = board[get_index (rank, file)];
+                if (p == null)
+                    skip_count++;
+                else
+                {
+                    if (skip_count > 0)
+                    {
+                        value.append_printf ("%d", skip_count);
+                        skip_count = 0;
+                    }
+                    value.append_printf ("%c", (int) p.symbol);
+                }
+            }
+            if (skip_count > 0)
+                value.append_printf ("%d", skip_count);
+            if (rank != 0)
+                value.append_c ('/');
+        }
+        
+        value.append_c (' ');
+        if (current_player.color == Color.WHITE)
+            value.append_c ('w');
+        else
+            value.append_c ('b');
+
+        value.append_c (' ');
+        if (can_castle_kingside[Color.WHITE])
+            value.append_c ('K');
+        if (can_castle_queenside[Color.WHITE])
+            value.append_c ('Q');
+        if (can_castle_kingside[Color.BLACK])
+            value.append_c ('k');
+        if (can_castle_queenside[Color.BLACK])
+            value.append_c ('q');
+        if (!(can_castle_kingside[Color.WHITE] | can_castle_queenside[Color.WHITE] | can_castle_kingside[Color.BLACK] | can_castle_queenside[Color.BLACK]))
+            value.append_c ('-');
+
+        value.append_c (' ');
+        if (en_passant_index >= 0)
+            value.append_printf ("%c%d", 'a' + get_file (en_passant_index), get_rank (en_passant_index) + 1);
+        else
+            value.append_c ('-');
+
+        // FIXME: Halfmove count
+        value.append_c (' ');
+        value.append_c ('0');
+
+        value.append_c (' ');
+        if (current_player.color == Color.WHITE)
+            value.append_printf ("%d", number / 2);
+        else
+            value.append_printf ("%d", number / 2 + 1);
+
+        return value.str;
     }
 
     public int get_index (int rank, int file)
@@ -712,10 +809,10 @@ public class ChessGame
         get { return move_stack.data.current_player; }
     }
 
-    public ChessGame (string state = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
+    public ChessGame (string fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
     {
         is_started = false;
-        move_stack.prepend (new ChessState (state));
+        move_stack.prepend (new ChessState (fen));
         result = ChessResult.IN_PROGRESS;
 
         white.do_move.connect (move_cb);
