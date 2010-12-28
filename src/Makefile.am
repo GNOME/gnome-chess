@@ -1,4 +1,6 @@
-bin_PROGRAMS = glchess test-chess-game
+bin_PROGRAMS = glchess
+
+noinst_PROGRAMS = test-chess-game
 
 glchess_SOURCES = \
 	3ds.vala \
