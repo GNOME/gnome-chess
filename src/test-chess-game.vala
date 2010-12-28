@@ -39,6 +39,9 @@ class GlChess
         /* En passant */
         test_good_move ("8/8/8/pP6/8/8/8/8 w - a6 0 1", "b5a6");
 
+        /* Can't en passant if wasn't allowed */
+        test_bad_move ("8/8/8/pP6/8/8/8/8 w - - 0 1", "b5a6");
+
         /* Castle kingside */
         test_good_move ("8/8/8/8/8/8/8/4K2R w K - 0 1", "O-O");
 
