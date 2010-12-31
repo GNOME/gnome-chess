@@ -15,7 +15,8 @@ glchess_SOURCES = \
 	chess-view.vala \
 	chess-view-2d.vala \
 	chess-view-3d.vala \
-	chess-view-options.vala
+	chess-view-options.vala \
+	history.vala
 
 test_chess_game_SOURCES = \
 	chess-bitboard.vala \
@@ -39,6 +40,7 @@ glchess_CFLAGS = \
 	$(GLX_CFLAGS) \
 	$(OPENGL_CFLAGS) \
 	$(RSVG_CFLAGS) \
+	$(SQLITE_CFLAGS) \
 	$(GTKGLEXT_CFLAGS) \
 	$(WARN_CFLAGS)
 
@@ -49,6 +51,7 @@ glchess_LDADD = \
 	$(GLX_LIBS) \
 	$(OPENGL_LIBS) \
 	$(RSVG_LIBS) \
+	$(SQLITE_LIBS) \
 	$(GTKGLEXT_LIBS)
 
 glchess_VALAFLAGS = \
@@ -57,6 +60,7 @@ glchess_VALAFLAGS = \
     --pkg gmodule-2.0 \
     --pkg librsvg-2.0 \
     --pkg posix \
+    --pkg sqlite3 \
     --vapidir . \
     --pkg config \
     --pkg gl \

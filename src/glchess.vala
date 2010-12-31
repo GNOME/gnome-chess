@@ -1,6 +1,7 @@
 public class Application
 {
     private GLib.Settings settings;
+    private History history;
     private Gtk.Builder builder;
     private Gtk.Builder preferences_builder;
     private Gtk.Window window;
@@ -40,6 +41,11 @@ public class Application
     public Application ()
     {
         settings = new GLib.Settings ("org.gnome.glchess.Settings");
+
+        var data_dir = File.new_for_path (Path.build_filename (Environment.get_user_data_dir (), "glchess", null));
+        DirUtils.create_with_parents (data_dir.get_path (), 0755);
+
+        history = new History (data_dir);
 
         builder = new Gtk.Builder ();
         try
@@ -232,10 +238,19 @@ public class Application
         foreach (var profile in ai_profiles)
             GLib.message ("Detected AI profile %s", profile.name);
 
-        if (game != null)
-            load_game (game);
+        if (game == null)
+        {
+            var unfinished = history.get_unfinished ();
+            if (unfinished != null)
+            {
+                var key = unfinished.data;
+                load_game (history.get_game_file (key));
+            }
+            else
+                start_game (new ChessGame ());
+        }
         else
-            start_game (new ChessGame ());
+            load_game (game);
 
         if (settings.get_boolean ("fullscreen"))
             window.fullscreen ();
