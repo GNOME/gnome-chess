@@ -45,6 +45,15 @@ public class PGNGame
     public static string RESULT_WHITE       = "1-0";
     public static string RESULT_BLACK       = "0-1";
 
+    public static string TERMINATE_ABANDONED        = "abandoned";
+    public static string TERMINATE_ADJUDICATION     = "adjudication";
+    public static string TERMINATE_DEATH            = "death";
+    public static string TERMINATE_EMERGENCY        = "emergency";
+    public static string TERMINATE_NORMAL           = "normal";
+    public static string TERMINATE_RULES_INFRACTION = "rules infraction";
+    public static string TERMINATE_TIME_FORFEIT     = "time forfeit";
+    public static string TERMINATE_UNTERMINATED     = "unterminated";
+
     public string event
     {
         get { return tags.lookup ("Event"); }

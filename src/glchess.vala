@@ -33,10 +33,10 @@ public class Application
     private Gtk.Label? save_dialog_error_label = null;
     private Gtk.AboutDialog? about_dialog = null;
 
+    private PGNGame pgn_game;
     private ChessGame game;
     private bool in_history;
     private File autosave_file;
-    private PGNGame pgn_game;
     private List<AIProfile> ai_profiles;
     private ChessPlayer? opponent = null;
     private ChessEngine? opponent_engine = null;
@@ -110,7 +110,9 @@ public class Application
         {
             try
             {
-                if (autosave_file == null)
+                if (autosave_file != null)
+                    history.update (autosave_file, "", pgn_game.result);
+                else
                     autosave_file = history.add (pgn_game.date, pgn_game.result);
                 pgn_game.write (autosave_file);
             }
@@ -177,9 +179,21 @@ public class Application
         update_history_panel ();
     }
 
-    private void start_game (ChessGame game)
+    private void start_game ()
     {
-        this.game = game;
+        if (pgn_game.set_up)
+        {
+            if (pgn_game.fen != null)
+                game = new ChessGame (pgn_game.fen);
+            else
+            {
+                warning ("Chess game has SetUp tag but no FEN tag");
+                game = new ChessGame ();            
+            }
+        }
+        else
+            game = new ChessGame ();
+
         game.started.connect (game_start_cb);
         game.turn_started.connect (game_turn_cb);
         game.moved.connect (game_move_cb);
@@ -212,6 +226,15 @@ public class Application
         }
 
         game.start ();
+        foreach (var move in pgn_game.moves)
+        {
+            debug ("Move: %s", move);
+            if (!game.current_player.move (move))
+            {
+                warning ("Invalid move: %s", move);
+                break;
+            }
+        }
     }
 
     private ChessEngine? get_engine (string name)
@@ -513,10 +536,12 @@ public class Application
         case ChessRule.ABANDONMENT:
             /* Message displayed when a game is abandoned */
             reason = "The game has been abandoned";
+            pgn_game.termination = PGNGame.TERMINATE_ABANDONED;
             break;
         case ChessRule.DEATH:
             /* Message displayed when the game ends due to a player dying */
             reason = "One of the players has died";
+            pgn_game.termination = PGNGame.TERMINATE_DEATH;
             break;
         }
 
@@ -1136,8 +1161,8 @@ public class Application
         in_history = true;
         pgn_game = new PGNGame ();
         var now = new DateTime.now_local ();
-        pgn_game.date = now.format ("%Y.%M.%d");
-        start_game (new ChessGame ());    
+        pgn_game.date = now.format ("%Y.%m.%d");
+        start_game ();
     }
 
     private void load_game (File file, bool in_history) throws Error
@@ -1145,31 +1170,8 @@ public class Application
         var pgn = new PGN.from_file (file);
         pgn_game = pgn.games.nth_data (0);
 
-        ChessGame game;
-        if (pgn_game.set_up)
-        {
-            if (pgn_game.fen != null)
-                game = new ChessGame (pgn_game.fen);
-            else
-            {
-                warning ("Chess game has SetUp tag but no FEN tag");
-                game = new ChessGame ();            
-            }
-        }
-        else
-            game = new ChessGame ();
-
         this.in_history = in_history;
-        start_game (game);
-        foreach (var move in pgn_game.moves)
-        {
-            debug ("Move: %s", move);
-            if (!game.current_player.move (move))
-            {
-                warning ("Invalid move: %s", move);
-                break;
-            }
-        }
+        start_game ();
     }
 }
 

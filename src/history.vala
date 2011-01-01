@@ -8,7 +8,7 @@ public class History
     {
         history_dir = File.new_for_path (Path.build_filename (data_dir.get_path (), "history", null));
     }
-    
+
     public File add (string date, string result) throws Error
     {
         load ();
@@ -56,6 +56,16 @@ public class History
             warning ("Failed to insert game into history index: %s", db.errmsg ());
 
         return file;
+    }
+
+    public void update (File file, string fen, string result)
+    {
+        var relative_path = history_dir.get_relative_path (file);
+
+        Sqlite.Statement statement;
+        assert (db.prepare_v2 ("UPDATE GameTable SET fen=\"%s\", result=\"%s\" WHERE path=\"%s\"".printf (fen, result, relative_path), -1, out statement) == Sqlite.OK);
+        if (statement.step () != Sqlite.DONE)
+            warning ("Failed to update game in history index: %s", db.errmsg ());
     }
 
     public List<File> get_unfinished ()
