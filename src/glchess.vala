@@ -243,8 +243,8 @@ public class Application
             var unfinished = history.get_unfinished ();
             if (unfinished != null)
             {
-                var key = unfinished.data;
-                load_game (history.get_game_file (key));
+                var file = unfinished.data;
+                load_game (file);
             }
             else
                 start_game (new ChessGame ());
@@ -1117,7 +1117,7 @@ public class Application
     {
         var pgn = new PGN.from_file (file);
         var pgn_game = pgn.games.nth_data (0);
-        
+
         ChessGame game;
         if (pgn_game.set_up)
         {

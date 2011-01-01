@@ -30,6 +30,11 @@ private int compare_tag (string name0, string name1)
         return str_index0 - str_index1;
 }
 
+public errordomain PGNError
+{
+    LOAD_ERROR
+}
+
 public class PGNGame
 {
     public HashTable<string, string> tags;
@@ -367,5 +372,9 @@ public class PGN
                 return;
             }
         }
+
+        /* Must have at least one game */
+        if (games == null)
+            throw new PGNError.LOAD_ERROR("No games in PGN file");
     }
 }
