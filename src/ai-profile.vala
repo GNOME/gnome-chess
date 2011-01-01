@@ -1,26 +1,26 @@
-public GLib.List<AIProfile> load_ai_profiles (string filename)
+public List<AIProfile> load_ai_profiles (string filename)
 {
-   var profiles = new GLib.List<AIProfile> ();
+   var profiles = new List<AIProfile> ();
 
-   var file = new GLib.KeyFile ();
+   var file = new KeyFile ();
    try
    {
-       file.load_from_file (filename, GLib.KeyFileFlags.NONE);
+       file.load_from_file (filename, KeyFileFlags.NONE);
    }
-   catch (GLib.KeyFileError e)
+   catch (KeyFileError e)
    {
-       GLib.warning ("Failed to load AI profiles: %s", e.message);
+       warning ("Failed to load AI profiles: %s", e.message);
        return profiles;   
    }
-   catch (GLib.FileError e)
+   catch (FileError e)
    {
-       GLib.warning ("Failed to load AI profiles: %s", e.message);
+       warning ("Failed to load AI profiles: %s", e.message);
        return profiles;
    }
 
    foreach (string name in file.get_groups ())
    {
-       GLib.debug ("Loading AI profile %s", name);
+       debug ("Loading AI profile %s", name);
        var profile = new AIProfile ();
        try
        {
@@ -30,7 +30,7 @@ public GLib.List<AIProfile> load_ai_profiles (string filename)
            if (file.has_key (name, "args"))
                profile.args = file.get_value (name, "args");
        }
-       catch (GLib.KeyFileError e)
+       catch (KeyFileError e)
        {
            continue;
        }

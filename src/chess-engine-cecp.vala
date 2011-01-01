@@ -34,7 +34,7 @@ public class ChessEngineCECP : ChessEngine
             buffer[offset] = '\0';
             string line = (string) buffer;
 
-            GLib.debug ("Read from engine: '%s'", line);
+            debug ("Read from engine: '%s'", line);
 
             string[] move_prefixes = { "My move is: ", "my move is ", "move " };
             foreach (string prefix in move_prefixes)
@@ -42,7 +42,7 @@ public class ChessEngineCECP : ChessEngine
                 if (line.has_prefix (prefix))
                 {
                     string move = line[prefix.length:line.length];
-                    GLib.debug ("Engine moves %s", move);
+                    debug ("Engine moves %s", move);
                     moving = true;
                     moved (move);
                 }

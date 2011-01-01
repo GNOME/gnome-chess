@@ -1,4 +1,4 @@
-public class ChessViewOptions : GLib.Object
+public class ChessViewOptions : Object
 {
     public signal void changed ();
 

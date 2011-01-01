@@ -51,7 +51,7 @@ private class ChessView3D : ChessView
             queen_model = new TDSModel (File.new_for_path (Path.build_filename (Config.PKGDATADIR, "pieces", "3d", "queen.3ds", null)));
             king_model = new TDSModel (File.new_for_path (Path.build_filename (Config.PKGDATADIR, "pieces", "3d", "king.3ds", null)));
         }
-        catch (GLib.Error e)
+        catch (Error e)
         {
         }
         create_board ();
@@ -128,13 +128,13 @@ private class ChessView3D : ChessView
         var screen = Gdk.x11_screen_get_screen_number (get_screen ());
         var visual = glXChooseVisual (display, screen, attributes);
         if (visual == null)
-            GLib.warning ("Failed to get GLX visual");
+            warning ("Failed to get GLX visual");
         else
         {
             context = glXCreateContext (display, visual, null, true);
             GLX.Context null_context = (GLX.Context) null;
             if (context == null_context)
-                GLib.warning ("Failed to create GLX context");
+                warning ("Failed to create GLX context");
         }
     }
 

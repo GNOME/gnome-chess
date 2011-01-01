@@ -1,10 +1,10 @@
-public class ChessEngine : GLib.Object
+public class ChessEngine : Object
 {
     public string binary;
-    private GLib.Pid pid;
+    private Pid pid;
     private int stdin_fd;
     private int stderr_fd;
-    private GLib.IOChannel stdout_channel;
+    private IOChannel stdout_channel;
 
     protected virtual void process_input (char[] data) {}
 
@@ -34,27 +34,27 @@ public class ChessEngine : GLib.Object
         int stdout_fd;
         try
         {
-            GLib.Process.spawn_async_with_pipes (null, argv, null,
-                                                 GLib.SpawnFlags.SEARCH_PATH,
+            Process.spawn_async_with_pipes (null, argv, null,
+                                                 SpawnFlags.SEARCH_PATH,
                                                  null,
                                                  out pid, out stdin_fd, out stdout_fd, out stderr_fd);
         }
-        catch (GLib.SpawnError e)
+        catch (SpawnError e)
         {
             stderr.printf ("Failed to execute chess engine: %s\n", e.message);
             return false;
         }
 
-        stdout_channel = new GLib.IOChannel.unix_new (stdout_fd);
+        stdout_channel = new IOChannel.unix_new (stdout_fd);
         try
         {
-            stdout_channel.set_flags (GLib.IOFlags.NONBLOCK);
+            stdout_channel.set_flags (IOFlags.NONBLOCK);
         }
-        catch (GLib.IOChannelError e)
+        catch (IOChannelError e)
         {
             stderr.printf ("Failed to set input from chess engine to non-blocking: %s", e.message);
         }
-        stdout_channel.add_watch (GLib.IOCondition.IN, read_cb);
+        stdout_channel.add_watch (IOCondition.IN, read_cb);
 
         starting ();
 
@@ -79,34 +79,34 @@ public class ChessEngine : GLib.Object
         stopped ();
     }
 
-    private bool read_cb (GLib.IOChannel source, GLib.IOCondition condition)
+    private bool read_cb (IOChannel source, IOCondition condition)
     {
         char[] buf;
         size_t n_read;
-        GLib.IOStatus status;
+        IOStatus status;
 
         buf = new char[1024];
         try
         {
             status = source.read_chars (buf, out n_read);
         }
-        catch (GLib.ConvertError e)
+        catch (ConvertError e)
         {
             return false;
         }
-        catch (GLib.IOChannelError e)
+        catch (IOChannelError e)
         {
             return false;
         }
 
-        if (status == GLib.IOStatus.EOF)
+        if (status == IOStatus.EOF)
         {
             stdout.printf ("EOF\n");
             return false;
         }
-        if (status == GLib.IOStatus.NORMAL)
+        if (status == IOStatus.NORMAL)
         {
-            //GLib.debug ("Read %zu octets from engine", n_read);
+            //debug ("Read %zu octets from engine", n_read);
             buf.resize ((int) n_read);
             process_input (buf);
         }
@@ -130,7 +130,7 @@ public class ChessEngine : GLib.Object
             if (n_written < 0)
                 return;
 
-            //GLib.debug ("Wrote %zu octets to engine", n_written);
+            //debug ("Wrote %zu octets to engine", n_written);
 
             offset += n_written;
         }
@@ -139,7 +139,7 @@ public class ChessEngine : GLib.Object
     protected void write_line (string line)
     {
         string l = line + "\n";
-        GLib.debug ("Writing line to engine: '%s'", line);
+        debug ("Writing line to engine: '%s'", line);
         char[] d = l.to_utf8 ();
         if (d != null)
             write (d);

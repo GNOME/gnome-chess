@@ -53,7 +53,7 @@ public class ChessEngineUCI : ChessEngine
             buffer[offset] = '\0';
             string line = (string) buffer;
 
-            GLib.debug ("Read from engine: '%s'", line);
+            debug ("Read from engine: '%s'", line);
             
             string[] tokens = line.split (" ");
             if (tokens.length > 0)
@@ -65,22 +65,22 @@ public class ChessEngineUCI : ChessEngine
 
                 case "uciok":
                     if (tokens.length != 1)
-                        GLib.warning ("Unexpected arguments on uciok: %s", line);
+                        warning ("Unexpected arguments on uciok: %s", line);
                         
                     configure ();
                     break;
 
                 case "readyok":
                     if (tokens.length != 1)
-                        GLib.warning ("Unexpected arguments on readyok: %s", line);
+                        warning ("Unexpected arguments on readyok: %s", line);
 
                     ready = true;
                     break;
 
                 case "bestmove":
                     if (tokens.length < 2)
-                        GLib.warning ("No move with bestmove: %s", line);
-                    GLib.debug ("Engine moves %s", tokens[1]);
+                        warning ("No move with bestmove: %s", line);
+                    debug ("Engine moves %s", tokens[1]);
                     moved (tokens[1]);
                     break;
 
@@ -91,7 +91,7 @@ public class ChessEngineUCI : ChessEngine
                     break;
 
                 default:
-                    GLib.warning ("Unknown command: '%s'", line);
+                    warning ("Unknown command: '%s'", line);
                     break;
                 }
             }

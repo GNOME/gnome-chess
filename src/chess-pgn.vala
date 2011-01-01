@@ -32,8 +32,8 @@ private int compare_tag (string name0, string name1)
 
 public class PGNGame
 {
-    public GLib.HashTable<string, string> tags;
-    public GLib.List<string> moves;
+    public HashTable<string, string> tags;
+    public List<string> moves;
 
     public string event
     {
@@ -93,7 +93,7 @@ public class PGNGame
 
     public PGNGame ()
     {
-        tags = new GLib.HashTable<string, string> (str_hash, str_equal);
+        tags = new HashTable<string, string> (str_hash, str_equal);
         tags.insert ("Event", "?");
         tags.insert ("Site", "?");
         tags.insert ("Date", "????.??.??");
@@ -103,11 +103,11 @@ public class PGNGame
         tags.insert ("Result", "*");
     }
 
-    public void write (OutputStream stream) throws GLib.Error
+    public void write (OutputStream stream) throws Error
     {
         // FIXME: Escape \ and " in tag values
         var keys = tags.get_keys ();
-        keys.sort ((GLib.CompareFunc) compare_tag);
+        keys.sort ((CompareFunc) compare_tag);
         foreach (var key in keys)
             write_string (stream, "[%s \"%s\"]\n".printf (key, tags.lookup (key)));
         write_string (stream, "\n");
@@ -125,7 +125,7 @@ public class PGNGame
         write_string (stream, "\n");
     }
 
-    private void write_string (OutputStream stream, string value) throws GLib.Error
+    private void write_string (OutputStream stream, string value) throws Error
     {
         stream.write_all ((uint8[]) value, null);
     }
@@ -148,13 +148,13 @@ enum State
 
 public class PGN
 {
-    public GLib.List<PGNGame> games;
+    public List<PGNGame> games;
 
     public PGN ()
     {
     }
 
-    public PGN.from_file (GLib.File file) throws GLib.Error
+    public PGN.from_file (File file) throws Error
     {
         string contents;
         size_t n_read;

@@ -1,6 +1,6 @@
 public class Application
 {
-    private GLib.Settings settings;
+    private Settings settings;
     private History history;
     private Gtk.Builder builder;
     private Gtk.Builder preferences_builder;
@@ -34,13 +34,13 @@ public class Application
     private Gtk.AboutDialog? about_dialog = null;
 
     private ChessGame game;
-    private GLib.List<AIProfile> ai_profiles;
+    private List<AIProfile> ai_profiles;
     private ChessPlayer? opponent = null;
     private ChessEngine? opponent_engine = null;
 
     public Application ()
     {
-        settings = new GLib.Settings ("org.gnome.glchess.Settings");
+        settings = new Settings ("org.gnome.glchess.Settings");
 
         var data_dir = File.new_for_path (Path.build_filename (Environment.get_user_data_dir (), "glchess", null));
         DirUtils.create_with_parents (data_dir.get_path (), 0755);
@@ -54,7 +54,7 @@ public class Application
         }
         catch (Error e)
         {
-            GLib.warning ("Could not load UI: %s", e.message);
+            warning ("Could not load UI: %s", e.message);
         }
         window = (Gtk.Window) builder.get_object ("glchess_app");
         save_menu = (Gtk.Widget) builder.get_object ("menu_save_item");
@@ -212,7 +212,7 @@ public class Application
         }
         if (profile == null)
         {
-            GLib.warning ("Unknown AI profile %s", name);
+            warning ("Unknown AI profile %s", name);
             if (ai_profiles == null)
                 return null;
             profile = ai_profiles.data;
@@ -224,7 +224,7 @@ public class Application
             engine = new ChessEngineUCI ();
         else
         {
-            GLib.warning ("Unknown AI protocol %s", profile.protocol);
+            warning ("Unknown AI protocol %s", profile.protocol);
             return null;
         }
         engine.binary = profile.binary;
@@ -236,7 +236,7 @@ public class Application
     {
         ai_profiles = load_ai_profiles (Path.build_filename (Config.PKGDATADIR, "engines.conf", null));
         foreach (var profile in ai_profiles)
-            GLib.message ("Detected AI profile %s", profile.name);
+            message ("Detected AI profile %s", profile.name);
 
         if (game == null)
         {
@@ -545,7 +545,7 @@ public class Application
     [CCode (cname = "G_MODULE_EXPORT undo_move_cb", instance_pos = -1)]
     public void undo_move_cb (Gtk.Widget widget)
     {
-        GLib.warning ("FIXME: Undo last move");
+        warning ("FIXME: Undo last move");
     }
 
     [CCode (cname = "G_MODULE_EXPORT quit_cb", instance_pos = -1)]
@@ -635,7 +635,7 @@ public class Application
         }
         catch (Error e)
         {
-            GLib.warning ("Could not load preferences UI: %s", e.message);
+            warning ("Could not load preferences UI: %s", e.message);
         }
         preferences_dialog = (Gtk.Dialog) preferences_builder.get_object ("preferences");
         
@@ -900,7 +900,7 @@ public class Application
         }
         catch (Error e)
         {
-            GLib.warning ("Unable to open help: %s", e.message);
+            warning ("Unable to open help: %s", e.message);
         }
     }
 
@@ -1035,7 +1035,7 @@ public class Application
 
             try
             {
-                var stream = save_dialog.get_file ().replace (null, false, GLib.FileCreateFlags.NONE);
+                var stream = save_dialog.get_file ().replace (null, false, FileCreateFlags.NONE);
                 pgn.write (stream);
             }
             catch (Error e)
@@ -1125,7 +1125,7 @@ public class Application
                 game = new ChessGame (pgn_game.fen);
             else
             {
-                GLib.warning ("Chess game has SetUp tag but no FEN tag");
+                warning ("Chess game has SetUp tag but no FEN tag");
                 game = new ChessGame ();            
             }
         }
@@ -1135,10 +1135,10 @@ public class Application
         start_game (game);
         foreach (var move in pgn_game.moves)
         {
-            GLib.debug ("Move: %s", move);
+            debug ("Move: %s", move);
             if (!game.current_player.move (move))
             {
-                GLib.warning ("Invalid move: %s", move);
+                warning ("Invalid move: %s", move);
                 break;
             }
         }

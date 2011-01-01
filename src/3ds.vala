@@ -6,10 +6,10 @@ public class TDSModel
     private GLushort[] triangles;
     private GLfloat[] normals;
 
-    public TDSModel (GLib.File file) throws GLib.Error
+    public TDSModel (File file) throws Error
     {
         var stream = file.read ();
-        parse_block (stream, stream.query_info (GLib.FILE_ATTRIBUTE_STANDARD_SIZE).get_size ());
+        parse_block (stream, stream.query_info (FILE_ATTRIBUTE_STANDARD_SIZE).get_size ());
 
         /* Calculate normals */
         normals = new GLfloat[vertices.length];
@@ -55,7 +55,7 @@ public class TDSModel
         }
     }
     
-    private void parse_block (GLib.FileInputStream stream, int64 length) throws GLib.Error
+    private void parse_block (FileInputStream stream, int64 length) throws Error
     {
         while (length > 6)
         {
@@ -174,7 +174,7 @@ public class TDSModel
             }
 
             length -= block_length;
-                //stream.seek (block_length - 6, GLib.SeekType.CUR);
+                //stream.seek (block_length - 6, SeekType.CUR);
         }
         
         if (length != 0)
@@ -195,28 +195,28 @@ public class TDSModel
         glDisableClientState (GL_VERTEX_ARRAY);
     }
 
-    private uint8 read_uint8 (GLib.InputStream stream) throws GLib.Error
+    private uint8 read_uint8 (InputStream stream) throws Error
     {
         uchar buffer[1];
         stream.read_all (buffer, null, null);
         return buffer[0];
     }
 
-    private uint16 read_uint16 (GLib.InputStream stream) throws GLib.Error
+    private uint16 read_uint16 (InputStream stream) throws Error
     {
         uchar buffer[2];
         stream.read_all (buffer, null, null);
         return buffer[1] << 8 | buffer[0];
     }
 
-    private uint32 read_uint32 (GLib.InputStream stream) throws GLib.Error
+    private uint32 read_uint32 (InputStream stream) throws Error
     {
         uchar buffer[4];
         stream.read_all (buffer, null, null);
         return buffer[3] << 24 | buffer[2] << 16 | buffer[1] << 8 | buffer[0];
     }
 
-    private float read_float (GLib.InputStream stream) throws GLib.Error
+    private float read_float (InputStream stream) throws Error
     {
         uint8 buffer[4];
         stream.read_all (buffer, null, null);
@@ -224,7 +224,7 @@ public class TDSModel
         return fbuffer[0];
     }
 
-    private string read_string (GLib.InputStream stream) throws GLib.Error
+    private string read_string (InputStream stream) throws Error
     {
         var value = new StringBuilder();
         while (true)

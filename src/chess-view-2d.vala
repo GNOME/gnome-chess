@@ -177,7 +177,7 @@ private class ChessView2D : ChessView
                 {
                     handle = new Rsvg.Handle.from_file (Path.build_filename (Config.PKGDATADIR, "pieces", options.theme_name, file_name + ".svg", null));
                 }
-                catch (GLib.Error e)
+                catch (Error e)
                 {
                     stderr.printf ("Failed to load piece svg: %s", e.message);
                     handle = null;

@@ -4,7 +4,7 @@ public enum Color
     BLACK
 }
 
-public class ChessPlayer : GLib.Object
+public class ChessPlayer : Object
 {
     public Color color;
     public signal void start_turn ();
@@ -697,7 +697,7 @@ public class ChessState
             /* Don't have a destination to move to */
             if (r1 < 0 || f1 < 0)
             {
-                GLib.debug ("Move %s missing destination", move);
+                debug ("Move %s missing destination", move);
                 return false;
             }
 
@@ -728,7 +728,7 @@ public class ChessState
                         /* Duplicate match */
                         if (match_rank >= 0)
                         {
-                            GLib.debug ("Move %s is ambiguous", move);
+                            debug ("Move %s is ambiguous", move);
                             return false;
                         }
 
@@ -739,7 +739,7 @@ public class ChessState
 
                 if (match_rank < 0)
                 {
-                    GLib.debug ("Move %s has no matches", move);
+                    debug ("Move %s has no matches", move);
                     return false;
                 }
 
@@ -755,7 +755,7 @@ public class ChessState
 
         if (move[i] != '\0')
         {
-            GLib.debug ("Move %s has unexpected characters", move);
+            debug ("Move %s has unexpected characters", move);
             return false;
         }
 
@@ -789,7 +789,7 @@ public class ChessGame
     public bool is_started;
     public ChessResult result;
     public ChessRule rule;
-    public GLib.List<ChessState> move_stack;
+    public List<ChessState> move_stack;
 
     public signal void started ();
     public signal void turn_started (ChessPlayer player);
