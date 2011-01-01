@@ -40,6 +40,11 @@ public class PGNGame
     public HashTable<string, string> tags;
     public List<string> moves;
 
+    public static string RESULT_IN_PROGRESS = "*";
+    public static string RESULT_DRAW        = "1/2-1/2";
+    public static string RESULT_WHITE       = "1-0";
+    public static string RESULT_BLACK       = "0-1";
+
     public string event
     {
         get { return tags.lookup ("Event"); }
@@ -105,34 +110,33 @@ public class PGNGame
         tags.insert ("Round", "?");
         tags.insert ("White", "?");
         tags.insert ("Black", "?");
-        tags.insert ("Result", "*");
+        tags.insert ("Result", PGNGame.RESULT_IN_PROGRESS);
     }
 
-    public void write (OutputStream stream) throws Error
+    public void write (File file) throws Error
     {
+        var data = new StringBuilder ();
+
         // FIXME: Escape \ and " in tag values
         var keys = tags.get_keys ();
         keys.sort ((CompareFunc) compare_tag);
         foreach (var key in keys)
-            write_string (stream, "[%s \"%s\"]\n".printf (key, tags.lookup (key)));
-        write_string (stream, "\n");
+            data.append ("[%s \"%s\"]\n".printf (key, tags.lookup (key)));
+        data.append ("\n");
 
         int i = 0;
         foreach (string move in moves)
         {
             if (i % 2 == 0)
-                write_string (stream, "%d. ".printf (i / 2 + 1));
-            write_string (stream, move);
-            write_string (stream, " ");
+                data.append ("%d. ".printf (i / 2 + 1));
+            data.append (move);
+            data.append (" ");
             i++;
         }
-        write_string (stream, result);
-        write_string (stream, "\n");
-    }
+        data.append (result);
+        data.append ("\n");
 
-    private void write_string (OutputStream stream, string value) throws Error
-    {
-        stream.write_all ((uint8[]) value, null);
+        file.replace_contents (data.str, data.len, null, false, FileCreateFlags.NONE, null);
     }
 }
 
@@ -204,7 +208,7 @@ public class PGN
                 {
                     if (rav_level == 0)
                     {
-                        game.result = "*";
+                        game.result = PGNGame.RESULT_IN_PROGRESS;
                         games.append (game);
                         game = new PGNGame ();
                         have_tags = false;
@@ -326,7 +330,7 @@ public class PGN
                            is_number = false;
 
                     /* Game termination markers */
-                    if (symbol == "1/2-1/2" || symbol == "1-0" || symbol == "0-1")
+                    if (symbol == PGNGame.RESULT_DRAW || symbol == PGNGame.RESULT_WHITE || symbol == PGNGame.RESULT_BLACK)
                     {
                         if (rav_level == 0)
                         {

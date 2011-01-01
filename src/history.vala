@@ -9,9 +9,18 @@ public class History
         history_dir = File.new_for_path (Path.build_filename (data_dir.get_path (), "history", null));
     }
     
-    public File add (int year, int month, int day, string result) throws Error
+    public File add (string date, string result) throws Error
     {
         load ();
+
+        var tokens = date.split (".");
+        string year = "????", month = "??", day = "??";
+        if (tokens.length == 3)
+        {
+            year = tokens[0];
+            month = tokens[1];
+            day = tokens[2];
+        }
 
         string relative_path;
         File file;
@@ -20,10 +29,10 @@ public class History
         {
             string filename;
             if (version == 0)
-                filename = "%04d-%02d-%02d.pgn".printf (year, month, day);
+                filename = "%s-%s-%s.pgn".printf (year, month, day);
             else
-                filename = "%04d-%02d-%02d-%d.pgn".printf (year, month, day, version);
-            relative_path = Path.build_filename ("%04d".printf (year), "%02d".printf (month), "%02d".printf (day), filename, null);
+                filename = "%s-%s-%s-%d.pgn".printf (year, month, day, version);
+            relative_path = Path.build_filename (year, month, day, filename, null);
 
             file = File.new_for_path (Path.build_filename (history_dir.get_path (), relative_path, null));
             DirUtils.create_with_parents (Path.get_dirname (file.get_path ()), 0755);
@@ -133,17 +142,8 @@ public class History
                     var pgn = new PGN.from_file (f);
                     var game = pgn.games.nth_data (0);
 
-                    var tokens = game.date.split (".");
-                    int year = 0, month = 0, day = 0;
-                    if (tokens.length == 3)
-                    {
-                        year = tokens[0].to_int ();
-                        month = tokens[1].to_int ();
-                        day = tokens[2].to_int ();
-                    }
-
                     /* Copy file */
-                    var new_file = add (year, month, day, game.result);
+                    var new_file = add (game.date, game.result);
                     f.copy (new_file, FileCopyFlags.OVERWRITE);
                 }
                 catch (Error e)

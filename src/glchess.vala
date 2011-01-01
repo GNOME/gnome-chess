@@ -34,6 +34,9 @@ public class Application
     private Gtk.AboutDialog? about_dialog = null;
 
     private ChessGame game;
+    private bool in_history;
+    private File autosave_file;
+    private PGNGame pgn_game;
     private List<AIProfile> ai_profiles;
     private ChessPlayer? opponent = null;
     private ChessEngine? opponent_engine = null;
@@ -100,6 +103,23 @@ public class Application
     {
         if (save_duration_timeout != 0)
             save_duration ();
+
+        /* Autosave */
+        // FIXME: Only once a human has moved
+        if (in_history && pgn_game.moves != null)
+        {
+            try
+            {
+                if (autosave_file == null)
+                    autosave_file = history.add (pgn_game.date, pgn_game.result);
+                pgn_game.write (autosave_file);
+            }
+            catch (Error e)
+            {
+                warning ("Failed to autosave: %s", e.message);
+            }
+        }
+
         settings.sync ();
         Gtk.main_quit ();
     }
@@ -243,14 +263,14 @@ public class Application
             var unfinished = history.get_unfinished ();
             if (unfinished != null)
             {
-                var file = unfinished.data;
-                load_game (file);
+                autosave_file = unfinished.data;
+                load_game (autosave_file, true);
             }
             else
-                start_game (new ChessGame ());
+                start_new_game ();
         }
         else
-            load_game (game);
+            load_game (game, false);
 
         if (settings.get_boolean ("fullscreen"))
             window.fullscreen ();
@@ -410,6 +430,9 @@ public class Application
 
     private void game_move_cb (ChessGame game, ChessMove move)
     {
+        if (move.number > pgn_game.moves.length ())
+            pgn_game.moves.append (move.san);
+
         Gtk.TreeIter iter;
         var model = (Gtk.ListStore) history_combo.model;
         model.append (out iter);
@@ -434,12 +457,15 @@ public class Application
         {
         case ChessResult.WHITE_WON:
             title = "White wins";
+            pgn_game.result = PGNGame.RESULT_WHITE;
             break;
         case ChessResult.BLACK_WON:
             title = "Black wins";
+            pgn_game.result = PGNGame.RESULT_BLACK;
             break;
         case ChessResult.DRAW:
             title = "Game is drawn";
+            pgn_game.result = PGNGame.RESULT_DRAW;            
             break;
         default:
             break;
@@ -527,7 +553,7 @@ public class Application
     [CCode (cname = "G_MODULE_EXPORT new_game_cb", instance_pos = -1)]
     public void new_game_cb (Gtk.Widget widget)
     {
-        start_game (new ChessGame ());
+        start_new_game ();
     }
 
     [CCode (cname = "G_MODULE_EXPORT resign_cb", instance_pos = -1)]
@@ -1026,17 +1052,9 @@ public class Application
         {
             save_menu.sensitive = false;
 
-            var pgn = new PGNGame ();
-            foreach (var i in game.move_stack)
-            {
-                if (i.last_move != null)
-                    pgn.moves.append (i.last_move.lan);
-            }
-
             try
             {
-                var stream = save_dialog.get_file ().replace (null, false, FileCreateFlags.NONE);
-                pgn.write (stream);
+                pgn_game.write (save_dialog.get_file ());
             }
             catch (Error e)
             {
@@ -1096,7 +1114,7 @@ public class Application
         {
             try
             {
-                load_game (open_dialog.get_file ());
+                load_game (open_dialog.get_file (), false);
             }
             catch (Error e)
             {
@@ -1112,11 +1130,20 @@ public class Application
         open_dialog_info_bar = null;
         open_dialog_error_label = null;
     }
+    
+    private void start_new_game ()
+    {
+        in_history = true;
+        pgn_game = new PGNGame ();
+        var now = new DateTime.now_local ();
+        pgn_game.date = now.format ("%Y.%M.%d");
+        start_game (new ChessGame ());    
+    }
 
-    private void load_game (File file) throws Error
+    private void load_game (File file, bool in_history) throws Error
     {
         var pgn = new PGN.from_file (file);
-        var pgn_game = pgn.games.nth_data (0);
+        pgn_game = pgn.games.nth_data (0);
 
         ChessGame game;
         if (pgn_game.set_up)
@@ -1132,6 +1159,7 @@ public class Application
         else
             game = new ChessGame ();
 
+        this.in_history = in_history;
         start_game (game);
         foreach (var move in pgn_game.moves)
         {
