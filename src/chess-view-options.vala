@@ -8,8 +8,8 @@ public class ChessViewOptions : Object
     private ChessGame? _game = null;
     public ChessGame? game
     {
-        get { return _game; }
-        set
+         get { return _game; }
+         set
         {
             _game = value;
             selected_rank = -1;
@@ -28,8 +28,8 @@ public class ChessViewOptions : Object
     private int _move_number = -1;
     public int move_number
     {
-        get { return _move_number; }
-        set
+         get { return _move_number; }
+         set
         {
             if (_move_number == value)
                 return;
@@ -41,36 +41,63 @@ public class ChessViewOptions : Object
     private bool _show_numbering = true;
     public bool show_numbering
     {
-        get { return _show_numbering; }
-        set { _show_numbering = value; changed (); }
+         get { return _show_numbering; }
+         set { _show_numbering = value; changed (); }
     }
 
     private bool _show_move_hints = true;
     public bool show_move_hints
     {
-        get { return _show_move_hints; }
-        set { _show_move_hints = value; changed (); }
+         get { return _show_move_hints; }
+         set { _show_move_hints = value; changed (); }
     }
 
     private string _theme_name = "simple";
     public string theme_name
     {
-       get { return _theme_name; }
-       set { _theme_name = value; changed (); }
+        get { return _theme_name; }
+        set { _theme_name = value; changed (); }
     }
 
     private bool _show_3d_smooth = false;
     public bool show_3d_smooth
     {
-       get { return _show_3d_smooth; }
-       set { _show_3d_smooth = value; changed (); }
+         get { return _show_3d_smooth; }
+         set { _show_3d_smooth = value; changed (); }
+    }
+
+    private string _board_side = "human";
+    public string board_side
+    {
+         get { return _board_side; }
+         set { _board_side = value; changed (); }
+    }
+
+    public double board_angle
+    {
+         get
+         {
+             switch (board_side)
+             {
+             default:
+             case "white":
+             case "facetoface":
+                 return 0.0;
+             case "black":
+                 return 180.0;
+             case "human":
+                 return 0.0; // FIXME
+             case "current":
+                 return game.current_player.color == Color.WHITE ? 0.0 : 180.0;
+             }
+         }
     }
 
     private string _move_format = "human";
     public string move_format
     {
-       get { return _move_format; }
-       set { _move_format = value; changed (); }
+        get { return _move_format; }
+        set { _move_format = value; changed (); }
     }
 
     public void select_square (int file, int rank)

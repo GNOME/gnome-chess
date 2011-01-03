@@ -26,7 +26,7 @@ private class ChessView2D : ChessView
     {
         c.translate (get_allocated_width () / 2, get_allocated_height () / 2);
         //c.scale (s, s);
-        //c.rotate (angle);
+        c.rotate (Math.PI * options.board_angle / 180.0);
 
         int bord_size = (int) Math.ceil (square_size * 4 + border_size);
         c.set_source_rgb (0x2e/255.0, 0x34/255.0, 0x36/255.0);
@@ -172,6 +172,7 @@ private class ChessView2D : ChessView
                     break;
                 }
 
+                // FIXME: Pre-render these
                 Rsvg.Handle handle;
                 try
                 {
@@ -184,6 +185,11 @@ private class ChessView2D : ChessView
                 }
                 c.save ();
                 c.translate ((file - 4) * square_size, (3 - rank) * square_size);
+                c.translate (square_size / 2, square_size / 2);
+                c.rotate (-Math.PI * options.board_angle / 180.0);
+                if (options.board_side == "facetoface" && piece.player.color == Color.BLACK)
+                    c.rotate (Math.PI);
+                c.translate (-square_size / 2, -square_size / 2);                
                 c.scale ((double) square_size / handle.width, (double) square_size / handle.height);
                 c.set_source_rgb (0, 0, 0);
                 handle.render_cairo (c);
@@ -201,7 +207,14 @@ private class ChessView2D : ChessView
 
         int file = (int) Math.floor((event.x - 0.5 * get_allocated_width () + square_size * 4) / square_size);
         int rank = 7 - (int) Math.floor((event.y - 0.5 * get_allocated_height () + square_size * 4) / square_size);
-        
+
+        // FIXME: Use proper Cairo rotation matrix
+        if (options.board_angle == 180.0)
+        {
+            rank = 7 - rank;
+            file = 7 - file;
+        }
+
         if (file < 0 || file >= 8 || rank < 0 || rank >= 8)
             return false;
 

@@ -94,6 +94,7 @@ public class Application
         settings.bind ("piece-theme", view_options, "theme-name", SettingsBindFlags.GET);
         settings.bind ("show-3d-smooth", view_options, "show-3d-smooth", SettingsBindFlags.GET);
         settings.bind ("move-format", view_options, "move-format", SettingsBindFlags.GET);
+        settings.bind ("board-side", view_options, "board-side", SettingsBindFlags.GET);
 
         settings.changed.connect (settings_changed_cb);
         settings_changed_cb (settings, "show-3d");

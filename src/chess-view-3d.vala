@@ -235,7 +235,7 @@ private class ChessView3D : ChessView
             glEnable (GL_LIGHT0);
 
             glPushMatrix ();
-            //glRotatef (33.0f, 0.0f, 1.0f, 0.0f); // FIXME: Rotate the board here
+            glRotatef ((GLfloat) options.board_angle, 0.0f, 1.0f, 0.0f);
             glTranslatef (-OFFSET, 0.0f, OFFSET);
 
             draw_board ();
@@ -455,6 +455,7 @@ private class ChessView3D : ChessView
         glMatrixMode (GL_MODELVIEW);
         glLoadIdentity ();
         transform_camera ();
+        glRotatef ((GLfloat) options.board_angle, 0.0f, 1.0f, 0.0f);
         glTranslatef (-OFFSET, 0.0f, OFFSET);
         for (var rank = 0; rank < 8; rank++)
         {
