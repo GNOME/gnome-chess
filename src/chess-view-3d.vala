@@ -234,9 +234,15 @@ private class ChessView3D : ChessView
             glEnable (GL_LIGHTING);
             glEnable (GL_LIGHT0);
 
+            glPushMatrix ();
+            //glRotatef (33.0f, 0.0f, 1.0f, 0.0f); // FIXME: Rotate the board here
+            glTranslatef (-OFFSET, 0.0f, OFFSET);
+
             draw_board ();
             draw_numbering ();
             draw_pieces ();
+
+            glPopMatrix ();
 
             if (options.show_3d_smooth)
                 glAccum (GL_ACCUM, 1.0f / n_passes);
@@ -252,9 +258,6 @@ private class ChessView3D : ChessView
 
     private void draw_board ()
     {
-        glPushMatrix ();
-        glTranslatef(-OFFSET, 0.0f, OFFSET);
-
         glEnable (GL_COLOR_MATERIAL);
         glColor3f (0x2e / 255f, 0x34 / 255f, 0x36 / 255f);
         glNormal3f (0.0f, 1.0f, 0.0f);
@@ -308,7 +311,6 @@ private class ChessView3D : ChessView
                 glEnd ();
             }
         glDisable (GL_COLOR_MATERIAL);
-        glPopMatrix ();
     }
 
     private void draw_numbering ()
@@ -320,9 +322,6 @@ private class ChessView3D : ChessView
         var black_z_offset = -BOARD_OUTER_WIDTH + text_offset;
         var left_offset = text_offset;
         var right_offset = BOARD_OUTER_WIDTH - text_offset;
-
-        glPushMatrix ();
-        glTranslatef(-OFFSET, 0.0f, OFFSET);
 
         glDisable (GL_DEPTH_TEST);
         glEnable (GL_TEXTURE_2D);
@@ -346,8 +345,6 @@ private class ChessView3D : ChessView
         glDisable (GL_BLEND);
         glDisable (GL_COLOR_MATERIAL);
         glDisable (GL_TEXTURE_2D);
-
-        glPopMatrix ();
     }
 
     private void draw_label (GLfloat x, GLfloat z, GLfloat width, int cell)
@@ -398,7 +395,10 @@ private class ChessView3D : ChessView
                 }
 
                 glPushMatrix ();
-                glTranslatef ((file - 4) * SQUARE_WIDTH + SQUARE_WIDTH / 2, 0.0f, (4 - rank) * SQUARE_WIDTH - SQUARE_WIDTH / 2);
+                glTranslatef (BOARD_BORDER + file * SQUARE_WIDTH + SQUARE_WIDTH / 2, 0.0f, -(BOARD_BORDER + rank * SQUARE_WIDTH + SQUARE_WIDTH / 2));
+                
+                if (piece.player.color == Color.BLACK)
+                    glRotatef (180.0f, 0.0f, 1.0f, 0.0f);
 
                 switch (piece.type)
                 {
@@ -439,30 +439,30 @@ private class ChessView3D : ChessView
 
         /* Don't render to screen, just select */
         GLuint buffer[20];
-        glSelectBuffer((GLsizei) buffer.length, buffer);
-        glRenderMode(GL_SELECT);
+        glSelectBuffer ((GLsizei) buffer.length, buffer);
+        glRenderMode (GL_SELECT);
 
-        glInitNames();
+        glInitNames ();
 
         /* Create pixel picking region near cursor location */
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
+        glMatrixMode (GL_PROJECTION);
+        glLoadIdentity ();
         GLint[] viewport = {0, 0, (GLint) get_allocated_width (), (GLint) get_allocated_height ()};
-        gluPickMatrix(event.x, ((float) get_allocated_height () - event.y), 1.0, 1.0, viewport);
-        gluPerspective(60.0, (float) get_allocated_width () / (float) get_allocated_height (), 0, 1);
+        gluPickMatrix (event.x, ((float) get_allocated_height () - event.y), 1.0, 1.0, viewport);
+        gluPerspective (60.0, (float) get_allocated_width () / (float) get_allocated_height (), 0, 1);
 
         /* Draw the squares that can be selected */
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-        transform_camera();
-        glTranslatef(-OFFSET, 0.0f, OFFSET);
+        glMatrixMode (GL_MODELVIEW);
+        glLoadIdentity ();
+        transform_camera ();
+        glTranslatef (-OFFSET, 0.0f, OFFSET);
         for (var rank = 0; rank < 8; rank++)
         {
-            glPushName(rank);
+            glPushName (rank);
 
             for (var file = 0; file < 8; file++)
             {
-                glPushName(file);
+                glPushName (file);
 
                 glBegin(GL_QUADS);
                 var x0 = BOARD_BORDER + (file * SQUARE_WIDTH);
@@ -470,20 +470,20 @@ private class ChessView3D : ChessView
                 var z0 = BOARD_BORDER + (rank * SQUARE_WIDTH);
                 var z1 = z0 + SQUARE_WIDTH;
 
-                glVertex3f(x0, 0.0f, -z0);
-                glVertex3f(x1, 0.0f, -z0);
-                glVertex3f(x1, 0.0f, -z1);
-                glVertex3f(x0, 0.0f, -z1);
-                glEnd();
+                glVertex3f (x0, 0.0f, -z0);
+                glVertex3f (x1, 0.0f, -z0);
+                glVertex3f (x1, 0.0f, -z1);
+                glVertex3f (x0, 0.0f, -z1);
+                glEnd ();
 
-                glPopName();
+                glPopName ();
             }
-            glPopName();
+            glPopName ();
         }
 
         /* Render and check for hits */
-        glFlush();
-        var n_hits = glRenderMode(GL_RENDER);
+        glFlush ();
+        var n_hits = glRenderMode (GL_RENDER);
 
         if (n_hits > 0)
         {
@@ -524,8 +524,8 @@ private class ChessView3D : ChessView
         {
             var f = "%c".printf ('a' + i);
             var r = "%c".printf ('1' + i);
-            drawCenteredText (c, xoffset, yoffset, scale, f);
-            drawCenteredText (c, xoffset + (width * 8), yoffset, scale, r);
+            draw_centered_text (c, xoffset, yoffset, scale, f);
+            draw_centered_text (c, xoffset + (width * 8), yoffset, scale, r);
             xoffset += width;
         }
 
@@ -547,7 +547,7 @@ private class ChessView3D : ChessView
         return t;
     }
     
-    private void drawCenteredText (Cairo.Context c, double x, double y, double scale, string text)
+    private void draw_centered_text (Cairo.Context c, double x, double y, double scale, string text)
     {
         Cairo.TextExtents extents;
         c.text_extents (text, out extents);
