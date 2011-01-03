@@ -27,6 +27,12 @@ private class ChessView3D : ChessView
     private GLfloat BOARD_OUTER_WIDTH;
     private GLfloat OFFSET;
 
+    private GLuint _numbering_texture = 0;
+    private GLuint numbering_texture
+    {
+        get { if (_numbering_texture == 0) _numbering_texture = make_numbering_texture (); return _numbering_texture; }
+    }
+
     public ChessView3D ()
     {
         SQUARE_WIDTH = 10.0f;
@@ -229,6 +235,7 @@ private class ChessView3D : ChessView
             glEnable (GL_LIGHT0);
 
             draw_board ();
+            draw_numbering ();
             draw_pieces ();
 
             if (options.show_3d_smooth)
@@ -303,12 +310,74 @@ private class ChessView3D : ChessView
         glDisable (GL_COLOR_MATERIAL);
         glPopMatrix ();
     }
-    
+
+    private void draw_numbering ()
+    {
+        var text_width = BOARD_BORDER * 0.8f;
+        var text_offset = (BOARD_BORDER + BOARD_CHAMFER) * 0.5f;
+        var offset = BOARD_BORDER + SQUARE_WIDTH * 0.5f;
+        var white_z_offset = -text_offset;
+        var black_z_offset = -BOARD_OUTER_WIDTH + text_offset;
+        var left_offset = text_offset;
+        var right_offset = BOARD_OUTER_WIDTH - text_offset;
+
+        glPushMatrix ();
+        glTranslatef(-OFFSET, 0.0f, OFFSET);
+
+        glDisable (GL_DEPTH_TEST);
+        glEnable (GL_TEXTURE_2D);
+        glEnable (GL_COLOR_MATERIAL);
+        glEnable (GL_BLEND);
+        glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glBindTexture (GL_TEXTURE_2D, numbering_texture);
+        glColor3f (1, 1, 1); // FIXME
+        glNormal3f (0.0f, 1.0f, 0.0f);
+
+        for (int i = 0 ; i < 8; i++)
+        {
+            draw_label (left_offset, -offset, text_width, i + 8);
+            draw_label (right_offset, -offset, text_width, i + 8);
+            draw_label (offset, white_z_offset, text_width, i);
+            draw_label (offset, black_z_offset, text_width, i);
+
+            offset += SQUARE_WIDTH;
+        }
+
+        glDisable (GL_BLEND);
+        glDisable (GL_COLOR_MATERIAL);
+        glDisable (GL_TEXTURE_2D);
+
+        glPopMatrix ();
+    }
+
+    private void draw_label (GLfloat x, GLfloat z, GLfloat width, int cell)
+    {
+        GLfloat w = 1.0f / 16;
+        GLfloat l = cell / 16.0f;
+
+        glPushMatrix ();
+        glTranslatef (x, 0.0f, z);
+
+        glBegin (GL_QUADS);
+        glTexCoord2f (l, 0.0f);
+        glVertex3f (-width/2, 0.0f, -width/2);
+        glTexCoord2f (l, 1.0f);
+        glVertex3f (-width/2, 0.0f, width/2);
+        glTexCoord2f (l + w, 1.0f);
+        glVertex3f (width/2, 0.0f, width/2);
+        glTexCoord2f (l + w, 0.0f);
+        glVertex3f (width/2, 0.0f, -width/2);
+        glEnd ();
+
+        glPopMatrix ();
+    }
+
     private void draw_pieces ()
     {
         if (options.game == null)
             return;
 
+        glEnable (GL_DEPTH_TEST);
         glEnable (GL_COLOR_MATERIAL);
         for (int rank = 0; rank < 8; rank++)
         {
@@ -432,5 +501,61 @@ private class ChessView3D : ChessView
         gluLookAt(0.0, 80.0, 40.0,
                   0.0,  0.0, 5.0,
                   0.0,  1.0,  0.0);
+    }
+    
+    private GLuint make_numbering_texture ()
+    {
+        int width = 64, height = 64;
+        var texture_width = width * 16;
+        var texture_height = height;
+
+        var surface = new Cairo.ImageSurface (Cairo.Format.A8, texture_width, texture_height);
+        var c = new Cairo.Context (surface);
+        c.set_source_rgba (1.0, 1.0, 1.0, 1.0);
+        c.select_font_face ("sans-serif", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+        c.set_font_size (width);
+        Cairo.FontExtents extents;
+        c.font_extents (out extents);
+        var scale = width / (extents.ascent + extents.descent);
+
+        var yoffset = height * 0.5;
+        var xoffset = width * 0.5;
+        for (int i = 0; i < 8; i++)
+        {
+            var f = "%c".printf ('a' + i);
+            var r = "%c".printf ('1' + i);
+            drawCenteredText (c, xoffset, yoffset, scale, f);
+            drawCenteredText (c, xoffset + (width * 8), yoffset, scale, r);
+            xoffset += width;
+        }
+
+        GLuint textures[1];
+        glGenTextures (1, textures);
+        var t = textures[0];
+        glBindTexture (GL_TEXTURE_2D, t);
+        glPixelStorei (GL_UNPACK_ALIGNMENT, 1);
+        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+        gluBuild2DMipmaps (GL_TEXTURE_2D, GL_ALPHA, (GLsizei) texture_width, (GLsizei) texture_height,
+                           GL_ALPHA, GL_UNSIGNED_BYTE, surface.get_data ());
+        // FIXME: How to check if failed
+        //    glTexImage2D (GL_TEXTURE_2D, 0, GL_ALPHA, texture_width, texture_height, 0, GL_ALPHA, GL_UNSIGNED_BYTE, surface.get_data ());
+            
+        return t;
+    }
+    
+    private void drawCenteredText (Cairo.Context c, double x, double y, double scale, string text)
+    {
+        Cairo.TextExtents extents;
+        c.text_extents (text, out extents);
+        c.save ();
+        c.translate (x, y);
+        c.move_to (-extents.width*scale/2, extents.height*scale/2);
+        c.scale (scale, scale);
+        c.show_text (text);
+        c.restore ();
     }
 }
