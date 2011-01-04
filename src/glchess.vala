@@ -609,13 +609,42 @@ public class Application
     [CCode (cname = "G_MODULE_EXPORT black_time_draw_cb", instance_pos = -1)]
     public bool black_time_draw_cb (Gtk.Widget widget, Cairo.Context c)
     {
+        double fg[3] = { 0.0, 0.0, 0.0 };
+        double bg[3] = { 1.0, 1.0, 1.0 };
+
+        draw_time (widget, c, "∞", fg, bg);
         return false;
     }
 
     [CCode (cname = "G_MODULE_EXPORT white_time_draw_cb", instance_pos = -1)]
     public bool white_time_draw_cb (Gtk.Widget widget, Cairo.Context c)
     {
-        return false;    
+        double fg[3] = { 1.0, 1.0, 1.0 };
+        double bg[3] = { 0.0, 0.0, 0.0 };
+
+        draw_time (widget, c, "∞", fg, bg);
+        return false;
+    }
+
+    private void draw_time (Gtk.Widget widget, Cairo.Context c, string text, double[] fg, double[] bg)
+    {
+        double alpha = 1.0;
+
+        if (widget.get_state () == Gtk.StateType.INSENSITIVE)
+            alpha = 0.5;
+        c.set_source_rgba (bg[0], bg[1], bg[2], alpha);
+        c.paint ();
+
+        c.set_source_rgba (fg[0], fg[1], fg[2], alpha);
+        c.select_font_face ("fixed", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+        c.set_font_size (0.6 * widget.get_allocated_height ());
+        Cairo.TextExtents extents;
+        c.text_extents (text, out extents);
+        c.move_to ((widget.get_allocated_width () - extents.width) / 2 - extents.x_bearing,
+                   (widget.get_allocated_height () - extents.height) / 2 - extents.y_bearing);
+        c.show_text (text);
+
+        widget.set_size_request ((int) extents.width + 6, -1);
     }
 
     [CCode (cname = "G_MODULE_EXPORT history_combo_changed_cb", instance_pos = -1)]
