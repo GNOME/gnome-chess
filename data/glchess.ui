@@ -2,36 +2,6 @@
 <interface>
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy toplevel-contextual -->
-  <object class="GtkSizeGroup" id="nav_bar_sizegroup">
-      <widgets>
-          <widget name="left_nav_box"/>
-          <widget name="right_nav_box"/>
-      </widgets>
-  </object>
-  <object class="GtkListStore" id="history_model">
-    <columns>
-      <!-- column-name label -->
-      <column type="gchararray"/>
-      <!-- column-name move-number -->
-      <column type="gint"/>
-    </columns>
-  </object>
-  <object class="GtkImage" id="help_image">
-    <property name="visible">True</property>
-    <property name="stock">gtk-help</property>
-    <property name="icon-size">1</property>
-  </object>
-  <object class="GtkImage" id="warning_image">
-    <property name="visible">True</property>
-    <property name="stock">gtk-dialog-warning</property>
-    <property name="icon-size">1</property>
-  </object>
-  <object class="GtkImage" id="undo_move_image">
-    <property name="visible">True</property>
-    <property name="stock">gtk-undo</property>
-    <property name="icon-size">1</property>
-  </object>
-  <object class="GtkAccelGroup" id="accelgroup"/>
   <object class="GtkWindow" id="glchess_app">
     <property name="title">Chess</property>
     <property name="default_width">400</property>
@@ -442,5 +412,35 @@
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkAccelGroup" id="accelgroup"/>
+  <object class="GtkImage" id="undo_move_image">
+    <property name="visible">True</property>
+    <property name="stock">gtk-undo</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="warning_image">
+    <property name="visible">True</property>
+    <property name="stock">gtk-dialog-warning</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="help_image">
+    <property name="visible">True</property>
+    <property name="stock">gtk-help</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkListStore" id="history_model">
+    <columns>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+      <!-- column-name move-number -->
+      <column type="gint"/>
+    </columns>
+  </object>
+  <object class="GtkSizeGroup" id="nav_bar_sizegroup">
+    <widgets>
+      <widget name="right_nav_box"/>
+      <widget name="left_nav_box"/>
+    </widgets>
   </object>
 </interface>
