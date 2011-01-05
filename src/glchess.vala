@@ -669,8 +669,11 @@ public class Application
     [CCode (cname = "G_MODULE_EXPORT history_next_clicked_cb", instance_pos = -1)]
     public void history_next_clicked_cb (Gtk.Widget widget)
     {
+        if (view_options.move_number == -1)
+            return;
+
         int move_number = view_options.move_number + 1;
-        if (move_number == game.n_moves)
+        if (move_number >= game.n_moves)
             view_options.move_number = -1;
         else
             view_options.move_number = move_number;
@@ -679,6 +682,9 @@ public class Application
     [CCode (cname = "G_MODULE_EXPORT history_previous_clicked_cb", instance_pos = -1)]
     public void history_previous_clicked_cb (Gtk.Widget widget)
     {
+        if (view_options.move_number == 0)
+            return;
+
         if (view_options.move_number == -1)
             view_options.move_number = (int) game.n_moves - 1;
         else
