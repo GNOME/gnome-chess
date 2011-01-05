@@ -27,10 +27,22 @@ private class ChessView3D : ChessView
     private GLfloat BOARD_OUTER_WIDTH;
     private GLfloat OFFSET;
 
+    private GLuint _board_texture = 0;
+    private GLuint board_texture
+    {
+        get { if (_board_texture == 0) _board_texture = load_texture (Path.build_filename (Config.PKGDATADIR, "textures", "board.png", null)); return _board_texture; }
+    }
+
     private GLuint _numbering_texture = 0;
     private GLuint numbering_texture
     {
         get { if (_numbering_texture == 0) _numbering_texture = make_numbering_texture (); return _numbering_texture; }
+    }
+
+    private GLuint _piece_texture = 0;
+    private GLuint piece_texture
+    {
+        get { if (_piece_texture == 0) _piece_texture = load_texture (Path.build_filename (Config.PKGDATADIR, "textures", "piece.png", null)); return _piece_texture; }
     }
 
     public ChessView3D ()
@@ -114,7 +126,7 @@ private class ChessView3D : ChessView
                           f, -BOARD_CHAMFER, l,  a, -BOARD_CHAMFER, l,
                           a, -BOARD_DEPTH, g,  f, -BOARD_DEPTH, g,  f, -BOARD_DEPTH, l,  a, -BOARD_DEPTH, l};
         board_quads = {0, 1, 5, 4,  0, 4, 7, 3,  3, 7, 6, 2,  2, 6, 5, 1,
-                      4, 5, 9, 8,  4, 8, 11, 7,  7, 11, 10, 6,  6, 10, 9, 5};
+                       4, 5, 9, 8,  4, 8, 11, 7,  7, 11, 10, 6,  6, 10, 9, 5};
     }
     
     private void realize_cb ()
@@ -226,7 +238,7 @@ private class ChessView3D : ChessView
             else
                 gluPerspective (60.0f, (float) get_allocated_width () / get_allocated_height (), 0.1f, 1000);
 
-            glMatrixMode(GL_MODELVIEW);
+            glMatrixMode (GL_MODELVIEW);
             transform_camera ();
 
             GLfloat[] pos = { 100.0f, 100.0f, 100.0f, 1.0f };
@@ -268,6 +280,8 @@ private class ChessView3D : ChessView
 
         var selected_piece = options.get_selected_piece ();
 
+        glEnable (GL_TEXTURE_2D);
+        glBindTexture (GL_TEXTURE_2D, board_texture);
         glNormal3f (0.0f, 1.0f, 0.0f);
         for (var rank = 0; rank < 8; rank++)
             for (var file = 0; file < 8; file++)
@@ -304,12 +318,18 @@ private class ChessView3D : ChessView
                 GLfloat z0 = BOARD_BORDER + (rank * SQUARE_WIDTH);
                 GLfloat z1 = z0 + SQUARE_WIDTH;
 
-                glVertex3f(x0, 0.0f, -z0);
-                glVertex3f(x1, 0.0f, -z0);
-                glVertex3f(x1, 0.0f, -z1);
-                glVertex3f(x0, 0.0f, -z1);
+                glTexCoord2f (0.0f, 0.0f);
+                glVertex3f (x0, 0.0f, -z0);
+                glTexCoord2f (1.0f, 0.0f);
+                glVertex3f (x1, 0.0f, -z0);
+                glTexCoord2f (1.0f, 1.0f);
+                glVertex3f (x1, 0.0f, -z1);
+                glTexCoord2f (0.0f, 1.0f);
+                glVertex3f (x0, 0.0f, -z1);
                 glEnd ();
             }
+
+        glDisable (GL_TEXTURE_2D);
         glDisable (GL_COLOR_MATERIAL);
     }
 
@@ -375,7 +395,10 @@ private class ChessView3D : ChessView
             return;
 
         glEnable (GL_DEPTH_TEST);
+        glEnable (GL_TEXTURE_2D);
         glEnable (GL_COLOR_MATERIAL);
+        glBindTexture (GL_TEXTURE_2D, piece_texture);
+
         for (int rank = 0; rank < 8; rank++)
         {
             for (int file = 0; file < 8; file++)
@@ -396,7 +419,7 @@ private class ChessView3D : ChessView
 
                 glPushMatrix ();
                 glTranslatef (BOARD_BORDER + file * SQUARE_WIDTH + SQUARE_WIDTH / 2, 0.0f, -(BOARD_BORDER + rank * SQUARE_WIDTH + SQUARE_WIDTH / 2));
-                
+
                 if (piece.player.color == Color.BLACK)
                     glRotatef (180.0f, 0.0f, 1.0f, 0.0f);
 
@@ -426,6 +449,7 @@ private class ChessView3D : ChessView
             }
         }
 
+        glDisable (GL_TEXTURE_2D);
         glDisable (GL_COLOR_MATERIAL);
     }
 
@@ -503,7 +527,51 @@ private class ChessView3D : ChessView
                   0.0,  0.0, 5.0,
                   0.0,  1.0,  0.0);
     }
-    
+
+    private GLuint load_texture (string filename)
+    {
+        Gdk.Pixbuf pixbuf;
+        try
+        {
+            pixbuf = new Gdk.Pixbuf.from_file (filename);
+        }
+        catch (Error e)
+        {
+            warning ("Error loading texture %s: %s", filename, e.message);
+            return 0;
+        }
+
+        GLenum format;
+        if (pixbuf.n_channels == 1)
+            format = GL_LUMINANCE;
+        else if (pixbuf.n_channels == 3)
+            format = GL_RGB;
+        else if (pixbuf.n_channels == 4)
+            format = GL_RGBA;
+        else
+        {
+            warning ("Unknown format image");
+            return 0;
+        }
+
+        GLuint textures[1];
+        glGenTextures (1, textures);
+        var t = textures[0];
+        glBindTexture (GL_TEXTURE_2D, t);
+        glPixelStorei (GL_UNPACK_ALIGNMENT, 1);
+        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+        gluBuild2DMipmaps (GL_TEXTURE_2D, (GLint) pixbuf.n_channels, (GLsizei) pixbuf.width, (GLsizei) pixbuf.height,
+                           format, GL_UNSIGNED_BYTE, pixbuf.pixels);
+        // FIXME: How to check if failed
+        //    glTexImage2D (GL_TEXTURE_2D, 0, pixbuf.n_channels, (GLsizei) pixbuf.width, (GLsizei) pixbuf.height, 0, format, GL_UNSIGNED_BYTE, pixbuf.pixels);
+            
+        return t;       
+    }
+
     private GLuint make_numbering_texture ()
     {
         int width = 64, height = 64;

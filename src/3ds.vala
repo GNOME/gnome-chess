@@ -2,9 +2,12 @@ using GL;
 
 public class TDSModel
 {
+    private GLfloat min_height = float.MAX;
+    private GLfloat max_height = float.MIN;
     private GLfloat[] vertices;
     private GLushort[] triangles;
     private GLfloat[] normals;
+    private GLfloat[] texture_coords;
 
     public TDSModel (File file) throws Error
     {
@@ -53,6 +56,15 @@ public class TDSModel
             normals[i+1] /= length;
             normals[i+2] /= length;
         }
+
+        /* Set texture coordinates to a cylindrical projection */
+        // FIXME: Use something more eliptical so the tops don't look quite so distorted
+        texture_coords = new GLfloat[(vertices.length / 3) * 2];
+        for (int i = 0, j = 0; i < vertices.length; i += 3, j += 2)
+        {
+            texture_coords[j] = (GLfloat) (Math.atan2 (vertices[i], vertices[i+2]) / (2 * Math.PI)) + 0.5f;
+            texture_coords[j+1] = (vertices[i+1] - min_height) / max_height;
+        }        
     }
     
     private void parse_block (FileInputStream stream, int64 length) throws Error
@@ -68,7 +80,7 @@ public class TDSModel
             if (block_length > length)
             {
                 // throw error
-                stderr.printf("Overflow, need %lli octets for %04X, but only have %lli\n", block_length, id, length);
+                stderr.printf("Overflow, need %lli octets for %04X, but only have %lli\n", block_length, (int) id, length);
                 return;
             }
 
@@ -123,6 +135,13 @@ public class TDSModel
                     vertices[i*3] = scale*x;
                     vertices[i*3+1] = scale*z;
                     vertices[i*3+2] = scale*y;
+
+                    var h = scale*z;
+                    if (h < min_height)
+                        min_height = h;
+                    if (h > max_height)
+                        max_height = h;
+
                     //stdout.printf ("<vertex x=\"%f\" y=\"%f\" z=\"%f\"/>\n", x, y, z);
                 }
                 //stdout.printf("</vertices>\n");
@@ -188,11 +207,17 @@ public class TDSModel
         glEnable (GL_CULL_FACE);
 
         glEnableClientState (GL_VERTEX_ARRAY);
-        glVertexPointer (3, GL_FLOAT, 0, vertices);
         glEnableClientState (GL_NORMAL_ARRAY);
+        glEnableClientState (GL_TEXTURE_COORD_ARRAY);
+
+        glVertexPointer (3, GL_FLOAT, 0, vertices);
         glNormalPointer (GL_FLOAT, 0, normals);
+        glTexCoordPointer (2, GL_FLOAT, 0, texture_coords);
         glDrawElements (GL_TRIANGLES, (GLsizei) triangles.length, GL_UNSIGNED_SHORT, triangles);
+
         glDisableClientState (GL_VERTEX_ARRAY);
+        glDisableClientState (GL_NORMAL_ARRAY);
+        glDisableClientState (GL_TEXTURE_COORD_ARRAY);
     }
 
     private uint8 read_uint8 (InputStream stream) throws Error
