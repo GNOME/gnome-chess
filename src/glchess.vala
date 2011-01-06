@@ -103,7 +103,7 @@ public class Application
     public void quit ()
     {
         if (save_duration_timeout != 0)
-            save_duration ();
+            save_duration_cb ();
 
         /* Autosave */
         // FIXME: Only once a human has moved
@@ -897,7 +897,7 @@ public class Application
         return magnitude * multiplier;
     }
 
-    private bool save_duration ()
+    private bool save_duration_cb ()
     {
         settings.set_int ("duration", get_duration ());
         Source.remove (save_duration_timeout);
@@ -911,7 +911,7 @@ public class Application
         if (save_duration_timeout != 0)
             Source.remove (save_duration_timeout);
         /* Do this delayed as it might change a lot being connected to a spin button */
-        save_duration_timeout = Timeout.add (100, save_duration);
+        save_duration_timeout = Timeout.add (100, save_duration_cb);
     }
 
     [CCode (cname = "G_MODULE_EXPORT duration_combo_changed_cb", instance_pos = -1)]
