@@ -19,6 +19,9 @@ public class Application
     private Gtk.Widget next_move_button;
     private Gtk.Widget last_move_button;
     private Gtk.ComboBox history_combo;
+    private Gtk.Widget white_time_label;
+    private Gtk.Widget black_time_label;
+
     private Gtk.Dialog? preferences_dialog = null;
     private Gtk.ComboBox duration_combo;
     private Gtk.Adjustment duration_adjustment;
@@ -68,6 +71,8 @@ public class Application
         next_move_button = (Gtk.Widget) builder.get_object ("next_move_button");
         last_move_button = (Gtk.Widget) builder.get_object ("last_move_button");
         history_combo = (Gtk.ComboBox) builder.get_object ("history_combo");
+        white_time_label = (Gtk.Widget) builder.get_object ("white_time_label");
+        black_time_label = (Gtk.Widget) builder.get_object ("black_time_label");
         settings.bind ("show-toolbar", builder.get_object ("toolbar"), "visible", SettingsBindFlags.DEFAULT);
         settings.bind ("show-history", builder.get_object ("navigation_box"), "visible", SettingsBindFlags.DEFAULT);
         var view_box = (Gtk.VBox) builder.get_object ("view_box");
@@ -199,6 +204,7 @@ public class Application
         game.turn_started.connect (game_turn_cb);
         game.moved.connect (game_move_cb);
         game.ended.connect (game_end_cb);
+        game.clock.tick.connect (game_clock_tick_cb);
 
         var model = (Gtk.ListStore) history_combo.model;
         model.clear ();
@@ -236,6 +242,9 @@ public class Application
                 break;
             }
         }
+
+        white_time_label.queue_draw ();
+        black_time_label.queue_draw ();
     }
 
     private ChessEngine? get_engine (string name)
@@ -319,6 +328,12 @@ public class Application
     {
         if (opponent_engine != null)
             opponent_engine.start_game ();
+    }
+
+    private void game_clock_tick_cb (ChessClock clock)
+    {
+        white_time_label.queue_draw ();
+        black_time_label.queue_draw ();
     }
 
     private void game_turn_cb (ChessGame game, ChessPlayer player)
@@ -549,6 +564,9 @@ public class Application
         info_title_label.set_markup ("<big><b>%s</b></big>".printf (title));
         info_label.set_text (reason);
         info_bar.show ();
+
+        white_time_label.queue_draw ();
+        black_time_label.queue_draw ();
     }
 
     public void show ()
@@ -606,29 +624,35 @@ public class Application
         quit ();
     }
 
-    [CCode (cname = "G_MODULE_EXPORT black_time_draw_cb", instance_pos = -1)]
-    public bool black_time_draw_cb (Gtk.Widget widget, Cairo.Context c)
+    [CCode (cname = "G_MODULE_EXPORT white_time_draw_cb", instance_pos = -1)]
+    public bool white_time_draw_cb (Gtk.Widget widget, Cairo.Context c)
     {
         double fg[3] = { 0.0, 0.0, 0.0 };
         double bg[3] = { 1.0, 1.0, 1.0 };
 
-        draw_time (widget, c, "∞", fg, bg);
+        draw_time (widget, c, (int) (game.clock.white_duration / 1000 - game.clock.white_used_in_seconds), fg, bg);
         return false;
     }
 
-    [CCode (cname = "G_MODULE_EXPORT white_time_draw_cb", instance_pos = -1)]
-    public bool white_time_draw_cb (Gtk.Widget widget, Cairo.Context c)
+    [CCode (cname = "G_MODULE_EXPORT black_time_draw_cb", instance_pos = -1)]
+    public bool black_time_draw_cb (Gtk.Widget widget, Cairo.Context c)
     {
         double fg[3] = { 1.0, 1.0, 1.0 };
         double bg[3] = { 0.0, 0.0, 0.0 };
 
-        draw_time (widget, c, "∞", fg, bg);
+        draw_time (widget, c, (int) (game.clock.black_duration / 1000 - game.clock.black_used_in_seconds), fg, bg);
         return false;
     }
 
-    private void draw_time (Gtk.Widget widget, Cairo.Context c, string text, double[] fg, double[] bg)
+    private void draw_time (Gtk.Widget widget, Cairo.Context c, int used, double[] fg, double[] bg)
     {
         double alpha = 1.0;
+
+        string text = "∞";
+        if (used >= 60)
+            text = "%d:%02d".printf (used / 60, used % 60);
+        else if (used >= 0)
+            text = ":%02d".printf (used);
 
         if (widget.get_state () == Gtk.StateType.INSENSITIVE)
             alpha = 0.5;

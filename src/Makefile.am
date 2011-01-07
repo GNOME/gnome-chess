@@ -7,12 +7,12 @@ glchess_SOURCES = \
 	glchess.vala \
 	ai-profile.vala \
 	chess-bitboard.vala \
+	chess-clock.vala \
 	chess-engine.vala \
 	chess-engine-cecp.vala \
 	chess-engine-uci.vala \
 	chess-game.vala \
 	chess-pgn.vala \
-	chess-clock.vala \
 	chess-view.vala \
 	chess-view-2d.vala \
 	chess-view-3d.vala \
@@ -21,6 +21,7 @@ glchess_SOURCES = \
 
 test_chess_game_SOURCES = \
 	chess-bitboard.vala \
+	chess-clock.vala \
 	chess-game.vala \
 	test-chess-game.vala
 
