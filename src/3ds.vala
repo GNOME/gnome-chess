@@ -57,14 +57,24 @@ public class TDSModel
             normals[i+2] /= length;
         }
 
-        /* Set texture coordinates to a cylindrical projection */
-        // FIXME: Use something more eliptical so the tops don't look quite so distorted
+        /* Set texture coordinates to a conical projection */
         texture_coords = new GLfloat[(vertices.length / 3) * 2];
         for (int i = 0, j = 0; i < vertices.length; i += 3, j += 2)
         {
-            texture_coords[j] = (GLfloat) (Math.atan2 (vertices[i], vertices[i+2]) / (2 * Math.PI)) + 0.5f;
-            texture_coords[j+1] = (vertices[i+1] - min_height) / max_height;
-        }        
+            var u = vertices[i];
+            var v = vertices[i+2];
+            var r = (GLfloat) Math.sqrt (u*u + v*v);
+            if (r != 0)
+            {
+                u /= r;
+                v /= r;
+            }
+
+            /* Maximum height is in the middle of the texture, minimum on the boundary */
+            var h = 1.0f - (vertices[i+1] / max_height);
+            texture_coords[j] = 0.5f + 0.5f * h * u;
+            texture_coords[j+1] = 0.5f + 0.5f * h * v;
+        }
     }
     
     private void parse_block (FileInputStream stream, int64 length) throws Error
