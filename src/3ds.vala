@@ -131,7 +131,7 @@ public class TDSModel
                     var x = read_float (stream);
                     var y = read_float (stream);
                     var z = read_float (stream);
-                    var scale = 3.5f;
+                    var scale = 3.5f; // FIXME: Fix the model files
                     vertices[i*3] = scale*x;
                     vertices[i*3+1] = scale*z;
                     vertices[i*3+2] = scale*y;

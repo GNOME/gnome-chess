@@ -17,6 +17,7 @@ private class ChessView3D : ChessView
     private TDSModel queen_model;
     private TDSModel king_model;
     private GLfloat[] board_vertices;
+    private GLfloat[] board_normals;    
     private GLushort[] board_quads;
 
     private GLfloat SQUARE_WIDTH;
@@ -134,9 +135,16 @@ private class ChessView3D : ChessView
                           e, 0.0f, k,  b, 0.0f, k,
                           a, -BOARD_CHAMFER, g,  f, -BOARD_CHAMFER, g,
                           f, -BOARD_CHAMFER, l,  a, -BOARD_CHAMFER, l,
-                          a, -BOARD_DEPTH, g,  f, -BOARD_DEPTH, g,  f, -BOARD_DEPTH, l,  a, -BOARD_DEPTH, l};
-        board_quads = {0, 1, 5, 4,  0, 4, 7, 3,  3, 7, 6, 2,  2, 6, 5, 1,
-                       4, 5, 9, 8,  4, 8, 11, 7,  7, 11, 10, 6,  6, 10, 9, 5};
+                          a, -BOARD_DEPTH, g,  f, -BOARD_DEPTH, g,
+                          f, -BOARD_DEPTH, l,  a, -BOARD_DEPTH, l};
+        board_normals = { 0.0f, 1.0f, 0.0f,  0.0f, 0.0f, -1.0f,
+                          1.0f, 0.0f, 0.0f,  0.0f, 0.0f, 1.0f,
+                         -1.0f, 0.0f, 0.0f,  0.0f, 0.707f, -0.707f,
+                          0.707f, 0.707f, 0.0f,  0.0f, 0.707f,  0.707f,
+                         -0.707f, 0.707f, 0.0f };
+        board_quads = {0, 1, 5, 4, 0,  1, 2, 6, 5, 0,  2, 3, 7, 6, 0,  3, 0, 4, 7, 0,
+                       4, 5, 9, 8, 5,  5, 6, 10, 9, 6,  6, 7, 11, 10, 7,  7, 4, 8, 11, 8,
+                       8, 9, 13, 12, 1,  9, 10, 14, 13, 2,  10, 11, 15, 14, 3,  11, 8, 12, 15, 4};
     }
     
     private void realize_cb ()
@@ -282,11 +290,21 @@ private class ChessView3D : ChessView
     {
         glEnable (GL_COLOR_MATERIAL);
         glColor3f (0x2e / 255f, 0x34 / 255f, 0x36 / 255f);
-        glNormal3f (0.0f, 1.0f, 0.0f);
-        glEnableClientState (GL_VERTEX_ARRAY);
-        glVertexPointer (3, GL_FLOAT, 0, board_vertices);
-        glDrawElements (GL_QUADS, (GLsizei) board_quads.length, GL_UNSIGNED_SHORT, board_quads);
-        glDisableClientState (GL_VERTEX_ARRAY);
+        glBegin (GL_QUADS);
+        for (int i = 0; i < board_quads.length; i += 5)
+        {
+            var j = board_quads[i+4] * 3;
+            glNormal3f (board_normals[j], board_normals[j+1], board_normals[j+2]);
+            j = board_quads[i] * 3;
+            glVertex3f (board_vertices[j], board_vertices[j+1], board_vertices[j+2]);
+            j = board_quads[i+1] * 3;
+            glVertex3f (board_vertices[j], board_vertices[j+1], board_vertices[j+2]);
+            j = board_quads[i+2] * 3;
+            glVertex3f (board_vertices[j], board_vertices[j+1], board_vertices[j+2]);
+            j = board_quads[i+3] * 3;
+            glVertex3f (board_vertices[j], board_vertices[j+1], board_vertices[j+2]);
+        }
+        glEnd ();
 
         var selected_piece = options.get_selected_piece ();
 
