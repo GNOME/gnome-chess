@@ -2,9 +2,11 @@ public class ChessEngineUCI : ChessEngine
 {
     private char[] buffer;
     private string position_command;
+    private string[] options;
     
-    public ChessEngineUCI ()
+    public ChessEngineUCI (string[] options)
     {
+        this.options = options;
         buffer = new char[0];
         position_command = "position startpos";
         starting.connect (start_cb);
@@ -66,7 +68,7 @@ public class ChessEngineUCI : ChessEngine
                 case "uciok":
                     if (tokens.length != 1)
                         warning ("Unexpected arguments on uciok: %s", line);
-                        
+
                     configure ();
                     break;
 
@@ -102,7 +104,8 @@ public class ChessEngineUCI : ChessEngine
 
     private void configure ()
     {
-        //write_line ("setoption ...");
+        foreach (var o in options)
+            write_line ("setoption %s".printf (o));
         write_line ("isready");
     }
 }

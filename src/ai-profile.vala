@@ -29,6 +29,9 @@ public List<AIProfile> load_ai_profiles (string filename)
            profile.binary = file.get_value (name, "binary");
            if (file.has_key (name, "args"))
                profile.args = file.get_value (name, "args");
+           profile.easy_options = load_options (file, name, "easy");
+           profile.normal_options = load_options (file, name, "normal");
+           profile.hard_options = load_options (file, name, "hard");
        }
        catch (KeyFileError e)
        {
@@ -40,6 +43,19 @@ public List<AIProfile> load_ai_profiles (string filename)
    }
 
    return profiles;
+}
+
+private string[] load_options (KeyFile file, string name, string difficulty) throws KeyFileError
+{
+    int count = 0;
+    while (file.has_key (name, "option-%s-%d".printf (difficulty, count)))
+        count++;
+
+    string[] options = new string[count];
+    for (var i = 0; i < count; i++)
+        options[i] = file.get_value (name, "option-%s-%d".printf (difficulty, i));
+
+    return options;
 }
 
 public class AIProfile

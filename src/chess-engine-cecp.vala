@@ -2,15 +2,19 @@ public class ChessEngineCECP : ChessEngine
 {
     private char[] buffer;
     private bool moving = false;
+    private string[] options;
 
-    public ChessEngineCECP ()
+    public ChessEngineCECP (string[] options)
     {
+        this.options = options;
         starting.connect (start_cb);
     }
     
     private void start_cb ()
     {
         write_line ("xboard");
+        foreach (var o in options)
+            write_line (o);
         ready = true;
     }
 

@@ -232,7 +232,7 @@ public class Application
         save_as_menu.sensitive = false;
         update_history_panel ();
 
-        opponent_engine = get_engine (settings.get_string ("opponent"));
+        opponent_engine = get_engine (settings.get_string ("opponent"), settings.get_string ("difficulty"));
         opponent = null;
         if (opponent_engine != null)
         {
@@ -260,7 +260,7 @@ public class Application
         black_time_label.queue_draw ();
     }
 
-    private ChessEngine? get_engine (string name)
+    private ChessEngine? get_engine (string name, string difficulty)
     {
         ChessEngine engine;
         AIProfile? profile = null;
@@ -284,10 +284,25 @@ public class Application
             profile = ai_profiles.data;
         }
 
+        string[] options;
+        switch (difficulty)
+        {
+        case "easy":
+            options = profile.easy_options;
+            break;
+        default:
+        case "normal":
+            options = profile.normal_options;
+            break;
+        case "hard":
+            options = profile.hard_options;
+            break;
+        }
+
         if (profile.protocol == "cecp")
-            engine = new ChessEngineCECP ();
+            engine = new ChessEngineCECP (options);
         else if (profile.protocol == "uci")
-            engine = new ChessEngineUCI ();
+            engine = new ChessEngineUCI (options);
         else
         {
             warning ("Unknown AI protocol %s", profile.protocol);
