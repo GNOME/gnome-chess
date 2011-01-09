@@ -26,6 +26,11 @@ private class ChessView3D : ChessView
     private GLfloat BOARD_INNER_WIDTH;
     private GLfloat BOARD_OUTER_WIDTH;
     private GLfloat OFFSET;
+    
+    private GLfloat white_piece_color[4];
+    private GLfloat white_piece_specular[4];
+    private GLfloat black_piece_color[4];
+    private GLfloat black_piece_specular[4];
 
     private GLuint _board_texture = 0;
     private GLuint board_texture
@@ -58,6 +63,11 @@ private class ChessView3D : ChessView
         add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
         realize.connect (realize_cb);
         unrealize.connect (unrealize_cb);
+
+        white_piece_color = { 0.95f * 0.7f, 0.81f * 0.7f, 0.64f * 0.7f, 1.0f };
+        white_piece_specular = { 0.95f, 0.81f, 0.64f, 1.0f };
+        black_piece_color = { 0.62f * 0.7f, 0.45f * 0.7f, 0.28f * 0.7f, 1.0f };
+        black_piece_specular = { 0.62f, 0.45f, 0.28f, 1.0f };
 
         double_buffered = false;
         try
@@ -396,7 +406,6 @@ private class ChessView3D : ChessView
 
         glEnable (GL_DEPTH_TEST);
         glEnable (GL_TEXTURE_2D);
-        glEnable (GL_COLOR_MATERIAL);
         glBindTexture (GL_TEXTURE_2D, piece_texture);
 
         for (int rank = 0; rank < 8; rank++)
@@ -407,15 +416,19 @@ private class ChessView3D : ChessView
                 if (piece == null)
                     continue;
 
-                switch (piece.player.color)
+                if (piece.player.color == Color.WHITE)
                 {
-                case Color.WHITE:
-                    glColor3f (0.8f, 0.8f, 0.8f);
-                    break;
-                case Color.BLACK:
-                    glColor3f (0.2f, 0.2f, 0.2f);
-                    break;
+                    glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, white_piece_color);
+                    glMaterialfv (GL_FRONT_AND_BACK, GL_SPECULAR, white_piece_specular);
                 }
+                else
+                {
+                    glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, black_piece_color);
+                    glMaterialfv (GL_FRONT_AND_BACK, GL_SPECULAR, black_piece_specular);
+                }
+                GLfloat black[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+                glMaterialfv (GL_FRONT_AND_BACK, GL_EMISSION, black);
+                glMaterialf (GL_FRONT_AND_BACK, GL_SHININESS, 64.0f);
 
                 glPushMatrix ();
                 glTranslatef (BOARD_BORDER + file * SQUARE_WIDTH + SQUARE_WIDTH / 2, 0.0f, -(BOARD_BORDER + rank * SQUARE_WIDTH + SQUARE_WIDTH / 2));
@@ -450,7 +463,6 @@ private class ChessView3D : ChessView
         }
 
         glDisable (GL_TEXTURE_2D);
-        glDisable (GL_COLOR_MATERIAL);
     }
 
     public override bool button_press_event (Gdk.EventButton event)
