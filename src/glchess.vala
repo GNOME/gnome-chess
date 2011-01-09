@@ -200,11 +200,24 @@ public class Application
         else
             game = new ChessGame ();
 
+        if (pgn_game.time_control != null)
+        {
+            var controls = pgn_game.time_control.split (":");
+            foreach (var control in controls)
+            {
+                /* We only support simple timeouts */
+                var duration = control.to_int ();
+                if (duration > 0)
+                    game.clock = new ChessClock (duration, duration);
+            }
+        }
+
         game.started.connect (game_start_cb);
         game.turn_started.connect (game_turn_cb);
         game.moved.connect (game_move_cb);
         game.ended.connect (game_end_cb);
-        game.clock.tick.connect (game_clock_tick_cb);
+        if (game.clock != null)
+            game.clock.tick.connect (game_clock_tick_cb);
 
         var model = (Gtk.ListStore) history_combo.model;
         model.clear ();
@@ -630,7 +643,7 @@ public class Application
         double fg[3] = { 0.0, 0.0, 0.0 };
         double bg[3] = { 1.0, 1.0, 1.0 };
 
-        draw_time (widget, c, (int) (game.clock.white_duration / 1000 - game.clock.white_used_in_seconds), fg, bg);
+        draw_time (widget, c, make_clock_text (game.clock, Color.WHITE), fg, bg);
         return false;
     }
 
@@ -640,19 +653,30 @@ public class Application
         double fg[3] = { 1.0, 1.0, 1.0 };
         double bg[3] = { 0.0, 0.0, 0.0 };
 
-        draw_time (widget, c, (int) (game.clock.black_duration / 1000 - game.clock.black_used_in_seconds), fg, bg);
+        draw_time (widget, c, make_clock_text (game.clock, Color.BLACK), fg, bg);
         return false;
     }
 
-    private void draw_time (Gtk.Widget widget, Cairo.Context c, int used, double[] fg, double[] bg)
+    private string make_clock_text (ChessClock? clock, Color color)
+    {
+        if (clock == null)
+            return "∞";
+
+        int used;
+        if (color == Color.WHITE)
+            used = (int) (game.clock.white_duration / 1000 - game.clock.white_used_in_seconds);
+        else
+            used = (int) (game.clock.black_duration / 1000 - game.clock.black_used_in_seconds);
+
+        if (used >= 60)
+            return "%d:%02d".printf (used / 60, used % 60);
+        else
+            return ":%02d".printf (used);
+    }
+
+    private void draw_time (Gtk.Widget widget, Cairo.Context c, string text, double[] fg, double[] bg)
     {
         double alpha = 1.0;
-
-        string text = "∞";
-        if (used >= 60)
-            text = "%d:%02d".printf (used / 60, used % 60);
-        else if (used >= 0)
-            text = ":%02d".printf (used);
 
         if (widget.get_state () == Gtk.StateType.INSENSITIVE)
             alpha = 0.5;
@@ -1222,6 +1246,10 @@ public class Application
         pgn_game = new PGNGame ();
         var now = new DateTime.now_local ();
         pgn_game.date = now.format ("%Y.%m.%d");
+        pgn_game.time = now.format ("%H:%M:%S");
+        var duration = settings.get_int ("duration");
+        if (duration > 0)
+            pgn_game.time_control = "%d".printf (duration);
         start_game ();
     }
 

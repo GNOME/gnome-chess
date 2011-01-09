@@ -69,6 +69,11 @@ public class PGNGame
         get { return tags.lookup ("Date"); }
         set { tags.insert ("Date", value); }
     }
+    public string time
+    {
+        get { return tags.lookup ("Time"); }
+        set { tags.insert ("Time", value); }
+    }
     public string round
     {
         get { return tags.lookup ("Round"); }
@@ -94,6 +99,11 @@ public class PGNGame
         get { return tags.lookup ("Annotator"); }
         set { tags.insert ("Annotator", value); }
     }
+    public string? time_control
+    {
+        get { return tags.lookup ("TimeControl"); }
+        set { tags.insert ("TimeControl", value); }
+    }
     public bool set_up
     {
         get { string? v = tags.lookup ("SetUp"); return v != null && v == "1" ? true : false; }
@@ -108,7 +118,7 @@ public class PGNGame
     {
         get { return tags.lookup ("Termination"); }
         set { tags.insert ("Termination", value); }
-    }   
+    }
 
     public PGNGame ()
     {

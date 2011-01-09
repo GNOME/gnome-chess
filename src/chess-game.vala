@@ -787,7 +787,6 @@ public enum ChessRule
 public class ChessGame
 {
     public bool is_started;
-    public ChessClock clock;
     public ChessResult result;
     public ChessRule rule;
     public List<ChessState> move_stack;
@@ -809,11 +808,20 @@ public class ChessGame
     {
         get { return move_stack.data.current_player; }
     }
+    private ChessClock? _clock;
+    public ChessClock? clock
+    {
+        get { return _clock; }
+        set
+        {
+            if (is_started)
+                return;
+            _clock = value;
+        }
+    }
 
     public ChessGame (string fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
     {
-        clock = new ChessClock (60, 60);
-
         is_started = false;
         move_stack.prepend (new ChessState (fen));
         result = ChessResult.IN_PROGRESS;
@@ -869,7 +877,8 @@ public class ChessGame
             state.last_move.moved_rook.moved ();
         moved (state.last_move);
 
-        clock.active_color = current_player.color;
+        if (_clock != null)
+            _clock.active_color = current_player.color;
         current_player.start_turn ();
         turn_started (current_player);
 
@@ -909,9 +918,12 @@ public class ChessGame
 
         reset ();
 
-        clock.expired.connect (clock_expired_cb);
-        clock.active_color = current_player.color;
-        clock.start ();
+        if (_clock != null)
+        {
+            _clock.expired.connect (clock_expired_cb);
+            _clock.active_color = current_player.color;
+            _clock.start ();
+        }
 
         started ();
         current_player.start_turn ();
