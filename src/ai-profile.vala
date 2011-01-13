@@ -1,3 +1,15 @@
+public class AIProfile
+{
+    public string name;
+    public string protocol;
+    public string binary;
+    public string path;
+    public string args = "";
+    public string[] easy_options;
+    public string[] normal_options;
+    public string[] hard_options;
+}
+
 public List<AIProfile> load_ai_profiles (string filename)
 {
    var profiles = new List<AIProfile> ();
@@ -38,8 +50,12 @@ public List<AIProfile> load_ai_profiles (string filename)
            continue;
        }
 
-       if (Environment.find_program_in_path (profile.binary) != null)
+       var path = Environment.find_program_in_path (profile.binary);
+       if (path != null)
+       {
+           profile.path = path;
            profiles.append (profile);
+       }
    }
 
    return profiles;
@@ -56,15 +72,4 @@ private string[] load_options (KeyFile file, string name, string difficulty) thr
         options[i] = file.get_value (name, "option-%s-%d".printf (difficulty, i));
 
     return options;
-}
-
-public class AIProfile
-{
-    public string name;
-    public string protocol;
-    public string binary;
-    public string args = "";
-    public string[] easy_options;
-    public string[] normal_options;
-    public string[] hard_options;
 }

@@ -317,7 +317,7 @@ public class Application
     {
         ai_profiles = load_ai_profiles (Path.build_filename (Config.PKGDATADIR, "engines.conf", null));
         foreach (var profile in ai_profiles)
-            message ("Detected AI profile %s", profile.name);
+            message ("Detected AI profile %s in %s", profile.name, profile.path);
 
         if (game == null)
         {
