@@ -3,6 +3,10 @@ bin_PROGRAMS = glchess
 noinst_PROGRAMS = test-chess-game
 
 glchess_SOURCES = \
+	config.vapi \
+	gl.vapi \
+	glu.vapi \
+	glx.vapi \
 	3ds.vala \
 	glchess.vala \
 	ai-profile.vala \
@@ -62,14 +66,7 @@ glchess_VALAFLAGS = \
     --pkg gmodule-2.0 \
     --pkg librsvg-2.0 \
     --pkg posix \
-    --pkg sqlite3 \
-    --vapidir . \
-    --pkg config \
-    --pkg gl \
-    --pkg glu \
-    --pkg glx
-
-EXTRA_DIST = config.vapi gl.vapi glu.vapi glx.vapi
+    --pkg sqlite3
 
 DISTCLEANFILES = \
 	Makefile.in
