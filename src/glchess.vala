@@ -234,14 +234,32 @@ public class Application
         save_as_menu.sensitive = false;
         update_history_panel ();
 
-        opponent_engine = get_engine (settings.get_string ("opponent"), settings.get_string ("difficulty"));
+        // TODO: Could both be engines
+        var white_engine = pgn_game.tags.lookup ("WhiteAI");
+        var white_level = pgn_game.tags.lookup ("WhiteLevel");
+        if (white_level == null)
+            white_level = "normal";
+
+        var black_engine = pgn_game.tags.lookup ("BlackAI");
+        var black_level = pgn_game.tags.lookup ("BlackLevel");
+        if (black_level == null)
+            black_level = "normal";
+
         opponent = null;
+        opponent_engine = null;
+        if (white_engine != null)
+        {
+            opponent = game.white;
+            opponent_engine = get_engine (white_engine, white_level);
+        }
+        else if (black_engine != null)
+        {
+            opponent = game.black;
+            opponent_engine = get_engine (black_engine, black_level);
+        }
+
         if (opponent_engine != null)
         {
-            if (settings.get_boolean ("play-as-white"))
-                opponent = game.black;
-            else
-                opponent = game.white;
             opponent_engine.ready_changed.connect (engine_ready_cb);
             opponent_engine.moved.connect (engine_move_cb);
             opponent_engine.start ();
@@ -1270,6 +1288,21 @@ public class Application
         var duration = settings.get_int ("duration");
         if (duration > 0)
             pgn_game.time_control = "%d".printf (duration);
+        var engine_name = settings.get_string ("opponent");
+        var engine_level = settings.get_string ("difficulty");
+        if (engine_name != null && engine_name != "human")
+        {
+            if (settings.get_boolean ("play-as-white"))
+            {
+                pgn_game.tags.insert ("BlackAI", engine_name);
+                pgn_game.tags.insert ("BlackLevel", engine_level);
+            }
+            else
+            {
+                pgn_game.tags.insert ("WhiteAI", engine_name);
+                pgn_game.tags.insert ("WhiteLevel", engine_level);
+            }
+        }
         start_game ();
     }
 
