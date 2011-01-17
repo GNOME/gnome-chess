@@ -31,7 +31,7 @@ public class ChessEngineUCI : ChessEngine
     {
         if (position_command == "position startpos")
             position_command += " moves";
-        position_command += " " + move.lan;
+        position_command += " " + move.engine;
         write_line (position_command);
     }
 

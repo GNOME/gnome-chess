@@ -82,7 +82,7 @@ public class ChessEngineCECP : ChessEngine
         {
             /* Stop the AI from automatically moving in response to this one */
             write_line ("force");
-            write_line (move.lan);
+            write_line (move.engine);
         }
         moving = false;
     }

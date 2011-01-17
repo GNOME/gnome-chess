@@ -101,24 +101,79 @@ public class ChessMove
 {
     public int number;
     public ChessPiece piece;
+    public ChessPiece? promotion_piece;
     public ChessPiece? moved_rook;
     public ChessPiece? victim;
     public int r0;
     public int f0;
     public int r1;
     public int f1;
-    public string lan = "";
-    public string san = "";
-    public string human = "";
-    
-    public string fan
+    public bool ambiguous_rank;
+    public bool ambiguous_file;
+
+    public string get_lan ()
+    {
+        const char promotion_symbols[] = {' ', 'R', 'N', 'B', 'Q', 'K'};
+        if (promotion_piece != null)
+        {
+            if (victim != null)
+                return "%c%dx%c%d=%c".printf ('a' + f0, r0 + 1, 'a' + f1, r1 + 1, promotion_symbols[promotion_piece.type]);
+            else
+                return "%c%d-%c%d=%c".printf ('a' + f0, r0 + 1, 'a' + f1, r1 + 1, promotion_symbols[promotion_piece.type]);
+        }
+        else
+        {
+            if (victim != null)
+                return "%c%dx%c%d".printf ('a' + f0, r0 + 1, 'a' + f1, r1 + 1);
+            else
+                return "%c%d-%c%d".printf ('a' + f0, r0 + 1, 'a' + f1, r1 + 1);
+        }
+    }
+
+    public string get_san ()
+    {
+        const string piece_names[] = {"", "R", "N", "B", "Q", "K"};
+        return make_san ((string[]) piece_names);
+    }
+
+    public string get_fan ()
+    {
+        const string white_piece_names[] = {"", "♞", "♝", "♜", "♛", "♚"};
+        const string black_piece_names[] = {"", "♘", "♗", "♖", "♕", "♔"};
+        if (piece.player.color == Color.WHITE)
+            return make_san ((string[]) white_piece_names);
+        else
+            return make_san ((string[]) black_piece_names);
+    }
+
+    private string make_san (string[] piece_names)
+    {
+        var builder = new StringBuilder ();
+        builder.append (piece_names[piece.type]);
+        if (ambiguous_file)
+            builder.append_printf ("%c", 'a' + f0);
+        if (ambiguous_rank)
+            builder.append_printf ("%d", r0 + 1);
+        if (victim != null)
+            builder.append ("x");
+        builder.append_printf ("%c%d", 'a' + f1, r1 + 1);
+        if (promotion_piece != null)
+            builder.append_printf ("=%s", piece_names[promotion_piece.type]);
+        return builder.str;
+    }
+
+    /* Move suitable for a chess engine (CECP/UCI) */
+    public string engine
     {
         get
         {
-            // FIXME: Translate the san move
-            //♙♘♗♖♕♔
-            //♟♞♝♜♛♚
-            return san;
+            var builder = new StringBuilder ();
+            const char promotion_symbols[] = {' ', 'r', 'n', 'b', 'q', ' '};
+            if (promotion_piece != null)
+                builder.append_printf ("%c%d%c%d%c", 'a' + f0, r0 + 1, 'a' + f1, r1 + 1, promotion_symbols[promotion_piece.type]);
+            else
+                builder.append_printf ("%c%d%c%d", 'a' + f0, r0 + 1, 'a' + f1, r1 + 1);
+            return builder.str;
         }
     }
 
@@ -127,15 +182,15 @@ public class ChessMove
         var move = new ChessMove ();
         move.number = number;
         move.piece = piece;
+        move.promotion_piece = promotion_piece;
         move.moved_rook = moved_rook;
         move.victim = victim;
         move.r0 = r0;
         move.f0 = f0;
         move.r1 = r1;
         move.f1 = f1;
-        move.lan = lan;        
-        move.san = san;
-        move.human = human;
+        move.ambiguous_rank = ambiguous_rank;
+        move.ambiguous_file = ambiguous_file;
         return move;
     }
 }
@@ -284,7 +339,7 @@ public class ChessState
             int skip_count = 0;
             for (int file = 0; file < 8; file++)
             {
-                ChessPiece? p = board[get_index (rank, file)];
+                var p = board[get_index (rank, file)];
                 if (p == null)
                     skip_count++;
                 else
@@ -372,14 +427,14 @@ public class ChessState
     public bool move_with_coords (ChessPlayer player, int r0, int f0, int r1, int f1, PieceType promotion_type = PieceType.QUEEN, bool apply = true, bool test_check = true)
     {
         // FIXME: Make this use indexes to be faster
-        int start = get_index (r0, f0);
-        int end = get_index (r1, f1);
+        var start = get_index (r0, f0);
+        var end = get_index (r1, f1);
 
         var color = player.color;
         var opponent_color = color == Color.WHITE ? Color.BLACK : Color.WHITE;
 
         /* Must be moving own piece */
-        ChessPiece? piece = board[start];
+        var piece = board[start];
         if (piece == null || piece.player != player)
             return false;
 
@@ -395,8 +450,8 @@ public class ChessState
             return false;
 
         /* Get victim of move */
-        ChessPiece? victim = board[end];
-        int victim_index = end;
+        var victim = board[end];
+        var victim_index = end;
 
         /* Can't take own pieces */
         if (victim != null && victim.player == player)
@@ -411,6 +466,9 @@ public class ChessState
 
         /* Check special moves */
         int rook_start = -1, rook_end = -1;
+        bool is_promotion = false;
+        bool ambiguous_rank = false;
+        bool ambiguous_file = false;
         switch (piece.type)
         {
         case PieceType.PAWN:
@@ -426,6 +484,11 @@ public class ChessState
                 if (victim != null)
                     return false;
             }
+            is_promotion = r1 == 0 || r1 == 7;
+            
+            /* Always show the file of a pawn capturing */
+            if (victim != null)
+                ambiguous_file = true;
             break;
         case PieceType.KING:
             /* If moving more than one square must be castling */
@@ -447,7 +510,7 @@ public class ChessState
                         return false;                
                 }
 
-                ChessPiece? rook = board[rook_start];
+                var rook = board[rook_start];
                 if (rook == null)
                     return false;
 
@@ -475,6 +538,33 @@ public class ChessState
         if (!apply && !test_check)
             return true;
 
+        /* Check if other pieces of the same type can make this move - this is required for SAN notation */
+        if (apply)
+        {
+            for (int i = 0; i < 64; i++)
+            {
+                /* Ignore our move */
+                if (i == start)
+                    continue;
+
+                /* Check for a friendly piece of the same type */
+                var p = board[i];
+                if (p == null || p.player != player || p.type != piece.type)
+                    continue;
+
+                /* If more than one piece can move then the rank and/or file are ambiguous */
+                var r = get_rank (i);
+                var f = get_file (i);
+                if (move_with_coords (player, r, f, r1, f1, PieceType.QUEEN, false))
+                {
+                    if (r != r0)
+                        ambiguous_rank = true;
+                    if (f != f0)
+                        ambiguous_file = true;
+                }
+            }
+        }
+
         var old_white_mask = piece_masks[Color.WHITE];
         var old_black_mask = piece_masks[Color.BLACK];
         var old_white_can_castle_kingside = can_castle_kingside[Color.WHITE];
@@ -488,7 +578,7 @@ public class ChessState
         board[start] = null;
         if (victim != null)
             board[victim_index] = null;
-        if (piece.type == PieceType.PAWN && (r1 == 0 || r1 == 7))
+        if (is_promotion)
             board[end] = new ChessPiece (player, promotion_type);
         else
             board[end] = piece;
@@ -570,6 +660,8 @@ public class ChessState
         last_move = new ChessMove ();
         last_move.number = number;
         last_move.piece = piece;
+        if (is_promotion)
+            last_move.promotion_piece = board[end];
         last_move.victim = victim;
         if (rook_end >= 0)
             last_move.moved_rook = board[rook_end];
@@ -577,10 +669,8 @@ public class ChessState
         last_move.f0 = f0;
         last_move.r1 = r1;
         last_move.f1 = f1;
-        // FIXME: Promotion
-        last_move.lan = "%c%d%c%d".printf ('a' + f0, r0 + 1, 'a' + f1, r1 + 1);
-        // FIXME: Generate SAN move
-        last_move.san = last_move.lan;
+        last_move.ambiguous_rank = ambiguous_rank;
+        last_move.ambiguous_file = ambiguous_file;
 
         return true;
     }

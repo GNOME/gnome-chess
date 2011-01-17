@@ -497,16 +497,16 @@ public class Application
             break;
 
         case "san":
-            move_text = move.san;
+            move_text = move.get_san ();
             break;
 
         case "fan":
-            move_text = move.fan;
+            move_text = move.get_fan ();
             break;
 
         default:
         case "lan":
-            move_text = move.lan;
+            move_text = move.get_lan ();
             break;
         }
 
@@ -518,7 +518,7 @@ public class Application
     private void game_move_cb (ChessGame game, ChessMove move)
     {
         if (move.number > pgn_game.moves.length ())
-            pgn_game.moves.append (move.san);
+            pgn_game.moves.append (move.get_san ());
 
         Gtk.TreeIter iter;
         var model = (Gtk.ListStore) history_combo.model;
