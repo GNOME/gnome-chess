@@ -163,18 +163,15 @@ public class ChessMove
     }
 
     /* Move suitable for a chess engine (CECP/UCI) */
-    public string engine
+    public string get_engine ()
     {
-        get
-        {
-            var builder = new StringBuilder ();
-            const char promotion_symbols[] = {' ', 'r', 'n', 'b', 'q', ' '};
-            if (promotion_piece != null)
-                builder.append_printf ("%c%d%c%d%c", 'a' + f0, r0 + 1, 'a' + f1, r1 + 1, promotion_symbols[promotion_piece.type]);
-            else
-                builder.append_printf ("%c%d%c%d", 'a' + f0, r0 + 1, 'a' + f1, r1 + 1);
-            return builder.str;
-        }
+        var builder = new StringBuilder ();
+        const char promotion_symbols[] = {' ', 'r', 'n', 'b', 'q', ' '};
+        if (promotion_piece != null)
+            builder.append_printf ("%c%d%c%d%c", 'a' + f0, r0 + 1, 'a' + f1, r1 + 1, promotion_symbols[promotion_piece.type]);
+        else
+            builder.append_printf ("%c%d%c%d", 'a' + f0, r0 + 1, 'a' + f1, r1 + 1);
+        return builder.str;
     }
 
     public ChessMove copy ()
