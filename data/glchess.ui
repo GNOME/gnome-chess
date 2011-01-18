@@ -19,7 +19,7 @@
             <child>
               <object class="GtkMenuItem" id="game_menu_item">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">_Game</property>
+                <property name="label" translatable="yes" comments="Game menu name">_Game</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="game_menu">
@@ -71,7 +71,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="undo_move_item">
-                        <property name="label" translatable="yes">_Undo Move</property>
+                        <property name="label" translatable="yes" comments="Undo move menu item">_Undo Move</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="image">undo_move_image</property>
@@ -83,7 +83,7 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="resign_item">
-                        <property name="label" translatable="yes">_Resign</property>
+                        <property name="label" translatable="yes" comments="Save menu item">_Resign</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="image">warning_image</property>
@@ -95,7 +95,7 @@
                     <child>
                       <object class="GtkMenuItem" id="claim_draw_item">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Claim _Draw</property>
+                        <property name="label" translatable="yes" comments="Claim draw menu item">Claim _Draw</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="claim_draw_cb" swapped="no"/>
                       </object>
@@ -122,7 +122,7 @@
             <child>
               <object class="GtkMenuItem" id="settings_menu_item">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">_Settings</property>
+                <property name="label" translatable="yes" comments="Settings menu item">_Settings</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="settings_menu">
@@ -154,13 +154,13 @@
             <child>
               <object class="GtkMenuItem" id="help_menu_item">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">_Help</property>
+                <property name="label" translatable="yes" comments="Help menu item">_Help</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="help_menu">
                     <child>
                       <object class="GtkImageMenuItem" id="help_item">
-                        <property name="label" translatable="yes">_Contents</property>
+                        <property name="label" translatable="yes" comments="Help contents menu item">_Contents</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="image">help_image</property>
@@ -197,7 +197,7 @@
             <child>
               <object class="GtkToolButton" id="new_game_button">
                 <property name="visible">True</property>
-                <property name="tooltip_text" translatable="yes">Start a new game</property>
+                <property name="tooltip_text" translatable="yes" comments="Tooltip for start new game toolbar button">Start a new game</property>
                 <property name="is_important">True</property>
                 <property name="label" translatable="yes" comments="The New Game toolbar button">New Game</property>
                 <property name="use_underline">True</property>
@@ -213,7 +213,7 @@
               <object class="GtkToolButton" id="undo_move_button">
                 <property name="visible">True</property>
                 <property name="is_important">True</property>
-                <property name="label" translatable="yes">Undo Move</property>
+                <property name="label" translatable="yes" comments="The undo move toolbar button">Undo Move</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-undo</property>
                 <signal name="clicked" handler="undo_move_cb" swapped="no"/>
@@ -274,7 +274,7 @@
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="tooltip_text" translatable="yes">Rewind to the game start</property>
+                        <property name="tooltip_text" translatable="yes" comments="Tooltip on the show first move (i.e. game start) navigation button">Rewind to the game start</property>
                         <signal name="clicked" handler="history_start_clicked_cb" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="first_move_image">
@@ -294,7 +294,7 @@
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="tooltip_text" translatable="yes">Show the previous move</property>
+                        <property name="tooltip_text" translatable="yes" comments="Tooltip on the show previous move navigation button">Show the previous move</property>
                         <signal name="clicked" handler="history_previous_clicked_cb" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="prev_move_image">
@@ -313,7 +313,7 @@
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="tooltip_text" translatable="yes">Show the next move</property>
+                        <property name="tooltip_text" translatable="yes" comments="Tooltip on the show next move navigation button">Show the next move</property>
                         <signal name="clicked" handler="history_next_clicked_cb" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="next_move_image">
@@ -332,7 +332,7 @@
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="tooltip_text" translatable="yes">Show the current move</property>
+                        <property name="tooltip_text" translatable="yes" comments="Tooltip on the show current move navigation button">Show the current move</property>
                         <signal name="clicked" handler="history_latest_clicked_cb" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="last_move_image">

@@ -198,7 +198,7 @@ public class Application
             window.title = /* Title of the window when explicitly loaded a file. The first argument is the
                             * base name of the file (e.g. test.pgn), the second argument is the directory
                             * (e.g. /home/fred) */
-                           _("%$1s (%$2s) - Chess").printf (Path.get_basename (path), Path.get_dirname (path));
+                           _("%1$s (%2$s) - Chess").printf (Path.get_basename (path), Path.get_dirname (path));
         }
 
         if (pgn_game.set_up)
@@ -407,90 +407,150 @@ public class Application
     private void set_move_text (Gtk.TreeIter iter, ChessMove move)
     {
         /* Note there are no move formats for pieces taking kings and this is not allowed in Chess rules */
-        const string human_descriptions[] = {/* Human Move String: Description of a white pawn moving from %1s to %2s, e.g. 'c2 to c4' */
-                                             N_("White pawn moves from %1s to %2s"),
-                                             N_("White pawn at %1s takes the black pawn at %2s"),
-                                             N_("White pawn at %1s takes the black rook at %2s"),
-                                             N_("White pawn at %1s takes the black knight at %2s"),
-                                             N_("White pawn at %1s takes the black bishop at %2s"),
-                                             N_("White pawn at %1s takes the black queen at %2s"),
-                                             /* Human Move String: Description of a white rook moving from %1s to %2s, e.g. 'a1 to a5' */
-                                             N_("White rook moves from %1s to %2s"),
-                                             N_("White rook at %1s takes the black pawn at %2s"),
-                                             N_("White rook at %1s takes the black rook at %2s"),
-                                             N_("White rook at %1s takes the black knight at %2s"),
-                                             N_("White rook at %1s takes the black bishop at %2s"),
-                                             N_("White rook at %1s takes the black queen at %2s"),
-                                             /* Human Move String: Description of a white knight moving from %1s to %2s, e.g. 'b1 to c3' */
-                                             N_("White knight moves from %1s to %2s"),
-                                             N_("White knight at %1s takes the black pawn at %2s"),
-                                             N_("White knight at %1s takes the black rook at %2s"),
-                                             N_("White knight at %1s takes the black knight at %2s"),
-                                             N_("White knight at %1s takes the black bishop at %2s"),
-                                             N_("White knight at %1s takes the black queen at %2s"),
-                                             /* Human Move String: Description of a white bishop moving from %1s to %2s, e.g. 'f1 to b5' */
-                                             N_("White bishop moves from %1s to %2s"),
-                                             N_("White bishop at %1s takes the black pawn at %2s"),
-                                             N_("White bishop at %1s takes the black rook at %2s"),
-                                             N_("White bishop at %1s takes the black knight at %2s"),
-                                             N_("White bishop at %1s takes the black bishop at %2s"),
-                                             N_("White bishop at %1s takes the black queen at %2s"),
-                                             /* Human Move String: Description of a white queen moving from %1s to %2s, e.g. 'd1 to d4' */
-                                             N_("White queen moves from %1s to %2s"),
-                                             N_("White queen at %1s takes the black pawn at %2s"),
-                                             N_("White queen at %1s takes the black rook at %2s"),
-                                             N_("White queen at %1s takes the black knight at %2s"),
-                                             N_("White queen at %1s takes the black bishop at %2s"),
-                                             N_("White queen at %1s takes the black queen at %2s"),
-                                             /* Human Move String: Description of a white king moving from %1s to %2s, e.g. 'e1 to f1' */
-                                             N_("White king moves from %1s to %2s"),
-                                             N_("White king at %1s takes the black pawn at %2s"),
-                                             N_("White king at %1s takes the black rook at %2s"),
-                                             N_("White king at %1s takes the black knight at %2s"),
-                                             N_("White king at %1s takes the black bishop at %2s"),
-                                             N_("White king at %1s takes the black queen at %2s"),
-                                             /* Human Move String: Description of a black pawn moving from %1s to %2s, e.g. 'c8 to c6' */
+        const string human_descriptions[] = {/* Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4' */
+                                             N_("White pawn moves from %1$s to %2$s"),
+                                             /* Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s */
+                                             N_("White pawn at %1$s takes the black pawn at %2$s"),
+                                             /* Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s */
+                                             N_("White pawn at %1$s takes the black rook at %2$s"),
+                                             /* Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s */
+                                             N_("White pawn at %1$s takes the black knight at %2$s"),
+                                             /* Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s */
+                                             N_("White pawn at %1$s takes the black bishop at %2$s"),
+                                             /* Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s */
+                                             N_("White pawn at %1$s takes the black queen at %2$s"),
+                                             /* Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5' */
+                                             N_("White rook moves from %1$s to %2$s"),
+                                             /* Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s */
+                                             N_("White rook at %1$s takes the black pawn at %2$s"),
+                                             /* Human Move String: Description of a white rook at %1$s capturing a rook at %2$s */
+                                             N_("White rook at %1$s takes the black rook at %2$s"),
+                                             /* Human Move String: Description of a white rook at %1$s capturing a knight at %2$s */
+                                             N_("White rook at %1$s takes the black knight at %2$s"),
+                                             /* Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s */
+                                             N_("White rook at %1$s takes the black bishop at %2$s"),
+                                             /* Human Move String: Description of a white rook at %1$s capturing a queen at %2$s" */
+                                             N_("White rook at %1$s takes the black queen at %2$s"),
+                                             /* Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3' */
+                                             N_("White knight moves from %1$s to %2$s"),
+                                             /* Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s */
+                                             N_("White knight at %1$s takes the black pawn at %2$s"),
+                                             /* Human Move String: Description of a white knight at %1$s capturing a rook at %2$s */
+                                             N_("White knight at %1$s takes the black rook at %2$s"),
+                                             /* Human Move String: Description of a white knight at %1$s capturing a knight at %2$s */
+                                             N_("White knight at %1$s takes the black knight at %2$s"),
+                                             /* Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s */
+                                             N_("White knight at %1$s takes the black bishop at %2$s"),
+                                             /* Human Move String: Description of a white knight at %1$s capturing a queen at %2$s */
+                                             N_("White knight at %1$s takes the black queen at %2$s"),
+                                             /* Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5' */
+                                             N_("White bishop moves from %1$s to %2$s"),
+                                             /* Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s */
+                                             N_("White bishop at %1$s takes the black pawn at %2$s"),
+                                             /* Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s */
+                                             N_("White bishop at %1$s takes the black rook at %2$s"),
+                                             /* Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s */
+                                             N_("White bishop at %1$s takes the black knight at %2$s"),
+                                             /* Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s */
+                                             N_("White bishop at %1$s takes the black bishop at %2$s"),
+                                             /* Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s */
+                                             N_("White bishop at %1$s takes the black queen at %2$s"),
+                                             /* Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4' */
+                                             N_("White queen moves from %1$s to %2$s"),
+                                             /* Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s */
+                                             N_("White queen at %1$s takes the black pawn at %2$s"),
+                                             /* Human Move String: Description of a white queen at %1$s capturing a rook at %2$s */
+                                             N_("White queen at %1$s takes the black rook at %2$s"),
+                                             /* Human Move String: Description of a white queen at %1$s capturing a knight at %2$s */
+                                             N_("White queen at %1$s takes the black knight at %2$s"),
+                                             /* Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s */
+                                             N_("White queen at %1$s takes the black bishop at %2$s"),
+                                             /* Human Move String: Description of a white queen at %1$s capturing a queen at %2$s */
+                                             N_("White queen at %1$s takes the black queen at %2$s"),
+                                             /* Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1' */
+                                             N_("White king moves from %1$s to %2$s"),
+                                             /* Human Move String: Description of a white king at %1$s capturing a pawn at %2$s */
+                                             N_("White king at %1$s takes the black pawn at %2$s"),
+                                             /* Human Move String: Description of a white king at %1$s capturing a rook at %2$s */
+                                             N_("White king at %1$s takes the black rook at %2$s"),
+                                             /* Human Move String: Description of a white king at %1$s capturing a knight at %2$s */
+                                             N_("White king at %1$s takes the black knight at %2$s"),
+                                             /* Human Move String: Description of a white king at %1$s capturing a bishop at %2$s */
+                                             N_("White king at %1$s takes the black bishop at %2$s"),
+                                             /* Human Move String: Description of a white king at %1$s capturing a queen at %2$s */
+                                             N_("White king at %1$s takes the black queen at %2$s"),
+                                             /* Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6' */
                                              N_("Black pawn moves from %1$s to %2$s"),
+                                             /* Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s */
                                              N_("Black pawn at %1$s takes the white pawn at %2$s"),
+                                             /* Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s */
                                              N_("Black pawn at %1$s takes the white rook at %2$s"),
+                                             /* Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s */
                                              N_("Black pawn at %1$s takes the white knight at %2$s"),
+                                             /* Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s */
                                              N_("Black pawn at %1$s takes the white bishop at %2$s"),
+                                             /* Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s */
                                              N_("Black pawn at %1$s takes the white queen at %2$s"),
                                              /* Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4' */
-                                             N_("Black rook moves from %1s to %2s"),
-                                             N_("Black rook at %1s takes the white pawn at %2s"),
-                                             N_("Black rook at %1s takes the white rook at %2s"),
-                                             N_("Black rook at %1s takes the white knight at %2s"),
-                                             N_("Black rook at %1s takes the white bishop at %2s"),
-                                             N_("Black rook at %1s takes the white queen at %2s"),
-                                             /* Human Move String: Description of a black knight moving from %1s to %2s, e.g. 'b8 to c6' */
-                                             N_("Black knight moves from %1s to %2s"),
-                                             N_("Black knight at %1s takes the white pawn at %2s"),
-                                             N_("Black knight at %1s takes the white rook at %2s"),
-                                             N_("Black knight at %1s takes the white knight at %2s"),
-                                             N_("Black knight at %1s takes the white bishop at %2s"),
-                                             N_("Black knight at %1s takes the white queen at %2s"),
-                                             /* Human Move String: Description of a black bishop moving from %1s to %2s, e.g. 'f8 to b3' */
-                                             N_("Black bishop moves from %1s to %2s"),
-                                             N_("Black bishop at %1s takes the white pawn at %2s"),
-                                             N_("Black bishop at %1s takes the white rook at %2s"),
-                                             N_("Black bishop at %1s takes the white knight at %2s"),
-                                             N_("Black bishop at %1s takes the white bishop at %2s"),
-                                             N_("Black bishop at %1s takes the white queen at %2s"),
-                                             /* Human Move String: Description of a black queen moving from %1s to %2s, e.g. 'd8 to d5' */
-                                             N_("Black queen moves from %1s to %2s"),
-                                             N_("Black queen at %1s takes the white pawn at %2s"),
-                                             N_("Black queen at %1s takes the white rook at %2s"),
-                                             N_("Black queen at %1s takes the white knight at %2s"),
-                                             N_("Black queen at %1s takes the white bishop at %2s"),
-                                             N_("Black queen at %1s takes the white queen at %2s"),
-                                             /* Human Move String: Description of a black king moving from %1s to %2s, e.g. 'e8 to f8' */
-                                             N_("Black king moves from %1s to %2s"),
-                                             N_("Black king at %1s takes the white pawn at %2s"),
-                                             N_("Black king at %1s takes the white rook at %2s"),
-                                             N_("Black king at %1s takes the white knight at %2s"),
-                                             N_("Black king at %1s takes the white bishop at %2s"),
-                                             N_("Black king at %1s takes the white queen at %2s")};
+                                             N_("Black rook moves from %1$s to %2$s"),
+                                             /* Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s */
+                                             N_("Black rook at %1$s takes the white pawn at %2$s"),
+                                             /* Human Move String: Description of a black rook at %1$s capturing a rook at %2$s */
+                                             N_("Black rook at %1$s takes the white rook at %2$s"),
+                                             /* Human Move String: Description of a black rook at %1$s capturing a knight at %2$s */
+                                             N_("Black rook at %1$s takes the white knight at %2$s"),
+                                             /* Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s */
+                                             N_("Black rook at %1$s takes the white bishop at %2$s"),
+                                             /* Human Move String: Description of a black rook at %1$s capturing a queen at %2$s */
+                                             N_("Black rook at %1$s takes the white queen at %2$s"),
+                                             /* Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6' */
+                                             N_("Black knight moves from %1$s to %2$s"),
+                                             /* Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s */
+                                             N_("Black knight at %1$s takes the white pawn at %2$s"),
+                                             /* Human Move String: Description of a black knight at %1$s capturing a rook at %2$s */
+                                             N_("Black knight at %1$s takes the white rook at %2$s"),
+                                             /* Human Move String: Description of a black knight at %1$s capturing a knight at %2$s */
+                                             N_("Black knight at %1$s takes the white knight at %2$s"),
+                                             /* Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s */
+                                             N_("Black knight at %1$s takes the white bishop at %2$s"),
+                                             /* Human Move String: Description of a black knight at %1$s capturing a queen at %2$s */
+                                             N_("Black knight at %1$s takes the white queen at %2$s"),
+                                             /* Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3' */
+                                             N_("Black bishop moves from %1$s to %2$s"),
+                                             /* Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s */
+                                             N_("Black bishop at %1$s takes the white pawn at %2$s"),
+                                             /* Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s */
+                                             N_("Black bishop at %1$s takes the white rook at %2$s"),
+                                             /* Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s */
+                                             N_("Black bishop at %1$s takes the white knight at %2$s"),
+                                             /* Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s */
+                                             N_("Black bishop at %1$s takes the white bishop at %2$s"),
+                                             /* Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s */
+                                             N_("Black bishop at %1$s takes the white queen at %2$s"),
+                                             /* Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5' */
+                                             N_("Black queen moves from %1$s to %2$s"),
+                                             /* Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s */
+                                             N_("Black queen at %1$s takes the white pawn at %2$s"),
+                                             /* Human Move String: Description of a black queen at %1$s capturing a rook at %2$s */
+                                             N_("Black queen at %1$s takes the white rook at %2$s"),
+                                             /* Human Move String: Description of a black queen at %1$s capturing a knight at %2$s */
+                                             N_("Black queen at %1$s takes the white knight at %2$s"),
+                                             /* Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s */
+                                             N_("Black queen at %1$s takes the white bishop at %2$s"),
+                                             /* Human Move String: Description of a black queen at %1$s capturing a queen at %2$s */
+                                             N_("Black queen at %1$s takes the white queen at %2$s"),
+                                             /* Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8' */
+                                             N_("Black king moves from %1$s to %2$s"),
+                                             /* Human Move String: Description of a black king at %1$s capturing a pawn at %2$s */
+                                             N_("Black king at %1$s takes the white pawn at %2$s"),
+                                             /* Human Move String: Description of a black king at %1$s capturing a rook at %2$s */
+                                             N_("Black king at %1$s takes the white rook at %2$s"),
+                                             /* Human Move String: Description of a black king at %1$s capturing a knight at %2$s */
+                                             N_("Black king at %1$s takes the white knight at %2$s"),
+                                             /* Human Move String: Description of a black king at %1$s capturing a bishop at %2$s */
+                                             N_("Black king at %1$s takes the white bishop at %2$s"),
+                                             /* Human Move String: Description of a black king at %1$s capturing a queen at %2$s" */
+                                             N_("Black king at %1$s takes the white queen at %2$s")};
 
         var move_text = "";
         switch (view_options.move_format)
