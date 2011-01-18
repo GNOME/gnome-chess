@@ -39,7 +39,7 @@ public class Application
     private PGNGame pgn_game;
     private ChessGame game;
     private bool in_history;
-    private File autosave_file;
+    private File game_file;
     private List<AIProfile> ai_profiles;
     private ChessPlayer? opponent = null;
     private ChessEngine? opponent_engine = null;
@@ -116,11 +116,11 @@ public class Application
         {
             try
             {
-                if (autosave_file != null)
-                    history.update (autosave_file, "", pgn_game.result);
+                if (game_file != null)
+                    history.update (game_file, "", pgn_game.result);
                 else
-                    autosave_file = history.add (pgn_game.date, pgn_game.result);
-                pgn_game.write (autosave_file);
+                    game_file = history.add (pgn_game.date, pgn_game.result);
+                pgn_game.write (game_file);
             }
             catch (Error e)
             {
@@ -187,6 +187,20 @@ public class Application
 
     private void start_game ()
     {
+        if (in_history)
+        {
+            window.title = /* Title of the main window */
+                           _("Chess");
+        }
+        else
+        {
+            var path = game_file.get_path ();
+            window.title = /* Title of the window when explicitly loaded a file. The first argument is the
+                            * base name of the file (e.g. test.pgn), the second argument is the directory
+                            * (e.g. /home/fred) */
+                           _("%$1s (%$2s) - Chess").printf (Path.get_basename (path), Path.get_dirname (path));
+        }
+
         if (pgn_game.set_up)
         {
             if (pgn_game.fen != null)
@@ -344,8 +358,8 @@ public class Application
             var unfinished = history.get_unfinished ();
             if (unfinished != null)
             {
-                autosave_file = unfinished.data;
-                load_game (autosave_file, true);
+                var file = unfinished.data;
+                load_game (file, true);
             }
             else
                 start_new_game ();
@@ -1281,6 +1295,8 @@ public class Application
     private void start_new_game ()
     {
         in_history = true;
+        game_file = null;
+
         pgn_game = new PGNGame ();
         var now = new DateTime.now_local ();
         pgn_game.date = now.format ("%Y.%m.%d");
@@ -1311,6 +1327,7 @@ public class Application
         var pgn = new PGN.from_file (file);
         pgn_game = pgn.games.nth_data (0);
 
+        game_file = file;
         this.in_history = in_history;
         start_game ();
     }
