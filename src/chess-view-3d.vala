@@ -2,11 +2,6 @@ using GL;
 using GLU;
 using GLX;
 
-// TEMP: This should be in the standard gdk-x11-3.0.vapi any day soon
-// https://bugzilla.gnome.org/show_bug.cgi?id=639467
-[CCode (cheader_filename = "gdk/gdkx.h")]
-private static extern X.ID gdk_x11_window_get_xid (Gdk.Window window);
-
 private class ChessView3D : ChessView
 {
     private GLX.Context context = (GLX.Context) null;
@@ -164,9 +159,9 @@ private class ChessView3D : ChessView
                               GLX_ACCUM_GREEN_SIZE, 1,
                               GLX_ACCUM_BLUE_SIZE, 1,
                               0 }; /* NOTE: Should be None (from X11) but that is a pointer and Vala doesn't like that */
-        drawable = gdk_x11_window_get_xid (get_window ());
-        display = Gdk.x11_display_get_xdisplay (get_window ().get_display ());
-        var screen = Gdk.x11_screen_get_screen_number (get_screen ());
+        drawable = Gdk.X11Window.get_xid (get_window ());
+        display = Gdk.X11Display.get_xdisplay (get_window ().get_display ());
+        var screen = Gdk.X11Screen.get_screen_number (get_screen ());
         var visual = glXChooseVisual (display, screen, attributes);
         if (visual == null)
             warning ("Failed to get GLX visual on display %p, screen %d", display, screen);
