@@ -167,6 +167,7 @@ public class Application
         next_move_button.sensitive = move_number < n_moves;
         last_move_button.sensitive = n_moves > 0 && move_number != n_moves;
 
+        /* Set move text for all moves (it may have changed format) */
         int i = n_moves;
         foreach (var state in game.move_stack)
         {
@@ -178,6 +179,8 @@ public class Application
             }
             i--;
         }
+
+        history_combo.set_active (move_number);
     }
 
     private void options_changed_cb (ChessViewOptions options)
@@ -600,9 +603,11 @@ public class Application
         Gtk.TreeIter iter;
         var model = (Gtk.ListStore) history_combo.model;
         model.append (out iter);
-        model.set (iter, 1, game.n_moves, -1);        
+        model.set (iter, 1, move.number, -1);        
         set_move_text (iter, move);
-        if (view_options.move_number == -1)
+
+        /* Follow the latest move */
+        if (move.number == game.n_moves && view_options.move_number == -1)
             history_combo.set_active_iter (iter);
 
         save_menu.sensitive = true;
