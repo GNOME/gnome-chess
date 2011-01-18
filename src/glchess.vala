@@ -201,18 +201,29 @@ public class Application
                            _("%1$s (%2$s) - Chess").printf (Path.get_basename (path), Path.get_dirname (path));
         }
 
+        var model = (Gtk.ListStore) history_combo.model;
+        model.clear ();
+        Gtk.TreeIter iter;
+        model.append (out iter);
+        model.set (iter, 0,
+                   /* Move History Combo: Go to the start of the game */
+                   _("Game Start"), 1, 0, -1);
+        history_combo.set_active_iter (iter);
+
+        string fen = ChessGame.STANDARD_SETUP;
+        string[] moves = new string[pgn_game.moves.length ()];
+        var i = 0;
+        foreach (var move in pgn_game.moves)
+            moves[i++] = move;
+
         if (pgn_game.set_up)
         {
             if (pgn_game.fen != null)
-                game = new ChessGame (pgn_game.fen);
+                fen = pgn_game.fen;
             else
-            {
                 warning ("Chess game has SetUp tag but no FEN tag");
-                game = new ChessGame ();            
-            }
         }
-        else
-            game = new ChessGame ();
+        game = new ChessGame (fen, moves);
 
         if (pgn_game.time_control != null)
         {
@@ -232,15 +243,6 @@ public class Application
         game.ended.connect (game_end_cb);
         if (game.clock != null)
             game.clock.tick.connect (game_clock_tick_cb);
-
-        var model = (Gtk.ListStore) history_combo.model;
-        model.clear ();
-        Gtk.TreeIter iter;
-        model.append (out iter);
-        model.set (iter, 0,
-                   /* Move History Combo: Go to the start of the game */
-                   _("Game Start"), 1, 0, -1);
-        history_combo.set_active_iter (iter);
 
         view_options.game = game;
         info_bar.hide ();
@@ -279,16 +281,17 @@ public class Application
             opponent_engine.start ();
         }
 
-        game.start ();
-        foreach (var move in pgn_game.moves)
+        /* Replay current moves */
+        for (var j = (int) game.move_stack.length () - 2; j >= 0; j--)
         {
-            debug ("Move: %s", move);
-            if (!game.current_player.move (move))
-            {
-                warning ("Invalid move: %s", move);
-                break;
-            }
+            var state = game.move_stack.nth_data (j);
+            game_move_cb (game, state.last_move);
         }
+
+        game.start ();
+
+        if (game.result != ChessResult.IN_PROGRESS)
+            game_end_cb (game);
 
         white_time_label.queue_draw ();
         black_time_label.queue_draw ();
@@ -815,7 +818,7 @@ public class Application
             return;
         int move_number;
         combo.model.get (iter, 1, out move_number, -1);
-        if (move_number == game.n_moves)
+        if (game == null || move_number == game.n_moves)
             move_number = -1;
         view_options.move_number = move_number;
     }

@@ -9,7 +9,6 @@ public class ChessPlayer : Object
     public Color color;
     public signal void start_turn ();
     public signal bool do_move (string move, bool apply);
-    public signal bool do_move_with_coords (int r0, int f0, int r1, int f1, bool apply);
     public signal bool do_resign ();
     public signal bool do_claim_draw ();
 
@@ -25,7 +24,8 @@ public class ChessPlayer : Object
 
     public bool move_with_coords (int r0, int f0, int r1, int f1, bool apply = true)
     {
-        return do_move_with_coords (r0, f0, r1, f1, apply);
+        string move = "%c%d%c%d".printf ('a' + f0, r0 + 1, 'a' + f1, r1 + 1);    
+        return do_move (move, apply);
     }
 
     public bool resign ()
@@ -878,6 +878,8 @@ public class ChessGame
     public ChessRule rule;
     public List<ChessState> move_stack;
 
+    public const string STANDARD_SETUP = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+
     public signal void started ();
     public signal void turn_started (ChessPlayer player);
     public signal void moved (ChessMove move);
@@ -907,51 +909,46 @@ public class ChessGame
         }
     }
 
-    public ChessGame (string fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
+    public ChessGame (string fen = STANDARD_SETUP, string[]? moves = null)
     {
         is_started = false;
         move_stack.prepend (new ChessState (fen));
         result = ChessResult.IN_PROGRESS;
 
+        if (moves != null)
+        {
+            for (var i = 0; i < moves.length; i++)
+            {
+                if (!do_move (current_player, moves[i], true))
+                    warning ("Invalid move %s", moves[i]);
+            }
+        }
+
         white.do_move.connect (move_cb);
-        white.do_move_with_coords.connect (move_with_coords_cb);
         white.do_resign.connect (resign_cb);
         white.do_claim_draw.connect (claim_draw_cb);
         black.do_move.connect (move_cb);
-        black.do_move_with_coords.connect (move_with_coords_cb);
         black.do_resign.connect (resign_cb);
         black.do_claim_draw.connect (claim_draw_cb);
     }
 
     private bool move_cb (ChessPlayer player, string move, bool apply)
     {
-        return do_move (player, move, -1, -1, -1, -1, apply);
-    }
-
-    private bool move_with_coords_cb (ChessPlayer player, int r0, int f0, int r1, int f1, bool apply)
-    {
-        return do_move (player, null, r0, f0, r1, f1, apply);
-    }
-
-    private bool do_move (ChessPlayer player, string? move, int r0, int f0, int r1, int f1, bool apply)
-    {
         if (!is_started)
             return false;
+
+        return do_move (player, move, apply);
+    }
+
+    private bool do_move (ChessPlayer player, string? move, bool apply)
+    {
         if (player != current_player)
             return false;
 
         var state = move_stack.data.copy ();
         state.number++;
-        if (move != null)
-        {
-            if (!state.move (move, apply))
-                return false;
-        }
-        else
-        {
-            if (!state.move_with_coords (player, r0, f0, r1, f1, PieceType.QUEEN, apply))
-                return false;
-        }
+        if (!state.move (move, apply))
+            return false;
 
         if (!apply)
             return true;
@@ -966,6 +963,7 @@ public class ChessGame
 
         if (_clock != null)
             _clock.active_color = current_player.color;
+
         current_player.start_turn ();
         turn_started (current_player);
 
@@ -999,11 +997,12 @@ public class ChessGame
 
     public void start ()
     {
+        if (result != ChessResult.IN_PROGRESS)
+            return;
+
         if (is_started)
             return;
         is_started = true;
-
-        reset ();
 
         if (_clock != null)
         {
@@ -1045,14 +1044,6 @@ public class ChessGame
     public uint n_moves
     {
         get { return move_stack.length() - 1; }
-    }
-
-    private void reset ()
-    {
-        result = ChessResult.IN_PROGRESS;
-        var state = move_stack.data;
-        move_stack = null;
-        move_stack.prepend (state);
     }
 
     private void stop (ChessResult result, ChessRule rule)
