@@ -3,20 +3,32 @@ class GlChess
     static int test_count = 0;
     static int failure_count = 0;
 
-    private static void test_good_move (string fen, string move, string result_fen)
+    private static void test_good_move (string fen, string move, string result_fen, CheckState check_state)
     {
         ChessState state = new ChessState (fen);
         test_count++;
         if (!state.move (move))
         {
-            stderr.printf ("Not allowed to do valid move: %s : %s\n", fen, move);
+            stderr.printf ("%d. Not allowed to do valid move: %s : %s\n", test_count, fen, move);
             failure_count++;
+            return;
         }
-        else if (state.get_fen () != result_fen)
+
+        if (state.get_fen () != result_fen)
         {
-            stderr.printf ("Move led to invalid result: %s : %s -> %s, not %s\n", fen, move, state.get_fen (), result_fen);
+            stderr.printf ("%d. Move led to invalid state: %s : %s -> %s, not %s\n", test_count, fen, move, state.get_fen (), result_fen);
             failure_count++;
+            return;
         }
+
+        if (state.check_state != check_state)
+        {
+            stderr.printf ("%d. Move led to invalid check state: %s : %s -> %d, not %d\n", test_count, fen, move, state.check_state, check_state);
+            failure_count++;
+            return;
+        }
+
+        stderr.printf ("%d. %s + %s -> %s OK\n", test_count, fen, move, result_fen);
     }
 
     private static void test_bad_move (string fen, string move)
@@ -25,38 +37,41 @@ class GlChess
         test_count++;
         if (state.move (move, false))
         {
-            stderr.printf ("Allowed to do invalid move: %s : %s\n", fen, move);
+            stderr.printf ("%d. Allowed to do invalid move: %s : %s\n", test_count, fen, move);
             failure_count++;
+            return;
         }
+
+        stderr.printf ("%d. %s + %s -> invalid OK\n", test_count, fen, move);
     }
 
     public static int main (string[] args)
     {
         /* Pawn move */
         test_good_move ("8/8/8/8/8/8/P7/8 w - - 0 1", "a2a3",
-                        "8/8/8/8/8/P7/8/8 b - - 0 1");
+                        "8/8/8/8/8/P7/8/8 b - - 0 1", CheckState.NONE);
 
         /* Pawn march */
         test_good_move ("8/8/8/8/8/8/P7/8 w - - 0 1", "a2a4",
-                        "8/8/8/8/P7/8/8/8 b - a3 0 1");
+                        "8/8/8/8/P7/8/8/8 b - a3 0 1", CheckState.NONE);
 
         /* Pawn march only allowed from baseline */
         test_bad_move ("8/8/8/8/8/P7/8/8 w - - 0 1", "a2a5");
         
         /* En passant */
         test_good_move ("8/8/8/pP6/8/8/8/8 w - a6 0 1", "b5a6",
-                        "8/8/P7/8/8/8/8/8 b - - 0 1");
+                        "8/8/P7/8/8/8/8/8 b - - 0 1", CheckState.NONE);
 
         /* Can't en passant if wasn't allowed */
         test_bad_move ("8/8/8/pP6/8/8/8/8 w - - 0 1", "b5a6");
 
         /* Castle kingside */
         test_good_move ("8/8/8/8/8/8/8/4K2R w K - 0 1", "O-O",
-                        "8/8/8/8/8/8/8/5RK1 b - - 0 1");
+                        "8/8/8/8/8/8/8/5RK1 b - - 0 1", CheckState.NONE);
 
         /* Castle queenside */
         test_good_move ("8/8/8/8/8/8/8/R3K3 w Q - 0 1", "O-O-O",
-                        "8/8/8/8/8/8/8/2KR4 b - - 0 1");
+                        "8/8/8/8/8/8/8/2KR4 b - - 0 1", CheckState.NONE);
 
         /* Can't castle if pieces moved */
         test_bad_move ("8/8/8/8/8/8/8/4K2R w - - 0 1", "O-O");

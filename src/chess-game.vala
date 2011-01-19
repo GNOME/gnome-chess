@@ -192,6 +192,13 @@ public class ChessMove
     }
 }
 
+public enum CheckState
+{
+    NONE,
+    CHECK,
+    CHECKMATE
+}
+
 public class ChessState
 {
     public int number = 0;
@@ -204,7 +211,7 @@ public class ChessState
     public bool can_castle_kingside[2];
     public bool can_castle_queenside[2];
     public int en_passant_index = -1;
-    public bool in_check;
+    public CheckState check_state;
 
     public ChessPiece board[64];
     public ChessMove? last_move = null;
@@ -300,7 +307,7 @@ public class ChessState
         if (current_player.color == Color.BLACK)
             number++;
 
-        in_check = is_in_check (current_player);
+        check_state = get_check_state (current_player);
     }
 
     public ChessState copy ()
@@ -316,7 +323,7 @@ public class ChessState
         state.can_castle_kingside[Color.BLACK] = can_castle_kingside[Color.BLACK];
         state.can_castle_queenside[Color.BLACK] = can_castle_queenside[Color.BLACK];
         state.en_passant_index = en_passant_index;
-        state.in_check = in_check;
+        state.check_state = check_state;
         if (last_move != null)
             state.last_move = last_move.copy();
         for (int i = 0; i < 64; i++)
@@ -517,7 +524,7 @@ public class ChessState
                     return false;
 
                 /* Can't castle when in check */
-                if (in_check)
+                if (check_state == CheckState.CHECK)
                     return false;
 
                 /* Square moved across can't be under attack */
@@ -569,7 +576,6 @@ public class ChessState
         var old_black_can_castle_kingside = can_castle_kingside[Color.BLACK];
         var old_black_can_castle_queenside = can_castle_queenside[Color.BLACK];
         var old_en_passant_index = en_passant_index;
-        var old_in_check = in_check;
 
         /* Update board */
         board[start] = null;
@@ -619,15 +625,11 @@ public class ChessState
 
         /* Test if this move would leave that player in check */
         bool result = true;
-        if (test_check)
-        {
-            in_check = is_in_check (player);
-            if (in_check)
-                result = false;
-        }
+        if (test_check && is_in_check (player))
+            result = false;
 
         /* Undo move */
-        if (!apply || in_check)
+        if (!apply || !result)
         {
             board[start] = piece;
             board[end] = null;
@@ -646,11 +648,9 @@ public class ChessState
             can_castle_kingside[Color.BLACK] = old_black_can_castle_kingside;
             can_castle_queenside[Color.BLACK] = old_black_can_castle_queenside;
             en_passant_index = old_en_passant_index;
-            in_check = old_in_check;
-        }
 
-        if (!apply || in_check)
             return result;
+        }
 
         current_player = color == Color.WHITE ? players[Color.BLACK] : players[Color.WHITE];
 
@@ -669,10 +669,24 @@ public class ChessState
         last_move.ambiguous_rank = ambiguous_rank;
         last_move.ambiguous_file = ambiguous_file;
 
+        check_state = get_check_state (current_player);
+
         return true;
     }
 
-    public bool is_in_check (ChessPlayer player)
+    private CheckState get_check_state (ChessPlayer player)
+    {
+        if (is_in_check (player))
+        {
+            if (is_in_checkmate (player))
+                return CheckState.CHECKMATE;
+            else
+                return CheckState.CHECK;
+        }
+        return CheckState.NONE;
+    }
+
+    private bool is_in_check (ChessPlayer player)
     {
         var opponent = player.color == Color.WHITE ? players[Color.BLACK] : players[Color.WHITE];
 
@@ -693,7 +707,7 @@ public class ChessState
         return false;
     }
 
-    public bool is_in_checkmate (ChessPlayer player)
+    private bool is_in_checkmate (ChessPlayer player)
     {
         for (int king_index = 0; king_index < 64; king_index++)
         {
@@ -703,10 +717,10 @@ public class ChessState
                 /* See if the king can move */
                 for (int i = 0; i < 64; i++)
                 {
-                    if (move_with_coords (opponent,
+                    if (move_with_coords (player,
                                           get_rank (king_index), get_file (king_index),
                                           get_rank (i), get_file (i),
-                                          PieceType.QUEEN, true, false))
+                                          PieceType.QUEEN, false, true))
                         return false;
                 }
             }
@@ -983,7 +997,7 @@ public class ChessGame
             state.last_move.moved_rook.moved ();
         moved (state.last_move);
 
-        if (state.is_in_check (current_player) && state.is_in_checkmate (current_player))
+        if (state.check_state == CheckState.CHECKMATE)
         {
             if (current_player.color == Color.WHITE)
                 stop (ChessResult.BLACK_WON, ChessRule.CHECKMATE);
