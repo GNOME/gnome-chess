@@ -1063,9 +1063,17 @@ public class Application
 
     private int get_duration ()
     {
+        Gtk.TreeIter iter;
+        if (duration_combo.get_active_iter (out iter))
+        {
+            int duration;
+            duration_combo.model.get (iter, 1, out duration, -1);
+            if (duration >= 0)
+                return duration;
+        }
+    
         var magnitude = (int) duration_adjustment.value;
         int multiplier = 1;
-        Gtk.TreeIter iter;
         if (custom_duration_units_combo.get_active_iter (out iter))
             custom_duration_units_combo.model.get (iter, 1, out multiplier, -1);
         return magnitude * multiplier;
@@ -1141,6 +1149,8 @@ public class Application
         /* Default to 5 minutes when setting custom duration */
         else if (get_duration () <= 0)
             set_duration (5 * 60, false);
+
+        save_duration ();
     }
 
     [CCode (cname = "G_MODULE_EXPORT preferences_response_cb", instance_pos = -1)]
