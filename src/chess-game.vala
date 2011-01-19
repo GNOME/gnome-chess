@@ -649,7 +649,7 @@ public class ChessState
             in_check = old_in_check;
         }
 
-        if (!apply)
+        if (!apply || in_check)
             return result;
 
         current_player = color == Color.WHITE ? players[Color.BLACK] : players[Color.WHITE];
@@ -672,7 +672,7 @@ public class ChessState
         return true;
     }
 
-    private bool is_in_check (ChessPlayer player)
+    public bool is_in_check (ChessPlayer player)
     {
         var opponent = player.color == Color.WHITE ? players[Color.BLACK] : players[Color.WHITE];
 
@@ -691,6 +691,28 @@ public class ChessState
         }
 
         return false;
+    }
+
+    public bool is_in_checkmate (ChessPlayer player)
+    {
+        for (int king_index = 0; king_index < 64; king_index++)
+        {
+            var p = board[king_index];
+            if (p != null && p.player == player && p.type == PieceType.KING)
+            {
+                /* See if the king can move */
+                for (int i = 0; i < 64; i++)
+                {
+                    if (move_with_coords (opponent,
+                                          get_rank (king_index), get_file (king_index),
+                                          get_rank (i), get_file (i),
+                                          PieceType.QUEEN, true, false))
+                        return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     private bool decode_piece_type (unichar c, out PieceType type)
@@ -961,11 +983,20 @@ public class ChessGame
             state.last_move.moved_rook.moved ();
         moved (state.last_move);
 
-        if (_clock != null)
-            _clock.active_color = current_player.color;
-
-        current_player.start_turn ();
-        turn_started (current_player);
+        if (state.is_in_check (current_player) && state.is_in_checkmate (current_player))
+        {
+            if (current_player.color == Color.WHITE)
+                stop (ChessResult.BLACK_WON, ChessRule.CHECKMATE);
+            else
+                stop (ChessResult.WHITE_WON, ChessRule.CHECKMATE);
+        }
+        else
+        {
+            if (_clock != null)
+                _clock.active_color = current_player.color;
+            current_player.start_turn ();
+            turn_started (current_player);
+        }
 
         return true;
     }
