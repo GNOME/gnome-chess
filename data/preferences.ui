@@ -579,15 +579,15 @@
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for easy game difficulty">Easy</col>
+        <col id="0" translatable="yes" context="difficulty" comments="Preferences Dialog: Combo box entry for easy game difficulty">Easy</col>
         <col id="1">easy</col>
       </row>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for normal game difficulty">Normal</col>
+        <col id="0" translatable="yes" context="difficulty" comments="Preferences Dialog: Combo box entry for normal game difficulty">Normal</col>
         <col id="1">normal</col>
       </row>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for hard game difficulty">Hard</col>
+        <col id="0" translatable="yes" context="difficulty" comments="Preferences Dialog: Combo box entry for hard game difficulty">Hard</col>
         <col id="1">hard</col>
       </row>
     </data>
@@ -601,7 +601,7 @@
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for human opponent">Human</col>
+        <col id="0" translatable="yes" context="chess-opponent" comments="Preferences Dialog: Combo box entry for human opponent">Human</col>
         <col id="1">human</col>
       </row>
     </data>
@@ -615,11 +615,11 @@
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for playing as white">White</col>
+        <col id="0" translatable="yes" context="chess-player" comments="Preferences Dialog: Combo box entry for playing as white">White</col>
         <col id="1">False</col>
       </row>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for playing as black">Black</col>
+        <col id="0" translatable="yes" context="chess-player" comments="Preferences Dialog: Combo box entry for playing as black">Black</col>
         <col id="1">False</col>
       </row>
     </data>
@@ -685,23 +685,23 @@
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for setting the board orientation to the white side">White Side</col>
+        <col id="0" translatable="yes" context="chess-side" comments="Preferences Dialog: Combo box entry for setting the board orientation to the white side">White Side</col>
         <col id="1">white</col>
       </row>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for setting the board orientation to the black side">Black Side</col>
+        <col id="0" translatable="yes" context="chess-side" comments="Preferences Dialog: Combo box entry for setting the board orientation to the black side">Black Side</col>
         <col id="1">black</col>
       </row>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on">Human Side</col>
+        <col id="0" translatable="yes" context="chess-side" comments="Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on">Human Side</col>
         <col id="1">human</col>
       </row>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on">Current Player</col>
+        <col id="0" translatable="yes" context="chess-side" comments="Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on">Current Player</col>
         <col id="1">current</col>
       </row>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)">Face to Face</col>
+        <col id="0" translatable="yes" context="chess-side" comments="Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)">Face to Face</col>
         <col id="1">facetoface</col>
       </row>
     </data>
@@ -715,19 +715,19 @@
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions">Human</col>
+        <col id="0" translatable="yes" context="chess-move-format" comments="Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions">Human</col>
         <col id="1">human</col>
       </row>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)">Standard Algebraic</col>
+        <col id="0" translatable="yes" context="chess-move-format" comments="Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)">Standard Algebraic</col>
         <col id="1">san</col>
       </row>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)">Figurine</col>
+        <col id="0" translatable="yes" context="chess-move-format" comments="Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)">Figurine</col>
         <col id="1">fan</col>
       </row>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)">Long Algebraic</col>
+        <col id="0" translatable="yes" context="chess-move-format"  comments="Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)">Long Algebraic</col>
         <col id="1">lan</col>
       </row>
     </data>
@@ -741,19 +741,19 @@
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for setting the promition type to a queen">Queen</col>
+        <col id="0" translatable="yes" context="chess-piece" comments="Preferences Dialog: Combo box entry for setting the promition type to a queen">Queen</col>
         <col id="1">queen</col>
       </row>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for setting the promition type to a knight">Knight</col>
+        <col id="0" translatable="yes" context="chess-piece" comments="Preferences Dialog: Combo box entry for setting the promition type to a knight">Knight</col>
         <col id="1">knight</col>
       </row>
       <row>
-        <col id="0" translatable="yes" comments="Preferences Dialog: Combo box entry for setting the promition type to a rook">Rook</col>
+        <col id="0" translatable="yes" context="chess-piece" comments="Preferences Dialog: Combo box entry for setting the promition type to a rook">Rook</col>
         <col id="1">rook</col>
       </row>
       <row>
-        <col id="0" translatable="yes"  comments="Preferences Dialog: Combo box entry for setting the promition type to a bishop">Bishop</col>
+        <col id="0" translatable="yes" context="chess-piece" comments="Preferences Dialog: Combo box entry for setting the promition type to a bishop">Bishop</col>
         <col id="1">bishop</col>
       </row>
     </data>
