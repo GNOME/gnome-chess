@@ -1016,6 +1016,8 @@ public class Application
     {
         var model = custom_duration_units_combo.model;
         Gtk.TreeIter iter, max_iter = {};
+
+        /* Find the largest units that can be used for this value */
         int max_multiplier = 0;
         if (model.get_iter_first (out iter))
         {
@@ -1030,9 +1032,13 @@ public class Application
                 }
             } while (model.iter_next (ref iter));
         }
+
+        /* Set the spin button to the value with the chosen units */
+        var value = 0;
         if (max_multiplier > 0)
         {
-            duration_adjustment.value = duration / max_multiplier;
+            value = duration / max_multiplier;
+            duration_adjustment.value = value;
             custom_duration_units_combo.set_active_iter (max_iter);
         }
 
@@ -1074,11 +1080,49 @@ public class Application
     }
 
     [CCode (cname = "G_MODULE_EXPORT duration_changed_cb", instance_pos = -1)]
-    public void duration_changed_cb (Gtk.Widget widget)
+    public void duration_changed_cb (Gtk.Adjustment adjustment)
     {
+        var model = (Gtk.ListStore) custom_duration_units_combo.model;
+        Gtk.TreeIter iter;
+        /* Set the unit labels to the correct plural form */
+        if (model.get_iter_first (out iter))
+        {
+            do
+            {
+                int multiplier;
+                model.get (iter, 1, out multiplier, -1);
+                switch (multiplier)
+                {
+                case 1:
+                    model.set (iter, 0, ngettext (/* Preferences Dialog: Combo box entry for a custom game timer set in seconds */
+                                                  "second", "seconds", (ulong) adjustment.value), -1);
+                    break;
+                case 60:
+                    model.set (iter, 0, ngettext (/* Preferences Dialog: Combo box entry for a custom game timer set in minutes */
+                                                  "minute", "minutes", (ulong) adjustment.value), -1);
+                    break;
+                case 3600:
+                    model.set (iter, 0, ngettext (/* Preferences Dialog: Combo box entry for a custom game timer set in hours */
+                                                  "hour", "hours", (ulong) adjustment.value), -1);
+                    break;
+                }
+            } while (model.iter_next (ref iter));
+        }
+
+        save_duration ();
+    }
+
+    [CCode (cname = "G_MODULE_EXPORT duration_units_changed_cb", instance_pos = -1)]
+    public void duration_units_changed_cb (Gtk.Widget widget)
+    {
+        save_duration ();
+    }
+
+    private void save_duration ()
+    {
+        /* Delay writing the value as it this event will be generated a lot spinning through the value */
         if (save_duration_timeout != 0)
             Source.remove (save_duration_timeout);
-        /* Do this delayed as it might change a lot being connected to a spin button */
         save_duration_timeout = Timeout.add (100, save_duration_cb);
     }
 
