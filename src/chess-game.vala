@@ -1041,9 +1041,10 @@ public class ChessGame
         if (!is_started)
             return false;
 
-        // FIXME: Check if can
-
-        stop (ChessResult.DRAW, ChessRule.FIFTY_MOVES);
+        if (move_stack.data.halfmove_clock >= 50)
+            stop (ChessResult.DRAW, ChessRule.FIFTY_MOVES);
+        else
+            return false;
 
         return true;
     }
