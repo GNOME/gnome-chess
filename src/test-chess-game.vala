@@ -67,11 +67,11 @@ class GlChess
 
         /* Castle kingside */
         test_good_move ("8/8/8/8/8/8/8/4K2R w K - 0 1", "O-O",
-                        "8/8/8/8/8/8/8/5RK1 b - - 0 1");
+                        "8/8/8/8/8/8/8/5RK1 b - - 1 1");
 
         /* Castle queenside */
         test_good_move ("8/8/8/8/8/8/8/R3K3 w Q - 0 1", "O-O-O",
-                        "8/8/8/8/8/8/8/2KR4 b - - 0 1");
+                        "8/8/8/8/8/8/8/2KR4 b - - 1 1");
 
         /* Can't castle if pieces moved */
         test_bad_move ("8/8/8/8/8/8/8/4K2R w - - 0 1", "O-O");
@@ -90,11 +90,11 @@ class GlChess
 
         /* Check */
         test_good_move ("k7/8/8/8/8/8/8/1R6 w - - 0 1", "b1a1",
-                        "k7/8/8/8/8/8/8/R7 b - - 0 1", CheckState.CHECK);
+                        "k7/8/8/8/8/8/8/R7 b - - 1 1", CheckState.CHECK);
 
         /* Checkmate */
         test_good_move ("k7/8/8/8/8/8/1R6/1R6 w - - 0 1", "b1a1",
-                        "k7/8/8/8/8/8/1R6/R7 b - - 0 1", CheckState.CHECKMATE);
+                        "k7/8/8/8/8/8/1R6/R7 b - - 1 1", CheckState.CHECKMATE);
 
         stdout.printf ("%d/%d tests successful\n", test_count - failure_count, test_count);
 

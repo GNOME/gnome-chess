@@ -212,6 +212,7 @@ public class ChessState
     public bool can_castle_queenside[2];
     public int en_passant_index = -1;
     public CheckState check_state;
+    public int halfmove_clock;
 
     public ChessPiece board[64];
     public ChessMove? last_move = null;
@@ -299,8 +300,8 @@ public class ChessState
             en_passant_index = get_index (fields[3][1] - '1', fields[3][0] - 'a');
         }
 
-        /* Field 5: Halfmove count */
-        // FIXME
+        /* Field 5: Halfmove clock */
+        halfmove_clock = fields[4].to_int ();
 
         /* Field 6: Fullmove number */
         number = (fields[5].to_int () - 1) * 2;
@@ -386,9 +387,8 @@ public class ChessState
         else
             value.append_c ('-');
 
-        // FIXME: Halfmove count
         value.append_c (' ');
-        value.append_c ('0');
+        value.append_printf ("%d", halfmove_clock);
 
         value.append_c (' ');
         if (current_player.color == Color.WHITE)
@@ -576,6 +576,7 @@ public class ChessState
         var old_black_can_castle_kingside = can_castle_kingside[Color.BLACK];
         var old_black_can_castle_queenside = can_castle_queenside[Color.BLACK];
         var old_en_passant_index = en_passant_index;
+        var old_halfmove_clock = halfmove_clock;
 
         /* Update board */
         board[start] = null;
@@ -623,6 +624,12 @@ public class ChessState
         else
             en_passant_index = -1;
 
+        /* Reset halfmove count when pawn moved or piece taken */
+        if (piece.type == PieceType.PAWN || victim != null)
+            halfmove_clock = 0;
+        else
+            halfmove_clock++;
+
         /* Test if this move would leave that player in check */
         bool result = true;
         if (test_check && is_in_check (player))
@@ -648,6 +655,7 @@ public class ChessState
             can_castle_kingside[Color.BLACK] = old_black_can_castle_kingside;
             can_castle_queenside[Color.BLACK] = old_black_can_castle_queenside;
             en_passant_index = old_en_passant_index;
+            halfmove_clock = old_halfmove_clock;
 
             return result;
         }
