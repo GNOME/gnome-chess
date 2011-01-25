@@ -88,6 +88,10 @@ class GlChess
         /* Can't move into check */
         test_bad_move ("4r3/8/8/8/8/8/4R3/4K3 w - - 0 1", "e2f2");
 
+        /* Check */
+        test_good_move ("k7/8/8/8/8/8/8/1R6 w - - 0 1", "b1a1",
+                        "k7/8/8/8/8/8/8/R7 b - - 0 1", CheckState.CHECK);
+
         /* Checkmate */
         test_good_move ("k7/8/8/8/8/8/1R6/1R6 w - - 0 1", "b1a1",
                         "k7/8/8/8/8/8/1R6/R7 b - - 0 1", CheckState.CHECKMATE);
