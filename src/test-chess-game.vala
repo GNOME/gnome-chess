@@ -128,6 +128,9 @@ class GlChess
         /* Need 50 moves for 50 move rule */
         //test_bad_move ("p7/8/8/8/8/8/8/P7 w - - 49 1", "draw");
 
+        /* Three fold repetition */
+        // FIXME: Need a test for three fold repetition
+
         stdout.printf ("%d/%d tests successful\n", test_count - failure_count, test_count);
 
         return failure_count;

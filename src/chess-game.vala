@@ -371,6 +371,36 @@ public class ChessState
         return state;
     }
 
+    public bool equals (ChessState state)
+    {
+        /* Check first if there is the same layout of pieces (unlikely),
+         * then the move castling and en-passant state are the same,
+         * then finally that it is the same move */
+        if (piece_masks[Color.WHITE] != state.piece_masks[Color.WHITE] ||
+            piece_masks[Color.BLACK] != state.piece_masks[Color.BLACK] || 
+            can_castle_kingside[Color.WHITE] != state.can_castle_kingside[Color.WHITE] ||
+            can_castle_queenside[Color.WHITE] != state.can_castle_queenside[Color.WHITE] ||
+            can_castle_kingside[Color.BLACK] != state.can_castle_kingside[Color.BLACK] ||
+            can_castle_queenside[Color.BLACK] != state.can_castle_queenside[Color.BLACK] ||
+            en_passant_index != state.en_passant_index ||
+            (last_move != null) != (state.last_move != null) ||
+            last_move.piece.type != state.last_move.piece.type ||
+            last_move.r0 != state.last_move.r0 ||
+            last_move.f0 != state.last_move.f0 ||
+            last_move.r1 != state.last_move.r1 ||
+            last_move.f1 != state.last_move.f1)
+            return false;
+
+        /* Finally check the same piece types are present */
+        for (int i = 0; i < 64; i++)
+        {
+            if (board[i] != null && board[i].type != state.board[i].type)
+                return false;
+        }
+
+        return true;
+    }
+
     public string get_fen ()
     {
         var value = new StringBuilder ();
@@ -1219,8 +1249,8 @@ public class ChessGame
 
         if (move_stack.data.halfmove_clock >= 50)
             stop (ChessResult.DRAW, ChessRule.FIFTY_MOVES);
-        //else if () // FIXME: Check for three-fold-repetition
-        //    ;
+        else if (is_three_fold_repeat ())
+            stop (ChessResult.DRAW, ChessRule.THREE_FOLD_REPETITION);
         else
             return false;
 
@@ -1284,5 +1314,23 @@ public class ChessGame
         this.rule = rule;
         is_started = false;
         ended ();
+    }
+
+    private bool is_three_fold_repeat ()
+    {
+        var count = 1;
+
+        var current_state = move_stack.data;
+        foreach (var state in move_stack.next)
+        {
+            if (current_state.equals (state))
+            {
+                count++;
+                if (count >= 3)
+                    return true;
+            }
+        }
+
+        return false;
     }
 }
