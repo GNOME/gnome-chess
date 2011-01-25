@@ -196,7 +196,8 @@ public enum CheckState
 {
     NONE,
     CHECK,
-    CHECKMATE
+    CHECKMATE,
+    STALEMATE
 }
 
 public class ChessState
@@ -428,7 +429,10 @@ public class ChessState
         return true;
     }
 
-    public bool move_with_coords (ChessPlayer player, int r0, int f0, int r1, int f1, PieceType promotion_type = PieceType.QUEEN, bool apply = true, bool test_check = true)
+    public bool move_with_coords (ChessPlayer player,
+                                  int r0, int f0, int r1, int f1,
+                                  PieceType promotion_type = PieceType.QUEEN,
+                                  bool apply = true, bool test_check = true)
     {
         // FIXME: Make this use indexes to be faster
         var start = get_index (r0, f0);
@@ -691,6 +695,11 @@ public class ChessState
             else
                 return CheckState.CHECK;
         }
+        else
+        {
+            if (!can_move (player))
+                return CheckState.STALEMATE;
+        }
         return CheckState.NONE;
     }
 
@@ -704,9 +713,12 @@ public class ChessState
             if (p != null && p.player == player && p.type == PieceType.KING)
             {
                 /* See if any enemy pieces can take the king */
-                for (int i = 0; i < 64; i++)
+                for (int start = 0; start < 64; start++)
                 {
-                    if (move_with_coords (opponent, get_rank (i), get_file (i), get_rank (king_index), get_file (king_index), PieceType.QUEEN, false, false))
+                    if (move_with_coords (opponent,
+                                          get_rank (start), get_file (start),
+                                          get_rank (king_index), get_file (king_index),
+                                          PieceType.QUEEN, false, false))
                         return true;
                 }
             }
@@ -723,11 +735,11 @@ public class ChessState
             if (p != null && p.player == player && p.type == PieceType.KING)
             {
                 /* See if the king can move */
-                for (int i = 0; i < 64; i++)
+                for (int end = 0; end < 64; end++)
                 {
                     if (move_with_coords (player,
                                           get_rank (king_index), get_file (king_index),
-                                          get_rank (i), get_file (i),
+                                          get_rank (end), get_file (end),
                                           PieceType.QUEEN, false, true))
                         return false;
                 }
@@ -735,6 +747,36 @@ public class ChessState
         }
 
         return true;
+    }
+
+    private bool can_move (ChessPlayer player)
+    {
+        bool have_pieces = false;
+
+        for (int start = 0; start < 64; start++)
+        {
+            var p = board[start];
+            if (p != null && p.player == player)
+            {
+                have_pieces = true;
+
+                /* See if can move anywhere */
+                for (int end = 0; end < 64; end++)
+                {
+                    if (move_with_coords (player,
+                                          get_rank (start), get_file (start),
+                                          get_rank (end), get_file (end),
+                                          PieceType.QUEEN, false, true))
+                        return true;
+                }
+            }
+        }
+
+        /* Only mark as stalemate if have at least one piece */
+        if (have_pieces)
+            return false;
+        else
+            return true;
     }
 
     private bool decode_piece_type (unichar c, out PieceType type)
@@ -1011,6 +1053,10 @@ public class ChessGame
                 stop (ChessResult.BLACK_WON, ChessRule.CHECKMATE);
             else
                 stop (ChessResult.WHITE_WON, ChessRule.CHECKMATE);
+        }
+        else if (state.check_state == CheckState.STALEMATE)
+        {
+            stop (ChessResult.DRAW, ChessRule.STALEMATE);
         }
         else
         {

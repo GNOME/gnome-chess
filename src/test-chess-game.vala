@@ -96,6 +96,10 @@ class GlChess
         test_good_move ("k7/8/8/8/8/8/1R6/1R6 w - - 0 1", "b1a1",
                         "k7/8/8/8/8/8/1R6/R7 b - - 1 1", CheckState.CHECKMATE);
 
+        /* Stalemate */
+        test_good_move ("k7/8/7R/8/8/8/8/1R6 w - - 0 1", "h6h7",
+                        "k7/7R/8/8/8/8/8/1R6 b - - 1 1", CheckState.STALEMATE);
+
         stdout.printf ("%d/%d tests successful\n", test_count - failure_count, test_count);
 
         return failure_count;
