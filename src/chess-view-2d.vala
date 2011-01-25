@@ -2,7 +2,9 @@ private class ChessView2D : ChessView
 {
     private int border = 6;
     private int square_size;
+    private int selected_square_size;
     private Cairo.ImageSurface? model_surface;
+    private Cairo.ImageSurface? selected_model_surface;
     private string loaded_theme_name = "";
     
     private double border_size
@@ -20,11 +22,15 @@ private class ChessView2D : ChessView
         int short_edge = int.min (get_allocated_width (), get_allocated_height ());
             
         square_size = (int) Math.floor ((short_edge - 2 * border) / 9.0);
+        var extra = square_size * 0.1;
+        if (extra < 3)
+            extra = 3;
+        selected_square_size = square_size + 2 * (int) (extra + 0.5);
 
         return true;
     }
 
-    private void render_piece (Cairo.Context c, string name, int offset)
+    private void render_piece (Cairo.Context c1, Cairo.Context c2, string name, int offset)
     {
         Rsvg.Handle handle;
         try
@@ -36,11 +42,18 @@ private class ChessView2D : ChessView
             stderr.printf ("Failed to load piece svg: %s", e.message);
             return;
         }
-        c.save ();
-        c.translate (square_size * offset, 0);
-        c.scale ((double) square_size / handle.width, (double) square_size / handle.height);
-        handle.render_cairo (c);
-        c.restore ();
+
+        c1.save ();
+        c1.translate (square_size * offset, 0);
+        c1.scale ((double) square_size / handle.width, (double) square_size / handle.height);
+        handle.render_cairo (c1);
+        c1.restore ();
+
+        c2.save ();
+        c2.translate (selected_square_size * offset, 0);
+        c2.scale ((double) selected_square_size / handle.width, (double) selected_square_size / handle.height);
+        handle.render_cairo (c2);
+        c2.restore ();
     }
     
     private void load_theme ()
@@ -49,21 +62,24 @@ private class ChessView2D : ChessView
         if (options.theme_name == loaded_theme_name && model_surface != null && square_size == model_surface.get_height ())
             return;
 
-        model_surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, 12 * (int) square_size, square_size);
+        model_surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, 12 * square_size, square_size);
+        selected_model_surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, 12 * selected_square_size, selected_square_size);
 
-        var c = new Cairo.Context (model_surface);
-        render_piece (c, "whitePawn", 0);
-        render_piece (c, "whiteRook", 1);
-        render_piece (c, "whiteKnight", 2);
-        render_piece (c, "whiteBishop", 3);
-        render_piece (c, "whiteQueen", 4);
-        render_piece (c, "whiteKing", 5);
-        render_piece (c, "blackPawn", 6);
-        render_piece (c, "blackRook", 7);
-        render_piece (c, "blackKnight", 8);
-        render_piece (c, "blackBishop", 9);
-        render_piece (c, "blackQueen", 10);
-        render_piece (c, "blackKing", 11);
+        var c1 = new Cairo.Context (model_surface);
+        var c2 = new Cairo.Context (selected_model_surface);
+        render_piece (c1, c2, "whitePawn", 0);
+        render_piece (c1, c2, "whiteRook", 1);
+        render_piece (c1, c2, "whiteKnight", 2);
+        render_piece (c1, c2, "whiteBishop", 3);
+        render_piece (c1, c2, "whiteQueen", 4);
+        render_piece (c1, c2, "whiteKing", 5);
+        render_piece (c1, c2, "blackPawn", 6);
+        render_piece (c1, c2, "blackRook", 7);
+        render_piece (c1, c2, "blackKnight", 8);
+        render_piece (c1, c2, "blackBishop", 9);
+        render_piece (c1, c2, "blackQueen", 10);
+        render_piece (c1, c2, "blackKing", 11);
+
         loaded_theme_name = options.theme_name;
     }
 
@@ -98,25 +114,11 @@ private class ChessView2D : ChessView
                 int x = (int) ((file - 4) * square_size);
                 int y = (int) ((3 - rank) * square_size);
                 
-                bool selected = false;
-                if (options.move_number == -1 && options.selected_rank == rank && options.selected_file == file)
-                    selected = true;
-
                 c.rectangle (x, y, square_size, square_size);
                 if ((file + rank) % 2 == 0)
-                {
-                    if (selected)
-                        c.set_source_rgb (0x73/255.0, 0xd2/255.0, 0x16/255.0);
-                    else
-                        c.set_source_rgb (0xba/255.0, 0xbd/255.0, 0xb6/255.0);
-                }
+                    c.set_source_rgb (0xba/255.0, 0xbd/255.0, 0xb6/255.0);
                 else
-                {
-                    if (selected)
-                        c.set_source_rgb (0x8a/255.0, 0xe2/255.0, 0x34/255.0);
-                    else
-                        c.set_source_rgb (0xee/255.0, 0xee/255.0, 0xec/255.0);
-                }
+                    c.set_source_rgb (0xee/255.0, 0xee/255.0, 0xec/255.0);
                 c.fill ();
             }
         }
@@ -198,11 +200,13 @@ private class ChessView2D : ChessView
                 /* Draw the piece in this square */
                 ChessPiece? piece = options.game.get_piece (rank, file, options.move_number);
                 if (piece != null)
-                    draw_piece (c, piece, can_take ? 0.8 : 1.0);
+                    draw_piece (c,
+                                piece == selected_piece ? selected_model_surface : model_surface,
+                                piece, can_take ? 0.8 : 1.0);
 
                 /* Draw shadow piece on squares that can be moved to */
                 if (can_take)
-                    draw_piece (c, selected_piece, 0.1);
+                    draw_piece (c, model_surface, selected_piece, 0.1);
 
                 c.restore ();
             }
@@ -211,19 +215,21 @@ private class ChessView2D : ChessView
         return true;
     }
     
-    private void draw_piece (Cairo.Context c, ChessPiece piece, double alpha)
+    private void draw_piece (Cairo.Context c, Cairo.ImageSurface surface, ChessPiece piece, double alpha)
     {
         c.save ();
-
+        
         if (options.board_side == "facetoface" && piece.color == Color.BLACK)
             c.rotate (Math.PI);
-        c.translate (-square_size / 2, -square_size / 2);
+
+        var size = surface.get_height ();
+        c.translate (-size / 2, -size / 2);
 
         int offset = piece.type;
         if (piece.color == Color.BLACK)
             offset += 6;
-        c.set_source_surface (model_surface, -offset * square_size, 0);
-        c.rectangle (0, 0, square_size, square_size);
+        c.set_source_surface (surface, -offset * size, 0);
+        c.rectangle (0, 0, size, size);
         c.clip ();
         c.paint_with_alpha (alpha);
 
