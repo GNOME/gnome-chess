@@ -97,6 +97,13 @@ public class ChessPiece
     }
 }
 
+public enum CheckState
+{
+    NONE,
+    CHECK,
+    CHECKMATE
+}
+
 public class ChessMove
 {
     public int number;
@@ -110,24 +117,39 @@ public class ChessMove
     public int f1;
     public bool ambiguous_rank;
     public bool ambiguous_file;
+    public CheckState check_state;
 
     public string get_lan ()
     {
+        if (moved_rook != null)
+        {
+            if (f1 > f0)
+                return "O-O";
+            else
+                return "O-O-O";
+        }
+
+        var builder = new StringBuilder ();
+        if (victim != null)
+            builder.append_printf ("%c%dx%c%d", 'a' + f0, r0 + 1, 'a' + f1, r1 + 1);
+        else
+            builder.append_printf ("%c%d-%c%d", 'a' + f0, r0 + 1, 'a' + f1, r1 + 1);
+
         const char promotion_symbols[] = {' ', 'R', 'N', 'B', 'Q', 'K'};
         if (promotion_piece != null)
+            builder.append_printf ("=%c", promotion_symbols[promotion_piece.type]);
+
+        switch (check_state)
         {
-            if (victim != null)
-                return "%c%dx%c%d=%c".printf ('a' + f0, r0 + 1, 'a' + f1, r1 + 1, promotion_symbols[promotion_piece.type]);
-            else
-                return "%c%d-%c%d=%c".printf ('a' + f0, r0 + 1, 'a' + f1, r1 + 1, promotion_symbols[promotion_piece.type]);
+        case CheckState.CHECK:
+            builder.append_c ('+');
+            break;
+        case CheckState.CHECKMATE:
+            builder.append_c ('#');
+            break;
         }
-        else
-        {
-            if (victim != null)
-                return "%c%dx%c%d".printf ('a' + f0, r0 + 1, 'a' + f1, r1 + 1);
-            else
-                return "%c%d-%c%d".printf ('a' + f0, r0 + 1, 'a' + f1, r1 + 1);
-        }
+
+        return builder.str;
     }
 
     public string get_san ()
@@ -148,6 +170,14 @@ public class ChessMove
 
     private string make_san (string[] piece_names)
     {
+        if (moved_rook != null)
+        {
+            if (f1 > f0)
+                return "O-O";
+            else
+                return "O-O-O";
+        }
+
         var builder = new StringBuilder ();
         builder.append (piece_names[piece.type]);
         if (ambiguous_file)
@@ -157,8 +187,20 @@ public class ChessMove
         if (victim != null)
             builder.append ("x");
         builder.append_printf ("%c%d", 'a' + f1, r1 + 1);
+
         if (promotion_piece != null)
             builder.append_printf ("=%s", piece_names[promotion_piece.type]);
+
+        switch (check_state)
+        {
+        case CheckState.CHECK:
+            builder.append_c ('+');
+            break;
+        case CheckState.CHECKMATE:
+            builder.append_c ('#');
+            break;
+        }
+
         return builder.str;
     }
 
@@ -188,16 +230,9 @@ public class ChessMove
         move.f1 = f1;
         move.ambiguous_rank = ambiguous_rank;
         move.ambiguous_file = ambiguous_file;
+        move.check_state = check_state;
         return move;
     }
-}
-
-public enum CheckState
-{
-    NONE,
-    CHECK,
-    CHECKMATE,
-    STALEMATE
 }
 
 public class ChessState
@@ -665,6 +700,7 @@ public class ChessState
         }
 
         current_player = color == Color.WHITE ? players[Color.BLACK] : players[Color.WHITE];
+        check_state = get_check_state (current_player);
 
         last_move = new ChessMove ();
         last_move.number = number;
@@ -680,10 +716,38 @@ public class ChessState
         last_move.f1 = f1;
         last_move.ambiguous_rank = ambiguous_rank;
         last_move.ambiguous_file = ambiguous_file;
-
-        check_state = get_check_state (current_player);
+        last_move.check_state = check_state;
 
         return true;
+    }
+
+    public ChessResult get_result (out ChessRule rule)
+    {
+        if (check_state == CheckState.CHECKMATE)
+        {
+            if (current_player.color == Color.WHITE)
+            {
+                rule = ChessRule.CHECKMATE;
+                return ChessResult.BLACK_WON;
+            }
+            else
+            {
+                rule = ChessRule.CHECKMATE;
+                return ChessResult.WHITE_WON;
+            }
+        }
+        else if (!can_move (current_player))
+        {
+            rule = ChessRule.STALEMATE;
+            return ChessResult.DRAW;
+        }
+        else if (last_move.victim != null && !have_sufficient_material ())
+        {
+            rule = ChessRule.INSUFFICIENT_MATERIAL;
+            return ChessResult.DRAW;
+        }
+
+        return ChessResult.IN_PROGRESS;
     }
 
     private CheckState get_check_state (ChessPlayer player)
@@ -694,11 +758,6 @@ public class ChessState
                 return CheckState.CHECKMATE;
             else
                 return CheckState.CHECK;
-        }
-        else
-        {
-            if (!can_move (player))
-                return CheckState.STALEMATE;
         }
         return CheckState.NONE;
     }
@@ -777,6 +836,80 @@ public class ChessState
             return false;
         else
             return true;
+    }
+
+    public bool have_sufficient_material ()
+    {
+        var white_knight_count = 0;
+        var white_bishop_count = 0;
+        var white_bishop_on_white_square = false;
+        var white_bishop_on_black_square = false;
+        var black_knight_count = 0;
+        var black_bishop_count = 0;
+        var black_bishop_on_white_square = false;
+        var black_bishop_on_black_square = false;
+
+        for (int i = 0; i < 64; i++)
+        {
+            var p = board[i];
+            if (p == null)
+                continue;
+
+            /* Any pawns, rooks or queens can perform checkmate */
+            if (p.type == PieceType.PAWN || p.type == PieceType.ROOK || p.type == PieceType.QUEEN)
+                return true;
+
+            /* Otherwise, count the minor pieces for each colour... */
+            if (p.type == PieceType.KNIGHT)
+            {
+                if (p.player.color == Color.WHITE)
+                    white_knight_count++;
+                else
+                    black_knight_count++;
+            }
+
+            if (p.type == PieceType.BISHOP)
+            {
+                var color = Color.BLACK;
+                if ((i + i/8) % 2 != 0)
+                    color = Color.WHITE;
+
+                if (p.player.color == Color.WHITE)
+                {
+                    if (color == Color.WHITE)
+                        white_bishop_on_white_square = true;
+                    else
+                        white_bishop_on_black_square = true;
+                    white_bishop_count++;
+                }
+                else
+                {
+                    if (color == Color.WHITE)
+                        black_bishop_on_white_square = true;
+                    else
+                        black_bishop_on_black_square = true;
+                    black_bishop_count++;
+                }
+            }
+
+            /* Three knights versus king can checkmate */
+            if (white_knight_count > 2 || black_knight_count > 2)
+                return true;
+
+            /* Bishop and knight versus king can checkmate */
+            if (white_bishop_count > 0 && white_knight_count > 0)
+                return true;
+            if (black_bishop_count > 0 && black_knight_count > 0)
+                return true;
+
+            /* King and bishops versus king can checkmate as long as the bishops are on both colours */
+            if (white_bishop_on_white_square && white_bishop_on_black_square)
+                return true;
+            if (black_bishop_on_white_square && black_bishop_on_black_square)
+                return true;
+        }
+
+        return false;
     }
 
     private bool decode_piece_type (unichar c, out PieceType type)
@@ -863,9 +996,11 @@ public class ChessState
                 i++;
             }
             if (move[i] == '=')
+            {
                 i++;
-            if (decode_piece_type (move[i], out promotion_type))
-                i++;
+                if (decode_piece_type (move[i], out promotion_type))
+                    i++;
+            }
 
             /* Don't have a destination to move to */
             if (r1 < 0 || f1 < 0)
@@ -1047,16 +1182,11 @@ public class ChessGame
             state.last_move.moved_rook.moved ();
         moved (state.last_move);
 
-        if (state.check_state == CheckState.CHECKMATE)
+        ChessRule rule;
+        var result = state.get_result (out rule);
+        if (result != ChessResult.IN_PROGRESS)
         {
-            if (current_player.color == Color.WHITE)
-                stop (ChessResult.BLACK_WON, ChessRule.CHECKMATE);
-            else
-                stop (ChessResult.WHITE_WON, ChessRule.CHECKMATE);
-        }
-        else if (state.check_state == CheckState.STALEMATE)
-        {
-            stop (ChessResult.DRAW, ChessRule.STALEMATE);
+            stop (result, rule);
         }
         else
         {
@@ -1089,6 +1219,8 @@ public class ChessGame
 
         if (move_stack.data.halfmove_clock >= 50)
             stop (ChessResult.DRAW, ChessRule.FIFTY_MOVES);
+        //else if () // FIXME: Check for three-fold-repetition
+        //    ;
         else
             return false;
 

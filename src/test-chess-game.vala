@@ -3,32 +3,43 @@ class GlChess
     static int test_count = 0;
     static int failure_count = 0;
 
-    private static void test_good_move (string fen, string move, string result_fen, CheckState check_state = CheckState.NONE)
+    private static void test_good_move (string fen, string move, string result_fen,
+                                        ChessResult result = ChessResult.IN_PROGRESS,
+                                        ChessRule rule = ChessRule.CHECKMATE)
     {
         ChessState state = new ChessState (fen);
         test_count++;
         if (!state.move (move))
         {
-            stderr.printf ("%d. Not allowed to do valid move: %s : %s\n", test_count, fen, move);
+            stderr.printf ("%d. FAIL %s + %s is a valid move\n", test_count, fen, move);
             failure_count++;
             return;
         }
 
         if (state.get_fen () != result_fen)
         {
-            stderr.printf ("%d. Move led to invalid state: %s : %s -> %s, not %s\n", test_count, fen, move, state.get_fen (), result_fen);
+            stderr.printf ("%d. FAIL %s + %s has state %s not %s\n", test_count, fen, move, state.get_fen (), result_fen);
             failure_count++;
             return;
         }
 
-        if (state.check_state != check_state)
+        if (state.last_move.get_san () != move)
         {
-            stderr.printf ("%d. Move led to invalid check state: %s : %s -> %d, not %d\n", test_count, fen, move, state.check_state, check_state);
+            stderr.printf ("%d. FAIL %s + %s has SAN move %s\n", test_count, fen, move, state.last_move.get_san ());
             failure_count++;
             return;
         }
 
-        stderr.printf ("%d. %s + %s -> %s OK\n", test_count, fen, move, result_fen);
+        ChessRule move_rule;
+        var move_result = state.get_result (out move_rule);
+        if (move_result != result || move_rule != rule)
+        {
+            stderr.printf ("%d. FAIL %s + %s has result %d not %d\n", test_count, fen, move, move_result, result);
+            failure_count++;
+            return;
+        }
+
+        stderr.printf ("%d. PASS %s + %s is valid\n", test_count, fen, move);
     }
 
     private static void test_bad_move (string fen, string move)
@@ -37,29 +48,33 @@ class GlChess
         test_count++;
         if (state.move (move, false))
         {
-            stderr.printf ("%d. Allowed to do invalid move: %s : %s\n", test_count, fen, move);
+            stderr.printf ("%d. FAIL %s + %s is valid\n", test_count, fen, move);
             failure_count++;
             return;
         }
 
-        stderr.printf ("%d. %s + %s -> invalid OK\n", test_count, fen, move);
+        stderr.printf ("%d. PASS %s + %s is invalid\n", test_count, fen, move);
     }
 
     public static int main (string[] args)
     {
         /* Pawn move */
-        test_good_move ("8/8/8/8/8/8/P7/8 w - - 0 1", "a2a3",
+        test_good_move ("8/8/8/8/8/8/P7/8 w - - 0 1", "a3",
                         "8/8/8/8/8/P7/8/8 b - - 0 1");
 
         /* Pawn march */
-        test_good_move ("8/8/8/8/8/8/P7/8 w - - 0 1", "a2a4",
+        test_good_move ("8/8/8/8/8/8/P7/8 w - - 0 1", "a4",
                         "8/8/8/8/P7/8/8/8 b - a3 0 1");
 
         /* Pawn march only allowed from baseline */
         test_bad_move ("8/8/8/8/8/P7/8/8 w - - 0 1", "a2a5");
-        
+
+        /* Pawn promotion */
+        test_good_move ("8/P7/8/8/8/8/8/8 w - - 0 1", "a8=Q",
+                        "Q7/8/8/8/8/8/8/8 b - - 0 1");
+
         /* En passant */
-        test_good_move ("8/8/8/pP6/8/8/8/8 w - a6 0 1", "b5a6",
+        test_good_move ("8/8/8/pP6/8/8/8/8 w - a6 0 1", "bxa6",
                         "8/8/P7/8/8/8/8/8 b - - 0 1");
 
         /* Can't en passant if wasn't allowed */
@@ -89,16 +104,20 @@ class GlChess
         test_bad_move ("4r3/8/8/8/8/8/4R3/4K3 w - - 0 1", "e2f2");
 
         /* Check */
-        test_good_move ("k7/8/8/8/8/8/8/1R6 w - - 0 1", "b1a1",
-                        "k7/8/8/8/8/8/8/R7 b - - 1 1", CheckState.CHECK);
+        test_good_move ("k7/8/8/8/8/8/8/1R6 w - - 0 1", "Ra1+",
+                        "k7/8/8/8/8/8/8/R7 b - - 1 1");
 
         /* Checkmate */
-        test_good_move ("k7/8/8/8/8/8/1R6/1R6 w - - 0 1", "b1a1",
-                        "k7/8/8/8/8/8/1R6/R7 b - - 1 1", CheckState.CHECKMATE);
+        test_good_move ("k7/8/8/8/8/8/1R6/1R6 w - - 0 1", "Ra1#",
+                        "k7/8/8/8/8/8/1R6/R7 b - - 1 1", ChessResult.WHITE_WON);
 
         /* Stalemate */
-        test_good_move ("k7/8/7R/8/8/8/8/1R6 w - - 0 1", "h6h7",
-                        "k7/7R/8/8/8/8/8/1R6 b - - 1 1", CheckState.STALEMATE);
+        test_good_move ("k7/8/7R/8/8/8/8/1R6 w - - 0 1", "Rh7",
+                        "k7/7R/8/8/8/8/8/1R6 b - - 1 1", ChessResult.DRAW, ChessRule.STALEMATE);
+
+        /* Insufficient material */
+        test_good_move ("k7/7p/7K/8/8/8/8/8 w - - 0 1", "Kxh7",
+                        "k7/7K/8/8/8/8/8/8 b - - 0 1", ChessResult.DRAW, ChessRule.INSUFFICIENT_MATERIAL);
 
         stdout.printf ("%d/%d tests successful\n", test_count - failure_count, test_count);
 
