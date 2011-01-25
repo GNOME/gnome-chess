@@ -109,7 +109,7 @@ class GlChess
 
         /* Checkmate */
         test_good_move ("k7/8/8/8/8/8/1R6/1R6 w - - 0 1", "Ra1#",
-                        "k7/8/8/8/8/8/1R6/R7 b - - 1 1", ChessResult.WHITE_WON);
+                        "k7/8/8/8/8/8/1R6/R7 b - - 1 1", ChessResult.WHITE_WON, ChessRule.CHECKMATE);
 
         /* Stalemate */
         test_good_move ("k7/8/7R/8/8/8/8/1R6 w - - 0 1", "Rh7",
@@ -118,6 +118,15 @@ class GlChess
         /* Insufficient material */
         test_good_move ("k7/7p/7K/8/8/8/8/8 w - - 0 1", "Kxh7",
                         "k7/7K/8/8/8/8/8/8 b - - 0 1", ChessResult.DRAW, ChessRule.INSUFFICIENT_MATERIAL);
+
+        // FIXME: Need to be able to test claim draw
+
+        /* Claim draw due to 50 move rule */
+        //test_good_move ("p7/8/8/8/8/8/8/P7 w - - 50 1", "draw",
+        //                "p7/8/8/8/8/8/8/P7 w - - 50 1", ChessResult.DRAW, ChessRule.FIFTY_MOVES);
+
+        /* Need 50 moves for 50 move rule */
+        //test_bad_move ("p7/8/8/8/8/8/8/P7 w - - 49 1", "draw");
 
         stdout.printf ("%d/%d tests successful\n", test_count - failure_count, test_count);
 
