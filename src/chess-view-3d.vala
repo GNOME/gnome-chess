@@ -444,7 +444,7 @@ private class ChessView3D : ChessView
                     glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, black_piece_color);
                     glMaterialfv (GL_FRONT_AND_BACK, GL_SPECULAR, black_piece_specular);
                 }
-                GLfloat black[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+                const GLfloat black[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
                 glMaterialfv (GL_FRONT_AND_BACK, GL_EMISSION, black);
                 glMaterialf (GL_FRONT_AND_BACK, GL_SHININESS, 64.0f);
 
