@@ -306,39 +306,16 @@ private class ChessView3D : ChessView
         }
         glEnd ();
 
-        var selected_piece = options.get_selected_piece ();
-
         glEnable (GL_TEXTURE_2D);
         glBindTexture (GL_TEXTURE_2D, board_texture);
         glNormal3f (0.0f, 1.0f, 0.0f);
         for (var rank = 0; rank < 8; rank++)
             for (var file = 0; file < 8; file++)
             {
-                bool selected = false;
-                bool hinted = false;
-                if (options.move_number == -1 && options.selected_rank == rank && options.selected_file == file)
-                    selected = true;
-                else if (options.move_number == -1 && options.show_move_hints && selected_piece != null && selected_piece.player.move_with_coords (options.selected_rank, options.selected_file, rank, file, false))
-                    hinted = true;
-
                 if ((file + rank) % 2 == 0)
-                {
-                    if (selected)
-                        glColor3f (0x73 / 255f, 0xd2 / 255f, 0x16 / 255f);
-                    else if (hinted)
-                        glColor3f (0x34 / 255f, 0x65 / 255f, 0xa4 / 255f);
-                    else
-                        glColor3f (0xee / 255f, 0xee / 255f, 0xec / 255f);
-                }
+                    glColor3f (0xee / 255f, 0xee / 255f, 0xec / 255f);
                 else
-                {
-                    if (selected)
-                        glColor3f (0x8a / 255f, 0xe2 / 255f, 0x34 / 255f);
-                    else if (hinted)
-                        glColor3f (0x20 / 255f, 0x4a / 255f, 0x87 / 255f);
-                    else
-                        glColor3f (0xba / 255f, 0xbd / 255f, 0xb6 / 255f);
-                }
+                    glColor3f (0xba / 255f, 0xbd / 255f, 0xb6 / 255f);
 
                 glBegin (GL_QUADS);
                 GLfloat x0 = BOARD_BORDER + (file * SQUARE_WIDTH);
@@ -426,54 +403,32 @@ private class ChessView3D : ChessView
         glEnable (GL_TEXTURE_2D);
         glBindTexture (GL_TEXTURE_2D, piece_texture);
 
+        var selected_piece = options.get_selected_piece ();
         for (int rank = 0; rank < 8; rank++)
         {
             for (int file = 0; file < 8; file++)
             {
-                ChessPiece? piece = options.game.get_piece (rank, file, options.move_number);
-                if (piece == null)
-                    continue;
-
-                if (piece.player.color == Color.WHITE)
-                {
-                    glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, white_piece_color);
-                    glMaterialfv (GL_FRONT_AND_BACK, GL_SPECULAR, white_piece_specular);
-                }
-                else
-                {
-                    glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, black_piece_color);
-                    glMaterialfv (GL_FRONT_AND_BACK, GL_SPECULAR, black_piece_specular);
-                }
-                const GLfloat black[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-                glMaterialfv (GL_FRONT_AND_BACK, GL_EMISSION, black);
-                glMaterialf (GL_FRONT_AND_BACK, GL_SHININESS, 64.0f);
-
                 glPushMatrix ();
                 glTranslatef (BOARD_BORDER + file * SQUARE_WIDTH + SQUARE_WIDTH / 2, 0.0f, -(BOARD_BORDER + rank * SQUARE_WIDTH + SQUARE_WIDTH / 2));
 
-                if (piece.player.color == Color.BLACK)
-                    glRotatef (180.0f, 0.0f, 1.0f, 0.0f);
-
-                switch (piece.type)
+                ChessPiece? piece = options.game.get_piece (rank, file, options.move_number);
+                if (piece != null)
                 {
-                case PieceType.PAWN:
-                    pawn_model.render ();
-                    break;
-                case PieceType.ROOK:
-                    rook_model.render ();
-                    break;
-                case PieceType.KNIGHT:
-                    knight_model.render ();
-                    break;
-                case PieceType.BISHOP:
-                    bishop_model.render ();
-                    break;
-                case PieceType.QUEEN:
-                    queen_model.render ();
-                    break;
-                case PieceType.KING:
-                    king_model.render ();
-                    break;
+                    glPushMatrix ();
+                    if (piece == selected_piece)
+                        glTranslatef (0.0f, SQUARE_WIDTH * 0.4f, 0.0f);
+                    render_piece (piece);
+                    glPopMatrix ();
+                }
+
+                if (options.move_number == -1 && options.show_move_hints && selected_piece != null && selected_piece.player.move_with_coords (options.selected_rank, options.selected_file, rank, file, false))
+                {
+                    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+                    glEnable (GL_BLEND);
+                    glDisable (GL_DEPTH_TEST);
+                    render_piece (selected_piece, 0.1f);
+                    glEnable (GL_DEPTH_TEST);
+                    glDisable (GL_BLEND);
                 }
 
                 glPopMatrix ();
@@ -481,6 +436,51 @@ private class ChessView3D : ChessView
         }
 
         glDisable (GL_TEXTURE_2D);
+    }
+
+    private void render_piece (ChessPiece piece, GLfloat alpha = 1.0f)
+    {
+        white_piece_color[3] = alpha;
+        black_piece_color[3] = alpha;
+
+        if (piece.player.color == Color.WHITE)
+        {
+            glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, white_piece_color);
+            glMaterialfv (GL_FRONT_AND_BACK, GL_SPECULAR, white_piece_specular);
+        }
+        else
+        {
+            glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, black_piece_color);
+            glMaterialfv (GL_FRONT_AND_BACK, GL_SPECULAR, black_piece_specular);
+        }
+        const GLfloat black[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+        glMaterialfv (GL_FRONT_AND_BACK, GL_EMISSION, black);
+        glMaterialf (GL_FRONT_AND_BACK, GL_SHININESS, 64.0f);
+
+        if (piece.player.color == Color.BLACK)
+            glRotatef (180.0f, 0.0f, 1.0f, 0.0f);
+
+        switch (piece.type)
+        {
+        case PieceType.PAWN:
+            pawn_model.render ();
+            break;
+        case PieceType.ROOK:
+            rook_model.render ();
+            break;
+        case PieceType.KNIGHT:
+            knight_model.render ();
+            break;
+        case PieceType.BISHOP:
+            bishop_model.render ();
+            break;
+        case PieceType.QUEEN:
+            queen_model.render ();
+            break;
+        case PieceType.KING:
+            king_model.render ();
+            break;
+        }
     }
 
     public override bool button_press_event (Gdk.EventButton event)
