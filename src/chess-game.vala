@@ -1037,6 +1037,28 @@ public class ChessState
                 if (decode_piece_type (move[i], out promotion_type))
                     i++;
             }
+            else if (move[i] != '\0')
+            {
+                switch (move[i])
+                {
+                case 'q':
+                    promotion_type = PieceType.QUEEN;
+                    i++;
+                    break;
+                case 'k':
+                    promotion_type = PieceType.KING;
+                    i++;
+                    break;
+                case 'r':
+                    promotion_type = PieceType.ROOK;
+                    i++;
+                    break;
+                case 'b':
+                    promotion_type = PieceType.BISHOP;
+                    i++;
+                    break;
+                }
+            }
 
             /* Don't have a destination to move to */
             if (r1 < 0 || f1 < 0)
