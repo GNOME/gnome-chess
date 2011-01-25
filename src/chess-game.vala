@@ -1266,12 +1266,9 @@ public class ChessGame
 
     private void undo_cb (ChessPlayer player)
     {
-        /* If this players turn undo their opponents move then their last move */
+        /* If this players turn undo their opponents move first */
         if (player == current_player)
-        {
             undo_cb (opponent);
-            return;
-        }
 
         /* Don't pop off starting move */
         if (move_stack.next == null)

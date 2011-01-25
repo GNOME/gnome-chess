@@ -14,6 +14,10 @@ public class Application
     private Gtk.Container view_container;
     private ChessViewOptions view_options;
     private ChessView view;
+    private Gtk.Widget undo_menu;
+    private Gtk.Widget undo_button;
+    private Gtk.Widget resign_menu;
+    private Gtk.Widget resign_button;
     private Gtk.Widget first_move_button;
     private Gtk.Widget prev_move_button;
     private Gtk.Widget next_move_button;
@@ -42,6 +46,7 @@ public class Application
     private File game_file;
     private List<AIProfile> ai_profiles;
     private ChessPlayer? opponent = null;
+    private ChessPlayer? human_player = null;
     private ChessEngine? opponent_engine = null;
 
     public Application ()
@@ -66,6 +71,10 @@ public class Application
         save_menu = (Gtk.Widget) builder.get_object ("menu_save_item");
         save_as_menu = (Gtk.Widget) builder.get_object ("menu_save_as_item");
         fullscreen_menu = (Gtk.MenuItem) builder.get_object ("menu_fullscreen");
+        undo_menu = (Gtk.Widget) builder.get_object ("undo_move_item");
+        undo_button = (Gtk.Widget) builder.get_object ("undo_move_button");
+        resign_menu = (Gtk.Widget) builder.get_object ("resign_item");
+        resign_button = (Gtk.Widget) builder.get_object ("resign_button");
         first_move_button = (Gtk.Widget) builder.get_object ("first_move_button");
         prev_move_button = (Gtk.Widget) builder.get_object ("prev_move_button");
         next_move_button = (Gtk.Widget) builder.get_object ("next_move_button");
@@ -266,6 +275,7 @@ public class Application
         save_menu.sensitive = false;
         save_as_menu.sensitive = false;
         update_history_panel ();
+        update_control_buttons ();
 
         // TODO: Could both be engines
         var white_engine = pgn_game.tags.lookup ("WhiteAI");
@@ -283,11 +293,13 @@ public class Application
         if (white_engine != null)
         {
             opponent = game.white;
+            human_player = game.black;
             opponent_engine = get_engine (white_engine, white_level);
         }
         else if (black_engine != null)
         {
             opponent = game.black;
+            human_player = game.white;
             opponent_engine = get_engine (black_engine, black_level);
         }
 
@@ -627,6 +639,7 @@ public class Application
         save_menu.sensitive = true;
         save_as_menu.sensitive = true;
         update_history_panel ();
+        update_control_buttons ();
 
         if (opponent_engine != null)
             opponent_engine.report_move (move);
@@ -655,6 +668,22 @@ public class Application
             history_combo.set_active_iter (iter);
             view.queue_draw ();
         }
+
+        update_history_panel ();
+        update_control_buttons ();
+    }
+    
+    private void update_control_buttons ()
+    {
+        var can_resign = game.n_moves > 0;
+        resign_menu.sensitive = resign_button.sensitive = can_resign;
+
+        /* Can undo once the human player has made a move */
+        var can_undo = game.n_moves > 0;
+        if (opponent != null && opponent.color == Color.WHITE)
+            can_undo = game.n_moves > 1;
+
+        undo_menu.sensitive = undo_button.sensitive = can_undo;
     }
 
     private void game_end_cb (ChessGame game)
@@ -786,7 +815,10 @@ public class Application
     [CCode (cname = "G_MODULE_EXPORT undo_move_cb", instance_pos = -1)]
     public void undo_move_cb (Gtk.Widget widget)
     {
-        game.current_player.undo ();
+        if (opponent != null)
+            human_player.undo ();
+        else
+            game.opponent.undo ();
     }
 
     [CCode (cname = "G_MODULE_EXPORT quit_cb", instance_pos = -1)]

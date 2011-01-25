@@ -73,6 +73,7 @@
                       <object class="GtkImageMenuItem" id="undo_move_item">
                         <property name="label" translatable="yes" comments="Undo move menu item">_Undo Move</property>
                         <property name="visible">True</property>
+                        <property name="sensitive">False</property>
                         <property name="use_underline">True</property>
                         <property name="image">undo_move_image</property>
                         <property name="use_stock">False</property>
@@ -85,6 +86,7 @@
                       <object class="GtkImageMenuItem" id="resign_item">
                         <property name="label" translatable="yes" comments="Save menu item">_Resign</property>
                         <property name="visible">True</property>
+                        <property name="sensitive">False</property>
                         <property name="use_underline">True</property>
                         <property name="image">warning_image</property>
                         <property name="use_stock">False</property>
@@ -212,6 +214,7 @@
             <child>
               <object class="GtkToolButton" id="undo_move_button">
                 <property name="visible">True</property>
+                <property name="sensitive">False</property>
                 <property name="is_important">True</property>
                 <property name="label" translatable="yes" comments="The undo move toolbar button">Undo Move</property>
                 <property name="use_underline">True</property>
@@ -226,6 +229,7 @@
             <child>
               <object class="GtkToolButton" id="resign_button">
                 <property name="visible">True</property>
+                <property name="sensitive">False</property>
                 <property name="is_important">True</property>
                 <property name="label" translatable="yes" comments="The tooltip for the Resign toolbar button">Resign</property>
                 <property name="use_underline">True</property>

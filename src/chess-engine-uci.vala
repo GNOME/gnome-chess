@@ -3,7 +3,8 @@ public class ChessEngineUCI : ChessEngine
     private char[] buffer;
     private string moves;
     private string[] options;
-    
+    private bool waiting_for_move;
+
     public ChessEngineUCI (string[] options)
     {
         this.options = options;
@@ -28,6 +29,7 @@ public class ChessEngineUCI : ChessEngine
             write_line ("position startpos moves" + moves);
         else
             write_line ("position startpos");
+        waiting_for_move = true;
         write_line ("go wtime 30000 btime 30000");
     }
 
@@ -38,7 +40,9 @@ public class ChessEngineUCI : ChessEngine
 
     public override void undo ()
     {
-        write_line ("stop");
+        if (waiting_for_move)
+            write_line ("stop");
+        waiting_for_move = false;
         moves = moves.slice (0, moves.last_index_of (" "));
     }
 
@@ -90,6 +94,7 @@ public class ChessEngineUCI : ChessEngine
                     if (tokens.length < 2)
                         warning ("No move with bestmove: %s", line);
                     debug ("Engine moves %s", tokens[1]);
+                    waiting_for_move = false;
                     moved (tokens[1]);
                     break;
 
