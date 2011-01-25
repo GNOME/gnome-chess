@@ -1,7 +1,9 @@
 private class ChessView2D : ChessView
 {
     private int border = 6;
-    private double square_size;
+    private int square_size;
+    private Cairo.ImageSurface? model_surface;
+    private string loaded_theme_name = "";
     
     private double border_size
     {
@@ -22,8 +24,53 @@ private class ChessView2D : ChessView
         return true;
     }
 
+    private void render_piece (Cairo.Context c, string name, int offset)
+    {
+        Rsvg.Handle handle;
+        try
+        {
+            handle = new Rsvg.Handle.from_file (Path.build_filename (Config.PKGDATADIR, "pieces", options.theme_name, name + ".svg", null));
+        }
+        catch (Error e)
+        {
+            stderr.printf ("Failed to load piece svg: %s", e.message);
+            return;
+        }
+        c.save ();
+        c.translate (square_size * offset, 0);
+        c.scale ((double) square_size / handle.width, (double) square_size / handle.height);
+        handle.render_cairo (c);
+        c.restore ();
+    }
+    
+    private void load_theme ()
+    {
+        /* Skip if already loaded */
+        if (options.theme_name == loaded_theme_name && model_surface != null && square_size == model_surface.get_height ())
+            return;
+
+        model_surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, 12 * (int) square_size, square_size);
+
+        var c = new Cairo.Context (model_surface);
+        render_piece (c, "whitePawn", 0);
+        render_piece (c, "whiteRook", 1);
+        render_piece (c, "whiteKnight", 2);
+        render_piece (c, "whiteBishop", 3);
+        render_piece (c, "whiteQueen", 4);
+        render_piece (c, "whiteKing", 5);
+        render_piece (c, "blackPawn", 6);
+        render_piece (c, "blackRook", 7);
+        render_piece (c, "blackKnight", 8);
+        render_piece (c, "blackBishop", 9);
+        render_piece (c, "blackQueen", 10);
+        render_piece (c, "blackKing", 11);
+        loaded_theme_name = options.theme_name;
+    }
+
     public override bool draw (Cairo.Context c)
     {
+        load_theme ();
+
         c.translate (get_allocated_width () / 2, get_allocated_height () / 2);
         //c.scale (s, s);
         c.rotate (Math.PI * options.board_angle / 180.0);
@@ -34,6 +81,15 @@ private class ChessView2D : ChessView
         c.fill ();
 
         var selected_piece = options.get_selected_piece ();
+        if (options.move_number != -1)
+            selected_piece = null;
+        int selected_offset = 0;
+        if (selected_piece != null)
+        {
+            selected_offset = selected_piece.type;
+            if (selected_piece.color == Color.BLACK)
+                selected_offset += 6;
+        }
 
         for (int file = 0; file < 8; file++)
         {
@@ -43,19 +99,14 @@ private class ChessView2D : ChessView
                 int y = (int) ((3 - rank) * square_size);
                 
                 bool selected = false;
-                bool hinted = false;
                 if (options.move_number == -1 && options.selected_rank == rank && options.selected_file == file)
                     selected = true;
-                else if (options.move_number == -1 && options.show_move_hints && selected_piece != null && selected_piece.player.move_with_coords (options.selected_rank, options.selected_file, rank, file, false))
-                    hinted = true;
 
                 c.rectangle (x, y, square_size, square_size);
                 if ((file + rank) % 2 == 0)
                 {
                     if (selected)
                         c.set_source_rgb (0x73/255.0, 0xd2/255.0, 0x16/255.0);
-                    else if (hinted)
-                        c.set_source_rgb (0x34/255.0, 0x65/255.0, 0xa4/255.0);
                     else
                         c.set_source_rgb (0xba/255.0, 0xbd/255.0, 0xb6/255.0);
                 }
@@ -63,8 +114,6 @@ private class ChessView2D : ChessView
                 {
                     if (selected)
                         c.set_source_rgb (0x8a/255.0, 0xe2/255.0, 0x34/255.0);
-                    else if (hinted)
-                        c.set_source_rgb (0x20/255.0, 0x4a/255.0, 0x87/255.0);
                     else
                         c.set_source_rgb (0xee/255.0, 0xee/255.0, 0xec/255.0);
                 }
@@ -136,68 +185,49 @@ private class ChessView2D : ChessView
         {
             for (int file = 0; file < 8; file++)
             {
-                ChessPiece? piece = options.game.get_piece (rank, file, options.move_number);
-                if (piece == null)
-                    continue;
-
-                string file_name = "";
-                switch (piece.player.color)
-                {
-                case Color.WHITE:
-                    file_name += "white";
-                    break;
-                case Color.BLACK:
-                    file_name += "black";
-                    break;
-                }
-                switch (piece.type)
-                {
-                case PieceType.PAWN:
-                    file_name += "Pawn";
-                    break;
-                case PieceType.ROOK:
-                    file_name += "Rook";
-                    break;
-                case PieceType.KNIGHT:
-                    file_name += "Knight";
-                    break;
-                case PieceType.BISHOP:
-                    file_name += "Bishop";
-                    break;
-                case PieceType.QUEEN:
-                    file_name += "Queen";
-                    break;
-                case PieceType.KING:
-                    file_name += "King";
-                    break;
-                }
-
-                // FIXME: Pre-render these
-                Rsvg.Handle handle;
-                try
-                {
-                    handle = new Rsvg.Handle.from_file (Path.build_filename (Config.PKGDATADIR, "pieces", options.theme_name, file_name + ".svg", null));
-                }
-                catch (Error e)
-                {
-                    stderr.printf ("Failed to load piece svg: %s", e.message);
-                    handle = null;
-                }
                 c.save ();
                 c.translate ((file - 4) * square_size, (3 - rank) * square_size);
                 c.translate (square_size / 2, square_size / 2);
                 c.rotate (-Math.PI * options.board_angle / 180.0);
-                if (options.board_side == "facetoface" && piece.player.color == Color.BLACK)
-                    c.rotate (Math.PI);
-                c.translate (-square_size / 2, -square_size / 2);                
-                c.scale ((double) square_size / handle.width, (double) square_size / handle.height);
-                c.set_source_rgb (0, 0, 0);
-                handle.render_cairo (c);
+
+                bool can_take = false;
+                if (selected_piece != null && options.show_move_hints &&
+                    selected_piece.player.move_with_coords (options.selected_rank, options.selected_file, rank, file, false))
+                    can_take = true;
+
+                /* Draw the piece in this square */
+                ChessPiece? piece = options.game.get_piece (rank, file, options.move_number);
+                if (piece != null)
+                    draw_piece (c, piece, can_take ? 0.8 : 1.0);
+
+                /* Draw shadow piece on squares that can be moved to */
+                if (can_take)
+                    draw_piece (c, selected_piece, 0.1);
+
                 c.restore ();
             }
         }
-
+ 
         return true;
+    }
+    
+    private void draw_piece (Cairo.Context c, ChessPiece piece, double alpha)
+    {
+        c.save ();
+
+        if (options.board_side == "facetoface" && piece.color == Color.BLACK)
+            c.rotate (Math.PI);
+        c.translate (-square_size / 2, -square_size / 2);
+
+        int offset = piece.type;
+        if (piece.color == Color.BLACK)
+            offset += 6;
+        c.set_source_surface (model_surface, -offset * square_size, 0);
+        c.rectangle (0, 0, square_size, square_size);
+        c.clip ();
+        c.paint_with_alpha (alpha);
+
+        c.restore ();
     }
 
     public override bool button_press_event (Gdk.EventButton event)

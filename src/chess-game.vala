@@ -63,6 +63,11 @@ public class ChessPiece
     public signal void moved ();
     public signal void promoted ();
     public signal void died ();
+    
+    public Color color
+    {
+        get { return player.color; }
+    }
 
     public unichar symbol
     {
@@ -168,7 +173,7 @@ public class ChessMove
     {
         const string white_piece_names[] = {"", "♞", "♝", "♜", "♛", "♚"};
         const string black_piece_names[] = {"", "♘", "♗", "♖", "♕", "♔"};
-        if (piece.player.color == Color.WHITE)
+        if (piece.color == Color.WHITE)
             return make_san ((string[]) white_piece_names);
         else
             return make_san ((string[]) black_piece_names);
@@ -898,7 +903,7 @@ public class ChessState
             /* Otherwise, count the minor pieces for each colour... */
             if (p.type == PieceType.KNIGHT)
             {
-                if (p.player.color == Color.WHITE)
+                if (p.color == Color.WHITE)
                     white_knight_count++;
                 else
                     black_knight_count++;
@@ -910,7 +915,7 @@ public class ChessState
                 if ((i + i/8) % 2 != 0)
                     color = Color.WHITE;
 
-                if (p.player.color == Color.WHITE)
+                if (p.color == Color.WHITE)
                 {
                     if (color == Color.WHITE)
                         white_bishop_on_white_square = true;
