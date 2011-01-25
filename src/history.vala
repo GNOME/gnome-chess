@@ -58,6 +58,16 @@ public class History
         return file;
     }
 
+    public void remove (File file)
+    {
+        var relative_path = history_dir.get_relative_path (file);
+
+        Sqlite.Statement statement;
+        assert (db.prepare_v2 ("DELETE FROM GameTable WHERE path=\"%s\"".printf (relative_path), -1, out statement) == Sqlite.OK);
+        if (statement.step () != Sqlite.DONE)
+            warning ("Failed to remove game from history index: %s", db.errmsg ());
+    }
+
     public void update (File file, string fen, string result)
     {
         var relative_path = history_dir.get_relative_path (file);

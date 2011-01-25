@@ -110,26 +110,39 @@ public class Application
         if (save_duration_timeout != 0)
             save_duration_cb ();
 
-        /* Autosave */
-        // FIXME: Only once a human has moved
-        if (in_history && pgn_game.moves != null)
-        {
-            try
-            {
-                if (game_file != null)
-                    history.update (game_file, "", pgn_game.result);
-                else
-                    game_file = history.add (pgn_game.date, pgn_game.result);
-                pgn_game.write (game_file);
-            }
-            catch (Error e)
-            {
-                warning ("Failed to autosave: %s", e.message);
-            }
-        }
-
+        autosave ();
         settings.sync ();
         Gtk.main_quit ();
+    }
+
+    private void autosave ()
+    {
+        /* FIXME: Prompt user to save somewhere */
+        if (!in_history)
+            return;
+
+        /* Don't autosave if no moves (e.g. they have been undone) or only the computer has moved */
+        if (pgn_game.moves == null || (
+            (pgn_game.moves.length () == 1 && opponent != null && opponent.color == Color.WHITE)))
+        {
+            if (game_file != null)
+                history.remove (game_file);
+            return;
+        }
+
+        try
+        {
+            if (game_file != null)
+                history.update (game_file, "", pgn_game.result);
+            else
+                game_file = history.add (pgn_game.date, pgn_game.result);
+            debug ("Writing current game to %s", game_file.get_path ());
+            pgn_game.write (game_file);
+        }
+        catch (Error e)
+        {
+            warning ("Failed to autosave: %s", e.message);
+        }
     }
 
     private void settings_changed_cb (Settings settings, string key)
@@ -243,6 +256,7 @@ public class Application
         game.started.connect (game_start_cb);
         game.turn_started.connect (game_turn_cb);
         game.moved.connect (game_move_cb);
+        game.undo.connect (game_undo_cb);
         game.ended.connect (game_end_cb);
         if (game.clock != null)
             game.clock.tick.connect (game_clock_tick_cb);
@@ -600,8 +614,8 @@ public class Application
         if (move.number > pgn_game.moves.length ())
             pgn_game.moves.append (move.get_san ());
 
-        Gtk.TreeIter iter;
         var model = (Gtk.ListStore) history_combo.model;
+        Gtk.TreeIter iter;
         model.append (out iter);
         model.set (iter, 1, move.number, -1);        
         set_move_text (iter, move);
@@ -617,6 +631,30 @@ public class Application
         if (opponent_engine != null)
             opponent_engine.report_move (move);
         view.queue_draw ();
+    }
+
+    private void game_undo_cb (ChessGame game)
+    {
+        /* Notify AI */
+        if (opponent_engine != null)
+            opponent_engine.undo ();
+
+        /* Remove from the PGN game */
+        pgn_game.moves.remove_link (pgn_game.moves.last ());
+
+        /* Remove from the history */
+        var model = (Gtk.ListStore) history_combo.model;
+        Gtk.TreeIter iter;
+        model.iter_nth_child (out iter, null, model.iter_n_children (null) - 1);
+        model.remove (iter);
+
+        /* If watching this move, go back one */
+        if (view_options.move_number > game.n_moves || view_options.move_number == -1)
+        {
+            model.iter_nth_child (out iter, null, model.iter_n_children (null) - 1);
+            history_combo.set_active_iter (iter);
+            view.queue_draw ();
+        }
     }
 
     private void game_end_cb (ChessGame game)
@@ -748,7 +786,7 @@ public class Application
     [CCode (cname = "G_MODULE_EXPORT undo_move_cb", instance_pos = -1)]
     public void undo_move_cb (Gtk.Widget widget)
     {
-        warning ("FIXME: Undo last move");
+        game.current_player.undo ();
     }
 
     [CCode (cname = "G_MODULE_EXPORT quit_cb", instance_pos = -1)]

@@ -9,6 +9,7 @@ public class ChessPlayer : Object
     public Color color;
     public signal void start_turn ();
     public signal bool do_move (string move, bool apply);
+    public signal void do_undo ();
     public signal bool do_resign ();
     public signal bool do_claim_draw ();
 
@@ -26,6 +27,11 @@ public class ChessPlayer : Object
     {
         string move = "%c%d%c%d".printf ('a' + f0, r0 + 1, 'a' + f1, r1 + 1);    
         return do_move (move, apply);
+    }
+
+    public void undo ()
+    {
+        do_undo ();
     }
 
     public bool resign ()
@@ -1134,6 +1140,7 @@ public class ChessGame
     public signal void started ();
     public signal void turn_started (ChessPlayer player);
     public signal void moved (ChessMove move);
+    public signal void undo ();
     public signal void ended ();
 
     public ChessPlayer white
@@ -1147,6 +1154,10 @@ public class ChessGame
     public ChessPlayer current_player
     {
         get { return move_stack.data.current_player; }
+    }
+    public ChessPlayer opponent
+    {
+        get { return move_stack.data.opponent; }
     }
     private ChessClock? _clock;
     public ChessClock? clock
@@ -1176,9 +1187,11 @@ public class ChessGame
         }
 
         white.do_move.connect (move_cb);
+        white.do_undo.connect (undo_cb);
         white.do_resign.connect (resign_cb);
         white.do_claim_draw.connect (claim_draw_cb);
         black.do_move.connect (move_cb);
+        black.do_undo.connect (undo_cb);
         black.do_resign.connect (resign_cb);
         black.do_claim_draw.connect (claim_draw_cb);
     }
@@ -1227,6 +1240,24 @@ public class ChessGame
         }
 
         return true;
+    }
+
+    private void undo_cb (ChessPlayer player)
+    {
+        /* If this players turn undo their opponents move then their last move */
+        if (player == current_player)
+        {
+            undo_cb (opponent);
+            return;
+        }
+
+        /* Don't pop off starting move */
+        if (move_stack.next == null)
+            return;
+
+        /* Pop off the move state and notify */
+        move_stack.remove_link (move_stack);
+        undo ();
     }
 
     private bool resign_cb (ChessPlayer player)

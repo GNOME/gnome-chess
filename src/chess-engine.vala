@@ -73,6 +73,10 @@ public class ChessEngine : Object
     {
     }
 
+    public virtual void undo ()
+    {
+    }
+
     public void stop ()
     {
         // FIXME

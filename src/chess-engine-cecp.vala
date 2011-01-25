@@ -69,7 +69,7 @@ public class ChessEngineCECP : ChessEngine
     public override void start_game ()
     {
     }
-
+    
     public override void request_move ()
     {
         write_line ("go");
@@ -85,5 +85,10 @@ public class ChessEngineCECP : ChessEngine
             write_line (move.get_engine ());
         }
         moving = false;
+    }
+
+    public override void undo ()
+    {
+        write_line ("undo");
     }
 }

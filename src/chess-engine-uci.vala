@@ -1,14 +1,14 @@
 public class ChessEngineUCI : ChessEngine
 {
     private char[] buffer;
-    private string position_command;
+    private string moves;
     private string[] options;
     
     public ChessEngineUCI (string[] options)
     {
         this.options = options;
         buffer = new char[0];
-        position_command = "position startpos";
+        moves = "";
         starting.connect (start_cb);
     }
 
@@ -24,15 +24,22 @@ public class ChessEngineUCI : ChessEngine
 
     public override void request_move ()
     {
+        if (moves != "")
+            write_line ("position startpos moves" + moves);
+        else
+            write_line ("position startpos");
         write_line ("go wtime 30000 btime 30000");
     }
 
     public override void report_move (ChessMove move)
     {
-        if (position_command == "position startpos")
-            position_command += " moves";
-        position_command += " " + move.get_engine ();
-        write_line (position_command);
+        moves += " " + move.get_engine ();
+    }
+
+    public override void undo ()
+    {
+        write_line ("stop");
+        moves = moves.slice (0, moves.last_index_of (" "));
     }
 
     public override void process_input (char[] data)
