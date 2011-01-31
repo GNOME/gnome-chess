@@ -44,6 +44,7 @@ public class Application
     private ChessGame game;
     private bool in_history;
     private File game_file;
+    private bool game_needs_saving;
     private List<AIProfile> ai_profiles;
     private ChessPlayer? opponent = null;
     private ChessPlayer? human_player = null;
@@ -90,7 +91,7 @@ public class Application
 
         info_bar = new Gtk.InfoBar ();
         var content_area = (Gtk.Container) info_bar.get_content_area ();
-        view_box.pack_start (info_bar, true, true, 0);
+        view_box.pack_start (info_bar, false, true, 0);
         var vbox = new Gtk.VBox (false, 6);
         vbox.show ();
         content_area.add (vbox);
@@ -131,8 +132,7 @@ public class Application
             return;
 
         /* Don't autosave if no moves (e.g. they have been undone) or only the computer has moved */
-        if (pgn_game.moves == null || (
-            (pgn_game.moves.length () == 1 && opponent != null && opponent.color == Color.WHITE)))
+        if (!game_needs_saving)
         {
             if (game_file != null)
                 history.remove (game_file);
@@ -317,6 +317,7 @@ public class Application
             game_move_cb (game, state.last_move);
         }
 
+        game_needs_saving = false;
         game.start ();
 
         if (game.result != ChessResult.IN_PROGRESS)
@@ -623,6 +624,13 @@ public class Application
 
     private void game_move_cb (ChessGame game, ChessMove move)
     {
+        /* Need to save after each move */
+        game_needs_saving = true;
+
+        /* If the only mover is the AI, then don't bother saving */
+        if (move.number == 1 && opponent != null && opponent.color == Color.WHITE)
+            game_needs_saving = false;
+
         if (move.number > pgn_game.moves.length ())
             pgn_game.moves.append (move.get_san ());
 
@@ -797,6 +805,31 @@ public class Application
     [CCode (cname = "G_MODULE_EXPORT new_game_cb", instance_pos = -1)]
     public void new_game_cb (Gtk.Widget widget)
     {
+        if (game_needs_saving || (in_history && game_file != null))
+        {
+            var dialog = new Gtk.MessageDialog.with_markup (window,
+                                                            Gtk.DialogFlags.MODAL,
+                                                            Gtk.MessageType.QUESTION,
+                                                            Gtk.ButtonsType.NONE,
+                                                            "<span weight=\"bold\" size=\"larger\">%s</span>",
+                                                            _("Save this game before starting a new one?"));
+            dialog.add_button (Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL);
+            dialog.add_button ("_Abandon game", Gtk.ResponseType.NO);
+            dialog.add_button ("_Save game for later", Gtk.ResponseType.YES);
+            var result = dialog.run ();
+            dialog.destroy ();
+            if (result == Gtk.ResponseType.CANCEL)
+                return;
+
+            if (result == Gtk.ResponseType.NO)
+            {
+                in_history = false;
+                game_needs_saving = false;
+            }
+        }
+
+        autosave ();
+
         start_new_game ();
     }
 
@@ -1483,7 +1516,7 @@ public class Application
         open_dialog_info_bar = null;
         open_dialog_error_label = null;
     }
-    
+
     private void start_new_game ()
     {
         in_history = true;
@@ -1514,13 +1547,13 @@ public class Application
         start_game ();
     }
 
-    private void load_game (File file, bool in_history) throws Error
+    private void load_game (File file, bool from_history) throws Error
     {
         var pgn = new PGN.from_file (file);
         pgn_game = pgn.games.nth_data (0);
 
         game_file = file;
-        this.in_history = in_history;
+        in_history = from_history;
         start_game ();
     }
 }
