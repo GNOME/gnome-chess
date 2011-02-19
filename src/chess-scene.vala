@@ -75,6 +75,7 @@ public class ChessScene : Object
         set
         {
             _game = value;
+            _move_number = -1;
             selected_rank = -1;
             selected_file = -1;
             _game.moved.connect (moved_cb);
