@@ -348,10 +348,10 @@ public class ChessState
         }
 
         /* Field 5: Halfmove clock */
-        halfmove_clock = fields[4].to_int ();
+        halfmove_clock = int.parse (fields[4]);
 
         /* Field 6: Fullmove number */
-        number = (fields[5].to_int () - 1) * 2;
+        number = (int.parse (fields[5]) - 1) * 2;
         if (current_player.color == Color.BLACK)
             number++;
 

@@ -256,7 +256,7 @@ public class Application
             foreach (var control in controls)
             {
                 /* We only support simple timeouts */
-                var duration = control.to_int ();
+                var duration = int.parse (control);
                 if (duration > 0)
                     game.clock = new ChessClock (duration, duration);
             }
