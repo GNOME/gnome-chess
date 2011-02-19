@@ -403,8 +403,6 @@ private class ChessView3D : ChessView
         glEnable (GL_TEXTURE_2D);
         glBindTexture (GL_TEXTURE_2D, piece_texture);
 
-        var selected_piece = scene.get_selected_piece ();
-
         /* Draw the pieces */
         foreach (var model in scene.pieces)
         {
@@ -414,7 +412,7 @@ private class ChessView3D : ChessView
                           -(BOARD_BORDER + (GLfloat) model.y * SQUARE_WIDTH + SQUARE_WIDTH / 2));
 
             /* Raise the selected piece up */
-            if (model.piece == selected_piece)
+            if (model.is_selected)
                 glTranslatef (0.0f, SQUARE_WIDTH * 0.4f, 0.0f);
 
             render_piece (model.piece);
@@ -427,7 +425,7 @@ private class ChessView3D : ChessView
         {
             for (int file = 0; file < 8; file++)
             {
-                if (scene.move_number == -1 && scene.show_move_hints && selected_piece != null && selected_piece.player.move_with_coords (scene.selected_rank, scene.selected_file, rank, file, false))
+                if (scene.show_move_hints && scene.can_move (rank, file))
                 {
                     glPushMatrix ();
                     glTranslatef (BOARD_BORDER + file * SQUARE_WIDTH + SQUARE_WIDTH / 2,
@@ -437,7 +435,7 @@ private class ChessView3D : ChessView
                     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                     glEnable (GL_BLEND);
                     glDisable (GL_DEPTH_TEST);
-                    render_piece (selected_piece, 0.1f);
+                    render_piece (scene.get_selected_piece (), 0.1f);
                     glEnable (GL_DEPTH_TEST);
                     glDisable (GL_BLEND);
 

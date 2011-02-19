@@ -96,17 +96,6 @@ private class ChessView2D : ChessView
         c.rectangle (-bord_size, -bord_size, bord_size * 2, bord_size * 2);
         c.fill ();
 
-        var selected_piece = scene.get_selected_piece ();
-        if (scene.move_number != -1)
-            selected_piece = null;
-        int selected_offset = 0;
-        if (selected_piece != null)
-        {
-            selected_offset = selected_piece.type;
-            if (selected_piece.color == Color.BLACK)
-                selected_offset += 6;
-        }
-
         for (int file = 0; file < 8; file++)
         {
             for (int rank = 0; rank < 8; rank++)
@@ -189,7 +178,7 @@ private class ChessView2D : ChessView
             c.rotate (-Math.PI * scene.board_angle / 180.0);
 
             draw_piece (c,
-                        model.piece == selected_piece ? selected_model_surface : model_surface,
+                        model.is_selected ? selected_model_surface : model_surface,
                         model.piece, model.under_threat && scene.show_move_hints ? 0.8 : 1.0);
 
             c.restore ();
@@ -200,15 +189,14 @@ private class ChessView2D : ChessView
         {
             for (int file = 0; file < 8; file++)
             {
-                if (scene.move_number == -1 && selected_piece != null && scene.show_move_hints &&
-                    selected_piece.player.move_with_coords (scene.selected_rank, scene.selected_file, rank, file, false))
+                if (scene.show_move_hints && scene.can_move (rank, file))
                 {
                     c.save ();
                     c.translate ((file - 4) * square_size, (3 - rank) * square_size);
                     c.translate (square_size / 2, square_size / 2);
                     c.rotate (-Math.PI * scene.board_angle / 180.0);
 
-                    draw_piece (c, model_surface, selected_piece, 0.1);
+                    draw_piece (c, model_surface, scene.get_selected_piece (), 0.1);
 
                     c.restore ();
                 }

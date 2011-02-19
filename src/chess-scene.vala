@@ -6,6 +6,7 @@ public class ChessModel
     public double target_x;
     public double target_y;
     public bool under_threat;
+    public bool is_selected;
 
     public bool moving 
     {
@@ -58,6 +59,7 @@ public class ChessModel
 public class ChessScene : Object
 {
     public List<ChessModel> pieces = null;
+    private bool _can_move[64];
 
     public bool animating = false;
     private Timer animation_timer;
@@ -244,10 +246,22 @@ public class ChessScene : Object
                     need_animation = true;
                 }
 
-                model.under_threat = false;
-                if (selected_rank > 0 &&
+                if (selected_rank > 0 && move_number == -1 &&
                     game.current_player.move_with_coords (selected_rank, selected_file, rank, file, false))
+                {
                     model.under_threat = true;
+                    _can_move[rank * 8 + file] = true;
+                }
+                else
+                {
+                    model.under_threat = false;
+                    _can_move[rank * 8 + file] = false;
+                }
+
+                if (move_number == -1 && rank == selected_rank && file == selected_file)
+                    model.is_selected = true;
+                else
+                    model.is_selected = false;
 
                 new_pieces.append (model);
             }
@@ -275,6 +289,11 @@ public class ChessScene : Object
             /* Animate every 10ms (up to 100fps) */
             Timeout.add (10, animate_cb, Priority.DEFAULT_IDLE);
         }
+    }
+
+    public bool can_move (int rank, int file)
+    {
+        return _can_move[rank * 8 + file];
     }
 
     private bool animate_cb ()
