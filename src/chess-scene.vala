@@ -272,7 +272,7 @@ public class ChessScene : Object
             game.add_hold ();
 
             /* Animate every 10ms (up to 100fps) */
-            Timeout.add (10, animate_cb);
+            Timeout.add (10, animate_cb, Priority.DEFAULT_IDLE);
         }
     }
 
