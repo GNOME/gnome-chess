@@ -91,9 +91,9 @@ private class ChessView2D : ChessView
         //c.scale (s, s);
         c.rotate (Math.PI * scene.board_angle / 180.0);
 
-        int bord_size = (int) Math.ceil (square_size * 4 + border_size);
+        int board_size = (int) Math.ceil (square_size * 4 + border_size);
         c.set_source_rgb (0x2e/255.0, 0x34/255.0, 0x36/255.0);
-        c.rectangle (-bord_size, -bord_size, bord_size * 2, bord_size * 2);
+        c.rectangle (-board_size, -board_size, board_size * 2, board_size * 2);
         c.fill ();
 
         for (int file = 0; file < 8; file++)
