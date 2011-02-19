@@ -777,12 +777,14 @@ public class ChessState
                 return ChessResult.WHITE_WON;
             }
         }
-        else if (!can_move (current_player))
+
+        if (!can_move (current_player))
         {
             rule = ChessRule.STALEMATE;
             return ChessResult.DRAW;
         }
-        else if (last_move.victim != null && !have_sufficient_material ())
+
+        if (last_move != null && last_move.victim != null && !have_sufficient_material ())
         {
             rule = ChessRule.INSUFFICIENT_MATERIAL;
             return ChessResult.DRAW;
@@ -1161,6 +1163,8 @@ public class ChessGame
     public ChessResult result;
     public ChessRule rule;
     public List<ChessState> move_stack;
+    
+    private int hold_count = 0;
 
     public const string STANDARD_SETUP = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
@@ -1169,22 +1173,27 @@ public class ChessGame
     public signal void moved (ChessMove move);
     public signal void undo ();
     public signal void ended ();
+    
+    public ChessState current_state
+    {
+       get { return move_stack.data; }
+    }
 
     public ChessPlayer white
     {
-        get { return move_stack.data.players[Color.WHITE]; }
+        get { return current_state.players[Color.WHITE]; }
     }
     public ChessPlayer black
     {
-        get { return move_stack.data.players[Color.BLACK]; }
+        get { return current_state.players[Color.BLACK]; }
     }
     public ChessPlayer current_player
     {
-        get { return move_stack.data.current_player; }
+        get { return current_state.current_player; }
     }
     public ChessPlayer opponent
     {
-        get { return move_stack.data.opponent; }
+        get { return current_state.opponent; }
     }
     private ChessClock? _clock;
     public ChessClock? clock
@@ -1236,7 +1245,7 @@ public class ChessGame
         if (player != current_player)
             return false;
 
-        var state = move_stack.data.copy ();
+        var state = current_state.copy ();
         state.number++;
         if (!state.move (move, apply))
             return false;
@@ -1251,9 +1260,33 @@ public class ChessGame
         if (state.last_move.moved_rook != null)
             state.last_move.moved_rook.moved ();
         moved (state.last_move);
+        complete_move ();
 
+        return true;
+    }
+
+    public void add_hold ()
+    {
+        hold_count++;
+    }
+
+    public void remove_hold ()
+    {
+        return_if_fail (hold_count > 0);
+
+        hold_count--;
+        if (hold_count == 0)
+            complete_move ();
+    }
+
+    private void complete_move ()
+    {
+        /* Wait until the hold is removed */
+        if (hold_count > 0)
+            return;
+            
         ChessRule rule;
-        var result = state.get_result (out rule);
+        var result = current_state.get_result (out rule);
         if (result != ChessResult.IN_PROGRESS)
         {
             stop (result, rule);
@@ -1265,8 +1298,6 @@ public class ChessGame
             current_player.start_turn ();
             turn_started (current_player);
         }
-
-        return true;
     }
 
     private void undo_cb (ChessPlayer player)
@@ -1302,7 +1333,7 @@ public class ChessGame
         if (!is_started)
             return false;
 
-        if (move_stack.data.halfmove_clock >= 50)
+        if (current_state.halfmove_clock >= 50)
             stop (ChessResult.DRAW, ChessRule.FIFTY_MOVES);
         else if (is_three_fold_repeat ())
             stop (ChessResult.DRAW, ChessRule.THREE_FOLD_REPETITION);
@@ -1375,7 +1406,6 @@ public class ChessGame
     {
         var count = 1;
 
-        var current_state = move_stack.data;
         foreach (var state in move_stack.next)
         {
             if (current_state.equals (state))

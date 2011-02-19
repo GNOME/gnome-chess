@@ -17,10 +17,10 @@ glchess_SOURCES = \
 	chess-engine-uci.vala \
 	chess-game.vala \
 	chess-pgn.vala \
+	chess-scene.vala \
 	chess-view.vala \
 	chess-view-2d.vala \
 	chess-view-3d.vala \
-	chess-view-options.vala \
 	history.vala
 
 test_chess_game_SOURCES = \

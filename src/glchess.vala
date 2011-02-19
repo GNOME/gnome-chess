@@ -12,7 +12,7 @@ public class Application
     private Gtk.Label info_title_label;
     private Gtk.Label info_label;
     private Gtk.Container view_container;
-    private ChessViewOptions view_options;
+    private ChessScene scene;
     private ChessView view;
     private Gtk.Widget undo_menu;
     private Gtk.Widget undo_button;
@@ -102,14 +102,14 @@ public class Application
         info_label.show ();
         vbox.pack_start (info_label, true, true, 0);
 
-        view_options = new ChessViewOptions ();
-        view_options.changed.connect (options_changed_cb);
-        settings.bind ("show-move-hints", view_options, "show-move-hints", SettingsBindFlags.GET);
-        settings.bind ("show-numbering", view_options, "show-numbering", SettingsBindFlags.GET);
-        settings.bind ("piece-theme", view_options, "theme-name", SettingsBindFlags.GET);
-        settings.bind ("show-3d-smooth", view_options, "show-3d-smooth", SettingsBindFlags.GET);
-        settings.bind ("move-format", view_options, "move-format", SettingsBindFlags.GET);
-        settings.bind ("board-side", view_options, "board-side", SettingsBindFlags.GET);
+        scene = new ChessScene ();
+        scene.changed.connect (scene_changed_cb);
+        settings.bind ("show-move-hints", scene, "show-move-hints", SettingsBindFlags.GET);
+        settings.bind ("show-numbering", scene, "show-numbering", SettingsBindFlags.GET);
+        settings.bind ("piece-theme", scene, "theme-name", SettingsBindFlags.GET);
+        settings.bind ("show-3d-smooth", scene, "show-3d-smooth", SettingsBindFlags.GET);
+        settings.bind ("move-format", scene, "move-format", SettingsBindFlags.GET);
+        settings.bind ("board-side", scene, "board-side", SettingsBindFlags.GET);
 
         settings.changed.connect (settings_changed_cb);
         settings_changed_cb (settings, "show-3d");
@@ -168,7 +168,7 @@ public class Application
             else
                 view = new ChessView2D ();
             view.set_size_request (300, 300);
-            view.options = view_options;
+            view.scene = scene;
             view_container.add (view);
             view.show ();
         }
@@ -179,7 +179,7 @@ public class Application
         if (game == null)
             return;
 
-        var move_number = view_options.move_number;
+        var move_number = scene.move_number;
         var n_moves = (int) game.n_moves;
         if (move_number < 0)
             move_number += 1 + n_moves;
@@ -205,7 +205,7 @@ public class Application
         history_combo.set_active (move_number);
     }
 
-    private void options_changed_cb (ChessViewOptions options)
+    private void scene_changed_cb (ChessScene scene)
     {
         update_history_panel ();
     }
@@ -270,7 +270,7 @@ public class Application
         if (game.clock != null)
             game.clock.tick.connect (game_clock_tick_cb);
 
-        view_options.game = game;
+        scene.game = game;
         info_bar.hide ();
         save_menu.sensitive = false;
         save_as_menu.sensitive = false;
@@ -586,7 +586,7 @@ public class Application
                                              N_("Black king at %1$s takes the white queen at %2$s")};
 
         var move_text = "";
-        switch (view_options.move_format)
+        switch (scene.move_format)
         {
         case "human":
             int index;
@@ -641,7 +641,7 @@ public class Application
         set_move_text (iter, move);
 
         /* Follow the latest move */
-        if (move.number == game.n_moves && view_options.move_number == -1)
+        if (move.number == game.n_moves && scene.move_number == -1)
             history_combo.set_active_iter (iter);
 
         save_menu.sensitive = true;
@@ -670,7 +670,7 @@ public class Application
         model.remove (iter);
 
         /* If watching this move, go back one */
-        if (view_options.move_number > game.n_moves || view_options.move_number == -1)
+        if (scene.move_number > game.n_moves || scene.move_number == -1)
         {
             model.iter_nth_child (out iter, null, model.iter_n_children (null) - 1);
             history_combo.set_active_iter (iter);
@@ -928,44 +928,44 @@ public class Application
         combo.model.get (iter, 1, out move_number, -1);
         if (game == null || move_number == game.n_moves)
             move_number = -1;
-        view_options.move_number = move_number;
+        scene.move_number = move_number;
     }
 
     [CCode (cname = "G_MODULE_EXPORT history_latest_clicked_cb", instance_pos = -1)]
     public void history_latest_clicked_cb (Gtk.Widget widget)
     {
-        view_options.move_number = -1;
+        scene.move_number = -1;
     }
 
     [CCode (cname = "G_MODULE_EXPORT history_next_clicked_cb", instance_pos = -1)]
     public void history_next_clicked_cb (Gtk.Widget widget)
     {
-        if (view_options.move_number == -1)
+        if (scene.move_number == -1)
             return;
 
-        int move_number = view_options.move_number + 1;
+        int move_number = scene.move_number + 1;
         if (move_number >= game.n_moves)
-            view_options.move_number = -1;
+            scene.move_number = -1;
         else
-            view_options.move_number = move_number;
+            scene.move_number = move_number;
     }
 
     [CCode (cname = "G_MODULE_EXPORT history_previous_clicked_cb", instance_pos = -1)]
     public void history_previous_clicked_cb (Gtk.Widget widget)
     {
-        if (view_options.move_number == 0)
+        if (scene.move_number == 0)
             return;
 
-        if (view_options.move_number == -1)
-            view_options.move_number = (int) game.n_moves - 1;
+        if (scene.move_number == -1)
+            scene.move_number = (int) game.n_moves - 1;
         else
-            view_options.move_number = view_options.move_number - 1;
+            scene.move_number = scene.move_number - 1;
     }
 
     [CCode (cname = "G_MODULE_EXPORT history_start_clicked_cb", instance_pos = -1)]
     public void history_start_clicked_cb (Gtk.Widget widget)
     {
-        view_options.move_number = 0;
+        scene.move_number = 0;
     }
 
     [CCode (cname = "G_MODULE_EXPORT toggle_fullscreen_cb", instance_pos = -1)]

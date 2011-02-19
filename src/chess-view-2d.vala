@@ -11,7 +11,7 @@ private class ChessView2D : ChessView
     {
         get { return square_size / 2; }
     }
-    
+
     public ChessView2D ()
     {
         add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
@@ -35,7 +35,7 @@ private class ChessView2D : ChessView
         Rsvg.Handle handle;
         try
         {
-            handle = new Rsvg.Handle.from_file (Path.build_filename (Config.PKGDATADIR, "pieces", options.theme_name, name + ".svg", null));
+            handle = new Rsvg.Handle.from_file (Path.build_filename (Config.PKGDATADIR, "pieces", scene.theme_name, name + ".svg", null));
         }
         catch (Error e)
         {
@@ -59,7 +59,7 @@ private class ChessView2D : ChessView
     private void load_theme ()
     {
         /* Skip if already loaded */
-        if (options.theme_name == loaded_theme_name && model_surface != null && square_size == model_surface.get_height ())
+        if (scene.theme_name == loaded_theme_name && model_surface != null && square_size == model_surface.get_height ())
             return;
 
         model_surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, 12 * square_size, square_size);
@@ -80,7 +80,7 @@ private class ChessView2D : ChessView
         render_piece (c1, c2, "blackQueen", 10);
         render_piece (c1, c2, "blackKing", 11);
 
-        loaded_theme_name = options.theme_name;
+        loaded_theme_name = scene.theme_name;
     }
 
     public override bool draw (Cairo.Context c)
@@ -89,15 +89,15 @@ private class ChessView2D : ChessView
 
         c.translate (get_allocated_width () / 2, get_allocated_height () / 2);
         //c.scale (s, s);
-        c.rotate (Math.PI * options.board_angle / 180.0);
+        c.rotate (Math.PI * scene.board_angle / 180.0);
 
         int bord_size = (int) Math.ceil (square_size * 4 + border_size);
         c.set_source_rgb (0x2e/255.0, 0x34/255.0, 0x36/255.0);
         c.rectangle (-bord_size, -bord_size, bord_size * 2, bord_size * 2);
         c.fill ();
 
-        var selected_piece = options.get_selected_piece ();
-        if (options.move_number != -1)
+        var selected_piece = scene.get_selected_piece ();
+        if (scene.move_number != -1)
             selected_piece = null;
         int selected_offset = 0;
         if (selected_piece != null)
@@ -123,7 +123,7 @@ private class ChessView2D : ChessView
             }
         }
 
-        if (options.show_numbering)
+        if (scene.show_numbering)
         {
             string[] files = { "a", "b", "c", "d", "e", "f", "g", "h" };
             string[] ranks = { "8", "7", "6", "5", "4", "3", "2", "1" };
@@ -180,46 +180,47 @@ private class ChessView2D : ChessView
             }
         }
 
-        if (options.game == null)
-            return true;
+        /* Draw the pieces */
+        foreach (var model in scene.pieces)
+        {
+            c.save ();
+            c.translate ((model.x - 4) * square_size, (3 - model.y) * square_size);
+            c.translate (square_size / 2, square_size / 2);
+            c.rotate (-Math.PI * scene.board_angle / 180.0);
 
+            draw_piece (c,
+                        model.piece == selected_piece ? selected_model_surface : model_surface,
+                        model.piece, model.under_threat && scene.show_move_hints ? 0.8 : 1.0);
+
+            c.restore ();
+        }
+
+        /* Draw shadow piece on squares that can be moved to */
         for (int rank = 0; rank < 8; rank++)
         {
             for (int file = 0; file < 8; file++)
             {
-                c.save ();
-                c.translate ((file - 4) * square_size, (3 - rank) * square_size);
-                c.translate (square_size / 2, square_size / 2);
-                c.rotate (-Math.PI * options.board_angle / 180.0);
+                if (scene.move_number == -1 && selected_piece != null && scene.show_move_hints &&
+                    selected_piece.player.move_with_coords (scene.selected_rank, scene.selected_file, rank, file, false))
+                {
+                    c.save ();
+                    c.translate ((file - 4) * square_size, (3 - rank) * square_size);
+                    c.translate (square_size / 2, square_size / 2);
+                    c.rotate (-Math.PI * scene.board_angle / 180.0);
 
-                bool can_take = false;
-                if (selected_piece != null && options.show_move_hints &&
-                    selected_piece.player.move_with_coords (options.selected_rank, options.selected_file, rank, file, false))
-                    can_take = true;
-
-                /* Draw the piece in this square */
-                ChessPiece? piece = options.game.get_piece (rank, file, options.move_number);
-                if (piece != null)
-                    draw_piece (c,
-                                piece == selected_piece ? selected_model_surface : model_surface,
-                                piece, can_take ? 0.8 : 1.0);
-
-                /* Draw shadow piece on squares that can be moved to */
-                if (can_take)
                     draw_piece (c, model_surface, selected_piece, 0.1);
 
-                c.restore ();
+                    c.restore ();
+                }
             }
         }
- 
+
         return true;
     }
     
     private void draw_piece (Cairo.Context c, Cairo.ImageSurface surface, ChessPiece piece, double alpha)
     {
-        c.save ();
-        
-        if (options.board_side == "facetoface" && piece.color == Color.BLACK)
+        if (scene.board_side == "facetoface" && piece.color == Color.BLACK)
             c.rotate (Math.PI);
 
         var size = surface.get_height ();
@@ -232,20 +233,18 @@ private class ChessView2D : ChessView
         c.rectangle (0, 0, size, size);
         c.clip ();
         c.paint_with_alpha (alpha);
-
-        c.restore ();
     }
 
     public override bool button_press_event (Gdk.EventButton event)
     {
-        if (options.game == null || event.button != 1)
+        if (scene.game == null || event.button != 1)
             return false;
 
         int file = (int) Math.floor((event.x - 0.5 * get_allocated_width () + square_size * 4) / square_size);
         int rank = 7 - (int) Math.floor((event.y - 0.5 * get_allocated_height () + square_size * 4) / square_size);
 
         // FIXME: Use proper Cairo rotation matrix
-        if (options.board_angle == 180.0)
+        if (scene.board_angle == 180.0)
         {
             rank = 7 - rank;
             file = 7 - file;
@@ -254,7 +253,7 @@ private class ChessView2D : ChessView
         if (file < 0 || file >= 8 || rank < 0 || rank >= 8)
             return false;
 
-        options.select_square (file, rank);
+        scene.select_square (file, rank);
 
         return true;
     }

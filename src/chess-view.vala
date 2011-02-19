@@ -1,18 +1,18 @@
 public class ChessView : Gtk.DrawingArea
 {
-    private ChessViewOptions _options;
-    public ChessViewOptions options
+    private ChessScene _scene;
+    public ChessScene scene
     {
-        get { return _options; }
+        get { return _scene; }
         set
         {
-            _options = value;
-            _options.changed.connect (options_changed_cb);
+            _scene = value;
+            _scene.changed.connect (scene_changed_cb);
             queue_draw ();
         }
     }
 
-    private void options_changed_cb (ChessViewOptions options)
+    private void scene_changed_cb (ChessScene scene)
     {
         queue_draw ();
     }

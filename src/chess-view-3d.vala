@@ -235,7 +235,7 @@ private class ChessView3D : ChessView
             return true;
 
         var n_passes = 1;
-        if (options.show_3d_smooth)
+        if (scene.show_3d_smooth)
         {
             glClear (GL_ACCUM_BUFFER_BIT);
             n_passes = 3;
@@ -251,7 +251,7 @@ private class ChessView3D : ChessView
 
             glMatrixMode (GL_PROJECTION);
             glLoadIdentity ();
-            if (options.show_3d_smooth)
+            if (scene.show_3d_smooth)
                 accPerspective (60.0f, (float) get_allocated_width () / get_allocated_height (), 0.1f, 1000, jitters[i*2], jitters[i*2+1], 0, 0, 1);
             else
                 gluPerspective (60.0f, (float) get_allocated_width () / get_allocated_height (), 0.1f, 1000);
@@ -265,7 +265,7 @@ private class ChessView3D : ChessView
             glEnable (GL_LIGHT0);
 
             glPushMatrix ();
-            glRotatef ((GLfloat) options.board_angle, 0.0f, 1.0f, 0.0f);
+            glRotatef ((GLfloat) scene.board_angle, 0.0f, 1.0f, 0.0f);
             glTranslatef (-OFFSET, 0.0f, OFFSET);
 
             draw_board ();
@@ -274,11 +274,11 @@ private class ChessView3D : ChessView
 
             glPopMatrix ();
 
-            if (options.show_3d_smooth)
+            if (scene.show_3d_smooth)
                 glAccum (GL_ACCUM, 1.0f / n_passes);
         }
 
-        if (options.show_3d_smooth)
+        if (scene.show_3d_smooth)
             glAccum (GL_RETURN, 1);
 
         glXSwapBuffers (display, drawable);
@@ -396,42 +396,53 @@ private class ChessView3D : ChessView
 
     private void draw_pieces ()
     {
-        if (options.game == null)
+        if (scene.game == null)
             return;
 
         glEnable (GL_DEPTH_TEST);
         glEnable (GL_TEXTURE_2D);
         glBindTexture (GL_TEXTURE_2D, piece_texture);
 
-        var selected_piece = options.get_selected_piece ();
+        var selected_piece = scene.get_selected_piece ();
+
+        /* Draw the pieces */
+        foreach (var model in scene.pieces)
+        {
+            glPushMatrix ();
+            glTranslatef (BOARD_BORDER + (GLfloat) model.x * SQUARE_WIDTH + SQUARE_WIDTH / 2,
+                          0.0f,
+                          -(BOARD_BORDER + (GLfloat) model.y * SQUARE_WIDTH + SQUARE_WIDTH / 2));
+
+            /* Raise the selected piece up */
+            if (model.piece == selected_piece)
+                glTranslatef (0.0f, SQUARE_WIDTH * 0.4f, 0.0f);
+
+            render_piece (model.piece);
+
+            glPopMatrix ();
+        }
+
+        /* Draw shadow piece on squares that can be moved to */
         for (int rank = 0; rank < 8; rank++)
         {
             for (int file = 0; file < 8; file++)
             {
-                glPushMatrix ();
-                glTranslatef (BOARD_BORDER + file * SQUARE_WIDTH + SQUARE_WIDTH / 2, 0.0f, -(BOARD_BORDER + rank * SQUARE_WIDTH + SQUARE_WIDTH / 2));
-
-                ChessPiece? piece = options.game.get_piece (rank, file, options.move_number);
-                if (piece != null)
+                if (scene.move_number == -1 && scene.show_move_hints && selected_piece != null && selected_piece.player.move_with_coords (scene.selected_rank, scene.selected_file, rank, file, false))
                 {
                     glPushMatrix ();
-                    if (piece == selected_piece)
-                        glTranslatef (0.0f, SQUARE_WIDTH * 0.4f, 0.0f);
-                    render_piece (piece);
-                    glPopMatrix ();
-                }
+                    glTranslatef (BOARD_BORDER + file * SQUARE_WIDTH + SQUARE_WIDTH / 2,
+                                  0.0f,
+                                  -(BOARD_BORDER + rank * SQUARE_WIDTH + SQUARE_WIDTH / 2));
 
-                if (options.move_number == -1 && options.show_move_hints && selected_piece != null && selected_piece.player.move_with_coords (options.selected_rank, options.selected_file, rank, file, false))
-                {
                     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                     glEnable (GL_BLEND);
                     glDisable (GL_DEPTH_TEST);
                     render_piece (selected_piece, 0.1f);
                     glEnable (GL_DEPTH_TEST);
                     glDisable (GL_BLEND);
-                }
 
-                glPopMatrix ();
+                    glPopMatrix ();
+                }
             }
         }
 
@@ -485,7 +496,7 @@ private class ChessView3D : ChessView
 
     public override bool button_press_event (Gdk.EventButton event)
     {
-        if (options.game == null || event.button != 1)
+        if (scene.game == null || event.button != 1)
             return false;
 
         if (!start_gl ())
@@ -509,7 +520,7 @@ private class ChessView3D : ChessView
         glMatrixMode (GL_MODELVIEW);
         glLoadIdentity ();
         transform_camera ();
-        glRotatef ((GLfloat) options.board_angle, 0.0f, 1.0f, 0.0f);
+        glRotatef ((GLfloat) scene.board_angle, 0.0f, 1.0f, 0.0f);
         glTranslatef (-OFFSET, 0.0f, OFFSET);
         for (var rank = 0; rank < 8; rank++)
         {
@@ -544,7 +555,7 @@ private class ChessView3D : ChessView
         {
             var rank = buffer[3];
             var file = buffer[4];
-            options.select_square (file, rank);
+            scene.select_square (file, rank);
         }
 
         return true;
