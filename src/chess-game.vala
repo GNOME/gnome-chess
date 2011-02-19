@@ -1052,8 +1052,8 @@ public class ChessState
                     promotion_type = PieceType.QUEEN;
                     i++;
                     break;
-                case 'k':
-                    promotion_type = PieceType.KING;
+                case 'n':
+                    promotion_type = PieceType.KNIGHT;
                     i++;
                     break;
                 case 'r':
