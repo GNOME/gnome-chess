@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <enum id="org.gnome.glchess.PieceType">
+    <value value="0" nick="pawn"/>
+    <value value="1" nick="rook"/>
+    <value value="2" nick="knight"/>
+    <value value="3" nick="bishop"/>
+    <value value="4" nick="queen"/>
+    <value value="5" nick="king"/>
+  </enum>
+
+  <enum id="org.gnome.glchess.MoveFormat">
+    <value value="0" nick="human"/>
+    <value value="1" nick="san"/>
+    <value value="2" nick="fan"/>
+    <value value="3" nick="lan"/>
+  </enum>
+
+  <enum id="org.gnome.glchess.BoardSide">
+    <value value="0" nick="white"/>
+    <value value="1" nick="black"/>
+    <value value="2" nick="human"/>
+    <value value="3" nick="current"/>
+    <value value="4" nick="facetoface"/>
+  </enum>
+
+  <enum id="org.gnome.glchess.Difficulty">
+    <value value="0" nick="easy"/>
+    <value value="1" nick="normal"/>
+    <value value="2" nick="hard"/>
+  </enum>
+
+  <schema id="org.gnome.glchess.Settings" path="/apps/glchess/" gettext-domain="gnome-games">
+    <key name="width" type="i">
+      <default>500</default>
+      <_summary>The width of the window</_summary>
+      <_description>The width of the main window in pixels.</_description>
+    </key>
+    <key name="height" type="i">
+      <default>550</default>
+      <_summary>The height of the window</_summary>
+      <_description>The height of the main window in pixels.</_description>
+    </key>
+    <key name="maximised" type="b">
+      <default>false</default>
+      <_summary>A flag to enable maximised mode</_summary>
+      <_description>A flag to enable maximised mode</_description>
+    </key>
+    <key name="fullscreen" type="b">
+      <default>false</default>
+      <_summary>A flag to enable fullscreen mode</_summary>
+      <_description>A flag to enable fullscreen mode</_description>
+    </key>
+    <key name="promotion-type" enum="org.gnome.glchess.PieceType">
+      <default>'queen'</default>
+      <_summary>The piece to promote pawns to</_summary>
+      <_description>The piece to promote to when a human player moves a pawn to the far rank</_description>
+    </key>
+    <key name="show-3d" type="b">
+      <default>false</default>
+      <_summary>A flag to enable 3D mode</_summary>
+      <_description>A flag to enable 3D mode</_description>
+    </key>
+    <key name="show-3d-smooth" type="b">
+      <default>false</default>
+      <_summary>A flag to smooth (anti-alias) the 3D display</_summary>
+      <_description>A flag to smooth (anti-alias) the 3D display</_description>
+    </key>
+    <key name="piece-theme" type="s">
+      <default>'simple'</default>
+      <_summary>The piece theme to use</_summary>
+      <_description>The piece theme to use</_description>
+    </key>
+    <key name="show-move-hints" type="b">
+      <default>true</default>
+      <_summary>A flag to enable move hints</_summary>
+      <_description>A flag to enable move hints</_description>
+    </key>
+    <key name="show-numbering" type="b">
+      <default>false</default>
+      <_summary>A flag to enable board numbering</_summary>
+      <_description>A flag to enable board numbering</_description>
+    </key>
+    <key name="show-history" type="b">
+      <default>true</default>
+      <_summary>A flag to enable the move history browser</_summary>
+      <_description>A flag to enable the move history browser</_description>
+    </key>
+    <key name="show-toolbar" type="b">
+      <default>false</default>
+      <_summary>A flag to enable the toolbar</_summary>
+      <_description>A flag to enable the toolbar</_description>
+    </key>
+    <key name="save-directory" type="s">
+      <default>''</default>
+      <_summary>The directory to open the save game dialog in</_summary>
+      <_description>The directory to open the save game dialog in</_description>
+    </key>
+    <key name="load-directory" type="s">
+      <default>''</default>
+      <_summary>The directory to open the load game dialog in</_summary>
+      <_description>The directory to open the load game dialog in</_description>
+    </key>
+    <key name="move-format" enum="org.gnome.glchess.MoveFormat">
+      <default>'human'</default>
+      <_summary>The format to display moves in</_summary>
+      <_description>The format to display moves in</_description>
+    </key>
+    <key name="board-side" enum="org.gnome.glchess.BoardSide">
+      <default>'human'</default>
+      <_summary>The side of the board that is in the foreground</_summary>
+      <_description>The side of the board that is in the foreground</_description>
+    </key>
+    <key name="duration" type="i">
+      <default>0</default>
+      <_summary>The duration of a game in seconds (0 for no limit)</_summary>
+      <_description>The duration of a game in seconds (0 for no limit)</_description>
+    </key>
+    <key name="play-as-white" type="b">
+      <default>true</default>
+      <_summary>true if the human player is playing white</_summary>
+      <_description>true if the human player is playing white</_description>
+    </key>
+    <key name="opponent" type="s">
+      <default>''</default>
+      <_summary>The opponent player</_summary>
+      <_description>Can be 'human' (play against another human player), '' (use the first available chess engine) or the name of a specific engine to play against</_description>
+    </key>
+    <key name="difficulty" enum="org.gnome.glchess.Difficulty">
+      <default>'easy'</default>
+      <_summary>Difficulty of the opponent chess engine</_summary>
+      <_description>Difficulty of the opponent chess engine</_description>
+    </key>
+  </schema>
+</schemalist>
