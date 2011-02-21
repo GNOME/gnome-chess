@@ -68,6 +68,8 @@ glchess_VALAFLAGS = \
     --pkg posix \
     --pkg sqlite3
 
+CLEANFILES = $(patsubst %.vala,%.c,$(filter %.vala, $(SOURCES))) glchess_vala.stamp
+
 DISTCLEANFILES = \
 	Makefile.in
 
