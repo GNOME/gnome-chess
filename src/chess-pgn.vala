@@ -161,7 +161,8 @@ public class PGNGame
 
 enum State
 {
-    IDLE,
+    TAGS,
+    MOVE_TEXT,
     LINE_COMMENT,
     BRACE_COMMENT,
     TAG_START,
@@ -170,6 +171,7 @@ enum State
     TAG_VALUE,
     POST_TAG_VALUE,
     SYMBOL,
+    PERIOD,
     NAG,
     ERROR
 }
@@ -182,27 +184,22 @@ public class PGN
     {
     }
 
-    public PGN.from_file (File file) throws Error
+    public PGN.from_string (string data) throws PGNError
     {
-        string contents;
-        size_t n_read;
-        file.load_contents (null, out contents, out n_read);
-        
         // FIXME: Feed through newline at end to make sure parsing complete
-       
-        State state = State.IDLE;
+
+        State state = State.TAGS, home_state = State.TAGS;
         PGNGame game = new PGNGame ();
         bool in_escape = false;
         size_t token_start = 0, line_offset = 0;
         string tag_name = "";
         StringBuilder tag_value = new StringBuilder ();
         int line = 1;
-        bool have_tags = false;
         int rav_level = 0;
-        for (size_t offset = 0; offset < contents.length; offset++)
+        for (size_t offset = 0; offset <= data.length; offset++)
         {
-            unichar c = contents[(long) offset];
-            
+            unichar c = data[(long) offset];
+
             if (c == '\n')
             {
                line++;
@@ -211,47 +208,63 @@ public class PGN
             
             switch (state)
             {
-            case State.IDLE:
+            case State.TAGS:
+                home_state = State.TAGS;
                 if (c.isspace ())
-                    ;//
+                    ; /* Ignore whitespace */
                 else if (c == ';')
                     state = State.LINE_COMMENT;
                 else if (c == '{')
                     state = State.BRACE_COMMENT;
                 else if (c == '[')
-                {
-                    have_tags = true;
                     state = State.TAG_START;
+                else
+                {
+                    offset--;
+                    state = State.MOVE_TEXT;
+                    continue;
                 }
-                else if (have_tags && c == '*')
+                break;
+
+            case State.MOVE_TEXT:
+                home_state = State.MOVE_TEXT;
+                if (c.isspace ())
+                    ; /* Ignore whitespace */
+                else if (c == ';')
+                    state = State.LINE_COMMENT;
+                else if (c == '{')
+                    state = State.BRACE_COMMENT;
+                else if (c == '*')
                 {
                     if (rav_level == 0)
                     {
                         game.result = PGNGame.RESULT_IN_PROGRESS;
                         games.append (game);
                         game = new PGNGame ();
-                        have_tags = false;
+                        state = State.TAGS;
                     }
-                    state = State.IDLE;
                 }
-                else if (have_tags && c == '.')
-                    continue;
-                else if (have_tags && c.isalnum ())
+                else if (c == '.')
+                {
+                    offset--;
+                    state = State.PERIOD;
+                }
+                else if (c.isalnum ())
                 {
                     token_start = offset;
                     state = State.SYMBOL;
                 }
-                else if (have_tags && c == '$')
+                else if (c == '$')
                 {
                     token_start = offset + 1;
                     state = State.NAG;
                 }
-                else if (have_tags && c == '(')
+                else if (c == '(')
                 {
                     rav_level++;
                     continue;
                 }
-                else if (have_tags && c == ')')
+                else if (c == ')')
                 {
                     if (rav_level == 0)
                         state = State.ERROR;
@@ -264,12 +277,12 @@ public class PGN
 
             case State.LINE_COMMENT:
                 if (c == '\n')
-                    state = State.IDLE;
+                    state = home_state;
                 break;
 
             case State.BRACE_COMMENT:
                 if (c == '}')
-                    state = State.IDLE;
+                    state = home_state;
                 break;
 
             case State.TAG_START:
@@ -287,7 +300,7 @@ public class PGN
             case State.TAG_NAME:
                 if (c.isspace ())
                 {
-                    tag_name = contents[(long)token_start:(long)offset];
+                    tag_name = data[(long)token_start:(long)offset];
                     state = State.PRE_TAG_VALUE;
                 }
                 else if (c.isalnum() || c == '_' || c == '+' || c == '#' || c == '=' || c == ':' || c == '-')
@@ -329,7 +342,7 @@ public class PGN
                 else if (c == ']')
                 {
                     game.tags.insert (tag_name, tag_value.str);
-                    state = State.IDLE;
+                    state = State.TAGS;
                 }
                 else
                     state = State.ERROR;
@@ -341,12 +354,15 @@ public class PGN
                     continue;
                 else
                 {
-                    string symbol = contents[(long)token_start:(long)offset];
+                    string symbol = data[(long)token_start:(long)offset];
 
                     bool is_number = true;
                     for (int i = 0; i < symbol.length; i++)
                        if (!symbol[i].isdigit ())
                            is_number = false;
+
+                    state = State.MOVE_TEXT;
+                    offset--;
 
                     /* Game termination markers */
                     if (symbol == PGNGame.RESULT_DRAW || symbol == PGNGame.RESULT_WHITE || symbol == PGNGame.RESULT_BLACK)
@@ -356,7 +372,7 @@ public class PGN
                             game.result = symbol;
                             games.append (game);
                             game = new PGNGame ();
-                            have_tags = false;
+                            state = State.TAGS;
                         }
                     }
                     else if (!is_number)
@@ -364,10 +380,12 @@ public class PGN
                         if (rav_level == 0)
                             game.moves.append (symbol);
                     }
-
-                    state = State.IDLE;
-                    offset--;
                 }
+                break;
+
+            case State.PERIOD:
+                /* FIXME: Should check these move carefully, e.g. "1. e2" */
+                state = State.MOVE_TEXT;
                 break;
 
             case State.NAG:
@@ -375,20 +393,17 @@ public class PGN
                     continue;
                 else
                 {
-                    //string nag = contents[(long)token_start:(long)offset];
+                    //string nag = data[(long)token_start:(long)offset];
                     //stdout.printf ("nag = '%s'\n", nag);
-                    state = State.IDLE;
+                    state = State.MOVE_TEXT;
                     offset--;
                 }
                 break;
 
             case State.ERROR:
                 size_t char_offset = offset - line_offset - 1;
-                var filename = file.get_path ();
-                if (filename == null)
-                    filename = file.get_uri ();
-                stderr.printf ("%s:%d.%d: error: Unexpected character\n", filename, line, (int) (char_offset + 1));
-                stderr.printf ("%s\n", contents[(long)line_offset:(long)offset]);
+                stderr.printf ("%d.%d: error: Unexpected character\n", line, (int) (char_offset + 1));
+                stderr.printf ("%s\n", data[(long)line_offset:(long)offset]);
                 for (int i = 0; i < char_offset; i++)
                     stderr.printf (" ");
                 stderr.printf ("^\n");
@@ -396,8 +411,19 @@ public class PGN
             }
         }
 
+        if (game.moves.length () > 0 || game.tags.size () > 0)
+            games.append (game);
+
         /* Must have at least one game */
         if (games == null)
             throw new PGNError.LOAD_ERROR("No games in PGN file");
+     }
+
+    public PGN.from_file (File file) throws Error
+    {
+        string contents;
+        size_t n_read;
+        file.load_contents (null, out contents, out n_read);
+        this.from_string (contents);
     }
 }

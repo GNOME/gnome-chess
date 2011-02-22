@@ -1,6 +1,8 @@
 bin_PROGRAMS = glchess
 
-noinst_PROGRAMS = test-chess-game
+noinst_PROGRAMS = test-chess-game test-chess-pgn
+
+TESTS = test-chess-game test-chess-pgn
 
 glchess_SOURCES = \
 	config.vapi \
@@ -28,16 +30,23 @@ test_chess_game_SOURCES = \
 	chess-clock.vala \
 	chess-game.vala \
 	test-chess-game.vala
-
 test_chess_game_CFLAGS = \
 	$(GOBJECT_CFLAGS)
-
 test_chess_game_LDADD = \
 	$(GOBJECT_LIBS)
-
 test_chess_game_VALAFLAGS = \
     --pkg gobject-2.0 \
     --pkg posix
+
+test_chess_pgn_SOURCES = \
+	chess-pgn.vala \
+	test-chess-pgn.vala
+test_chess_pgn_CFLAGS = \
+	$(GIO_CFLAGS)
+test_chess_pgn_LDADD = \
+	$(GIO_LIBS)
+test_chess_pgn_VALAFLAGS = \
+    --pkg gio-2.0
 
 glchess_CFLAGS = \
 	-DPKGDATADIR=\"@datadir@/glchess\" \
