@@ -230,6 +230,12 @@ public class ChessScene : Object
         {
             for (int file = 0; file < 8; file++)
             {
+                var can_move = false;
+                if (selected_rank >= 0 && move_number == -1 &&
+                    game.current_player.move_with_coords (selected_rank, selected_file, rank, file, false))
+                    can_move = true;
+                _can_move[rank * 8 + file] = can_move;
+
                 var piece = game.get_piece (rank, file, move_number);
                 if (piece == null)
                     continue;
@@ -239,23 +245,12 @@ public class ChessScene : Object
                     model = new ChessModel (piece, (double) file, (double) rank);
                     board_changed = true;
                 }
+                model.under_threat = can_move;
 
                 if (model.move_to ((double) file, (double) rank))
                 {
                     board_changed = true;
                     need_animation = true;
-                }
-
-                if (selected_rank > 0 && move_number == -1 &&
-                    game.current_player.move_with_coords (selected_rank, selected_file, rank, file, false))
-                {
-                    model.under_threat = true;
-                    _can_move[rank * 8 + file] = true;
-                }
-                else
-                {
-                    model.under_threat = false;
-                    _can_move[rank * 8 + file] = false;
                 }
 
                 if (move_number == -1 && rank == selected_rank && file == selected_file)
