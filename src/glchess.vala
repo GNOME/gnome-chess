@@ -598,6 +598,8 @@ public class Application
             if (move.piece.player.color == Color.BLACK)
                 index += 36;
 
+            // FIXME: Use castling text e.g. "White castles kingside" (do for next release, we are in a string freeze)
+
             var start = "%c%d".printf ('a' + move.f0, move.r0 + 1);
             var end = "%c%d".printf ('a' + move.f1, move.r1 + 1);
             move_text = _(human_descriptions[index]).printf (start, end);
