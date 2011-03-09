@@ -111,6 +111,10 @@ class GlChess
         test_good_move ("k7/8/8/8/8/8/1R6/1R6 w - - 0 1", "Ra1#",
                         "k7/8/8/8/8/8/1R6/R7 b - - 1 1", ChessResult.WHITE_WON, ChessRule.CHECKMATE);
 
+        /* Not checkmate (piece can be moved to intercept) */
+        test_good_move ("k7/7r/8/8/8/8/1R6/1R6 w - - 0 1", "Ra1+",
+                        "k7/7r/8/8/8/8/1R6/R7 b - - 1 1");
+
         /* Stalemate */
         test_good_move ("k7/8/7R/8/8/8/8/1R6 w - - 0 1", "Rh7",
                         "k7/7R/8/8/8/8/8/1R6 b - - 1 1", ChessResult.DRAW, ChessRule.STALEMATE);

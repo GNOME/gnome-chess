@@ -809,6 +809,7 @@ public class ChessState
     {
         var opponent = player.color == Color.WHITE ? players[Color.BLACK] : players[Color.WHITE];
 
+        /* Is in check if any piece can take the king */
         for (int king_index = 0; king_index < 64; king_index++)
         {
             var p = board[king_index];
@@ -831,16 +832,16 @@ public class ChessState
 
     private bool is_in_checkmate (ChessPlayer player)
     {
-        for (int king_index = 0; king_index < 64; king_index++)
+        /* Is in checkmate if no pieces can move */
+        for (int piece_index = 0; piece_index < 64; piece_index++)
         {
-            var p = board[king_index];
-            if (p != null && p.player == player && p.type == PieceType.KING)
+            var p = board[piece_index];
+            if (p != null && p.player == player)
             {
-                /* See if the king can move */
                 for (int end = 0; end < 64; end++)
                 {
                     if (move_with_coords (player,
-                                          get_rank (king_index), get_file (king_index),
+                                          get_rank (piece_index), get_file (piece_index),
                                           get_rank (end), get_file (end),
                                           PieceType.QUEEN, false, true))
                         return false;
