@@ -594,7 +594,7 @@ public class Application
                 index = 0;
             else
                 index = move.victim.type + 1;
-            index *= move.piece.type;
+            index += move.piece.type * 6;
             if (move.piece.player.color == Color.BLACK)
                 index += 36;
 
