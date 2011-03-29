@@ -27,8 +27,6 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#include <config.h>
-
 #ifndef __GNUC__
 # define __attribute__(x)
 #endif
