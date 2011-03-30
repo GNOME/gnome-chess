@@ -1355,6 +1355,7 @@ public class Application
 
         about_dialog = new Gtk.AboutDialog ();
         about_dialog.transient_for = window;
+        about_dialog.modal = true;
         about_dialog.name = "glchess";
         about_dialog.version = Config.VERSION;
         about_dialog.copyright = "Copyright 2010 Robert Ancell <robert.ancell@gmail.com>";
