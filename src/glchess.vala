@@ -1366,7 +1366,7 @@ public class Application
         about_dialog.translator_credits = "translator-credits";
         about_dialog.website = "http://www.gnome.org/projects/gnome-games/";
         about_dialog.website_label = _("GNOME Games web site");
-        about_dialog.logo_icon_name = "glchess";
+        about_dialog.logo_icon_name = "gnome-glchess";
         about_dialog.response.connect (about_response_cb);
         about_dialog.show ();
     }
