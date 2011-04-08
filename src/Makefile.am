@@ -50,6 +50,7 @@ test_chess_pgn_VALAFLAGS = \
 
 glchess_CFLAGS = \
 	-DPKGDATADIR=\"@datadir@/glchess\" \
+	-DLOCALEDIR=\"@localedir@\" \
 	$(GMODULE_CFLAGS) \
 	$(GTK_CFLAGS) \
 	$(GLX_CFLAGS) \
