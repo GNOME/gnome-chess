@@ -1407,7 +1407,9 @@ public class Application
             return;
         }
 
-        save_dialog = new Gtk.FileChooserDialog ("Save Chess Game", window, Gtk.FileChooserAction.SAVE,
+        save_dialog = new Gtk.FileChooserDialog (/* Title of save game dialog */
+                                                 _("Save Chess Game"),
+                                                 window, Gtk.FileChooserAction.SAVE,
                                                  Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
                                                  Gtk.Stock.SAVE, Gtk.ResponseType.OK, null);
         add_info_bar_to_dialog (save_dialog, out save_dialog_info_bar, out save_dialog_error_label);
@@ -1417,12 +1419,14 @@ public class Application
 
         /* Filter out non PGN files by default */
         var pgn_filter = new Gtk.FileFilter ();
-        pgn_filter.set_name ("PGN files");
+        pgn_filter.set_name (/* Save Game Dialog: Name of filter to show only PGN files */
+                             _("PGN files"));
         pgn_filter.add_pattern ("*.pgn");
         save_dialog.add_filter (pgn_filter);
 
         var all_filter = new Gtk.FileFilter ();
-        all_filter.set_name ("All files");
+        all_filter.set_name (/* Save Game Dialog: Name of filter to show all files */
+                             _("All files"));
         all_filter.add_pattern ("*");
         save_dialog.add_filter (all_filter);
 
@@ -1469,7 +1473,9 @@ public class Application
             return;
         }
 
-        open_dialog = new Gtk.FileChooserDialog ("Load Chess Game", window, Gtk.FileChooserAction.OPEN,
+        open_dialog = new Gtk.FileChooserDialog (/* Title of load game dialog */
+                                                 _("Load Chess Game"),
+                                                 window, Gtk.FileChooserAction.OPEN,
                                                  Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
                                                  Gtk.Stock.OPEN, Gtk.ResponseType.OK, null);
         add_info_bar_to_dialog (open_dialog, out open_dialog_info_bar, out open_dialog_error_label);
@@ -1479,12 +1485,14 @@ public class Application
 
         /* Filter out non PGN files by default */
         var pgn_filter = new Gtk.FileFilter ();
-        pgn_filter.set_name ("PGN files");
+        pgn_filter.set_name (/* Load Game Dialog: Name of filter to show only PGN files */
+                             _("PGN files"));
         pgn_filter.add_pattern ("*.pgn");
         open_dialog.add_filter (pgn_filter);
 
         var all_filter = new Gtk.FileFilter ();
-        all_filter.set_name ("All files");
+        all_filter.set_name (/* Load Game Dialog: Name of filter to show all files */
+                             _("All files"));
         all_filter.add_pattern ("*");
         open_dialog.add_filter (all_filter);
 
