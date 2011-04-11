@@ -1564,6 +1564,15 @@ public class Application
 
 class GlChess
 {
+    static bool show_version;
+    public static const OptionEntry[] options =
+    {
+        { "version", 'v', 0, OptionArg.NONE, ref show_version,
+          /* Help string for command line --version flag */
+          N_("Show release version"), null},
+        { null }
+    };
+
     public static int main (string[] args)
     {
         Intl.setlocale (LocaleCategory.ALL, "");
@@ -1572,39 +1581,33 @@ class GlChess
         Intl.textdomain (Config.GETTEXT_PACKAGE);
 
         Gtk.init (ref args);
-
+        
         File? game_file = null;
-        for (int i = 1; i < args.length; i++)
+        var c = new OptionContext (/* Arguments and description for --help text */
+                                   _("[FILE] - Play Chess"));
+        c.add_main_entries (options, Config.GETTEXT_PACKAGE);
+        c.add_group (Gtk.get_option_group (true));
+        try
         {
-            switch (args[i])
-            {
-            case "-v":
-            case "--version":
-                stderr.printf ("glchess %s\n", Config.VERSION);
-                return Posix.EXIT_SUCCESS;
-            case "-h":
-            case "-?":
-            case "--help":
-                usage (args[0], false, true);
-                return Posix.EXIT_SUCCESS;
-            case "--help-gtk":
-                usage (args[0], true, false);
-                return Posix.EXIT_SUCCESS;
-            case "--help-all":
-                usage (args[0], true, true);
-                return Posix.EXIT_SUCCESS;
-            default:
-                if (game_file == null && !args[i].has_prefix ("-"))
-                    game_file = File.new_for_path (args[i]);
-                else
-                {
-                    stderr.printf ("Unknown argument '%s'\n", args[i]);
-                    stderr.printf ("Run '%s --help' to see a full list of available command line options.\n", args[0]);
-                    return Posix.EXIT_FAILURE;
-                }
-                break;
-            }
+            c.parse (ref args);
         }
+        catch (Error e)
+        {
+            stderr.printf ("%s\n", e.message);
+            stderr.printf (/* Text printed out when an unknown command-line argument provided */
+                           _("Run '%s --help' to see a full list of available command line options."), args[0]);
+            stderr.printf ("\n");
+            return Posix.EXIT_FAILURE;
+        }
+        if (show_version)
+        {
+            /* Note, not translated so can be easily parsed */
+            stderr.printf ("glchess %s\n", Config.VERSION);
+            return Posix.EXIT_SUCCESS;
+        }
+
+        if (args.length > 1)
+            game_file = File.new_for_path (args[1]);
 
         Application app = new Application ();
         try
@@ -1620,37 +1623,5 @@ class GlChess
         Gtk.main ();
 
         return Posix.EXIT_SUCCESS;
-    }
-
-    public static void usage (string appname, bool show_gtk, bool show_application)
-    {
-        stderr.printf ("Usage:\n" +
-                       "  %s [OPTIONS...] [FILE] - Play Chess", appname);
-        stderr.printf ("\n\n");
-
-        stderr.printf ("Help Options:\n" +
-                       "  -h, -?, --help                  Show help options\n" +
-                       "  --help-all                      Show all help options\n" +
-                       "  --help-gtk                      Show GTK+ options");
-        stderr.printf ("\n\n");
-
-        if (show_gtk)
-        {
-            stderr.printf ("GTK+ Options:\n" +
-                           "  --class=CLASS                   Program class as used by the window manager\n" +
-                           "  --name=NAME                     Program name as used by the window manager\n" +
-                           "  --screen=SCREEN                 X screen to use\n" +
-                           "  --sync                          Make X calls synchronous\n" +
-                           "  --gtk-module=MODULES            Load additional GTK+ modules\n" +
-                           "  --g-fatal-warnings              Make all warnings fatal");
-            stderr.printf ("\n\n");
-        }
-
-        if (show_application)
-        {
-            stderr.printf ("Application Options:\n" +
-                           "  -v, --version                   Show release version");
-            stderr.printf ("\n\n");
-        }
     }
 }
