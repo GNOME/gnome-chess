@@ -728,48 +728,48 @@ public class Application
         {
         case ChessRule.CHECKMATE:
             /* Message displayed when the game ends due to a player being checkmated */
-            reason = "Opponent is in check and cannot move (checkmate)";
+            reason = _("Opponent is in check and cannot move (checkmate)");
             break;
         case ChessRule.STALEMATE:
             /* Message displayed when the game terminates due to a stalemate */
-            reason = "Opponent cannot move (stalemate)";
+            reason = _("Opponent cannot move (stalemate)");
             break;
         case ChessRule.FIFTY_MOVES:
             /* Message displayed when the game is drawn due to the fifty move rule */
-            reason = "No piece has been taken or pawn moved in the last fifty moves";
+            reason = _("No piece has been taken or pawn moved in the last fifty moves");
             break;
         case ChessRule.TIMEOUT:
             /* Message displayed when the game ends due to one player's clock stopping */
-            reason = "Opponent has run out of time";
+            reason = _("Opponent has run out of time");
             break;
         case ChessRule.THREE_FOLD_REPETITION:
             /* Message displayed when the game is drawn due to the three-fold-repitition rule */
-            reason = "The same board state has occurred three times (three fold repetition)";
+            reason = _("The same board state has occurred three times (three fold repetition)");
             break;
         case ChessRule.INSUFFICIENT_MATERIAL:
             /* Message displayed when the game is drawn due to the insufficient material rule */
-            reason = "Neither player can cause checkmate (insufficient material)";
+            reason = _("Neither player can cause checkmate (insufficient material)");
             break;
         case ChessRule.RESIGN:
             if (game.result == ChessResult.WHITE_WON)
             {
                 /* Message displayed when the game ends due to the black player resigning */
-                reason = "The black player has resigned";
+                reason = _("The black player has resigned");
             }
             else
             {
                 /* Message displayed when the game ends due to the white player resigning */
-                reason = "The white player has resigned";
+                reason = _("The white player has resigned");
             }
             break;
         case ChessRule.ABANDONMENT:
             /* Message displayed when a game is abandoned */
-            reason = "The game has been abandoned";
+            reason = _("The game has been abandoned");
             pgn_game.termination = PGNGame.TERMINATE_ABANDONED;
             break;
         case ChessRule.DEATH:
             /* Message displayed when the game ends due to a player dying */
-            reason = "One of the players has died";
+            reason = _("One of the players has died");
             pgn_game.termination = PGNGame.TERMINATE_DEATH;
             break;
         }
@@ -819,8 +819,8 @@ public class Application
                                                             "<span weight=\"bold\" size=\"larger\">%s</span>",
                                                             _("Save this game before starting a new one?"));
             dialog.add_button (Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL);
-            dialog.add_button ("_Abandon game", Gtk.ResponseType.NO);
-            dialog.add_button ("_Save game for later", Gtk.ResponseType.YES);
+            dialog.add_button (_("_Abandon game"), Gtk.ResponseType.NO);
+            dialog.add_button (_("_Save game for later"), Gtk.ResponseType.YES);
             var result = dialog.run ();
             dialog.destroy ();
             if (result == Gtk.ResponseType.CANCEL)
@@ -1340,12 +1340,12 @@ public class Application
         about_dialog.copyright = "Copyright 2010 Robert Ancell <robert.ancell@gmail.com>";
         about_dialog.license_type = Gtk.License.GPL_2_0;
         about_dialog.wrap_license = true;
-        about_dialog.comments = "The 2D/3D chess game for GNOME. \n\nglChess is a part of GNOME Games.";
+        about_dialog.comments = _("The 2D/3D chess game for GNOME. \n\nglChess is a part of GNOME Games.");
         about_dialog.authors = authors;
         about_dialog.artists = artists;
         about_dialog.translator_credits = "translator-credits";
         about_dialog.website = "http://www.gnome.org/projects/gnome-games/";
-        about_dialog.website_label = "GNOME Games web site";
+        about_dialog.website_label = _("GNOME Games web site");
         about_dialog.logo_icon_name = "glchess";
         about_dialog.response.connect (about_response_cb);
         about_dialog.show ();
@@ -1443,7 +1443,7 @@ public class Application
             }
             catch (Error e)
             {
-                save_dialog_error_label.set_text ("Failed to save game: %s".printf (e.message));
+                save_dialog_error_label.set_text (_("Failed to save game: %s").printf (e.message));
                 save_dialog_info_bar.set_message_type (Gtk.MessageType.ERROR);
                 save_dialog_info_bar.show ();
                 return;
@@ -1509,7 +1509,7 @@ public class Application
             }
             catch (Error e)
             {
-                open_dialog_error_label.set_text ("Failed to open game: %s".printf (e.message));
+                open_dialog_error_label.set_text (_("Failed to open game: %s").printf (e.message));
                 open_dialog_info_bar.set_message_type (Gtk.MessageType.ERROR);
                 open_dialog_info_bar.show ();
                 return;
