@@ -1339,7 +1339,6 @@ public class Application
         about_dialog.version = Config.VERSION;
         about_dialog.copyright = "Copyright 2010 Robert Ancell <robert.ancell@gmail.com>";
         about_dialog.license_type = Gtk.License.GPL_2_0;
-        about_dialog.wrap_license = true;
         about_dialog.comments = _("The 2D/3D chess game for GNOME. \n\nglChess is a part of GNOME Games.");
         about_dialog.authors = authors;
         about_dialog.artists = artists;
