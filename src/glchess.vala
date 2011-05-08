@@ -74,7 +74,7 @@ public class Application
         window = (Gtk.Window) builder.get_object ("glchess_app");
         save_menu = (Gtk.Widget) builder.get_object ("menu_save_item");
         save_as_menu = (Gtk.Widget) builder.get_object ("menu_save_as_item");
-        fullscreen_menu = (Gtk.MenuItem) builder.get_object ("menu_fullscreen");
+        fullscreen_menu = (Gtk.MenuItem) builder.get_object ("fullscreen_item");
         undo_menu = (Gtk.Widget) builder.get_object ("undo_move_item");
         undo_button = (Gtk.Widget) builder.get_object ("undo_move_button");
         resign_menu = (Gtk.Widget) builder.get_object ("resign_item");
