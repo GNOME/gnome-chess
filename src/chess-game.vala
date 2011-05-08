@@ -1334,7 +1334,7 @@ public class ChessGame
         if (!is_started)
             return false;
 
-        if (current_state.halfmove_clock >= 50)
+        if (current_state.halfmove_clock >= 100)
             stop (ChessResult.DRAW, ChessRule.FIFTY_MOVES);
         else if (is_three_fold_repeat ())
             stop (ChessResult.DRAW, ChessRule.THREE_FOLD_REPETITION);
