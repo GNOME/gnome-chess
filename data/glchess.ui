@@ -2,7 +2,9 @@
 <interface>
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy toplevel-contextual -->
+  <object class="GtkAccelGroup" id="accelgroup"/>
   <object class="GtkWindow" id="glchess_app">
+    <property name="can_focus">False</property>
     <property name="title">Chess</property>
     <property name="default_width">400</property>
     <accel-groups>
@@ -13,20 +15,27 @@
     <child>
       <object class="GtkVBox" id="main_vbox">
         <property name="visible">True</property>
+        <property name="can_focus">False</property>
         <child>
           <object class="GtkMenuBar" id="menubar">
             <property name="visible">True</property>
+            <property name="can_focus">False</property>
             <child>
               <object class="GtkMenuItem" id="game_menu_item">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="use_action_appearance">False</property>
                 <property name="label" translatable="yes" comments="Game menu name">_Game</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="game_menu">
+                    <property name="can_focus">False</property>
                     <child>
                       <object class="GtkImageMenuItem" id="new_menu_item">
                         <property name="label">gtk-new</property>
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup</property>
@@ -37,6 +46,8 @@
                       <object class="GtkImageMenuItem" id="open_menu_item">
                         <property name="label">gtk-open</property>
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup</property>
@@ -48,6 +59,8 @@
                         <property name="label">gtk-save</property>
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup</property>
@@ -58,6 +71,8 @@
                       <object class="GtkImageMenuItem" id="menu_save_as_item">
                         <property name="label">gtk-save-as</property>
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup</property>
@@ -67,6 +82,7 @@
                     <child>
                       <object class="GtkSeparatorMenuItem" id="separator1">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                       </object>
                     </child>
                     <child>
@@ -74,6 +90,8 @@
                         <property name="label" translatable="yes" comments="Undo move menu item">_Undo Move</property>
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="use_underline">True</property>
                         <property name="image">undo_move_image</property>
                         <property name="use_stock">False</property>
@@ -87,6 +105,8 @@
                         <property name="label" translatable="yes" comments="Save menu item">_Resign</property>
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="use_underline">True</property>
                         <property name="image">warning_image</property>
                         <property name="use_stock">False</property>
@@ -97,6 +117,8 @@
                     <child>
                       <object class="GtkMenuItem" id="claim_draw_item">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="label" translatable="yes" comments="Claim draw menu item">Claim _Draw</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="claim_draw_cb" swapped="no"/>
@@ -105,12 +127,15 @@
                     <child>
                       <object class="GtkSeparatorMenuItem" id="separatormenuitem1">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                       </object>
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="quit_item">
                         <property name="label">gtk-quit</property>
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup</property>
@@ -124,14 +149,19 @@
             <child>
               <object class="GtkMenuItem" id="settings_menu_item">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="use_action_appearance">False</property>
                 <property name="label" translatable="yes" comments="Settings menu item">_Settings</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="settings_menu">
+                    <property name="can_focus">False</property>
                     <child>
                       <object class="GtkImageMenuItem" id="fullscreen_item">
                         <property name="label">gtk-fullscreen</property>
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup</property>
@@ -143,6 +173,8 @@
                       <object class="GtkImageMenuItem" id="preferences_item">
                         <property name="label">gtk-preferences</property>
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup</property>
@@ -156,14 +188,19 @@
             <child>
               <object class="GtkMenuItem" id="help_menu_item">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="use_action_appearance">False</property>
                 <property name="label" translatable="yes" comments="Help menu item">_Help</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="help_menu">
+                    <property name="can_focus">False</property>
                     <child>
                       <object class="GtkImageMenuItem" id="help_item">
                         <property name="label" translatable="yes" comments="Help contents menu item">_Contents</property>
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="use_underline">True</property>
                         <property name="image">help_image</property>
                         <property name="use_stock">False</property>
@@ -176,6 +213,8 @@
                       <object class="GtkImageMenuItem" id="about_item">
                         <property name="label">gtk-about</property>
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup</property>
@@ -196,10 +235,13 @@
         <child>
           <object class="GtkToolbar" id="toolbar">
             <property name="visible">True</property>
+            <property name="can_focus">False</property>
             <child>
               <object class="GtkToolButton" id="new_game_button">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="tooltip_text" translatable="yes" comments="Tooltip for start new game toolbar button">Start a new game</property>
+                <property name="use_action_appearance">False</property>
                 <property name="is_important">True</property>
                 <property name="label" translatable="yes" comments="The New Game toolbar button">New Game</property>
                 <property name="use_underline">True</property>
@@ -215,6 +257,8 @@
               <object class="GtkToolButton" id="undo_move_button">
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
+                <property name="can_focus">False</property>
+                <property name="use_action_appearance">False</property>
                 <property name="is_important">True</property>
                 <property name="label" translatable="yes" comments="The undo move toolbar button">Undo Move</property>
                 <property name="use_underline">True</property>
@@ -230,6 +274,8 @@
               <object class="GtkToolButton" id="resign_button">
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
+                <property name="can_focus">False</property>
+                <property name="use_action_appearance">False</property>
                 <property name="is_important">True</property>
                 <property name="label" translatable="yes" comments="The tooltip for the Resign toolbar button">Resign</property>
                 <property name="use_underline">True</property>
@@ -251,26 +297,17 @@
         <child>
           <object class="GtkVBox" id="view_box">
             <property name="visible">True</property>
+            <property name="can_focus">False</property>
             <property name="spacing">3</property>
-            <child>
-              <object class="GtkAlignment" id="view_container">
-                <property name="visible">True</property>
-                <child>
-                  <placeholder/>
-                </child>
-              </object>
-              <packing>
-                <property name="pack_type">end</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
             <child>
               <object class="GtkHBox" id="navigation_box">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkHBox" id="left_nav_box">
                     <property name="visible">True</property>
+                    <property name="can_focus">False</property>
                     <property name="homogeneous">True</property>
                     <child>
                       <object class="GtkButton" id="first_move_button">
@@ -279,16 +316,20 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes" comments="Tooltip on the show first move (i.e. game start) navigation button">Rewind to the game start</property>
+                        <property name="use_action_appearance">False</property>
                         <signal name="clicked" handler="history_start_clicked_cb" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="first_move_image">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="stock">gtk-goto-first</property>
                             <property name="icon-size">1</property>
                           </object>
                         </child>
                       </object>
                       <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
@@ -299,15 +340,19 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes" comments="Tooltip on the show previous move navigation button">Show the previous move</property>
+                        <property name="use_action_appearance">False</property>
                         <signal name="clicked" handler="history_previous_clicked_cb" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="prev_move_image">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="stock">gtk-go-back</property>
                           </object>
                         </child>
                       </object>
                       <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
@@ -318,15 +363,19 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes" comments="Tooltip on the show next move navigation button">Show the next move</property>
+                        <property name="use_action_appearance">False</property>
                         <signal name="clicked" handler="history_next_clicked_cb" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="next_move_image">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="stock">gtk-go-forward</property>
                           </object>
                         </child>
                       </object>
                       <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
                         <property name="position">2</property>
                       </packing>
                     </child>
@@ -337,27 +386,33 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes" comments="Tooltip on the show current move navigation button">Show the current move</property>
+                        <property name="use_action_appearance">False</property>
                         <signal name="clicked" handler="history_latest_clicked_cb" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="last_move_image">
                             <property name="visible">True</property>
+                            <property name="can_focus">False</property>
                             <property name="stock">gtk-goto-last</property>
                           </object>
                         </child>
                       </object>
                       <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
                         <property name="position">3</property>
                       </packing>
                     </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
+                    <property name="fill">True</property>
                     <property name="position">0</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkComboBox" id="history_combo">
                     <property name="visible">True</property>
+                    <property name="can_focus">False</property>
                     <property name="model">history_model</property>
                     <child>
                       <object class="GtkCellRendererText" id="history_combo_cellrenderer"/>
@@ -367,21 +422,27 @@
                     </child>
                   </object>
                   <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkHBox" id="right_nav_box">
                     <property name="visible">True</property>
+                    <property name="can_focus">False</property>
                     <property name="spacing">6</property>
                     <property name="homogeneous">True</property>
                     <child>
                       <object class="GtkDrawingArea" id="white_time_label">
                         <property name="width_request">20</property>
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <signal name="draw" handler="white_time_draw_cb" swapped="no"/>
                       </object>
                       <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
@@ -389,46 +450,58 @@
                       <object class="GtkDrawingArea" id="black_time_label">
                         <property name="width_request">20</property>
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <signal name="draw" handler="black_time_draw_cb" swapped="no"/>
                       </object>
                       <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
+                    <property name="fill">True</property>
                     <property name="position">2</property>
                   </packing>
                 </child>
               </object>
               <packing>
                 <property name="expand">False</property>
+                <property name="fill">True</property>
                 <property name="pack_type">end</property>
                 <property name="position">0</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkAlignment" id="view_container">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="pack_type">end</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
           </object>
           <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
             <property name="position">2</property>
           </packing>
         </child>
       </object>
     </child>
   </object>
-  <object class="GtkAccelGroup" id="accelgroup"/>
-  <object class="GtkImage" id="undo_move_image">
-    <property name="visible">True</property>
-    <property name="stock">gtk-undo</property>
-    <property name="icon-size">1</property>
-  </object>
-  <object class="GtkImage" id="warning_image">
-    <property name="visible">True</property>
-    <property name="stock">gtk-dialog-warning</property>
-    <property name="icon-size">1</property>
-  </object>
   <object class="GtkImage" id="help_image">
     <property name="visible">True</property>
+    <property name="can_focus">False</property>
     <property name="stock">gtk-help</property>
     <property name="icon-size">1</property>
   </object>
@@ -439,6 +512,18 @@
       <!-- column-name move-number -->
       <column type="gint"/>
     </columns>
+  </object>
+  <object class="GtkImage" id="undo_move_image">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-undo</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="warning_image">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-dialog-warning</property>
+    <property name="icon-size">1</property>
   </object>
   <object class="GtkSizeGroup" id="nav_bar_sizegroup">
     <widgets>
