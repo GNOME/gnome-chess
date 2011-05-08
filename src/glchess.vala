@@ -403,8 +403,11 @@ public class Application
         else
             load_game (game, false);
 
+        window.set_default_size (settings.get_int ("width"), settings.get_int ("height"));        
         if (settings.get_boolean ("fullscreen"))
             window.fullscreen ();
+        else if (settings.get_boolean ("maximized"))
+            window.maximize ();
         show ();
     }
 
@@ -794,9 +797,26 @@ public class Application
         return false;
     }
 
+    [CCode (cname = "G_MODULE_EXPORT glchess_app_configure_event_cb", instance_pos = -1)]
+    public bool glchess_app_configure_event_cb (Gtk.Widget widget, Gdk.EventConfigure event)
+    {
+        if (!settings.get_boolean ("maximized") && !settings.get_boolean ("fullscreen"))
+        {
+            settings.set_int ("width", event.width);
+            settings.set_int ("height", event.height);
+        }
+
+        return false;
+    }
+
     [CCode (cname = "G_MODULE_EXPORT glchess_app_window_state_event_cb", instance_pos = -1)]
     public bool glchess_app_window_state_event_cb (Gtk.Widget widget, Gdk.EventWindowState event)
     {
+        if ((event.changed_mask & Gdk.WindowState.MAXIMIZED) != 0)
+        {
+            var is_maximized = (event.new_window_state & Gdk.WindowState.MAXIMIZED) != 0;
+            settings.set_boolean ("maximized", is_maximized);
+        }
         if ((event.changed_mask & Gdk.WindowState.FULLSCREEN) != 0)
         {
             bool is_fullscreen = (event.new_window_state & Gdk.WindowState.FULLSCREEN) != 0;

@@ -11,6 +11,7 @@
       <group name="accelgroup"/>
     </accel-groups>
     <signal name="window-state-event" handler="glchess_app_window_state_event_cb" swapped="no"/>
+    <signal name="configure-event" handler="glchess_app_configure_event_cb" swapped="no"/>
     <signal name="delete-event" handler="glchess_app_delete_event_cb" swapped="no"/>
     <child>
       <object class="GtkVBox" id="main_vbox">
