@@ -422,13 +422,12 @@ public class PGN
         /* Must have at least one game */
         if (games == null)
             throw new PGNError.LOAD_ERROR("No games in PGN file");
-     }
+    }
 
     public PGN.from_file (File file) throws Error
     {
-        string contents;
-        size_t n_read;
-        file.load_contents (null, out contents, out n_read);
-        this.from_string (contents);
+        uint8[] contents;
+        file.load_contents (null, out contents);
+        this.from_string ((string) contents);
     }
 }
