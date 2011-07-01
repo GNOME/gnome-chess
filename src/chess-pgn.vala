@@ -132,15 +132,20 @@ public class PGNGame
         tags.insert ("Result", PGNGame.RESULT_IN_PROGRESS);
     }
 
+    public string escape (string value)
+    {    
+        var a = value.replace ("\\", "\\\\");
+        return a.replace ("\"", "\\\"");
+    }
+
     public void write (File file) throws Error
     {
         var data = new StringBuilder ();
 
-        // FIXME: Escape \ and " in tag values
         var keys = tags.get_keys ();
         keys.sort ((CompareFunc) compare_tag);
         foreach (var key in keys)
-            data.append ("[%s \"%s\"]\n".printf (key, tags.lookup (key)));
+            data.append ("[%s \"%s\"]\n".printf (key, escape (tags.lookup (key))));
         data.append ("\n");
 
         int i = 0;
