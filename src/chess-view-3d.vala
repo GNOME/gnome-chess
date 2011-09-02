@@ -551,8 +551,8 @@ private class ChessView3D : ChessView
 
         if (n_hits > 0)
         {
-            var rank = buffer[3];
-            var file = buffer[4];
+            var rank = (int) buffer[3];
+            var file = (int) buffer[4];
             scene.select_square (file, rank);
         }
 
@@ -598,10 +598,10 @@ private class ChessView3D : ChessView
         var t = textures[0];
         glBindTexture (GL_TEXTURE_2D, t);
         glPixelStorei (GL_UNPACK_ALIGNMENT, 1);
-        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, (GLint) GL_REPEAT);
+        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, (GLint) GL_REPEAT);
+        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, (GLint) GL_LINEAR);
+        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, (GLint) GL_LINEAR);
 
         gluBuild2DMipmaps (GL_TEXTURE_2D, (GLint) pixbuf.n_channels, (GLsizei) pixbuf.width, (GLsizei) pixbuf.height,
                            format, GL_UNSIGNED_BYTE, pixbuf.pixels);
@@ -642,12 +642,12 @@ private class ChessView3D : ChessView
         var t = textures[0];
         glBindTexture (GL_TEXTURE_2D, t);
         glPixelStorei (GL_UNPACK_ALIGNMENT, 1);
-        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, (GLint) GL_REPEAT);
+        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, (GLint) GL_REPEAT);
+        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, (GLint) GL_LINEAR);
+        glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, (GLint) GL_LINEAR);
 
-        gluBuild2DMipmaps (GL_TEXTURE_2D, GL_ALPHA, (GLsizei) texture_width, (GLsizei) texture_height,
+        gluBuild2DMipmaps (GL_TEXTURE_2D, (GLint) GL_ALPHA, (GLsizei) texture_width, (GLsizei) texture_height,
                            GL_ALPHA, GL_UNSIGNED_BYTE, surface.get_data ());
         // FIXME: How to check if failed
         //    glTexImage2D (GL_TEXTURE_2D, 0, GL_ALPHA, texture_width, texture_height, 0, GL_ALPHA, GL_UNSIGNED_BYTE, surface.get_data ());
