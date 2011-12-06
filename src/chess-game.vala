@@ -764,6 +764,7 @@ public class ChessState
 
     public ChessResult get_result (out ChessRule rule)
     {
+        rule = ChessRule.CHECKMATE;
         if (check_state == CheckState.CHECKMATE)
         {
             if (current_player.color == Color.WHITE)
@@ -958,6 +959,7 @@ public class ChessState
 
     private bool decode_piece_type (unichar c, out PieceType type)
     {
+        type = PieceType.PAWN;
         switch (c)
         {
         case 'P':

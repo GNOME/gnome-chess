@@ -57,8 +57,7 @@ glchess_CFLAGS = \
 	$(OPENGL_CFLAGS) \
 	$(RSVG_CFLAGS) \
 	$(SQLITE_CFLAGS) \
-	$(GTKGLEXT_CFLAGS) \
-	$(WARN_CFLAGS)
+	$(GTKGLEXT_CFLAGS)
 
 glchess_LDADD = \
 	$(GMODULE_LIBS) \
