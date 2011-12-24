@@ -1,7 +1,7 @@
 /* Workaround for https://bugzilla.gnome.org/show_bug.cgi?id=647122 */
 extern void gtk_file_filter_set_name (Gtk.FileFilter filter, string name);
 
-public class Application
+public class Application : Gtk.Application
 {
     private Settings settings;
     private History history;
@@ -55,6 +55,8 @@ public class Application
 
     public Application ()
     {
+        Object (application_id: "org.gnome.glchess", flags: ApplicationFlags.FLAGS_NONE);
+
         settings = new Settings ("org.gnome.glchess.Settings");
 
         var data_dir = File.new_for_path (Path.build_filename (Environment.get_user_data_dir (), "glchess", null));
@@ -92,6 +94,8 @@ public class Application
         view_container = (Gtk.Container) builder.get_object ("view_container");
         builder.connect_signals (this);
 
+        add_window (window);
+
         info_bar = new Gtk.InfoBar ();
         var content_area = (Gtk.Container) info_bar.get_content_area ();
         view_box.pack_start (info_bar, false, true, 0);
@@ -118,14 +122,14 @@ public class Application
         settings_changed_cb (settings, "show-3d");
     }
 
-    public void quit ()
+    public void quit_game ()
     {
         if (save_duration_timeout != 0)
             save_duration_cb ();
 
         autosave ();
         settings.sync ();
-        Gtk.main_quit ();
+        window.destroy ();
     }
 
     private void autosave ()
@@ -409,6 +413,11 @@ public class Application
         else if (settings.get_boolean ("maximized"))
             window.maximize ();
         show ();
+    }
+
+    public override void activate ()
+    {
+        window.show ();
     }
 
     private void engine_ready_cb (ChessEngine engine)
@@ -793,7 +802,7 @@ public class Application
     [CCode (cname = "G_MODULE_EXPORT glchess_app_delete_event_cb", instance_pos = -1)]
     public bool glchess_app_delete_event_cb (Gtk.Widget widget, Gdk.Event event)
     {
-        quit ();
+        quit_game ();
         return false;
     }
 
@@ -882,7 +891,7 @@ public class Application
     [CCode (cname = "G_MODULE_EXPORT quit_cb", instance_pos = -1)]
     public void quit_cb (Gtk.Widget widget)
     {
-        quit ();
+        quit_game ();
     }
 
     [CCode (cname = "G_MODULE_EXPORT white_time_draw_cb", instance_pos = -1)]
@@ -1641,8 +1650,8 @@ class GlChess
             return Posix.EXIT_FAILURE;
         }
 
-        Gtk.main ();
+        var result = app.run ();
 
-        return Posix.EXIT_SUCCESS;
+        return result;
     }
 }
