@@ -99,7 +99,7 @@ public class Application : Gtk.Application
         info_bar = new Gtk.InfoBar ();
         var content_area = (Gtk.Container) info_bar.get_content_area ();
         view_box.pack_start (info_bar, false, true, 0);
-        var vbox = new Gtk.VBox (false, 6);
+        var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
         vbox.show ();
         content_area.add (vbox);
         info_title_label = new Gtk.Label ("");
@@ -1400,7 +1400,7 @@ public class Application : Gtk.Application
 
     private void add_info_bar_to_dialog (Gtk.Dialog dialog, out Gtk.InfoBar info_bar, out Gtk.Label label)
     {
-        var vbox = new Gtk.VBox (false, 0);
+        var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         vbox.show ();
 
         info_bar = new Gtk.InfoBar ();
