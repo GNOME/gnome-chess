@@ -1,4 +1,4 @@
-SUBDIRS = pieces textures
+SUBDIRS = icons pieces textures
 
 uidir = $(datadir)/glchess
 ui_DATA = \
