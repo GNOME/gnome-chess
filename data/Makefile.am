@@ -1,5 +1,10 @@
 SUBDIRS = icons pieces textures
 
+desktopdir = $(datadir)/applications
+desktop_in_files = glchess.desktop.in.in
+desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
+@INTLTOOL_DESKTOP_RULE@
+
 uidir = $(datadir)/glchess
 ui_DATA = \
 	glchess.ui \
@@ -19,6 +24,6 @@ EXTRA_DIST = engines.conf \
 	     $(man_MANS) \
 	     $(ui_DATA)
 
-CLEANFILES = $(gsettings_SCHEMAS)
+CLEANFILES = $(desktop_DATA) $(gsettings_SCHEMAS)
 
 -include $(top_srcdir)/git.mk
