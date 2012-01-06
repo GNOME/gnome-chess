@@ -25,5 +25,6 @@ EXTRA_DIST = engines.conf \
 	     $(ui_DATA)
 
 CLEANFILES = $(desktop_DATA) $(gsettings_SCHEMAS)
+DISTCLEANFILES = $(desktop_DATA) $(gsettings_SCHEMAS)
 
 -include $(top_srcdir)/git.mk
