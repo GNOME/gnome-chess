@@ -897,8 +897,8 @@ public class Application : Gtk.Application
     [CCode (cname = "G_MODULE_EXPORT white_time_draw_cb", instance_pos = -1)]
     public bool white_time_draw_cb (Gtk.Widget widget, Cairo.Context c)
     {
-        const double fg[3] = { 0.0, 0.0, 0.0 };
-        const double bg[3] = { 1.0, 1.0, 1.0 };
+        double fg[3] = { 0.0, 0.0, 0.0 };
+        double bg[3] = { 1.0, 1.0, 1.0 };
 
         draw_time (widget, c, make_clock_text (game.clock, Color.WHITE), fg, bg);
         return false;
@@ -907,8 +907,8 @@ public class Application : Gtk.Application
     [CCode (cname = "G_MODULE_EXPORT black_time_draw_cb", instance_pos = -1)]
     public bool black_time_draw_cb (Gtk.Widget widget, Cairo.Context c)
     {
-        const double fg[3] = { 1.0, 1.0, 1.0 };
-        const double bg[3] = { 0.0, 0.0, 0.0 };
+        double fg[3] = { 1.0, 1.0, 1.0 };
+        double bg[3] = { 0.0, 0.0, 0.0 };
 
         draw_time (widget, c, make_clock_text (game.clock, Color.BLACK), fg, bg);
         return false;
