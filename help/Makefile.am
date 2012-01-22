@@ -1,13 +1,15 @@
-include $(top_srcdir)/gnome-doc-utils.make
-dist-hook: doc-dist-hook
+@YELP_HELP_RULES@
+HELP_ID = glchess
 
-DOC_MODULE = glchess
-DOC_ENTITIES = legal.xml
-DOC_INCLUDES =
-DOC_FIGURES = figures/new_game.png \
+HELP_MEDIA = figures/new_game.png \
 	      figures/game.png \
               figures/preferences_game.png \
 	      figures/preferences_view.png
-DOC_LINGUAS = ca cs da de el en_GB es eu fr ja ko oc pt_BR ru sl sr sr@latin sv zh_CN
+
+HELP_FILES = \
+	glchess.xml \
+	legal.xml
+
+HELP_LINGUAS = ca cs da de el en_GB es eu fr ja ko oc pt_BR ru sl sr sr@latin sv zh_CN
 
 -include $(top_srcdir)/git.mk
