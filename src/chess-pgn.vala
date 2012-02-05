@@ -160,7 +160,7 @@ public class PGNGame
         data.append (result);
         data.append ("\n");
 
-        file.replace_contents (data.data, null, false, FileCreateFlags.NONE, null);
+        file.replace_contents (data.str.data, null, false, FileCreateFlags.NONE, null);
     }
 }
 
