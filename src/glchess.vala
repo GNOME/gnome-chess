@@ -105,6 +105,8 @@ public class Application : Gtk.Application
         info_title_label = new Gtk.Label ("");
         info_title_label.show ();
         vbox.pack_start (info_title_label, false, true, 0);
+        vbox.hexpand = true;
+        vbox.vexpand = false;
         info_label = new Gtk.Label ("");
         info_label.show ();
         vbox.pack_start (info_label, true, true, 0);
