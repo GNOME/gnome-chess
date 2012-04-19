@@ -7,7 +7,7 @@ HELP_MEDIA = figures/new_game.png \
 	      figures/preferences_view.png
 
 HELP_FILES = \
-	glchess.xml \
+	index.docbook \
 	legal.xml
 
 HELP_LINGUAS = ca cs da de el en_GB es eu fr gl ja ko oc pt_BR ru sl sr sr@latin sv zh_CN
