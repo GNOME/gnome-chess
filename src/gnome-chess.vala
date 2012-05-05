@@ -1200,9 +1200,6 @@ public class Application : Gtk.Application
         var move_combo = (Gtk.ComboBox) preferences_builder.get_object ("move_format_combo");
         set_combo (move_combo, 1, settings.get_string ("move-format"));
 
-        var promotion_combo = (Gtk.ComboBox) preferences_builder.get_object ("promotion_type_combo");
-        set_combo (promotion_combo, 1, settings.get_string ("promotion-type"));
-
         var theme_combo = (Gtk.ComboBox) preferences_builder.get_object ("piece_style_combo");
         set_combo (theme_combo, 1, settings.get_string ("piece-theme"));
 
@@ -1440,12 +1437,6 @@ public class Application : Gtk.Application
 
         w = (Gtk.Widget) preferences_builder.get_object ("piece_style_combo");
         w.sensitive = !widget.active;
-    }
-
-    [CCode (cname = "G_MODULE_EXPORT promotion_type_combo_changed_cb", instance_pos = -1)]
-    public void promotion_type_combo_changed_cb (Gtk.ComboBox combo)
-    {
-        settings.set_string ("promotion-type", get_combo (combo, 1));
     }
 
     [CCode (cname = "G_MODULE_EXPORT move_format_combo_changed_cb", instance_pos = -1)]
