@@ -1027,7 +1027,7 @@ public class ChessState
                 r1 = (int) (move[i] - '1');
                 i++;
             }
-            if (move[i] == 'x')
+            if (move[i] == 'x' || move[i] == '-')
                 i++;
             if (move[i] >= 'a' && move[i] <= 'h')
             {

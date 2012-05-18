@@ -40,7 +40,7 @@ public class ChessEngineCECP : ChessEngine
 
             debug ("Read from engine: '%s'", line);
 
-            string[] move_prefixes = { "My move is: ", "my move is ", "move " };
+            string[] move_prefixes = { "My move is: ", "My move is : ", "my move is ", "move " };
             foreach (string prefix in move_prefixes)
             {
                 if (line.has_prefix (prefix))
@@ -48,7 +48,7 @@ public class ChessEngineCECP : ChessEngine
                     string move = line[prefix.length:line.length];
                     debug ("Engine moves %s", move);
                     moving = true;
-                    moved (move);
+                    moved (move.strip());
                 }
             }
 
