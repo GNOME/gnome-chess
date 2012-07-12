@@ -660,22 +660,26 @@ public class ChessState
 
         /* Update board */
         board[start] = null;
+        piece_masks[Color.WHITE] &= BitBoard.clear_location_masks[start];
+        piece_masks[Color.BLACK] &= BitBoard.clear_location_masks[start];
         if (victim != null)
+        {
             board[victim_index] = null;
+            piece_masks[Color.WHITE] &= BitBoard.clear_location_masks[victim_index];
+            piece_masks[Color.BLACK] &= BitBoard.clear_location_masks[victim_index];
+        }
         if (is_promotion)
             board[end] = new ChessPiece (player, promotion_type);
         else
             board[end] = piece;
-        piece_masks[Color.WHITE] &= BitBoard.clear_location_masks[start];
-        piece_masks[Color.BLACK] &= BitBoard.clear_location_masks[start];
         piece_masks[color] |= end_mask;
         piece_masks[opponent_color] &= BitBoard.clear_location_masks[end];
         if (rook_start >= 0)
         {
             var rook = board[rook_start];
             board[rook_start] = null;
-            board[rook_end] = rook;
             piece_masks[color] &= BitBoard.clear_location_masks[rook_start];
+            board[rook_end] = rook;
             piece_masks[color] |= BitBoard.set_location_masks[rook_end];
         }
 
