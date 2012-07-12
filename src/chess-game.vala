@@ -541,13 +541,6 @@ public class ChessState
         if (victim != null && victim.player == player)
             return false;
 
-        /* Check if taking an marched pawn */
-        if (victim == null && end == en_passant_index)
-        {
-            victim_index = get_index (r1 == 2 ? 3 : 4, f1);
-            victim = board[victim_index];
-        }
-
         /* Check special moves */
         int rook_start = -1, rook_end = -1;
         bool is_promotion = false;
@@ -556,6 +549,13 @@ public class ChessState
         switch (piece.type)
         {
         case PieceType.PAWN:
+            /* Check if taking an marched pawn */
+            if (victim == null && end == en_passant_index)
+            {
+                victim_index = get_index (r1 == 2 ? 3 : 4, f1);
+                victim = board[victim_index];
+            }
+
             /* If moving diagonally there must be a victim */
             if (f0 != f1)
             {
