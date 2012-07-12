@@ -595,7 +595,7 @@ public class ChessState
                 }
 
                 var rook = board[rook_start];
-                if (rook == null)
+                if (rook == null || rook.type != PieceType.ROOK || rook.color != color)
                     return false;
 
                 /* Check rook can move */
@@ -699,6 +699,18 @@ public class ChessState
                     can_castle_queenside[color] = false;
                 else if (f0 == 7)
                     can_castle_kingside[color] = false;
+            }
+        }
+        /* Can't castle once the rooks have been captured */
+        else if (victim != null && victim.type == PieceType.ROOK)
+        {
+            int base_rank = opponent_color == Color.WHITE ? 0 : 7;
+            if (r1 == base_rank)
+            {
+                if (f1 == 0)
+                    can_castle_queenside[opponent_color] = false;
+                else if (f1 == 7)
+                    can_castle_kingside[opponent_color] = false;
             }
         }
 
