@@ -124,6 +124,13 @@ public class Application : Gtk.Application
         settings_changed_cb (settings, "show-3d");
     }
 
+    protected override void shutdown ()
+    {
+        base.shutdown ();
+        if (opponent_engine != null)
+            opponent_engine.stop ();
+    }
+
     public void quit_game ()
     {
         if (save_duration_timeout != 0)
@@ -298,7 +305,14 @@ public class Application : Gtk.Application
             black_level = "normal";
 
         opponent = null;
-        opponent_engine = null;
+        if (opponent_engine != null)
+        {
+            opponent_engine.stop ();
+            opponent_engine.ready_changed.disconnect (engine_ready_cb);
+            opponent_engine.moved.disconnect (engine_move_cb);
+            opponent_engine.stopped.disconnect (engine_stopped_cb);
+            opponent_engine = null;
+        }
         if (white_engine != null)
         {
             opponent = game.white;
@@ -316,6 +330,7 @@ public class Application : Gtk.Application
         {
             opponent_engine.ready_changed.connect (engine_ready_cb);
             opponent_engine.moved.connect (engine_move_cb);
+            opponent_engine.stopped.connect (engine_stopped_cb);
             opponent_engine.start ();
         }
 
@@ -434,6 +449,11 @@ public class Application : Gtk.Application
     private void engine_move_cb (ChessEngine engine, string move)
     {
         opponent.move (move);
+    }
+
+    private void engine_stopped_cb (ChessEngine engine)
+    {
+        opponent.resign ();
     }
 
     private void game_start_cb (ChessGame game)

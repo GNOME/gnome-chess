@@ -35,15 +35,17 @@ public class ChessEngine : Object
         try
         {
             Process.spawn_async_with_pipes (null, argv, null,
-                                                 SpawnFlags.SEARCH_PATH,
-                                                 null,
-                                                 out pid, out stdin_fd, out stdout_fd, out stderr_fd);
+                                            SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD,
+                                            null,
+                                            out pid, out stdin_fd, out stdout_fd, out stderr_fd);
         }
         catch (SpawnError e)
         {
             stderr.printf ("Failed to execute chess engine: %s\n", e.message);
             return false;
         }
+
+        ChildWatch.add (pid, engine_stopped_cb);
 
         stdout_channel = new IOChannel.unix_new (stdout_fd);
         try
@@ -60,7 +62,12 @@ public class ChessEngine : Object
 
         return true;
     }
-    
+
+    private void engine_stopped_cb (Pid pid, int status)
+    {
+        stopped ();
+    }
+
     public virtual void start_game ()
     {
     }
@@ -79,8 +86,8 @@ public class ChessEngine : Object
 
     public void stop ()
     {
-        // FIXME
-        stopped ();
+        if (pid != 0)
+            Posix.kill (pid, Posix.SIGTERM);        
     }
 
     private bool read_cb (IOChannel source, IOCondition condition)
