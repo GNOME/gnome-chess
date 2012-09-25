@@ -53,9 +53,15 @@ public class Application : Gtk.Application
     private ChessPlayer? human_player = null;
     private ChessEngine? opponent_engine = null;
 
-    public Application ()
+    public Application (File? game_file)
     {
         Object (application_id: "org.gnome.glchess", flags: ApplicationFlags.FLAGS_NONE);
+        this.game_file = game_file;
+    }
+
+    public override void startup ()
+    {
+        base.startup ();
 
         settings = new Settings ("org.gnome.glchess.Settings");
 
@@ -122,6 +128,40 @@ public class Application : Gtk.Application
 
         settings.changed.connect (settings_changed_cb);
         settings_changed_cb (settings, "show-3d");
+
+        ai_profiles = load_ai_profiles (Path.build_filename (Config.PKGDATADIR, "engines.conf", null));
+        foreach (var profile in ai_profiles)
+            message ("Detected AI profile %s in %s", profile.name, profile.path);
+
+        /* Load from history if no game requested */
+        if (game_file == null)
+        {
+            var unfinished = history.get_unfinished ();
+            if (unfinished != null)
+                game_file = unfinished.data;
+            else
+                start_new_game ();
+        }
+
+        if (game_file != null)
+        {
+            try
+            {
+                load_game (game_file, false);
+            }
+            catch (Error e)
+            {
+                stderr.printf ("Failed to load %s: %s\n", game_file.get_path (), e.message);
+                quit ();
+            }
+        }
+
+        window.set_default_size (settings.get_int ("width"), settings.get_int ("height"));        
+        if (settings.get_boolean ("fullscreen"))
+            window.fullscreen ();
+        else if (settings.get_boolean ("maximized"))
+            window.maximize ();
+        show ();
     }
 
     protected override void shutdown ()
@@ -137,7 +177,6 @@ public class Application : Gtk.Application
             save_duration_cb ();
 
         autosave ();
-        settings.sync ();
         window.destroy ();
     }
 
@@ -402,34 +441,6 @@ public class Application : Gtk.Application
         engine.binary = profile.binary;
 
         return engine;
-    }
-
-    public void start (File? game = null) throws Error
-    {
-        ai_profiles = load_ai_profiles (Path.build_filename (Config.PKGDATADIR, "engines.conf", null));
-        foreach (var profile in ai_profiles)
-            message ("Detected AI profile %s in %s", profile.name, profile.path);
-
-        if (game == null)
-        {
-            var unfinished = history.get_unfinished ();
-            if (unfinished != null)
-            {
-                var file = unfinished.data;
-                load_game (file, true);
-            }
-            else
-                start_new_game ();
-        }
-        else
-            load_game (game, false);
-
-        window.set_default_size (settings.get_int ("width"), settings.get_int ("height"));        
-        if (settings.get_boolean ("fullscreen"))
-            window.fullscreen ();
-        else if (settings.get_boolean ("maximized"))
-            window.maximize ();
-        show ();
     }
 
     public override void activate ()
@@ -1634,7 +1645,6 @@ class GlChess
 
         Gtk.init (ref args);
         
-        File? game_file = null;
         var c = new OptionContext (/* Arguments and description for --help text */
                                    _("[FILE] - Play Chess"));
         c.add_main_entries (options, Config.GETTEXT_PACKAGE);
@@ -1658,22 +1668,11 @@ class GlChess
             return Posix.EXIT_SUCCESS;
         }
 
+        File? game_file = null;
         if (args.length > 1)
             game_file = File.new_for_path (args[1]);
 
-        Application app = new Application ();
-        try
-        {
-            app.start (game_file);
-        }
-        catch (Error e)
-        {
-            stderr.printf ("Failed to load %s: %s\n", game_file.get_path (), e.message);
-            return Posix.EXIT_FAILURE;
-        }
-
-        var result = app.run ();
-
-        return result;
+        var app = new Application (game_file);
+        return app.run ();
     }
 }
