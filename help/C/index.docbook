@@ -27,7 +27,7 @@
  
  <abstract role="description">
        <para>
-	glChess is a game for playing the classic board game of chess, 
+	GNOME Chess is a game for playing the classic board game of chess, 
 	in which two players simulate a battle by capturing the opponents 
 	pieces and ultimately the king. It can be played in 2D or 3D mode, 
 	full screen or in a window.
@@ -121,7 +121,7 @@
 </articleinfo>
 
   <indexterm zone="index"> 
-    <primary>glChess</primary> 
+    <primary>GNOME Chess</primary> 
   </indexterm>
 
 <!-- ============= Document Body ============================= -->
@@ -132,16 +132,16 @@
   <title>Overview of Chess</title>
   
   <para>
-	Chess is a two-player strategy board game. <application>glChess</application> is a 2D/3D chess game, where games
-	can be played between a combination of human and computer players. glChess detects known third party chess engines
+	Chess is a two-player strategy board game. <application>GNOME Chess</application> is a 2D/3D chess game, where games
+	can be played between a combination of human and computer players. GNOME Chess detects known third party chess engines
 	for computer players. The game was originally developed by Robert Ancell, now the game is included in gnome-games.
   </para>
 
   <para>
-	<application>glChess</application> is written in Python and uses GTK+ and Cairo to render the chess board. 3D support is 
+	<application>GNOME Chess</application> is written in Python and uses GTK+ and Cairo to render the chess board. 3D support is 
 	optionally available using OpenGl,
 	using the Python OpenGL and GtkGLExt libraries. As with most modern 3D programs hardware acceleration is recommended but it should
-	run OK in software. glChess is bundled with GNU Chess as the default chess AI. glChess can be played in network mode against 
+	run OK in software. GNOME Chess is bundled with GNU Chess as the default chess AI. GNOME Chess can be played in network mode against 
 	other players on the Internet.
   </para>
   <para>
@@ -155,10 +155,10 @@ One of the goals of early computer scientists was to create a chess-playing mach
 </para>
 
   <para>
-   To run <application>glChess</application>, select
+   To run <application>GNOME Chess</application>, select
    <guimenuitem>Chess</guimenuitem> from the
    <guisubmenu>Games</guisubmenu> submenu of the <guimenu>Main
-   Menu</guimenu>, or type <command>glchess</command> on the
+   Menu</guimenu>, or type <command>gnome-chess</command> on the
    command line. 
   </para>
  </sect2>
@@ -166,13 +166,13 @@ One of the goals of early computer scientists was to create a chess-playing mach
 </sect1>
 
 
-<sect1 id="playing-glchess">
- <title>Playing glChess</title>
+<sect1 id="playing-gnome-chess">
+ <title>Playing GNOME Chess</title>
  <sect2 id="main-game-window">
 <title>Main game window</title>
 
      <para>
-Starting glChess displays the main game window as shown below. The game is played
+Starting GNOME Chess displays the main game window as shown below. The game is played
 by moving chess pieces using the mouse. Each player alternates to move a piece in the appropriate
 colour, from one board position to another valid board position. 
 The main game window is organized in three main areas: In the top menu and toolbar area,
@@ -183,14 +183,14 @@ move time and buttons for showing previous or next moves are available.
 </para>
 
  <figure id="main-game-shot">
-  <title>Main window in glChess</title>
+  <title>Main window in GNOME Chess</title>
   <screenshot>
     <mediaobject> 
     <imageobject>
   <imagedata fileref="figures/game.png" format="PNG" srccredit="Andreas"/>
    </imageobject>
     <textobject> 
-      <phrase>Main window in glChess.</phrase> 
+      <phrase>Main window in GNOME Chess.</phrase> 
     </textobject> 
   </mediaobject>
   </screenshot>
@@ -217,7 +217,7 @@ players is set in the <interface>difficulty</interface> section.
   <imagedata fileref="figures/new_game.png" format="PNG" srccredit="Andreas"/>
    </imageobject>
     <textobject> 
-      <phrase>Start new game dialog for glChess.</phrase> 
+      <phrase>Start new game dialog for GNOME Chess.</phrase> 
     </textobject> 
   </mediaobject>
   </screenshot>
@@ -360,7 +360,7 @@ players is set in the <interface>difficulty</interface> section.
           <menuchoice>
            <guimenuitem>Show Logs</guimenuitem>
           </menuchoice>
-	  Show logs for debugging glChess and the active chess AI engines.
+	  Show logs for debugging GNOME Chess and the active chess AI engines.
          </para>
         </listitem>
      </itemizedlist>
@@ -408,7 +408,7 @@ players is set in the <interface>difficulty</interface> section.
           <guimenuitem>About</guimenuitem>  This opens the
           <interface>About</interface> dialog which shows
           basic information about
-          <application>glChess</application>, such as
+          <application>GNOME Chess</application>, such as
           the author's name, the version number of the game.
          </para>
         </listitem>
@@ -568,14 +568,14 @@ An endgame scenario in which all pawns have been captured, and one side has only
   </para>
 
  <figure id="preferences-game-shot">
-  <title>Game preferences dialog for glChess</title>
+  <title>Game preferences dialog for GNOME Chess</title>
   <screenshot>
     <mediaobject> 
     <imageobject>
   <imagedata fileref="figures/preferences_game.png" format="PNG" srccredit="Andreas"/>
    </imageobject>
     <textobject> 
-      <phrase>Game preferences dialog for glChess.</phrase> 
+      <phrase>Game preferences dialog for GNOME Chess.</phrase> 
     </textobject> 
   </mediaobject>
   </screenshot>
@@ -589,18 +589,18 @@ An endgame scenario in which all pawns have been captured, and one side has only
 <sect2 id="view-prefs">
   <title>View Preferences</title>
   <para>
-  This preference dialog allows you to modify the look and feel of glChess. 
+  This preference dialog allows you to modify the look and feel of GNOME Chess. 
   </para>
 
  <figure id="preferences-view-shot">
-  <title>View preferences dialog for glChess</title>
+  <title>View preferences dialog for GNOME Chess</title>
   <screenshot>
     <mediaobject> 
     <imageobject>
   <imagedata fileref="figures/preferences_view.png" format="PNG" srccredit="Andreas"/>
    </imageobject>
     <textobject> 
-      <phrase>View preferences dialog for glChess.</phrase> 
+      <phrase>View preferences dialog for GNOME Chess.</phrase> 
     </textobject> 
   </mediaobject>
   </screenshot>
@@ -616,11 +616,11 @@ An endgame scenario in which all pawns have been captured, and one side has only
  <title>Chess Engines</title>
 
      <para>
-	glChess should be able to use any Chess Engine Communication Protocol or Universal Chess Interface compatible chess engines, including these chess engines:
+	GNOME Chess should be able to use any Chess Engine Communication Protocol or Universal Chess Interface compatible chess engines, including these chess engines:
 
      </para>
 
-<!-- Please keep AI list synchronized with glchess/data/ai.xml -->
+<!-- Please keep AI list synchronized with gnome-chess/data/ai.xml -->
 <itemizedlist spacing="compact">
   <listitem>
 	<para>GNUChess</para>
@@ -680,8 +680,8 @@ An endgame scenario in which all pawns have been captured, and one side has only
  <itemizedlist mark="opencircle">
     <listitem>
      <para>
-	There are no documented bugs or limitations in glChess. To find areas where you can help improve  
-        glChess, please refer to the TODO file which is distributed with the game.	
+	There are no documented bugs or limitations in GNOME Chess. To find areas where you can help improve  
+        GNOME Chess, please refer to the TODO file which is distributed with the game.	
      </para>
     </listitem>
  </itemizedlist>
@@ -691,7 +691,7 @@ An endgame scenario in which all pawns have been captured, and one side has only
 <sect1 id="credits">
  <title>Authors</title>
   <para>
-   <application>glChess</application> was written by Robert Ancell,
+   <application>GNOME Chess</application> was written by Robert Ancell,
    and is now maintained in gnome-games. This documentation was originally written
    by Andreas Røsdal, with input from several GPL sources. 
    To report a bug or make a suggestion regarding this application or

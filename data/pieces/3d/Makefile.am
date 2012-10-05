@@ -1,4 +1,4 @@
-modeldir = $(datadir)/glchess/pieces/3d
+modeldir = $(datadir)/gnome-chess/pieces/3d
 model_DATA = \
 	bishop.3ds \
 	king.3ds \

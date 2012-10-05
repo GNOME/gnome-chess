@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <enum id="org.gnome.glchess.PieceType">
+  <enum id="org.gnome.gnome-chess.PieceType">
     <value value="0" nick="pawn"/>
     <value value="1" nick="rook"/>
     <value value="2" nick="knight"/>
@@ -9,14 +9,14 @@
     <value value="5" nick="king"/>
   </enum>
 
-  <enum id="org.gnome.glchess.MoveFormat">
+  <enum id="org.gnome.gnome-chess.MoveFormat">
     <value value="0" nick="human"/>
     <value value="1" nick="san"/>
     <value value="2" nick="fan"/>
     <value value="3" nick="lan"/>
   </enum>
 
-  <enum id="org.gnome.glchess.BoardSide">
+  <enum id="org.gnome.gnome-chess.BoardSide">
     <value value="0" nick="white"/>
     <value value="1" nick="black"/>
     <value value="2" nick="human"/>
@@ -24,13 +24,13 @@
     <value value="4" nick="facetoface"/>
   </enum>
 
-  <enum id="org.gnome.glchess.Difficulty">
+  <enum id="org.gnome.gnome-chess.Difficulty">
     <value value="0" nick="easy"/>
     <value value="1" nick="normal"/>
     <value value="2" nick="hard"/>
   </enum>
 
-  <schema id="org.gnome.glchess.Settings" path="/org/gnome/glchess/" gettext-domain="gnome-games">
+  <schema id="org.gnome.gnome-chess.Settings" path="/org/gnome/gnome-chess/" gettext-domain="gnome-games">
     <key name="width" type="i">
       <default>500</default>
       <_summary>The width of the window</_summary>
@@ -51,7 +51,7 @@
       <_summary>A flag to enable fullscreen mode</_summary>
       <_description>A flag to enable fullscreen mode</_description>
     </key>
-    <key name="promotion-type" enum="org.gnome.glchess.PieceType">
+    <key name="promotion-type" enum="org.gnome.gnome-chess.PieceType">
       <default>'queen'</default>
       <_summary>The piece to promote pawns to</_summary>
       <_description>The piece to promote to when a human player moves a pawn to the far rank</_description>
@@ -101,12 +101,12 @@
       <_summary>The directory to open the load game dialog in</_summary>
       <_description>The directory to open the load game dialog in</_description>
     </key>
-    <key name="move-format" enum="org.gnome.glchess.MoveFormat">
+    <key name="move-format" enum="org.gnome.gnome-chess.MoveFormat">
       <default>'human'</default>
       <_summary>The format to display moves in</_summary>
       <_description>The format to display moves in</_description>
     </key>
-    <key name="board-side" enum="org.gnome.glchess.BoardSide">
+    <key name="board-side" enum="org.gnome.gnome-chess.BoardSide">
       <default>'human'</default>
       <_summary>The side of the board that is in the foreground</_summary>
       <_description>The side of the board that is in the foreground</_description>
@@ -126,7 +126,7 @@
       <_summary>The opponent player</_summary>
       <_description>Can be 'human' (play against another human player), '' (use the first available chess engine) or the name of a specific engine to play against</_description>
     </key>
-    <key name="difficulty" enum="org.gnome.glchess.Difficulty">
+    <key name="difficulty" enum="org.gnome.gnome-chess.Difficulty">
       <default>'easy'</default>
       <_summary>Difficulty of the opponent chess engine</_summary>
       <_description>Difficulty of the opponent chess engine</_description>

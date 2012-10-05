@@ -5,11 +5,11 @@ icon32dir=$(datadir)/icons/hicolor/32x32/apps
 icon48dir=$(datadir)/icons/hicolor/48x48/apps
 iconscalabledir=$(datadir)/icons/hicolor/scalable/apps
 
-icon16_DATA = 16x16/glchess.png
-icon22_DATA = 22x22/glchess.png
-icon24_DATA = 24x24/glchess.png
-icon32_DATA = 32x32/glchess.png
-icon48_DATA = 48x48/glchess.png
-iconscalable_DATA = scalable/glchess.svg
+icon16_DATA = 16x16/gnome-chess.png
+icon22_DATA = 22x22/gnome-chess.png
+icon24_DATA = 24x24/gnome-chess.png
+icon32_DATA = 32x32/gnome-chess.png
+icon48_DATA = 48x48/gnome-chess.png
+iconscalable_DATA = scalable/gnome-chess.svg
 
 EXTRA_DIST = $(icon16_DATA) $(icon22_DATA) $(icon24_DATA) $(icon32_DATA) $(icon48_DATA) $(icon256_DATA) $(iconscalable_DATA)

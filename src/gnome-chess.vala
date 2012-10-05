@@ -55,7 +55,7 @@ public class Application : Gtk.Application
 
     public Application (File? game_file)
     {
-        Object (application_id: "org.gnome.glchess", flags: ApplicationFlags.FLAGS_NONE);
+        Object (application_id: "org.gnome.gnome-chess", flags: ApplicationFlags.FLAGS_NONE);
         this.game_file = game_file;
     }
 
@@ -63,9 +63,9 @@ public class Application : Gtk.Application
     {
         base.startup ();
 
-        settings = new Settings ("org.gnome.glchess.Settings");
+        settings = new Settings ("org.gnome.gnome-chess.Settings");
 
-        var data_dir = File.new_for_path (Path.build_filename (Environment.get_user_data_dir (), "glchess", null));
+        var data_dir = File.new_for_path (Path.build_filename (Environment.get_user_data_dir (), "gnome-chess", null));
         DirUtils.create_with_parents (data_dir.get_path (), 0755);
 
         history = new History (data_dir);
@@ -73,13 +73,13 @@ public class Application : Gtk.Application
         builder = new Gtk.Builder ();
         try
         {
-            builder.add_from_file (Path.build_filename (Config.PKGDATADIR, "glchess.ui", null));
+            builder.add_from_file (Path.build_filename (PKGDATADIR, "gnome-chess.ui", null));
         }
         catch (Error e)
         {
             warning ("Could not load UI: %s", e.message);
         }
-        window = (Gtk.Window) builder.get_object ("glchess_app");
+        window = (Gtk.Window) builder.get_object ("gnome_chess_app");
         save_menu = (Gtk.Widget) builder.get_object ("menu_save_item");
         save_as_menu = (Gtk.Widget) builder.get_object ("menu_save_as_item");
         fullscreen_menu = (Gtk.MenuItem) builder.get_object ("fullscreen_item");
@@ -129,7 +129,7 @@ public class Application : Gtk.Application
         settings.changed.connect (settings_changed_cb);
         settings_changed_cb (settings, "show-3d");
 
-        ai_profiles = load_ai_profiles (Path.build_filename (Config.PKGDATADIR, "engines.conf", null));
+        ai_profiles = load_ai_profiles (Path.build_filename (PKGDATADIR, "engines.conf", null));
         foreach (var profile in ai_profiles)
             message ("Detected AI profile %s in %s", profile.name, profile.path);
 
@@ -832,15 +832,15 @@ public class Application : Gtk.Application
         window.show ();
     }
 
-    [CCode (cname = "G_MODULE_EXPORT glchess_app_delete_event_cb", instance_pos = -1)]
-    public bool glchess_app_delete_event_cb (Gtk.Widget widget, Gdk.Event event)
+    [CCode (cname = "G_MODULE_EXPORT gnome_chess_app_delete_event_cb", instance_pos = -1)]
+    public bool gnome_chess_app_delete_event_cb (Gtk.Widget widget, Gdk.Event event)
     {
         quit_game ();
         return false;
     }
 
-    [CCode (cname = "G_MODULE_EXPORT glchess_app_configure_event_cb", instance_pos = -1)]
-    public bool glchess_app_configure_event_cb (Gtk.Widget widget, Gdk.EventConfigure event)
+    [CCode (cname = "G_MODULE_EXPORT gnome_chess_app_configure_event_cb", instance_pos = -1)]
+    public bool gnome_chess_app_configure_event_cb (Gtk.Widget widget, Gdk.EventConfigure event)
     {
         if (!settings.get_boolean ("maximized") && !settings.get_boolean ("fullscreen"))
         {
@@ -851,8 +851,8 @@ public class Application : Gtk.Application
         return false;
     }
 
-    [CCode (cname = "G_MODULE_EXPORT glchess_app_window_state_event_cb", instance_pos = -1)]
-    public bool glchess_app_window_state_event_cb (Gtk.Widget widget, Gdk.EventWindowState event)
+    [CCode (cname = "G_MODULE_EXPORT gnome_chess_app_window_state_event_cb", instance_pos = -1)]
+    public bool gnome_chess_app_window_state_event_cb (Gtk.Widget widget, Gdk.EventWindowState event)
     {
         if ((event.changed_mask & Gdk.WindowState.MAXIMIZED) != 0)
         {
@@ -1056,7 +1056,7 @@ public class Application : Gtk.Application
         preferences_builder = new Gtk.Builder ();
         try
         {
-            preferences_builder.add_from_file (Path.build_filename (Config.PKGDATADIR, "preferences.ui", null));
+            preferences_builder.add_from_file (Path.build_filename (PKGDATADIR, "preferences.ui", null));
         }
         catch (Error e)
         {
@@ -1375,7 +1375,7 @@ public class Application : Gtk.Application
     {
         try
         {
-            Gtk.show_uri (window.get_screen (), "help:glchess", Gtk.get_current_event_time ());
+            Gtk.show_uri (window.get_screen (), "help:gnome-chess", Gtk.get_current_event_time ());
         }
         catch (Error e)
         {
@@ -1398,17 +1398,17 @@ public class Application : Gtk.Application
         about_dialog = new Gtk.AboutDialog ();
         about_dialog.transient_for = window;
         about_dialog.modal = true;
-        about_dialog.name = "glchess";
-        about_dialog.version = Config.VERSION;
+        about_dialog.program_name = "Chess";
+        about_dialog.version = VERSION;
         about_dialog.copyright = "Copyright 2010 Robert Ancell <robert.ancell@gmail.com>";
         about_dialog.license_type = Gtk.License.GPL_2_0;
-        about_dialog.comments = _("The 2D/3D chess game for GNOME. \n\nglChess is a part of GNOME Games.");
+        about_dialog.comments = _("The 2D/3D chess game for GNOME. \n\nGNOME Chess is a part of GNOME Games.");
         about_dialog.authors = authors;
         about_dialog.artists = artists;
         about_dialog.translator_credits = "translator-credits";
         about_dialog.website = "http://www.gnome.org/projects/gnome-games/";
         about_dialog.website_label = _("GNOME Games web site");
-        about_dialog.logo_icon_name = "glchess";
+        about_dialog.logo_icon_name = "gnome-chess";
         about_dialog.response.connect (about_response_cb);
         about_dialog.show ();
     }
@@ -1625,7 +1625,7 @@ public class Application : Gtk.Application
     }
 }
 
-class GlChess
+class GnomeChess
 {
     static bool show_version;
     public static const OptionEntry[] options =
@@ -1639,15 +1639,15 @@ class GlChess
     public static int main (string[] args)
     {
         Intl.setlocale (LocaleCategory.ALL, "");
-        Intl.bindtextdomain (Config.GETTEXT_PACKAGE, Config.LOCALEDIR);
-        Intl.bind_textdomain_codeset (Config.GETTEXT_PACKAGE, "UTF-8");
-        Intl.textdomain (Config.GETTEXT_PACKAGE);
+        Intl.bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+        Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+        Intl.textdomain (GETTEXT_PACKAGE);
 
         Gtk.init (ref args);
         
         var c = new OptionContext (/* Arguments and description for --help text */
                                    _("[FILE] - Play Chess"));
-        c.add_main_entries (options, Config.GETTEXT_PACKAGE);
+        c.add_main_entries (options, GETTEXT_PACKAGE);
         c.add_group (Gtk.get_option_group (true));
         try
         {
@@ -1664,7 +1664,7 @@ class GlChess
         if (show_version)
         {
             /* Note, not translated so can be easily parsed */
-            stderr.printf ("glchess %s\n", Config.VERSION);
+            stderr.printf ("gnome-chess %s\n", VERSION);
             return Posix.EXIT_SUCCESS;
         }
 

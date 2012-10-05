@@ -35,7 +35,7 @@ private class ChessView2D : ChessView
         Rsvg.Handle handle;
         try
         {
-            handle = new Rsvg.Handle.from_file (Path.build_filename (Config.PKGDATADIR, "pieces", scene.theme_name, name + ".svg", null));
+            handle = new Rsvg.Handle.from_file (Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, name + ".svg", null));
         }
         catch (Error e)
         {

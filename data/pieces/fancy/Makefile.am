@@ -1,4 +1,4 @@
-pixmapdir = $(datadir)/glchess/pieces/fancy
+pixmapdir = $(datadir)/gnome-chess/pieces/fancy
 pixmap_DATA = \
 	blackKing.svg \
 	blackQueen.svg \

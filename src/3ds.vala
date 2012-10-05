@@ -12,7 +12,7 @@ public class TDSModel
     public TDSModel (File file) throws Error
     {
         var stream = file.read ();
-        parse_block (stream, stream.query_info (FILE_ATTRIBUTE_STANDARD_SIZE).get_size ());
+        parse_block (stream, stream.query_info (FileAttribute.STANDARD_SIZE).get_size ());
 
         /* Calculate normals */
         normals = new GLfloat[vertices.length];

@@ -1,5 +1,5 @@
 @YELP_HELP_RULES@
-HELP_ID = glchess
+HELP_ID = gnome-chess
 
 HELP_MEDIA = figures/new_game.png \
 	      figures/game.png \

@@ -1,16 +1,16 @@
-bin_PROGRAMS = glchess
+bin_PROGRAMS = gnome-chess
 
 noinst_PROGRAMS = test-chess-game test-chess-pgn
 
 TESTS = test-chess-game test-chess-pgn
 
-glchess_SOURCES = \
+gnome_chess_SOURCES = \
 	config.vapi \
 	gl.vapi \
 	glu.vapi \
 	glx.vapi \
 	3ds.vala \
-	glchess.vala \
+	gnome-chess.vala \
 	ai-profile.vala \
 	chess-bitboard.vala \
 	chess-clock.vala \
@@ -31,9 +31,9 @@ test_chess_game_SOURCES = \
 	chess-game.vala \
 	test-chess-game.vala
 test_chess_game_CFLAGS = \
-	$(GOBJECT_CFLAGS)
+	$(TEST_CFLAGS)
 test_chess_game_LDADD = \
-	$(GOBJECT_LIBS)
+	$(TEST_LIBS)
 test_chess_game_VALAFLAGS = \
     --pkg gobject-2.0 \
     --pkg posix
@@ -42,34 +42,23 @@ test_chess_pgn_SOURCES = \
 	chess-pgn.vala \
 	test-chess-pgn.vala
 test_chess_pgn_CFLAGS = \
-	$(GIO_CFLAGS)
+	$(TEST_CFLAGS)
 test_chess_pgn_LDADD = \
-	$(GIO_LIBS)
+	$(TEST_LIBS)
 test_chess_pgn_VALAFLAGS = \
     --pkg gio-2.0
 
-glchess_CFLAGS = \
-	-DPKGDATADIR=\"@datadir@/glchess\" \
+gnome_chess_CFLAGS = \
+	-DVERSION=\"$(VERSION)\" \
+	-DGETTEXT_PACKAGE=\"$(GETTEXT_PACKAGE)\" \
+	-DPKGDATADIR=\"@datadir@/gnome-chess\" \
 	-DLOCALEDIR=\"@localedir@\" \
-	$(GMODULE_CFLAGS) \
-	$(GTK_CFLAGS) \
-	$(GLX_CFLAGS) \
-	$(OPENGL_CFLAGS) \
-	$(RSVG_CFLAGS) \
-	$(SQLITE_CFLAGS) \
-	$(GTKGLEXT_CFLAGS)
+	$(GNOME_CHESS_CFLAGS)
 
-glchess_LDADD = \
-	$(GMODULE_LIBS) \
-	$(GTK_LIBS) \
-	$(GDK_X11_LIBS) \
-	$(GLX_LIBS) \
-	$(OPENGL_LIBS) \
-	$(RSVG_LIBS) \
-	$(SQLITE_LIBS) \
-	$(GTKGLEXT_LIBS)
+gnome_chess_LDADD = \
+	$(GNOME_CHESS_LIBS)
 
-glchess_VALAFLAGS = \
+gnome_chess_VALAFLAGS = \
     --pkg gtk+-3.0 \
     --pkg gdk-x11-3.0 \
     --pkg gmodule-2.0 \

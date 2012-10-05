@@ -36,7 +36,7 @@ private class ChessView3D : ChessView
     private GLuint _board_texture = 0;
     private GLuint board_texture
     {
-        get { if (_board_texture == 0) _board_texture = load_texture (Path.build_filename (Config.PKGDATADIR, "textures", "board.png", null)); return _board_texture; }
+        get { if (_board_texture == 0) _board_texture = load_texture (Path.build_filename (PKGDATADIR, "textures", "board.png", null)); return _board_texture; }
     }
 
     private GLuint _numbering_texture = 0;
@@ -48,7 +48,7 @@ private class ChessView3D : ChessView
     private GLuint _piece_texture = 0;
     private GLuint piece_texture
     {
-        get { if (_piece_texture == 0) _piece_texture = load_texture (Path.build_filename (Config.PKGDATADIR, "textures", "piece.png", null)); return _piece_texture; }
+        get { if (_piece_texture == 0) _piece_texture = load_texture (Path.build_filename (PKGDATADIR, "textures", "piece.png", null)); return _piece_texture; }
     }
 
     public ChessView3D ()
@@ -73,12 +73,12 @@ private class ChessView3D : ChessView
         double_buffered = false;
         try
         {
-            pawn_model = new TDSModel (File.new_for_path (Path.build_filename (Config.PKGDATADIR, "pieces", "3d", "pawn.3ds", null)));
-            knight_model = new TDSModel (File.new_for_path (Path.build_filename (Config.PKGDATADIR, "pieces", "3d", "knight.3ds", null)));
-            bishop_model = new TDSModel (File.new_for_path (Path.build_filename (Config.PKGDATADIR, "pieces", "3d", "bishop.3ds", null)));
-            rook_model = new TDSModel (File.new_for_path (Path.build_filename (Config.PKGDATADIR, "pieces", "3d", "rook.3ds", null)));
-            queen_model = new TDSModel (File.new_for_path (Path.build_filename (Config.PKGDATADIR, "pieces", "3d", "queen.3ds", null)));
-            king_model = new TDSModel (File.new_for_path (Path.build_filename (Config.PKGDATADIR, "pieces", "3d", "king.3ds", null)));
+            pawn_model = new TDSModel (File.new_for_path (Path.build_filename (PKGDATADIR, "pieces", "3d", "pawn.3ds", null)));
+            knight_model = new TDSModel (File.new_for_path (Path.build_filename (PKGDATADIR, "pieces", "3d", "knight.3ds", null)));
+            bishop_model = new TDSModel (File.new_for_path (Path.build_filename (PKGDATADIR, "pieces", "3d", "bishop.3ds", null)));
+            rook_model = new TDSModel (File.new_for_path (Path.build_filename (PKGDATADIR, "pieces", "3d", "rook.3ds", null)));
+            queen_model = new TDSModel (File.new_for_path (Path.build_filename (PKGDATADIR, "pieces", "3d", "queen.3ds", null)));
+            king_model = new TDSModel (File.new_for_path (Path.build_filename (PKGDATADIR, "pieces", "3d", "king.3ds", null)));
         }
         catch (Error e)
         {
