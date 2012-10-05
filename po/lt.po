@@ -1,0 +1,4721 @@
+# Translation of gnome-games to Lithuanian.
+# Copyright (C) 2000-2010 Free Software Foundation, Inc.
+# Gediminas Paulauskas <menesis@chatsubo.lt>, 2000-2003.
+# Tomas Kuliavas <tokul@users.sourceforge.net>, 2003-2004.
+# Žygimantas Beručka <zygis@gnome.org>, 2004-2007, 2010.
+# Justina Klingaitė <justina.klingaite@gmail.com>, 2005.
+# Mantas Kriaučiūnas <mantas@akl.lt>, 2006.
+# Vytautas Povilaitis <punktyras@nkm.lt>, 2007.
+# Gintautas Miliauskas <gintas@akl.lt>, 2006, 2007, 2008, 2010.
+# Aurimas Černius <aurisc4@gmail.com>, 2010.
+# Algimantas Margevičius <gymka@mail.ru>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: lt\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-games&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-08-29 04:56+0000\n"
+"PO-Revision-Date: 2012-08-29 22:53+0300\n"
+"Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
+"Language-Team: Lietuvių <>\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"X-Generator: Virtaal 0.6.1\n"
+
+#. Title of the main window
+#: ../glchess/data/glchess.desktop.in.in.h:1
+#: ../glchess/src/glchess.vala:234
+msgid "Chess"
+msgstr "Šachmatai"
+
+#: ../glchess/data/glchess.desktop.in.in.h:2
+msgid "Play the classic two-player boardgame of chess"
+msgstr "Žaisti klasikinius dviejų žaidėjų šachmatus"
+
+#. Game menu name
+#: ../glchess/data/glchess.ui.h:2
+#: ../glines/data/glines.ui.h:2
+#: ../gnect/src/main.c:1184
+#: ../gnibbles/src/main.c:605
+#: ../gnobots2/src/menu.c:65
+#: ../gnome-sudoku/src/lib/main.py:195
+#: ../gnotski/src/gnotski.c:397
+msgid "_Game"
+msgstr "Ž_aidimas"
+
+#. Undo move menu item
+#: ../glchess/data/glchess.ui.h:4
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:111
+#: ../gtali/src/gyahtzee.c:754
+#: ../libgames-support/games-stock.c:259
+msgid "_Undo Move"
+msgstr "_Atšaukti ėjimą"
+
+#. Save menu item
+#: ../glchess/data/glchess.ui.h:6
+msgid "_Resign"
+msgstr "_Pasiduoti"
+
+#. Claim draw menu item
+#: ../glchess/data/glchess.ui.h:8
+msgid "Claim _Draw"
+msgstr "Siūlyti _lygiąsias"
+
+#. Settings menu item
+#: ../glchess/data/glchess.ui.h:10
+#: ../glines/data/glines.ui.h:4
+#: ../gnect/src/main.c:1186
+#: ../gnibbles/src/main.c:607
+#: ../gnobots2/src/menu.c:68
+#: ../gnome-sudoku/src/lib/main.py:209
+msgid "_Settings"
+msgstr "_Nustatymai"
+
+#. Help menu item
+#: ../glchess/data/glchess.ui.h:12
+#: ../glines/data/glines.ui.h:5
+#: ../gnect/src/main.c:1187
+#: ../gnibbles/src/main.c:608
+#: ../gnobots2/src/menu.c:69
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:89
+#: ../gnome-sudoku/src/lib/main.py:218
+#: ../gnomine/src/gnomine.vala:116
+#: ../gnotravex/data/gnotravex.ui.h:16
+#: ../gnotski/src/gnotski.c:399
+#: ../gtali/src/gyahtzee.c:759
+#: ../iagno/data/iagno.ui.h:4
+#: ../lightsoff/src/lightsoff.vala:32
+#: ../quadrapassel/src/quadrapassel.vala:87
+#: ../swell-foop/src/swell-foop.vala:70
+msgid "_Help"
+msgstr "_Žinynas"
+
+#. Help contents menu item
+#: ../glchess/data/glchess.ui.h:14
+#: ../glines/data/glines.ui.h:7
+#: ../gnome-sudoku/src/lib/main.py:219
+#: ../libgames-support/games-stock.c:247
+msgid "_Contents"
+msgstr "_Turinys"
+
+#. Tooltip for start new game toolbar button
+#: ../glchess/data/glchess.ui.h:16
+#: ../gnobots2/src/menu.c:70
+#: ../libgames-support/games-stock.c:48
+msgid "Start a new game"
+msgstr "Pradėti naują žaidimą"
+
+#. The New Game toolbar button
+#: ../glchess/data/glchess.ui.h:18
+#: ../libgames-support/games-scores-dialog.c:470
+msgid "New Game"
+msgstr "Naujas žaidimas"
+
+#. The undo move toolbar button
+#: ../glchess/data/glchess.ui.h:20
+msgid "Undo Move"
+msgstr "Atšaukti ėjimą"
+
+#. The tooltip for the Resign toolbar button
+#: ../glchess/data/glchess.ui.h:22
+msgid "Resign"
+msgstr "Pasiduoti"
+
+#. Tooltip on the show first move (i.e. game start) navigation button
+#: ../glchess/data/glchess.ui.h:24
+msgid "Rewind to the game start"
+msgstr "Grįžti į žaidimo pradžią"
+
+#. Tooltip on the show previous move navigation button
+#: ../glchess/data/glchess.ui.h:26
+msgid "Show the previous move"
+msgstr "Rodyti praeitą ėjimą"
+
+#. Tooltip on the show next move navigation button
+#: ../glchess/data/glchess.ui.h:28
+msgid "Show the next move"
+msgstr "Rodyti kitą ėjimą"
+
+#. Tooltip on the show current move navigation button
+#: ../glchess/data/glchess.ui.h:30
+msgid "Show the current move"
+msgstr "Rodyti esamą ėjimą"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:1
+msgid "The width of the window"
+msgstr "Lango plotis"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:2
+msgid "The width of the main window in pixels."
+msgstr "Žaidimo lango plotis taškeliais."
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:3
+msgid "The height of the window"
+msgstr "Lango aukštis"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:4
+msgid "The height of the main window in pixels."
+msgstr "Žaidimo lango aukštis taškeliais."
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:5
+msgid "A flag to enable maximized mode"
+msgstr "Požymis vaizdo išdidinimo veiksenos įjungimui"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:6
+msgid "A flag to enable fullscreen mode"
+msgstr "Įjungti viso ekrano veikseną"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:7
+msgid "The piece to promote pawns to"
+msgstr "Figūra, į kurią keičiami pėstininkai"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:8
+msgid "The piece to promote to when a human player moves a pawn to the far rank"
+msgstr "Figūra, į kurią keičiamas žmogaus pėstininkas, pasiekęs tolimąjį kraštą"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:9
+msgid "A flag to enable 3D mode"
+msgstr "Įjungti 3D veikseną"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:10
+msgid "A flag to smooth (anti-alias) the 3D display"
+msgstr "Požymis trimačių vaizdo kraštų užlyginimui (anti-alias)"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:11
+msgid "The piece theme to use"
+msgstr "Naudotina figūrų tema"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:12
+msgid "A flag to enable move hints"
+msgstr "Įjungti ėjimų patarimus"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:13
+msgid "A flag to enable board numbering"
+msgstr "Įjungti lentos numeraciją"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:14
+msgid "A flag to enable the move history browser"
+msgstr "Atributas, įjungiantis atliktų ėjimų atminties naršyklę"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:15
+msgid "A flag to enable the toolbar"
+msgstr "Rodyti arba paslėpti įrankių juostą"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:16
+msgid "The directory to open the save game dialog in"
+msgstr "Išsaugotų žaidimų standartinis aplankas"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:17
+msgid "The directory to open the load game dialog in"
+msgstr "Įrašytų žaidimų standartinis aplankas"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:18
+msgid "The format to display moves in"
+msgstr "Ėjimų rodymo formatas"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:19
+msgid "The side of the board that is in the foreground"
+msgstr "Lentos pusė, kuri yra priekiniame plane"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:20
+msgid "The duration of a game in seconds (0 for no limit)"
+msgstr "Žaidimo trukmė sekundėmis (0 - nėra ribos)"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:21
+msgid "true if the human player is playing white"
+msgstr "teigiama, jeigu žmogus žaidžia baltais"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:22
+msgid "The opponent player"
+msgstr "Varžovas"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:23
+msgid "Can be 'human' (play against another human player), '' (use the first available chess engine) or the name of a specific engine to play against"
+msgstr "Gali būti „human“ (žaisti prie kitą žmogų), „“ (naudoti pirmą prieinamą šachmatų variklį) arba specialaus šachmatų variklio pavadinimas, prieš kurį žaisti"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:24
+msgid "Difficulty of the opponent chess engine"
+msgstr "Priešininko - šachmatų variklio sudėtingumas"
+
+#. Title for preferences dialog
+#: ../glchess/data/preferences.ui.h:2
+#: ../glines/src/glines.c:175
+msgid "Preferences"
+msgstr "Nustatymai"
+
+#. Preferences Dialog: Label before player side (white/black) combo box
+#: ../glchess/data/preferences.ui.h:4
+msgid "Play as:"
+msgstr "Žaisti kaip:"
+
+#. Preferences Dialog: Label before opposing player combo box
+#: ../glchess/data/preferences.ui.h:6
+msgid "Opposing Player:"
+msgstr "Priešininkas:"
+
+#. Preferences Dialog: Label before promotion type combo box
+#: ../glchess/data/preferences.ui.h:8
+msgid "Difficulty:"
+msgstr "Sunkumas:"
+
+#. New Game Dialog: Label before game timer settings
+#: ../glchess/data/preferences.ui.h:10
+msgid "Game Duration:"
+msgstr "Žaidimo trukmė:  "
+
+#. Preferences Dialog: Label before promotion type combo box
+#: ../glchess/data/preferences.ui.h:12
+msgid "Promotion Type:"
+msgstr "Keitimo tipas:"
+
+#. Preferences dialog: Label to notify user that the settings are applied for the next game
+#: ../glchess/data/preferences.ui.h:14
+msgid "Changes will take effect for the next game."
+msgstr "Pakeitimai įsigalios kitam žaidimui."
+
+#. Preferences Dialog: Tab title for game preferences
+#: ../glchess/data/preferences.ui.h:16
+#: ../gnect/src/prefs.c:231
+#: ../gnibbles/src/preferences.c:254
+#: ../gnobots2/src/properties.c:453
+#: ../quadrapassel/src/quadrapassel.vala:304
+msgid "Game"
+msgstr "Žaidimas"
+
+#. Preferences Dialog: Check box for selecting if 3D view is available
+#: ../glchess/data/preferences.ui.h:18
+msgid "3_D Chess View"
+msgstr "3_D šachmatų vaizdas"
+
+#. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
+#: ../glchess/data/preferences.ui.h:20
+msgid "_Smooth Display"
+msgstr "Rodyma_s užlyginant"
+
+#. Preferences Dialog: Label before piece style combo box
+#: ../glchess/data/preferences.ui.h:22
+msgid "Piece Style:"
+msgstr "Figūrų stilius:"
+
+#. Preferences Dialog: Check box for selecting if toolbar is visible
+#: ../glchess/data/preferences.ui.h:24
+#: ../gnome-sudoku/src/lib/main.py:239
+msgid "Show _Toolbar"
+msgstr "Rodyti įran_kių juostą"
+
+#. Preferences Dialog: Check box for selecting if history browser is visible
+#: ../glchess/data/preferences.ui.h:26
+msgid "Show _History"
+msgstr "Rodyti _istoriją"
+
+#. Preferences Dialog: Check box for selecting if move hints are visible
+#: ../glchess/data/preferences.ui.h:28
+msgid "_Move Hints"
+msgstr "Ėjimo _patarimai"
+
+#. Preferences Dialog: Check box for selecting if board numbering is visible
+#: ../glchess/data/preferences.ui.h:30
+msgid "_Board Numbering"
+msgstr "Lentos _numeracija"
+
+#. Preferences Dialog: Label before board orientation combo box
+#: ../glchess/data/preferences.ui.h:32
+msgid "Board Orientation:"
+msgstr "Lentos kryptis:"
+
+#. Preferences Dialog: Label before move format combo box
+#: ../glchess/data/preferences.ui.h:34
+msgid "Move Format:"
+msgstr "Ėjimo formatas"
+
+#. Preferences Dialog: Title of appearance options tab
+#: ../glchess/data/preferences.ui.h:36
+msgid "_Appearance"
+msgstr "_Išvaizda"
+
+#. Preferences Dialog: Combo box entry for easy game difficulty
+#: ../glchess/data/preferences.ui.h:38
+#: ../gtali/src/setup.c:343
+msgctxt "difficulty"
+msgid "Easy"
+msgstr "Lengvas"
+
+#. Preferences Dialog: Combo box entry for normal game difficulty
+#: ../glchess/data/preferences.ui.h:40
+msgctxt "difficulty"
+msgid "Normal"
+msgstr "Normalus"
+
+#. Preferences Dialog: Combo box entry for hard game difficulty
+#: ../glchess/data/preferences.ui.h:42
+#: ../gtali/src/setup.c:345
+msgctxt "difficulty"
+msgid "Hard"
+msgstr "Sunkus"
+
+#. Preferences Dialog: Combo box entry for human opponent
+#: ../glchess/data/preferences.ui.h:44
+msgctxt "chess-opponent"
+msgid "Human"
+msgstr "Žmogus"
+
+#. Preferences Dialog: Combo box entry for playing as white
+#: ../glchess/data/preferences.ui.h:46
+msgctxt "chess-player"
+msgid "White"
+msgstr "Baltieji"
+
+#. Preferences Dialog: Combo box entry for playing as black
+#: ../glchess/data/preferences.ui.h:48
+msgctxt "chess-player"
+msgid "Black"
+msgstr "Juodieji"
+
+#. Preferences Dialog: Combo box entry for no game timer
+#: ../glchess/data/preferences.ui.h:50
+msgid "No limit"
+msgstr "Nėra ribos"
+
+#. Preferences Dialog: Combo box entry for game timer of one minute
+#: ../glchess/data/preferences.ui.h:52
+msgid "One minute"
+msgstr "Viena minutė"
+
+#. Preferences Dialog: Combo box entry for game timer of five minutes
+#: ../glchess/data/preferences.ui.h:54
+msgid "Five minutes"
+msgstr "Penkios minutės"
+
+#. Preferences Dialog: Combo box entry for game timer of thirty minutes
+#: ../glchess/data/preferences.ui.h:56
+msgid "30 minutes"
+msgstr "30 minučių"
+
+#. Preferences Dialog: Combo box entry for game timer of one hour
+#: ../glchess/data/preferences.ui.h:58
+msgid "One hour"
+msgstr "Viena valanda"
+
+#. Preferences Dialog: Combo box entry for custom game timer
+#: ../glchess/data/preferences.ui.h:60
+msgid "Custom"
+msgstr "Pasirinktas"
+
+#. Preferences Dialog: Combo box entry for simple theme
+#: ../glchess/data/preferences.ui.h:62
+msgid "Simple"
+msgstr "Paprasta"
+
+#. Preferences Dialog: Combo box entry for fancy theme
+#: ../glchess/data/preferences.ui.h:64
+msgid "Fancy"
+msgstr "Įmantru"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the white side
+#: ../glchess/data/preferences.ui.h:66
+msgctxt "chess-side"
+msgid "White Side"
+msgstr "Baltoji pusė"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the black side
+#: ../glchess/data/preferences.ui.h:68
+msgctxt "chess-side"
+msgid "Black Side"
+msgstr "Juodoji pusė"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
+#: ../glchess/data/preferences.ui.h:70
+msgctxt "chess-side"
+msgid "Human Side"
+msgstr "Žmogaus pusė"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
+#: ../glchess/data/preferences.ui.h:72
+msgctxt "chess-side"
+msgid "Current Player"
+msgstr "Dabartinis žaidėjas"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)
+#: ../glchess/data/preferences.ui.h:74
+msgctxt "chess-side"
+msgid "Face to Face"
+msgstr "Žaidimas dviese"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
+#: ../glchess/data/preferences.ui.h:76
+msgctxt "chess-move-format"
+msgid "Human"
+msgstr "Žmogus"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
+#: ../glchess/data/preferences.ui.h:78
+msgctxt "chess-move-format"
+msgid "Standard Algebraic"
+msgstr "Standartinis algebrinis"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
+#: ../glchess/data/preferences.ui.h:80
+msgctxt "chess-move-format"
+msgid "Figurine"
+msgstr "Figūrėlė"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
+#: ../glchess/data/preferences.ui.h:82
+msgctxt "chess-move-format"
+msgid "Long Algebraic"
+msgstr "Ilgas algebrinis"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a queen
+#: ../glchess/data/preferences.ui.h:84
+msgctxt "chess-piece"
+msgid "Queen"
+msgstr "Valdovė"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a knight
+#: ../glchess/data/preferences.ui.h:86
+msgctxt "chess-piece"
+msgid "Knight"
+msgstr "Žirgas"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a rook
+#: ../glchess/data/preferences.ui.h:88
+msgctxt "chess-piece"
+msgid "Rook"
+msgstr "Bokštas"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a bishop
+#: ../glchess/data/preferences.ui.h:90
+msgctxt "chess-piece"
+msgid "Bishop"
+msgstr "Rikis"
+
+#. Title of the window when explicitly loaded a file. The first argument is the
+#. * base name of the file (e.g. test.pgn), the second argument is the directory
+#. * (e.g. /home/fred)
+#: ../glchess/src/glchess.vala:242
+#, c-format
+msgid "%1$s (%2$s) - Chess"
+msgstr "%1$s (%2$s) - Šachmatai"
+
+#. Move History Combo: Go to the start of the game
+#: ../glchess/src/glchess.vala:251
+msgid "Game Start"
+msgstr "Žaidimo pradžia"
+
+#. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
+#. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
+#: ../glchess/src/glchess.vala:481
+#, c-format
+msgid "White pawn moves from %1$s to %2$s"
+msgstr "Baltasis pėstininkas eina iš %1$s į %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:483
+#, c-format
+msgid "White pawn at %1$s takes the black pawn at %2$s"
+msgstr "Baltasis pėstininkas %1$s kerta juodąjį pėstininką %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:485
+#, c-format
+msgid "White pawn at %1$s takes the black rook at %2$s"
+msgstr "Baltasis pėstininkas %1$s kerta juodąjį bokštą %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:487
+#, c-format
+msgid "White pawn at %1$s takes the black knight at %2$s"
+msgstr "Baltasis pėstininkas %1$s kerta juodąjį žirgą %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:489
+#, c-format
+msgid "White pawn at %1$s takes the black bishop at %2$s"
+msgstr "Baltasis pėstininkas %1$s kerta juodąjį rikį %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:491
+#, c-format
+msgid "White pawn at %1$s takes the black queen at %2$s"
+msgstr "Baltasis pėstininkas %1$s kerta juodąją valdovę %2$s"
+
+#. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
+#: ../glchess/src/glchess.vala:493
+#, c-format
+msgid "White rook moves from %1$s to %2$s"
+msgstr "Baltasis bokštas eina iš %1$s į %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:495
+#, c-format
+msgid "White rook at %1$s takes the black pawn at %2$s"
+msgstr "Baltasis bokštas %1$s kerta juodąjį pėstininką %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:497
+#, c-format
+msgid "White rook at %1$s takes the black rook at %2$s"
+msgstr "Baltasis bokštas %1$s kerta juodąjį bokštą %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:499
+#, c-format
+msgid "White rook at %1$s takes the black knight at %2$s"
+msgstr "Baltasis bokštas %1$s kerta juodąjį žirgą %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:501
+#, c-format
+msgid "White rook at %1$s takes the black bishop at %2$s"
+msgstr "Baltasis bokštas %1$s kerta juodąjį rikį %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
+#: ../glchess/src/glchess.vala:503
+#, c-format
+msgid "White rook at %1$s takes the black queen at %2$s"
+msgstr "Baltasis bokštas %1$s kerta juodąją valdovę %2$s"
+
+#. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
+#: ../glchess/src/glchess.vala:505
+#, c-format
+msgid "White knight moves from %1$s to %2$s"
+msgstr "Baltasis žirgas eina iš %1$s į %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:507
+#, c-format
+msgid "White knight at %1$s takes the black pawn at %2$s"
+msgstr "Baltasis žirgas %1$s kerta juodąjį pėstininką %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:509
+#, c-format
+msgid "White knight at %1$s takes the black rook at %2$s"
+msgstr "Baltasis žirgas %1$s kerta juodąjį bokštą %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:511
+#, c-format
+msgid "White knight at %1$s takes the black knight at %2$s"
+msgstr "Baltasis žirgas %1$s kerta juodąjį žirgą %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:513
+#, c-format
+msgid "White knight at %1$s takes the black bishop at %2$s"
+msgstr "Baltasis žirgas %1$s kerta juodąjį rikį %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:515
+#, c-format
+msgid "White knight at %1$s takes the black queen at %2$s"
+msgstr "Baltasis žirgas %1$s kerta juodąją valdovę %2$s"
+
+#. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
+#: ../glchess/src/glchess.vala:517
+#, c-format
+msgid "White bishop moves from %1$s to %2$s"
+msgstr "Baltasis rikis eina iš %1$s į %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:519
+#, c-format
+msgid "White bishop at %1$s takes the black pawn at %2$s"
+msgstr "Baltasis rikis %1$s kerta juodąjį pėstininką %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:521
+#, c-format
+msgid "White bishop at %1$s takes the black rook at %2$s"
+msgstr "Baltasis rikis %1$s kerta juodąjį bokštą %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:523
+#, c-format
+msgid "White bishop at %1$s takes the black knight at %2$s"
+msgstr "Baltasis rikis %1$s kerta juodąjį žirgą %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:525
+#, c-format
+msgid "White bishop at %1$s takes the black bishop at %2$s"
+msgstr "Baltasis rikis %1$s kerta juodąjį rikį %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:527
+#, c-format
+msgid "White bishop at %1$s takes the black queen at %2$s"
+msgstr "Baltasis rikis %1$s kerta juodąją valdovę %2$s"
+
+#. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
+#: ../glchess/src/glchess.vala:529
+#, c-format
+msgid "White queen moves from %1$s to %2$s"
+msgstr "Baltoji valdovė eina iš %1$s į %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:531
+#, c-format
+msgid "White queen at %1$s takes the black pawn at %2$s"
+msgstr "Baltoji valdovė %1$s kerta juodąjį pėstininką %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:533
+#, c-format
+msgid "White queen at %1$s takes the black rook at %2$s"
+msgstr "Baltoji valdovė %1$s kerta juodąjį bokštą %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:535
+#, c-format
+msgid "White queen at %1$s takes the black knight at %2$s"
+msgstr "Baltoji valdovė %1$s kerta juodąjį žirgą %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:537
+#, c-format
+msgid "White queen at %1$s takes the black bishop at %2$s"
+msgstr "Baltoji valdovė %1$s kerta juodąjį rikį %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:539
+#, c-format
+msgid "White queen at %1$s takes the black queen at %2$s"
+msgstr "Baltoji valdovė %1$s kerta juodąją valdovę %2$s"
+
+#. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
+#: ../glchess/src/glchess.vala:541
+#, c-format
+msgid "White king moves from %1$s to %2$s"
+msgstr "Baltasis karalius eina iš %1$s į %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:543
+#, c-format
+msgid "White king at %1$s takes the black pawn at %2$s"
+msgstr "Baltasis karalius %1$s kerta juodąjį pėstininką %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:545
+#, c-format
+msgid "White king at %1$s takes the black rook at %2$s"
+msgstr "Baltasis karalius %1$s kerta juodąjį bokštą %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:547
+#, c-format
+msgid "White king at %1$s takes the black knight at %2$s"
+msgstr "Baltasis karalius %1$s kerta juodąjį žirgą %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:549
+#, c-format
+msgid "White king at %1$s takes the black bishop at %2$s"
+msgstr "Baltasis karalius %1$s kerta juodąjį rikį %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:551
+#, c-format
+msgid "White king at %1$s takes the black queen at %2$s"
+msgstr "Baltasis karalius %1$s kerta juodąją valdovę %2$s"
+
+#. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
+#: ../glchess/src/glchess.vala:553
+#, c-format
+msgid "Black pawn moves from %1$s to %2$s"
+msgstr "Juodasis pėstininkas eina iš %1$s į %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:555
+#, c-format
+msgid "Black pawn at %1$s takes the white pawn at %2$s"
+msgstr "Juodasis pėstininkas %1$s kerta baltąjį pėstininką %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:557
+#, c-format
+msgid "Black pawn at %1$s takes the white rook at %2$s"
+msgstr "Juodasis pėstininkas %1$s kerta baltąjį bokštą %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:559
+#, c-format
+msgid "Black pawn at %1$s takes the white knight at %2$s"
+msgstr "Juodasis pėstininkas %1$s kerta baltąjį žirgą %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:561
+#, c-format
+msgid "Black pawn at %1$s takes the white bishop at %2$s"
+msgstr "Juodasis pėstininkas %1$s kerta baltąjį rikį %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:563
+#, c-format
+msgid "Black pawn at %1$s takes the white queen at %2$s"
+msgstr "Juodasis pėstininkas %1$s kerta baltąją valdovę %2$s"
+
+#. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
+#: ../glchess/src/glchess.vala:565
+#, c-format
+msgid "Black rook moves from %1$s to %2$s"
+msgstr "Juodasis bokštas %1$s eina iš %1$s į %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:567
+#, c-format
+msgid "Black rook at %1$s takes the white pawn at %2$s"
+msgstr "Juodasis bokštas %1$s kerta baltąjį pėstininką %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:569
+#, c-format
+msgid "Black rook at %1$s takes the white rook at %2$s"
+msgstr "Juodasis bokštas %1$s kerta baltąjį bokštą %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:571
+#, c-format
+msgid "Black rook at %1$s takes the white knight at %2$s"
+msgstr "Juodasis bokštas %1$s kerta baltąjį žirgą %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:573
+#, c-format
+msgid "Black rook at %1$s takes the white bishop at %2$s"
+msgstr "Juodasis bokštas %1$s kerta baltąjį rikį %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:575
+#, c-format
+msgid "Black rook at %1$s takes the white queen at %2$s"
+msgstr "Juodasis bokštas %1$s kerta baltąją valdovę %2$s"
+
+#. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
+#: ../glchess/src/glchess.vala:577
+#, c-format
+msgid "Black knight moves from %1$s to %2$s"
+msgstr "Juodasis žirgas %1$s eina iš %1$s į %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:579
+#, c-format
+msgid "Black knight at %1$s takes the white pawn at %2$s"
+msgstr "Juodasis žirgas %1$s kerta baltąjį pėstininką %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:581
+#, c-format
+msgid "Black knight at %1$s takes the white rook at %2$s"
+msgstr "Juodasis žirgas %1$s kerta baltąjį bokštą %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:583
+#, c-format
+msgid "Black knight at %1$s takes the white knight at %2$s"
+msgstr "Juodasis žirgas %1$s kerta baltąjį žirgą %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:585
+#, c-format
+msgid "Black knight at %1$s takes the white bishop at %2$s"
+msgstr "Juodasis žirgas %1$s kerta baltąjį rikį %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:587
+#, c-format
+msgid "Black knight at %1$s takes the white queen at %2$s"
+msgstr "Juodasis žirgas %1$s kerta baltąją valdovę %2$s"
+
+#. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
+#: ../glchess/src/glchess.vala:589
+#, c-format
+msgid "Black bishop moves from %1$s to %2$s"
+msgstr "Juodasis rikis %1$s eina iš %1$s į %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:591
+#, c-format
+msgid "Black bishop at %1$s takes the white pawn at %2$s"
+msgstr "Juodasis rikis %1$s kerta baltąjį pėstininką %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:593
+#, c-format
+msgid "Black bishop at %1$s takes the white rook at %2$s"
+msgstr "Juodasis rikis %1$s kerta baltąjį bokštą %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:595
+#, c-format
+msgid "Black bishop at %1$s takes the white knight at %2$s"
+msgstr "Juodasis rikis %1$s kerta baltąjį žirgą %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:597
+#, c-format
+msgid "Black bishop at %1$s takes the white bishop at %2$s"
+msgstr "Juodasis rikis %1$s kerta baltąjį rikį %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:599
+#, c-format
+msgid "Black bishop at %1$s takes the white queen at %2$s"
+msgstr "Juodasis rikis %1$s kerta baltąją valdovę %2$s"
+
+#. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
+#: ../glchess/src/glchess.vala:601
+#, c-format
+msgid "Black queen moves from %1$s to %2$s"
+msgstr "Juodoji valdovė %1$s eina iš %1$s į %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:603
+#, c-format
+msgid "Black queen at %1$s takes the white pawn at %2$s"
+msgstr "Juodoji valdovė %1$s kerta baltąjį pėstininką %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:605
+#, c-format
+msgid "Black queen at %1$s takes the white rook at %2$s"
+msgstr "Juodoji valdovė %1$s kerta baltąjį bokštą %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:607
+#, c-format
+msgid "Black queen at %1$s takes the white knight at %2$s"
+msgstr "Juodoji valdovė %1$s kerta baltąjį žirgą %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:609
+#, c-format
+msgid "Black queen at %1$s takes the white bishop at %2$s"
+msgstr "Juodoji valdovė %1$s kerta baltąjį rikį %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:611
+#, c-format
+msgid "Black queen at %1$s takes the white queen at %2$s"
+msgstr "Juodoji valdovė %1$s kerta baltąją valdovę %2$s"
+
+#. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
+#: ../glchess/src/glchess.vala:613
+#, c-format
+msgid "Black king moves from %1$s to %2$s"
+msgstr "Juodasis karalius %1$s eina iš %1$s į %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:615
+#, c-format
+msgid "Black king at %1$s takes the white pawn at %2$s"
+msgstr "Juodasis karalius %1$s kerta baltąjį pėstininką %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:617
+#, c-format
+msgid "Black king at %1$s takes the white rook at %2$s"
+msgstr "Juodasis karalius %1$s kerta baltąjį bokštą %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:619
+#, c-format
+msgid "Black king at %1$s takes the white knight at %2$s"
+msgstr "Juodasis karalius %1$s kerta baltąjį žirgą %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:621
+#, c-format
+msgid "Black king at %1$s takes the white bishop at %2$s"
+msgstr "Juodasis karalius %1$s kerta baltąjį rikį %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
+#: ../glchess/src/glchess.vala:623
+#, c-format
+msgid "Black king at %1$s takes the white queen at %2$s"
+msgstr "Juodasis karalius %1$s kerta baltąją valdovę %2$s"
+
+#. Message display when the white player wins
+#: ../glchess/src/glchess.vala:743
+msgid "White wins"
+msgstr "Baltieji laimi"
+
+#. Message display when the black player wins
+#: ../glchess/src/glchess.vala:748
+msgid "Black wins"
+msgstr "Juodieji laimi"
+
+#. Message display when the game is drawn
+#: ../glchess/src/glchess.vala:753
+msgid "Game is drawn"
+msgstr "Žaidimas baigėsi lygiosiomis"
+
+#. Message displayed when the game ends due to a player being checkmated
+#: ../glchess/src/glchess.vala:765
+msgid "Opponent is in check and cannot move (checkmate)"
+msgstr "Priešininkui šachas ir jis nebeturi ėjimų (matas)"
+
+#. Message displayed when the game terminates due to a stalemate
+#: ../glchess/src/glchess.vala:769
+msgid "Opponent cannot move (stalemate)"
+msgstr "Priešininkas nebeturi ėjimų (patas)"
+
+#. Message displayed when the game is drawn due to the fifty move rule
+#: ../glchess/src/glchess.vala:773
+msgid "No piece has been taken or pawn moved in the last fifty moves"
+msgstr "Nenukirsta nei viena figūra ir pėstininkai nejudinti per paskutinius 50 ėjimų"
+
+#. Message displayed when the game ends due to one player's clock stopping
+#: ../glchess/src/glchess.vala:777
+msgid "Opponent has run out of time"
+msgstr "Priešininkui baigėsi laikas"
+
+#. Message displayed when the game is drawn due to the three-fold-repitition rule
+#: ../glchess/src/glchess.vala:781
+msgid "The same board state has occurred three times (three fold repetition)"
+msgstr "Pozicija pasikartojo tris kartus iš eilės"
+
+#. Message displayed when the game is drawn due to the insufficient material rule
+#: ../glchess/src/glchess.vala:785
+msgid "Neither player can cause checkmate (insufficient material)"
+msgstr "Nei vienas žaidėjas negali duoti mato (nepakanka figūrų)"
+
+#. Message displayed when the game ends due to the black player resigning
+#: ../glchess/src/glchess.vala:791
+msgid "The black player has resigned"
+msgstr "Juodieji pasidavė"
+
+#. Message displayed when the game ends due to the white player resigning
+#: ../glchess/src/glchess.vala:796
+msgid "The white player has resigned"
+msgstr "Baltieji pasidavė"
+
+#. Message displayed when a game is abandoned
+#: ../glchess/src/glchess.vala:801
+msgid "The game has been abandoned"
+msgstr "Šis žaidimas buvo nutrauktas"
+
+#. Message displayed when the game ends due to a player dying
+#: ../glchess/src/glchess.vala:806
+msgid "One of the players has died"
+msgstr "Vieno iš žaidėjų nebėra"
+
+#: ../glchess/src/glchess.vala:871
+msgid "Save this game before starting a new one?"
+msgstr "Įrašyti šį žaidimą prieš pradedant naują?"
+
+#: ../glchess/src/glchess.vala:873
+#: ../gnome-sudoku/src/lib/main.py:403
+msgid "_Abandon game"
+msgstr "_Palikti žaidimą"
+
+#: ../glchess/src/glchess.vala:874
+#: ../gnome-sudoku/src/lib/main.py:402
+msgid "_Save game for later"
+msgstr "_Įrašyti žaidimą vėlesniam laikui"
+
+#. Preferences Dialog: Combo box entry for a custom game timer set in seconds
+#: ../glchess/src/glchess.vala:1265
+msgid "second"
+msgid_plural "seconds"
+msgstr[0] "sekundė"
+msgstr[1] "sekundės"
+msgstr[2] "sekundžių"
+
+#. Preferences Dialog: Combo box entry for a custom game timer set in minutes
+#: ../glchess/src/glchess.vala:1269
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] "minutė"
+msgstr[1] "minutės"
+msgstr[2] "minučių"
+
+#. Preferences Dialog: Combo box entry for a custom game timer set in hours
+#: ../glchess/src/glchess.vala:1273
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "valanda"
+msgstr[1] "valandos"
+msgstr[2] "valandų"
+
+#: ../glchess/src/glchess.vala:1394
+msgid ""
+"The 2D/3D chess game for GNOME. \n"
+"\n"
+"glChess is a part of GNOME Games."
+msgstr ""
+"2D/3D GNOME.šachmatų žaidimas \n"
+"\n"
+"glChess yra GNOME Games dalis."
+
+#: ../glchess/src/glchess.vala:1399
+#: ../glines/src/glines.c:1183
+#: ../gnect/src/main.c:831
+#: ../gnibbles/src/main.c:177
+#: ../gnobots2/src/menu.c:269
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:566
+#: ../gnome-sudoku/src/lib/defaults.py:53
+#: ../gnomine/src/gnomine.vala:745
+#: ../gnotravex/src/gnotravex.vala:318
+#: ../gnotski/src/gnotski.c:1461
+#: ../gtali/src/gyahtzee.c:620
+#: ../iagno/src/iagno.vala:305
+#: ../lightsoff/src/lightsoff.vala:157
+#: ../quadrapassel/src/quadrapassel.vala:696
+#: ../swell-foop/src/swell-foop.vala:399
+msgid "GNOME Games web site"
+msgstr "GNOME Games tinklalapis"
+
+#. Title of save game dialog
+#: ../glchess/src/glchess.vala:1453
+msgid "Save Chess Game"
+msgstr "Išsaugoti šachmatų žaidimą"
+
+#. Save Game Dialog: Name of filter to show only PGN files
+#. Load Game Dialog: Name of filter to show only PGN files
+#: ../glchess/src/glchess.vala:1466
+#: ../glchess/src/glchess.vala:1534
+msgid "PGN files"
+msgstr "PGN failai"
+
+#. Save Game Dialog: Name of filter to show all files
+#. Load Game Dialog: Name of filter to show all files
+#: ../glchess/src/glchess.vala:1473
+#: ../glchess/src/glchess.vala:1541
+msgid "All files"
+msgstr "Visi failai"
+
+#: ../glchess/src/glchess.vala:1497
+#, c-format
+msgid "Failed to save game: %s"
+msgstr "Žaidimo nepavyko išsaugoti: %s"
+
+#. Title of load game dialog
+#: ../glchess/src/glchess.vala:1521
+msgid "Load Chess Game"
+msgstr "Įkelti šachmatų žaidimą"
+
+#: ../glchess/src/glchess.vala:1563
+#, c-format
+msgid "Failed to open game: %s"
+msgstr "Nepavyko įkelti žaidimo: %s"
+
+#. Help string for command line --version flag
+#: ../glchess/src/glchess.vala:1624
+msgid "Show release version"
+msgstr "Rodyti leidimo versiją"
+
+#. Arguments and description for --help text
+#: ../glchess/src/glchess.vala:1639
+msgid "[FILE] - Play Chess"
+msgstr "[FAILAS] - Žaisti šachmatais"
+
+#. Text printed out when an unknown command-line argument provided
+#: ../glchess/src/glchess.vala:1650
+#, c-format
+msgid "Run '%s --help' to see a full list of available command line options."
+msgstr "Paleiskite „%s --help“ visam komandų eilutės parinkčių sąrašui."
+
+#: ../glines/data/glines.desktop.in.in.h:1
+#: ../glines/src/glines.c:1169
+#: ../glines/src/glines.c:1172
+#: ../glines/src/glines.c:1623
+msgid "Five or More"
+msgstr "Penketas ar daugiau"
+
+#: ../glines/data/glines.desktop.in.in.h:2
+msgid "Remove colored balls from the board by forming lines"
+msgstr "Pašalinti nuo lentos spalvotus rutulius sukūrus iš jų linijas"
+
+#: ../glines/data/glines-preferences.ui.h:1
+msgid "Five or More Preferences"
+msgstr "Penketas ar daugiau nustatymai"
+
+#: ../glines/data/glines-preferences.ui.h:2
+#: ../gnobots2/src/properties.c:490
+#: ../swell-foop/data/preferences.ui.h:6
+msgid "Appearance"
+msgstr "Išvaizda"
+
+#: ../glines/data/glines-preferences.ui.h:3
+msgid "_Image:"
+msgstr "_Paveiksliukas:"
+
+#: ../glines/data/glines-preferences.ui.h:4
+msgid "B_ackground color:"
+msgstr "F_ono spalva:"
+
+#: ../glines/data/glines-preferences.ui.h:5
+msgid "Board Size"
+msgstr "Lentos dydis"
+
+#: ../glines/data/glines-preferences.ui.h:6
+msgid "_Small"
+msgstr "_Mažas"
+
+#: ../glines/data/glines-preferences.ui.h:7
+#: ../gnome-sudoku/data/print_games.ui.h:7
+msgid "_Medium"
+msgstr "_Vidutinis"
+
+#: ../glines/data/glines-preferences.ui.h:8
+msgid "_Large"
+msgstr "_Didelis"
+
+#: ../glines/data/glines-preferences.ui.h:9
+msgid "General"
+msgstr "Bendra"
+
+#: ../glines/data/glines-preferences.ui.h:10
+msgid "_Use fast moves"
+msgstr "_Greiti ėjimai"
+
+#: ../glines/data/glines.ui.h:1
+msgid "Five or more"
+msgstr "Penketas ar daugiau"
+
+#: ../glines/data/glines.ui.h:3
+#: ../gnect/src/main.c:737
+msgid "Scores"
+msgstr "Taškai"
+
+#: ../glines/data/glines.ui.h:8
+msgid "Next:"
+msgstr "Kitas:"
+
+#: ../glines/data/glines.ui.h:9
+msgid "0"
+msgstr "0"
+
+#: ../glines/data/glines.ui.h:10
+#: ../gnobots2/src/statusbar.c:68
+#: ../gnomine/src/gnomine.vala:703
+#: ../quadrapassel/src/quadrapassel.vala:173
+msgid "Score:"
+msgstr "Taškai:"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:1
+msgid "Playing field size"
+msgstr "Žaidimo lauko dydis"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:2
+msgid "Playing field size. 1=Small, 2=Medium, 3=Large. Any other value is invalid."
+msgstr "Žaidimo lauko dydis. 1=mažas, 2=vidutinis, 3=didelis. Kitos reikšmės netinkamos."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:3
+msgid "Ball style"
+msgstr "Rutulio stilius"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:4
+msgid "Ball style. The filename of the images to use for the balls."
+msgstr "Rutulio stilius. Failas, saugantis paveikslėlius, iš kurių suformuojami rutuliai."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:5
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:5
+msgid "Background color"
+msgstr "Fono spalva"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:6
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:6
+msgid "Background color. The hex specification of the background color."
+msgstr "Fono spalva. Šešioliktainis kodas, nurodantis fono spalvą."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:7
+msgid "Time between moves"
+msgstr "Pauzė tarp ėjimų"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:8
+msgid "Time between moves in milliseconds."
+msgstr "Laikas tarp ėjimų milisekundėmis."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:9
+msgid "Game score"
+msgstr "Žaidimas rezultatai"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:10
+msgid "Game score from last saved session."
+msgstr "Paskutinės išsaugotos sesijos žaidimo rezultatai."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:11
+msgid "Game field"
+msgstr "Žaidimo laukas"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:12
+msgid "Game field from last saved session."
+msgstr "Paskutinės išsaugotos sesijos žaidimo laukas."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:13
+msgid "Game preview"
+msgstr "Žaidimo peržiūra"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:14
+msgid "Game preview from last saved session."
+msgstr "Paskutinės išsaugotos sesijos žaidimo peržiūra."
+
+#: ../glines/src/glines.c:80
+#: ../gnomine/src/gnomine.vala:69
+msgctxt "board size"
+msgid "Small"
+msgstr "Mažas"
+
+#: ../glines/src/glines.c:81
+#: ../gnomine/src/gnomine.vala:70
+msgctxt "board size"
+msgid "Medium"
+msgstr "Vidutiniškas"
+
+#: ../glines/src/glines.c:82
+#: ../gnomine/src/gnomine.vala:71
+msgctxt "board size"
+msgid "Large"
+msgstr "Didelis"
+
+#: ../glines/src/glines.c:169
+msgid "Could not load theme"
+msgstr "Nepavyko įkelti temos"
+
+#: ../glines/src/glines.c:195
+#, c-format
+msgid ""
+"Unable to locate file:\n"
+"%s\n"
+"\n"
+"The default theme will be loaded instead."
+msgstr ""
+"Nepavyko rasti failo:\n"
+"%s\n"
+"\n"
+"Vietoje to bus įkelta numatytoji tema."
+
+#: ../glines/src/glines.c:202
+#, c-format
+msgid ""
+"Unable to locate file:\n"
+"%s\n"
+"\n"
+"Please check that Five or More is installed correctly."
+msgstr ""
+"Nepavyko aptikti failo:\n"
+"%s\n"
+"\n"
+"Patikrinkite, ar „Penketas ar daugiau“ yra įdiegtas tinkamai."
+
+#: ../glines/src/glines.c:407
+msgid "Match five objects of the same type in a row to score!"
+msgstr "Norėdami gauti taškų surinkite penkis vienos spalvos rutulius eilėje!"
+
+#: ../glines/src/glines.c:469
+msgid "GNOME Five or More"
+msgstr "GNOME penketas ar daugiau"
+
+#: ../glines/src/glines.c:471
+#: ../swell-foop/data/preferences.ui.h:2
+msgid "_Board size:"
+msgstr "Lentos _dydis:"
+
+#: ../glines/src/glines.c:488
+#: ../swell-foop/src/game-view.vala:434
+#, c-format
+msgid "Game Over!"
+msgstr "Žaidimas baigtas!"
+
+#. Can't move there!
+#: ../glines/src/glines.c:645
+msgid "You can't move there!"
+msgstr "Negalima ten perkelti!"
+
+#: ../glines/src/glines.c:1174
+msgid ""
+"GNOME port of the once-popular Color Lines game.\n"
+"\n"
+"Five or More is a part of GNOME Games."
+msgstr ""
+"Kažkada populiaraus Color Lines žaidimo GNOME variantas.\n"
+"\n"
+"Five or More yra GNOME Games dalis."
+
+#: ../glines/src/glines.c:1180
+#: ../gnect/src/main.c:834
+#: ../gnibbles/src/main.c:174
+#: ../gnobots2/src/menu.c:274
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:563
+#: ../gnome-sudoku/src/lib/main.py:669
+#: ../gnomine/src/gnomine.vala:742
+#: ../gnotravex/src/gnotravex.vala:315
+#: ../gnotski/src/gnotski.c:1458
+#: ../gtali/src/gyahtzee.c:616
+#: ../iagno/src/iagno.vala:303
+#: ../lightsoff/src/lightsoff.vala:154
+#: ../quadrapassel/src/quadrapassel.vala:699
+#: ../swell-foop/src/swell-foop.vala:396
+msgid "translator-credits"
+msgstr ""
+"Paskutinieji vertėjai:\n"
+"Žygimantas Beručka <zygis@gnome.org>,\n"
+"Justina Klingaitė <justina.klingaite@gmail.com>\n"
+"\n"
+"Ankstesnieji vertėjai:\n"
+"Tomas Kuliavas <tokul@users.sf.net>,\n"
+"Gediminas Paulauskas <menesis@chatsubo.lt>"
+
+#: ../gnect/data/gnect.desktop.in.in.h:1
+msgid "Four-in-a-Row"
+msgstr "Keturi eilėje"
+
+#: ../gnect/data/gnect.desktop.in.in.h:2
+msgid "Make lines of the same color to win"
+msgstr "Laimėkite sudėdami vienodos spalvos linijas"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:1
+msgid "Level of Player One"
+msgstr "Pirmojo žaidėjo lygis"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:2
+msgid "Zero is human; one through three correspond to the level of the computer player."
+msgstr "Nulis yra žmogiškas žaidėjas, skaičiai nuo vieno iki trijų atitinka įvairius kompiuterinių žaidėjų lygius."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:3
+msgid "Level of Player Two"
+msgstr "Antrojo žaidėjo lygis"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:4
+msgid "Theme ID"
+msgstr "Temos ID"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:5
+msgid "A number specifying the preferred theme."
+msgstr "Skaičius, nurodantis pasirinktą temą."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:6
+msgid "Animate"
+msgstr "Animacija"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:7
+msgid "Whether or not to use animation."
+msgstr "Ar naudoti animaciją."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:8
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:1
+msgid "Sound"
+msgstr "Garsai"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:9
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:2
+msgid "Whether or not to play event sounds."
+msgstr "Ar skleisti garsus žaidimo metu."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:10
+#: ../gnect/src/prefs.c:317
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:25
+#: ../gnibbles/src/preferences.c:451
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:23
+#: ../quadrapassel/src/quadrapassel.vala:377
+msgid "Move left"
+msgstr "Eiti kairėn"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:11
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:24
+msgid "Key press to move left."
+msgstr "Judėjimo į kairę klavišas."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:12
+#: ../gnect/src/prefs.c:318
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:27
+#: ../gnibbles/src/preferences.c:452
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:25
+#: ../quadrapassel/src/quadrapassel.vala:378
+msgid "Move right"
+msgstr "Eiti dešinėn"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:13
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:26
+msgid "Key press to move right."
+msgstr "Judėjimo į dešinę klavišas."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:14
+#: ../gnect/src/prefs.c:319
+msgid "Drop marble"
+msgstr "Paleisti rutuliuką"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:15
+msgid "Key press to drop a marble."
+msgstr "Rutuliuko paleidimo klavišas."
+
+#: ../gnect/src/gfx.c:248
+#, c-format
+msgid ""
+"Unable to load image:\n"
+"%s"
+msgstr ""
+"Nepavyko įkelti paveikslėlio:\n"
+"%s"
+
+#: ../gnect/src/main.c:525
+msgid "It's a draw!"
+msgstr "Lygiosios!"
+
+#: ../gnect/src/main.c:534
+#: ../gnome-sudoku/src/lib/main.py:391
+msgid "You win!"
+msgstr "Jūs laimėjote!"
+
+#: ../gnect/src/main.c:536
+#: ../gnect/src/main.c:555
+msgid "It is your move."
+msgstr "Jūsų ėjimas."
+
+#: ../gnect/src/main.c:539
+msgid "I win!"
+msgstr "Programa laimėjo!"
+
+#: ../gnect/src/main.c:541
+#: ../gnect/src/main.c:643
+msgid "Thinking..."
+msgstr "Svarstoma..."
+
+#: ../gnect/src/main.c:552
+#, c-format
+msgid "%s wins!"
+msgstr "%s laimėjo!"
+
+#: ../gnect/src/main.c:559
+#, c-format
+msgid "Waiting for %s to move."
+msgstr "Laukiama %s ėjimo."
+
+#: ../gnect/src/main.c:660
+#, c-format
+msgid "Hint: Column %d"
+msgstr "Patarimas: stulpelis %d"
+
+#: ../gnect/src/main.c:688
+#: ../gnect/src/main.c:692
+msgid "You:"
+msgstr "Jūs:"
+
+#: ../gnect/src/main.c:689
+#: ../gnect/src/main.c:691
+msgid "Me:"
+msgstr "Aš:"
+
+#: ../gnect/src/main.c:781
+msgid "Drawn:"
+msgstr "Lygiosios:"
+
+#: ../gnect/src/main.c:830
+msgid ""
+"\"Four in a Row\" for GNOME, with a computer player driven by Giuliano Bertoletti's Velena Engine.\n"
+"\n"
+"\"Four in a Row\" is a part of GNOME Games."
+msgstr ""
+"„Keturi eilėje“ yra GNOME žaidimas, naudojantis Džiuliano Bertolečio Velena kompiuterinių žaidėjų variklį.\n"
+"\n"
+"„Keturi eilėje“ yra GNOME Games dalis."
+
+#: ../gnect/src/main.c:1185
+#: ../gnibbles/src/main.c:606
+#: ../gnobots2/src/menu.c:66
+#: ../gnotski/src/gnotski.c:398
+msgid "_View"
+msgstr "R_odymas"
+
+#: ../gnect/src/main.h:5
+msgid "Four-in-a-row"
+msgstr "Keturi eilėje"
+
+#: ../gnect/src/prefs.c:208
+msgid "Four-in-a-Row Preferences"
+msgstr "Keturi eilėje nustatymai"
+
+#: ../gnect/src/prefs.c:234
+msgid "Player One:"
+msgstr "Pirmas žaidėjas"
+
+#: ../gnect/src/prefs.c:245
+#: ../gnect/src/prefs.c:273
+#: ../gtali/src/gyahtzee.c:970
+#: ../gtali/src/yahtzee.c:69
+#: ../iagno/src/iagno.vala:493
+#: ../iagno/src/iagno.vala:522
+msgid "Human"
+msgstr "Žmogus"
+
+#: ../gnect/src/prefs.c:249
+#: ../gnect/src/prefs.c:277
+#: ../iagno/src/iagno.vala:497
+#: ../iagno/src/iagno.vala:526
+msgid "Level one"
+msgstr "Pirmas lygis"
+
+#: ../gnect/src/prefs.c:253
+#: ../gnect/src/prefs.c:281
+#: ../iagno/src/iagno.vala:501
+#: ../iagno/src/iagno.vala:530
+msgid "Level two"
+msgstr "Antras lygis"
+
+#: ../gnect/src/prefs.c:257
+#: ../gnect/src/prefs.c:285
+#: ../iagno/src/iagno.vala:505
+#: ../iagno/src/iagno.vala:534
+msgid "Level three"
+msgstr "Trečias lygis"
+
+#: ../gnect/src/prefs.c:263
+msgid "Player Two:"
+msgstr "Antras žaidėjas"
+
+#: ../gnect/src/prefs.c:291
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:387
+#: ../swell-foop/data/preferences.ui.h:5
+msgid "_Theme:"
+msgstr "_Tema:"
+
+#: ../gnect/src/prefs.c:304
+msgid "Enable _animation"
+msgstr "Įjungti _animaciją"
+
+#: ../gnect/src/prefs.c:308
+#: ../gnibbles/src/preferences.c:346
+#: ../iagno/src/iagno.vala:539
+msgid "E_nable sounds"
+msgstr "Įj_ungti garsus"
+
+#. keyboard tab
+#: ../gnect/src/prefs.c:313
+msgid "Keyboard Controls"
+msgstr "Klaviatūra"
+
+#: ../gnect/src/theme.c:41
+msgid "Classic"
+msgstr "Klasika"
+
+#: ../gnect/src/theme.c:45
+#: ../gnect/src/theme.c:66
+#: ../gnect/src/theme.c:73
+#: ../gnect/src/theme.c:80
+#: ../gnibbles/src/preferences.c:476
+msgid "Red"
+msgstr "Raudona"
+
+#: ../gnect/src/theme.c:45
+#: ../gnibbles/src/preferences.c:479
+msgid "Yellow"
+msgstr "Geltona"
+
+#: ../gnect/src/theme.c:48
+msgid "High Contrast"
+msgstr "Didelio kontrasto"
+
+#: ../gnect/src/theme.c:52
+#: ../gnect/src/theme.c:59
+msgid "Circle"
+msgstr "Apskritimas"
+
+#: ../gnect/src/theme.c:52
+#: ../gnect/src/theme.c:59
+msgid "Cross"
+msgstr "Kryžius"
+
+#: ../gnect/src/theme.c:55
+msgid "High Contrast Inverse"
+msgstr "Didelio kontrasto inversija"
+
+#: ../gnect/src/theme.c:62
+msgid "Cream Marbles"
+msgstr "Daugiau stiklo rutuliukų"
+
+#: ../gnect/src/theme.c:66
+#: ../gnect/src/theme.c:73
+#: ../gnect/src/theme.c:80
+#: ../gnect/src/theme.c:87
+#: ../gnibbles/src/preferences.c:478
+msgid "Blue"
+msgstr "Mėlyna"
+
+#: ../gnect/src/theme.c:69
+msgid "Glass Marbles"
+msgstr "Glass Marbles"
+
+#: ../gnect/src/theme.c:76
+msgid "Nightfall"
+msgstr "Sutema"
+
+#: ../gnect/src/theme.c:83
+msgid "Blocks"
+msgstr "Blokai"
+
+#: ../gnect/src/theme.c:87
+msgid "Orange"
+msgstr "Oranžinis"
+
+#: ../gnibbles/data/gnibbles.desktop.in.in.h:1
+#: ../gnibbles/src/main.c:162
+#: ../gnibbles/src/main.c:165
+#: ../gnibbles/src/main.c:700
+#: ../gnibbles/src/main.c:771
+#: ../gnibbles/src/main.c:902
+msgid "Nibbles"
+msgstr "Nibbles"
+
+#: ../gnibbles/data/gnibbles.desktop.in.in.h:2
+msgid "Guide a worm around a maze"
+msgstr "Praveskite gyvatę pro labirintą"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:1
+msgid "Number of human players"
+msgstr "Žaidžiančių žmonių skaičius"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:2
+msgid "Number of human players."
+msgstr "Žaidžiančių žmonių skaičius."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:3
+msgid "Number of AI players"
+msgstr "DI žaidėjų skaičius"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:4
+msgid "Number of AI players."
+msgstr "DI žaidėjų skaičius."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:5
+msgid "Game speed"
+msgstr "Žaidimo greitis"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:6
+msgid "Game speed (1=fast, 4=slow)."
+msgstr "Žaidimo greitis (1=greitas, 4=lėtas)."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:7
+msgid "Enable fake bonuses"
+msgstr "Įjungti netikras premijas"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:8
+msgid "Enable fake bonuses."
+msgstr "Įjungti netikras premijas."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:9
+msgid "Play levels in random order"
+msgstr "Žaisti lygius atsitiktine tvarka"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:10
+msgid "Play levels in random order."
+msgstr "Žaisti lygius atsitiktine tvarka."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:11
+msgid "Game level to start on"
+msgstr "Pradinis žaidimo lygis"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:12
+msgid "Game level to start on."
+msgstr "Pradinis žaidimo lygis."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:13
+msgid "Enable sounds"
+msgstr "Įjungti garsus"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:14
+msgid "Enable sounds."
+msgstr "Įjungti garsus."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:15
+msgid "Size of game tiles"
+msgstr "Langelių dydis"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:16
+msgid "Size of game tiles."
+msgstr "Langelių dydis."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:17
+msgid "Color to use for worm"
+msgstr "Gyvatės spalva"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:18
+msgid "Color to use for worm."
+msgstr "Gyvatės spalva."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:19
+msgid "Use relative movement"
+msgstr "Naudoti reliatyvų judėjimą"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:20
+msgid "Use relative movement (ie. left or right only)."
+msgstr "Naudoti santykinį judėjimą (t.y. tik kairėn ir dešinėn)."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:21
+#: ../gnibbles/src/preferences.c:453
+msgid "Move up"
+msgstr "Perkelti aukštyn"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:22
+msgid "Key to use for motion up."
+msgstr "Judėjimo aukštyn klavišas."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:23
+#: ../gnibbles/src/preferences.c:454
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:27
+#: ../quadrapassel/src/quadrapassel.vala:379
+msgid "Move down"
+msgstr "Perkelti žemyn"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:24
+msgid "Key to use for motion down."
+msgstr "Judėjimo žemyn klavišas."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:26
+msgid "Key to use for motion left."
+msgstr "Judėjimo kairėn klavišas."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:28
+msgid "Key to use for motion right."
+msgstr "Judėjimo dešinėn klavišas."
+
+#: ../gnibbles/src/board.c:245
+#, c-format
+msgid ""
+"Nibbles couldn't load level file:\n"
+"%s\n"
+"\n"
+"Please check your Nibbles installation"
+msgstr ""
+"Nibbles nepavyko įkelti lygių failo:\n"
+"%s\n"
+"\n"
+"Patikrinkite, ar Nibbles įdiegtas korektiškai"
+
+#: ../gnibbles/src/board.c:264
+#, c-format
+msgid ""
+"Level file appears to be damaged:\n"
+"%s\n"
+"\n"
+"Please check your Nibbles installation"
+msgstr ""
+"Atrodo, kad lygių failas sugadintas:\n"
+"%s\n"
+"\n"
+"Patikrinkite, ar Gnibbles įdiegtas korektiškai"
+
+#: ../gnibbles/src/gnibbles.c:85
+#, c-format
+msgid ""
+"Nibbles couldn't find pixmap file:\n"
+"%s\n"
+"\n"
+"Please check your Nibbles installation"
+msgstr ""
+"Nibbles nepavyko įkelti paveikslėlio failo:\n"
+"%s\n"
+"\n"
+"Patikrinkite, ar Nibbles įdiegtas korektiškai"
+
+#: ../gnibbles/src/gnibbles.c:356
+msgid "Nibbles Scores"
+msgstr "Nibbles taškai"
+
+#: ../gnibbles/src/gnibbles.c:359
+msgid "Speed:"
+msgstr "Greitis:"
+
+#: ../gnibbles/src/gnibbles.c:364
+#: ../gnobots2/src/game.c:179
+#: ../gnomine/src/gnomine.vala:470
+#: ../gnotravex/src/gnotravex.vala:243
+#: ../gnotski/src/gnotski.c:773
+#: ../gtali/src/gyahtzee.c:194
+#, c-format
+msgid "Congratulations!"
+msgstr "Sveikiname!"
+
+#: ../gnibbles/src/gnibbles.c:365
+#: ../gnobots2/src/game.c:180
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:314
+#: ../gnomine/src/gnomine.vala:470
+#: ../gnotravex/src/gnotravex.vala:243
+#: ../gnotski/src/gnotski.c:774
+#: ../gtali/src/gyahtzee.c:195
+#: ../quadrapassel/src/quadrapassel.vala:633
+msgid "Your score is the best!"
+msgstr "Jūsų rezultatas – geriausias!"
+
+#: ../gnibbles/src/gnibbles.c:366
+#: ../gnobots2/src/game.c:181
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:316
+#: ../gnomine/src/gnomine.vala:470
+#: ../gnotravex/src/gnotravex.vala:243
+#: ../gnotski/src/gnotski.c:775
+#: ../gtali/src/gyahtzee.c:196
+#: ../quadrapassel/src/quadrapassel.vala:635
+msgid "Your score has made the top ten."
+msgstr "Jūsų taškai pateko į top 10."
+
+#: ../gnibbles/src/main.c:66
+msgctxt "game speed"
+msgid "Beginner"
+msgstr "Pradedančiajam"
+
+#: ../gnibbles/src/main.c:67
+msgctxt "game speed"
+msgid "Slow"
+msgstr "Lėtai"
+
+#: ../gnibbles/src/main.c:68
+msgctxt "game speed"
+msgid "Medium"
+msgstr "Vidutiniškai"
+
+#: ../gnibbles/src/main.c:69
+msgctxt "game speed"
+msgid "Fast"
+msgstr "Greitai"
+
+#: ../gnibbles/src/main.c:70
+msgctxt "game speed"
+msgid "Beginner with Fakes"
+msgstr "Pradedančiajam, su apgaule"
+
+#: ../gnibbles/src/main.c:71
+msgctxt "game speed"
+msgid "Slow with Fakes"
+msgstr "Lėtai, su apgaule"
+
+#: ../gnibbles/src/main.c:72
+msgctxt "game speed"
+msgid "Medium with Fakes"
+msgstr "Vidutiniškai, su apgaule"
+
+#: ../gnibbles/src/main.c:73
+msgctxt "game speed"
+msgid "Fast with Fakes"
+msgstr "Greitai, su apgaule "
+
+#: ../gnibbles/src/main.c:171
+msgid ""
+"A worm game for GNOME.\n"
+"\n"
+"Nibbles is a part of GNOME Games."
+msgstr ""
+"Kirminų žaidimas, skirtas GNOME.\n"
+"\n"
+"Nibbles yra GNOME Games dalis."
+
+#: ../gnibbles/src/main.c:492
+#, c-format
+msgid "Game over! The game has been won by %s!"
+msgstr "Žaidimas baigtas! Žaidimą laimėjo %s!"
+
+#. Translators: This string will be included in the intro screen, so don't make sure it fits!
+#: ../gnibbles/src/main.c:773
+msgid "A worm game for GNOME."
+msgstr "GNOME gyvatėlės žaidimas."
+
+#: ../gnibbles/src/preferences.c:241
+msgid "Nibbles Preferences"
+msgstr "Nibbles nustatymai"
+
+#. Speed
+#: ../gnibbles/src/preferences.c:270
+msgid "Speed"
+msgstr "Greitis"
+
+#: ../gnibbles/src/preferences.c:275
+msgid "Nibbles newbie"
+msgstr "Nibbles naujokas"
+
+#: ../gnibbles/src/preferences.c:285
+msgid "My second day"
+msgstr "Mano antroji diena"
+
+#: ../gnibbles/src/preferences.c:295
+msgid "Not too shabby"
+msgstr "Ne toks ir menkas"
+
+#: ../gnibbles/src/preferences.c:305
+msgid "Finger-twitching good"
+msgstr "Pirštus trukčioju gerai"
+
+#: ../gnibbles/src/preferences.c:319
+#: ../gnibbles/src/preferences.c:458
+msgid "Options"
+msgstr "Nustatymai"
+
+#: ../gnibbles/src/preferences.c:326
+msgid "_Play levels in random order"
+msgstr "Žai_sti lygius atsitiktine tvarka"
+
+#: ../gnibbles/src/preferences.c:336
+msgid "_Enable fake bonuses"
+msgstr "Įj_ungti netikras premijas"
+
+#. starting level
+#: ../gnibbles/src/preferences.c:359
+#: ../quadrapassel/src/quadrapassel.vala:336
+msgid "_Starting level:"
+msgstr "_Pradinis lygis:"
+
+#: ../gnibbles/src/preferences.c:388
+msgid "Number of _human players:"
+msgstr "Žaidžiančių ž_monių skaičius:"
+
+#: ../gnibbles/src/preferences.c:409
+msgid "Number of _AI players:"
+msgstr "DI ž_aidėjų skaičius:"
+
+#: ../gnibbles/src/preferences.c:434
+msgid "Worm"
+msgstr "Gyvatė"
+
+#: ../gnibbles/src/preferences.c:443
+msgid "Keyboard Options"
+msgstr "Klaviatūros nustatymai"
+
+#: ../gnibbles/src/preferences.c:463
+msgid "_Use relative movement"
+msgstr "_Naudoti reliatyvų judėjimą"
+
+#: ../gnibbles/src/preferences.c:470
+msgid "_Worm color:"
+msgstr "_Gyvatės spalva:"
+
+#: ../gnibbles/src/preferences.c:477
+msgid "Green"
+msgstr "Žalia"
+
+#: ../gnibbles/src/preferences.c:480
+msgid "Cyan"
+msgstr "Žalsvai melsva"
+
+#: ../gnibbles/src/preferences.c:481
+msgid "Purple"
+msgstr "Violetinė"
+
+#: ../gnibbles/src/preferences.c:482
+msgid "Gray"
+msgstr "Pilka"
+
+#: ../gnibbles/src/scoreboard.c:48
+#, c-format
+msgid "Worm %d:"
+msgstr "Gyvatė %d:"
+
+#: ../gnobots2/data/gnobots2.desktop.in.in.h:1
+#: ../gnobots2/src/gnobots.c:171
+#: ../gnobots2/src/gnobots.c:184
+#: ../gnobots2/src/menu.c:262
+#: ../gnobots2/src/menu.c:265
+msgid "Robots"
+msgstr "Robotai"
+
+#: ../gnobots2/data/gnobots2.desktop.in.in.h:2
+msgid "Avoid the robots and make them crash into each other"
+msgstr "Išvenkite robotų ir sudaužykite juos vieną su kitu"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:1
+msgid "Show toolbar"
+msgstr "Rodyti įrankių juostą"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:2
+msgid "Show toolbar. A standard option for toolbars."
+msgstr "Rodyti įrankių juostą. Standartinis nustatymas įrankių juostoms."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:3
+msgid "Robot image theme"
+msgstr "Robotų paveikslėlių tema"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:4
+msgid "Robot image theme. The theme of the images to use for the robots."
+msgstr "Robotų atvaizdų tema. Paveikslėlių tema, naudojama atvaizduojant robotus."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:7
+msgid "Game type"
+msgstr "Žaidimo tipas"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:8
+msgid "Game type. The name of the game variation to use."
+msgstr "Žaidimo tipas. Naudojamo žaidimo varianto pavadinimas."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:9
+msgid "Use safe moves"
+msgstr "Naudoti saugius ėjimus"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:10
+msgid "Use safe moves. The safe moves option will help you to avoid being killed due to a mistake. If you try to make a move that would lead to your death when there is a safe move available you will not be allowed to proceed."
+msgstr "Naudoti saugius ėjimus. Saugių ėjimų veiksena padės jums išvengti žūties dėl atsitiktinių judėjimo klaidų. Jei bandysite žengti žingsnį, kuris Jus pražudytų, nors yra galimas ir nemirtinas žingsnis, sistema neleis žengti to žingsnio."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:11
+msgid "Use super safe moves"
+msgstr "Naudoti ypač saugius ėjimus"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:12
+msgid "Use super safe moves. The player is alerted when there is no safe move and the only option is to teleport out."
+msgstr "Naudoti ypač saugius ėjimus. Žaidėjas bus perspėtas, kai nebus saugių ėjimų ir teks persikelti."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:13
+msgid "Enable game sounds"
+msgstr "Įjungti garsus"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:14
+msgid "Enable game sounds. Play sounds for various events throughout the game."
+msgstr "Įjungia garsus. Skleisti garsus atsitikus įvairiems žaidimo įvykiams."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:15
+#: ../gnobots2/src/properties.c:502
+msgid "Key to move NW"
+msgstr "Judėjimo į Šiaurės Vakarus klavišas."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:16
+msgid "The key used to move north-west."
+msgstr "Judėjimo į šiaurės vakarus klavišas."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:17
+#: ../gnobots2/src/properties.c:503
+msgid "Key to move N"
+msgstr "Judėjimo į Šiaurę klavišas."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:18
+msgid "The key used to move north."
+msgstr "Judėjimo į šiaurę klavišas."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:19
+#: ../gnobots2/src/properties.c:504
+msgid "Key to move NE"
+msgstr "Judėjimo į Šiaurės Rytus klavišas."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:20
+msgid "The key used to move north-east."
+msgstr "Judėjimo į šiaurės rytus klavišas."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:21
+#: ../gnobots2/src/properties.c:505
+msgid "Key to move W"
+msgstr "Judėjimo į Vakarus klavišas."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:22
+msgid "The key used to move west."
+msgstr "Judėjimo į vakarus klavišas."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:23
+#: ../gnobots2/src/properties.c:510
+msgid "Key to hold"
+msgstr "Laikymo klavišas"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:24
+msgid "The key used to hold still."
+msgstr "Klavišas, naudojamas laikymui."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:25
+#: ../gnobots2/src/properties.c:506
+msgid "Key to move E"
+msgstr "Judėjimo į Rytus klavišas"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:26
+msgid "The key used to move east."
+msgstr "Judėjimo į rytus klavišas."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:27
+#: ../gnobots2/src/properties.c:507
+msgid "Key to move SW"
+msgstr "Judėjimo į Pietvakarius klavišas."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:28
+msgid "The key used to move south-west."
+msgstr "Judėjimo į pietvakarius klavišas"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:29
+#: ../gnobots2/src/properties.c:508
+msgid "Key to move S"
+msgstr "Judėjimo į Pietus klavišas."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:30
+msgid "The key used to move south."
+msgstr "Judėjimo į pietus klavišas."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:31
+#: ../gnobots2/src/properties.c:509
+msgid "Key to move SE"
+msgstr "Judėjimo į Pietryčius klavišas."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:32
+msgid "The key used to move south-east."
+msgstr "Judėjimo į pietryčius klavišas."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:33
+#: ../gnobots2/src/properties.c:511
+msgid "Key to teleport"
+msgstr "Teleportacijos klavišas"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:34
+msgid "The key used to teleport safely (if possible)."
+msgstr "Klavišas saugiam teleportavimuisi (jei įmanoma)."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:35
+#: ../gnobots2/src/properties.c:512
+msgid "Key to teleport randomly"
+msgstr "Atsitiktinės teleportacijos klavišas"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:36
+msgid "The key used to teleport randomly."
+msgstr "Klavišas atsitiktiniam teleportavimuisi."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:37
+#: ../gnobots2/src/properties.c:513
+msgid "Key to wait"
+msgstr "Laukimo klavišas"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:38
+msgid "The key used to wait."
+msgstr "Laukimo klavišas."
+
+#: ../gnobots2/src/game.c:150
+#: ../gtali/src/gyahtzee.c:212
+msgid "Game over!"
+msgstr "Žaidimas baigtas!"
+
+#: ../gnobots2/src/game.c:152
+#: ../gnomine/src/gnomine.vala:453
+#: ../gnotski/src/gnotski.c:748
+msgid "Great work, but unfortunately your score did not make the top ten."
+msgstr "Šauniai padirbėta, bet nelaimei, jūsų taškai nepateko į geriausiųjų dešimtuką."
+
+#. Translators: This "_New Game" is for the game-over dialogue
+#: ../gnobots2/src/game.c:154
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:83
+#: ../gnome-sudoku/data/select_game.ui.h:1
+#: ../gnomine/src/gnomine.vala:107
+#: ../gnomine/src/gnomine.vala:455
+#: ../gnotravex/data/gnotravex.ui.h:1
+#: ../gnotski/src/gnotski.c:750
+#: ../gtali/src/gyahtzee.c:753
+#: ../iagno/data/iagno.ui.h:1
+#: ../libgames-support/games-stock.c:253
+#: ../lightsoff/src/lightsoff.vala:29
+#: ../quadrapassel/src/quadrapassel.vala:81
+#: ../swell-foop/src/swell-foop.vala:65
+msgid "_New Game"
+msgstr "_Naujas žaidimas"
+
+#: ../gnobots2/src/game.c:167
+msgid "Robots Scores"
+msgstr "Robotų taškai"
+
+#: ../gnobots2/src/game.c:170
+msgid "Map:"
+msgstr "Planas:"
+
+#: ../gnobots2/src/game.c:409
+#: ../gnobots2/src/game.c:425
+msgid ""
+"Congratulations, You Have Defeated the Robots!! \n"
+"But Can You do it Again?"
+msgstr ""
+"Sveikiname, jūs nugalėjote robotus!\n"
+"Bet ar sugebėsite tai padaryti dar kartą?"
+
+#. This should never happen.
+#: ../gnobots2/src/game.c:1201
+msgid "There are no teleport locations left!!"
+msgstr "Neliko nei vienos vietos teleportuotis!!"
+
+#: ../gnobots2/src/game.c:1229
+msgid "There are no safe locations to teleport to!!"
+msgstr "Nėra saugios vietos, kur teleportuotis!!"
+
+#: ../gnobots2/src/gnobots.c:82
+msgid "Set game scenario"
+msgstr "Nustatyti žaidimo scenarijų"
+
+#: ../gnobots2/src/gnobots.c:82
+#: ../gnobots2/src/gnobots.c:84
+msgid "NAME"
+msgstr "VARDAS"
+
+#: ../gnobots2/src/gnobots.c:84
+msgid "Set game configuration"
+msgstr "Nustatyti žaidimo savybes"
+
+#: ../gnobots2/src/gnobots.c:86
+#: ../gnobots2/src/gnobots.c:88
+msgid "Initial window position"
+msgstr "Pradinė lango pozicija"
+
+#: ../gnobots2/src/gnobots.c:86
+#: ../gnotski/src/gnotski.c:445
+msgid "X"
+msgstr "X"
+
+#: ../gnobots2/src/gnobots.c:88
+#: ../gnotski/src/gnotski.c:447
+msgid "Y"
+msgstr "Y"
+
+#: ../gnobots2/src/gnobots.c:93
+msgid "Classic robots"
+msgstr "Klasikiniai robotai"
+
+#: ../gnobots2/src/gnobots.c:94
+msgid "Classic robots with safe moves"
+msgstr "Klasikiniai robotai su saugiais ėjimais"
+
+#: ../gnobots2/src/gnobots.c:95
+msgid "Classic robots with super-safe moves"
+msgstr "Klasikiniai robotai su ypač saugiais ėjimais"
+
+#: ../gnobots2/src/gnobots.c:96
+msgid "Nightmare"
+msgstr "Košmaras"
+
+#: ../gnobots2/src/gnobots.c:97
+msgid "Nightmare with safe moves"
+msgstr "Košmaras su saugiais ėjimais"
+
+#: ../gnobots2/src/gnobots.c:98
+msgid "Nightmare with super-safe moves"
+msgstr "Košmaras su ypač saugiais ėjimais"
+
+#: ../gnobots2/src/gnobots.c:99
+msgid "Robots2"
+msgstr "Robotai2"
+
+#: ../gnobots2/src/gnobots.c:100
+msgid "Robots2 with safe moves"
+msgstr "Robotai2 su saugiais ėjimais"
+
+#: ../gnobots2/src/gnobots.c:101
+msgid "Robots2 with super-safe moves"
+msgstr "Robotai2 su ypač saugiais ėjimais"
+
+#: ../gnobots2/src/gnobots.c:102
+msgid "Robots2 easy"
+msgstr "lengvi Robotai2"
+
+#: ../gnobots2/src/gnobots.c:103
+msgid "Robots2 easy with safe moves"
+msgstr "Robotai2 su saugiais ėjimais"
+
+#: ../gnobots2/src/gnobots.c:104
+msgid "Robots2 easy with super-safe moves"
+msgstr "Robotai2 su ypač saugiais ėjimais"
+
+#: ../gnobots2/src/gnobots.c:105
+msgid "Robots with safe teleport"
+msgstr "Robotai su saugiu teleportavimu"
+
+#: ../gnobots2/src/gnobots.c:106
+msgid "Robots with safe teleport with safe moves"
+msgstr "Robotai su saugiu teleportavimu saugiais ėjimais"
+
+#: ../gnobots2/src/gnobots.c:107
+msgid "Robots with safe teleport with super-safe moves"
+msgstr "Robotai su saugiu teleportavimu ypač saugiais ėjimais"
+
+#: ../gnobots2/src/gnobots.c:247
+msgid "No game data could be found."
+msgstr "Nepavyko rasti žaidimo duomenų."
+
+#: ../gnobots2/src/gnobots.c:249
+msgid "The program Robots was unable to find any valid game configuration files. Please check that the program is installed correctly."
+msgstr "Robots programai nepavyko rasti tinkamų žaidimo nustatymų failų. Patikrinkite, ar programa yra įdiegta teisingai."
+
+#: ../gnobots2/src/gnobots.c:265
+msgid "Some graphics files are missing or corrupt."
+msgstr "Trūksta kai kurių grafikos failų arba jos yra sugadintos."
+
+#: ../gnobots2/src/gnobots.c:267
+msgid "The program Robots was unable to load all the necessary graphics files. Please check that the program is installed correctly."
+msgstr "Robots programai nepavyko įkelti visų reikalingų grafinių failų. Patikrinkite, ar programa yra įdiegta teisingai."
+
+#: ../gnobots2/src/graphics.c:152
+#, c-format
+msgid "Could not find '%s' pixmap file\n"
+msgstr "Nepavyko rasti „%s“ paveikslėlio failo\n"
+
+#: ../gnobots2/src/menu.c:67
+#: ../gnotravex/data/gnotravex.ui.h:4
+msgid "_Move"
+msgstr "_Perkelti"
+
+#: ../gnobots2/src/menu.c:74
+msgid "_Teleport"
+msgstr "_Teleportuotis"
+
+#: ../gnobots2/src/menu.c:75
+msgid "Teleport, safely if possible"
+msgstr "Teleportuotis saugiai, jei įmanoma"
+
+#: ../gnobots2/src/menu.c:76
+msgid "_Random"
+msgstr "_Atsitiktinis"
+
+#: ../gnobots2/src/menu.c:77
+msgid "Teleport randomly"
+msgstr "Teleportuotis atsitiktinai"
+
+#: ../gnobots2/src/menu.c:78
+msgid "_Wait"
+msgstr "_Laukti"
+
+#: ../gnobots2/src/menu.c:78
+msgid "Wait for the robots"
+msgstr "Laukti robotų"
+
+#: ../gnobots2/src/menu.c:89
+msgid "_Toolbar"
+msgstr "Įrankių _juosta"
+
+#: ../gnobots2/src/menu.c:89
+msgid "Show or hide the toolbar"
+msgstr "Rodyti arba paslėpti įrankių juostą"
+
+#: ../gnobots2/src/menu.c:270
+msgid ""
+"Based on classic BSD Robots.\n"
+"\n"
+"Robots is a part of GNOME Games."
+msgstr ""
+"Sukurtas pagal klasikinį BSD Robots.\n"
+"\n"
+"Robots yra GNOME Games dalis."
+
+#: ../gnobots2/src/properties.c:393
+msgid "Robots Preferences"
+msgstr "Robotų nustatymai"
+
+#. --- Combo (yahtzee or kismet style ----
+#: ../gnobots2/src/properties.c:418
+#: ../gtali/src/setup.c:356
+msgid "Game Type"
+msgstr "Žaidimo tipas"
+
+#: ../gnobots2/src/properties.c:427
+msgid "_Use safe moves"
+msgstr "_Naudoti saugius ėjimus"
+
+#: ../gnobots2/src/properties.c:434
+msgid "Prevent accidental moves that result in getting killed."
+msgstr "Drausti atsitiktinius ėjimus, kurie baigiasi žuvimu."
+
+#: ../gnobots2/src/properties.c:436
+msgid "U_se super safe moves"
+msgstr "N_audoti ypač saugius ėjimus"
+
+#: ../gnobots2/src/properties.c:443
+msgid "Prevents all moves that result in getting killed."
+msgstr "Neleidžia atlikti ėjimu, kurie baigiasi žuvimu."
+
+#: ../gnobots2/src/properties.c:445
+#: ../quadrapassel/src/quadrapassel.vala:349
+msgid "_Enable sounds"
+msgstr "Įj_ungti garsus"
+
+#: ../gnobots2/src/properties.c:451
+msgid "Play sounds for events like winning a level and dying."
+msgstr "Groti garsus tokiems įvykiams kaip lygio perėjimas ir mirimas."
+
+#: ../gnobots2/src/properties.c:466
+msgid "_Image theme:"
+msgstr "_Paveikslėlių tema:"
+
+#: ../gnobots2/src/properties.c:478
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:441
+msgid "_Background color:"
+msgstr "_Fono spalva:"
+
+#: ../gnobots2/src/properties.c:522
+msgid "_Restore Defaults"
+msgstr "_Atstatyti numatytuosius"
+
+#: ../gnobots2/src/properties.c:527
+msgid "Keyboard"
+msgstr "Klaviatūra"
+
+#: ../gnobots2/src/statusbar.c:76
+msgid "Safe Teleports:"
+msgstr "Saugūs teleportai:"
+
+#: ../gnobots2/src/statusbar.c:85
+#: ../quadrapassel/src/quadrapassel.vala:191
+msgid "Level:"
+msgstr "Lygis:"
+
+#: ../gnobots2/src/statusbar.c:94
+msgid "Remaining:"
+msgstr "Liko:"
+
+#. ********************************************************************
+#: ../gnome-mahjongg/data/gnome-mahjongg.desktop.in.in.h:1
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:54
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:553
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:764
+msgid "Mahjongg"
+msgstr "Mahjongg"
+
+#: ../gnome-mahjongg/data/gnome-mahjongg.desktop.in.in.h:2
+msgid "Disassemble a pile of tiles by removing matching pairs"
+msgstr "Išvalykite kortelių krūvą surinkdami sutampančias kortelių poras"
+
+#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:1
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:12
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:3
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:3
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:35
+msgid "Width of the window in pixels"
+msgstr "Lango plotis pikseliais"
+
+#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:2
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:13
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:4
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:4
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:36
+msgid "Height of the window in pixels"
+msgstr "Lango aukštis pikseliais"
+
+#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:3
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:14
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:5
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:5
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:37
+msgid "true if the window is maximized"
+msgstr "teigiama, jei langas yra išdidintas"
+
+#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:4
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:15
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:6
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:6
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:38
+msgid "true if the window is fullscren"
+msgstr "teigiama, jei langas yra visamo ekrano veiksenoje"
+
+#.
+#. * Translatable strings file generated by get_titles.pl.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: ../gnome-mahjongg/data/translatable_game_names.h:6
+msgctxt "mahjongg map name"
+msgid "The Ziggurat"
+msgstr "Ziguratas"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:7
+msgctxt "mahjongg map name"
+msgid "Four Bridges"
+msgstr "Keturi tiltai"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:8
+msgctxt "mahjongg map name"
+msgid "Cloud"
+msgstr "Debesis"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:9
+msgctxt "mahjongg map name"
+msgid "Tic-Tac-Toe"
+msgstr "Tic-Tac-Toe"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:10
+msgctxt "mahjongg map name"
+msgid "Red Dragon"
+msgstr "Raudonasis drakonas"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:11
+msgctxt "mahjongg map name"
+msgid "Pyramid's Walls"
+msgstr "Piramidės sienos"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:12
+msgctxt "mahjongg map name"
+msgid "Confounding Cross"
+msgstr "Prakeiksmo kryžius"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:13
+msgctxt "mahjongg map name"
+msgid "Difficult"
+msgstr "Sunkus"
+
+#: ../gnome-mahjongg/src/game-view.vala:127
+#: ../gnomine/src/minefield-view.vala:398
+#: ../gnotravex/src/puzzle-view.vala:326
+#: ../quadrapassel/src/game-view.vala:330
+msgid "Paused"
+msgstr "Pauzė"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:66
+msgid "Moves Left:"
+msgstr "Ėjimų liko: "
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:84
+msgid "_Restart Game"
+msgstr "Žaisti iš _naujo"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:85
+#: ../gnomine/src/gnomine.vala:112
+#: ../gnotravex/data/gnotravex.ui.h:9
+#: ../gtali/src/gyahtzee.c:756
+#: ../libgames-support/games-stock.c:267
+#: ../quadrapassel/src/quadrapassel.vala:83
+#: ../swell-foop/src/swell-foop.vala:66
+msgid "_Scores"
+msgstr "_Taškai"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:86
+#: ../gnomine/src/gnomine.vala:113
+#: ../gtali/src/gyahtzee.c:755
+#: ../iagno/data/iagno.ui.h:3
+#: ../quadrapassel/src/quadrapassel.vala:84
+#: ../swell-foop/src/swell-foop.vala:67
+msgid "_Preferences"
+msgstr "_Nustatymai"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:90
+#: ../gnomine/src/gnomine.vala:117
+#: ../gnotravex/data/gnotravex.ui.h:17
+#: ../gtali/src/gyahtzee.c:760
+#: ../iagno/data/iagno.ui.h:5
+#: ../lightsoff/src/lightsoff.vala:33
+#: ../quadrapassel/src/quadrapassel.vala:88
+#: ../swell-foop/src/swell-foop.vala:71
+msgid "_About"
+msgstr "_Apie"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:93
+#: ../gnomine/src/gnomine.vala:120
+#: ../gnotravex/data/gnotravex.ui.h:18
+#: ../gtali/src/gyahtzee.c:761
+#: ../iagno/data/iagno.ui.h:6
+#: ../lightsoff/src/lightsoff.vala:36
+#: ../quadrapassel/src/quadrapassel.vala:91
+#: ../swell-foop/src/swell-foop.vala:74
+msgid "_Quit"
+msgstr "_Išeiti"
+
+#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:104
+#: ../gnomine/src/gnomine.vala:173
+#: ../gnotravex/src/gnotravex.vala:103
+#: ../libgames-support/games-stock.c:251
+#: ../quadrapassel/src/quadrapassel.vala:126
+msgid "_New"
+msgstr "_Naujas"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:119
+#: ../libgames-support/games-stock.c:254
+msgid "_Redo Move"
+msgstr "A_tstatyti ėjimą"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:127
+#: ../gnomine/src/gnomine.vala:182
+#| msgid "_Hint"
+msgid "Hint"
+msgstr "Užuomina"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:135
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:583
+#: ../gnomine/src/gnomine.vala:110
+#: ../gnomine/src/gnomine.vala:190
+#: ../gnomine/src/gnomine.vala:644
+#: ../gnotravex/data/gnotravex.ui.h:2
+#: ../gnotravex/src/gnotravex.vala:117
+#: ../gnotravex/src/gnotravex.vala:366
+#: ../libgames-support/games-stock.c:265
+#: ../quadrapassel/src/quadrapassel.vala:82
+#: ../quadrapassel/src/quadrapassel.vala:134
+#: ../quadrapassel/src/quadrapassel.vala:614
+msgid "_Pause"
+msgstr "_Pauzė"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:259
+msgid "Do you want to start a new game with this map?"
+msgstr "Ar norite pradėti naują žaidimą su šiuo žemėlapiu?"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:260
+msgid "If you continue playing the next game will use the new map."
+msgstr "Jeigu tęsite žaidimą, kitame žaidime bus naudojamas naujas žemėlapis."
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:261
+msgid "_Continue playing"
+msgstr "_Tęsti žaidimą"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:262
+msgid "Use _new map"
+msgstr "_Naudoti naują žemėlapį"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:309
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:591
+msgid "Mahjongg Scores"
+msgstr "Mahjongg taškai"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:310
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:592
+msgid "Layout:"
+msgstr "Išdėstymas:"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:311
+#: ../quadrapassel/src/quadrapassel.vala:630
+msgid "Puzzle solved!"
+msgstr "Galvosūkis išspręstas!"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:312
+#: ../quadrapassel/src/quadrapassel.vala:631
+msgid "You didn't make the top ten, better luck next time."
+msgstr "Jums nepavyko patekti į dešimtuką, sėkmės kitą kartą."
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:338
+msgid "There are no more moves."
+msgstr "Nebėra galimų ėjimų."
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:339
+msgid "Each puzzle has at least one solution.  You can undo your moves and try and find the solution for a time penalty, restart this game or start an new one."
+msgstr "Kiekvienas galvosūkis turi bent vieną sprendimą.  Galite atšaukti ėjimus ir mėginti rasti sprendimą už laiko nuobaudą, žaisti iš naujo arba pradėti naują žaidimą."
+
+#. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:341
+#: ../libgames-support/games-stock.c:258
+msgid "_Restart"
+msgstr "_Perkrauti"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:342
+msgid "_New game"
+msgstr "_Naujas žaidimas"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:370
+msgid "Mahjongg Preferences"
+msgstr "Mahjongg nustatymai"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:415
+msgid "_Layout:"
+msgstr "_Išdėstymas:"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:517
+#: ../gnomine/src/gnomine.vala:698
+msgid "Main game:"
+msgstr "Pagrindinis žaidimas:"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:526
+msgid "Maps:"
+msgstr "Planai:"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:534
+msgid "Tiles:"
+msgstr "Kokliai:"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:556
+msgid ""
+"A matching game played with Mahjongg tiles.\n"
+"\n"
+"Mahjongg is a part of GNOME Games."
+msgstr ""
+"Atitikmenų žaidimas žaidžiamas su Mahjongg kokliais.\n"
+"\n"
+"Mahjongg yra GNOME Games dalis."
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:578
+#: ../gnomine/src/gnomine.vala:637
+#: ../gnotravex/src/gnotravex.vala:361
+#: ../libgames-support/games-stock.c:266
+#: ../quadrapassel/src/quadrapassel.vala:609
+msgid "Res_ume"
+msgstr "Ats_tatyti"
+
+#. Translators: This is the window title for Mahjongg which contains the map name, e.g. 'Mahjongg - Red Dragon'
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:656
+#, c-format
+msgid "Mahjongg - %s"
+msgstr "Mahjongg – %s"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:669
+#: ../gnomine/src/gnomine.vala:681
+#: ../gnotravex/src/gnotravex.vala:231
+#, c-format
+msgid "Time"
+msgstr "Laikas"
+
+#: ../gnome-sudoku/data/gnome-sudoku.desktop.in.in.h:1
+#: ../gnome-sudoku/src/lib/defaults.py:48
+msgid "Sudoku"
+msgstr "Sudoku"
+
+#: ../gnome-sudoku/data/gnome-sudoku.desktop.in.in.h:2
+msgid "Test your logic skills in this number grid puzzle"
+msgstr "Išmėgink savo loginį mąstymą šioje skaičių dėlionėje"
+
+#: ../gnome-sudoku/data/print_games.ui.h:1
+msgid "Print Sudokus"
+msgstr "Spausdinti Sudoku"
+
+#: ../gnome-sudoku/data/print_games.ui.h:2
+msgid "Print Games"
+msgstr "Spausdinti žaidimus"
+
+#: ../gnome-sudoku/data/print_games.ui.h:3
+msgid "_Number of sudoku to print: "
+msgstr "_Spausdintinų Sudoku skaičius: "
+
+#: ../gnome-sudoku/data/print_games.ui.h:4
+msgid "_Sudokus per page: "
+msgstr "_Sudoku skaičius puslapyje: "
+
+#: ../gnome-sudoku/data/print_games.ui.h:5
+msgid "Levels of difficulty to print"
+msgstr "Sudėtingumo lygiai spausdinimui"
+
+#: ../gnome-sudoku/data/print_games.ui.h:6
+msgid "_Easy"
+msgstr "_Lengva"
+
+#: ../gnome-sudoku/data/print_games.ui.h:8
+msgid "_Hard"
+msgstr "_Sunku"
+
+#: ../gnome-sudoku/data/print_games.ui.h:9
+msgid "_Very Hard"
+msgstr "_Labai sunku"
+
+#: ../gnome-sudoku/data/print_games.ui.h:10
+msgid "Details"
+msgstr "Išsamiau"
+
+#: ../gnome-sudoku/data/print_games.ui.h:11
+msgid "_Mark games as played once you've printed them."
+msgstr "_Atspausdinus žaidimus juos pažymėti kaip žaistus."
+
+#: ../gnome-sudoku/data/print_games.ui.h:12
+msgid "_Include games you've already played in list of games to print"
+msgstr "Į_traukti jau žaistus žaidimus į spausdintinų žaidimų sąrašą"
+
+#: ../gnome-sudoku/data/select_game.ui.h:2
+msgid "_Saved Games"
+msgstr "Iš_saugoti žaidimai"
+
+#: ../gnome-sudoku/data/tracker.ui.h:1
+msgid "Add a new tracker"
+msgstr "Pridėti naują seklį"
+
+#: ../gnome-sudoku/data/tracker.ui.h:2
+msgid "Remove the selected tracker"
+msgstr "Pašalinti pasirinktą sekiklį"
+
+#: ../gnome-sudoku/data/tracker.ui.h:3
+msgid "Make the tracked changes permanent"
+msgstr "Padaryti sekamus pakeitimus nuolatiniais"
+
+#: ../gnome-sudoku/data/tracker.ui.h:4
+#: ../gnome-sudoku/src/lib/main.py:750
+msgid "H_ide"
+msgstr "S_lėpti"
+
+#: ../gnome-sudoku/data/tracker.ui.h:5
+msgid "Hide the tracked values"
+msgstr "Slėpti sekamas reikšmes"
+
+#: ../gnome-sudoku/src/lib/defaults.py:47
+msgid "GNOME Sudoku"
+msgstr "GNOME Sudoku"
+
+#: ../gnome-sudoku/src/lib/defaults.py:50
+msgid ""
+"GNOME Sudoku is a simple Sudoku generator and player. Sudoku is a Japanese logic puzzle.\n"
+"\n"
+"GNOME Sudoku is a part of GNOME Games."
+msgstr ""
+"GNOME Sudoku yra paprastas Sudoku galvosūkių generatorius ir žaidimas. Sudoku – tai japoniškas loginis galvosūkis.\n"
+"\n"
+"GNOME Sudoku yra GNOME Games dalis."
+
+#: ../gnome-sudoku/src/lib/game_selector.py:121
+#: ../gnome-sudoku/src/lib/main.py:627
+#: ../gnome-sudoku/src/lib/printing.py:185
+msgid "Easy"
+msgstr "Lengva"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:122
+#: ../gnome-sudoku/src/lib/main.py:628
+#: ../gnome-sudoku/src/lib/printing.py:186
+msgid "Medium"
+msgstr "Vidutiniškai"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:123
+#: ../gnome-sudoku/src/lib/main.py:629
+#: ../gnome-sudoku/src/lib/printing.py:187
+msgid "Hard"
+msgstr "Sunku"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:124
+#: ../gnome-sudoku/src/lib/printing.py:188
+msgid "Very hard"
+msgstr "Labai sunku"
+
+#. Then we're today
+#. within the minute
+#: ../gnome-sudoku/src/lib/game_selector.py:160
+#, python-format
+msgid "Last played %(n)s second ago"
+msgid_plural "Last played %(n)s seconds ago"
+msgstr[0] "Paskutinį kartą žaista prieš %(n)s sekundę"
+msgstr[1] "Paskutinį kartą žaista prieš %(n)s sekundes"
+msgstr[2] "Paskutinį kartą žaista prieš %(n)s sekundžių"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:164
+#, python-format
+msgid "Last played %(n)s minute ago"
+msgid_plural "Last played %(n)s minutes ago"
+msgstr[0] "Paskutinį kartą žaista prieš %(n)s minutę"
+msgstr[1] "Paskutinį kartą žaista prieš %(n)s minutes"
+msgstr[2] "Paskutinį kartą žaista prieš %(n)s minučių"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#: ../gnome-sudoku/src/lib/game_selector.py:168
+msgid "Last played at %I:%M %p"
+msgstr "Paskutinį kartą žaista %I:%M %p"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#: ../gnome-sudoku/src/lib/game_selector.py:171
+msgid "Last played yesterday at %I:%M %p"
+msgstr "Paskutinį kartą žaista vakar %I:%M %p"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#: ../gnome-sudoku/src/lib/game_selector.py:174
+msgid "Last played on %A at %I:%M %p"
+msgstr "Paskutinį kartą žaista %A %I:%M %p"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#: ../gnome-sudoku/src/lib/game_selector.py:177
+msgid "Last played on %B %e %Y"
+msgstr "Paskutinį kartą žaista %B %e %Y"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:190
+msgid "Easy puzzle"
+msgstr "Lengvas galvosūkis"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:191
+msgid "Medium puzzle"
+msgstr "Vidutinis galvosūkis"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:192
+msgid "Hard puzzle"
+msgstr "Sunkus galvosūkis"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:193
+msgid "Very hard puzzle"
+msgstr "Labai sunkus galvosūkis"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:199
+#, python-format
+msgid "Played for %d hour"
+msgid_plural "Played for %d hours"
+msgstr[0] "Žaista %d valandą"
+msgstr[1] "Žaista %d valandas"
+msgstr[2] "Žaista %d valandų"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:202
+#, python-format
+msgid "Played for %d minute"
+msgid_plural "Played for %d minutes"
+msgstr[0] "Žaista %d minutę"
+msgstr[1] "Žaista %d minutes"
+msgstr[2] "Žaista %d minučių"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:205
+#, python-format
+msgid "Played for %d second"
+msgid_plural "Played for %d seconds"
+msgstr[0] "Žaista %d sekundę"
+msgstr[1] "Žaista %d sekundes"
+msgstr[2] "Žaista %d sekundžių"
+
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:162
+msgid "Do you really want to do this?"
+msgstr "Ar tikrai norite tai padaryti?"
+
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:196
+msgid "Don't ask me this again."
+msgstr "Daugiau manęs to nebeklausti."
+
+#: ../gnome-sudoku/src/lib/main.py:196
+msgid "New game"
+msgstr "Naujas žaidimas"
+
+#. Translators: this is the "Reset" scores button in a scores dialogue
+#: ../gnome-sudoku/src/lib/main.py:197
+#: ../libgames-support/games-stock.c:256
+msgid "_Reset"
+msgstr "_Atstatyti"
+
+#: ../gnome-sudoku/src/lib/main.py:199
+#: ../iagno/data/iagno.ui.h:2
+msgid "_Undo"
+msgstr "_Atšaukti"
+
+#: ../gnome-sudoku/src/lib/main.py:200
+msgid "Undo last action"
+msgstr "Atšaukti paskutinį ėjimą"
+
+#: ../gnome-sudoku/src/lib/main.py:201
+msgid "_Redo"
+msgstr "_Pakartoti"
+
+#: ../gnome-sudoku/src/lib/main.py:202
+msgid "Redo last action"
+msgstr "Pakartoti paskutinį ėjimą"
+
+#: ../gnome-sudoku/src/lib/main.py:203
+msgid "Puzzle _Statistics..."
+msgstr "Galvosūkio _statistika..."
+
+#: ../gnome-sudoku/src/lib/main.py:205
+msgid "_Print..."
+msgstr "S_pausdinti..."
+
+#: ../gnome-sudoku/src/lib/main.py:206
+msgid "Print _Multiple Sudokus..."
+msgstr "Spausdinti _keletą Sudoku..."
+
+#: ../gnome-sudoku/src/lib/main.py:211
+msgid "_Tools"
+msgstr "Įra_nkiai"
+
+#: ../gnome-sudoku/src/lib/main.py:212
+#: ../gnomine/src/gnomine.vala:109
+#: ../libgames-support/games-stock.c:249
+msgid "_Hint"
+msgstr "_Užuomina"
+
+#: ../gnome-sudoku/src/lib/main.py:213
+msgid "Show a square that is easy to fill."
+msgstr "Parodyti kvadratą, kurį lengva užpildyti."
+
+#: ../gnome-sudoku/src/lib/main.py:214
+msgid "Clear _Top Notes"
+msgstr "Išvalyti _viršutines pastabas"
+
+#: ../gnome-sudoku/src/lib/main.py:216
+msgid "Clear _Bottom Notes"
+msgstr "Išvalyti _apatines pastabas"
+
+#: ../gnome-sudoku/src/lib/main.py:225
+msgid "Show _Possible Numbers"
+msgstr "Rodyti _galimus skaičius"
+
+#: ../gnome-sudoku/src/lib/main.py:227
+msgid "Always show possible numbers in a square"
+msgstr "Visada rodyti kvadratuose tinkančius skaičius"
+
+#: ../gnome-sudoku/src/lib/main.py:231
+msgid "Warn About _Unfillable Squares"
+msgstr "Perspėti apie ne_užpildomus kvadratus"
+
+#: ../gnome-sudoku/src/lib/main.py:233
+msgid "Warn about squares made unfillable by a move"
+msgstr "Perspėti apie kvadratus, kurių po paskutiniojo ėjimo nebeįmanoma užpildyti"
+
+#: ../gnome-sudoku/src/lib/main.py:235
+msgid "_Track Additions"
+msgstr "_Sekti pridėjimus"
+
+#: ../gnome-sudoku/src/lib/main.py:237
+msgid "Mark new additions in a separate color so you can keep track of them."
+msgstr "Pažymėti naujus pridėjimus atskira spalva, kad juos būtų lengviau sekti."
+
+#: ../gnome-sudoku/src/lib/main.py:240
+msgid "_Highlighter"
+msgstr "_Išryškinimas"
+
+#: ../gnome-sudoku/src/lib/main.py:241
+msgid "Highlight the current row, column and box"
+msgstr "Išryškinti esamą eilutę, stulpelį ir dėžutę"
+
+#: ../gnome-sudoku/src/lib/main.py:366
+#, python-format
+msgid "You completed the puzzle in %d second"
+msgid_plural "You completed the puzzle in %d seconds"
+msgstr[0] "Išsprendėte galvosūkį per %d sekundę."
+msgstr[1] "Išsprendėte galvosūkį per %d sekundes."
+msgstr[2] "Išsprendėte galvosūkį per %d sekundžių."
+
+#: ../gnome-sudoku/src/lib/main.py:371
+#: ../gnome-sudoku/src/lib/main.py:379
+#, python-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minutė"
+msgstr[1] "%d minutės"
+msgstr[2] "%d minučių"
+
+#: ../gnome-sudoku/src/lib/main.py:372
+#: ../gnome-sudoku/src/lib/main.py:380
+#, python-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d sekundė"
+msgstr[1] "%d sekundės"
+msgstr[2] "%d sekundžių"
+
+#: ../gnome-sudoku/src/lib/main.py:373
+#, python-format
+msgid "You completed the puzzle in %(minute)s and %(second)s"
+msgstr "Išsprendėte galvosūkį per %(minute)s and %(second)s"
+
+#: ../gnome-sudoku/src/lib/main.py:378
+#, python-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d valanda"
+msgstr[1] "%d valandos"
+msgstr[2] "%d valandų"
+
+#: ../gnome-sudoku/src/lib/main.py:381
+#, python-format
+msgid "You completed the puzzle in %(hour)s, %(minute)s and %(second)s"
+msgstr "Išsprendėte galvosūkį per %(hour)s, %(minute)s ir %(second)s"
+
+#: ../gnome-sudoku/src/lib/main.py:383
+#, python-format
+msgid "You got %(n)s hint."
+msgid_plural "You got %(n)s hints."
+msgstr[0] "Gavote %(n)s patarimą."
+msgstr[1] "Gavote %(n)s patarimus."
+msgstr[2] "Gavote %(n)s patarimų."
+
+#: ../gnome-sudoku/src/lib/main.py:386
+#, python-format
+msgid "You had %(n)s impossibility pointed out."
+msgid_plural "You had %(n)s impossibilities pointed out."
+msgstr[0] "Parodyta %(n)s prieštaringa situacija"
+msgstr[1] "Parodytos %(n)s prieštaringos situacijos"
+msgstr[2] "Parodyta %(n)s prieštaringų situacijų"
+
+#: ../gnome-sudoku/src/lib/main.py:401
+msgid "Save this game before starting new one?"
+msgstr "Įrašyti šį žaidimą prieš pradedant naują?"
+
+#: ../gnome-sudoku/src/lib/main.py:421
+msgid "Save game before closing?"
+msgstr "Įrašyti žaidimą prieš užveriant?"
+
+#: ../gnome-sudoku/src/lib/main.py:619
+msgid "Puzzle Information"
+msgstr "Galvosūkio informacija"
+
+#: ../gnome-sudoku/src/lib/main.py:620
+msgid "There is no current puzzle."
+msgstr "Nėra esamo galvosūkio."
+
+#: ../gnome-sudoku/src/lib/main.py:625
+msgid "Calculated difficulty: "
+msgstr "Apskaičiuotas sudėtingumas: "
+
+#: ../gnome-sudoku/src/lib/main.py:630
+msgid "Very Hard"
+msgstr "Labai sunku"
+
+#: ../gnome-sudoku/src/lib/main.py:635
+msgid "Number of moves instantly fillable by elimination: "
+msgstr "Ėjimų, užpildomų atmetimo būdu, skaičius: "
+
+#: ../gnome-sudoku/src/lib/main.py:638
+msgid "Number of moves instantly fillable by filling: "
+msgstr "Ėjimų, užpildomų užpildymo būdu, skaičius: "
+
+#: ../gnome-sudoku/src/lib/main.py:641
+msgid "Amount of trial-and-error required to solve: "
+msgstr "Bandymų ir klaidų skaičius, reikalingas sprendimui: "
+
+#: ../gnome-sudoku/src/lib/main.py:644
+#: ../gnome-sudoku/src/lib/main.py:645
+msgid "Puzzle Statistics"
+msgstr "Galvosūkio statistika"
+
+#. FIXME: This should create a pop-up dialog
+#: ../gnome-sudoku/src/lib/main.py:679
+#, python-format
+msgid "Unable to display help: %s"
+msgstr "Nepavyko įkelti žinyno: %s"
+
+#: ../gnome-sudoku/src/lib/main.py:735
+msgid "Untracked"
+msgstr "Nesekamas"
+
+#: ../gnome-sudoku/src/lib/main.py:744
+msgid "_Remove"
+msgstr "_Šalinti"
+
+#: ../gnome-sudoku/src/lib/main.py:745
+msgid "Delete selected tracker."
+msgstr "Pašalinti pažymėtą sekiklį."
+
+#: ../gnome-sudoku/src/lib/main.py:751
+msgid "Hide current tracker entries."
+msgstr "Slėpti dabartinius sekiklio įrašus."
+
+#: ../gnome-sudoku/src/lib/main.py:756
+msgid "A_pply"
+msgstr "_Pritaikyti"
+
+#: ../gnome-sudoku/src/lib/main.py:757
+msgid "Apply all tracked values and remove the tracker."
+msgstr "Pritaikyti visas sekamas reikšmes ir pašalinti sekiklį."
+
+#: ../gnome-sudoku/src/lib/main.py:795
+#, python-format
+msgid "Tracker %s"
+msgstr "Sekiklis %s"
+
+#: ../gnome-sudoku/src/lib/number_box.py:68
+msgid "_Clear"
+msgstr "Iš_valyti"
+
+#: ../gnome-sudoku/src/lib/saver.py:155
+msgid "No Space"
+msgstr "Nėra vietos"
+
+#: ../gnome-sudoku/src/lib/saver.py:156
+msgid "No space left on disk"
+msgstr "Diske neliko laisvos vietos"
+
+#: ../gnome-sudoku/src/lib/saver.py:158
+#: ../gnome-sudoku/src/lib/saver.py:165
+#, python-format
+msgid "Unable to create data folder %(path)s."
+msgstr "Nepavyko sukurti duomenų aplanko %(path)s."
+
+#: ../gnome-sudoku/src/lib/saver.py:159
+msgid "There is no disk space left!"
+msgstr "Neliko vietos diske!"
+
+#: ../gnome-sudoku/src/lib/saver.py:166
+#: ../gnome-sudoku/src/lib/saver.py:191
+#: ../gnome-sudoku/src/lib/saver.py:215
+#: ../gnome-sudoku/src/lib/saver.py:233
+#, python-format
+msgid "Error %(errno)s: %(error)s"
+msgstr "Klaida %(errno)s: %(error)s"
+
+#: ../gnome-sudoku/src/lib/saver.py:186
+#: ../gnome-sudoku/src/lib/saver.py:187
+msgid "Unable to save game."
+msgstr "Žaidimo nepavyko išsaugoti."
+
+#: ../gnome-sudoku/src/lib/saver.py:189
+#: ../gnome-sudoku/src/lib/saver.py:214
+#: ../gnome-sudoku/src/lib/saver.py:232
+#, python-format
+msgid "Unable to save file %(filename)s."
+msgstr "Nepavyko įrašyti failo %(filename)s."
+
+#: ../gnome-sudoku/src/lib/saver.py:211
+#: ../gnome-sudoku/src/lib/saver.py:212
+msgid "Unable to mark game as finished."
+msgstr "Žaidimo nepavyko pažymėti kaip baigto."
+
+#: ../gnome-sudoku/src/lib/saver.py:229
+#: ../gnome-sudoku/src/lib/saver.py:230
+msgid "Sudoku unable to mark game as finished."
+msgstr "Sudoku nepavyko pažymėti žaidimo kaip baigto."
+
+#: ../gnomine/data/gnomine.desktop.in.in.h:1
+#: ../gnomine/src/gnomine.vala:86
+#: ../gnomine/src/gnomine.vala:132
+#: ../gnomine/src/gnomine.vala:732
+msgid "Mines"
+msgstr "Minos"
+
+#: ../gnomine/data/gnomine.desktop.in.in.h:2
+msgid "Clear hidden mines from a minefield"
+msgstr "Išvalykite lauką nuo paslėptų minų"
+
+#: ../gnomine/data/gnomine.desktop.in.in.h:3
+msgid "minesweeper;"
+msgstr "išminuotojas;"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:1
+msgid "Use the unknown flag"
+msgstr "Naudoti nežinomą požymį"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:2
+msgid "Set to true to be able to mark squares as unknown."
+msgstr "Nustatykite teigiamą reikšmę, jei norite galėti sužymėti neaiškius laukus."
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:3
+msgid "Warning about too many flags"
+msgstr "Įspėjimas, kad per daug požymių"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:4
+msgid "Set to true to enable warning icons when too many flags are placed."
+msgstr "Nustatykite į teigiamą, jei norite, kad būtų rodomas įspėjimas, kai pastatyta per daug vėliavėlių."
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:5
+msgid "Enable automatic placing of flags"
+msgstr "Leisti automatines gaires"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:6
+msgid "Set to true to have gnomine automatically flag squares as mined when enough squares are revealed"
+msgstr "Įjunkite, kad gnomine automatiškai pažymėtų kvadratus užminuotais, kai atidengiama pakankamai langelių"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:7
+msgid "Number of columns in a custom game"
+msgstr "Stulpelių skaičius žaidime"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:8
+msgid "Number of rows in a custom game"
+msgstr "Eilučių skaičius žaidime"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:9
+msgid "The number of mines in a custom game"
+msgstr "Minų skaičius naudotojo konfigūracijos žaidime"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:10
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:3
+msgid "Board size"
+msgstr "Lentos dydis"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:11
+msgid "Size of the board (0-2 = small-large, 3=custom)"
+msgstr "Lauko dydis (0-2 – mažas-didelis, 3 – pasirinktinis)"
+
+#: ../gnomine/src/gnomine.vala:72
+msgctxt "board size"
+msgid "Custom"
+msgstr "Pasirinktinis"
+
+#: ../gnomine/src/gnomine.vala:108
+msgid "_Replay Size"
+msgstr "Pe_ržaidimo dydis"
+
+#: ../gnomine/src/gnomine.vala:111
+#: ../gnomine/src/gnomine.vala:197
+#: ../gnomine/src/gnomine.vala:362
+#: ../gnotravex/src/gnotravex.vala:124
+#: ../gnotravex/src/gnotravex.vala:184
+#: ../libgames-support/games-stock.c:248
+#: ../quadrapassel/src/quadrapassel.vala:141
+#: ../quadrapassel/src/quadrapassel.vala:235
+msgid "_Fullscreen"
+msgstr "_Visame ekrane"
+
+#. New game screen
+#: ../gnomine/src/gnomine.vala:231
+msgid "Field Size"
+msgstr "Lauko dydis"
+
+#: ../gnomine/src/gnomine.vala:286
+msgid "H_orizontal:"
+msgstr "H_orizontaliai:"
+
+#: ../gnomine/src/gnomine.vala:296
+msgid "_Vertical:"
+msgstr "_Vertikaliai:"
+
+#: ../gnomine/src/gnomine.vala:306
+msgid "_Number of mines:"
+msgstr "_Minų skaičius:"
+
+#: ../gnomine/src/gnomine.vala:325
+msgid "_Play Game"
+msgstr "_Žaisti žaidimą"
+
+#: ../gnomine/src/gnomine.vala:357
+#: ../gnotravex/src/gnotravex.vala:179
+#: ../libgames-support/games-stock.c:261
+#: ../quadrapassel/src/quadrapassel.vala:230
+msgid "_Leave Fullscreen"
+msgstr "_Palikti viso ekrano veikseną"
+
+#: ../gnomine/src/gnomine.vala:372
+#, c-format
+msgid "<b>%d</b> mine"
+msgid_plural "<b>%d</b> mines"
+msgstr[0] "<b>%d</b> mina"
+msgstr[1] "<b>%d</b> minos"
+msgstr[2] "<b>%d</b> minų"
+
+#: ../gnomine/src/gnomine.vala:436
+#, c-format
+msgid "Flags: %u/%u"
+msgstr "Vėliavėlės: %u/%u"
+
+#: ../gnomine/src/gnomine.vala:452
+msgid "The Mines Have Been Cleared!"
+msgstr "Minos išvalytos!"
+
+#: ../gnomine/src/gnomine.vala:464
+msgid "Mines Scores"
+msgstr "Minų taškai"
+
+#: ../gnomine/src/gnomine.vala:465
+#: ../gnotravex/src/gnotravex.vala:240
+#: ../gnotravex/src/gnotravex.vala:265
+#: ../swell-foop/src/swell-foop.vala:355
+msgid "Size:"
+msgstr "Dydis:"
+
+#: ../gnomine/src/gnomine.vala:512
+msgid "Do you want to start a new game?"
+msgstr "Ar norite pradėti naują žaidimą?"
+
+#: ../gnomine/src/gnomine.vala:513
+msgid "If you start a new game, your current progress will be lost."
+msgstr "Jei pradėsite naują žaidimą, jūsų dabartinis progresas bus prarastas."
+
+#: ../gnomine/src/gnomine.vala:514
+msgid "Keep Current Game"
+msgstr "Likti esamame žaidime"
+
+#: ../gnomine/src/gnomine.vala:515
+msgid "Start New Game"
+msgstr "Pradėti naują žaidimą"
+
+#: ../gnomine/src/gnomine.vala:706
+msgid "Resizing and SVG support:"
+msgstr "Dydžio keitimas ir SVG palaikymas:"
+
+#: ../gnomine/src/gnomine.vala:714
+msgid "Faces:"
+msgstr "Veidai:"
+
+#: ../gnomine/src/gnomine.vala:718
+msgid "Graphics:"
+msgstr "Grafika:"
+
+#: ../gnomine/src/gnomine.vala:735
+msgid ""
+"The popular logic puzzle minesweeper. Clear mines from a board using hints from squares you have already uncovered.\n"
+"\n"
+"Mines is a part of GNOME Games."
+msgstr ""
+"Populiarusis išminuotojo žaidimas. Raskite minas naudodamiesi užuominomis atvertuose langeliuose.\n"
+"\n"
+"Mines yra GNOME Games dalis."
+
+#: ../gnomine/src/gnomine.vala:809
+msgid "Mines Preferences"
+msgstr "Minų nustatymai"
+
+#: ../gnomine/src/gnomine.vala:827
+msgid "_Use \"I'm not sure\" flags"
+msgstr "_Naudoti „Nesu tikras“ vėliavėlės"
+
+#: ../gnomine/src/gnomine.vala:833
+msgid "_Warn if too many flags have been placed"
+msgstr "Įspėti, kad yra per daug _vėliavėlių"
+
+#: ../gnotravex/data/gnotravex.desktop.in.in.h:1
+#: ../gnotravex/src/gnotravex.vala:56
+#: ../gnotravex/src/gnotravex.vala:82
+#: ../gnotravex/src/gnotravex.vala:305
+msgid "Tetravex"
+msgstr "Tetravex"
+
+#: ../gnotravex/data/gnotravex.desktop.in.in.h:2
+msgid "Complete the puzzle by matching numbered tiles"
+msgstr "Užbaikite galvosūkį suradę atitinkamus numeruotus kauliukus"
+
+#: ../gnotravex/data/gnotravex.ui.h:3
+msgid "_Solve"
+msgstr "Iš_spręsti"
+
+#: ../gnotravex/data/gnotravex.ui.h:5
+msgid "_Up"
+msgstr "_Aukštyn"
+
+#: ../gnotravex/data/gnotravex.ui.h:6
+msgid "_Left"
+msgstr "_Kairėn"
+
+#: ../gnotravex/data/gnotravex.ui.h:7
+msgid "_Right"
+msgstr "_Dešinėn"
+
+#: ../gnotravex/data/gnotravex.ui.h:8
+msgid "_Down"
+msgstr "_Žemyn"
+
+#: ../gnotravex/data/gnotravex.ui.h:10
+msgid "_Size"
+msgstr "_Dydis"
+
+#: ../gnotravex/data/gnotravex.ui.h:11
+msgid "_2x2"
+msgstr "_2x2"
+
+#: ../gnotravex/data/gnotravex.ui.h:12
+msgid "_3x3"
+msgstr "_3x3"
+
+#: ../gnotravex/data/gnotravex.ui.h:13
+msgid "_4x4"
+msgstr "_4x4"
+
+#: ../gnotravex/data/gnotravex.ui.h:14
+msgid "_5x5"
+msgstr "_5x5"
+
+#: ../gnotravex/data/gnotravex.ui.h:15
+msgid "_6x6"
+msgstr "_6x6"
+
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:1
+msgid "The size of the playing grid"
+msgstr "Žaidimo tinklelio dydis"
+
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:2
+msgid "The value of this key is used to decide the size of the playing grid."
+msgstr "Šio rakto reikšmė lemia žaidimo tinklelio dydį."
+
+#: ../gnotravex/src/gnotravex.vala:14
+msgid "2×2"
+msgstr "2x2"
+
+#: ../gnotravex/src/gnotravex.vala:15
+msgid "3×3"
+msgstr "3x3"
+
+#: ../gnotravex/src/gnotravex.vala:16
+msgid "4×4"
+msgstr "4x4"
+
+#: ../gnotravex/src/gnotravex.vala:17
+msgid "5×5"
+msgstr "5x5"
+
+#: ../gnotravex/src/gnotravex.vala:18
+msgid "6×6"
+msgstr "6x6"
+
+#: ../gnotravex/src/gnotravex.vala:111
+msgid "Solve"
+msgstr "Išspręsti"
+
+#: ../gnotravex/src/gnotravex.vala:239
+#: ../gnotravex/src/gnotravex.vala:264
+msgid "Tetravex Scores"
+msgstr "Tetravex taškai"
+
+#: ../gnotravex/src/gnotravex.vala:308
+msgid ""
+"GNOME Tetravex is a simple puzzle where pieces must be positioned so that the same numbers are touching each other.\n"
+"\n"
+"Tetravex is a part of GNOME Games."
+msgstr ""
+"GNOME Tetravex yra paprastas galvosūkis, kur kauliukai turi būti sudėti taip, kad besiglaudžiančios kraštinės turėtų tą patį skaičių.\n"
+"\n"
+"Tetravex yra GNOME Games dalis."
+
+#: ../gnotski/data/gnotski.desktop.in.in.h:1
+#: ../gnotski/src/gnotski.c:42
+msgid "Klotski"
+msgstr "Klotski"
+
+#: ../gnotski/data/gnotski.desktop.in.in.h:2
+msgid "Slide blocks to solve the puzzle"
+msgstr "Stumkite blokus norėdami išspręsti galvosūkį"
+
+#: ../gnotski/data/org.gnome.gnotski.gschema.xml.in.h:1
+msgid "The puzzle in play"
+msgstr "Žaidžiamas galvosūkis"
+
+#: ../gnotski/data/org.gnome.gnotski.gschema.xml.in.h:2
+msgid "The number of the puzzle being played."
+msgstr "Žaistų galvosūkių skaičius."
+
+#: ../gnotski/src/gnotski.c:93
+msgid "Only 18 steps"
+msgstr "Tik 18 žingsnių"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:94
+#: ../gnotski/src/gnotski.c:177
+msgid "Daisy"
+msgstr "Ramunė"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:95
+#: ../gnotski/src/gnotski.c:183
+msgid "Violet"
+msgstr "Violeta"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:96
+#: ../gnotski/src/gnotski.c:189
+msgid "Poppy"
+msgstr "Aguona"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:97
+#: ../gnotski/src/gnotski.c:195
+msgid "Pansy"
+msgstr "Našlaitė"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:98
+#: ../gnotski/src/gnotski.c:201
+msgid "Snowdrop"
+msgstr "Snieguolė"
+
+#. puzzle name - sometimes called "Le'Ane Rouge"
+#: ../gnotski/src/gnotski.c:99
+#: ../gnotski/src/gnotski.c:207
+msgid "Red Donkey"
+msgstr "Raudonas asilas"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:100
+#: ../gnotski/src/gnotski.c:213
+msgid "Trail"
+msgstr "Pėdsakas"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:101
+#: ../gnotski/src/gnotski.c:219
+msgid "Ambush"
+msgstr "Pasala"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:102
+#: ../gnotski/src/gnotski.c:225
+msgid "Agatka"
+msgstr "Agatka"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:103
+#: ../gnotski/src/gnotski.c:230
+msgid "Success"
+msgstr "Sėkmė"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:104
+#: ../gnotski/src/gnotski.c:235
+msgid "Bone"
+msgstr "Kaulas"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:105
+#: ../gnotski/src/gnotski.c:241
+msgid "Fortune"
+msgstr "Fortūna"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:106
+#: ../gnotski/src/gnotski.c:249
+msgid "Fool"
+msgstr "Kvailys"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:107
+#: ../gnotski/src/gnotski.c:255
+msgid "Solomon"
+msgstr "Saliamonas"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:108
+#: ../gnotski/src/gnotski.c:262
+msgid "Cleopatra"
+msgstr "Kleopatra"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:109
+#: ../gnotski/src/gnotski.c:267
+msgid "Shark"
+msgstr "Ryklys"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:110
+#: ../gnotski/src/gnotski.c:275
+msgid "Rome"
+msgstr "Roma"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:111
+#: ../gnotski/src/gnotski.c:282
+msgid "Pennant Puzzle"
+msgstr "Vėliavėlių galvosūkis"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:112
+#: ../gnotski/src/gnotski.c:288
+msgid "Ithaca"
+msgstr "Ithaca"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:113
+#: ../gnotski/src/gnotski.c:309
+msgid "Pelopones"
+msgstr "Pelopones"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:114
+#: ../gnotski/src/gnotski.c:316
+msgid "Transeuropa"
+msgstr "Transeuropa"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:115
+#: ../gnotski/src/gnotski.c:325
+msgid "Lodzianka"
+msgstr "Lodzianka"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:116
+#: ../gnotski/src/gnotski.c:331
+msgid "Polonaise"
+msgstr "Polonezas"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:117
+#: ../gnotski/src/gnotski.c:336
+msgid "Baltic Sea"
+msgstr "Baltijos jūra"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:118
+#: ../gnotski/src/gnotski.c:341
+msgid "American Pie"
+msgstr "Amerikietiškas pyragas"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:119
+#: ../gnotski/src/gnotski.c:353
+msgid "Traffic Jam"
+msgstr "Eismo kamštis"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:120
+#: ../gnotski/src/gnotski.c:360
+msgid "Sunshine"
+msgstr "Saulės šviesa"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:171
+msgid "Only 18 Steps"
+msgstr "Tik 18 žingsnių"
+
+#. set of puzzles
+#: ../gnotski/src/gnotski.c:401
+msgid "HuaRong Trail"
+msgstr "HuaRong pėdsakas"
+
+#. set of puzzles
+#: ../gnotski/src/gnotski.c:403
+msgid "Challenge Pack"
+msgstr "Iššūkių paketas"
+
+#. set of puzzles
+#: ../gnotski/src/gnotski.c:405
+msgid "Skill Pack"
+msgstr "Įgūdžių paketas"
+
+#: ../gnotski/src/gnotski.c:406
+msgid "_Restart Puzzle"
+msgstr "_Perleisti galvosūkį"
+
+#: ../gnotski/src/gnotski.c:408
+msgid "Next Puzzle"
+msgstr "Kitas galvosūkis"
+
+#: ../gnotski/src/gnotski.c:410
+msgid "Previous Puzzle"
+msgstr "Ankstesnis galvosūkis"
+
+#: ../gnotski/src/gnotski.c:444
+msgid "X location of window"
+msgstr "Lango x padėtis"
+
+#: ../gnotski/src/gnotski.c:446
+msgid "Y location of window"
+msgstr "Lango y padėtis"
+
+#: ../gnotski/src/gnotski.c:600
+msgid "Level completed."
+msgstr "Lygis užbaigtas."
+
+#: ../gnotski/src/gnotski.c:746
+msgid "The Puzzle Has Been Solved!"
+msgstr "Galvosūkis išspręstas!"
+
+#: ../gnotski/src/gnotski.c:763
+msgid "Klotski Scores"
+msgstr "Klotski taškai"
+
+#: ../gnotski/src/gnotski.c:766
+msgid "Puzzle:"
+msgstr "Dėlionė:"
+
+#: ../gnotski/src/gnotski.c:869
+msgid ""
+"The theme for this game failed to render.\n"
+"\n"
+"Please check that Klotski is installed correctly."
+msgstr ""
+"Šio paveikslėlio temos nepavyko atvaizduoti.\n"
+"\n"
+"Patikrinkite, ar „Klotski“ įdiegta teisingai."
+
+#: ../gnotski/src/gnotski.c:1119
+#, c-format
+msgid ""
+"Could not find the image:\n"
+"%s\n"
+"\n"
+"Please check that Klotski is installed correctly."
+msgstr ""
+"Nepavyko aptikti paveikslėlio:\n"
+"%s\n"
+"\n"
+"Patikrinkite, ar „Klotski“ įdiegta teisingai."
+
+#: ../gnotski/src/gnotski.c:1158
+#, c-format
+msgid "Moves: %d"
+msgstr "Ėjimai: %d"
+
+#: ../gnotski/src/gnotski.c:1450
+msgid ""
+"Sliding Block Puzzles\n"
+"\n"
+"Klotski is a part of GNOME Games."
+msgstr ""
+"Stumdomų blokų dėlionė\n"
+"\n"
+"Klotski yra GNOME Games dalis."
+
+#: ../gtali/data/gtali.desktop.in.in.h:1
+#: ../gtali/src/gyahtzee.c:57
+msgid "Tali"
+msgstr "Tali"
+
+#: ../gtali/data/gtali.desktop.in.in.h:2
+msgid "Beat the odds in a poker-style dice game"
+msgstr "Žaiskite pokerio stiliaus kauliukų žaidimą"
+
+#: ../gtali/data/gtali.desktop.in.in.h:3
+msgid "yahtzee;"
+msgstr "yahtzee;"
+
+#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:1
+msgid "Delay between rolls"
+msgstr "Delsa tarp metimų"
+
+#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:2
+msgid "Choose whether or not to insert a delay between the computer's dice rolls so the player can follow what it is doing."
+msgstr "Pasirinkite ar įterpti pauzes tarp kompiuterio vykdomų kauliukų metimų, kad žaidėjas galėtų sekti žaidimo eigą."
+
+#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:3
+msgid "Display the computer's thoughts"
+msgstr "Rodyti kompiuterio mintis"
+
+#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:4
+msgid "If set to true, a dump of the AI's working will be done to standard output."
+msgstr "Jei teigiama, kompiuterinių oponentų veikla bus rodoma standartiniame programos išvedime."
+
+#: ../gtali/src/clist.c:158
+msgid "Already used! Where do you want to put that?"
+msgstr "Jau panaudota! Kur norėtumėt padėti šitai?"
+
+#: ../gtali/src/clist.c:414
+#, c-format
+msgid "Score: %d"
+msgstr "Taškai: %d"
+
+#: ../gtali/src/clist.c:416
+#, c-format
+msgid "Field used"
+msgstr "Naudojamas laukas"
+
+#: ../gtali/src/gyahtzee.c:102
+msgid "Delay computer moves"
+msgstr "Uždelsti kompiuterio ėjimus"
+
+#: ../gtali/src/gyahtzee.c:104
+msgid "Display computer thoughts"
+msgstr "Rodyti kompiuterio mintis"
+
+#: ../gtali/src/gyahtzee.c:106
+msgid "Number of computer opponents"
+msgstr "Kompiuterinių varžovų kiekis"
+
+#: ../gtali/src/gyahtzee.c:106
+#: ../gtali/src/gyahtzee.c:108
+#: ../gtali/src/gyahtzee.c:112
+#: ../gtali/src/gyahtzee.c:114
+msgid "NUMBER"
+msgstr "SKAIČIUS"
+
+#: ../gtali/src/gyahtzee.c:108
+msgid "Number of human opponents"
+msgstr "Žmogiškų varžovų kiekis"
+
+#: ../gtali/src/gyahtzee.c:110
+msgid "Game choice: Regular or Colors"
+msgstr "Žaidimas: įprastas ar spalvotas"
+
+#: ../gtali/src/gyahtzee.c:110
+msgid "STRING"
+msgstr "SEKÀ"
+
+#: ../gtali/src/gyahtzee.c:112
+msgid "Number of computer-only games to play"
+msgstr "Kompiuterinių žaidimų skaičius"
+
+#: ../gtali/src/gyahtzee.c:114
+msgid "Number of trials for each roll for the computer"
+msgstr "Bandymų skaičius kiekvienam kompiuterio ridenimui "
+
+#: ../gtali/src/gyahtzee.c:119
+#: ../gtali/src/setup.c:359
+msgctxt "game type"
+msgid "Regular"
+msgstr "Įprastas"
+
+#: ../gtali/src/gyahtzee.c:120
+#: ../gtali/src/setup.c:360
+msgctxt "game type"
+msgid "Colors"
+msgstr "Spalvos"
+
+#: ../gtali/src/gyahtzee.c:141
+msgid "Roll all!"
+msgstr "Ridenti visus!"
+
+#: ../gtali/src/gyahtzee.c:144
+#: ../gtali/src/gyahtzee.c:791
+msgid "Roll!"
+msgstr "Ridenti!"
+
+#: ../gtali/src/gyahtzee.c:178
+msgid "The game is a draw!"
+msgstr "Žaidimas baigėsi lygiosiomis!"
+
+#: ../gtali/src/gyahtzee.c:192
+#: ../gtali/src/gyahtzee.c:629
+msgid "Tali Scores"
+msgstr "Tali taškai"
+
+#: ../gtali/src/gyahtzee.c:208
+#, c-format
+msgid "%s wins the game with %d point"
+msgid_plural "%s wins the game with %d points"
+msgstr[0] "%s laimi žaidimą su %d tašku"
+msgstr[1] "%s laimi žaidimą su %d taškais"
+msgstr[2] "%s laimi žaidimą su %d taškų"
+
+#: ../gtali/src/gyahtzee.c:256
+#, c-format
+msgid "Computer playing for %s"
+msgstr "Kompiuteris žaidžia už %s"
+
+#: ../gtali/src/gyahtzee.c:258
+#, c-format
+msgid "%s! -- You're up."
+msgstr "%s! -- Jūsų eilė."
+
+#: ../gtali/src/gyahtzee.c:451
+msgid "Select dice to roll or choose a score slot."
+msgstr "Pasirinkite ridentinus kauliukus arba pasirinkite rezultatų dėžutę."
+
+#: ../gtali/src/gyahtzee.c:479
+msgid "Roll"
+msgstr "Ridenti"
+
+#: ../gtali/src/gyahtzee.c:537
+msgid "You are only allowed three rolls. Choose a score slot."
+msgstr "Jums leidžiama ridenti tik triskart. Pasirinkite rezultatų dėžutę."
+
+#: ../gtali/src/gyahtzee.c:587
+msgid "GNOME version (1998):"
+msgstr "GNOME versija (1998):"
+
+#: ../gtali/src/gyahtzee.c:590
+msgid "Console version (1992):"
+msgstr "Konsolinė versija (1992):"
+
+#: ../gtali/src/gyahtzee.c:593
+msgid "Colors game and multi-level AI (2006):"
+msgstr "Žaidimo spalvų režimas ir daugialygė programos sąsaja  (2006):"
+
+#: ../gtali/src/gyahtzee.c:611
+msgid ""
+"A variation on poker with dice and less money.\n"
+"\n"
+"Tali is a part of GNOME Games."
+msgstr ""
+"Pokerio variacija su kauliukais ir mažesnėmis pinigų sumomis.\n"
+"\n"
+"Tali yra GNOME Games dalis."
+
+#: ../gtali/src/setup.c:122
+msgid "Current game will complete with original number of players."
+msgstr "Esamas žaidimas bus baigtas su originaliu žaidėjų skaičiumi."
+
+#: ../gtali/src/setup.c:264
+msgid "Tali Preferences"
+msgstr "Tali nustatymai"
+
+#: ../gtali/src/setup.c:285
+msgid "Human Players"
+msgstr "Žaidėjai žmonės"
+
+#: ../gtali/src/setup.c:295
+msgid "_Number of players:"
+msgstr "Ža_idėjų skaičius:"
+
+#: ../gtali/src/setup.c:309
+msgid "Computer Opponents"
+msgstr "Kompiuteriniai varžovai"
+
+#. --- Button ---
+#: ../gtali/src/setup.c:316
+msgid "_Delay between rolls"
+msgstr "_Delsa tarp metimų"
+
+#: ../gtali/src/setup.c:326
+msgid "N_umber of opponents:"
+msgstr "_Varžovų skaičius:"
+
+#: ../gtali/src/setup.c:340
+msgid "_Difficulty:"
+msgstr "_Sunkumas:"
+
+#: ../gtali/src/setup.c:344
+msgctxt "difficulty"
+msgid "Medium"
+msgstr "Vidutiniškas"
+
+#. --- PLAYER NAMES FRAME ----
+#: ../gtali/src/setup.c:368
+msgid "Player Names"
+msgstr "Žaidėjų Vardai"
+
+#: ../gtali/src/yahtzee.c:85
+#: ../gtali/src/yahtzee.c:109
+#: ../gtali/src/yahtzee.c:517
+msgid "1s [total of 1s]"
+msgstr "1-tukai [1-tukų suma]"
+
+#: ../gtali/src/yahtzee.c:86
+#: ../gtali/src/yahtzee.c:110
+#: ../gtali/src/yahtzee.c:518
+msgid "2s [total of 2s]"
+msgstr "2-tukai [2-tukų suma]"
+
+#: ../gtali/src/yahtzee.c:87
+#: ../gtali/src/yahtzee.c:111
+#: ../gtali/src/yahtzee.c:519
+msgid "3s [total of 3s]"
+msgstr "3-tukai [3-tukų suma]"
+
+#: ../gtali/src/yahtzee.c:88
+#: ../gtali/src/yahtzee.c:112
+#: ../gtali/src/yahtzee.c:520
+msgid "4s [total of 4s]"
+msgstr "4-tukai [4-tukų suma]"
+
+#: ../gtali/src/yahtzee.c:89
+#: ../gtali/src/yahtzee.c:113
+#: ../gtali/src/yahtzee.c:521
+msgid "5s [total of 5s]"
+msgstr "5-tukai [5-tukų suma]"
+
+#: ../gtali/src/yahtzee.c:90
+#: ../gtali/src/yahtzee.c:114
+#: ../gtali/src/yahtzee.c:522
+msgid "6s [total of 6s]"
+msgstr "6-tukai [6-tukų suma]"
+
+#. End of upper panel
+#: ../gtali/src/yahtzee.c:92
+#: ../gtali/src/yahtzee.c:117
+#: ../gtali/src/yahtzee.c:523
+msgid "3 of a Kind [total]"
+msgstr "3 vienodi [suma]"
+
+#: ../gtali/src/yahtzee.c:93
+#: ../gtali/src/yahtzee.c:524
+msgid "4 of a Kind [total]"
+msgstr "4 vienodi [suma]"
+
+#: ../gtali/src/yahtzee.c:94
+#: ../gtali/src/yahtzee.c:525
+msgid "Full House [25]"
+msgstr "Pilni namai [25]"
+
+#: ../gtali/src/yahtzee.c:95
+#: ../gtali/src/yahtzee.c:526
+msgid "Small Straight [30]"
+msgstr "Mažoji tiesė [30]"
+
+#: ../gtali/src/yahtzee.c:96
+#: ../gtali/src/yahtzee.c:121
+#: ../gtali/src/yahtzee.c:527
+msgid "Large Straight [40]"
+msgstr "Didžioji tiesė [40]"
+
+#: ../gtali/src/yahtzee.c:97
+msgid "5 of a Kind [50]"
+msgstr "5 vienodi [50]"
+
+#: ../gtali/src/yahtzee.c:98
+#: ../gtali/src/yahtzee.c:124
+#: ../gtali/src/yahtzee.c:529
+msgid "Chance [total]"
+msgstr "Šansas [suma]"
+
+#. End of lower panel
+#: ../gtali/src/yahtzee.c:100
+#: ../gtali/src/yahtzee.c:126
+msgid "Lower Total"
+msgstr "Žemesniųjų suma"
+
+#: ../gtali/src/yahtzee.c:101
+#: ../gtali/src/yahtzee.c:127
+msgid "Grand Total"
+msgstr "Visa suma"
+
+#. Need to squish between upper and lower pannel
+#: ../gtali/src/yahtzee.c:103
+#: ../gtali/src/yahtzee.c:129
+msgid "Upper total"
+msgstr "Aukštesniųjų suma"
+
+#: ../gtali/src/yahtzee.c:104
+#: ../gtali/src/yahtzee.c:130
+msgid "Bonus if >62"
+msgstr "Premija, jei >62"
+
+#. End of upper panel
+#: ../gtali/src/yahtzee.c:116
+#: ../gtali/src/yahtzee.c:530
+msgid "2 pair Same Color [total]"
+msgstr "2 tos pačios spalvos poros [suma]"
+
+#: ../gtali/src/yahtzee.c:118
+#: ../gtali/src/yahtzee.c:531
+msgid "Full House [15 + total]"
+msgstr "Pilni namai [15 + suma]"
+
+#: ../gtali/src/yahtzee.c:119
+#: ../gtali/src/yahtzee.c:532
+msgid "Full House Same Color [20 + total]"
+msgstr "Pilni tos pačios spalvos namai [20 + suma]"
+
+#: ../gtali/src/yahtzee.c:120
+#: ../gtali/src/yahtzee.c:533
+msgid "Flush (all same color) [35]"
+msgstr "Flašas (visos vienos spalvos) [35]"
+
+#: ../gtali/src/yahtzee.c:122
+#: ../gtali/src/yahtzee.c:534
+msgid "4 of a Kind [25 + total]"
+msgstr "4 vienodi [25 + suma]"
+
+#: ../gtali/src/yahtzee.c:123
+#: ../gtali/src/yahtzee.c:535
+msgid "5 of a Kind [50 + total]"
+msgstr "5 vienodi [50 + suma]"
+
+#: ../gtali/src/yahtzee.c:251
+msgid "Choose a score slot."
+msgstr "Pasirinkite rezultatų dėžutę."
+
+#: ../gtali/src/yahtzee.c:528
+msgid "5 of a Kind [total]"
+msgstr "5 vienodi [suma]"
+
+#. Arrgh - lets all use the same tabs under emacs:
+#. Local Variables:
+#. tab-width: 8
+#. c-basic-offset: 8
+#. indent-tabs-mode: nil
+#.
+#: ../iagno/data/iagno.desktop.in.in.h:1
+#: ../iagno/src/iagno.vala:82
+#: ../iagno/src/iagno.vala:295
+#: ../iagno/src/iagno.vala:620
+msgid "Iagno"
+msgstr "Iagno"
+
+#: ../iagno/data/iagno.desktop.in.in.h:2
+msgid "Dominate the board in a classic version of Reversi"
+msgstr "Užimkite lentą klasikiniame Reversi variante"
+
+#: ../iagno/data/iagno.desktop.in.in.h:3
+msgid "othello;"
+msgstr "othello;"
+
+#: ../iagno/src/iagno.vala:137
+#: ../iagno/src/iagno.vala:254
+#: ../iagno/src/iagno.vala:262
+msgid "Dark:"
+msgstr "Tamsusis:"
+
+#: ../iagno/src/iagno.vala:145
+#: ../iagno/src/iagno.vala:255
+#: ../iagno/src/iagno.vala:263
+msgid "Light:"
+msgstr "Šviesusis:"
+
+#: ../iagno/src/iagno.vala:246
+msgid "Light must pass, Dark's move"
+msgstr "Šviesusis turi praleisti, Tamsiojo ėjimas"
+
+#: ../iagno/src/iagno.vala:248
+msgid "Dark must pass, Light's move"
+msgstr "Tamsusis turi praleisti, Šviesiojo ėjimas"
+
+#. Translators: this is a 2 digit representation of the current score.
+#: ../iagno/src/iagno.vala:257
+#: ../iagno/src/iagno.vala:258
+#: ../iagno/src/iagno.vala:265
+#: ../iagno/src/iagno.vala:266
+#, c-format
+msgid "%.2d"
+msgstr "%.2d"
+
+#: ../iagno/src/iagno.vala:300
+msgid ""
+"A disk flipping game derived from Reversi.\n"
+"\n"
+"Iagno is a part of GNOME Games."
+msgstr ""
+"Diskų vartymo žaidimo Reversi atmaina.\n"
+"\n"
+"Iagno yra GNOME Games dalis."
+
+#: ../iagno/src/iagno.vala:368
+msgid "Light player wins!"
+msgstr "Šviesusis žaidėjas laimi!"
+
+#: ../iagno/src/iagno.vala:370
+msgid "Dark player wins!"
+msgstr "Tamsusis žaidėjas laimi!"
+
+#: ../iagno/src/iagno.vala:372
+msgid "The game was a draw."
+msgstr "Žaidimas baigėsi lygiosiomis."
+
+#: ../iagno/src/iagno.vala:396
+msgid "Invalid move."
+msgstr "Netinkamas ėjimas."
+
+#: ../iagno/src/iagno.vala:461
+msgid "Iagno Preferences"
+msgstr "Iagno Nustatymai"
+
+#: ../iagno/src/iagno.vala:480
+msgid "Dark Player:"
+msgstr "Tamsusis žaidėjas:"
+
+#: ../iagno/src/iagno.vala:510
+msgid "Light Player:"
+msgstr "Šviesusis žaidėjas:"
+
+#: ../iagno/src/iagno.vala:544
+msgid "S_how grid"
+msgstr "R_odyti groteles"
+
+#: ../iagno/src/iagno.vala:549
+msgid "_Flip final results"
+msgstr "_Spragtelėti galutinius rezultatus"
+
+#: ../iagno/src/iagno.vala:554
+msgid "_Tile set:"
+msgstr "_Skridinėlių rūšis:"
+
+#: ../libgames-support/games-controls.c:288
+msgid "Unknown Command"
+msgstr "Nežinoma komanda"
+
+#. Score dialog column header for the score time (e.g. 1 minute)
+#: ../libgames-support/games-scores-dialog.c:136
+msgctxt "score-dialog"
+msgid "Time"
+msgstr "Laikas"
+
+#. Score dialog column header for the score value (e.g. 30 moves)
+#: ../libgames-support/games-scores-dialog.c:142
+msgctxt "score-dialog"
+msgid "Score"
+msgstr "Taškai"
+
+#. Score format for time based scores.  %1$d is the time in minutes, %2$d is the time in seconds
+#: ../libgames-support/games-scores-dialog.c:307
+#, c-format
+msgctxt "score-dialog"
+msgid "%1$dm %2$ds"
+msgstr "%1$dm %2$ds"
+
+#. Score dialog column header for the name of the player who recorded the score
+#: ../libgames-support/games-scores-dialog.c:571
+msgctxt "score-dialog"
+msgid "Name"
+msgstr "Vardas"
+
+#. Score dialog column header for the date the score was recorded
+#: ../libgames-support/games-scores-dialog.c:580
+msgid "Date"
+msgstr "Data"
+
+#: ../libgames-support/games-stock.c:41
+msgid "View help for this game"
+msgstr "Rodyti šio žaidimo žinyną"
+
+#: ../libgames-support/games-stock.c:42
+msgid "End the current game"
+msgstr "Pabaigti dabartinį žaidimą "
+
+#: ../libgames-support/games-stock.c:43
+msgid "Toggle fullscreen mode"
+msgstr "Keisti viso ekrano veikseną"
+
+#: ../libgames-support/games-stock.c:44
+msgid "Get a hint for your next move"
+msgstr "Gauti kito ėjimo patarimą"
+
+#: ../libgames-support/games-stock.c:45
+msgid "Leave fullscreen mode"
+msgstr "Išjungti viso ekrano veikseną"
+
+#: ../libgames-support/games-stock.c:46
+msgid "Start a new multiplayer network game"
+msgstr "Pradėti naują tinklinį keleto žaidėjų žaidimą"
+
+#: ../libgames-support/games-stock.c:47
+msgid "End the current network game and return to network server"
+msgstr "Baigti einamąjį tinklo žaidimą ir grįžti prie tinklo serverio"
+
+#: ../libgames-support/games-stock.c:49
+msgid "Pause the game"
+msgstr "Sustabdyti žaidimą"
+
+#: ../libgames-support/games-stock.c:50
+msgid "Show a list of players in the network game"
+msgstr "Parodyti tinklo žaidimo žaidėjų sąrašą"
+
+#: ../libgames-support/games-stock.c:51
+msgid "Redo the undone move"
+msgstr "Atšaukti paskutinį ėjimą"
+
+#: ../libgames-support/games-stock.c:52
+msgid "Restart the game"
+msgstr "Perkrauti žaidimą"
+
+#: ../libgames-support/games-stock.c:53
+msgid "Resume the paused game"
+msgstr "Tęsti sustabdytą žaidimą"
+
+#: ../libgames-support/games-stock.c:54
+msgid "View the scores"
+msgstr "Rodyti taškus"
+
+#: ../libgames-support/games-stock.c:55
+msgid "Undo the last move"
+msgstr "Atšaukti paskutinį ėjimą"
+
+#: ../libgames-support/games-stock.c:56
+msgid "About this game"
+msgstr "Apie šį žaidimą"
+
+#: ../libgames-support/games-stock.c:57
+msgid "Close this window"
+msgstr "Užverti šį langą"
+
+#: ../libgames-support/games-stock.c:58
+msgid "Configure the game"
+msgstr "Konfigūruoti žaidimą"
+
+#: ../libgames-support/games-stock.c:59
+msgid "Quit this game"
+msgstr "Palikti šį žaidimą"
+
+#: ../libgames-support/games-stock.c:260
+msgid "_Deal"
+msgstr "_Dalinti"
+
+#: ../libgames-support/games-stock.c:262
+msgid "Network _Game"
+msgstr "Tinklinis _žaidimas"
+
+#: ../libgames-support/games-stock.c:263
+msgid "L_eave Game"
+msgstr "Pa_likti žaidimą"
+
+#: ../libgames-support/games-stock.c:264
+msgid "Player _List"
+msgstr "Žaidėjų _sąrašas"
+
+#: ../libgames-support/games-stock.c:268
+msgid "_End Game"
+msgstr "_Pabaigti žaidimą"
+
+#. %s is replaced with the name of the game in gnome-games.
+#: ../libgames-support/games-stock.c:317
+#, c-format
+msgid "%s is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version %d of the License, or (at your option) any later version."
+msgstr "%s yra laisva programinė įranga; galite ją platinti ir/ar keisti ją pagal GNU General Public License sąlygas, išdėstytas Free Software Foundation; gali būti naudojama %d ar (pageidaujant) bet kuri vėlesnė licensijos versija."
+
+#: ../libgames-support/games-stock.c:322
+#, c-format
+msgid "%s is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details."
+msgstr "%s programa platinama tikintis, kad ji bus naudinga , bet BE JOKIŲ GARANTIJŲ; netgi be numanomos garantijos, kad JI TIKS NURODYTAM TIKSLUI. Daugiau detalių nurodyta GNU General Public License."
+
+#: ../libgames-support/games-stock.c:327
+#, c-format
+msgid "You should have received a copy of the GNU General Public License along with %s; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr "Turėjote gauti GNU General Public License (GNU Bendroji Viešoji Licensija) kopiją su %s; jei ne, parašykite Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+
+#: ../libgames-support/games-stock.c:331
+msgid "You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr "Jūs turėjote kartu su šia programa gauti ir GNU Bendrosios Viešosios licencijos kopija; jei ne – jos ieškokite adresu <http://www.gnu.org/licenses/>."
+
+#: ../lightsoff/data/lightsoff.desktop.in.in.h:1
+#: ../lightsoff/src/lightsoff.vala:144
+#: ../lightsoff/src/lightsoff.vala:168
+msgid "Lights Off"
+msgstr "Šviesos išjungtos"
+
+#: ../lightsoff/data/lightsoff.desktop.in.in.h:2
+msgid "Turn off all the lights"
+msgstr "Išjungti visas šviesas"
+
+#: ../lightsoff/data/org.gnome.lightsoff.gschema.xml.in.h:1
+msgid "The current level"
+msgstr "Dabartinis lygis"
+
+#: ../lightsoff/data/org.gnome.lightsoff.gschema.xml.in.h:2
+msgid "The users's most recent level."
+msgstr "Paskiausias žaidėjo lygis."
+
+#: ../lightsoff/src/lightsoff.vala:147
+msgid ""
+"Turn off all the lights\n"
+"\n"
+"Lights Off is a part of GNOME Games."
+msgstr ""
+"Išjunkite visas šviesas\n"
+"\n"
+"Lights Off yra GNOME Games dalis."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:1
+msgid "Image to use for drawing blocks"
+msgstr "Paveikslėlis naudojamas piešiant blokus"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:2
+msgid "Image to use for drawing blocks."
+msgstr "Paveikslėlis naudojamas piešiant blokus."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:3
+msgid "The theme used for rendering the blocks"
+msgstr "Tema naudojama vaizduojant blokus"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:4
+msgid "The name of the theme used for rendering the blocks and the background."
+msgstr "Temos, naudojamos vaizduoti blokams ir fonui, pavadinimas."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:5
+msgid "Level to start with"
+msgstr "Pradinis žaidimo lygis"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:6
+msgid "Level to start with."
+msgstr "Pradinis žaidimo lygis."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:7
+msgid "Whether to preview the next block"
+msgstr "Ar rodyti būsimą bloką"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:8
+msgid "Whether to preview the next block."
+msgstr "Ar rodyti būsimą bloką."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:9
+msgid "Whether to show where the moving piece will land"
+msgstr "Ar rodyti, kur nusileis blokas"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:10
+msgid "Whether to show where the moving piece will land."
+msgstr "Ar rodyti, kur nusileis blokas."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:11
+msgid "Whether to give blocks random colors"
+msgstr "Ar blokų spalvos parenkamos atsitiktinai"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:12
+msgid "Whether to give blocks random colors."
+msgstr "Ar blokų spalvos parenkamos atsitiktinai."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:13
+msgid "Whether to rotate counter clock wise"
+msgstr "Ar sukti prieš laikrodžio rodyklę"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:14
+msgid "Whether to rotate counter clock wise."
+msgstr "Ar sukti prieš laikrodžio rodyklę."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:15
+msgid "The number of rows to fill"
+msgstr "Užpildomų eilučių skaičius"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:16
+msgid "The number of rows that are filled with random blocks at the start of the game."
+msgstr "Eilučių užpildytų su atsitiktiniais blokais kiekis žaidimo pradžioje."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:17
+msgid "The density of filled rows"
+msgstr "Išpildomų blokų tankumas"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:18
+msgid "The density of blocks in rows filled at the start of the game. The value is between 0 (for no blocks) and 10 (for a completely filled row)."
+msgstr "Užpildytų eilučių su blokais tankis žaidimo pradžioje. Reikšmė yra tarp 0 (jokių blokų) iki 10 (pilnai užpildyta eilutė)."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:19
+msgid "Whether to play sounds"
+msgstr "Ar groti garsus"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:20
+msgid "Whether to play sounds."
+msgstr "Ar groti garsus."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:21
+msgid "Whether to pick blocks that are hard to place"
+msgstr "Ar parinkti sunkiai padedamus blokus"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:22
+msgid "Whether to pick blocks that are hard to place."
+msgstr "Ar parinkti sunkiai padedamus blokus."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:28
+msgid "Key press to move down."
+msgstr "Judėjimo žemyn klavišas."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:29
+#: ../quadrapassel/src/quadrapassel.vala:380
+msgid "Drop"
+msgstr "Mesti"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:30
+msgid "Key press to drop."
+msgstr "Pametimo klavišas."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:31
+#: ../quadrapassel/src/quadrapassel.vala:381
+msgid "Rotate"
+msgstr "Pasukti"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:32
+msgid "Key press to rotate."
+msgstr "Pasukimo klavišas."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:33
+#: ../quadrapassel/src/quadrapassel.vala:382
+msgid "Pause"
+msgstr "Pauzė"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:34
+msgid "Key press to pause."
+msgstr "Pauzės klavišas."
+
+#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:1
+#: ../quadrapassel/src/quadrapassel.vala:98
+#: ../quadrapassel/src/quadrapassel.vala:691
+#: ../quadrapassel/src/quadrapassel.vala:737
+msgid "Quadrapassel"
+msgstr "Quadrapassel"
+
+#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:2
+msgid "Fit falling blocks together"
+msgstr "Priderinkite krentančius blokus vieną prie kito"
+
+#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:3
+msgid "tetris;"
+msgstr "tetris;"
+
+#: ../quadrapassel/src/game-view.vala:332
+msgid "Game Over"
+msgstr "Žaidimas baigtas"
+
+#: ../quadrapassel/src/quadrapassel.vala:182
+msgid "Lines:"
+msgstr "Eilutės:"
+
+#: ../quadrapassel/src/quadrapassel.vala:289
+msgid "Quadrapassel Preferences"
+msgstr "Quadrapassel nustatymai"
+
+#. pre-filled rows
+#: ../quadrapassel/src/quadrapassel.vala:308
+msgid "_Number of pre-filled rows:"
+msgstr "_Iš anksto užpildytų eilučių skaičius:"
+
+#. pre-filled rows density
+#: ../quadrapassel/src/quadrapassel.vala:322
+msgid "_Density of blocks in a pre-filled row:"
+msgstr "_Iš anksto užpildytų blokų tankumas:"
+
+#: ../quadrapassel/src/quadrapassel.vala:354
+msgid "_Preview next block"
+msgstr "_Kito bloko peržiūra"
+
+#: ../quadrapassel/src/quadrapassel.vala:359
+msgid "Choose difficult _blocks"
+msgstr "Pasirinkti sudėtingus _blokus"
+
+#. rotate counter clock wise
+#: ../quadrapassel/src/quadrapassel.vala:365
+msgid "_Rotate blocks counterclockwise"
+msgstr "_Sukti blokus prieš laikrodžio rodyklę"
+
+#: ../quadrapassel/src/quadrapassel.vala:370
+msgid "Show _where the block will land"
+msgstr "Rodyti, kur _nusileis blokas"
+
+#: ../quadrapassel/src/quadrapassel.vala:385
+msgid "Controls"
+msgstr "Valdymas"
+
+#: ../quadrapassel/src/quadrapassel.vala:391
+msgid "Theme"
+msgstr "Tema"
+
+#: ../quadrapassel/src/quadrapassel.vala:405
+msgid "Plain"
+msgstr "Paprasta"
+
+#: ../quadrapassel/src/quadrapassel.vala:410
+msgid "Tango Flat"
+msgstr "Paprastas tango"
+
+#: ../quadrapassel/src/quadrapassel.vala:415
+msgid "Tango Shaded"
+msgstr "Paslaptingas tango"
+
+#: ../quadrapassel/src/quadrapassel.vala:420
+msgid "Clean"
+msgstr "Išvalyti"
+
+#: ../quadrapassel/src/quadrapassel.vala:629
+#: ../quadrapassel/src/quadrapassel.vala:708
+msgid "Quadrapassel Scores"
+msgstr "Quadrapassel taškai"
+
+#: ../quadrapassel/src/quadrapassel.vala:693
+msgid ""
+"A classic game of fitting falling blocks together.\n"
+"\n"
+"Quadrapassel is a part of GNOME Games."
+msgstr ""
+"Klasikinis krintančių blokų sudėliojimo žaidimas.\n"
+"\n"
+"Quadrapassel yra GNOME Games dalis."
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:1
+msgid "The theme to use"
+msgstr "Naudotina tema"
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:2
+msgid "The title of the tile theme to use."
+msgstr "Naudotinos temos pavadinimas."
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:4
+msgid "The size of the game board."
+msgstr "Žaidimo tinklelio dydis."
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:5
+msgid "Board color count"
+msgstr "Spalvų kiekis"
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:6
+msgid "The number of colors of tiles to use in the game."
+msgstr "Skirtingų langelių spalvų kiekis žaidime."
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:7
+msgid "Zealous animation"
+msgstr "Įmantri animacija"
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:8
+msgid "Use more flashy, but slower, animations."
+msgstr "Naudoti įmantresnę, bet lėtesnę animaciją."
+
+#: ../swell-foop/data/preferences.ui.h:1
+#: ../swell-foop/data/swell-foop.desktop.in.in.h:1
+#: ../swell-foop/src/swell-foop.vala:54
+#: ../swell-foop/src/swell-foop.vala:386
+#: ../swell-foop/src/swell-foop.vala:451
+msgid "Swell Foop"
+msgstr "Swell Foop"
+
+#: ../swell-foop/data/preferences.ui.h:3
+msgid "_Number of colors:"
+msgstr "_Spalvų skaičius:"
+
+#: ../swell-foop/data/preferences.ui.h:4
+msgid "Setup"
+msgstr "Nustatymai"
+
+#: ../swell-foop/data/preferences.ui.h:7
+msgid "_Zealous Animation"
+msgstr "Įmantri _animacija"
+
+#: ../swell-foop/data/preferences.ui.h:8
+msgid "Operation"
+msgstr "Operacija"
+
+#: ../swell-foop/data/swell-foop.desktop.in.in.h:2
+msgid "Clear the screen by removing groups of colored and shaped tiles"
+msgstr "Išvalykite ekraną pašalindami spalvotų ir figūrinių koklių grupes"
+
+#. Label showing the number of points at the end of the game
+#: ../swell-foop/src/game-view.vala:433
+#, c-format
+msgid "%u point"
+msgid_plural "%u points"
+msgstr[0] "%u taškas"
+msgstr[1] "%u taškai"
+msgstr[2] "%u taškų"
+
+#: ../swell-foop/src/swell-foop.vala:121
+#: ../swell-foop/src/swell-foop.vala:150
+msgid "Small"
+msgstr "Maža"
+
+#: ../swell-foop/src/swell-foop.vala:122
+#: ../swell-foop/src/swell-foop.vala:151
+msgid "Normal"
+msgstr "Normalu"
+
+#: ../swell-foop/src/swell-foop.vala:123
+#: ../swell-foop/src/swell-foop.vala:152
+msgid "Large"
+msgstr "Didelė"
+
+#. I left one more blank space at the end to make the score not too close to the window border
+#: ../swell-foop/src/swell-foop.vala:205
+#, c-format
+msgid "Score: %4u "
+msgstr "Taškai: %4u"
+
+#: ../swell-foop/src/swell-foop.vala:253
+msgid "Colors"
+msgstr "Spalvos"
+
+#: ../swell-foop/src/swell-foop.vala:257
+msgid "Shapes and Colors"
+msgstr "Formos ir spalvos"
+
+#: ../swell-foop/src/swell-foop.vala:354
+msgid "Swell Foop Scores"
+msgstr "Swell Foop taškai"
+
+#: ../swell-foop/src/swell-foop.vala:389
+msgid ""
+"I want to play that game! You know, they all light-up and you click on them and they vanish!\n"
+"\n"
+"Swell Foop is a part of GNOME Games."
+msgstr ""
+"Noriu žaisti šį žaidimą! Žinai, jie visi pradeda suktis sukūriais ir tik spragteli ant jų ir jie išnyksta!\n"
+"\n"
+"Swell Foop yra GNOME Games dalis."
+
+#: ../swell-foop/src/swell-foop.vala:390
+msgid "Copyright © 2009 Tim Horton"
+msgstr "Autorinės teisės © 2009 Tim Horton"
+
+#~ msgid "Show a hint"
+#~ msgstr "Rodyti užuominą"

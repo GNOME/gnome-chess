@@ -1,0 +1,4777 @@
+# French translation of gnome-games.
+# Copyright (C) 1998-2012 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-games package.
+#
+# Vincent Renardias <vincent@ldsol.com>, 1998-1999.
+# Herve Dreau <hdreau@cybercable.fr>, 2000.
+# Christophe Merlet <redfox@redfoxcenter.org>, 2000-2006.
+# Guy Daniel Clotilde <guy.clotilde@wanadoo.fr>, 2002-2003.
+# Sébastien Bacher <seb128@debian.org>, 2004.
+# Christophe Bliard <christophe.bliard@netcourrier.com>, 2004.
+# Vincent Carriere <carriere_vincent@yahoo.fr>, 2005.
+# Xavier Claessens <x_claessens@skynet.be>, 2005.
+# Jonathan Ernst <jonathan@ernstfamily.ch>, 2006-2007.
+# Robert-André Mauchin <zebob.m@pengzone.org>, 2006-2008.
+# Benoît Dejean <benoit@placenet.org>, 2006.
+# Pierre Slamich <pierre.slamich@gmail.com>, 2006.
+# Marc Lorber <linux-lorber@club-internet.fr>, 2006
+# Pierre Slamich <pierre.slamich@gmail.com>, 2006.
+# Claude Paroz <claude@2xlibre.net>, 2007-2010.
+# Stéphane Raimbault <stephane.raimbault@gmail.com>, 2007-2008.
+# Didier Vidal <didier-devel@melix.net>, 2007.
+# Pierre Lemaire <pierre.lemaire@kamick.org>, 2008.
+# Laurent Coudeur <laurentc@iol.ie>, 2009.
+# Bruno Brouard <annoa.b@gmail.com>, 2012
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-games HEAD\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"games&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-09-06 11:52+0000\n"
+"PO-Revision-Date: 2012-09-15 19:45+0200\n"
+"Last-Translator: Bruno Brouard <annoa.b@gmail.com>\n"
+"Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+
+#. Title of the main window
+#: ../glchess/data/glchess.desktop.in.in.h:1 ../glchess/src/glchess.vala:234
+msgid "Chess"
+msgstr "Jeu d'échecs"
+
+#: ../glchess/data/glchess.desktop.in.in.h:2
+msgid "Play the classic two-player boardgame of chess"
+msgstr "Jouer au jeu d'échecs classique à deux joueurs"
+
+#. Game menu name
+#: ../glchess/data/glchess.ui.h:2 ../glines/data/glines.ui.h:2
+#: ../gnect/src/main.c:1183 ../gnibbles/src/main.c:605
+#: ../gnobots2/src/menu.c:65 ../gnome-sudoku/src/lib/main.py:195
+#: ../gnotski/src/gnotski.c:397
+msgid "_Game"
+msgstr "_Jeu"
+
+#. Undo move menu item
+#: ../glchess/data/glchess.ui.h:4 ../glines/src/games-stock.c:259
+#: ../gnect/src/games-stock.c:259 ../gnibbles/src/games-stock.c:259
+#: ../gnobots2/src/games-stock.c:259
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:111
+#: ../gnotski/src/games-stock.c:259 ../gtali/src/games-stock.c:259
+#: ../gtali/src/gyahtzee.c:754
+msgid "_Undo Move"
+msgstr "A_nnuler le déplacement"
+
+#. Save menu item
+#: ../glchess/data/glchess.ui.h:6
+msgid "_Resign"
+msgstr "_Abandonner"
+
+#. Claim draw menu item
+#: ../glchess/data/glchess.ui.h:8
+msgid "Claim _Draw"
+msgstr "Proposer le _nul"
+
+#. Settings menu item
+#: ../glchess/data/glchess.ui.h:10 ../glines/data/glines.ui.h:4
+#: ../gnect/src/main.c:1185 ../gnibbles/src/main.c:607
+#: ../gnobots2/src/menu.c:68 ../gnome-sudoku/src/lib/main.py:209
+msgid "_Settings"
+msgstr "_Paramètres"
+
+#. Help menu item
+#: ../glchess/data/glchess.ui.h:12 ../glines/data/glines.ui.h:5
+#: ../gnect/src/main.c:1186 ../gnibbles/src/main.c:608
+#: ../gnobots2/src/menu.c:69 ../gnome-mahjongg/src/gnome-mahjongg.vala:89
+#: ../gnome-sudoku/src/lib/main.py:218 ../gnomine/src/gnomine.vala:116
+#: ../gnotravex/data/gnotravex.ui.h:16 ../gnotski/src/gnotski.c:399
+#: ../gtali/src/gyahtzee.c:759 ../iagno/data/iagno.ui.h:4
+#: ../lightsoff/src/lightsoff.vala:32 ../quadrapassel/src/quadrapassel.vala:88
+#: ../swell-foop/src/swell-foop.vala:70
+msgid "_Help"
+msgstr "Aid_e"
+
+#. Help contents menu item
+#: ../glchess/data/glchess.ui.h:14 ../glines/data/glines.ui.h:7
+#: ../glines/src/games-stock.c:247 ../gnect/src/games-stock.c:247
+#: ../gnibbles/src/games-stock.c:247 ../gnobots2/src/games-stock.c:247
+#: ../gnome-sudoku/src/lib/main.py:219 ../gnotski/src/games-stock.c:247
+#: ../gtali/src/games-stock.c:247
+msgid "_Contents"
+msgstr "_Sommaire"
+
+#. Tooltip for start new game toolbar button
+#: ../glchess/data/glchess.ui.h:16 ../glines/src/games-stock.c:48
+#: ../gnect/src/games-stock.c:48 ../gnibbles/src/games-stock.c:48
+#: ../gnobots2/src/games-stock.c:48 ../gnobots2/src/menu.c:70
+#: ../gnotski/src/games-stock.c:48 ../gtali/src/games-stock.c:48
+msgid "Start a new game"
+msgstr "Commence une nouvelle partie"
+
+#. The New Game toolbar button
+#: ../glchess/data/glchess.ui.h:18
+#: ../libgames-support/games-scores-dialog.c:470
+msgid "New Game"
+msgstr "Nouvelle partie"
+
+#. The undo move toolbar button
+#: ../glchess/data/glchess.ui.h:20
+msgid "Undo Move"
+msgstr "Annuler le coup"
+
+#. The tooltip for the Resign toolbar button
+#: ../glchess/data/glchess.ui.h:22
+msgid "Resign"
+msgstr "Abandonner"
+
+#. Tooltip on the show first move (i.e. game start) navigation button
+#: ../glchess/data/glchess.ui.h:24
+msgid "Rewind to the game start"
+msgstr "Revenir au début de la partie"
+
+#. Tooltip on the show previous move navigation button
+#: ../glchess/data/glchess.ui.h:26
+msgid "Show the previous move"
+msgstr "Afficher le coup précédent"
+
+#. Tooltip on the show next move navigation button
+#: ../glchess/data/glchess.ui.h:28
+msgid "Show the next move"
+msgstr "Afficher le coup suivant"
+
+#. Tooltip on the show current move navigation button
+#: ../glchess/data/glchess.ui.h:30
+msgid "Show the current move"
+msgstr "Afficher le coup en cours"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:1
+msgid "The width of the window"
+msgstr "La largeur de la fenêtre"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:2
+msgid "The width of the main window in pixels."
+msgstr "La largeur de la fenêtre principale en pixels."
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:3
+msgid "The height of the window"
+msgstr "La hauteur de la fenêtre"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:4
+msgid "The height of the main window in pixels."
+msgstr "La hauteur de la fenêtre principale en pixels."
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:5
+msgid "A flag to enable maximized mode"
+msgstr "Un drapeau pour activer le mode maximisé"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:6
+msgid "A flag to enable fullscreen mode"
+msgstr "Un drapeau pour activer le mode plein écran"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:7
+msgid "The piece to promote pawns to"
+msgstr "La pièce vers laquelle promouvoir le pion"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:8
+msgid ""
+"The piece to promote to when a human player moves a pawn to the far rank"
+msgstr ""
+"La pièce qui doit remplacer un pion lorsqu'un joueur humain déplace ce pion "
+"jusqu'à la rangée opposée"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:9
+msgid "A flag to enable 3D mode"
+msgstr "Un drapeau pour activer le mode 3D"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:10
+msgid "A flag to smooth (anti-alias) the 3D display"
+msgstr "Un drapeau pour lisser (anti-aliaser) l'affichage 3D"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:11
+msgid "The piece theme to use"
+msgstr "Le thème des pièces à utiliser"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:12
+msgid "A flag to enable move hints"
+msgstr "Un drapeau pour activer les astuces de déplacement"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:13
+msgid "A flag to enable board numbering"
+msgstr "Un drapeau pour activer la numérotation des plateaux"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:14
+msgid "A flag to enable the move history browser"
+msgstr "Un drapeau pour activer le navigateur d'historique des mouvements"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:15
+msgid "A flag to enable the toolbar"
+msgstr "Un drapeau pour activer la barre d'outils"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:16
+msgid "The directory to open the save game dialog in"
+msgstr ""
+"Le répertoire à ouvrir dans la boîte de dialogue d'enregistrement de partie"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:17
+msgid "The directory to open the load game dialog in"
+msgstr ""
+"Le répertoire à ouvrir dans la boîte de dialogue de chargement de partie"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:18
+msgid "The format to display moves in"
+msgstr "Le format pour afficher les déplacements"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:19
+msgid "The side of the board that is in the foreground"
+msgstr "Le côté du plateau qui est à l'arrière-plan"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:20
+msgid "The duration of a game in seconds (0 for no limit)"
+msgstr "La durée d'une partie en secondes (0 pour sans limite)"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:21
+msgid "true if the human player is playing white"
+msgstr "true (vrai) si le joueur humain joue les blancs"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:22
+msgid "The opponent player"
+msgstr "Le joueur adverse"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:23
+msgid ""
+"Can be 'human' (play against another human player), '' (use the first "
+"available chess engine) or the name of a specific engine to play against"
+msgstr ""
+"Peut être « human » (partie contre un autre joueur humain), « » (utilisation "
+"du premier moteur d'échec disponible) ou le nom d'un moteur spécifique "
+"contre lequel jouer"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:24
+msgid "Difficulty of the opponent chess engine"
+msgstr "Niveau de difficulté du moteur d'échec adversaire"
+
+#. Title for preferences dialog
+#: ../glchess/data/preferences.ui.h:2 ../glines/src/glines.c:177
+msgid "Preferences"
+msgstr "Préférences"
+
+#. Preferences Dialog: Label before player side (white/black) combo box
+#: ../glchess/data/preferences.ui.h:4
+msgid "Play as:"
+msgstr "Jouer en tant que :"
+
+#. Preferences Dialog: Label before opposing player combo box
+#: ../glchess/data/preferences.ui.h:6
+msgid "Opposing Player:"
+msgstr "Joueur adverse :"
+
+#. Preferences Dialog: Label before promotion type combo box
+#: ../glchess/data/preferences.ui.h:8
+msgid "Difficulty:"
+msgstr "Difficulté :"
+
+#. New Game Dialog: Label before game timer settings
+#: ../glchess/data/preferences.ui.h:10
+msgid "Game Duration:"
+msgstr "Durée du jeu :"
+
+#. Preferences Dialog: Label before promotion type combo box
+#: ../glchess/data/preferences.ui.h:12
+msgid "Promotion Type:"
+msgstr "Type de promotion :"
+
+#. Preferences dialog: Label to notify user that the settings are applied for the next game
+#: ../glchess/data/preferences.ui.h:14
+msgid "Changes will take effect for the next game."
+msgstr "Les modifications prendront effet à la prochaine partie."
+
+#. Preferences Dialog: Tab title for game preferences
+#: ../glchess/data/preferences.ui.h:16 ../gnect/src/prefs.c:230
+#: ../gnibbles/src/preferences.c:253 ../gnobots2/src/properties.c:452
+#: ../quadrapassel/src/quadrapassel.vala:305
+msgid "Game"
+msgstr "Jeu"
+
+#. Preferences Dialog: Check box for selecting if 3D view is available
+#: ../glchess/data/preferences.ui.h:18
+msgid "3_D Chess View"
+msgstr "Affichage 3_D"
+
+#. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
+#: ../glchess/data/preferences.ui.h:20
+msgid "_Smooth Display"
+msgstr "Affichage _lissé"
+
+#. Preferences Dialog: Label before piece style combo box
+#: ../glchess/data/preferences.ui.h:22
+msgid "Piece Style:"
+msgstr "Style de pièce :"
+
+#. Preferences Dialog: Check box for selecting if toolbar is visible
+#: ../glchess/data/preferences.ui.h:24 ../gnome-sudoku/src/lib/main.py:239
+msgid "Show _Toolbar"
+msgstr "Afficher la _barre d'outils"
+
+#. Preferences Dialog: Check box for selecting if history browser is visible
+#: ../glchess/data/preferences.ui.h:26
+msgid "Show _History"
+msgstr "Afficher l'_historique"
+
+#. Preferences Dialog: Check box for selecting if move hints are visible
+#: ../glchess/data/preferences.ui.h:28
+msgid "_Move Hints"
+msgstr "A_stuces de déplacement"
+
+#. Preferences Dialog: Check box for selecting if board numbering is visible
+#: ../glchess/data/preferences.ui.h:30
+msgid "_Board Numbering"
+msgstr "_Numérotation du plateau"
+
+#. Preferences Dialog: Label before board orientation combo box
+#: ../glchess/data/preferences.ui.h:32
+msgid "Board Orientation:"
+msgstr "Orientation du plateau :"
+
+#. Preferences Dialog: Label before move format combo box
+#: ../glchess/data/preferences.ui.h:34
+msgid "Move Format:"
+msgstr "Notation des coups :"
+
+#. Preferences Dialog: Title of appearance options tab
+#: ../glchess/data/preferences.ui.h:36
+msgid "_Appearance"
+msgstr "_Apparence"
+
+#. Preferences Dialog: Combo box entry for easy game difficulty
+#: ../glchess/data/preferences.ui.h:38 ../gtali/src/setup.c:343
+msgctxt "difficulty"
+msgid "Easy"
+msgstr "Facile"
+
+#. Preferences Dialog: Combo box entry for normal game difficulty
+#: ../glchess/data/preferences.ui.h:40
+msgctxt "difficulty"
+msgid "Normal"
+msgstr "Normal"
+
+#. Preferences Dialog: Combo box entry for hard game difficulty
+#: ../glchess/data/preferences.ui.h:42 ../gtali/src/setup.c:345
+msgctxt "difficulty"
+msgid "Hard"
+msgstr "Difficile"
+
+#. Preferences Dialog: Combo box entry for human opponent
+#: ../glchess/data/preferences.ui.h:44
+msgctxt "chess-opponent"
+msgid "Human"
+msgstr "Humain"
+
+#. Preferences Dialog: Combo box entry for playing as white
+#: ../glchess/data/preferences.ui.h:46
+msgctxt "chess-player"
+msgid "White"
+msgstr "Blanc"
+
+#. Preferences Dialog: Combo box entry for playing as black
+#: ../glchess/data/preferences.ui.h:48
+msgctxt "chess-player"
+msgid "Black"
+msgstr "Noir"
+
+#. Preferences Dialog: Combo box entry for no game timer
+#: ../glchess/data/preferences.ui.h:50
+msgid "No limit"
+msgstr "Sans limite"
+
+#. Preferences Dialog: Combo box entry for game timer of one minute
+#: ../glchess/data/preferences.ui.h:52
+msgid "One minute"
+msgstr "Une minute"
+
+#. Preferences Dialog: Combo box entry for game timer of five minutes
+#: ../glchess/data/preferences.ui.h:54
+msgid "Five minutes"
+msgstr "Cinq minutes"
+
+#. Preferences Dialog: Combo box entry for game timer of thirty minutes
+#: ../glchess/data/preferences.ui.h:56
+msgid "30 minutes"
+msgstr "Trente minutes"
+
+#. Preferences Dialog: Combo box entry for game timer of one hour
+#: ../glchess/data/preferences.ui.h:58
+msgid "One hour"
+msgstr "Une heure"
+
+#. Preferences Dialog: Combo box entry for custom game timer
+#: ../glchess/data/preferences.ui.h:60
+msgid "Custom"
+msgstr "Personnalisée"
+
+#. Preferences Dialog: Combo box entry for simple theme
+#: ../glchess/data/preferences.ui.h:62
+msgid "Simple"
+msgstr "Simple"
+
+#. Preferences Dialog: Combo box entry for fancy theme
+#: ../glchess/data/preferences.ui.h:64
+msgid "Fancy"
+msgstr "Amusant"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the white side
+#: ../glchess/data/preferences.ui.h:66
+msgctxt "chess-side"
+msgid "White Side"
+msgstr "Côté Blancs"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the black side
+#: ../glchess/data/preferences.ui.h:68
+msgctxt "chess-side"
+msgid "Black Side"
+msgstr "Côté Noirs"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
+#: ../glchess/data/preferences.ui.h:70
+msgctxt "chess-side"
+msgid "Human Side"
+msgstr "Côté humain"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
+#: ../glchess/data/preferences.ui.h:72
+msgctxt "chess-side"
+msgid "Current Player"
+msgstr "Joueur actuel"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)
+#: ../glchess/data/preferences.ui.h:74
+msgctxt "chess-side"
+msgid "Face to Face"
+msgstr "Face à face"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
+#: ../glchess/data/preferences.ui.h:76
+msgctxt "chess-move-format"
+msgid "Human"
+msgstr "Humain"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
+#: ../glchess/data/preferences.ui.h:78
+msgctxt "chess-move-format"
+msgid "Standard Algebraic"
+msgstr "Algébrique standard"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
+#: ../glchess/data/preferences.ui.h:80
+msgctxt "chess-move-format"
+msgid "Figurine"
+msgstr "Figurine"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
+#: ../glchess/data/preferences.ui.h:82
+msgctxt "chess-move-format"
+msgid "Long Algebraic"
+msgstr "Algébrique long"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a queen
+#: ../glchess/data/preferences.ui.h:84
+msgctxt "chess-piece"
+msgid "Queen"
+msgstr "Dame"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a knight
+#: ../glchess/data/preferences.ui.h:86
+msgctxt "chess-piece"
+msgid "Knight"
+msgstr "Cavalier"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a rook
+#: ../glchess/data/preferences.ui.h:88
+msgctxt "chess-piece"
+msgid "Rook"
+msgstr "Tour"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a bishop
+#: ../glchess/data/preferences.ui.h:90
+msgctxt "chess-piece"
+msgid "Bishop"
+msgstr "Fou"
+
+#. Title of the window when explicitly loaded a file. The first argument is the
+#. * base name of the file (e.g. test.pgn), the second argument is the directory
+#. * (e.g. /home/fred)
+#: ../glchess/src/glchess.vala:242
+#, c-format
+msgid "%1$s (%2$s) - Chess"
+msgstr "%1$s (%2$s) - Jeu d'échecs"
+
+#. Move History Combo: Go to the start of the game
+#: ../glchess/src/glchess.vala:251
+msgid "Game Start"
+msgstr "Début de la partie"
+
+#. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
+#. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
+#: ../glchess/src/glchess.vala:481
+#, c-format
+msgid "White pawn moves from %1$s to %2$s"
+msgstr "Le pion blanc se déplace de %1$s à %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:483
+#, c-format
+msgid "White pawn at %1$s takes the black pawn at %2$s"
+msgstr "Le pion blanc en %1$s prend le pion noir en %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:485
+#, c-format
+msgid "White pawn at %1$s takes the black rook at %2$s"
+msgstr "Le pion blanc en %1$s prend la tour noire en %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:487
+#, c-format
+msgid "White pawn at %1$s takes the black knight at %2$s"
+msgstr "Le pion blanc en %1$s prend le cavalier noir en %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:489
+#, c-format
+msgid "White pawn at %1$s takes the black bishop at %2$s"
+msgstr "Le pion blanc en %1$s prend le fou noir en %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:491
+#, c-format
+msgid "White pawn at %1$s takes the black queen at %2$s"
+msgstr "Le pion blanc en %1$s prend la dame noire en %2$s"
+
+#. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
+#: ../glchess/src/glchess.vala:493
+#, c-format
+msgid "White rook moves from %1$s to %2$s"
+msgstr "La tour blanche se déplace de %1$s à %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:495
+#, c-format
+msgid "White rook at %1$s takes the black pawn at %2$s"
+msgstr "La tour blanche en %1$s prend le pion noir en %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:497
+#, c-format
+msgid "White rook at %1$s takes the black rook at %2$s"
+msgstr "La tour blanche en %1$s prend la tour noire en %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:499
+#, c-format
+msgid "White rook at %1$s takes the black knight at %2$s"
+msgstr "La tour blanche en %1$s prend le cavalier noir en %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:501
+#, c-format
+msgid "White rook at %1$s takes the black bishop at %2$s"
+msgstr "La tour blanche en %1$s prend le fou noir en %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
+#: ../glchess/src/glchess.vala:503
+#, c-format
+msgid "White rook at %1$s takes the black queen at %2$s"
+msgstr "La tour blanche en %1$s prend la dame noire en %2$s"
+
+#. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
+#: ../glchess/src/glchess.vala:505
+#, c-format
+msgid "White knight moves from %1$s to %2$s"
+msgstr "Le cavalier blanc se déplace de %1$s à %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:507
+#, c-format
+msgid "White knight at %1$s takes the black pawn at %2$s"
+msgstr "Le cavalier blanc en %1$s prend le pion noir en %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:509
+#, c-format
+msgid "White knight at %1$s takes the black rook at %2$s"
+msgstr "Le cavalier blanc en %1$s prend la tour noire en %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:511
+#, c-format
+msgid "White knight at %1$s takes the black knight at %2$s"
+msgstr "Le cavalier blanc en %1$s prend le cavalier noir en %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:513
+#, c-format
+msgid "White knight at %1$s takes the black bishop at %2$s"
+msgstr "Le cavalier blanc en %1$s prend le fou noir en %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:515
+#, c-format
+msgid "White knight at %1$s takes the black queen at %2$s"
+msgstr "Le cavalier blanc en %1$s prend la dame noire en %2$s"
+
+#. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
+#: ../glchess/src/glchess.vala:517
+#, c-format
+msgid "White bishop moves from %1$s to %2$s"
+msgstr "Le fou blanc se déplace de %1$s à %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:519
+#, c-format
+msgid "White bishop at %1$s takes the black pawn at %2$s"
+msgstr "Le fou blanc en %1$s prend le pion noir en %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:521
+#, c-format
+msgid "White bishop at %1$s takes the black rook at %2$s"
+msgstr "Le fou blanc en %1$s prend la tour noire en %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:523
+#, c-format
+msgid "White bishop at %1$s takes the black knight at %2$s"
+msgstr "Le fou blanc en %1$s prend le cavalier noir en %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:525
+#, c-format
+msgid "White bishop at %1$s takes the black bishop at %2$s"
+msgstr "Le fou blanc en %1$s prend le fou noir en %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:527
+#, c-format
+msgid "White bishop at %1$s takes the black queen at %2$s"
+msgstr "Le fou blanc en %1$s prend la dame noire en %2$s"
+
+#. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
+#: ../glchess/src/glchess.vala:529
+#, c-format
+msgid "White queen moves from %1$s to %2$s"
+msgstr "La dame blanche se déplace de %1$s à %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:531
+#, c-format
+msgid "White queen at %1$s takes the black pawn at %2$s"
+msgstr "La dame blanche en %1$s prend le pion noir en %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:533
+#, c-format
+msgid "White queen at %1$s takes the black rook at %2$s"
+msgstr "La dame blanche en %1$s prend la tour noire en %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:535
+#, c-format
+msgid "White queen at %1$s takes the black knight at %2$s"
+msgstr "La dame blanche en %1$s prend le cavalier noir en %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:537
+#, c-format
+msgid "White queen at %1$s takes the black bishop at %2$s"
+msgstr "La dame blanche en %1$s prend le fou noir en %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:539
+#, c-format
+msgid "White queen at %1$s takes the black queen at %2$s"
+msgstr "La dame blanche en %1$s prend la dame noire en %2$s"
+
+#. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
+#: ../glchess/src/glchess.vala:541
+#, c-format
+msgid "White king moves from %1$s to %2$s"
+msgstr "Le roi blanc se déplace de %1$s à %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:543
+#, c-format
+msgid "White king at %1$s takes the black pawn at %2$s"
+msgstr "Le roi blanc en %1$s prend le pion noir en %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:545
+#, c-format
+msgid "White king at %1$s takes the black rook at %2$s"
+msgstr "Le roi blanc en %1$s prend la tour noire en %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:547
+#, c-format
+msgid "White king at %1$s takes the black knight at %2$s"
+msgstr "Le roi blanc en %1$s prend le cavalier noir en %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:549
+#, c-format
+msgid "White king at %1$s takes the black bishop at %2$s"
+msgstr "Le roi blanc en %1$s prend le fou noir en %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:551
+#, c-format
+msgid "White king at %1$s takes the black queen at %2$s"
+msgstr "Le roi blanc en %1$s prend la dame noire en %2$s"
+
+#. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
+#: ../glchess/src/glchess.vala:553
+#, c-format
+msgid "Black pawn moves from %1$s to %2$s"
+msgstr "Le pion noir se déplace de %1$s à %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:555
+#, c-format
+msgid "Black pawn at %1$s takes the white pawn at %2$s"
+msgstr "Le pion noir en %1$s prend le pion blanc en %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:557
+#, c-format
+msgid "Black pawn at %1$s takes the white rook at %2$s"
+msgstr "Le pion noir en %1$s prend la tour blanche en %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:559
+#, c-format
+msgid "Black pawn at %1$s takes the white knight at %2$s"
+msgstr "Le pion noir en %1$s prend le cavalier blanc en %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:561
+#, c-format
+msgid "Black pawn at %1$s takes the white bishop at %2$s"
+msgstr "Le pion noir en %1$s prend le fou blanc en %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:563
+#, c-format
+msgid "Black pawn at %1$s takes the white queen at %2$s"
+msgstr "Le pion noir en %1$s prend la dame blanche en %2$s"
+
+#. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
+#: ../glchess/src/glchess.vala:565
+#, c-format
+msgid "Black rook moves from %1$s to %2$s"
+msgstr "La tour noire se déplace de %1$s à %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:567
+#, c-format
+msgid "Black rook at %1$s takes the white pawn at %2$s"
+msgstr "La tour noire en %1$s prend le pion blanc en %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:569
+#, c-format
+msgid "Black rook at %1$s takes the white rook at %2$s"
+msgstr "La tour noire en %1$s prend la tour blanche en %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:571
+#, c-format
+msgid "Black rook at %1$s takes the white knight at %2$s"
+msgstr "La tour noire en %1$s prend le cavalier blanc en %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:573
+#, c-format
+msgid "Black rook at %1$s takes the white bishop at %2$s"
+msgstr "La tour noire en %1$s prend le fou blanc en %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:575
+#, c-format
+msgid "Black rook at %1$s takes the white queen at %2$s"
+msgstr "La tour noire en %1$s prend la dame blanche en %2$s"
+
+#. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
+#: ../glchess/src/glchess.vala:577
+#, c-format
+msgid "Black knight moves from %1$s to %2$s"
+msgstr "Le cavalier noir se déplace de %1$s à %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:579
+#, c-format
+msgid "Black knight at %1$s takes the white pawn at %2$s"
+msgstr "Le cavalier noir en %1$s prend le pion blanc en %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:581
+#, c-format
+msgid "Black knight at %1$s takes the white rook at %2$s"
+msgstr "Le cavalier noir en %1$s prend la tour blanche en %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:583
+#, c-format
+msgid "Black knight at %1$s takes the white knight at %2$s"
+msgstr "Le cavalier noir en %1$s prend le cavalier blanc en %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:585
+#, c-format
+msgid "Black knight at %1$s takes the white bishop at %2$s"
+msgstr "Le cavalier noir en %1$s prend le fou blanc en %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:587
+#, c-format
+msgid "Black knight at %1$s takes the white queen at %2$s"
+msgstr "Le cavalier noir en %1$s prend la dame blanche en %2$s"
+
+#. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
+#: ../glchess/src/glchess.vala:589
+#, c-format
+msgid "Black bishop moves from %1$s to %2$s"
+msgstr "Le fou noir se déplace de %1$s à %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:591
+#, c-format
+msgid "Black bishop at %1$s takes the white pawn at %2$s"
+msgstr "Le fou noir en %1$s prend le pion blanc en %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:593
+#, c-format
+msgid "Black bishop at %1$s takes the white rook at %2$s"
+msgstr "Le fou noir en %1$s prend la tour blanche en %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:595
+#, c-format
+msgid "Black bishop at %1$s takes the white knight at %2$s"
+msgstr "Le fou noir en %1$s prend le cavalier blanc en %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:597
+#, c-format
+msgid "Black bishop at %1$s takes the white bishop at %2$s"
+msgstr "Le fou noir en %1$s prend le fou blanc en %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:599
+#, c-format
+msgid "Black bishop at %1$s takes the white queen at %2$s"
+msgstr "Le fou noir en %1$s prend la dame blanche en %2$s"
+
+#. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
+#: ../glchess/src/glchess.vala:601
+#, c-format
+msgid "Black queen moves from %1$s to %2$s"
+msgstr "La dame noire se déplace de %1$s à %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:603
+#, c-format
+msgid "Black queen at %1$s takes the white pawn at %2$s"
+msgstr "La dame noire en %1$s prend le pion blanc en %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:605
+#, c-format
+msgid "Black queen at %1$s takes the white rook at %2$s"
+msgstr "La dame noire en %1$s prend la tour blanche en %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:607
+#, c-format
+msgid "Black queen at %1$s takes the white knight at %2$s"
+msgstr "La dame noire en %1$s prend le cavalier blanc en %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:609
+#, c-format
+msgid "Black queen at %1$s takes the white bishop at %2$s"
+msgstr "La dame noire en %1$s prend le fou blanc en %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:611
+#, c-format
+msgid "Black queen at %1$s takes the white queen at %2$s"
+msgstr "La dame noire en %1$s prend la dame blanche en %2$s"
+
+#. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
+#: ../glchess/src/glchess.vala:613
+#, c-format
+msgid "Black king moves from %1$s to %2$s"
+msgstr "Le roi noir se déplace de %1$s à %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:615
+#, c-format
+msgid "Black king at %1$s takes the white pawn at %2$s"
+msgstr "Le roi noir en %1$s prend le pion blanc en %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:617
+#, c-format
+msgid "Black king at %1$s takes the white rook at %2$s"
+msgstr "Le roi noir en %1$s prend la tour blanche en %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:619
+#, c-format
+msgid "Black king at %1$s takes the white knight at %2$s"
+msgstr "Le roi noir en %1$s prend le cavalier blanc en %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:621
+#, c-format
+msgid "Black king at %1$s takes the white bishop at %2$s"
+msgstr "Le roi noir en %1$s prend le fou blanc en %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
+#: ../glchess/src/glchess.vala:623
+#, c-format
+msgid "Black king at %1$s takes the white queen at %2$s"
+msgstr "Le roi noir en %1$s prend la dame blanche en %2$s"
+
+#. Message display when the white player wins
+#: ../glchess/src/glchess.vala:743
+msgid "White wins"
+msgstr "Les blancs gagnent"
+
+#. Message display when the black player wins
+#: ../glchess/src/glchess.vala:748
+msgid "Black wins"
+msgstr "Les noirs gagnent"
+
+#. Message display when the game is drawn
+#: ../glchess/src/glchess.vala:753
+msgid "Game is drawn"
+msgstr "La partie est nulle"
+
+#. Message displayed when the game ends due to a player being checkmated
+#: ../glchess/src/glchess.vala:765
+msgid "Opponent is in check and cannot move (checkmate)"
+msgstr "L'adversaire est échec et ne peut plus bouger (échec et mat)"
+
+#. Message displayed when the game terminates due to a stalemate
+#: ../glchess/src/glchess.vala:769
+msgid "Opponent cannot move (stalemate)"
+msgstr "L'adversaire ne peut plus bouger (pat)"
+
+#. Message displayed when the game is drawn due to the fifty move rule
+#: ../glchess/src/glchess.vala:773
+msgid "No piece has been taken or pawn moved in the last fifty moves"
+msgstr ""
+"Aucune pièce n'a été prise et aucun pion n'a bougé lors des cinquante "
+"derniers coups"
+
+#. Message displayed when the game ends due to one player's clock stopping
+#: ../glchess/src/glchess.vala:777
+msgid "Opponent has run out of time"
+msgstr "Le temps de jeu de l'adversaire est écoulé"
+
+#. Message displayed when the game is drawn due to the three-fold-repitition rule
+#: ../glchess/src/glchess.vala:781
+msgid "The same board state has occurred three times (three fold repetition)"
+msgstr "Une même position s'est produite trois fois"
+
+#. Message displayed when the game is drawn due to the insufficient material rule
+#: ../glchess/src/glchess.vala:785
+msgid "Neither player can cause checkmate (insufficient material)"
+msgstr "Aucun joueur ne peut mater (matériel insuffisant)"
+
+#. Message displayed when the game ends due to the black player resigning
+#: ../glchess/src/glchess.vala:791
+msgid "The black player has resigned"
+msgstr "Le joueur noir a abandonné"
+
+#. Message displayed when the game ends due to the white player resigning
+#: ../glchess/src/glchess.vala:796
+msgid "The white player has resigned"
+msgstr "Le joueur blanc a abandonné"
+
+#. Message displayed when a game is abandoned
+#: ../glchess/src/glchess.vala:801
+msgid "The game has been abandoned"
+msgstr "La partie a été abandonnée"
+
+#. Message displayed when the game ends due to a player dying
+#: ../glchess/src/glchess.vala:806
+msgid "One of the players has died"
+msgstr "L'un des joueurs est mort"
+
+#: ../glchess/src/glchess.vala:871
+msgid "Save this game before starting a new one?"
+msgstr "Enregistrer cette partie avant d'en commencer une nouvelle ?"
+
+#: ../glchess/src/glchess.vala:873 ../gnome-sudoku/src/lib/main.py:403
+msgid "_Abandon game"
+msgstr "_Abandonner la partie"
+
+#: ../glchess/src/glchess.vala:874 ../gnome-sudoku/src/lib/main.py:402
+msgid "_Save game for later"
+msgstr "_Enregistrer la partie pour plus tard"
+
+#. Preferences Dialog: Combo box entry for a custom game timer set in seconds
+#: ../glchess/src/glchess.vala:1265
+msgid "second"
+msgid_plural "seconds"
+msgstr[0] "seconde"
+msgstr[1] "secondes"
+
+#. Preferences Dialog: Combo box entry for a custom game timer set in minutes
+#: ../glchess/src/glchess.vala:1269
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] "minute"
+msgstr[1] "minutes"
+
+#. Preferences Dialog: Combo box entry for a custom game timer set in hours
+#: ../glchess/src/glchess.vala:1273
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "heure"
+msgstr[1] "heures"
+
+#: ../glchess/src/glchess.vala:1394
+msgid ""
+"The 2D/3D chess game for GNOME. \n"
+"\n"
+"glChess is a part of GNOME Games."
+msgstr ""
+"Le jeu d'échecs 2D et 3D pour GNOME.\n"
+"\n"
+"glChess fait partie des jeux GNOME."
+
+#: ../glchess/src/glchess.vala:1399 ../glines/src/glines.c:1185
+#: ../gnect/src/main.c:830 ../gnibbles/src/main.c:177
+#: ../gnobots2/src/menu.c:269 ../gnome-mahjongg/src/gnome-mahjongg.vala:566
+#: ../gnome-sudoku/src/lib/defaults.py:53 ../gnomine/src/gnomine.vala:745
+#: ../gnotravex/src/gnotravex.vala:319 ../gnotski/src/gnotski.c:1461
+#: ../gtali/src/gyahtzee.c:620 ../iagno/src/iagno.vala:305
+#: ../lightsoff/src/lightsoff.vala:157
+#: ../quadrapassel/src/quadrapassel.vala:762
+#: ../swell-foop/src/swell-foop.vala:399
+msgid "GNOME Games web site"
+msgstr "Site Web des jeux GNOME"
+
+#. Title of save game dialog
+#: ../glchess/src/glchess.vala:1453
+msgid "Save Chess Game"
+msgstr "Enregistrer la partie d'échecs"
+
+#. Save Game Dialog: Name of filter to show only PGN files
+#. Load Game Dialog: Name of filter to show only PGN files
+#: ../glchess/src/glchess.vala:1466 ../glchess/src/glchess.vala:1534
+msgid "PGN files"
+msgstr "Fichiers PGN"
+
+#. Save Game Dialog: Name of filter to show all files
+#. Load Game Dialog: Name of filter to show all files
+#: ../glchess/src/glchess.vala:1473 ../glchess/src/glchess.vala:1541
+msgid "All files"
+msgstr "Tous les fichiers"
+
+#: ../glchess/src/glchess.vala:1497
+#, c-format
+msgid "Failed to save game: %s"
+msgstr "Échec lors de l'enregistrement de la partie : %s"
+
+#. Title of load game dialog
+#: ../glchess/src/glchess.vala:1521
+msgid "Load Chess Game"
+msgstr "Charger une partie d'échecs"
+
+#: ../glchess/src/glchess.vala:1563
+#, c-format
+msgid "Failed to open game: %s"
+msgstr "Échec lors de l'ouverture de la partie : %s"
+
+#. Help string for command line --version flag
+#: ../glchess/src/glchess.vala:1624
+msgid "Show release version"
+msgstr "Affiche le numéro de version"
+
+#. Arguments and description for --help text
+#: ../glchess/src/glchess.vala:1639
+msgid "[FILE] - Play Chess"
+msgstr "[FICHIER] - Jouer aux échecs"
+
+#. Text printed out when an unknown command-line argument provided
+#: ../glchess/src/glchess.vala:1650
+#, c-format
+msgid "Run '%s --help' to see a full list of available command line options."
+msgstr ""
+"Exécutez la commande « %s --help » pour voir la liste complète des options "
+"disponibles en ligne de commande."
+
+#: ../glines/data/glines.desktop.in.in.h:1 ../glines/src/glines.c:1171
+#: ../glines/src/glines.c:1174 ../glines/src/glines.c:1662
+msgid "Five or More"
+msgstr "Cinq ou plus"
+
+#: ../glines/data/glines.desktop.in.in.h:2
+msgid "Remove colored balls from the board by forming lines"
+msgstr "Enlever des billes de couleur du plateau en formant des lignes"
+
+#: ../glines/data/glines-preferences.ui.h:1
+msgid "Five or More Preferences"
+msgstr "Préférences de Cinq ou plus"
+
+#: ../glines/data/glines-preferences.ui.h:2 ../gnobots2/src/properties.c:489
+#: ../swell-foop/data/preferences.ui.h:6
+msgid "Appearance"
+msgstr "Apparence"
+
+#: ../glines/data/glines-preferences.ui.h:3
+msgid "_Image:"
+msgstr "_Image :"
+
+#: ../glines/data/glines-preferences.ui.h:4
+msgid "B_ackground color:"
+msgstr "_Couleur d'arrière-plan :"
+
+#: ../glines/data/glines-preferences.ui.h:5
+msgid "Board Size"
+msgstr "Taille du plateau"
+
+# Correspond à Taille
+#: ../glines/data/glines-preferences.ui.h:6
+msgid "_Small"
+msgstr "_Petite"
+
+#: ../glines/data/glines-preferences.ui.h:7
+#: ../gnome-sudoku/data/print_games.ui.h:7
+msgid "_Medium"
+msgstr "_Moyenne"
+
+#: ../glines/data/glines-preferences.ui.h:8
+msgid "_Large"
+msgstr "_Grande"
+
+#: ../glines/data/glines-preferences.ui.h:9
+msgid "General"
+msgstr "Général"
+
+#: ../glines/data/glines-preferences.ui.h:10
+msgid "_Use fast moves"
+msgstr "_Utiliser des déplacements rapides"
+
+#: ../glines/data/glines.ui.h:1
+msgid "Five or more"
+msgstr "Cinq ou plus"
+
+#: ../glines/data/glines.ui.h:3 ../gnect/src/main.c:736
+msgid "Scores"
+msgstr "Scores"
+
+#: ../glines/data/glines.ui.h:8
+msgid "Next:"
+msgstr "Suivantes :"
+
+#: ../glines/data/glines.ui.h:9
+msgid "0"
+msgstr "0"
+
+#: ../glines/data/glines.ui.h:10 ../gnobots2/src/statusbar.c:68
+#: ../gnomine/src/gnomine.vala:703 ../quadrapassel/src/quadrapassel.vala:174
+msgid "Score:"
+msgstr "Score :"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:1
+msgid "Playing field size"
+msgstr "Taille de la grille"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:2
+msgid ""
+"Playing field size. 1=Small, 2=Medium, 3=Large. Any other value is invalid."
+msgstr ""
+"Taille de la table de jeu. 1=petite, 2=moyenne, 3=grande. Toute autre valeur "
+"est incorrecte."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:3
+msgid "Ball style"
+msgstr "Style de billes"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:4
+msgid "Ball style. The filename of the images to use for the balls."
+msgstr ""
+"Style de billes. Le nom de fichier des images à utiliser pour les billes."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:5
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:5
+msgid "Background color"
+msgstr "Couleur d'arrière-plan"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:6
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:6
+msgid "Background color. The hex specification of the background color."
+msgstr "Couleur de fond. La description hexadécimale de la couleur de fond."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:7
+msgid "Time between moves"
+msgstr "Le délai entre deux déplacements"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:8
+msgid "Time between moves in milliseconds."
+msgstr "Le délai entre les déplacements, en millisecondes."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:9
+msgid "Game score"
+msgstr "Score du jeu"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:10
+msgid "Game score from last saved session."
+msgstr "Score du jeu de la dernière session sauvegardée."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:11
+msgid "Game field"
+msgstr "Zone de jeu"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:12
+msgid "Game field from last saved session."
+msgstr "Zone de jeu de la dernière session sauvegardée."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:13
+msgid "Game preview"
+msgstr "Aperçu du jeu"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:14
+msgid "Game preview from last saved session."
+msgstr "Aperçu du jeu de la dernière session sauvegardée."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:15
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:39
+#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:1
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:12
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:3
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:3
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:35
+msgid "Width of the window in pixels"
+msgstr "Largeur de la fenêtre en pixels"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:16
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:40
+#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:2
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:13
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:4
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:4
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:36
+msgid "Height of the window in pixels"
+msgstr "Hauteur de la fenêtre en pixels"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:17
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:41
+#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:3
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:14
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:5
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:5
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:37
+msgid "true if the window is maximized"
+msgstr "vrai si la fenêtre est maximisée"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:18
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:42
+#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:4
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:15
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:6
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:6
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:38
+msgid "true if the window is fullscren"
+msgstr "vrai si la fenêtre est en plein écran"
+
+#: ../glines/src/games-stock.c:41 ../gnect/src/games-stock.c:41
+#: ../gnibbles/src/games-stock.c:41 ../gnobots2/src/games-stock.c:41
+#: ../gnotski/src/games-stock.c:41 ../gtali/src/games-stock.c:41
+msgid "View help for this game"
+msgstr "Affiche l'aide pour ce jeu"
+
+#: ../glines/src/games-stock.c:42 ../gnect/src/games-stock.c:42
+#: ../gnibbles/src/games-stock.c:42 ../gnobots2/src/games-stock.c:42
+#: ../gnotski/src/games-stock.c:42 ../gtali/src/games-stock.c:42
+msgid "End the current game"
+msgstr "Termine la partie en cours"
+
+#: ../glines/src/games-stock.c:43 ../gnect/src/games-stock.c:43
+#: ../gnibbles/src/games-stock.c:43 ../gnobots2/src/games-stock.c:43
+#: ../gnotski/src/games-stock.c:43 ../gtali/src/games-stock.c:43
+msgid "Toggle fullscreen mode"
+msgstr "Bascule le mode plein écran"
+
+#: ../glines/src/games-stock.c:44 ../gnect/src/games-stock.c:44
+#: ../gnibbles/src/games-stock.c:44 ../gnobots2/src/games-stock.c:44
+#: ../gnotski/src/games-stock.c:44 ../gtali/src/games-stock.c:44
+msgid "Get a hint for your next move"
+msgstr "Affiche une astuce pour votre prochain coup"
+
+#: ../glines/src/games-stock.c:45 ../gnect/src/games-stock.c:45
+#: ../gnibbles/src/games-stock.c:45 ../gnobots2/src/games-stock.c:45
+#: ../gnotski/src/games-stock.c:45 ../gtali/src/games-stock.c:45
+msgid "Leave fullscreen mode"
+msgstr "Quitte le mode plein écran"
+
+#: ../glines/src/games-stock.c:46 ../gnect/src/games-stock.c:46
+#: ../gnibbles/src/games-stock.c:46 ../gnobots2/src/games-stock.c:46
+#: ../gnotski/src/games-stock.c:46 ../gtali/src/games-stock.c:46
+msgid "Start a new multiplayer network game"
+msgstr "Commencer une nouvelle partie multi-joueurs en réseau"
+
+#: ../glines/src/games-stock.c:47 ../gnect/src/games-stock.c:47
+#: ../gnibbles/src/games-stock.c:47 ../gnobots2/src/games-stock.c:47
+#: ../gnotski/src/games-stock.c:47 ../gtali/src/games-stock.c:47
+msgid "End the current network game and return to network server"
+msgstr "Termine le jeu en réseau et retourne sur le serveur du réseau"
+
+#: ../glines/src/games-stock.c:49 ../gnect/src/games-stock.c:49
+#: ../gnibbles/src/games-stock.c:49 ../gnobots2/src/games-stock.c:49
+#: ../gnotski/src/games-stock.c:49 ../gtali/src/games-stock.c:49
+msgid "Pause the game"
+msgstr "Suspend la partie"
+
+#: ../glines/src/games-stock.c:50 ../gnect/src/games-stock.c:50
+#: ../gnibbles/src/games-stock.c:50 ../gnobots2/src/games-stock.c:50
+#: ../gnotski/src/games-stock.c:50 ../gtali/src/games-stock.c:50
+msgid "Show a list of players in the network game"
+msgstr "Affiche une liste de joueurs dans le jeu en réseau"
+
+#: ../glines/src/games-stock.c:51 ../gnect/src/games-stock.c:51
+#: ../gnibbles/src/games-stock.c:51 ../gnobots2/src/games-stock.c:51
+#: ../gnotski/src/games-stock.c:51 ../gtali/src/games-stock.c:51
+msgid "Redo the undone move"
+msgstr "Rétablit le mouvement annulé"
+
+#: ../glines/src/games-stock.c:52 ../gnect/src/games-stock.c:52
+#: ../gnibbles/src/games-stock.c:52 ../gnobots2/src/games-stock.c:52
+#: ../gnotski/src/games-stock.c:52 ../gtali/src/games-stock.c:52
+msgid "Restart the game"
+msgstr "Recommence la partie"
+
+#: ../glines/src/games-stock.c:53 ../gnect/src/games-stock.c:53
+#: ../gnibbles/src/games-stock.c:53 ../gnobots2/src/games-stock.c:53
+#: ../gnotski/src/games-stock.c:53 ../gtali/src/games-stock.c:53
+msgid "Resume the paused game"
+msgstr "Reprend la partie"
+
+#: ../glines/src/games-stock.c:54 ../gnect/src/games-stock.c:54
+#: ../gnibbles/src/games-stock.c:54 ../gnobots2/src/games-stock.c:54
+#: ../gnotski/src/games-stock.c:54 ../gtali/src/games-stock.c:54
+msgid "View the scores"
+msgstr "Affiche les scores"
+
+#: ../glines/src/games-stock.c:55 ../gnect/src/games-stock.c:55
+#: ../gnibbles/src/games-stock.c:55 ../gnobots2/src/games-stock.c:55
+#: ../gnotski/src/games-stock.c:55 ../gtali/src/games-stock.c:55
+msgid "Undo the last move"
+msgstr "Annule le dernier mouvement"
+
+#: ../glines/src/games-stock.c:56 ../gnect/src/games-stock.c:56
+#: ../gnibbles/src/games-stock.c:56 ../gnobots2/src/games-stock.c:56
+#: ../gnotski/src/games-stock.c:56 ../gtali/src/games-stock.c:56
+msgid "About this game"
+msgstr "À propos de ce jeu"
+
+#: ../glines/src/games-stock.c:57 ../gnect/src/games-stock.c:57
+#: ../gnibbles/src/games-stock.c:57 ../gnobots2/src/games-stock.c:57
+#: ../gnotski/src/games-stock.c:57 ../gtali/src/games-stock.c:57
+msgid "Close this window"
+msgstr "Ferme cette fenêtre"
+
+#: ../glines/src/games-stock.c:58 ../gnect/src/games-stock.c:58
+#: ../gnibbles/src/games-stock.c:58 ../gnobots2/src/games-stock.c:58
+#: ../gnotski/src/games-stock.c:58 ../gtali/src/games-stock.c:58
+msgid "Configure the game"
+msgstr "Configure le jeu"
+
+#: ../glines/src/games-stock.c:59 ../gnect/src/games-stock.c:59
+#: ../gnibbles/src/games-stock.c:59 ../gnobots2/src/games-stock.c:59
+#: ../gnotski/src/games-stock.c:59 ../gtali/src/games-stock.c:59
+msgid "Quit this game"
+msgstr "Quitte ce jeu"
+
+#: ../glines/src/games-stock.c:248 ../gnect/src/games-stock.c:248
+#: ../gnibbles/src/games-stock.c:248 ../gnobots2/src/games-stock.c:248
+#: ../gnomine/src/gnomine.vala:111 ../gnomine/src/gnomine.vala:197
+#: ../gnomine/src/gnomine.vala:362 ../gnotravex/src/gnotravex.vala:124
+#: ../gnotravex/src/gnotravex.vala:184 ../gnotski/src/games-stock.c:248
+#: ../gtali/src/games-stock.c:248 ../quadrapassel/src/quadrapassel.vala:142
+#: ../quadrapassel/src/quadrapassel.vala:236
+msgid "_Fullscreen"
+msgstr "_Plein écran"
+
+#: ../glines/src/games-stock.c:249 ../gnect/src/games-stock.c:249
+#: ../gnibbles/src/games-stock.c:249 ../gnobots2/src/games-stock.c:249
+#: ../gnome-sudoku/src/lib/main.py:212 ../gnomine/src/gnomine.vala:109
+#: ../gnotski/src/games-stock.c:249 ../gtali/src/games-stock.c:249
+msgid "_Hint"
+msgstr "_Astuce"
+
+#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
+#: ../glines/src/games-stock.c:251 ../gnect/src/games-stock.c:251
+#: ../gnibbles/src/games-stock.c:251 ../gnobots2/src/games-stock.c:251
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:104
+#: ../gnomine/src/gnomine.vala:173 ../gnotravex/src/gnotravex.vala:103
+#: ../gnotski/src/games-stock.c:251 ../gtali/src/games-stock.c:251
+#: ../quadrapassel/src/quadrapassel.vala:127
+msgid "_New"
+msgstr "_Nouveau"
+
+#. Translators: This "_New Game" is for the game-over dialogue
+#: ../glines/src/games-stock.c:253 ../gnect/src/games-stock.c:253
+#: ../gnibbles/src/games-stock.c:253 ../gnobots2/src/game.c:154
+#: ../gnobots2/src/games-stock.c:253
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:83
+#: ../gnome-sudoku/data/select_game.ui.h:1 ../gnomine/src/gnomine.vala:107
+#: ../gnomine/src/gnomine.vala:455 ../gnotravex/data/gnotravex.ui.h:1
+#: ../gnotski/src/games-stock.c:253 ../gnotski/src/gnotski.c:750
+#: ../gtali/src/games-stock.c:253 ../gtali/src/gyahtzee.c:753
+#: ../iagno/data/iagno.ui.h:1 ../lightsoff/src/lightsoff.vala:29
+#: ../quadrapassel/src/quadrapassel.vala:82
+#: ../swell-foop/src/swell-foop.vala:65
+msgid "_New Game"
+msgstr "_Nouvelle partie"
+
+#: ../glines/src/games-stock.c:254 ../gnect/src/games-stock.c:254
+#: ../gnibbles/src/games-stock.c:254 ../gnobots2/src/games-stock.c:254
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:119
+#: ../gnotski/src/games-stock.c:254 ../gtali/src/games-stock.c:254
+msgid "_Redo Move"
+msgstr "_Rétablir le déplacement"
+
+#. Translators: this is the "Reset" scores button in a scores dialogue
+#: ../glines/src/games-stock.c:256 ../gnect/src/games-stock.c:256
+#: ../gnibbles/src/games-stock.c:256 ../gnobots2/src/games-stock.c:256
+#: ../gnome-sudoku/src/lib/main.py:197 ../gnotski/src/games-stock.c:256
+#: ../gtali/src/games-stock.c:256
+msgid "_Reset"
+msgstr "_Réinitialiser"
+
+#. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
+#: ../glines/src/games-stock.c:258 ../gnect/src/games-stock.c:258
+#: ../gnibbles/src/games-stock.c:258 ../gnobots2/src/games-stock.c:258
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:341
+#: ../gnotski/src/games-stock.c:258 ../gtali/src/games-stock.c:258
+msgid "_Restart"
+msgstr "_Recommencer"
+
+#: ../glines/src/games-stock.c:260 ../gnect/src/games-stock.c:260
+#: ../gnibbles/src/games-stock.c:260 ../gnobots2/src/games-stock.c:260
+#: ../gnotski/src/games-stock.c:260 ../gtali/src/games-stock.c:260
+msgid "_Deal"
+msgstr "_Distribuer"
+
+#: ../glines/src/games-stock.c:261 ../gnect/src/games-stock.c:261
+#: ../gnibbles/src/games-stock.c:261 ../gnobots2/src/games-stock.c:261
+#: ../gnomine/src/gnomine.vala:357 ../gnotravex/src/gnotravex.vala:179
+#: ../gnotski/src/games-stock.c:261 ../gtali/src/games-stock.c:261
+#: ../quadrapassel/src/quadrapassel.vala:231
+msgid "_Leave Fullscreen"
+msgstr "_Quitter le plein écran"
+
+#: ../glines/src/games-stock.c:262 ../gnect/src/games-stock.c:262
+#: ../gnibbles/src/games-stock.c:262 ../gnobots2/src/games-stock.c:262
+#: ../gnotski/src/games-stock.c:262 ../gtali/src/games-stock.c:262
+msgid "Network _Game"
+msgstr "_Partie en réseau"
+
+#: ../glines/src/games-stock.c:263 ../gnect/src/games-stock.c:263
+#: ../gnibbles/src/games-stock.c:263 ../gnobots2/src/games-stock.c:263
+#: ../gnotski/src/games-stock.c:263 ../gtali/src/games-stock.c:263
+msgid "L_eave Game"
+msgstr "_Quitter la partie"
+
+#: ../glines/src/games-stock.c:264 ../gnect/src/games-stock.c:264
+#: ../gnibbles/src/games-stock.c:264 ../gnobots2/src/games-stock.c:264
+#: ../gnotski/src/games-stock.c:264 ../gtali/src/games-stock.c:264
+msgid "Player _List"
+msgstr "_Liste des joueurs"
+
+#: ../glines/src/games-stock.c:265 ../gnect/src/games-stock.c:265
+#: ../gnibbles/src/games-stock.c:265 ../gnobots2/src/games-stock.c:265
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:135
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:583
+#: ../gnomine/src/gnomine.vala:110 ../gnomine/src/gnomine.vala:190
+#: ../gnomine/src/gnomine.vala:644 ../gnotravex/data/gnotravex.ui.h:2
+#: ../gnotravex/src/gnotravex.vala:117 ../gnotravex/src/gnotravex.vala:367
+#: ../gnotski/src/games-stock.c:265 ../gtali/src/games-stock.c:265
+#: ../quadrapassel/src/quadrapassel.vala:83
+#: ../quadrapassel/src/quadrapassel.vala:135
+#: ../quadrapassel/src/quadrapassel.vala:680
+msgid "_Pause"
+msgstr "_Pause"
+
+#: ../glines/src/games-stock.c:266 ../gnect/src/games-stock.c:266
+#: ../gnibbles/src/games-stock.c:266 ../gnobots2/src/games-stock.c:266
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:578
+#: ../gnomine/src/gnomine.vala:637 ../gnotravex/src/gnotravex.vala:362
+#: ../gnotski/src/games-stock.c:266 ../gtali/src/games-stock.c:266
+#: ../quadrapassel/src/quadrapassel.vala:675
+msgid "Res_ume"
+msgstr "_Continuer"
+
+#: ../glines/src/games-stock.c:267 ../gnect/src/games-stock.c:267
+#: ../gnibbles/src/games-stock.c:267 ../gnobots2/src/games-stock.c:267
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:85
+#: ../gnomine/src/gnomine.vala:112 ../gnotravex/data/gnotravex.ui.h:9
+#: ../gnotski/src/games-stock.c:267 ../gtali/src/games-stock.c:267
+#: ../gtali/src/gyahtzee.c:756 ../quadrapassel/src/quadrapassel.vala:84
+#: ../swell-foop/src/swell-foop.vala:66
+msgid "_Scores"
+msgstr "_Scores"
+
+#: ../glines/src/games-stock.c:268 ../gnect/src/games-stock.c:268
+#: ../gnibbles/src/games-stock.c:268 ../gnobots2/src/games-stock.c:268
+#: ../gnotski/src/games-stock.c:268 ../gtali/src/games-stock.c:268
+msgid "_End Game"
+msgstr "_Fin du jeu"
+
+#. %s is replaced with the name of the game in gnome-games.
+#: ../glines/src/games-stock.c:317 ../gnect/src/games-stock.c:317
+#: ../gnibbles/src/games-stock.c:317 ../gnobots2/src/games-stock.c:317
+#: ../gnotski/src/games-stock.c:317 ../gtali/src/games-stock.c:317
+#, c-format
+msgid ""
+"%s is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version %d of the License, or (at your option) any later "
+"version."
+msgstr ""
+"%s est un logiciel libre ; vous pouvez le distribuer et/ou le modifier sous "
+"les termes de la Licence Publique Générale GNU telle que publiée par la Free "
+"Software Foundation ; soit la version %d de la licence, ou (à votre "
+"discrétion), toute version suivante."
+
+#: ../glines/src/games-stock.c:322 ../gnect/src/games-stock.c:322
+#: ../gnibbles/src/games-stock.c:322 ../gnobots2/src/games-stock.c:322
+#: ../gnotski/src/games-stock.c:322 ../gtali/src/games-stock.c:322
+#, c-format
+msgid ""
+"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details."
+msgstr ""
+"%s est distribué dans l'espoir qu'il puisse être utile mais SANS AUCUNE "
+"GARANTIE ; sans même une garantie implicite de VALEUR MARCHANDE ou "
+"d'ADÉQUATION À UN BESOIN PARTICULIER. Voir la Licence Publique Générale GNU "
+"pour plus d'informations."
+
+#: ../glines/src/games-stock.c:327 ../gnect/src/games-stock.c:327
+#: ../gnibbles/src/games-stock.c:327 ../gnobots2/src/games-stock.c:327
+#: ../gnotski/src/games-stock.c:327 ../gtali/src/games-stock.c:327
+#, c-format
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"%s; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, "
+"Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
+"Vous devriez avoir reçu une copie de la Licence Publique Générale GNU avec "
+"%s ; si ce n'est pas le cas, écrivez à la Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA."
+
+#: ../glines/src/games-stock.c:331 ../gnect/src/games-stock.c:331
+#: ../gnibbles/src/games-stock.c:331 ../gnobots2/src/games-stock.c:331
+#: ../gnotski/src/games-stock.c:331 ../gtali/src/games-stock.c:331
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"Vous devriez avoir reçu une copie de la Licence Publique Générale GNU avec "
+"ce programme ; si ce n'est pas le cas, consultez <http://www.gnu.org/"
+"licenses/>."
+
+# Correspond à Taille
+#: ../glines/src/glines.c:79 ../gnomine/src/gnomine.vala:69
+msgctxt "board size"
+msgid "Small"
+msgstr "Petite"
+
+#: ../glines/src/glines.c:80 ../gnomine/src/gnomine.vala:70
+msgctxt "board size"
+msgid "Medium"
+msgstr "Moyenne"
+
+#: ../glines/src/glines.c:81 ../gnomine/src/gnomine.vala:71
+msgctxt "board size"
+msgid "Large"
+msgstr "Grande"
+
+#: ../glines/src/glines.c:171
+msgid "Could not load theme"
+msgstr "Impossible de charger le thème"
+
+#: ../glines/src/glines.c:197
+#, c-format
+msgid ""
+"Unable to locate file:\n"
+"%s\n"
+"\n"
+"The default theme will be loaded instead."
+msgstr ""
+"Impossible de localiser le fichier :\n"
+"%s\n"
+"\n"
+"Le thème par défaut sera chargé à sa place."
+
+#: ../glines/src/glines.c:204
+#, c-format
+msgid ""
+"Unable to locate file:\n"
+"%s\n"
+"\n"
+"Please check that Five or More is installed correctly."
+msgstr ""
+"Impossible de trouver le fichier :\n"
+"%s\n"
+"\n"
+"Vérifiez que Cinq ou plus est correctement installé."
+
+#: ../glines/src/glines.c:409
+msgid "Match five objects of the same type in a row to score!"
+msgstr "Alignez cinq boules de même couleur pour marquer des points !"
+
+#: ../glines/src/glines.c:471
+msgid "GNOME Five or More"
+msgstr "GNOME Cinq ou plus"
+
+#: ../glines/src/glines.c:473 ../swell-foop/data/preferences.ui.h:2
+msgid "_Board size:"
+msgstr "_Taille du plateau :"
+
+#: ../glines/src/glines.c:490 ../swell-foop/src/game-view.vala:434
+#, c-format
+msgid "Game Over!"
+msgstr "Fin de la partie !"
+
+#. Can't move there!
+#: ../glines/src/glines.c:647
+msgid "You can't move there!"
+msgstr "Impossible de se déplacer ici."
+
+#: ../glines/src/glines.c:1176
+msgid ""
+"GNOME port of the once-popular Color Lines game.\n"
+"\n"
+"Five or More is a part of GNOME Games."
+msgstr ""
+"Portage GNOME du jeu autrefois célèbre Lignes Colorées.\n"
+"\n"
+"Cinq ou plus fait partie des jeux GNOME."
+
+#: ../glines/src/glines.c:1182 ../gnect/src/main.c:833
+#: ../gnibbles/src/main.c:174 ../gnobots2/src/menu.c:274
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:563
+#: ../gnome-sudoku/src/lib/main.py:669 ../gnomine/src/gnomine.vala:742
+#: ../gnotravex/src/gnotravex.vala:316 ../gnotski/src/gnotski.c:1458
+#: ../gtali/src/gyahtzee.c:616 ../iagno/src/iagno.vala:303
+#: ../lightsoff/src/lightsoff.vala:154
+#: ../quadrapassel/src/quadrapassel.vala:765
+#: ../swell-foop/src/swell-foop.vala:396
+msgid "translator-credits"
+msgstr ""
+"Christophe Merlet <redfox@redfoxcenter.org>\n"
+"Guy Daniel Clotilde <guy.clotilde@wanadoo.fr>\n"
+"Sébastien Bacher <seb128@debian.org>\n"
+"Vincent Carriere <carriere_vincent@yahoo.fr>\n"
+"Christophe Bliard <christophe.bliard@netcourrier.com>\n"
+"Xavier Claessens <x_claessens@skynet.be>\n"
+"Jonathan Ernst <jonathan@ernstfamily.ch>\n"
+"Claude Paroz <claude@2xlibre.net>\n"
+"Stéphane Raimbault <stephane.raimbault@gmail.com>\n"
+"Didier Vidal <didier-devel@melix.net>\n"
+"Pierre Lemaire <pierre.lemaire@kamick.org>"
+
+#: ../gnect/data/gnect.desktop.in.in.h:1
+msgid "Four-in-a-Row"
+msgstr "Puissance 4"
+
+#: ../gnect/data/gnect.desktop.in.in.h:2
+msgid "Make lines of the same color to win"
+msgstr "Réaliser des lignes de la même couleur pour gagner"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:1
+msgid "Level of Player One"
+msgstr "Niveau du Joueur Un"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:2
+msgid ""
+"Zero is human; one through three correspond to the level of the computer "
+"player."
+msgstr ""
+"Zéro correspond au choix humain ; un à trois correspondent au niveau de "
+"l'adversaire électronique."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:3
+msgid "Level of Player Two"
+msgstr "Niveau du deuxième joueur"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:4
+msgid "Theme ID"
+msgstr "ID du thème"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:5
+msgid "A number specifying the preferred theme."
+msgstr "Un numéro spécifiant le thème préféré."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:6
+msgid "Animate"
+msgstr "Animation"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:7
+msgid "Whether or not to use animation."
+msgstr "Indique s'il faut utiliser ou non les animations."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:8
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:1
+msgid "Sound"
+msgstr "Son"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:9
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:2
+msgid "Whether or not to play event sounds."
+msgstr "Indique s'il faut jouer ou non les sons d'événements."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:10 ../gnect/src/prefs.c:316
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:25
+#: ../gnibbles/src/preferences.c:450
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:23
+#: ../quadrapassel/src/quadrapassel.vala:381
+msgid "Move left"
+msgstr "Déplacer à gauche"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:11
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:24
+msgid "Key press to move left."
+msgstr "Touche à appuyer pour déplacer à gauche."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:12 ../gnect/src/prefs.c:317
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:27
+#: ../gnibbles/src/preferences.c:451
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:25
+#: ../quadrapassel/src/quadrapassel.vala:384
+msgid "Move right"
+msgstr "Déplacer à droite"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:13
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:26
+msgid "Key press to move right."
+msgstr "Touche à appuyer pour déplacer à droite."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:14 ../gnect/src/prefs.c:318
+msgid "Drop marble"
+msgstr "Laisser tomber la bille"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:15
+msgid "Key press to drop a marble."
+msgstr "Touche à appuyer pour laisser tomber une bille."
+
+#: ../gnect/src/games-controls.c:288 ../gnibbles/src/games-controls.c:288
+#: ../gnobots2/src/games-controls.c:288
+msgid "Unknown Command"
+msgstr "Commande inconnue"
+
+#: ../gnect/src/gfx.c:248
+#, c-format
+msgid ""
+"Unable to load image:\n"
+"%s"
+msgstr ""
+"Impossible de charger l'image :\n"
+"%s"
+
+#: ../gnect/src/main.c:524
+msgid "It's a draw!"
+msgstr "Match nul !"
+
+#: ../gnect/src/main.c:533 ../gnome-sudoku/src/lib/main.py:391
+msgid "You win!"
+msgstr "Vous avez gagné !"
+
+#: ../gnect/src/main.c:535 ../gnect/src/main.c:554
+msgid "It is your move."
+msgstr "À vous de jouer."
+
+#: ../gnect/src/main.c:538
+msgid "I win!"
+msgstr "J'ai gagné !"
+
+#: ../gnect/src/main.c:540 ../gnect/src/main.c:642
+msgid "Thinking..."
+msgstr "Calculs..."
+
+#: ../gnect/src/main.c:551
+#, c-format
+msgid "%s wins!"
+msgstr "%s a gagné !"
+
+#: ../gnect/src/main.c:558
+#, c-format
+msgid "Waiting for %s to move."
+msgstr "Attend que %s se déplace."
+
+#: ../gnect/src/main.c:659
+#, c-format
+msgid "Hint: Column %d"
+msgstr "Astuce : colonne %d"
+
+#: ../gnect/src/main.c:687 ../gnect/src/main.c:691
+msgid "You:"
+msgstr "Vous :"
+
+#: ../gnect/src/main.c:688 ../gnect/src/main.c:690
+msgid "Me:"
+msgstr "Moi :"
+
+#: ../gnect/src/main.c:780
+msgid "Drawn:"
+msgstr "Nul :"
+
+#: ../gnect/src/main.c:829
+msgid ""
+"\"Four in a Row\" for GNOME, with a computer player driven by Giuliano "
+"Bertoletti's Velena Engine.\n"
+"\n"
+"\"Four in a Row\" is a part of GNOME Games."
+msgstr ""
+"« Puissance 4 » pour GNOME, un jeu construit avec le moteur Velena de "
+"Giuliano Bertoletti pour l'intelligence artificielle.\n"
+"\n"
+"Puissance 4 fait partie des jeux GNOME."
+
+#: ../gnect/src/main.c:1184 ../gnibbles/src/main.c:606
+#: ../gnobots2/src/menu.c:66 ../gnotski/src/gnotski.c:398
+msgid "_View"
+msgstr "_Affichage"
+
+#: ../gnect/src/main.h:5
+msgid "Four-in-a-row"
+msgstr "Puissance 4"
+
+#: ../gnect/src/prefs.c:207
+msgid "Four-in-a-Row Preferences"
+msgstr "Préférences de Puissance 4"
+
+#: ../gnect/src/prefs.c:233
+msgid "Player One:"
+msgstr "Joueur 1 :"
+
+#: ../gnect/src/prefs.c:244 ../gnect/src/prefs.c:272
+#: ../gtali/src/gyahtzee.c:970 ../gtali/src/yahtzee.c:69
+#: ../iagno/src/iagno.vala:493 ../iagno/src/iagno.vala:522
+msgid "Human"
+msgstr "Humain"
+
+#: ../gnect/src/prefs.c:248 ../gnect/src/prefs.c:276
+#: ../iagno/src/iagno.vala:497 ../iagno/src/iagno.vala:526
+msgid "Level one"
+msgstr "Niveau un"
+
+#: ../gnect/src/prefs.c:252 ../gnect/src/prefs.c:280
+#: ../iagno/src/iagno.vala:501 ../iagno/src/iagno.vala:530
+msgid "Level two"
+msgstr "Niveau deux"
+
+#: ../gnect/src/prefs.c:256 ../gnect/src/prefs.c:284
+#: ../iagno/src/iagno.vala:505 ../iagno/src/iagno.vala:534
+msgid "Level three"
+msgstr "Niveau trois"
+
+#: ../gnect/src/prefs.c:262
+msgid "Player Two:"
+msgstr "Joueur 2 :"
+
+#: ../gnect/src/prefs.c:290 ../gnome-mahjongg/src/gnome-mahjongg.vala:387
+#: ../swell-foop/data/preferences.ui.h:5
+msgid "_Theme:"
+msgstr "_Thème :"
+
+#: ../gnect/src/prefs.c:303
+msgid "Enable _animation"
+msgstr "Activer les _animations"
+
+#: ../gnect/src/prefs.c:307 ../gnibbles/src/preferences.c:345
+#: ../iagno/src/iagno.vala:539
+msgid "E_nable sounds"
+msgstr "A_ctiver les sons"
+
+#. keyboard tab
+#: ../gnect/src/prefs.c:312
+msgid "Keyboard Controls"
+msgstr "Commandes au clavier"
+
+#: ../gnect/src/theme.c:41
+msgid "Classic"
+msgstr "Classique"
+
+#: ../gnect/src/theme.c:45 ../gnect/src/theme.c:66 ../gnect/src/theme.c:73
+#: ../gnect/src/theme.c:80 ../gnibbles/src/preferences.c:475
+msgid "Red"
+msgstr "Rouge"
+
+#: ../gnect/src/theme.c:45 ../gnibbles/src/preferences.c:478
+msgid "Yellow"
+msgstr "Jaune"
+
+#: ../gnect/src/theme.c:48
+msgid "High Contrast"
+msgstr "Fort contraste"
+
+#: ../gnect/src/theme.c:52 ../gnect/src/theme.c:59
+msgid "Circle"
+msgstr "Cercle"
+
+#: ../gnect/src/theme.c:52 ../gnect/src/theme.c:59
+msgid "Cross"
+msgstr "Croix"
+
+#: ../gnect/src/theme.c:55
+msgid "High Contrast Inverse"
+msgstr "Fort contraste inversé"
+
+#: ../gnect/src/theme.c:62
+msgid "Cream Marbles"
+msgstr "Crème marbrée"
+
+#: ../gnect/src/theme.c:66 ../gnect/src/theme.c:73 ../gnect/src/theme.c:80
+#: ../gnect/src/theme.c:87 ../gnibbles/src/preferences.c:477
+msgid "Blue"
+msgstr "Bleu"
+
+#: ../gnect/src/theme.c:69
+msgid "Glass Marbles"
+msgstr "Verre marbré"
+
+#: ../gnect/src/theme.c:76
+msgid "Nightfall"
+msgstr "Crépuscule"
+
+#: ../gnect/src/theme.c:83
+msgid "Blocks"
+msgstr "Blocs"
+
+#: ../gnect/src/theme.c:87
+msgid "Orange"
+msgstr "Orange"
+
+#: ../gnibbles/data/gnibbles.desktop.in.in.h:1 ../gnibbles/src/main.c:162
+#: ../gnibbles/src/main.c:165 ../gnibbles/src/main.c:700
+#: ../gnibbles/src/main.c:771 ../gnibbles/src/main.c:902
+msgid "Nibbles"
+msgstr "Nibbles"
+
+#: ../gnibbles/data/gnibbles.desktop.in.in.h:2
+msgid "Guide a worm around a maze"
+msgstr "Guider un ver à travers un labyrinthe"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:1
+msgid "Number of human players"
+msgstr "Nombre de joueurs humains"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:2
+msgid "Number of human players."
+msgstr "Nombre de joueurs humains."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:3
+msgid "Number of AI players"
+msgstr "Nombre de joueurs IA"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:4
+msgid "Number of AI players."
+msgstr "Nombre de joueurs IA."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:5
+msgid "Game speed"
+msgstr "Vitesse du jeu"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:6
+msgid "Game speed (1=fast, 4=slow)."
+msgstr "Vitesse du jeu (1=rapide, 4=lent)."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:7
+msgid "Enable fake bonuses"
+msgstr "Activer les faux bonus"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:8
+msgid "Enable fake bonuses."
+msgstr "Activer les faux bonus."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:9
+msgid "Play levels in random order"
+msgstr "Jouer les niveaux dans un ordre aléatoire"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:10
+msgid "Play levels in random order."
+msgstr "Jouer les niveaux dans un ordre aléatoire."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:11
+msgid "Game level to start on"
+msgstr "Niveau de départ"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:12
+msgid "Game level to start on."
+msgstr "Niveau de départ."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:13
+msgid "Enable sounds"
+msgstr "Activer les sons"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:14
+msgid "Enable sounds."
+msgstr "Activer les sons."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:15
+msgid "Size of game tiles"
+msgstr "Taille des tuiles de jeu"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:16
+msgid "Size of game tiles."
+msgstr "Taille des tuiles de jeu."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:17
+msgid "Color to use for worm"
+msgstr "Couleur à utiliser pour le ver"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:18
+msgid "Color to use for worm."
+msgstr "Couleur à utiliser pour le ver."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:19
+msgid "Use relative movement"
+msgstr "Utiliser des mouvement relatifs"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:20
+msgid "Use relative movement (ie. left or right only)."
+msgstr ""
+"Utiliser des mouvements relatifs (c'est-à-dire droite et gauche seulement)."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:21
+#: ../gnibbles/src/preferences.c:452
+msgid "Move up"
+msgstr "Se déplacer vers le haut"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:22
+msgid "Key to use for motion up."
+msgstr "Touche à utiliser pour se déplacer vers le haut."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:23
+#: ../gnibbles/src/preferences.c:453
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:27
+#: ../quadrapassel/src/quadrapassel.vala:387
+msgid "Move down"
+msgstr "Se déplacer vers le bas"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:24
+msgid "Key to use for motion down."
+msgstr "Touche à utiliser pour se déplacer vers le bas."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:26
+msgid "Key to use for motion left."
+msgstr "Touche à utiliser pour se déplacer à gauche."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:28
+msgid "Key to use for motion right."
+msgstr "Touche à utiliser pour se déplacer à droite."
+
+#: ../gnibbles/src/board.c:245
+#, c-format
+msgid ""
+"Nibbles couldn't load level file:\n"
+"%s\n"
+"\n"
+"Please check your Nibbles installation"
+msgstr ""
+"Nibbles n'a pu charger le fichier de niveau :\n"
+"%s\n"
+"\n"
+"Vérifiez votre installation de Nibbles"
+
+#: ../gnibbles/src/board.c:264
+#, c-format
+msgid ""
+"Level file appears to be damaged:\n"
+"%s\n"
+"\n"
+"Please check your Nibbles installation"
+msgstr ""
+"Le fichier de niveau semble endommagé :\n"
+"%s\n"
+"\n"
+"Vérifiez votre installation de Nibbles"
+
+#: ../gnibbles/src/gnibbles.c:85
+#, c-format
+msgid ""
+"Nibbles couldn't find pixmap file:\n"
+"%s\n"
+"\n"
+"Please check your Nibbles installation"
+msgstr ""
+"Nibbles n'a pu trouver l'image :\n"
+"%s\n"
+"\n"
+"Vérifiez votre installation de Nibbles"
+
+#: ../gnibbles/src/gnibbles.c:356
+msgid "Nibbles Scores"
+msgstr "Scores Nibbles"
+
+#: ../gnibbles/src/gnibbles.c:359
+msgid "Speed:"
+msgstr "Vitesse :"
+
+#: ../gnibbles/src/gnibbles.c:364 ../gnobots2/src/game.c:179
+#: ../gnomine/src/gnomine.vala:470 ../gnotravex/src/gnotravex.vala:244
+#: ../gnotski/src/gnotski.c:773 ../gtali/src/gyahtzee.c:194
+#, c-format
+msgid "Congratulations!"
+msgstr "Félicitations !"
+
+#: ../gnibbles/src/gnibbles.c:365 ../gnobots2/src/game.c:180
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:314
+#: ../gnomine/src/gnomine.vala:470 ../gnotravex/src/gnotravex.vala:244
+#: ../gnotski/src/gnotski.c:774 ../gtali/src/gyahtzee.c:195
+#: ../quadrapassel/src/quadrapassel.vala:699
+msgid "Your score is the best!"
+msgstr "Votre score est le meilleur !"
+
+#: ../gnibbles/src/gnibbles.c:366 ../gnobots2/src/game.c:181
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:316
+#: ../gnomine/src/gnomine.vala:470 ../gnotravex/src/gnotravex.vala:244
+#: ../gnotski/src/gnotski.c:775 ../gtali/src/gyahtzee.c:196
+#: ../quadrapassel/src/quadrapassel.vala:701
+msgid "Your score has made the top ten."
+msgstr "Votre score est entré au top 10."
+
+#: ../gnibbles/src/main.c:66
+msgctxt "game speed"
+msgid "Beginner"
+msgstr "Débutant"
+
+#: ../gnibbles/src/main.c:67
+msgctxt "game speed"
+msgid "Slow"
+msgstr "Lent"
+
+#: ../gnibbles/src/main.c:68
+msgctxt "game speed"
+msgid "Medium"
+msgstr "Intermédiaire"
+
+#: ../gnibbles/src/main.c:69
+msgctxt "game speed"
+msgid "Fast"
+msgstr "Rapide"
+
+# sans doute faudrait-il trouver un terme commun pour ces « feintes » 
+# (cette entrée et les suivantes) et les « faux bonus » 
+# (quelques entrées plus loin) : dans tous les cas, ce sont des « fake ».
+#: ../gnibbles/src/main.c:70
+msgctxt "game speed"
+msgid "Beginner with Fakes"
+msgstr "Débutant avec feintes"
+
+#: ../gnibbles/src/main.c:71
+msgctxt "game speed"
+msgid "Slow with Fakes"
+msgstr "Lent avec feintes"
+
+#: ../gnibbles/src/main.c:72
+msgctxt "game speed"
+msgid "Medium with Fakes"
+msgstr "Intermédiaire avec feintes"
+
+#: ../gnibbles/src/main.c:73
+msgctxt "game speed"
+msgid "Fast with Fakes"
+msgstr "Rapide avec feintes"
+
+#: ../gnibbles/src/main.c:171
+msgid ""
+"A worm game for GNOME.\n"
+"\n"
+"Nibbles is a part of GNOME Games."
+msgstr ""
+"Un jeu de ver pour GNOME.\n"
+"\n"
+"Nibbles fait partie des jeux GNOME."
+
+#: ../gnibbles/src/main.c:492
+#, c-format
+msgid "Game over! The game has been won by %s!"
+msgstr "Partie terminée ! La partie a été gagnée par %s."
+
+#. Translators: This string will be included in the intro screen, so don't make sure it fits!
+#: ../gnibbles/src/main.c:773
+msgid "A worm game for GNOME."
+msgstr "Un jeu de ver pour GNOME."
+
+#: ../gnibbles/src/preferences.c:240
+msgid "Nibbles Preferences"
+msgstr "Préférences de Nibbles"
+
+#. Speed
+#: ../gnibbles/src/preferences.c:269
+msgid "Speed"
+msgstr "Vitesse"
+
+#: ../gnibbles/src/preferences.c:274
+msgid "Nibbles newbie"
+msgstr "Débutant à Nibbles"
+
+#: ../gnibbles/src/preferences.c:284
+msgid "My second day"
+msgstr "Mon deuxième jour"
+
+#: ../gnibbles/src/preferences.c:294
+msgid "Not too shabby"
+msgstr "Pas trop nul"
+
+#: ../gnibbles/src/preferences.c:304
+msgid "Finger-twitching good"
+msgstr "Les doigts dans le nez"
+
+#: ../gnibbles/src/preferences.c:318 ../gnibbles/src/preferences.c:457
+msgid "Options"
+msgstr "Options"
+
+#: ../gnibbles/src/preferences.c:325
+msgid "_Play levels in random order"
+msgstr "J_ouer les niveaux dans un ordre aléatoire"
+
+#: ../gnibbles/src/preferences.c:335
+msgid "_Enable fake bonuses"
+msgstr "_Activer les faux bonus"
+
+#. starting level
+#: ../gnibbles/src/preferences.c:358 ../quadrapassel/src/quadrapassel.vala:337
+msgid "_Starting level:"
+msgstr "Niveau de dé_part :"
+
+#: ../gnibbles/src/preferences.c:387
+msgid "Number of _human players:"
+msgstr "No_mbre de joueurs humains :"
+
+#: ../gnibbles/src/preferences.c:408
+msgid "Number of _AI players:"
+msgstr "Nombre de joueurs _IA :"
+
+#: ../gnibbles/src/preferences.c:433
+msgid "Worm"
+msgstr "Ver"
+
+#: ../gnibbles/src/preferences.c:442
+msgid "Keyboard Options"
+msgstr "Options du clavier"
+
+#: ../gnibbles/src/preferences.c:462
+msgid "_Use relative movement"
+msgstr "_Utiliser des mouvement relatifs"
+
+#: ../gnibbles/src/preferences.c:469
+msgid "_Worm color:"
+msgstr "Couleur du _ver :"
+
+#: ../gnibbles/src/preferences.c:476
+msgid "Green"
+msgstr "Vert"
+
+#: ../gnibbles/src/preferences.c:479
+msgid "Cyan"
+msgstr "Cyan"
+
+#: ../gnibbles/src/preferences.c:480
+msgid "Purple"
+msgstr "Violet"
+
+#: ../gnibbles/src/preferences.c:481
+msgid "Gray"
+msgstr "Gris"
+
+#: ../gnibbles/src/scoreboard.c:48
+#, c-format
+msgid "Worm %d:"
+msgstr "Ver %d :"
+
+#: ../gnobots2/data/gnobots2.desktop.in.in.h:1 ../gnobots2/src/gnobots.c:201
+#: ../gnobots2/src/gnobots.c:214 ../gnobots2/src/menu.c:262
+#: ../gnobots2/src/menu.c:265
+msgid "Robots"
+msgstr "Robots"
+
+#: ../gnobots2/data/gnobots2.desktop.in.in.h:2
+msgid "Avoid the robots and make them crash into each other"
+msgstr "Éviter les robots et faites-les s'écraser les uns sur les autres"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:1
+msgid "Show toolbar"
+msgstr "Afficher la barre d'outils"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:2
+msgid "Show toolbar. A standard option for toolbars."
+msgstr ""
+"Afficher la barre d'outils. Une option standard pour les barres d'outils."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:3
+msgid "Robot image theme"
+msgstr "Thème d'images du jeu de Robots"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:4
+msgid "Robot image theme. The theme of the images to use for the robots."
+msgstr ""
+"Thème d'images du jeu de Robots. Le thème d'images à utiliser pour les "
+"robots."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:7
+msgid "Game type"
+msgstr "Type de jeu"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:8
+msgid "Game type. The name of the game variation to use."
+msgstr "Type de jeu. Le nom de la variante du jeu à utiliser."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:9
+msgid "Use safe moves"
+msgstr "Utiliser des mouvements sans danger"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:10
+msgid ""
+"Use safe moves. The safe moves option will help you to avoid being killed "
+"due to a mistake. If you try to make a move that would lead to your death "
+"when there is a safe move available you will not be allowed to proceed."
+msgstr ""
+"Utiliser des mouvements sans danger. L'option de mouvements sans danger va "
+"vous aider à éviter d'être tué sur une erreur. Si vous essayez de faire un "
+"mouvement qui va entraîner votre mort alors qu'il y a un mouvement sans "
+"danger possible, vous n'allez pas être autorisé à l'effectuer."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:11
+msgid "Use super safe moves"
+msgstr "Utiliser des mouvements *vraiment* sans danger"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:12
+msgid ""
+"Use super safe moves. The player is alerted when there is no safe move and "
+"the only option is to teleport out."
+msgstr ""
+"Utiliser des mouvements *vraiment* sans danger. Le joueur est alerté quand "
+"il n'y a pas de mouvement sans danger et que la seule option est de se "
+"téléporter ailleurs."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:13
+msgid "Enable game sounds"
+msgstr "Activer les sons du jeu"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:14
+msgid "Enable game sounds. Play sounds for various events throughout the game."
+msgstr ""
+"Activer les sons du jeu. Joue des sons pour les différents événements au "
+"cours de la partie."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:15
+#: ../gnobots2/src/properties.c:501
+msgid "Key to move NW"
+msgstr "Touche pour se déplacer vers le nord-ouest"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:16
+msgid "The key used to move north-west."
+msgstr "La touche utilisée pour se déplacer vers le nord-ouest."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:17
+#: ../gnobots2/src/properties.c:502
+msgid "Key to move N"
+msgstr "Touche pour se déplacer vers le nord"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:18
+msgid "The key used to move north."
+msgstr "La touche utilisée pour se déplacer vers le nord."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:19
+#: ../gnobots2/src/properties.c:503
+msgid "Key to move NE"
+msgstr "Touche pour se déplacer vers le nord-est"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:20
+msgid "The key used to move north-east."
+msgstr "La touche utilisée pour se déplacer vers le nord-est."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:21
+#: ../gnobots2/src/properties.c:504
+msgid "Key to move W"
+msgstr "Touche pour se déplacer vers l'ouest"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:22
+msgid "The key used to move west."
+msgstr "La touche utilisée pour se déplacer vers l'ouest."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:23
+#: ../gnobots2/src/properties.c:509
+msgid "Key to hold"
+msgstr "Touche pour arrêter"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:24
+msgid "The key used to hold still."
+msgstr "La touche utilisée pour rester immobile."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:25
+#: ../gnobots2/src/properties.c:505
+msgid "Key to move E"
+msgstr "Touche pour se déplacer vers l'est"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:26
+msgid "The key used to move east."
+msgstr "La touche utilisée pour se déplacer vers l'est."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:27
+#: ../gnobots2/src/properties.c:506
+msgid "Key to move SW"
+msgstr "Touche pour se déplacer vers le sud-ouest"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:28
+msgid "The key used to move south-west."
+msgstr "La touche utilisée pour se déplacer vers le sud-ouest."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:29
+#: ../gnobots2/src/properties.c:507
+msgid "Key to move S"
+msgstr "Touche pour se déplacer vers le sud"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:30
+msgid "The key used to move south."
+msgstr "La touche utilisée pour se déplacer vers le sud."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:31
+#: ../gnobots2/src/properties.c:508
+msgid "Key to move SE"
+msgstr "Touche pour se déplacer vers le sud-est"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:32
+msgid "The key used to move south-east."
+msgstr "La touche utilisée pour se déplacer vers le sud-est."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:33
+#: ../gnobots2/src/properties.c:510
+msgid "Key to teleport"
+msgstr "Touche pour se téléporter"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:34
+msgid "The key used to teleport safely (if possible)."
+msgstr ""
+"La touche utilisée pour se téléporter en toute sécurité (si c'est possible)."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:35
+#: ../gnobots2/src/properties.c:511
+msgid "Key to teleport randomly"
+msgstr "Touche pour se téléporter aléatoirement"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:36
+msgid "The key used to teleport randomly."
+msgstr "La touche utilisée pour se téléporter aléatoirement."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:37
+#: ../gnobots2/src/properties.c:512
+msgid "Key to wait"
+msgstr "Touche pour attendre"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:38
+msgid "The key used to wait."
+msgstr "La touche utilisée pour attendre."
+
+#: ../gnobots2/src/game.c:150 ../gtali/src/gyahtzee.c:212
+msgid "Game over!"
+msgstr "Fin de la partie !"
+
+#: ../gnobots2/src/game.c:152 ../gnomine/src/gnomine.vala:453
+#: ../gnotski/src/gnotski.c:748
+msgid "Great work, but unfortunately your score did not make the top ten."
+msgstr "Bravo mais malheureusement votre score n'est pas rentré au top 10."
+
+#: ../gnobots2/src/game.c:167
+msgid "Robots Scores"
+msgstr "Scores de Robots"
+
+#: ../gnobots2/src/game.c:170
+msgid "Map:"
+msgstr "Carte :"
+
+#: ../gnobots2/src/game.c:409 ../gnobots2/src/game.c:425
+msgid ""
+"Congratulations, You Have Defeated the Robots!! \n"
+"But Can You do it Again?"
+msgstr ""
+"Félicitations, vous avez gagné contre les Robots !\n"
+"Mais pourrez-vous le faire à nouveau ?"
+
+#. This should never happen.
+#: ../gnobots2/src/game.c:1187
+msgid "There are no teleport locations left!!"
+msgstr "Il ne reste plus d'emplacements de téléportation !"
+
+#: ../gnobots2/src/game.c:1215
+msgid "There are no safe locations to teleport to!!"
+msgstr "Il ne reste plus d'emplacements de téléportation sans danger !"
+
+#: ../gnobots2/src/gnobots.c:80
+msgid "Set game scenario"
+msgstr "Sélectionnez un scénario"
+
+#: ../gnobots2/src/gnobots.c:80 ../gnobots2/src/gnobots.c:82
+msgid "NAME"
+msgstr "NOM"
+
+#: ../gnobots2/src/gnobots.c:82
+msgid "Set game configuration"
+msgstr "Définir la configuration du jeu"
+
+#: ../gnobots2/src/gnobots.c:84 ../gnobots2/src/gnobots.c:86
+msgid "Initial window position"
+msgstr "Position initiale de la fenêtre"
+
+#: ../gnobots2/src/gnobots.c:84 ../gnotski/src/gnotski.c:445
+msgid "X"
+msgstr "X"
+
+#: ../gnobots2/src/gnobots.c:86 ../gnotski/src/gnotski.c:447
+msgid "Y"
+msgstr "Y"
+
+#: ../gnobots2/src/gnobots.c:91
+msgid "Classic robots"
+msgstr "Robots classiques"
+
+#: ../gnobots2/src/gnobots.c:92
+msgid "Classic robots with safe moves"
+msgstr "Robots classiques avec mouvements sans danger"
+
+#: ../gnobots2/src/gnobots.c:93
+msgid "Classic robots with super-safe moves"
+msgstr "Robots classiques avec mouvements *vraiment* sans danger"
+
+#: ../gnobots2/src/gnobots.c:94
+msgid "Nightmare"
+msgstr "Cauchemar"
+
+#: ../gnobots2/src/gnobots.c:95
+msgid "Nightmare with safe moves"
+msgstr "Cauchemar avec mouvements sans danger"
+
+#: ../gnobots2/src/gnobots.c:96
+msgid "Nightmare with super-safe moves"
+msgstr "Cauchemar avec mouvements *vraiment* sans danger"
+
+#: ../gnobots2/src/gnobots.c:97
+msgid "Robots2"
+msgstr "Robots2"
+
+#: ../gnobots2/src/gnobots.c:98
+msgid "Robots2 with safe moves"
+msgstr "Robots2 avec mouvements sans danger"
+
+#: ../gnobots2/src/gnobots.c:99
+msgid "Robots2 with super-safe moves"
+msgstr "Robots2 avec mouvements *vraiment* sans danger"
+
+#: ../gnobots2/src/gnobots.c:100
+msgid "Robots2 easy"
+msgstr "Robots2 facile"
+
+#: ../gnobots2/src/gnobots.c:101
+msgid "Robots2 easy with safe moves"
+msgstr "Robots2 facile avec mouvements sans danger"
+
+#: ../gnobots2/src/gnobots.c:102
+msgid "Robots2 easy with super-safe moves"
+msgstr "Robots2 facile avec mouvements *vraiment* sans danger"
+
+#: ../gnobots2/src/gnobots.c:103
+msgid "Robots with safe teleport"
+msgstr "Robots avec téléportation sans danger"
+
+#: ../gnobots2/src/gnobots.c:104
+msgid "Robots with safe teleport with safe moves"
+msgstr "Robots avec téléportation et mouvements sans danger"
+
+#: ../gnobots2/src/gnobots.c:105
+msgid "Robots with safe teleport with super-safe moves"
+msgstr "Robots avec téléportation et mouvements *vraiment* sans danger"
+
+#: ../gnobots2/src/gnobots.c:281
+msgid "No game data could be found."
+msgstr "Aucune donnée de jeu ne peut être trouvée."
+
+#: ../gnobots2/src/gnobots.c:283
+msgid ""
+"The program Robots was unable to find any valid game configuration files. "
+"Please check that the program is installed correctly."
+msgstr ""
+"Le programme Robots n'a pas été capable de trouver un fichier de "
+"configuration de jeu valide. Vérifiez que le programme est correctement "
+"installé."
+
+#: ../gnobots2/src/gnobots.c:299
+msgid "Some graphics files are missing or corrupt."
+msgstr "Certains fichiers graphiques sont manquants ou corrompus."
+
+#: ../gnobots2/src/gnobots.c:301
+msgid ""
+"The program Robots was unable to load all the necessary graphics files. "
+"Please check that the program is installed correctly."
+msgstr ""
+"Le programme Robots n'a pas été capable de charger tout les fichiers "
+"graphiques. Vérifiez que le programme est correctement installé."
+
+#: ../gnobots2/src/graphics.c:152
+#, c-format
+msgid "Could not find '%s' pixmap file\n"
+msgstr "Impossible de trouver l'image « %s »\n"
+
+#: ../gnobots2/src/menu.c:67 ../gnotravex/data/gnotravex.ui.h:4
+msgid "_Move"
+msgstr "_Déplacer"
+
+#: ../gnobots2/src/menu.c:74
+msgid "_Teleport"
+msgstr "_Téléportation"
+
+#: ../gnobots2/src/menu.c:75
+msgid "Teleport, safely if possible"
+msgstr "Se téléporter, sans danger si possible"
+
+#: ../gnobots2/src/menu.c:76
+msgid "_Random"
+msgstr "_Aléatoirement"
+
+#: ../gnobots2/src/menu.c:77
+msgid "Teleport randomly"
+msgstr "Se téléporter aléatoirement"
+
+#: ../gnobots2/src/menu.c:78
+msgid "_Wait"
+msgstr "A_ttente"
+
+#: ../gnobots2/src/menu.c:78
+msgid "Wait for the robots"
+msgstr "Attendre les robots"
+
+#: ../gnobots2/src/menu.c:89
+msgid "_Toolbar"
+msgstr "Barre d'_outils"
+
+#: ../gnobots2/src/menu.c:89
+msgid "Show or hide the toolbar"
+msgstr "Affiche ou masque la barre d'outils"
+
+#: ../gnobots2/src/menu.c:270
+msgid ""
+"Based on classic BSD Robots.\n"
+"\n"
+"Robots is a part of GNOME Games."
+msgstr ""
+"Basé sur les robots BSD classiques.\n"
+"\n"
+"Robots fait partie des jeux GNOME."
+
+#: ../gnobots2/src/properties.c:392
+msgid "Robots Preferences"
+msgstr "Préférences de Robots"
+
+#. --- Combo (yahtzee or kismet style ----
+#: ../gnobots2/src/properties.c:417 ../gtali/src/setup.c:356
+msgid "Game Type"
+msgstr "Type de jeu"
+
+#: ../gnobots2/src/properties.c:426
+msgid "_Use safe moves"
+msgstr "_Utiliser des mouvements sans danger"
+
+#: ../gnobots2/src/properties.c:433
+msgid "Prevent accidental moves that result in getting killed."
+msgstr "Évite les mouvements accidentels qui conduisent à être tué."
+
+#: ../gnobots2/src/properties.c:435
+msgid "U_se super safe moves"
+msgstr "Ut_iliser des mouvements *vraiment* sans danger"
+
+#: ../gnobots2/src/properties.c:442
+msgid "Prevents all moves that result in getting killed."
+msgstr "Évite tous les mouvements qui conduisent à être tué."
+
+#: ../gnobots2/src/properties.c:444 ../quadrapassel/src/quadrapassel.vala:350
+msgid "_Enable sounds"
+msgstr "A_ctiver les sons"
+
+#: ../gnobots2/src/properties.c:450
+msgid "Play sounds for events like winning a level and dying."
+msgstr ""
+"Joue des sons pour les événements tels que la réussite d'un niveau ou la "
+"mort."
+
+#: ../gnobots2/src/properties.c:465
+msgid "_Image theme:"
+msgstr "T_hème d'image :"
+
+#: ../gnobots2/src/properties.c:477
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:441
+msgid "_Background color:"
+msgstr "Co_uleur d'arrière-plan :"
+
+#: ../gnobots2/src/properties.c:521
+msgid "_Restore Defaults"
+msgstr "_Paramètres par défaut"
+
+#: ../gnobots2/src/properties.c:526
+msgid "Keyboard"
+msgstr "Clavier"
+
+#: ../gnobots2/src/statusbar.c:76
+msgid "Safe Teleports:"
+msgstr "Téléportations sans danger :"
+
+#: ../gnobots2/src/statusbar.c:85 ../quadrapassel/src/quadrapassel.vala:192
+msgid "Level:"
+msgstr "Niveau :"
+
+#: ../gnobots2/src/statusbar.c:94
+msgid "Remaining:"
+msgstr "Restant :"
+
+#. ********************************************************************
+#: ../gnome-mahjongg/data/gnome-mahjongg.desktop.in.in.h:1
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:54
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:553
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:764
+msgid "Mahjongg"
+msgstr "Mahjongg"
+
+#: ../gnome-mahjongg/data/gnome-mahjongg.desktop.in.in.h:2
+msgid "Disassemble a pile of tiles by removing matching pairs"
+msgstr "Désassembler une pile de tuiles en enlevant les paires correspondantes"
+
+#.
+#. * Translatable strings file generated by get_titles.pl.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: ../gnome-mahjongg/data/translatable_game_names.h:6
+msgctxt "mahjongg map name"
+msgid "The Ziggurat"
+msgstr "La Ziggurat"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:7
+msgctxt "mahjongg map name"
+msgid "Four Bridges"
+msgstr "Quatre ponts"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:8
+msgctxt "mahjongg map name"
+msgid "Cloud"
+msgstr "Nuage"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:9
+msgctxt "mahjongg map name"
+msgid "Tic-Tac-Toe"
+msgstr "Tic-Tac-Toe"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:10
+msgctxt "mahjongg map name"
+msgid "Red Dragon"
+msgstr "Dragon rouge"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:11
+msgctxt "mahjongg map name"
+msgid "Pyramid's Walls"
+msgstr "Les murs de la pyramide"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:12
+msgctxt "mahjongg map name"
+msgid "Confounding Cross"
+msgstr "Croix de confusion"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:13
+msgctxt "mahjongg map name"
+msgid "Difficult"
+msgstr "Difficile"
+
+#: ../gnome-mahjongg/src/game-view.vala:127
+#: ../gnomine/src/minefield-view.vala:398
+#: ../gnotravex/src/puzzle-view.vala:326
+#: ../quadrapassel/src/game-view.vala:330
+msgid "Paused"
+msgstr "Suspendu"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:66
+msgid "Moves Left:"
+msgstr "Mouvements restants :"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:84
+msgid "_Restart Game"
+msgstr "_Recommencer la partie"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:86
+#: ../gnomine/src/gnomine.vala:113 ../gtali/src/gyahtzee.c:755
+#: ../iagno/data/iagno.ui.h:3 ../quadrapassel/src/quadrapassel.vala:85
+#: ../swell-foop/src/swell-foop.vala:67
+msgid "_Preferences"
+msgstr "_Préférences"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:90
+#: ../gnomine/src/gnomine.vala:117 ../gnotravex/data/gnotravex.ui.h:17
+#: ../gtali/src/gyahtzee.c:760 ../iagno/data/iagno.ui.h:5
+#: ../lightsoff/src/lightsoff.vala:33 ../quadrapassel/src/quadrapassel.vala:89
+#: ../swell-foop/src/swell-foop.vala:71
+msgid "_About"
+msgstr "À _propos"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:93
+#: ../gnomine/src/gnomine.vala:120 ../gnotravex/data/gnotravex.ui.h:18
+#: ../gtali/src/gyahtzee.c:761 ../iagno/data/iagno.ui.h:6
+#: ../lightsoff/src/lightsoff.vala:36 ../quadrapassel/src/quadrapassel.vala:92
+#: ../swell-foop/src/swell-foop.vala:74
+msgid "_Quit"
+msgstr "_Quitter"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:127
+#: ../gnomine/src/gnomine.vala:182
+msgid "Hint"
+msgstr "Astuce"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:259
+msgid "Do you want to start a new game with this map?"
+msgstr "Voulez-vous commencer une nouvelle partie avec cette disposition ?"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:260
+msgid "If you continue playing the next game will use the new map."
+msgstr ""
+"Si vous choisissez de poursuivre cette partie, la prochaine partie utilisera "
+"la nouvelle disposition."
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:261
+msgid "_Continue playing"
+msgstr "_Poursuivre la partie"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:262
+msgid "Use _new map"
+msgstr "Utiliser la _nouvelle disposition"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:309
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:591
+msgid "Mahjongg Scores"
+msgstr "Scores de Mahjongg"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:310
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:592
+msgid "Layout:"
+msgstr "Disposition :"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:311
+#: ../quadrapassel/src/quadrapassel.vala:696
+msgid "Puzzle solved!"
+msgstr "Puzzle résolu !"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:312
+#: ../quadrapassel/src/quadrapassel.vala:697
+msgid "You didn't make the top ten, better luck next time."
+msgstr ""
+"Vous n'êtes pas dans le top 10, vous aurez plus de chance la prochaine fois."
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:338
+msgid "There are no more moves."
+msgstr "Désolé, il n'y a plus de déplacement possible."
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:339
+msgid ""
+"Each puzzle has at least one solution.  You can undo your moves and try and "
+"find the solution for a time penalty, restart this game or start an new one."
+msgstr ""
+"Chaque énigme possède au moins une solution. Vous pouvez annuler vos "
+"mouvements et essayer de trouver la solution avec une pénalité temporelle, "
+"redémarrer ce jeu ou en démarrer un nouveau."
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:342
+msgid "_New game"
+msgstr "_Nouvelle partie"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:370
+msgid "Mahjongg Preferences"
+msgstr "Préférences de Mahjongg"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:415
+msgid "_Layout:"
+msgstr "_Disposition :"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:517
+#: ../gnomine/src/gnomine.vala:698
+msgid "Main game:"
+msgstr "Jeu principal :"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:526
+msgid "Maps:"
+msgstr "Dispositions :"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:534
+msgid "Tiles:"
+msgstr "Tuiles :"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:556
+msgid ""
+"A matching game played with Mahjongg tiles.\n"
+"\n"
+"Mahjongg is a part of GNOME Games."
+msgstr ""
+"Un jeu de correspondances avec des tuiles Mahjongg.\n"
+"\n"
+"Mahjongg fait partie des jeux GNOME."
+
+#. Translators: This is the window title for Mahjongg which contains the map name, e.g. 'Mahjongg - Red Dragon'
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:656
+#, c-format
+msgid "Mahjongg - %s"
+msgstr "Mahjongg - %s"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:669
+#: ../gnomine/src/gnomine.vala:681 ../gnotravex/src/gnotravex.vala:232
+#, c-format
+msgid "Time"
+msgstr "Durée"
+
+#: ../gnome-sudoku/data/gnome-sudoku.desktop.in.in.h:1
+#: ../gnome-sudoku/src/lib/defaults.py:48
+msgid "Sudoku"
+msgstr "Sudoku"
+
+#: ../gnome-sudoku/data/gnome-sudoku.desktop.in.in.h:2
+msgid "Test your logic skills in this number grid puzzle"
+msgstr ""
+"Tester vos aptitudes en logique avec ce casse-tête de nombres en grille"
+
+#: ../gnome-sudoku/data/print_games.ui.h:1
+msgid "Print Sudokus"
+msgstr "Imprimer les Sudokus"
+
+#: ../gnome-sudoku/data/print_games.ui.h:2
+msgid "Print Games"
+msgstr "Imprimer des grilles"
+
+#: ../gnome-sudoku/data/print_games.ui.h:3
+msgid "_Number of sudoku to print: "
+msgstr "_Nombre de sudokus à imprimer : "
+
+#: ../gnome-sudoku/data/print_games.ui.h:4
+msgid "_Sudokus per page: "
+msgstr "_Sudokus par page : "
+
+#: ../gnome-sudoku/data/print_games.ui.h:5
+msgid "Levels of difficulty to print"
+msgstr "Niveaux de difficulté à imprimer"
+
+#: ../gnome-sudoku/data/print_games.ui.h:6
+msgid "_Easy"
+msgstr "_Facile"
+
+#: ../gnome-sudoku/data/print_games.ui.h:8
+msgid "_Hard"
+msgstr "_Difficile"
+
+#: ../gnome-sudoku/data/print_games.ui.h:9
+msgid "_Very Hard"
+msgstr "_Très difficile"
+
+#: ../gnome-sudoku/data/print_games.ui.h:10
+msgid "Details"
+msgstr "Détails"
+
+#: ../gnome-sudoku/data/print_games.ui.h:11
+msgid "_Mark games as played once you've printed them."
+msgstr "_Marquer les grilles comme résolues après impression."
+
+#: ../gnome-sudoku/data/print_games.ui.h:12
+msgid "_Include games you've already played in list of games to print"
+msgstr ""
+"_Inclure des grilles déjà résolues dans la liste des grilles à imprimer"
+
+#: ../gnome-sudoku/data/select_game.ui.h:2
+msgid "_Saved Games"
+msgstr "Parties enregi_strées"
+
+#: ../gnome-sudoku/data/tracker.ui.h:1
+msgid "Add a new tracker"
+msgstr "Ajoute un nouveau marqueur"
+
+#: ../gnome-sudoku/data/tracker.ui.h:2
+msgid "Remove the selected tracker"
+msgstr "Supprime le marqueur sélectionné"
+
+#: ../gnome-sudoku/data/tracker.ui.h:3
+msgid "Make the tracked changes permanent"
+msgstr "Rend permanentes les modifications marquées"
+
+#: ../gnome-sudoku/data/tracker.ui.h:4 ../gnome-sudoku/src/lib/main.py:750
+msgid "H_ide"
+msgstr "_Masquer"
+
+#: ../gnome-sudoku/data/tracker.ui.h:5
+msgid "Hide the tracked values"
+msgstr "Masque les valeurs marquées"
+
+#: ../gnome-sudoku/src/lib/defaults.py:47
+msgid "GNOME Sudoku"
+msgstr "GNOME Sudoku"
+
+#: ../gnome-sudoku/src/lib/defaults.py:50
+msgid ""
+"GNOME Sudoku is a simple Sudoku generator and player. Sudoku is a Japanese "
+"logic puzzle.\n"
+"\n"
+"GNOME Sudoku is a part of GNOME Games."
+msgstr ""
+"GNOME Sudoku est un jeu de Sudoku doté d'un générateur de grilles. Sudoku "
+"est un jeu de logique japonais.\n"
+"\n"
+"GNOME Sudoku fait partie des jeux GNOME."
+
+#: ../gnome-sudoku/src/lib/game_selector.py:121
+#: ../gnome-sudoku/src/lib/main.py:627 ../gnome-sudoku/src/lib/printing.py:185
+msgid "Easy"
+msgstr "Facile"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:122
+#: ../gnome-sudoku/src/lib/main.py:628 ../gnome-sudoku/src/lib/printing.py:186
+msgid "Medium"
+msgstr "Moyenne"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:123
+#: ../gnome-sudoku/src/lib/main.py:629 ../gnome-sudoku/src/lib/printing.py:187
+msgid "Hard"
+msgstr "Difficile"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:124
+#: ../gnome-sudoku/src/lib/printing.py:188
+msgid "Very hard"
+msgstr "Très difficile"
+
+#. Then we're today
+#. within the minute
+#: ../gnome-sudoku/src/lib/game_selector.py:160
+#, python-format
+msgid "Last played %(n)s second ago"
+msgid_plural "Last played %(n)s seconds ago"
+msgstr[0] "Dernière partie jouée il y a %(n)s seconde"
+msgstr[1] "Dernière partie jouée il y a %(n)s secondes"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:164
+#, python-format
+msgid "Last played %(n)s minute ago"
+msgid_plural "Last played %(n)s minutes ago"
+msgstr[0] "Dernière partie jouée il y a %(n)s minute"
+msgstr[1] "Dernière partie jouée il y a %(n)s minutes"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#: ../gnome-sudoku/src/lib/game_selector.py:168
+msgid "Last played at %I:%M %p"
+msgstr "Dernière partie jouée à %H:%M"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#: ../gnome-sudoku/src/lib/game_selector.py:171
+msgid "Last played yesterday at %I:%M %p"
+msgstr "Dernière partie jouée hier à %H:%M"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#: ../gnome-sudoku/src/lib/game_selector.py:174
+msgid "Last played on %A at %I:%M %p"
+msgstr "Dernière partie jouée %A à %H:%M"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#: ../gnome-sudoku/src/lib/game_selector.py:177
+msgid "Last played on %B %e %Y"
+msgstr "Dernière partie jouée le %e %B %Y"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:190
+msgid "Easy puzzle"
+msgstr "Grille facile"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:191
+msgid "Medium puzzle"
+msgstr "Grille moyenne"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:192
+msgid "Hard puzzle"
+msgstr "Grille difficile"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:193
+msgid "Very hard puzzle"
+msgstr "Grille très difficile"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:199
+#, python-format
+msgid "Played for %d hour"
+msgid_plural "Played for %d hours"
+msgstr[0] "Jouée durant %d heure"
+msgstr[1] "Jouée durant %d heures"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:202
+#, python-format
+msgid "Played for %d minute"
+msgid_plural "Played for %d minutes"
+msgstr[0] "Jouée durant %d minute"
+msgstr[1] "Jouée durant %d minutes"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:205
+#, python-format
+msgid "Played for %d second"
+msgid_plural "Played for %d seconds"
+msgstr[0] "Jouée durant %d seconde"
+msgstr[1] "Jouée durant %d secondes"
+
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:162
+msgid "Do you really want to do this?"
+msgstr "Voulez-vous vraiment faire cela ?"
+
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:196
+msgid "Don't ask me this again."
+msgstr "Ne plus poser la question."
+
+#: ../gnome-sudoku/src/lib/main.py:196
+msgid "New game"
+msgstr "Nouvelle grille"
+
+#: ../gnome-sudoku/src/lib/main.py:199 ../iagno/data/iagno.ui.h:2
+msgid "_Undo"
+msgstr "_Annuler"
+
+#: ../gnome-sudoku/src/lib/main.py:200
+msgid "Undo last action"
+msgstr "Annule la dernière action"
+
+#: ../gnome-sudoku/src/lib/main.py:201
+msgid "_Redo"
+msgstr "_Rétablir"
+
+#: ../gnome-sudoku/src/lib/main.py:202
+msgid "Redo last action"
+msgstr "Rétablit la dernière action"
+
+#: ../gnome-sudoku/src/lib/main.py:203
+msgid "Puzzle _Statistics..."
+msgstr "_Statistiques de la grille..."
+
+#: ../gnome-sudoku/src/lib/main.py:205
+msgid "_Print..."
+msgstr "_Imprimer..."
+
+#: ../gnome-sudoku/src/lib/main.py:206
+msgid "Print _Multiple Sudokus..."
+msgstr "Imprimer _plusieurs sudokus..."
+
+#: ../gnome-sudoku/src/lib/main.py:211
+msgid "_Tools"
+msgstr "_Outils"
+
+#: ../gnome-sudoku/src/lib/main.py:213
+msgid "Show a square that is easy to fill."
+msgstr "Montrer une case facile à remplir."
+
+#: ../gnome-sudoku/src/lib/main.py:214
+msgid "Clear _Top Notes"
+msgstr "Effacer les no_tes du haut"
+
+#: ../gnome-sudoku/src/lib/main.py:216
+msgid "Clear _Bottom Notes"
+msgstr "Effacer les notes du _bas"
+
+#: ../gnome-sudoku/src/lib/main.py:225
+msgid "Show _Possible Numbers"
+msgstr "Afficher les nombres _possibles"
+
+#: ../gnome-sudoku/src/lib/main.py:227
+msgid "Always show possible numbers in a square"
+msgstr "Montre toujours les nombres possibles dans une case"
+
+#: ../gnome-sudoku/src/lib/main.py:231
+msgid "Warn About _Unfillable Squares"
+msgstr "Signaler les cases _non remplissables"
+
+#: ../gnome-sudoku/src/lib/main.py:233
+msgid "Warn about squares made unfillable by a move"
+msgstr "Signale les cases qu'un coup rend non remplissables"
+
+#: ../gnome-sudoku/src/lib/main.py:235
+msgid "_Track Additions"
+msgstr "Activer le _suivi des coups"
+
+#: ../gnome-sudoku/src/lib/main.py:237
+msgid "Mark new additions in a separate color so you can keep track of them."
+msgstr ""
+"Marque les nouveaux coups avec une couleur différente afin de pouvoir les "
+"suivre."
+
+#: ../gnome-sudoku/src/lib/main.py:240
+msgid "_Highlighter"
+msgstr "_Surligneur"
+
+#: ../gnome-sudoku/src/lib/main.py:241
+msgid "Highlight the current row, column and box"
+msgstr "Surligne la rangée, colonne et boîte actuelles"
+
+#: ../gnome-sudoku/src/lib/main.py:366
+#, python-format
+msgid "You completed the puzzle in %d second"
+msgid_plural "You completed the puzzle in %d seconds"
+msgstr[0] "Vous avez fini la grille en %d seconde"
+msgstr[1] "Vous avez fini la grille en %d secondes"
+
+#: ../gnome-sudoku/src/lib/main.py:371 ../gnome-sudoku/src/lib/main.py:379
+#, python-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minute"
+msgstr[1] "%d minutes"
+
+#: ../gnome-sudoku/src/lib/main.py:372 ../gnome-sudoku/src/lib/main.py:380
+#, python-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d seconde"
+msgstr[1] "%d secondes"
+
+#: ../gnome-sudoku/src/lib/main.py:373
+#, python-format
+msgid "You completed the puzzle in %(minute)s and %(second)s"
+msgstr "Vous avez fini la grille en %(minute)s et %(second)s"
+
+#: ../gnome-sudoku/src/lib/main.py:378
+#, python-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d heure"
+msgstr[1] "%d heures"
+
+#: ../gnome-sudoku/src/lib/main.py:381
+#, python-format
+msgid "You completed the puzzle in %(hour)s, %(minute)s and %(second)s"
+msgstr "Vous avez fini la grille en %(hour)s, %(minute)s et %(second)s"
+
+#: ../gnome-sudoku/src/lib/main.py:383
+#, python-format
+msgid "You got %(n)s hint."
+msgid_plural "You got %(n)s hints."
+msgstr[0] "Vous avez reçu %(n)s astuce."
+msgstr[1] "Vous avez reçu %(n)s astuces."
+
+#: ../gnome-sudoku/src/lib/main.py:386
+#, python-format
+msgid "You had %(n)s impossibility pointed out."
+msgid_plural "You had %(n)s impossibilities pointed out."
+msgstr[0] "%(n)s impossibilité vous a été montrée."
+msgstr[1] "%(n)s impossibilités vous ont été montrées."
+
+#: ../gnome-sudoku/src/lib/main.py:401
+msgid "Save this game before starting new one?"
+msgstr "Enregistrer cette partie avant d'en commencer une nouvelle ?"
+
+#: ../gnome-sudoku/src/lib/main.py:421
+msgid "Save game before closing?"
+msgstr "Enregistrer le jeu avant de fermer ?"
+
+#: ../gnome-sudoku/src/lib/main.py:619
+msgid "Puzzle Information"
+msgstr "Informations sur la grille"
+
+#: ../gnome-sudoku/src/lib/main.py:620
+msgid "There is no current puzzle."
+msgstr "Pas de grille en cours."
+
+#: ../gnome-sudoku/src/lib/main.py:625
+msgid "Calculated difficulty: "
+msgstr "Niveau de difficulté calculé : "
+
+#: ../gnome-sudoku/src/lib/main.py:630
+msgid "Very Hard"
+msgstr "Très difficile"
+
+#: ../gnome-sudoku/src/lib/main.py:635
+msgid "Number of moves instantly fillable by elimination: "
+msgstr "Nombre de coups possibles immédiatement par élimination : "
+
+#: ../gnome-sudoku/src/lib/main.py:638
+msgid "Number of moves instantly fillable by filling: "
+msgstr "Nombre de coups possibles immédiatement par déduction : "
+
+#: ../gnome-sudoku/src/lib/main.py:641
+msgid "Amount of trial-and-error required to solve: "
+msgstr "Quantité d'essais-erreurs nécessaires à la résolution : "
+
+#: ../gnome-sudoku/src/lib/main.py:644 ../gnome-sudoku/src/lib/main.py:645
+msgid "Puzzle Statistics"
+msgstr "Statistiques de la grille"
+
+#. FIXME: This should create a pop-up dialog
+#: ../gnome-sudoku/src/lib/main.py:679
+#, python-format
+msgid "Unable to display help: %s"
+msgstr "Impossible d'afficher l'aide : %s"
+
+#: ../gnome-sudoku/src/lib/main.py:735
+msgid "Untracked"
+msgstr "Non suivi"
+
+#: ../gnome-sudoku/src/lib/main.py:744
+msgid "_Remove"
+msgstr "_Enlever"
+
+#: ../gnome-sudoku/src/lib/main.py:745
+msgid "Delete selected tracker."
+msgstr "Supprime le marqueur sélectionné."
+
+#: ../gnome-sudoku/src/lib/main.py:751
+msgid "Hide current tracker entries."
+msgstr "Masque les marqueurs actuellement visibles."
+
+#: ../gnome-sudoku/src/lib/main.py:756
+msgid "A_pply"
+msgstr "A_ppliquer"
+
+#: ../gnome-sudoku/src/lib/main.py:757
+msgid "Apply all tracked values and remove the tracker."
+msgstr "Applique tous les coups suivis et supprime le marqueur."
+
+#: ../gnome-sudoku/src/lib/main.py:795
+#, python-format
+msgid "Tracker %s"
+msgstr "Marqueur %s"
+
+#: ../gnome-sudoku/src/lib/number_box.py:68
+msgid "_Clear"
+msgstr "_Effacer"
+
+#: ../gnome-sudoku/src/lib/saver.py:155
+msgid "No Space"
+msgstr "Espace manquant"
+
+#: ../gnome-sudoku/src/lib/saver.py:156
+msgid "No space left on disk"
+msgstr "L'espace disque est saturé"
+
+#: ../gnome-sudoku/src/lib/saver.py:158 ../gnome-sudoku/src/lib/saver.py:165
+#, python-format
+msgid "Unable to create data folder %(path)s."
+msgstr "Impossible de créer le dossier de données %(path)s."
+
+#: ../gnome-sudoku/src/lib/saver.py:159
+msgid "There is no disk space left!"
+msgstr "Il n'y a plus d'espace disque disponible."
+
+#: ../gnome-sudoku/src/lib/saver.py:166 ../gnome-sudoku/src/lib/saver.py:191
+#: ../gnome-sudoku/src/lib/saver.py:215 ../gnome-sudoku/src/lib/saver.py:233
+#, python-format
+msgid "Error %(errno)s: %(error)s"
+msgstr "Erreur %(errno)s : %(error)s"
+
+#: ../gnome-sudoku/src/lib/saver.py:186 ../gnome-sudoku/src/lib/saver.py:187
+msgid "Unable to save game."
+msgstr "Impossible d'enregistrer la partie."
+
+#: ../gnome-sudoku/src/lib/saver.py:189 ../gnome-sudoku/src/lib/saver.py:214
+#: ../gnome-sudoku/src/lib/saver.py:232
+#, python-format
+msgid "Unable to save file %(filename)s."
+msgstr "Impossible d'enregistrer le fichier %(filename)s."
+
+#: ../gnome-sudoku/src/lib/saver.py:211 ../gnome-sudoku/src/lib/saver.py:212
+msgid "Unable to mark game as finished."
+msgstr "Impossible de marquer la grille comme résolue."
+
+#: ../gnome-sudoku/src/lib/saver.py:229 ../gnome-sudoku/src/lib/saver.py:230
+msgid "Sudoku unable to mark game as finished."
+msgstr "Sudoku n'a pas pu marquer la grille comme résolue."
+
+#: ../gnomine/data/gnomine.desktop.in.in.h:1 ../gnomine/src/gnomine.vala:86
+#: ../gnomine/src/gnomine.vala:132 ../gnomine/src/gnomine.vala:732
+msgid "Mines"
+msgstr "Mines"
+
+#: ../gnomine/data/gnomine.desktop.in.in.h:2
+msgid "Clear hidden mines from a minefield"
+msgstr "Nettoyer un champ de mines de ses mines cachées"
+
+#: ../gnomine/data/gnomine.desktop.in.in.h:3
+msgid "minesweeper;"
+msgstr "démineur;"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:1
+msgid "Use the unknown flag"
+msgstr "Utiliser le drapeau inconnu"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:2
+msgid "Set to true to be able to mark squares as unknown."
+msgstr "Définir à vrai pour être capable de marquer les carrés comme inconnus."
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:3
+msgid "Warning about too many flags"
+msgstr "Avertissement lorsqu'il y a trop de drapeaux"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:4
+msgid "Set to true to enable warning icons when too many flags are placed."
+msgstr ""
+"Définir à vrai pour activer l'icône d'avertissement lorsque trop de drapeaux "
+"sont placés."
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:5
+msgid "Enable automatic placing of flags"
+msgstr "Activer le placement automatique des drapeaux"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:6
+msgid ""
+"Set to true to have gnomine automatically flag squares as mined when enough "
+"squares are revealed"
+msgstr ""
+"Définir à vrai pour que GNOME Mines pose automatiquement des drapeaux sur "
+"les cases lorsqu'assez de cases sont révélées."
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:7
+msgid "Number of columns in a custom game"
+msgstr "Nombre de colonnes dans une partie personnalisée"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:8
+msgid "Number of rows in a custom game"
+msgstr "Nombre de lignes dans une partie personnalisée"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:9
+msgid "The number of mines in a custom game"
+msgstr "Le nombre de mines pour une partie personnalisée"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:10
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:3
+msgid "Board size"
+msgstr "Taille du plateau"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:11
+msgid "Size of the board (0-2 = small-large, 3=custom)"
+msgstr "Taille du plateau (0-2 = petit-grand, 3 = personnalisé)"
+
+#: ../gnomine/src/gnomine.vala:72
+msgctxt "board size"
+msgid "Custom"
+msgstr "Personnalisée"
+
+#: ../gnomine/src/gnomine.vala:108
+msgid "_Replay Size"
+msgstr "_Rejouer à cette taille"
+
+#. New game screen
+#: ../gnomine/src/gnomine.vala:231
+msgid "Field Size"
+msgstr "Taille de la grille"
+
+#: ../gnomine/src/gnomine.vala:286
+msgid "H_orizontal:"
+msgstr "H_orizontale :"
+
+#: ../gnomine/src/gnomine.vala:296
+msgid "_Vertical:"
+msgstr "_Verticale :"
+
+#: ../gnomine/src/gnomine.vala:306
+msgid "_Number of mines:"
+msgstr "_Nombre de mines :"
+
+#: ../gnomine/src/gnomine.vala:325
+msgid "_Play Game"
+msgstr "_Démarrer le jeu"
+
+#: ../gnomine/src/gnomine.vala:372
+#, c-format
+msgid "<b>%d</b> mine"
+msgid_plural "<b>%d</b> mines"
+msgstr[0] "<b>%d</b> mine"
+msgstr[1] "<b>%d</b> mines"
+
+#: ../gnomine/src/gnomine.vala:436
+#, c-format
+msgid "Flags: %u/%u"
+msgstr "Drapeaux : %u/%u"
+
+#: ../gnomine/src/gnomine.vala:452
+msgid "The Mines Have Been Cleared!"
+msgstr "Les mines ont été dégagées !"
+
+#: ../gnomine/src/gnomine.vala:464
+msgid "Mines Scores"
+msgstr "Scores de Mines"
+
+#: ../gnomine/src/gnomine.vala:465 ../gnotravex/src/gnotravex.vala:241
+#: ../gnotravex/src/gnotravex.vala:266 ../swell-foop/src/swell-foop.vala:355
+msgid "Size:"
+msgstr "Taille :"
+
+#: ../gnomine/src/gnomine.vala:512
+msgid "Do you want to start a new game?"
+msgstr "Voulez-vous commencer une nouvelle partie ?"
+
+#: ../gnomine/src/gnomine.vala:513
+msgid "If you start a new game, your current progress will be lost."
+msgstr ""
+"Si vous commencez une nouvelle partie, votre avancée actuelle sera perdue."
+
+#: ../gnomine/src/gnomine.vala:514
+msgid "Keep Current Game"
+msgstr "Continuer la partie en cours"
+
+#: ../gnomine/src/gnomine.vala:515
+msgid "Start New Game"
+msgstr "Commencer une nouvelle partie"
+
+#: ../gnomine/src/gnomine.vala:706
+msgid "Resizing and SVG support:"
+msgstr "Redimensionnement et prise en charge de SVG :"
+
+#: ../gnomine/src/gnomine.vala:714
+msgid "Faces:"
+msgstr "Figures :"
+
+#: ../gnomine/src/gnomine.vala:718
+msgid "Graphics:"
+msgstr "Graphismes :"
+
+#: ../gnomine/src/gnomine.vala:735
+msgid ""
+"The popular logic puzzle minesweeper. Clear mines from a board using hints "
+"from squares you have already uncovered.\n"
+"\n"
+"Mines is a part of GNOME Games."
+msgstr ""
+"Le jeu de logique populaire Démineur. Trouvez les mines dans un damier en "
+"utilisant les indications fournies par les cases que vous avez déjà "
+"découvertes.\n"
+"\n"
+"Mines fait partie des jeux GNOME."
+
+#: ../gnomine/src/gnomine.vala:809
+msgid "Mines Preferences"
+msgstr "Préférences de GNOME Mines"
+
+#: ../gnomine/src/gnomine.vala:827
+msgid "_Use \"I'm not sure\" flags"
+msgstr "_Utiliser le drapeau « Je ne suis pas sûr »"
+
+#: ../gnomine/src/gnomine.vala:833
+msgid "_Warn if too many flags have been placed"
+msgstr "_Avertir lorsque trop de drapeaux ont été placés"
+
+#: ../gnotravex/data/gnotravex.desktop.in.in.h:1
+#: ../gnotravex/src/gnotravex.vala:56 ../gnotravex/src/gnotravex.vala:82
+#: ../gnotravex/src/gnotravex.vala:306
+msgid "Tetravex"
+msgstr "Tetravex"
+
+#: ../gnotravex/data/gnotravex.desktop.in.in.h:2
+msgid "Complete the puzzle by matching numbered tiles"
+msgstr "Compléter le puzzle en faisant correspondre les pièces numérotées"
+
+#: ../gnotravex/data/gnotravex.ui.h:3
+msgid "_Solve"
+msgstr "Ré_soudre"
+
+#: ../gnotravex/data/gnotravex.ui.h:5
+msgid "_Up"
+msgstr "_Haut"
+
+#: ../gnotravex/data/gnotravex.ui.h:6
+msgid "_Left"
+msgstr "_Gauche"
+
+#: ../gnotravex/data/gnotravex.ui.h:7
+msgid "_Right"
+msgstr "_Droite"
+
+#: ../gnotravex/data/gnotravex.ui.h:8
+msgid "_Down"
+msgstr "_Bas"
+
+#: ../gnotravex/data/gnotravex.ui.h:10
+msgid "_Size"
+msgstr "_Taille"
+
+#: ../gnotravex/data/gnotravex.ui.h:11
+msgid "_2x2"
+msgstr "_2x2"
+
+#: ../gnotravex/data/gnotravex.ui.h:12
+msgid "_3x3"
+msgstr "_3x3"
+
+#: ../gnotravex/data/gnotravex.ui.h:13
+msgid "_4x4"
+msgstr "_4x4"
+
+#: ../gnotravex/data/gnotravex.ui.h:14
+msgid "_5x5"
+msgstr "_5x5"
+
+#: ../gnotravex/data/gnotravex.ui.h:15
+msgid "_6x6"
+msgstr "_6x6"
+
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:1
+msgid "The size of the playing grid"
+msgstr "La taille de la grille de jeu"
+
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:2
+msgid "The value of this key is used to decide the size of the playing grid."
+msgstr ""
+"La valeur de cette clé est utilisée pour décider de la taille de la grille "
+"de jeu."
+
+#: ../gnotravex/src/gnotravex.vala:14
+msgid "2×2"
+msgstr "2x2"
+
+#: ../gnotravex/src/gnotravex.vala:15
+msgid "3×3"
+msgstr "3x3"
+
+#: ../gnotravex/src/gnotravex.vala:16
+msgid "4×4"
+msgstr "4x4"
+
+#: ../gnotravex/src/gnotravex.vala:17
+msgid "5×5"
+msgstr "5x5"
+
+#: ../gnotravex/src/gnotravex.vala:18
+msgid "6×6"
+msgstr "6x6"
+
+#: ../gnotravex/src/gnotravex.vala:111
+msgid "Solve"
+msgstr "Résoudre"
+
+#: ../gnotravex/src/gnotravex.vala:240 ../gnotravex/src/gnotravex.vala:265
+msgid "Tetravex Scores"
+msgstr "Scores de Tetravex"
+
+#: ../gnotravex/src/gnotravex.vala:309
+msgid ""
+"GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
+"the same numbers are touching each other.\n"
+"\n"
+"Tetravex is a part of GNOME Games."
+msgstr ""
+"GNOME Tetravex est un simple puzzle où les pièces doivent être positionnées "
+"de manière à ce que les mêmes chiffres se touchent.\n"
+"\n"
+"Tetravex fait partie des jeux GNOME."
+
+#: ../gnotski/data/gnotski.desktop.in.in.h:1 ../gnotski/src/gnotski.c:42
+msgid "Klotski"
+msgstr "Klotski"
+
+#: ../gnotski/data/gnotski.desktop.in.in.h:2
+msgid "Slide blocks to solve the puzzle"
+msgstr "Glisser des blocs pour résoudre un puzzle"
+
+#: ../gnotski/data/org.gnome.gnotski.gschema.xml.in.h:1
+msgid "The puzzle in play"
+msgstr "Le puzzle en cours"
+
+#: ../gnotski/data/org.gnome.gnotski.gschema.xml.in.h:2
+msgid "The number of the puzzle being played."
+msgstr "Le nombre de puzzles déjà joués."
+
+#: ../gnotski/src/gnotski.c:93
+msgid "Only 18 steps"
+msgstr "Seulement 18 coups"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:94 ../gnotski/src/gnotski.c:177
+msgid "Daisy"
+msgstr "Daisy"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:95 ../gnotski/src/gnotski.c:183
+msgid "Violet"
+msgstr "Violette"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:96 ../gnotski/src/gnotski.c:189
+msgid "Poppy"
+msgstr "Poppy"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:97 ../gnotski/src/gnotski.c:195
+msgid "Pansy"
+msgstr "Pansy"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:98 ../gnotski/src/gnotski.c:201
+msgid "Snowdrop"
+msgstr "Perce-neige"
+
+#. puzzle name - sometimes called "Le'Ane Rouge"
+#: ../gnotski/src/gnotski.c:99 ../gnotski/src/gnotski.c:207
+msgid "Red Donkey"
+msgstr "Âne rouge"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:100 ../gnotski/src/gnotski.c:213
+msgid "Trail"
+msgstr "Course"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:101 ../gnotski/src/gnotski.c:219
+msgid "Ambush"
+msgstr "Embuscade"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:102 ../gnotski/src/gnotski.c:225
+msgid "Agatka"
+msgstr "Agatka"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:103 ../gnotski/src/gnotski.c:230
+msgid "Success"
+msgstr "Succès"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:104 ../gnotski/src/gnotski.c:235
+msgid "Bone"
+msgstr "Os"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:105 ../gnotski/src/gnotski.c:241
+msgid "Fortune"
+msgstr "Fortune"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:106 ../gnotski/src/gnotski.c:249
+msgid "Fool"
+msgstr "Fou"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:107 ../gnotski/src/gnotski.c:255
+msgid "Solomon"
+msgstr "Salomon"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:108 ../gnotski/src/gnotski.c:262
+msgid "Cleopatra"
+msgstr "Cléopâtre"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:109 ../gnotski/src/gnotski.c:267
+msgid "Shark"
+msgstr "Requin"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:110 ../gnotski/src/gnotski.c:275
+msgid "Rome"
+msgstr "Rome"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:111 ../gnotski/src/gnotski.c:282
+msgid "Pennant Puzzle"
+msgstr "Pennon"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:112 ../gnotski/src/gnotski.c:288
+msgid "Ithaca"
+msgstr "Ithaque"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:113 ../gnotski/src/gnotski.c:309
+msgid "Pelopones"
+msgstr "Peloponnèse"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:114 ../gnotski/src/gnotski.c:316
+msgid "Transeuropa"
+msgstr "Transeuropa"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:115 ../gnotski/src/gnotski.c:325
+msgid "Lodzianka"
+msgstr "Lodzianka"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:116 ../gnotski/src/gnotski.c:331
+msgid "Polonaise"
+msgstr "Polonaise"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:117 ../gnotski/src/gnotski.c:336
+msgid "Baltic Sea"
+msgstr "Mer Baltique"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:118 ../gnotski/src/gnotski.c:341
+msgid "American Pie"
+msgstr "American Pie"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:119 ../gnotski/src/gnotski.c:353
+msgid "Traffic Jam"
+msgstr "Embouteillage"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:120 ../gnotski/src/gnotski.c:360
+msgid "Sunshine"
+msgstr "Rayon de soleil"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:171
+msgid "Only 18 Steps"
+msgstr "Seulement 18 coups"
+
+#. set of puzzles
+#: ../gnotski/src/gnotski.c:401
+msgid "HuaRong Trail"
+msgstr "Course de Huarong"
+
+#. set of puzzles
+#: ../gnotski/src/gnotski.c:403
+msgid "Challenge Pack"
+msgstr "Pack Défi"
+
+#. set of puzzles
+#: ../gnotski/src/gnotski.c:405
+msgid "Skill Pack"
+msgstr "Pack Compétence"
+
+#: ../gnotski/src/gnotski.c:406
+msgid "_Restart Puzzle"
+msgstr "_Recommencer la grille"
+
+#: ../gnotski/src/gnotski.c:408
+msgid "Next Puzzle"
+msgstr "Grille suivante"
+
+#: ../gnotski/src/gnotski.c:410
+msgid "Previous Puzzle"
+msgstr "Grille précédente"
+
+#: ../gnotski/src/gnotski.c:444
+msgid "X location of window"
+msgstr "Position en X de la fenêtre"
+
+#: ../gnotski/src/gnotski.c:446
+msgid "Y location of window"
+msgstr "Position en Y de la fenêtre"
+
+#: ../gnotski/src/gnotski.c:600
+msgid "Level completed."
+msgstr "Niveau terminé."
+
+#: ../gnotski/src/gnotski.c:746
+msgid "The Puzzle Has Been Solved!"
+msgstr "La grille a été résolue !"
+
+#: ../gnotski/src/gnotski.c:763
+msgid "Klotski Scores"
+msgstr "Scores de Klotski"
+
+#: ../gnotski/src/gnotski.c:766
+msgid "Puzzle:"
+msgstr "Grille :"
+
+#: ../gnotski/src/gnotski.c:869
+msgid ""
+"The theme for this game failed to render.\n"
+"\n"
+"Please check that Klotski is installed correctly."
+msgstr ""
+"L'affichage du thème de ce jeu a échoué.\n"
+"\n"
+"Vérifiez que Klotski est correctement installé."
+
+#: ../gnotski/src/gnotski.c:1119
+#, c-format
+msgid ""
+"Could not find the image:\n"
+"%s\n"
+"\n"
+"Please check that Klotski is installed correctly."
+msgstr ""
+"Impossible de trouver le fichier d'images :\n"
+"%s\n"
+"\n"
+"Vérifiez que Klotski est correctement installé."
+
+#: ../gnotski/src/gnotski.c:1158
+#, c-format
+msgid "Moves: %d"
+msgstr "Déplacements : %d"
+
+#: ../gnotski/src/gnotski.c:1450
+msgid ""
+"Sliding Block Puzzles\n"
+"\n"
+"Klotski is a part of GNOME Games."
+msgstr ""
+"Casse-tête de blocs coulissants.\n"
+"\n"
+"Klotski fait partie des jeux GNOME."
+
+#: ../gtali/data/gtali.desktop.in.in.h:1 ../gtali/src/gyahtzee.c:57
+msgid "Tali"
+msgstr "Tali"
+
+#: ../gtali/data/gtali.desktop.in.in.h:2
+msgid "Beat the odds in a poker-style dice game"
+msgstr "Jeter des dés à la manière du poker"
+
+#: ../gtali/data/gtali.desktop.in.in.h:3
+msgid "yahtzee;"
+msgstr "yahtzee;"
+
+#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:1
+msgid "Delay between rolls"
+msgstr "Attendre entre les lancers"
+
+#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:2
+msgid ""
+"Choose whether or not to insert a delay between the computer's dice rolls so "
+"the player can follow what it is doing."
+msgstr ""
+"Choisir si un délai doit être inséré entre les lancés de dé de l'ordinateur, "
+"afin que le joueur puisse suivre ce qu'il fait, ou non."
+
+#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:3
+msgid "Display the computer's thoughts"
+msgstr "Afficher les réflexions de l'ordinateur"
+
+#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:4
+msgid ""
+"If set to true, a dump of the AI's working will be done to standard output."
+msgstr ""
+"Si défini à vrai, une sortie du travail de l'IA sera affichée sur la sortie "
+"standard."
+
+#: ../gtali/src/clist.c:158
+msgid "Already used! Where do you want to put that?"
+msgstr "Déjà utilisé ! Où voulez-vous le mettre ?"
+
+#: ../gtali/src/clist.c:414
+#, c-format
+msgid "Score: %d"
+msgstr "Score : %d"
+
+#: ../gtali/src/clist.c:416
+#, c-format
+msgid "Field used"
+msgstr "Grille utilisée"
+
+#: ../gtali/src/gyahtzee.c:102
+msgid "Delay computer moves"
+msgstr "Retarder les mouvements de l'ordinateur"
+
+#: ../gtali/src/gyahtzee.c:104
+msgid "Display computer thoughts"
+msgstr "Afficher la réflexion de l'ordinateur"
+
+#: ../gtali/src/gyahtzee.c:106
+msgid "Number of computer opponents"
+msgstr "Nombre d'adversaires joués par l'ordinateur"
+
+#: ../gtali/src/gyahtzee.c:106 ../gtali/src/gyahtzee.c:108
+#: ../gtali/src/gyahtzee.c:112 ../gtali/src/gyahtzee.c:114
+msgid "NUMBER"
+msgstr "NOMBRE"
+
+#: ../gtali/src/gyahtzee.c:108
+msgid "Number of human opponents"
+msgstr "Nombre d'adversaires humains"
+
+#: ../gtali/src/gyahtzee.c:110
+msgid "Game choice: Regular or Colors"
+msgstr "Choix du jeu : normal ou couleurs"
+
+#: ../gtali/src/gyahtzee.c:110
+msgid "STRING"
+msgstr "CHAÎNE"
+
+#: ../gtali/src/gyahtzee.c:112
+msgid "Number of computer-only games to play"
+msgstr "Nombre de parties à jouer uniquement par l'ordinateur"
+
+#: ../gtali/src/gyahtzee.c:114
+msgid "Number of trials for each roll for the computer"
+msgstr "Nombre de tentatives pour chaque lancer de l'ordinateur"
+
+#: ../gtali/src/gyahtzee.c:119 ../gtali/src/setup.c:359
+msgctxt "game type"
+msgid "Regular"
+msgstr "Normal"
+
+#: ../gtali/src/gyahtzee.c:120 ../gtali/src/setup.c:360
+msgctxt "game type"
+msgid "Colors"
+msgstr "Couleurs"
+
+#: ../gtali/src/gyahtzee.c:141
+msgid "Roll all!"
+msgstr "Tout relancer !"
+
+#: ../gtali/src/gyahtzee.c:144 ../gtali/src/gyahtzee.c:791
+msgid "Roll!"
+msgstr "Lancer !"
+
+#: ../gtali/src/gyahtzee.c:178
+msgid "The game is a draw!"
+msgstr "La partie est nulle !"
+
+#: ../gtali/src/gyahtzee.c:192 ../gtali/src/gyahtzee.c:629
+msgid "Tali Scores"
+msgstr "Scores Tali"
+
+# , c-format
+#: ../gtali/src/gyahtzee.c:208
+#, c-format
+msgid "%s wins the game with %d point"
+msgid_plural "%s wins the game with %d points"
+msgstr[0] "%s gagne cette partie avec %d point"
+msgstr[1] "%s gagne cette partie avec %d points"
+
+# , c-format
+#: ../gtali/src/gyahtzee.c:256
+#, c-format
+msgid "Computer playing for %s"
+msgstr "L'ordinateur joue pour %s"
+
+# , c-format
+#: ../gtali/src/gyahtzee.c:258
+#, c-format
+msgid "%s! -- You're up."
+msgstr "%s ! -- Vous êtes prêt."
+
+#: ../gtali/src/gyahtzee.c:451
+msgid "Select dice to roll or choose a score slot."
+msgstr "Sélectionnez les dés à relancer ou sélectionnez une combinaison."
+
+#: ../gtali/src/gyahtzee.c:479
+msgid "Roll"
+msgstr "Lancer"
+
+#: ../gtali/src/gyahtzee.c:537
+msgid "You are only allowed three rolls. Choose a score slot."
+msgstr "Vous n'avez droit qu'à trois jets de dés. Choisissez une combinaison."
+
+#: ../gtali/src/gyahtzee.c:587
+msgid "GNOME version (1998):"
+msgstr "Version GNOME (1998) :"
+
+#: ../gtali/src/gyahtzee.c:590
+msgid "Console version (1992):"
+msgstr "Version de la console (1992) :"
+
+#: ../gtali/src/gyahtzee.c:593
+msgid "Colors game and multi-level AI (2006):"
+msgstr "Jeu en couleurs et intelligence artificielle multi-niveaux (2006) :"
+
+#: ../gtali/src/gyahtzee.c:611
+msgid ""
+"A variation on poker with dice and less money.\n"
+"\n"
+"Tali is a part of GNOME Games."
+msgstr ""
+"Un genre de poker avec des dés et moins d'argent.\n"
+"\n"
+"Tali fait partie des jeux GNOME."
+
+#: ../gtali/src/setup.c:122
+msgid "Current game will complete with original number of players."
+msgstr "Le jeu en cours va terminer avec le nombre initial de joueurs."
+
+#: ../gtali/src/setup.c:264
+msgid "Tali Preferences"
+msgstr "Préférences de Tali"
+
+#: ../gtali/src/setup.c:285
+msgid "Human Players"
+msgstr "Joueurs humains"
+
+#: ../gtali/src/setup.c:295
+msgid "_Number of players:"
+msgstr "_Nombre de joueurs :"
+
+#: ../gtali/src/setup.c:309
+msgid "Computer Opponents"
+msgstr "Adversaires informatiques"
+
+#. --- Button ---
+#: ../gtali/src/setup.c:316
+msgid "_Delay between rolls"
+msgstr "_Attente entre les lancers"
+
+#: ../gtali/src/setup.c:326
+msgid "N_umber of opponents:"
+msgstr "N_ombre d'adversaires :"
+
+#: ../gtali/src/setup.c:340
+msgid "_Difficulty:"
+msgstr "_Difficulté :"
+
+#: ../gtali/src/setup.c:344
+msgctxt "difficulty"
+msgid "Medium"
+msgstr "Moyenne"
+
+#. --- PLAYER NAMES FRAME ----
+#: ../gtali/src/setup.c:368
+msgid "Player Names"
+msgstr "Noms des joueurs"
+
+#: ../gtali/src/yahtzee.c:85 ../gtali/src/yahtzee.c:109
+#: ../gtali/src/yahtzee.c:517
+msgid "1s [total of 1s]"
+msgstr "1 [total de 1]"
+
+#: ../gtali/src/yahtzee.c:86 ../gtali/src/yahtzee.c:110
+#: ../gtali/src/yahtzee.c:518
+msgid "2s [total of 2s]"
+msgstr "2 [total de 2]"
+
+#: ../gtali/src/yahtzee.c:87 ../gtali/src/yahtzee.c:111
+#: ../gtali/src/yahtzee.c:519
+msgid "3s [total of 3s]"
+msgstr "3 [total de 3]"
+
+#: ../gtali/src/yahtzee.c:88 ../gtali/src/yahtzee.c:112
+#: ../gtali/src/yahtzee.c:520
+msgid "4s [total of 4s]"
+msgstr "4 [total de 4]"
+
+#: ../gtali/src/yahtzee.c:89 ../gtali/src/yahtzee.c:113
+#: ../gtali/src/yahtzee.c:521
+msgid "5s [total of 5s]"
+msgstr "5 [total de 5]"
+
+#: ../gtali/src/yahtzee.c:90 ../gtali/src/yahtzee.c:114
+#: ../gtali/src/yahtzee.c:522
+msgid "6s [total of 6s]"
+msgstr "6 [total de 6]"
+
+#. End of upper panel
+#: ../gtali/src/yahtzee.c:92 ../gtali/src/yahtzee.c:117
+#: ../gtali/src/yahtzee.c:523
+msgid "3 of a Kind [total]"
+msgstr "Brelan (3 id.) [total]"
+
+#: ../gtali/src/yahtzee.c:93 ../gtali/src/yahtzee.c:524
+msgid "4 of a Kind [total]"
+msgstr "Carré (4 id.) [total]"
+
+#: ../gtali/src/yahtzee.c:94 ../gtali/src/yahtzee.c:525
+msgid "Full House [25]"
+msgstr "Main pleine [25]"
+
+#: ../gtali/src/yahtzee.c:95 ../gtali/src/yahtzee.c:526
+msgid "Small Straight [30]"
+msgstr "Petite suite [30]"
+
+#: ../gtali/src/yahtzee.c:96 ../gtali/src/yahtzee.c:121
+#: ../gtali/src/yahtzee.c:527
+msgid "Large Straight [40]"
+msgstr "Grande suite [40]"
+
+#: ../gtali/src/yahtzee.c:97
+msgid "5 of a Kind [50]"
+msgstr "5 identiques [50]"
+
+#: ../gtali/src/yahtzee.c:98 ../gtali/src/yahtzee.c:124
+#: ../gtali/src/yahtzee.c:529
+msgid "Chance [total]"
+msgstr "Chance [total]"
+
+#. End of lower panel
+#: ../gtali/src/yahtzee.c:100 ../gtali/src/yahtzee.c:126
+msgid "Lower Total"
+msgstr "Petit total"
+
+#: ../gtali/src/yahtzee.c:101 ../gtali/src/yahtzee.c:127
+msgid "Grand Total"
+msgstr "Grand total"
+
+#. Need to squish between upper and lower pannel
+#: ../gtali/src/yahtzee.c:103 ../gtali/src/yahtzee.c:129
+msgid "Upper total"
+msgstr "Total supérieur"
+
+#: ../gtali/src/yahtzee.c:104 ../gtali/src/yahtzee.c:130
+msgid "Bonus if >62"
+msgstr "Bonus si > 62"
+
+#. End of upper panel
+#: ../gtali/src/yahtzee.c:116 ../gtali/src/yahtzee.c:530
+msgid "2 pair Same Color [total]"
+msgstr "2 paires de la même couleur [total]"
+
+#: ../gtali/src/yahtzee.c:118 ../gtali/src/yahtzee.c:531
+msgid "Full House [15 + total]"
+msgstr "Main pleine [15 + total]"
+
+#: ../gtali/src/yahtzee.c:119 ../gtali/src/yahtzee.c:532
+msgid "Full House Same Color [20 + total]"
+msgstr "Main pleine de la même couleur [20 + total]"
+
+#: ../gtali/src/yahtzee.c:120 ../gtali/src/yahtzee.c:533
+msgid "Flush (all same color) [35]"
+msgstr "Couleur [35]"
+
+#: ../gtali/src/yahtzee.c:122 ../gtali/src/yahtzee.c:534
+msgid "4 of a Kind [25 + total]"
+msgstr "Carré [25 + total]"
+
+#: ../gtali/src/yahtzee.c:123 ../gtali/src/yahtzee.c:535
+msgid "5 of a Kind [50 + total]"
+msgstr "5 identiques [50 + total]"
+
+#: ../gtali/src/yahtzee.c:251
+msgid "Choose a score slot."
+msgstr "Choisissez une combinaison."
+
+#: ../gtali/src/yahtzee.c:528
+msgid "5 of a Kind [total]"
+msgstr "5 identiques [total]"
+
+#. Arrgh - lets all use the same tabs under emacs:
+#. Local Variables:
+#. tab-width: 8
+#. c-basic-offset: 8
+#. indent-tabs-mode: nil
+#.
+#: ../iagno/data/iagno.desktop.in.in.h:1 ../iagno/src/iagno.vala:82
+#: ../iagno/src/iagno.vala:295 ../iagno/src/iagno.vala:620
+msgid "Iagno"
+msgstr "Iagno"
+
+#: ../iagno/data/iagno.desktop.in.in.h:2
+msgid "Dominate the board in a classic version of Reversi"
+msgstr "Conquérir le plateau dans une version classique du Reversi"
+
+#: ../iagno/data/iagno.desktop.in.in.h:3
+msgid "othello;"
+msgstr "othello;"
+
+#: ../iagno/src/iagno.vala:137 ../iagno/src/iagno.vala:254
+#: ../iagno/src/iagno.vala:262
+msgid "Dark:"
+msgstr "Foncés :"
+
+#: ../iagno/src/iagno.vala:145 ../iagno/src/iagno.vala:255
+#: ../iagno/src/iagno.vala:263
+msgid "Light:"
+msgstr "Clairs :"
+
+#: ../iagno/src/iagno.vala:246
+msgid "Light must pass, Dark's move"
+msgstr "Les blancs doivent passer leur tour, aux noirs de jouer"
+
+#: ../iagno/src/iagno.vala:248
+msgid "Dark must pass, Light's move"
+msgstr "Les noirs doivent passer leur tour, aux blancs de jouer"
+
+#. Translators: this is a 2 digit representation of the current score.
+#: ../iagno/src/iagno.vala:257 ../iagno/src/iagno.vala:258
+#: ../iagno/src/iagno.vala:265 ../iagno/src/iagno.vala:266
+#, c-format
+msgid "%.2d"
+msgstr "%.2d"
+
+#: ../iagno/src/iagno.vala:300
+msgid ""
+"A disk flipping game derived from Reversi.\n"
+"\n"
+"Iagno is a part of GNOME Games."
+msgstr ""
+"Un jeu de retournement de pions dérivé de Reversi.\n"
+"\n"
+"Iagno fait partie des jeux GNOME."
+
+#: ../iagno/src/iagno.vala:368
+msgid "Light player wins!"
+msgstr "Les blancs ont gagné !"
+
+#: ../iagno/src/iagno.vala:370
+msgid "Dark player wins!"
+msgstr "Les noirs ont gagné !"
+
+#: ../iagno/src/iagno.vala:372
+msgid "The game was a draw."
+msgstr "C'était une partie nulle."
+
+#: ../iagno/src/iagno.vala:396
+msgid "Invalid move."
+msgstr "Coup incorrect."
+
+#: ../iagno/src/iagno.vala:461
+msgid "Iagno Preferences"
+msgstr "Préférences de Iagno"
+
+#: ../iagno/src/iagno.vala:480
+msgid "Dark Player:"
+msgstr "Noirs :"
+
+#: ../iagno/src/iagno.vala:510
+msgid "Light Player:"
+msgstr "Blancs :"
+
+#: ../iagno/src/iagno.vala:544
+msgid "S_how grid"
+msgstr "A_fficher la grille"
+
+#: ../iagno/src/iagno.vala:549
+msgid "_Flip final results"
+msgstr "Re_tourner le résultat final"
+
+#: ../iagno/src/iagno.vala:554
+msgid "_Tile set:"
+msgstr "Je_u de pièces :"
+
+#. Score dialog column header for the score time (e.g. 1 minute)
+#: ../libgames-support/games-scores-dialog.c:136
+msgctxt "score-dialog"
+msgid "Time"
+msgstr "Durée"
+
+#. Score dialog column header for the score value (e.g. 30 moves)
+#: ../libgames-support/games-scores-dialog.c:142
+msgctxt "score-dialog"
+msgid "Score"
+msgstr "Score"
+
+#. Score format for time based scores.  %1$d is the time in minutes, %2$d is the time in seconds
+#: ../libgames-support/games-scores-dialog.c:307
+#, c-format
+msgctxt "score-dialog"
+msgid "%1$dm %2$ds"
+msgstr "%1$d m %2$d s"
+
+#. Score dialog column header for the name of the player who recorded the score
+#: ../libgames-support/games-scores-dialog.c:571
+msgctxt "score-dialog"
+msgid "Name"
+msgstr "Nom"
+
+#. Score dialog column header for the date the score was recorded
+#: ../libgames-support/games-scores-dialog.c:580
+msgid "Date"
+msgstr "Date"
+
+#. FIXME: There is basically no range checking.
+#: ../lightsoff/data/lightsoff.desktop.in.in.h:1
+#: ../lightsoff/src/lightsoff.vala:144 ../lightsoff/src/lightsoff.vala:168
+msgid "Lights Off"
+msgstr "Lights Off"
+
+#: ../lightsoff/data/lightsoff.desktop.in.in.h:2
+msgid "Turn off all the lights"
+msgstr "Éteindre toutes les lumières"
+
+#: ../lightsoff/data/org.gnome.lightsoff.gschema.xml.in.h:1
+msgid "The current level"
+msgstr "Le niveau actuel"
+
+#: ../lightsoff/data/org.gnome.lightsoff.gschema.xml.in.h:2
+msgid "The users's most recent level."
+msgstr "Le niveau le plus récent des utilisateurs."
+
+#: ../lightsoff/src/lightsoff.vala:147
+msgid ""
+"Turn off all the lights\n"
+"\n"
+"Lights Off is a part of GNOME Games."
+msgstr ""
+"Éteignez toutes les lumières\n"
+"\n"
+"Lights Off fait partie des jeux GNOME."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:1
+msgid "Image to use for drawing blocks"
+msgstr "Image à utiliser pour dessiner les blocs"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:2
+msgid "Image to use for drawing blocks."
+msgstr "Image à utiliser pour dessiner les blocs."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:3
+msgid "The theme used for rendering the blocks"
+msgstr "Le thème utilisé pour afficher les blocs"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:4
+msgid "The name of the theme used for rendering the blocks and the background."
+msgstr "Le nom du thème utilisé pour afficher les blocs et l'arrière-plan."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:5
+msgid "Level to start with"
+msgstr "Niveau de départ"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:6
+msgid "Level to start with."
+msgstr "Niveau de départ."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:7
+msgid "Whether to preview the next block"
+msgstr "Prévisualiser ou non le prochain bloc"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:8
+msgid "Whether to preview the next block."
+msgstr "Prévisualiser ou non le prochain bloc."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:9
+msgid "Whether to show where the moving piece will land"
+msgstr "Afficher ou non là où la pièce en mouvement va atterrir"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:10
+msgid "Whether to show where the moving piece will land."
+msgstr "Afficher ou non là où la pièce en mouvement va atterrir."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:11
+msgid "Whether to give blocks random colors"
+msgstr "Couleurs aléatoires des blocs ou non"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:12
+msgid "Whether to give blocks random colors."
+msgstr "Couleurs aléatoires des blocs ou non."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:13
+msgid "Whether to rotate counter clock wise"
+msgstr "Tourner dans le sens inverse des aiguilles d'une montre ou non"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:14
+msgid "Whether to rotate counter clock wise."
+msgstr "Tourner dans le sens inverse des aiguilles d'une montre ou non."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:15
+msgid "The number of rows to fill"
+msgstr "Le nombre de lignes à remplir"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:16
+msgid ""
+"The number of rows that are filled with random blocks at the start of the "
+"game."
+msgstr ""
+"Le nombre de lignes qui sont remplies avec des blocs aléatoires au début du "
+"jeu."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:17
+msgid "The density of filled rows"
+msgstr "La densité de blocs dans les lignes remplies"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:18
+msgid ""
+"The density of blocks in rows filled at the start of the game. The value is "
+"between 0 (for no blocks) and 10 (for a completely filled row)."
+msgstr ""
+"La densité de blocs en lignes remplies au début du jeu. La valeur est entre "
+"0 (pour aucun bloc) et 10 (pour une ligne pleine)."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:19
+msgid "Whether to play sounds"
+msgstr "Indique s'il faut jouer les sons"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:20
+msgid "Whether to play sounds."
+msgstr "Indique s'il faut jouer les sons."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:21
+msgid "Whether to pick blocks that are hard to place"
+msgstr "Indique s'il faut choisir des blocs difficiles à placer"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:22
+msgid "Whether to pick blocks that are hard to place."
+msgstr "Indique s'il faut choisir des blocs difficiles à placer."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:28
+msgid "Key press to move down."
+msgstr "Touche à utiliser pour déplacer en bas."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:29
+#: ../quadrapassel/src/quadrapassel.vala:390
+msgid "Drop"
+msgstr "Lâcher"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:30
+msgid "Key press to drop."
+msgstr "Touche à utiliser pour lâcher."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:31
+#: ../quadrapassel/src/quadrapassel.vala:393
+msgid "Rotate"
+msgstr "Tourner"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:32
+msgid "Key press to rotate."
+msgstr "Touche à utiliser pour tourner."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:33
+#: ../quadrapassel/src/quadrapassel.vala:396
+msgid "Pause"
+msgstr "Pause"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:34
+msgid "Key press to pause."
+msgstr "Touche à utiliser pour mettre en pause."
+
+#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:1
+#: ../quadrapassel/src/quadrapassel.vala:99
+#: ../quadrapassel/src/quadrapassel.vala:757
+#: ../quadrapassel/src/quadrapassel.vala:803
+msgid "Quadrapassel"
+msgstr "Quadrapassel"
+
+#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:2
+msgid "Fit falling blocks together"
+msgstr "Faire correspondre les blocs qui tombent"
+
+#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:3
+msgid "tetris;"
+msgstr "tetris;"
+
+#: ../quadrapassel/src/game-view.vala:332
+msgid "Game Over"
+msgstr "Fin de partie"
+
+#: ../quadrapassel/src/quadrapassel.vala:183
+msgid "Lines:"
+msgstr "Lignes :"
+
+#: ../quadrapassel/src/quadrapassel.vala:290
+msgid "Quadrapassel Preferences"
+msgstr "Préférences de Quadrapassel"
+
+#. pre-filled rows
+#: ../quadrapassel/src/quadrapassel.vala:309
+msgid "_Number of pre-filled rows:"
+msgstr "_Nombre de lignes pré-remplies :"
+
+#. pre-filled rows density
+#: ../quadrapassel/src/quadrapassel.vala:323
+msgid "_Density of blocks in a pre-filled row:"
+msgstr "_Densité de blocs dans les lignes pré-remplies :"
+
+#: ../quadrapassel/src/quadrapassel.vala:355
+msgid "_Preview next block"
+msgstr "_Voir le prochain bloc"
+
+#: ../quadrapassel/src/quadrapassel.vala:360
+msgid "Choose difficult _blocks"
+msgstr "Choisir des _blocs difficiles"
+
+#. rotate counter clock wise
+#: ../quadrapassel/src/quadrapassel.vala:366
+msgid "_Rotate blocks counterclockwise"
+msgstr "_Tourner les blocs dans le sens inverse des aiguilles d'une montre"
+
+#: ../quadrapassel/src/quadrapassel.vala:371
+msgid "Show _where the block will land"
+msgstr "Afficher _où les blocs vont atterrir"
+
+#: ../quadrapassel/src/quadrapassel.vala:415
+msgid "Controls"
+msgstr "Contrôles"
+
+#: ../quadrapassel/src/quadrapassel.vala:421
+msgid "Theme"
+msgstr "Thème"
+
+#: ../quadrapassel/src/quadrapassel.vala:433
+msgid "Plain"
+msgstr "Ordinaire"
+
+#: ../quadrapassel/src/quadrapassel.vala:438
+msgid "Tango Flat"
+msgstr "Tango plat"
+
+#: ../quadrapassel/src/quadrapassel.vala:443
+msgid "Tango Shaded"
+msgstr "Tango ombré"
+
+#: ../quadrapassel/src/quadrapassel.vala:448
+msgid "Clean"
+msgstr "Clean"
+
+#: ../quadrapassel/src/quadrapassel.vala:695
+#: ../quadrapassel/src/quadrapassel.vala:774
+msgid "Quadrapassel Scores"
+msgstr "Scores Quadrapassel"
+
+#: ../quadrapassel/src/quadrapassel.vala:759
+msgid ""
+"A classic game of fitting falling blocks together.\n"
+"\n"
+"Quadrapassel is a part of GNOME Games."
+msgstr ""
+"Un jeu classique de blocs qui tombent et qu'il faut assembler.\n"
+"\n"
+"Quadrapassel fait partie des jeux GNOME."
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:1
+msgid "The theme to use"
+msgstr "Thème à utiliser"
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:2
+msgid "The title of the tile theme to use."
+msgstr "Le titre du thème d'objets à utiliser."
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:4
+msgid "The size of the game board."
+msgstr "La taille du plateau de jeu."
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:5
+msgid "Board color count"
+msgstr "Nombre de couleurs du plateau"
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:6
+msgid "The number of colors of tiles to use in the game."
+msgstr "Le nombre de couleurs d'objets à utiliser dans le jeu."
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:7
+msgid "Zealous animation"
+msgstr "Animation rapide"
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:8
+msgid "Use more flashy, but slower, animations."
+msgstr "Utiliser des animations plus riches, mais plus lentes."
+
+#: ../swell-foop/data/preferences.ui.h:1
+#: ../swell-foop/data/swell-foop.desktop.in.in.h:1
+#: ../swell-foop/src/swell-foop.vala:54 ../swell-foop/src/swell-foop.vala:386
+#: ../swell-foop/src/swell-foop.vala:451
+msgid "Swell Foop"
+msgstr "Swell Foop"
+
+#: ../swell-foop/data/preferences.ui.h:3
+msgid "_Number of colors:"
+msgstr "_Nombre de couleurs :"
+
+#: ../swell-foop/data/preferences.ui.h:4
+msgid "Setup"
+msgstr "Configuration"
+
+#: ../swell-foop/data/preferences.ui.h:7
+msgid "_Zealous Animation"
+msgstr "Animation _rapide"
+
+#: ../swell-foop/data/preferences.ui.h:8
+msgid "Operation"
+msgstr "Opération"
+
+#: ../swell-foop/data/swell-foop.desktop.in.in.h:2
+msgid "Clear the screen by removing groups of colored and shaped tiles"
+msgstr ""
+"Vider l'écran en supprimant des groupes d'objets colorées en forme de tuiles"
+
+#. Label showing the number of points at the end of the game
+#: ../swell-foop/src/game-view.vala:433
+#, c-format
+msgid "%u point"
+msgid_plural "%u points"
+msgstr[0] "%u point"
+msgstr[1] "%u points"
+
+# Correspond à Taille
+#: ../swell-foop/src/swell-foop.vala:121 ../swell-foop/src/swell-foop.vala:150
+msgid "Small"
+msgstr "Petite"
+
+#: ../swell-foop/src/swell-foop.vala:122 ../swell-foop/src/swell-foop.vala:151
+msgid "Normal"
+msgstr "Normal"
+
+#: ../swell-foop/src/swell-foop.vala:123 ../swell-foop/src/swell-foop.vala:152
+msgid "Large"
+msgstr "Grande"
+
+#. I left one more blank space at the end to make the score not too close to the window border
+#: ../swell-foop/src/swell-foop.vala:205
+#, c-format
+msgid "Score: %4u "
+msgstr "Score : %4u "
+
+#: ../swell-foop/src/swell-foop.vala:253
+msgid "Colors"
+msgstr "Couleurs"
+
+#: ../swell-foop/src/swell-foop.vala:257
+msgid "Shapes and Colors"
+msgstr "Formes et couleurs"
+
+#: ../swell-foop/src/swell-foop.vala:354
+msgid "Swell Foop Scores"
+msgstr "Scores de Swell Foop"
+
+#: ../swell-foop/src/swell-foop.vala:389
+msgid ""
+"I want to play that game! You know, they all light-up and you click on them "
+"and they vanish!\n"
+"\n"
+"Swell Foop is a part of GNOME Games."
+msgstr ""
+"Je veux jouer à ce jeu ! Vous savez, elles s'allument toutes, vous cliquez "
+"dessus et elles disparaissent !\n"
+"\n"
+"Swell Foop fait partie des jeux GNOME."
+
+#: ../swell-foop/src/swell-foop.vala:390
+msgid "Copyright © 2009 Tim Horton"
+msgstr "Copyright © 2009 Tim Horton"
+
+#~ msgid "Graphics Theme"
+#~ msgstr "Thème graphique"
+
+#~ msgid "Time: "
+#~ msgstr "Durée : "
+
+#~ msgid "Custom Size"
+#~ msgstr "Taille personnalisée"
+
+#~ msgid "Show a hint"
+#~ msgstr "Affiche une astuce"
+
+#~ msgid "Cancel current game?"
+#~ msgstr "Voulez-vous annuler la partie en cours ?"
+
+#~ msgid "Flags"
+#~ msgstr "Drapeaux"
+
+#~ msgid "Solve the game"
+#~ msgstr "Résolution du puzzle"
+
+#~ msgid "Time:"
+#~ msgstr "Durée :"
+
+#~ msgid "Dark"
+#~ msgstr "Noir"
+
+#~ msgid "Light"
+#~ msgstr "Blanc"
+
+#~ msgid "Tiles"
+#~ msgstr "Tuiles"
+
+#~ msgid "Maps"
+#~ msgstr "Dispositions"
+
+#~ msgid "_Select map:"
+#~ msgstr "_Sélectionner la disposition :"
+
+#~ msgid "Redo the last move"
+#~ msgstr "Rétablit le dernier mouvement"
+
+#~ msgid "Block Style"
+#~ msgstr "Style de blocs"
+
+#~ msgid "Board size:"
+#~ msgstr "Taille du plateau :"
+
+#~ msgid "Theme:"
+#~ msgstr "Thème :"

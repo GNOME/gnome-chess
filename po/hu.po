@@ -1,0 +1,4673 @@
+# Hungarian translation of gnome-games.
+# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-games package.
+#
+# sakk szakkifejezés-ügyi kisokos: http://mek.oszk.hu/00000/00056/html/141.htm
+#
+# Szabolcs Ban <shooby at gnome dot hu>, 1999, 2000, 2001.
+# Gergely Nagy <greg at gnome dot hu>, 2001.
+# Emese Kovacs <emese at gnome dot hu>, 2002.
+# Andras Timar <timar at gnome dot hu>, 2002, 2003.
+# Laszlo Dvornik <dvornik at gnome dot hu>, 2004.
+# Szabolcs Varga <shirokuma at shirokuma dot hu>, 2005.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-games master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-09-04 15:47+0200\n"
+"PO-Revision-Date: 2012-09-04 15:47+0200\n"
+"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#. Title of the main window
+#: ../glchess/data/glchess.desktop.in.in.h:1 ../glchess/src/glchess.vala:234
+msgid "Chess"
+msgstr "Sakk"
+
+#: ../glchess/data/glchess.desktop.in.in.h:2
+msgid "Play the classic two-player boardgame of chess"
+msgstr "A klasszikus kétszemélyes sakk játék"
+
+#. Game menu name
+#: ../glchess/data/glchess.ui.h:2 ../glines/data/glines.ui.h:2
+#: ../gnect/src/main.c:1183 ../gnibbles/src/main.c:605
+#: ../gnobots2/src/menu.c:65 ../gnome-sudoku/src/lib/main.py:195
+#: ../gnotski/src/gnotski.c:397
+msgid "_Game"
+msgstr "_Játék"
+
+#. Undo move menu item
+#: ../glchess/data/glchess.ui.h:4 ../glines/src/games-stock.c:259
+#: ../gnect/src/games-stock.c:259 ../gnibbles/src/games-stock.c:259
+#: ../gnobots2/src/games-stock.c:259
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:111
+#: ../gnotski/src/games-stock.c:259 ../gtali/src/games-stock.c:259
+#: ../gtali/src/gyahtzee.c:754
+msgid "_Undo Move"
+msgstr "Mozgatás _visszavonása"
+
+#. Save menu item
+#: ../glchess/data/glchess.ui.h:6
+msgid "_Resign"
+msgstr "_Feladás"
+
+#. Claim draw menu item
+#: ../glchess/data/glchess.ui.h:8
+msgid "Claim _Draw"
+msgstr "_Remi"
+
+#. Settings menu item
+#: ../glchess/data/glchess.ui.h:10 ../glines/data/glines.ui.h:4
+#: ../gnect/src/main.c:1185 ../gnibbles/src/main.c:607
+#: ../gnobots2/src/menu.c:68 ../gnome-sudoku/src/lib/main.py:209
+msgid "_Settings"
+msgstr "_Beállítások"
+
+#. Help menu item
+#: ../glchess/data/glchess.ui.h:12 ../glines/data/glines.ui.h:5
+#: ../gnect/src/main.c:1186 ../gnibbles/src/main.c:608
+#: ../gnobots2/src/menu.c:69 ../gnome-mahjongg/src/gnome-mahjongg.vala:89
+#: ../gnome-sudoku/src/lib/main.py:218 ../gnomine/src/gnomine.vala:116
+#: ../gnotravex/data/gnotravex.ui.h:16 ../gnotski/src/gnotski.c:399
+#: ../gtali/src/gyahtzee.c:759 ../iagno/data/iagno.ui.h:4
+#: ../lightsoff/src/lightsoff.vala:32 ../quadrapassel/src/quadrapassel.vala:88
+#: ../swell-foop/src/swell-foop.vala:70
+msgid "_Help"
+msgstr "_Súgó"
+
+#. Help contents menu item
+#: ../glchess/data/glchess.ui.h:14 ../glines/data/glines.ui.h:7
+#: ../glines/src/games-stock.c:247 ../gnect/src/games-stock.c:247
+#: ../gnibbles/src/games-stock.c:247 ../gnobots2/src/games-stock.c:247
+#: ../gnome-sudoku/src/lib/main.py:219 ../gnotski/src/games-stock.c:247
+#: ../gtali/src/games-stock.c:247
+msgid "_Contents"
+msgstr "_Tartalom"
+
+#. Tooltip for start new game toolbar button
+#: ../glchess/data/glchess.ui.h:16 ../glines/src/games-stock.c:48
+#: ../gnect/src/games-stock.c:48 ../gnibbles/src/games-stock.c:48
+#: ../gnobots2/src/games-stock.c:48 ../gnobots2/src/menu.c:70
+#: ../gnotski/src/games-stock.c:48 ../gtali/src/games-stock.c:48
+msgid "Start a new game"
+msgstr "Új játék indítása"
+
+#. The New Game toolbar button
+#: ../glchess/data/glchess.ui.h:18
+#: ../libgames-support/games-scores-dialog.c:470
+msgid "New Game"
+msgstr "Új játék"
+
+#. The undo move toolbar button
+#: ../glchess/data/glchess.ui.h:20
+msgid "Undo Move"
+msgstr "Lépés visszavonása"
+
+#. The tooltip for the Resign toolbar button
+#: ../glchess/data/glchess.ui.h:22
+msgid "Resign"
+msgstr "Feladás"
+
+#. Tooltip on the show first move (i.e. game start) navigation button
+#: ../glchess/data/glchess.ui.h:24
+msgid "Rewind to the game start"
+msgstr "Vissza a játék kezdetére"
+
+#. Tooltip on the show previous move navigation button
+#: ../glchess/data/glchess.ui.h:26
+msgid "Show the previous move"
+msgstr "Az előző lépés megjelenítése"
+
+#. Tooltip on the show next move navigation button
+#: ../glchess/data/glchess.ui.h:28
+msgid "Show the next move"
+msgstr "A következő lépés megjelenítése"
+
+#. Tooltip on the show current move navigation button
+#: ../glchess/data/glchess.ui.h:30
+msgid "Show the current move"
+msgstr "A jelenlegi lépés megjelenítése"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:1
+msgid "The width of the window"
+msgstr "Az ablak szélessége"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:2
+msgid "The width of the main window in pixels."
+msgstr "A főablak szélessége képpontokban."
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:3
+msgid "The height of the window"
+msgstr "Az ablak magassága"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:4
+msgid "The height of the main window in pixels."
+msgstr "A főablak magassága képpontokban."
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:5
+msgid "A flag to enable maximized mode"
+msgstr "A teljes méretű mód engedélyezése"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:6
+msgid "A flag to enable fullscreen mode"
+msgstr "Teljes képernyős mód engedélyezése"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:7
+msgid "The piece to promote pawns to"
+msgstr "A gyalogok előléptetése"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:8
+msgid "The piece to promote to when a human player moves a pawn to the far rank"
+msgstr ""
+"Az a bábu, amellyé az emberi játékos gyalogja a legtávolabbi sorba lépésekor "
+"előléptetésre kerül."
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:9
+msgid "A flag to enable 3D mode"
+msgstr "3D mód engedélyezése"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:10
+msgid "A flag to smooth (anti-alias) the 3D display"
+msgstr "A 3D megjelenítést élsimítása"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:11
+msgid "The piece theme to use"
+msgstr "A használandó figuratéma"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:12
+msgid "A flag to enable move hints"
+msgstr "Lépéstippek engedélyezése"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:13
+msgid "A flag to enable board numbering"
+msgstr "A tábla számozásának engedélyezése"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:14
+msgid "A flag to enable the move history browser"
+msgstr "Mozgások előzményeinek böngészése"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:15
+msgid "A flag to enable the toolbar"
+msgstr "Eszköztár engedélyezése"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:16
+msgid "The directory to open the save game dialog in"
+msgstr "A mentés párbeszédablak megnyitása ebben a könyvtárban"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:17
+msgid "The directory to open the load game dialog in"
+msgstr "A megnyitás párbeszédablak megnyitása ebben a könyvtárban"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:18
+msgid "The format to display moves in"
+msgstr "Lépések megjelenítésének formátuma"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:19
+msgid "The side of the board that is in the foreground"
+msgstr "A tábla előtérben lévő oldala"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:20
+msgid "The duration of a game in seconds (0 for no limit)"
+msgstr "A játék hossza másodpercben (0 = nincs időkorlát)"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:21
+msgid "true if the human player is playing white"
+msgstr "Az emberi játékos a világossal van-e?"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:22
+msgid "The opponent player"
+msgstr "Az ellenfél játékos"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:23
+msgid ""
+"Can be 'human' (play against another human player), '' (use the first "
+"available chess engine) or the name of a specific engine to play against"
+msgstr ""
+"Lehetséges értékek: „human” (játék másik ember ellen), „” (az első elérhető "
+"sakkmotor használata), vagy egy adott sakkmotor neve, amely ellen játszani "
+"kíván."
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:24
+msgid "Difficulty of the opponent chess engine"
+msgstr "Az ellenfél sakkmotor nehézsége"
+
+#. Title for preferences dialog
+#: ../glchess/data/preferences.ui.h:2 ../glines/src/glines.c:177
+msgid "Preferences"
+msgstr "Beállítások"
+
+#. Preferences Dialog: Label before player side (white/black) combo box
+#: ../glchess/data/preferences.ui.h:4
+msgid "Play as:"
+msgstr "Játék mint:"
+
+#. Preferences Dialog: Label before opposing player combo box
+#: ../glchess/data/preferences.ui.h:6
+msgid "Opposing Player:"
+msgstr "Ellenfél:"
+
+#. Preferences Dialog: Label before promotion type combo box
+#: ../glchess/data/preferences.ui.h:8
+msgid "Difficulty:"
+msgstr "Nehézség:"
+
+#. New Game Dialog: Label before game timer settings
+#: ../glchess/data/preferences.ui.h:10
+msgid "Game Duration:"
+msgstr "A játék hossza:"
+
+#. Preferences Dialog: Label before promotion type combo box
+#: ../glchess/data/preferences.ui.h:12
+msgid "Promotion Type:"
+msgstr "Előléptetés típusa:"
+
+#. Preferences dialog: Label to notify user that the settings are applied for the next game
+#: ../glchess/data/preferences.ui.h:14
+msgid "Changes will take effect for the next game."
+msgstr "A módosítások a következő játékban lépnek életbe."
+
+#. Preferences Dialog: Tab title for game preferences
+#: ../glchess/data/preferences.ui.h:16 ../gnect/src/prefs.c:230
+#: ../gnibbles/src/preferences.c:253 ../gnobots2/src/properties.c:452
+#: ../quadrapassel/src/quadrapassel.vala:305
+msgid "Game"
+msgstr "Játék"
+
+#. Preferences Dialog: Check box for selecting if 3D view is available
+#: ../glchess/data/preferences.ui.h:18
+msgid "3_D Chess View"
+msgstr "3_D sakknézet"
+
+#. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
+#: ../glchess/data/preferences.ui.h:20
+msgid "_Smooth Display"
+msgstr "_Megjelenítés simítása"
+
+#. Preferences Dialog: Label before piece style combo box
+#: ../glchess/data/preferences.ui.h:22
+msgid "Piece Style:"
+msgstr "Figurastílus:"
+
+#. Preferences Dialog: Check box for selecting if toolbar is visible
+#: ../glchess/data/preferences.ui.h:24 ../gnome-sudoku/src/lib/main.py:239
+msgid "Show _Toolbar"
+msgstr "Es_zköztár megjelenítése"
+
+#. Preferences Dialog: Check box for selecting if history browser is visible
+#: ../glchess/data/preferences.ui.h:26
+msgid "Show _History"
+msgstr "_Előzmények megjelenítése"
+
+#. Preferences Dialog: Check box for selecting if move hints are visible
+#: ../glchess/data/preferences.ui.h:28
+msgid "_Move Hints"
+msgstr "_Lépéstippek"
+
+#. Preferences Dialog: Check box for selecting if board numbering is visible
+#: ../glchess/data/preferences.ui.h:30
+msgid "_Board Numbering"
+msgstr "Tá_blaszámozás"
+
+#. Preferences Dialog: Label before board orientation combo box
+#: ../glchess/data/preferences.ui.h:32
+msgid "Board Orientation:"
+msgstr "Tábla tájolása:"
+
+#. Preferences Dialog: Label before move format combo box
+#: ../glchess/data/preferences.ui.h:34
+msgid "Move Format:"
+msgstr "Lépés formátuma:"
+
+#. Preferences Dialog: Title of appearance options tab
+#: ../glchess/data/preferences.ui.h:36
+msgid "_Appearance"
+msgstr "_Megjelenés"
+
+#. Preferences Dialog: Combo box entry for easy game difficulty
+#: ../glchess/data/preferences.ui.h:38 ../gtali/src/setup.c:343
+msgctxt "difficulty"
+msgid "Easy"
+msgstr "Könnyű"
+
+#. Preferences Dialog: Combo box entry for normal game difficulty
+#: ../glchess/data/preferences.ui.h:40
+msgctxt "difficulty"
+msgid "Normal"
+msgstr "Normál"
+
+#. Preferences Dialog: Combo box entry for hard game difficulty
+#: ../glchess/data/preferences.ui.h:42 ../gtali/src/setup.c:345
+msgctxt "difficulty"
+msgid "Hard"
+msgstr "Nehéz"
+
+#. Preferences Dialog: Combo box entry for human opponent
+#: ../glchess/data/preferences.ui.h:44
+msgctxt "chess-opponent"
+msgid "Human"
+msgstr "Ember"
+
+#. Preferences Dialog: Combo box entry for playing as white
+#: ../glchess/data/preferences.ui.h:46
+msgctxt "chess-player"
+msgid "White"
+msgstr "Világos"
+
+#. Preferences Dialog: Combo box entry for playing as black
+#: ../glchess/data/preferences.ui.h:48
+msgctxt "chess-player"
+msgid "Black"
+msgstr "Sötét"
+
+#. Preferences Dialog: Combo box entry for no game timer
+#: ../glchess/data/preferences.ui.h:50
+msgid "No limit"
+msgstr "Nincs korlátozás"
+
+#. Preferences Dialog: Combo box entry for game timer of one minute
+#: ../glchess/data/preferences.ui.h:52
+msgid "One minute"
+msgstr "Egy perc"
+
+#. Preferences Dialog: Combo box entry for game timer of five minutes
+#: ../glchess/data/preferences.ui.h:54
+msgid "Five minutes"
+msgstr "Öt perc"
+
+#. Preferences Dialog: Combo box entry for game timer of thirty minutes
+#: ../glchess/data/preferences.ui.h:56
+msgid "30 minutes"
+msgstr "30 perc"
+
+#. Preferences Dialog: Combo box entry for game timer of one hour
+#: ../glchess/data/preferences.ui.h:58
+msgid "One hour"
+msgstr "Egy óra"
+
+#. Preferences Dialog: Combo box entry for custom game timer
+#: ../glchess/data/preferences.ui.h:60
+msgid "Custom"
+msgstr "Egyéni"
+
+#. Preferences Dialog: Combo box entry for simple theme
+#: ../glchess/data/preferences.ui.h:62
+msgid "Simple"
+msgstr "Egyszerű"
+
+#. Preferences Dialog: Combo box entry for fancy theme
+#: ../glchess/data/preferences.ui.h:64
+msgid "Fancy"
+msgstr "Szép"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the white side
+#: ../glchess/data/preferences.ui.h:66
+msgctxt "chess-side"
+msgid "White Side"
+msgstr "Világos oldal"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the black side
+#: ../glchess/data/preferences.ui.h:68
+msgctxt "chess-side"
+msgid "Black Side"
+msgstr "Sötét oldal"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
+#: ../glchess/data/preferences.ui.h:70
+msgctxt "chess-side"
+msgid "Human Side"
+msgstr "Emberi oldal"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
+#: ../glchess/data/preferences.ui.h:72
+msgctxt "chess-side"
+msgid "Current Player"
+msgstr "Jelenlegi játékos"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)
+#: ../glchess/data/preferences.ui.h:74
+msgctxt "chess-side"
+msgid "Face to Face"
+msgstr "Szemtől szembe"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
+#: ../glchess/data/preferences.ui.h:76
+msgctxt "chess-move-format"
+msgid "Human"
+msgstr "Emberi"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
+#: ../glchess/data/preferences.ui.h:78
+msgctxt "chess-move-format"
+msgid "Standard Algebraic"
+msgstr "Szabványos algebrai"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
+#: ../glchess/data/preferences.ui.h:80
+msgctxt "chess-move-format"
+msgid "Figurine"
+msgstr "Figura"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
+#: ../glchess/data/preferences.ui.h:82
+msgctxt "chess-move-format"
+msgid "Long Algebraic"
+msgstr "Hosszú algebrai"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a queen
+#: ../glchess/data/preferences.ui.h:84
+msgctxt "chess-piece"
+msgid "Queen"
+msgstr "Vezér"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a knight
+#: ../glchess/data/preferences.ui.h:86
+msgctxt "chess-piece"
+msgid "Knight"
+msgstr "Huszár"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a rook
+#: ../glchess/data/preferences.ui.h:88
+msgctxt "chess-piece"
+msgid "Rook"
+msgstr "Bástya"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a bishop
+#: ../glchess/data/preferences.ui.h:90
+msgctxt "chess-piece"
+msgid "Bishop"
+msgstr "Futó"
+
+#. Title of the window when explicitly loaded a file. The first argument is the
+#. * base name of the file (e.g. test.pgn), the second argument is the directory
+#. * (e.g. /home/fred)
+#: ../glchess/src/glchess.vala:242
+#, c-format
+msgid "%1$s (%2$s) - Chess"
+msgstr "%1$s (%2$s) – Sakk"
+
+#. Move History Combo: Go to the start of the game
+#: ../glchess/src/glchess.vala:251
+msgid "Game Start"
+msgstr "Játék indítása"
+
+#. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
+#. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
+#: ../glchess/src/glchess.vala:481
+#, c-format
+msgid "White pawn moves from %1$s to %2$s"
+msgstr "Világos gyalog lép: %1$s → %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:483
+#, c-format
+msgid "White pawn at %1$s takes the black pawn at %2$s"
+msgstr "Világos gyalog a(z) %1$s mezőn üti a sötét gyalogot a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:485
+#, c-format
+msgid "White pawn at %1$s takes the black rook at %2$s"
+msgstr "Világos gyalog a(z) %1$s mezőn üti a sötét bástyát a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:487
+#, c-format
+msgid "White pawn at %1$s takes the black knight at %2$s"
+msgstr "Világos gyalog a(z) %1$s mezőn üti a sötét huszárt a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:489
+#, c-format
+msgid "White pawn at %1$s takes the black bishop at %2$s"
+msgstr "Világos gyalog a(z) %1$s mezőn üti a sötét futót a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:491
+#, c-format
+msgid "White pawn at %1$s takes the black queen at %2$s"
+msgstr "Világos gyalog a(z) %1$s mezőn üti a sötét vezért a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
+#: ../glchess/src/glchess.vala:493
+#, c-format
+msgid "White rook moves from %1$s to %2$s"
+msgstr "Világos bástya lép: %1$s → %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:495
+#, c-format
+msgid "White rook at %1$s takes the black pawn at %2$s"
+msgstr "Világos bástya a(z) %1$s mezőn üti a sötét gyalogot a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:497
+#, c-format
+msgid "White rook at %1$s takes the black rook at %2$s"
+msgstr "Világos bástya a(z) %1$s mezőn üti a sötét bástyát a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:499
+#, c-format
+msgid "White rook at %1$s takes the black knight at %2$s"
+msgstr "Világos bástya a(z) %1$s mezőn üti a sötét huszárt a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:501
+#, c-format
+msgid "White rook at %1$s takes the black bishop at %2$s"
+msgstr "Világos bástya a(z) %1$s mezőn üti a sötét futót a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
+#: ../glchess/src/glchess.vala:503
+#, c-format
+msgid "White rook at %1$s takes the black queen at %2$s"
+msgstr "Világos bástya a(z) %1$s mezőn üti a sötét vezért a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
+#: ../glchess/src/glchess.vala:505
+#, c-format
+msgid "White knight moves from %1$s to %2$s"
+msgstr "Világos huszár lép: %1$s → %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:507
+#, c-format
+msgid "White knight at %1$s takes the black pawn at %2$s"
+msgstr "Világos huszár a(z) %1$s mezőn üti a sötét gyalogot a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:509
+#, c-format
+msgid "White knight at %1$s takes the black rook at %2$s"
+msgstr "Világos huszár a(z) %1$s mezőn üti a sötét bástyát a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:511
+#, c-format
+msgid "White knight at %1$s takes the black knight at %2$s"
+msgstr "Világos huszár a(z) %1$s mezőn üti a sötét huszárt a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:513
+#, c-format
+msgid "White knight at %1$s takes the black bishop at %2$s"
+msgstr "Világos huszár a(z) %1$s mezőn üti a sötét futót a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:515
+#, c-format
+msgid "White knight at %1$s takes the black queen at %2$s"
+msgstr "Világos huszár a(z) %1$s mezőn üti a sötét vezért a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
+#: ../glchess/src/glchess.vala:517
+#, c-format
+msgid "White bishop moves from %1$s to %2$s"
+msgstr "Világos futó lép: %1$s → %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:519
+#, c-format
+msgid "White bishop at %1$s takes the black pawn at %2$s"
+msgstr "Világos futó a(z) %1$s mezőn üti a sötét gyalogot a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:521
+#, c-format
+msgid "White bishop at %1$s takes the black rook at %2$s"
+msgstr "Világos futó a(z) %1$s mezőn üti a sötét bástyát a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:523
+#, c-format
+msgid "White bishop at %1$s takes the black knight at %2$s"
+msgstr "Világos futó a(z) %1$s mezőn üti a sötét huszárt a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:525
+#, c-format
+msgid "White bishop at %1$s takes the black bishop at %2$s"
+msgstr "Világos futó a(z) %1$s mezőn üti a sötét futót a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:527
+#, c-format
+msgid "White bishop at %1$s takes the black queen at %2$s"
+msgstr "Világos futó a(z) %1$s mezőn üti a sötét vezért a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
+#: ../glchess/src/glchess.vala:529
+#, c-format
+msgid "White queen moves from %1$s to %2$s"
+msgstr "Világos vezér lép: %1$s → %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:531
+#, c-format
+msgid "White queen at %1$s takes the black pawn at %2$s"
+msgstr "Világos vezér a(z) %1$s mezőn üti a sötét gyalogot a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:533
+#, c-format
+msgid "White queen at %1$s takes the black rook at %2$s"
+msgstr "Világos vezér a(z) %1$s mezőn üti a sötét bástyát a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:535
+#, c-format
+msgid "White queen at %1$s takes the black knight at %2$s"
+msgstr "Világos vezér a(z) %1$s mezőn üti a sötét bástyát a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:537
+#, c-format
+msgid "White queen at %1$s takes the black bishop at %2$s"
+msgstr "Világos vezér a(z) %1$s mezőn üti a sötét futót a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:539
+#, c-format
+msgid "White queen at %1$s takes the black queen at %2$s"
+msgstr "Világos vezér a(z) %1$s mezőn üti a sötét vezért a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
+#: ../glchess/src/glchess.vala:541
+#, c-format
+msgid "White king moves from %1$s to %2$s"
+msgstr "Világos király lép: %1$s → %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:543
+#, c-format
+msgid "White king at %1$s takes the black pawn at %2$s"
+msgstr "Világos király a(z) %1$s mezőn üti a sötét gyalogot a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:545
+#, c-format
+msgid "White king at %1$s takes the black rook at %2$s"
+msgstr "Világos király a(z) %1$s mezőn üti a sötét bástyát a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:547
+#, c-format
+msgid "White king at %1$s takes the black knight at %2$s"
+msgstr "Világos király a(z) %1$s mezőn üti a sötét huszárt a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:549
+#, c-format
+msgid "White king at %1$s takes the black bishop at %2$s"
+msgstr "Világos király a(z) %1$s mezőn üti a sötét futót a(z) %2$s mezőn"
+
+#. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:551
+#, c-format
+msgid "White king at %1$s takes the black queen at %2$s"
+msgstr "Világos király a(z) %1$s mezőn üti a sötét vezért a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
+#: ../glchess/src/glchess.vala:553
+#, c-format
+msgid "Black pawn moves from %1$s to %2$s"
+msgstr "Sötét gyalog lép: %1$s → %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:555
+#, c-format
+msgid "Black pawn at %1$s takes the white pawn at %2$s"
+msgstr "Sötét gyalog a(z) %1$s mezőn üti a világos gyalogot a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:557
+#, c-format
+msgid "Black pawn at %1$s takes the white rook at %2$s"
+msgstr "Sötét gyalog a(z) %1$s mezőn üti a világos bástyát a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:559
+#, c-format
+msgid "Black pawn at %1$s takes the white knight at %2$s"
+msgstr "Sötét gyalog a(z) %1$s mezőn üti a világos huszárt a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:561
+#, c-format
+msgid "Black pawn at %1$s takes the white bishop at %2$s"
+msgstr "Sötét gyalog a(z) %1$s mezőn üti a világos futót a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:563
+#, c-format
+msgid "Black pawn at %1$s takes the white queen at %2$s"
+msgstr "Sötét gyalog a(z) %1$s mezőn üti a világos vezért a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
+#: ../glchess/src/glchess.vala:565
+#, c-format
+msgid "Black rook moves from %1$s to %2$s"
+msgstr "Sötét bástya lép: %1$s → %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:567
+#, c-format
+msgid "Black rook at %1$s takes the white pawn at %2$s"
+msgstr "Sötét bástya a(z) %1$s mezőn üti a világos gyalogot a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:569
+#, c-format
+msgid "Black rook at %1$s takes the white rook at %2$s"
+msgstr "Sötét bástya a(z) %1$s mezőn üti a világos bástyát a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:571
+#, c-format
+msgid "Black rook at %1$s takes the white knight at %2$s"
+msgstr "Sötét bástya a(z) %1$s mezőn üti a világos huszárt a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:573
+#, c-format
+msgid "Black rook at %1$s takes the white bishop at %2$s"
+msgstr "Sötét bástya a(z) %1$s mezőn üti a világos futót a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:575
+#, c-format
+msgid "Black rook at %1$s takes the white queen at %2$s"
+msgstr "Sötét bástya a(z) %1$s mezőn üti a világos vezért a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
+#: ../glchess/src/glchess.vala:577
+#, c-format
+msgid "Black knight moves from %1$s to %2$s"
+msgstr "Sötét huszár lép: %1$s → %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:579
+#, c-format
+msgid "Black knight at %1$s takes the white pawn at %2$s"
+msgstr "Sötét huszár a(z) %1$s mezőn üti a világos gyalogot a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:581
+#, c-format
+msgid "Black knight at %1$s takes the white rook at %2$s"
+msgstr "Sötét huszár a(z) %1$s mezőn üti a világos bástyát a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:583
+#, c-format
+msgid "Black knight at %1$s takes the white knight at %2$s"
+msgstr "Sötét huszár a(z) %1$s mezőn üti a világos huszárt a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:585
+#, c-format
+msgid "Black knight at %1$s takes the white bishop at %2$s"
+msgstr "Sötét huszár a(z) %1$s mezőn üti a világos futót a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:587
+#, c-format
+msgid "Black knight at %1$s takes the white queen at %2$s"
+msgstr "Sötét huszár a(z) %1$s mezőn üti a világos vezért a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
+#: ../glchess/src/glchess.vala:589
+#, c-format
+msgid "Black bishop moves from %1$s to %2$s"
+msgstr "Sötét futó lép: %1$s → %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:591
+#, c-format
+msgid "Black bishop at %1$s takes the white pawn at %2$s"
+msgstr "Sötét futó a(z) %1$s mezőn üti a világos gyalogot a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:593
+#, c-format
+msgid "Black bishop at %1$s takes the white rook at %2$s"
+msgstr "Sötét futó a(z) %1$s mezőn üti a világos bástyát a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:595
+#, c-format
+msgid "Black bishop at %1$s takes the white knight at %2$s"
+msgstr "Sötét futó a(z) %1$s mezőn üti a világos huszárt a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:597
+#, c-format
+msgid "Black bishop at %1$s takes the white bishop at %2$s"
+msgstr "Sötét futó a(z) %1$s mezőn üti a világos futót a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:599
+#, c-format
+msgid "Black bishop at %1$s takes the white queen at %2$s"
+msgstr "Sötét futó a(z) %1$s mezőn üti a világos vezért a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
+#: ../glchess/src/glchess.vala:601
+#, c-format
+msgid "Black queen moves from %1$s to %2$s"
+msgstr "Sötét vezér lép: %1$s → %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:603
+#, c-format
+msgid "Black queen at %1$s takes the white pawn at %2$s"
+msgstr "Sötét vezér a(z) %1$s mezőn üti a világos gyalogot a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:605
+#, c-format
+msgid "Black queen at %1$s takes the white rook at %2$s"
+msgstr "Sötét vezér a(z) %1$s mezőn üti a világos bástyát a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:607
+#, c-format
+msgid "Black queen at %1$s takes the white knight at %2$s"
+msgstr "Sötét vezér a(z) %1$s mezőn üti a világos huszárt a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:609
+#, c-format
+msgid "Black queen at %1$s takes the white bishop at %2$s"
+msgstr "Sötét vezér a(z) %1$s mezőn üti a világos futót a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:611
+#, c-format
+msgid "Black queen at %1$s takes the white queen at %2$s"
+msgstr "Sötét vezér a(z) %1$s mezőn üti a világos vezért a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
+#: ../glchess/src/glchess.vala:613
+#, c-format
+msgid "Black king moves from %1$s to %2$s"
+msgstr "Sötét király lép: %1$s → %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:615
+#, c-format
+msgid "Black king at %1$s takes the white pawn at %2$s"
+msgstr "Sötét király a(z) %1$s mezőn üti a világos gyalogot a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:617
+#, c-format
+msgid "Black king at %1$s takes the white rook at %2$s"
+msgstr "Sötét király a(z) %1$s mezőn üti a világos bástyát a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:619
+#, c-format
+msgid "Black king at %1$s takes the white knight at %2$s"
+msgstr "Sötét király a(z) %1$s mezőn üti a világos huszárt a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:621
+#, c-format
+msgid "Black king at %1$s takes the white bishop at %2$s"
+msgstr "Sötét király a(z) %1$s mezőn üti a világos futót a(z) %2$s mezőn"
+
+#. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
+#: ../glchess/src/glchess.vala:623
+#, c-format
+msgid "Black king at %1$s takes the white queen at %2$s"
+msgstr "Sötét király a(z) %1$s mezőn üti a világos vezért a(z) %2$s mezőn"
+
+#. Message display when the white player wins
+#: ../glchess/src/glchess.vala:743
+msgid "White wins"
+msgstr "A világos nyert"
+
+#. Message display when the black player wins
+#: ../glchess/src/glchess.vala:748
+msgid "Black wins"
+msgstr "A sötét nyert"
+
+#. Message display when the game is drawn
+#: ../glchess/src/glchess.vala:753
+msgid "Game is drawn"
+msgstr "Az eredmény döntetlen"
+
+#. Message displayed when the game ends due to a player being checkmated
+#: ../glchess/src/glchess.vala:765
+msgid "Opponent is in check and cannot move (checkmate)"
+msgstr "Az ellenfél sakkban van, és nem léphet (sakk-matt)"
+
+#. Message displayed when the game terminates due to a stalemate
+#: ../glchess/src/glchess.vala:769
+msgid "Opponent cannot move (stalemate)"
+msgstr "Az ellenfél nem léphet (patt)"
+
+#. Message displayed when the game is drawn due to the fifty move rule
+#: ../glchess/src/glchess.vala:773
+msgid "No piece has been taken or pawn moved in the last fifty moves"
+msgstr "Az utolsó ötven lépésben nem történt ütés, vagy gyaloggal lépés"
+
+#. Message displayed when the game ends due to one player's clock stopping
+#: ../glchess/src/glchess.vala:777
+msgid "Opponent has run out of time"
+msgstr "Az ellenfél ideje elfogyott"
+
+#. Message displayed when the game is drawn due to the three-fold-repitition rule
+#: ../glchess/src/glchess.vala:781
+msgid "The same board state has occurred three times (three fold repetition)"
+msgstr "Ugyanaz a táblaállapot háromszor előfordult (háromszoros ismétlés)"
+
+#. Message displayed when the game is drawn due to the insufficient material rule
+#: ../glchess/src/glchess.vala:785
+msgid "Neither player can cause checkmate (insufficient material)"
+msgstr "Egyik játékos sem tud mattot adni (nincs elég figura)"
+
+#. Message displayed when the game ends due to the black player resigning
+#: ../glchess/src/glchess.vala:791
+msgid "The black player has resigned"
+msgstr "A sötét játékos feladta"
+
+#. Message displayed when the game ends due to the white player resigning
+#: ../glchess/src/glchess.vala:796
+msgid "The white player has resigned"
+msgstr "A világos játékos feladta"
+
+#. Message displayed when a game is abandoned
+#: ../glchess/src/glchess.vala:801
+msgid "The game has been abandoned"
+msgstr "A játékot félbehagyták"
+
+#. Message displayed when the game ends due to a player dying
+#: ../glchess/src/glchess.vala:806
+msgid "One of the players has died"
+msgstr "Az egyik játékos meghalt"
+
+#: ../glchess/src/glchess.vala:871
+msgid "Save this game before starting a new one?"
+msgstr "Menti a játékot egy új elkezdése előtt?"
+
+#: ../glchess/src/glchess.vala:873 ../gnome-sudoku/src/lib/main.py:403
+msgid "_Abandon game"
+msgstr "_Játék elhagyása"
+
+#: ../glchess/src/glchess.vala:874 ../gnome-sudoku/src/lib/main.py:402
+msgid "_Save game for later"
+msgstr "A játék _mentése"
+
+#. Preferences Dialog: Combo box entry for a custom game timer set in seconds
+#: ../glchess/src/glchess.vala:1265
+msgid "second"
+msgid_plural "seconds"
+msgstr[0] "másodperc"
+msgstr[1] "másodperc"
+
+#. Preferences Dialog: Combo box entry for a custom game timer set in minutes
+#: ../glchess/src/glchess.vala:1269
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] "perc"
+msgstr[1] "perc"
+
+#. Preferences Dialog: Combo box entry for a custom game timer set in hours
+#: ../glchess/src/glchess.vala:1273
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "óra"
+msgstr[1] "óra"
+
+#: ../glchess/src/glchess.vala:1394
+msgid ""
+"The 2D/3D chess game for GNOME. \n"
+"\n"
+"glChess is a part of GNOME Games."
+msgstr ""
+"2D/3D sakkjáték a GNOME-hoz.\n"
+"\n"
+"A glChess a GNOME játékok része."
+
+#: ../glchess/src/glchess.vala:1399 ../glines/src/glines.c:1185
+#: ../gnect/src/main.c:830 ../gnibbles/src/main.c:177
+#: ../gnobots2/src/menu.c:269 ../gnome-mahjongg/src/gnome-mahjongg.vala:566
+#: ../gnome-sudoku/src/lib/defaults.py:53 ../gnomine/src/gnomine.vala:745
+#: ../gnotravex/src/gnotravex.vala:319 ../gnotski/src/gnotski.c:1461
+#: ../gtali/src/gyahtzee.c:620 ../iagno/src/iagno.vala:305
+#: ../lightsoff/src/lightsoff.vala:157
+#: ../quadrapassel/src/quadrapassel.vala:762
+#: ../swell-foop/src/swell-foop.vala:399
+msgid "GNOME Games web site"
+msgstr "A GNOME játékok weboldala"
+
+#. Title of save game dialog
+#: ../glchess/src/glchess.vala:1453
+msgid "Save Chess Game"
+msgstr "Sakkjátszma mentése"
+
+#. Save Game Dialog: Name of filter to show only PGN files
+#. Load Game Dialog: Name of filter to show only PGN files
+#: ../glchess/src/glchess.vala:1466 ../glchess/src/glchess.vala:1534
+msgid "PGN files"
+msgstr "PGN fájlok"
+
+#. Save Game Dialog: Name of filter to show all files
+#. Load Game Dialog: Name of filter to show all files
+#: ../glchess/src/glchess.vala:1473 ../glchess/src/glchess.vala:1541
+msgid "All files"
+msgstr "Minden fájl"
+
+#: ../glchess/src/glchess.vala:1497
+#, c-format
+msgid "Failed to save game: %s"
+msgstr "A játék mentése sikertelen: %s"
+
+#. Title of load game dialog
+#: ../glchess/src/glchess.vala:1521
+msgid "Load Chess Game"
+msgstr "Sakkjátszma betöltése"
+
+#: ../glchess/src/glchess.vala:1563
+#, c-format
+msgid "Failed to open game: %s"
+msgstr "A játék megnyitása sikertelen: %s"
+
+#. Help string for command line --version flag
+#: ../glchess/src/glchess.vala:1624
+msgid "Show release version"
+msgstr "Verziószám megjelenítése"
+
+#. Arguments and description for --help text
+#: ../glchess/src/glchess.vala:1639
+msgid "[FILE] - Play Chess"
+msgstr "[FÁJL] – Sakk"
+
+#. Text printed out when an unknown command-line argument provided
+#: ../glchess/src/glchess.vala:1650
+#, c-format
+msgid "Run '%s --help' to see a full list of available command line options."
+msgstr "Futtassa a(z) „%s --help” parancsot a parancssori kapcsolók listájáért."
+
+#: ../glines/data/glines.desktop.in.in.h:1 ../glines/src/glines.c:1171
+#: ../glines/src/glines.c:1174 ../glines/src/glines.c:1662
+msgid "Five or More"
+msgstr "Öt vagy több"
+
+#: ../glines/data/glines.desktop.in.in.h:2
+msgid "Remove colored balls from the board by forming lines"
+msgstr "Színes labdák leszedése a tábláról azok egymás mellé helyezésével"
+
+#: ../glines/data/glines-preferences.ui.h:1
+msgid "Five or More Preferences"
+msgstr "Öt vagy több beállításai"
+
+#: ../glines/data/glines-preferences.ui.h:2 ../gnobots2/src/properties.c:489
+#: ../swell-foop/data/preferences.ui.h:6
+msgid "Appearance"
+msgstr "Megjelenés"
+
+#: ../glines/data/glines-preferences.ui.h:3
+msgid "_Image:"
+msgstr "Ké_p:"
+
+#: ../glines/data/glines-preferences.ui.h:4
+msgid "B_ackground color:"
+msgstr "_Háttérszín:"
+
+#: ../glines/data/glines-preferences.ui.h:5
+msgid "Board Size"
+msgstr "A tábla mérete"
+
+#: ../glines/data/glines-preferences.ui.h:6
+msgid "_Small"
+msgstr "_Kicsi"
+
+#: ../glines/data/glines-preferences.ui.h:7
+#: ../gnome-sudoku/data/print_games.ui.h:7
+msgid "_Medium"
+msgstr "Kö_zepes"
+
+#: ../glines/data/glines-preferences.ui.h:8
+msgid "_Large"
+msgstr "_Nagy"
+
+#: ../glines/data/glines-preferences.ui.h:9
+msgid "General"
+msgstr "Általános"
+
+#: ../glines/data/glines-preferences.ui.h:10
+msgid "_Use fast moves"
+msgstr "_Gyors mozgások használata"
+
+#: ../glines/data/glines.ui.h:1
+msgid "Five or more"
+msgstr "Öt vagy több"
+
+#: ../glines/data/glines.ui.h:3 ../gnect/src/main.c:736
+msgid "Scores"
+msgstr "Pontszámok"
+
+#: ../glines/data/glines.ui.h:8
+msgid "Next:"
+msgstr "Következő:"
+
+#: ../glines/data/glines.ui.h:9
+msgid "0"
+msgstr "0"
+
+#: ../glines/data/glines.ui.h:10 ../gnobots2/src/statusbar.c:68
+#: ../gnomine/src/gnomine.vala:703 ../quadrapassel/src/quadrapassel.vala:174
+msgid "Score:"
+msgstr "Pont:"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:1
+msgid "Playing field size"
+msgstr "Játékmező mérete"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:2
+msgid "Playing field size. 1=Small, 2=Medium, 3=Large. Any other value is invalid."
+msgstr "Játékmező mérete. 1=Kicsi, 2=Közepes, 3=Nagy. Bármely más érték érvénytelen."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:3
+msgid "Ball style"
+msgstr "Labdastílus"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:4
+msgid "Ball style. The filename of the images to use for the balls."
+msgstr "Labdastílus. A labdákhoz használt képek fájlneve."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:5
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:5
+msgid "Background color"
+msgstr "Háttérszín"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:6
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:6
+msgid "Background color. The hex specification of the background color."
+msgstr "Háttérszín. A háttérszín hexa specifikációja."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:7
+msgid "Time between moves"
+msgstr "Mozgások közötti idő"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:8
+msgid "Time between moves in milliseconds."
+msgstr "Mozgások közötti idő ezredmásodpercben."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:9
+msgid "Game score"
+msgstr "Játék pontszám"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:10
+msgid "Game score from last saved session."
+msgstr "Az utolsó mentett menet játékállása."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:11
+msgid "Game field"
+msgstr "Játékmező"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:12
+msgid "Game field from last saved session."
+msgstr "Az utolsó mentett menet játékmezője."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:13
+msgid "Game preview"
+msgstr "Játék előkép"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:14
+msgid "Game preview from last saved session."
+msgstr "Az utolsó mentett menet játék előképe."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:15
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:39
+#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:1
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:12
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:3
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:3
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:35
+msgid "Width of the window in pixels"
+msgstr "Az ablak szélessége képpontokban"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:16
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:40
+#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:2
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:13
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:4
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:4
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:36
+msgid "Height of the window in pixels"
+msgstr "Az ablak magassága képpontokban"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:17
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:41
+#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:3
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:14
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:5
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:5
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:37
+msgid "true if the window is maximized"
+msgstr "Az ablak teljes méretű-e"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:18
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:42
+#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:4
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:15
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:6
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:6
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:38
+msgid "true if the window is fullscren"
+msgstr "Az ablak teljes képernyős-e"
+
+# aisleriot/menu.c:125
+#: ../glines/src/games-stock.c:41 ../gnect/src/games-stock.c:41
+#: ../gnibbles/src/games-stock.c:41 ../gnobots2/src/games-stock.c:41
+#: ../gnotski/src/games-stock.c:41 ../gtali/src/games-stock.c:41
+msgid "View help for this game"
+msgstr "Súgó megjelenítése ehhez a játékhoz"
+
+#: ../glines/src/games-stock.c:42 ../gnect/src/games-stock.c:42
+#: ../gnibbles/src/games-stock.c:42 ../gnobots2/src/games-stock.c:42
+#: ../gnotski/src/games-stock.c:42 ../gtali/src/games-stock.c:42
+msgid "End the current game"
+msgstr "A jelenlegi játék befejezése"
+
+#: ../glines/src/games-stock.c:43 ../gnect/src/games-stock.c:43
+#: ../gnibbles/src/games-stock.c:43 ../gnobots2/src/games-stock.c:43
+#: ../gnotski/src/games-stock.c:43 ../gtali/src/games-stock.c:43
+msgid "Toggle fullscreen mode"
+msgstr "Teljes képernyős üzemmód"
+
+#: ../glines/src/games-stock.c:44 ../gnect/src/games-stock.c:44
+#: ../gnibbles/src/games-stock.c:44 ../gnobots2/src/games-stock.c:44
+#: ../gnotski/src/games-stock.c:44 ../gtali/src/games-stock.c:44
+msgid "Get a hint for your next move"
+msgstr "Javaslat a következő lépéshez"
+
+#: ../glines/src/games-stock.c:45 ../gnect/src/games-stock.c:45
+#: ../gnibbles/src/games-stock.c:45 ../gnobots2/src/games-stock.c:45
+#: ../gnotski/src/games-stock.c:45 ../gtali/src/games-stock.c:45
+msgid "Leave fullscreen mode"
+msgstr "Teljes képernyős mód elhagyása"
+
+#: ../glines/src/games-stock.c:46 ../gnect/src/games-stock.c:46
+#: ../gnibbles/src/games-stock.c:46 ../gnobots2/src/games-stock.c:46
+#: ../gnotski/src/games-stock.c:46 ../gtali/src/games-stock.c:46
+msgid "Start a new multiplayer network game"
+msgstr "Új többjátékosos hálózati játék indítása"
+
+#: ../glines/src/games-stock.c:47 ../gnect/src/games-stock.c:47
+#: ../gnibbles/src/games-stock.c:47 ../gnobots2/src/games-stock.c:47
+#: ../gnotski/src/games-stock.c:47 ../gtali/src/games-stock.c:47
+msgid "End the current network game and return to network server"
+msgstr "A jelenlegi hálózati játék befejezése és visszatérés a hálózati kiszolgálóhoz"
+
+#: ../glines/src/games-stock.c:49 ../gnect/src/games-stock.c:49
+#: ../gnibbles/src/games-stock.c:49 ../gnobots2/src/games-stock.c:49
+#: ../gnotski/src/games-stock.c:49 ../gtali/src/games-stock.c:49
+msgid "Pause the game"
+msgstr "A játék szüneteltetése"
+
+#: ../glines/src/games-stock.c:50 ../gnect/src/games-stock.c:50
+#: ../gnibbles/src/games-stock.c:50 ../gnobots2/src/games-stock.c:50
+#: ../gnotski/src/games-stock.c:50 ../gtali/src/games-stock.c:50
+msgid "Show a list of players in the network game"
+msgstr "A játékosok listájának megjelenítése a hálózati játékban"
+
+#: ../glines/src/games-stock.c:51 ../gnect/src/games-stock.c:51
+#: ../gnibbles/src/games-stock.c:51 ../gnobots2/src/games-stock.c:51
+#: ../gnotski/src/games-stock.c:51 ../gtali/src/games-stock.c:51
+msgid "Redo the undone move"
+msgstr "A visszavont lépés végrehajtása mégis"
+
+#: ../glines/src/games-stock.c:52 ../gnect/src/games-stock.c:52
+#: ../gnibbles/src/games-stock.c:52 ../gnobots2/src/games-stock.c:52
+#: ../gnotski/src/games-stock.c:52 ../gtali/src/games-stock.c:52
+msgid "Restart the game"
+msgstr "A játék újraindítása"
+
+#: ../glines/src/games-stock.c:53 ../gnect/src/games-stock.c:53
+#: ../gnibbles/src/games-stock.c:53 ../gnobots2/src/games-stock.c:53
+#: ../gnotski/src/games-stock.c:53 ../gtali/src/games-stock.c:53
+msgid "Resume the paused game"
+msgstr "A szüneteltetett játék folytatása"
+
+#: ../glines/src/games-stock.c:54 ../gnect/src/games-stock.c:54
+#: ../gnibbles/src/games-stock.c:54 ../gnobots2/src/games-stock.c:54
+#: ../gnotski/src/games-stock.c:54 ../gtali/src/games-stock.c:54
+msgid "View the scores"
+msgstr "A pontok megtekintése"
+
+#: ../glines/src/games-stock.c:55 ../gnect/src/games-stock.c:55
+#: ../gnibbles/src/games-stock.c:55 ../gnobots2/src/games-stock.c:55
+#: ../gnotski/src/games-stock.c:55 ../gtali/src/games-stock.c:55
+msgid "Undo the last move"
+msgstr "Az utolsó lépés visszavonása"
+
+#: ../glines/src/games-stock.c:56 ../gnect/src/games-stock.c:56
+#: ../gnibbles/src/games-stock.c:56 ../gnobots2/src/games-stock.c:56
+#: ../gnotski/src/games-stock.c:56 ../gtali/src/games-stock.c:56
+msgid "About this game"
+msgstr "A játék névjegye"
+
+#: ../glines/src/games-stock.c:57 ../gnect/src/games-stock.c:57
+#: ../gnibbles/src/games-stock.c:57 ../gnobots2/src/games-stock.c:57
+#: ../gnotski/src/games-stock.c:57 ../gtali/src/games-stock.c:57
+msgid "Close this window"
+msgstr "A jelenlegi ablak bezárása"
+
+#: ../glines/src/games-stock.c:58 ../gnect/src/games-stock.c:58
+#: ../gnibbles/src/games-stock.c:58 ../gnobots2/src/games-stock.c:58
+#: ../gnotski/src/games-stock.c:58 ../gtali/src/games-stock.c:58
+msgid "Configure the game"
+msgstr "A játék beállítása"
+
+#: ../glines/src/games-stock.c:59 ../gnect/src/games-stock.c:59
+#: ../gnibbles/src/games-stock.c:59 ../gnobots2/src/games-stock.c:59
+#: ../gnotski/src/games-stock.c:59 ../gtali/src/games-stock.c:59
+msgid "Quit this game"
+msgstr "Kilépés a játékból"
+
+#: ../glines/src/games-stock.c:248 ../gnect/src/games-stock.c:248
+#: ../gnibbles/src/games-stock.c:248 ../gnobots2/src/games-stock.c:248
+#: ../gnomine/src/gnomine.vala:111 ../gnomine/src/gnomine.vala:197
+#: ../gnomine/src/gnomine.vala:362 ../gnotravex/src/gnotravex.vala:124
+#: ../gnotravex/src/gnotravex.vala:184 ../gnotski/src/games-stock.c:248
+#: ../gtali/src/games-stock.c:248 ../quadrapassel/src/quadrapassel.vala:142
+#: ../quadrapassel/src/quadrapassel.vala:236
+msgid "_Fullscreen"
+msgstr "_Teljes képernyő"
+
+#: ../glines/src/games-stock.c:249 ../gnect/src/games-stock.c:249
+#: ../gnibbles/src/games-stock.c:249 ../gnobots2/src/games-stock.c:249
+#: ../gnome-sudoku/src/lib/main.py:212 ../gnomine/src/gnomine.vala:109
+#: ../gnotski/src/games-stock.c:249 ../gtali/src/games-stock.c:249
+msgid "_Hint"
+msgstr "_Javaslat"
+
+#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
+#: ../glines/src/games-stock.c:251 ../gnect/src/games-stock.c:251
+#: ../gnibbles/src/games-stock.c:251 ../gnobots2/src/games-stock.c:251
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:104
+#: ../gnomine/src/gnomine.vala:173 ../gnotravex/src/gnotravex.vala:103
+#: ../gnotski/src/games-stock.c:251 ../gtali/src/games-stock.c:251
+#: ../quadrapassel/src/quadrapassel.vala:127
+msgid "_New"
+msgstr "Ú_j"
+
+#. Translators: This "_New Game" is for the game-over dialogue
+#: ../glines/src/games-stock.c:253 ../gnect/src/games-stock.c:253
+#: ../gnibbles/src/games-stock.c:253 ../gnobots2/src/game.c:154
+#: ../gnobots2/src/games-stock.c:253
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:83
+#: ../gnome-sudoku/data/select_game.ui.h:1 ../gnomine/src/gnomine.vala:107
+#: ../gnomine/src/gnomine.vala:455 ../gnotravex/data/gnotravex.ui.h:1
+#: ../gnotski/src/games-stock.c:253 ../gnotski/src/gnotski.c:750
+#: ../gtali/src/games-stock.c:253 ../gtali/src/gyahtzee.c:753
+#: ../iagno/data/iagno.ui.h:1 ../lightsoff/src/lightsoff.vala:29
+#: ../quadrapassel/src/quadrapassel.vala:82
+#: ../swell-foop/src/swell-foop.vala:65
+msgid "_New Game"
+msgstr "Ú_j játék"
+
+#: ../glines/src/games-stock.c:254 ../gnect/src/games-stock.c:254
+#: ../gnibbles/src/games-stock.c:254 ../gnobots2/src/games-stock.c:254
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:119
+#: ../gnotski/src/games-stock.c:254 ../gtali/src/games-stock.c:254
+msgid "_Redo Move"
+msgstr "_Mégis a lépést"
+
+# aisleriot/dialog.c:112
+#. Translators: this is the "Reset" scores button in a scores dialogue
+#: ../glines/src/games-stock.c:256 ../gnect/src/games-stock.c:256
+#: ../gnibbles/src/games-stock.c:256 ../gnobots2/src/games-stock.c:256
+#: ../gnome-sudoku/src/lib/main.py:197 ../gnotski/src/games-stock.c:256
+#: ../gtali/src/games-stock.c:256
+msgid "_Reset"
+msgstr "_Visszaállítás"
+
+#. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
+#: ../glines/src/games-stock.c:258 ../gnect/src/games-stock.c:258
+#: ../gnibbles/src/games-stock.c:258 ../gnobots2/src/games-stock.c:258
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:341
+#: ../gnotski/src/games-stock.c:258 ../gtali/src/games-stock.c:258
+msgid "_Restart"
+msgstr "Ú_jraindítás"
+
+#: ../glines/src/games-stock.c:260 ../gnect/src/games-stock.c:260
+#: ../gnibbles/src/games-stock.c:260 ../gnobots2/src/games-stock.c:260
+#: ../gnotski/src/games-stock.c:260 ../gtali/src/games-stock.c:260
+msgid "_Deal"
+msgstr "_Osztás"
+
+#: ../glines/src/games-stock.c:261 ../gnect/src/games-stock.c:261
+#: ../gnibbles/src/games-stock.c:261 ../gnobots2/src/games-stock.c:261
+#: ../gnomine/src/gnomine.vala:357 ../gnotravex/src/gnotravex.vala:179
+#: ../gnotski/src/games-stock.c:261 ../gtali/src/games-stock.c:261
+#: ../quadrapassel/src/quadrapassel.vala:231
+msgid "_Leave Fullscreen"
+msgstr "T_eljes képernyő elhagyása"
+
+#: ../glines/src/games-stock.c:262 ../gnect/src/games-stock.c:262
+#: ../gnibbles/src/games-stock.c:262 ../gnobots2/src/games-stock.c:262
+#: ../gnotski/src/games-stock.c:262 ../gtali/src/games-stock.c:262
+msgid "Network _Game"
+msgstr "_Hálózati játék"
+
+#: ../glines/src/games-stock.c:263 ../gnect/src/games-stock.c:263
+#: ../gnibbles/src/games-stock.c:263 ../gnobots2/src/games-stock.c:263
+#: ../gnotski/src/games-stock.c:263 ../gtali/src/games-stock.c:263
+msgid "L_eave Game"
+msgstr "Játék _elhagyása"
+
+#: ../glines/src/games-stock.c:264 ../gnect/src/games-stock.c:264
+#: ../gnibbles/src/games-stock.c:264 ../gnobots2/src/games-stock.c:264
+#: ../gnotski/src/games-stock.c:264 ../gtali/src/games-stock.c:264
+msgid "Player _List"
+msgstr "_Játékoslista"
+
+#: ../glines/src/games-stock.c:265 ../gnect/src/games-stock.c:265
+#: ../gnibbles/src/games-stock.c:265 ../gnobots2/src/games-stock.c:265
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:135
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:583
+#: ../gnomine/src/gnomine.vala:110 ../gnomine/src/gnomine.vala:190
+#: ../gnomine/src/gnomine.vala:644 ../gnotravex/data/gnotravex.ui.h:2
+#: ../gnotravex/src/gnotravex.vala:117 ../gnotravex/src/gnotravex.vala:367
+#: ../gnotski/src/games-stock.c:265 ../gtali/src/games-stock.c:265
+#: ../quadrapassel/src/quadrapassel.vala:83
+#: ../quadrapassel/src/quadrapassel.vala:135
+#: ../quadrapassel/src/quadrapassel.vala:680
+msgid "_Pause"
+msgstr "_Szünet"
+
+# aisleriot/dialog.c:112
+#: ../glines/src/games-stock.c:266 ../gnect/src/games-stock.c:266
+#: ../gnibbles/src/games-stock.c:266 ../gnobots2/src/games-stock.c:266
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:578
+#: ../gnomine/src/gnomine.vala:637 ../gnotravex/src/gnotravex.vala:362
+#: ../gnotski/src/games-stock.c:266 ../gtali/src/games-stock.c:266
+#: ../quadrapassel/src/quadrapassel.vala:675
+msgid "Res_ume"
+msgstr "_Folytatás"
+
+#: ../glines/src/games-stock.c:267 ../gnect/src/games-stock.c:267
+#: ../gnibbles/src/games-stock.c:267 ../gnobots2/src/games-stock.c:267
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:85
+#: ../gnomine/src/gnomine.vala:112 ../gnotravex/data/gnotravex.ui.h:9
+#: ../gnotski/src/games-stock.c:267 ../gtali/src/games-stock.c:267
+#: ../gtali/src/gyahtzee.c:756 ../quadrapassel/src/quadrapassel.vala:84
+#: ../swell-foop/src/swell-foop.vala:66
+msgid "_Scores"
+msgstr "_Pontszámok"
+
+#: ../glines/src/games-stock.c:268 ../gnect/src/games-stock.c:268
+#: ../gnibbles/src/games-stock.c:268 ../gnobots2/src/games-stock.c:268
+#: ../gnotski/src/games-stock.c:268 ../gtali/src/games-stock.c:268
+msgid "_End Game"
+msgstr "Játék be_fejezése"
+
+#. %s is replaced with the name of the game in gnome-games.
+#: ../glines/src/games-stock.c:317 ../gnect/src/games-stock.c:317
+#: ../gnibbles/src/games-stock.c:317 ../gnobots2/src/games-stock.c:317
+#: ../gnotski/src/games-stock.c:317 ../gtali/src/games-stock.c:317
+#, c-format
+msgid ""
+"%s is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version %d of the License, or (at your option) any later "
+"version."
+msgstr ""
+"A(z) %s szabad szoftver, terjesztheti és/vagy módosíthatja a Free Software "
+"Foundation által kiadott GNU General Public License %d. (vagy bármely "
+"későbbi) változatában foglaltak alapján."
+
+#: ../glines/src/games-stock.c:322 ../gnect/src/games-stock.c:322
+#: ../gnibbles/src/games-stock.c:322 ../gnobots2/src/games-stock.c:322
+#: ../gnotski/src/games-stock.c:322 ../gtali/src/games-stock.c:322
+#, c-format
+msgid ""
+"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details."
+msgstr ""
+"A(z) %s programot abban a reményben terjesztjük, hogy hasznos lesz, de nem "
+"vállalunk SEMMIFÉLE GARANCIÁT, még olyan értelemben sem, hogy a program "
+"alkalmas-e a KÖZREADÁSRA vagy EGY BIZONYOS FELADAT ELVÉGZÉSÉRE. További "
+"részletekért tanulmányozza a GNU GPL licencet."
+
+#: ../glines/src/games-stock.c:327 ../gnect/src/games-stock.c:327
+#: ../gnibbles/src/games-stock.c:327 ../gnobots2/src/games-stock.c:327
+#: ../gnotski/src/games-stock.c:327 ../gtali/src/games-stock.c:327
+#, c-format
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"%s; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, "
+"Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
+"A(z) %s programhoz a GNU General Public License egy példánya is jár, ha nem "
+"kapta meg, írjon a Free Software Foundation Inc.-nek. Levélcímük: 51 "
+"Franklin St, Fifth Floor, Boston, MA 02110-1301, USA"
+
+#: ../glines/src/games-stock.c:331 ../gnect/src/games-stock.c:331
+#: ../gnibbles/src/games-stock.c:331 ../gnobots2/src/games-stock.c:331
+#: ../gnotski/src/games-stock.c:331 ../gtali/src/games-stock.c:331
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"A(z) %s programhoz a GNU General Public License egy példánya is jár, ha nem "
+"kapta meg, a <http://www.gnu.org/licenses/> oldalon elolvashatja."
+
+#: ../glines/src/glines.c:79 ../gnomine/src/gnomine.vala:69
+msgctxt "board size"
+msgid "Small"
+msgstr "Kicsi"
+
+#: ../glines/src/glines.c:80 ../gnomine/src/gnomine.vala:70
+msgctxt "board size"
+msgid "Medium"
+msgstr "Közepes"
+
+#: ../glines/src/glines.c:81 ../gnomine/src/gnomine.vala:71
+msgctxt "board size"
+msgid "Large"
+msgstr "Nagy"
+
+#: ../glines/src/glines.c:171
+msgid "Could not load theme"
+msgstr "Nem lehet betölteni a témát"
+
+#: ../glines/src/glines.c:197
+#, c-format
+msgid ""
+"Unable to locate file:\n"
+"%s\n"
+"\n"
+"The default theme will be loaded instead."
+msgstr ""
+"A következő fájl nem található meg:\n"
+"„%s”\n"
+"\n"
+"Helyette az alapértelmezett téma kerül betöltésre."
+
+#: ../glines/src/glines.c:204
+#, c-format
+msgid ""
+"Unable to locate file:\n"
+"%s\n"
+"\n"
+"Please check that Five or More is installed correctly."
+msgstr ""
+"A következő fájl nem található meg:\n"
+"%s\n"
+"\n"
+"Ellenőrizze, hogy az Öt vagy több megfelelően van-e telepítve."
+
+#: ../glines/src/glines.c:409
+msgid "Match five objects of the same type in a row to score!"
+msgstr "Helyezzen el öt egyszínű objektumot egy sorba!"
+
+#: ../glines/src/glines.c:471
+msgid "GNOME Five or More"
+msgstr "GNOME Öt vagy több"
+
+#: ../glines/src/glines.c:473 ../swell-foop/data/preferences.ui.h:2
+msgid "_Board size:"
+msgstr "A tábla _mérete:"
+
+#: ../glines/src/glines.c:490 ../swell-foop/src/game-view.vala:434
+#, c-format
+msgid "Game Over!"
+msgstr "Vége a játéknak!"
+
+#. Can't move there!
+#: ../glines/src/glines.c:647
+msgid "You can't move there!"
+msgstr "Nem léphet oda!"
+
+#: ../glines/src/glines.c:1176
+msgid ""
+"GNOME port of the once-popular Color Lines game.\n"
+"\n"
+"Five or More is a part of GNOME Games."
+msgstr ""
+"A népszerű Color Lines játék GNOME-átirata.\n"
+"\n"
+"Az Öt vagy több a GNOME játékok része."
+
+#: ../glines/src/glines.c:1182 ../gnect/src/main.c:833
+#: ../gnibbles/src/main.c:174 ../gnobots2/src/menu.c:274
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:563
+#: ../gnome-sudoku/src/lib/main.py:669 ../gnomine/src/gnomine.vala:742
+#: ../gnotravex/src/gnotravex.vala:316 ../gnotski/src/gnotski.c:1458
+#: ../gtali/src/gyahtzee.c:616 ../iagno/src/iagno.vala:303
+#: ../lightsoff/src/lightsoff.vala:154
+#: ../quadrapassel/src/quadrapassel.vala:765
+#: ../swell-foop/src/swell-foop.vala:396
+msgid "translator-credits"
+msgstr ""
+"Bán Szabolcs <shooby at gnome dot hu>\n"
+"Dvornik László <dvornik at gnome dot hu>\n"
+"Kelemen Gábor <kelemeng at gnome dot hu>\n"
+"Kovács Emese <emese at gnome dot hu>\n"
+"Nagy Gergely <greg at gnome dot hu>\n"
+"Tímár András <timar at gnome dot hu>\n"
+"Varga Szabolcs <shirokuma at shirokuma dot hu>"
+
+#: ../gnect/data/gnect.desktop.in.in.h:1
+msgid "Four-in-a-Row"
+msgstr "Négyet egy sorba"
+
+#: ../gnect/data/gnect.desktop.in.in.h:2
+msgid "Make lines of the same color to win"
+msgstr "Alkosson azonos színű sorokat a győzelemhez"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:1
+msgid "Level of Player One"
+msgstr "Első játékos szintje"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:2
+msgid ""
+"Zero is human; one through three correspond to the level of the computer "
+"player."
+msgstr ""
+"A nulla az ember, az egytől háromig terjedő értékek a számítógépes játékos "
+"szintjét jelentik."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:3
+msgid "Level of Player Two"
+msgstr "Második játékos szintje"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:4
+msgid "Theme ID"
+msgstr "Témaazonosító"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:5
+msgid "A number specifying the preferred theme."
+msgstr "A kedvelt témát megadó szám."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:6
+msgid "Animate"
+msgstr "Animáció"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:7
+msgid "Whether or not to use animation."
+msgstr "Legyen-e animáció."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:8
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:1
+msgid "Sound"
+msgstr "Hang"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:9
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:2
+msgid "Whether or not to play event sounds."
+msgstr "Legyen-e az eseményeknek hangjuk."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:10 ../gnect/src/prefs.c:316
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:25
+#: ../gnibbles/src/preferences.c:450
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:23
+#: ../quadrapassel/src/quadrapassel.vala:381
+msgid "Move left"
+msgstr "Lépés balra"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:11
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:24
+msgid "Key press to move left."
+msgstr "Billentyű a balra mozgáshoz."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:12 ../gnect/src/prefs.c:317
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:27
+#: ../gnibbles/src/preferences.c:451
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:25
+#: ../quadrapassel/src/quadrapassel.vala:384
+msgid "Move right"
+msgstr "Lépés jobbra"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:13
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:26
+msgid "Key press to move right."
+msgstr "Billentyű a jobbra mozgáshoz."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:14 ../gnect/src/prefs.c:318
+msgid "Drop marble"
+msgstr "Üveggolyó leejtése"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:15
+msgid "Key press to drop a marble."
+msgstr "Billentyű az üveggolyó leejtéséhez."
+
+#: ../gnect/src/games-controls.c:288 ../gnibbles/src/games-controls.c:288
+#: ../gnobots2/src/games-controls.c:288
+msgid "Unknown Command"
+msgstr "Ismeretlen parancs"
+
+#: ../gnect/src/gfx.c:248
+#, c-format
+msgid ""
+"Unable to load image:\n"
+"%s"
+msgstr ""
+"Nem lehet betölteni a következő képet:\n"
+"%s"
+
+#: ../gnect/src/main.c:524
+msgid "It's a draw!"
+msgstr "Döntetlen!"
+
+#: ../gnect/src/main.c:533 ../gnome-sudoku/src/lib/main.py:391
+msgid "You win!"
+msgstr "Ön nyert!"
+
+#: ../gnect/src/main.c:535 ../gnect/src/main.c:554
+msgid "It is your move."
+msgstr "Ön jön."
+
+#: ../gnect/src/main.c:538
+msgid "I win!"
+msgstr "Én nyertem!"
+
+#: ../gnect/src/main.c:540 ../gnect/src/main.c:642
+msgid "Thinking..."
+msgstr "Gondolkodom…"
+
+#: ../gnect/src/main.c:551
+#, c-format
+msgid "%s wins!"
+msgstr "%s nyert!"
+
+#: ../gnect/src/main.c:558
+#, c-format
+msgid "Waiting for %s to move."
+msgstr "%s jön."
+
+#: ../gnect/src/main.c:659
+#, c-format
+msgid "Hint: Column %d"
+msgstr "Javaslat: %d. oszlop"
+
+#: ../gnect/src/main.c:687 ../gnect/src/main.c:691
+msgid "You:"
+msgstr "Ön:"
+
+#: ../gnect/src/main.c:688 ../gnect/src/main.c:690
+msgid "Me:"
+msgstr "Én:"
+
+#: ../gnect/src/main.c:780
+msgid "Drawn:"
+msgstr "Döntetlen:"
+
+#: ../gnect/src/main.c:829
+msgid ""
+"\"Four in a Row\" for GNOME, with a computer player driven by Giuliano "
+"Bertoletti's Velena Engine.\n"
+"\n"
+"\"Four in a Row\" is a part of GNOME Games."
+msgstr ""
+"„Négyet egy sorba” játék a GNOME-hoz. A számítógép által vezérelt játékost "
+"Giuliano Bertoletti Velena alrendszere működteti.\n"
+"\n"
+"A „négyet egy sorba” a GNOME játékok része."
+
+#: ../gnect/src/main.c:1184 ../gnibbles/src/main.c:606
+#: ../gnobots2/src/menu.c:66 ../gnotski/src/gnotski.c:398
+msgid "_View"
+msgstr "_Nézet"
+
+#: ../gnect/src/main.h:5
+msgid "Four-in-a-row"
+msgstr "Négyet egy sorba"
+
+#: ../gnect/src/prefs.c:207
+msgid "Four-in-a-Row Preferences"
+msgstr "A Négyet egy sorba játék beállításai"
+
+#: ../gnect/src/prefs.c:233
+msgid "Player One:"
+msgstr "1. játékos:"
+
+#: ../gnect/src/prefs.c:244 ../gnect/src/prefs.c:272
+#: ../gtali/src/gyahtzee.c:970 ../gtali/src/yahtzee.c:69
+#: ../iagno/src/iagno.vala:493 ../iagno/src/iagno.vala:522
+msgid "Human"
+msgstr "Ember"
+
+#: ../gnect/src/prefs.c:248 ../gnect/src/prefs.c:276
+#: ../iagno/src/iagno.vala:497 ../iagno/src/iagno.vala:526
+msgid "Level one"
+msgstr "Első szint"
+
+#: ../gnect/src/prefs.c:252 ../gnect/src/prefs.c:280
+#: ../iagno/src/iagno.vala:501 ../iagno/src/iagno.vala:530
+msgid "Level two"
+msgstr "Második szint"
+
+#: ../gnect/src/prefs.c:256 ../gnect/src/prefs.c:284
+#: ../iagno/src/iagno.vala:505 ../iagno/src/iagno.vala:534
+msgid "Level three"
+msgstr "Harmadik szint"
+
+#: ../gnect/src/prefs.c:262
+msgid "Player Two:"
+msgstr "2. játékos:"
+
+#: ../gnect/src/prefs.c:290 ../gnome-mahjongg/src/gnome-mahjongg.vala:387
+#: ../swell-foop/data/preferences.ui.h:5
+msgid "_Theme:"
+msgstr "_Téma:"
+
+#: ../gnect/src/prefs.c:303
+msgid "Enable _animation"
+msgstr "_Animáció bekapcsolása"
+
+#: ../gnect/src/prefs.c:307 ../gnibbles/src/preferences.c:345
+#: ../iagno/src/iagno.vala:539
+msgid "E_nable sounds"
+msgstr "Ha_ngok bekapcsolása"
+
+#. keyboard tab
+#: ../gnect/src/prefs.c:312
+msgid "Keyboard Controls"
+msgstr "Billentyűzetes vezérlés"
+
+#: ../gnect/src/theme.c:41
+msgid "Classic"
+msgstr "Klasszikus"
+
+#: ../gnect/src/theme.c:45 ../gnect/src/theme.c:66 ../gnect/src/theme.c:73
+#: ../gnect/src/theme.c:80 ../gnibbles/src/preferences.c:475
+msgid "Red"
+msgstr "Vörös"
+
+#: ../gnect/src/theme.c:45 ../gnibbles/src/preferences.c:478
+msgid "Yellow"
+msgstr "Sárga"
+
+#: ../gnect/src/theme.c:48
+msgid "High Contrast"
+msgstr "Nagy kontraszt"
+
+#: ../gnect/src/theme.c:52 ../gnect/src/theme.c:59
+msgid "Circle"
+msgstr "Kör"
+
+#: ../gnect/src/theme.c:52 ../gnect/src/theme.c:59
+msgid "Cross"
+msgstr "Kereszt"
+
+#: ../gnect/src/theme.c:55
+msgid "High Contrast Inverse"
+msgstr "Inverz nagy kontraszt"
+
+#: ../gnect/src/theme.c:62
+msgid "Cream Marbles"
+msgstr "Krémes golyók"
+
+#: ../gnect/src/theme.c:66 ../gnect/src/theme.c:73 ../gnect/src/theme.c:80
+#: ../gnect/src/theme.c:87 ../gnibbles/src/preferences.c:477
+msgid "Blue"
+msgstr "Kék"
+
+#: ../gnect/src/theme.c:69
+msgid "Glass Marbles"
+msgstr "Üveggolyók"
+
+#: ../gnect/src/theme.c:76
+msgid "Nightfall"
+msgstr "Szürkület"
+
+#: ../gnect/src/theme.c:83
+msgid "Blocks"
+msgstr "Tömbök"
+
+#: ../gnect/src/theme.c:87
+msgid "Orange"
+msgstr "Narancs"
+
+#: ../gnibbles/data/gnibbles.desktop.in.in.h:1 ../gnibbles/src/main.c:162
+#: ../gnibbles/src/main.c:165 ../gnibbles/src/main.c:700
+#: ../gnibbles/src/main.c:771 ../gnibbles/src/main.c:902
+msgid "Nibbles"
+msgstr "Kukacok"
+
+#: ../gnibbles/data/gnibbles.desktop.in.in.h:2
+msgid "Guide a worm around a maze"
+msgstr "Kukac irányítása egy labirintusban"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:1
+msgid "Number of human players"
+msgstr "Emberi játékosok száma"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:2
+msgid "Number of human players."
+msgstr "Emberi játékosok száma."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:3
+msgid "Number of AI players"
+msgstr "Gépi játékosok száma"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:4
+msgid "Number of AI players."
+msgstr "Gépi játékosok száma."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:5
+msgid "Game speed"
+msgstr "Játéksebesség"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:6
+msgid "Game speed (1=fast, 4=slow)."
+msgstr "Játéksebesség (1=gyors, 4=lassú)."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:7
+msgid "Enable fake bonuses"
+msgstr "Hamis bónuszok bekapcsolása"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:8
+msgid "Enable fake bonuses."
+msgstr "Hamis bónuszok bekapcsolása."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:9
+msgid "Play levels in random order"
+msgstr "Szintek játszása véletlen sorrendben"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:10
+msgid "Play levels in random order."
+msgstr "Szintek játszása véletlen sorrendben."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:11
+msgid "Game level to start on"
+msgstr "Kezdőszint"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:12
+msgid "Game level to start on."
+msgstr "Kezdőszint."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:13
+msgid "Enable sounds"
+msgstr "Hangok bekapcsolása"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:14
+msgid "Enable sounds."
+msgstr "Hangok bekapcsolása."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:15
+msgid "Size of game tiles"
+msgstr "Játékkockák mérete"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:16
+msgid "Size of game tiles."
+msgstr "Játékkockák mérete."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:17
+msgid "Color to use for worm"
+msgstr "A kukachoz használandó szín"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:18
+msgid "Color to use for worm."
+msgstr "A kukachoz használandó szín."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:19
+msgid "Use relative movement"
+msgstr "Relatív mozgatás használata"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:20
+msgid "Use relative movement (ie. left or right only)."
+msgstr "Relatív mozgatás használata (vagyis csak balra vagy jobbra)."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:21
+#: ../gnibbles/src/preferences.c:452
+msgid "Move up"
+msgstr "Felfelé mozgatás"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:22
+msgid "Key to use for motion up."
+msgstr "Billentyű a felfelé mozgáshoz."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:23
+#: ../gnibbles/src/preferences.c:453
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:27
+#: ../quadrapassel/src/quadrapassel.vala:387
+msgid "Move down"
+msgstr "Lefelé mozgatás"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:24
+msgid "Key to use for motion down."
+msgstr "Billentyű a lefelé mozgáshoz."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:26
+msgid "Key to use for motion left."
+msgstr "Billentyű a balra mozgáshoz."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:28
+msgid "Key to use for motion right."
+msgstr "Billentyű a jobbra mozgáshoz."
+
+#: ../gnibbles/src/board.c:245
+#, c-format
+msgid ""
+"Nibbles couldn't load level file:\n"
+"%s\n"
+"\n"
+"Please check your Nibbles installation"
+msgstr ""
+"A Kukacok nem találta a következő szintfájlt:\n"
+"%s\n"
+"\n"
+"Ellenőrizze a Kukacok telepítést"
+
+#: ../gnibbles/src/board.c:264
+#, c-format
+msgid ""
+"Level file appears to be damaged:\n"
+"%s\n"
+"\n"
+"Please check your Nibbles installation"
+msgstr ""
+"A szintfájl sérültnek tűnik:\n"
+"%s\n"
+"\n"
+"Ellenőrizze a Kukacok telepítést"
+
+#: ../gnibbles/src/gnibbles.c:85
+#, c-format
+msgid ""
+"Nibbles couldn't find pixmap file:\n"
+"%s\n"
+"\n"
+"Please check your Nibbles installation"
+msgstr ""
+"A Kukacok nem találta a következő képfájlt:\n"
+"%s\n"
+"\n"
+"Ellenőrizze a Kukacok telepítést"
+
+#: ../gnibbles/src/gnibbles.c:356
+msgid "Nibbles Scores"
+msgstr "Kukacok pontszámok"
+
+#: ../gnibbles/src/gnibbles.c:359
+msgid "Speed:"
+msgstr "Sebesség:"
+
+#: ../gnibbles/src/gnibbles.c:364 ../gnobots2/src/game.c:179
+#: ../gnomine/src/gnomine.vala:470 ../gnotravex/src/gnotravex.vala:244
+#: ../gnotski/src/gnotski.c:773 ../gtali/src/gyahtzee.c:194
+#, c-format
+msgid "Congratulations!"
+msgstr "Gratulálok!"
+
+#: ../gnibbles/src/gnibbles.c:365 ../gnobots2/src/game.c:180
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:314
+#: ../gnomine/src/gnomine.vala:470 ../gnotravex/src/gnotravex.vala:244
+#: ../gnotski/src/gnotski.c:774 ../gtali/src/gyahtzee.c:195
+#: ../quadrapassel/src/quadrapassel.vala:699
+msgid "Your score is the best!"
+msgstr "Pontszáma a legjobb!"
+
+#: ../gnibbles/src/gnibbles.c:366 ../gnobots2/src/game.c:181
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:316
+#: ../gnomine/src/gnomine.vala:470 ../gnotravex/src/gnotravex.vala:244
+#: ../gnotski/src/gnotski.c:775 ../gtali/src/gyahtzee.c:196
+#: ../quadrapassel/src/quadrapassel.vala:701
+msgid "Your score has made the top ten."
+msgstr "Pontszáma benne van az első tízben."
+
+#: ../gnibbles/src/main.c:66
+msgctxt "game speed"
+msgid "Beginner"
+msgstr "Kezdő"
+
+#: ../gnibbles/src/main.c:67
+msgctxt "game speed"
+msgid "Slow"
+msgstr "Lassú"
+
+#: ../gnibbles/src/main.c:68
+msgctxt "game speed"
+msgid "Medium"
+msgstr "Közepes"
+
+#: ../gnibbles/src/main.c:69
+msgctxt "game speed"
+msgid "Fast"
+msgstr "Gyors"
+
+#: ../gnibbles/src/main.c:70
+msgctxt "game speed"
+msgid "Beginner with Fakes"
+msgstr "Kezdő hamisítványokkal"
+
+#: ../gnibbles/src/main.c:71
+msgctxt "game speed"
+msgid "Slow with Fakes"
+msgstr "Lassú hamisítványokkal"
+
+#: ../gnibbles/src/main.c:72
+msgctxt "game speed"
+msgid "Medium with Fakes"
+msgstr "Közepes hamisítványokkal"
+
+#: ../gnibbles/src/main.c:73
+msgctxt "game speed"
+msgid "Fast with Fakes"
+msgstr "Gyors hamisítványokkal"
+
+#: ../gnibbles/src/main.c:171
+msgid ""
+"A worm game for GNOME.\n"
+"\n"
+"Nibbles is a part of GNOME Games."
+msgstr ""
+"Egy kukacos játék a GNOME-hoz.\n"
+"\n"
+"A Kukacok a GNOME játékok része."
+
+#: ../gnibbles/src/main.c:492
+#, c-format
+msgid "Game over! The game has been won by %s!"
+msgstr "Vége a játéknak! %s nyert!"
+
+#. Translators: This string will be included in the intro screen, so don't make sure it fits!
+#: ../gnibbles/src/main.c:773
+msgid "A worm game for GNOME."
+msgstr "Egy kukacos játék a GNOME-hoz."
+
+#: ../gnibbles/src/preferences.c:240
+msgid "Nibbles Preferences"
+msgstr "Kukacok beállításai"
+
+#. Speed
+#: ../gnibbles/src/preferences.c:269
+msgid "Speed"
+msgstr "Sebesség"
+
+#: ../gnibbles/src/preferences.c:274
+msgid "Nibbles newbie"
+msgstr "Kukacok kezdő"
+
+#: ../gnibbles/src/preferences.c:284
+msgid "My second day"
+msgstr "Második napom"
+
+#: ../gnibbles/src/preferences.c:294
+msgid "Not too shabby"
+msgstr "Nem túl kopott"
+
+#: ../gnibbles/src/preferences.c:304
+msgid "Finger-twitching good"
+msgstr "Viszket az ujjam, olyan jó"
+
+#: ../gnibbles/src/preferences.c:318 ../gnibbles/src/preferences.c:457
+msgid "Options"
+msgstr "Beállítások"
+
+#: ../gnibbles/src/preferences.c:325
+msgid "_Play levels in random order"
+msgstr "_Szintek játszása véletlen sorrendben"
+
+#: ../gnibbles/src/preferences.c:335
+msgid "_Enable fake bonuses"
+msgstr "_Hamis bónuszok bekapcsolása"
+
+#. starting level
+#: ../gnibbles/src/preferences.c:358 ../quadrapassel/src/quadrapassel.vala:337
+msgid "_Starting level:"
+msgstr "_Kezdőszint:"
+
+#: ../gnibbles/src/preferences.c:387
+msgid "Number of _human players:"
+msgstr "_Emberi játékosok száma:"
+
+#: ../gnibbles/src/preferences.c:408
+msgid "Number of _AI players:"
+msgstr "Gé_pi játékosok száma:"
+
+#: ../gnibbles/src/preferences.c:433
+msgid "Worm"
+msgstr "Kukac"
+
+#: ../gnibbles/src/preferences.c:442
+msgid "Keyboard Options"
+msgstr "Billentyűzet beállításai"
+
+#: ../gnibbles/src/preferences.c:462
+msgid "_Use relative movement"
+msgstr "Relatív _mozgatás használata"
+
+#: ../gnibbles/src/preferences.c:469
+msgid "_Worm color:"
+msgstr "K_ukac színe:"
+
+#: ../gnibbles/src/preferences.c:476
+msgid "Green"
+msgstr "Zöld"
+
+#: ../gnibbles/src/preferences.c:479
+msgid "Cyan"
+msgstr "Ciánkék"
+
+#: ../gnibbles/src/preferences.c:480
+msgid "Purple"
+msgstr "Bíbor"
+
+#: ../gnibbles/src/preferences.c:481
+msgid "Gray"
+msgstr "Szürke"
+
+#: ../gnibbles/src/scoreboard.c:48
+#, c-format
+msgid "Worm %d:"
+msgstr "Kukac %d:"
+
+#: ../gnobots2/data/gnobots2.desktop.in.in.h:1 ../gnobots2/src/gnobots.c:201
+#: ../gnobots2/src/gnobots.c:214 ../gnobots2/src/menu.c:262
+#: ../gnobots2/src/menu.c:265
+msgid "Robots"
+msgstr "Robotok"
+
+#: ../gnobots2/data/gnobots2.desktop.in.in.h:2
+msgid "Avoid the robots and make them crash into each other"
+msgstr "Kerülje el a robotokat és ütköztesse egymásnak őket"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:1
+msgid "Show toolbar"
+msgstr "Eszköztár megjelenítése"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:2
+msgid "Show toolbar. A standard option for toolbars."
+msgstr "Eszköztár mutatása. Egy szabvány lehetőség eszköztárakhoz."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:3
+msgid "Robot image theme"
+msgstr "Robotkép-téma"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:4
+msgid "Robot image theme. The theme of the images to use for the robots."
+msgstr "Robotkép-téma. A rendszer a képek témáját használja a robotokhoz."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:7
+msgid "Game type"
+msgstr "Játék típusa"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:8
+msgid "Game type. The name of the game variation to use."
+msgstr "Játék típusa. A használandó játékváltozat neve."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:9
+msgid "Use safe moves"
+msgstr "Biztonságos lépések használata"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:10
+msgid ""
+"Use safe moves. The safe moves option will help you to avoid being killed "
+"due to a mistake. If you try to make a move that would lead to your death "
+"when there is a safe move available you will not be allowed to proceed."
+msgstr ""
+"Használjon biztonságos lépéseket. A biztonságos lépések használata segít "
+"abban, hogy ne haljon meg egy hiba következtében. Ha olyan lépést próbál "
+"tenni, amely a halálához vezetne, amikor van biztonságos lépés, akkor a "
+"rendszer ezt nem fogja engedni."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:11
+msgid "Use super safe moves"
+msgstr "Tutibiztos lépések használata"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:12
+msgid ""
+"Use super safe moves. The player is alerted when there is no safe move and "
+"the only option is to teleport out."
+msgstr ""
+"Használja a tutibiztos lépéseket. A rendszer figyelmeztetést küld, ha nincs "
+"biztonságos lépés, és az egyetlen lehetőség kiteleportálni."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:13
+msgid "Enable game sounds"
+msgstr "Hang bekapcsolása"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:14
+msgid "Enable game sounds. Play sounds for various events throughout the game."
+msgstr "Hang bekapcsolása. Hangok lejátszása különböző eseményekhez a játék alatt."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:15
+#: ../gnobots2/src/properties.c:501
+msgid "Key to move NW"
+msgstr "Billentyű az északnyugati irányba mozgáshoz"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:16
+msgid "The key used to move north-west."
+msgstr "Billentyű az északnyugatra lépéshez."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:17
+#: ../gnobots2/src/properties.c:502
+msgid "Key to move N"
+msgstr "Billentyű az északi irányba mozgáshoz"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:18
+msgid "The key used to move north."
+msgstr "Billentyű az északra lépéshez."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:19
+#: ../gnobots2/src/properties.c:503
+msgid "Key to move NE"
+msgstr "Billentyű az északkeleti irányba mozgáshoz"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:20
+msgid "The key used to move north-east."
+msgstr "Billentyű az északkeletre lépéshez."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:21
+#: ../gnobots2/src/properties.c:504
+msgid "Key to move W"
+msgstr "Billentyű a nyugati irányba mozgáshoz"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:22
+msgid "The key used to move west."
+msgstr "Billentyű a nyugatra lépéshez."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:23
+#: ../gnobots2/src/properties.c:509
+msgid "Key to hold"
+msgstr "Billentyű az állva maradáshoz"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:24
+msgid "The key used to hold still."
+msgstr "Az állva maradáshoz használandó billentyű."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:25
+#: ../gnobots2/src/properties.c:505
+msgid "Key to move E"
+msgstr "Billentyű a keleti irányba mozgáshoz"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:26
+msgid "The key used to move east."
+msgstr "Billentyű a keletre lépéshez."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:27
+#: ../gnobots2/src/properties.c:506
+msgid "Key to move SW"
+msgstr "Billentyű a délnyugati irányba mozgáshoz"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:28
+msgid "The key used to move south-west."
+msgstr "Billentyű a délnyugatra lépéshez."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:29
+#: ../gnobots2/src/properties.c:507
+msgid "Key to move S"
+msgstr "Billentyű a déli irányba mozgáshoz"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:30
+msgid "The key used to move south."
+msgstr "Billentyű a délre lépéshez."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:31
+#: ../gnobots2/src/properties.c:508
+msgid "Key to move SE"
+msgstr "Billentyű a délkeleti irányba mozgáshoz"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:32
+msgid "The key used to move south-east."
+msgstr "Billentyű a délkeletre lépéshez."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:33
+#: ../gnobots2/src/properties.c:510
+msgid "Key to teleport"
+msgstr "Billentyű a teleporthoz"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:34
+msgid "The key used to teleport safely (if possible)."
+msgstr "A biztonságos teleportáláshoz (ha lehet) használandó billentyű."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:35
+#: ../gnobots2/src/properties.c:511
+msgid "Key to teleport randomly"
+msgstr "Billentyű a véletlenszerű teleportáláshoz"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:36
+msgid "The key used to teleport randomly."
+msgstr "A véletlenszerű teleportáláshoz használandó billentyű."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:37
+#: ../gnobots2/src/properties.c:512
+msgid "Key to wait"
+msgstr "Billentyű a várakozáshoz"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:38
+msgid "The key used to wait."
+msgstr "A várakozáshoz használandó billentyű."
+
+#: ../gnobots2/src/game.c:150 ../gtali/src/gyahtzee.c:212
+msgid "Game over!"
+msgstr "Vége a játéknak!"
+
+#: ../gnobots2/src/game.c:152 ../gnomine/src/gnomine.vala:453
+#: ../gnotski/src/gnotski.c:748
+msgid "Great work, but unfortunately your score did not make the top ten."
+msgstr "Remek munka, de a pontszáma sajnos nincs benne az első tízben."
+
+#: ../gnobots2/src/game.c:167
+msgid "Robots Scores"
+msgstr "Robotok pontszámok"
+
+#: ../gnobots2/src/game.c:170
+msgid "Map:"
+msgstr "Térkép:"
+
+#: ../gnobots2/src/game.c:409 ../gnobots2/src/game.c:425
+msgid ""
+"Congratulations, You Have Defeated the Robots!! \n"
+"But Can You do it Again?"
+msgstr ""
+"Gratulálok, legyőzte a robotokat!\n"
+"De meg tudja-e csinálni még egyszer?"
+
+#. This should never happen.
+#: ../gnobots2/src/game.c:1187
+msgid "There are no teleport locations left!!"
+msgstr "Nem maradt több teleport hely!"
+
+#: ../gnobots2/src/game.c:1215
+msgid "There are no safe locations to teleport to!!"
+msgstr "Nincs több biztonságos teleport hely!"
+
+#: ../gnobots2/src/gnobots.c:80
+msgid "Set game scenario"
+msgstr "Játékszituáció beállítása"
+
+#: ../gnobots2/src/gnobots.c:80 ../gnobots2/src/gnobots.c:82
+msgid "NAME"
+msgstr "NÉV"
+
+#: ../gnobots2/src/gnobots.c:82
+msgid "Set game configuration"
+msgstr "A játék beállítása"
+
+#: ../gnobots2/src/gnobots.c:84 ../gnobots2/src/gnobots.c:86
+msgid "Initial window position"
+msgstr "Kezdeti ablakpozíció"
+
+#: ../gnobots2/src/gnobots.c:84 ../gnotski/src/gnotski.c:445
+msgid "X"
+msgstr "X"
+
+#: ../gnobots2/src/gnobots.c:86 ../gnotski/src/gnotski.c:447
+msgid "Y"
+msgstr "Y"
+
+#: ../gnobots2/src/gnobots.c:91
+msgid "Classic robots"
+msgstr "Klasszikus robotok"
+
+#: ../gnobots2/src/gnobots.c:92
+msgid "Classic robots with safe moves"
+msgstr "Klasszikus robotok biztonságos mozgásokkal"
+
+#: ../gnobots2/src/gnobots.c:93
+msgid "Classic robots with super-safe moves"
+msgstr "Klasszikus robotok tuti-biztos mozgásokkal"
+
+#: ../gnobots2/src/gnobots.c:94
+msgid "Nightmare"
+msgstr "Rémálom"
+
+#: ../gnobots2/src/gnobots.c:95
+msgid "Nightmare with safe moves"
+msgstr "Rémálom biztonságos mozgásokkal"
+
+#: ../gnobots2/src/gnobots.c:96
+msgid "Nightmare with super-safe moves"
+msgstr "Rémálom tuti-biztos mozgásokkal"
+
+#: ../gnobots2/src/gnobots.c:97
+msgid "Robots2"
+msgstr "Robotok 2"
+
+#: ../gnobots2/src/gnobots.c:98
+msgid "Robots2 with safe moves"
+msgstr "Robotok 2 biztonságos mozgásokkal"
+
+#: ../gnobots2/src/gnobots.c:99
+msgid "Robots2 with super-safe moves"
+msgstr "Robotok 2 tuti-biztos mozgásokkal"
+
+#: ../gnobots2/src/gnobots.c:100
+msgid "Robots2 easy"
+msgstr "Könnyű Robotok 2"
+
+#: ../gnobots2/src/gnobots.c:101
+msgid "Robots2 easy with safe moves"
+msgstr "Könnyű Robotok 2 biztonságos mozgásokkal"
+
+#: ../gnobots2/src/gnobots.c:102
+msgid "Robots2 easy with super-safe moves"
+msgstr "Könnyű Robotok 2 tuti-biztos mozgásokkal"
+
+#: ../gnobots2/src/gnobots.c:103
+msgid "Robots with safe teleport"
+msgstr "Robotok biztonságos teleporttal"
+
+#: ../gnobots2/src/gnobots.c:104
+msgid "Robots with safe teleport with safe moves"
+msgstr "Robotok biztonságos teleporttal biztonságos mozgásokkal"
+
+#: ../gnobots2/src/gnobots.c:105
+msgid "Robots with safe teleport with super-safe moves"
+msgstr "Robotok biztonságos teleporttal tuti-biztos mozgásokkal"
+
+#: ../gnobots2/src/gnobots.c:281
+msgid "No game data could be found."
+msgstr "A játékadatok nem találhatók meg."
+
+#: ../gnobots2/src/gnobots.c:283
+msgid ""
+"The program Robots was unable to find any valid game configuration files. "
+"Please check that the program is installed correctly."
+msgstr ""
+"A Robotok program nem talált érvényes játékbeállítás-fájlt. Ellenőrizze, "
+"hogy a program megfelelően van-e telepítve."
+
+#: ../gnobots2/src/gnobots.c:299
+msgid "Some graphics files are missing or corrupt."
+msgstr "Néhány grafikus fájl hiányzik vagy sérült."
+
+#: ../gnobots2/src/gnobots.c:301
+msgid ""
+"The program Robots was unable to load all the necessary graphics files. "
+"Please check that the program is installed correctly."
+msgstr ""
+"A Robotok program nem tudta betölteni az összes szükséges grafikus fájlt. "
+"Ellenőrizze, hogy a program megfelelően van-e telepítve."
+
+#: ../gnobots2/src/graphics.c:152
+#, c-format
+msgid "Could not find '%s' pixmap file\n"
+msgstr "A(z) „%s” pixmap fájl nem található\n"
+
+#: ../gnobots2/src/menu.c:67 ../gnotravex/data/gnotravex.ui.h:4
+msgid "_Move"
+msgstr "_Mozgatás"
+
+#: ../gnobots2/src/menu.c:74
+msgid "_Teleport"
+msgstr "_Teleport"
+
+#: ../gnobots2/src/menu.c:75
+msgid "Teleport, safely if possible"
+msgstr "Teleportálás, ha lehet, biztonságosan"
+
+#: ../gnobots2/src/menu.c:76
+msgid "_Random"
+msgstr "_Véletlenszerű"
+
+#: ../gnobots2/src/menu.c:77
+msgid "Teleport randomly"
+msgstr "Teleportálás véletlenszerűen"
+
+#: ../gnobots2/src/menu.c:78
+msgid "_Wait"
+msgstr "Vá_rakozás"
+
+#: ../gnobots2/src/menu.c:78
+msgid "Wait for the robots"
+msgstr "Várakozás a robotokra"
+
+#: ../gnobots2/src/menu.c:89
+msgid "_Toolbar"
+msgstr "Eszköz_tár"
+
+#: ../gnobots2/src/menu.c:89
+msgid "Show or hide the toolbar"
+msgstr "Eszköztár megjelenítése vagy elrejtése"
+
+#: ../gnobots2/src/menu.c:270
+msgid ""
+"Based on classic BSD Robots.\n"
+"\n"
+"Robots is a part of GNOME Games."
+msgstr ""
+"A klasszikus BSD robotok alapján.\n"
+"\n"
+"A Robotok a GNOME játékok része."
+
+#: ../gnobots2/src/properties.c:392
+msgid "Robots Preferences"
+msgstr "A Robotok beállításai"
+
+#. --- Combo (yahtzee or kismet style ----
+#: ../gnobots2/src/properties.c:417 ../gtali/src/setup.c:356
+msgid "Game Type"
+msgstr "Játéktípus"
+
+#: ../gnobots2/src/properties.c:426
+msgid "_Use safe moves"
+msgstr "_Biztonságos lépések használata"
+
+#: ../gnobots2/src/properties.c:433
+msgid "Prevent accidental moves that result in getting killed."
+msgstr "Halálhoz vezető véletlen lépések megelőzése."
+
+#: ../gnobots2/src/properties.c:435
+msgid "U_se super safe moves"
+msgstr "_Tutibiztos lépések használata"
+
+#: ../gnobots2/src/properties.c:442
+msgid "Prevents all moves that result in getting killed."
+msgstr "Minden halálhoz vezető lépés megelőzése."
+
+#: ../gnobots2/src/properties.c:444 ../quadrapassel/src/quadrapassel.vala:350
+msgid "_Enable sounds"
+msgstr "_Hangok bekapcsolása"
+
+#: ../gnobots2/src/properties.c:450
+msgid "Play sounds for events like winning a level and dying."
+msgstr "Hangok lejátszása győzelem vagy halál esetén."
+
+#: ../gnobots2/src/properties.c:465
+msgid "_Image theme:"
+msgstr "_Képtéma:"
+
+#: ../gnobots2/src/properties.c:477
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:441
+msgid "_Background color:"
+msgstr "_Háttérszín:"
+
+#: ../gnobots2/src/properties.c:521
+msgid "_Restore Defaults"
+msgstr "Alapértelmezések vissz_aállítása"
+
+#: ../gnobots2/src/properties.c:526
+msgid "Keyboard"
+msgstr "Billentyűzet"
+
+#: ../gnobots2/src/statusbar.c:76
+msgid "Safe Teleports:"
+msgstr "Biztonságos teleportok:"
+
+#: ../gnobots2/src/statusbar.c:85 ../quadrapassel/src/quadrapassel.vala:192
+msgid "Level:"
+msgstr "Szint:"
+
+#: ../gnobots2/src/statusbar.c:94
+msgid "Remaining:"
+msgstr "Hátra van:"
+
+#. ********************************************************************
+#: ../gnome-mahjongg/data/gnome-mahjongg.desktop.in.in.h:1
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:54
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:553
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:764
+msgid "Mahjongg"
+msgstr "Mahjongg"
+
+#: ../gnome-mahjongg/data/gnome-mahjongg.desktop.in.in.h:2
+msgid "Disassemble a pile of tiles by removing matching pairs"
+msgstr "Kőcsoportok leszedése egyező párok eltávolításával"
+
+#.
+#. * Translatable strings file generated by get_titles.pl.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: ../gnome-mahjongg/data/translatable_game_names.h:6
+msgctxt "mahjongg map name"
+msgid "The Ziggurat"
+msgstr "Zikkurat"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:7
+msgctxt "mahjongg map name"
+msgid "Four Bridges"
+msgstr "Négy híd"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:8
+msgctxt "mahjongg map name"
+msgid "Cloud"
+msgstr "Felhő"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:9
+msgctxt "mahjongg map name"
+msgid "Tic-Tac-Toe"
+msgstr "Tic-Tac-Toe"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:10
+msgctxt "mahjongg map name"
+msgid "Red Dragon"
+msgstr "Vörös sárkány"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:11
+msgctxt "mahjongg map name"
+msgid "Pyramid's Walls"
+msgstr "Piramisfal"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:12
+msgctxt "mahjongg map name"
+msgid "Confounding Cross"
+msgstr "Zavarba ejtő kereszt"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:13
+msgctxt "mahjongg map name"
+msgid "Difficult"
+msgstr "Nehéz"
+
+#: ../gnome-mahjongg/src/game-view.vala:127
+#: ../gnomine/src/minefield-view.vala:398
+#: ../gnotravex/src/puzzle-view.vala:326
+#: ../quadrapassel/src/game-view.vala:330
+msgid "Paused"
+msgstr "Szüneteltetve"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:66
+msgid "Moves Left:"
+msgstr "Hátralévő lépések:"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:84
+msgid "_Restart Game"
+msgstr "Játék új_raindítása"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:86
+#: ../gnomine/src/gnomine.vala:113 ../gtali/src/gyahtzee.c:755
+#: ../iagno/data/iagno.ui.h:3 ../quadrapassel/src/quadrapassel.vala:85
+#: ../swell-foop/src/swell-foop.vala:67
+msgid "_Preferences"
+msgstr "_Beállítások"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:90
+#: ../gnomine/src/gnomine.vala:117 ../gnotravex/data/gnotravex.ui.h:17
+#: ../gtali/src/gyahtzee.c:760 ../iagno/data/iagno.ui.h:5
+#: ../lightsoff/src/lightsoff.vala:33 ../quadrapassel/src/quadrapassel.vala:89
+#: ../swell-foop/src/swell-foop.vala:71
+msgid "_About"
+msgstr "_Névjegy"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:93
+#: ../gnomine/src/gnomine.vala:120 ../gnotravex/data/gnotravex.ui.h:18
+#: ../gtali/src/gyahtzee.c:761 ../iagno/data/iagno.ui.h:6
+#: ../lightsoff/src/lightsoff.vala:36 ../quadrapassel/src/quadrapassel.vala:92
+#: ../swell-foop/src/swell-foop.vala:74
+msgid "_Quit"
+msgstr "_Kilépés"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:127
+#: ../gnomine/src/gnomine.vala:182
+msgid "Hint"
+msgstr "Javaslat"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:259
+msgid "Do you want to start a new game with this map?"
+msgstr "Új játékot kíván indítani ezzel a térképpel?"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:260
+msgid "If you continue playing the next game will use the new map."
+msgstr ""
+"Ha folytatja a játékot, akkor a következő játék az új térképet fogja "
+"használni."
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:261
+msgid "_Continue playing"
+msgstr "Játék f_olytatása"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:262
+msgid "Use _new map"
+msgstr "Új _térkép használata"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:309
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:591
+msgid "Mahjongg Scores"
+msgstr "Mahjongg pontszámok"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:310
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:592
+msgid "Layout:"
+msgstr "Elrendezés:"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:311
+#: ../quadrapassel/src/quadrapassel.vala:696
+msgid "Puzzle solved!"
+msgstr "Ezt kirakta!"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:312
+#: ../quadrapassel/src/quadrapassel.vala:697
+msgid "You didn't make the top ten, better luck next time."
+msgstr "Nem jutott a legjobb tízbe, sok sikert legközelebb."
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:338
+msgid "There are no more moves."
+msgstr "Nincs több lépés."
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:339
+msgid ""
+"Each puzzle has at least one solution.  You can undo your moves and try and "
+"find the solution for a time penalty, restart this game or start an new one."
+msgstr ""
+"Minden kirakónak van legalább egy megoldása. Visszavonhatja lépéseit, és "
+"megpróbálhatja megtalálni a megoldást időbüntetés ellenében, újraindíthatja "
+"a játékot vagy újat indíthat."
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:342
+msgid "_New game"
+msgstr "Ú_j játék"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:370
+msgid "Mahjongg Preferences"
+msgstr "A Mahjongg beállításai"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:415
+msgid "_Layout:"
+msgstr "Elren_dezés:"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:517
+#: ../gnomine/src/gnomine.vala:698
+msgid "Main game:"
+msgstr "Fő játék:"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:526
+msgid "Maps:"
+msgstr "Térképek:"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:534
+msgid "Tiles:"
+msgstr "Kövek:"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:556
+msgid ""
+"A matching game played with Mahjongg tiles.\n"
+"\n"
+"Mahjongg is a part of GNOME Games."
+msgstr ""
+"Párkereső játék Mahjongg kövekkel.\n"
+"\n"
+"A Mahjongg a GNOME játékok része."
+
+#. Translators: This is the window title for Mahjongg which contains the map name, e.g. 'Mahjongg - Red Dragon'
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:656
+#, c-format
+msgid "Mahjongg - %s"
+msgstr "Mahjongg – %s"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:669
+#: ../gnomine/src/gnomine.vala:681 ../gnotravex/src/gnotravex.vala:232
+#, c-format
+msgid "Time"
+msgstr "Idő"
+
+#: ../gnome-sudoku/data/gnome-sudoku.desktop.in.in.h:1
+#: ../gnome-sudoku/src/lib/defaults.py:48
+msgid "Sudoku"
+msgstr "Sudoku"
+
+#: ../gnome-sudoku/data/gnome-sudoku.desktop.in.in.h:2
+msgid "Test your logic skills in this number grid puzzle"
+msgstr "Tesztelje logikai képességeit ezzel a számrács-fejtörővel"
+
+#: ../gnome-sudoku/data/print_games.ui.h:1
+msgid "Print Sudokus"
+msgstr "Sudokuk nyomtatása"
+
+#: ../gnome-sudoku/data/print_games.ui.h:2
+msgid "Print Games"
+msgstr "Játékok nyomtatása"
+
+#: ../gnome-sudoku/data/print_games.ui.h:3
+msgid "_Number of sudoku to print: "
+msgstr "_Nyomtatandó sudokuk száma: "
+
+#: ../gnome-sudoku/data/print_games.ui.h:4
+msgid "_Sudokus per page: "
+msgstr "Sudokuk száma _oldalanként: "
+
+#: ../gnome-sudoku/data/print_games.ui.h:5
+msgid "Levels of difficulty to print"
+msgstr "Nyomtatandó szintek nehézsége"
+
+#: ../gnome-sudoku/data/print_games.ui.h:6
+msgid "_Easy"
+msgstr "Kö_nnyű"
+
+#: ../gnome-sudoku/data/print_games.ui.h:8
+msgid "_Hard"
+msgstr "Ne_héz"
+
+#: ../gnome-sudoku/data/print_games.ui.h:9
+msgid "_Very Hard"
+msgstr "Nag_yon nehéz"
+
+#: ../gnome-sudoku/data/print_games.ui.h:10
+msgid "Details"
+msgstr "Részletek"
+
+#: ../gnome-sudoku/data/print_games.ui.h:11
+msgid "_Mark games as played once you've printed them."
+msgstr "Játékok megjelölése nyomtatás _után játszottként."
+
+#: ../gnome-sudoku/data/print_games.ui.h:12
+msgid "_Include games you've already played in list of games to print"
+msgstr "A _már játszott játékok felvétele a nyomtatandó játékok listájára"
+
+#: ../gnome-sudoku/data/select_game.ui.h:2
+msgid "_Saved Games"
+msgstr "M_entett játékok"
+
+#: ../gnome-sudoku/data/tracker.ui.h:1
+msgid "Add a new tracker"
+msgstr "Új követő felvétele"
+
+#: ../gnome-sudoku/data/tracker.ui.h:2
+msgid "Remove the selected tracker"
+msgstr "A kijelölt követő eltávolítása"
+
+#: ../gnome-sudoku/data/tracker.ui.h:3
+msgid "Make the tracked changes permanent"
+msgstr "A követett változtatások véglegessé tétele"
+
+#: ../gnome-sudoku/data/tracker.ui.h:4 ../gnome-sudoku/src/lib/main.py:750
+msgid "H_ide"
+msgstr "_Elrejtés"
+
+#: ../gnome-sudoku/data/tracker.ui.h:5
+msgid "Hide the tracked values"
+msgstr "A követett értékek elrejtése"
+
+#: ../gnome-sudoku/src/lib/defaults.py:47
+msgid "GNOME Sudoku"
+msgstr "GNOME Sudoku"
+
+#: ../gnome-sudoku/src/lib/defaults.py:50
+msgid ""
+"GNOME Sudoku is a simple Sudoku generator and player. Sudoku is a Japanese "
+"logic puzzle.\n"
+"\n"
+"GNOME Sudoku is a part of GNOME Games."
+msgstr ""
+"A GNOME Sudoku egy egyszerű Sudoku játék és fejtörő-előállító. A Sudoku egy "
+"népszerű ál-japán logikai fejtörő.\n"
+"\n"
+"A GNOME Sudoku a GNOME játékok része."
+
+#: ../gnome-sudoku/src/lib/game_selector.py:121
+#: ../gnome-sudoku/src/lib/main.py:627 ../gnome-sudoku/src/lib/printing.py:185
+msgid "Easy"
+msgstr "Könnyű"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:122
+#: ../gnome-sudoku/src/lib/main.py:628 ../gnome-sudoku/src/lib/printing.py:186
+msgid "Medium"
+msgstr "Közepes"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:123
+#: ../gnome-sudoku/src/lib/main.py:629 ../gnome-sudoku/src/lib/printing.py:187
+msgid "Hard"
+msgstr "Nehéz"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:124
+#: ../gnome-sudoku/src/lib/printing.py:188
+msgid "Very hard"
+msgstr "Nagyon nehéz"
+
+#. Then we're today
+#. within the minute
+#: ../gnome-sudoku/src/lib/game_selector.py:160
+#, python-format
+msgid "Last played %(n)s second ago"
+msgid_plural "Last played %(n)s seconds ago"
+msgstr[0] "Utolsó játék: %(n)s másodperce"
+msgstr[1] "Utolsó játék: %(n)s másodperce"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:164
+#, python-format
+msgid "Last played %(n)s minute ago"
+msgid_plural "Last played %(n)s minutes ago"
+msgstr[0] "Utolsó játék: %(n)s perce"
+msgstr[1] "Utolsó játék: %(n)s perce"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#: ../gnome-sudoku/src/lib/game_selector.py:168
+msgid "Last played at %I:%M %p"
+msgstr "Utolsó játék: %k.%M"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#: ../gnome-sudoku/src/lib/game_selector.py:171
+msgid "Last played yesterday at %I:%M %p"
+msgstr "Utolsó játék: tegnap %k.%M"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#: ../gnome-sudoku/src/lib/game_selector.py:174
+msgid "Last played on %A at %I:%M %p"
+msgstr "Utolsó játék: tegnap %k.%M"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#: ../gnome-sudoku/src/lib/game_selector.py:177
+msgid "Last played on %B %e %Y"
+msgstr "Utolsó játék: %Y %B %e"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:190
+msgid "Easy puzzle"
+msgstr "Egyszerű feladvány"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:191
+msgid "Medium puzzle"
+msgstr "Közepes feladvány"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:192
+msgid "Hard puzzle"
+msgstr "Nehéz feladvány"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:193
+msgid "Very hard puzzle"
+msgstr "Nagyon nehéz feladvány"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:199
+#, python-format
+msgid "Played for %d hour"
+msgid_plural "Played for %d hours"
+msgstr[0] "Játszva %d óráig"
+msgstr[1] "Játszva %d óráig"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:202
+#, python-format
+msgid "Played for %d minute"
+msgid_plural "Played for %d minutes"
+msgstr[0] "Játszva %d percig"
+msgstr[1] "Játszva %d percig"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:205
+#, python-format
+msgid "Played for %d second"
+msgid_plural "Played for %d seconds"
+msgstr[0] "Játszva %d másodpercig"
+msgstr[1] "Játszva %d másodpercig"
+
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:162
+msgid "Do you really want to do this?"
+msgstr "Valóban ezt szeretné tenni?"
+
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:196
+msgid "Don't ask me this again."
+msgstr "Ne kérdezze újra."
+
+#: ../gnome-sudoku/src/lib/main.py:196
+msgid "New game"
+msgstr "Új játék"
+
+#: ../gnome-sudoku/src/lib/main.py:199 ../iagno/data/iagno.ui.h:2
+msgid "_Undo"
+msgstr "_Visszavonás"
+
+#: ../gnome-sudoku/src/lib/main.py:200
+msgid "Undo last action"
+msgstr "Utolsó lépés visszavonása"
+
+#: ../gnome-sudoku/src/lib/main.py:201
+msgid "_Redo"
+msgstr "Mé_gis"
+
+#: ../gnome-sudoku/src/lib/main.py:202
+msgid "Redo last action"
+msgstr "Mégis az utolsó lépést"
+
+#: ../gnome-sudoku/src/lib/main.py:203
+msgid "Puzzle _Statistics..."
+msgstr "Fejtörő-_statisztika…"
+
+#: ../gnome-sudoku/src/lib/main.py:205
+msgid "_Print..."
+msgstr "_Nyomtatás…"
+
+#: ../gnome-sudoku/src/lib/main.py:206
+msgid "Print _Multiple Sudokus..."
+msgstr "_Több sudoku nyomtatása*"
+
+#: ../gnome-sudoku/src/lib/main.py:211
+msgid "_Tools"
+msgstr "_Eszközök"
+
+#: ../gnome-sudoku/src/lib/main.py:213
+msgid "Show a square that is easy to fill."
+msgstr "Egyszerűen kitölthető négyzetrács megjelenítése"
+
+#: ../gnome-sudoku/src/lib/main.py:214
+msgid "Clear _Top Notes"
+msgstr "_Felső megjegyzések törlése"
+
+#: ../gnome-sudoku/src/lib/main.py:216
+msgid "Clear _Bottom Notes"
+msgstr "_Alsó megjegyzések törlése"
+
+#: ../gnome-sudoku/src/lib/main.py:225
+msgid "Show _Possible Numbers"
+msgstr "_Lehetséges számok megjelenítése"
+
+#: ../gnome-sudoku/src/lib/main.py:227
+msgid "Always show possible numbers in a square"
+msgstr "Mindig mutassa a négyzetben lehetséges számokat"
+
+#: ../gnome-sudoku/src/lib/main.py:231
+msgid "Warn About _Unfillable Squares"
+msgstr "_Figyelmeztessen a kitölthetetlen négyzetekre"
+
+#: ../gnome-sudoku/src/lib/main.py:233
+msgid "Warn about squares made unfillable by a move"
+msgstr "Figyelmeztessen a lépés által kitölthetetlenné tett négyzetekre"
+
+#: ../gnome-sudoku/src/lib/main.py:235
+msgid "_Track Additions"
+msgstr "_Módosítások követése"
+
+#: ../gnome-sudoku/src/lib/main.py:237
+msgid "Mark new additions in a separate color so you can keep track of them."
+msgstr "Új elemek követése eltérő színnel, így követheti azokat."
+
+#: ../gnome-sudoku/src/lib/main.py:240
+msgid "_Highlighter"
+msgstr "Kie_melő"
+
+#: ../gnome-sudoku/src/lib/main.py:241
+msgid "Highlight the current row, column and box"
+msgstr "Kiemeli az aktuális sort, oszlopot és dobozt"
+
+#: ../gnome-sudoku/src/lib/main.py:366
+#, python-format
+msgid "You completed the puzzle in %d second"
+msgid_plural "You completed the puzzle in %d seconds"
+msgstr[0] "A fejtörőt %d másodperc alatt oldotta meg"
+msgstr[1] "A fejtörőt %d másodperc alatt oldotta meg"
+
+#: ../gnome-sudoku/src/lib/main.py:371 ../gnome-sudoku/src/lib/main.py:379
+#, python-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d perc"
+msgstr[1] "%d perc"
+
+#: ../gnome-sudoku/src/lib/main.py:372 ../gnome-sudoku/src/lib/main.py:380
+#, python-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d másodperc"
+msgstr[1] "%d másodperc"
+
+#: ../gnome-sudoku/src/lib/main.py:373
+#, python-format
+msgid "You completed the puzzle in %(minute)s and %(second)s"
+msgstr "A fejtörőt %(minute)s %(second)s alatt oldotta meg"
+
+#: ../gnome-sudoku/src/lib/main.py:378
+#, python-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d óra"
+msgstr[1] "%d óra"
+
+#: ../gnome-sudoku/src/lib/main.py:381
+#, python-format
+msgid "You completed the puzzle in %(hour)s, %(minute)s and %(second)s"
+msgstr "A fejtörőt %(hour)s %(minute)s %(second)s alatt oldotta meg"
+
+#: ../gnome-sudoku/src/lib/main.py:383
+#, python-format
+msgid "You got %(n)s hint."
+msgid_plural "You got %(n)s hints."
+msgstr[0] "%(n)s tippet kapott."
+msgstr[1] "%(n)s tippet kapott."
+
+#: ../gnome-sudoku/src/lib/main.py:386
+#, python-format
+msgid "You had %(n)s impossibility pointed out."
+msgid_plural "You had %(n)s impossibilities pointed out."
+msgstr[0] "%(n)s lehetetlen helyzetre mutatott rá."
+msgstr[1] "%(n)s lehetetlen helyzetre mutatott rá."
+
+#: ../gnome-sudoku/src/lib/main.py:401
+msgid "Save this game before starting new one?"
+msgstr "Menti a játékot egy új elkezdése előtt?"
+
+#: ../gnome-sudoku/src/lib/main.py:421
+msgid "Save game before closing?"
+msgstr "Menti a játékot kilépés előtt?"
+
+#: ../gnome-sudoku/src/lib/main.py:619
+msgid "Puzzle Information"
+msgstr "Fejtörő-információk"
+
+#: ../gnome-sudoku/src/lib/main.py:620
+msgid "There is no current puzzle."
+msgstr "Nincs fejtörő."
+
+#: ../gnome-sudoku/src/lib/main.py:625
+msgid "Calculated difficulty: "
+msgstr "Számított nehézség: "
+
+#: ../gnome-sudoku/src/lib/main.py:630
+msgid "Very Hard"
+msgstr "Nagyon nehéz"
+
+#: ../gnome-sudoku/src/lib/main.py:635
+msgid "Number of moves instantly fillable by elimination: "
+msgstr "Eliminációval azonnal kitölthető lépések száma: "
+
+#: ../gnome-sudoku/src/lib/main.py:638
+msgid "Number of moves instantly fillable by filling: "
+msgstr "Kitöltéssel azonnal kitölthető lépések száma: "
+
+#: ../gnome-sudoku/src/lib/main.py:641
+msgid "Amount of trial-and-error required to solve: "
+msgstr "A megoldáshoz szükséges próbálgatás mennyisége: "
+
+#: ../gnome-sudoku/src/lib/main.py:644 ../gnome-sudoku/src/lib/main.py:645
+msgid "Puzzle Statistics"
+msgstr "Fejtörő-statisztika"
+
+#. FIXME: This should create a pop-up dialog
+#: ../gnome-sudoku/src/lib/main.py:679
+#, python-format
+msgid "Unable to display help: %s"
+msgstr "Nem lehet megjeleníteni a súgót: %s"
+
+#: ../gnome-sudoku/src/lib/main.py:735
+msgid "Untracked"
+msgstr "Követetlen"
+
+#: ../gnome-sudoku/src/lib/main.py:744
+msgid "_Remove"
+msgstr "_Eltávolítás"
+
+#: ../gnome-sudoku/src/lib/main.py:745
+msgid "Delete selected tracker."
+msgstr "A kijelölt követő törlése."
+
+#: ../gnome-sudoku/src/lib/main.py:751
+msgid "Hide current tracker entries."
+msgstr "Jelenlegi követőbejegyzések elrejtése."
+
+#: ../gnome-sudoku/src/lib/main.py:756
+msgid "A_pply"
+msgstr "_Alkalmazás"
+
+#: ../gnome-sudoku/src/lib/main.py:757
+msgid "Apply all tracked values and remove the tracker."
+msgstr "Minden követett érték alkalmazása, és a követő törlése."
+
+#: ../gnome-sudoku/src/lib/main.py:795
+#, python-format
+msgid "Tracker %s"
+msgstr "%s követő"
+
+#: ../gnome-sudoku/src/lib/number_box.py:68
+msgid "_Clear"
+msgstr "_Törlés"
+
+#: ../gnome-sudoku/src/lib/saver.py:155
+msgid "No Space"
+msgstr "Nincs hely"
+
+#: ../gnome-sudoku/src/lib/saver.py:156
+msgid "No space left on disk"
+msgstr "Nincs hely a lemezen"
+
+#: ../gnome-sudoku/src/lib/saver.py:158 ../gnome-sudoku/src/lib/saver.py:165
+#, python-format
+msgid "Unable to create data folder %(path)s."
+msgstr "Nem lehet az adatmappát (%(path)s) létrehozni."
+
+#: ../gnome-sudoku/src/lib/saver.py:159
+msgid "There is no disk space left!"
+msgstr "Nincs több hely a lemezen!"
+
+#: ../gnome-sudoku/src/lib/saver.py:166 ../gnome-sudoku/src/lib/saver.py:191
+#: ../gnome-sudoku/src/lib/saver.py:215 ../gnome-sudoku/src/lib/saver.py:233
+#, python-format
+msgid "Error %(errno)s: %(error)s"
+msgstr "Hiba %(errno)s: %(error)s"
+
+#: ../gnome-sudoku/src/lib/saver.py:186 ../gnome-sudoku/src/lib/saver.py:187
+msgid "Unable to save game."
+msgstr "A játék nem menthető."
+
+#: ../gnome-sudoku/src/lib/saver.py:189 ../gnome-sudoku/src/lib/saver.py:214
+#: ../gnome-sudoku/src/lib/saver.py:232
+#, python-format
+msgid "Unable to save file %(filename)s."
+msgstr "A fájl (%(filename)s) nem menthető."
+
+#: ../gnome-sudoku/src/lib/saver.py:211 ../gnome-sudoku/src/lib/saver.py:212
+msgid "Unable to mark game as finished."
+msgstr "Nem lehet befejezettként megjelölni a játékot."
+
+#: ../gnome-sudoku/src/lib/saver.py:229 ../gnome-sudoku/src/lib/saver.py:230
+msgid "Sudoku unable to mark game as finished."
+msgstr "A Sudoku nem tudja befejezettként megjelölni a játékot."
+
+#: ../gnomine/data/gnomine.desktop.in.in.h:1 ../gnomine/src/gnomine.vala:86
+#: ../gnomine/src/gnomine.vala:132 ../gnomine/src/gnomine.vala:732
+msgid "Mines"
+msgstr "Aknakereső"
+
+#: ../gnomine/data/gnomine.desktop.in.in.h:2
+msgid "Clear hidden mines from a minefield"
+msgstr "Elrejtett aknák eltávolítása az aknamezőről"
+
+#: ../gnomine/data/gnomine.desktop.in.in.h:3
+msgid "minesweeper;"
+msgstr "aknakereső;"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:1
+msgid "Use the unknown flag"
+msgstr "Ismeretlen zászló használata"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:2
+msgid "Set to true to be able to mark squares as unknown."
+msgstr ""
+"Állítsa igaz értékre, hogy képes legyen a négyzeteket ismeretlenként "
+"megjelölni."
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:3
+msgid "Warning about too many flags"
+msgstr "Figyelmeztetés a túl sok zászlóról"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:4
+msgid "Set to true to enable warning icons when too many flags are placed."
+msgstr ""
+"Állítsa igazra a figyelmeztető ikonok engedélyezéséhez, ha túl sok zászlót "
+"helyezett el."
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:5
+msgid "Enable automatic placing of flags"
+msgstr "Zászlók automatikus elhelyezésének engedélyezése"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:6
+msgid ""
+"Set to true to have gnomine automatically flag squares as mined when enough "
+"squares are revealed"
+msgstr ""
+"Igazra állítva a gnomine automatikusan aknaként jelöli a négyzeteket, ha "
+"elég négyzet van felfedve"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:7
+msgid "Number of columns in a custom game"
+msgstr "Oszlopok száma egyéni játékban"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:8
+msgid "Number of rows in a custom game"
+msgstr "Sorok száma egyéni játékban"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:9
+msgid "The number of mines in a custom game"
+msgstr "Aknák száma egyéni játékban"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:10
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:3
+msgid "Board size"
+msgstr "A tábla mérete"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:11
+msgid "Size of the board (0-2 = small-large, 3=custom)"
+msgstr "A tábla mérete (0-2 = kicsi - nagy, 3 = egyéni)"
+
+#: ../gnomine/src/gnomine.vala:72
+msgctxt "board size"
+msgid "Custom"
+msgstr "Egyéni"
+
+#: ../gnomine/src/gnomine.vala:108
+msgid "_Replay Size"
+msgstr "_Visszajátszás mérete"
+
+#. New game screen
+#: ../gnomine/src/gnomine.vala:231
+msgid "Field Size"
+msgstr "Mező mérete"
+
+#: ../gnomine/src/gnomine.vala:286
+msgid "H_orizontal:"
+msgstr "_Vízszintes:"
+
+#: ../gnomine/src/gnomine.vala:296
+msgid "_Vertical:"
+msgstr "_Függőleges:"
+
+#: ../gnomine/src/gnomine.vala:306
+msgid "_Number of mines:"
+msgstr "_Aknák száma:"
+
+#: ../gnomine/src/gnomine.vala:325
+msgid "_Play Game"
+msgstr "_Játék indítása"
+
+#: ../gnomine/src/gnomine.vala:372
+#, c-format
+msgid "<b>%d</b> mine"
+msgid_plural "<b>%d</b> mines"
+msgstr[0] "<b>%d</b> akna"
+msgstr[1] "<b>%d</b> akna"
+
+#: ../gnomine/src/gnomine.vala:436
+#, c-format
+msgid "Flags: %u/%u"
+msgstr "Zászlók: %u/%u"
+
+#: ../gnomine/src/gnomine.vala:452
+msgid "The Mines Have Been Cleared!"
+msgstr "Az aknamező megtisztítva!"
+
+#: ../gnomine/src/gnomine.vala:464
+msgid "Mines Scores"
+msgstr "Aknakereső pontszámok"
+
+#: ../gnomine/src/gnomine.vala:465 ../gnotravex/src/gnotravex.vala:241
+#: ../gnotravex/src/gnotravex.vala:266 ../swell-foop/src/swell-foop.vala:355
+msgid "Size:"
+msgstr "Méret:"
+
+#: ../gnomine/src/gnomine.vala:512
+msgid "Do you want to start a new game?"
+msgstr "Szeretne új játékot indítani?"
+
+#: ../gnomine/src/gnomine.vala:513
+msgid "If you start a new game, your current progress will be lost."
+msgstr "Ha új játékot indít, akkor a jelenlegi állás elvész."
+
+#: ../gnomine/src/gnomine.vala:514
+msgid "Keep Current Game"
+msgstr "A jelenlegi játék folytatása"
+
+#: ../gnomine/src/gnomine.vala:515
+msgid "Start New Game"
+msgstr "Új játék indítása"
+
+#: ../gnomine/src/gnomine.vala:706
+msgid "Resizing and SVG support:"
+msgstr "Átméretezés és SVG-támogatás:"
+
+#: ../gnomine/src/gnomine.vala:714
+msgid "Faces:"
+msgstr "Arcok:"
+
+#: ../gnomine/src/gnomine.vala:718
+msgid "Graphics:"
+msgstr "Grafika:"
+
+#: ../gnomine/src/gnomine.vala:735
+msgid ""
+"The popular logic puzzle minesweeper. Clear mines from a board using hints "
+"from squares you have already uncovered.\n"
+"\n"
+"Mines is a part of GNOME Games."
+msgstr ""
+"A népszerű aknakereső játék. Tisztítsa meg a táblát az aknáktól a már "
+"felderített négyzetek tippjei alapján.\n"
+"\n"
+"Az Aknakereső a GNOME játékok része."
+
+#: ../gnomine/src/gnomine.vala:809
+msgid "Mines Preferences"
+msgstr "Aknakereső beállításai"
+
+#: ../gnomine/src/gnomine.vala:827
+msgid "_Use \"I'm not sure\" flags"
+msgstr "„Nem vagyok benne biztos” _zászlók használata"
+
+#: ../gnomine/src/gnomine.vala:833
+msgid "_Warn if too many flags have been placed"
+msgstr "_Figyelmeztetés a túl sok zászlóról"
+
+#: ../gnotravex/data/gnotravex.desktop.in.in.h:1
+#: ../gnotravex/src/gnotravex.vala:56 ../gnotravex/src/gnotravex.vala:82
+#: ../gnotravex/src/gnotravex.vala:306
+msgid "Tetravex"
+msgstr "Tetravex"
+
+#: ../gnotravex/data/gnotravex.desktop.in.in.h:2
+msgid "Complete the puzzle by matching numbered tiles"
+msgstr "Oldja meg a fejtörőt az egyező számok összeillesztésével"
+
+#: ../gnotravex/data/gnotravex.ui.h:3
+msgid "_Solve"
+msgstr "M_egoldás"
+
+#: ../gnotravex/data/gnotravex.ui.h:5
+msgid "_Up"
+msgstr "_Fel"
+
+#: ../gnotravex/data/gnotravex.ui.h:6
+msgid "_Left"
+msgstr "_Balra"
+
+#: ../gnotravex/data/gnotravex.ui.h:7
+msgid "_Right"
+msgstr "_Jobbra"
+
+#: ../gnotravex/data/gnotravex.ui.h:8
+msgid "_Down"
+msgstr "_Le"
+
+#: ../gnotravex/data/gnotravex.ui.h:10
+msgid "_Size"
+msgstr "_Méret"
+
+#: ../gnotravex/data/gnotravex.ui.h:11
+msgid "_2x2"
+msgstr "_2×2"
+
+#: ../gnotravex/data/gnotravex.ui.h:12
+msgid "_3x3"
+msgstr "_3×3"
+
+#: ../gnotravex/data/gnotravex.ui.h:13
+msgid "_4x4"
+msgstr "_4×4"
+
+#: ../gnotravex/data/gnotravex.ui.h:14
+msgid "_5x5"
+msgstr "_5×5"
+
+#: ../gnotravex/data/gnotravex.ui.h:15
+msgid "_6x6"
+msgstr "_6×6"
+
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:1
+msgid "The size of the playing grid"
+msgstr "A játékrács mérete"
+
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:2
+msgid "The value of this key is used to decide the size of the playing grid."
+msgstr "Ezen kulcs értéke határozza meg a játékrács méretét."
+
+#: ../gnotravex/src/gnotravex.vala:14
+msgid "2×2"
+msgstr "2×2"
+
+#: ../gnotravex/src/gnotravex.vala:15
+msgid "3×3"
+msgstr "3×3"
+
+#: ../gnotravex/src/gnotravex.vala:16
+msgid "4×4"
+msgstr "4×4"
+
+#: ../gnotravex/src/gnotravex.vala:17
+msgid "5×5"
+msgstr "5×5"
+
+#: ../gnotravex/src/gnotravex.vala:18
+msgid "6×6"
+msgstr "6×6"
+
+#: ../gnotravex/src/gnotravex.vala:111
+msgid "Solve"
+msgstr "Megoldás"
+
+#: ../gnotravex/src/gnotravex.vala:240 ../gnotravex/src/gnotravex.vala:265
+msgid "Tetravex Scores"
+msgstr "Tetravex pontszámok"
+
+#: ../gnotravex/src/gnotravex.vala:309
+msgid ""
+"GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
+"the same numbers are touching each other.\n"
+"\n"
+"Tetravex is a part of GNOME Games."
+msgstr ""
+"A GNOME Tetravex egy egyszerű fejtörő, amelyben a darabokat úgy kell "
+"összeilleszteni, hogy az azonos számok összeérjenek.\n"
+"\n"
+"A Tetravex a GNOME játékok része."
+
+#: ../gnotski/data/gnotski.desktop.in.in.h:1 ../gnotski/src/gnotski.c:42
+msgid "Klotski"
+msgstr "Klotski"
+
+#: ../gnotski/data/gnotski.desktop.in.in.h:2
+msgid "Slide blocks to solve the puzzle"
+msgstr "Csúsztassa el az elemeket a fejtörő megoldásához"
+
+#: ../gnotski/data/org.gnome.gnotski.gschema.xml.in.h:1
+msgid "The puzzle in play"
+msgstr "A játszott feladvány"
+
+#: ../gnotski/data/org.gnome.gnotski.gschema.xml.in.h:2
+msgid "The number of the puzzle being played."
+msgstr "A játszott feladvány száma."
+
+#: ../gnotski/src/gnotski.c:93
+msgid "Only 18 steps"
+msgstr "Csak 18 lépés"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:94 ../gnotski/src/gnotski.c:177
+msgid "Daisy"
+msgstr "Százszorszép"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:95 ../gnotski/src/gnotski.c:183
+msgid "Violet"
+msgstr "Viola"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:96 ../gnotski/src/gnotski.c:189
+msgid "Poppy"
+msgstr "Pipacs"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:97 ../gnotski/src/gnotski.c:195
+msgid "Pansy"
+msgstr "Árvácska"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:98 ../gnotski/src/gnotski.c:201
+msgid "Snowdrop"
+msgstr "Hóvirág"
+
+#. puzzle name - sometimes called "Le'Ane Rouge"
+#: ../gnotski/src/gnotski.c:99 ../gnotski/src/gnotski.c:207
+msgid "Red Donkey"
+msgstr "Vörös csacsi"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:100 ../gnotski/src/gnotski.c:213
+msgid "Trail"
+msgstr "Ösvény"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:101 ../gnotski/src/gnotski.c:219
+msgid "Ambush"
+msgstr "Csapda"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:102 ../gnotski/src/gnotski.c:225
+msgid "Agatka"
+msgstr "Agatka"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:103 ../gnotski/src/gnotski.c:230
+msgid "Success"
+msgstr "Siker"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:104 ../gnotski/src/gnotski.c:235
+msgid "Bone"
+msgstr "Csont"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:105 ../gnotski/src/gnotski.c:241
+msgid "Fortune"
+msgstr "Szerencse"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:106 ../gnotski/src/gnotski.c:249
+msgid "Fool"
+msgstr "Bolond"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:107 ../gnotski/src/gnotski.c:255
+msgid "Solomon"
+msgstr "Salamon"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:108 ../gnotski/src/gnotski.c:262
+msgid "Cleopatra"
+msgstr "Kleopátra"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:109 ../gnotski/src/gnotski.c:267
+msgid "Shark"
+msgstr "Cápa"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:110 ../gnotski/src/gnotski.c:275
+msgid "Rome"
+msgstr "Róma"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:111 ../gnotski/src/gnotski.c:282
+msgid "Pennant Puzzle"
+msgstr "Zászló"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:112 ../gnotski/src/gnotski.c:288
+msgid "Ithaca"
+msgstr "Itaka"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:113 ../gnotski/src/gnotski.c:309
+msgid "Pelopones"
+msgstr "Peloponész"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:114 ../gnotski/src/gnotski.c:316
+msgid "Transeuropa"
+msgstr "Transzeurópa"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:115 ../gnotski/src/gnotski.c:325
+msgid "Lodzianka"
+msgstr "Lodzianka"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:116 ../gnotski/src/gnotski.c:331
+msgid "Polonaise"
+msgstr "Lengyel"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:117 ../gnotski/src/gnotski.c:336
+msgid "Baltic Sea"
+msgstr "Balti tenger"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:118 ../gnotski/src/gnotski.c:341
+msgid "American Pie"
+msgstr "Amerikai pite"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:119 ../gnotski/src/gnotski.c:353
+msgid "Traffic Jam"
+msgstr "Dugó"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:120 ../gnotski/src/gnotski.c:360
+msgid "Sunshine"
+msgstr "Napfény"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:171
+msgid "Only 18 Steps"
+msgstr "Csak 18 lépés"
+
+#. set of puzzles
+#: ../gnotski/src/gnotski.c:401
+msgid "HuaRong Trail"
+msgstr "HuaRong ösvény"
+
+#. set of puzzles
+#: ../gnotski/src/gnotski.c:403
+msgid "Challenge Pack"
+msgstr "Kihíváscsomag"
+
+#. set of puzzles
+#: ../gnotski/src/gnotski.c:405
+msgid "Skill Pack"
+msgstr "Szakértői csomag"
+
+#: ../gnotski/src/gnotski.c:406
+msgid "_Restart Puzzle"
+msgstr "_Feladvány újraindítása"
+
+#: ../gnotski/src/gnotski.c:408
+msgid "Next Puzzle"
+msgstr "Következő feladvány"
+
+#: ../gnotski/src/gnotski.c:410
+msgid "Previous Puzzle"
+msgstr "Előző feladvány"
+
+#: ../gnotski/src/gnotski.c:444
+msgid "X location of window"
+msgstr "Az ablak X koordinátája"
+
+#: ../gnotski/src/gnotski.c:446
+msgid "Y location of window"
+msgstr "Az ablak Y koordinátája"
+
+#: ../gnotski/src/gnotski.c:600
+msgid "Level completed."
+msgstr "Szint teljesítve."
+
+#: ../gnotski/src/gnotski.c:746
+msgid "The Puzzle Has Been Solved!"
+msgstr "Ezt megoldotta!"
+
+#: ../gnotski/src/gnotski.c:763
+msgid "Klotski Scores"
+msgstr "Klotski pontszámok"
+
+#: ../gnotski/src/gnotski.c:766
+msgid "Puzzle:"
+msgstr "Fejtörő:"
+
+#: ../gnotski/src/gnotski.c:869
+msgid ""
+"The theme for this game failed to render.\n"
+"\n"
+"Please check that Klotski is installed correctly."
+msgstr ""
+"Ezen játék témájának megjelenítése sikertelen.\n"
+"\n"
+"Ellenőrizze, hogy a Klotski megfelelően van-e telepítve."
+
+#: ../gnotski/src/gnotski.c:1119
+#, c-format
+msgid ""
+"Could not find the image:\n"
+"%s\n"
+"\n"
+"Please check that Klotski is installed correctly."
+msgstr ""
+"Nem található a képfájl:\n"
+"%s\n"
+"\n"
+"Ellenőrizze, hogy a Klotski megfelelően van-e telepítve."
+
+#: ../gnotski/src/gnotski.c:1158
+#, c-format
+msgid "Moves: %d"
+msgstr "Lépések: %d"
+
+#: ../gnotski/src/gnotski.c:1450
+msgid ""
+"Sliding Block Puzzles\n"
+"\n"
+"Klotski is a part of GNOME Games."
+msgstr ""
+"Blokkcsúsztatós fejtörők\n"
+"\n"
+"A Klotski a GNOME játékok része."
+
+#: ../gtali/data/gtali.desktop.in.in.h:1 ../gtali/src/gyahtzee.c:57
+msgid "Tali"
+msgstr "Tali"
+
+#: ../gtali/data/gtali.desktop.in.in.h:2
+msgid "Beat the odds in a poker-style dice game"
+msgstr "Győzze le az esélyeket egy póker stílusú kockajátékban"
+
+#: ../gtali/data/gtali.desktop.in.in.h:3
+msgid "yahtzee;"
+msgstr "kockapóker;"
+
+#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:1
+msgid "Delay between rolls"
+msgstr "Dobások közötti késleltetés"
+
+#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:2
+msgid ""
+"Choose whether or not to insert a delay between the computer's dice rolls so "
+"the player can follow what it is doing."
+msgstr ""
+"Válassza ki, hogy legyen-e késleltetés a számítógép kockadobásai előtt (így "
+"a játékos követheti, mi történik)."
+
+#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:3
+msgid "Display the computer's thoughts"
+msgstr "A számítógép gondolatainak megjelenítése"
+
+#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:4
+msgid "If set to true, a dump of the AI's working will be done to standard output."
+msgstr ""
+"Ha igaz értékre van állítva, az AI működése kiírásra kerül a standard "
+"kimenetre."
+
+#: ../gtali/src/clist.c:158
+msgid "Already used! Where do you want to put that?"
+msgstr "Már fel van használva. Hova szeretné tenni?"
+
+#: ../gtali/src/clist.c:414
+#, c-format
+msgid "Score: %d"
+msgstr "Pontszám: %d"
+
+#: ../gtali/src/clist.c:416
+#, c-format
+msgid "Field used"
+msgstr "Használt mező"
+
+#: ../gtali/src/gyahtzee.c:102
+msgid "Delay computer moves"
+msgstr "A számítógép lépéseinek késleltetése"
+
+#: ../gtali/src/gyahtzee.c:104
+msgid "Display computer thoughts"
+msgstr "A számítógép gondolatainak megjelenítése"
+
+#: ../gtali/src/gyahtzee.c:106
+msgid "Number of computer opponents"
+msgstr "Számítógépes ellenfelek száma"
+
+#: ../gtali/src/gyahtzee.c:106 ../gtali/src/gyahtzee.c:108
+#: ../gtali/src/gyahtzee.c:112 ../gtali/src/gyahtzee.c:114
+msgid "NUMBER"
+msgstr "SZÁM"
+
+#: ../gtali/src/gyahtzee.c:108
+msgid "Number of human opponents"
+msgstr "Élő ellenfelek száma"
+
+#: ../gtali/src/gyahtzee.c:110
+msgid "Game choice: Regular or Colors"
+msgstr "Játék választása: Regular (Normál) vagy Colors (színes)"
+
+#: ../gtali/src/gyahtzee.c:110
+msgid "STRING"
+msgstr "KARAKTERLÁNC"
+
+#: ../gtali/src/gyahtzee.c:112
+msgid "Number of computer-only games to play"
+msgstr "A lejátszandó, csak számítógépes játékok száma"
+
+#: ../gtali/src/gyahtzee.c:114
+msgid "Number of trials for each roll for the computer"
+msgstr "A számítógép próbálkozásainak száma minden dobáshoz"
+
+#: ../gtali/src/gyahtzee.c:119 ../gtali/src/setup.c:359
+msgctxt "game type"
+msgid "Regular"
+msgstr "Normál"
+
+#: ../gtali/src/gyahtzee.c:120 ../gtali/src/setup.c:360
+msgctxt "game type"
+msgid "Colors"
+msgstr "Színes"
+
+#: ../gtali/src/gyahtzee.c:141
+msgid "Roll all!"
+msgstr "Dobás minddel!"
+
+#: ../gtali/src/gyahtzee.c:144 ../gtali/src/gyahtzee.c:791
+msgid "Roll!"
+msgstr " Dobás!"
+
+#: ../gtali/src/gyahtzee.c:178
+msgid "The game is a draw!"
+msgstr "Az eredmény döntetlen!"
+
+#: ../gtali/src/gyahtzee.c:192 ../gtali/src/gyahtzee.c:629
+msgid "Tali Scores"
+msgstr "Pontszámok"
+
+#: ../gtali/src/gyahtzee.c:208
+#, c-format
+msgid "%s wins the game with %d point"
+msgid_plural "%s wins the game with %d points"
+msgstr[0] "%s nyerte a játékot %d ponttal"
+msgstr[1] "%s nyerte a játékot %d ponttal"
+
+#: ../gtali/src/gyahtzee.c:256
+#, c-format
+msgid "Computer playing for %s"
+msgstr "A számítógép %s helyett játszik"
+
+#: ../gtali/src/gyahtzee.c:258
+#, c-format
+msgid "%s! -- You're up."
+msgstr "%s! -- Ön jön!"
+
+#: ../gtali/src/gyahtzee.c:451
+msgid "Select dice to roll or choose a score slot."
+msgstr "Válasszon kockát a dobáshoz, vagy válasszon egy pontszámmezőt."
+
+#: ../gtali/src/gyahtzee.c:479
+msgid "Roll"
+msgstr "Dobás"
+
+#: ../gtali/src/gyahtzee.c:537
+msgid "You are only allowed three rolls. Choose a score slot."
+msgstr "Csak három dobása van! Válasszon pontszámmezőt."
+
+#: ../gtali/src/gyahtzee.c:587
+msgid "GNOME version (1998):"
+msgstr "GNOME verzió (1998):"
+
+#: ../gtali/src/gyahtzee.c:590
+msgid "Console version (1992):"
+msgstr "Konzol verzió (1992):"
+
+#: ../gtali/src/gyahtzee.c:593
+msgid "Colors game and multi-level AI (2006):"
+msgstr "Színes játék és többszintű mesterséges intelligencia (2006):"
+
+#: ../gtali/src/gyahtzee.c:611
+msgid ""
+"A variation on poker with dice and less money.\n"
+"\n"
+"Tali is a part of GNOME Games."
+msgstr ""
+"Egy pókerváltozat dobókockával és kevesebb pénzzel.\n"
+"\n"
+"A Tali a GNOME játékok része."
+
+#: ../gtali/src/setup.c:122
+msgid "Current game will complete with original number of players."
+msgstr "A mostani játék az eredeti számú játékossal fog befejeződni."
+
+#: ../gtali/src/setup.c:264
+msgid "Tali Preferences"
+msgstr "A Tali beállításai"
+
+#: ../gtali/src/setup.c:285
+msgid "Human Players"
+msgstr "Élő játékosok"
+
+#: ../gtali/src/setup.c:295
+msgid "_Number of players:"
+msgstr "_Játékosok száma:"
+
+#: ../gtali/src/setup.c:309
+msgid "Computer Opponents"
+msgstr "Számítógépes ellenfelek"
+
+#. --- Button ---
+#: ../gtali/src/setup.c:316
+msgid "_Delay between rolls"
+msgstr "_Dobások közötti késleltetés"
+
+#: ../gtali/src/setup.c:326
+msgid "N_umber of opponents:"
+msgstr "_Ellenfelek száma:"
+
+#: ../gtali/src/setup.c:340
+msgid "_Difficulty:"
+msgstr "_Nehézség:"
+
+#: ../gtali/src/setup.c:344
+msgctxt "difficulty"
+msgid "Medium"
+msgstr "Közepes"
+
+#. --- PLAYER NAMES FRAME ----
+#: ../gtali/src/setup.c:368
+msgid "Player Names"
+msgstr "Játékosok neve"
+
+#: ../gtali/src/yahtzee.c:85 ../gtali/src/yahtzee.c:109
+#: ../gtali/src/yahtzee.c:517
+msgid "1s [total of 1s]"
+msgstr "egyesek [összes egyes]"
+
+#: ../gtali/src/yahtzee.c:86 ../gtali/src/yahtzee.c:110
+#: ../gtali/src/yahtzee.c:518
+msgid "2s [total of 2s]"
+msgstr "kettesek [összes kettes]"
+
+#: ../gtali/src/yahtzee.c:87 ../gtali/src/yahtzee.c:111
+#: ../gtali/src/yahtzee.c:519
+msgid "3s [total of 3s]"
+msgstr "hármasok [összes hármas]"
+
+#: ../gtali/src/yahtzee.c:88 ../gtali/src/yahtzee.c:112
+#: ../gtali/src/yahtzee.c:520
+msgid "4s [total of 4s]"
+msgstr "négyesek [összes négyes]"
+
+#: ../gtali/src/yahtzee.c:89 ../gtali/src/yahtzee.c:113
+#: ../gtali/src/yahtzee.c:521
+msgid "5s [total of 5s]"
+msgstr "ötösök [összes ötös]"
+
+#: ../gtali/src/yahtzee.c:90 ../gtali/src/yahtzee.c:114
+#: ../gtali/src/yahtzee.c:522
+msgid "6s [total of 6s]"
+msgstr "hatosok [összes hatos]"
+
+#. End of upper panel
+#: ../gtali/src/yahtzee.c:92 ../gtali/src/yahtzee.c:117
+#: ../gtali/src/yahtzee.c:523
+msgid "3 of a Kind [total]"
+msgstr "három egyforma [összes]"
+
+#: ../gtali/src/yahtzee.c:93 ../gtali/src/yahtzee.c:524
+msgid "4 of a Kind [total]"
+msgstr "négy egyforma [összes]"
+
+#: ../gtali/src/yahtzee.c:94 ../gtali/src/yahtzee.c:525
+msgid "Full House [25]"
+msgstr "Full [25]"
+
+#: ../gtali/src/yahtzee.c:95 ../gtali/src/yahtzee.c:526
+msgid "Small Straight [30]"
+msgstr "Kis sor [30]"
+
+#: ../gtali/src/yahtzee.c:96 ../gtali/src/yahtzee.c:121
+#: ../gtali/src/yahtzee.c:527
+msgid "Large Straight [40]"
+msgstr "Nagy sor [40]"
+
+#: ../gtali/src/yahtzee.c:97
+msgid "5 of a Kind [50]"
+msgstr "öt egyforma [ötven]"
+
+#: ../gtali/src/yahtzee.c:98 ../gtali/src/yahtzee.c:124
+#: ../gtali/src/yahtzee.c:529
+msgid "Chance [total]"
+msgstr "Esély [összes]"
+
+#. End of lower panel
+#: ../gtali/src/yahtzee.c:100 ../gtali/src/yahtzee.c:126
+msgid "Lower Total"
+msgstr "Alsó összeg"
+
+#: ../gtali/src/yahtzee.c:101 ../gtali/src/yahtzee.c:127
+msgid "Grand Total"
+msgstr "Összeg"
+
+#. Need to squish between upper and lower pannel
+#: ../gtali/src/yahtzee.c:103 ../gtali/src/yahtzee.c:129
+msgid "Upper total"
+msgstr "Felső összeg"
+
+#: ../gtali/src/yahtzee.c:104 ../gtali/src/yahtzee.c:130
+msgid "Bonus if >62"
+msgstr "Bónusz, ha nagyobb, mint 62"
+
+#. End of upper panel
+#: ../gtali/src/yahtzee.c:116 ../gtali/src/yahtzee.c:530
+msgid "2 pair Same Color [total]"
+msgstr "2 pár azonos szín [összes]"
+
+#: ../gtali/src/yahtzee.c:118 ../gtali/src/yahtzee.c:531
+msgid "Full House [15 + total]"
+msgstr "Full house [15 + összes]"
+
+#: ../gtali/src/yahtzee.c:119 ../gtali/src/yahtzee.c:532
+msgid "Full House Same Color [20 + total]"
+msgstr "Azonos színű full house [20 + összes]"
+
+#: ../gtali/src/yahtzee.c:120 ../gtali/src/yahtzee.c:533
+msgid "Flush (all same color) [35]"
+msgstr "Flush (mind azonos szín) [35]"
+
+#: ../gtali/src/yahtzee.c:122 ../gtali/src/yahtzee.c:534
+msgid "4 of a Kind [25 + total]"
+msgstr "Négy egyforma [25 + összes]"
+
+#: ../gtali/src/yahtzee.c:123 ../gtali/src/yahtzee.c:535
+msgid "5 of a Kind [50 + total]"
+msgstr "Öt egyforma [50 + összes]"
+
+#: ../gtali/src/yahtzee.c:251
+msgid "Choose a score slot."
+msgstr "Válasszon egy pontszámmezőt."
+
+#: ../gtali/src/yahtzee.c:528
+msgid "5 of a Kind [total]"
+msgstr "öt egyforma [összes]"
+
+#. Arrgh - lets all use the same tabs under emacs:
+#. Local Variables:
+#. tab-width: 8
+#. c-basic-offset: 8
+#. indent-tabs-mode: nil
+#.
+#: ../iagno/data/iagno.desktop.in.in.h:1 ../iagno/src/iagno.vala:82
+#: ../iagno/src/iagno.vala:295 ../iagno/src/iagno.vala:620
+msgid "Iagno"
+msgstr "Iagno"
+
+#: ../iagno/data/iagno.desktop.in.in.h:2
+msgid "Dominate the board in a classic version of Reversi"
+msgstr "Uralja a táblát a Reversi klasszikus változatában"
+
+#: ../iagno/data/iagno.desktop.in.in.h:3
+msgid "othello;"
+msgstr "othello;"
+
+#: ../iagno/src/iagno.vala:137 ../iagno/src/iagno.vala:254
+#: ../iagno/src/iagno.vala:262
+msgid "Dark:"
+msgstr "Sötét:"
+
+#: ../iagno/src/iagno.vala:145 ../iagno/src/iagno.vala:255
+#: ../iagno/src/iagno.vala:263
+msgid "Light:"
+msgstr "Világos:"
+
+#: ../iagno/src/iagno.vala:246
+msgid "Light must pass, Dark's move"
+msgstr "A világos nem tud lépni, a sötét jön"
+
+#: ../iagno/src/iagno.vala:248
+msgid "Dark must pass, Light's move"
+msgstr "A sötét nem tud lépni, a világos jön"
+
+#. Translators: this is a 2 digit representation of the current score.
+#: ../iagno/src/iagno.vala:257 ../iagno/src/iagno.vala:258
+#: ../iagno/src/iagno.vala:265 ../iagno/src/iagno.vala:266
+#, c-format
+msgid "%.2d"
+msgstr "%.2d"
+
+#: ../iagno/src/iagno.vala:300
+msgid ""
+"A disk flipping game derived from Reversi.\n"
+"\n"
+"Iagno is a part of GNOME Games."
+msgstr ""
+"A Reversiből származtatott korongfordítgatós játék.\n"
+"\n"
+"Az Iagno a GNOME játékok része."
+
+#: ../iagno/src/iagno.vala:368
+msgid "Light player wins!"
+msgstr "A világos nyert!"
+
+#: ../iagno/src/iagno.vala:370
+msgid "Dark player wins!"
+msgstr "A sötét nyert!"
+
+#: ../iagno/src/iagno.vala:372
+msgid "The game was a draw."
+msgstr "Döntetlen az eredmény."
+
+#: ../iagno/src/iagno.vala:396
+msgid "Invalid move."
+msgstr "Érvénytelen lépés."
+
+#: ../iagno/src/iagno.vala:461
+msgid "Iagno Preferences"
+msgstr "Az Iagno beállításai"
+
+#: ../iagno/src/iagno.vala:480
+msgid "Dark Player:"
+msgstr "Sötét játékos:"
+
+#: ../iagno/src/iagno.vala:510
+msgid "Light Player:"
+msgstr "Világos játékos:"
+
+#: ../iagno/src/iagno.vala:544
+msgid "S_how grid"
+msgstr "_Rács megjelenítése"
+
+#: ../iagno/src/iagno.vala:549
+msgid "_Flip final results"
+msgstr "A vé_geredmény rendezése"
+
+#: ../iagno/src/iagno.vala:554
+msgid "_Tile set:"
+msgstr "_Kőkészlet:"
+
+#. Score dialog column header for the score time (e.g. 1 minute)
+#: ../libgames-support/games-scores-dialog.c:136
+msgctxt "score-dialog"
+msgid "Time"
+msgstr "Idő"
+
+#. Score dialog column header for the score value (e.g. 30 moves)
+#: ../libgames-support/games-scores-dialog.c:142
+msgctxt "score-dialog"
+msgid "Score"
+msgstr "Pontszám"
+
+#. Score format for time based scores.  %1$d is the time in minutes, %2$d is the time in seconds
+#: ../libgames-support/games-scores-dialog.c:307
+#, c-format
+msgctxt "score-dialog"
+msgid "%1$dm %2$ds"
+msgstr "%1$dp %2$dmp"
+
+#. Score dialog column header for the name of the player who recorded the score
+#: ../libgames-support/games-scores-dialog.c:571
+msgctxt "score-dialog"
+msgid "Name"
+msgstr "Név"
+
+#. Score dialog column header for the date the score was recorded
+#: ../libgames-support/games-scores-dialog.c:580
+msgid "Date"
+msgstr "Dátum"
+
+#. FIXME: There is basically no range checking.
+#: ../lightsoff/data/lightsoff.desktop.in.in.h:1
+#: ../lightsoff/src/lightsoff.vala:144 ../lightsoff/src/lightsoff.vala:168
+msgid "Lights Off"
+msgstr "Fények le"
+
+#: ../lightsoff/data/lightsoff.desktop.in.in.h:2
+msgid "Turn off all the lights"
+msgstr "Kapcsolja le az összes lámpát"
+
+#: ../lightsoff/data/org.gnome.lightsoff.gschema.xml.in.h:1
+msgid "The current level"
+msgstr "A jelenlegi szint"
+
+#: ../lightsoff/data/org.gnome.lightsoff.gschema.xml.in.h:2
+msgid "The users's most recent level."
+msgstr "A felhasználó legutóbbi szintje."
+
+#: ../lightsoff/src/lightsoff.vala:147
+msgid ""
+"Turn off all the lights\n"
+"\n"
+"Lights Off is a part of GNOME Games."
+msgstr ""
+"Kapcsolja le az összes fényt\n"
+"\n"
+"A Fények le a GNOME játékok része."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:1
+msgid "Image to use for drawing blocks"
+msgstr "A blokkok rajzolásához használt kép"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:2
+msgid "Image to use for drawing blocks."
+msgstr "A blokkok rajzolásához használt kép."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:3
+msgid "The theme used for rendering the blocks"
+msgstr "A blokkok rajzolásához használt kép"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:4
+msgid "The name of the theme used for rendering the blocks and the background."
+msgstr "A blokkok és a háttér rajzolására használt téma neve."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:5
+msgid "Level to start with"
+msgstr "Kezdőszint"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:6
+msgid "Level to start with."
+msgstr "Kezdőszint."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:7
+msgid "Whether to preview the next block"
+msgstr "Lehessen-e előre látni a következő blokkot"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:8
+msgid "Whether to preview the next block."
+msgstr "Lehessen-e előre látni a következő blokkot."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:9
+msgid "Whether to show where the moving piece will land"
+msgstr "A mozgó blokk várható helyének megjelenítése"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:10
+msgid "Whether to show where the moving piece will land."
+msgstr "A mozgó blokk várható helyének megjelenítése."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:11
+msgid "Whether to give blocks random colors"
+msgstr "Legyen-e véletlenszerű színe a blokkoknak"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:12
+msgid "Whether to give blocks random colors."
+msgstr "Legyen-e véletlenszerű színe a blokkoknak."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:13
+msgid "Whether to rotate counter clock wise"
+msgstr "A forgatás az óramutató járásával ellentétes irányba történjen-e"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:14
+msgid "Whether to rotate counter clock wise."
+msgstr "A forgatás az óramutató járásával ellentétes irányba történjen-e."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:15
+msgid "The number of rows to fill"
+msgstr "A feltöltendő sorok száma"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:16
+msgid ""
+"The number of rows that are filled with random blocks at the start of the "
+"game."
+msgstr ""
+"A sorok száma, amelyek a játék indításakor véletlenszerű blokkokkal kerülnek "
+"feltöltésre."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:17
+msgid "The density of filled rows"
+msgstr "A feltöltött sorok sűrűsége"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:18
+msgid ""
+"The density of blocks in rows filled at the start of the game. The value is "
+"between 0 (for no blocks) and 10 (for a completely filled row)."
+msgstr ""
+"A blokkok sűrűsége a feltöltött sorokban a játék indításakor. Az érték 0 "
+"(nincs blokk) és 10 (teljesen feltöltött sor) között változhat."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:19
+msgid "Whether to play sounds"
+msgstr "Hangok lejátszása"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:20
+msgid "Whether to play sounds."
+msgstr "Hangok lejátszása."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:21
+msgid "Whether to pick blocks that are hard to place"
+msgstr "Nehezen elhelyezhető blokkok kiválasztása"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:22
+msgid "Whether to pick blocks that are hard to place."
+msgstr "Nehezen elhelyezhető blokkok kiválasztása."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:28
+msgid "Key press to move down."
+msgstr "Billentyű a lefelé mozgáshoz."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:29
+#: ../quadrapassel/src/quadrapassel.vala:390
+msgid "Drop"
+msgstr "Ejtés"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:30
+msgid "Key press to drop."
+msgstr "Billentyű a leejtéshez."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:31
+#: ../quadrapassel/src/quadrapassel.vala:393
+msgid "Rotate"
+msgstr "Forgatás"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:32
+msgid "Key press to rotate."
+msgstr "Billentyű a forgatáshoz."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:33
+#: ../quadrapassel/src/quadrapassel.vala:396
+msgid "Pause"
+msgstr "Szünet"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:34
+msgid "Key press to pause."
+msgstr "Billentyű a szüneteltetéshez."
+
+#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:1
+#: ../quadrapassel/src/quadrapassel.vala:99
+#: ../quadrapassel/src/quadrapassel.vala:757
+#: ../quadrapassel/src/quadrapassel.vala:803
+msgid "Quadrapassel"
+msgstr "Quadrapassel"
+
+#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:2
+msgid "Fit falling blocks together"
+msgstr "Lehulló blokkok egymáshoz illesztése"
+
+#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:3
+msgid "tetris;"
+msgstr "tetris;"
+
+#: ../quadrapassel/src/game-view.vala:332
+msgid "Game Over"
+msgstr "Vége a játéknak"
+
+#: ../quadrapassel/src/quadrapassel.vala:183
+msgid "Lines:"
+msgstr "Sorok:"
+
+#: ../quadrapassel/src/quadrapassel.vala:290
+msgid "Quadrapassel Preferences"
+msgstr "A Quadrapassel beállításai"
+
+#. pre-filled rows
+#: ../quadrapassel/src/quadrapassel.vala:309
+msgid "_Number of pre-filled rows:"
+msgstr "Az előre _kitöltött sorok száma:"
+
+#. pre-filled rows density
+#: ../quadrapassel/src/quadrapassel.vala:323
+msgid "_Density of blocks in a pre-filled row:"
+msgstr "A blokkok _sűrűsége az előre feltöltött sorokban:"
+
+#: ../quadrapassel/src/quadrapassel.vala:355
+msgid "_Preview next block"
+msgstr "A következő blokk _előnézete"
+
+#: ../quadrapassel/src/quadrapassel.vala:360
+msgid "Choose difficult _blocks"
+msgstr "Nehéz blokkok _választása"
+
+#. rotate counter clock wise
+#: ../quadrapassel/src/quadrapassel.vala:366
+msgid "_Rotate blocks counterclockwise"
+msgstr "Blokkok _forgatása az óramutató járásával ellentétes irányba"
+
+#: ../quadrapassel/src/quadrapassel.vala:371
+msgid "Show _where the block will land"
+msgstr "A blokk _várható helyének megjelenítése"
+
+#: ../quadrapassel/src/quadrapassel.vala:415
+msgid "Controls"
+msgstr "Vezérlés"
+
+#: ../quadrapassel/src/quadrapassel.vala:421
+msgid "Theme"
+msgstr "Téma"
+
+#: ../quadrapassel/src/quadrapassel.vala:433
+msgid "Plain"
+msgstr "Egyszerű"
+
+#: ../quadrapassel/src/quadrapassel.vala:438
+msgid "Tango Flat"
+msgstr "Sima Tango"
+
+#: ../quadrapassel/src/quadrapassel.vala:443
+msgid "Tango Shaded"
+msgstr "Árnyékolt Tango"
+
+#: ../quadrapassel/src/quadrapassel.vala:448
+msgid "Clean"
+msgstr "Letisztult"
+
+#: ../quadrapassel/src/quadrapassel.vala:695
+#: ../quadrapassel/src/quadrapassel.vala:774
+msgid "Quadrapassel Scores"
+msgstr "Quadrapassel pontszámok"
+
+#: ../quadrapassel/src/quadrapassel.vala:759
+msgid ""
+"A classic game of fitting falling blocks together.\n"
+"\n"
+"Quadrapassel is a part of GNOME Games."
+msgstr ""
+"A klasszikus, leeső téglákat egymáshoz illesztős játék.\n"
+"\n"
+"A Quadrapassel a GNOME játékok része."
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:1
+msgid "The theme to use"
+msgstr "A használandó téma"
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:2
+msgid "The title of the tile theme to use."
+msgstr "A használandó kőtéma neve."
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:4
+msgid "The size of the game board."
+msgstr "A játéktábla mérete."
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:5
+msgid "Board color count"
+msgstr "Tábla színeinek száma"
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:6
+msgid "The number of colors of tiles to use in the game."
+msgstr "Kövek színeinek száma a játékban."
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:7
+msgid "Zealous animation"
+msgstr "Gyors animáció"
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:8
+msgid "Use more flashy, but slower, animations."
+msgstr "Szebb, de lassabb animáció használata."
+
+#: ../swell-foop/data/preferences.ui.h:1
+#: ../swell-foop/data/swell-foop.desktop.in.in.h:1
+#: ../swell-foop/src/swell-foop.vala:54 ../swell-foop/src/swell-foop.vala:386
+#: ../swell-foop/src/swell-foop.vala:451
+msgid "Swell Foop"
+msgstr "Swell Foop"
+
+#: ../swell-foop/data/preferences.ui.h:3
+msgid "_Number of colors:"
+msgstr "S_zínek száma:"
+
+#: ../swell-foop/data/preferences.ui.h:4
+msgid "Setup"
+msgstr "Beállítás"
+
+#: ../swell-foop/data/preferences.ui.h:7
+msgid "_Zealous Animation"
+msgstr "_Gyors animáció"
+
+#: ../swell-foop/data/preferences.ui.h:8
+msgid "Operation"
+msgstr "Működés"
+
+#: ../swell-foop/data/swell-foop.desktop.in.in.h:2
+msgid "Clear the screen by removing groups of colored and shaped tiles"
+msgstr ""
+"Tisztítsa meg a képernyőt az egyező színű és formájú csempecsoportok "
+"eltávolításával"
+
+#. Label showing the number of points at the end of the game
+#: ../swell-foop/src/game-view.vala:433
+#, c-format
+msgid "%u point"
+msgid_plural "%u points"
+msgstr[0] "%u pont"
+msgstr[1] "%u pont"
+
+#: ../swell-foop/src/swell-foop.vala:121 ../swell-foop/src/swell-foop.vala:150
+msgid "Small"
+msgstr "Kicsi"
+
+#: ../swell-foop/src/swell-foop.vala:122 ../swell-foop/src/swell-foop.vala:151
+msgid "Normal"
+msgstr "Normál"
+
+#: ../swell-foop/src/swell-foop.vala:123 ../swell-foop/src/swell-foop.vala:152
+msgid "Large"
+msgstr "Nagy"
+
+#. I left one more blank space at the end to make the score not too close to the window border
+#: ../swell-foop/src/swell-foop.vala:205
+#, c-format
+msgid "Score: %4u "
+msgstr "Pontszám: %4u"
+
+#: ../swell-foop/src/swell-foop.vala:253
+msgid "Colors"
+msgstr "Színek"
+
+#: ../swell-foop/src/swell-foop.vala:257
+msgid "Shapes and Colors"
+msgstr "Alakzatok és színek"
+
+#: ../swell-foop/src/swell-foop.vala:354
+msgid "Swell Foop Scores"
+msgstr "Swell Foop pontok"
+
+#: ../swell-foop/src/swell-foop.vala:389
+msgid ""
+"I want to play that game! You know, they all light-up and you click on them "
+"and they vanish!\n"
+"\n"
+"Swell Foop is a part of GNOME Games."
+msgstr ""
+"Akarok játszani ezzel! Mind kigyullad, az ember rákattint és eltűnnek!\n"
+"\n"
+"A Swell Foop a GNOME játékok része."
+
+#: ../swell-foop/src/swell-foop.vala:390
+msgid "Copyright © 2009 Tim Horton"
+msgstr "Copyright © 2009 Tim Horton"
+

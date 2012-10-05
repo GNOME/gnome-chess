@@ -1,0 +1,4745 @@
+# Serbian translation of gnome-games
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003—2012.
+# This file is distributed under the same license as the gnome-games package.
+# Maintainer: Dušan Marjanović <madafaka@bsd.org.yu>
+# Reviewed on 2005-08-03 by: Igor Nestorović <igor@prevod.org>
+# Translated by: Miloš Popović <gpopac@gmail.com>
+# Translated on 2010-08-25 by: Branko Kokanović <branko.kokanovic@gmail.com>
+# Miloš Popović <gpopac@gmai, 2010.
+# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2011, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: Gnomove igre\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"games&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-09-06 15:55+0000\n"
+"PO-Revision-Date: 2012-09-07 07:36+0200\n"
+"Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
+"Language-Team: Serbian <gnom@prevod.org>\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
+"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Project-Style: gnome\n"
+
+#. Title of the main window
+#: ../glchess/data/glchess.desktop.in.in.h:1 ../glchess/src/glchess.vala:234
+msgid "Chess"
+msgstr "Šah"
+
+#: ../glchess/data/glchess.desktop.in.in.h:2
+msgid "Play the classic two-player boardgame of chess"
+msgstr "Igraj klasičan šah na tabli sa dva igrača"
+
+#. Game menu name
+#: ../glchess/data/glchess.ui.h:2 ../glines/data/glines.ui.h:2
+#: ../gnect/src/main.c:1183 ../gnibbles/src/main.c:605
+#: ../gnobots2/src/menu.c:65 ../gnome-sudoku/src/lib/main.py:195
+#: ../gnotski/src/gnotski.c:397
+msgid "_Game"
+msgstr "_Igra"
+
+#. Undo move menu item
+#: ../glchess/data/glchess.ui.h:4 ../glines/src/games-stock.c:259
+#: ../gnect/src/games-stock.c:259 ../gnibbles/src/games-stock.c:259
+#: ../gnobots2/src/games-stock.c:259
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:111
+#: ../gnotski/src/games-stock.c:259 ../gtali/src/games-stock.c:259
+#: ../gtali/src/gyahtzee.c:754
+msgid "_Undo Move"
+msgstr "_Opozovi potez"
+
+#. Save menu item
+#: ../glchess/data/glchess.ui.h:6
+msgid "_Resign"
+msgstr "_Predaj se"
+
+#. Claim draw menu item
+#: ../glchess/data/glchess.ui.h:8
+msgid "Claim _Draw"
+msgstr "Zahtevaj _remi"
+
+#. Settings menu item
+#: ../glchess/data/glchess.ui.h:10 ../glines/data/glines.ui.h:4
+#: ../gnect/src/main.c:1185 ../gnibbles/src/main.c:607
+#: ../gnobots2/src/menu.c:68 ../gnome-sudoku/src/lib/main.py:209
+msgid "_Settings"
+msgstr "_Podešavanja"
+
+#. Help menu item
+#: ../glchess/data/glchess.ui.h:12 ../glines/data/glines.ui.h:5
+#: ../gnect/src/main.c:1186 ../gnibbles/src/main.c:608
+#: ../gnobots2/src/menu.c:69 ../gnome-mahjongg/src/gnome-mahjongg.vala:89
+#: ../gnome-sudoku/src/lib/main.py:218 ../gnomine/src/gnomine.vala:116
+#: ../gnotravex/data/gnotravex.ui.h:16 ../gnotski/src/gnotski.c:399
+#: ../gtali/src/gyahtzee.c:759 ../iagno/data/iagno.ui.h:4
+#: ../lightsoff/src/lightsoff.vala:32 ../quadrapassel/src/quadrapassel.vala:88
+#: ../swell-foop/src/swell-foop.vala:70
+msgid "_Help"
+msgstr "Po_moć"
+
+#. Help contents menu item
+#: ../glchess/data/glchess.ui.h:14 ../glines/data/glines.ui.h:7
+#: ../glines/src/games-stock.c:247 ../gnect/src/games-stock.c:247
+#: ../gnibbles/src/games-stock.c:247 ../gnobots2/src/games-stock.c:247
+#: ../gnome-sudoku/src/lib/main.py:219 ../gnotski/src/games-stock.c:247
+#: ../gtali/src/games-stock.c:247
+msgid "_Contents"
+msgstr "_Sadržaj"
+
+#. Tooltip for start new game toolbar button
+#: ../glchess/data/glchess.ui.h:16 ../glines/src/games-stock.c:48
+#: ../gnect/src/games-stock.c:48 ../gnibbles/src/games-stock.c:48
+#: ../gnobots2/src/games-stock.c:48 ../gnobots2/src/menu.c:70
+#: ../gnotski/src/games-stock.c:48 ../gtali/src/games-stock.c:48
+msgid "Start a new game"
+msgstr "Započnite novu igru"
+
+#. The New Game toolbar button
+#: ../glchess/data/glchess.ui.h:18
+#: ../libgames-support/games-scores-dialog.c:470
+msgid "New Game"
+msgstr "Nova igra"
+
+#. The undo move toolbar button
+#: ../glchess/data/glchess.ui.h:20
+msgid "Undo Move"
+msgstr "Opozovi potez"
+
+#. The tooltip for the Resign toolbar button
+#: ../glchess/data/glchess.ui.h:22
+msgid "Resign"
+msgstr "Predaj se"
+
+#. Tooltip on the show first move (i.e. game start) navigation button
+#: ../glchess/data/glchess.ui.h:24
+msgid "Rewind to the game start"
+msgstr "Premotaj na početak igre"
+
+#. Tooltip on the show previous move navigation button
+#: ../glchess/data/glchess.ui.h:26
+msgid "Show the previous move"
+msgstr "Prikaži prethodni pokret"
+
+#. Tooltip on the show next move navigation button
+#: ../glchess/data/glchess.ui.h:28
+msgid "Show the next move"
+msgstr "Prikaži naredni pokret"
+
+#. Tooltip on the show current move navigation button
+#: ../glchess/data/glchess.ui.h:30
+msgid "Show the current move"
+msgstr "Prikaži trenutni pokret"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:1
+msgid "The width of the window"
+msgstr "Širina prozora"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:2
+msgid "The width of the main window in pixels."
+msgstr "Zahtevana širina glavnog prozora (u pikselima)."
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:3
+msgid "The height of the window"
+msgstr "Visina prozora"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:4
+msgid "The height of the main window in pixels."
+msgstr "Zahtevana visina glavnog prozora (u pikselima)."
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:5
+msgid "A flag to enable maximized mode"
+msgstr "Oznaka za uključivanje uvećanog režima"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:6
+msgid "A flag to enable fullscreen mode"
+msgstr "Oznaka za omogućavanje celog ekrana"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:7
+msgid "The piece to promote pawns to"
+msgstr "Figura koja se menja za piona"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:8
+msgid ""
+"The piece to promote to when a human player moves a pawn to the far rank"
+msgstr ""
+"Figura koja se menja za piona kada igrač dođe njime do posledljeg polja. Može "
+"biti: „kraljica“, „konj“, „top“ ili „lovac“"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:9
+msgid "A flag to enable 3D mode"
+msgstr "Oznaka za 3D mod"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:10
+msgid "A flag to smooth (anti-alias) the 3D display"
+msgstr "Oznaka za omekšavanje 3D prikaza"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:11
+msgid "The piece theme to use"
+msgstr "Tema komada za korišćenje"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:12
+msgid "A flag to enable move hints"
+msgstr "Oznaka za omogućavanje saveta pri potezima"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:13
+msgid "A flag to enable board numbering"
+msgstr "Oznaka za numerisanje table"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:14
+msgid "A flag to enable the move history browser"
+msgstr "Oznaka za praćenje istorije pokreta"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:15
+msgid "A flag to enable the toolbar"
+msgstr "Oznaka za omogućavanje palete sa alatima"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:16
+msgid "The directory to open the save game dialog in"
+msgstr "Direktorijum u kome da usmerim dijalog čuvanja igre"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:17
+msgid "The directory to open the load game dialog in"
+msgstr "Direktorijum u kome da usmerim dijalog učitavanja igre"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:18
+msgid "The format to display moves in"
+msgstr "Format u kome da prikažem pokrete"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:19
+msgid "The side of the board that is in the foreground"
+msgstr "Strana table koja je u prvom planu"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:20
+msgid "The duration of a game in seconds (0 for no limit)"
+msgstr "Trajanja igre u sekundama (0 znači neograničeno)"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:21
+msgid "true if the human player is playing white"
+msgstr "označeno ako ljudski igrač igra belim"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:22
+msgid "The opponent player"
+msgstr "Protivnički igrač"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:23
+msgid ""
+"Can be 'human' (play against another human player), '' (use the first "
+"available chess engine) or the name of a specific engine to play against"
+msgstr ""
+"Može biti „čovek“ (igrajte protiv drugog ljudskog igrača), „“ (koristite prvu "
+"slobodnu šahovsku mašinu) ili naziv određene mašine protiv koje ćete da "
+"igrate"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:24
+msgid "Difficulty of the opponent chess engine"
+msgstr "Težina protivničke šahovske mašine"
+
+#. Title for preferences dialog
+#: ../glchess/data/preferences.ui.h:2 ../glines/src/glines.c:177
+msgid "Preferences"
+msgstr "Postavke"
+
+#. Preferences Dialog: Label before player side (white/black) combo box
+#: ../glchess/data/preferences.ui.h:4
+msgid "Play as:"
+msgstr "Igram kao:"
+
+#. Preferences Dialog: Label before opposing player combo box
+#: ../glchess/data/preferences.ui.h:6
+msgid "Opposing Player:"
+msgstr "Protivnički igrač:"
+
+#. Preferences Dialog: Label before promotion type combo box
+#: ../glchess/data/preferences.ui.h:8
+msgid "Difficulty:"
+msgstr "Težina:"
+
+#. New Game Dialog: Label before game timer settings
+#: ../glchess/data/preferences.ui.h:10
+msgid "Game Duration:"
+msgstr "Trajanje igre:"
+
+#. Preferences Dialog: Label before promotion type combo box
+#: ../glchess/data/preferences.ui.h:12
+msgid "Promotion Type:"
+msgstr "Vrsta zamene:"
+
+#. Preferences dialog: Label to notify user that the settings are applied for the next game
+#: ../glchess/data/preferences.ui.h:14
+msgid "Changes will take effect for the next game."
+msgstr "Izmene će stupiti na snagu prilikom sledeće igre."
+
+#. Preferences Dialog: Tab title for game preferences
+#: ../glchess/data/preferences.ui.h:16 ../gnect/src/prefs.c:230
+#: ../gnibbles/src/preferences.c:253 ../gnobots2/src/properties.c:452
+#: ../quadrapassel/src/quadrapassel.vala:305
+msgid "Game"
+msgstr "Igra"
+
+#. Preferences Dialog: Check box for selecting if 3D view is available
+#: ../glchess/data/preferences.ui.h:18
+msgid "3_D Chess View"
+msgstr "_3D šahovski pogled"
+
+#. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
+#: ../glchess/data/preferences.ui.h:20
+msgid "_Smooth Display"
+msgstr "_Umekšaj prikaz"
+
+#. Preferences Dialog: Label before piece style combo box
+#: ../glchess/data/preferences.ui.h:22
+msgid "Piece Style:"
+msgstr "Stil figura:"
+
+#. Preferences Dialog: Check box for selecting if toolbar is visible
+#: ../glchess/data/preferences.ui.h:24 ../gnome-sudoku/src/lib/main.py:239
+msgid "Show _Toolbar"
+msgstr "Prikaži traku _alata"
+
+#. Preferences Dialog: Check box for selecting if history browser is visible
+#: ../glchess/data/preferences.ui.h:26
+msgid "Show _History"
+msgstr "Prikaži _istorijat"
+
+#. Preferences Dialog: Check box for selecting if move hints are visible
+#: ../glchess/data/preferences.ui.h:28
+msgid "_Move Hints"
+msgstr "_Saveti za potez"
+
+#. Preferences Dialog: Check box for selecting if board numbering is visible
+#: ../glchess/data/preferences.ui.h:30
+msgid "_Board Numbering"
+msgstr "_Numerisanje table"
+
+#. Preferences Dialog: Label before board orientation combo box
+#: ../glchess/data/preferences.ui.h:32
+msgid "Board Orientation:"
+msgstr "Orijentacija table:"
+
+#. Preferences Dialog: Label before move format combo box
+#: ../glchess/data/preferences.ui.h:34
+msgid "Move Format:"
+msgstr "Format pokreta:"
+
+#. Preferences Dialog: Title of appearance options tab
+#: ../glchess/data/preferences.ui.h:36
+msgid "_Appearance"
+msgstr "_Izgled"
+
+#. Preferences Dialog: Combo box entry for easy game difficulty
+#: ../glchess/data/preferences.ui.h:38 ../gtali/src/setup.c:343
+msgctxt "difficulty"
+msgid "Easy"
+msgstr "Lako"
+
+#. Preferences Dialog: Combo box entry for normal game difficulty
+#: ../glchess/data/preferences.ui.h:40
+msgctxt "difficulty"
+msgid "Normal"
+msgstr "Normalno"
+
+#. Preferences Dialog: Combo box entry for hard game difficulty
+#: ../glchess/data/preferences.ui.h:42 ../gtali/src/setup.c:345
+msgctxt "difficulty"
+msgid "Hard"
+msgstr "Teško"
+
+#. Preferences Dialog: Combo box entry for human opponent
+#: ../glchess/data/preferences.ui.h:44
+msgctxt "chess-opponent"
+msgid "Human"
+msgstr "Čovek"
+
+#. Preferences Dialog: Combo box entry for playing as white
+#: ../glchess/data/preferences.ui.h:46
+msgctxt "chess-player"
+msgid "White"
+msgstr "Beli"
+
+#. Preferences Dialog: Combo box entry for playing as black
+#: ../glchess/data/preferences.ui.h:48
+msgctxt "chess-player"
+msgid "Black"
+msgstr "Crni"
+
+#. Preferences Dialog: Combo box entry for no game timer
+#: ../glchess/data/preferences.ui.h:50
+msgid "No limit"
+msgstr "Bez ograničenja"
+
+#. Preferences Dialog: Combo box entry for game timer of one minute
+#: ../glchess/data/preferences.ui.h:52
+msgid "One minute"
+msgstr "Jedan minut"
+
+#. Preferences Dialog: Combo box entry for game timer of five minutes
+#: ../glchess/data/preferences.ui.h:54
+msgid "Five minutes"
+msgstr "Pet minuta"
+
+#. Preferences Dialog: Combo box entry for game timer of thirty minutes
+#: ../glchess/data/preferences.ui.h:56
+msgid "30 minutes"
+msgstr "30 minuta"
+
+#. Preferences Dialog: Combo box entry for game timer of one hour
+#: ../glchess/data/preferences.ui.h:58
+msgid "One hour"
+msgstr "Jedan sat"
+
+#. Preferences Dialog: Combo box entry for custom game timer
+#: ../glchess/data/preferences.ui.h:60
+msgid "Custom"
+msgstr "Proizvoljno"
+
+#. Preferences Dialog: Combo box entry for simple theme
+#: ../glchess/data/preferences.ui.h:62
+msgid "Simple"
+msgstr "Običan"
+
+#. Preferences Dialog: Combo box entry for fancy theme
+#: ../glchess/data/preferences.ui.h:64
+msgid "Fancy"
+msgstr "Kičast"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the white side
+#: ../glchess/data/preferences.ui.h:66
+msgctxt "chess-side"
+msgid "White Side"
+msgstr "Bela strana"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the black side
+#: ../glchess/data/preferences.ui.h:68
+msgctxt "chess-side"
+msgid "Black Side"
+msgstr "Crna strana"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
+#: ../glchess/data/preferences.ui.h:70
+msgctxt "chess-side"
+msgid "Human Side"
+msgstr "Čovekova strana"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
+#: ../glchess/data/preferences.ui.h:72
+msgctxt "chess-side"
+msgid "Current Player"
+msgstr "Trenutni igrač"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)
+#: ../glchess/data/preferences.ui.h:74
+msgctxt "chess-side"
+msgid "Face to Face"
+msgstr "Licem u lice"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
+#: ../glchess/data/preferences.ui.h:76
+msgctxt "chess-move-format"
+msgid "Human"
+msgstr "Čovek"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
+#: ../glchess/data/preferences.ui.h:78
+msgctxt "chess-move-format"
+msgid "Standard Algebraic"
+msgstr "Standardni algebarski"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
+#: ../glchess/data/preferences.ui.h:80
+msgctxt "chess-move-format"
+msgid "Figurine"
+msgstr "Figure"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
+#: ../glchess/data/preferences.ui.h:82
+msgctxt "chess-move-format"
+msgid "Long Algebraic"
+msgstr "Dugi algebarski"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a queen
+#: ../glchess/data/preferences.ui.h:84
+msgctxt "chess-piece"
+msgid "Queen"
+msgstr "Kraljica"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a knight
+#: ../glchess/data/preferences.ui.h:86
+msgctxt "chess-piece"
+msgid "Knight"
+msgstr "Skakač"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a rook
+#: ../glchess/data/preferences.ui.h:88
+msgctxt "chess-piece"
+msgid "Rook"
+msgstr "Top"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a bishop
+#: ../glchess/data/preferences.ui.h:90
+msgctxt "chess-piece"
+msgid "Bishop"
+msgstr "Lovac"
+
+#. Title of the window when explicitly loaded a file. The first argument is the
+#. * base name of the file (e.g. test.pgn), the second argument is the directory
+#. * (e.g. /home/fred)
+#: ../glchess/src/glchess.vala:242
+#, c-format
+msgid "%1$s (%2$s) - Chess"
+msgstr "%1$s (%2$s) — Šah"
+
+#. Move History Combo: Go to the start of the game
+#: ../glchess/src/glchess.vala:251
+msgid "Game Start"
+msgstr "Početak igre"
+
+#. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
+#. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
+#: ../glchess/src/glchess.vala:481
+#, c-format
+msgid "White pawn moves from %1$s to %2$s"
+msgstr "Beli pešak se pomera sa %1$s na %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:483
+#, c-format
+msgid "White pawn at %1$s takes the black pawn at %2$s"
+msgstr "Beli pešak sa %1$s uzima crnom pešaka na %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:485
+#, c-format
+msgid "White pawn at %1$s takes the black rook at %2$s"
+msgstr "Beli pešak sa %1$s uzima crnom topa na %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:487
+#, c-format
+msgid "White pawn at %1$s takes the black knight at %2$s"
+msgstr "Beli pešak sa %1$s uzima crnom konja na %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:489
+#, c-format
+msgid "White pawn at %1$s takes the black bishop at %2$s"
+msgstr "Beli pešak sa %1$s uzima crnom lovca na %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:491
+#, c-format
+msgid "White pawn at %1$s takes the black queen at %2$s"
+msgstr "Beli pešak sa %1$s uzima crnom kraljicu na %2$s"
+
+#. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
+#: ../glchess/src/glchess.vala:493
+#, c-format
+msgid "White rook moves from %1$s to %2$s"
+msgstr "Beli top se pomera sa %1$s na %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:495
+#, c-format
+msgid "White rook at %1$s takes the black pawn at %2$s"
+msgstr "Beli top sa %1$s uzima crnom pešaka na %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:497
+#, c-format
+msgid "White rook at %1$s takes the black rook at %2$s"
+msgstr "Beli top sa %1$s uzima crnom topa na %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:499
+#, c-format
+msgid "White rook at %1$s takes the black knight at %2$s"
+msgstr "Beli top sa %1$s uzima crnom konja na %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:501
+#, c-format
+msgid "White rook at %1$s takes the black bishop at %2$s"
+msgstr "Beli top sa %1$s uzima crnom lovca na %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
+#: ../glchess/src/glchess.vala:503
+#, c-format
+msgid "White rook at %1$s takes the black queen at %2$s"
+msgstr "Beli top sa %1$s uzima crnom kraljicu na %2$s"
+
+#. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
+#: ../glchess/src/glchess.vala:505
+#, c-format
+msgid "White knight moves from %1$s to %2$s"
+msgstr "Beli konj se pomera sa %1$s na %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:507
+#, c-format
+msgid "White knight at %1$s takes the black pawn at %2$s"
+msgstr "Beli konj sa %1$s uzima crnom pešaka na %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:509
+#, c-format
+msgid "White knight at %1$s takes the black rook at %2$s"
+msgstr "Beli konj sa %1$s uzima crnom topa na %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:511
+#, c-format
+msgid "White knight at %1$s takes the black knight at %2$s"
+msgstr "Beli konj sa %1$s uzima crnom konja na %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:513
+#, c-format
+msgid "White knight at %1$s takes the black bishop at %2$s"
+msgstr "Beli konj sa %1$s uzima crnom lovca na %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:515
+#, c-format
+msgid "White knight at %1$s takes the black queen at %2$s"
+msgstr "Beli konj sa %1$s uzima crnom kraljicu na %2$s"
+
+#. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
+#: ../glchess/src/glchess.vala:517
+#, c-format
+msgid "White bishop moves from %1$s to %2$s"
+msgstr "Beli lovac se pomera sa %1$s na %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:519
+#, c-format
+msgid "White bishop at %1$s takes the black pawn at %2$s"
+msgstr "Beli lovac sa %1$s uzima crnom pešaka na %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:521
+#, c-format
+msgid "White bishop at %1$s takes the black rook at %2$s"
+msgstr "Beli lovac sa %1$s uzima crnom topa na %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:523
+#, c-format
+msgid "White bishop at %1$s takes the black knight at %2$s"
+msgstr "Beli lovac sa %1$s uzima crnom konja na %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:525
+#, c-format
+msgid "White bishop at %1$s takes the black bishop at %2$s"
+msgstr "Beli lovac sa %1$s uzima crnom lovca na %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:527
+#, c-format
+msgid "White bishop at %1$s takes the black queen at %2$s"
+msgstr "Beli lovac sa %1$s uzima crnom kraljicu na %2$s"
+
+#. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
+#: ../glchess/src/glchess.vala:529
+#, c-format
+msgid "White queen moves from %1$s to %2$s"
+msgstr "Bela kraljica se pomera sa %1$s na %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:531
+#, c-format
+msgid "White queen at %1$s takes the black pawn at %2$s"
+msgstr "Bela kraljica sa %1$s uzima crnom pešaka na %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:533
+#, c-format
+msgid "White queen at %1$s takes the black rook at %2$s"
+msgstr "Bela kraljica sa %1$s uzima crnom topa na %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:535
+#, c-format
+msgid "White queen at %1$s takes the black knight at %2$s"
+msgstr "Bela kraljica sa %1$s uzima crnom konja na %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:537
+#, c-format
+msgid "White queen at %1$s takes the black bishop at %2$s"
+msgstr "Bela kraljica sa %1$s uzima crnom lovca na %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:539
+#, c-format
+msgid "White queen at %1$s takes the black queen at %2$s"
+msgstr "Bela kraljica sa %1$s uzima crnom kraljicu na %2$s"
+
+#. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
+#: ../glchess/src/glchess.vala:541
+#, c-format
+msgid "White king moves from %1$s to %2$s"
+msgstr "Beli kralj se pomera sa %1$s na %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:543
+#, c-format
+msgid "White king at %1$s takes the black pawn at %2$s"
+msgstr "Beli kralj sa %1$s uzima crnom pešaka na %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:545
+#, c-format
+msgid "White king at %1$s takes the black rook at %2$s"
+msgstr "Beli kralj sa %1$s uzima crnom topa na %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:547
+#, c-format
+msgid "White king at %1$s takes the black knight at %2$s"
+msgstr "Beli kralj sa %1$s uzima crnom konja na %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:549
+#, c-format
+msgid "White king at %1$s takes the black bishop at %2$s"
+msgstr "Beli kralj sa %1$s uzima crnom lovca na %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:551
+#, c-format
+msgid "White king at %1$s takes the black queen at %2$s"
+msgstr "Beli kralj sa %1$s uzima crnom kraljicu na %2$s"
+
+#. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
+#: ../glchess/src/glchess.vala:553
+#, c-format
+msgid "Black pawn moves from %1$s to %2$s"
+msgstr "Crni pešak se pomera sa %1$s na %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:555
+#, c-format
+msgid "Black pawn at %1$s takes the white pawn at %2$s"
+msgstr "Crni pešak sa %1$s uzima belom pešaka na %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:557
+#, c-format
+msgid "Black pawn at %1$s takes the white rook at %2$s"
+msgstr "Crni pešak sa %1$s uzima belom topa na %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:559
+#, c-format
+msgid "Black pawn at %1$s takes the white knight at %2$s"
+msgstr "Crni pešak sa %1$s uzima belom konja na %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:561
+#, c-format
+msgid "Black pawn at %1$s takes the white bishop at %2$s"
+msgstr "Crni pešak sa %1$s uzima belom lovca na %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:563
+#, c-format
+msgid "Black pawn at %1$s takes the white queen at %2$s"
+msgstr "Crni pešak sa %1$s uzima belom kraljicu na %2$s"
+
+#. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
+#: ../glchess/src/glchess.vala:565
+#, c-format
+msgid "Black rook moves from %1$s to %2$s"
+msgstr "Crni top se pomera sa %1$s na %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:567
+#, c-format
+msgid "Black rook at %1$s takes the white pawn at %2$s"
+msgstr "Crni top sa %1$s uzima belom pešaka na %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:569
+#, c-format
+msgid "Black rook at %1$s takes the white rook at %2$s"
+msgstr "Crni top sa %1$s uzima belom topa na %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:571
+#, c-format
+msgid "Black rook at %1$s takes the white knight at %2$s"
+msgstr "Crni top sa %1$s uzima belom konja na %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:573
+#, c-format
+msgid "Black rook at %1$s takes the white bishop at %2$s"
+msgstr "Crni top sa %1$s uzima belom lovca na %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:575
+#, c-format
+msgid "Black rook at %1$s takes the white queen at %2$s"
+msgstr "Crni top sa %1$s uzima belom kraljicu na %2$s"
+
+#. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
+#: ../glchess/src/glchess.vala:577
+#, c-format
+msgid "Black knight moves from %1$s to %2$s"
+msgstr "Crni konj se pomera sa %1$s na %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:579
+#, c-format
+msgid "Black knight at %1$s takes the white pawn at %2$s"
+msgstr "Crni konj sa %1$s uzima belom pešaka na %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:581
+#, c-format
+msgid "Black knight at %1$s takes the white rook at %2$s"
+msgstr "Crni konj sa %1$s uzima belom topa na %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:583
+#, c-format
+msgid "Black knight at %1$s takes the white knight at %2$s"
+msgstr "Crni konj sa %1$s uzima belom konja na %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:585
+#, c-format
+msgid "Black knight at %1$s takes the white bishop at %2$s"
+msgstr "Crni konj sa %1$s uzima belom lovca na %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:587
+#, c-format
+msgid "Black knight at %1$s takes the white queen at %2$s"
+msgstr "Crni konj sa %1$s uzima belom kraljicu na %2$s"
+
+#. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
+#: ../glchess/src/glchess.vala:589
+#, c-format
+msgid "Black bishop moves from %1$s to %2$s"
+msgstr "Crni lovac se pomera sa %1$s na %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:591
+#, c-format
+msgid "Black bishop at %1$s takes the white pawn at %2$s"
+msgstr "Crni lovac sa %1$s uzima belom pešaka na %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:593
+#, c-format
+msgid "Black bishop at %1$s takes the white rook at %2$s"
+msgstr "Crni lovac sa %1$s uzima belom topa na %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:595
+#, c-format
+msgid "Black bishop at %1$s takes the white knight at %2$s"
+msgstr "Crni lovac sa %1$s uzima belom konja na %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:597
+#, c-format
+msgid "Black bishop at %1$s takes the white bishop at %2$s"
+msgstr "Crni lovac sa %1$s uzima belom lovca na %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:599
+#, c-format
+msgid "Black bishop at %1$s takes the white queen at %2$s"
+msgstr "Crni lovac sa %1$s uzima belom kraljicu na %2$s"
+
+#. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
+#: ../glchess/src/glchess.vala:601
+#, c-format
+msgid "Black queen moves from %1$s to %2$s"
+msgstr "Crna kraljica se pomera sa %1$s na %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:603
+#, c-format
+msgid "Black queen at %1$s takes the white pawn at %2$s"
+msgstr "Crna kraljica sa %1$s uzima belom pešaka na %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:605
+#, c-format
+msgid "Black queen at %1$s takes the white rook at %2$s"
+msgstr "Crna kraljica sa %1$s uzima belom topa na %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:607
+#, c-format
+msgid "Black queen at %1$s takes the white knight at %2$s"
+msgstr "Crna kraljica sa %1$s uzima belom konja na %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:609
+#, c-format
+msgid "Black queen at %1$s takes the white bishop at %2$s"
+msgstr "Crna kraljica sa %1$s uzima belom lovca na %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
+#: ../glchess/src/glchess.vala:611
+#, c-format
+msgid "Black queen at %1$s takes the white queen at %2$s"
+msgstr "Crna kraljica sa %1$s uzima belom kraljicu na %2$s"
+
+#. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
+#: ../glchess/src/glchess.vala:613
+#, c-format
+msgid "Black king moves from %1$s to %2$s"
+msgstr "Crni kralj se pomera sa %1$s na %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
+#: ../glchess/src/glchess.vala:615
+#, c-format
+msgid "Black king at %1$s takes the white pawn at %2$s"
+msgstr "Crni kralj sa %1$s uzima belom pešaka na %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
+#: ../glchess/src/glchess.vala:617
+#, c-format
+msgid "Black king at %1$s takes the white rook at %2$s"
+msgstr "Crni kralj sa %1$s uzima belom topa na %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
+#: ../glchess/src/glchess.vala:619
+#, c-format
+msgid "Black king at %1$s takes the white knight at %2$s"
+msgstr "Crni kralj sa %1$s uzima belom konja na %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
+#: ../glchess/src/glchess.vala:621
+#, c-format
+msgid "Black king at %1$s takes the white bishop at %2$s"
+msgstr "Crni kralj sa %1$s uzima belom lovca na %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
+#: ../glchess/src/glchess.vala:623
+#, c-format
+msgid "Black king at %1$s takes the white queen at %2$s"
+msgstr "Crni kralj sa %1$s uzima belom kraljicu na %2$s"
+
+#. Message display when the white player wins
+#: ../glchess/src/glchess.vala:743
+msgid "White wins"
+msgstr "Beli je pobedio"
+
+#. Message display when the black player wins
+#: ../glchess/src/glchess.vala:748
+msgid "Black wins"
+msgstr "Crni je pobedio"
+
+#. Message display when the game is drawn
+#: ../glchess/src/glchess.vala:753
+msgid "Game is drawn"
+msgstr "Igra je nerešena"
+
+#. Message displayed when the game ends due to a player being checkmated
+#: ../glchess/src/glchess.vala:765
+msgid "Opponent is in check and cannot move (checkmate)"
+msgstr "Protivnik prima šah i nema više pokreta (Šah-mat)"
+
+#. Message displayed when the game terminates due to a stalemate
+#: ../glchess/src/glchess.vala:769
+msgid "Opponent cannot move (stalemate)"
+msgstr "Protivnik nema više pokreta (bezizlazan položaj)"
+
+#. Message displayed when the game is drawn due to the fifty move rule
+#: ../glchess/src/glchess.vala:773
+msgid "No piece has been taken or pawn moved in the last fifty moves"
+msgstr "Nije uzeta figura ili pion nije pomeren u zadnjih pedeset poteza"
+
+#. Message displayed when the game ends due to one player's clock stopping
+#: ../glchess/src/glchess.vala:777
+msgid "Opponent has run out of time"
+msgstr "Protivniku je isteklo vreme"
+
+#. Message displayed when the game is drawn due to the three-fold-repitition rule
+#: ../glchess/src/glchess.vala:781
+msgid "The same board state has occurred three times (three fold repetition)"
+msgstr "Isti raspored figura na tabli po treći put (trostruko ponavljanje)"
+
+#. Message displayed when the game is drawn due to the insufficient material rule
+#: ../glchess/src/glchess.vala:785
+msgid "Neither player can cause checkmate (insufficient material)"
+msgstr "Ni jedan igrač ne može da završi partiju (remi)"
+
+#. Message displayed when the game ends due to the black player resigning
+#: ../glchess/src/glchess.vala:791
+msgid "The black player has resigned"
+msgstr "Crni igrač se predao"
+
+#. Message displayed when the game ends due to the white player resigning
+#: ../glchess/src/glchess.vala:796
+msgid "The white player has resigned"
+msgstr "Beli igrač se predao"
+
+#. Message displayed when a game is abandoned
+#: ../glchess/src/glchess.vala:801
+msgid "The game has been abandoned"
+msgstr "Igra je napuštena"
+
+#. Message displayed when the game ends due to a player dying
+#: ../glchess/src/glchess.vala:806
+msgid "One of the players has died"
+msgstr "Jedan od igrača je poražen"
+
+#: ../glchess/src/glchess.vala:871
+msgid "Save this game before starting a new one?"
+msgstr "Da sačuvam ovu igru pre početka nove?"
+
+#: ../glchess/src/glchess.vala:873 ../gnome-sudoku/src/lib/main.py:403
+msgid "_Abandon game"
+msgstr "_Napusti igru"
+
+#: ../glchess/src/glchess.vala:874 ../gnome-sudoku/src/lib/main.py:402
+msgid "_Save game for later"
+msgstr "_Sačuvaj igru za kasnije"
+
+#. Preferences Dialog: Combo box entry for a custom game timer set in seconds
+#: ../glchess/src/glchess.vala:1265
+msgid "second"
+msgid_plural "seconds"
+msgstr[0] "sekunda"
+msgstr[1] "sekunde"
+msgstr[2] "sekundi"
+msgstr[3] "sekunda"
+
+#. Preferences Dialog: Combo box entry for a custom game timer set in minutes
+#: ../glchess/src/glchess.vala:1269
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] "minut"
+msgstr[1] "minuta"
+msgstr[2] "minuta"
+msgstr[3] "minut"
+
+#. Preferences Dialog: Combo box entry for a custom game timer set in hours
+#: ../glchess/src/glchess.vala:1273
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "sat"
+msgstr[1] "sata"
+msgstr[2] "sati"
+msgstr[3] "sat"
+
+#: ../glchess/src/glchess.vala:1394
+msgid ""
+"The 2D/3D chess game for GNOME. \n"
+"\n"
+"glChess is a part of GNOME Games."
+msgstr ""
+"2D/3D šah za Gnom. \n"
+"\n"
+"Šah je deo Gnomovih igara."
+
+#: ../glchess/src/glchess.vala:1399 ../glines/src/glines.c:1185
+#: ../gnect/src/main.c:830 ../gnibbles/src/main.c:177
+#: ../gnobots2/src/menu.c:269 ../gnome-mahjongg/src/gnome-mahjongg.vala:566
+#: ../gnome-sudoku/src/lib/defaults.py:53 ../gnomine/src/gnomine.vala:745
+#: ../gnotravex/src/gnotravex.vala:319 ../gnotski/src/gnotski.c:1461
+#: ../gtali/src/gyahtzee.c:620 ../iagno/src/iagno.vala:305
+#: ../lightsoff/src/lightsoff.vala:157
+#: ../quadrapassel/src/quadrapassel.vala:762
+#: ../swell-foop/src/swell-foop.vala:399
+msgid "GNOME Games web site"
+msgstr "Veb sajt Gnomovih igara"
+
+#. Title of save game dialog
+#: ../glchess/src/glchess.vala:1453
+msgid "Save Chess Game"
+msgstr "Sačuvaj šahovsku partiju"
+
+#. Save Game Dialog: Name of filter to show only PGN files
+#. Load Game Dialog: Name of filter to show only PGN files
+#: ../glchess/src/glchess.vala:1466 ../glchess/src/glchess.vala:1534
+msgid "PGN files"
+msgstr "PNG datoteke"
+
+#. Save Game Dialog: Name of filter to show all files
+#. Load Game Dialog: Name of filter to show all files
+#: ../glchess/src/glchess.vala:1473 ../glchess/src/glchess.vala:1541
+msgid "All files"
+msgstr "Sve datoteke"
+
+#: ../glchess/src/glchess.vala:1497
+#, c-format
+msgid "Failed to save game: %s"
+msgstr "Nisam uspeo da sačuvam igru: %s"
+
+#. Title of load game dialog
+#: ../glchess/src/glchess.vala:1521
+msgid "Load Chess Game"
+msgstr "Učitaj šahovsku partiju"
+
+#: ../glchess/src/glchess.vala:1563
+#, c-format
+msgid "Failed to open game: %s"
+msgstr "Nisam uspeo da otvorim igru: %s"
+
+#. Help string for command line --version flag
+#: ../glchess/src/glchess.vala:1624
+msgid "Show release version"
+msgstr "Prikazuje izdanje programa"
+
+#. Arguments and description for --help text
+#: ../glchess/src/glchess.vala:1639
+msgid "[FILE] - Play Chess"
+msgstr "[DATOTEKA] — Igrajte šah"
+
+#. Text printed out when an unknown command-line argument provided
+#: ../glchess/src/glchess.vala:1650
+#, c-format
+msgid "Run '%s --help' to see a full list of available command line options."
+msgstr ""
+"Pokrenite „%s --help“ da vidite čitav spisak dostupnih opcija linije naredbi."
+
+#: ../glines/data/glines.desktop.in.in.h:1 ../glines/src/glines.c:1171
+#: ../glines/src/glines.c:1174 ../glines/src/glines.c:1662
+msgid "Five or More"
+msgstr "Pet ili više"
+
+#: ../glines/data/glines.desktop.in.in.h:2
+msgid "Remove colored balls from the board by forming lines"
+msgstr "Uklanjajte obojene lopte sa table formirajući linije"
+
+#: ../glines/data/glines-preferences.ui.h:1
+msgid "Five or More Preferences"
+msgstr "Postavke za Pet ili više"
+
+#: ../glines/data/glines-preferences.ui.h:2 ../gnobots2/src/properties.c:489
+#: ../swell-foop/data/preferences.ui.h:6
+msgid "Appearance"
+msgstr "Izgled"
+
+#: ../glines/data/glines-preferences.ui.h:3
+msgid "_Image:"
+msgstr "_Slika:"
+
+#: ../glines/data/glines-preferences.ui.h:4
+msgid "B_ackground color:"
+msgstr "Boja p_ozadine:"
+
+#: ../glines/data/glines-preferences.ui.h:5
+msgid "Board Size"
+msgstr "Veličina table"
+
+#: ../glines/data/glines-preferences.ui.h:6
+msgid "_Small"
+msgstr "_Mala"
+
+#: ../glines/data/glines-preferences.ui.h:7
+#: ../gnome-sudoku/data/print_games.ui.h:7
+msgid "_Medium"
+msgstr "_Srednja"
+
+#: ../glines/data/glines-preferences.ui.h:8
+msgid "_Large"
+msgstr "_Velika"
+
+#: ../glines/data/glines-preferences.ui.h:9
+msgid "General"
+msgstr "Opšte"
+
+#: ../glines/data/glines-preferences.ui.h:10
+msgid "_Use fast moves"
+msgstr "_Koristi brze poteze"
+
+#: ../glines/data/glines.ui.h:1
+msgid "Five or more"
+msgstr "Pet ili više"
+
+#: ../glines/data/glines.ui.h:3 ../gnect/src/main.c:736
+msgid "Scores"
+msgstr "Rezultati"
+
+#: ../glines/data/glines.ui.h:8
+msgid "Next:"
+msgstr "Sledeće:"
+
+#: ../glines/data/glines.ui.h:9
+msgid "0"
+msgstr "0"
+
+#: ../glines/data/glines.ui.h:10 ../gnobots2/src/statusbar.c:68
+#: ../gnomine/src/gnomine.vala:703 ../quadrapassel/src/quadrapassel.vala:174
+msgid "Score:"
+msgstr "Razultat:"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:1
+msgid "Playing field size"
+msgstr "Veličina polja za igru"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:2
+msgid ""
+"Playing field size. 1=Small, 2=Medium, 3=Large. Any other value is invalid."
+msgstr ""
+"Veličina polja za igru. 1=malo, 2=srednje, 3=veliko. Druge vrednosti nisu "
+"moguće."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:3
+msgid "Ball style"
+msgstr "Stil lopte"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:4
+msgid "Ball style. The filename of the images to use for the balls."
+msgstr "Stil lopte. Naziv datoteke sa slikama koje koristiti za lopte."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:5
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:5
+msgid "Background color"
+msgstr "Boja pozadine"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:6
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:6
+msgid "Background color. The hex specification of the background color."
+msgstr "Boja pozadine. Heksadekadna vrednost za boju pozadine."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:7
+msgid "Time between moves"
+msgstr "Vreme između poteza"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:8
+msgid "Time between moves in milliseconds."
+msgstr "Vreme između poteza u milisekundama."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:9
+msgid "Game score"
+msgstr "Rezultat igre"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:10
+msgid "Game score from last saved session."
+msgstr "Rezultat iz poslednje sačuvane igre."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:11
+msgid "Game field"
+msgstr "Polje za igru"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:12
+msgid "Game field from last saved session."
+msgstr "Polje za igru iz poslednje sačuvane igre."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:13
+msgid "Game preview"
+msgstr "Pregled igre"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:14
+msgid "Game preview from last saved session."
+msgstr "Pregled igre iz poslednje sačuvane igre."
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:15
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:39
+#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:1
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:12
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:3
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:3
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:35
+#| msgid "The width of the main window in pixels."
+msgid "Width of the window in pixels"
+msgstr "Širina prozora u tačkama"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:16
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:40
+#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:2
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:13
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:4
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:4
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:36
+#| msgid "The height of the main window in pixels."
+msgid "Height of the window in pixels"
+msgstr "Visina prozora u tačkama"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:17
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:41
+#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:3
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:14
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:5
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:5
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:37
+msgid "true if the window is maximized"
+msgstr "izabrano ako je prozor uvećan"
+
+#: ../glines/data/org.gnome.glines.gschema.xml.in.h:18
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:42
+#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:4
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:15
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:6
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:6
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:38
+msgid "true if the window is fullscren"
+msgstr "izabrano ako je prozor preko celog ekrana"
+
+#: ../glines/src/games-stock.c:41 ../gnect/src/games-stock.c:41
+#: ../gnibbles/src/games-stock.c:41 ../gnobots2/src/games-stock.c:41
+#: ../gnotski/src/games-stock.c:41 ../gtali/src/games-stock.c:41
+msgid "View help for this game"
+msgstr "Prikaži pomoć za ovu igru"
+
+#: ../glines/src/games-stock.c:42 ../gnect/src/games-stock.c:42
+#: ../gnibbles/src/games-stock.c:42 ../gnobots2/src/games-stock.c:42
+#: ../gnotski/src/games-stock.c:42 ../gtali/src/games-stock.c:42
+msgid "End the current game"
+msgstr "Završi igru u toku"
+
+#: ../glines/src/games-stock.c:43 ../gnect/src/games-stock.c:43
+#: ../gnibbles/src/games-stock.c:43 ../gnobots2/src/games-stock.c:43
+#: ../gnotski/src/games-stock.c:43 ../gtali/src/games-stock.c:43
+msgid "Toggle fullscreen mode"
+msgstr "Isključuje/uključuje prikaz preko celog ekrana"
+
+#: ../glines/src/games-stock.c:44 ../gnect/src/games-stock.c:44
+#: ../gnibbles/src/games-stock.c:44 ../gnobots2/src/games-stock.c:44
+#: ../gnotski/src/games-stock.c:44 ../gtali/src/games-stock.c:44
+msgid "Get a hint for your next move"
+msgstr "Potražite savet za sledeći potez"
+
+#: ../glines/src/games-stock.c:45 ../gnect/src/games-stock.c:45
+#: ../gnibbles/src/games-stock.c:45 ../gnobots2/src/games-stock.c:45
+#: ../gnotski/src/games-stock.c:45 ../gtali/src/games-stock.c:45
+msgid "Leave fullscreen mode"
+msgstr "Napustite režim preko celog ekrana"
+
+#: ../glines/src/games-stock.c:46 ../gnect/src/games-stock.c:46
+#: ../gnibbles/src/games-stock.c:46 ../gnobots2/src/games-stock.c:46
+#: ../gnotski/src/games-stock.c:46 ../gtali/src/games-stock.c:46
+msgid "Start a new multiplayer network game"
+msgstr "Započni novu igru sa više igrača u mreži"
+
+#: ../glines/src/games-stock.c:47 ../gnect/src/games-stock.c:47
+#: ../gnibbles/src/games-stock.c:47 ../gnobots2/src/games-stock.c:47
+#: ../gnotski/src/games-stock.c:47 ../gtali/src/games-stock.c:47
+msgid "End the current network game and return to network server"
+msgstr "Završi trenutnu mrežnu igru i vrati se na mrežni server"
+
+#: ../glines/src/games-stock.c:49 ../gnect/src/games-stock.c:49
+#: ../gnibbles/src/games-stock.c:49 ../gnobots2/src/games-stock.c:49
+#: ../gnotski/src/games-stock.c:49 ../gtali/src/games-stock.c:49
+msgid "Pause the game"
+msgstr "Pauziraj igru"
+
+#: ../glines/src/games-stock.c:50 ../gnect/src/games-stock.c:50
+#: ../gnibbles/src/games-stock.c:50 ../gnobots2/src/games-stock.c:50
+#: ../gnotski/src/games-stock.c:50 ../gtali/src/games-stock.c:50
+msgid "Show a list of players in the network game"
+msgstr "Prikaži spisak igrača u mrežnoj igri"
+
+#: ../glines/src/games-stock.c:51 ../gnect/src/games-stock.c:51
+#: ../gnibbles/src/games-stock.c:51 ../gnobots2/src/games-stock.c:51
+#: ../gnotski/src/games-stock.c:51 ../gtali/src/games-stock.c:51
+msgid "Redo the undone move"
+msgstr "Ponovite opozvan potez"
+
+#: ../glines/src/games-stock.c:52 ../gnect/src/games-stock.c:52
+#: ../gnibbles/src/games-stock.c:52 ../gnobots2/src/games-stock.c:52
+#: ../gnotski/src/games-stock.c:52 ../gtali/src/games-stock.c:52
+msgid "Restart the game"
+msgstr "Ponovo pokrenite igru"
+
+#: ../glines/src/games-stock.c:53 ../gnect/src/games-stock.c:53
+#: ../gnibbles/src/games-stock.c:53 ../gnobots2/src/games-stock.c:53
+#: ../gnotski/src/games-stock.c:53 ../gtali/src/games-stock.c:53
+msgid "Resume the paused game"
+msgstr "Nastavi pauziranu igru"
+
+#: ../glines/src/games-stock.c:54 ../gnect/src/games-stock.c:54
+#: ../gnibbles/src/games-stock.c:54 ../gnobots2/src/games-stock.c:54
+#: ../gnotski/src/games-stock.c:54 ../gtali/src/games-stock.c:54
+msgid "View the scores"
+msgstr "Pregledaj rezultate"
+
+#: ../glines/src/games-stock.c:55 ../gnect/src/games-stock.c:55
+#: ../gnibbles/src/games-stock.c:55 ../gnobots2/src/games-stock.c:55
+#: ../gnotski/src/games-stock.c:55 ../gtali/src/games-stock.c:55
+msgid "Undo the last move"
+msgstr "Opozovite poslednji potez"
+
+#: ../glines/src/games-stock.c:56 ../gnect/src/games-stock.c:56
+#: ../gnibbles/src/games-stock.c:56 ../gnobots2/src/games-stock.c:56
+#: ../gnotski/src/games-stock.c:56 ../gtali/src/games-stock.c:56
+msgid "About this game"
+msgstr "O ovoj igri"
+
+#: ../glines/src/games-stock.c:57 ../gnect/src/games-stock.c:57
+#: ../gnibbles/src/games-stock.c:57 ../gnobots2/src/games-stock.c:57
+#: ../gnotski/src/games-stock.c:57 ../gtali/src/games-stock.c:57
+msgid "Close this window"
+msgstr "Zatvorite ovaj prozor"
+
+#: ../glines/src/games-stock.c:58 ../gnect/src/games-stock.c:58
+#: ../gnibbles/src/games-stock.c:58 ../gnobots2/src/games-stock.c:58
+#: ../gnotski/src/games-stock.c:58 ../gtali/src/games-stock.c:58
+msgid "Configure the game"
+msgstr "Podesi igru"
+
+#: ../glines/src/games-stock.c:59 ../gnect/src/games-stock.c:59
+#: ../gnibbles/src/games-stock.c:59 ../gnobots2/src/games-stock.c:59
+#: ../gnotski/src/games-stock.c:59 ../gtali/src/games-stock.c:59
+msgid "Quit this game"
+msgstr "Izađi iz ove igre"
+
+#: ../glines/src/games-stock.c:248 ../gnect/src/games-stock.c:248
+#: ../gnibbles/src/games-stock.c:248 ../gnobots2/src/games-stock.c:248
+#: ../gnomine/src/gnomine.vala:111 ../gnomine/src/gnomine.vala:197
+#: ../gnomine/src/gnomine.vala:362 ../gnotravex/src/gnotravex.vala:124
+#: ../gnotravex/src/gnotravex.vala:184 ../gnotski/src/games-stock.c:248
+#: ../gtali/src/games-stock.c:248 ../quadrapassel/src/quadrapassel.vala:142
+#: ../quadrapassel/src/quadrapassel.vala:236
+msgid "_Fullscreen"
+msgstr "_Ceo ekran"
+
+#: ../glines/src/games-stock.c:249 ../gnect/src/games-stock.c:249
+#: ../gnibbles/src/games-stock.c:249 ../gnobots2/src/games-stock.c:249
+#: ../gnome-sudoku/src/lib/main.py:212 ../gnomine/src/gnomine.vala:109
+#: ../gnotski/src/games-stock.c:249 ../gtali/src/games-stock.c:249
+msgid "_Hint"
+msgstr "_Savet"
+
+#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
+#: ../glines/src/games-stock.c:251 ../gnect/src/games-stock.c:251
+#: ../gnibbles/src/games-stock.c:251 ../gnobots2/src/games-stock.c:251
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:104
+#: ../gnomine/src/gnomine.vala:173 ../gnotravex/src/gnotravex.vala:103
+#: ../gnotski/src/games-stock.c:251 ../gtali/src/games-stock.c:251
+#: ../quadrapassel/src/quadrapassel.vala:127
+msgid "_New"
+msgstr "_Nova"
+
+#. Translators: This "_New Game" is for the game-over dialogue
+#: ../glines/src/games-stock.c:253 ../gnect/src/games-stock.c:253
+#: ../gnibbles/src/games-stock.c:253 ../gnobots2/src/game.c:154
+#: ../gnobots2/src/games-stock.c:253
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:83
+#: ../gnome-sudoku/data/select_game.ui.h:1 ../gnomine/src/gnomine.vala:107
+#: ../gnomine/src/gnomine.vala:455 ../gnotravex/data/gnotravex.ui.h:1
+#: ../gnotski/src/games-stock.c:253 ../gnotski/src/gnotski.c:750
+#: ../gtali/src/games-stock.c:253 ../gtali/src/gyahtzee.c:753
+#: ../iagno/data/iagno.ui.h:1 ../lightsoff/src/lightsoff.vala:29
+#: ../quadrapassel/src/quadrapassel.vala:82
+#: ../swell-foop/src/swell-foop.vala:65
+msgid "_New Game"
+msgstr "_Nova igra"
+
+#: ../glines/src/games-stock.c:254 ../gnect/src/games-stock.c:254
+#: ../gnibbles/src/games-stock.c:254 ../gnobots2/src/games-stock.c:254
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:119
+#: ../gnotski/src/games-stock.c:254 ../gtali/src/games-stock.c:254
+msgid "_Redo Move"
+msgstr "_Ponovi potez"
+
+#. Translators: this is the "Reset" scores button in a scores dialogue
+#: ../glines/src/games-stock.c:256 ../gnect/src/games-stock.c:256
+#: ../gnibbles/src/games-stock.c:256 ../gnobots2/src/games-stock.c:256
+#: ../gnome-sudoku/src/lib/main.py:197 ../gnotski/src/games-stock.c:256
+#: ../gtali/src/games-stock.c:256
+msgid "_Reset"
+msgstr "_Ponovo pokreni"
+
+#. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
+#: ../glines/src/games-stock.c:258 ../gnect/src/games-stock.c:258
+#: ../gnibbles/src/games-stock.c:258 ../gnobots2/src/games-stock.c:258
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:341
+#: ../gnotski/src/games-stock.c:258 ../gtali/src/games-stock.c:258
+msgid "_Restart"
+msgstr "_Ponovo pokreni"
+
+#: ../glines/src/games-stock.c:260 ../gnect/src/games-stock.c:260
+#: ../gnibbles/src/games-stock.c:260 ../gnobots2/src/games-stock.c:260
+#: ../gnotski/src/games-stock.c:260 ../gtali/src/games-stock.c:260
+msgid "_Deal"
+msgstr "_Deli"
+
+#: ../glines/src/games-stock.c:261 ../gnect/src/games-stock.c:261
+#: ../gnibbles/src/games-stock.c:261 ../gnobots2/src/games-stock.c:261
+#: ../gnomine/src/gnomine.vala:357 ../gnotravex/src/gnotravex.vala:179
+#: ../gnotski/src/games-stock.c:261 ../gtali/src/games-stock.c:261
+#: ../quadrapassel/src/quadrapassel.vala:231
+msgid "_Leave Fullscreen"
+msgstr "_Napusti ceo ekran"
+
+#: ../glines/src/games-stock.c:262 ../gnect/src/games-stock.c:262
+#: ../gnibbles/src/games-stock.c:262 ../gnobots2/src/games-stock.c:262
+#: ../gnotski/src/games-stock.c:262 ../gtali/src/games-stock.c:262
+msgid "Network _Game"
+msgstr "_Mrežna igra"
+
+#: ../glines/src/games-stock.c:263 ../gnect/src/games-stock.c:263
+#: ../gnibbles/src/games-stock.c:263 ../gnobots2/src/games-stock.c:263
+#: ../gnotski/src/games-stock.c:263 ../gtali/src/games-stock.c:263
+msgid "L_eave Game"
+msgstr "_Napusti igru"
+
+#: ../glines/src/games-stock.c:264 ../gnect/src/games-stock.c:264
+#: ../gnibbles/src/games-stock.c:264 ../gnobots2/src/games-stock.c:264
+#: ../gnotski/src/games-stock.c:264 ../gtali/src/games-stock.c:264
+msgid "Player _List"
+msgstr "Spisak _igrača"
+
+#: ../glines/src/games-stock.c:265 ../gnect/src/games-stock.c:265
+#: ../gnibbles/src/games-stock.c:265 ../gnobots2/src/games-stock.c:265
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:135
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:583
+#: ../gnomine/src/gnomine.vala:110 ../gnomine/src/gnomine.vala:190
+#: ../gnomine/src/gnomine.vala:644 ../gnotravex/data/gnotravex.ui.h:2
+#: ../gnotravex/src/gnotravex.vala:117 ../gnotravex/src/gnotravex.vala:367
+#: ../gnotski/src/games-stock.c:265 ../gtali/src/games-stock.c:265
+#: ../quadrapassel/src/quadrapassel.vala:83
+#: ../quadrapassel/src/quadrapassel.vala:135
+#: ../quadrapassel/src/quadrapassel.vala:680
+msgid "_Pause"
+msgstr "_Pauza"
+
+#: ../glines/src/games-stock.c:266 ../gnect/src/games-stock.c:266
+#: ../gnibbles/src/games-stock.c:266 ../gnobots2/src/games-stock.c:266
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:578
+#: ../gnomine/src/gnomine.vala:637 ../gnotravex/src/gnotravex.vala:362
+#: ../gnotski/src/games-stock.c:266 ../gtali/src/games-stock.c:266
+#: ../quadrapassel/src/quadrapassel.vala:675
+msgid "Res_ume"
+msgstr "Na_stavi"
+
+#: ../glines/src/games-stock.c:267 ../gnect/src/games-stock.c:267
+#: ../gnibbles/src/games-stock.c:267 ../gnobots2/src/games-stock.c:267
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:85
+#: ../gnomine/src/gnomine.vala:112 ../gnotravex/data/gnotravex.ui.h:9
+#: ../gnotski/src/games-stock.c:267 ../gtali/src/games-stock.c:267
+#: ../gtali/src/gyahtzee.c:756 ../quadrapassel/src/quadrapassel.vala:84
+#: ../swell-foop/src/swell-foop.vala:66
+msgid "_Scores"
+msgstr "_Rezultati"
+
+#: ../glines/src/games-stock.c:268 ../gnect/src/games-stock.c:268
+#: ../gnibbles/src/games-stock.c:268 ../gnobots2/src/games-stock.c:268
+#: ../gnotski/src/games-stock.c:268 ../gtali/src/games-stock.c:268
+msgid "_End Game"
+msgstr "_Završi igru"
+
+#. %s is replaced with the name of the game in gnome-games.
+#: ../glines/src/games-stock.c:317 ../gnect/src/games-stock.c:317
+#: ../gnibbles/src/games-stock.c:317 ../gnobots2/src/games-stock.c:317
+#: ../gnotski/src/games-stock.c:317 ../gtali/src/games-stock.c:317
+#, c-format
+msgid ""
+"%s is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version %d of the License, or (at your option) any later "
+"version."
+msgstr ""
+"%s je slobodan softver; možete ga prosleđivati i/ili menjati pod uslovima GNU "
+"Opšte javne licence koju je objavila Zadužbina slobodnog softvera; bilo "
+"verzije %d licence ili (po vašem izboru) bilo koje novije verzije."
+
+#: ../glines/src/games-stock.c:322 ../gnect/src/games-stock.c:322
+#: ../gnibbles/src/games-stock.c:322 ../gnobots2/src/games-stock.c:322
+#: ../gnotski/src/games-stock.c:322 ../gtali/src/games-stock.c:322
+#, c-format
+msgid ""
+"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details."
+msgstr ""
+"%s se raspodeljuje u nadi da će biti koristan, ali BEZ IKAKVE GARANCIJE; čak "
+"i bez primenjene garancije TRŽIŠNE VREDNOSTI ili PRILAGOĐENOSTI ODREĐENOJ "
+"NAMENI.  Pogledajte GNU Opštu javnu licencu za više detalja."
+
+#: ../glines/src/games-stock.c:327 ../gnect/src/games-stock.c:327
+#: ../gnibbles/src/games-stock.c:327 ../gnobots2/src/games-stock.c:327
+#: ../gnotski/src/games-stock.c:327 ../gtali/src/games-stock.c:327
+#, c-format
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"%s; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, "
+"Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
+"Trebali ste da primite primerak GNU Opšte javne licence uz %s; ako niste, "
+"pišite Zadužbini slobodnog softva na adresu: „Free Software Foundation, "
+"Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA“"
+
+#: ../glines/src/games-stock.c:331 ../gnect/src/games-stock.c:331
+#: ../gnibbles/src/games-stock.c:331 ../gnobots2/src/games-stock.c:331
+#: ../gnotski/src/games-stock.c:331 ../gtali/src/games-stock.c:331
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"Trebali ste da primite primerak Gnuove opšte javne licence uz ovaj program.  "
+"Ako niste, pogledajte <http://www.gnu.org/licenses/>."
+
+#: ../glines/src/glines.c:79 ../gnomine/src/gnomine.vala:69
+msgctxt "board size"
+msgid "Small"
+msgstr "Mala"
+
+#: ../glines/src/glines.c:80 ../gnomine/src/gnomine.vala:70
+msgctxt "board size"
+msgid "Medium"
+msgstr "Srednja"
+
+#: ../glines/src/glines.c:81 ../gnomine/src/gnomine.vala:71
+msgctxt "board size"
+msgid "Large"
+msgstr "Velika"
+
+#: ../glines/src/glines.c:171
+msgid "Could not load theme"
+msgstr "Ne mogu da učitam temu"
+
+#: ../glines/src/glines.c:197
+#, c-format
+msgid ""
+"Unable to locate file:\n"
+"%s\n"
+"\n"
+"The default theme will be loaded instead."
+msgstr ""
+"Ne mogu da pronađem datoteku:\n"
+"%s\n"
+"\n"
+"Učitavam podrazumevanu temu."
+
+#: ../glines/src/glines.c:204
+#, c-format
+msgid ""
+"Unable to locate file:\n"
+"%s\n"
+"\n"
+"Please check that Five or More is installed correctly."
+msgstr ""
+"Ne mogu da pronađem datoteku:\n"
+"%s\n"
+"\n"
+"Proverite da li je Pet ili više ispravno instaliran."
+
+#: ../glines/src/glines.c:409
+msgid "Match five objects of the same type in a row to score!"
+msgstr "Povežite pet predmeta iste vrste u nizu da bi osvojili poene!"
+
+#: ../glines/src/glines.c:471
+msgid "GNOME Five or More"
+msgstr "Gnomovo Pet ili više"
+
+#: ../glines/src/glines.c:473 ../swell-foop/data/preferences.ui.h:2
+msgid "_Board size:"
+msgstr "_Veličina table:"
+
+#: ../glines/src/glines.c:490 ../swell-foop/src/game-view.vala:434
+#, c-format
+msgid "Game Over!"
+msgstr "Igra je gotova!"
+
+#. Can't move there!
+#: ../glines/src/glines.c:647
+msgid "You can't move there!"
+msgstr "Nemoguć potez!"
+
+#: ../glines/src/glines.c:1176
+msgid ""
+"GNOME port of the once-popular Color Lines game.\n"
+"\n"
+"Five or More is a part of GNOME Games."
+msgstr ""
+"Gnom izvedba nekad popularne igre Linije.\n"
+"\n"
+"Pet ili više je deo Gnomovih igara."
+
+#: ../glines/src/glines.c:1182 ../gnect/src/main.c:833
+#: ../gnibbles/src/main.c:174 ../gnobots2/src/menu.c:274
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:563
+#: ../gnome-sudoku/src/lib/main.py:669 ../gnomine/src/gnomine.vala:742
+#: ../gnotravex/src/gnotravex.vala:316 ../gnotski/src/gnotski.c:1458
+#: ../gtali/src/gyahtzee.c:616 ../iagno/src/iagno.vala:303
+#: ../lightsoff/src/lightsoff.vala:154
+#: ../quadrapassel/src/quadrapassel.vala:765
+#: ../swell-foop/src/swell-foop.vala:396
+msgid "translator-credits"
+msgstr ""
+"Dušan Marjanović <madafaka@root.co.yu>\n"
+"Miloš Popović <gpopac@gmail.com>\n"
+"Branko Kokanović <branko.kokanovic@gmail.com>\n"
+"\n"
+"http://prevod.org — prevod na srpski jezik"
+
+#: ../gnect/data/gnect.desktop.in.in.h:1
+msgid "Four-in-a-Row"
+msgstr "Četiri u nizu"
+
+#: ../gnect/data/gnect.desktop.in.in.h:2
+msgid "Make lines of the same color to win"
+msgstr "Načinite linije iste boje kako bi pobedili"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:1
+msgid "Level of Player One"
+msgstr "Nivo prvog igrača"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:2
+msgid ""
+"Zero is human; one through three correspond to the level of the computer "
+"player."
+msgstr "Nula je čovek; od jedan do tri je nivo kompjuterskog protivnika."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:3
+msgid "Level of Player Two"
+msgstr "Nivo drugog igrača"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:4
+msgid "Theme ID"
+msgstr "IB teme"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:5
+msgid "A number specifying the preferred theme."
+msgstr "Broj koji označava željenu temu."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:6
+msgid "Animate"
+msgstr "Animirano"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:7
+msgid "Whether or not to use animation."
+msgstr "Da li prikazivati animacije."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:8
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:1
+msgid "Sound"
+msgstr "Zvuk"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:9
+#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:2
+msgid "Whether or not to play event sounds."
+msgstr "Da li puštati zvuke pri događajima."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:10 ../gnect/src/prefs.c:316
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:25
+#: ../gnibbles/src/preferences.c:450
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:23
+#: ../quadrapassel/src/quadrapassel.vala:381
+msgid "Move left"
+msgstr "Potez u levo"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:11
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:24
+msgid "Key press to move left."
+msgstr "Taster za kretanje u levo."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:12 ../gnect/src/prefs.c:317
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:27
+#: ../gnibbles/src/preferences.c:451
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:25
+#: ../quadrapassel/src/quadrapassel.vala:384
+msgid "Move right"
+msgstr "Potez u desno"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:13
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:26
+msgid "Key press to move right."
+msgstr "Taster za kretanje u desno."
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:14 ../gnect/src/prefs.c:318
+msgid "Drop marble"
+msgstr "Pusti kliker"
+
+#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:15
+msgid "Key press to drop a marble."
+msgstr "Taster za puštanje klikera."
+
+#: ../gnect/src/games-controls.c:288 ../gnibbles/src/games-controls.c:288
+#: ../gnobots2/src/games-controls.c:288
+msgid "Unknown Command"
+msgstr "Nepoznata naredba"
+
+#: ../gnect/src/gfx.c:248
+#, c-format
+msgid ""
+"Unable to load image:\n"
+"%s"
+msgstr ""
+"Ne mogu da učitam sliku:\n"
+"%s"
+
+#: ../gnect/src/main.c:524
+msgid "It's a draw!"
+msgstr "Nerešeno je!"
+
+#: ../gnect/src/main.c:533 ../gnome-sudoku/src/lib/main.py:391
+msgid "You win!"
+msgstr "Pobedili ste!"
+
+#: ../gnect/src/main.c:535 ../gnect/src/main.c:554
+msgid "It is your move."
+msgstr "Vi ste na redu."
+
+#: ../gnect/src/main.c:538
+msgid "I win!"
+msgstr "Moja pobeda!"
+
+#: ../gnect/src/main.c:540 ../gnect/src/main.c:642
+msgid "Thinking..."
+msgstr "Razmišljam..."
+
+#: ../gnect/src/main.c:551
+#, c-format
+msgid "%s wins!"
+msgstr "%s je pobedio!"
+
+#: ../gnect/src/main.c:558
+#, c-format
+msgid "Waiting for %s to move."
+msgstr "Čekam da se %s pomeri."
+
+#: ../gnect/src/main.c:659
+#, c-format
+msgid "Hint: Column %d"
+msgstr "Savet: kolona %d"
+
+#: ../gnect/src/main.c:687 ../gnect/src/main.c:691
+msgid "You:"
+msgstr "Vi:"
+
+#: ../gnect/src/main.c:688 ../gnect/src/main.c:690
+msgid "Me:"
+msgstr "Ja:"
+
+#: ../gnect/src/main.c:780
+msgid "Drawn:"
+msgstr "Nerešeno:"
+
+#: ../gnect/src/main.c:829
+msgid ""
+"\"Four in a Row\" for GNOME, with a computer player driven by Giuliano "
+"Bertoletti's Velena Engine.\n"
+"\n"
+"\"Four in a Row\" is a part of GNOME Games."
+msgstr ""
+"„Četiri u nizu“ za Gnom, gde računarom kao igračem upravlja Velena mašina "
+"Đulijana Bertoletija.\n"
+"\n"
+"„Četiri u nizu“ je deo Gnomovih igara."
+
+#: ../gnect/src/main.c:1184 ../gnibbles/src/main.c:606
+#: ../gnobots2/src/menu.c:66 ../gnotski/src/gnotski.c:398
+msgid "_View"
+msgstr "P_regled"
+
+#: ../gnect/src/main.h:5
+msgid "Four-in-a-row"
+msgstr "Četiri u nizu"
+
+#: ../gnect/src/prefs.c:207
+msgid "Four-in-a-Row Preferences"
+msgstr "Postavke za Četiri u nizu"
+
+#: ../gnect/src/prefs.c:233
+msgid "Player One:"
+msgstr "Prvi igrač:"
+
+#: ../gnect/src/prefs.c:244 ../gnect/src/prefs.c:272
+#: ../gtali/src/gyahtzee.c:970 ../gtali/src/yahtzee.c:69
+#: ../iagno/src/iagno.vala:493 ../iagno/src/iagno.vala:522
+msgid "Human"
+msgstr "Čovek"
+
+#: ../gnect/src/prefs.c:248 ../gnect/src/prefs.c:276
+#: ../iagno/src/iagno.vala:497 ../iagno/src/iagno.vala:526
+msgid "Level one"
+msgstr "Prvi nivo"
+
+#: ../gnect/src/prefs.c:252 ../gnect/src/prefs.c:280
+#: ../iagno/src/iagno.vala:501 ../iagno/src/iagno.vala:530
+msgid "Level two"
+msgstr "Drugi nivo"
+
+#: ../gnect/src/prefs.c:256 ../gnect/src/prefs.c:284
+#: ../iagno/src/iagno.vala:505 ../iagno/src/iagno.vala:534
+msgid "Level three"
+msgstr "Treći nivo"
+
+#: ../gnect/src/prefs.c:262
+msgid "Player Two:"
+msgstr "Drugi igrač:"
+
+#: ../gnect/src/prefs.c:290 ../gnome-mahjongg/src/gnome-mahjongg.vala:387
+#: ../swell-foop/data/preferences.ui.h:5
+msgid "_Theme:"
+msgstr "_Tema:"
+
+#: ../gnect/src/prefs.c:303
+msgid "Enable _animation"
+msgstr "Uključi _animacije"
+
+#: ../gnect/src/prefs.c:307 ../gnibbles/src/preferences.c:345
+#: ../iagno/src/iagno.vala:539
+msgid "E_nable sounds"
+msgstr "U_ključi zvukove"
+
+#. keyboard tab
+#: ../gnect/src/prefs.c:312
+msgid "Keyboard Controls"
+msgstr "Kontrola tastaturom"
+
+#: ../gnect/src/theme.c:41
+msgid "Classic"
+msgstr "Klasični"
+
+#: ../gnect/src/theme.c:45 ../gnect/src/theme.c:66 ../gnect/src/theme.c:73
+#: ../gnect/src/theme.c:80 ../gnibbles/src/preferences.c:475
+msgid "Red"
+msgstr "Crveni"
+
+#: ../gnect/src/theme.c:45 ../gnibbles/src/preferences.c:478
+msgid "Yellow"
+msgstr "Žuti"
+
+#: ../gnect/src/theme.c:48
+msgid "High Contrast"
+msgstr "Veliki kontrast"
+
+#: ../gnect/src/theme.c:52 ../gnect/src/theme.c:59
+msgid "Circle"
+msgstr "Kružić"
+
+#: ../gnect/src/theme.c:52 ../gnect/src/theme.c:59
+msgid "Cross"
+msgstr "Krstić"
+
+#: ../gnect/src/theme.c:55
+msgid "High Contrast Inverse"
+msgstr "Obrnuti veliki kontrast"
+
+#: ../gnect/src/theme.c:62
+msgid "Cream Marbles"
+msgstr "Porculanci"
+
+#: ../gnect/src/theme.c:66 ../gnect/src/theme.c:73 ../gnect/src/theme.c:80
+#: ../gnect/src/theme.c:87 ../gnibbles/src/preferences.c:477
+msgid "Blue"
+msgstr "Plavi"
+
+#: ../gnect/src/theme.c:69
+msgid "Glass Marbles"
+msgstr "Staklenci"
+
+#: ../gnect/src/theme.c:76
+msgid "Nightfall"
+msgstr "Suton"
+
+#: ../gnect/src/theme.c:83
+msgid "Blocks"
+msgstr "Blokovi"
+
+#: ../gnect/src/theme.c:87
+msgid "Orange"
+msgstr "Narandžasti"
+
+#: ../gnibbles/data/gnibbles.desktop.in.in.h:1 ../gnibbles/src/main.c:162
+#: ../gnibbles/src/main.c:165 ../gnibbles/src/main.c:700
+#: ../gnibbles/src/main.c:771 ../gnibbles/src/main.c:902
+msgid "Nibbles"
+msgstr "Zmije"
+
+#: ../gnibbles/data/gnibbles.desktop.in.in.h:2
+msgid "Guide a worm around a maze"
+msgstr "Vodi crva kroz lavirint"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:1
+msgid "Number of human players"
+msgstr "Broj ljutskih igrača"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:2
+msgid "Number of human players."
+msgstr "Broj ljutskih igrača."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:3
+msgid "Number of AI players"
+msgstr "Broj igrača sa veštačkom inteligencijom"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:4
+msgid "Number of AI players."
+msgstr "Broj igrača sa veštačkom inteligencijom."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:5
+msgid "Game speed"
+msgstr "Brzina igre"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:6
+msgid "Game speed (1=fast, 4=slow)."
+msgstr "Brzina igre (1=brzo, 4=sporo)."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:7
+msgid "Enable fake bonuses"
+msgstr "Uključi lažne bonuse"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:8
+msgid "Enable fake bonuses."
+msgstr "Uključuje lažni bonuse."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:9
+msgid "Play levels in random order"
+msgstr "Igraj nivoe u nasumičnom poretku"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:10
+msgid "Play levels in random order."
+msgstr "Igraj nivoe u nasumičnom poretku."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:11
+msgid "Game level to start on"
+msgstr "Početni nivo"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:12
+msgid "Game level to start on."
+msgstr "Početni nivo."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:13
+msgid "Enable sounds"
+msgstr "Uključi zvuke"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:14
+msgid "Enable sounds."
+msgstr "Uključuje zvukove."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:15
+msgid "Size of game tiles"
+msgstr "Veličina polja"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:16
+msgid "Size of game tiles."
+msgstr "Veličina polja."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:17
+msgid "Color to use for worm"
+msgstr "Boja crva"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:18
+msgid "Color to use for worm."
+msgstr "Boja crva."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:19
+msgid "Use relative movement"
+msgstr "Koristi relativno kretanje"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:20
+msgid "Use relative movement (ie. left or right only)."
+msgstr "Koristi relativno kretanje (npr. samo levo ili desno)."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:21
+#: ../gnibbles/src/preferences.c:452
+msgid "Move up"
+msgstr "Pomeri gore"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:22
+msgid "Key to use for motion up."
+msgstr "Taster za kretanje gore."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:23
+#: ../gnibbles/src/preferences.c:453
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:27
+#: ../quadrapassel/src/quadrapassel.vala:387
+msgid "Move down"
+msgstr "Pomeri dole"
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:24
+msgid "Key to use for motion down."
+msgstr "Taster za kretanje nadole."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:26
+msgid "Key to use for motion left."
+msgstr "Taster za kretanje ulevo."
+
+#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:28
+msgid "Key to use for motion right."
+msgstr "Taster za kretanje udesno."
+
+#: ../gnibbles/src/board.c:245
+#, c-format
+msgid ""
+"Nibbles couldn't load level file:\n"
+"%s\n"
+"\n"
+"Please check your Nibbles installation"
+msgstr ""
+"Igra Gzmije nije mogla da učita datoteku za nivo:\n"
+"%s\n"
+"\n"
+"Proverite svoji instalaciju Gzmija"
+
+#: ../gnibbles/src/board.c:264
+#, c-format
+msgid ""
+"Level file appears to be damaged:\n"
+"%s\n"
+"\n"
+"Please check your Nibbles installation"
+msgstr ""
+"Datoteka za nivo deluje oštećena:\n"
+"%s\n"
+"\n"
+"Proverite svoji instalaciju Gzmija"
+
+#: ../gnibbles/src/gnibbles.c:85
+#, c-format
+msgid ""
+"Nibbles couldn't find pixmap file:\n"
+"%s\n"
+"\n"
+"Please check your Nibbles installation"
+msgstr ""
+"Igra Gzmije nije mogla da nađe datoteku sa slikom:\n"
+"%s\n"
+"\n"
+"Proverite svoju instalaciju Gzmija"
+
+#: ../gnibbles/src/gnibbles.c:356
+msgid "Nibbles Scores"
+msgstr "Rezultati Zmija"
+
+#: ../gnibbles/src/gnibbles.c:359
+msgid "Speed:"
+msgstr "Brzina:"
+
+#: ../gnibbles/src/gnibbles.c:364 ../gnobots2/src/game.c:179
+#: ../gnomine/src/gnomine.vala:470 ../gnotravex/src/gnotravex.vala:244
+#: ../gnotski/src/gnotski.c:773 ../gtali/src/gyahtzee.c:194
+#, c-format
+msgid "Congratulations!"
+msgstr "Čestitamo!"
+
+#: ../gnibbles/src/gnibbles.c:365 ../gnobots2/src/game.c:180
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:314
+#: ../gnomine/src/gnomine.vala:470 ../gnotravex/src/gnotravex.vala:244
+#: ../gnotski/src/gnotski.c:774 ../gtali/src/gyahtzee.c:195
+#: ../quadrapassel/src/quadrapassel.vala:699
+msgid "Your score is the best!"
+msgstr "Vaš rezultat je najbolji!"
+
+#: ../gnibbles/src/gnibbles.c:366 ../gnobots2/src/game.c:181
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:316
+#: ../gnomine/src/gnomine.vala:470 ../gnotravex/src/gnotravex.vala:244
+#: ../gnotski/src/gnotski.c:775 ../gtali/src/gyahtzee.c:196
+#: ../quadrapassel/src/quadrapassel.vala:701
+msgid "Your score has made the top ten."
+msgstr "Vaš rezultat je ušao u najboljih 10."
+
+#: ../gnibbles/src/main.c:66
+msgctxt "game speed"
+msgid "Beginner"
+msgstr "Početnički"
+
+#: ../gnibbles/src/main.c:67
+msgctxt "game speed"
+msgid "Slow"
+msgstr "Sporo"
+
+#: ../gnibbles/src/main.c:68
+msgctxt "game speed"
+msgid "Medium"
+msgstr "Srednje"
+
+#: ../gnibbles/src/main.c:69
+msgctxt "game speed"
+msgid "Fast"
+msgstr "Brzo"
+
+#: ../gnibbles/src/main.c:70
+msgctxt "game speed"
+msgid "Beginner with Fakes"
+msgstr "Početnički sa trikovima"
+
+#: ../gnibbles/src/main.c:71
+msgctxt "game speed"
+msgid "Slow with Fakes"
+msgstr "Sporo sa trikovima"
+
+#: ../gnibbles/src/main.c:72
+msgctxt "game speed"
+msgid "Medium with Fakes"
+msgstr "Srednje sa trikovima"
+
+#: ../gnibbles/src/main.c:73
+msgctxt "game speed"
+msgid "Fast with Fakes"
+msgstr "Brzo sa trikovima"
+
+#: ../gnibbles/src/main.c:171
+msgid ""
+"A worm game for GNOME.\n"
+"\n"
+"Nibbles is a part of GNOME Games."
+msgstr ""
+"Igrica sa zmijama za Gnom.\n"
+"\n"
+"Zmije su deo Gnomovih igara."
+
+#: ../gnibbles/src/main.c:492
+#, c-format
+msgid "Game over! The game has been won by %s!"
+msgstr "Igra je gotova. Pobednik je %s!"
+
+#. Translators: This string will be included in the intro screen, so don't make sure it fits!
+#: ../gnibbles/src/main.c:773
+msgid "A worm game for GNOME."
+msgstr "Gnom Crvi."
+
+#: ../gnibbles/src/preferences.c:240
+msgid "Nibbles Preferences"
+msgstr "Postavke za igricu zmije"
+
+#. Speed
+#: ../gnibbles/src/preferences.c:269
+msgid "Speed"
+msgstr "Brzina"
+
+#: ../gnibbles/src/preferences.c:274
+msgid "Nibbles newbie"
+msgstr "Početnik u zmijama"
+
+#: ../gnibbles/src/preferences.c:284
+msgid "My second day"
+msgstr "Drugi dan igranja"
+
+#: ../gnibbles/src/preferences.c:294
+msgid "Not too shabby"
+msgstr "Ne previše lako"
+
+#: ../gnibbles/src/preferences.c:304
+msgid "Finger-twitching good"
+msgstr "Dobro grčenje mišića prstiju"
+
+#: ../gnibbles/src/preferences.c:318 ../gnibbles/src/preferences.c:457
+msgid "Options"
+msgstr "Postavke"
+
+#: ../gnibbles/src/preferences.c:325
+msgid "_Play levels in random order"
+msgstr "_Igraj nivoe u nasumičnom poretku"
+
+#: ../gnibbles/src/preferences.c:335
+msgid "_Enable fake bonuses"
+msgstr "_Uključi lažne bonuse"
+
+#. starting level
+#: ../gnibbles/src/preferences.c:358 ../quadrapassel/src/quadrapassel.vala:337
+msgid "_Starting level:"
+msgstr "_Početni nivo:"
+
+#: ../gnibbles/src/preferences.c:387
+msgid "Number of _human players:"
+msgstr "Broj _ljudskih igrača:"
+
+#: ../gnibbles/src/preferences.c:408
+msgid "Number of _AI players:"
+msgstr "Broj igrača _veštačke inteligencije:"
+
+#: ../gnibbles/src/preferences.c:433
+msgid "Worm"
+msgstr "Crv"
+
+#: ../gnibbles/src/preferences.c:442
+msgid "Keyboard Options"
+msgstr "Opcije tastature"
+
+#: ../gnibbles/src/preferences.c:462
+msgid "_Use relative movement"
+msgstr "_Koristi relativno kretanje"
+
+#: ../gnibbles/src/preferences.c:469
+msgid "_Worm color:"
+msgstr "Boja _crva:"
+
+#: ../gnibbles/src/preferences.c:476
+msgid "Green"
+msgstr "Zeleni"
+
+#: ../gnibbles/src/preferences.c:479
+msgid "Cyan"
+msgstr "Plavičasti"
+
+#: ../gnibbles/src/preferences.c:480
+msgid "Purple"
+msgstr "Ljubičasti"
+
+#: ../gnibbles/src/preferences.c:481
+msgid "Gray"
+msgstr "Sivi"
+
+#: ../gnibbles/src/scoreboard.c:48
+#, c-format
+msgid "Worm %d:"
+msgstr "Crv %d:"
+
+#: ../gnobots2/data/gnobots2.desktop.in.in.h:1 ../gnobots2/src/gnobots.c:201
+#: ../gnobots2/src/gnobots.c:214 ../gnobots2/src/menu.c:262
+#: ../gnobots2/src/menu.c:265
+msgid "Robots"
+msgstr "Roboti"
+
+#: ../gnobots2/data/gnobots2.desktop.in.in.h:2
+msgid "Avoid the robots and make them crash into each other"
+msgstr "Izbegavajte robote i potrudite se da se sudare"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:1
+msgid "Show toolbar"
+msgstr "Prikaži paletu alata"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:2
+msgid "Show toolbar. A standard option for toolbars."
+msgstr "Prikaži paletu alata. Uobičajena opcija za palete alata."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:3
+msgid "Robot image theme"
+msgstr "Tema za izgled robota"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:4
+msgid "Robot image theme. The theme of the images to use for the robots."
+msgstr "Tema za izgled robota. Tema sa slikama koje se koriste za robote."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:7
+msgid "Game type"
+msgstr "Vrste igara"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:8
+msgid "Game type. The name of the game variation to use."
+msgstr "Vrsta igre. Naziv varijacije igre koja će se igrati."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:9
+msgid "Use safe moves"
+msgstr "Koristi bezbedne poteze"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:10
+msgid ""
+"Use safe moves. The safe moves option will help you to avoid being killed "
+"due to a mistake. If you try to make a move that would lead to your death "
+"when there is a safe move available you will not be allowed to proceed."
+msgstr ""
+"Koristi bezbedne poteze. Ova opcija će vam pomoći da izbegnete smrt usled "
+"greške. Ukoliko je ova opcija uključena i pokušate da napravite potez koji će "
+"dovesti do vaše smrti nećete moći da ga izvršite."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:11
+msgid "Use super safe moves"
+msgstr "Koristi super bezbedne poteze"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:12
+msgid ""
+"Use super safe moves. The player is alerted when there is no safe move and "
+"the only option is to teleport out."
+msgstr ""
+"Koristi super bezbedne poteze. Igrač se obaveštava kad nema više bezbednih "
+"poteza i kada je jedina mogućnost teleportovanje."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:13
+msgid "Enable game sounds"
+msgstr "Uključi zvukove igre"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:14
+msgid "Enable game sounds. Play sounds for various events throughout the game."
+msgstr "Uključi zvukove igre. Pusti zvukove za razne događaje tokom igre."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:15
+#: ../gnobots2/src/properties.c:501
+msgid "Key to move NW"
+msgstr "Taster za kretanje na severozapad"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:16
+msgid "The key used to move north-west."
+msgstr "Taster korišćen za kretanje na severozapad."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:17
+#: ../gnobots2/src/properties.c:502
+msgid "Key to move N"
+msgstr "Taster za kretanje na sever"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:18
+msgid "The key used to move north."
+msgstr "Taster korišćen za kretanje na sever."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:19
+#: ../gnobots2/src/properties.c:503
+msgid "Key to move NE"
+msgstr "Taster za kretanje na severoistok"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:20
+msgid "The key used to move north-east."
+msgstr "Taster korišćen za kretanje na severoistok."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:21
+#: ../gnobots2/src/properties.c:504
+msgid "Key to move W"
+msgstr "Taster za kretanje na zapad"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:22
+msgid "The key used to move west."
+msgstr "Taster korišćen za kretanje na zapad."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:23
+#: ../gnobots2/src/properties.c:509
+msgid "Key to hold"
+msgstr "Taster za držanje"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:24
+msgid "The key used to hold still."
+msgstr "Taster korišćen za držanje nepokretnim."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:25
+#: ../gnobots2/src/properties.c:505
+msgid "Key to move E"
+msgstr "Taster za kretanje na istok"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:26
+msgid "The key used to move east."
+msgstr "Taster korišćen za kretanje na istok."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:27
+#: ../gnobots2/src/properties.c:506
+msgid "Key to move SW"
+msgstr "Taster za kretanje na jugozapad"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:28
+msgid "The key used to move south-west."
+msgstr "Taster korišćen za kretanje na jugozapad."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:29
+#: ../gnobots2/src/properties.c:507
+msgid "Key to move S"
+msgstr "Taster za kretanje na jug"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:30
+msgid "The key used to move south."
+msgstr "Taster korišćen za kretanje na jug."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:31
+#: ../gnobots2/src/properties.c:508
+msgid "Key to move SE"
+msgstr "Taster za kretanje na jugoistok"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:32
+msgid "The key used to move south-east."
+msgstr "Taster korišćen za kretanje na jugoistok."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:33
+#: ../gnobots2/src/properties.c:510
+msgid "Key to teleport"
+msgstr "Taster za prenos na daljinu"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:34
+msgid "The key used to teleport safely (if possible)."
+msgstr "Taster korišćen za bezbedno prenošenje na daljinu (ako je moguće)."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:35
+#: ../gnobots2/src/properties.c:511
+msgid "Key to teleport randomly"
+msgstr "Taster za slučajni prenos na daljinu"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:36
+msgid "The key used to teleport randomly."
+msgstr "Taster korišćen za slučajno prenošenje na daljinu."
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:37
+#: ../gnobots2/src/properties.c:512
+msgid "Key to wait"
+msgstr "Taster za čekanje"
+
+#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:38
+msgid "The key used to wait."
+msgstr "Taster korišćen za čekanje."
+
+#: ../gnobots2/src/game.c:150 ../gtali/src/gyahtzee.c:212
+msgid "Game over!"
+msgstr "Igra završena!"
+
+#: ../gnobots2/src/game.c:152 ../gnomine/src/gnomine.vala:453
+#: ../gnotski/src/gnotski.c:748
+msgid "Great work, but unfortunately your score did not make the top ten."
+msgstr "Na žalost, vaš rezultat nije ušao u najboljih 10."
+
+#: ../gnobots2/src/game.c:167
+msgid "Robots Scores"
+msgstr "Rezultati za Robote"
+
+#: ../gnobots2/src/game.c:170
+msgid "Map:"
+msgstr "Mapa:"
+
+#: ../gnobots2/src/game.c:409 ../gnobots2/src/game.c:425
+msgid ""
+"Congratulations, You Have Defeated the Robots!! \n"
+"But Can You do it Again?"
+msgstr ""
+"Čestitamo, Pobedili ste robote!! \n"
+"Ali da li možete opet?"
+
+#. This should never happen.
+#: ../gnobots2/src/game.c:1187
+msgid "There are no teleport locations left!!"
+msgstr "Nema više mesta za prenos na daljinu!!"
+
+#: ../gnobots2/src/game.c:1215
+msgid "There are no safe locations to teleport to!!"
+msgstr "Nema više bezbednih mesta za prenos na daljinu!!"
+
+#: ../gnobots2/src/gnobots.c:80
+msgid "Set game scenario"
+msgstr "Izaberi scenario igre"
+
+#: ../gnobots2/src/gnobots.c:80 ../gnobots2/src/gnobots.c:82
+msgid "NAME"
+msgstr "NAZIV"
+
+#: ../gnobots2/src/gnobots.c:82
+msgid "Set game configuration"
+msgstr "Izaberi podešavanja igre"
+
+#: ../gnobots2/src/gnobots.c:84 ../gnobots2/src/gnobots.c:86
+msgid "Initial window position"
+msgstr "Početna pozicija prozora"
+
+#: ../gnobots2/src/gnobots.c:84 ../gnotski/src/gnotski.c:445
+msgid "X"
+msgstr "X"
+
+#: ../gnobots2/src/gnobots.c:86 ../gnotski/src/gnotski.c:447
+msgid "Y"
+msgstr "Y"
+
+#: ../gnobots2/src/gnobots.c:91
+msgid "Classic robots"
+msgstr "Klasični roboti"
+
+#: ../gnobots2/src/gnobots.c:92
+msgid "Classic robots with safe moves"
+msgstr "Klasični roboti sa sigurnim potezima"
+
+#: ../gnobots2/src/gnobots.c:93
+msgid "Classic robots with super-safe moves"
+msgstr "Klasični roboti sa super-sigurnim potezima"
+
+#: ../gnobots2/src/gnobots.c:94
+msgid "Nightmare"
+msgstr "Noćna mora"
+
+#: ../gnobots2/src/gnobots.c:95
+msgid "Nightmare with safe moves"
+msgstr "Noćna mora sa bezbednim potezima"
+
+#: ../gnobots2/src/gnobots.c:96
+msgid "Nightmare with super-safe moves"
+msgstr "Noćna mora sa super-bezbednim potezima"
+
+#: ../gnobots2/src/gnobots.c:97
+msgid "Robots2"
+msgstr "Roboti2"
+
+#: ../gnobots2/src/gnobots.c:98
+msgid "Robots2 with safe moves"
+msgstr "Roboti2 sa bezbednim potezima"
+
+#: ../gnobots2/src/gnobots.c:99
+msgid "Robots2 with super-safe moves"
+msgstr "Roboti2 sa super-bezbednim potezima"
+
+#: ../gnobots2/src/gnobots.c:100
+msgid "Robots2 easy"
+msgstr "Roboti2 laki"
+
+#: ../gnobots2/src/gnobots.c:101
+msgid "Robots2 easy with safe moves"
+msgstr "Roboti2 laki sa bezbednim potezima"
+
+#: ../gnobots2/src/gnobots.c:102
+msgid "Robots2 easy with super-safe moves"
+msgstr "Roboti2 laki sa super-bezbednim potezima"
+
+#: ../gnobots2/src/gnobots.c:103
+msgid "Robots with safe teleport"
+msgstr "Roboti sa bezbednim teleportima"
+
+#: ../gnobots2/src/gnobots.c:104
+msgid "Robots with safe teleport with safe moves"
+msgstr "Roboti sa bezbednim teleportima"
+
+#: ../gnobots2/src/gnobots.c:105
+msgid "Robots with safe teleport with super-safe moves"
+msgstr "Roboti sa super-bezbednim teleportima"
+
+#: ../gnobots2/src/gnobots.c:281
+msgid "No game data could be found."
+msgstr "Ne može da pronađe podatke o igri."
+
+#: ../gnobots2/src/gnobots.c:283
+msgid ""
+"The program Robots was unable to find any valid game configuration files. "
+"Please check that the program is installed correctly."
+msgstr ""
+"Program Roboti nije uspeo da pronađe nijednu datoteku sa ispravnim "
+"podešavanjima igre. Proverite da li je program ispravno instaliran."
+
+#: ../gnobots2/src/gnobots.c:299
+msgid "Some graphics files are missing or corrupt."
+msgstr "Neke datoteke sa grafikom nedostaju ili su oštećene."
+
+#: ../gnobots2/src/gnobots.c:301
+msgid ""
+"The program Robots was unable to load all the necessary graphics files. "
+"Please check that the program is installed correctly."
+msgstr ""
+"Program Roboti nije uspeo da učita sve neophodne grafičke datoteke. "
+"Proverite da li je program ispravno instaliran."
+
+#: ../gnobots2/src/graphics.c:152
+#, c-format
+msgid "Could not find '%s' pixmap file\n"
+msgstr "Slika „%s“ nije pronađena\n"
+
+#: ../gnobots2/src/menu.c:67 ../gnotravex/data/gnotravex.ui.h:4
+msgid "_Move"
+msgstr "_Pomeri"
+
+#: ../gnobots2/src/menu.c:74
+msgid "_Teleport"
+msgstr "_Teleportuj"
+
+#: ../gnobots2/src/menu.c:75
+msgid "Teleport, safely if possible"
+msgstr "Teleportuj, bezbedno ako je moguće"
+
+#: ../gnobots2/src/menu.c:76
+msgid "_Random"
+msgstr "_Slučajno"
+
+#: ../gnobots2/src/menu.c:77
+msgid "Teleport randomly"
+msgstr "Slučajno teleportuj"
+
+#: ../gnobots2/src/menu.c:78
+msgid "_Wait"
+msgstr "_Čekaj"
+
+#: ../gnobots2/src/menu.c:78
+msgid "Wait for the robots"
+msgstr "Čekaj robote"
+
+#: ../gnobots2/src/menu.c:89
+msgid "_Toolbar"
+msgstr "_Paleta alata"
+
+#: ../gnobots2/src/menu.c:89
+msgid "Show or hide the toolbar"
+msgstr "Prikažite ili sakrijte paletu alata"
+
+#: ../gnobots2/src/menu.c:270
+msgid ""
+"Based on classic BSD Robots.\n"
+"\n"
+"Robots is a part of GNOME Games."
+msgstr ""
+"Zasnovano na klasičnim BSD Robotima.\n"
+"\n"
+"Roboti su deo Gnomovih igara."
+
+#: ../gnobots2/src/properties.c:392
+msgid "Robots Preferences"
+msgstr "Postavke Robota"
+
+#. --- Combo (yahtzee or kismet style ----
+#: ../gnobots2/src/properties.c:417 ../gtali/src/setup.c:356
+msgid "Game Type"
+msgstr "Vrsta igara"
+
+#: ../gnobots2/src/properties.c:426
+msgid "_Use safe moves"
+msgstr "_Koristi bezbedne poteze"
+
+#: ../gnobots2/src/properties.c:433
+msgid "Prevent accidental moves that result in getting killed."
+msgstr "Spreči nenamerne poteze koji mogu dovesti do pogibije."
+
+#: ../gnobots2/src/properties.c:435
+msgid "U_se super safe moves"
+msgstr "Kori_sti super bezbedne poteze"
+
+#: ../gnobots2/src/properties.c:442
+msgid "Prevents all moves that result in getting killed."
+msgstr "Sprečava sve poteze koji mogu dovesti do pogibije."
+
+#: ../gnobots2/src/properties.c:444 ../quadrapassel/src/quadrapassel.vala:350
+msgid "_Enable sounds"
+msgstr "_Uključi zvukove"
+
+#: ../gnobots2/src/properties.c:450
+msgid "Play sounds for events like winning a level and dying."
+msgstr "Pušta zvuke za događaje kao što je osvajanje nivoa ili pogibija."
+
+#: ../gnobots2/src/properties.c:465
+msgid "_Image theme:"
+msgstr "Tema za _slike:"
+
+#: ../gnobots2/src/properties.c:477
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:441
+msgid "_Background color:"
+msgstr "Boja _pozadine:"
+
+#: ../gnobots2/src/properties.c:521
+msgid "_Restore Defaults"
+msgstr "_Povrati podrazumevano"
+
+#: ../gnobots2/src/properties.c:526
+msgid "Keyboard"
+msgstr "Tastatura"
+
+#: ../gnobots2/src/statusbar.c:76
+msgid "Safe Teleports:"
+msgstr "Bezbedna teleportacija:"
+
+#: ../gnobots2/src/statusbar.c:85 ../quadrapassel/src/quadrapassel.vala:192
+msgid "Level:"
+msgstr "Nivo:"
+
+#: ../gnobots2/src/statusbar.c:94
+msgid "Remaining:"
+msgstr "Preostalo:"
+
+#. ********************************************************************
+#: ../gnome-mahjongg/data/gnome-mahjongg.desktop.in.in.h:1
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:54
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:553
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:764
+msgid "Mahjongg"
+msgstr "Mahjong"
+
+#: ../gnome-mahjongg/data/gnome-mahjongg.desktop.in.in.h:2
+msgid "Disassemble a pile of tiles by removing matching pairs"
+msgstr "Rasklopi gomilu pločica uklanjanjem odgovarajućih parova"
+
+#.
+#. * Translatable strings file generated by get_titles.pl.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: ../gnome-mahjongg/data/translatable_game_names.h:6
+msgctxt "mahjongg map name"
+msgid "The Ziggurat"
+msgstr "Zigurat"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:7
+msgctxt "mahjongg map name"
+msgid "Four Bridges"
+msgstr "Četiri mosta"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:8
+msgctxt "mahjongg map name"
+msgid "Cloud"
+msgstr "Oblak"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:9
+msgctxt "mahjongg map name"
+msgid "Tic-Tac-Toe"
+msgstr "Iks-oks"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:10
+msgctxt "mahjongg map name"
+msgid "Red Dragon"
+msgstr "Crveni zmaj"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:11
+msgctxt "mahjongg map name"
+msgid "Pyramid's Walls"
+msgstr "Zidovi piramide"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:12
+msgctxt "mahjongg map name"
+msgid "Confounding Cross"
+msgstr "Zbunjujući krst"
+
+#: ../gnome-mahjongg/data/translatable_game_names.h:13
+msgctxt "mahjongg map name"
+msgid "Difficult"
+msgstr "Teško"
+
+#: ../gnome-mahjongg/src/game-view.vala:127
+#: ../gnomine/src/minefield-view.vala:398
+#: ../gnotravex/src/puzzle-view.vala:326
+#: ../quadrapassel/src/game-view.vala:330
+msgid "Paused"
+msgstr "Pauzirano"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:66
+msgid "Moves Left:"
+msgstr "Preostalih poteza:"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:84
+msgid "_Restart Game"
+msgstr "Ponovo pok_reni igru"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:86
+#: ../gnomine/src/gnomine.vala:113 ../gtali/src/gyahtzee.c:755
+#: ../iagno/data/iagno.ui.h:3 ../quadrapassel/src/quadrapassel.vala:85
+#: ../swell-foop/src/swell-foop.vala:67
+msgid "_Preferences"
+msgstr "_Postavke"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:90
+#: ../gnomine/src/gnomine.vala:117 ../gnotravex/data/gnotravex.ui.h:17
+#: ../gtali/src/gyahtzee.c:760 ../iagno/data/iagno.ui.h:5
+#: ../lightsoff/src/lightsoff.vala:33 ../quadrapassel/src/quadrapassel.vala:89
+#: ../swell-foop/src/swell-foop.vala:71
+msgid "_About"
+msgstr "_O programu"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:93
+#: ../gnomine/src/gnomine.vala:120 ../gnotravex/data/gnotravex.ui.h:18
+#: ../gtali/src/gyahtzee.c:761 ../iagno/data/iagno.ui.h:6
+#: ../lightsoff/src/lightsoff.vala:36 ../quadrapassel/src/quadrapassel.vala:92
+#: ../swell-foop/src/swell-foop.vala:74
+msgid "_Quit"
+msgstr "_Izađi"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:127
+#: ../gnomine/src/gnomine.vala:182
+#| msgid "_Hint"
+msgid "Hint"
+msgstr "Savet"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:259
+msgid "Do you want to start a new game with this map?"
+msgstr "Želite li da započnete novu igru sa ovom mapom?"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:260
+msgid "If you continue playing the next game will use the new map."
+msgstr "Ukoliko odlučite da igrate narednu igru, ona će koristiti novu mapu."
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:261
+msgid "_Continue playing"
+msgstr "N_astavi igru"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:262
+msgid "Use _new map"
+msgstr "Koristi _novu mapu"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:309
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:591
+msgid "Mahjongg Scores"
+msgstr "Mahjong rezultati"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:310
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:592
+msgid "Layout:"
+msgstr "Raspored:"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:311
+#: ../quadrapassel/src/quadrapassel.vala:696
+msgid "Puzzle solved!"
+msgstr "Slagalica je rešena!"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:312
+#: ../quadrapassel/src/quadrapassel.vala:697
+msgid "You didn't make the top ten, better luck next time."
+msgstr "Niste se plasirali među prvih deset, više sreće drugi put."
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:338
+msgid "There are no more moves."
+msgstr "Nema više poteza."
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:339
+msgid ""
+"Each puzzle has at least one solution.  You can undo your moves and try and "
+"find the solution for a time penalty, restart this game or start an new one."
+msgstr ""
+"Svaka slagalica ima barem jedno rešenje.  Možete da poništite vaše poteze i "
+"da pokušate i da pronađete rešenje uz vremensku kaznu, ponovo da pokrenete "
+"igru ili da započnete novu."
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:342
+msgid "_New game"
+msgstr "_Nova igra"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:370
+msgid "Mahjongg Preferences"
+msgstr "Postavke Mahjonga"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:415
+msgid "_Layout:"
+msgstr "_Raspored:"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:517
+#: ../gnomine/src/gnomine.vala:698
+msgid "Main game:"
+msgstr "Glavna igra:"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:526
+msgid "Maps:"
+msgstr "Mape:"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:534
+msgid "Tiles:"
+msgstr "Slike:"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:556
+msgid ""
+"A matching game played with Mahjongg tiles.\n"
+"\n"
+"Mahjongg is a part of GNOME Games."
+msgstr ""
+"Igra slaganja sa figurama Mahjonga.\n"
+"\n"
+"Mahjong je deo Gnomovih igara."
+
+#. Translators: This is the window title for Mahjongg which contains the map name, e.g. 'Mahjongg - Red Dragon'
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:656
+#, c-format
+msgid "Mahjongg - %s"
+msgstr "Mahjong — %s"
+
+#: ../gnome-mahjongg/src/gnome-mahjongg.vala:669
+#: ../gnomine/src/gnomine.vala:681 ../gnotravex/src/gnotravex.vala:232
+#, c-format
+#| msgctxt "score-dialog"
+#| msgid "Time"
+msgid "Time"
+msgstr "Vreme"
+
+#: ../gnome-sudoku/data/gnome-sudoku.desktop.in.in.h:1
+#: ../gnome-sudoku/src/lib/defaults.py:48
+msgid "Sudoku"
+msgstr "Gnom Sudoku"
+
+#: ../gnome-sudoku/data/gnome-sudoku.desktop.in.in.h:2
+msgid "Test your logic skills in this number grid puzzle"
+msgstr "Oprobajte vaše logičke sposobnosti u ovoj slagalici mreže brojeva"
+
+#: ../gnome-sudoku/data/print_games.ui.h:1
+msgid "Print Sudokus"
+msgstr "Odštampaj sudoke"
+
+#: ../gnome-sudoku/data/print_games.ui.h:2
+msgid "Print Games"
+msgstr "Odštampaj igre"
+
+#: ../gnome-sudoku/data/print_games.ui.h:3
+msgid "_Number of sudoku to print: "
+msgstr "_Broj sudoka za štampu: "
+
+#: ../gnome-sudoku/data/print_games.ui.h:4
+msgid "_Sudokus per page: "
+msgstr "_Sudoka po stranici: "
+
+# Štampa na štampaču ili ispis? Ne mog si gužvam mozak...
+#: ../gnome-sudoku/data/print_games.ui.h:5
+msgid "Levels of difficulty to print"
+msgstr "Nivoi težine za štampu"
+
+#: ../gnome-sudoku/data/print_games.ui.h:6
+msgid "_Easy"
+msgstr "_Lako"
+
+#: ../gnome-sudoku/data/print_games.ui.h:8
+msgid "_Hard"
+msgstr "_Teško"
+
+#: ../gnome-sudoku/data/print_games.ui.h:9
+msgid "_Very Hard"
+msgstr "_Vrlo teško"
+
+#: ../gnome-sudoku/data/print_games.ui.h:10
+msgid "Details"
+msgstr "Pojedinosti"
+
+#: ../gnome-sudoku/data/print_games.ui.h:11
+msgid "_Mark games as played once you've printed them."
+msgstr "O_znači igre kao igrane nakon štampe."
+
+#: ../gnome-sudoku/data/print_games.ui.h:12
+msgid "_Include games you've already played in list of games to print"
+msgstr "_Uključi igre koje si već igrao u listi za štampu"
+
+#: ../gnome-sudoku/data/select_game.ui.h:2
+msgid "_Saved Games"
+msgstr "_Sačuvane igre"
+
+#: ../gnome-sudoku/data/tracker.ui.h:1
+msgid "Add a new tracker"
+msgstr "Dodaj novi lokator"
+
+#: ../gnome-sudoku/data/tracker.ui.h:2
+msgid "Remove the selected tracker"
+msgstr "Uklanja izabrani lokator"
+
+#: ../gnome-sudoku/data/tracker.ui.h:3
+msgid "Make the tracked changes permanent"
+msgstr "Stavlja da su praćene izmene za stalno"
+
+#: ../gnome-sudoku/data/tracker.ui.h:4 ../gnome-sudoku/src/lib/main.py:750
+msgid "H_ide"
+msgstr "Sakr_ij"
+
+#: ../gnome-sudoku/data/tracker.ui.h:5
+msgid "Hide the tracked values"
+msgstr "Sakriva praćene vrednosti"
+
+#: ../gnome-sudoku/src/lib/defaults.py:47
+msgid "GNOME Sudoku"
+msgstr "Gnom sudoku"
+
+#: ../gnome-sudoku/src/lib/defaults.py:50
+msgid ""
+"GNOME Sudoku is a simple Sudoku generator and player. Sudoku is a Japanese "
+"logic puzzle.\n"
+"\n"
+"GNOME Sudoku is a part of GNOME Games."
+msgstr ""
+"Gnom sudoku je jednostavan Sudoku generator i igrač. Sudoku je japanska "
+"logička slagalica.\n"
+"\n"
+"Gnom sudoku je deo Gnomovih igara."
+
+#: ../gnome-sudoku/src/lib/game_selector.py:121
+#: ../gnome-sudoku/src/lib/main.py:627 ../gnome-sudoku/src/lib/printing.py:185
+msgid "Easy"
+msgstr "Lako"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:122
+#: ../gnome-sudoku/src/lib/main.py:628 ../gnome-sudoku/src/lib/printing.py:186
+msgid "Medium"
+msgstr "Srednje"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:123
+#: ../gnome-sudoku/src/lib/main.py:629 ../gnome-sudoku/src/lib/printing.py:187
+msgid "Hard"
+msgstr "Teško"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:124
+#: ../gnome-sudoku/src/lib/printing.py:188
+msgid "Very hard"
+msgstr "Veoma teško"
+
+#. Then we're today
+#. within the minute
+#: ../gnome-sudoku/src/lib/game_selector.py:160
+#, python-format
+msgid "Last played %(n)s second ago"
+msgid_plural "Last played %(n)s seconds ago"
+msgstr[0] "Poslednja odigrana pre %(n)s sekunde"
+msgstr[1] "Poslednja odigrana pre %(n)s sekunde"
+msgstr[2] "Poslednja odigrana pre %(n)s sekundi"
+msgstr[3] "Poslednja odigrana pre jedne sekunde"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:164
+#, python-format
+msgid "Last played %(n)s minute ago"
+msgid_plural "Last played %(n)s minutes ago"
+msgstr[0] "Poslednja odigrana pre %(n)s minut"
+msgstr[1] "Poslednja odigrana pre %(n)s minuta"
+msgstr[2] "Poslednja odigrana pre %(n)s minuta"
+msgstr[3] "Poslednja odigrana pre jednog minuta"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#: ../gnome-sudoku/src/lib/game_selector.py:168
+msgid "Last played at %I:%M %p"
+msgstr "Poslednja odigrana u %I:%M %p"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#: ../gnome-sudoku/src/lib/game_selector.py:171
+msgid "Last played yesterday at %I:%M %p"
+msgstr "Poslednja odigrana juče u %I:%M %p"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#: ../gnome-sudoku/src/lib/game_selector.py:174
+msgid "Last played on %A at %I:%M %p"
+msgstr "Poslednja odigrana %A u %I:%M %p"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#: ../gnome-sudoku/src/lib/game_selector.py:177
+msgid "Last played on %B %e %Y"
+msgstr "Poslednja odigrana %B %e %Y"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:190
+msgid "Easy puzzle"
+msgstr "Lako"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:191
+msgid "Medium puzzle"
+msgstr "Srednje"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:192
+msgid "Hard puzzle"
+msgstr "Teško"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:193
+msgid "Very hard puzzle"
+msgstr "Veoma teško"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:199
+#, python-format
+msgid "Played for %d hour"
+msgid_plural "Played for %d hours"
+msgstr[0] "Odigrana je za %d sat"
+msgstr[1] "Odigrana je za %d sata"
+msgstr[2] "Odigrana je za %d sati"
+msgstr[3] "Odigrana je za %d sat"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:202
+#, python-format
+msgid "Played for %d minute"
+msgid_plural "Played for %d minutes"
+msgstr[0] "Odigrana je za %d minut"
+msgstr[1] "Odigrana je za %d minuta"
+msgstr[2] "Odigrana je za %d minuta"
+msgstr[3] "Odigrana je za %d minut"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:205
+#, python-format
+msgid "Played for %d second"
+msgid_plural "Played for %d seconds"
+msgstr[0] "Odigrana je za %d sekundu"
+msgstr[1] "Odigrana je za %d sekunde"
+msgstr[2] "Odigrana je za %d sekundi"
+msgstr[3] "Odigrana je za %d sekundu"
+
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:162
+msgid "Do you really want to do this?"
+msgstr "Da li zaista želite da uradite ovo?"
+
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:196
+msgid "Don't ask me this again."
+msgstr "Ne pitaj me ponovo."
+
+#: ../gnome-sudoku/src/lib/main.py:196
+msgid "New game"
+msgstr "Nova igra"
+
+#: ../gnome-sudoku/src/lib/main.py:199 ../iagno/data/iagno.ui.h:2
+msgid "_Undo"
+msgstr "_Opozovi"
+
+#: ../gnome-sudoku/src/lib/main.py:200
+msgid "Undo last action"
+msgstr "Opozovi poslednji potez"
+
+#: ../gnome-sudoku/src/lib/main.py:201
+msgid "_Redo"
+msgstr "_Ponovi"
+
+#: ../gnome-sudoku/src/lib/main.py:202
+msgid "Redo last action"
+msgstr "Ponovi poslednji potez"
+
+#: ../gnome-sudoku/src/lib/main.py:203
+msgid "Puzzle _Statistics..."
+msgstr "Statistike _slagalice..."
+
+#: ../gnome-sudoku/src/lib/main.py:205
+msgid "_Print..."
+msgstr "_Štampaj..."
+
+#: ../gnome-sudoku/src/lib/main.py:206
+msgid "Print _Multiple Sudokus..."
+msgstr "Odštampaj _više sudoka..."
+
+#: ../gnome-sudoku/src/lib/main.py:211
+msgid "_Tools"
+msgstr "_Alati"
+
+#: ../gnome-sudoku/src/lib/main.py:213
+msgid "Show a square that is easy to fill."
+msgstr "Prikazuje kvadrat koji je lak za popunjavanje."
+
+#: ../gnome-sudoku/src/lib/main.py:214
+msgid "Clear _Top Notes"
+msgstr "Očisti _gornje beleške"
+
+#: ../gnome-sudoku/src/lib/main.py:216
+msgid "Clear _Bottom Notes"
+msgstr "Očisti _donje beleške"
+
+#: ../gnome-sudoku/src/lib/main.py:225
+msgid "Show _Possible Numbers"
+msgstr "Prikaži _moguće brojeve"
+
+#: ../gnome-sudoku/src/lib/main.py:227
+msgid "Always show possible numbers in a square"
+msgstr "Uvek prikaži moguće brojeve u kvadratu"
+
+#: ../gnome-sudoku/src/lib/main.py:231
+msgid "Warn About _Unfillable Squares"
+msgstr "Upozori na _nepopunjive kvadrate"
+
+#: ../gnome-sudoku/src/lib/main.py:233
+msgid "Warn about squares made unfillable by a move"
+msgstr "Upozori na kvadrate koji postaju nepopunjivi pomeranjem"
+
+#: ../gnome-sudoku/src/lib/main.py:235
+msgid "_Track Additions"
+msgstr "_Prati dodavanja"
+
+#: ../gnome-sudoku/src/lib/main.py:237
+msgid "Mark new additions in a separate color so you can keep track of them."
+msgstr "Označi novo dodavanje različitom bojom kako bi ih lakše pratio."
+
+#: ../gnome-sudoku/src/lib/main.py:240
+msgid "_Highlighter"
+msgstr "_Isticanje"
+
+#: ../gnome-sudoku/src/lib/main.py:241
+msgid "Highlight the current row, column and box"
+msgstr "Istakni trenutni red, kolonu i kutiju"
+
+#: ../gnome-sudoku/src/lib/main.py:366
+#, python-format
+msgid "You completed the puzzle in %d second"
+msgid_plural "You completed the puzzle in %d seconds"
+msgstr[0] "Sklopili ste slagalicu za %d sekundu"
+msgstr[1] "Sklopili ste slagalicu za %d sekunde"
+msgstr[2] "Sklopili ste slagalicu za %d sekundi"
+msgstr[3] "Sklopili ste slagalicu za %d sekundu"
+
+#: ../gnome-sudoku/src/lib/main.py:371 ../gnome-sudoku/src/lib/main.py:379
+#, python-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minut"
+msgstr[1] "%d minuta"
+msgstr[2] "%d minuta"
+msgstr[3] "%d minut"
+
+#: ../gnome-sudoku/src/lib/main.py:372 ../gnome-sudoku/src/lib/main.py:380
+#, python-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d sekunda"
+msgstr[1] "%d sekunde"
+msgstr[2] "%d sekundi"
+msgstr[3] "%d sekunda"
+
+#: ../gnome-sudoku/src/lib/main.py:373
+#, python-format
+msgid "You completed the puzzle in %(minute)s and %(second)s"
+msgstr "Sklopili ste slagalicu za %(minute)s i %(second)s"
+
+#: ../gnome-sudoku/src/lib/main.py:378
+#, python-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d sat"
+msgstr[1] "%d sata"
+msgstr[2] "%d sati"
+msgstr[3] "%d sat"
+
+#: ../gnome-sudoku/src/lib/main.py:381
+#, python-format
+msgid "You completed the puzzle in %(hour)s, %(minute)s and %(second)s"
+msgstr "Sklopili ste slagalicu za %(hour)s, %(minute)s i %(second)s"
+
+#: ../gnome-sudoku/src/lib/main.py:383
+#, python-format
+msgid "You got %(n)s hint."
+msgid_plural "You got %(n)s hints."
+msgstr[0] "Imali ste %(n)s savet."
+msgstr[1] "Imali ste %(n)s saveta."
+msgstr[2] "Imali ste %(n)s saveta."
+msgstr[3] "Imali ste jedan savet."
+
+# Ne znam na šta se odnosi
+#: ../gnome-sudoku/src/lib/main.py:386
+#, python-format
+msgid "You had %(n)s impossibility pointed out."
+msgid_plural "You had %(n)s impossibilities pointed out."
+msgstr[0] "Imate %(n)s istaknutu nemogućnost."
+msgstr[1] "Imate %(n)s istaknute nemogućnosti."
+msgstr[2] "Imate %(n)s istaknutih nemogućnosti."
+msgstr[3] "Imate jednu istaknutu nemogućnost."
+
+#: ../gnome-sudoku/src/lib/main.py:401
+msgid "Save this game before starting new one?"
+msgstr "Da sačuvam ovu igru pre početka nove?"
+
+#: ../gnome-sudoku/src/lib/main.py:421
+msgid "Save game before closing?"
+msgstr "Da sačuvam pre izlaska?"
+
+#: ../gnome-sudoku/src/lib/main.py:619
+msgid "Puzzle Information"
+msgstr "Podaci o slagalici"
+
+#: ../gnome-sudoku/src/lib/main.py:620
+msgid "There is no current puzzle."
+msgstr "Trenutno nema slagalica."
+
+#: ../gnome-sudoku/src/lib/main.py:625
+msgid "Calculated difficulty: "
+msgstr "Proračunata težina: "
+
+#: ../gnome-sudoku/src/lib/main.py:630
+msgid "Very Hard"
+msgstr "Veoma teško"
+
+#: ../gnome-sudoku/src/lib/main.py:635
+msgid "Number of moves instantly fillable by elimination: "
+msgstr "Broj odmah popunjenih poteza eliminacijom: "
+
+#: ../gnome-sudoku/src/lib/main.py:638
+msgid "Number of moves instantly fillable by filling: "
+msgstr "Broj odmah popunjenih poteza popunjavanjem: "
+
+#: ../gnome-sudoku/src/lib/main.py:641
+msgid "Amount of trial-and-error required to solve: "
+msgstr "Količina pokušaja-i-grešaka potrebnih za rešavanje: "
+
+#: ../gnome-sudoku/src/lib/main.py:644 ../gnome-sudoku/src/lib/main.py:645
+msgid "Puzzle Statistics"
+msgstr "Statistike za slagalicu"
+
+#. FIXME: This should create a pop-up dialog
+#: ../gnome-sudoku/src/lib/main.py:679
+#, python-format
+msgid "Unable to display help: %s"
+msgstr "Ne mogu da prikažem pomoć: %s"
+
+#: ../gnome-sudoku/src/lib/main.py:735
+msgid "Untracked"
+msgstr "Nepraćeno"
+
+#: ../gnome-sudoku/src/lib/main.py:744
+msgid "_Remove"
+msgstr "_Ukloni"
+
+#: ../gnome-sudoku/src/lib/main.py:745
+msgid "Delete selected tracker."
+msgstr "Ukloni označeni lokator."
+
+#: ../gnome-sudoku/src/lib/main.py:751
+msgid "Hide current tracker entries."
+msgstr "Sakrij trenutne unose lokatora."
+
+#: ../gnome-sudoku/src/lib/main.py:756
+msgid "A_pply"
+msgstr "_Primeni"
+
+#: ../gnome-sudoku/src/lib/main.py:757
+msgid "Apply all tracked values and remove the tracker."
+msgstr "Primenjuje sve praćene vrednosti i uklanja lokator."
+
+#: ../gnome-sudoku/src/lib/main.py:795
+#, python-format
+msgid "Tracker %s"
+msgstr "Lokator %s"
+
+#: ../gnome-sudoku/src/lib/number_box.py:68
+msgid "_Clear"
+msgstr "_Očisti"
+
+#: ../gnome-sudoku/src/lib/saver.py:155
+msgid "No Space"
+msgstr "Nema mesta"
+
+#: ../gnome-sudoku/src/lib/saver.py:156
+msgid "No space left on disk"
+msgstr "Nije preostalo više mesta na disku"
+
+#: ../gnome-sudoku/src/lib/saver.py:158 ../gnome-sudoku/src/lib/saver.py:165
+#, python-format
+msgid "Unable to create data folder %(path)s."
+msgstr "Ne mogu da napravim fasciklu sa podacima %(path)s."
+
+#: ../gnome-sudoku/src/lib/saver.py:159
+msgid "There is no disk space left!"
+msgstr "Nema više mesta na disku!"
+
+#: ../gnome-sudoku/src/lib/saver.py:166 ../gnome-sudoku/src/lib/saver.py:191
+#: ../gnome-sudoku/src/lib/saver.py:215 ../gnome-sudoku/src/lib/saver.py:233
+#, python-format
+msgid "Error %(errno)s: %(error)s"
+msgstr "Greška %(errno)s: %(error)s"
+
+#: ../gnome-sudoku/src/lib/saver.py:186 ../gnome-sudoku/src/lib/saver.py:187
+msgid "Unable to save game."
+msgstr "Ne mogu da sačuvam igru."
+
+#: ../gnome-sudoku/src/lib/saver.py:189 ../gnome-sudoku/src/lib/saver.py:214
+#: ../gnome-sudoku/src/lib/saver.py:232
+#, python-format
+msgid "Unable to save file %(filename)s."
+msgstr "Ne mogu da sačuvam datoteku %(filename)s."
+
+#: ../gnome-sudoku/src/lib/saver.py:211 ../gnome-sudoku/src/lib/saver.py:212
+msgid "Unable to mark game as finished."
+msgstr "Ne mogu da označim igru završenom."
+
+#: ../gnome-sudoku/src/lib/saver.py:229 ../gnome-sudoku/src/lib/saver.py:230
+msgid "Sudoku unable to mark game as finished."
+msgstr "Sudoku ne može da završi igru."
+
+#: ../gnomine/data/gnomine.desktop.in.in.h:1 ../gnomine/src/gnomine.vala:86
+#: ../gnomine/src/gnomine.vala:132 ../gnomine/src/gnomine.vala:732
+msgid "Mines"
+msgstr "Mine"
+
+#: ../gnomine/data/gnomine.desktop.in.in.h:2
+msgid "Clear hidden mines from a minefield"
+msgstr "Očisti skrivene mine sa minskog polja"
+
+#: ../gnomine/data/gnomine.desktop.in.in.h:3
+msgid "minesweeper;"
+msgstr "minolovac;"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:1
+msgid "Use the unknown flag"
+msgstr "Koristi oznaku za nepoznato"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:2
+msgid "Set to true to be able to mark squares as unknown."
+msgstr "Uključi da bi mogao da označavaš polja kao nepoznata."
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:3
+msgid "Warning about too many flags"
+msgstr "Upozorenje, previše zastavica"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:4
+msgid "Set to true to enable warning icons when too many flags are placed."
+msgstr ""
+"Uključi za prikaz ikonica upozorenja kada ima previše postavljenih zastavica."
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:5
+msgid "Enable automatic placing of flags"
+msgstr "Omogući automatsko postavljanje zastavica"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:6
+msgid ""
+"Set to true to have gnomine automatically flag squares as mined when enough "
+"squares are revealed"
+msgstr ""
+"Uključi za automatsko stavljanje zastavicu za minu kvadratima kada je dovoljan "
+"broj kvadrata otkriven"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:7
+msgid "Number of columns in a custom game"
+msgstr "Broj kolona u proizvoljnoj igri"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:8
+msgid "Number of rows in a custom game"
+msgstr "Broj redova u proizvoljnoj igri"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:9
+msgid "The number of mines in a custom game"
+msgstr "Broj mina u proizvoljnoj igri"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:10
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:3
+msgid "Board size"
+msgstr "Veličina table"
+
+#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:11
+msgid "Size of the board (0-2 = small-large, 3=custom)"
+msgstr "Veličina table (0-2=mala-velika, 3=proizvoljna)"
+
+#: ../gnomine/src/gnomine.vala:72
+msgctxt "board size"
+msgid "Custom"
+msgstr "Proizvoljno"
+
+#: ../gnomine/src/gnomine.vala:108
+msgid "_Replay Size"
+msgstr "Veličina _ponavljanja"
+
+#. New game screen
+#: ../gnomine/src/gnomine.vala:231
+msgid "Field Size"
+msgstr "Veličina polja"
+
+#: ../gnomine/src/gnomine.vala:286
+msgid "H_orizontal:"
+msgstr "_Vodoravno:"
+
+#: ../gnomine/src/gnomine.vala:296
+msgid "_Vertical:"
+msgstr "_Uspravno:"
+
+#: ../gnomine/src/gnomine.vala:306
+msgid "_Number of mines:"
+msgstr "_Broj mina:"
+
+#: ../gnomine/src/gnomine.vala:325
+msgid "_Play Game"
+msgstr "_Igraj igru"
+
+#: ../gnomine/src/gnomine.vala:372
+#, c-format
+msgid "<b>%d</b> mine"
+msgid_plural "<b>%d</b> mines"
+msgstr[0] "<b>%d</b> mina"
+msgstr[1] "<b>%d</b> mine"
+msgstr[2] "<b>%d</b> mina"
+msgstr[3] "<b>Jedan</b> minut"
+
+#: ../gnomine/src/gnomine.vala:436
+#, c-format
+msgid "Flags: %u/%u"
+msgstr "Opcije: %u/%u"
+
+#: ../gnomine/src/gnomine.vala:452
+msgid "The Mines Have Been Cleared!"
+msgstr "Mine su očišćene!"
+
+#: ../gnomine/src/gnomine.vala:464
+msgid "Mines Scores"
+msgstr "Rezultati Gnom mina"
+
+#: ../gnomine/src/gnomine.vala:465 ../gnotravex/src/gnotravex.vala:241
+#: ../gnotravex/src/gnotravex.vala:266 ../swell-foop/src/swell-foop.vala:355
+msgid "Size:"
+msgstr "Veličina:"
+
+#: ../gnomine/src/gnomine.vala:512
+msgid "Do you want to start a new game?"
+msgstr "Da li želite da započnete novu igru?"
+
+#: ../gnomine/src/gnomine.vala:513
+msgid "If you start a new game, your current progress will be lost."
+msgstr "Ako započnete novu igru, vaš trenutni napredak će biti izgubljen."
+
+#: ../gnomine/src/gnomine.vala:514
+msgid "Keep Current Game"
+msgstr "Zadrži trenutnu igru"
+
+#: ../gnomine/src/gnomine.vala:515
+msgid "Start New Game"
+msgstr "Započni novu igru"
+
+#: ../gnomine/src/gnomine.vala:706
+msgid "Resizing and SVG support:"
+msgstr "Podrška za promenu veličine i SVG:"
+
+#: ../gnomine/src/gnomine.vala:714
+msgid "Faces:"
+msgstr "Lica:"
+
+#: ../gnomine/src/gnomine.vala:718
+msgid "Graphics:"
+msgstr "Grafike:"
+
+#: ../gnomine/src/gnomine.vala:735
+msgid ""
+"The popular logic puzzle minesweeper. Clear mines from a board using hints "
+"from squares you have already uncovered.\n"
+"\n"
+"Mines is a part of GNOME Games."
+msgstr ""
+"Popularna logička slagalica mine. Očisti mine sa table pomoću saveta iz polja "
+"koje ste već otkrili.\n"
+"\n"
+"Mine su deo Gnomovih igara."
+
+#: ../gnomine/src/gnomine.vala:809
+msgid "Mines Preferences"
+msgstr "Postavke mina"
+
+#: ../gnomine/src/gnomine.vala:827
+msgid "_Use \"I'm not sure\" flags"
+msgstr "_Koristi „Nisam siguran“ oznake"
+
+#: ../gnomine/src/gnomine.vala:833
+msgid "_Warn if too many flags have been placed"
+msgstr "_Upozori ako je postavljeno previše zastavica"
+
+#: ../gnotravex/data/gnotravex.desktop.in.in.h:1
+#: ../gnotravex/src/gnotravex.vala:56 ../gnotravex/src/gnotravex.vala:82
+#: ../gnotravex/src/gnotravex.vala:306
+msgid "Tetravex"
+msgstr "Slagalica"
+
+#: ../gnotravex/data/gnotravex.desktop.in.in.h:2
+msgid "Complete the puzzle by matching numbered tiles"
+msgstr "Složite slagalicu poklapanjem istih brojeva"
+
+#: ../gnotravex/data/gnotravex.ui.h:3
+msgid "_Solve"
+msgstr "_Reši"
+
+#: ../gnotravex/data/gnotravex.ui.h:5
+msgid "_Up"
+msgstr "_Gore"
+
+#: ../gnotravex/data/gnotravex.ui.h:6
+msgid "_Left"
+msgstr "_Levo"
+
+#: ../gnotravex/data/gnotravex.ui.h:7
+msgid "_Right"
+msgstr "De_sno"
+
+#: ../gnotravex/data/gnotravex.ui.h:8
+msgid "_Down"
+msgstr "_Dole"
+
+#: ../gnotravex/data/gnotravex.ui.h:10
+msgid "_Size"
+msgstr "_Veličina"
+
+#: ../gnotravex/data/gnotravex.ui.h:11
+msgid "_2x2"
+msgstr "_2x2"
+
+#: ../gnotravex/data/gnotravex.ui.h:12
+msgid "_3x3"
+msgstr "_3x3"
+
+#: ../gnotravex/data/gnotravex.ui.h:13
+msgid "_4x4"
+msgstr "_4x4"
+
+#: ../gnotravex/data/gnotravex.ui.h:14
+msgid "_5x5"
+msgstr "_5x5"
+
+#: ../gnotravex/data/gnotravex.ui.h:15
+msgid "_6x6"
+msgstr "_6x6"
+
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:1
+msgid "The size of the playing grid"
+msgstr "Veličina mreže za igru"
+
+#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:2
+msgid "The value of this key is used to decide the size of the playing grid."
+msgstr "Vrednost ovog ključa se koristi za određivanje veličine mreže za igru."
+
+#: ../gnotravex/src/gnotravex.vala:14
+msgid "2×2"
+msgstr "2x2"
+
+#: ../gnotravex/src/gnotravex.vala:15
+msgid "3×3"
+msgstr "3x3"
+
+#: ../gnotravex/src/gnotravex.vala:16
+msgid "4×4"
+msgstr "4x4"
+
+#: ../gnotravex/src/gnotravex.vala:17
+msgid "5×5"
+msgstr "5x5"
+
+#: ../gnotravex/src/gnotravex.vala:18
+msgid "6×6"
+msgstr "6x6"
+
+#: ../gnotravex/src/gnotravex.vala:111
+msgid "Solve"
+msgstr "Reši"
+
+#: ../gnotravex/src/gnotravex.vala:240 ../gnotravex/src/gnotravex.vala:265
+msgid "Tetravex Scores"
+msgstr "Rezultati slagalice"
+
+#: ../gnotravex/src/gnotravex.vala:309
+msgid ""
+"GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
+"the same numbers are touching each other.\n"
+"\n"
+"Tetravex is a part of GNOME Games."
+msgstr ""
+"Gnomova slagalica je igra u kojoj delovi slagalice moraju biti namešteni "
+"tako da se isti brojevi dodiruju.\n"
+"\n"
+"Slagalica je deo Gnomovih igara."
+
+#: ../gnotski/data/gnotski.desktop.in.in.h:1 ../gnotski/src/gnotski.c:42
+msgid "Klotski"
+msgstr "Klotski"
+
+#: ../gnotski/data/gnotski.desktop.in.in.h:2
+msgid "Slide blocks to solve the puzzle"
+msgstr "Gurajte blokove da rešite slagalicu"
+
+#: ../gnotski/data/org.gnome.gnotski.gschema.xml.in.h:1
+msgid "The puzzle in play"
+msgstr "Slagalica koja se igra"
+
+#: ../gnotski/data/org.gnome.gnotski.gschema.xml.in.h:2
+msgid "The number of the puzzle being played."
+msgstr "Broj slagalice koja se igra."
+
+#: ../gnotski/src/gnotski.c:93
+msgid "Only 18 steps"
+msgstr "Samo 18 koraka"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:94 ../gnotski/src/gnotski.c:177
+msgid "Daisy"
+msgstr "Krasuljak"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:95 ../gnotski/src/gnotski.c:183
+msgid "Violet"
+msgstr "Ljubičica"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:96 ../gnotski/src/gnotski.c:189
+msgid "Poppy"
+msgstr "Mak"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:97 ../gnotski/src/gnotski.c:195
+msgid "Pansy"
+msgstr "Dan i noć"
+
+# ne znam šta je ovo, pa neka bude ovako ;)
+#. puzzle name
+#: ../gnotski/src/gnotski.c:98 ../gnotski/src/gnotski.c:201
+msgid "Snowdrop"
+msgstr "Pahuljica"
+
+#. puzzle name - sometimes called "Le'Ane Rouge"
+#: ../gnotski/src/gnotski.c:99 ../gnotski/src/gnotski.c:207
+msgid "Red Donkey"
+msgstr "Crveno magare"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:100 ../gnotski/src/gnotski.c:213
+msgid "Trail"
+msgstr "Trag"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:101 ../gnotski/src/gnotski.c:219
+msgid "Ambush"
+msgstr "Zaseda"
+
+# ???
+#. puzzle name
+#: ../gnotski/src/gnotski.c:102 ../gnotski/src/gnotski.c:225
+msgid "Agatka"
+msgstr "Agatka"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:103 ../gnotski/src/gnotski.c:230
+msgid "Success"
+msgstr "Uspešno"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:104 ../gnotski/src/gnotski.c:235
+msgid "Bone"
+msgstr "Koska"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:105 ../gnotski/src/gnotski.c:241
+msgid "Fortune"
+msgstr "Sudbina"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:106 ../gnotski/src/gnotski.c:249
+msgid "Fool"
+msgstr "Budala"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:107 ../gnotski/src/gnotski.c:255
+msgid "Solomon"
+msgstr "Solomon"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:108 ../gnotski/src/gnotski.c:262
+msgid "Cleopatra"
+msgstr "Kleopatra"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:109 ../gnotski/src/gnotski.c:267
+msgid "Shark"
+msgstr "Ajkula"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:110 ../gnotski/src/gnotski.c:275
+msgid "Rome"
+msgstr "Rim"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:111 ../gnotski/src/gnotski.c:282
+msgid "Pennant Puzzle"
+msgstr "Penant slagalica"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:112 ../gnotski/src/gnotski.c:288
+msgid "Ithaca"
+msgstr "Itaka"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:113 ../gnotski/src/gnotski.c:309
+msgid "Pelopones"
+msgstr "Peloponez"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:114 ../gnotski/src/gnotski.c:316
+msgid "Transeuropa"
+msgstr "Transevropa"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:115 ../gnotski/src/gnotski.c:325
+msgid "Lodzianka"
+msgstr "Lođijanka"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:116 ../gnotski/src/gnotski.c:331
+msgid "Polonaise"
+msgstr "Poloneza"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:117 ../gnotski/src/gnotski.c:336
+msgid "Baltic Sea"
+msgstr "Baltičko more"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:118 ../gnotski/src/gnotski.c:341
+msgid "American Pie"
+msgstr "Američka pita"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:119 ../gnotski/src/gnotski.c:353
+msgid "Traffic Jam"
+msgstr "Gužva u saobraćaju"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:120 ../gnotski/src/gnotski.c:360
+msgid "Sunshine"
+msgstr "Sunčev sjaj"
+
+#. puzzle name
+#: ../gnotski/src/gnotski.c:171
+msgid "Only 18 Steps"
+msgstr "Samo 18 koraka"
+
+#. set of puzzles
+#: ../gnotski/src/gnotski.c:401
+msgid "HuaRong Trail"
+msgstr "Hua-Rong trag"
+
+# Više izazova = višezov
+#. set of puzzles
+#: ../gnotski/src/gnotski.c:403
+msgid "Challenge Pack"
+msgstr "Višezov"
+
+#. set of puzzles
+#: ../gnotski/src/gnotski.c:405
+msgid "Skill Pack"
+msgstr "Umeće"
+
+#: ../gnotski/src/gnotski.c:406
+msgid "_Restart Puzzle"
+msgstr "_Ponovo pokreni slagalicu"
+
+#: ../gnotski/src/gnotski.c:408
+msgid "Next Puzzle"
+msgstr "Sledeća slagalica"
+
+#: ../gnotski/src/gnotski.c:410
+msgid "Previous Puzzle"
+msgstr "Prethodna slagalica"
+
+#: ../gnotski/src/gnotski.c:444
+msgid "X location of window"
+msgstr "X pozicija prozora"
+
+#: ../gnotski/src/gnotski.c:446
+msgid "Y location of window"
+msgstr "Y pozicija prozora"
+
+#: ../gnotski/src/gnotski.c:600
+msgid "Level completed."
+msgstr "Nivo završen."
+
+#: ../gnotski/src/gnotski.c:746
+msgid "The Puzzle Has Been Solved!"
+msgstr "Slagalica je rešena!"
+
+#: ../gnotski/src/gnotski.c:763
+msgid "Klotski Scores"
+msgstr "Rezultati Klotskog"
+
+#: ../gnotski/src/gnotski.c:766
+msgid "Puzzle:"
+msgstr "Slagalica:"
+
+#: ../gnotski/src/gnotski.c:869
+msgid ""
+"The theme for this game failed to render.\n"
+"\n"
+"Please check that Klotski is installed correctly."
+msgstr ""
+"Tema ove igre nije uspela da se prikaže.\n"
+"\n"
+"Proverite da li je Klotski ispravno instaliran."
+
+#: ../gnotski/src/gnotski.c:1119
+#, c-format
+msgid ""
+"Could not find the image:\n"
+"%s\n"
+"\n"
+"Please check that Klotski is installed correctly."
+msgstr ""
+"Nije uspelo nalaženje slike:\n"
+"%s\n"
+"\n"
+"Proverite da li je Klotski ispravno instaliran."
+
+#: ../gnotski/src/gnotski.c:1158
+#, c-format
+msgid "Moves: %d"
+msgstr "Potezi: %d"
+
+#: ../gnotski/src/gnotski.c:1450
+msgid ""
+"Sliding Block Puzzles\n"
+"\n"
+"Klotski is a part of GNOME Games."
+msgstr ""
+"Slaganje kližućih blokova\n"
+"\n"
+"Klotski je deo Gnomovih igara."
+
+#: ../gtali/data/gtali.desktop.in.in.h:1 ../gtali/src/gyahtzee.c:57
+msgid "Tali"
+msgstr "Jamb"
+
+#: ../gtali/data/gtali.desktop.in.in.h:2
+msgid "Beat the odds in a poker-style dice game"
+msgstr "Pobedi protivnike u igri sa kockicama nalik na poker"
+
+#: ../gtali/data/gtali.desktop.in.in.h:3
+msgid "yahtzee;"
+msgstr "jamb;"
+
+#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:1
+msgid "Delay between rolls"
+msgstr "Pravi pauzu između bacanja"
+
+#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:2
+msgid ""
+"Choose whether or not to insert a delay between the computer's dice rolls so "
+"the player can follow what it is doing."
+msgstr ""
+"Izaberite da li se ili ne čeka između bacanja kockica računara kako bi igrač "
+"mogao da prati šta računar radi."
+
+#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:3
+msgid "Display the computer's thoughts"
+msgstr "Prikazuj razmišljanja računara"
+
+#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:4
+msgid ""
+"If set to true, a dump of the AI's working will be done to standard output."
+msgstr ""
+"Ukoliko je postavljeno, prikaz kako radi AI će biti ispisan na standardni "
+"izlaz."
+
+#: ../gtali/src/clist.c:158
+msgid "Already used! Where do you want to put that?"
+msgstr "Već iskorišćeno! Gde želite da ga postavite?"
+
+#: ../gtali/src/clist.c:414
+#, c-format
+msgid "Score: %d"
+msgstr "Razultat: %d"
+
+#: ../gtali/src/clist.c:416
+#, c-format
+msgid "Field used"
+msgstr "Iskorišćena polja"
+
+#: ../gtali/src/gyahtzee.c:102
+msgid "Delay computer moves"
+msgstr "Pravi pauze između poteza računara"
+
+#: ../gtali/src/gyahtzee.c:104
+msgid "Display computer thoughts"
+msgstr "Prikazuj razmišljanja računara"
+
+#: ../gtali/src/gyahtzee.c:106
+msgid "Number of computer opponents"
+msgstr "Broj računarskih protivnika"
+
+#: ../gtali/src/gyahtzee.c:106 ../gtali/src/gyahtzee.c:108
+#: ../gtali/src/gyahtzee.c:112 ../gtali/src/gyahtzee.c:114
+msgid "NUMBER"
+msgstr "BROJ"
+
+#: ../gtali/src/gyahtzee.c:108
+msgid "Number of human opponents"
+msgstr "Broj ljudskih protivnika"
+
+#: ../gtali/src/gyahtzee.c:110
+msgid "Game choice: Regular or Colors"
+msgstr "Izbor igre: Obično ili u boji"
+
+#: ../gtali/src/gyahtzee.c:110
+msgid "STRING"
+msgstr "NISKA"
+
+#: ../gtali/src/gyahtzee.c:112
+msgid "Number of computer-only games to play"
+msgstr "Broj samo računarskih protivnika za igru"
+
+#: ../gtali/src/gyahtzee.c:114
+msgid "Number of trials for each roll for the computer"
+msgstr "Broj proba za svako bacanje kompijutera"
+
+#: ../gtali/src/gyahtzee.c:119 ../gtali/src/setup.c:359
+msgctxt "game type"
+msgid "Regular"
+msgstr "Obična"
+
+#: ../gtali/src/gyahtzee.c:120 ../gtali/src/setup.c:360
+msgctxt "game type"
+msgid "Colors"
+msgstr "Boje"
+
+#: ../gtali/src/gyahtzee.c:141
+msgid "Roll all!"
+msgstr "Bacaj sve!"
+
+#: ../gtali/src/gyahtzee.c:144 ../gtali/src/gyahtzee.c:791
+msgid "Roll!"
+msgstr "Bacaj!"
+
+#: ../gtali/src/gyahtzee.c:178
+msgid "The game is a draw!"
+msgstr "Igra je nerešena!"
+
+#: ../gtali/src/gyahtzee.c:192 ../gtali/src/gyahtzee.c:629
+msgid "Tali Scores"
+msgstr "Jamb rezultati"
+
+#: ../gtali/src/gyahtzee.c:208
+#, c-format
+msgid "%s wins the game with %d point"
+msgid_plural "%s wins the game with %d points"
+msgstr[0] "%s je pobedio sa %d poenom"
+msgstr[1] "%s je pobedio sa %d poena"
+msgstr[2] "%s je pobedio sa %d poena"
+msgstr[3] "%s je pobedio sa jednim poenom"
+
+#: ../gtali/src/gyahtzee.c:256
+#, c-format
+msgid "Computer playing for %s"
+msgstr "Računar igra kao %s"
+
+#: ../gtali/src/gyahtzee.c:258
+#, c-format
+msgid "%s! -- You're up."
+msgstr "%s! —— Vi ste na redu."
+
+#: ../gtali/src/gyahtzee.c:451
+msgid "Select dice to roll or choose a score slot."
+msgstr "Izaberite kockice za bacanje ili izaberite polje za upis."
+
+#: ../gtali/src/gyahtzee.c:479
+msgid "Roll"
+msgstr "Bacaj"
+
+#: ../gtali/src/gyahtzee.c:537
+msgid "You are only allowed three rolls. Choose a score slot."
+msgstr "Samo su tri bacanja dozvoljena! Izaberite polje za upis."
+
+#: ../gtali/src/gyahtzee.c:587
+msgid "GNOME version (1998):"
+msgstr "Izdanje Gnoma (1998):"
+
+#: ../gtali/src/gyahtzee.c:590
+msgid "Console version (1992):"
+msgstr "Konzolna verzija (1992):"
+
+#: ../gtali/src/gyahtzee.c:593
+msgid "Colors game and multi-level AI (2006):"
+msgstr "Igra sa bojama i veštačka inteligencija sa više nivoa (2006):"
+
+#: ../gtali/src/gyahtzee.c:611
+msgid ""
+"A variation on poker with dice and less money.\n"
+"\n"
+"Tali is a part of GNOME Games."
+msgstr ""
+"Vrsta pokera sa kockicom i manje novca.\n"
+"\n"
+"Jamb je deo Gnomovih igara."
+
+#: ../gtali/src/setup.c:122
+msgid "Current game will complete with original number of players."
+msgstr "Igra koja trenutno traje će biti završena sa prvobitnim brojem igrača."
+
+#: ../gtali/src/setup.c:264
+msgid "Tali Preferences"
+msgstr "Postavke Jamba"
+
+#: ../gtali/src/setup.c:285
+msgid "Human Players"
+msgstr "Ljudski igrači"
+
+#: ../gtali/src/setup.c:295
+msgid "_Number of players:"
+msgstr "_Broj igrača:"
+
+#: ../gtali/src/setup.c:309
+msgid "Computer Opponents"
+msgstr "Računarski protivnici"
+
+#. --- Button ---
+#: ../gtali/src/setup.c:316
+msgid "_Delay between rolls"
+msgstr "_Pravi pauzu između bacanja"
+
+#: ../gtali/src/setup.c:326
+msgid "N_umber of opponents:"
+msgstr "B_roj protivnika:"
+
+#: ../gtali/src/setup.c:340
+msgid "_Difficulty:"
+msgstr "_Težina:"
+
+#: ../gtali/src/setup.c:344
+msgctxt "difficulty"
+msgid "Medium"
+msgstr "Srednje"
+
+#. --- PLAYER NAMES FRAME ----
+#: ../gtali/src/setup.c:368
+msgid "Player Names"
+msgstr "Imena igrača"
+
+#: ../gtali/src/yahtzee.c:85 ../gtali/src/yahtzee.c:109
+#: ../gtali/src/yahtzee.c:517
+msgid "1s [total of 1s]"
+msgstr "Jedinice [ukupno jedinica]"
+
+#: ../gtali/src/yahtzee.c:86 ../gtali/src/yahtzee.c:110
+#: ../gtali/src/yahtzee.c:518
+msgid "2s [total of 2s]"
+msgstr "Dvojke [ukupno dvojki]"
+
+#: ../gtali/src/yahtzee.c:87 ../gtali/src/yahtzee.c:111
+#: ../gtali/src/yahtzee.c:519
+msgid "3s [total of 3s]"
+msgstr "Trojke [ukupno trojki]"
+
+#: ../gtali/src/yahtzee.c:88 ../gtali/src/yahtzee.c:112
+#: ../gtali/src/yahtzee.c:520
+msgid "4s [total of 4s]"
+msgstr "Četvorke [ukupno četvorki]"
+
+#: ../gtali/src/yahtzee.c:89 ../gtali/src/yahtzee.c:113
+#: ../gtali/src/yahtzee.c:521
+msgid "5s [total of 5s]"
+msgstr "Petice [ukupno petica]"
+
+#: ../gtali/src/yahtzee.c:90 ../gtali/src/yahtzee.c:114
+#: ../gtali/src/yahtzee.c:522
+msgid "6s [total of 6s]"
+msgstr "Šestice [ukupno šestica]"
+
+#. End of upper panel
+#: ../gtali/src/yahtzee.c:92 ../gtali/src/yahtzee.c:117
+#: ../gtali/src/yahtzee.c:523
+msgid "3 of a Kind [total]"
+msgstr "Tri iste [ukupno]"
+
+#: ../gtali/src/yahtzee.c:93 ../gtali/src/yahtzee.c:524
+msgid "4 of a Kind [total]"
+msgstr "Poker [ukupno]"
+
+#: ../gtali/src/yahtzee.c:94 ../gtali/src/yahtzee.c:525
+msgid "Full House [25]"
+msgstr "Ful [25]"
+
+#: ../gtali/src/yahtzee.c:95 ../gtali/src/yahtzee.c:526
+msgid "Small Straight [30]"
+msgstr "Mala kenta [30]"
+
+#: ../gtali/src/yahtzee.c:96 ../gtali/src/yahtzee.c:121
+#: ../gtali/src/yahtzee.c:527
+msgid "Large Straight [40]"
+msgstr "Velika kenta [40]"
+
+#: ../gtali/src/yahtzee.c:97
+msgid "5 of a Kind [50]"
+msgstr "Jamb [50]"
+
+#: ../gtali/src/yahtzee.c:98 ../gtali/src/yahtzee.c:124
+#: ../gtali/src/yahtzee.c:529
+msgid "Chance [total]"
+msgstr "Šansa [ukupno]"
+
+#. End of lower panel
+#: ../gtali/src/yahtzee.c:100 ../gtali/src/yahtzee.c:126
+msgid "Lower Total"
+msgstr "Donji zbir"
+
+#: ../gtali/src/yahtzee.c:101 ../gtali/src/yahtzee.c:127
+msgid "Grand Total"
+msgstr "Veliki zbir"
+
+#. Need to squish between upper and lower pannel
+#: ../gtali/src/yahtzee.c:103 ../gtali/src/yahtzee.c:129
+msgid "Upper total"
+msgstr "Gornji zbir"
+
+#: ../gtali/src/yahtzee.c:104 ../gtali/src/yahtzee.c:130
+msgid "Bonus if >62"
+msgstr "Bonus ukoliko je >62"
+
+#. End of upper panel
+#: ../gtali/src/yahtzee.c:116 ../gtali/src/yahtzee.c:530
+msgid "2 pair Same Color [total]"
+msgstr "2 para iste boje [ukupno]"
+
+#: ../gtali/src/yahtzee.c:118 ../gtali/src/yahtzee.c:531
+msgid "Full House [15 + total]"
+msgstr "Ful [15 + ukupno]"
+
+#: ../gtali/src/yahtzee.c:119 ../gtali/src/yahtzee.c:532
+msgid "Full House Same Color [20 + total]"
+msgstr "Ful [15 + ukupno]"
+
+#: ../gtali/src/yahtzee.c:120 ../gtali/src/yahtzee.c:533
+msgid "Flush (all same color) [35]"
+msgstr "Sve iste boje [35]"
+
+#: ../gtali/src/yahtzee.c:122 ../gtali/src/yahtzee.c:534
+msgid "4 of a Kind [25 + total]"
+msgstr "Poker [25 + ukupno]"
+
+#: ../gtali/src/yahtzee.c:123 ../gtali/src/yahtzee.c:535
+msgid "5 of a Kind [50 + total]"
+msgstr "Pet istih [50 + ukupno]"
+
+#: ../gtali/src/yahtzee.c:251
+msgid "Choose a score slot."
+msgstr "Izaberite mesto za rezultat."
+
+#: ../gtali/src/yahtzee.c:528
+msgid "5 of a Kind [total]"
+msgstr "Pet iste [ukupno]"
+
+#. Arrgh - lets all use the same tabs under emacs:
+#. Local Variables:
+#. tab-width: 8
+#. c-basic-offset: 8
+#. indent-tabs-mode: nil
+#.
+#: ../iagno/data/iagno.desktop.in.in.h:1 ../iagno/src/iagno.vala:82
+#: ../iagno/src/iagno.vala:295 ../iagno/src/iagno.vala:620
+msgid "Iagno"
+msgstr "Jagno"
+
+#: ../iagno/data/iagno.desktop.in.in.h:2
+msgid "Dominate the board in a classic version of Reversi"
+msgstr "Osvojite veći deo table u klasičnoj verziji igre Reversi"
+
+#: ../iagno/data/iagno.desktop.in.in.h:3
+msgid "othello;"
+msgstr "otelo;"
+
+#: ../iagno/src/iagno.vala:137 ../iagno/src/iagno.vala:254
+#: ../iagno/src/iagno.vala:262
+msgid "Dark:"
+msgstr "Crni:"
+
+#: ../iagno/src/iagno.vala:145 ../iagno/src/iagno.vala:255
+#: ../iagno/src/iagno.vala:263
+msgid "Light:"
+msgstr "Beli:"
+
+#: ../iagno/src/iagno.vala:246
+msgid "Light must pass, Dark's move"
+msgstr "Beli preskače potez, Crni je na potezu"
+
+#: ../iagno/src/iagno.vala:248
+msgid "Dark must pass, Light's move"
+msgstr "Crni preskače potez, Beli je na potezu"
+
+#. Translators: this is a 2 digit representation of the current score.
+#: ../iagno/src/iagno.vala:257 ../iagno/src/iagno.vala:258
+#: ../iagno/src/iagno.vala:265 ../iagno/src/iagno.vala:266
+#, c-format
+msgid "%.2d"
+msgstr "%.2d"
+
+#: ../iagno/src/iagno.vala:300
+msgid ""
+"A disk flipping game derived from Reversi.\n"
+"\n"
+"Iagno is a part of GNOME Games."
+msgstr ""
+"Igra izvrtanja diskova proizašla iz igre Reversi.\n"
+"\n"
+"Jagno je deo Gnomovih igara."
+
+#: ../iagno/src/iagno.vala:368
+msgid "Light player wins!"
+msgstr "Beli je pobedio!"
+
+#: ../iagno/src/iagno.vala:370
+msgid "Dark player wins!"
+msgstr "Crni je pobedio!"
+
+#: ../iagno/src/iagno.vala:372
+msgid "The game was a draw."
+msgstr "Igra je nerešena."
+
+#: ../iagno/src/iagno.vala:396
+msgid "Invalid move."
+msgstr "Nemoguć potez."
+
+#: ../iagno/src/iagno.vala:461
+msgid "Iagno Preferences"
+msgstr "Jagno postavke"
+
+#: ../iagno/src/iagno.vala:480
+msgid "Dark Player:"
+msgstr "Crni igrač:"
+
+#: ../iagno/src/iagno.vala:510
+msgid "Light Player:"
+msgstr "Beli igrač:"
+
+#: ../iagno/src/iagno.vala:544
+msgid "S_how grid"
+msgstr "Prikaži _mrežu"
+
+#: ../iagno/src/iagno.vala:549
+msgid "_Flip final results"
+msgstr "_Obrni konačni rezultat"
+
+#: ../iagno/src/iagno.vala:554
+msgid "_Tile set:"
+msgstr "Skup _figura:"
+
+#. Score dialog column header for the score time (e.g. 1 minute)
+#: ../libgames-support/games-scores-dialog.c:136
+msgctxt "score-dialog"
+msgid "Time"
+msgstr "Vreme"
+
+#. Score dialog column header for the score value (e.g. 30 moves)
+#: ../libgames-support/games-scores-dialog.c:142
+msgctxt "score-dialog"
+msgid "Score"
+msgstr "Rezultat"
+
+#. Score format for time based scores.  %1$d is the time in minutes, %2$d is the time in seconds
+#: ../libgames-support/games-scores-dialog.c:307
+#, c-format
+msgctxt "score-dialog"
+msgid "%1$dm %2$ds"
+msgstr "%dm %ds"
+
+#. Score dialog column header for the name of the player who recorded the score
+#: ../libgames-support/games-scores-dialog.c:571
+msgctxt "score-dialog"
+msgid "Name"
+msgstr "Ime"
+
+#. Score dialog column header for the date the score was recorded
+#: ../libgames-support/games-scores-dialog.c:580
+msgid "Date"
+msgstr "Datum"
+
+#. FIXME: There is basically no range checking.
+#: ../lightsoff/data/lightsoff.desktop.in.in.h:1
+#: ../lightsoff/src/lightsoff.vala:144 ../lightsoff/src/lightsoff.vala:168
+msgid "Lights Off"
+msgstr "Pogasi svetla"
+
+#: ../lightsoff/data/lightsoff.desktop.in.in.h:2
+msgid "Turn off all the lights"
+msgstr "Ugasite sva svetla"
+
+#: ../lightsoff/data/org.gnome.lightsoff.gschema.xml.in.h:1
+msgid "The current level"
+msgstr "Trenutni nivo"
+
+#: ../lightsoff/data/org.gnome.lightsoff.gschema.xml.in.h:2
+msgid "The users's most recent level."
+msgstr "Najskoriji nivo koji je odigrao korisnik."
+
+#: ../lightsoff/src/lightsoff.vala:147
+msgid ""
+"Turn off all the lights\n"
+"\n"
+"Lights Off is a part of GNOME Games."
+msgstr ""
+"Ugasi sva svetla\n"
+"\n"
+"Pogasi svetla je deo Gnomovih igara."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:1
+msgid "Image to use for drawing blocks"
+msgstr "Slika za iscrtavanje blokova"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:2
+msgid "Image to use for drawing blocks."
+msgstr "Slika za iscrtavanje blokova."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:3
+msgid "The theme used for rendering the blocks"
+msgstr "Slika za iscrtavanje blokova"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:4
+msgid "The name of the theme used for rendering the blocks and the background."
+msgstr "Naziv teme koja se koristi za iscrtavanje blokova i pozadine."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:5
+msgid "Level to start with"
+msgstr "Početni nivo"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:6
+msgid "Level to start with."
+msgstr "Početni nivo."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:7
+msgid "Whether to preview the next block"
+msgstr "Da li prikazati sledeći blok"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:8
+msgid "Whether to preview the next block."
+msgstr "Da li prikazati sledeći blok."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:9
+msgid "Whether to show where the moving piece will land"
+msgstr "Da li da prikaže gde će blok biti prizemljen"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:10
+msgid "Whether to show where the moving piece will land."
+msgstr "Da li da prikaže gde će pomereni blok biti prizemljen."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:11
+msgid "Whether to give blocks random colors"
+msgstr "Da li da blokovi budu nasumičnih boja"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:12
+msgid "Whether to give blocks random colors."
+msgstr "Da li da blokovi budu nasumičnih boja."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:13
+msgid "Whether to rotate counter clock wise"
+msgstr "Da li blokove rotirati u pravcu suprotnom od kazaljke na satu"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:14
+msgid "Whether to rotate counter clock wise."
+msgstr "Da li blokove rotirati u pravcu suprotnom od kazaljke na satu."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:15
+msgid "The number of rows to fill"
+msgstr "Broj redova za popunjavanje"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:16
+msgid ""
+"The number of rows that are filled with random blocks at the start of the "
+"game."
+msgstr "Broj redova koji su popunjeni nasumičnim blokovima na početku igre."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:17
+msgid "The density of filled rows"
+msgstr "Gustina popunjenih redova"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:18
+msgid ""
+"The density of blocks in rows filled at the start of the game. The value is "
+"between 0 (for no blocks) and 10 (for a completely filled row)."
+msgstr ""
+"Gustina blokova u redovima koji su već popunjeni na početku igre. Vrednost je "
+"između 0 (bez blokova) i 10 (za potpuno popunjeni red)."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:19
+msgid "Whether to play sounds"
+msgstr "Da li da pušta zvuke"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:20
+msgid "Whether to play sounds."
+msgstr "Da li će da pušta zvuke."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:21
+msgid "Whether to pick blocks that are hard to place"
+msgstr "Da li da pokupi blokove koji su teški za postavljanje"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:22
+msgid "Whether to pick blocks that are hard to place."
+msgstr "Da li će da pokupi blokove koji su teški za postavljanje."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:28
+msgid "Key press to move down."
+msgstr "Taster za kretanje dole."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:29
+#: ../quadrapassel/src/quadrapassel.vala:390
+msgid "Drop"
+msgstr "Pusti"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:30
+msgid "Key press to drop."
+msgstr "Taster za puštanje."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:31
+#: ../quadrapassel/src/quadrapassel.vala:393
+msgid "Rotate"
+msgstr "Zaokreni"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:32
+msgid "Key press to rotate."
+msgstr "Taster za rotiranje."
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:33
+#: ../quadrapassel/src/quadrapassel.vala:396
+msgid "Pause"
+msgstr "Pauziraj"
+
+#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:34
+msgid "Key press to pause."
+msgstr "Taster za pauziranje."
+
+#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:1
+#: ../quadrapassel/src/quadrapassel.vala:99
+#: ../quadrapassel/src/quadrapassel.vala:757
+#: ../quadrapassel/src/quadrapassel.vala:803
+msgid "Quadrapassel"
+msgstr "Četvorka"
+
+#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:2
+msgid "Fit falling blocks together"
+msgstr "Sastavljaj padajuće blokove"
+
+#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:3
+msgid "tetris;"
+msgstr "tetris;"
+
+#: ../quadrapassel/src/game-view.vala:332
+msgid "Game Over"
+msgstr "Igra je završena"
+
+#: ../quadrapassel/src/quadrapassel.vala:183
+msgid "Lines:"
+msgstr "Linije:"
+
+#: ../quadrapassel/src/quadrapassel.vala:290
+msgid "Quadrapassel Preferences"
+msgstr "Postavke Četvorke"
+
+#. pre-filled rows
+#: ../quadrapassel/src/quadrapassel.vala:309
+msgid "_Number of pre-filled rows:"
+msgstr "_Broj unapred popunjenih redova:"
+
+#. pre-filled rows density
+#: ../quadrapassel/src/quadrapassel.vala:323
+msgid "_Density of blocks in a pre-filled row:"
+msgstr "_Gustina blokova u unapred popunjenim redovima:"
+
+#: ../quadrapassel/src/quadrapassel.vala:355
+msgid "_Preview next block"
+msgstr "_Prikaži sledeći blok"
+
+#: ../quadrapassel/src/quadrapassel.vala:360
+msgid "Choose difficult _blocks"
+msgstr "Odaberi teške _blokove"
+
+#. rotate counter clock wise
+#: ../quadrapassel/src/quadrapassel.vala:366
+msgid "_Rotate blocks counterclockwise"
+msgstr "_Okreći suprotno smeru kazaljke na satu"
+
+#: ../quadrapassel/src/quadrapassel.vala:371
+msgid "Show _where the block will land"
+msgstr "Prikaži _gde će blok biti prizemljen"
+
+#: ../quadrapassel/src/quadrapassel.vala:415
+msgid "Controls"
+msgstr "Kontrole"
+
+#: ../quadrapassel/src/quadrapassel.vala:421
+msgid "Theme"
+msgstr "Tema"
+
+#: ../quadrapassel/src/quadrapassel.vala:433
+msgid "Plain"
+msgstr "Ravno"
+
+#: ../quadrapassel/src/quadrapassel.vala:438
+msgid "Tango Flat"
+msgstr "Ravni tango"
+
+#: ../quadrapassel/src/quadrapassel.vala:443
+msgid "Tango Shaded"
+msgstr "Tango sa senkama"
+
+#: ../quadrapassel/src/quadrapassel.vala:448
+msgid "Clean"
+msgstr "Očisti"
+
+#: ../quadrapassel/src/quadrapassel.vala:695
+#: ../quadrapassel/src/quadrapassel.vala:774
+msgid "Quadrapassel Scores"
+msgstr "Rezultati četvorke"
+
+#: ../quadrapassel/src/quadrapassel.vala:759
+msgid ""
+"A classic game of fitting falling blocks together.\n"
+"\n"
+"Quadrapassel is a part of GNOME Games."
+msgstr ""
+"Klasična igra spajanja padajućih blokova zajedno.\n"
+"\n"
+"Četvorka je deo Gnomovih igara."
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:1
+msgid "The theme to use"
+msgstr "Koju temu koristiti"
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:2
+msgid "The title of the tile theme to use."
+msgstr "Naslov teme za pločice koja će se koristiti."
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:4
+msgid "The size of the game board."
+msgstr "Veličina table za igru."
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:5
+msgid "Board color count"
+msgstr "Broj boja na tabli"
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:6
+msgid "The number of colors of tiles to use in the game."
+msgstr "Broj boja na pločama koji se koristi u igri."
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:7
+msgid "Zealous animation"
+msgstr "Predana animacija"
+
+#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:8
+msgid "Use more flashy, but slower, animations."
+msgstr "Koristi lepšu, ali sporiju animaciju."
+
+#: ../swell-foop/data/preferences.ui.h:1
+#: ../swell-foop/data/swell-foop.desktop.in.in.h:1
+#: ../swell-foop/src/swell-foop.vala:54 ../swell-foop/src/swell-foop.vala:386
+#: ../swell-foop/src/swell-foop.vala:451
+msgid "Swell Foop"
+msgstr "Lančana reakcija"
+
+#: ../swell-foop/data/preferences.ui.h:3
+msgid "_Number of colors:"
+msgstr "Broj _boja:"
+
+#: ../swell-foop/data/preferences.ui.h:4
+msgid "Setup"
+msgstr "Podešavanje"
+
+#: ../swell-foop/data/preferences.ui.h:7
+msgid "_Zealous Animation"
+msgstr "Predana _animacija"
+
+#: ../swell-foop/data/preferences.ui.h:8
+msgid "Operation"
+msgstr "Operacija"
+
+#: ../swell-foop/data/swell-foop.desktop.in.in.h:2
+msgid "Clear the screen by removing groups of colored and shaped tiles"
+msgstr "Očisti ekran uklanjanjem grupa obojenih loptica i loptica istog oblika"
+
+#. Label showing the number of points at the end of the game
+#: ../swell-foop/src/game-view.vala:433
+#, c-format
+msgid "%u point"
+msgid_plural "%u points"
+msgstr[0] "%u poen"
+msgstr[1] "%u poena"
+msgstr[2] "%u poena"
+msgstr[3] "Jedan poen"
+
+#: ../swell-foop/src/swell-foop.vala:121 ../swell-foop/src/swell-foop.vala:150
+msgid "Small"
+msgstr "Malo"
+
+#: ../swell-foop/src/swell-foop.vala:122 ../swell-foop/src/swell-foop.vala:151
+msgid "Normal"
+msgstr "Normalno"
+
+#: ../swell-foop/src/swell-foop.vala:123 ../swell-foop/src/swell-foop.vala:152
+msgid "Large"
+msgstr "Veliko"
+
+#. I left one more blank space at the end to make the score not too close to the window border
+#: ../swell-foop/src/swell-foop.vala:205
+#, c-format
+msgid "Score: %4u "
+msgstr "Razultat: %4u "
+
+#: ../swell-foop/src/swell-foop.vala:253
+msgid "Colors"
+msgstr "Boje"
+
+#: ../swell-foop/src/swell-foop.vala:257
+msgid "Shapes and Colors"
+msgstr "Oblici i boje"
+
+#: ../swell-foop/src/swell-foop.vala:354
+msgid "Swell Foop Scores"
+msgstr "Rezultati za Lančanu reakciju"
+
+#: ../swell-foop/src/swell-foop.vala:389
+msgid ""
+"I want to play that game! You know, they all light-up and you click on them "
+"and they vanish!\n"
+"\n"
+"Swell Foop is a part of GNOME Games."
+msgstr ""
+"Želim da igram tu igru! Znate, svi se oni upale i vi kliknete na njih i oni "
+"nestanu!\n"
+"\n"
+"Lančana reakcija je deo Gnomovih igara."
+
+#: ../swell-foop/src/swell-foop.vala:390
+msgid "Copyright © 2009 Tim Horton"
+msgstr "Autorska prava © 2009 Tim Horton"
+
+#~ msgid "Time: "
+#~ msgstr "Vreme: "
+
+#~ msgid "Show a hint"
+#~ msgstr "Prikaži savet"
+
+#~ msgid "Solve the game"
+#~ msgstr "Rešite igru"
+
+#~ msgid "Time:"
+#~ msgstr "Vreme:"
+
+#~ msgid "Redo the last move"
+#~ msgstr "Opozovi poslednji potez"
+
+#~ msgid "Graphics Theme"
+#~ msgstr "Tema za grafiku"
+
+#~ msgid "Custom Size"
+#~ msgstr "Prozvoljna veličina"
+
+#~ msgid "Flags"
+#~ msgstr "Oznake"
+
+#~ msgid "Dark"
+#~ msgstr "Crni"
+
+#~ msgid "Light"
+#~ msgstr "Beli"
+
+#~ msgid "Tiles"
+#~ msgstr "Slike"
+
+#~ msgid "Maps"
+#~ msgstr "Mape"
+
+#~ msgid "_Select map:"
+#~ msgstr "_Izaberi mapu:"
+
+#~ msgid "Block Style"
+#~ msgstr "Stil bloka"
