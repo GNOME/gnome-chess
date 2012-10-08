@@ -118,6 +118,7 @@ public class Application : Gtk.Application
         vbox.pack_start (info_label, true, true, 0);
 
         scene = new ChessScene ();
+        scene.is_human.connect ((p) => { return p == human_player; } );
         scene.changed.connect (scene_changed_cb);
         settings.bind ("show-move-hints", scene, "show-move-hints", SettingsBindFlags.GET);
         settings.bind ("show-numbering", scene, "show-numbering", SettingsBindFlags.GET);

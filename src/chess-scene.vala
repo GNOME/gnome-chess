@@ -65,6 +65,7 @@ public class ChessScene : Object
     private Timer animation_timer;
     private double animation_time;
 
+    public signal bool is_human (ChessPlayer player);
     public signal void changed ();
 
     public int selected_rank = -1;
@@ -154,7 +155,10 @@ public class ChessScene : Object
              case "black":
                  return 180.0;
              case "human":
-                 return 0.0; // FIXME
+                 if (is_human (game.black))
+                     return 180.0;
+                 else
+                     return 0.0;
              case "current":
                  return game.current_player.color == Color.WHITE ? 0.0 : 180.0;
              }
