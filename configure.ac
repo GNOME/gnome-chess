@@ -25,6 +25,7 @@ PKG_CHECK_MODULES(GNOME_CHESS, [
   sqlite3
   gl
   glu
+  x11
 ])
 
 PKG_CHECK_MODULES(TEST, [
