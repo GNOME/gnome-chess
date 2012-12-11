@@ -180,70 +180,32 @@ public class Application : Gtk.Application
         promotion_type_selector_builder = new Gtk.Builder ();
         try
         {
-            promotion_type_selector_builder.add_from_file (Path.build_filename
-                (Config.PKGDATADIR, "promotion-type-selector.ui", null));
+            promotion_type_selector_builder.add_from_file (Path.build_filename (PKGDATADIR, "promotion-type-selector.ui", null));
         }
         catch (Error e)
         {
             warning ("Could not load promotion type selector UI: %s", e.message);
         }
 
-        Gtk.Dialog promotion_type_selector_dialog = (Gtk.Dialog)
-            promotion_type_selector_builder.get_object
-                ("dialog_promotion_type_selector");
+        Gtk.Dialog promotion_type_selector_dialog = promotion_type_selector_builder.get_object ("dialog_promotion_type_selector") as Gtk.Dialog;
 
-        Gtk.Widget image_queen = (Gtk.Widget) promotion_type_selector_builder.get_object ("image_queen");
-        Gtk.Widget image_knight = (Gtk.Widget) promotion_type_selector_builder.get_object ("image_knight");
-        Gtk.Widget image_rook = (Gtk.Widget) promotion_type_selector_builder.get_object ("image_rook");
-        Gtk.Widget image_bishop = (Gtk.Widget) promotion_type_selector_builder.get_object ("image_bishop");
+        string color;
+        if (game.current_player.color == Color.WHITE)
+            color = "white";
+        else
+            color = "black";
 
-        try
-        {
-            Gtk.IconTheme icon_theme = Gtk.IconTheme.get_default ();
-            string queen_icon, knight_icon, rook_icon, bishop_icon;
+        var filename = Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, "%sQueen.svg".printf (color));
+        set_piece_image (promotion_type_selector_builder.get_object ("image_queen") as Gtk.Image, filename);
 
-            /* We follow the standard FIDE rules and accordingly, the pawn can be
-             * replaced by a new queen, rook, bishop or knight of the same
-             * colour only */
-            if (game.current_player.color == Color.WHITE)
-            {
-                queen_icon = "whiteQueen";
-                knight_icon = "whiteKnight";
-                rook_icon = "whiteRook";
-                bishop_icon = "whiteBishop";
-            }
-            else
-            {
-                queen_icon = "blackQueen";
-                knight_icon = "blackKnight";
-                rook_icon = "blackRook";
-                bishop_icon = "blackBishop";
-            }
-            Gdk.Pixbuf pixbuf = icon_theme.load_icon
-                (queen_icon, 80, Gtk.IconLookupFlags.GENERIC_FALLBACK);
-            if (pixbuf != null)
-                ((Gtk.Image) image_queen).set_from_pixbuf (pixbuf);
+        filename = Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, "%sKnight.svg".printf (color));
+        set_piece_image (promotion_type_selector_builder.get_object ("image_knight") as Gtk.Image, filename);
 
-            pixbuf = icon_theme.load_icon
-                (knight_icon, 80, Gtk.IconLookupFlags.GENERIC_FALLBACK);
-            if (pixbuf != null)
-                ((Gtk.Image) image_knight).set_from_pixbuf (pixbuf);
+        filename = Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, "%sRook.svg".printf (color));
+        set_piece_image (promotion_type_selector_builder.get_object ("image_rook") as Gtk.Image, filename);
 
-            pixbuf = icon_theme.load_icon
-                (rook_icon, 80, Gtk.IconLookupFlags.GENERIC_FALLBACK);
-            if (pixbuf != null)
-                ((Gtk.Image) image_rook).set_from_pixbuf (pixbuf);
-
-            pixbuf = icon_theme.load_icon
-                (bishop_icon, 80, Gtk.IconLookupFlags.GENERIC_FALLBACK);
-            if (pixbuf != null)
-                ((Gtk.Image) image_bishop).set_from_pixbuf (pixbuf);
-        }
-        catch (Error error)
-        {
-            warning ("Failed to load image: %s", error.message);
-        }
-
+        filename = Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, "%sBishop.svg".printf (color));
+        set_piece_image (promotion_type_selector_builder.get_object ("image_bishop") as Gtk.Image, filename);
 
         promotion_type_selector_builder.connect_signals (this);
 
@@ -270,6 +232,25 @@ public class Application : Gtk.Application
         promotion_type_selector_dialog.destroy ();
 
         return selection;
+    }
+
+    private void set_piece_image (Gtk.Image image, string filename)
+    {
+        int width, height;
+        if (!Gtk.icon_size_lookup (Gtk.IconSize.DIALOG, out width, out height))
+            return;
+
+        Gdk.Pixbuf pixbuf;
+        try
+        {
+            pixbuf = Rsvg.pixbuf_from_file_at_size (filename, width, height);
+        }
+        catch (Error e)
+        {
+            warning ("Failed to load image %s: %s", filename, e.message);
+            return;
+        }
+        image.set_from_pixbuf (pixbuf);
     }
 
     enum PromotionTypeSelected
@@ -1753,10 +1734,6 @@ class GnomeChess
         Intl.textdomain (GETTEXT_PACKAGE);
 
         Gtk.init (ref args);
-
-        Gtk.IconTheme icon_theme = Gtk.IconTheme.get_default ();
-        icon_theme.append_search_path ("%s%s%s".printf
-            (Config.PKGDATADIR, Path.DIR_SEPARATOR_S, "icons"));
 
         var c = new OptionContext (/* Arguments and description for --help text */
                                    _("[FILE] - Play Chess"));
