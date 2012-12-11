@@ -8,7 +8,8 @@ desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 uidir = $(datadir)/gnome-chess
 ui_DATA = \
 	gnome-chess.ui \
-	preferences.ui
+	preferences.ui \
+	promotion-type-selector.ui
 
 gsettings_SCHEMAS = org.gnome.gnome-chess.gschema.xml
 @INTLTOOL_XML_NOMERGE_RULE@

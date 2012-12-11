@@ -23,9 +23,29 @@ public class ChessPlayer : Object
         return do_move (move, apply);
     }
 
-    public bool move_with_coords (int r0, int f0, int r1, int f1, bool apply = true)
+    public bool move_with_coords (int r0, int f0, int r1, int f1,
+        bool apply = true, PieceType promotion_type = PieceType.QUEEN)
     {
         string move = "%c%d%c%d".printf ('a' + f0, r0 + 1, 'a' + f1, r1 + 1);    
+
+        switch (promotion_type)
+        {
+            case PieceType.QUEEN:
+                /* Default is queen so don't add anything */
+                break;
+            case PieceType.KNIGHT:
+                move += "=N";
+                break;
+            case PieceType.ROOK:
+                move += "=R";
+                break;
+            case PieceType.BISHOP:
+                move += "=B";
+                break;
+            default:
+                break;
+        }
+
         return do_move (move, apply);
     }
 

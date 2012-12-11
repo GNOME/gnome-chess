@@ -66,6 +66,7 @@ public class ChessScene : Object
     private double animation_time;
 
     public signal bool is_human (ChessPlayer player);
+    public signal PieceType choose_promotion_type ();
     public signal void changed ();
 
     public int selected_rank = -1;
@@ -202,6 +203,17 @@ public class ChessScene : Object
         /* Move to this square */
         else if (selected_file != -1)
         {
+            bool can_move = game.current_player.move_with_coords (selected_rank, selected_file,
+                rank, file, false);
+            if (can_move && (get_selected_piece ()).type == PieceType.PAWN &&
+                (rank == 0 || rank == 7))
+            {
+                /* Prompt user for selecting promotion type */
+                PieceType promotion_selection = choose_promotion_type ();
+                game.current_player.move_with_coords (selected_rank,
+                    selected_file, rank, file, true, promotion_selection);
+                selected_rank = selected_file = -1;
+            }
             if (game.current_player.move_with_coords(selected_rank, selected_file, rank, file))
                 selected_rank = selected_file = -1;            
         }
