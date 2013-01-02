@@ -1,6 +1,8 @@
 public class ChessEngine : Object
 {
     public string binary;
+    public string args;
+
     private Pid pid;
     private int stdin_fd;
     private int stderr_fd;
@@ -30,7 +32,7 @@ public class ChessEngine : Object
     
     public bool start ()
     {
-        string[] argv = { binary, null };
+        string[] argv = { binary, args, null };
         int stdout_fd;
         try
         {

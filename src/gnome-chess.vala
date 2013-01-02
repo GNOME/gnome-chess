@@ -529,6 +529,7 @@ public class Application : Gtk.Application
             return null;
         }
         engine.binary = profile.binary;
+        engine.args = profile.args;
 
         return engine;
     }
