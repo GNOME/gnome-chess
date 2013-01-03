@@ -127,9 +127,26 @@ class GlChess
         test_good_move ("k7/8/7R/8/8/8/8/1R6 w - - 0 1", "Rh7",
                         "k7/7R/8/8/8/8/8/1R6 b - - 1 1", ChessResult.DRAW, ChessRule.STALEMATE);
 
-        /* Insufficient material */
+        /* Insufficient material - King vs. King */
         test_good_move ("k7/7p/7K/8/8/8/8/8 w - - 0 1", "Kxh7",
                         "k7/7K/8/8/8/8/8/8 b - - 0 1", ChessResult.DRAW, ChessRule.INSUFFICIENT_MATERIAL);
+
+        /* Insufficient material - King and knight vs. King */
+        test_good_move ("k7/7p/7K/8/8/8/8/7N w - - 0 1", "Kxh7",
+                        "k7/7K/8/8/8/8/8/7N b - - 0 1", ChessResult.DRAW, ChessRule.INSUFFICIENT_MATERIAL);
+        /* Sufficient if a knight on each side */
+        test_good_move("k7/7p/7K/8/8/8/8/6Nn w - - 0 1", "Kxh7",
+                       "k7/7K/8/8/8/8/8/6Nn b - - 0 1");
+        /* A bishop would suffice as well */
+        test_good_move("k7/7p/7K/8/8/8/8/6Nb w - - 0 1", "Kxh7",
+                       "k7/7K/8/8/8/8/8/6Nb b - - 0 1");
+
+        /* Insufficient material - King and n same-color bishops vs. King and n other-color bishops */
+        test_good_move("k2b1b1b/6bp/7K/5B1B/8/8/8/8 w - - 0 1", "Kxh7",
+                       "k2b1b1b/6bK/8/5B1B/8/8/8/8 b - - 0 1", ChessResult.DRAW, ChessRule.INSUFFICIENT_MATERIAL);
+        /* Sufficient if a bishop is on each color */
+        test_good_move("k2b1b1b/6bp/7K/6BB/8/8/8/8 w - - 0 1", "Kxh7",
+                       "k2b1b1b/6bK/8/6BB/8/8/8/8 b - - 0 1");
 
         // FIXME: Need to be able to test claim draw
 

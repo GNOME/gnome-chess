@@ -970,8 +970,8 @@ public class ChessState
                 }
             }
 
-            /* Three knights versus king can checkmate */
-            if (white_knight_count > 2 || black_knight_count > 2)
+            /* Two knights versus king can checkmate (though not against an optimal opponent) */
+            if (white_knight_count > 1 || black_knight_count > 1)
                 return true;
 
             /* Bishop and knight versus king can checkmate */
@@ -984,6 +984,12 @@ public class ChessState
             if (white_bishop_on_white_square && white_bishop_on_black_square)
                 return true;
             if (black_bishop_on_white_square && black_bishop_on_black_square)
+                return true;
+
+            /* King and minor piece vs. King and knight is surprisingly not a draw */
+            if ((white_bishop_count > 0 || white_knight_count > 0) && black_knight_count > 0)
+                return true;
+            if ((black_bishop_count > 0 || black_knight_count > 0) && white_knight_count > 0)
                 return true;
         }
 
