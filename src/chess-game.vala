@@ -103,7 +103,7 @@ public class ChessPiece
                 c = 'r';
                 break;
             case PieceType.KNIGHT:
-                c = 'k';
+                c = 'n';
                 break;
             case PieceType.BISHOP:
                 c = 'b';
