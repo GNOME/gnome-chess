@@ -11,7 +11,7 @@ class GlChess
         test_count++;
         if (!state.move (move))
         {
-            stderr.printf ("%d. FAIL %s + %s is a valid move\n", test_count, fen, move);
+            stderr.printf ("%d. FAIL %s + %s is an invalid move\n", test_count, fen, move);
             failure_count++;
             return;
         }
@@ -80,6 +80,11 @@ class GlChess
         /* Can't en passant if wasn't allowed */
         test_bad_move ("8/8/8/pP6/8/8/8/8 w - - 0 1", "b5a6");
 
+        /* Can't capture en passant unless we are a pawn */
+        test_good_move ("8/8/8/pQ6/8/8/8/8 w - a6 0 1", "Qa6",
+                        "8/8/Q7/p7/8/8/8/8 b - - 1 1");
+        test_bad_move ("8/8/8/pQ6/8/8/8/8 w - a6 0 1", "bxa6");
+
         /* Castle kingside */
         test_good_move ("8/8/8/8/8/8/8/4K2R w K - 0 1", "O-O",
                         "8/8/8/8/8/8/8/5RK1 b - - 1 1");
@@ -91,8 +96,9 @@ class GlChess
         /* Can't castle if pieces moved */
         test_bad_move ("8/8/8/8/8/8/8/4K2R w - - 0 1", "O-O");
 
-        /* Can't castle if rook not there (shouldn't occur as then the castle flag would not be there) */
+        /* Can't castle if piece misplaced (shouldn't occur as then the castle flag would not be there) */
         test_bad_move ("8/8/8/8/8/8/8/4K3 w K - 0 1", "O-O");
+        test_bad_move ("8/8/8/8/8/8/8/5K2 w K - 0 1", "O-O");
 
         /* Can't castle when in check */
         test_bad_move ("4r3/8/8/8/8/8/8/4K2R w K - 0 1", "O-O");
@@ -128,11 +134,11 @@ class GlChess
         // FIXME: Need to be able to test claim draw
 
         /* Claim draw due to 50 move rule */
-        //test_good_move ("p7/8/8/8/8/8/8/P7 w - - 50 1", "draw",
-        //                "p7/8/8/8/8/8/8/P7 w - - 50 1", ChessResult.DRAW, ChessRule.FIFTY_MOVES);
+        //test_good_move ("p7/8/8/8/8/8/8/P7 w - - 100 1", "draw",
+        //                "p7/8/8/8/8/8/8/P7 w - - 100 1", ChessResult.DRAW, ChessRule.FIFTY_MOVES);
 
-        /* Need 50 moves for 50 move rule */
-        //test_bad_move ("p7/8/8/8/8/8/8/P7 w - - 49 1", "draw");
+        /* Need 100 halfmoves for 50 move rule */
+        //test_bad_move ("p7/8/8/8/8/8/8/P7 w - - 99 1", "draw");
 
         /* Three fold repetition */
         // FIXME: Need a test for three fold repetition
