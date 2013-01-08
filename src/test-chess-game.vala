@@ -99,6 +99,8 @@ class GlChess
 
         /* Can't move across square that would put into check */
         test_bad_move ("5r2/8/8/8/8/8/8/4K2R w K - 0 1", "O-O");
+        test_bad_move ("8/8/8/8/8/8/6p1/4K2R w K - 0 1", "O-O");
+        test_bad_move ("8/8/8/8/8/8/4p3/R3K3 w Q - 0 1", "O-O-O");
 
         /* Can't move into check */
         test_bad_move ("4r3/8/8/8/8/8/4R3/4K3 w - - 0 1", "e2f2");

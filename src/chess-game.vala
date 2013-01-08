@@ -628,11 +628,8 @@ public class ChessState
                     return false;
 
                 /* Square moved across can't be under attack */
-                for (int i = 0; i < 64; i++)
-                {
-                    if (move_with_coords (opponent, get_rank (i), get_file (i), get_rank (rook_end), get_file (rook_end), PieceType.QUEEN, false, false))
-                        return false;
-                }
+                if (!move_with_coords (player, r0, f0, get_rank (rook_end), get_file (rook_end), PieceType.QUEEN, false, true))
+                    return false;
             }
             break;
         default:
