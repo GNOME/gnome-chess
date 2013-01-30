@@ -5,22 +5,22 @@
 # Lucas Vieites <lucas@codexion.com>, 2007, 2008.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010, 2011.
 # Chris Leonard <cjl@laptop.org>, 2012.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2008, 2009, 2010, 2011, 2012.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2008, 2009, 2010, 2011, 2012, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-12-21 16:44+0000\n"
-"PO-Revision-Date: 2012-12-24 11:48+0100\n"
+"POT-Creation-Date: 2013-01-28 23:19+0000\n"
+"PO-Revision-Date: 2013-01-30 14:15+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
+"Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Gtranslator 2.91.5\n"
 "X-Project-Style: gnome\n"
 
@@ -32,6 +32,10 @@ msgstr "Ajedrez"
 #: ../data/gnome-chess.desktop.in.in.h:2
 msgid "Play the classic two-player boardgame of chess"
 msgstr "Juegue una partida clásica de ajedrez de dos jugadores"
+
+#: ../data/gnome-chess.desktop.in.in.h:3
+msgid "game;strategy;"
+msgstr "juego;estrategia;"
 
 #. Game menu name
 #: ../data/gnome-chess.ui.h:2
@@ -194,9 +198,8 @@ msgid ""
 "Can be 'human' (play against another human player), '' (use the first "
 "available chess engine) or the name of a specific engine to play against"
 msgstr ""
-"Puede ser «humano» (jugar contra otro jugador humano, «» (usar el primer "
-"motor de ajedrez disponible) o el nombre de un motor específico contra el "
-"que jugar"
+"Puede ser «humano» (jugar contra otro jugador humano, «» (usar el primer motor "
+"de ajedrez disponible) o el nombre de un motor específico contra el que jugar"
 
 #: ../data/org.gnome.gnome-chess.gschema.xml.in.h:22
 msgid "Difficulty of the opponent chess engine"
@@ -437,21 +440,6 @@ msgstr "_Alfil"
 #: ../data/promotion-type-selector.ui.h:5
 msgid ""
 "Promotion is a chess rule describing the transformation of a pawn that "
-"reaches its eighth rank into the player&apos;s choice of a queen, knight, "
-"rook, or bishop of the same color. The new piece replaces the pawn on the "
-"same square and is part of the move. Every pawn that reaches its eighth rank "
-"must be promoted. Pawn promotion often decides the result of a chess endgame."
-msgstr ""
-"La coronación es una regla del ajedrez que describe la transformación de un "
-"peón que llega a su octava fila en una pieza a elección del jugador, que "
-"puede ser una reina, un caballo, una torre o un alfil del mismo color. La "
-"nueva pieza reemplaza el peón en la misma casilla y es parte del movimiento. "
-"Cada peón que llega a su octava fila debe coronarse. La promoción de un peón "
-"decide a menudo el resultado final de una partida."
-
-#: ../data/promotion-type-selector.ui.h:6
-msgid ""
-"Promotion is a chess rule describing the transformation of a pawn that "
 "reaches its eighth rank into the player's choice of a queen, knight, rook, "
 "or bishop of the same color. The new piece replaces the pawn on the same "
 "square and is part of the move. Every pawn that reaches its eighth rank must "
@@ -465,7 +453,7 @@ msgstr ""
 "octava fila debe coronarse. A menudo suele decidir el resultado de la "
 "partida."
 
-#: ../data/promotion-type-selector.ui.h:7
+#: ../data/promotion-type-selector.ui.h:6
 msgid "Select Pawn Promotion Type"
 msgstr "Tipo de coronación:"
 
@@ -1080,6 +1068,21 @@ msgid "Run '%s --help' to see a full list of available command line options."
 msgstr ""
 "Ejecute «%s --help» para ver una lista completa de las opciones de línea de "
 "comandos disponibles."
+
+#~ msgid ""
+#~ "Promotion is a chess rule describing the transformation of a pawn that "
+#~ "reaches its eighth rank into the player&apos;s choice of a queen, knight, "
+#~ "rook, or bishop of the same color. The new piece replaces the pawn on the "
+#~ "same square and is part of the move. Every pawn that reaches its eighth "
+#~ "rank must be promoted. Pawn promotion often decides the result of a chess "
+#~ "endgame."
+#~ msgstr ""
+#~ "La coronación es una regla del ajedrez que describe la transformación de "
+#~ "un peón que llega a su octava fila en una pieza a elección del jugador, "
+#~ "que puede ser una reina, un caballo, una torre o un alfil del mismo "
+#~ "color. La nueva pieza reemplaza el peón en la misma casilla y es parte "
+#~ "del movimiento. Cada peón que llega a su octava fila debe coronarse. La "
+#~ "promoción de un peón decide a menudo el resultado final de una partida."
 
 #~ msgid "The piece to promote pawns to"
 #~ msgstr "La pieza en que se transforman los peones"
@@ -2632,8 +2635,7 @@ msgstr ""
 #~ msgstr "Usar la bandera de «desconocido»"
 
 #~ msgid "Set to true to be able to mark squares as unknown."
-#~ msgstr ""
-#~ "Ponga el valor a «true» para poder marcar cuadros como desconocidos."
+#~ msgstr "Ponga el valor a «true» para poder marcar cuadros como desconocidos."
 
 #~ msgid "Warning about too many flags"
 #~ msgstr "Advertir acerca de demasiadas banderas"
@@ -5719,8 +5721,8 @@ msgstr ""
 #~ "'lan' (long algebraic notation) or 'san' (standard algebraic notation)"
 #~ msgstr ""
 #~ "El formato en el que mostrar jugadas, puede ser «humano» (legible por "
-#~ "personas), «lan» (notación algebraica larga - «long algebraic notation») "
-#~ "o «san» (notación algebraica estándar - «standard algebraic notation»)"
+#~ "personas), «lan» (notación algebraica larga - «long algebraic notation») o "
+#~ "«san» (notación algebraica estándar - «standard algebraic notation»)"
 
 #~ msgid "The piece style to use. Can be one of: 'simple' or 'fancy'"
 #~ msgstr "El estilo de pieza que usar. Puede ser «simple» o «fantasía»."
@@ -5732,9 +5734,9 @@ msgstr ""
 #~ "g. handhelds)"
 #~ msgstr ""
 #~ "El lado del tablero que está en primero plano, "
-#~ "«white» (blanco),«black» (negro), «current» (el jugador actual), "
-#~ "«human» (el lado del jugador humano actual) o «facetoface» (apropiado "
-#~ "para jugadores a cada lado de la pantalla, ej. dispositivos portátiles)"
+#~ "«white» (blanco),«black» (negro), «current» (el jugador actual), «human» (el "
+#~ "lado del jugador humano actual) o «facetoface» (apropiado para jugadores a "
+#~ "cada lado de la pantalla, ej. dispositivos portátiles)"
 
 #~ msgid "Logs"
 #~ msgstr "Registros"
