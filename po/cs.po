@@ -16,15 +16,15 @@
 # Petr Pulc <petrpulc@gmail.com>, 2009.
 # Andre Klapper <ak-47@gmx.net>, 2009.
 # Petr Kovar <pknbe@volny.cz>, 2008, 2012.
-# Marek Černocký <marek@manet.cz>, 2010, 2011, 2012.
+# Marek Černocký <marek@manet.cz>, 2010, 2011, 2012, 2013.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-games\n"
+"Project-Id-Version: gnome-chess master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"games&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-28 00:10+0000\n"
-"PO-Revision-Date: 2012-09-28 09:02+0200\n"
+"chess&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2013-01-28 23:19+0000\n"
+"PO-Revision-Date: 2013-02-20 14:14+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -32,217 +32,178 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Gtranslator 2.91.6\n"
 "X-Project-Style: gnome\n"
 
 #. Title of the main window
-#: ../glchess/data/glchess.desktop.in.in.h:1 ../glchess/src/glchess.vala:273
+#: ../data/gnome-chess.desktop.in.in.h:1 ../src/gnome-chess.vala:363
 msgid "Chess"
 msgstr "Šachy"
 
-#: ../glchess/data/glchess.desktop.in.in.h:2
+#: ../data/gnome-chess.desktop.in.in.h:2
 msgid "Play the classic two-player boardgame of chess"
 msgstr "Hrát klasickou šachovou hru pro dva hráče"
 
+#: ../data/gnome-chess.desktop.in.in.h:3
+msgid "game;strategy;"
+msgstr "hra;strategická;"
+
 #. Game menu name
-#: ../glchess/data/glchess.ui.h:2 ../glines/data/glines.ui.h:2
-#: ../gnect/src/main.c:1183 ../gnibbles/src/main.c:604
-#: ../gnobots2/src/menu.c:64 ../gnome-sudoku/src/lib/main.py:195
-#: ../gnotski/src/gnotski.c:396
+#: ../data/gnome-chess.ui.h:2
 msgid "_Game"
 msgstr "_Hra"
 
 #. Undo move menu item
-#: ../glchess/data/glchess.ui.h:4 ../glines/src/games-stock.c:259
-#: ../gnect/src/games-stock.c:259 ../gnibbles/src/games-stock.c:259
-#: ../gnobots2/src/games-stock.c:259
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:104
-#: ../gnotski/src/games-stock.c:259 ../gtali/src/games-stock.c:259
-#: ../gtali/src/gyahtzee.c:753
+#: ../data/gnome-chess.ui.h:4
 msgid "_Undo Move"
 msgstr "Tah _zpět"
 
 #. Save menu item
-#: ../glchess/data/glchess.ui.h:6
+#: ../data/gnome-chess.ui.h:6
 msgid "_Resign"
 msgstr "Ods_toupit"
 
 #. Claim draw menu item
-#: ../glchess/data/glchess.ui.h:8
+#: ../data/gnome-chess.ui.h:8
 msgid "Claim _Draw"
 msgstr "Požá_dat o remízu"
 
 #. Settings menu item
-#: ../glchess/data/glchess.ui.h:10 ../glines/data/glines.ui.h:4
-#: ../gnect/src/main.c:1185 ../gnibbles/src/main.c:606
-#: ../gnobots2/src/menu.c:67 ../gnome-sudoku/src/lib/main.py:209
+#: ../data/gnome-chess.ui.h:10
 msgid "_Settings"
 msgstr "_Nastavení"
 
 #. Help menu item
-#: ../glchess/data/glchess.ui.h:12 ../glines/data/glines.ui.h:5
-#: ../gnect/src/main.c:1186 ../gnibbles/src/main.c:607
-#: ../gnobots2/src/menu.c:68 ../gnome-mahjongg/src/gnome-mahjongg.vala:82
-#: ../gnome-sudoku/src/lib/main.py:218 ../gnomine/src/gnomine.vala:107
-#: ../gnotravex/data/gnotravex.ui.h:16 ../gnotski/src/gnotski.c:398
-#: ../gtali/src/gyahtzee.c:758 ../iagno/data/iagno.ui.h:4
-#: ../lightsoff/src/lightsoff.vala:32 ../quadrapassel/src/quadrapassel.vala:88
-#: ../swell-foop/src/swell-foop.vala:71
+#: ../data/gnome-chess.ui.h:12
 msgid "_Help"
 msgstr "_Nápověda"
 
 #. Help contents menu item
-#: ../glchess/data/glchess.ui.h:14 ../glines/data/glines.ui.h:7
-#: ../glines/src/games-stock.c:247 ../gnect/src/games-stock.c:247
-#: ../gnibbles/src/games-stock.c:247 ../gnobots2/src/games-stock.c:247
-#: ../gnome-sudoku/src/lib/main.py:219 ../gnotski/src/games-stock.c:247
-#: ../gtali/src/games-stock.c:247
+#: ../data/gnome-chess.ui.h:14
 msgid "_Contents"
 msgstr "_Obsah"
 
 #. Tooltip for start new game toolbar button
-#: ../glchess/data/glchess.ui.h:16 ../glines/src/games-stock.c:48
-#: ../gnect/src/games-stock.c:48 ../gnibbles/src/games-stock.c:48
-#: ../gnobots2/src/games-stock.c:48 ../gnobots2/src/menu.c:69
-#: ../gnotski/src/games-stock.c:48 ../gtali/src/games-stock.c:48
+#: ../data/gnome-chess.ui.h:16
 msgid "Start a new game"
 msgstr "Začít novou hru"
 
 #. The New Game toolbar button
-#: ../glchess/data/glchess.ui.h:18 ../glines/src/games-scores-dialog.c:470
-#: ../gnibbles/src/games-scores-dialog.c:470
-#: ../gnobots2/src/games-scores-dialog.c:470
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:777
-#: ../gnomine/src/gnomine.vala:899 ../gnotravex/src/gnotravex.vala:410
-#: ../gnotski/src/games-scores-dialog.c:470
-#: ../gtali/src/games-scores-dialog.c:470
-#: ../quadrapassel/src/quadrapassel.vala:835
-#: ../swell-foop/src/swell-foop.vala:484
+#: ../data/gnome-chess.ui.h:18
 msgid "New Game"
 msgstr "Nová hra"
 
 #. The undo move toolbar button
-#: ../glchess/data/glchess.ui.h:20
+#: ../data/gnome-chess.ui.h:20
 msgid "Undo Move"
 msgstr "Vrátit tah"
 
 #. The tooltip for the Resign toolbar button
-#: ../glchess/data/glchess.ui.h:22
+#: ../data/gnome-chess.ui.h:22
 msgid "Resign"
 msgstr "Odstoupit"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
-#: ../glchess/data/glchess.ui.h:24
+#: ../data/gnome-chess.ui.h:24
 msgid "Rewind to the game start"
 msgstr "Skočit na začátek hry"
 
 #. Tooltip on the show previous move navigation button
-#: ../glchess/data/glchess.ui.h:26
+#: ../data/gnome-chess.ui.h:26
 msgid "Show the previous move"
 msgstr "Zobrazit předchozí tah"
 
 #. Tooltip on the show next move navigation button
-#: ../glchess/data/glchess.ui.h:28
+#: ../data/gnome-chess.ui.h:28
 msgid "Show the next move"
 msgstr "Zobrazit následující tah"
 
 #. Tooltip on the show current move navigation button
-#: ../glchess/data/glchess.ui.h:30
+#: ../data/gnome-chess.ui.h:30
 msgid "Show the current move"
 msgstr "Zobrazit aktuální tah"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:1
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:1
 msgid "The width of the window"
 msgstr "Šířka okna"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:2
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:2
 msgid "The width of the main window in pixels."
 msgstr "Šířka hlavního okna v pixelech."
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:3
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:3
 msgid "The height of the window"
 msgstr "Výška okna"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:4
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:4
 msgid "The height of the main window in pixels."
 msgstr "Výška hlavního okna v pixelech."
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:5
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:5
 msgid "A flag to enable maximized mode"
 msgstr "Povolení maximalizovaného režimu"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:6
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:6
 msgid "A flag to enable fullscreen mode"
 msgstr "Povolení režimu celé obrazovky"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:7
-msgid "The piece to promote pawns to"
-msgstr "Na kterou figuru povýšit pěšce"
-
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:8
-msgid ""
-"The piece to promote to when a human player moves a pawn to the far rank"
-msgstr ""
-"Figura, na kterou má povýšit pěšec, když lidský hráč dotáhne pěšcem až na "
-"poslední řadu"
-
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:9
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:7
 msgid "A flag to enable 3D mode"
 msgstr "Povolení režimu 3D"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:10
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:8
 msgid "A flag to smooth (anti-alias) the 3D display"
 msgstr "Příznak zapínající vyhlazování (antialiasing) 3D obrazu"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:11
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:9
 msgid "The piece theme to use"
 msgstr "Vzhled figur, který se má použít"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:12
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:10
 msgid "A flag to enable move hints"
 msgstr "Povolení zobrazování rad jak táhnout"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:13
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:11
 msgid "A flag to enable board numbering"
 msgstr "Povolení číslování políček šachovnice"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:14
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:12
 msgid "A flag to enable the move history browser"
 msgstr "Povolit prohlížeč historie tahů"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:15
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:13
 msgid "A flag to enable the toolbar"
 msgstr "Povolení zobrazení lišty nástrojů"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:16
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:14
 msgid "The directory to open the save game dialog in"
 msgstr "Složka, ve které se má otevřít dialog uložení hry"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:17
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:15
 msgid "The directory to open the load game dialog in"
 msgstr "Složka, ve které se má otevřít dialog nahrání hry"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:18
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:16
 msgid "The format to display moves in"
 msgstr "Formát zobrazení pohybů"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:19
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:17
 msgid "The side of the board that is in the foreground"
 msgstr "Strana šachovnice, která je v popředí"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:20
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:18
 msgid "The duration of a game in seconds (0 for no limit)"
 msgstr "Doba trvání hry v sekundách (0 pro neomezenou)"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:21
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:19
 msgid "true if the human player is playing white"
 msgstr "Zapnuto, pokud lidský hráč hraje bílými"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:22
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:20
 msgid "The opponent player"
 msgstr "Protihráč"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:23
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:21
 msgid ""
 "Can be 'human' (play against another human player), '' (use the first "
 "available chess engine) or the name of a specific engine to play against"
@@ -251,784 +212,796 @@ msgstr ""
 "první dostupné herní jádro) nebo název konkrétního herního jádra, proti "
 "kterému se má hrát"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:24
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:22
 msgid "Difficulty of the opponent chess engine"
 msgstr "Náročnost herního jádra jako protihráče"
 
 #. Title for preferences dialog
-#: ../glchess/data/preferences.ui.h:2 ../glines/src/glines.c:176
+#: ../data/preferences.ui.h:2
 msgid "Preferences"
 msgstr "Předvolby"
 
 #. Preferences Dialog: Label before player side (white/black) combo box
-#: ../glchess/data/preferences.ui.h:4
+#: ../data/preferences.ui.h:4
 msgid "Play as:"
 msgstr "Hraje jako:"
 
 #. Preferences Dialog: Label before opposing player combo box
-#: ../glchess/data/preferences.ui.h:6
+#: ../data/preferences.ui.h:6
 msgid "Opposing Player:"
 msgstr "Soupeř:"
 
 #. Preferences Dialog: Label before promotion type combo box
-#: ../glchess/data/preferences.ui.h:8
+#: ../data/preferences.ui.h:8
 msgid "Difficulty:"
 msgstr "Obtížnost:"
 
 #. New Game Dialog: Label before game timer settings
-#: ../glchess/data/preferences.ui.h:10
+#: ../data/preferences.ui.h:10
 msgid "Game Duration:"
 msgstr "Délka hry:"
 
-#. Preferences Dialog: Label before promotion type combo box
-#: ../glchess/data/preferences.ui.h:12
-msgid "Promotion Type:"
-msgstr "Typ povýšení:"
-
 #. Preferences dialog: Label to notify user that the settings are applied for the next game
-#: ../glchess/data/preferences.ui.h:14
+#: ../data/preferences.ui.h:12
 msgid "Changes will take effect for the next game."
 msgstr "Změny se projeví až při další hře."
 
 #. Preferences Dialog: Tab title for game preferences
-#: ../glchess/data/preferences.ui.h:16 ../gnect/src/prefs.c:230
-#: ../gnibbles/src/preferences.c:253 ../gnobots2/src/properties.c:451
-#: ../quadrapassel/src/quadrapassel.vala:306
+#: ../data/preferences.ui.h:14
 msgid "Game"
 msgstr "Hra"
 
 #. Preferences Dialog: Check box for selecting if 3D view is available
-#: ../glchess/data/preferences.ui.h:18
+#: ../data/preferences.ui.h:16
 msgid "3_D Chess View"
 msgstr "Pohled _3D"
 
 #. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
-#: ../glchess/data/preferences.ui.h:20
+#: ../data/preferences.ui.h:18
 msgid "_Smooth Display"
 msgstr "_Vyhlazené zobazení"
 
 #. Preferences Dialog: Label before piece style combo box
-#: ../glchess/data/preferences.ui.h:22
+#: ../data/preferences.ui.h:20
 msgid "Piece Style:"
 msgstr "Vzhled figur:"
 
 #. Preferences Dialog: Check box for selecting if toolbar is visible
-#: ../glchess/data/preferences.ui.h:24 ../gnome-sudoku/src/lib/main.py:239
+#: ../data/preferences.ui.h:22
 msgid "Show _Toolbar"
 msgstr "Zobrazi_t lištu nástrojů"
 
 #. Preferences Dialog: Check box for selecting if history browser is visible
-#: ../glchess/data/preferences.ui.h:26
+#: ../data/preferences.ui.h:24
 msgid "Show _History"
 msgstr "Zobrazit _historii"
 
 #. Preferences Dialog: Check box for selecting if move hints are visible
-#: ../glchess/data/preferences.ui.h:28
+#: ../data/preferences.ui.h:26
 msgid "_Move Hints"
 msgstr "Rady jak _táhnout"
 
 #. Preferences Dialog: Check box for selecting if board numbering is visible
-#: ../glchess/data/preferences.ui.h:30
+#: ../data/preferences.ui.h:28
 msgid "_Board Numbering"
 msgstr "Čís_lování políček"
 
 #. Preferences Dialog: Label before board orientation combo box
-#: ../glchess/data/preferences.ui.h:32
+#: ../data/preferences.ui.h:30
 msgid "Board Orientation:"
 msgstr "Orientace desky:"
 
 #. Preferences Dialog: Label before move format combo box
-#: ../glchess/data/preferences.ui.h:34
+#: ../data/preferences.ui.h:32
 msgid "Move Format:"
 msgstr "Formát tahů:"
 
 #. Preferences Dialog: Title of appearance options tab
-#: ../glchess/data/preferences.ui.h:36
+#: ../data/preferences.ui.h:34
 msgid "_Appearance"
 msgstr "_Vzhled"
 
-#. Preferences Dialog: Combo box entry for easy game difficulty
-#: ../glchess/data/preferences.ui.h:38 ../gtali/src/setup.c:343
-msgctxt "difficulty"
-msgid "Easy"
-msgstr "Jednoduché"
-
-#. Preferences Dialog: Combo box entry for normal game difficulty
-#: ../glchess/data/preferences.ui.h:40
-msgctxt "difficulty"
-msgid "Normal"
-msgstr "Normální"
-
-#. Preferences Dialog: Combo box entry for hard game difficulty
-#: ../glchess/data/preferences.ui.h:42 ../gtali/src/setup.c:345
-msgctxt "difficulty"
-msgid "Hard"
-msgstr "Těžké"
-
-#. Preferences Dialog: Combo box entry for human opponent
-#: ../glchess/data/preferences.ui.h:44
-msgctxt "chess-opponent"
-msgid "Human"
-msgstr "Člověk"
-
 #. Preferences Dialog: Combo box entry for playing as white
-#: ../glchess/data/preferences.ui.h:46
+#: ../data/preferences.ui.h:36
 msgctxt "chess-player"
 msgid "White"
 msgstr "Bílý"
 
 #. Preferences Dialog: Combo box entry for playing as black
-#: ../glchess/data/preferences.ui.h:48
+#: ../data/preferences.ui.h:38
 msgctxt "chess-player"
 msgid "Black"
 msgstr "Černý"
 
+#. Preferences Dialog: Combo box entry for easy game difficulty
+#: ../data/preferences.ui.h:40
+msgctxt "difficulty"
+msgid "Easy"
+msgstr "Jednoduché"
+
+#. Preferences Dialog: Combo box entry for normal game difficulty
+#: ../data/preferences.ui.h:42
+msgctxt "difficulty"
+msgid "Normal"
+msgstr "Normální"
+
+#. Preferences Dialog: Combo box entry for hard game difficulty
+#: ../data/preferences.ui.h:44
+msgctxt "difficulty"
+msgid "Hard"
+msgstr "Těžké"
+
 #. Preferences Dialog: Combo box entry for no game timer
-#: ../glchess/data/preferences.ui.h:50
+#: ../data/preferences.ui.h:46
 msgid "No limit"
 msgstr "Bez omezení"
 
 #. Preferences Dialog: Combo box entry for game timer of one minute
-#: ../glchess/data/preferences.ui.h:52
+#: ../data/preferences.ui.h:48
 msgid "One minute"
 msgstr "Jedna minuta"
 
 #. Preferences Dialog: Combo box entry for game timer of five minutes
-#: ../glchess/data/preferences.ui.h:54
+#: ../data/preferences.ui.h:50
 msgid "Five minutes"
 msgstr "Pět minut"
 
 #. Preferences Dialog: Combo box entry for game timer of thirty minutes
-#: ../glchess/data/preferences.ui.h:56
+#: ../data/preferences.ui.h:52
 msgid "30 minutes"
 msgstr "30 minut"
 
 #. Preferences Dialog: Combo box entry for game timer of one hour
-#: ../glchess/data/preferences.ui.h:58
+#: ../data/preferences.ui.h:54
 msgid "One hour"
 msgstr "Jedna hodina"
 
 #. Preferences Dialog: Combo box entry for custom game timer
-#: ../glchess/data/preferences.ui.h:60
+#: ../data/preferences.ui.h:56
 msgid "Custom"
 msgstr "Vlastní"
 
-#. Preferences Dialog: Combo box entry for simple theme
-#: ../glchess/data/preferences.ui.h:62
-msgid "Simple"
-msgstr "Jednoduché"
-
-#. Preferences Dialog: Combo box entry for fancy theme
-#: ../glchess/data/preferences.ui.h:64
-msgid "Fancy"
-msgstr "Zdobené"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the white side
-#: ../glchess/data/preferences.ui.h:66
-msgctxt "chess-side"
-msgid "White Side"
-msgstr "Strana bílého"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the black side
-#: ../glchess/data/preferences.ui.h:68
-msgctxt "chess-side"
-msgid "Black Side"
-msgstr "Strana černého"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
-#: ../glchess/data/preferences.ui.h:70
-msgctxt "chess-side"
-msgid "Human Side"
-msgstr "Strana člověka"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
-#: ../glchess/data/preferences.ui.h:72
-msgctxt "chess-side"
-msgid "Current Player"
-msgstr "Současný hráč"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)
-#: ../glchess/data/preferences.ui.h:74
-msgctxt "chess-side"
-msgid "Face to Face"
-msgstr "Tváří v tvář"
-
 #. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
-#: ../glchess/data/preferences.ui.h:76
+#: ../data/preferences.ui.h:58
 msgctxt "chess-move-format"
 msgid "Human"
 msgstr "Člověk"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
-#: ../glchess/data/preferences.ui.h:78
+#: ../data/preferences.ui.h:60
 msgctxt "chess-move-format"
 msgid "Standard Algebraic"
 msgstr "Standardní algebraický"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
-#: ../glchess/data/preferences.ui.h:80
+#: ../data/preferences.ui.h:62
 msgctxt "chess-move-format"
 msgid "Figurine"
 msgstr "Figurína"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
-#: ../glchess/data/preferences.ui.h:82
+#: ../data/preferences.ui.h:64
 msgctxt "chess-move-format"
 msgid "Long Algebraic"
 msgstr "Dlouhý algebraický"
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a queen
-#: ../glchess/data/preferences.ui.h:84
-msgctxt "chess-piece"
-msgid "Queen"
-msgstr "Dáma"
+#. Preferences Dialog: Combo box entry for human opponent
+#: ../data/preferences.ui.h:66
+msgctxt "chess-opponent"
+msgid "Human"
+msgstr "Člověk"
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a knight
-#: ../glchess/data/preferences.ui.h:86
-msgctxt "chess-piece"
-msgid "Knight"
-msgstr "Jezdec"
+#. Preferences Dialog: Combo box entry for setting the board orientation to the white side
+#: ../data/preferences.ui.h:68
+msgctxt "chess-side"
+msgid "White Side"
+msgstr "Strana bílého"
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a rook
-#: ../glchess/data/preferences.ui.h:88
-msgctxt "chess-piece"
-msgid "Rook"
-msgstr "Věž"
+#. Preferences Dialog: Combo box entry for setting the board orientation to the black side
+#: ../data/preferences.ui.h:70
+msgctxt "chess-side"
+msgid "Black Side"
+msgstr "Strana černého"
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a bishop
-#: ../glchess/data/preferences.ui.h:90
-msgctxt "chess-piece"
-msgid "Bishop"
-msgstr "Střelec"
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
+#: ../data/preferences.ui.h:72
+msgctxt "chess-side"
+msgid "Human Side"
+msgstr "Strana člověka"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
+#: ../data/preferences.ui.h:74
+msgctxt "chess-side"
+msgid "Current Player"
+msgstr "Současný hráč"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)
+#: ../data/preferences.ui.h:76
+msgctxt "chess-side"
+msgid "Face to Face"
+msgstr "Tváří v tvář"
+
+#. Preferences Dialog: Combo box entry for simple theme
+#: ../data/preferences.ui.h:78
+msgid "Simple"
+msgstr "Jednoduché"
+
+#. Preferences Dialog: Combo box entry for fancy theme
+#: ../data/preferences.ui.h:80
+msgid "Fancy"
+msgstr "Zdobené"
+
+#: ../data/promotion-type-selector.ui.h:1
+#| msgctxt "chess-piece"
+#| msgid "Queen"
+msgid "_Queen"
+msgstr "_Dáma"
+
+#: ../data/promotion-type-selector.ui.h:2
+#| msgctxt "chess-piece"
+#| msgid "Knight"
+msgid "_Knight"
+msgstr "_Jezdec"
+
+#: ../data/promotion-type-selector.ui.h:3
+#| msgctxt "chess-piece"
+#| msgid "Rook"
+msgid "_Rook"
+msgstr "_Věž"
+
+#: ../data/promotion-type-selector.ui.h:4
+#| msgctxt "chess-piece"
+#| msgid "Bishop"
+msgid "_Bishop"
+msgstr "_Střelec"
+
+#: ../data/promotion-type-selector.ui.h:5
+msgid ""
+"Promotion is a chess rule describing the transformation of a pawn that "
+"reaches its eighth rank into the player's choice of a queen, knight, rook, "
+"or bishop of the same color. The new piece replaces the pawn on the same "
+"square and is part of the move. Every pawn that reaches its eighth rank must "
+"be promoted. Pawn promotion often decides the result of a chess endgame."
+msgstr ""
+"Povýšení je šachové pravidlo měnící pěšáka, který dosáhl osmého pole, na "
+"královnu, jezdce, věž nebo střelce stejné barvy a to podle hráčovy volby. "
+"Nová figura nahradí pěšáka na jeho poli a je součástí tahu. Všichni pěšáci, "
+"kteří dosáhnout osmého pole musí být povýšeni. Povýšení pěšáka často dokáže "
+"rozhodnout výsledek konce hry."
+
+#: ../data/promotion-type-selector.ui.h:6
+#| msgid "Promotion Type:"
+msgid "Select Pawn Promotion Type"
+msgstr "Vyberte typ povýšení pěšáka"
 
 #. Title of the window when explicitly loaded a file. The first argument is the
 #. * base name of the file (e.g. test.pgn), the second argument is the directory
 #. * (e.g. /home/fred)
-#: ../glchess/src/glchess.vala:281
+#: ../src/gnome-chess.vala:371
 #, c-format
 msgid "%1$s (%2$s) - Chess"
 msgstr "%1$s (%2$s) - Šachy"
 
 #. Move History Combo: Go to the start of the game
-#: ../glchess/src/glchess.vala:290
+#: ../src/gnome-chess.vala:380
 msgid "Game Start"
 msgstr "Začátek hry"
 
 #. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
 #. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
-#: ../glchess/src/glchess.vala:492
+#: ../src/gnome-chess.vala:582
 #, c-format
 msgid "White pawn moves from %1$s to %2$s"
 msgstr "Bílý pěšák táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:494
+#: ../src/gnome-chess.vala:584
 #, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s"
 msgstr "Bílý pěšák z %1$s bere černého pěšáka na %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:496
+#: ../src/gnome-chess.vala:586
 #, c-format
 msgid "White pawn at %1$s takes the black rook at %2$s"
 msgstr "Bílý pěšák z %1$s bere černou věž na %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:498
+#: ../src/gnome-chess.vala:588
 #, c-format
 msgid "White pawn at %1$s takes the black knight at %2$s"
 msgstr "Bílý pěšák z %1$s bere černého koně na %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:500
+#: ../src/gnome-chess.vala:590
 #, c-format
 msgid "White pawn at %1$s takes the black bishop at %2$s"
 msgstr "Bílý pěšák z %1$s bere černého střelce na %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:502
+#: ../src/gnome-chess.vala:592
 #, c-format
 msgid "White pawn at %1$s takes the black queen at %2$s"
 msgstr "Bílý pěšák z %1$s bere černou dámu na %2$s"
 
 #. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
-#: ../glchess/src/glchess.vala:504
+#: ../src/gnome-chess.vala:594
 #, c-format
 msgid "White rook moves from %1$s to %2$s"
 msgstr "Bílá věž táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:506
+#: ../src/gnome-chess.vala:596
 #, c-format
 msgid "White rook at %1$s takes the black pawn at %2$s"
 msgstr "Bílá věž z %1$s bere černého pěšáka na %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:508
+#: ../src/gnome-chess.vala:598
 #, c-format
 msgid "White rook at %1$s takes the black rook at %2$s"
 msgstr "Bílá věž z %1$s bere černou věž na %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:510
+#: ../src/gnome-chess.vala:600
 #, c-format
 msgid "White rook at %1$s takes the black knight at %2$s"
 msgstr "Bílá věž z %1$s bere černého koně na %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:512
+#: ../src/gnome-chess.vala:602
 #, c-format
 msgid "White rook at %1$s takes the black bishop at %2$s"
 msgstr "Bílá věž z %1$s bere černého střelce na %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
-#: ../glchess/src/glchess.vala:514
+#: ../src/gnome-chess.vala:604
 #, c-format
 msgid "White rook at %1$s takes the black queen at %2$s"
 msgstr "Bílá věž z %1$s bere černou dámu na %2$s"
 
 #. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
-#: ../glchess/src/glchess.vala:516
+#: ../src/gnome-chess.vala:606
 #, c-format
 msgid "White knight moves from %1$s to %2$s"
 msgstr "Bílý kůň táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:518
+#: ../src/gnome-chess.vala:608
 #, c-format
 msgid "White knight at %1$s takes the black pawn at %2$s"
 msgstr "Bílý kůň z %1$s bere černého pěšáka na %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:520
+#: ../src/gnome-chess.vala:610
 #, c-format
 msgid "White knight at %1$s takes the black rook at %2$s"
 msgstr "Bílý kůň z %1$s bere černou věž na %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:522
+#: ../src/gnome-chess.vala:612
 #, c-format
 msgid "White knight at %1$s takes the black knight at %2$s"
 msgstr "Bílý kůň z %1$s bere černého koně na %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:524
+#: ../src/gnome-chess.vala:614
 #, c-format
 msgid "White knight at %1$s takes the black bishop at %2$s"
 msgstr "Bílý kůň z %1$s bere černého střelce na %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:526
+#: ../src/gnome-chess.vala:616
 #, c-format
 msgid "White knight at %1$s takes the black queen at %2$s"
 msgstr "Bílý kůň z %1$s bere černou dámu na %2$s"
 
 #. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
-#: ../glchess/src/glchess.vala:528
+#: ../src/gnome-chess.vala:618
 #, c-format
 msgid "White bishop moves from %1$s to %2$s"
 msgstr "Bílý střelec táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:530
+#: ../src/gnome-chess.vala:620
 #, c-format
 msgid "White bishop at %1$s takes the black pawn at %2$s"
 msgstr "Bílý střelec z %1$s bere černého pěšáka na %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:532
+#: ../src/gnome-chess.vala:622
 #, c-format
 msgid "White bishop at %1$s takes the black rook at %2$s"
 msgstr "Bílý střelec z %1$s bere černou věž na %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:534
+#: ../src/gnome-chess.vala:624
 #, c-format
 msgid "White bishop at %1$s takes the black knight at %2$s"
 msgstr "Bílý střelec z %1$s bere černého koně na %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:536
+#: ../src/gnome-chess.vala:626
 #, c-format
 msgid "White bishop at %1$s takes the black bishop at %2$s"
 msgstr "Bílý střelec z %1$s bere černého střelce na %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:538
+#: ../src/gnome-chess.vala:628
 #, c-format
 msgid "White bishop at %1$s takes the black queen at %2$s"
 msgstr "Bílý střelec z %1$s bere černou dámu na %2$s"
 
 #. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
-#: ../glchess/src/glchess.vala:540
+#: ../src/gnome-chess.vala:630
 #, c-format
 msgid "White queen moves from %1$s to %2$s"
 msgstr "Bílá dáma táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:542
+#: ../src/gnome-chess.vala:632
 #, c-format
 msgid "White queen at %1$s takes the black pawn at %2$s"
 msgstr "Bílá dáma z %1$s bere černého pěšáka na %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:544
+#: ../src/gnome-chess.vala:634
 #, c-format
 msgid "White queen at %1$s takes the black rook at %2$s"
 msgstr "Bílá dáma z %1$s bere černou věž na %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:546
+#: ../src/gnome-chess.vala:636
 #, c-format
 msgid "White queen at %1$s takes the black knight at %2$s"
 msgstr "Bílá dáma z %1$s bere černého koně na %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:548
+#: ../src/gnome-chess.vala:638
 #, c-format
 msgid "White queen at %1$s takes the black bishop at %2$s"
 msgstr "Bílá dáma z %1$s bere černého střelce na %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:550
+#: ../src/gnome-chess.vala:640
 #, c-format
 msgid "White queen at %1$s takes the black queen at %2$s"
 msgstr "Bílá dáma z %1$s bere černou dámu na %2$s"
 
 #. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
-#: ../glchess/src/glchess.vala:552
+#: ../src/gnome-chess.vala:642
 #, c-format
 msgid "White king moves from %1$s to %2$s"
 msgstr "Bílý král táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:554
+#: ../src/gnome-chess.vala:644
 #, c-format
 msgid "White king at %1$s takes the black pawn at %2$s"
 msgstr "Bílý král z %1$s bere černého pěšáka na %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:556
+#: ../src/gnome-chess.vala:646
 #, c-format
 msgid "White king at %1$s takes the black rook at %2$s"
 msgstr "Bílý král z %1$s bere černou věž na %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:558
+#: ../src/gnome-chess.vala:648
 #, c-format
 msgid "White king at %1$s takes the black knight at %2$s"
 msgstr "Bílý král z %1$s bere černého koně na %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:560
+#: ../src/gnome-chess.vala:650
 #, c-format
 msgid "White king at %1$s takes the black bishop at %2$s"
 msgstr "Bílý král z %1$s bere černého střelce na %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:562
+#: ../src/gnome-chess.vala:652
 #, c-format
 msgid "White king at %1$s takes the black queen at %2$s"
 msgstr "Bílý král z %1$s bere černou dámu na %2$s"
 
 #. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
-#: ../glchess/src/glchess.vala:564
+#: ../src/gnome-chess.vala:654
 #, c-format
 msgid "Black pawn moves from %1$s to %2$s"
 msgstr "Černý pěšák táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:566
+#: ../src/gnome-chess.vala:656
 #, c-format
 msgid "Black pawn at %1$s takes the white pawn at %2$s"
 msgstr "Černý pěšák z %1$s bere bílého pěšáka na %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:568
+#: ../src/gnome-chess.vala:658
 #, c-format
 msgid "Black pawn at %1$s takes the white rook at %2$s"
 msgstr "Černý pěšák z %1$s bere bílou věž na %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:570
+#: ../src/gnome-chess.vala:660
 #, c-format
 msgid "Black pawn at %1$s takes the white knight at %2$s"
 msgstr "Černý pěšák z %1$s bere bílého koně na %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:572
+#: ../src/gnome-chess.vala:662
 #, c-format
 msgid "Black pawn at %1$s takes the white bishop at %2$s"
 msgstr "Černý pěšák z %1$s bere bílého střelce na %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:574
+#: ../src/gnome-chess.vala:664
 #, c-format
 msgid "Black pawn at %1$s takes the white queen at %2$s"
 msgstr "Černý pěšák z %1$s bere bílou dámu na %2$s"
 
 #. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
-#: ../glchess/src/glchess.vala:576
+#: ../src/gnome-chess.vala:666
 #, c-format
 msgid "Black rook moves from %1$s to %2$s"
 msgstr "Černá věž táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:578
+#: ../src/gnome-chess.vala:668
 #, c-format
 msgid "Black rook at %1$s takes the white pawn at %2$s"
 msgstr "Černá věž z %1$s bere bílého pěšáka na %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:580
+#: ../src/gnome-chess.vala:670
 #, c-format
 msgid "Black rook at %1$s takes the white rook at %2$s"
 msgstr "Černá věž z %1$s bere bílou věž na %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:582
+#: ../src/gnome-chess.vala:672
 #, c-format
 msgid "Black rook at %1$s takes the white knight at %2$s"
 msgstr "Černá věž z %1$s bere bílého koně na %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:584
+#: ../src/gnome-chess.vala:674
 #, c-format
 msgid "Black rook at %1$s takes the white bishop at %2$s"
 msgstr "Černá věž z %1$s bere bílého střelce na %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:586
+#: ../src/gnome-chess.vala:676
 #, c-format
 msgid "Black rook at %1$s takes the white queen at %2$s"
 msgstr "Černá věž z %1$s bere bílou dámu na %2$s"
 
 #. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
-#: ../glchess/src/glchess.vala:588
+#: ../src/gnome-chess.vala:678
 #, c-format
 msgid "Black knight moves from %1$s to %2$s"
 msgstr "Černý kůň táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:590
+#: ../src/gnome-chess.vala:680
 #, c-format
 msgid "Black knight at %1$s takes the white pawn at %2$s"
 msgstr "Černý kůň z %1$s bere bílého pěšáka na %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:592
+#: ../src/gnome-chess.vala:682
 #, c-format
 msgid "Black knight at %1$s takes the white rook at %2$s"
 msgstr "Černý kůň z %1$s bere bílou věž na %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:594
+#: ../src/gnome-chess.vala:684
 #, c-format
 msgid "Black knight at %1$s takes the white knight at %2$s"
 msgstr "Černý kůň z %1$s bere bílého koně na %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:596
+#: ../src/gnome-chess.vala:686
 #, c-format
 msgid "Black knight at %1$s takes the white bishop at %2$s"
 msgstr "Černý kůň z %1$s bere bílého střelce na %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:598
+#: ../src/gnome-chess.vala:688
 #, c-format
 msgid "Black knight at %1$s takes the white queen at %2$s"
 msgstr "Černý kůň z %1$s bere bílou dámu na %2$s"
 
 #. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
-#: ../glchess/src/glchess.vala:600
+#: ../src/gnome-chess.vala:690
 #, c-format
 msgid "Black bishop moves from %1$s to %2$s"
 msgstr "Černý střelec táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:602
+#: ../src/gnome-chess.vala:692
 #, c-format
 msgid "Black bishop at %1$s takes the white pawn at %2$s"
 msgstr "Černý střelec z %1$s bere bílého pěšáka na %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:604
+#: ../src/gnome-chess.vala:694
 #, c-format
 msgid "Black bishop at %1$s takes the white rook at %2$s"
 msgstr "Černý střelec z %1$s bere bílou věž na %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:606
+#: ../src/gnome-chess.vala:696
 #, c-format
 msgid "Black bishop at %1$s takes the white knight at %2$s"
 msgstr "Černý střelec z %1$s bere bílého koně na %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:608
+#: ../src/gnome-chess.vala:698
 #, c-format
 msgid "Black bishop at %1$s takes the white bishop at %2$s"
 msgstr "Černý střelec z %1$s bere bílého střelce na %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:610
+#: ../src/gnome-chess.vala:700
 #, c-format
 msgid "Black bishop at %1$s takes the white queen at %2$s"
 msgstr "Černý střelec z %1$s bere bílou dámu na %2$s"
 
 #. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
-#: ../glchess/src/glchess.vala:612
+#: ../src/gnome-chess.vala:702
 #, c-format
 msgid "Black queen moves from %1$s to %2$s"
 msgstr "Černá dáma táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:614
+#: ../src/gnome-chess.vala:704
 #, c-format
 msgid "Black queen at %1$s takes the white pawn at %2$s"
 msgstr "Černá dáma z %1$s bere bílého pěšáka na %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:616
+#: ../src/gnome-chess.vala:706
 #, c-format
 msgid "Black queen at %1$s takes the white rook at %2$s"
 msgstr "Černá dáma z %1$s bere bílou věž na %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:618
+#: ../src/gnome-chess.vala:708
 #, c-format
 msgid "Black queen at %1$s takes the white knight at %2$s"
 msgstr "Černá dáma z %1$s bere bílého koně na %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:620
+#: ../src/gnome-chess.vala:710
 #, c-format
 msgid "Black queen at %1$s takes the white bishop at %2$s"
 msgstr "Černá dáma z %1$s bere bílého střelce na %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:622
+#: ../src/gnome-chess.vala:712
 #, c-format
 msgid "Black queen at %1$s takes the white queen at %2$s"
 msgstr "Černá dáma z %1$s bere bílou dámu na %2$s"
 
 #. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
-#: ../glchess/src/glchess.vala:624
+#: ../src/gnome-chess.vala:714
 #, c-format
 msgid "Black king moves from %1$s to %2$s"
 msgstr "Černý král táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:626
+#: ../src/gnome-chess.vala:716
 #, c-format
 msgid "Black king at %1$s takes the white pawn at %2$s"
 msgstr "Černý král z %1$s bere bílého pěšáka na %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:628
+#: ../src/gnome-chess.vala:718
 #, c-format
 msgid "Black king at %1$s takes the white rook at %2$s"
 msgstr "Černý král z %1$s bere bílou věž na %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:630
+#: ../src/gnome-chess.vala:720
 #, c-format
 msgid "Black king at %1$s takes the white knight at %2$s"
 msgstr "Černý král z %1$s bere bílého koně na %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:632
+#: ../src/gnome-chess.vala:722
 #, c-format
 msgid "Black king at %1$s takes the white bishop at %2$s"
 msgstr "Černý král z %1$s bere bílého střelce na %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
-#: ../glchess/src/glchess.vala:634
+#: ../src/gnome-chess.vala:724
 #, c-format
 msgid "Black king at %1$s takes the white queen at %2$s"
 msgstr "Černý král z %1$s bere bílou dámu na %2$s"
 
 #. Message display when the white player wins
-#: ../glchess/src/glchess.vala:754
+#: ../src/gnome-chess.vala:844
 msgid "White wins"
 msgstr "Bílý vyhrává"
 
 #. Message display when the black player wins
-#: ../glchess/src/glchess.vala:759
+#: ../src/gnome-chess.vala:849
 msgid "Black wins"
 msgstr "Černý vyhrává"
 
 #. Message display when the game is drawn
-#: ../glchess/src/glchess.vala:764
+#: ../src/gnome-chess.vala:854
 msgid "Game is drawn"
 msgstr "Hra skončila remízou"
 
 #. Message displayed when the game ends due to a player being checkmated
-#: ../glchess/src/glchess.vala:776
+#: ../src/gnome-chess.vala:866
 msgid "Opponent is in check and cannot move (checkmate)"
 msgstr "Protivník je v šachu a nemůže táhnout (mat)"
 
 #. Message displayed when the game terminates due to a stalemate
-#: ../glchess/src/glchess.vala:780
+#: ../src/gnome-chess.vala:870
 msgid "Opponent cannot move (stalemate)"
 msgstr "Protivník nemůže táhnout (pat)"
 
 #. Message displayed when the game is drawn due to the fifty move rule
-#: ../glchess/src/glchess.vala:784
+#: ../src/gnome-chess.vala:874
 msgid "No piece has been taken or pawn moved in the last fifty moves"
 msgstr ""
 "V posledních padesáti tazích nebyl vyhozena ani jedna figura a netáhl ani "
 "jeden pěšák"
 
 #. Message displayed when the game ends due to one player's clock stopping
-#: ../glchess/src/glchess.vala:788
+#: ../src/gnome-chess.vala:878
 msgid "Opponent has run out of time"
 msgstr "Protivníkovi vypršel čas"
 
 #. Message displayed when the game is drawn due to the three-fold-repitition rule
-#: ../glchess/src/glchess.vala:792
+#: ../src/gnome-chess.vala:882
 msgid "The same board state has occurred three times (three fold repetition)"
 msgstr ""
 "Šachovnice se ocitla třikrát ve stejném stavu (třikrát opakovaná pozice)"
 
 #. Message displayed when the game is drawn due to the insufficient material rule
-#: ../glchess/src/glchess.vala:796
+#: ../src/gnome-chess.vala:886
 msgid "Neither player can cause checkmate (insufficient material)"
 msgstr "Žádný hráč nemůže způsobit mat (nedostatek figur)"
 
 #. Message displayed when the game ends due to the black player resigning
-#: ../glchess/src/glchess.vala:802
+#: ../src/gnome-chess.vala:892
 msgid "The black player has resigned"
 msgstr "Černý hráč partii vzdal"
 
 #. Message displayed when the game ends due to the white player resigning
-#: ../glchess/src/glchess.vala:807
+#: ../src/gnome-chess.vala:897
 msgid "The white player has resigned"
 msgstr "Bílý hráč partii vzdal"
 
 #. Message displayed when a game is abandoned
-#: ../glchess/src/glchess.vala:812
+#: ../src/gnome-chess.vala:902
 msgid "The game has been abandoned"
 msgstr "Hra byla opuštěna"
 
 #. Message displayed when the game ends due to a player dying
-#: ../glchess/src/glchess.vala:817
+#: ../src/gnome-chess.vala:907
 msgid "One of the players has died"
 msgstr "Jeden z hráčů prohrál"
 
-#: ../glchess/src/glchess.vala:882
+#: ../src/gnome-chess.vala:972
 msgid "Save this game before starting a new one?"
 msgstr "Uložit tuto hru před spuštěním nové?"
 
-#: ../glchess/src/glchess.vala:884 ../gnome-sudoku/src/lib/main.py:403
+#: ../src/gnome-chess.vala:974
 msgid "_Abandon game"
 msgstr "U_končit hru"
 
-#: ../glchess/src/glchess.vala:885 ../gnome-sudoku/src/lib/main.py:402
+#: ../src/gnome-chess.vala:975
 msgid "_Save game for later"
 msgstr "_Uložit hru na později"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in seconds
-#: ../glchess/src/glchess.vala:1276
+#: ../src/gnome-chess.vala:1363
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "sekunda"
@@ -1036,7 +1009,7 @@ msgstr[1] "sekundy"
 msgstr[2] "sekund"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#: ../glchess/src/glchess.vala:1280
+#: ../src/gnome-chess.vala:1367
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minuta"
@@ -1044,3656 +1017,77 @@ msgstr[1] "minuty"
 msgstr[2] "minut"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../glchess/src/glchess.vala:1284
+#: ../src/gnome-chess.vala:1371
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "hodina"
 msgstr[1] "hodiny"
 msgstr[2] "hodin"
 
-#: ../glchess/src/glchess.vala:1405
+#: ../src/gnome-chess.vala:1486
+#| msgid ""
+#| "The 2D/3D chess game for GNOME. \n"
+#| "\n"
+#| "glChess is a part of GNOME Games."
 msgid ""
 "The 2D/3D chess game for GNOME. \n"
 "\n"
-"glChess is a part of GNOME Games."
+"GNOME Chess is a part of GNOME Games."
 msgstr ""
-"2D a 3D šachy pro GNOME. \n"
+"Hra šachy ve 2D/3D pro GNOME. \n"
 "\n"
-"glChess je součástí her GNOME."
+"GNOME Chess je součástí her GNOME."
 
-#: ../glchess/src/glchess.vala:1410 ../glines/src/glines.c:1184
-#: ../gnect/src/main.c:830 ../gnibbles/src/main.c:176
-#: ../gnobots2/src/menu.c:268 ../gnome-mahjongg/src/gnome-mahjongg.vala:555
-#: ../gnome-sudoku/src/lib/defaults.py:53 ../gnomine/src/gnomine.vala:701
-#: ../gnotravex/src/gnotravex.vala:316 ../gnotski/src/gnotski.c:1460
-#: ../gtali/src/gyahtzee.c:619 ../iagno/src/iagno.vala:305
-#: ../lightsoff/src/lightsoff.vala:157
-#: ../quadrapassel/src/quadrapassel.vala:761
-#: ../swell-foop/src/swell-foop.vala:399
+#: ../src/gnome-chess.vala:1491
 msgid "GNOME Games web site"
 msgstr "Webové stránky her GNOME"
 
 #. Title of save game dialog
-#: ../glchess/src/glchess.vala:1464
+#: ../src/gnome-chess.vala:1545
 msgid "Save Chess Game"
 msgstr "Uložit šachovou partii"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../glchess/src/glchess.vala:1477 ../glchess/src/glchess.vala:1545
+#: ../src/gnome-chess.vala:1558 ../src/gnome-chess.vala:1626
 msgid "PGN files"
 msgstr "Soubory PGN"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../glchess/src/glchess.vala:1484 ../glchess/src/glchess.vala:1552
+#: ../src/gnome-chess.vala:1565 ../src/gnome-chess.vala:1633
 msgid "All files"
 msgstr "Všechny soubory"
 
-#: ../glchess/src/glchess.vala:1508
+#: ../src/gnome-chess.vala:1589
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Selhalo uložení hry: %s"
 
 #. Title of load game dialog
-#: ../glchess/src/glchess.vala:1532
+#: ../src/gnome-chess.vala:1613
 msgid "Load Chess Game"
 msgstr "Načíst šachovou partii"
 
-#: ../glchess/src/glchess.vala:1574
+#: ../src/gnome-chess.vala:1655
 #, c-format
 msgid "Failed to open game: %s"
 msgstr "Selhalo otevření hry: %s"
 
 #. Help string for command line --version flag
-#: ../glchess/src/glchess.vala:1635
+#: ../src/gnome-chess.vala:1716
 msgid "Show release version"
 msgstr "Zobrazit verzi vydání"
 
 #. Arguments and description for --help text
-#: ../glchess/src/glchess.vala:1649
+#: ../src/gnome-chess.vala:1730
 msgid "[FILE] - Play Chess"
 msgstr "[SOUBOR] – Hrát šachy"
 
 #. Text printed out when an unknown command-line argument provided
-#: ../glchess/src/glchess.vala:1660
+#: ../src/gnome-chess.vala:1741
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr ""
 "Spuštěním „%s --help“ se zobrazíte úplný přehled dostupných přepínačů "
 "příkazové řádky."
-
-#: ../glines/data/glines.desktop.in.in.h:1 ../glines/src/glines.c:1170
-#: ../glines/src/glines.c:1173 ../glines/src/glines.c:1661
-msgid "Five or More"
-msgstr "Pět nebo víc"
-
-#: ../glines/data/glines.desktop.in.in.h:2
-msgid "Remove colored balls from the board by forming lines"
-msgstr "Odstraňovat barevné koule z hrací desky tvořením úseček"
-
-#: ../glines/data/glines-preferences.ui.h:1
-msgid "Five or More Preferences"
-msgstr "Předvolby hry Pět nebo víc"
-
-#: ../glines/data/glines-preferences.ui.h:2 ../gnobots2/src/properties.c:488
-#: ../swell-foop/data/preferences.ui.h:6
-msgid "Appearance"
-msgstr "Vzhled"
-
-#: ../glines/data/glines-preferences.ui.h:3
-msgid "_Image:"
-msgstr "_Obrázek:"
-
-#: ../glines/data/glines-preferences.ui.h:4
-msgid "B_ackground color:"
-msgstr "Barva _pozadí:"
-
-#: ../glines/data/glines-preferences.ui.h:5
-msgid "Board Size"
-msgstr "Velikost hrací desky"
-
-#: ../glines/data/glines-preferences.ui.h:6
-msgid "_Small"
-msgstr "_Malá"
-
-#: ../glines/data/glines-preferences.ui.h:7
-#: ../gnome-sudoku/data/print_games.ui.h:7
-msgid "_Medium"
-msgstr "_Střední"
-
-#: ../glines/data/glines-preferences.ui.h:8
-msgid "_Large"
-msgstr "Ve_lká"
-
-#: ../glines/data/glines-preferences.ui.h:9
-msgid "General"
-msgstr "Obecné"
-
-#: ../glines/data/glines-preferences.ui.h:10
-msgid "_Use fast moves"
-msgstr "Používat _rychlé tahy"
-
-#: ../glines/data/glines.ui.h:1
-msgid "Five or more"
-msgstr "Pět nebo víc"
-
-#: ../glines/data/glines.ui.h:3 ../gnect/src/main.c:736
-msgid "Scores"
-msgstr "Skóre"
-
-#: ../glines/data/glines.ui.h:8
-msgid "Next:"
-msgstr "Následující:"
-
-#: ../glines/data/glines.ui.h:9
-msgid "0"
-msgstr "0"
-
-#: ../glines/data/glines.ui.h:10 ../gnobots2/src/statusbar.c:68
-#: ../gnomine/src/gnomine.vala:659 ../quadrapassel/src/quadrapassel.vala:174
-msgid "Score:"
-msgstr "Skóre:"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:1
-msgid "Playing field size"
-msgstr "Velikost hracího pole"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:2
-msgid ""
-"Playing field size. 1=Small, 2=Medium, 3=Large. Any other value is invalid."
-msgstr ""
-"Velikost hracího pole. 1=malá, 2=střední, 3=velká. Jiné hodnoty nejsou "
-"platné."
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:3
-msgid "Ball style"
-msgstr "Styl koule"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:4
-msgid "Ball style. The filename of the images to use for the balls."
-msgstr "Styl koule. Název souboru obrázků, které budou použity pro koule."
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:5
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:5
-msgid "Background color"
-msgstr "Barva pozadí"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:6
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:6
-msgid "Background color. The hex specification of the background color."
-msgstr "Barva pozadí. Šestnáctková specifikace barvy pozadí."
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:7
-msgid "Time between moves"
-msgstr "Čas mezi tahy"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:8
-msgid "Time between moves in milliseconds."
-msgstr "Čas mezi tahy v milisekundách."
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:9
-msgid "Game score"
-msgstr "Skóre hry"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:10
-msgid "Game score from last saved session."
-msgstr "Skóre hry z posledního uloženého sezení."
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:11
-msgid "Game field"
-msgstr "Herní pole"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:12
-msgid "Game field from last saved session."
-msgstr "Herní pole z posledního uloženého sezení."
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:13
-msgid "Game preview"
-msgstr "Náhled hry"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:14
-msgid "Game preview from last saved session."
-msgstr "Náhled hry z posledního uloženého sezení."
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:15
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:39
-#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:1
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:12
-#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:3
-#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:3
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:35
-msgid "Width of the window in pixels"
-msgstr "Šířka okna v pixelech."
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:16
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:40
-#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:2
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:13
-#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:4
-#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:4
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:36
-msgid "Height of the window in pixels"
-msgstr "Výška okna v pixelech."
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:17
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:41
-#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:3
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:14
-#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:5
-#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:5
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:37
-msgid "true if the window is maximized"
-msgstr "Zapnuto, pokud je okno maximalizováno"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:18
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:42
-#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:4
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:15
-#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:6
-#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:6
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:38
-msgid "true if the window is fullscren"
-msgstr "Zapnuto, pokud je okno v režimu celé obrazovky"
-
-#. Score dialog column header for the score time (e.g. 1 minute)
-#: ../glines/src/games-scores-dialog.c:136
-#: ../gnibbles/src/games-scores-dialog.c:136
-#: ../gnobots2/src/games-scores-dialog.c:136
-#: ../gnotski/src/games-scores-dialog.c:136
-#: ../gtali/src/games-scores-dialog.c:136
-msgctxt "score-dialog"
-msgid "Time"
-msgstr "Čas"
-
-#. Score dialog column header for the score value (e.g. 30 moves)
-#: ../glines/src/games-scores-dialog.c:142
-#: ../gnibbles/src/games-scores-dialog.c:142
-#: ../gnobots2/src/games-scores-dialog.c:142
-#: ../gnotski/src/games-scores-dialog.c:142
-#: ../gtali/src/games-scores-dialog.c:142
-msgctxt "score-dialog"
-msgid "Score"
-msgstr "Skóre"
-
-#. Score format for time based scores.  %1$d is the time in minutes, %2$d is the time in seconds
-#: ../glines/src/games-scores-dialog.c:307
-#: ../gnibbles/src/games-scores-dialog.c:307
-#: ../gnobots2/src/games-scores-dialog.c:307
-#: ../gnotski/src/games-scores-dialog.c:307
-#: ../gtali/src/games-scores-dialog.c:307
-#, c-format
-msgctxt "score-dialog"
-msgid "%1$dm %2$ds"
-msgstr "%1$d min %2$d sec"
-
-#. Score dialog column header for the name of the player who recorded the score
-#: ../glines/src/games-scores-dialog.c:571
-#: ../gnibbles/src/games-scores-dialog.c:571
-#: ../gnobots2/src/games-scores-dialog.c:571
-#: ../gnotski/src/games-scores-dialog.c:571
-#: ../gtali/src/games-scores-dialog.c:571
-msgctxt "score-dialog"
-msgid "Name"
-msgstr "Jméno"
-
-#. Score dialog column header for the date the score was recorded
-#: ../glines/src/games-scores-dialog.c:580
-#: ../gnibbles/src/games-scores-dialog.c:580
-#: ../gnobots2/src/games-scores-dialog.c:580
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:817
-#: ../gnomine/src/gnomine.vala:939 ../gnotravex/src/gnotravex.vala:450
-#: ../gnotski/src/games-scores-dialog.c:580
-#: ../gtali/src/games-scores-dialog.c:580
-#: ../quadrapassel/src/quadrapassel.vala:856
-#: ../swell-foop/src/swell-foop.vala:524
-msgid "Date"
-msgstr "Datum"
-
-#: ../glines/src/games-stock.c:41 ../gnect/src/games-stock.c:41
-#: ../gnibbles/src/games-stock.c:41 ../gnobots2/src/games-stock.c:41
-#: ../gnotski/src/games-stock.c:41 ../gtali/src/games-stock.c:41
-msgid "View help for this game"
-msgstr "Zobrazit nápovědu k této hře"
-
-#: ../glines/src/games-stock.c:42 ../gnect/src/games-stock.c:42
-#: ../gnibbles/src/games-stock.c:42 ../gnobots2/src/games-stock.c:42
-#: ../gnotski/src/games-stock.c:42 ../gtali/src/games-stock.c:42
-msgid "End the current game"
-msgstr "Ukončit aktuální hru"
-
-#: ../glines/src/games-stock.c:43 ../gnect/src/games-stock.c:43
-#: ../gnibbles/src/games-stock.c:43 ../gnobots2/src/games-stock.c:43
-#: ../gnotski/src/games-stock.c:43 ../gtali/src/games-stock.c:43
-msgid "Toggle fullscreen mode"
-msgstr "Přepnout režim celé obrazovky"
-
-#: ../glines/src/games-stock.c:44 ../gnect/src/games-stock.c:44
-#: ../gnibbles/src/games-stock.c:44 ../gnobots2/src/games-stock.c:44
-#: ../gnotski/src/games-stock.c:44 ../gtali/src/games-stock.c:44
-msgid "Get a hint for your next move"
-msgstr "Získat radu pro váš další tah"
-
-#: ../glines/src/games-stock.c:45 ../gnect/src/games-stock.c:45
-#: ../gnibbles/src/games-stock.c:45 ../gnobots2/src/games-stock.c:45
-#: ../gnotski/src/games-stock.c:45 ../gtali/src/games-stock.c:45
-msgid "Leave fullscreen mode"
-msgstr "Opustit režim celé obrazovky"
-
-#: ../glines/src/games-stock.c:46 ../gnect/src/games-stock.c:46
-#: ../gnibbles/src/games-stock.c:46 ../gnobots2/src/games-stock.c:46
-#: ../gnotski/src/games-stock.c:46 ../gtali/src/games-stock.c:46
-msgid "Start a new multiplayer network game"
-msgstr "Začít novou síťovou hru pro více hráčů"
-
-#: ../glines/src/games-stock.c:47 ../gnect/src/games-stock.c:47
-#: ../gnibbles/src/games-stock.c:47 ../gnobots2/src/games-stock.c:47
-#: ../gnotski/src/games-stock.c:47 ../gtali/src/games-stock.c:47
-msgid "End the current network game and return to network server"
-msgstr "Ukončit současnou síťovou hru"
-
-#: ../glines/src/games-stock.c:49 ../gnect/src/games-stock.c:49
-#: ../gnibbles/src/games-stock.c:49 ../gnobots2/src/games-stock.c:49
-#: ../gnotski/src/games-stock.c:49 ../gtali/src/games-stock.c:49
-msgid "Pause the game"
-msgstr "Pozastavit hru"
-
-#: ../glines/src/games-stock.c:50 ../gnect/src/games-stock.c:50
-#: ../gnibbles/src/games-stock.c:50 ../gnobots2/src/games-stock.c:50
-#: ../gnotski/src/games-stock.c:50 ../gtali/src/games-stock.c:50
-msgid "Show a list of players in the network game"
-msgstr "Zobrazit seznam hráčů síťové hry"
-
-#: ../glines/src/games-stock.c:51 ../gnect/src/games-stock.c:51
-#: ../gnibbles/src/games-stock.c:51 ../gnobots2/src/games-stock.c:51
-#: ../gnotski/src/games-stock.c:51 ../gtali/src/games-stock.c:51
-msgid "Redo the undone move"
-msgstr "Zopakovat vrácený tah"
-
-#: ../glines/src/games-stock.c:52 ../gnect/src/games-stock.c:52
-#: ../gnibbles/src/games-stock.c:52 ../gnobots2/src/games-stock.c:52
-#: ../gnotski/src/games-stock.c:52 ../gtali/src/games-stock.c:52
-msgid "Restart the game"
-msgstr "Začít hru znovu"
-
-#: ../glines/src/games-stock.c:53 ../gnect/src/games-stock.c:53
-#: ../gnibbles/src/games-stock.c:53 ../gnobots2/src/games-stock.c:53
-#: ../gnotski/src/games-stock.c:53 ../gtali/src/games-stock.c:53
-msgid "Resume the paused game"
-msgstr "Pokračovat pozastavenou hru"
-
-#: ../glines/src/games-stock.c:54 ../gnect/src/games-stock.c:54
-#: ../gnibbles/src/games-stock.c:54 ../gnobots2/src/games-stock.c:54
-#: ../gnotski/src/games-stock.c:54 ../gtali/src/games-stock.c:54
-msgid "View the scores"
-msgstr "Zobrazit skóre"
-
-#: ../glines/src/games-stock.c:55 ../gnect/src/games-stock.c:55
-#: ../gnibbles/src/games-stock.c:55 ../gnobots2/src/games-stock.c:55
-#: ../gnotski/src/games-stock.c:55 ../gtali/src/games-stock.c:55
-msgid "Undo the last move"
-msgstr "Vrátit poslední tah"
-
-#: ../glines/src/games-stock.c:56 ../gnect/src/games-stock.c:56
-#: ../gnibbles/src/games-stock.c:56 ../gnobots2/src/games-stock.c:56
-#: ../gnotski/src/games-stock.c:56 ../gtali/src/games-stock.c:56
-msgid "About this game"
-msgstr "O této hře"
-
-#: ../glines/src/games-stock.c:57 ../gnect/src/games-stock.c:57
-#: ../gnibbles/src/games-stock.c:57 ../gnobots2/src/games-stock.c:57
-#: ../gnotski/src/games-stock.c:57 ../gtali/src/games-stock.c:57
-msgid "Close this window"
-msgstr "Zavřít toto okno"
-
-#: ../glines/src/games-stock.c:58 ../gnect/src/games-stock.c:58
-#: ../gnibbles/src/games-stock.c:58 ../gnobots2/src/games-stock.c:58
-#: ../gnotski/src/games-stock.c:58 ../gtali/src/games-stock.c:58
-msgid "Configure the game"
-msgstr "Nastavit hru"
-
-#: ../glines/src/games-stock.c:59 ../gnect/src/games-stock.c:59
-#: ../gnibbles/src/games-stock.c:59 ../gnobots2/src/games-stock.c:59
-#: ../gnotski/src/games-stock.c:59 ../gtali/src/games-stock.c:59
-msgid "Quit this game"
-msgstr "Ukončit tuto hru"
-
-#: ../glines/src/games-stock.c:248 ../gnect/src/games-stock.c:248
-#: ../gnibbles/src/games-stock.c:248 ../gnobots2/src/games-stock.c:248
-#: ../gnomine/src/gnomine.vala:102 ../gnomine/src/gnomine.vala:188
-#: ../gnomine/src/gnomine.vala:356 ../gnotravex/src/gnotravex.vala:117
-#: ../gnotravex/src/gnotravex.vala:177 ../gnotski/src/games-stock.c:248
-#: ../gtali/src/games-stock.c:248 ../quadrapassel/src/quadrapassel.vala:142
-#: ../quadrapassel/src/quadrapassel.vala:232
-msgid "_Fullscreen"
-msgstr "_Celá obrazovka"
-
-#: ../glines/src/games-stock.c:249 ../gnect/src/games-stock.c:249
-#: ../gnibbles/src/games-stock.c:249 ../gnobots2/src/games-stock.c:249
-#: ../gnome-sudoku/src/lib/main.py:212 ../gnomine/src/gnomine.vala:100
-#: ../gnotski/src/games-stock.c:249 ../gtali/src/games-stock.c:249
-msgid "_Hint"
-msgstr "_Rada"
-
-#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
-#: ../glines/src/games-stock.c:251 ../gnect/src/games-stock.c:251
-#: ../gnibbles/src/games-stock.c:251 ../gnobots2/src/games-stock.c:251
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:97
-#: ../gnomine/src/gnomine.vala:164 ../gnotravex/src/gnotravex.vala:96
-#: ../gnotski/src/games-stock.c:251 ../gtali/src/games-stock.c:251
-#: ../quadrapassel/src/quadrapassel.vala:127
-msgid "_New"
-msgstr "_Nová"
-
-#. Translators: This "_New Game" is for the game-over dialogue
-#: ../glines/src/games-stock.c:253 ../gnect/src/games-stock.c:253
-#: ../gnibbles/src/games-stock.c:253 ../gnobots2/src/game.c:153
-#: ../gnobots2/src/games-stock.c:253
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:76
-#: ../gnome-sudoku/data/select_game.ui.h:1 ../gnomine/src/gnomine.vala:98
-#: ../gnotravex/data/gnotravex.ui.h:1 ../gnotski/src/games-stock.c:253
-#: ../gnotski/src/gnotski.c:749 ../gtali/src/games-stock.c:253
-#: ../gtali/src/gyahtzee.c:752 ../iagno/data/iagno.ui.h:1
-#: ../lightsoff/src/lightsoff.vala:29 ../quadrapassel/src/quadrapassel.vala:82
-#: ../swell-foop/src/swell-foop.vala:66
-msgid "_New Game"
-msgstr "_Nová hra"
-
-#: ../glines/src/games-stock.c:254 ../gnect/src/games-stock.c:254
-#: ../gnibbles/src/games-stock.c:254 ../gnobots2/src/games-stock.c:254
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:112
-#: ../gnotski/src/games-stock.c:254 ../gtali/src/games-stock.c:254
-msgid "_Redo Move"
-msgstr "Tah zn_ovu"
-
-#. Translators: this is the "Reset" scores button in a scores dialogue
-#: ../glines/src/games-stock.c:256 ../gnect/src/games-stock.c:256
-#: ../gnibbles/src/games-stock.c:256 ../gnobots2/src/games-stock.c:256
-#: ../gnome-sudoku/src/lib/main.py:197 ../gnotski/src/games-stock.c:256
-#: ../gtali/src/games-stock.c:256
-msgid "_Reset"
-msgstr "_Vynulovat"
-
-#. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../glines/src/games-stock.c:258 ../gnect/src/games-stock.c:258
-#: ../gnibbles/src/games-stock.c:258 ../gnobots2/src/games-stock.c:258
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:318
-#: ../gnotski/src/games-stock.c:258 ../gtali/src/games-stock.c:258
-msgid "_Restart"
-msgstr "_Restartovat"
-
-#: ../glines/src/games-stock.c:260 ../gnect/src/games-stock.c:260
-#: ../gnibbles/src/games-stock.c:260 ../gnobots2/src/games-stock.c:260
-#: ../gnotski/src/games-stock.c:260 ../gtali/src/games-stock.c:260
-msgid "_Deal"
-msgstr "_Rozdat"
-
-#: ../glines/src/games-stock.c:261 ../gnect/src/games-stock.c:261
-#: ../gnibbles/src/games-stock.c:261 ../gnobots2/src/games-stock.c:261
-#: ../gnomine/src/gnomine.vala:351 ../gnotravex/src/gnotravex.vala:172
-#: ../gnotski/src/games-stock.c:261 ../gtali/src/games-stock.c:261
-#: ../quadrapassel/src/quadrapassel.vala:227
-msgid "_Leave Fullscreen"
-msgstr "_Opustit celou obrazovku"
-
-#: ../glines/src/games-stock.c:262 ../gnect/src/games-stock.c:262
-#: ../gnibbles/src/games-stock.c:262 ../gnobots2/src/games-stock.c:262
-#: ../gnotski/src/games-stock.c:262 ../gtali/src/games-stock.c:262
-msgid "Network _Game"
-msgstr "Síťová _hra"
-
-#: ../glines/src/games-stock.c:263 ../gnect/src/games-stock.c:263
-#: ../gnibbles/src/games-stock.c:263 ../gnobots2/src/games-stock.c:263
-#: ../gnotski/src/games-stock.c:263 ../gtali/src/games-stock.c:263
-msgid "L_eave Game"
-msgstr "O_pustit hru"
-
-#: ../glines/src/games-stock.c:264 ../gnect/src/games-stock.c:264
-#: ../gnibbles/src/games-stock.c:264 ../gnobots2/src/games-stock.c:264
-#: ../gnotski/src/games-stock.c:264 ../gtali/src/games-stock.c:264
-msgid "Player _List"
-msgstr "Seznam _hráčů"
-
-#: ../glines/src/games-stock.c:265 ../gnect/src/games-stock.c:265
-#: ../gnibbles/src/games-stock.c:265 ../gnobots2/src/games-stock.c:265
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:128
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:572
-#: ../gnomine/src/gnomine.vala:101 ../gnomine/src/gnomine.vala:181
-#: ../gnomine/src/gnomine.vala:597 ../gnotravex/data/gnotravex.ui.h:2
-#: ../gnotravex/src/gnotravex.vala:110 ../gnotravex/src/gnotravex.vala:364
-#: ../gnotski/src/games-stock.c:265 ../gtali/src/games-stock.c:265
-#: ../quadrapassel/src/quadrapassel.vala:83
-#: ../quadrapassel/src/quadrapassel.vala:135
-#: ../quadrapassel/src/quadrapassel.vala:681
-msgid "_Pause"
-msgstr "_Pozastavit"
-
-#: ../glines/src/games-stock.c:266 ../gnect/src/games-stock.c:266
-#: ../gnibbles/src/games-stock.c:266 ../gnobots2/src/games-stock.c:266
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:567
-#: ../gnomine/src/gnomine.vala:590 ../gnotravex/src/gnotravex.vala:359
-#: ../gnotski/src/games-stock.c:266 ../gtali/src/games-stock.c:266
-#: ../quadrapassel/src/quadrapassel.vala:676
-msgid "Res_ume"
-msgstr "_Pokračovat"
-
-#: ../glines/src/games-stock.c:267 ../gnect/src/games-stock.c:267
-#: ../gnibbles/src/games-stock.c:267 ../gnobots2/src/games-stock.c:267
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:78
-#: ../gnomine/src/gnomine.vala:103 ../gnotravex/data/gnotravex.ui.h:9
-#: ../gnotski/src/games-stock.c:267 ../gtali/src/games-stock.c:267
-#: ../gtali/src/gyahtzee.c:755 ../quadrapassel/src/quadrapassel.vala:84
-#: ../swell-foop/src/swell-foop.vala:67
-msgid "_Scores"
-msgstr "_Skóre"
-
-#: ../glines/src/games-stock.c:268 ../gnect/src/games-stock.c:268
-#: ../gnibbles/src/games-stock.c:268 ../gnobots2/src/games-stock.c:268
-#: ../gnotski/src/games-stock.c:268 ../gtali/src/games-stock.c:268
-msgid "_End Game"
-msgstr "U_končit hru"
-
-#. %s is replaced with the name of the game in gnome-games.
-#: ../glines/src/games-stock.c:317 ../gnect/src/games-stock.c:317
-#: ../gnibbles/src/games-stock.c:317 ../gnobots2/src/games-stock.c:317
-#: ../gnotski/src/games-stock.c:317 ../gtali/src/games-stock.c:317
-#, c-format
-msgid ""
-"%s is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version %d of the License, or (at your option) any later "
-"version."
-msgstr ""
-"%s je svobodný software: Můžete jej dále šířit a/nebo upravovat za podmínek "
-"licence GNU General Public License v podobě, v jaké ji vydala Free Software "
-"Foundation, a to buď ve verzi %d této licence nebo (dle vaší volby) v "
-"libovolné novější verzi."
-
-#: ../glines/src/games-stock.c:322 ../gnect/src/games-stock.c:322
-#: ../gnibbles/src/games-stock.c:322 ../gnobots2/src/games-stock.c:322
-#: ../gnotski/src/games-stock.c:322 ../gtali/src/games-stock.c:322
-#, c-format
-msgid ""
-"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details."
-msgstr ""
-"Program %s je šířen ve víře, že bude užitečný, ale BEZ JAKÝCHKOLIV ZÁRUK, a "
-"to i bez předpokládané záruky na PRODEJNOST nebo VHODNOST PRO KONKRÉTNÍ "
-"ÚČEL. Více podrobností najdete přímo v licenci GNU General Public License."
-
-#: ../glines/src/games-stock.c:327 ../gnect/src/games-stock.c:327
-#: ../gnibbles/src/games-stock.c:327 ../gnobots2/src/games-stock.c:327
-#: ../gnotski/src/games-stock.c:327 ../gtali/src/games-stock.c:327
-#, c-format
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"%s; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, "
-"Fifth Floor, Boston, MA  02110-1301  USA"
-msgstr ""
-"Spolu s programem %s byste měli obdržet kopii licence GNU General Public "
-"License. Pokud se tak nestalo, podívejte se na Free Software Foundation, "
-"Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
-
-#: ../glines/src/games-stock.c:331 ../gnect/src/games-stock.c:331
-#: ../gnibbles/src/games-stock.c:331 ../gnobots2/src/games-stock.c:331
-#: ../gnotski/src/games-stock.c:331 ../gtali/src/games-stock.c:331
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"this program.  If not, see <http://www.gnu.org/licenses/>."
-msgstr ""
-"Spolu s tímto programem byste měli obdržet kopii licence GNU General Public "
-"License. Pokud se tak nestalo, podívejte se na <http://www.gnu.org/licenses/"
-">."
-
-#: ../glines/src/glines.c:78
-msgctxt "board size"
-msgid "Small"
-msgstr "Malé"
-
-#: ../glines/src/glines.c:79
-msgctxt "board size"
-msgid "Medium"
-msgstr "Střední"
-
-#: ../glines/src/glines.c:80
-msgctxt "board size"
-msgid "Large"
-msgstr "Velké"
-
-#: ../glines/src/glines.c:170
-msgid "Could not load theme"
-msgstr "Nelze načíst motiv"
-
-#: ../glines/src/glines.c:196
-#, c-format
-msgid ""
-"Unable to locate file:\n"
-"%s\n"
-"\n"
-"The default theme will be loaded instead."
-msgstr ""
-"Nelze najít soubor:\n"
-"%s\n"
-"\n"
-"Bude místo něj načten výchozí motiv."
-
-#: ../glines/src/glines.c:203
-#, c-format
-msgid ""
-"Unable to locate file:\n"
-"%s\n"
-"\n"
-"Please check that Five or More is installed correctly."
-msgstr ""
-"Nelze najít soubor:\n"
-"%s\n"
-"\n"
-"Zkontrolujte prosím, že je hra Pět nebo víc správně nainstalována."
-
-#: ../glines/src/glines.c:408
-msgid "Match five objects of the same type in a row to score!"
-msgstr "Seřazením pěti objektů stejného typu do řady získáte body!"
-
-#: ../glines/src/glines.c:470
-msgid "GNOME Five or More"
-msgstr "GNOME Pět nebo víc"
-
-#: ../glines/src/glines.c:472 ../swell-foop/data/preferences.ui.h:2
-msgid "_Board size:"
-msgstr "Velikost hrací _desky:"
-
-#: ../glines/src/glines.c:489 ../swell-foop/src/game-view.vala:434
-#, c-format
-msgid "Game Over!"
-msgstr "Konec hry!"
-
-#. Can't move there!
-#: ../glines/src/glines.c:646
-msgid "You can't move there!"
-msgstr "Tam nemůžete táhnout!"
-
-#: ../glines/src/glines.c:1175
-msgid ""
-"GNOME port of the once-popular Color Lines game.\n"
-"\n"
-"Five or More is a part of GNOME Games."
-msgstr ""
-"Port kdysi oblíbené hry Barevné linie pro prostředí GNOME.\n"
-"\n"
-"Pět nebo víc je součástí her GNOME."
-
-#: ../glines/src/glines.c:1181 ../gnect/src/main.c:833
-#: ../gnibbles/src/main.c:173 ../gnobots2/src/menu.c:273
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:552
-#: ../gnome-sudoku/src/lib/main.py:669 ../gnomine/src/gnomine.vala:698
-#: ../gnotravex/src/gnotravex.vala:313 ../gnotski/src/gnotski.c:1457
-#: ../gtali/src/gyahtzee.c:615 ../iagno/src/iagno.vala:303
-#: ../lightsoff/src/lightsoff.vala:154
-#: ../quadrapassel/src/quadrapassel.vala:764
-#: ../swell-foop/src/swell-foop.vala:396
-msgid "translator-credits"
-msgstr ""
-"Jirka Lébl\n"
-"Michal Bukovjan <bukm@centrum.cz>\n"
-"Miloslav Trmač <mitr@volny.cz>\n"
-"Petr Tomeš <ptomes@gmail.com>\n"
-"Lukáš Novotný <lukasnov@cvs.gnome.org>\n"
-"Jakub Friedl <jfriedl@suse.cz>\n"
-"Jan Parkman <parkmaj@users.sourceforge.net>\n"
-"Petr Kovář <pknbe@volny.cz>\n"
-"Lucas Lommer <llommer@svn.gnome.org>\n"
-"Kamil Páral <ripper42@gmail.com>\n"
-"Marek Lisý <marek.lisy@centrum.cz>\n"
-"Petr Pulc <petrpulc@gmail.com>\n"
-"Marek Černocký <marek@manet.cz>"
-
-#: ../gnect/data/gnect.desktop.in.in.h:1
-msgid "Four-in-a-Row"
-msgstr "Čtyři-v-řadě"
-
-#: ../gnect/data/gnect.desktop.in.in.h:2
-msgid "Make lines of the same color to win"
-msgstr "Soutěžte ve tvorbě úseček ze stejné barvy"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:1
-msgid "Level of Player One"
-msgstr "Úroveň Hráče 1"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:2
-msgid ""
-"Zero is human; one through three correspond to the level of the computer "
-"player."
-msgstr "Nula znamená člověk; jedna až tři odpovídá úrovni počítačového hráče."
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:3
-msgid "Level of Player Two"
-msgstr "Úroveň Hráče 2"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:4
-msgid "Theme ID"
-msgstr "ID motivu"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:5
-msgid "A number specifying the preferred theme."
-msgstr "Číslo určující preferovaný motiv."
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:6
-msgid "Animate"
-msgstr "Animace"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:7
-msgid "Whether or not to use animation."
-msgstr "Zda se má použít animace."
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:8
-#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:1
-msgid "Sound"
-msgstr "Zvuk"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:9
-#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:2
-msgid "Whether or not to play event sounds."
-msgstr "Zda přehrávat nebo nepřehrávat zvuky k událostem."
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:10 ../gnect/src/prefs.c:316
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:25
-#: ../gnibbles/src/preferences.c:450
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:23
-#: ../quadrapassel/src/quadrapassel.vala:382
-msgid "Move left"
-msgstr "Pohyb doleva"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:11
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:24
-msgid "Key press to move left."
-msgstr "Klávesa pro přesun doleva."
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:12 ../gnect/src/prefs.c:317
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:27
-#: ../gnibbles/src/preferences.c:451
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:25
-#: ../quadrapassel/src/quadrapassel.vala:385
-msgid "Move right"
-msgstr "Pohyb doprava"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:13
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:26
-msgid "Key press to move right."
-msgstr "Klávesa pro přesun doprava."
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:14 ../gnect/src/prefs.c:318
-msgid "Drop marble"
-msgstr "Položení kamene"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:15
-msgid "Key press to drop a marble."
-msgstr "Klávesa pro položení kamene."
-
-#: ../gnect/src/games-controls.c:288 ../gnibbles/src/games-controls.c:288
-#: ../gnobots2/src/games-controls.c:288
-msgid "Unknown Command"
-msgstr "Neznámý příkaz"
-
-#: ../gnect/src/gfx.c:248
-#, c-format
-msgid ""
-"Unable to load image:\n"
-"%s"
-msgstr ""
-"Nelze načíst obrázek:\n"
-"%s"
-
-#: ../gnect/src/main.c:524
-msgid "It's a draw!"
-msgstr "Je to nerozhodně!"
-
-#: ../gnect/src/main.c:533 ../gnome-sudoku/src/lib/main.py:391
-msgid "You win!"
-msgstr "Vyhráli jste!"
-
-#: ../gnect/src/main.c:535 ../gnect/src/main.c:554
-msgid "It is your move."
-msgstr "Jste na tahu."
-
-#: ../gnect/src/main.c:538
-msgid "I win!"
-msgstr "Vyhrál počítač!"
-
-#: ../gnect/src/main.c:540 ../gnect/src/main.c:642
-msgid "Thinking..."
-msgstr "Promýšlí se…"
-
-#: ../gnect/src/main.c:551
-#, c-format
-msgid "%s wins!"
-msgstr "%s vyhrál!"
-
-#: ../gnect/src/main.c:558
-#, c-format
-msgid "Waiting for %s to move."
-msgstr "Na tahu je %s."
-
-#: ../gnect/src/main.c:659
-#, c-format
-msgid "Hint: Column %d"
-msgstr "Rada: Sloupec %d"
-
-#: ../gnect/src/main.c:687 ../gnect/src/main.c:691
-msgid "You:"
-msgstr "Vy:"
-
-#: ../gnect/src/main.c:688 ../gnect/src/main.c:690
-msgid "Me:"
-msgstr "Já:"
-
-#: ../gnect/src/main.c:780
-msgid "Drawn:"
-msgstr "Nerozhodně:"
-
-#: ../gnect/src/main.c:829
-msgid ""
-"\"Four in a Row\" for GNOME, with a computer player driven by Giuliano "
-"Bertoletti's Velena Engine.\n"
-"\n"
-"\"Four in a Row\" is a part of GNOME Games."
-msgstr ""
-"Hra „Čtyři v řadě“ pro GNOME s počítačovým hráčem řízeným systémem Velena od "
-"Giuliana Bertolettiho.\n"
-"\n"
-"Hra „Čtyři v řadě“ je součástí her GNOME."
-
-#: ../gnect/src/main.c:1184 ../gnibbles/src/main.c:605
-#: ../gnobots2/src/menu.c:65 ../gnotski/src/gnotski.c:397
-msgid "_View"
-msgstr "_Zobrazit"
-
-#: ../gnect/src/main.h:5
-msgid "Four-in-a-row"
-msgstr "Čtyři-v-řadě"
-
-#: ../gnect/src/prefs.c:207
-msgid "Four-in-a-Row Preferences"
-msgstr "Předvolby hry Čtyř-v-řadě"
-
-#: ../gnect/src/prefs.c:233
-msgid "Player One:"
-msgstr "Hráč 1:"
-
-#: ../gnect/src/prefs.c:244 ../gnect/src/prefs.c:272
-#: ../gtali/src/gyahtzee.c:969 ../gtali/src/yahtzee.c:69
-#: ../iagno/src/iagno.vala:493 ../iagno/src/iagno.vala:522
-msgid "Human"
-msgstr "Člověk"
-
-#: ../gnect/src/prefs.c:248 ../gnect/src/prefs.c:276
-#: ../iagno/src/iagno.vala:497 ../iagno/src/iagno.vala:526
-msgid "Level one"
-msgstr "První úroveň"
-
-#: ../gnect/src/prefs.c:252 ../gnect/src/prefs.c:280
-#: ../iagno/src/iagno.vala:501 ../iagno/src/iagno.vala:530
-msgid "Level two"
-msgstr "Druhá úroveň"
-
-#: ../gnect/src/prefs.c:256 ../gnect/src/prefs.c:284
-#: ../iagno/src/iagno.vala:505 ../iagno/src/iagno.vala:534
-msgid "Level three"
-msgstr "Třetí úroveň"
-
-#: ../gnect/src/prefs.c:262
-msgid "Player Two:"
-msgstr "Hráč 2:"
-
-#: ../gnect/src/prefs.c:290 ../gnome-mahjongg/src/gnome-mahjongg.vala:376
-#: ../swell-foop/data/preferences.ui.h:5
-msgid "_Theme:"
-msgstr "_Motiv:"
-
-#: ../gnect/src/prefs.c:303
-msgid "Enable _animation"
-msgstr "Povolit _animace"
-
-#: ../gnect/src/prefs.c:307 ../gnibbles/src/preferences.c:345
-#: ../iagno/src/iagno.vala:539
-msgid "E_nable sounds"
-msgstr "Povolit _zvuky"
-
-#. keyboard tab
-#: ../gnect/src/prefs.c:312
-msgid "Keyboard Controls"
-msgstr "Ovládání klávesnicí"
-
-#: ../gnect/src/theme.c:41
-msgid "Classic"
-msgstr "Klasické"
-
-#: ../gnect/src/theme.c:45 ../gnect/src/theme.c:66 ../gnect/src/theme.c:73
-#: ../gnect/src/theme.c:80 ../gnibbles/src/preferences.c:475
-msgid "Red"
-msgstr "Červená"
-
-#: ../gnect/src/theme.c:45 ../gnibbles/src/preferences.c:478
-msgid "Yellow"
-msgstr "Žlutá"
-
-#: ../gnect/src/theme.c:48
-msgid "High Contrast"
-msgstr "Vysoký kontrast"
-
-#: ../gnect/src/theme.c:52 ../gnect/src/theme.c:59
-msgid "Circle"
-msgstr "Kolečka"
-
-#: ../gnect/src/theme.c:52 ../gnect/src/theme.c:59
-msgid "Cross"
-msgstr "Křížky"
-
-#: ../gnect/src/theme.c:55
-msgid "High Contrast Inverse"
-msgstr "Inverzní vysoký kontrast"
-
-#: ../gnect/src/theme.c:62
-msgid "Cream Marbles"
-msgstr "Smetanové kuličky"
-
-#: ../gnect/src/theme.c:66 ../gnect/src/theme.c:73 ../gnect/src/theme.c:80
-#: ../gnect/src/theme.c:87 ../gnibbles/src/preferences.c:477
-msgid "Blue"
-msgstr "Modrá"
-
-#: ../gnect/src/theme.c:69
-msgid "Glass Marbles"
-msgstr "Skleněné kuličky"
-
-#: ../gnect/src/theme.c:76
-msgid "Nightfall"
-msgstr "Soumrak"
-
-#: ../gnect/src/theme.c:83
-msgid "Blocks"
-msgstr "Bloky"
-
-#: ../gnect/src/theme.c:87
-msgid "Orange"
-msgstr "Oranžová"
-
-#: ../gnibbles/data/gnibbles.desktop.in.in.h:1 ../gnibbles/src/main.c:161
-#: ../gnibbles/src/main.c:164 ../gnibbles/src/main.c:699
-#: ../gnibbles/src/main.c:770 ../gnibbles/src/main.c:901
-msgid "Nibbles"
-msgstr "Červíci"
-
-#: ../gnibbles/data/gnibbles.desktop.in.in.h:2
-msgid "Guide a worm around a maze"
-msgstr "Vést červa v bludišti"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:1
-msgid "Number of human players"
-msgstr "Počet lidských hráčů"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:2
-msgid "Number of human players."
-msgstr "Počet hráčů."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:3
-msgid "Number of AI players"
-msgstr "Počet počítačových hráčů"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:4
-msgid "Number of AI players."
-msgstr "Počet hráčů umělé inteligence."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:5
-msgid "Game speed"
-msgstr "Rychlost hry"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:6
-msgid "Game speed (1=fast, 4=slow)."
-msgstr "Rychlost hry (1=rychlá, 4=pomalá)."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:7
-msgid "Enable fake bonuses"
-msgstr "Povolit falešné bonusy"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:8
-msgid "Enable fake bonuses."
-msgstr "Povolit falešné bonusy."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:9
-msgid "Play levels in random order"
-msgstr "Hrát úrovně v náhodném pořadí"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:10
-msgid "Play levels in random order."
-msgstr "Hrát úrovně v náhodném pořadí."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:11
-msgid "Game level to start on"
-msgstr "Počáteční úroveň hry"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:12
-msgid "Game level to start on."
-msgstr "Počáteční úroveň hry."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:13
-msgid "Enable sounds"
-msgstr "Povolit zvuky"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:14
-msgid "Enable sounds."
-msgstr "Povolit zvuky."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:15
-msgid "Size of game tiles"
-msgstr "Velikost dlaždic hry"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:16
-msgid "Size of game tiles."
-msgstr "Velikost dlaždic hry."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:17
-msgid "Color to use for worm"
-msgstr "Barva, která se má použít pro červa"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:18
-msgid "Color to use for worm."
-msgstr "Barva, která se má použít pro červa."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:19
-msgid "Use relative movement"
-msgstr "Používat relativní pohyb"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:20
-msgid "Use relative movement (ie. left or right only)."
-msgstr "Použít relativní pohyb (tj. jen doleva nebo doprava)."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:21
-#: ../gnibbles/src/preferences.c:452
-msgid "Move up"
-msgstr "Posunout nahoru"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:22
-msgid "Key to use for motion up."
-msgstr "Klávesa, která se má používat pro pohyb nahoru."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:23
-#: ../gnibbles/src/preferences.c:453
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:27
-#: ../quadrapassel/src/quadrapassel.vala:388
-msgid "Move down"
-msgstr "Posunout dolů"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:24
-msgid "Key to use for motion down."
-msgstr "Klávesa, která se má používat pro pohyb dolů."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:26
-msgid "Key to use for motion left."
-msgstr "Klávesa, která se má používat pro pohyb doleva."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:28
-msgid "Key to use for motion right."
-msgstr "Klávesa, která se má používat pro pohyb doprava."
-
-#: ../gnibbles/src/board.c:245
-#, c-format
-msgid ""
-"Nibbles couldn't load level file:\n"
-"%s\n"
-"\n"
-"Please check your Nibbles installation"
-msgstr ""
-"Hra Červíci nemůže načíst soubor úrovně:\n"
-"%s\n"
-"\n"
-"Zkontrolujte prosím svou instalaci hry Červíci"
-
-#: ../gnibbles/src/board.c:264
-#, c-format
-msgid ""
-"Level file appears to be damaged:\n"
-"%s\n"
-"\n"
-"Please check your Nibbles installation"
-msgstr ""
-"Soubor úrovně se jeví jako poškozený:\n"
-"%s\n"
-"\n"
-"Zkontrolujte prosím svou instalaci hry Červíci"
-
-#: ../gnibbles/src/gnibbles.c:84
-#, c-format
-msgid ""
-"Nibbles couldn't find pixmap file:\n"
-"%s\n"
-"\n"
-"Please check your Nibbles installation"
-msgstr ""
-"Hra Červíci nemůže najít soubor pixelové mapy:\n"
-"%s\n"
-"\n"
-"Zkontrolujte prosím svou instalaci hry Červíci"
-
-#: ../gnibbles/src/gnibbles.c:355
-msgid "Nibbles Scores"
-msgstr "Skóre Červíků"
-
-#: ../gnibbles/src/gnibbles.c:358
-msgid "Speed:"
-msgstr "Rychlost:"
-
-#: ../gnibbles/src/gnibbles.c:363 ../gnobots2/src/game.c:178
-#: ../gnotski/src/gnotski.c:772 ../gtali/src/gyahtzee.c:193
-msgid "Congratulations!"
-msgstr "Blahopřejeme!"
-
-#: ../gnibbles/src/gnibbles.c:364 ../gnobots2/src/game.c:179
-#: ../gnotski/src/gnotski.c:773 ../gtali/src/gyahtzee.c:194
-msgid "Your score is the best!"
-msgstr "Vaše skóre je nejlepší!"
-
-#: ../gnibbles/src/gnibbles.c:365 ../gnobots2/src/game.c:180
-#: ../gnotski/src/gnotski.c:774 ../gtali/src/gyahtzee.c:195
-msgid "Your score has made the top ten."
-msgstr "Vaše skóre se dostalo mezi deset nejlepších."
-
-#: ../gnibbles/src/main.c:65
-msgctxt "game speed"
-msgid "Beginner"
-msgstr "Začátečník"
-
-#: ../gnibbles/src/main.c:66
-msgctxt "game speed"
-msgid "Slow"
-msgstr "Pomalá"
-
-#: ../gnibbles/src/main.c:67
-msgctxt "game speed"
-msgid "Medium"
-msgstr "Střední"
-
-#: ../gnibbles/src/main.c:68
-msgctxt "game speed"
-msgid "Fast"
-msgstr "Rychlá"
-
-#: ../gnibbles/src/main.c:69
-msgctxt "game speed"
-msgid "Beginner with Fakes"
-msgstr "Začátečník s červíkem"
-
-#: ../gnibbles/src/main.c:70
-msgctxt "game speed"
-msgid "Slow with Fakes"
-msgstr "Pomalý červík"
-
-#: ../gnibbles/src/main.c:71
-msgctxt "game speed"
-msgid "Medium with Fakes"
-msgstr "Rychlý červík"
-
-#: ../gnibbles/src/main.c:72
-msgctxt "game speed"
-msgid "Fast with Fakes"
-msgstr "Velmi rychlý červík"
-
-#: ../gnibbles/src/main.c:170
-msgid ""
-"A worm game for GNOME.\n"
-"\n"
-"Nibbles is a part of GNOME Games."
-msgstr ""
-"Hra s červem pro GNOME.\n"
-"\n"
-"Červíci jsou součástí her GNOME."
-
-#: ../gnibbles/src/main.c:491
-#, c-format
-msgid "Game over! The game has been won by %s!"
-msgstr "Hra skončila! Hru vyhrál %s!"
-
-#. Translators: This string will be included in the intro screen, so don't make sure it fits!
-#: ../gnibbles/src/main.c:772
-msgid "A worm game for GNOME."
-msgstr "Hra s červem pro GNOME."
-
-#: ../gnibbles/src/preferences.c:240
-msgid "Nibbles Preferences"
-msgstr "Předvolby Červíků"
-
-#. Speed
-#: ../gnibbles/src/preferences.c:269
-msgid "Speed"
-msgstr "Rychlost"
-
-#: ../gnibbles/src/preferences.c:274
-msgid "Nibbles newbie"
-msgstr "Nováček v Červících"
-
-#: ../gnibbles/src/preferences.c:284
-msgid "My second day"
-msgstr "Můj druhý den"
-
-#: ../gnibbles/src/preferences.c:294
-msgid "Not too shabby"
-msgstr "Ne moc špatný"
-
-#: ../gnibbles/src/preferences.c:304
-msgid "Finger-twitching good"
-msgstr "Tak dobrý, že má křeč v prstech"
-
-#: ../gnibbles/src/preferences.c:318 ../gnibbles/src/preferences.c:457
-msgid "Options"
-msgstr "Volby"
-
-#: ../gnibbles/src/preferences.c:325
-msgid "_Play levels in random order"
-msgstr "_Hrát úrovně v náhodném pořadí"
-
-#: ../gnibbles/src/preferences.c:335
-msgid "_Enable fake bonuses"
-msgstr "Povolit _falešné bonusy"
-
-#. starting level
-#: ../gnibbles/src/preferences.c:358 ../quadrapassel/src/quadrapassel.vala:338
-msgid "_Starting level:"
-msgstr "_Počáteční úroveň:"
-
-#: ../gnibbles/src/preferences.c:387
-msgid "Number of _human players:"
-msgstr "Počet lidských _hráčů:"
-
-#: ../gnibbles/src/preferences.c:408
-msgid "Number of _AI players:"
-msgstr "_Počet počítačových hráčů:"
-
-#: ../gnibbles/src/preferences.c:433
-msgid "Worm"
-msgstr "Červ"
-
-#: ../gnibbles/src/preferences.c:442
-msgid "Keyboard Options"
-msgstr "Volby klávesnice"
-
-#: ../gnibbles/src/preferences.c:462
-msgid "_Use relative movement"
-msgstr "Používat _relativní pohyb"
-
-#: ../gnibbles/src/preferences.c:469
-msgid "_Worm color:"
-msgstr "Barva č_erva:"
-
-#: ../gnibbles/src/preferences.c:476
-msgid "Green"
-msgstr "Zelená"
-
-#: ../gnibbles/src/preferences.c:479
-msgid "Cyan"
-msgstr "Modrozelená"
-
-#: ../gnibbles/src/preferences.c:480
-msgid "Purple"
-msgstr "Purpurová"
-
-#: ../gnibbles/src/preferences.c:481
-msgid "Gray"
-msgstr "Šedá"
-
-#: ../gnibbles/src/scoreboard.c:48
-#, c-format
-msgid "Worm %d:"
-msgstr "Červ %d:"
-
-#: ../gnobots2/data/gnobots2.desktop.in.in.h:1 ../gnobots2/src/gnobots.c:200
-#: ../gnobots2/src/gnobots.c:213 ../gnobots2/src/menu.c:261
-#: ../gnobots2/src/menu.c:264
-msgid "Robots"
-msgstr "Roboti"
-
-#: ../gnobots2/data/gnobots2.desktop.in.in.h:2
-msgid "Avoid the robots and make them crash into each other"
-msgstr "Unikat robotům a nechat je navzájem do sebe narážet"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:1
-msgid "Show toolbar"
-msgstr "Zobrazit lištu nástrojů"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:2
-msgid "Show toolbar. A standard option for toolbars."
-msgstr "Zobrazovat lištu nástrojů. Standardní volba pro lištu nástrojů."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:3
-msgid "Robot image theme"
-msgstr "Motiv obrázků robotů"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:4
-msgid "Robot image theme. The theme of the images to use for the robots."
-msgstr ""
-"Motiv obrázku robotů. Motiv obrázků, které se mají používat pro roboty."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:7
-msgid "Game type"
-msgstr "Typ hry"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:8
-msgid "Game type. The name of the game variation to use."
-msgstr "Typ hry. Název varianty hry, která se má používat."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:9
-msgid "Use safe moves"
-msgstr "Používat bezpečné pohyby"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:10
-msgid ""
-"Use safe moves. The safe moves option will help you to avoid being killed "
-"due to a mistake. If you try to make a move that would lead to your death "
-"when there is a safe move available you will not be allowed to proceed."
-msgstr ""
-"Používat bezpečné pohyby. Možnost bezpečných pohybů vám pomůže zabránit "
-"smrti omylem. Pokud se pokusíte provést tah, který by vedl k vaší smrti, a "
-"existuje bezpečný tah, nebude vám dovoleno pokračovat."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:11
-msgid "Use super safe moves"
-msgstr "Používat super-bezpečné pohyby"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:12
-msgid ""
-"Use super safe moves. The player is alerted when there is no safe move and "
-"the only option is to teleport out."
-msgstr ""
-"Používat super-bezpečné tahy. Hráč je upozorněn, když neexistuje bezpečný "
-"tah a jediná možnost je teleportovat se pryč."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:13
-msgid "Enable game sounds"
-msgstr "Povolit zvuky hry"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:14
-msgid "Enable game sounds. Play sounds for various events throughout the game."
-msgstr "Povolit zvuky hry. Přehrávat zvuky pro různé události ve hře."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:15
-#: ../gnobots2/src/properties.c:500
-msgid "Key to move NW"
-msgstr "Klávesa pro pohyb SZ"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:16
-msgid "The key used to move north-west."
-msgstr "Klávesa sloužící pro přesun severozápadně."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:17
-#: ../gnobots2/src/properties.c:501
-msgid "Key to move N"
-msgstr "Klávesa pro pohyb S"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:18
-msgid "The key used to move north."
-msgstr "Klávesa sloužící pro přesun severně."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:19
-#: ../gnobots2/src/properties.c:502
-msgid "Key to move NE"
-msgstr "Klávesa pro pohyb SV"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:20
-msgid "The key used to move north-east."
-msgstr "Klávesa sloužící pro přesun severovýchodně."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:21
-#: ../gnobots2/src/properties.c:503
-msgid "Key to move W"
-msgstr "Klávesa pro pohyb Z"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:22
-msgid "The key used to move west."
-msgstr "Klávesa sloužící pro přesun západně."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:23
-#: ../gnobots2/src/properties.c:508
-msgid "Key to hold"
-msgstr "Klávesa pro stání"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:24
-msgid "The key used to hold still."
-msgstr "Klávesa sloužící ke stání na místě."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:25
-#: ../gnobots2/src/properties.c:504
-msgid "Key to move E"
-msgstr "Klávesa pro pohyb V"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:26
-msgid "The key used to move east."
-msgstr "Klávesa sloužící pro přesun východně."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:27
-#: ../gnobots2/src/properties.c:505
-msgid "Key to move SW"
-msgstr "Klávesa pro pohyb JZ"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:28
-msgid "The key used to move south-west."
-msgstr "Klávesa sloužící pro přesun jihozápadně."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:29
-#: ../gnobots2/src/properties.c:506
-msgid "Key to move S"
-msgstr "Klávesa pro pohyb J"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:30
-msgid "The key used to move south."
-msgstr "Klávesa sloužící pro přesun jižně."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:31
-#: ../gnobots2/src/properties.c:507
-msgid "Key to move SE"
-msgstr "Klávesa pro pohyb JV"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:32
-msgid "The key used to move south-east."
-msgstr "Klávesa sloužící pro přesun jihovýchodně."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:33
-#: ../gnobots2/src/properties.c:509
-msgid "Key to teleport"
-msgstr "Klávesa pro teleportaci"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:34
-msgid "The key used to teleport safely (if possible)."
-msgstr "Klávesa sloužící k bezpečné teleportaci (pokud je to možné)."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:35
-#: ../gnobots2/src/properties.c:510
-msgid "Key to teleport randomly"
-msgstr "Klávesa pro náhodnou teleportaci"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:36
-msgid "The key used to teleport randomly."
-msgstr "Klávesa sloužící k náhodné teleportaci."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:37
-#: ../gnobots2/src/properties.c:511
-msgid "Key to wait"
-msgstr "Klávesa pro čekání"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:38
-msgid "The key used to wait."
-msgstr "Klávesa sloužící k čekání."
-
-#: ../gnobots2/src/game.c:149 ../gtali/src/gyahtzee.c:211
-msgid "Game over!"
-msgstr "Konec hry!"
-
-#: ../gnobots2/src/game.c:151 ../gnotski/src/gnotski.c:747
-msgid "Great work, but unfortunately your score did not make the top ten."
-msgstr ""
-"Dobrá práce, ale vaše skóre se bohužel nedostalo mezi deset nejlepších."
-
-#: ../gnobots2/src/game.c:166
-msgid "Robots Scores"
-msgstr "Skóre Robotů"
-
-#: ../gnobots2/src/game.c:169
-msgid "Map:"
-msgstr "Mapa:"
-
-#: ../gnobots2/src/game.c:408 ../gnobots2/src/game.c:424
-msgid ""
-"Congratulations, You Have Defeated the Robots!! \n"
-"But Can You do it Again?"
-msgstr ""
-"Blahopřejeme, porazili jste roboty!! \n"
-"Povede se vám to znovu?"
-
-#. This should never happen.
-#: ../gnobots2/src/game.c:1186
-msgid "There are no teleport locations left!!"
-msgstr "Nezbývá žádné umístění teleportu!!"
-
-#: ../gnobots2/src/game.c:1214
-msgid "There are no safe locations to teleport to!!"
-msgstr "Neexistují bezpečná umístění, kam se teleportovat!!"
-
-#: ../gnobots2/src/gnobots.c:79
-msgid "Set game scenario"
-msgstr "Nastavit scénář hry"
-
-#: ../gnobots2/src/gnobots.c:79 ../gnobots2/src/gnobots.c:81
-msgid "NAME"
-msgstr "NÁZEV"
-
-#: ../gnobots2/src/gnobots.c:81
-msgid "Set game configuration"
-msgstr "Nastavit hru"
-
-#: ../gnobots2/src/gnobots.c:83 ../gnobots2/src/gnobots.c:85
-msgid "Initial window position"
-msgstr "Počáteční poloha okna"
-
-#: ../gnobots2/src/gnobots.c:83 ../gnotski/src/gnotski.c:444
-msgid "X"
-msgstr "X"
-
-#: ../gnobots2/src/gnobots.c:85 ../gnotski/src/gnotski.c:446
-msgid "Y"
-msgstr "Y"
-
-#: ../gnobots2/src/gnobots.c:90
-msgid "Classic robots"
-msgstr "Klasičtí roboti"
-
-#: ../gnobots2/src/gnobots.c:91
-msgid "Classic robots with safe moves"
-msgstr "Klasičtí roboti s bezpečnými pohyby"
-
-#: ../gnobots2/src/gnobots.c:92
-msgid "Classic robots with super-safe moves"
-msgstr "Klasičtí roboti se super-bezpečnými pohyby"
-
-#: ../gnobots2/src/gnobots.c:93
-msgid "Nightmare"
-msgstr "Noční můra"
-
-#: ../gnobots2/src/gnobots.c:94
-msgid "Nightmare with safe moves"
-msgstr "Noční můra s bezpečnými pohyby"
-
-#: ../gnobots2/src/gnobots.c:95
-msgid "Nightmare with super-safe moves"
-msgstr "Noční můra se super-bezpečnými pohyby"
-
-#: ../gnobots2/src/gnobots.c:96
-msgid "Robots2"
-msgstr "Roboti2"
-
-#: ../gnobots2/src/gnobots.c:97
-msgid "Robots2 with safe moves"
-msgstr "Roboti2 s bezpečnými pohyby"
-
-#: ../gnobots2/src/gnobots.c:98
-msgid "Robots2 with super-safe moves"
-msgstr "Roboti2 se super-bezpečnými pohyby"
-
-#: ../gnobots2/src/gnobots.c:99
-msgid "Robots2 easy"
-msgstr "Roboti2 snadní"
-
-#: ../gnobots2/src/gnobots.c:100
-msgid "Robots2 easy with safe moves"
-msgstr "Roboti2 snadní s bezpečnými pohyby"
-
-#: ../gnobots2/src/gnobots.c:101
-msgid "Robots2 easy with super-safe moves"
-msgstr "Roboti2 snadní se super-bezpečnými pohyby"
-
-#: ../gnobots2/src/gnobots.c:102
-msgid "Robots with safe teleport"
-msgstr "Roboti s bezpečným teleportem"
-
-#: ../gnobots2/src/gnobots.c:103
-msgid "Robots with safe teleport with safe moves"
-msgstr "Roboti s bezpečným teleportem a bezpečnými pohyby"
-
-#: ../gnobots2/src/gnobots.c:104
-msgid "Robots with safe teleport with super-safe moves"
-msgstr "Roboti s bezpečným teleportem se super-bezpečnými pohyby"
-
-#: ../gnobots2/src/gnobots.c:280
-msgid "No game data could be found."
-msgstr "Nebyla nalezena data hry."
-
-#: ../gnobots2/src/gnobots.c:282
-msgid ""
-"The program Robots was unable to find any valid game configuration files. "
-"Please check that the program is installed correctly."
-msgstr ""
-"Program Roboti nemohl najít platné soubory nastavení hry. Zkontrolujte "
-"prosím, zda je program správně nainstalován."
-
-#: ../gnobots2/src/gnobots.c:298
-msgid "Some graphics files are missing or corrupt."
-msgstr "Některé soubory grafiky chybí nebo jsou poškozeny."
-
-#: ../gnobots2/src/gnobots.c:300
-msgid ""
-"The program Robots was unable to load all the necessary graphics files. "
-"Please check that the program is installed correctly."
-msgstr ""
-"Program Roboti nemohl načíst všechny potřebné soubory s grafikou. "
-"Zkontrolujte prosím, zda je program správně nainstalován."
-
-#: ../gnobots2/src/graphics.c:151
-#, c-format
-msgid "Could not find '%s' pixmap file\n"
-msgstr "Nelze nalézt soubor s bitmapou „%s“\n"
-
-#: ../gnobots2/src/menu.c:66 ../gnotravex/data/gnotravex.ui.h:4
-msgid "_Move"
-msgstr "_Posunout"
-
-#: ../gnobots2/src/menu.c:73
-msgid "_Teleport"
-msgstr "_Teleportovat"
-
-#: ../gnobots2/src/menu.c:74
-msgid "Teleport, safely if possible"
-msgstr "Teleportovat se, pokud možno bezpečně"
-
-#: ../gnobots2/src/menu.c:75
-msgid "_Random"
-msgstr "_Náhodně"
-
-#: ../gnobots2/src/menu.c:76
-msgid "Teleport randomly"
-msgstr "Náhodně se teleportovat"
-
-#: ../gnobots2/src/menu.c:77
-msgid "_Wait"
-msgstr "Č_ekat"
-
-#: ../gnobots2/src/menu.c:77
-msgid "Wait for the robots"
-msgstr "Čekat na roboty"
-
-#: ../gnobots2/src/menu.c:88
-msgid "_Toolbar"
-msgstr "_Lišta nástrojů"
-
-#: ../gnobots2/src/menu.c:88
-msgid "Show or hide the toolbar"
-msgstr "Zobrazit nebo skrýt lištu nástrojů"
-
-#: ../gnobots2/src/menu.c:269
-msgid ""
-"Based on classic BSD Robots.\n"
-"\n"
-"Robots is a part of GNOME Games."
-msgstr ""
-"Založeno na klasických Robotech z BSD.\n"
-"\n"
-"Roboti jsou součástí her GNOME."
-
-#: ../gnobots2/src/properties.c:391
-msgid "Robots Preferences"
-msgstr "Předvolby Robotů"
-
-#. --- Combo (yahtzee or kismet style ----
-#: ../gnobots2/src/properties.c:416 ../gtali/src/setup.c:356
-msgid "Game Type"
-msgstr "Typ hry"
-
-#: ../gnobots2/src/properties.c:425
-msgid "_Use safe moves"
-msgstr "Používat _bezpečné pohyby"
-
-#: ../gnobots2/src/properties.c:432
-msgid "Prevent accidental moves that result in getting killed."
-msgstr "Bránit náhodným tahům, které způsobí smrt."
-
-#: ../gnobots2/src/properties.c:434
-msgid "U_se super safe moves"
-msgstr "Používat _super-bezpečné pohyby"
-
-#: ../gnobots2/src/properties.c:441
-msgid "Prevents all moves that result in getting killed."
-msgstr "Bránit všem tahům, které způsobí smrt."
-
-#: ../gnobots2/src/properties.c:443 ../quadrapassel/src/quadrapassel.vala:351
-msgid "_Enable sounds"
-msgstr "_Povolit zvuky"
-
-#: ../gnobots2/src/properties.c:449
-msgid "Play sounds for events like winning a level and dying."
-msgstr "Přehrávat zvuky pro události jako výhra úrovně a smrt."
-
-#: ../gnobots2/src/properties.c:464
-msgid "_Image theme:"
-msgstr "Motiv _obrázků:"
-
-#: ../gnobots2/src/properties.c:476
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:430
-msgid "_Background color:"
-msgstr "Barva _pozadí:"
-
-#: ../gnobots2/src/properties.c:520
-msgid "_Restore Defaults"
-msgstr "_Obnovit výchozí"
-
-#: ../gnobots2/src/properties.c:525
-msgid "Keyboard"
-msgstr "Klávesnice"
-
-#: ../gnobots2/src/statusbar.c:76
-msgid "Safe Teleports:"
-msgstr "Bezpečné teleporty:"
-
-#: ../gnobots2/src/statusbar.c:85 ../quadrapassel/src/quadrapassel.vala:192
-msgid "Level:"
-msgstr "Úroveň:"
-
-#: ../gnobots2/src/statusbar.c:94
-msgid "Remaining:"
-msgstr "Zbývá:"
-
-#. ********************************************************************
-#: ../gnome-mahjongg/data/gnome-mahjongg.desktop.in.in.h:1
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:47
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:542
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:748
-msgid "Mahjongg"
-msgstr "Mahjongg"
-
-#: ../gnome-mahjongg/data/gnome-mahjongg.desktop.in.in.h:2
-msgid "Disassemble a pile of tiles by removing matching pairs"
-msgstr "Rozebrat hromadu kamenů odstraňováním odpovídajících si dvojic"
-
-#.
-#. * Translatable strings file generated by get_titles.pl.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
-#: ../gnome-mahjongg/data/translatable_game_names.h:6
-msgctxt "mahjongg map name"
-msgid "The Ziggurat"
-msgstr "Zikkurat"
-
-#: ../gnome-mahjongg/data/translatable_game_names.h:7
-msgctxt "mahjongg map name"
-msgid "Four Bridges"
-msgstr "Čtyři mosty"
-
-#: ../gnome-mahjongg/data/translatable_game_names.h:8
-msgctxt "mahjongg map name"
-msgid "Cloud"
-msgstr "Mrak"
-
-#: ../gnome-mahjongg/data/translatable_game_names.h:9
-msgctxt "mahjongg map name"
-msgid "Tic-Tac-Toe"
-msgstr "Piškvorky"
-
-#: ../gnome-mahjongg/data/translatable_game_names.h:10
-msgctxt "mahjongg map name"
-msgid "Red Dragon"
-msgstr "Červený drak"
-
-#: ../gnome-mahjongg/data/translatable_game_names.h:11
-msgctxt "mahjongg map name"
-msgid "Pyramid's Walls"
-msgstr "Stěny pyramidy"
-
-#: ../gnome-mahjongg/data/translatable_game_names.h:12
-msgctxt "mahjongg map name"
-msgid "Confounding Cross"
-msgstr "Matoucí kříž"
-
-#: ../gnome-mahjongg/data/translatable_game_names.h:13
-msgctxt "mahjongg map name"
-msgid "Difficult"
-msgstr "Obtížná"
-
-#: ../gnome-mahjongg/src/game-view.vala:127
-#: ../gnomine/src/minefield-view.vala:398
-#: ../gnotravex/src/puzzle-view.vala:326
-#: ../quadrapassel/src/game-view.vala:330
-msgid "Paused"
-msgstr "Pozastaveno"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:59
-msgid "Moves Left:"
-msgstr "Zbývá tahů:"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:77
-msgid "_Restart Game"
-msgstr "Hru _znovu od začátku"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:79
-#: ../gnomine/src/gnomine.vala:104 ../gtali/src/gyahtzee.c:754
-#: ../iagno/data/iagno.ui.h:3 ../quadrapassel/src/quadrapassel.vala:85
-#: ../swell-foop/src/swell-foop.vala:68
-msgid "_Preferences"
-msgstr "_Předvolby"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:83
-#: ../gnomine/src/gnomine.vala:108 ../gnotravex/data/gnotravex.ui.h:17
-#: ../gtali/src/gyahtzee.c:759 ../iagno/data/iagno.ui.h:5
-#: ../lightsoff/src/lightsoff.vala:33 ../quadrapassel/src/quadrapassel.vala:89
-#: ../swell-foop/src/swell-foop.vala:72
-msgid "_About"
-msgstr "O _aplikaci"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:86
-#: ../gnomine/src/gnomine.vala:111 ../gnotravex/data/gnotravex.ui.h:18
-#: ../gtali/src/gyahtzee.c:760 ../iagno/data/iagno.ui.h:6
-#: ../lightsoff/src/lightsoff.vala:36 ../quadrapassel/src/quadrapassel.vala:92
-#: ../swell-foop/src/swell-foop.vala:75
-msgid "_Quit"
-msgstr "U_končit"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:120
-#: ../gnomine/src/gnomine.vala:173
-msgid "Hint"
-msgstr "Rada"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:252
-msgid "Do you want to start a new game with this map?"
-msgstr "Chcete začít novou hru s touto mapou?"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:253
-msgid "If you continue playing the next game will use the new map."
-msgstr ""
-"Pokud chcete pokračovat ve hře, nová mapa bude použita až na další hru."
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:254
-msgid "_Continue playing"
-msgstr "_Pokračovat ve hře"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:255
-msgid "Use _new map"
-msgstr "Použít _novou mapu"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:315
-msgid "There are no more moves."
-msgstr "Nejsou možné žádné další tahy."
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:316
-msgid ""
-"Each puzzle has at least one solution.  You can undo your moves and try and "
-"find the solution for a time penalty, restart this game or start an new one."
-msgstr ""
-"Každé rozložení má nejméně jedno řešení. Můžete své tahy vrátit zpět a "
-"zkoušet a hledat řešení za cenu horšího času nebo začít tuto hru znovu a "
-"nebo začít úplně novou hru."
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:319
-msgid "_New game"
-msgstr "_Nová hra"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:359
-msgid "Mahjongg Preferences"
-msgstr "Předvolby hry Mahjongg"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:404
-msgid "_Layout:"
-msgstr "Roz_ložení:"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:506
-#: ../gnomine/src/gnomine.vala:654
-msgid "Main game:"
-msgstr "Hlavní hra:"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:515
-msgid "Maps:"
-msgstr "Mapy:"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:523
-msgid "Tiles:"
-msgstr "Kameny:"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:545
-msgid ""
-"A matching game played with Mahjongg tiles.\n"
-"\n"
-"Mahjongg is a part of GNOME Games."
-msgstr ""
-"Párovací hra hraná s kameny Mahjongg.\n"
-"\n"
-"Mahjongg je součástí her GNOME."
-
-#. Translators: This is the window title for Mahjongg which contains the map name, e.g. 'Mahjongg - Red Dragon'
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:641
-#, c-format
-msgid "Mahjongg - %s"
-msgstr "Mahjongg - %s"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:654
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:820
-#: ../gnomine/src/gnomine.vala:637 ../gnomine/src/gnomine.vala:942
-#: ../gnotravex/src/gnotravex.vala:224 ../gnotravex/src/gnotravex.vala:453
-#, c-format
-msgid "Time"
-msgstr "Čas"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:792
-#: ../gnomine/src/gnomine.vala:914 ../gnotravex/src/gnotravex.vala:425
-#: ../swell-foop/src/swell-foop.vala:499
-msgid "Size:"
-msgstr "Velikost:"
-
-#: ../gnome-sudoku/data/gnome-sudoku.desktop.in.in.h:1
-#: ../gnome-sudoku/src/lib/defaults.py:48
-msgid "Sudoku"
-msgstr "Sudoku"
-
-#: ../gnome-sudoku/data/gnome-sudoku.desktop.in.in.h:2
-msgid "Test your logic skills in this number grid puzzle"
-msgstr "Otestujte své logické schopnosti v tomto hlavolamu"
-
-#: ../gnome-sudoku/data/print_games.ui.h:1
-msgid "Print Sudokus"
-msgstr "Tisk sudoku"
-
-#: ../gnome-sudoku/data/print_games.ui.h:2
-msgid "Print Games"
-msgstr "Vytisknout hry"
-
-#: ../gnome-sudoku/data/print_games.ui.h:3
-msgid "_Number of sudoku to print: "
-msgstr "_Počet tisknutých sudoku: "
-
-#: ../gnome-sudoku/data/print_games.ui.h:4
-msgid "_Sudokus per page: "
-msgstr "Počet sudoku na _stránce: "
-
-#: ../gnome-sudoku/data/print_games.ui.h:5
-msgid "Levels of difficulty to print"
-msgstr "Úrovně obtížnosti k tisku"
-
-#: ../gnome-sudoku/data/print_games.ui.h:6
-msgid "_Easy"
-msgstr "J_ednoduché"
-
-#: ../gnome-sudoku/data/print_games.ui.h:8
-msgid "_Hard"
-msgstr "Těž_ké"
-
-#: ../gnome-sudoku/data/print_games.ui.h:9
-msgid "_Very Hard"
-msgstr "_Velmi těžké"
-
-#: ../gnome-sudoku/data/print_games.ui.h:10
-msgid "Details"
-msgstr "Podrobnosti"
-
-#: ../gnome-sudoku/data/print_games.ui.h:11
-msgid "_Mark games as played once you've printed them."
-msgstr "O_značit hry za odehrané, pokud jsou vytištěny."
-
-#: ../gnome-sudoku/data/print_games.ui.h:12
-msgid "_Include games you've already played in list of games to print"
-msgstr "Zahrnout do seznamu her k vytištění i hry, které jste j_iž hráli"
-
-#: ../gnome-sudoku/data/select_game.ui.h:2
-msgid "_Saved Games"
-msgstr "_Uložené hry"
-
-#: ../gnome-sudoku/data/tracker.ui.h:1
-msgid "Add a new tracker"
-msgstr "Přidat nové sledování"
-
-#: ../gnome-sudoku/data/tracker.ui.h:2
-msgid "Remove the selected tracker"
-msgstr "Odstranit vybrané sledování"
-
-#: ../gnome-sudoku/data/tracker.ui.h:3
-msgid "Make the tracked changes permanent"
-msgstr "Udělat sledované změny trvalými"
-
-#: ../gnome-sudoku/data/tracker.ui.h:4 ../gnome-sudoku/src/lib/main.py:750
-msgid "H_ide"
-msgstr "_Skrýt"
-
-#: ../gnome-sudoku/data/tracker.ui.h:5
-msgid "Hide the tracked values"
-msgstr "Skrýt sledované hodnoty"
-
-#: ../gnome-sudoku/src/lib/defaults.py:47
-msgid "GNOME Sudoku"
-msgstr "GNOME Sudoku"
-
-#: ../gnome-sudoku/src/lib/defaults.py:50
-msgid ""
-"GNOME Sudoku is a simple Sudoku generator and player. Sudoku is a Japanese "
-"logic puzzle.\n"
-"\n"
-"GNOME Sudoku is a part of GNOME Games."
-msgstr ""
-"GNOME Sudoku je jednoduchý program pro generování a hraní sudoku. Sudoku je "
-"japonská logická hra.\n"
-"\n"
-"GNOME Sudoku je součástí her GNOME."
-
-#: ../gnome-sudoku/src/lib/game_selector.py:121
-#: ../gnome-sudoku/src/lib/main.py:627 ../gnome-sudoku/src/lib/printing.py:185
-msgid "Easy"
-msgstr "Jednoduché"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:122
-#: ../gnome-sudoku/src/lib/main.py:628 ../gnome-sudoku/src/lib/printing.py:186
-msgid "Medium"
-msgstr "Střední"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:123
-#: ../gnome-sudoku/src/lib/main.py:629 ../gnome-sudoku/src/lib/printing.py:187
-msgid "Hard"
-msgstr "Těžké"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:124
-#: ../gnome-sudoku/src/lib/printing.py:188
-msgid "Very hard"
-msgstr "Velmi těžké"
-
-#. Then we're today
-#. within the minute
-#: ../gnome-sudoku/src/lib/game_selector.py:160
-#, python-format
-msgid "Last played %(n)s second ago"
-msgid_plural "Last played %(n)s seconds ago"
-msgstr[0] "Naposledy hráno před %(n)s sekundou"
-msgstr[1] "Naposledy hráno před %(n)s sekundami"
-msgstr[2] "Naposledy hráno před %(n)s sekundami"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:164
-#, python-format
-msgid "Last played %(n)s minute ago"
-msgid_plural "Last played %(n)s minutes ago"
-msgstr[0] "Naposledy hráno před %(n)s minutou"
-msgstr[1] "Naposledy hráno před %(n)s minutami"
-msgstr[2] "Naposledy hráno před %(n)s minutami"
-
-#. Translators, see strftime manual in order to translate %? format strings
-#: ../gnome-sudoku/src/lib/game_selector.py:168
-msgid "Last played at %I:%M %p"
-msgstr "Naposledy hráno v %H:%M"
-
-#. Translators, see strftime manual in order to translate %? format strings
-#: ../gnome-sudoku/src/lib/game_selector.py:171
-msgid "Last played yesterday at %I:%M %p"
-msgstr "Naposledy hráno včera v %H:%M"
-
-#. Translators, see strftime manual in order to translate %? format strings
-#: ../gnome-sudoku/src/lib/game_selector.py:174
-msgid "Last played on %A at %I:%M %p"
-msgstr "Naposledy hráno: %A v %H:%M"
-
-#. Translators, see strftime manual in order to translate %? format strings
-#: ../gnome-sudoku/src/lib/game_selector.py:177
-msgid "Last played on %B %e %Y"
-msgstr "Naposledy hráno: %e. %B %Y"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:190
-msgid "Easy puzzle"
-msgstr "Jednoduchý hlavolam"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:191
-msgid "Medium puzzle"
-msgstr "Středně težký hlavolam"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:192
-msgid "Hard puzzle"
-msgstr "Těžký hlavolam"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:193
-msgid "Very hard puzzle"
-msgstr "Velmi těžký hlavolam"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:199
-#, python-format
-msgid "Played for %d hour"
-msgid_plural "Played for %d hours"
-msgstr[0] "Odehrána %d hodina"
-msgstr[1] "Odehrány %d hodiny"
-msgstr[2] "Odehráno %d hodin"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:202
-#, python-format
-msgid "Played for %d minute"
-msgid_plural "Played for %d minutes"
-msgstr[0] "Odehrána %d minuta"
-msgstr[1] "Odehrány %d minuty"
-msgstr[2] "Odehráno %d minut"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:205
-#, python-format
-msgid "Played for %d second"
-msgid_plural "Played for %d seconds"
-msgstr[0] "Odehrána %d sekunda"
-msgstr[1] "Odehrány %d sekundy"
-msgstr[2] "Odehráno %d sekund"
-
-#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:162
-msgid "Do you really want to do this?"
-msgstr "Jste si jisti?"
-
-#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:196
-msgid "Don't ask me this again."
-msgstr "Znovu se již neptat."
-
-#: ../gnome-sudoku/src/lib/main.py:196
-msgid "New game"
-msgstr "Nová hra"
-
-#: ../gnome-sudoku/src/lib/main.py:199 ../iagno/data/iagno.ui.h:2
-msgid "_Undo"
-msgstr "Tah _zpět"
-
-#: ../gnome-sudoku/src/lib/main.py:200
-msgid "Undo last action"
-msgstr "Vrátit poslední tah"
-
-#: ../gnome-sudoku/src/lib/main.py:201
-msgid "_Redo"
-msgstr "Z_novu"
-
-#: ../gnome-sudoku/src/lib/main.py:202
-msgid "Redo last action"
-msgstr "Provést znovu poslední vrácený tah"
-
-#: ../gnome-sudoku/src/lib/main.py:203
-msgid "Puzzle _Statistics..."
-msgstr "_Statistiky hlavolamu…"
-
-#: ../gnome-sudoku/src/lib/main.py:205
-msgid "_Print..."
-msgstr "_Tisk…"
-
-#: ../gnome-sudoku/src/lib/main.py:206
-msgid "Print _Multiple Sudokus..."
-msgstr "Vytisknout ví_ce Sudoku…"
-
-#: ../gnome-sudoku/src/lib/main.py:211
-msgid "_Tools"
-msgstr "_Nástroje"
-
-#: ../gnome-sudoku/src/lib/main.py:213
-msgid "Show a square that is easy to fill."
-msgstr "Ukázat políčka, které jsou snadná na vyplnění."
-
-#: ../gnome-sudoku/src/lib/main.py:214
-msgid "Clear _Top Notes"
-msgstr "Vymazat _horní poznámky"
-
-#: ../gnome-sudoku/src/lib/main.py:216
-msgid "Clear _Bottom Notes"
-msgstr "Vymazat _dolní poznámky"
-
-#: ../gnome-sudoku/src/lib/main.py:225
-msgid "Show _Possible Numbers"
-msgstr "Zobrazovat _možná čísla"
-
-#: ../gnome-sudoku/src/lib/main.py:227
-msgid "Always show possible numbers in a square"
-msgstr "Vždy zobrazovat možná čísla v políčku"
-
-#: ../gnome-sudoku/src/lib/main.py:231
-msgid "Warn About _Unfillable Squares"
-msgstr "Va_rovat před nevyplnitelnými poli"
-
-#: ../gnome-sudoku/src/lib/main.py:233
-msgid "Warn about squares made unfillable by a move"
-msgstr "Varovat před poli, která se tahem stanou nevyplnitelná"
-
-#: ../gnome-sudoku/src/lib/main.py:235
-msgid "_Track Additions"
-msgstr "Sledova_t vyplněná čísla"
-
-#: ../gnome-sudoku/src/lib/main.py:237
-msgid "Mark new additions in a separate color so you can keep track of them."
-msgstr "Označit nově vyplněná čísla jinou barvou, takže je můžete sledovat."
-
-#: ../gnome-sudoku/src/lib/main.py:240
-msgid "_Highlighter"
-msgstr "Zvý_razňovat"
-
-#: ../gnome-sudoku/src/lib/main.py:241
-msgid "Highlight the current row, column and box"
-msgstr "Zvýrazňovat aktuální řadu, sloupec a čtverec"
-
-#: ../gnome-sudoku/src/lib/main.py:366
-#, python-format
-msgid "You completed the puzzle in %d second"
-msgid_plural "You completed the puzzle in %d seconds"
-msgstr[0] "Dokončili jste hlavolam za %d sekundu."
-msgstr[1] "Dokončili jste hlavolam za %d sekundy."
-msgstr[2] "Dokončili jste hlavolam za %d sekund."
-
-#: ../gnome-sudoku/src/lib/main.py:371 ../gnome-sudoku/src/lib/main.py:379
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d minutu"
-msgstr[1] "%d minuty"
-msgstr[2] "%d minut"
-
-#: ../gnome-sudoku/src/lib/main.py:372 ../gnome-sudoku/src/lib/main.py:380
-#, python-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d sekundu"
-msgstr[1] "%d sekundy"
-msgstr[2] "%d sekund"
-
-#: ../gnome-sudoku/src/lib/main.py:373
-#, python-format
-msgid "You completed the puzzle in %(minute)s and %(second)s"
-msgstr "Dokončili jste hlavolam za %(minute)s a %(second)s"
-
-#: ../gnome-sudoku/src/lib/main.py:378
-#, python-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d hodinu"
-msgstr[1] "%d hodiny"
-msgstr[2] "%d hodin"
-
-#: ../gnome-sudoku/src/lib/main.py:381
-#, python-format
-msgid "You completed the puzzle in %(hour)s, %(minute)s and %(second)s"
-msgstr "Dokončili jste hlavolam za %(hour)s, %(minute)s a %(second)s."
-
-#: ../gnome-sudoku/src/lib/main.py:383
-#, python-format
-msgid "You got %(n)s hint."
-msgid_plural "You got %(n)s hints."
-msgstr[0] "Máte %(n)s nápovědu."
-msgstr[1] "Máte %(n)s nápovědy."
-msgstr[2] "Máte %(n)s nápověd."
-
-#: ../gnome-sudoku/src/lib/main.py:386
-#, python-format
-msgid "You had %(n)s impossibility pointed out."
-msgid_plural "You had %(n)s impossibilities pointed out."
-msgstr[0] "Byli jste upozorněni na %(n)s nemožné řešení."
-msgstr[1] "Byli jste upozorněni na %(n)s nemožná řešení."
-msgstr[2] "Byli jste upozorněni na %(n)s nemožných řešení."
-
-#: ../gnome-sudoku/src/lib/main.py:401
-msgid "Save this game before starting new one?"
-msgstr "Uložit tuto hru před spuštěním nové?"
-
-#: ../gnome-sudoku/src/lib/main.py:421
-msgid "Save game before closing?"
-msgstr "Uložit hru před ukončením?"
-
-#: ../gnome-sudoku/src/lib/main.py:619
-msgid "Puzzle Information"
-msgstr "Informace o hlavolamu"
-
-#: ../gnome-sudoku/src/lib/main.py:620
-msgid "There is no current puzzle."
-msgstr "Žádný aktuální hlavolam."
-
-#: ../gnome-sudoku/src/lib/main.py:625
-msgid "Calculated difficulty: "
-msgstr "Vypočítaná obtížnost: "
-
-#: ../gnome-sudoku/src/lib/main.py:630
-msgid "Very Hard"
-msgstr "Velmi těžké"
-
-#: ../gnome-sudoku/src/lib/main.py:635
-msgid "Number of moves instantly fillable by elimination: "
-msgstr "Počet tahů okamžitě vyřešitelných díky eliminaci: "
-
-#: ../gnome-sudoku/src/lib/main.py:638
-msgid "Number of moves instantly fillable by filling: "
-msgstr "Počet tahů okamžitě vyřešitelných díky vyplňování: "
-
-#: ../gnome-sudoku/src/lib/main.py:641
-msgid "Amount of trial-and-error required to solve: "
-msgstr "Počet vyžadovaných špatných pokusů k vyřešení: "
-
-#: ../gnome-sudoku/src/lib/main.py:644 ../gnome-sudoku/src/lib/main.py:645
-msgid "Puzzle Statistics"
-msgstr "Statistiky hlavolamu"
-
-#. FIXME: This should create a pop-up dialog
-#: ../gnome-sudoku/src/lib/main.py:679
-#, python-format
-msgid "Unable to display help: %s"
-msgstr "Nelze zobrazit nápovědu: %s"
-
-#: ../gnome-sudoku/src/lib/main.py:735
-msgid "Untracked"
-msgstr "Nesledováno"
-
-#: ../gnome-sudoku/src/lib/main.py:744
-msgid "_Remove"
-msgstr "Odst_ranit"
-
-#: ../gnome-sudoku/src/lib/main.py:745
-msgid "Delete selected tracker."
-msgstr "Vymazat vybrané sledování."
-
-#: ../gnome-sudoku/src/lib/main.py:751
-msgid "Hide current tracker entries."
-msgstr "Skrýt položky současného sledování."
-
-#: ../gnome-sudoku/src/lib/main.py:756
-msgid "A_pply"
-msgstr "_Použít"
-
-#: ../gnome-sudoku/src/lib/main.py:757
-msgid "Apply all tracked values and remove the tracker."
-msgstr "Použít všechny sledované hodnoty a odstranit sledování."
-
-#: ../gnome-sudoku/src/lib/main.py:795
-#, python-format
-msgid "Tracker %s"
-msgstr "Sledování %s"
-
-#: ../gnome-sudoku/src/lib/number_box.py:68
-msgid "_Clear"
-msgstr "Vyči_stit"
-
-#: ../gnome-sudoku/src/lib/saver.py:155
-msgid "No Space"
-msgstr "Žádný prostor"
-
-#: ../gnome-sudoku/src/lib/saver.py:156
-msgid "No space left on disk"
-msgstr "Nedostatek místa na disku"
-
-#: ../gnome-sudoku/src/lib/saver.py:158 ../gnome-sudoku/src/lib/saver.py:165
-#, python-format
-msgid "Unable to create data folder %(path)s."
-msgstr "Nelze vytvořit datovou složku %(path)s."
-
-#: ../gnome-sudoku/src/lib/saver.py:159
-msgid "There is no disk space left!"
-msgstr "Nedostatek místa na disku!"
-
-#: ../gnome-sudoku/src/lib/saver.py:166 ../gnome-sudoku/src/lib/saver.py:191
-#: ../gnome-sudoku/src/lib/saver.py:215 ../gnome-sudoku/src/lib/saver.py:233
-#, python-format
-msgid "Error %(errno)s: %(error)s"
-msgstr "Chyba %(errno)s: %(error)s"
-
-#: ../gnome-sudoku/src/lib/saver.py:186 ../gnome-sudoku/src/lib/saver.py:187
-msgid "Unable to save game."
-msgstr "Nelze uložit hru."
-
-#: ../gnome-sudoku/src/lib/saver.py:189 ../gnome-sudoku/src/lib/saver.py:214
-#: ../gnome-sudoku/src/lib/saver.py:232
-#, python-format
-msgid "Unable to save file %(filename)s."
-msgstr "Nelze uložit soubor %(filename)s."
-
-#: ../gnome-sudoku/src/lib/saver.py:211 ../gnome-sudoku/src/lib/saver.py:212
-msgid "Unable to mark game as finished."
-msgstr "Nelze označit hru za dokončenou."
-
-#: ../gnome-sudoku/src/lib/saver.py:229 ../gnome-sudoku/src/lib/saver.py:230
-msgid "Sudoku unable to mark game as finished."
-msgstr "Sudoku nemůže označit hru za vyřešenou."
-
-#: ../gnomine/data/gnomine.desktop.in.in.h:1 ../gnomine/src/gnomine.vala:79
-#: ../gnomine/src/gnomine.vala:123 ../gnomine/src/gnomine.vala:688
-msgid "Mines"
-msgstr "Miny"
-
-#: ../gnomine/data/gnomine.desktop.in.in.h:2
-msgid "Clear hidden mines from a minefield"
-msgstr "Vyčistit skryté miny z minového pole"
-
-#: ../gnomine/data/gnomine.desktop.in.in.h:3
-msgid "minesweeper;"
-msgstr "minesweeper;"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:1
-msgid "Use the unknown flag"
-msgstr "Používat vlaječku neznámého"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:2
-msgid "Set to true to be able to mark squares as unknown."
-msgstr "Nastavte na zapnuto, abyste mohli označovat pole jako neznámé."
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:3
-msgid "Warning about too many flags"
-msgstr "Varování, když máte příliš mnoho vlaječek"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:4
-msgid "Set to true to enable warning icons when too many flags are placed."
-msgstr ""
-"Nastavte na zapnuto k povolení zobrazení varování, pokud je umístěno příliš "
-"mnoho vlaječek."
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:5
-msgid "Enable automatic placing of flags"
-msgstr "Povolit automatické umísťování vlaječek"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:6
-msgid ""
-"Set to true to have gnomine automatically flag squares as mined when enough "
-"squares are revealed"
-msgstr ""
-"Nastavte na zapnuto, chcete-li, aby program automaticky umisťoval vlajky na "
-"políčka s minami, je-li dostatek okolních políček odkryto"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:7
-msgid "Number of columns in a custom game"
-msgstr "Počet sloupců ve vlastní hře"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:8
-msgid "Number of rows in a custom game"
-msgstr "Počet řádek ve vlastní hře"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:9
-msgid "The number of mines in a custom game"
-msgstr "Počet min ve vlastní hře"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:10
-#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:3
-msgid "Board size"
-msgstr "Velikost desky"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:11
-msgid "Size of the board (0-2 = small-large, 3=custom)"
-msgstr "Velikost desky (0-2 = malá-velká, 3=vlastní)"
-
-#: ../gnomine/src/gnomine.vala:99
-msgid "_Replay Size"
-msgstr "H_rát znovu tuto velikost"
-
-#. New game screen
-#: ../gnomine/src/gnomine.vala:222
-msgid "Field Size"
-msgstr "Velikost pole"
-
-#: ../gnomine/src/gnomine.vala:277
-msgid "H_orizontal:"
-msgstr "V_odorovně:"
-
-#: ../gnomine/src/gnomine.vala:287
-msgid "_Vertical:"
-msgstr "_Svisle:"
-
-#: ../gnomine/src/gnomine.vala:297
-msgid "_Number of mines:"
-msgstr "_Počet min:"
-
-#: ../gnomine/src/gnomine.vala:316
-msgid "_Play Game"
-msgstr "_Hrát hru"
-
-#: ../gnomine/src/gnomine.vala:366
-#, c-format
-msgid "<b>%d</b> mine"
-msgid_plural "<b>%d</b> mines"
-msgstr[0] "<b>%d</b> mina"
-msgstr[1] "<b>%d</b> miny"
-msgstr[2] "<b>%d</b> min"
-
-#: ../gnomine/src/gnomine.vala:430
-#, c-format
-msgid "Flags: %u/%u"
-msgstr "Vlaječky: %u/%u"
-
-#: ../gnomine/src/gnomine.vala:471
-msgid "Do you want to start a new game?"
-msgstr "Chcete začít novou hru?"
-
-#: ../gnomine/src/gnomine.vala:472
-msgid "If you start a new game, your current progress will be lost."
-msgstr "Pokud začnete novou hru, bude váš postup v té stávající ztracen."
-
-#: ../gnomine/src/gnomine.vala:473
-msgid "Keep Current Game"
-msgstr "Zachovat stávající hru"
-
-#: ../gnomine/src/gnomine.vala:474
-msgid "Start New Game"
-msgstr "Začít novou hru"
-
-#: ../gnomine/src/gnomine.vala:662
-msgid "Resizing and SVG support:"
-msgstr "Změna velikosti a podpora SVG:"
-
-#: ../gnomine/src/gnomine.vala:670
-msgid "Faces:"
-msgstr "Tváře:"
-
-#: ../gnomine/src/gnomine.vala:674
-msgid "Graphics:"
-msgstr "Grafika:"
-
-#: ../gnomine/src/gnomine.vala:691
-msgid ""
-"The popular logic puzzle minesweeper. Clear mines from a board using hints "
-"from squares you have already uncovered.\n"
-"\n"
-"Mines is a part of GNOME Games."
-msgstr ""
-"Oblíbená logická hra hledač min. Odstraňte miny z hrací desky pomocí "
-"informací na již odkrytých polích.\n"
-"\n"
-"Miny jsou součástí her GNOME."
-
-#: ../gnomine/src/gnomine.vala:765
-msgid "Mines Preferences"
-msgstr "Předvolby Min"
-
-#: ../gnomine/src/gnomine.vala:783
-msgid "_Use \"I'm not sure\" flags"
-msgstr "Používat vlaječky „_Nejsem si jist(á)“"
-
-#: ../gnomine/src/gnomine.vala:789
-msgid "_Warn if too many flags have been placed"
-msgstr "Va_rovat, když máte příliš mnoho vlaječek"
-
-#: ../gnotravex/data/gnotravex.desktop.in.in.h:1
-#: ../gnotravex/src/gnotravex.vala:48 ../gnotravex/src/gnotravex.vala:75
-#: ../gnotravex/src/gnotravex.vala:303
-msgid "Tetravex"
-msgstr "Tetravex"
-
-#: ../gnotravex/data/gnotravex.desktop.in.in.h:2
-msgid "Complete the puzzle by matching numbered tiles"
-msgstr "Vyřešte skládačku spojováním očíslovaných dlaždic"
-
-#: ../gnotravex/data/gnotravex.ui.h:3
-msgid "_Solve"
-msgstr "_Vyřešit"
-
-#: ../gnotravex/data/gnotravex.ui.h:5
-msgid "_Up"
-msgstr "Na_horu"
-
-#: ../gnotravex/data/gnotravex.ui.h:6
-msgid "_Left"
-msgstr "Do_leva"
-
-#: ../gnotravex/data/gnotravex.ui.h:7
-msgid "_Right"
-msgstr "Do_prava"
-
-#: ../gnotravex/data/gnotravex.ui.h:8
-msgid "_Down"
-msgstr "_Dolů"
-
-#: ../gnotravex/data/gnotravex.ui.h:10
-msgid "_Size"
-msgstr "_Velikost"
-
-#: ../gnotravex/data/gnotravex.ui.h:11
-msgid "_2x2"
-msgstr "_2×2"
-
-#: ../gnotravex/data/gnotravex.ui.h:12
-msgid "_3x3"
-msgstr "_3×3"
-
-#: ../gnotravex/data/gnotravex.ui.h:13
-msgid "_4x4"
-msgstr "_4×4"
-
-#: ../gnotravex/data/gnotravex.ui.h:14
-msgid "_5x5"
-msgstr "_5×5"
-
-#: ../gnotravex/data/gnotravex.ui.h:15
-msgid "_6x6"
-msgstr "_6×6"
-
-#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:1
-msgid "The size of the playing grid"
-msgstr "Velikost hracího pole"
-
-#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:2
-msgid "The value of this key is used to decide the size of the playing grid."
-msgstr "Hodnota tohoto klíče se používá pro určení velikosti hracího pole."
-
-#: ../gnotravex/src/gnotravex.vala:104
-msgid "Solve"
-msgstr "Vyřešit"
-
-#: ../gnotravex/src/gnotravex.vala:306
-msgid ""
-"GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
-"the same numbers are touching each other.\n"
-"\n"
-"Tetravex is a part of GNOME Games."
-msgstr ""
-"GNOME Tetravex je jednoduchý hlavolam, ve kterém je nutno díly uspořádat "
-"tak, aby se dotýkaly stejnými čísly.\n"
-"\n"
-"Tetravex je součást Her pro GNOME."
-
-#: ../gnotski/data/gnotski.desktop.in.in.h:1 ../gnotski/src/gnotski.c:41
-msgid "Klotski"
-msgstr "Klotski"
-
-#: ../gnotski/data/gnotski.desktop.in.in.h:2
-msgid "Slide blocks to solve the puzzle"
-msgstr "Vyřešte hlavolam posouváním kamenů"
-
-#: ../gnotski/data/org.gnome.gnotski.gschema.xml.in.h:1
-msgid "The puzzle in play"
-msgstr "Hraný hlavolam"
-
-#: ../gnotski/data/org.gnome.gnotski.gschema.xml.in.h:2
-msgid "The number of the puzzle being played."
-msgstr "Číslo hraného hlavolamu."
-
-#: ../gnotski/src/gnotski.c:92
-msgid "Only 18 steps"
-msgstr "Jen 18 kroků"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:93 ../gnotski/src/gnotski.c:176
-msgid "Daisy"
-msgstr "Sedmikráska"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:94 ../gnotski/src/gnotski.c:182
-msgid "Violet"
-msgstr "Fialka"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:95 ../gnotski/src/gnotski.c:188
-msgid "Poppy"
-msgstr "Vlčí mák"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:96 ../gnotski/src/gnotski.c:194
-msgid "Pansy"
-msgstr "Maceška"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:97 ../gnotski/src/gnotski.c:200
-msgid "Snowdrop"
-msgstr "Sněhová vločka"
-
-#. puzzle name - sometimes called "Le'Ane Rouge"
-#: ../gnotski/src/gnotski.c:98 ../gnotski/src/gnotski.c:206
-msgid "Red Donkey"
-msgstr "Červený osel"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:99 ../gnotski/src/gnotski.c:212
-msgid "Trail"
-msgstr "Stopa"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:100 ../gnotski/src/gnotski.c:218
-msgid "Ambush"
-msgstr "Léčka"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:101 ../gnotski/src/gnotski.c:224
-msgid "Agatka"
-msgstr "Agatka"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:102 ../gnotski/src/gnotski.c:229
-msgid "Success"
-msgstr "Úspěch"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:103 ../gnotski/src/gnotski.c:234
-msgid "Bone"
-msgstr "Kost"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:104 ../gnotski/src/gnotski.c:240
-msgid "Fortune"
-msgstr "Štěstí"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:105 ../gnotski/src/gnotski.c:248
-msgid "Fool"
-msgstr "Hlupák"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:106 ../gnotski/src/gnotski.c:254
-msgid "Solomon"
-msgstr "Šalomoun"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:107 ../gnotski/src/gnotski.c:261
-msgid "Cleopatra"
-msgstr "Kleopatra"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:108 ../gnotski/src/gnotski.c:266
-msgid "Shark"
-msgstr "Žralok"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:109 ../gnotski/src/gnotski.c:274
-msgid "Rome"
-msgstr "Řím"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:110 ../gnotski/src/gnotski.c:281
-msgid "Pennant Puzzle"
-msgstr "Vlaječkový hlavolam"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:111 ../gnotski/src/gnotski.c:287
-msgid "Ithaca"
-msgstr "Ithaca"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:112 ../gnotski/src/gnotski.c:308
-msgid "Pelopones"
-msgstr "Peloponés"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:113 ../gnotski/src/gnotski.c:315
-msgid "Transeuropa"
-msgstr "Transeuropa"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:114 ../gnotski/src/gnotski.c:324
-msgid "Lodzianka"
-msgstr "Lodzianka"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:115 ../gnotski/src/gnotski.c:330
-msgid "Polonaise"
-msgstr "Polonéza"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:116 ../gnotski/src/gnotski.c:335
-msgid "Baltic Sea"
-msgstr "Baltské moře"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:117 ../gnotski/src/gnotski.c:340
-msgid "American Pie"
-msgstr "Americký koláč"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:118 ../gnotski/src/gnotski.c:352
-msgid "Traffic Jam"
-msgstr "Dopravní zácpa"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:119 ../gnotski/src/gnotski.c:359
-msgid "Sunshine"
-msgstr "Sluneční svit"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:170
-msgid "Only 18 Steps"
-msgstr "Jen 18 kroků"
-
-#. set of puzzles
-#: ../gnotski/src/gnotski.c:400
-msgid "HuaRong Trail"
-msgstr "Stezka HuaRong"
-
-#. set of puzzles
-#: ../gnotski/src/gnotski.c:402
-msgid "Challenge Pack"
-msgstr "Sbírka výzev"
-
-#. set of puzzles
-#: ../gnotski/src/gnotski.c:404
-msgid "Skill Pack"
-msgstr "Sbírka dovedností"
-
-#: ../gnotski/src/gnotski.c:405
-msgid "_Restart Puzzle"
-msgstr "_Restartovat hlavolam"
-
-#: ../gnotski/src/gnotski.c:407
-msgid "Next Puzzle"
-msgstr "Následující hlavolam"
-
-#: ../gnotski/src/gnotski.c:409
-msgid "Previous Puzzle"
-msgstr "Předchozí hlavolam"
-
-#: ../gnotski/src/gnotski.c:443
-msgid "X location of window"
-msgstr "Umístění X okna"
-
-#: ../gnotski/src/gnotski.c:445
-msgid "Y location of window"
-msgstr "Umístění Y okna"
-
-#: ../gnotski/src/gnotski.c:599
-msgid "Level completed."
-msgstr "Úroveň dokončena."
-
-#: ../gnotski/src/gnotski.c:745
-msgid "The Puzzle Has Been Solved!"
-msgstr "Hlavolam byl vyřešen!"
-
-#: ../gnotski/src/gnotski.c:762
-msgid "Klotski Scores"
-msgstr "Skóre hry Klotski"
-
-#: ../gnotski/src/gnotski.c:765
-msgid "Puzzle:"
-msgstr "Hlavolam:"
-
-#: ../gnotski/src/gnotski.c:868
-msgid ""
-"The theme for this game failed to render.\n"
-"\n"
-"Please check that Klotski is installed correctly."
-msgstr ""
-"Motiv pro tuto hru se nepodařilo vykreslit.\n"
-"\n"
-"Zkontrolujte prosím, že je hra Klotski správně nainstalována."
-
-#: ../gnotski/src/gnotski.c:1118
-#, c-format
-msgid ""
-"Could not find the image:\n"
-"%s\n"
-"\n"
-"Please check that Klotski is installed correctly."
-msgstr ""
-"Nelze najít obrázek:\n"
-"%s\n"
-"\n"
-"Zkontrolujte prosím, že je hra Klotski správně nainstalována."
-
-#: ../gnotski/src/gnotski.c:1157
-#, c-format
-msgid "Moves: %d"
-msgstr "Tahů: %d"
-
-#: ../gnotski/src/gnotski.c:1449
-msgid ""
-"Sliding Block Puzzles\n"
-"\n"
-"Klotski is a part of GNOME Games."
-msgstr ""
-"Hlavolamy s posouváním kamenů\n"
-"\n"
-"Klotski je součástí her GNOME."
-
-#: ../gtali/data/gtali.desktop.in.in.h:1 ../gtali/src/gyahtzee.c:56
-msgid "Tali"
-msgstr "Tali"
-
-#: ../gtali/data/gtali.desktop.in.in.h:2
-msgid "Beat the odds in a poker-style dice game"
-msgstr "Hrajte hru s kostkami ve stylu pokeru"
-
-#: ../gtali/data/gtali.desktop.in.in.h:3
-msgid "yahtzee;"
-msgstr "yahtzee;"
-
-#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:1
-msgid "Delay between rolls"
-msgstr "Prodleva mezi hody"
-
-#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:2
-msgid ""
-"Choose whether or not to insert a delay between the computer's dice rolls so "
-"the player can follow what it is doing."
-msgstr ""
-"Vyberte, jestli vkládat zpoždění mezi hody počítače, aby mohl hráč sledovat, "
-"co počítač dělá."
-
-#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:3
-msgid "Display the computer's thoughts"
-msgstr "Zobrazovat myšlenky počítače"
-
-#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:4
-msgid ""
-"If set to true, a dump of the AI's working will be done to standard output."
-msgstr ""
-"Je-li nastaveno na zapnuto, bude na standardní výstup vypisována práce AI."
-
-#: ../gtali/src/clist.c:158
-msgid "Already used! Where do you want to put that?"
-msgstr "Už se používá! Kam to chcete dát?"
-
-#: ../gtali/src/clist.c:414
-#, c-format
-msgid "Score: %d"
-msgstr "Skóre: %d"
-
-#: ../gtali/src/clist.c:416
-#, c-format
-msgid "Field used"
-msgstr "Pole používáno"
-
-#: ../gtali/src/gyahtzee.c:101
-msgid "Delay computer moves"
-msgstr "Zdržet tahy počítače"
-
-#: ../gtali/src/gyahtzee.c:103
-msgid "Display computer thoughts"
-msgstr "Zobrazit myšlenky počítače"
-
-#: ../gtali/src/gyahtzee.c:105
-msgid "Number of computer opponents"
-msgstr "Počet počítačových protivníků"
-
-#: ../gtali/src/gyahtzee.c:105 ../gtali/src/gyahtzee.c:107
-#: ../gtali/src/gyahtzee.c:111 ../gtali/src/gyahtzee.c:113
-msgid "NUMBER"
-msgstr "ČÍSLO"
-
-#: ../gtali/src/gyahtzee.c:107
-msgid "Number of human opponents"
-msgstr "Počet lidských protivníků"
-
-#: ../gtali/src/gyahtzee.c:109
-msgid "Game choice: Regular or Colors"
-msgstr "Volba hry: Normální nebo Barvy"
-
-#: ../gtali/src/gyahtzee.c:109
-msgid "STRING"
-msgstr "ŘETĚZEC"
-
-#: ../gtali/src/gyahtzee.c:111
-msgid "Number of computer-only games to play"
-msgstr "Počet čistě počítačových her k hraní"
-
-#: ../gtali/src/gyahtzee.c:113
-msgid "Number of trials for each roll for the computer"
-msgstr "Počet pokusů pro každý hod pro počítač"
-
-#: ../gtali/src/gyahtzee.c:118 ../gtali/src/setup.c:359
-msgctxt "game type"
-msgid "Regular"
-msgstr "Normální"
-
-#: ../gtali/src/gyahtzee.c:119 ../gtali/src/setup.c:360
-msgctxt "game type"
-msgid "Colors"
-msgstr "Barevná"
-
-#: ../gtali/src/gyahtzee.c:140
-msgid "Roll all!"
-msgstr "Házet všemi!"
-
-#: ../gtali/src/gyahtzee.c:143 ../gtali/src/gyahtzee.c:790
-msgid "Roll!"
-msgstr "Házet!"
-
-#: ../gtali/src/gyahtzee.c:177
-msgid "The game is a draw!"
-msgstr "Hra skončila nerozhodně!"
-
-#: ../gtali/src/gyahtzee.c:191 ../gtali/src/gyahtzee.c:628
-msgid "Tali Scores"
-msgstr "Skóre hry Tali"
-
-#: ../gtali/src/gyahtzee.c:207
-#, c-format
-msgid "%s wins the game with %d point"
-msgid_plural "%s wins the game with %d points"
-msgstr[0] "%s vyhrává hru s %d bodem"
-msgstr[1] "%s vyhrává hru s %d body"
-msgstr[2] "%s vyhrává hru s %d body"
-
-#: ../gtali/src/gyahtzee.c:255
-#, c-format
-msgid "Computer playing for %s"
-msgstr "Počítač hraje pro %s"
-
-#: ../gtali/src/gyahtzee.c:257
-#, c-format
-msgid "%s! -- You're up."
-msgstr "%s! -- Jste na řadě."
-
-#: ../gtali/src/gyahtzee.c:450
-msgid "Select dice to roll or choose a score slot."
-msgstr "Vyberte kostku, kterou chcete házet, nebo vyberte místo s body."
-
-#: ../gtali/src/gyahtzee.c:478
-msgid "Roll"
-msgstr "Házet"
-
-#: ../gtali/src/gyahtzee.c:536
-msgid "You are only allowed three rolls. Choose a score slot."
-msgstr "Máte povoleny pouze tři hody. Vyberte oddíl s body."
-
-#: ../gtali/src/gyahtzee.c:586
-msgid "GNOME version (1998):"
-msgstr "Verze pro GNOME (1998):"
-
-#: ../gtali/src/gyahtzee.c:589
-msgid "Console version (1992):"
-msgstr "Verze pro konzolu (1992):"
-
-#: ../gtali/src/gyahtzee.c:592
-msgid "Colors game and multi-level AI (2006):"
-msgstr "Barevná hra a víceúrovňová AI (2006):"
-
-#: ../gtali/src/gyahtzee.c:610
-msgid ""
-"A variation on poker with dice and less money.\n"
-"\n"
-"Tali is a part of GNOME Games."
-msgstr ""
-"Variace na poker s kostkami a méně penězi.\n"
-"\n"
-"Tali je součástí her GNOME."
-
-#: ../gtali/src/setup.c:122
-msgid "Current game will complete with original number of players."
-msgstr "Současná hra bude dokončena s původním počtem hráčů."
-
-#: ../gtali/src/setup.c:264
-msgid "Tali Preferences"
-msgstr "Předvolby hry Tali"
-
-#: ../gtali/src/setup.c:285
-msgid "Human Players"
-msgstr "Lidští hráči"
-
-#: ../gtali/src/setup.c:295
-msgid "_Number of players:"
-msgstr "_Počet hráčů:"
-
-#: ../gtali/src/setup.c:309
-msgid "Computer Opponents"
-msgstr "Počítačoví protivníci"
-
-#. --- Button ---
-#: ../gtali/src/setup.c:316
-msgid "_Delay between rolls"
-msgstr "_Prodleva mezi hody"
-
-#: ../gtali/src/setup.c:326
-msgid "N_umber of opponents:"
-msgstr "Počet _protivníků:"
-
-#: ../gtali/src/setup.c:340
-msgid "_Difficulty:"
-msgstr "_Obtížnost:"
-
-#: ../gtali/src/setup.c:344
-msgctxt "difficulty"
-msgid "Medium"
-msgstr "Střední"
-
-#. --- PLAYER NAMES FRAME ----
-#: ../gtali/src/setup.c:368
-msgid "Player Names"
-msgstr "Jména hráčů"
-
-#: ../gtali/src/yahtzee.c:85 ../gtali/src/yahtzee.c:109
-#: ../gtali/src/yahtzee.c:517
-msgid "1s [total of 1s]"
-msgstr "jedničky [celkem jedniček]"
-
-#: ../gtali/src/yahtzee.c:86 ../gtali/src/yahtzee.c:110
-#: ../gtali/src/yahtzee.c:518
-msgid "2s [total of 2s]"
-msgstr "dvojky [celkem dvojek]"
-
-#: ../gtali/src/yahtzee.c:87 ../gtali/src/yahtzee.c:111
-#: ../gtali/src/yahtzee.c:519
-msgid "3s [total of 3s]"
-msgstr "trojky [celkem trojek]"
-
-#: ../gtali/src/yahtzee.c:88 ../gtali/src/yahtzee.c:112
-#: ../gtali/src/yahtzee.c:520
-msgid "4s [total of 4s]"
-msgstr "čtyřky [celkem čtyřek]"
-
-#: ../gtali/src/yahtzee.c:89 ../gtali/src/yahtzee.c:113
-#: ../gtali/src/yahtzee.c:521
-msgid "5s [total of 5s]"
-msgstr "pětky [celkem pětek]"
-
-#: ../gtali/src/yahtzee.c:90 ../gtali/src/yahtzee.c:114
-#: ../gtali/src/yahtzee.c:522
-msgid "6s [total of 6s]"
-msgstr "šestky [celkem šestek]"
-
-#. End of upper panel
-#: ../gtali/src/yahtzee.c:92 ../gtali/src/yahtzee.c:117
-#: ../gtali/src/yahtzee.c:523
-msgid "3 of a Kind [total]"
-msgstr "Trojice [celkem]"
-
-#: ../gtali/src/yahtzee.c:93 ../gtali/src/yahtzee.c:524
-msgid "4 of a Kind [total]"
-msgstr "Čtveřice [celkem]"
-
-#: ../gtali/src/yahtzee.c:94 ../gtali/src/yahtzee.c:525
-msgid "Full House [25]"
-msgstr "Full House [25]"
-
-#: ../gtali/src/yahtzee.c:95 ../gtali/src/yahtzee.c:526
-msgid "Small Straight [30]"
-msgstr "Malá postupka [30]"
-
-#: ../gtali/src/yahtzee.c:96 ../gtali/src/yahtzee.c:121
-#: ../gtali/src/yahtzee.c:527
-msgid "Large Straight [40]"
-msgstr "Velká postupka [40]"
-
-#: ../gtali/src/yahtzee.c:97
-msgid "5 of a Kind [50]"
-msgstr "Pětice [50]"
-
-#: ../gtali/src/yahtzee.c:98 ../gtali/src/yahtzee.c:124
-#: ../gtali/src/yahtzee.c:529
-msgid "Chance [total]"
-msgstr "Šance [celkem]"
-
-#. End of lower panel
-#: ../gtali/src/yahtzee.c:100 ../gtali/src/yahtzee.c:126
-msgid "Lower Total"
-msgstr "Nižší součet"
-
-#: ../gtali/src/yahtzee.c:101 ../gtali/src/yahtzee.c:127
-msgid "Grand Total"
-msgstr "Celkový součet"
-
-#. Need to squish between upper and lower pannel
-#: ../gtali/src/yahtzee.c:103 ../gtali/src/yahtzee.c:129
-msgid "Upper total"
-msgstr "Vyšší součet"
-
-#: ../gtali/src/yahtzee.c:104 ../gtali/src/yahtzee.c:130
-msgid "Bonus if >62"
-msgstr "Bonus pokud >62"
-
-#. End of upper panel
-#: ../gtali/src/yahtzee.c:116 ../gtali/src/yahtzee.c:530
-msgid "2 pair Same Color [total]"
-msgstr "2 páry stejné barvy [celkem]"
-
-#: ../gtali/src/yahtzee.c:118 ../gtali/src/yahtzee.c:531
-msgid "Full House [15 + total]"
-msgstr "Full House [15 + celkem]"
-
-#: ../gtali/src/yahtzee.c:119 ../gtali/src/yahtzee.c:532
-msgid "Full House Same Color [20 + total]"
-msgstr "Full House stejné barvy [20 + celkem]"
-
-#: ../gtali/src/yahtzee.c:120 ../gtali/src/yahtzee.c:533
-msgid "Flush (all same color) [35]"
-msgstr "Flush (všechny stejné barvy) [35]"
-
-#: ../gtali/src/yahtzee.c:122 ../gtali/src/yahtzee.c:534
-msgid "4 of a Kind [25 + total]"
-msgstr "Čtveřice [25 + celkem]"
-
-#: ../gtali/src/yahtzee.c:123 ../gtali/src/yahtzee.c:535
-msgid "5 of a Kind [50 + total]"
-msgstr "Pětice [50 + celkem]"
-
-#: ../gtali/src/yahtzee.c:251
-msgid "Choose a score slot."
-msgstr "Zvolte místo s body."
-
-#: ../gtali/src/yahtzee.c:528
-msgid "5 of a Kind [total]"
-msgstr "Pětice [celkem]"
-
-#. Arrgh - lets all use the same tabs under emacs:
-#. Local Variables:
-#. tab-width: 8
-#. c-basic-offset: 8
-#. indent-tabs-mode: nil
-#.
-#: ../iagno/data/iagno.desktop.in.in.h:1 ../iagno/src/iagno.vala:82
-#: ../iagno/src/iagno.vala:295 ../iagno/src/iagno.vala:620
-msgid "Iagno"
-msgstr "Iagno"
-
-#: ../iagno/data/iagno.desktop.in.in.h:2
-msgid "Dominate the board in a classic version of Reversi"
-msgstr "Ovládněte desku v klasické verzi hry Reversi"
-
-#: ../iagno/data/iagno.desktop.in.in.h:3
-msgid "othello;"
-msgstr "othello;"
-
-#: ../iagno/src/iagno.vala:137 ../iagno/src/iagno.vala:254
-#: ../iagno/src/iagno.vala:262
-msgid "Dark:"
-msgstr "Černý:"
-
-#: ../iagno/src/iagno.vala:145 ../iagno/src/iagno.vala:255
-#: ../iagno/src/iagno.vala:263
-msgid "Light:"
-msgstr "Bílý:"
-
-#: ../iagno/src/iagno.vala:246
-msgid "Light must pass, Dark's move"
-msgstr "Bílý musí vynechat, černý táhne"
-
-#: ../iagno/src/iagno.vala:248
-msgid "Dark must pass, Light's move"
-msgstr "Černý musí vynechat, bílý táhne"
-
-#. Translators: this is a 2 digit representation of the current score.
-#: ../iagno/src/iagno.vala:257 ../iagno/src/iagno.vala:258
-#: ../iagno/src/iagno.vala:265 ../iagno/src/iagno.vala:266
-#, c-format
-msgid "%.2d"
-msgstr "%.2d"
-
-#: ../iagno/src/iagno.vala:300
-msgid ""
-"A disk flipping game derived from Reversi.\n"
-"\n"
-"Iagno is a part of GNOME Games."
-msgstr ""
-"Hra s převracením kamenů odvozená z Reversi.\n"
-"\n"
-"Iagno je součástí her GNOME."
-
-#: ../iagno/src/iagno.vala:368
-msgid "Light player wins!"
-msgstr "Bílý hráč vyhrává!"
-
-#: ../iagno/src/iagno.vala:370
-msgid "Dark player wins!"
-msgstr "Černý hráč vyhrává!"
-
-#: ../iagno/src/iagno.vala:372
-msgid "The game was a draw."
-msgstr "Hra skončila nerozhodně."
-
-#: ../iagno/src/iagno.vala:396
-msgid "Invalid move."
-msgstr "Neplatný tah."
-
-#: ../iagno/src/iagno.vala:461
-msgid "Iagno Preferences"
-msgstr "Nastavení Iagno"
-
-#: ../iagno/src/iagno.vala:480
-msgid "Dark Player:"
-msgstr "Černý hráč:"
-
-#: ../iagno/src/iagno.vala:510
-msgid "Light Player:"
-msgstr "Bílý hráč:"
-
-#: ../iagno/src/iagno.vala:544
-msgid "S_how grid"
-msgstr "Zobrazit _mřížku"
-
-#: ../iagno/src/iagno.vala:549
-msgid "_Flip final results"
-msgstr "_Převrátit konečné výsledky"
-
-#: ../iagno/src/iagno.vala:554
-msgid "_Tile set:"
-msgstr "_Sada kamenů:"
-
-#: ../lightsoff/data/lightsoff.desktop.in.in.h:1
-#: ../lightsoff/src/lightsoff.vala:144 ../lightsoff/src/lightsoff.vala:168
-msgid "Lights Off"
-msgstr "Zhasněte světla"
-
-#: ../lightsoff/data/lightsoff.desktop.in.in.h:2
-msgid "Turn off all the lights"
-msgstr "Zhasněte všechna světla"
-
-#: ../lightsoff/data/org.gnome.lightsoff.gschema.xml.in.h:1
-msgid "The current level"
-msgstr "Současná úroveň"
-
-#: ../lightsoff/data/org.gnome.lightsoff.gschema.xml.in.h:2
-msgid "The users's most recent level."
-msgstr "Uživatelova poslední úroveň."
-
-#: ../lightsoff/src/lightsoff.vala:147
-msgid ""
-"Turn off all the lights\n"
-"\n"
-"Lights Off is a part of GNOME Games."
-msgstr ""
-"Vypněte všechna světla\n"
-"\n"
-"Zhasněte světla je součástí her GNOME."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:1
-msgid "Image to use for drawing blocks"
-msgstr "Obrázek, který se má používat pro kreslení kostek"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:2
-msgid "Image to use for drawing blocks."
-msgstr "Obrázek, který se má používat pro kreslení kostek."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:3
-msgid "The theme used for rendering the blocks"
-msgstr "Motiv používaný pro vykreslování kostek"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:4
-msgid "The name of the theme used for rendering the blocks and the background."
-msgstr "Název motivu používaného pro vykreslování bloků a pozadí."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:5
-msgid "Level to start with"
-msgstr "Počáteční úroveň"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:6
-msgid "Level to start with."
-msgstr "Počáteční úroveň."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:7
-msgid "Whether to preview the next block"
-msgstr "Zda zobrazovat náhled dalšího bloku"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:8
-msgid "Whether to preview the next block."
-msgstr "Zda zobrazovat náhled dalšího bloku."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:9
-msgid "Whether to show where the moving piece will land"
-msgstr "Zda zobrazovat, kam blok dopadne"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:10
-msgid "Whether to show where the moving piece will land."
-msgstr "Zda zobrazovat, kam padající blok dopadne."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:11
-msgid "Whether to give blocks random colors"
-msgstr "Zda dávat blokům náhodné barvy"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:12
-msgid "Whether to give blocks random colors."
-msgstr "Zda mají mít bloky náhodnou barvu."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:13
-msgid "Whether to rotate counter clock wise"
-msgstr "Zda otáčet proti směru hodinových ručiček"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:14
-msgid "Whether to rotate counter clock wise."
-msgstr "Zda otáčet proti směru hodinových ručiček."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:15
-msgid "The number of rows to fill"
-msgstr "Počet řádků k vyplnění"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:16
-msgid ""
-"The number of rows that are filled with random blocks at the start of the "
-"game."
-msgstr "Počet řádků, které jsou vyplněny náhodnými bloky na začátku hry."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:17
-msgid "The density of filled rows"
-msgstr "Hustota vyplnění řádků"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:18
-msgid ""
-"The density of blocks in rows filled at the start of the game. The value is "
-"between 0 (for no blocks) and 10 (for a completely filled row)."
-msgstr ""
-"Hustota bloků v řádcích vyplněných při startu hry. Hodnota je mezi 0 (žádné "
-"bloky) a 10 (úplně vyplněný řádek)."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:19
-msgid "Whether to play sounds"
-msgstr "Zda přehrávat zvuky"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:20
-msgid "Whether to play sounds."
-msgstr "Zda přehrávat zvuky."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:21
-msgid "Whether to pick blocks that are hard to place"
-msgstr "Zda volit obtížné bloky"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:22
-msgid "Whether to pick blocks that are hard to place."
-msgstr "Zda volit bloky, které půjdou obtížně umístit."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:28
-msgid "Key press to move down."
-msgstr "Klávesa pro přesun dolů."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:29
-#: ../quadrapassel/src/quadrapassel.vala:391
-msgid "Drop"
-msgstr "Upustit"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:30
-msgid "Key press to drop."
-msgstr "Klávesa pro upuštění."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:31
-#: ../quadrapassel/src/quadrapassel.vala:394
-msgid "Rotate"
-msgstr "Otočit"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:32
-msgid "Key press to rotate."
-msgstr "Klávesa pro rotaci."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:33
-#: ../quadrapassel/src/quadrapassel.vala:397
-msgid "Pause"
-msgstr "Pozastavit"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:34
-msgid "Key press to pause."
-msgstr "Klávesa pro pozastavení."
-
-#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:1
-#: ../quadrapassel/src/quadrapassel.vala:99
-#: ../quadrapassel/src/quadrapassel.vala:756
-#: ../quadrapassel/src/quadrapassel.vala:798
-msgid "Quadrapassel"
-msgstr "Quadrapassel"
-
-#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:2
-msgid "Fit falling blocks together"
-msgstr "Skládat padací bloky dohromady"
-
-#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:3
-msgid "tetris;"
-msgstr "tetris;"
-
-#: ../quadrapassel/src/game-view.vala:332
-msgid "Game Over"
-msgstr "Konec hry"
-
-#: ../quadrapassel/src/quadrapassel.vala:183
-msgid "Lines:"
-msgstr "Řad:"
-
-#: ../quadrapassel/src/quadrapassel.vala:291
-msgid "Quadrapassel Preferences"
-msgstr "Předvolby Quadrapassel"
-
-#. pre-filled rows
-#: ../quadrapassel/src/quadrapassel.vala:310
-msgid "_Number of pre-filled rows:"
-msgstr "_Počet předvyplněných řad:"
-
-#. pre-filled rows density
-#: ../quadrapassel/src/quadrapassel.vala:324
-msgid "_Density of blocks in a pre-filled row:"
-msgstr "_Hustota kostek v předvyplněné řadě:"
-
-#: ../quadrapassel/src/quadrapassel.vala:356
-msgid "_Preview next block"
-msgstr "_Náhled dalšího bloku"
-
-#: ../quadrapassel/src/quadrapassel.vala:361
-msgid "Choose difficult _blocks"
-msgstr "Zvolit obtížné _bloky"
-
-#. rotate counter clock wise
-#: ../quadrapassel/src/quadrapassel.vala:367
-msgid "_Rotate blocks counterclockwise"
-msgstr "Otáčet bloky p_roti směru hodinových ručiček"
-
-#: ../quadrapassel/src/quadrapassel.vala:372
-msgid "Show _where the block will land"
-msgstr "Zobrazovat, _kam blok dopadne"
-
-#: ../quadrapassel/src/quadrapassel.vala:416
-msgid "Controls"
-msgstr "Ovládání"
-
-#: ../quadrapassel/src/quadrapassel.vala:422
-msgid "Theme"
-msgstr "Motiv"
-
-#: ../quadrapassel/src/quadrapassel.vala:434
-msgid "Plain"
-msgstr "Jednoduché"
-
-#: ../quadrapassel/src/quadrapassel.vala:439
-msgid "Tango Flat"
-msgstr "Oblé prosté"
-
-#: ../quadrapassel/src/quadrapassel.vala:444
-msgid "Tango Shaded"
-msgstr "Oblé stínované"
-
-#: ../quadrapassel/src/quadrapassel.vala:449
-msgid "Clean"
-msgstr "Vyčistit"
-
-#: ../quadrapassel/src/quadrapassel.vala:758
-msgid ""
-"A classic game of fitting falling blocks together.\n"
-"\n"
-"Quadrapassel is a part of GNOME Games."
-msgstr ""
-"Klasická hra s umisťováním padajících kamenů dohromady.\n"
-"\n"
-"Quadrapassel je součástí her GNOME."
-
-#: ../quadrapassel/src/quadrapassel.vala:859
-#: ../swell-foop/src/swell-foop.vala:527
-msgid "Score"
-msgstr "Skóre"
-
-#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:1
-msgid "The theme to use"
-msgstr "Používat motiv"
-
-#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:2
-msgid "The title of the tile theme to use."
-msgstr "Název motivu, který se má použít."
-
-#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:4
-msgid "The size of the game board."
-msgstr "Velikost hrací desky."
-
-#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:5
-msgid "Board color count"
-msgstr "Počet barev na desce"
-
-#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:6
-msgid "The number of colors of tiles to use in the game."
-msgstr "Počet barev dílů použitých ve hře."
-
-#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:7
-msgid "Zealous animation"
-msgstr "Rychlé animace"
-
-#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:8
-msgid "Use more flashy, but slower, animations."
-msgstr "Používat efektnější, ale pomalejší animace."
-
-#: ../swell-foop/data/preferences.ui.h:1
-#: ../swell-foop/data/swell-foop.desktop.in.in.h:1
-#: ../swell-foop/src/swell-foop.vala:55 ../swell-foop/src/swell-foop.vala:386
-#: ../swell-foop/src/swell-foop.vala:449
-msgid "Swell Foop"
-msgstr "Swell Foop"
-
-#: ../swell-foop/data/preferences.ui.h:3
-msgid "_Number of colors:"
-msgstr "_Počet barev:"
-
-#: ../swell-foop/data/preferences.ui.h:4
-msgid "Setup"
-msgstr "Nastavení"
-
-#: ../swell-foop/data/preferences.ui.h:7
-msgid "_Zealous Animation"
-msgstr "_Rychlé animace"
-
-#: ../swell-foop/data/preferences.ui.h:8
-msgid "Operation"
-msgstr "Operace"
-
-#: ../swell-foop/data/swell-foop.desktop.in.in.h:2
-msgid "Clear the screen by removing groups of colored and shaped tiles"
-msgstr ""
-"Vyčisti obrazovku pomocí odstraňování skupin kamenů různých barev a tvarů"
-
-#. Label showing the number of points at the end of the game
-#: ../swell-foop/src/game-view.vala:433
-#, c-format
-msgid "%u point"
-msgid_plural "%u points"
-msgstr[0] "%u bod"
-msgstr[1] "%u body"
-msgstr[2] "%u bodů"
-
-#: ../swell-foop/src/swell-foop.vala:122
-msgid "Small"
-msgstr "Malá"
-
-#: ../swell-foop/src/swell-foop.vala:123
-msgid "Normal"
-msgstr "Normální"
-
-#: ../swell-foop/src/swell-foop.vala:124
-msgid "Large"
-msgstr "Velká"
-
-#. I left one more blank space at the end to make the score not too close to the window border
-#: ../swell-foop/src/swell-foop.vala:201
-#, c-format
-msgid "Score: %4u "
-msgstr "Skóre: %4u"
-
-#: ../swell-foop/src/swell-foop.vala:252
-msgid "Colors"
-msgstr "Barvy"
-
-#: ../swell-foop/src/swell-foop.vala:256
-msgid "Shapes and Colors"
-msgstr "Tvary a barvy"
-
-#: ../swell-foop/src/swell-foop.vala:389
-msgid ""
-"I want to play that game! You know, they all light-up and you click on them "
-"and they vanish!\n"
-"\n"
-"Swell Foop is a part of GNOME Games."
-msgstr ""
-"Chci hrát tuto hru! Víte, ony všechny svítí a když na ně klepnete, tak "
-"zmizí!\n"
-"\n"
-"Swell Foop je součástí her GNOME."
-
-#: ../swell-foop/src/swell-foop.vala:390
-msgid "Copyright © 2009 Tim Horton"
-msgstr "Copyright © 2009 Tim Horton"
-
-#: ../swell-foop/src/swell-foop.vala:607
-#, c-format
-msgid "%u × %u, %u colors"
-msgstr "%u × %u, %u barev"
-
-msgid "cows"
-msgstr "krávy"
-
-msgid "eggs"
-msgstr "vejce"
-
-msgid "gnomes"
-msgstr "trpaslíci"
-
-msgid "mice"
-msgstr "myši"
-
-msgid "ufo"
-msgstr "ufo"
-
-msgid "boo"
-msgstr "boo"
-
-msgid "Show a hint"
-msgstr "Zobrazit radu"
-
-msgid "Flags"
-msgstr "Vlaječek"
-
-msgid "_Select map:"
-msgstr "Vybrat _mapu:"
