@@ -135,12 +135,14 @@ public class Application : Gtk.Application
         foreach (var profile in ai_profiles)
             message ("Detected AI profile %s in %s", profile.name, profile.path);
 
+        bool from_history = game_file == null ? true : false;
+
         /* Load from history if no game requested */
         if (game_file == null)
         {
             var unfinished = history.get_unfinished ();
             if (unfinished != null)
-                game_file = unfinished.data;
+                game_file = unfinished.last().data;
             else
                 start_new_game ();
         }
@@ -149,7 +151,7 @@ public class Application : Gtk.Application
         {
             try
             {
-                load_game (game_file, false);
+                load_game (game_file, from_history);
             }
             catch (Error e)
             {
@@ -272,10 +274,6 @@ public class Application : Gtk.Application
 
     private void autosave ()
     {
-        /* FIXME: Prompt user to save somewhere */
-        if (!in_history)
-            return;
-
         /* Don't autosave if no moves (e.g. they have been undone) or only the computer has moved */
         if (!game_needs_saving)
         {
@@ -286,10 +284,10 @@ public class Application : Gtk.Application
 
         try
         {
-            if (game_file != null)
-                history.update (game_file, "", pgn_game.result);
-            else
+            if (!in_history || game_file == null)
                 game_file = history.add (pgn_game.date, pgn_game.result);
+            else
+                history.update (game_file, "", pgn_game.result);
             debug ("Writing current game to %s", game_file.get_path ());
             pgn_game.write (game_file);
         }
