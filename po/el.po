@@ -29,14 +29,14 @@
 # Simos Xenitellis <simos.lists@googlemail.com>, 2010.
 # Michael Kotsarinis <mk73628@hotmail.com>, 2010.
 # George Stefanakis <george.stefanakis@gmail.com>, 2011.
-# Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>, 2012.
+# Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games.HEAD.el\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-12-20 02:48+0000\n"
-"PO-Revision-Date: 2012-12-24 21:00+0300\n"
+"POT-Creation-Date: 2013-01-28 23:19+0000\n"
+"PO-Revision-Date: 2013-03-08 12:43+0300\n"
 "Last-Translator: Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>\n"
 "Language-Team: team@gnome.gr\n"
 "Language: el\n"
@@ -55,6 +55,10 @@ msgstr "Σκάκι"
 #: ../data/gnome-chess.desktop.in.in.h:2
 msgid "Play the classic two-player boardgame of chess"
 msgstr "Παίξτε το κλασικό σκάκι με δύο παίχτες"
+
+#: ../data/gnome-chess.desktop.in.in.h:3
+msgid "game;strategy;"
+msgstr "παιχνίδι;στρατηγική;"
 
 #. Game menu name
 #: ../data/gnome-chess.ui.h:2
@@ -445,45 +449,22 @@ msgid "Fancy"
 msgstr "Ζωηρό"
 
 #: ../data/promotion-type-selector.ui.h:1
-#| msgctxt "chess-piece"
-#| msgid "Queen"
 msgid "_Queen"
 msgstr "Β_ασίλισσα"
 
 #: ../data/promotion-type-selector.ui.h:2
-#| msgctxt "chess-piece"
-#| msgid "Knight"
 msgid "_Knight"
 msgstr "Ά_λογο"
 
 #: ../data/promotion-type-selector.ui.h:3
-#| msgctxt "chess-piece"
-#| msgid "Rook"
 msgid "_Rook"
 msgstr "_Πύργος"
 
 #: ../data/promotion-type-selector.ui.h:4
-#| msgctxt "chess-piece"
-#| msgid "Bishop"
 msgid "_Bishop"
 msgstr "_Αξιωματικός"
 
 #: ../data/promotion-type-selector.ui.h:5
-msgid ""
-"Promotion is a chess rule describing the transformation of a pawn that "
-"reaches its eighth rank into the player&apos;s choice of a queen, knight, "
-"rook, or bishop of the same color. The new piece replaces the pawn on the "
-"same square and is part of the move. Every pawn that reaches its eighth rank "
-"must be promoted. Pawn promotion often decides the result of a chess endgame."
-msgstr ""
-"Προαγωγή είναι ένας κανόνας στο σκάκι που περιγράφει τον μετασχηματισμό ενός "
-"πιονιού που φτάνει την όγδοη γραμμή σε μετατροπή του κατ' επιλογή του "
-"παίκτη σε βασίλισσα, άλογο, πύργο ή αξιωματικό του ίδιου χρώματος. Το νέο "
-"κομμάτι αντικαθιστά το πιόνι στο ίδιο τετράγωνο και είναι μέρος της κίνησης. "
-"Κάθε πιόνι που φτάνει στην όγδοη σειρά πρέπει να προαχθεί. Η προαγωγή "
-"πιονιού αποφασίζει συχνά το αποτέλεσμα μιας παρτίδας σκακιού."
-
-#: ../data/promotion-type-selector.ui.h:6
 msgid ""
 "Promotion is a chess rule describing the transformation of a pawn that "
 "reaches its eighth rank into the player's choice of a queen, knight, rook, "
@@ -492,14 +473,13 @@ msgid ""
 "be promoted. Pawn promotion often decides the result of a chess endgame."
 msgstr ""
 "Προαγωγή είναι ένας κανόνας στο σκάκι που περιγράφει τον μετασχηματισμό ενός "
-"πιονιού που φτάνει την όγδοη γραμμή σε μετατροπή του κατ' επιλογή του "
-"παίκτη σε βασίλισσα, άλογο, πύργο ή αξιωματικό του ίδιου χρώματος. Το νέο "
-"κομμάτι αντικαθιστά το πιόνι στο ίδιο τετράγωνο και είναι μέρος της κίνησης. "
-"Κάθε πιόνι που φτάνει στην όγδοη σειρά πρέπει να προαχθεί. Η προαγωγή "
-"πιονιού αποφασίζει συχνά το αποτέλεσμα μιας παρτίδας σκακιού."
+"πιονιού που φτάνει την όγδοη γραμμή σε μετατροπή του κατ' επιλογή του παίκτη "
+"σε βασίλισσα, άλογο, πύργο ή αξιωματικό του ίδιου χρώματος. Το νέο κομμάτι "
+"αντικαθιστά το πιόνι στο ίδιο τετράγωνο και είναι μέρος της κίνησης. Κάθε "
+"πιόνι που φτάνει στην όγδοη σειρά πρέπει να προαχθεί. Η προαγωγή πιονιού "
+"αποφασίζει συχνά το αποτέλεσμα μιας παρτίδας σκακιού."
 
-#: ../data/promotion-type-selector.ui.h:7
-#| msgid "Promotion Type:"
+#: ../data/promotion-type-selector.ui.h:6
 msgid "Select Pawn Promotion Type"
 msgstr "Επιλέξτε τύπο προαγωγής πιονιού"
 
@@ -1051,10 +1031,6 @@ msgstr[0] "ώρα"
 msgstr[1] "ώρες"
 
 #: ../src/gnome-chess.vala:1486
-#| msgid ""
-#| "The 2D/3D chess game for GNOME. \n"
-#| "\n"
-#| "glChess is a part of GNOME Games."
 msgid ""
 "The 2D/3D chess game for GNOME. \n"
 "\n"
@@ -1116,6 +1092,21 @@ msgstr "[FILE] - Παίξτε σκάκι"
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr ""
 "Εκτελέστε '%s --help' για να δείτε την πλήρη λίστα των διαθέσιμων εντολών."
+
+#~ msgid ""
+#~ "Promotion is a chess rule describing the transformation of a pawn that "
+#~ "reaches its eighth rank into the player&apos;s choice of a queen, knight, "
+#~ "rook, or bishop of the same color. The new piece replaces the pawn on the "
+#~ "same square and is part of the move. Every pawn that reaches its eighth "
+#~ "rank must be promoted. Pawn promotion often decides the result of a chess "
+#~ "endgame."
+#~ msgstr ""
+#~ "Προαγωγή είναι ένας κανόνας στο σκάκι που περιγράφει τον μετασχηματισμό "
+#~ "ενός πιονιού που φτάνει την όγδοη γραμμή σε μετατροπή του κατ' επιλογή "
+#~ "του παίκτη σε βασίλισσα, άλογο, πύργο ή αξιωματικό του ίδιου χρώματος. Το "
+#~ "νέο κομμάτι αντικαθιστά το πιόνι στο ίδιο τετράγωνο και είναι μέρος της "
+#~ "κίνησης. Κάθε πιόνι που φτάνει στην όγδοη σειρά πρέπει να προαχθεί. Η "
+#~ "προαγωγή πιονιού αποφασίζει συχνά το αποτέλεσμα μιας παρτίδας σκακιού."
 
 #~ msgid "The piece to promote pawns to"
 #~ msgstr "Το είδος του κομματιού, στο οποίο θα προωθούνται τα πιόνια"
