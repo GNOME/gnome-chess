@@ -9,15 +9,15 @@
 # Tõivo Leedjärv <toivo linux ee>, 2002.
 # Ilmar Kerm <ikerm hot ee>, 2002.
 # Ivar Smolin <okul linux ee>, 2005–2011.
-# Mattias Põldaru <mahfiaz@gmail.com>, 2012.
+# Mattias Põldaru <mahfiaz@gmail.com>, 2012, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"games&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-22 23:48+0000\n"
-"PO-Revision-Date: 2012-09-24 11:04+0300\n"
+"chess&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2013-01-28 23:19+0000\n"
+"PO-Revision-Date: 2013-03-13 02:46+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz@gmail.com>\n"
 "Language-Team: Estonian <>\n"
 "Language: et\n"
@@ -32,6 +32,9 @@ msgstr "Male"
 
 msgid "Play the classic two-player boardgame of chess"
 msgstr "Klassikalise malemängu mängimine "
+
+msgid "game;strategy;"
+msgstr "mäng;strateegia;"
 
 #. Game menu name
 msgid "_Game"
@@ -111,13 +114,6 @@ msgstr "Maksimeeritud režiimi lubamise lipp"
 msgid "A flag to enable fullscreen mode"
 msgstr "Täisekraanirežiimi lubamine või keelamine"
 
-msgid "The piece to promote pawns to"
-msgstr "Mis viguriks ettur lipustatakse"
-
-msgid ""
-"The piece to promote to when a human player moves a pawn to the far rank"
-msgstr "Mis viguriks inimmängija ettur lipustatakse"
-
 msgid "A flag to enable 3D mode"
 msgstr "Kolmemõõtmelise režiimi lubamine või keelamine"
 
@@ -191,10 +187,6 @@ msgstr "Raskusaste:"
 msgid "Game Duration:"
 msgstr "Mängu kestus:"
 
-#. Preferences Dialog: Label before promotion type combo box
-msgid "Promotion Type:"
-msgstr "Lipustamise moodus:"
-
 #. Preferences dialog: Label to notify user that the settings are applied for the next game
 msgid "Changes will take effect for the next game."
 msgstr "Muudatused jõustuvad järgmise mängu ajal."
@@ -243,6 +235,16 @@ msgstr "Käikude vorming:"
 msgid "_Appearance"
 msgstr "_Välimus"
 
+#. Preferences Dialog: Combo box entry for playing as white
+msgctxt "chess-player"
+msgid "White"
+msgstr "Valge"
+
+#. Preferences Dialog: Combo box entry for playing as black
+msgctxt "chess-player"
+msgid "Black"
+msgstr "Must"
+
 #. Preferences Dialog: Combo box entry for easy game difficulty
 msgctxt "difficulty"
 msgid "Easy"
@@ -257,21 +259,6 @@ msgstr "Tavaline"
 msgctxt "difficulty"
 msgid "Hard"
 msgstr "Raske"
-
-#. Preferences Dialog: Combo box entry for human opponent
-msgctxt "chess-opponent"
-msgid "Human"
-msgstr "Inimene"
-
-#. Preferences Dialog: Combo box entry for playing as white
-msgctxt "chess-player"
-msgid "White"
-msgstr "Valge"
-
-#. Preferences Dialog: Combo box entry for playing as black
-msgctxt "chess-player"
-msgid "Black"
-msgstr "Must"
 
 #. Preferences Dialog: Combo box entry for no game timer
 msgid "No limit"
@@ -297,13 +284,30 @@ msgstr "Üks tund"
 msgid "Custom"
 msgstr "Kohandatud"
 
-#. Preferences Dialog: Combo box entry for simple theme
-msgid "Simple"
-msgstr "Lihtne"
+#. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
+msgctxt "chess-move-format"
+msgid "Human"
+msgstr "Inimene"
 
-#. Preferences Dialog: Combo box entry for fancy theme
-msgid "Fancy"
-msgstr "Uhke"
+#. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
+msgctxt "chess-move-format"
+msgid "Standard Algebraic"
+msgstr "Standardne algebraline"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
+msgctxt "chess-move-format"
+msgid "Figurine"
+msgstr "Viguritega"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
+msgctxt "chess-move-format"
+msgid "Long Algebraic"
+msgstr "Pikk algebraline"
+
+#. Preferences Dialog: Combo box entry for human opponent
+msgctxt "chess-opponent"
+msgid "Human"
+msgstr "Inimene"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the white side
 msgctxt "chess-side"
@@ -330,45 +334,49 @@ msgctxt "chess-side"
 msgid "Face to Face"
 msgstr "Mõlemalt poolt korraga"
 
-#. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
-msgctxt "chess-move-format"
-msgid "Human"
-msgstr "Inimene"
+#. Preferences Dialog: Combo box entry for simple theme
+msgid "Simple"
+msgstr "Lihtne"
 
-#. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
-msgctxt "chess-move-format"
-msgid "Standard Algebraic"
-msgstr "Standardne algebraline"
+#. Preferences Dialog: Combo box entry for fancy theme
+msgid "Fancy"
+msgstr "Uhke"
 
-#. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
-msgctxt "chess-move-format"
-msgid "Figurine"
-msgstr "Viguritega"
+#| msgctxt "chess-piece"
+#| msgid "Queen"
+msgid "_Queen"
+msgstr "_Lipp"
 
-#. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
-msgctxt "chess-move-format"
-msgid "Long Algebraic"
-msgstr "Pikk algebraline"
+#| msgid "Knight"
+msgid "_Knight"
+msgstr "_Ratsu"
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a queen
-msgctxt "chess-piece"
-msgid "Queen"
-msgstr "Lipp"
+#| msgctxt "chess-piece"
+#| msgid "Rook"
+msgid "_Rook"
+msgstr "_Vanker"
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a knight
-msgctxt "chess-piece"
-msgid "Knight"
-msgstr "Ratsu"
+#| msgctxt "chess-piece"
+#| msgid "Bishop"
+msgid "_Bishop"
+msgstr "_Oda"
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a rook
-msgctxt "chess-piece"
-msgid "Rook"
-msgstr "Vanker"
+msgid ""
+"Promotion is a chess rule describing the transformation of a pawn that "
+"reaches its eighth rank into the player's choice of a queen, knight, rook, "
+"or bishop of the same color. The new piece replaces the pawn on the same "
+"square and is part of the move. Every pawn that reaches its eighth rank must "
+"be promoted. Pawn promotion often decides the result of a chess endgame."
+msgstr ""
+"Muundamine on malereegel, mille järgi mängulaua viimasele reale jõudnud "
+"ettur muutub mängija valikul sama värvi lipuks (lipustumine), ratsuks, "
+"vankriks või odaks. Uus malend asendab sama käigu ajal etturi selle "
+"asukohas. Iga ettur, mis jõuab viimasele reale, tuleb muundada. Etturite "
+"muundamine määrab tihti malemängu tulemuse."
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a bishop
-msgctxt "chess-piece"
-msgid "Bishop"
-msgstr "Oda"
+#| msgid "Promotion Type:"
+msgid "Select Pawn Promotion Type"
+msgstr "Vali etturi edutamise liik"
 
 #. Title of the window when explicitly loaded a file. The first argument is the
 #. * base name of the file (e.g. test.pgn), the second argument is the directory
@@ -823,14 +831,18 @@ msgid_plural "hours"
 msgstr[0] "tund"
 msgstr[1] "tundi"
 
+#| msgid ""
+#| "The 2D/3D chess game for GNOME. \n"
+#| "\n"
+#| "glChess is a part of GNOME Games."
 msgid ""
 "The 2D/3D chess game for GNOME. \n"
 "\n"
-"glChess is a part of GNOME Games."
+"GNOME Chess is a part of GNOME Games."
 msgstr ""
-"Kahe- ja kolmemõõtmelise lauaga malemäng GNOME töölauale.\n"
+"2D/3D malemäng GNOME töölauale.\n"
 "\n"
-"\"glChess\" kuulub GNOME mängude koosseisu."
+"GNOME male kuulub GNOME mängude koosseisu."
 
 msgid "GNOME Games web site"
 msgstr "GNOME mängude veebisait"
@@ -874,2591 +886,2481 @@ msgstr "[FAIL] - malemäng"
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr "Käivita '%s --help', et näha kõiki käsurea valikuid."
 
-msgid "Five or More"
-msgstr "Viis või rohkem"
+#~ msgid "The piece to promote pawns to"
+#~ msgstr "Mis viguriks ettur lipustatakse"
 
-msgid "Remove colored balls from the board by forming lines"
-msgstr "Värviliste kuulide eemaldamine nende rittaajamise teel"
+#~ msgid ""
+#~ "The piece to promote to when a human player moves a pawn to the far rank"
+#~ msgstr "Mis viguriks inimmängija ettur lipustatakse"
 
-msgid "Five or More Preferences"
-msgstr "Mängu \"Viis või rohkem\" eelistused"
+#~ msgctxt "chess-piece"
+#~ msgid "Knight"
+#~ msgstr "Ratsu"
 
-msgid "Appearance"
-msgstr "Välimus"
+#~ msgid "Five or More"
+#~ msgstr "Viis või rohkem"
 
-msgid "_Image:"
-msgstr "_Pilt:"
+#~ msgid "Remove colored balls from the board by forming lines"
+#~ msgstr "Värviliste kuulide eemaldamine nende rittaajamise teel"
 
-msgid "B_ackground color:"
-msgstr "_Taustavärv:"
+#~ msgid "Five or More Preferences"
+#~ msgstr "Mängu \"Viis või rohkem\" eelistused"
 
-msgid "Board Size"
-msgstr "Mängulaua suurus"
+#~ msgid "Appearance"
+#~ msgstr "Välimus"
 
-msgid "_Small"
-msgstr "_Väike"
+#~ msgid "_Image:"
+#~ msgstr "_Pilt:"
 
-msgid "_Medium"
-msgstr "_Keskmine"
+#~ msgid "B_ackground color:"
+#~ msgstr "_Taustavärv:"
 
-msgid "_Large"
-msgstr "_Suur"
+#~ msgid "Board Size"
+#~ msgstr "Mängulaua suurus"
 
-msgid "General"
-msgstr "Üldine"
+#~ msgid "_Small"
+#~ msgstr "_Väike"
 
-msgid "_Use fast moves"
-msgstr "_Kiired käigud"
+#~ msgid "_Medium"
+#~ msgstr "_Keskmine"
 
-msgid "Five or more"
-msgstr "Viis või rohkem"
+#~ msgid "_Large"
+#~ msgstr "_Suur"
 
-msgid "Scores"
-msgstr "Tulemused"
+#~ msgid "General"
+#~ msgstr "Üldine"
 
-msgid "Next:"
-msgstr "Järgmine:"
+#~ msgid "_Use fast moves"
+#~ msgstr "_Kiired käigud"
 
-msgid "0"
-msgstr "0"
+#~ msgid "Five or more"
+#~ msgstr "Viis või rohkem"
 
-msgid "Score:"
-msgstr "Tulemus:"
+#~ msgid "Scores"
+#~ msgstr "Tulemused"
 
-msgid "Playing field size"
-msgstr "Mänguvälja suurus"
+#~ msgid "Next:"
+#~ msgstr "Järgmine:"
 
-msgid ""
-"Playing field size. 1=Small, 2=Medium, 3=Large. Any other value is invalid."
-msgstr ""
-"Mänguvälja suurus. 1=Väike, 2=Keskmine, 3=Suur. Muud väärtused pole lubatud."
+#~ msgid "0"
+#~ msgstr "0"
 
-msgid "Ball style"
-msgstr "Pallide laad"
+#~ msgid "Score:"
+#~ msgstr "Tulemus:"
 
-msgid "Ball style. The filename of the images to use for the balls."
-msgstr "Pallide laad - failinimi, kus asuvad pallide pildid."
+#~ msgid "Playing field size"
+#~ msgstr "Mänguvälja suurus"
 
-msgid "Background color"
-msgstr "Taustavärv"
+#~ msgid ""
+#~ "Playing field size. 1=Small, 2=Medium, 3=Large. Any other value is "
+#~ "invalid."
+#~ msgstr ""
+#~ "Mänguvälja suurus. 1=Väike, 2=Keskmine, 3=Suur. Muud väärtused pole "
+#~ "lubatud."
 
-msgid "Background color. The hex specification of the background color."
-msgstr "Taustavärv kuueteistkümnendsüsteemi numbrina."
+#~ msgid "Ball style"
+#~ msgstr "Pallide laad"
 
-msgid "Time between moves"
-msgstr "Viivitus käikude vahel"
+#~ msgid "Ball style. The filename of the images to use for the balls."
+#~ msgstr "Pallide laad - failinimi, kus asuvad pallide pildid."
 
-msgid "Time between moves in milliseconds."
-msgstr "Kui kaua peab käikude vahel ootama - aeg millisekundites."
+#~ msgid "Background color"
+#~ msgstr "Taustavärv"
 
-msgid "Game score"
-msgstr "Mängu tulemus"
+#~ msgid "Background color. The hex specification of the background color."
+#~ msgstr "Taustavärv kuueteistkümnendsüsteemi numbrina."
 
-msgid "Game score from last saved session."
-msgstr "Mängu tulemus viimati salvestatud seansist."
+#~ msgid "Time between moves"
+#~ msgstr "Viivitus käikude vahel"
 
-msgid "Game field"
-msgstr "Mänguväli"
+#~ msgid "Time between moves in milliseconds."
+#~ msgstr "Kui kaua peab käikude vahel ootama - aeg millisekundites."
 
-msgid "Game field from last saved session."
-msgstr "Mänguväli viimasest salvestatud seansist."
+#~ msgid "Game score"
+#~ msgstr "Mängu tulemus"
 
-msgid "Game preview"
-msgstr "Mängu eelvaade"
+#~ msgid "Game score from last saved session."
+#~ msgstr "Mängu tulemus viimati salvestatud seansist."
 
-msgid "Game preview from last saved session."
-msgstr "Mängu eelvaade viimati salvestatud seansist."
+#~ msgid "Game field"
+#~ msgstr "Mänguväli"
 
-msgid "Width of the window in pixels"
-msgstr "Akna laius pikslites"
+#~ msgid "Game field from last saved session."
+#~ msgstr "Mänguväli viimasest salvestatud seansist."
 
-msgid "Height of the window in pixels"
-msgstr "Akna kõrgus pikslites"
+#~ msgid "Game preview"
+#~ msgstr "Mängu eelvaade"
 
-msgid "true if the window is maximized"
-msgstr "tõene, kui aken on maksimeeritud"
+#~ msgid "Game preview from last saved session."
+#~ msgstr "Mängu eelvaade viimati salvestatud seansist."
 
-msgid "true if the window is fullscren"
-msgstr "tõene, kui aken on täisekraanil"
+#~ msgid "Width of the window in pixels"
+#~ msgstr "Akna laius pikslites"
 
-msgid "View help for this game"
-msgstr "Abiteabe kuvamine selle mängu kohta"
+#~ msgid "Height of the window in pixels"
+#~ msgstr "Akna kõrgus pikslites"
 
-msgid "End the current game"
-msgstr "Käesoleva mängu lõpetamine"
+#~ msgid "true if the window is maximized"
+#~ msgstr "tõene, kui aken on maksimeeritud"
 
-msgid "Toggle fullscreen mode"
-msgstr "Täisekraanivaate sisse- ja väljalülitamine"
+#~ msgid "true if the window is fullscren"
+#~ msgstr "tõene, kui aken on täisekraanil"
 
-msgid "Get a hint for your next move"
-msgstr "Vihje järgmise käigu tegemiseks"
+#~ msgid "View help for this game"
+#~ msgstr "Abiteabe kuvamine selle mängu kohta"
 
-msgid "Leave fullscreen mode"
-msgstr "Täisekraanvaatest lahkumine"
+#~ msgid "End the current game"
+#~ msgstr "Käesoleva mängu lõpetamine"
 
-msgid "Start a new multiplayer network game"
-msgstr "Uue, mitme mängijaga võrgumängu alustamine"
+#~ msgid "Toggle fullscreen mode"
+#~ msgstr "Täisekraanivaate sisse- ja väljalülitamine"
 
-msgid "End the current network game and return to network server"
-msgstr "Praeguse võrgumängu lõpetamine ja naasmine võrguserverisse"
+#~ msgid "Get a hint for your next move"
+#~ msgstr "Vihje järgmise käigu tegemiseks"
 
-msgid "Pause the game"
-msgstr "Mängu peatamine"
+#~ msgid "Leave fullscreen mode"
+#~ msgstr "Täisekraanvaatest lahkumine"
 
-msgid "Show a list of players in the network game"
-msgstr "Võrgumängus osalevate mängijate nimekirja näitamine"
+#~ msgid "Start a new multiplayer network game"
+#~ msgstr "Uue, mitme mängijaga võrgumängu alustamine"
 
-msgid "Redo the undone move"
-msgstr "Unustatud käigu uuestitegemine"
+#~ msgid "End the current network game and return to network server"
+#~ msgstr "Praeguse võrgumängu lõpetamine ja naasmine võrguserverisse"
 
-msgid "Restart the game"
-msgstr "Käesoleva mängu taasalustamine"
+#~ msgid "Pause the game"
+#~ msgstr "Mängu peatamine"
 
-msgid "Resume the paused game"
-msgstr "Peatatud mängu jätkamine"
+#~ msgid "Show a list of players in the network game"
+#~ msgstr "Võrgumängus osalevate mängijate nimekirja näitamine"
 
-msgid "View the scores"
-msgstr "Tulemuste vaatamine"
+#~ msgid "Redo the undone move"
+#~ msgstr "Unustatud käigu uuestitegemine"
 
-msgid "Undo the last move"
-msgstr "Viimase käigu unustamine"
+#~ msgid "Restart the game"
+#~ msgstr "Käesoleva mängu taasalustamine"
 
-msgid "About this game"
-msgstr "Mängust lähemalt"
+#~ msgid "Resume the paused game"
+#~ msgstr "Peatatud mängu jätkamine"
 
-msgid "Close this window"
-msgstr "Selle akna sulgemine"
+#~ msgid "View the scores"
+#~ msgstr "Tulemuste vaatamine"
 
-msgid "Configure the game"
-msgstr "Mängu seadistamine"
+#~ msgid "Undo the last move"
+#~ msgstr "Viimase käigu unustamine"
 
-msgid "Quit this game"
-msgstr "Mängu lõpetamine"
+#~ msgid "About this game"
+#~ msgstr "Mängust lähemalt"
 
-msgid "_Fullscreen"
-msgstr "_Täisekraan"
+#~ msgid "Close this window"
+#~ msgstr "Selle akna sulgemine"
 
-msgid "_Hint"
-msgstr "_Vihje"
+#~ msgid "Configure the game"
+#~ msgstr "Mängu seadistamine"
 
-#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
-msgid "_New"
-msgstr "_Uus"
+#~ msgid "Quit this game"
+#~ msgstr "Mängu lõpetamine"
 
-#. Translators: This "_New Game" is for the game-over dialogue
-msgid "_New Game"
-msgstr "_Uus mäng"
+#~ msgid "_Fullscreen"
+#~ msgstr "_Täisekraan"
 
-msgid "_Redo Move"
-msgstr "T_aasta käik"
+#~ msgid "_Hint"
+#~ msgstr "_Vihje"
 
-#. Translators: this is the "Reset" scores button in a scores dialogue
-msgid "_Reset"
-msgstr "_Lähtesta"
-
-#. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-msgid "_Restart"
-msgstr "_Alusta uuesti"
-
-msgid "_Deal"
-msgstr "_Jaga"
-
-msgid "_Leave Fullscreen"
-msgstr "_Välju täisekraanvaatest"
-
-msgid "Network _Game"
-msgstr "Võr_gumäng"
-
-msgid "L_eave Game"
-msgstr "_Lahku mängust"
-
-msgid "Player _List"
-msgstr "Mängijate _nimekiri"
-
-msgid "_Pause"
-msgstr "_Peata"
-
-msgid "Res_ume"
-msgstr "_Jätka"
-
-msgid "_Scores"
-msgstr "_Tulemused"
-
-msgid "_End Game"
-msgstr "_Lõpeta mäng"
-
-#. %s is replaced with the name of the game in gnome-games.
-#, c-format
-msgid ""
-"%s is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version %d of the License, or (at your option) any later "
-"version."
-msgstr ""
-"%s on vaba tarkvara. Te võite seda edasi levitada ja/või muuta vastavalt GNU "
-"Üldise Avaliku Litsentsi tingimustele, nagu need on Vaba Tarkvara Fondi "
-"poolt avaldatud; kas Litsentsi versioon number %d või (vastavalt Teie "
-"valikule) ükskõik milline hilisem versioon."
-
-#, c-format
-msgid ""
-"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details."
-msgstr ""
-"Programmi %s levitatakse lootuses, et see on kasulik, kuid ILMA IGASUGUSE "
-"GARANTIITA; isegi KESKMISE/TAVALISE KVALITEEDIGARANTIITA või SOBIVUSELE "
-"TEATUD KINDLAKS EESMÄRGIKS. Üksikasjade suhtes vaata GNU Üldist Avalikku "
-"Litsentsi."
-
-#, c-format
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"%s; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, "
-"Fifth Floor, Boston, MA  02110-1301  USA"
-msgstr ""
-"Te peaks olema saanud GNU Üldise Avaliku Litsentsi koopia koos programmiga "
-"%s; kui ei, siis võtke ühendust Free Software Foundation'iga, 51 Franklin "
-"Street, Fifth Floor, Boston, MA  02110-1301  USA"
-
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"this program.  If not, see <http://www.gnu.org/licenses/>."
-msgstr ""
-"Te peaks olema saanud GNU Üldise Avaliku Litsentsi koopia koos programmiga "
-"%s; kui ei, siis vaata <http://www.gnu.org/licenses/>."
-
-msgctxt "board size"
-msgid "Small"
-msgstr "Väike"
-
-msgctxt "board size"
-msgid "Medium"
-msgstr "Keskmine"
-
-msgctxt "board size"
-msgid "Large"
-msgstr "Suur"
-
-msgid "Could not load theme"
-msgstr "Teemat pole võimalik laadida"
-
-#, c-format
-msgid ""
-"Unable to locate file:\n"
-"%s\n"
-"\n"
-"The default theme will be loaded instead."
-msgstr ""
-"Faili pole võimalik leida:\n"
-"%s\n"
-"\n"
-"Selle asemel kasutatakse vaikimisi teemat."
-
-#, c-format
-msgid ""
-"Unable to locate file:\n"
-"%s\n"
-"\n"
-"Please check that Five or More is installed correctly."
-msgstr ""
-"Faili pole võimalik leida:\n"
-"%s\n"
-"\n"
-"Palun veendu, et \"Viis või rohkem\" on korrektselt paigaldatud."
-
-msgid "Match five objects of the same type in a row to score!"
-msgstr ""
-"Punktide saamiseks pead järjestikku ritta saama viis samavärvilist palli!"
-
-msgid "GNOME Five or More"
-msgstr "GNOME Viis või rohkem"
+#~ msgid "_New"
+#~ msgstr "_Uus"
 
-msgid "_Board size:"
-msgstr "_Mängulaua suurus:"
+#~ msgid "_New Game"
+#~ msgstr "_Uus mäng"
 
-#, c-format
-msgid "Game Over!"
-msgstr "Mäng on läbi!"
+#~ msgid "_Redo Move"
+#~ msgstr "T_aasta käik"
 
-#. Can't move there!
-msgid "You can't move there!"
-msgstr "Sinna pole võimalik käia!"
+#~ msgid "_Reset"
+#~ msgstr "_Lähtesta"
 
-msgid ""
-"GNOME port of the once-popular Color Lines game.\n"
-"\n"
-"Five or More is a part of GNOME Games."
-msgstr ""
-"GNOME versioon populaarsest mängust Color Lines.\n"
-"\n"
-"\"Viis või rohkem\" kuulub GNOME mängude koosseisu."
+#~ msgid "_Restart"
+#~ msgstr "_Alusta uuesti"
 
-msgid "translator-credits"
-msgstr ""
-"Lauris Kaplinski <lauris ariman ee>, 1999.\n"
-"Tõivo Leedjärv <toivo linux ee>, 2002.\n"
-"Ilmar Kerm <ikerm hot ee>, 2002.\n"
-"Ivar Smolin <okul linux ee>, 2005–2011."
+#~ msgid "_Deal"
+#~ msgstr "_Jaga"
 
-msgid "Four-in-a-Row"
-msgstr "Neli-tükki-reas"
+#~ msgid "_Leave Fullscreen"
+#~ msgstr "_Välju täisekraanvaatest"
 
-msgid "Make lines of the same color to win"
-msgstr "Ühevärviliste ridade kombineerimise võistlus"
+#~ msgid "Network _Game"
+#~ msgstr "Võr_gumäng"
 
-msgid "Level of Player One"
-msgstr "Esimese mängija tase"
+#~ msgid "L_eave Game"
+#~ msgstr "_Lahku mängust"
 
-msgid ""
-"Zero is human; one through three correspond to the level of the computer "
-"player."
-msgstr ""
-"Null tähendab inimest, numbrid ühest kuni kolmeni tähendavad arvuti taset."
-
-msgid "Level of Player Two"
-msgstr "Teise mängija tase"
-
-msgid "Theme ID"
-msgstr "Teema ID"
+#~ msgid "Player _List"
+#~ msgstr "Mängijate _nimekiri"
 
-msgid "A number specifying the preferred theme."
-msgstr "Number eelistatud teema kirjeldamiseks."
+#~ msgid "_Pause"
+#~ msgstr "_Peata"
 
-msgid "Animate"
-msgstr "Animatsioon"
+#~ msgid "Res_ume"
+#~ msgstr "_Jätka"
 
-msgid "Whether or not to use animation."
-msgstr "Kas animatsiooni kasutatakse või mitte."
+#~ msgid "_Scores"
+#~ msgstr "_Tulemused"
 
-msgid "Sound"
-msgstr "Heli"
+#~ msgid "_End Game"
+#~ msgstr "_Lõpeta mäng"
 
-msgid "Whether or not to play event sounds."
-msgstr "Kas helisid esitatakse või mitte."
+#~ msgid ""
+#~ "%s is free software; you can redistribute it and/or modify it under the "
+#~ "terms of the GNU General Public License as published by the Free Software "
+#~ "Foundation; either version %d of the License, or (at your option) any "
+#~ "later version."
+#~ msgstr ""
+#~ "%s on vaba tarkvara. Te võite seda edasi levitada ja/või muuta vastavalt "
+#~ "GNU Üldise Avaliku Litsentsi tingimustele, nagu need on Vaba Tarkvara "
+#~ "Fondi poolt avaldatud; kas Litsentsi versioon number %d või (vastavalt "
+#~ "Teie valikule) ükskõik milline hilisem versioon."
 
-msgid "Move left"
-msgstr "Vasakule liigutamine"
+#~ msgid ""
+#~ "%s is distributed in the hope that it will be useful, but WITHOUT ANY "
+#~ "WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+#~ "FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+#~ "details."
+#~ msgstr ""
+#~ "Programmi %s levitatakse lootuses, et see on kasulik, kuid ILMA IGASUGUSE "
+#~ "GARANTIITA; isegi KESKMISE/TAVALISE KVALITEEDIGARANTIITA või SOBIVUSELE "
+#~ "TEATUD KINDLAKS EESMÄRGIKS. Üksikasjade suhtes vaata GNU Üldist Avalikku "
+#~ "Litsentsi."
 
-msgid "Key press to move left."
-msgstr "Vasakule liigutamise klahvivajutus."
+#~ msgid ""
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with %s; if not, write to the Free Software Foundation, Inc., 51 Franklin "
+#~ "Street, Fifth Floor, Boston, MA  02110-1301  USA"
+#~ msgstr ""
+#~ "Te peaks olema saanud GNU Üldise Avaliku Litsentsi koopia koos "
+#~ "programmiga %s; kui ei, siis võtke ühendust Free Software Foundation'iga, "
+#~ "51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
 
-msgid "Move right"
-msgstr "Paremale liigutamine"
+#~ msgid ""
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with this program.  If not, see <http://www.gnu.org/licenses/>."
+#~ msgstr ""
+#~ "Te peaks olema saanud GNU Üldise Avaliku Litsentsi koopia koos "
+#~ "programmiga %s; kui ei, siis vaata <http://www.gnu.org/licenses/>."
 
-msgid "Key press to move right."
-msgstr "Paremale liigutamise klahvivajutus."
+#~ msgctxt "board size"
+#~ msgid "Small"
+#~ msgstr "Väike"
 
-msgid "Drop marble"
-msgstr "Kivi kukutamine"
+#~ msgctxt "board size"
+#~ msgid "Medium"
+#~ msgstr "Keskmine"
 
-msgid "Key press to drop a marble."
-msgstr "Kivi kukutamise klahvivajutus."
+#~ msgctxt "board size"
+#~ msgid "Large"
+#~ msgstr "Suur"
 
-msgid "Unknown Command"
-msgstr "Tundmatu käsk"
+#~ msgid "Could not load theme"
+#~ msgstr "Teemat pole võimalik laadida"
 
-#, c-format
-msgid ""
-"Unable to load image:\n"
-"%s"
-msgstr ""
-"Pilti pole võimalik laadida:\n"
-"%s"
+#~ msgid ""
+#~ "Unable to locate file:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "The default theme will be loaded instead."
+#~ msgstr ""
+#~ "Faili pole võimalik leida:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Selle asemel kasutatakse vaikimisi teemat."
 
-msgid "It's a draw!"
-msgstr "Viik!"
+#~ msgid ""
+#~ "Unable to locate file:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Please check that Five or More is installed correctly."
+#~ msgstr ""
+#~ "Faili pole võimalik leida:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Palun veendu, et \"Viis või rohkem\" on korrektselt paigaldatud."
 
-msgid "You win!"
-msgstr "Sinu võit!"
+#~ msgid "Match five objects of the same type in a row to score!"
+#~ msgstr ""
+#~ "Punktide saamiseks pead järjestikku ritta saama viis samavärvilist palli!"
 
-msgid "It is your move."
-msgstr "Sinu käik."
+#~ msgid "GNOME Five or More"
+#~ msgstr "GNOME Viis või rohkem"
 
-msgid "I win!"
-msgstr "Minu võit!"
+#~ msgid "_Board size:"
+#~ msgstr "_Mängulaua suurus:"
 
-msgid "Thinking..."
-msgstr "Mõtlen..."
+#~ msgid "Game Over!"
+#~ msgstr "Mäng on läbi!"
 
-#, c-format
-msgid "%s wins!"
-msgstr "%s võitis!"
+#~ msgid "You can't move there!"
+#~ msgstr "Sinna pole võimalik käia!"
 
-#, c-format
-msgid "Waiting for %s to move."
-msgstr "Mängija %s käigu ootamine."
+#~ msgid ""
+#~ "GNOME port of the once-popular Color Lines game.\n"
+#~ "\n"
+#~ "Five or More is a part of GNOME Games."
+#~ msgstr ""
+#~ "GNOME versioon populaarsest mängust Color Lines.\n"
+#~ "\n"
+#~ "\"Viis või rohkem\" kuulub GNOME mängude koosseisu."
 
-#, c-format
-msgid "Hint: Column %d"
-msgstr "Vihje: %d tulp"
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Lauris Kaplinski <lauris ariman ee>, 1999.\n"
+#~ "Tõivo Leedjärv <toivo linux ee>, 2002.\n"
+#~ "Ilmar Kerm <ikerm hot ee>, 2002.\n"
+#~ "Ivar Smolin <okul linux ee>, 2005–2011."
 
-msgid "You:"
-msgstr "Sina:"
+#~ msgid "Four-in-a-Row"
+#~ msgstr "Neli-tükki-reas"
 
-msgid "Me:"
-msgstr "Mina:"
+#~ msgid "Make lines of the same color to win"
+#~ msgstr "Ühevärviliste ridade kombineerimise võistlus"
 
-msgid "Drawn:"
-msgstr "Viike:"
+#~ msgid "Level of Player One"
+#~ msgstr "Esimese mängija tase"
 
-msgid ""
-"\"Four in a Row\" for GNOME, with a computer player driven by Giuliano "
-"Bertoletti's Velena Engine.\n"
-"\n"
-"\"Four in a Row\" is a part of GNOME Games."
-msgstr ""
-"\"Neli-tükki-reas\" GNOME versioon. Arvutimängijat juhib Giuliano Bertoletti "
-"poolt loodud mootor Velena Engine.\n"
-"\n"
-"\"Neli-tükki-reas\" kuulub GNOME mängude koosseisu."
+#~ msgid ""
+#~ "Zero is human; one through three correspond to the level of the computer "
+#~ "player."
+#~ msgstr ""
+#~ "Null tähendab inimest, numbrid ühest kuni kolmeni tähendavad arvuti taset."
 
-msgid "_View"
-msgstr "_Vaade"
+#~ msgid "Level of Player Two"
+#~ msgstr "Teise mängija tase"
 
-msgid "Four-in-a-row"
-msgstr "Neli-tükki-reas"
+#~ msgid "Theme ID"
+#~ msgstr "Teema ID"
 
-msgid "Four-in-a-Row Preferences"
-msgstr "Neli-tükki-reas eelistused"
+#~ msgid "A number specifying the preferred theme."
+#~ msgstr "Number eelistatud teema kirjeldamiseks."
 
-msgid "Player One:"
-msgstr "Esimene mängija:"
+#~ msgid "Animate"
+#~ msgstr "Animatsioon"
 
-msgid "Human"
-msgstr "Inimene"
+#~ msgid "Whether or not to use animation."
+#~ msgstr "Kas animatsiooni kasutatakse või mitte."
 
-msgid "Level one"
-msgstr "Esimene tase"
+#~ msgid "Sound"
+#~ msgstr "Heli"
 
-msgid "Level two"
-msgstr "Teine tase"
+#~ msgid "Whether or not to play event sounds."
+#~ msgstr "Kas helisid esitatakse või mitte."
 
-msgid "Level three"
-msgstr "Kolmas tase"
+#~ msgid "Move left"
+#~ msgstr "Vasakule liigutamine"
 
-msgid "Player Two:"
-msgstr "Teine mängija:"
+#~ msgid "Key press to move left."
+#~ msgstr "Vasakule liigutamise klahvivajutus."
 
-msgid "_Theme:"
-msgstr "_Teema:"
+#~ msgid "Move right"
+#~ msgstr "Paremale liigutamine"
 
-msgid "Enable _animation"
-msgstr "_Animatsioon on lubatud"
+#~ msgid "Key press to move right."
+#~ msgstr "Paremale liigutamise klahvivajutus."
 
-msgid "E_nable sounds"
-msgstr "_Helid on lubatud"
+#~ msgid "Drop marble"
+#~ msgstr "Kivi kukutamine"
 
-#. keyboard tab
-msgid "Keyboard Controls"
-msgstr "Klaviatuuriga juhtimine"
+#~ msgid "Key press to drop a marble."
+#~ msgstr "Kivi kukutamise klahvivajutus."
 
-msgid "Classic"
-msgstr "Klassikaline"
+#~ msgid "Unknown Command"
+#~ msgstr "Tundmatu käsk"
 
-msgid "Red"
-msgstr "Punane"
+#~ msgid ""
+#~ "Unable to load image:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Pilti pole võimalik laadida:\n"
+#~ "%s"
 
-msgid "Yellow"
-msgstr "Kollane"
+#~ msgid "It's a draw!"
+#~ msgstr "Viik!"
 
-msgid "High Contrast"
-msgstr "Tugev kontrast"
+#~ msgid "You win!"
+#~ msgstr "Sinu võit!"
 
-msgid "Circle"
-msgstr "Ring"
+#~ msgid "It is your move."
+#~ msgstr "Sinu käik."
 
-msgid "Cross"
-msgstr "Rist"
+#~ msgid "I win!"
+#~ msgstr "Minu võit!"
 
-msgid "High Contrast Inverse"
-msgstr "Tugev kontrast inversioonis"
+#~ msgid "Thinking..."
+#~ msgstr "Mõtlen..."
 
-msgid "Cream Marbles"
-msgstr "Kreemjad kivikesed"
+#~ msgid "%s wins!"
+#~ msgstr "%s võitis!"
 
-msgid "Blue"
-msgstr "Sinine"
+#~ msgid "Waiting for %s to move."
+#~ msgstr "Mängija %s käigu ootamine."
 
-msgid "Glass Marbles"
-msgstr "Klaaskivikesed"
+#~ msgid "Hint: Column %d"
+#~ msgstr "Vihje: %d tulp"
 
-msgid "Nightfall"
-msgstr "Videvik"
+#~ msgid "You:"
+#~ msgstr "Sina:"
 
-msgid "Blocks"
-msgstr "Blokid"
+#~ msgid "Me:"
+#~ msgstr "Mina:"
 
-msgid "Orange"
-msgstr "Oranž"
+#~ msgid "Drawn:"
+#~ msgstr "Viike:"
 
-msgid "Nibbles"
-msgstr "Ussimäng"
+#~ msgid ""
+#~ "\"Four in a Row\" for GNOME, with a computer player driven by Giuliano "
+#~ "Bertoletti's Velena Engine.\n"
+#~ "\n"
+#~ "\"Four in a Row\" is a part of GNOME Games."
+#~ msgstr ""
+#~ "\"Neli-tükki-reas\" GNOME versioon. Arvutimängijat juhib Giuliano "
+#~ "Bertoletti poolt loodud mootor Velena Engine.\n"
+#~ "\n"
+#~ "\"Neli-tükki-reas\" kuulub GNOME mängude koosseisu."
 
-msgid "Guide a worm around a maze"
-msgstr "Ussi juhtimine läbi labürindi"
+#~ msgid "_View"
+#~ msgstr "_Vaade"
 
-msgid "Number of human players"
-msgstr "Inimmängijate arv"
+#~ msgid "Four-in-a-row"
+#~ msgstr "Neli-tükki-reas"
 
-msgid "Number of human players."
-msgstr "Inimmängijate arv."
+#~ msgid "Four-in-a-Row Preferences"
+#~ msgstr "Neli-tükki-reas eelistused"
 
-msgid "Number of AI players"
-msgstr "AI-mängijate arv"
+#~ msgid "Player One:"
+#~ msgstr "Esimene mängija:"
 
-msgid "Number of AI players."
-msgstr "AI-mängijate arv."
+#~ msgid "Human"
+#~ msgstr "Inimene"
 
-msgid "Game speed"
-msgstr "Mängu kiirus"
+#~ msgid "Level one"
+#~ msgstr "Esimene tase"
 
-msgid "Game speed (1=fast, 4=slow)."
-msgstr "Mängu kiirus (1=kiire, 4=aeglane)."
+#~ msgid "Level two"
+#~ msgstr "Teine tase"
 
-msgid "Enable fake bonuses"
-msgstr "Võltspreemiate lubamine"
+#~ msgid "Level three"
+#~ msgstr "Kolmas tase"
 
-msgid "Enable fake bonuses."
-msgstr "Võltspreemiate lubamine."
+#~ msgid "Player Two:"
+#~ msgstr "Teine mängija:"
 
-msgid "Play levels in random order"
-msgstr "Tasemed juhuslikus järjekorras"
+#~ msgid "_Theme:"
+#~ msgstr "_Teema:"
 
-msgid "Play levels in random order."
-msgstr "Mängutasemed juhuslikus järjekorras."
+#~ msgid "Enable _animation"
+#~ msgstr "_Animatsioon on lubatud"
 
-msgid "Game level to start on"
-msgstr "Mängu algustase"
+#~ msgid "E_nable sounds"
+#~ msgstr "_Helid on lubatud"
 
-msgid "Game level to start on."
-msgstr "Mängu algustase."
+#~ msgid "Keyboard Controls"
+#~ msgstr "Klaviatuuriga juhtimine"
 
-msgid "Enable sounds"
-msgstr "Heli lubatud"
+#~ msgid "Classic"
+#~ msgstr "Klassikaline"
 
-msgid "Enable sounds."
-msgstr "Helid on lubatud."
+#~ msgid "Red"
+#~ msgstr "Punane"
 
-msgid "Size of game tiles"
-msgstr "Mänguklotside suurus"
+#~ msgid "Yellow"
+#~ msgstr "Kollane"
 
-msgid "Size of game tiles."
-msgstr "Mänguklotside suurus."
+#~ msgid "High Contrast"
+#~ msgstr "Tugev kontrast"
 
-msgid "Color to use for worm"
-msgstr "Ussi jaoks kasutatav värv"
+#~ msgid "Circle"
+#~ msgstr "Ring"
 
-msgid "Color to use for worm."
-msgstr "Ussi jaoks kasutatav värv."
+#~ msgid "Cross"
+#~ msgstr "Rist"
 
-msgid "Use relative movement"
-msgstr "Suhteline liikumine"
+#~ msgid "High Contrast Inverse"
+#~ msgstr "Tugev kontrast inversioonis"
 
-msgid "Use relative movement (ie. left or right only)."
-msgstr ""
-"Suhtelise liikumise kasutamine (ehk ainult vasakule ja paremale pööramine)."
+#~ msgid "Cream Marbles"
+#~ msgstr "Kreemjad kivikesed"
 
-msgid "Move up"
-msgstr "Üles liigutamine"
+#~ msgid "Blue"
+#~ msgstr "Sinine"
 
-msgid "Key to use for motion up."
-msgstr "Ülesliigutamise klahv."
+#~ msgid "Glass Marbles"
+#~ msgstr "Klaaskivikesed"
 
-msgid "Move down"
-msgstr "Alla liigutamine"
+#~ msgid "Nightfall"
+#~ msgstr "Videvik"
 
-msgid "Key to use for motion down."
-msgstr "Allaliigutamise klahv."
+#~ msgid "Blocks"
+#~ msgstr "Blokid"
 
-msgid "Key to use for motion left."
-msgstr "Vasakuleliigutamise klahv."
+#~ msgid "Orange"
+#~ msgstr "Oranž"
 
-msgid "Key to use for motion right."
-msgstr "Paremaleliigutamise klahv."
+#~ msgid "Nibbles"
+#~ msgstr "Ussimäng"
 
-#, c-format
-msgid ""
-"Nibbles couldn't load level file:\n"
-"%s\n"
-"\n"
-"Please check your Nibbles installation"
-msgstr ""
-"Nibblesil pole võimalik tasemefaili laadida:\n"
-"%s\n"
-"\n"
-"Palun kontrolli oma Nibblesi paigaldust"
+#~ msgid "Guide a worm around a maze"
+#~ msgstr "Ussi juhtimine läbi labürindi"
 
-#, c-format
-msgid ""
-"Level file appears to be damaged:\n"
-"%s\n"
-"\n"
-"Please check your Nibbles installation"
-msgstr ""
-"Tasemefail paistab olevat rikutud:\n"
-"%s\n"
-"\n"
-"Palun kontrolli oma Nibblesi paigaldust"
+#~ msgid "Number of human players"
+#~ msgstr "Inimmängijate arv"
 
-#, c-format
-msgid ""
-"Nibbles couldn't find pixmap file:\n"
-"%s\n"
-"\n"
-"Please check your Nibbles installation"
-msgstr ""
-"Nibbles ei leidnud pildifaili:\n"
-"%s\n"
-"\n"
-"Palun kontrolli oma Nibblesi paigaldust"
+#~ msgid "Number of human players."
+#~ msgstr "Inimmängijate arv."
 
-msgid "Nibbles Scores"
-msgstr "Ussimängu tulemused"
+#~ msgid "Number of AI players"
+#~ msgstr "AI-mängijate arv"
 
-msgid "Speed:"
-msgstr "Kiirus:"
+#~ msgid "Number of AI players."
+#~ msgstr "AI-mängijate arv."
 
-#, c-format
-msgid "Congratulations!"
-msgstr "Õnnitlused!"
+#~ msgid "Game speed"
+#~ msgstr "Mängu kiirus"
 
-msgid "Your score is the best!"
-msgstr "Sinu tulemus on parim!"
+#~ msgid "Game speed (1=fast, 4=slow)."
+#~ msgstr "Mängu kiirus (1=kiire, 4=aeglane)."
 
-msgid "Your score has made the top ten."
-msgstr "Sinu tulemus on esikümne vääriline."
+#~ msgid "Enable fake bonuses"
+#~ msgstr "Võltspreemiate lubamine"
 
-msgctxt "game speed"
-msgid "Beginner"
-msgstr "Algaja"
+#~ msgid "Enable fake bonuses."
+#~ msgstr "Võltspreemiate lubamine."
 
-msgctxt "game speed"
-msgid "Slow"
-msgstr "Aeglane"
+#~ msgid "Play levels in random order"
+#~ msgstr "Tasemed juhuslikus järjekorras"
 
-msgctxt "game speed"
-msgid "Medium"
-msgstr "Keskmine"
+#~ msgid "Play levels in random order."
+#~ msgstr "Mängutasemed juhuslikus järjekorras."
 
-msgctxt "game speed"
-msgid "Fast"
-msgstr "Kiire"
+#~ msgid "Game level to start on"
+#~ msgstr "Mängu algustase"
 
-msgctxt "game speed"
-msgid "Beginner with Fakes"
-msgstr "Algaja, koos võltsingutega"
+#~ msgid "Game level to start on."
+#~ msgstr "Mängu algustase."
 
-msgctxt "game speed"
-msgid "Slow with Fakes"
-msgstr "Aeglane, koos võltsingutega"
+#~ msgid "Enable sounds"
+#~ msgstr "Heli lubatud"
 
-msgctxt "game speed"
-msgid "Medium with Fakes"
-msgstr "Keskmine, koos võltsingutega"
+#~ msgid "Enable sounds."
+#~ msgstr "Helid on lubatud."
 
-msgctxt "game speed"
-msgid "Fast with Fakes"
-msgstr "Kiire, koos võltsingutega"
+#~ msgid "Size of game tiles"
+#~ msgstr "Mänguklotside suurus"
 
-msgid ""
-"A worm game for GNOME.\n"
-"\n"
-"Nibbles is a part of GNOME Games."
-msgstr ""
-"GNOME ussimäng.\n"
-"\n"
-"\"Nibbles\" kuulub GNOME mängude koosseisu."
+#~ msgid "Size of game tiles."
+#~ msgstr "Mänguklotside suurus."
 
-#, c-format
-msgid "Game over! The game has been won by %s!"
-msgstr "Mäng on läbi! Mängu võitis %s!"
+#~ msgid "Color to use for worm"
+#~ msgstr "Ussi jaoks kasutatav värv"
 
-#. Translators: This string will be included in the intro screen, so don't make sure it fits!
-msgid "A worm game for GNOME."
-msgstr "GNOME ussimäng."
+#~ msgid "Color to use for worm."
+#~ msgstr "Ussi jaoks kasutatav värv."
 
-msgid "Nibbles Preferences"
-msgstr "Ussimängu eelistused"
+#~ msgid "Use relative movement"
+#~ msgstr "Suhteline liikumine"
 
-#. Speed
-msgid "Speed"
-msgstr "Kiirus"
+#~ msgid "Use relative movement (ie. left or right only)."
+#~ msgstr ""
+#~ "Suhtelise liikumise kasutamine (ehk ainult vasakule ja paremale "
+#~ "pööramine)."
 
-msgid "Nibbles newbie"
-msgstr "Algaja ussimängija"
+#~ msgid "Move up"
+#~ msgstr "Üles liigutamine"
 
-msgid "My second day"
-msgstr "Minu teine päev"
+#~ msgid "Key to use for motion up."
+#~ msgstr "Ülesliigutamise klahv."
 
-msgid "Not too shabby"
-msgstr "Mitte liiga tormakas"
+#~ msgid "Move down"
+#~ msgstr "Alla liigutamine"
 
-msgid "Finger-twitching good"
-msgstr "Sõrmeväänamine"
+#~ msgid "Key to use for motion down."
+#~ msgstr "Allaliigutamise klahv."
 
-msgid "Options"
-msgstr "Valikud"
+#~ msgid "Key to use for motion left."
+#~ msgstr "Vasakuleliigutamise klahv."
 
-msgid "_Play levels in random order"
-msgstr "_Tasemed juhuslikus järjekorras"
+#~ msgid "Key to use for motion right."
+#~ msgstr "Paremaleliigutamise klahv."
 
-msgid "_Enable fake bonuses"
-msgstr "_Võltspreemiad on lubatud"
+#~ msgid ""
+#~ "Nibbles couldn't load level file:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Please check your Nibbles installation"
+#~ msgstr ""
+#~ "Nibblesil pole võimalik tasemefaili laadida:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Palun kontrolli oma Nibblesi paigaldust"
 
-#. starting level
-msgid "_Starting level:"
-msgstr "_Algustase: "
+#~ msgid ""
+#~ "Level file appears to be damaged:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Please check your Nibbles installation"
+#~ msgstr ""
+#~ "Tasemefail paistab olevat rikutud:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Palun kontrolli oma Nibblesi paigaldust"
 
-msgid "Number of _human players:"
-msgstr "_Inimmängijate arv:"
+#~ msgid ""
+#~ "Nibbles couldn't find pixmap file:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Please check your Nibbles installation"
+#~ msgstr ""
+#~ "Nibbles ei leidnud pildifaili:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Palun kontrolli oma Nibblesi paigaldust"
 
-msgid "Number of _AI players:"
-msgstr "_AI-mängijate arv:"
+#~ msgid "Nibbles Scores"
+#~ msgstr "Ussimängu tulemused"
 
-msgid "Worm"
-msgstr "Uss"
+#~ msgid "Speed:"
+#~ msgstr "Kiirus:"
 
-msgid "Keyboard Options"
-msgstr "Klaviatuurivalikud"
+#~ msgid "Congratulations!"
+#~ msgstr "Õnnitlused!"
 
-msgid "_Use relative movement"
-msgstr "_Suhteline liikumine"
+#~ msgid "Your score is the best!"
+#~ msgstr "Sinu tulemus on parim!"
 
-msgid "_Worm color:"
-msgstr "_Ussi värv:"
+#~ msgid "Your score has made the top ten."
+#~ msgstr "Sinu tulemus on esikümne vääriline."
 
-msgid "Green"
-msgstr "Roheline"
+#~ msgctxt "game speed"
+#~ msgid "Beginner"
+#~ msgstr "Algaja"
 
-msgid "Cyan"
-msgstr "Sinakasroheline"
+#~ msgctxt "game speed"
+#~ msgid "Slow"
+#~ msgstr "Aeglane"
 
-msgid "Purple"
-msgstr "Sirelikarva"
+#~ msgctxt "game speed"
+#~ msgid "Medium"
+#~ msgstr "Keskmine"
 
-msgid "Gray"
-msgstr "Hall"
+#~ msgctxt "game speed"
+#~ msgid "Fast"
+#~ msgstr "Kiire"
 
-#, c-format
-msgid "Worm %d:"
-msgstr "Uss %d:"
+#~ msgctxt "game speed"
+#~ msgid "Beginner with Fakes"
+#~ msgstr "Algaja, koos võltsingutega"
 
-msgid "Robots"
-msgstr "Robotid"
+#~ msgctxt "game speed"
+#~ msgid "Slow with Fakes"
+#~ msgstr "Aeglane, koos võltsingutega"
 
-msgid "Avoid the robots and make them crash into each other"
-msgstr "Hoidu robotite eest ja proovi neid meelitada omavahel kokku põrkama"
+#~ msgctxt "game speed"
+#~ msgid "Medium with Fakes"
+#~ msgstr "Keskmine, koos võltsingutega"
 
-msgid "Show toolbar"
-msgstr "Tööriistariba näitamine"
+#~ msgctxt "game speed"
+#~ msgid "Fast with Fakes"
+#~ msgstr "Kiire, koos võltsingutega"
 
-msgid "Show toolbar. A standard option for toolbars."
-msgstr "Tööriistariba näitamine. Tööriistaribade standardvalik."
+#~ msgid ""
+#~ "A worm game for GNOME.\n"
+#~ "\n"
+#~ "Nibbles is a part of GNOME Games."
+#~ msgstr ""
+#~ "GNOME ussimäng.\n"
+#~ "\n"
+#~ "\"Nibbles\" kuulub GNOME mängude koosseisu."
 
-msgid "Robot image theme"
-msgstr "Robotite pilditeema"
+#~ msgid "Game over! The game has been won by %s!"
+#~ msgstr "Mäng on läbi! Mängu võitis %s!"
 
-msgid "Robot image theme. The theme of the images to use for the robots."
-msgstr ""
-"Robotite pilditeema on teema, millega kirjeldatakse robotite joonistamiseks "
-"kasutatavaid pilte."
+#~ msgid "A worm game for GNOME."
+#~ msgstr "GNOME ussimäng."
 
-msgid "Game type"
-msgstr "Mängu liik"
+#~ msgid "Nibbles Preferences"
+#~ msgstr "Ussimängu eelistused"
 
-msgid "Game type. The name of the game variation to use."
-msgstr "Mängu liik. Kasutatava mänguvariatsiooni nimi."
+#~ msgid "Speed"
+#~ msgstr "Kiirus"
 
-msgid "Use safe moves"
-msgstr "Ohutute käikude kasutamine"
+#~ msgid "Nibbles newbie"
+#~ msgstr "Algaja ussimängija"
 
-msgid ""
-"Use safe moves. The safe moves option will help you to avoid being killed "
-"due to a mistake. If you try to make a move that would lead to your death "
-"when there is a safe move available you will not be allowed to proceed."
-msgstr ""
-"Ohutute käikude kasutamine. Ohutud käigud kaitsevad mängijat enda vea tõttu "
-"surma saamast. Kui sa proovid teha käiku, mis lõpeb surmaga ja samal ajal on "
-"võimalik teha mõnda ohutut käiku, siis surmaga lõppevat käiku ei lasta teha."
+#~ msgid "My second day"
+#~ msgstr "Minu teine päev"
 
-msgid "Use super safe moves"
-msgstr "Eriti ohutute käikude kasutamine"
+#~ msgid "Not too shabby"
+#~ msgstr "Mitte liiga tormakas"
 
-msgid ""
-"Use super safe moves. The player is alerted when there is no safe move and "
-"the only option is to teleport out."
-msgstr ""
-"Eriti ohutute käikude kasutamine. Mängijat hoiatatakse olukorras, kus pole "
-"võimalik ühtegi ohutut käiku teha ja ainsaks valikuks on teleporteerumine."
+#~ msgid "Finger-twitching good"
+#~ msgstr "Sõrmeväänamine"
 
-msgid "Enable game sounds"
-msgstr "Mänguheli lubatud"
+#~ msgid "Options"
+#~ msgstr "Valikud"
 
-msgid "Enable game sounds. Play sounds for various events throughout the game."
-msgstr "Mänguheli lubamine. Helide esitamine mitmete mängusündmuste korral."
+#~ msgid "_Play levels in random order"
+#~ msgstr "_Tasemed juhuslikus järjekorras"
 
-msgid "Key to move NW"
-msgstr "Loode suunas liigutamise klahv (NW)"
+#~ msgid "_Enable fake bonuses"
+#~ msgstr "_Võltspreemiad on lubatud"
 
-msgid "The key used to move north-west."
-msgstr "Loodesse liigutamise klahv."
+#~ msgid "_Starting level:"
+#~ msgstr "_Algustase: "
 
-msgid "Key to move N"
-msgstr "Põhja suunas liigutamise klahv (N)"
+#~ msgid "Number of _human players:"
+#~ msgstr "_Inimmängijate arv:"
 
-msgid "The key used to move north."
-msgstr "Põhja liigutamise klahv."
+#~ msgid "Number of _AI players:"
+#~ msgstr "_AI-mängijate arv:"
 
-msgid "Key to move NE"
-msgstr "Kirde suunas liigutamise klahv (NE)"
+#~ msgid "Worm"
+#~ msgstr "Uss"
 
-msgid "The key used to move north-east."
-msgstr "Kirdesse liigutamise klahv."
+#~ msgid "Keyboard Options"
+#~ msgstr "Klaviatuurivalikud"
 
-msgid "Key to move W"
-msgstr "Lääne suunas liigutamise klahv (W)"
+#~ msgid "_Use relative movement"
+#~ msgstr "_Suhteline liikumine"
 
-msgid "The key used to move west."
-msgstr "Läände liigutamise klahv."
+#~ msgid "_Worm color:"
+#~ msgstr "_Ussi värv:"
 
-msgid "Key to hold"
-msgstr "Passimise klahv"
+#~ msgid "Green"
+#~ msgstr "Roheline"
 
-msgid "The key used to hold still."
-msgstr "Paigalseismise klahv."
+#~ msgid "Cyan"
+#~ msgstr "Sinakasroheline"
 
-msgid "Key to move E"
-msgstr "Ida suunas liigutamise klahv (E)"
+#~ msgid "Purple"
+#~ msgstr "Sirelikarva"
 
-msgid "The key used to move east."
-msgstr "Itta liigutamise klahv."
+#~ msgid "Gray"
+#~ msgstr "Hall"
 
-msgid "Key to move SW"
-msgstr "Edela suunas liigutamise klahv (SW)"
+#~ msgid "Worm %d:"
+#~ msgstr "Uss %d:"
 
-msgid "The key used to move south-west."
-msgstr "Edelasse liigutamise klahv."
+#~ msgid "Robots"
+#~ msgstr "Robotid"
 
-msgid "Key to move S"
-msgstr "Lõuna suunas liigutamise klahv (S)"
+#~ msgid "Avoid the robots and make them crash into each other"
+#~ msgstr "Hoidu robotite eest ja proovi neid meelitada omavahel kokku põrkama"
 
-msgid "The key used to move south."
-msgstr "Lõunasse liigutamise klahv."
+#~ msgid "Show toolbar"
+#~ msgstr "Tööriistariba näitamine"
 
-msgid "Key to move SE"
-msgstr "Kagu suunas liigutamise klahv (SE)"
+#~ msgid "Show toolbar. A standard option for toolbars."
+#~ msgstr "Tööriistariba näitamine. Tööriistaribade standardvalik."
 
-msgid "The key used to move south-east."
-msgstr "Kagusse liigutamise klahv."
+#~ msgid "Robot image theme"
+#~ msgstr "Robotite pilditeema"
 
-msgid "Key to teleport"
-msgstr "Telepordi klahv"
+#~ msgid "Robot image theme. The theme of the images to use for the robots."
+#~ msgstr ""
+#~ "Robotite pilditeema on teema, millega kirjeldatakse robotite "
+#~ "joonistamiseks kasutatavaid pilte."
 
-msgid "The key used to teleport safely (if possible)."
-msgstr "Teleportimise klahv, võimaluse korral ohutult."
+#~ msgid "Game type"
+#~ msgstr "Mängu liik"
 
-msgid "Key to teleport randomly"
-msgstr "Juhusliku telepordi klahv"
+#~ msgid "Game type. The name of the game variation to use."
+#~ msgstr "Mängu liik. Kasutatava mänguvariatsiooni nimi."
 
-msgid "The key used to teleport randomly."
-msgstr "Juhusliku teleportimise klahv."
+#~ msgid "Use safe moves"
+#~ msgstr "Ohutute käikude kasutamine"
 
-msgid "Key to wait"
-msgstr "Ootamise klahv"
+#~ msgid ""
+#~ "Use safe moves. The safe moves option will help you to avoid being killed "
+#~ "due to a mistake. If you try to make a move that would lead to your death "
+#~ "when there is a safe move available you will not be allowed to proceed."
+#~ msgstr ""
+#~ "Ohutute käikude kasutamine. Ohutud käigud kaitsevad mängijat enda vea "
+#~ "tõttu surma saamast. Kui sa proovid teha käiku, mis lõpeb surmaga ja "
+#~ "samal ajal on võimalik teha mõnda ohutut käiku, siis surmaga lõppevat "
+#~ "käiku ei lasta teha."
 
-msgid "The key used to wait."
-msgstr "Ootamise klahv."
+#~ msgid "Use super safe moves"
+#~ msgstr "Eriti ohutute käikude kasutamine"
 
-msgid "Game over!"
-msgstr "Mäng on läbi!"
+#~ msgid ""
+#~ "Use super safe moves. The player is alerted when there is no safe move "
+#~ "and the only option is to teleport out."
+#~ msgstr ""
+#~ "Eriti ohutute käikude kasutamine. Mängijat hoiatatakse olukorras, kus "
+#~ "pole võimalik ühtegi ohutut käiku teha ja ainsaks valikuks on "
+#~ "teleporteerumine."
 
-msgid "Great work, but unfortunately your score did not make the top ten."
-msgstr "Hästi tehtud! Kahjuks aga ei mahtunud su tulemus esikümnesse."
+#~ msgid "Enable game sounds"
+#~ msgstr "Mänguheli lubatud"
 
-msgid "Robots Scores"
-msgstr "Robotite tulemused"
+#~ msgid ""
+#~ "Enable game sounds. Play sounds for various events throughout the game."
+#~ msgstr "Mänguheli lubamine. Helide esitamine mitmete mängusündmuste korral."
 
-msgid "Map:"
-msgstr "Ladumisviis:"
+#~ msgid "Key to move NW"
+#~ msgstr "Loode suunas liigutamise klahv (NW)"
 
-msgid ""
-"Congratulations, You Have Defeated the Robots!! \n"
-"But Can You do it Again?"
-msgstr ""
-"Õnnitlused, sa tegid robotitele ära!!\n"
-"Kuid kas sa suudad seda korrata?"
+#~ msgid "The key used to move north-west."
+#~ msgstr "Loodesse liigutamise klahv."
 
-#. This should never happen.
-msgid "There are no teleport locations left!!"
-msgstr "Ei ole enam kohti, kuhu teleportida!!"
+#~ msgid "Key to move N"
+#~ msgstr "Põhja suunas liigutamise klahv (N)"
 
-msgid "There are no safe locations to teleport to!!"
-msgstr "Ei ole enam ohutuid kohti, kuhu teleportida!!"
+#~ msgid "The key used to move north."
+#~ msgstr "Põhja liigutamise klahv."
 
-msgid "Set game scenario"
-msgstr "Mängustsenaariumi muutmine"
+#~ msgid "Key to move NE"
+#~ msgstr "Kirde suunas liigutamise klahv (NE)"
 
-msgid "NAME"
-msgstr "NIMI"
+#~ msgid "The key used to move north-east."
+#~ msgstr "Kirdesse liigutamise klahv."
 
-msgid "Set game configuration"
-msgstr "Mängu sätete muutmine"
+#~ msgid "Key to move W"
+#~ msgstr "Lääne suunas liigutamise klahv (W)"
 
-msgid "Initial window position"
-msgstr "Vigane akna asukoht"
+#~ msgid "The key used to move west."
+#~ msgstr "Läände liigutamise klahv."
 
-msgid "X"
-msgstr "X"
+#~ msgid "Key to hold"
+#~ msgstr "Passimise klahv"
 
-msgid "Y"
-msgstr "Y"
+#~ msgid "The key used to hold still."
+#~ msgstr "Paigalseismise klahv."
 
-msgid "Classic robots"
-msgstr "Klassikalised robotid"
+#~ msgid "Key to move E"
+#~ msgstr "Ida suunas liigutamise klahv (E)"
 
-msgid "Classic robots with safe moves"
-msgstr "Klassikalised robotid ohutute käikudega"
+#~ msgid "The key used to move east."
+#~ msgstr "Itta liigutamise klahv."
 
-msgid "Classic robots with super-safe moves"
-msgstr "Klassikalised robotid eriti ohutute käikudega"
+#~ msgid "Key to move SW"
+#~ msgstr "Edela suunas liigutamise klahv (SW)"
 
-msgid "Nightmare"
-msgstr "Luupainaja"
+#~ msgid "The key used to move south-west."
+#~ msgstr "Edelasse liigutamise klahv."
 
-msgid "Nightmare with safe moves"
-msgstr "Luupainaja ohutute käikudega"
+#~ msgid "Key to move S"
+#~ msgstr "Lõuna suunas liigutamise klahv (S)"
 
-msgid "Nightmare with super-safe moves"
-msgstr "Luupainaja eriti ohutute käikudega"
+#~ msgid "The key used to move south."
+#~ msgstr "Lõunasse liigutamise klahv."
 
-msgid "Robots2"
-msgstr "Robotid-2"
+#~ msgid "Key to move SE"
+#~ msgstr "Kagu suunas liigutamise klahv (SE)"
 
-msgid "Robots2 with safe moves"
-msgstr "Robotid-2 ohutute käikudega"
+#~ msgid "The key used to move south-east."
+#~ msgstr "Kagusse liigutamise klahv."
 
-msgid "Robots2 with super-safe moves"
-msgstr "Robotid-2 eriti ohutute käikudega"
+#~ msgid "Key to teleport"
+#~ msgstr "Telepordi klahv"
 
-msgid "Robots2 easy"
-msgstr "Lihtne robotid-2"
+#~ msgid "The key used to teleport safely (if possible)."
+#~ msgstr "Teleportimise klahv, võimaluse korral ohutult."
 
-msgid "Robots2 easy with safe moves"
-msgstr "Robotid-2 ohutute käikudega"
+#~ msgid "Key to teleport randomly"
+#~ msgstr "Juhusliku telepordi klahv"
 
-msgid "Robots2 easy with super-safe moves"
-msgstr "Robotid-2 eriti ohutute käikudega"
+#~ msgid "The key used to teleport randomly."
+#~ msgstr "Juhusliku teleportimise klahv."
 
-msgid "Robots with safe teleport"
-msgstr "Robotid ohutute teleportidega"
+#~ msgid "Key to wait"
+#~ msgstr "Ootamise klahv"
 
-msgid "Robots with safe teleport with safe moves"
-msgstr "Robotid ohutute teleportide ja käikudega"
+#~ msgid "The key used to wait."
+#~ msgstr "Ootamise klahv."
 
-msgid "Robots with safe teleport with super-safe moves"
-msgstr "Robotid ohutute teleportidega ja eriti ohutute käikudega"
+#~ msgid "Game over!"
+#~ msgstr "Mäng on läbi!"
 
-msgid "No game data could be found."
-msgstr "Mängu andmeid pole võimalik leida."
+#~ msgid "Great work, but unfortunately your score did not make the top ten."
+#~ msgstr "Hästi tehtud! Kahjuks aga ei mahtunud su tulemus esikümnesse."
 
-msgid ""
-"The program Robots was unable to find any valid game configuration files. "
-"Please check that the program is installed correctly."
-msgstr ""
-"Robotiprogramm ei leidnud ühtegi vigadeta mängusätete faili. Palun "
-"kontrolli, kas programm on korralikult paigaldatud."
+#~ msgid "Robots Scores"
+#~ msgstr "Robotite tulemused"
 
-msgid "Some graphics files are missing or corrupt."
-msgstr "Mõned graafikafailid on rikutud või puudu."
+#~ msgid "Map:"
+#~ msgstr "Ladumisviis:"
 
-msgid ""
-"The program Robots was unable to load all the necessary graphics files. "
-"Please check that the program is installed correctly."
-msgstr ""
-"Robotiprogramm ei ole suuteline kõiki vajalikke graafikafaile laadima. Palun "
-"kontrolli, kas programm on korralikult paigaldatud."
+#~ msgid ""
+#~ "Congratulations, You Have Defeated the Robots!! \n"
+#~ "But Can You do it Again?"
+#~ msgstr ""
+#~ "Õnnitlused, sa tegid robotitele ära!!\n"
+#~ "Kuid kas sa suudad seda korrata?"
 
-#, c-format
-msgid "Could not find '%s' pixmap file\n"
-msgstr "Pildifaili '%s' pole võimalik leida\n"
+#~ msgid "There are no teleport locations left!!"
+#~ msgstr "Ei ole enam kohti, kuhu teleportida!!"
 
-msgid "_Move"
-msgstr "_Käik"
+#~ msgid "There are no safe locations to teleport to!!"
+#~ msgstr "Ei ole enam ohutuid kohti, kuhu teleportida!!"
 
-msgid "_Teleport"
-msgstr "_Teleport"
+#~ msgid "Set game scenario"
+#~ msgstr "Mängustsenaariumi muutmine"
 
-msgid "Teleport, safely if possible"
-msgstr "Teleport, võimaluse korral ohutult"
+#~ msgid "NAME"
+#~ msgstr "NIMI"
 
-msgid "_Random"
-msgstr "_Juhuslik"
+#~ msgid "Set game configuration"
+#~ msgstr "Mängu sätete muutmine"
 
-msgid "Teleport randomly"
-msgstr "Juhuslik teleport"
+#~ msgid "Initial window position"
+#~ msgstr "Vigane akna asukoht"
 
-msgid "_Wait"
-msgstr "_Oota"
+#~ msgid "X"
+#~ msgstr "X"
 
-msgid "Wait for the robots"
-msgstr "Robotite ootamine"
+#~ msgid "Y"
+#~ msgstr "Y"
 
-msgid "_Toolbar"
-msgstr "Töö_riistariba"
+#~ msgid "Classic robots"
+#~ msgstr "Klassikalised robotid"
 
-msgid "Show or hide the toolbar"
-msgstr "Tööriistariba näitamine või peitmine"
+#~ msgid "Classic robots with safe moves"
+#~ msgstr "Klassikalised robotid ohutute käikudega"
 
-msgid ""
-"Based on classic BSD Robots.\n"
-"\n"
-"Robots is a part of GNOME Games."
-msgstr ""
-"Põhineb klassikalisel BSD Robots mängul.\n"
-"\n"
-"\"Robotid\" kuulub GNOME mängude koosseisu."
+#~ msgid "Classic robots with super-safe moves"
+#~ msgstr "Klassikalised robotid eriti ohutute käikudega"
 
-msgid "Robots Preferences"
-msgstr "Robotimängu eelistused"
+#~ msgid "Nightmare"
+#~ msgstr "Luupainaja"
 
-#. --- Combo (yahtzee or kismet style ----
-msgid "Game Type"
-msgstr "Mängu liik"
+#~ msgid "Nightmare with safe moves"
+#~ msgstr "Luupainaja ohutute käikudega"
 
-msgid "_Use safe moves"
-msgstr "_Ohutute käikude kasutamine"
+#~ msgid "Nightmare with super-safe moves"
+#~ msgstr "Luupainaja eriti ohutute käikudega"
 
-msgid "Prevent accidental moves that result in getting killed."
-msgstr "Kõikide surmaga lõppevate juhuslike käikude keelamine."
+#~ msgid "Robots2"
+#~ msgstr "Robotid-2"
 
-msgid "U_se super safe moves"
-msgstr "_Eriti ohutute käikude kasutamine"
+#~ msgid "Robots2 with safe moves"
+#~ msgstr "Robotid-2 ohutute käikudega"
 
-msgid "Prevents all moves that result in getting killed."
-msgstr "Kõikide surmaga lõppevate käikude keelamine."
+#~ msgid "Robots2 with super-safe moves"
+#~ msgstr "Robotid-2 eriti ohutute käikudega"
 
-msgid "_Enable sounds"
-msgstr "_Helid on lubatud"
+#~ msgid "Robots2 easy"
+#~ msgstr "Lihtne robotid-2"
 
-msgid "Play sounds for events like winning a level and dying."
-msgstr "Heli mängimine sündmuste korral nagu võtmine ja taseme tõus."
+#~ msgid "Robots2 easy with safe moves"
+#~ msgstr "Robotid-2 ohutute käikudega"
 
-msgid "_Image theme:"
-msgstr "_Pildi teema:"
+#~ msgid "Robots2 easy with super-safe moves"
+#~ msgstr "Robotid-2 eriti ohutute käikudega"
 
-msgid "_Background color:"
-msgstr "_Taustavärvus:"
+#~ msgid "Robots with safe teleport"
+#~ msgstr "Robotid ohutute teleportidega"
 
-msgid "_Restore Defaults"
-msgstr "_Säti vaikeväärtused"
+#~ msgid "Robots with safe teleport with safe moves"
+#~ msgstr "Robotid ohutute teleportide ja käikudega"
 
-msgid "Keyboard"
-msgstr "Klaviatuur"
+#~ msgid "Robots with safe teleport with super-safe moves"
+#~ msgstr "Robotid ohutute teleportidega ja eriti ohutute käikudega"
 
-msgid "Safe Teleports:"
-msgstr "Ohutuid teleporte:"
+#~ msgid "No game data could be found."
+#~ msgstr "Mängu andmeid pole võimalik leida."
 
-msgid "Level:"
-msgstr "Tase:"
+#~ msgid ""
+#~ "The program Robots was unable to find any valid game configuration files. "
+#~ "Please check that the program is installed correctly."
+#~ msgstr ""
+#~ "Robotiprogramm ei leidnud ühtegi vigadeta mängusätete faili. Palun "
+#~ "kontrolli, kas programm on korralikult paigaldatud."
 
-msgid "Remaining:"
-msgstr "Jäänud:"
+#~ msgid "Some graphics files are missing or corrupt."
+#~ msgstr "Mõned graafikafailid on rikutud või puudu."
 
-#. ********************************************************************
-msgid "Mahjongg"
-msgstr "Mahjongg"
+#~ msgid ""
+#~ "The program Robots was unable to load all the necessary graphics files. "
+#~ "Please check that the program is installed correctly."
+#~ msgstr ""
+#~ "Robotiprogramm ei ole suuteline kõiki vajalikke graafikafaile laadima. "
+#~ "Palun kontrolli, kas programm on korralikult paigaldatud."
 
-msgid "Disassemble a pile of tiles by removing matching pairs"
-msgstr "Mängukivide kuhja lahtiharutamine sobivate kivide leidmise teel"
+#~ msgid "Could not find '%s' pixmap file\n"
+#~ msgstr "Pildifaili '%s' pole võimalik leida\n"
 
-#.
-#. * Translatable strings file generated by get_titles.pl.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
-msgctxt "mahjongg map name"
-msgid "The Ziggurat"
-msgstr "Tsikuraat"
+#~ msgid "_Move"
+#~ msgstr "_Käik"
 
-msgctxt "mahjongg map name"
-msgid "Four Bridges"
-msgstr "Neli silda"
+#~ msgid "_Teleport"
+#~ msgstr "_Teleport"
 
-msgctxt "mahjongg map name"
-msgid "Cloud"
-msgstr "Pilv"
+#~ msgid "Teleport, safely if possible"
+#~ msgstr "Teleport, võimaluse korral ohutult"
 
-msgctxt "mahjongg map name"
-msgid "Tic-Tac-Toe"
-msgstr "Trips-traps-trull"
+#~ msgid "_Random"
+#~ msgstr "_Juhuslik"
 
-msgctxt "mahjongg map name"
-msgid "Red Dragon"
-msgstr "Punane draakon"
+#~ msgid "Teleport randomly"
+#~ msgstr "Juhuslik teleport"
 
-msgctxt "mahjongg map name"
-msgid "Pyramid's Walls"
-msgstr "Püramiidi seinad"
+#~ msgid "_Wait"
+#~ msgstr "_Oota"
 
-msgctxt "mahjongg map name"
-msgid "Confounding Cross"
-msgstr "Segiaetud rist"
+#~ msgid "Wait for the robots"
+#~ msgstr "Robotite ootamine"
 
-msgctxt "mahjongg map name"
-msgid "Difficult"
-msgstr "Keeruline"
+#~ msgid "_Toolbar"
+#~ msgstr "Töö_riistariba"
 
-msgid "Paused"
-msgstr "Peatatud"
+#~ msgid "Show or hide the toolbar"
+#~ msgstr "Tööriistariba näitamine või peitmine"
 
-msgid "Moves Left:"
-msgstr "Käike järel:"
+#~ msgid ""
+#~ "Based on classic BSD Robots.\n"
+#~ "\n"
+#~ "Robots is a part of GNOME Games."
+#~ msgstr ""
+#~ "Põhineb klassikalisel BSD Robots mängul.\n"
+#~ "\n"
+#~ "\"Robotid\" kuulub GNOME mängude koosseisu."
 
-msgid "_Restart Game"
-msgstr "_Alusta uuesti"
+#~ msgid "Robots Preferences"
+#~ msgstr "Robotimängu eelistused"
 
-msgid "_Preferences"
-msgstr "_Eelistused"
+#~ msgid "Game Type"
+#~ msgstr "Mängu liik"
 
-msgid "_About"
-msgstr "_Programmist lähemalt"
+#~ msgid "_Use safe moves"
+#~ msgstr "_Ohutute käikude kasutamine"
 
-msgid "_Quit"
-msgstr "_Lõpeta"
+#~ msgid "Prevent accidental moves that result in getting killed."
+#~ msgstr "Kõikide surmaga lõppevate juhuslike käikude keelamine."
 
-msgid "Hint"
-msgstr "Vihje"
+#~ msgid "U_se super safe moves"
+#~ msgstr "_Eriti ohutute käikude kasutamine"
 
-msgid "Do you want to start a new game with this map?"
-msgstr "Kas soovid alustada määratud ladumisviisiga uut mängu?"
+#~ msgid "Prevents all moves that result in getting killed."
+#~ msgstr "Kõikide surmaga lõppevate käikude keelamine."
 
-msgid "If you continue playing the next game will use the new map."
-msgstr ""
-"Kui sa praegu mängimist jätkad, siis alustatakse järgmist mängu uue "
-"ladumisviisiga."
+#~ msgid "_Enable sounds"
+#~ msgstr "_Helid on lubatud"
 
-msgid "_Continue playing"
-msgstr "_Jätka mängimist"
+#~ msgid "Play sounds for events like winning a level and dying."
+#~ msgstr "Heli mängimine sündmuste korral nagu võtmine ja taseme tõus."
 
-msgid "Use _new map"
-msgstr "Kasuta _uut ladumisviisi"
+#~ msgid "_Image theme:"
+#~ msgstr "_Pildi teema:"
 
-msgid "Mahjongg Scores"
-msgstr "Mahjongg'i tulemused"
+#~ msgid "_Background color:"
+#~ msgstr "_Taustavärvus:"
 
-msgid "Layout:"
-msgstr "Paigutus:"
+#~ msgid "_Restore Defaults"
+#~ msgstr "_Säti vaikeväärtused"
 
-msgid "Puzzle solved!"
-msgstr "Mäng lahendatud"
+#~ msgid "Keyboard"
+#~ msgstr "Klaviatuur"
 
-msgid "You didn't make the top ten, better luck next time."
-msgstr "Sa ei jõudnud esikümnesse. Järgmiseks korraks rohkem õnne!"
+#~ msgid "Safe Teleports:"
+#~ msgstr "Ohutuid teleporte:"
 
-msgid "There are no more moves."
-msgstr "Rohkem käike ei ole."
+#~ msgid "Level:"
+#~ msgstr "Tase:"
 
-msgid ""
-"Each puzzle has at least one solution.  You can undo your moves and try and "
-"find the solution for a time penalty, restart this game or start an new one."
-msgstr ""
-"Igal puslel on vähemalt üks lahendus. Sa võid oma liigutusi tagasi võtta, "
-"seda karistatakse penaltajaga ja proovida siiski lahenduse leida, alustada "
-"sama mängu uuesti või alustada uue mänguga."
+#~ msgid "Remaining:"
+#~ msgstr "Jäänud:"
 
-msgid "_New game"
-msgstr "_Uus mäng"
+#~ msgid "Mahjongg"
+#~ msgstr "Mahjongg"
 
-msgid "Mahjongg Preferences"
-msgstr "Mahjongg'i eelistused"
+#~ msgid "Disassemble a pile of tiles by removing matching pairs"
+#~ msgstr "Mängukivide kuhja lahtiharutamine sobivate kivide leidmise teel"
 
-msgid "_Layout:"
-msgstr "_Paigutus:"
+#~ msgctxt "mahjongg map name"
+#~ msgid "The Ziggurat"
+#~ msgstr "Tsikuraat"
 
-msgid "Main game:"
-msgstr "Põhimäng:"
+#~ msgctxt "mahjongg map name"
+#~ msgid "Four Bridges"
+#~ msgstr "Neli silda"
 
-msgid "Maps:"
-msgstr "Ladumisviisid:"
+#~ msgctxt "mahjongg map name"
+#~ msgid "Cloud"
+#~ msgstr "Pilv"
 
-msgid "Tiles:"
-msgstr "Kivid:"
+#~ msgctxt "mahjongg map name"
+#~ msgid "Tic-Tac-Toe"
+#~ msgstr "Trips-traps-trull"
 
-msgid ""
-"A matching game played with Mahjongg tiles.\n"
-"\n"
-"Mahjongg is a part of GNOME Games."
-msgstr ""
-"Mahjongg on klotside vahel sobivuste otsimise mäng.\n"
-"\n"
-"\"Mahjongg\" kuulub GNOME mängude koosseisu."
+#~ msgctxt "mahjongg map name"
+#~ msgid "Red Dragon"
+#~ msgstr "Punane draakon"
 
-#. Translators: This is the window title for Mahjongg which contains the map name, e.g. 'Mahjongg - Red Dragon'
-#, c-format
-msgid "Mahjongg - %s"
-msgstr "Mahjongg - %s"
+#~ msgctxt "mahjongg map name"
+#~ msgid "Pyramid's Walls"
+#~ msgstr "Püramiidi seinad"
 
-#, c-format
-msgid "Time"
-msgstr "Aeg"
+#~ msgctxt "mahjongg map name"
+#~ msgid "Confounding Cross"
+#~ msgstr "Segiaetud rist"
 
-msgid "Sudoku"
-msgstr "Sudoku"
+#~ msgctxt "mahjongg map name"
+#~ msgid "Difficult"
+#~ msgstr "Keeruline"
 
-msgid "Test your logic skills in this number grid puzzle"
-msgstr "Loogikavõimeid proovile panev tabelmõistatuste lahendamine"
+#~ msgid "Paused"
+#~ msgstr "Peatatud"
 
-msgid "Print Sudokus"
-msgstr "Sudokude printimine"
+#~ msgid "Moves Left:"
+#~ msgstr "Käike järel:"
 
-msgid "Print Games"
-msgstr "Mängude printimine"
+#~ msgid "_Restart Game"
+#~ msgstr "_Alusta uuesti"
 
-msgid "_Number of sudoku to print: "
-msgstr "Prin_ditavate sudokude arv:"
+#~ msgid "_Preferences"
+#~ msgstr "_Eelistused"
 
-msgid "_Sudokus per page: "
-msgstr "_Sudokusid lehekülje kohta: "
+#~ msgid "_About"
+#~ msgstr "_Programmist lähemalt"
 
-msgid "Levels of difficulty to print"
-msgstr "Prinditavate mõistatuste raskusaste"
+#~ msgid "_Quit"
+#~ msgstr "_Lõpeta"
 
-msgid "_Easy"
-msgstr "Ker_ge"
+#~ msgid "Hint"
+#~ msgstr "Vihje"
 
-msgid "_Hard"
-msgstr "_Raske"
+#~ msgid "Do you want to start a new game with this map?"
+#~ msgstr "Kas soovid alustada määratud ladumisviisiga uut mängu?"
 
-msgid "_Very Hard"
-msgstr "_Väga raske"
+#~ msgid "If you continue playing the next game will use the new map."
+#~ msgstr ""
+#~ "Kui sa praegu mängimist jätkad, siis alustatakse järgmist mängu uue "
+#~ "ladumisviisiga."
 
-msgid "Details"
-msgstr "Üksikasjad"
+#~ msgid "_Continue playing"
+#~ msgstr "_Jätka mängimist"
 
-msgid "_Mark games as played once you've printed them."
-msgstr "Väljaprinditud _mõistatusted märgitakse lahendatuteks."
+#~ msgid "Use _new map"
+#~ msgstr "Kasuta _uut ladumisviisi"
 
-msgid "_Include games you've already played in list of games to print"
-msgstr "Prindi_takse ka juba lahendatud mõistatused"
+#~ msgid "Mahjongg Scores"
+#~ msgstr "Mahjongg'i tulemused"
 
-msgid "_Saved Games"
-msgstr "Sal_vestatud mängud"
+#~ msgid "Layout:"
+#~ msgstr "Paigutus:"
 
-msgid "Add a new tracker"
-msgstr "Uue jälgija lisamine"
+#~ msgid "Puzzle solved!"
+#~ msgstr "Mäng lahendatud"
 
-msgid "Remove the selected tracker"
-msgstr "Valitud jälgija eemaldamine"
+#~ msgid "You didn't make the top ten, better luck next time."
+#~ msgstr "Sa ei jõudnud esikümnesse. Järgmiseks korraks rohkem õnne!"
 
-msgid "Make the tracked changes permanent"
-msgstr "Jälgijasse märgitud muudatuste rakendamine"
+#~ msgid "There are no more moves."
+#~ msgstr "Rohkem käike ei ole."
 
-msgid "H_ide"
-msgstr "_Peida"
+#~ msgid ""
+#~ "Each puzzle has at least one solution.  You can undo your moves and try "
+#~ "and find the solution for a time penalty, restart this game or start an "
+#~ "new one."
+#~ msgstr ""
+#~ "Igal puslel on vähemalt üks lahendus. Sa võid oma liigutusi tagasi võtta, "
+#~ "seda karistatakse penaltajaga ja proovida siiski lahenduse leida, "
+#~ "alustada sama mängu uuesti või alustada uue mänguga."
 
-msgid "Hide the tracked values"
-msgstr "Jälgijasse märgitud muudatuste peitmine"
+#~ msgid "_New game"
+#~ msgstr "_Uus mäng"
 
-msgid "GNOME Sudoku"
-msgstr "GNOME Sudoku"
+#~ msgid "Mahjongg Preferences"
+#~ msgstr "Mahjongg'i eelistused"
 
-msgid ""
-"GNOME Sudoku is a simple Sudoku generator and player. Sudoku is a Japanese "
-"logic puzzle.\n"
-"\n"
-"GNOME Sudoku is a part of GNOME Games."
-msgstr ""
-"GNOME Sudoku on lihtne sudoku-mõistatuste generaator ja lahendaja. Sudoku on "
-"Jaapani loogikamäng.\n"
-"\n"
-"\"GNOME Sudoku\" kuulub GNOME mängude koosseisu."
+#~ msgid "_Layout:"
+#~ msgstr "_Paigutus:"
 
-msgid "Easy"
-msgstr "Lihtne"
+#~ msgid "Main game:"
+#~ msgstr "Põhimäng:"
 
-msgid "Medium"
-msgstr "Keskmine"
+#~ msgid "Maps:"
+#~ msgstr "Ladumisviisid:"
 
-msgid "Hard"
-msgstr "Raske"
+#~ msgid "Tiles:"
+#~ msgstr "Kivid:"
 
-msgid "Very hard"
-msgstr "Väga raske"
+#~ msgid ""
+#~ "A matching game played with Mahjongg tiles.\n"
+#~ "\n"
+#~ "Mahjongg is a part of GNOME Games."
+#~ msgstr ""
+#~ "Mahjongg on klotside vahel sobivuste otsimise mäng.\n"
+#~ "\n"
+#~ "\"Mahjongg\" kuulub GNOME mängude koosseisu."
 
-#. Then we're today
-#. within the minute
-#, python-format
-msgid "Last played %(n)s second ago"
-msgid_plural "Last played %(n)s seconds ago"
-msgstr[0] "Viimati mängitud %(n)s sekund tagasi"
-msgstr[1] "Viimati mängitud %(n)s sekundit tagasi"
+#~ msgid "Mahjongg - %s"
+#~ msgstr "Mahjongg - %s"
 
-#, python-format
-msgid "Last played %(n)s minute ago"
-msgid_plural "Last played %(n)s minutes ago"
-msgstr[0] "Viimati mängitud %(n)s minut tagasi"
-msgstr[1] "Viimati mängitud %(n)s minutit tagasi"
+#~ msgid "Time"
+#~ msgstr "Aeg"
 
-#. Translators, see strftime manual in order to translate %? format strings
-msgid "Last played at %I:%M %p"
-msgstr "Viimati mängitud kell %H:%M"
+#~ msgid "Sudoku"
+#~ msgstr "Sudoku"
 
-#. Translators, see strftime manual in order to translate %? format strings
-msgid "Last played yesterday at %I:%M %p"
-msgstr "Viimati mängitud eile kell %H:%M"
+#~ msgid "Test your logic skills in this number grid puzzle"
+#~ msgstr "Loogikavõimeid proovile panev tabelmõistatuste lahendamine"
 
-#. Translators, see strftime manual in order to translate %? format strings
-msgid "Last played on %A at %I:%M %p"
-msgstr "Viimati mängitud: %A kell %H:%M"
+#~ msgid "Print Sudokus"
+#~ msgstr "Sudokude printimine"
 
-#. Translators, see strftime manual in order to translate %? format strings
-msgid "Last played on %B %e %Y"
-msgstr "Viimati mängitud: %d. %B %Y"
+#~ msgid "Print Games"
+#~ msgstr "Mängude printimine"
 
-msgid "Easy puzzle"
-msgstr "Lihtne mõistatus"
+#~ msgid "_Number of sudoku to print: "
+#~ msgstr "Prin_ditavate sudokude arv:"
 
-msgid "Medium puzzle"
-msgstr "Tavaline mõistatus"
+#~ msgid "_Sudokus per page: "
+#~ msgstr "_Sudokusid lehekülje kohta: "
 
-msgid "Hard puzzle"
-msgstr "Keeruline mõistatus"
+#~ msgid "Levels of difficulty to print"
+#~ msgstr "Prinditavate mõistatuste raskusaste"
 
-msgid "Very hard puzzle"
-msgstr "Väga keeruline mõistatus"
+#~ msgid "_Easy"
+#~ msgstr "Ker_ge"
 
-#, python-format
-msgid "Played for %d hour"
-msgid_plural "Played for %d hours"
-msgstr[0] "Mängitud %d tund"
-msgstr[1] "Mängitud %d tundi"
+#~ msgid "_Hard"
+#~ msgstr "_Raske"
 
-#, python-format
-msgid "Played for %d minute"
-msgid_plural "Played for %d minutes"
-msgstr[0] "Mängitud %d minut"
-msgstr[1] "Mängitud %d minutit"
+#~ msgid "_Very Hard"
+#~ msgstr "_Väga raske"
 
-#, python-format
-msgid "Played for %d second"
-msgid_plural "Played for %d seconds"
-msgstr[0] "Mängitud %d sekund"
-msgstr[1] "Mängitud %d sekundit"
+#~ msgid "Details"
+#~ msgstr "Üksikasjad"
 
-msgid "Do you really want to do this?"
-msgstr "Soovid sa seda teha?"
+#~ msgid "_Mark games as played once you've printed them."
+#~ msgstr "Väljaprinditud _mõistatusted märgitakse lahendatuteks."
 
-msgid "Don't ask me this again."
-msgstr "Seda küsimust rohkem mitte küsida."
+#~ msgid "_Include games you've already played in list of games to print"
+#~ msgstr "Prindi_takse ka juba lahendatud mõistatused"
 
-msgid "New game"
-msgstr "Uus mäng"
+#~ msgid "_Saved Games"
+#~ msgstr "Sal_vestatud mängud"
 
-msgid "_Undo"
-msgstr "_Unusta"
+#~ msgid "Add a new tracker"
+#~ msgstr "Uue jälgija lisamine"
 
-msgid "Undo last action"
-msgstr "Viimase tegevuse unustamine"
+#~ msgid "Remove the selected tracker"
+#~ msgstr "Valitud jälgija eemaldamine"
 
-msgid "_Redo"
-msgstr "Uu_esti"
+#~ msgid "Make the tracked changes permanent"
+#~ msgstr "Jälgijasse märgitud muudatuste rakendamine"
 
-msgid "Redo last action"
-msgstr "Unustatud tegevuse uuesti tegemine"
+#~ msgid "H_ide"
+#~ msgstr "_Peida"
 
-msgid "Puzzle _Statistics..."
-msgstr "Mõistatuse _statistika..."
+#~ msgid "Hide the tracked values"
+#~ msgstr "Jälgijasse märgitud muudatuste peitmine"
 
-msgid "_Print..."
-msgstr "_Prindi..."
+#~ msgid "GNOME Sudoku"
+#~ msgstr "GNOME Sudoku"
 
-msgid "Print _Multiple Sudokus..."
-msgstr "Prindi _mitu sudokut..."
+#~ msgid ""
+#~ "GNOME Sudoku is a simple Sudoku generator and player. Sudoku is a "
+#~ "Japanese logic puzzle.\n"
+#~ "\n"
+#~ "GNOME Sudoku is a part of GNOME Games."
+#~ msgstr ""
+#~ "GNOME Sudoku on lihtne sudoku-mõistatuste generaator ja lahendaja. Sudoku "
+#~ "on Jaapani loogikamäng.\n"
+#~ "\n"
+#~ "\"GNOME Sudoku\" kuulub GNOME mängude koosseisu."
 
-msgid "_Tools"
-msgstr "_Tööriistad"
+#~ msgid "Easy"
+#~ msgstr "Lihtne"
 
-msgid "Show a square that is easy to fill."
-msgstr "Hõlpsasti täidetava ruudu näitamine."
+#~ msgid "Medium"
+#~ msgstr "Keskmine"
 
-msgid "Clear _Top Notes"
-msgstr "P_uhasta ülemised märkmed"
+#~ msgid "Hard"
+#~ msgstr "Raske"
 
-msgid "Clear _Bottom Notes"
-msgstr "Pu_hasta alumised märkmed"
+#~ msgid "Very hard"
+#~ msgstr "Väga raske"
 
-msgid "Show _Possible Numbers"
-msgstr "_Näita võimalikke numbreid"
+#~ msgid "Last played %(n)s second ago"
+#~ msgid_plural "Last played %(n)s seconds ago"
+#~ msgstr[0] "Viimati mängitud %(n)s sekund tagasi"
+#~ msgstr[1] "Viimati mängitud %(n)s sekundit tagasi"
 
-msgid "Always show possible numbers in a square"
-msgstr "Võimalikud numbrid märgitakse alati mänguväljale"
+#~ msgid "Last played %(n)s minute ago"
+#~ msgid_plural "Last played %(n)s minutes ago"
+#~ msgstr[0] "Viimati mängitud %(n)s minut tagasi"
+#~ msgstr[1] "Viimati mängitud %(n)s minutit tagasi"
 
-msgid "Warn About _Unfillable Squares"
-msgstr "_Hoiatused mittetäidetavate ruutude kohta"
+#~ msgid "Last played at %I:%M %p"
+#~ msgstr "Viimati mängitud kell %H:%M"
 
-msgid "Warn about squares made unfillable by a move"
-msgstr ""
-"Hoiatamine ruutude eest, mille täitmine käigu tagajärjel võimatuks tehakse"
+#~ msgid "Last played yesterday at %I:%M %p"
+#~ msgstr "Viimati mängitud eile kell %H:%M"
 
-msgid "_Track Additions"
-msgstr "_Jälgi lisamisi"
+#~ msgid "Last played on %A at %I:%M %p"
+#~ msgstr "Viimati mängitud: %A kell %H:%M"
 
-msgid "Mark new additions in a separate color so you can keep track of them."
-msgstr ""
-"Uusi lisatud numbreid märgitakse nende jälgimise hõlbustamiseks teistsuguse "
-"värvusega."
+#~ msgid "Last played on %B %e %Y"
+#~ msgstr "Viimati mängitud: %d. %B %Y"
 
-msgid "_Highlighter"
-msgstr "_Esiletõstja"
+#~ msgid "Easy puzzle"
+#~ msgstr "Lihtne mõistatus"
 
-msgid "Highlight the current row, column and box"
-msgstr "Käesoleva rea, veeru ja kasti esiletõstmine"
+#~ msgid "Medium puzzle"
+#~ msgstr "Tavaline mõistatus"
 
-#, python-format
-msgid "You completed the puzzle in %d second"
-msgid_plural "You completed the puzzle in %d seconds"
-msgstr[0] "Sa lahendasid mõistatuse %d sekundiga"
-msgstr[1] "Sa lahendasid mõistatuse %d sekundiga"
+#~ msgid "Hard puzzle"
+#~ msgstr "Keeruline mõistatus"
 
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d minut"
-msgstr[1] "%d minutit"
+#~ msgid "Very hard puzzle"
+#~ msgstr "Väga keeruline mõistatus"
 
-#, python-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d sekund"
-msgstr[1] "%d sekundit"
+#~ msgid "Played for %d hour"
+#~ msgid_plural "Played for %d hours"
+#~ msgstr[0] "Mängitud %d tund"
+#~ msgstr[1] "Mängitud %d tundi"
 
-#, python-format
-msgid "You completed the puzzle in %(minute)s and %(second)s"
-msgstr "Sa lahendasid mõistatuse %(minute)s minuti %(second)s sekundiga"
+#~ msgid "Played for %d minute"
+#~ msgid_plural "Played for %d minutes"
+#~ msgstr[0] "Mängitud %d minut"
+#~ msgstr[1] "Mängitud %d minutit"
 
-#, python-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d tund"
-msgstr[1] "%d tundi"
+#~ msgid "Played for %d second"
+#~ msgid_plural "Played for %d seconds"
+#~ msgstr[0] "Mängitud %d sekund"
+#~ msgstr[1] "Mängitud %d sekundit"
 
-#, python-format
-msgid "You completed the puzzle in %(hour)s, %(minute)s and %(second)s"
-msgstr "Sa lahendasid mõistatuse ajaga %(hour)s:%(minute)s:%(second)s"
+#~ msgid "Do you really want to do this?"
+#~ msgstr "Soovid sa seda teha?"
 
-#, python-format
-msgid "You got %(n)s hint."
-msgid_plural "You got %(n)s hints."
-msgstr[0] "Sa said %(n)s vihje."
-msgstr[1] "Sa said %(n)s vihjet."
+#~ msgid "Don't ask me this again."
+#~ msgstr "Seda küsimust rohkem mitte küsida."
 
-#, python-format
-msgid "You had %(n)s impossibility pointed out."
-msgid_plural "You had %(n)s impossibilities pointed out."
-msgstr[0] "Osutati %(n)s võimatule käigule."
-msgstr[1] "Osutati %(n)s võimatule käigule."
+#~ msgid "New game"
+#~ msgstr "Uus mäng"
 
-msgid "Save this game before starting new one?"
-msgstr "Kas enne uue mängu alustamist tuleb praegune mäng salvestada?"
+#~ msgid "_Undo"
+#~ msgstr "_Unusta"
 
-msgid "Save game before closing?"
-msgstr "Kas salvestada mäng enne sulgemist?"
+#~ msgid "Undo last action"
+#~ msgstr "Viimase tegevuse unustamine"
 
-msgid "Puzzle Information"
-msgstr "Mõistatuse andmed"
+#~ msgid "_Redo"
+#~ msgstr "Uu_esti"
 
-msgid "There is no current puzzle."
-msgstr "Praegu ei lahendata ühtegi mõistatust."
+#~ msgid "Redo last action"
+#~ msgstr "Unustatud tegevuse uuesti tegemine"
 
-msgid "Calculated difficulty: "
-msgstr "Arvutuslik raskusaste:"
+#~ msgid "Puzzle _Statistics..."
+#~ msgstr "Mõistatuse _statistika..."
 
-msgid "Very Hard"
-msgstr "Väga raske"
+#~ msgid "_Print..."
+#~ msgstr "_Prindi..."
 
-msgid "Number of moves instantly fillable by elimination: "
-msgstr "Välistamise teel vahetult täidetavate väljade arv: "
+#~ msgid "Print _Multiple Sudokus..."
+#~ msgstr "Prindi _mitu sudokut..."
 
-msgid "Number of moves instantly fillable by filling: "
-msgstr "Vahetult täidetavate väljade arv: "
+#~ msgid "_Tools"
+#~ msgstr "_Tööriistad"
 
-msgid "Amount of trial-and-error required to solve: "
-msgstr "Lahendamiseks vajalikke proovimisi: "
+#~ msgid "Show a square that is easy to fill."
+#~ msgstr "Hõlpsasti täidetava ruudu näitamine."
 
-msgid "Puzzle Statistics"
-msgstr "Mõistatuse statistika"
+#~ msgid "Clear _Top Notes"
+#~ msgstr "P_uhasta ülemised märkmed"
 
-#. FIXME: This should create a pop-up dialog
-#, python-format
-msgid "Unable to display help: %s"
-msgstr "Abiteavet pole võimalik kuvada: %s"
+#~ msgid "Clear _Bottom Notes"
+#~ msgstr "Pu_hasta alumised märkmed"
 
-msgid "Untracked"
-msgstr "Jälgijaid pole"
+#~ msgid "Show _Possible Numbers"
+#~ msgstr "_Näita võimalikke numbreid"
 
-msgid "_Remove"
-msgstr "_Eemalda"
+#~ msgid "Always show possible numbers in a square"
+#~ msgstr "Võimalikud numbrid märgitakse alati mänguväljale"
 
-msgid "Delete selected tracker."
-msgstr "Valitud jälgija kustutamine."
+#~ msgid "Warn About _Unfillable Squares"
+#~ msgstr "_Hoiatused mittetäidetavate ruutude kohta"
 
-msgid "Hide current tracker entries."
-msgstr "Praeguse jälgija kirjete peitmine."
+#~ msgid "Warn about squares made unfillable by a move"
+#~ msgstr ""
+#~ "Hoiatamine ruutude eest, mille täitmine käigu tagajärjel võimatuks tehakse"
 
-msgid "A_pply"
-msgstr "_Rakenda"
+#~ msgid "_Track Additions"
+#~ msgstr "_Jälgi lisamisi"
 
-msgid "Apply all tracked values and remove the tracker."
-msgstr "Kõikide jälgitavata väärtuste rakendamine ja jälgija eemaldamine."
+#~ msgid ""
+#~ "Mark new additions in a separate color so you can keep track of them."
+#~ msgstr ""
+#~ "Uusi lisatud numbreid märgitakse nende jälgimise hõlbustamiseks "
+#~ "teistsuguse värvusega."
 
-#, python-format
-msgid "Tracker %s"
-msgstr "Jälgija %s"
+#~ msgid "_Highlighter"
+#~ msgstr "_Esiletõstja"
 
-msgid "_Clear"
-msgstr "_Puhasta"
+#~ msgid "Highlight the current row, column and box"
+#~ msgstr "Käesoleva rea, veeru ja kasti esiletõstmine"
 
-msgid "No Space"
-msgstr "Ruumi ei ole"
+#~ msgid "You completed the puzzle in %d second"
+#~ msgid_plural "You completed the puzzle in %d seconds"
+#~ msgstr[0] "Sa lahendasid mõistatuse %d sekundiga"
+#~ msgstr[1] "Sa lahendasid mõistatuse %d sekundiga"
 
-msgid "No space left on disk"
-msgstr "Kettal pole enam vaba ruumi"
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d minut"
+#~ msgstr[1] "%d minutit"
 
-#, python-format
-msgid "Unable to create data folder %(path)s."
-msgstr "Andmekataloogi %(path)s pole võimalik luua."
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d sekund"
+#~ msgstr[1] "%d sekundit"
 
-msgid "There is no disk space left!"
-msgstr "Kettal pole enam vaba ruumi!"
+#~ msgid "You completed the puzzle in %(minute)s and %(second)s"
+#~ msgstr "Sa lahendasid mõistatuse %(minute)s minuti %(second)s sekundiga"
 
-#, python-format
-msgid "Error %(errno)s: %(error)s"
-msgstr "Viga %(errno)s: %(error)s"
+#~ msgid "%d hour"
+#~ msgid_plural "%d hours"
+#~ msgstr[0] "%d tund"
+#~ msgstr[1] "%d tundi"
 
-msgid "Unable to save game."
-msgstr "Mängu pole võimalik salvestada."
+#~ msgid "You completed the puzzle in %(hour)s, %(minute)s and %(second)s"
+#~ msgstr "Sa lahendasid mõistatuse ajaga %(hour)s:%(minute)s:%(second)s"
 
-#, python-format
-msgid "Unable to save file %(filename)s."
-msgstr "Faili %(filename)s pole võimalik salvestada."
+#~ msgid "You got %(n)s hint."
+#~ msgid_plural "You got %(n)s hints."
+#~ msgstr[0] "Sa said %(n)s vihje."
+#~ msgstr[1] "Sa said %(n)s vihjet."
 
-msgid "Unable to mark game as finished."
-msgstr "Mängu pole võimalik lõpetatuks märkida."
+#~ msgid "You had %(n)s impossibility pointed out."
+#~ msgid_plural "You had %(n)s impossibilities pointed out."
+#~ msgstr[0] "Osutati %(n)s võimatule käigule."
+#~ msgstr[1] "Osutati %(n)s võimatule käigule."
 
-msgid "Sudoku unable to mark game as finished."
-msgstr "Sudokul pole võimalik mängu lõpetatuks märkida."
+#~ msgid "Save this game before starting new one?"
+#~ msgstr "Kas enne uue mängu alustamist tuleb praegune mäng salvestada?"
 
-msgid "Mines"
-msgstr "Miiniväli"
+#~ msgid "Save game before closing?"
+#~ msgstr "Kas salvestada mäng enne sulgemist?"
 
-msgid "Clear hidden mines from a minefield"
-msgstr "Miinivälja puhastamine sinna peidetud miinidest"
+#~ msgid "Puzzle Information"
+#~ msgstr "Mõistatuse andmed"
 
-msgid "minesweeper;"
-msgstr "minesweeper;miiniväli;"
+#~ msgid "There is no current puzzle."
+#~ msgstr "Praegu ei lahendata ühtegi mõistatust."
 
-msgid "Use the unknown flag"
-msgstr "Tundmatu välja lipu kasutamine"
+#~ msgid "Calculated difficulty: "
+#~ msgstr "Arvutuslik raskusaste:"
 
-msgid "Set to true to be able to mark squares as unknown."
-msgstr "Kui märgitud, siis saab mänguvälju tundmatuks märkida."
+#~ msgid "Very Hard"
+#~ msgstr "Väga raske"
 
-msgid "Warning about too many flags"
-msgstr "Hoiatus liiga paljude lippude korral"
+#~ msgid "Number of moves instantly fillable by elimination: "
+#~ msgstr "Välistamise teel vahetult täidetavate väljade arv: "
 
-msgid "Set to true to enable warning icons when too many flags are placed."
-msgstr ""
-"Kui märgitud, siis on liiga suure lippude hulga kohta käivad hoiatused "
-"lubatud."
+#~ msgid "Number of moves instantly fillable by filling: "
+#~ msgstr "Vahetult täidetavate väljade arv: "
 
-msgid "Enable automatic placing of flags"
-msgstr "Lippude automaatse paigutamise lubamine"
+#~ msgid "Amount of trial-and-error required to solve: "
+#~ msgstr "Lahendamiseks vajalikke proovimisi: "
 
-msgid ""
-"Set to true to have gnomine automatically flag squares as mined when enough "
-"squares are revealed"
-msgstr ""
-"Märgi, et gnomine automaatselt märgiks miiniga ruudule lipu, kui piisavalt "
-"ruute on avatud"
+#~ msgid "Puzzle Statistics"
+#~ msgstr "Mõistatuse statistika"
 
-msgid "Number of columns in a custom game"
-msgstr "Kohandatud mängulaua veergude arv"
+#~ msgid "Unable to display help: %s"
+#~ msgstr "Abiteavet pole võimalik kuvada: %s"
 
-msgid "Number of rows in a custom game"
-msgstr "Kohandatud mängulaua ridade arv"
+#~ msgid "Untracked"
+#~ msgstr "Jälgijaid pole"
 
-msgid "The number of mines in a custom game"
-msgstr "Kohandatud mängus olevate miinide arv"
+#~ msgid "_Remove"
+#~ msgstr "_Eemalda"
 
-msgid "Board size"
-msgstr "Mängulaua suurus"
+#~ msgid "Delete selected tracker."
+#~ msgstr "Valitud jälgija kustutamine."
 
-msgid "Size of the board (0-2 = small-large, 3=custom)"
-msgstr "Laua suurus (0-2 = väike-suur, 3=kohandatud)"
+#~ msgid "Hide current tracker entries."
+#~ msgstr "Praeguse jälgija kirjete peitmine."
 
-msgctxt "board size"
-msgid "Custom"
-msgstr "Kohandatud"
+#~ msgid "A_pply"
+#~ msgstr "_Rakenda"
 
-msgid "_Replay Size"
-msgstr "_Mängukorduse suurus"
+#~ msgid "Apply all tracked values and remove the tracker."
+#~ msgstr "Kõikide jälgitavata väärtuste rakendamine ja jälgija eemaldamine."
 
-#. New game screen
-msgid "Field Size"
-msgstr "Välja suurus"
+#~ msgid "Tracker %s"
+#~ msgstr "Jälgija %s"
 
-msgid "H_orizontal:"
-msgstr "_Horisontaalne:"
+#~ msgid "_Clear"
+#~ msgstr "_Puhasta"
 
-msgid "_Vertical:"
-msgstr "_Vertikaalne:"
+#~ msgid "No Space"
+#~ msgstr "Ruumi ei ole"
 
-msgid "_Number of mines:"
-msgstr "_Miinide arv:"
+#~ msgid "No space left on disk"
+#~ msgstr "Kettal pole enam vaba ruumi"
 
-msgid "_Play Game"
-msgstr "Mä_ngi"
+#~ msgid "Unable to create data folder %(path)s."
+#~ msgstr "Andmekataloogi %(path)s pole võimalik luua."
 
-#, c-format
-msgid "<b>%d</b> mine"
-msgid_plural "<b>%d</b> mines"
-msgstr[0] "<b>%d</b> miin"
-msgstr[1] "<b>%d</b> miini"
+#~ msgid "There is no disk space left!"
+#~ msgstr "Kettal pole enam vaba ruumi!"
 
-#, c-format
-msgid "Flags: %u/%u"
-msgstr "Lipud: %u/%u"
+#~ msgid "Error %(errno)s: %(error)s"
+#~ msgstr "Viga %(errno)s: %(error)s"
 
-msgid "The Mines Have Been Cleared!"
-msgstr "Miiniväli on puhastatud!"
+#~ msgid "Unable to save game."
+#~ msgstr "Mängu pole võimalik salvestada."
 
-msgid "Mines Scores"
-msgstr "Miinivälja tulemused"
+#~ msgid "Unable to save file %(filename)s."
+#~ msgstr "Faili %(filename)s pole võimalik salvestada."
 
-msgid "Size:"
-msgstr "Suurus:"
+#~ msgid "Unable to mark game as finished."
+#~ msgstr "Mängu pole võimalik lõpetatuks märkida."
 
-msgid "Do you want to start a new game?"
-msgstr "Kas soovid alustada uut mängu?"
+#~ msgid "Sudoku unable to mark game as finished."
+#~ msgstr "Sudokul pole võimalik mängu lõpetatuks märkida."
 
-msgid "If you start a new game, your current progress will be lost."
-msgstr "Kui sa alustad uut mängu, läheb su praegune mäng kaotsi."
+#~ msgid "Mines"
+#~ msgstr "Miiniväli"
 
-msgid "Keep Current Game"
-msgstr "Jätka praegust mängu"
+#~ msgid "Clear hidden mines from a minefield"
+#~ msgstr "Miinivälja puhastamine sinna peidetud miinidest"
 
-msgid "Start New Game"
-msgstr "Alusta uut mängu"
+#~ msgid "minesweeper;"
+#~ msgstr "minesweeper;miiniväli;"
 
-msgid "Resizing and SVG support:"
-msgstr "Suuruse muutmise ja SVG tugi:"
+#~ msgid "Use the unknown flag"
+#~ msgstr "Tundmatu välja lipu kasutamine"
 
-msgid "Faces:"
-msgstr "Näod:"
+#~ msgid "Set to true to be able to mark squares as unknown."
+#~ msgstr "Kui märgitud, siis saab mänguvälju tundmatuks märkida."
 
-msgid "Graphics:"
-msgstr "Graafika:"
+#~ msgid "Warning about too many flags"
+#~ msgstr "Hoiatus liiga paljude lippude korral"
 
-msgid ""
-"The popular logic puzzle minesweeper. Clear mines from a board using hints "
-"from squares you have already uncovered.\n"
-"\n"
-"Mines is a part of GNOME Games."
-msgstr ""
-"Populaarne miiniotsimise mäng. Juba avatud väljade abil tuletatakse miine "
-"sisaldavad väljad.\n"
-"\n"
-"\"Miiniväli\" kuulub GNOME mängude koosseisu."
+#~ msgid "Set to true to enable warning icons when too many flags are placed."
+#~ msgstr ""
+#~ "Kui märgitud, siis on liiga suure lippude hulga kohta käivad hoiatused "
+#~ "lubatud."
 
-msgid "Mines Preferences"
-msgstr "Miinivälja eelistused"
+#~ msgid "Enable automatic placing of flags"
+#~ msgstr "Lippude automaatse paigutamise lubamine"
 
-msgid "_Use \"I'm not sure\" flags"
-msgstr "Kasutatakse _lippu \"Ma pole kindel\""
+#~ msgid ""
+#~ "Set to true to have gnomine automatically flag squares as mined when "
+#~ "enough squares are revealed"
+#~ msgstr ""
+#~ "Märgi, et gnomine automaatselt märgiks miiniga ruudule lipu, kui "
+#~ "piisavalt ruute on avatud"
 
-msgid "_Warn if too many flags have been placed"
-msgstr "_Hoiatus liiga paljude lippude korral"
+#~ msgid "Number of columns in a custom game"
+#~ msgstr "Kohandatud mängulaua veergude arv"
 
-msgid "Tetravex"
-msgstr "Tetravex"
+#~ msgid "Number of rows in a custom game"
+#~ msgstr "Kohandatud mängulaua ridade arv"
 
-msgid "Complete the puzzle by matching numbered tiles"
-msgstr "Numbritega mänguklotside vastavusse kombineerimise mäng"
+#~ msgid "The number of mines in a custom game"
+#~ msgstr "Kohandatud mängus olevate miinide arv"
 
-msgid "_Solve"
-msgstr "_Lahenda"
+#~ msgid "Board size"
+#~ msgstr "Mängulaua suurus"
 
-msgid "_Up"
-msgstr "Ü_les"
+#~ msgid "Size of the board (0-2 = small-large, 3=custom)"
+#~ msgstr "Laua suurus (0-2 = väike-suur, 3=kohandatud)"
 
-msgid "_Left"
-msgstr "_Vasakule"
+#~ msgctxt "board size"
+#~ msgid "Custom"
+#~ msgstr "Kohandatud"
 
-msgid "_Right"
-msgstr "_Paremale"
+#~ msgid "_Replay Size"
+#~ msgstr "_Mängukorduse suurus"
 
-msgid "_Down"
-msgstr "_Alla"
+#~ msgid "Field Size"
+#~ msgstr "Välja suurus"
 
-msgid "_Size"
-msgstr "_Suurus"
+#~ msgid "H_orizontal:"
+#~ msgstr "_Horisontaalne:"
 
-msgid "_2x2"
-msgstr "_2x2"
+#~ msgid "_Vertical:"
+#~ msgstr "_Vertikaalne:"
 
-msgid "_3x3"
-msgstr "_3x3"
+#~ msgid "_Number of mines:"
+#~ msgstr "_Miinide arv:"
 
-msgid "_4x4"
-msgstr "_4x4"
+#~ msgid "_Play Game"
+#~ msgstr "Mä_ngi"
 
-msgid "_5x5"
-msgstr "_5x5"
+#~ msgid "<b>%d</b> mine"
+#~ msgid_plural "<b>%d</b> mines"
+#~ msgstr[0] "<b>%d</b> miin"
+#~ msgstr[1] "<b>%d</b> miini"
 
-msgid "_6x6"
-msgstr "_6x6"
+#~ msgid "Flags: %u/%u"
+#~ msgstr "Lipud: %u/%u"
 
-msgid "The size of the playing grid"
-msgstr "Mänguruudustiku suurus"
+#~ msgid "The Mines Have Been Cleared!"
+#~ msgstr "Miiniväli on puhastatud!"
 
-msgid "The value of this key is used to decide the size of the playing grid."
-msgstr "Selle võtme väärtust kasutatakse mängulaua suuruse määramiseks."
+#~ msgid "Mines Scores"
+#~ msgstr "Miinivälja tulemused"
 
-msgid "2×2"
-msgstr "2x2"
+#~ msgid "Size:"
+#~ msgstr "Suurus:"
 
-msgid "3×3"
-msgstr "3x3"
+#~ msgid "Do you want to start a new game?"
+#~ msgstr "Kas soovid alustada uut mängu?"
 
-msgid "4×4"
-msgstr "4x4"
+#~ msgid "If you start a new game, your current progress will be lost."
+#~ msgstr "Kui sa alustad uut mängu, läheb su praegune mäng kaotsi."
 
-msgid "5×5"
-msgstr "5x5"
+#~ msgid "Keep Current Game"
+#~ msgstr "Jätka praegust mängu"
 
-msgid "6×6"
-msgstr "6x6"
+#~ msgid "Start New Game"
+#~ msgstr "Alusta uut mängu"
 
-msgid "Solve"
-msgstr "Lahenda"
+#~ msgid "Resizing and SVG support:"
+#~ msgstr "Suuruse muutmise ja SVG tugi:"
 
-msgid "Tetravex Scores"
-msgstr "Tetravex'i tulemused"
+#~ msgid "Faces:"
+#~ msgstr "Näod:"
 
-msgid ""
-"GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
-"the same numbers are touching each other.\n"
-"\n"
-"Tetravex is a part of GNOME Games."
-msgstr ""
-"GNOME Tetravex on lihtne mõistatus, kus tuleb mänguklotsid asetada nii, et "
-"kahe klotsi küljenumbrid kattuks.\n"
-"\n"
-"\"Tetravex\" kuulub GNOME mängude koosseisu."
+#~ msgid "Graphics:"
+#~ msgstr "Graafika:"
 
-msgid "Klotski"
-msgstr "Klotski"
+#~ msgid ""
+#~ "The popular logic puzzle minesweeper. Clear mines from a board using "
+#~ "hints from squares you have already uncovered.\n"
+#~ "\n"
+#~ "Mines is a part of GNOME Games."
+#~ msgstr ""
+#~ "Populaarne miiniotsimise mäng. Juba avatud väljade abil tuletatakse miine "
+#~ "sisaldavad väljad.\n"
+#~ "\n"
+#~ "\"Miiniväli\" kuulub GNOME mängude koosseisu."
 
-msgid "Slide blocks to solve the puzzle"
-msgstr "Kivirahnude liigutamisega lahendatav mõistatus"
+#~ msgid "Mines Preferences"
+#~ msgstr "Miinivälja eelistused"
 
-msgid "The puzzle in play"
-msgstr "Käimasoleva mõistatuse number"
+#~ msgid "_Use \"I'm not sure\" flags"
+#~ msgstr "Kasutatakse _lippu \"Ma pole kindel\""
 
-msgid "The number of the puzzle being played."
-msgstr "Lahendatava mõistatuse number."
+#~ msgid "_Warn if too many flags have been placed"
+#~ msgstr "_Hoiatus liiga paljude lippude korral"
 
-msgid "Only 18 steps"
-msgstr "Ainult 18 sammu"
+#~ msgid "Tetravex"
+#~ msgstr "Tetravex"
 
-#. puzzle name
-msgid "Daisy"
-msgstr "Karikakar"
+#~ msgid "Complete the puzzle by matching numbered tiles"
+#~ msgstr "Numbritega mänguklotside vastavusse kombineerimise mäng"
 
-#. puzzle name
-msgid "Violet"
-msgstr "Violetne"
+#~ msgid "_Solve"
+#~ msgstr "_Lahenda"
 
-#. puzzle name
-msgid "Poppy"
-msgstr "Moon"
+#~ msgid "_Up"
+#~ msgstr "Ü_les"
 
-#. puzzle name
-msgid "Pansy"
-msgstr "Võõrasema"
+#~ msgid "_Left"
+#~ msgstr "_Vasakule"
 
-#. puzzle name
-msgid "Snowdrop"
-msgstr "Lumikelluke"
+#~ msgid "_Right"
+#~ msgstr "_Paremale"
 
-#. puzzle name - sometimes called "Le'Ane Rouge"
-msgid "Red Donkey"
-msgstr "Punane eesel"
+#~ msgid "_Down"
+#~ msgstr "_Alla"
 
-#. puzzle name
-msgid "Trail"
-msgstr "Rada"
+#~ msgid "_Size"
+#~ msgstr "_Suurus"
 
-#. puzzle name
-msgid "Ambush"
-msgstr "Varitsus"
+#~ msgid "_2x2"
+#~ msgstr "_2x2"
 
-#. puzzle name
-msgid "Agatka"
-msgstr "Agatka"
+#~ msgid "_3x3"
+#~ msgstr "_3x3"
 
-#. puzzle name
-msgid "Success"
-msgstr "Edu"
+#~ msgid "_4x4"
+#~ msgstr "_4x4"
 
-#. puzzle name
-msgid "Bone"
-msgstr "Kont"
+#~ msgid "_5x5"
+#~ msgstr "_5x5"
 
-#. puzzle name
-msgid "Fortune"
-msgstr "Vedamine"
+#~ msgid "_6x6"
+#~ msgstr "_6x6"
 
-#. puzzle name
-msgid "Fool"
-msgstr "Narrike"
+#~ msgid "The size of the playing grid"
+#~ msgstr "Mänguruudustiku suurus"
 
-#. puzzle name
-msgid "Solomon"
-msgstr "Saalomon"
+#~ msgid ""
+#~ "The value of this key is used to decide the size of the playing grid."
+#~ msgstr "Selle võtme väärtust kasutatakse mängulaua suuruse määramiseks."
 
-#. puzzle name
-msgid "Cleopatra"
-msgstr "Kleopatra"
+#~ msgid "2×2"
+#~ msgstr "2x2"
 
-#. puzzle name
-msgid "Shark"
-msgstr "Hai"
+#~ msgid "3×3"
+#~ msgstr "3x3"
 
-#. puzzle name
-msgid "Rome"
-msgstr "Rooma"
+#~ msgid "4×4"
+#~ msgstr "4x4"
 
-#. puzzle name
-msgid "Pennant Puzzle"
-msgstr "Vimplimõistatus"
+#~ msgid "5×5"
+#~ msgstr "5x5"
 
-#. puzzle name
-msgid "Ithaca"
-msgstr "Ithaca"
+#~ msgid "6×6"
+#~ msgstr "6x6"
 
-#. puzzle name
-msgid "Pelopones"
-msgstr "Pelopones"
+#~ msgid "Solve"
+#~ msgstr "Lahenda"
 
-#. puzzle name
-msgid "Transeuropa"
-msgstr "Transeuroopa"
+#~ msgid "Tetravex Scores"
+#~ msgstr "Tetravex'i tulemused"
 
-#. puzzle name
-msgid "Lodzianka"
-msgstr "Lodzianka"
+#~ msgid ""
+#~ "GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
+#~ "the same numbers are touching each other.\n"
+#~ "\n"
+#~ "Tetravex is a part of GNOME Games."
+#~ msgstr ""
+#~ "GNOME Tetravex on lihtne mõistatus, kus tuleb mänguklotsid asetada nii, "
+#~ "et kahe klotsi küljenumbrid kattuks.\n"
+#~ "\n"
+#~ "\"Tetravex\" kuulub GNOME mängude koosseisu."
 
-#. puzzle name
-msgid "Polonaise"
-msgstr "Polonees"
+#~ msgid "Klotski"
+#~ msgstr "Klotski"
 
-#. puzzle name
-msgid "Baltic Sea"
-msgstr "Balti meri"
+#~ msgid "Slide blocks to solve the puzzle"
+#~ msgstr "Kivirahnude liigutamisega lahendatav mõistatus"
 
-#. puzzle name
-msgid "American Pie"
-msgstr "Ameerika õunakook"
+#~ msgid "The puzzle in play"
+#~ msgstr "Käimasoleva mõistatuse number"
 
-#. puzzle name
-msgid "Traffic Jam"
-msgstr "Liiklusummik"
+#~ msgid "The number of the puzzle being played."
+#~ msgstr "Lahendatava mõistatuse number."
 
-#. puzzle name
-msgid "Sunshine"
-msgstr "Päikesepaise"
+#~ msgid "Only 18 steps"
+#~ msgstr "Ainult 18 sammu"
 
-#. puzzle name
-msgid "Only 18 Steps"
-msgstr "Ainult 18 sammu"
+#~ msgid "Daisy"
+#~ msgstr "Karikakar"
 
-#. set of puzzles
-msgid "HuaRong Trail"
-msgstr "HuaRong rada"
+#~ msgid "Violet"
+#~ msgstr "Violetne"
 
-#. set of puzzles
-msgid "Challenge Pack"
-msgstr "Väljakutsete pakk"
+#~ msgid "Poppy"
+#~ msgstr "Moon"
 
-#. set of puzzles
-msgid "Skill Pack"
-msgstr "Vilunute pakk"
+#~ msgid "Pansy"
+#~ msgstr "Võõrasema"
 
-msgid "_Restart Puzzle"
-msgstr "_Alusta mõistatust uuesti"
+#~ msgid "Snowdrop"
+#~ msgstr "Lumikelluke"
 
-msgid "Next Puzzle"
-msgstr "Järgmine mõistatus"
+#~ msgid "Red Donkey"
+#~ msgstr "Punane eesel"
 
-msgid "Previous Puzzle"
-msgstr "Eelmine mõistatus"
+#~ msgid "Trail"
+#~ msgstr "Rada"
 
-msgid "X location of window"
-msgstr "Akna asukoht X-teljel"
+#~ msgid "Ambush"
+#~ msgstr "Varitsus"
 
-msgid "Y location of window"
-msgstr "Akna asukoht Y-teljel"
+#~ msgid "Agatka"
+#~ msgstr "Agatka"
 
-msgid "Level completed."
-msgstr "Tase lõpetatud."
+#~ msgid "Success"
+#~ msgstr "Edu"
 
-msgid "The Puzzle Has Been Solved!"
-msgstr "Mõistatus on lahendatud!"
+#~ msgid "Bone"
+#~ msgstr "Kont"
 
-msgid "Klotski Scores"
-msgstr "Klotski tulemused"
+#~ msgid "Fortune"
+#~ msgstr "Vedamine"
 
-msgid "Puzzle:"
-msgstr "Mõistatus:"
+#~ msgid "Fool"
+#~ msgstr "Narrike"
 
-msgid ""
-"The theme for this game failed to render.\n"
-"\n"
-"Please check that Klotski is installed correctly."
-msgstr ""
-"Tõrge selle mängu teema renderdamisel.\n"
-"\n"
-"Palun veendu, et Klotski korrektselt paigaldatud."
+#~ msgid "Solomon"
+#~ msgstr "Saalomon"
 
-#, c-format
-msgid ""
-"Could not find the image:\n"
-"%s\n"
-"\n"
-"Please check that Klotski is installed correctly."
-msgstr ""
-"Pilti pole võimalik leida:\n"
-"%s\n"
-"\n"
-"Palun veendu, et Klotski on korrektselt paigaldatud."
+#~ msgid "Cleopatra"
+#~ msgstr "Kleopatra"
 
-#, c-format
-msgid "Moves: %d"
-msgstr "Käike: %d"
+#~ msgid "Shark"
+#~ msgstr "Hai"
 
-msgid ""
-"Sliding Block Puzzles\n"
-"\n"
-"Klotski is a part of GNOME Games."
-msgstr ""
-"Klotside nihutamise mõistatus\n"
-"\n"
-"\"Klotski\" kuulub GNOME mängude koosseisu."
+#~ msgid "Rome"
+#~ msgstr "Rooma"
 
-msgid "Tali"
-msgstr "Tali"
+#~ msgid "Pennant Puzzle"
+#~ msgstr "Vimplimõistatus"
 
-msgid "Beat the odds in a poker-style dice game"
-msgstr "Pokkerilaadne täringumäng"
+#~ msgid "Ithaca"
+#~ msgstr "Ithaca"
 
-msgid "yahtzee;"
-msgstr "yahtzee;jatzee;jatzii;jatsii;"
+#~ msgid "Pelopones"
+#~ msgstr "Pelopones"
 
-msgid "Delay between rolls"
-msgstr "Viivitus visete vahel"
+#~ msgid "Transeuropa"
+#~ msgstr "Transeuroopa"
 
-msgid ""
-"Choose whether or not to insert a delay between the computer's dice rolls so "
-"the player can follow what it is doing."
-msgstr ""
-"Kas arvuti poolt sooritatavate täringuvisete vahel peab olema paus, et "
-"mängija saaks täpse ülevaate mängu käigust."
+#~ msgid "Lodzianka"
+#~ msgstr "Lodzianka"
 
-msgid "Display the computer's thoughts"
-msgstr "Arvuti mõtete näitamine"
+#~ msgid "Polonaise"
+#~ msgstr "Polonees"
 
-msgid ""
-"If set to true, a dump of the AI's working will be done to standard output."
-msgstr "Kui märgitud, siis AI töö käik väljastatakse standardväljundisse."
+#~ msgid "Baltic Sea"
+#~ msgstr "Balti meri"
 
-msgid "Already used! Where do you want to put that?"
-msgstr "Juba kasutusel! Kuhu Te soovite selle panna?"
+#~ msgid "American Pie"
+#~ msgstr "Ameerika õunakook"
 
-#, c-format
-msgid "Score: %d"
-msgstr "Punkte: %d"
+#~ msgid "Traffic Jam"
+#~ msgstr "Liiklusummik"
 
-#, c-format
-msgid "Field used"
-msgstr "Kasutatud väljad"
+#~ msgid "Sunshine"
+#~ msgstr "Päikesepaise"
 
-msgid "Delay computer moves"
-msgstr "Viivita arvuti käikudega"
+#~ msgid "Only 18 Steps"
+#~ msgstr "Ainult 18 sammu"
 
-msgid "Display computer thoughts"
-msgstr "Arvuti mõtete näitamine"
+#~ msgid "HuaRong Trail"
+#~ msgstr "HuaRong rada"
 
-msgid "Number of computer opponents"
-msgstr "Arvutimängijate arv"
+#~ msgid "Challenge Pack"
+#~ msgstr "Väljakutsete pakk"
 
-msgid "NUMBER"
-msgstr "NUMBER"
+#~ msgid "Skill Pack"
+#~ msgstr "Vilunute pakk"
 
-msgid "Number of human opponents"
-msgstr "Inimmängijate arv"
+#~ msgid "_Restart Puzzle"
+#~ msgstr "_Alusta mõistatust uuesti"
 
-msgid "Game choice: Regular or Colors"
-msgstr "Mägnu valimine: tavaline või värviline"
+#~ msgid "Next Puzzle"
+#~ msgstr "Järgmine mõistatus"
 
-msgid "STRING"
-msgstr "STRING"
+#~ msgid "Previous Puzzle"
+#~ msgstr "Eelmine mõistatus"
 
-msgid "Number of computer-only games to play"
-msgstr "Palju mõnusaid arvutimänge"
+#~ msgid "X location of window"
+#~ msgstr "Akna asukoht X-teljel"
 
-msgid "Number of trials for each roll for the computer"
-msgstr "Proovimiste arv iga arvuti veeretamise korra kohta"
+#~ msgid "Y location of window"
+#~ msgstr "Akna asukoht Y-teljel"
 
-msgctxt "game type"
-msgid "Regular"
-msgstr "Tavaline"
+#~ msgid "Level completed."
+#~ msgstr "Tase lõpetatud."
 
-msgctxt "game type"
-msgid "Colors"
-msgstr "Värviline"
+#~ msgid "The Puzzle Has Been Solved!"
+#~ msgstr "Mõistatus on lahendatud!"
 
-msgid "Roll all!"
-msgstr "Veereta kõiki!"
+#~ msgid "Klotski Scores"
+#~ msgstr "Klotski tulemused"
 
-msgid "Roll!"
-msgstr "Veereta!"
+#~ msgid "Puzzle:"
+#~ msgstr "Mõistatus:"
 
-msgid "The game is a draw!"
-msgstr "Mäng lõppes viigiga!"
+#~ msgid ""
+#~ "The theme for this game failed to render.\n"
+#~ "\n"
+#~ "Please check that Klotski is installed correctly."
+#~ msgstr ""
+#~ "Tõrge selle mängu teema renderdamisel.\n"
+#~ "\n"
+#~ "Palun veendu, et Klotski korrektselt paigaldatud."
 
-msgid "Tali Scores"
-msgstr "Tali tulemused"
+#~ msgid ""
+#~ "Could not find the image:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Please check that Klotski is installed correctly."
+#~ msgstr ""
+#~ "Pilti pole võimalik leida:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Palun veendu, et Klotski on korrektselt paigaldatud."
 
-#, c-format
-msgid "%s wins the game with %d point"
-msgid_plural "%s wins the game with %d points"
-msgstr[0] "%s võitis mängu %d punktiga"
-msgstr[1] "%s võitis mängu %d punktiga"
+#~ msgid "Moves: %d"
+#~ msgstr "Käike: %d"
 
-#, c-format
-msgid "Computer playing for %s"
-msgstr "Arvuti mängib mängija %s eest"
+#~ msgid ""
+#~ "Sliding Block Puzzles\n"
+#~ "\n"
+#~ "Klotski is a part of GNOME Games."
+#~ msgstr ""
+#~ "Klotside nihutamise mõistatus\n"
+#~ "\n"
+#~ "\"Klotski\" kuulub GNOME mängude koosseisu."
 
-#, c-format
-msgid "%s! -- You're up."
-msgstr "%s, Sul läheb hästi!"
+#~ msgid "Tali"
+#~ msgstr "Tali"
 
-msgid "Select dice to roll or choose a score slot."
-msgstr "Vali täring, mida veeretada, ning vali tulemuse koht."
+#~ msgid "Beat the odds in a poker-style dice game"
+#~ msgstr "Pokkerilaadne täringumäng"
 
-msgid "Roll"
-msgstr "Veereta"
+#~ msgid "yahtzee;"
+#~ msgstr "yahtzee;jatzee;jatzii;jatsii;"
 
-msgid "You are only allowed three rolls. Choose a score slot."
-msgstr "Veeretada saab ainult kolm korda. Vali tulemuse koht."
+#~ msgid "Delay between rolls"
+#~ msgstr "Viivitus visete vahel"
 
-msgid "GNOME version (1998):"
-msgstr "GNOME versioon (1998):"
+#~ msgid ""
+#~ "Choose whether or not to insert a delay between the computer's dice rolls "
+#~ "so the player can follow what it is doing."
+#~ msgstr ""
+#~ "Kas arvuti poolt sooritatavate täringuvisete vahel peab olema paus, et "
+#~ "mängija saaks täpse ülevaate mängu käigust."
 
-msgid "Console version (1992):"
-msgstr "Konsooliversioon (1992)"
+#~ msgid "Display the computer's thoughts"
+#~ msgstr "Arvuti mõtete näitamine"
 
-msgid "Colors game and multi-level AI (2006):"
-msgstr "Värviline mäng ja mitmetasemeline AI (2006):"
+#~ msgid ""
+#~ "If set to true, a dump of the AI's working will be done to standard "
+#~ "output."
+#~ msgstr "Kui märgitud, siis AI töö käik väljastatakse standardväljundisse."
 
-msgid ""
-"A variation on poker with dice and less money.\n"
-"\n"
-"Tali is a part of GNOME Games."
-msgstr ""
-"Pokkerilaadne mäng täringu ja vähese rahaga.\n"
-"\n"
-"\"Tali\" kuulub GNOME mängude koosseisu."
+#~ msgid "Already used! Where do you want to put that?"
+#~ msgstr "Juba kasutusel! Kuhu Te soovite selle panna?"
 
-msgid "Current game will complete with original number of players."
-msgstr "Käesolev mäng lõpeb algse mängijate arvuga."
+#~ msgid "Score: %d"
+#~ msgstr "Punkte: %d"
 
-msgid "Tali Preferences"
-msgstr "Tali eelistused"
+#~ msgid "Field used"
+#~ msgstr "Kasutatud väljad"
 
-msgid "Human Players"
-msgstr "Inimesi mängimas"
+#~ msgid "Delay computer moves"
+#~ msgstr "Viivita arvuti käikudega"
 
-msgid "_Number of players:"
-msgstr "_Mängijate arv:"
+#~ msgid "Display computer thoughts"
+#~ msgstr "Arvuti mõtete näitamine"
 
-msgid "Computer Opponents"
-msgstr "Arvutimängijaid"
+#~ msgid "Number of computer opponents"
+#~ msgstr "Arvutimängijate arv"
 
-#. --- Button ---
-msgid "_Delay between rolls"
-msgstr "_Viivitus visete vahel"
+#~ msgid "NUMBER"
+#~ msgstr "NUMBER"
 
-msgid "N_umber of opponents:"
-msgstr "Va_staste arv:"
+#~ msgid "Number of human opponents"
+#~ msgstr "Inimmängijate arv"
 
-msgid "_Difficulty:"
-msgstr "_Raskusaste:"
+#~ msgid "Game choice: Regular or Colors"
+#~ msgstr "Mägnu valimine: tavaline või värviline"
 
-msgctxt "difficulty"
-msgid "Medium"
-msgstr "Keskmine"
+#~ msgid "STRING"
+#~ msgstr "STRING"
 
-#. --- PLAYER NAMES FRAME ----
-msgid "Player Names"
-msgstr "Mängijate nimed"
+#~ msgid "Number of computer-only games to play"
+#~ msgstr "Palju mõnusaid arvutimänge"
 
-msgid "1s [total of 1s]"
-msgstr "1 [ühtede summa]"
+#~ msgid "Number of trials for each roll for the computer"
+#~ msgstr "Proovimiste arv iga arvuti veeretamise korra kohta"
 
-msgid "2s [total of 2s]"
-msgstr "2 [kahtede summa]"
+#~ msgctxt "game type"
+#~ msgid "Regular"
+#~ msgstr "Tavaline"
 
-msgid "3s [total of 3s]"
-msgstr "3 [kolmede summa]"
+#~ msgctxt "game type"
+#~ msgid "Colors"
+#~ msgstr "Värviline"
 
-msgid "4s [total of 4s]"
-msgstr "4 [neljade summa]"
+#~ msgid "Roll all!"
+#~ msgstr "Veereta kõiki!"
 
-msgid "5s [total of 5s]"
-msgstr "5 [viite summa]"
+#~ msgid "Roll!"
+#~ msgstr "Veereta!"
 
-msgid "6s [total of 6s]"
-msgstr "6 [kuute summa]"
+#~ msgid "The game is a draw!"
+#~ msgstr "Mäng lõppes viigiga!"
 
-#. End of upper panel
-msgid "3 of a Kind [total]"
-msgstr "3 ühesugust [summa]"
+#~ msgid "Tali Scores"
+#~ msgstr "Tali tulemused"
 
-msgid "4 of a Kind [total]"
-msgstr "4 ühesugust [summa]"
+#~ msgid "%s wins the game with %d point"
+#~ msgid_plural "%s wins the game with %d points"
+#~ msgstr[0] "%s võitis mängu %d punktiga"
+#~ msgstr[1] "%s võitis mängu %d punktiga"
 
-msgid "Full House [25]"
-msgstr "Täis maja [25]"
+#~ msgid "Computer playing for %s"
+#~ msgstr "Arvuti mängib mängija %s eest"
 
-msgid "Small Straight [30]"
-msgstr "Lühike tee [30]"
+#~ msgid "%s! -- You're up."
+#~ msgstr "%s, Sul läheb hästi!"
 
-msgid "Large Straight [40]"
-msgstr "Pikk tee [40]"
+#~ msgid "Select dice to roll or choose a score slot."
+#~ msgstr "Vali täring, mida veeretada, ning vali tulemuse koht."
 
-msgid "5 of a Kind [50]"
-msgstr "5 ühesugust [50]"
+#~ msgid "Roll"
+#~ msgstr "Veereta"
 
-msgid "Chance [total]"
-msgstr "Võimalus [kokku]"
+#~ msgid "You are only allowed three rolls. Choose a score slot."
+#~ msgstr "Veeretada saab ainult kolm korda. Vali tulemuse koht."
 
-#. End of lower panel
-msgid "Lower Total"
-msgstr "Alumine summa"
+#~ msgid "GNOME version (1998):"
+#~ msgstr "GNOME versioon (1998):"
 
-msgid "Grand Total"
-msgstr "Kogusumma"
+#~ msgid "Console version (1992):"
+#~ msgstr "Konsooliversioon (1992)"
 
-#. Need to squish between upper and lower pannel
-msgid "Upper total"
-msgstr "Ülemine summa"
+#~ msgid "Colors game and multi-level AI (2006):"
+#~ msgstr "Värviline mäng ja mitmetasemeline AI (2006):"
 
-msgid "Bonus if >62"
-msgstr "Preemia kui >62"
+#~ msgid ""
+#~ "A variation on poker with dice and less money.\n"
+#~ "\n"
+#~ "Tali is a part of GNOME Games."
+#~ msgstr ""
+#~ "Pokkerilaadne mäng täringu ja vähese rahaga.\n"
+#~ "\n"
+#~ "\"Tali\" kuulub GNOME mängude koosseisu."
 
-#. End of upper panel
-msgid "2 pair Same Color [total]"
-msgstr "2 samavärvilist paari [kogusumma]"
+#~ msgid "Current game will complete with original number of players."
+#~ msgstr "Käesolev mäng lõpeb algse mängijate arvuga."
 
-msgid "Full House [15 + total]"
-msgstr "Täis maja [15 + kogusumma]"
+#~ msgid "Tali Preferences"
+#~ msgstr "Tali eelistused"
 
-msgid "Full House Same Color [20 + total]"
-msgstr "Täis maja, samavärviline [20 + kogusumma]"
+#~ msgid "Human Players"
+#~ msgstr "Inimesi mängimas"
 
-msgid "Flush (all same color) [35]"
-msgstr "Kõik samavärvilised [35]"
+#~ msgid "_Number of players:"
+#~ msgstr "_Mängijate arv:"
 
-msgid "4 of a Kind [25 + total]"
-msgstr "4 ühesugust [25 + kogusumma]"
+#~ msgid "Computer Opponents"
+#~ msgstr "Arvutimängijaid"
 
-msgid "5 of a Kind [50 + total]"
-msgstr "5 ühesugust [50 + kogusumma]"
+#~ msgid "_Delay between rolls"
+#~ msgstr "_Viivitus visete vahel"
 
-msgid "Choose a score slot."
-msgstr "Vali tulemuse koht."
+#~ msgid "N_umber of opponents:"
+#~ msgstr "Va_staste arv:"
 
-msgid "5 of a Kind [total]"
-msgstr "5 ühesugust [summa]"
+#~ msgid "_Difficulty:"
+#~ msgstr "_Raskusaste:"
 
-#. Arrgh - lets all use the same tabs under emacs:
-#. Local Variables:
-#. tab-width: 8
-#. c-basic-offset: 8
-#. indent-tabs-mode: nil
-#.
-msgid "Iagno"
-msgstr "Iagno"
+#~ msgctxt "difficulty"
+#~ msgid "Medium"
+#~ msgstr "Keskmine"
 
-msgid "Dominate the board in a classic version of Reversi"
-msgstr "Mägulaual ülekaalu saavutamine klassikalise mängus Reversi"
+#~ msgid "Player Names"
+#~ msgstr "Mängijate nimed"
 
-msgid "othello;"
-msgstr "othello;otello;"
+#~ msgid "1s [total of 1s]"
+#~ msgstr "1 [ühtede summa]"
 
-msgid "Dark:"
-msgstr "Tume:"
+#~ msgid "2s [total of 2s]"
+#~ msgstr "2 [kahtede summa]"
 
-msgid "Light:"
-msgstr "Hele:"
+#~ msgid "3s [total of 3s]"
+#~ msgstr "3 [kolmede summa]"
 
-msgid "Light must pass, Dark's move"
-msgstr "Hele peab ootama, tume käib"
+#~ msgid "4s [total of 4s]"
+#~ msgstr "4 [neljade summa]"
 
-msgid "Dark must pass, Light's move"
-msgstr "Tume peab ootama, hele käib"
+#~ msgid "5s [total of 5s]"
+#~ msgstr "5 [viite summa]"
 
-#. Translators: this is a 2 digit representation of the current score.
-#, c-format
-msgid "%.2d"
-msgstr "%.2d"
+#~ msgid "6s [total of 6s]"
+#~ msgstr "6 [kuute summa]"
 
-msgid ""
-"A disk flipping game derived from Reversi.\n"
-"\n"
-"Iagno is a part of GNOME Games."
-msgstr ""
-"Reversi'st tuletatud kivide pööramise mäng.\n"
-"\n"
-"\"Iagno\" kuulub GNOME mängude koosseisu."
+#~ msgid "3 of a Kind [total]"
+#~ msgstr "3 ühesugust [summa]"
 
-msgid "Light player wins!"
-msgstr "Hele võitis!"
+#~ msgid "4 of a Kind [total]"
+#~ msgstr "4 ühesugust [summa]"
 
-msgid "Dark player wins!"
-msgstr "Tume võitis!"
+#~ msgid "Full House [25]"
+#~ msgstr "Täis maja [25]"
 
-msgid "The game was a draw."
-msgstr "Mäng lõppes viigiga."
+#~ msgid "Small Straight [30]"
+#~ msgstr "Lühike tee [30]"
 
-msgid "Invalid move."
-msgstr "Lubamatu käik."
+#~ msgid "Large Straight [40]"
+#~ msgstr "Pikk tee [40]"
 
-msgid "Iagno Preferences"
-msgstr "Iagno eelistused"
+#~ msgid "5 of a Kind [50]"
+#~ msgstr "5 ühesugust [50]"
 
-msgid "Dark Player:"
-msgstr "Must mängija:"
+#~ msgid "Chance [total]"
+#~ msgstr "Võimalus [kokku]"
 
-msgid "Light Player:"
-msgstr "Valge mängija:"
+#~ msgid "Lower Total"
+#~ msgstr "Alumine summa"
 
-msgid "S_how grid"
-msgstr "_Ruudustik nähtaval"
+#~ msgid "Grand Total"
+#~ msgstr "Kogusumma"
 
-msgid "_Flip final results"
-msgstr "Lõpptulemuste _võrdlemine"
+#~ msgid "Upper total"
+#~ msgstr "Ülemine summa"
 
-msgid "_Tile set:"
-msgstr "_Nupud:"
+#~ msgid "Bonus if >62"
+#~ msgstr "Preemia kui >62"
 
-#. Score dialog column header for the score time (e.g. 1 minute)
-msgctxt "score-dialog"
-msgid "Time"
-msgstr "Aeg"
+#~ msgid "2 pair Same Color [total]"
+#~ msgstr "2 samavärvilist paari [kogusumma]"
 
-#. Score dialog column header for the score value (e.g. 30 moves)
-msgctxt "score-dialog"
-msgid "Score"
-msgstr "Tulemus"
+#~ msgid "Full House [15 + total]"
+#~ msgstr "Täis maja [15 + kogusumma]"
 
-#. Score format for time based scores.  %1$d is the time in minutes, %2$d is the time in seconds
-#, c-format
-msgctxt "score-dialog"
-msgid "%1$dm %2$ds"
-msgstr "%1$dm %2$ds"
+#~ msgid "Full House Same Color [20 + total]"
+#~ msgstr "Täis maja, samavärviline [20 + kogusumma]"
 
-#. Score dialog column header for the name of the player who recorded the score
-msgctxt "score-dialog"
-msgid "Name"
-msgstr "Nimi"
+#~ msgid "Flush (all same color) [35]"
+#~ msgstr "Kõik samavärvilised [35]"
 
-#. Score dialog column header for the date the score was recorded
-msgid "Date"
-msgstr "Kuupäev"
+#~ msgid "4 of a Kind [25 + total]"
+#~ msgstr "4 ühesugust [25 + kogusumma]"
 
-#. FIXME: There is basically no range checking.
-msgid "Lights Off"
-msgstr "Tuled maha"
+#~ msgid "5 of a Kind [50 + total]"
+#~ msgstr "5 ühesugust [50 + kogusumma]"
 
-msgid "Turn off all the lights"
-msgstr "Kõikide tulede väljalülitamise mäng"
+#~ msgid "Choose a score slot."
+#~ msgstr "Vali tulemuse koht."
 
-msgid "The current level"
-msgstr "Praegune tase"
+#~ msgid "5 of a Kind [total]"
+#~ msgstr "5 ühesugust [summa]"
 
-msgid "The users's most recent level."
-msgstr "Kasutaja viimane tase."
+#~ msgid "Iagno"
+#~ msgstr "Iagno"
 
-msgid ""
-"Turn off all the lights\n"
-"\n"
-"Lights Off is a part of GNOME Games."
-msgstr ""
-"Kõikide tulede väljalülitamise mäng.\n"
-"\n"
-"\"Tuled maha\" kuulub GNOME mängude koosseisu."
+#~ msgid "Dominate the board in a classic version of Reversi"
+#~ msgstr "Mägulaual ülekaalu saavutamine klassikalise mängus Reversi"
 
-msgid "Image to use for drawing blocks"
-msgstr "Plokkide joonistamiseks kasutatav pilt"
+#~ msgid "othello;"
+#~ msgstr "othello;otello;"
 
-msgid "Image to use for drawing blocks."
-msgstr "Plokkide joonistamiseks kasutatav pilt."
+#~ msgid "Dark:"
+#~ msgstr "Tume:"
 
-msgid "The theme used for rendering the blocks"
-msgstr "Plokkide renderdamiseks kasutatav teema"
+#~ msgid "Light:"
+#~ msgstr "Hele:"
 
-msgid "The name of the theme used for rendering the blocks and the background."
-msgstr "Plokkide ja tausta renderdamiseks kasutatva teema nimi."
+#~ msgid "Light must pass, Dark's move"
+#~ msgstr "Hele peab ootama, tume käib"
 
-msgid "Level to start with"
-msgstr "Algustase"
+#~ msgid "Dark must pass, Light's move"
+#~ msgstr "Tume peab ootama, hele käib"
 
-msgid "Level to start with."
-msgstr "Tase, millega mängu alustada."
+#~ msgid "%.2d"
+#~ msgstr "%.2d"
 
-msgid "Whether to preview the next block"
-msgstr "Järgmise klotsi piilumine"
+#~ msgid ""
+#~ "A disk flipping game derived from Reversi.\n"
+#~ "\n"
+#~ "Iagno is a part of GNOME Games."
+#~ msgstr ""
+#~ "Reversi'st tuletatud kivide pööramise mäng.\n"
+#~ "\n"
+#~ "\"Iagno\" kuulub GNOME mängude koosseisu."
 
-msgid "Whether to preview the next block."
-msgstr "Järgmise klotsi piilumine."
+#~ msgid "Light player wins!"
+#~ msgstr "Hele võitis!"
 
-msgid "Whether to show where the moving piece will land"
-msgstr "Kas klotsi maandumiskoht on nähtaval"
+#~ msgid "Dark player wins!"
+#~ msgstr "Tume võitis!"
 
-msgid "Whether to show where the moving piece will land."
-msgstr "Kas klotsi maandumiskoht on nähtaval."
+#~ msgid "The game was a draw."
+#~ msgstr "Mäng lõppes viigiga."
 
-msgid "Whether to give blocks random colors"
-msgstr "Kas plokkidele määratakse juhuslikud värvused"
+#~ msgid "Invalid move."
+#~ msgstr "Lubamatu käik."
 
-msgid "Whether to give blocks random colors."
-msgstr "Kas plokkidele määratakse juhuslikud värvused."
+#~ msgid "Iagno Preferences"
+#~ msgstr "Iagno eelistused"
 
-msgid "Whether to rotate counter clock wise"
-msgstr "Vastupäeva pööramine"
+#~ msgid "Dark Player:"
+#~ msgstr "Must mängija:"
 
-msgid "Whether to rotate counter clock wise."
-msgstr "Vastupäeva pööramine."
+#~ msgid "Light Player:"
+#~ msgstr "Valge mängija:"
 
-msgid "The number of rows to fill"
-msgstr "Täidetavate ridade arv"
+#~ msgid "S_how grid"
+#~ msgstr "_Ruudustik nähtaval"
 
-msgid ""
-"The number of rows that are filled with random blocks at the start of the "
-"game."
-msgstr "Mängu alguses juhuslike plokkidega täidetud ridade arv."
+#~ msgid "_Flip final results"
+#~ msgstr "Lõpptulemuste _võrdlemine"
 
-msgid "The density of filled rows"
-msgstr "Eelnevalt täidetud ridade arv"
+#~ msgid "_Tile set:"
+#~ msgstr "_Nupud:"
 
-msgid ""
-"The density of blocks in rows filled at the start of the game. The value is "
-"between 0 (for no blocks) and 10 (for a completely filled row)."
-msgstr ""
-"Plokkide tihedus mängu alguses täidetud ridades. Väärtus on 0 (pole plokke) "
-"kuni 10 (rida on täiesti täis)."
+#~ msgctxt "score-dialog"
+#~ msgid "Time"
+#~ msgstr "Aeg"
 
-msgid "Whether to play sounds"
-msgstr "Kas helisid esitatakse või mitte"
+#~ msgctxt "score-dialog"
+#~ msgid "Score"
+#~ msgstr "Tulemus"
 
-msgid "Whether to play sounds."
-msgstr "Kas helisid esitatakse või mitte."
+#~ msgctxt "score-dialog"
+#~ msgid "%1$dm %2$ds"
+#~ msgstr "%1$dm %2$ds"
 
-msgid "Whether to pick blocks that are hard to place"
-msgstr "Kas valitakse plokke, mida on keeruline paigutada"
+#~ msgctxt "score-dialog"
+#~ msgid "Name"
+#~ msgstr "Nimi"
 
-msgid "Whether to pick blocks that are hard to place."
-msgstr "Kas valitakse plokke, mida on keeruline paigutada."
+#~ msgid "Date"
+#~ msgstr "Kuupäev"
 
-msgid "Key press to move down."
-msgstr "Allaliigutamise klahv."
+#~ msgid "Lights Off"
+#~ msgstr "Tuled maha"
 
-msgid "Drop"
-msgstr "Kukutamine"
+#~ msgid "Turn off all the lights"
+#~ msgstr "Kõikide tulede väljalülitamise mäng"
 
-msgid "Key press to drop."
-msgstr "Kukutamise klahv."
+#~ msgid "The current level"
+#~ msgstr "Praegune tase"
 
-msgid "Rotate"
-msgstr "Pööramine"
+#~ msgid "The users's most recent level."
+#~ msgstr "Kasutaja viimane tase."
 
-msgid "Key press to rotate."
-msgstr "Pööramise klahv."
+#~ msgid ""
+#~ "Turn off all the lights\n"
+#~ "\n"
+#~ "Lights Off is a part of GNOME Games."
+#~ msgstr ""
+#~ "Kõikide tulede väljalülitamise mäng.\n"
+#~ "\n"
+#~ "\"Tuled maha\" kuulub GNOME mängude koosseisu."
 
-msgid "Pause"
-msgstr "Mängu peatamine"
+#~ msgid "Image to use for drawing blocks"
+#~ msgstr "Plokkide joonistamiseks kasutatav pilt"
 
-msgid "Key press to pause."
-msgstr "Pausimise klahv."
+#~ msgid "Image to use for drawing blocks."
+#~ msgstr "Plokkide joonistamiseks kasutatav pilt."
 
-msgid "Quadrapassel"
-msgstr "Quadrapassel"
+#~ msgid "The theme used for rendering the blocks"
+#~ msgstr "Plokkide renderdamiseks kasutatav teema"
 
-msgid "Fit falling blocks together"
-msgstr "Langevate klotside omavaheline kokkusobitamine"
+#~ msgid ""
+#~ "The name of the theme used for rendering the blocks and the background."
+#~ msgstr "Plokkide ja tausta renderdamiseks kasutatva teema nimi."
 
-msgid "tetris;"
-msgstr "tetris;"
+#~ msgid "Level to start with"
+#~ msgstr "Algustase"
 
-msgid "Game Over"
-msgstr "Mäng on läbi"
+#~ msgid "Level to start with."
+#~ msgstr "Tase, millega mängu alustada."
 
-msgid "Lines:"
-msgstr "Ridu:"
+#~ msgid "Whether to preview the next block"
+#~ msgstr "Järgmise klotsi piilumine"
 
-msgid "Quadrapassel Preferences"
-msgstr "Quadrapasseli eelistused"
+#~ msgid "Whether to preview the next block."
+#~ msgstr "Järgmise klotsi piilumine."
 
-#. pre-filled rows
-msgid "_Number of pre-filled rows:"
-msgstr "_Eelnevalt täidetud ridade arv:"
+#~ msgid "Whether to show where the moving piece will land"
+#~ msgstr "Kas klotsi maandumiskoht on nähtaval"
 
-#. pre-filled rows density
-msgid "_Density of blocks in a pre-filled row:"
-msgstr "Eeltäidetud rea _tihedus:"
+#~ msgid "Whether to show where the moving piece will land."
+#~ msgstr "Kas klotsi maandumiskoht on nähtaval."
 
-msgid "_Preview next block"
-msgstr "_Järgmine klots on nähtaval"
+#~ msgid "Whether to give blocks random colors"
+#~ msgstr "Kas plokkidele määratakse juhuslikud värvused"
 
-msgid "Choose difficult _blocks"
-msgstr "_Keerulise raskusastmega klotsid"
+#~ msgid "Whether to give blocks random colors."
+#~ msgstr "Kas plokkidele määratakse juhuslikud värvused."
 
-#. rotate counter clock wise
-msgid "_Rotate blocks counterclockwise"
-msgstr "Klotse _pööratakse vastupäeva"
+#~ msgid "Whether to rotate counter clock wise"
+#~ msgstr "Vastupäeva pööramine"
 
-msgid "Show _where the block will land"
-msgstr "Klotsi _maandumiskoht on nähtaval"
+#~ msgid "Whether to rotate counter clock wise."
+#~ msgstr "Vastupäeva pööramine."
 
-msgid "Controls"
-msgstr "Juhtimine"
+#~ msgid "The number of rows to fill"
+#~ msgstr "Täidetavate ridade arv"
 
-msgid "Theme"
-msgstr "Teema"
+#~ msgid ""
+#~ "The number of rows that are filled with random blocks at the start of the "
+#~ "game."
+#~ msgstr "Mängu alguses juhuslike plokkidega täidetud ridade arv."
 
-msgid "Plain"
-msgstr "Lihtne"
+#~ msgid "The density of filled rows"
+#~ msgstr "Eelnevalt täidetud ridade arv"
 
-msgid "Tango Flat"
-msgstr "Lame Tango"
+#~ msgid ""
+#~ "The density of blocks in rows filled at the start of the game. The value "
+#~ "is between 0 (for no blocks) and 10 (for a completely filled row)."
+#~ msgstr ""
+#~ "Plokkide tihedus mängu alguses täidetud ridades. Väärtus on 0 (pole "
+#~ "plokke) kuni 10 (rida on täiesti täis)."
 
-msgid "Tango Shaded"
-msgstr "Varjuga Tango"
+#~ msgid "Whether to play sounds"
+#~ msgstr "Kas helisid esitatakse või mitte"
 
-msgid "Clean"
-msgstr "Puhas"
+#~ msgid "Whether to play sounds."
+#~ msgstr "Kas helisid esitatakse või mitte."
 
-msgid "Quadrapassel Scores"
-msgstr "Quadrapasseli tulemused"
+#~ msgid "Whether to pick blocks that are hard to place"
+#~ msgstr "Kas valitakse plokke, mida on keeruline paigutada"
 
-msgid ""
-"A classic game of fitting falling blocks together.\n"
-"\n"
-"Quadrapassel is a part of GNOME Games."
-msgstr ""
-"Klassikaline langevate klotside sobitamise mäng.\n"
-"\n"
-"Quadrapassel kuulub GNOME mängude koosseisu."
+#~ msgid "Whether to pick blocks that are hard to place."
+#~ msgstr "Kas valitakse plokke, mida on keeruline paigutada."
 
-msgid "The theme to use"
-msgstr "Kasutatav teema"
+#~ msgid "Key press to move down."
+#~ msgstr "Allaliigutamise klahv."
 
-msgid "The title of the tile theme to use."
-msgstr "Kasutatava nuputeema pealkiri."
+#~ msgid "Drop"
+#~ msgstr "Kukutamine"
 
-msgid "The size of the game board."
-msgstr "Mängulaua suurus."
+#~ msgid "Key press to drop."
+#~ msgstr "Kukutamise klahv."
 
-msgid "Board color count"
-msgstr "Mängulaua värvuste arv"
+#~ msgid "Rotate"
+#~ msgstr "Pööramine"
 
-msgid "The number of colors of tiles to use in the game."
-msgstr "Mängunuppude värvuste arv."
+#~ msgid "Key press to rotate."
+#~ msgstr "Pööramise klahv."
 
-msgid "Zealous animation"
-msgstr "Ägedad animatsioonid"
+#~ msgid "Pause"
+#~ msgstr "Mängu peatamine"
 
-msgid "Use more flashy, but slower, animations."
-msgstr "Edevamate, kuid selle võrra aeglasemate animatsioonide kasutamine."
+#~ msgid "Key press to pause."
+#~ msgstr "Pausimise klahv."
 
-msgid "Swell Foop"
-msgstr "Swell Foop"
+#~ msgid "Quadrapassel"
+#~ msgstr "Quadrapassel"
 
-msgid "_Number of colors:"
-msgstr "_Värvuste arv:"
+#~ msgid "Fit falling blocks together"
+#~ msgstr "Langevate klotside omavaheline kokkusobitamine"
 
-msgid "Setup"
-msgstr "Sätted"
+#~ msgid "tetris;"
+#~ msgstr "tetris;"
 
-msgid "_Zealous Animation"
-msgstr "Ägedad _animatsioonid"
+#~ msgid "Game Over"
+#~ msgstr "Mäng on läbi"
 
-msgid "Operation"
-msgstr "Toimimine"
+#~ msgid "Lines:"
+#~ msgstr "Ridu:"
 
-msgid "Clear the screen by removing groups of colored and shaped tiles"
-msgstr ""
-"Ekraani puhastamine värviliste pallide ja erikujuliste klotside grupeerimise "
-"teel"
+#~ msgid "Quadrapassel Preferences"
+#~ msgstr "Quadrapasseli eelistused"
 
-#. Label showing the number of points at the end of the game
-#, c-format
-msgid "%u point"
-msgid_plural "%u points"
-msgstr[0] "%u punkt"
-msgstr[1] "%u punkti"
+#~ msgid "_Number of pre-filled rows:"
+#~ msgstr "_Eelnevalt täidetud ridade arv:"
 
-msgid "Small"
-msgstr "Väike"
+#~ msgid "_Density of blocks in a pre-filled row:"
+#~ msgstr "Eeltäidetud rea _tihedus:"
 
-msgid "Normal"
-msgstr "Tavaline"
+#~ msgid "_Preview next block"
+#~ msgstr "_Järgmine klots on nähtaval"
 
-msgid "Large"
-msgstr "Suur"
+#~ msgid "Choose difficult _blocks"
+#~ msgstr "_Keerulise raskusastmega klotsid"
 
-#. I left one more blank space at the end to make the score not too close to the window border
-#, c-format
-msgid "Score: %4u "
-msgstr "Punkte: %4u "
+#~ msgid "_Rotate blocks counterclockwise"
+#~ msgstr "Klotse _pööratakse vastupäeva"
 
-msgid "Colors"
-msgstr "Värvid"
+#~ msgid "Show _where the block will land"
+#~ msgstr "Klotsi _maandumiskoht on nähtaval"
 
-msgid "Shapes and Colors"
-msgstr "Kujundid ja värvused"
+#~ msgid "Controls"
+#~ msgstr "Juhtimine"
 
-msgid "Swell Foop Scores"
-msgstr "Swell Foop tulemused"
+#~ msgid "Theme"
+#~ msgstr "Teema"
 
-msgid ""
-"I want to play that game! You know, they all light-up and you click on them "
-"and they vanish!\n"
-"\n"
-"Swell Foop is a part of GNOME Games."
-msgstr ""
-"Ma tahan seda mängu mängida! Need kõik hakkavad helendama, siis sa klõpsad "
-"nende peale ja need kaovad ära!\n"
-"\n"
-"\"Swell Foop\" kuulub GNOME mängude koosseisu."
+#~ msgid "Plain"
+#~ msgstr "Lihtne"
 
-msgid "Copyright © 2009 Tim Horton"
-msgstr "Copyright © 2009 Tim Horton"
+#~ msgid "Tango Flat"
+#~ msgstr "Lame Tango"
+
+#~ msgid "Tango Shaded"
+#~ msgstr "Varjuga Tango"
+
+#~ msgid "Clean"
+#~ msgstr "Puhas"
+
+#~ msgid "Quadrapassel Scores"
+#~ msgstr "Quadrapasseli tulemused"
+
+#~ msgid ""
+#~ "A classic game of fitting falling blocks together.\n"
+#~ "\n"
+#~ "Quadrapassel is a part of GNOME Games."
+#~ msgstr ""
+#~ "Klassikaline langevate klotside sobitamise mäng.\n"
+#~ "\n"
+#~ "Quadrapassel kuulub GNOME mängude koosseisu."
+
+#~ msgid "The theme to use"
+#~ msgstr "Kasutatav teema"
+
+#~ msgid "The title of the tile theme to use."
+#~ msgstr "Kasutatava nuputeema pealkiri."
+
+#~ msgid "The size of the game board."
+#~ msgstr "Mängulaua suurus."
+
+#~ msgid "Board color count"
+#~ msgstr "Mängulaua värvuste arv"
+
+#~ msgid "The number of colors of tiles to use in the game."
+#~ msgstr "Mängunuppude värvuste arv."
+
+#~ msgid "Zealous animation"
+#~ msgstr "Ägedad animatsioonid"
+
+#~ msgid "Use more flashy, but slower, animations."
+#~ msgstr "Edevamate, kuid selle võrra aeglasemate animatsioonide kasutamine."
+
+#~ msgid "Swell Foop"
+#~ msgstr "Swell Foop"
+
+#~ msgid "_Number of colors:"
+#~ msgstr "_Värvuste arv:"
+
+#~ msgid "Setup"
+#~ msgstr "Sätted"
+
+#~ msgid "_Zealous Animation"
+#~ msgstr "Ägedad _animatsioonid"
+
+#~ msgid "Operation"
+#~ msgstr "Toimimine"
+
+#~ msgid "Clear the screen by removing groups of colored and shaped tiles"
+#~ msgstr ""
+#~ "Ekraani puhastamine värviliste pallide ja erikujuliste klotside "
+#~ "grupeerimise teel"
+
+#~ msgid "%u point"
+#~ msgid_plural "%u points"
+#~ msgstr[0] "%u punkt"
+#~ msgstr[1] "%u punkti"
+
+#~ msgid "Small"
+#~ msgstr "Väike"
+
+#~ msgid "Normal"
+#~ msgstr "Tavaline"
+
+#~ msgid "Large"
+#~ msgstr "Suur"
+
+#~ msgid "Score: %4u "
+#~ msgstr "Punkte: %4u "
+
+#~ msgid "Colors"
+#~ msgstr "Värvid"
+
+#~ msgid "Shapes and Colors"
+#~ msgstr "Kujundid ja värvused"
+
+#~ msgid "Swell Foop Scores"
+#~ msgstr "Swell Foop tulemused"
+
+#~ msgid ""
+#~ "I want to play that game! You know, they all light-up and you click on "
+#~ "them and they vanish!\n"
+#~ "\n"
+#~ "Swell Foop is a part of GNOME Games."
+#~ msgstr ""
+#~ "Ma tahan seda mängu mängida! Need kõik hakkavad helendama, siis sa "
+#~ "klõpsad nende peale ja need kaovad ära!\n"
+#~ "\n"
+#~ "\"Swell Foop\" kuulub GNOME mängude koosseisu."
+
+#~ msgid "Copyright © 2009 Tim Horton"
+#~ msgstr "Copyright © 2009 Tim Horton"
 
 #~ msgid "classic robots"
 #~ msgstr "klassikalised robotid"
@@ -5874,9 +5776,6 @@ msgstr "Copyright © 2009 Tim Horton"
 
 #~ msgid "Captain"
 #~ msgstr "Kapten"
-
-#~ msgid "Knight"
-#~ msgstr "Ratsu"
 
 #~ msgid "Angel"
 #~ msgstr "Ingel"
