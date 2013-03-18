@@ -1,7 +1,7 @@
 SUBDIRS = icons pieces textures
 
 desktopdir = $(datadir)/applications
-desktop_in_files = gnome-chess.desktop.in.in
+desktop_in_files = glchess.desktop.in.in
 desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
