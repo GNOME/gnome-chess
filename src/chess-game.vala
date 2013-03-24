@@ -1091,18 +1091,22 @@ public class ChessState
                 switch (move[i])
                 {
                 case 'q':
+                case 'Q':
                     promotion_type = PieceType.QUEEN;
                     i++;
                     break;
                 case 'n':
+                case 'N':
                     promotion_type = PieceType.KNIGHT;
                     i++;
                     break;
                 case 'r':
+                case 'R':
                     promotion_type = PieceType.ROOK;
                     i++;
                     break;
                 case 'b':
+                case 'B':
                     promotion_type = PieceType.BISHOP;
                     i++;
                     break;
