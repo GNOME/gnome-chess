@@ -5,7 +5,8 @@ class GlChess
 
     private static void test_good_move (string fen, string move, string result_fen,
                                         ChessResult result = ChessResult.IN_PROGRESS,
-                                        ChessRule rule = ChessRule.CHECKMATE)
+                                        ChessRule rule = ChessRule.CHECKMATE,
+                                        bool verify_san = false)
     {
         ChessState state = new ChessState (fen);
         test_count++;
@@ -23,7 +24,9 @@ class GlChess
             return;
         }
 
-        if (state.last_move.get_san () != move)
+        // We don't typically want to test this since get_san returns exactly one canonical SAN,
+        // but some test cases want to verify that slightly different notations are accepted.
+        if (verify_san && state.last_move.get_san () != move)
         {
             stderr.printf ("%d. FAIL %s + %s has SAN move %s\n", test_count, fen, move, state.last_move.get_san ());
             failure_count++;
@@ -72,6 +75,10 @@ class GlChess
         /* Pawn promotion */
         test_good_move ("8/P7/8/8/8/8/8/8 w - - 0 1", "a8=Q",
                         "Q7/8/8/8/8/8/8/8 b - - 0 1");
+        test_good_move ("8/P7/8/8/8/8/8/8 w - - 0 1", "a7a8q",
+                        "Q7/8/8/8/8/8/8/8 b - - 0 1");
+        test_good_move ("8/P7/8/8/8/8/8/8 w - - 0 1", "a7a8N",
+                        "N7/8/8/8/8/8/8/8 b - - 0 1");
 
         /* En passant */
         test_good_move ("8/8/8/pP6/8/8/8/8 w - a6 0 1", "bxa6",
