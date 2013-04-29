@@ -70,7 +70,4 @@ CLEANFILES = \
 	$(patsubst %.vala,%.c,$(filter %.vala, $(SOURCES))) \
 	*_vala.stamp
 
-DISTCLEANFILES = \
-	Makefile.in
-
 -include $(top_srcdir)/git.mk
