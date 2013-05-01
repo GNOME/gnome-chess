@@ -541,7 +541,6 @@ public class Application : Gtk.Application
     {
         if (opponent_engine.ready)
         {
-            game.start ();
             view.queue_draw ();
         }
     }
@@ -570,7 +569,7 @@ public class Application : Gtk.Application
 
     private void game_turn_cb (ChessGame game, ChessPlayer player)
     {
-        if (opponent_engine != null && player == opponent)
+        if (game.is_started && opponent_engine != null && player == opponent)
             opponent_engine.request_move ();
     }
 
