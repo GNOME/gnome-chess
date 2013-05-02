@@ -1,228 +1,196 @@
-# Indonesian translation for gnome-games
-# Copyright (c) 2010 gnome-games' COPYRIGHT HOLDER
-# This file is distributed under the same license as the gnome-games package.
+# Indonesian translation for gnome-chess
+# Copyright (c) 2010 gnome-chess' COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-chess package.
 #
-# Andika Triwidada <andika@gmail.com>, 2010, 2012.
+# Andika Triwidada <andika@gmail.com>, 2010, 2012, 2013.
 # Vincent Sebastian The <vincent.s.the@gmail.com>, 2011, 2012.
 # Dirgita <dirgitadevina@yahoo.co.id>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-games master\n"
+"Project-Id-Version: gnome-chess gnome-3-8\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"games&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-04 12:09+0000\n"
-"PO-Revision-Date: 2012-09-04 17:50+0700\n"
-"Last-Translator: Dirgita <dirgitadevina@yahoo.co.id>\n"
-"Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
+"chess&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2013-03-27 16:29+0000\n"
+"PO-Revision-Date: 2013-05-03 02:35+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id_ID\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Rosetta-Export-Date: 2007-04-23 05:58:10+0000\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Poedit 1.5.5\n"
 
 #. Title of the main window
-#: ../glchess/data/glchess.desktop.in.in.h:1 ../glchess/src/glchess.vala:234
+#: ../data/glchess.desktop.in.in.h:1 ../src/gnome-chess.vala:363
 msgid "Chess"
 msgstr "Catur"
 
-#: ../glchess/data/glchess.desktop.in.in.h:2
+#: ../data/glchess.desktop.in.in.h:2
 msgid "Play the classic two-player boardgame of chess"
 msgstr "Mainkan permainan catur klasik dengan dua pemain"
 
+#: ../data/glchess.desktop.in.in.h:3
+msgid "game;strategy;"
+msgstr "permainan;strategi;"
+
 #. Game menu name
-#: ../glchess/data/glchess.ui.h:2 ../glines/data/glines.ui.h:2
-#: ../gnect/src/main.c:1183 ../gnibbles/src/main.c:605
-#: ../gnobots2/src/menu.c:65 ../gnome-sudoku/src/lib/main.py:195
-#: ../gnotski/src/gnotski.c:397
+#: ../data/gnome-chess.ui.h:2
 msgid "_Game"
 msgstr "_Permainan"
 
 #. Undo move menu item
-#: ../glchess/data/glchess.ui.h:4 ../glines/src/games-stock.c:259
-#: ../gnect/src/games-stock.c:259 ../gnibbles/src/games-stock.c:259
-#: ../gnobots2/src/games-stock.c:259
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:111
-#: ../gnotski/src/games-stock.c:259 ../gtali/src/games-stock.c:259
-#: ../gtali/src/gyahtzee.c:754
+#: ../data/gnome-chess.ui.h:4
 msgid "_Undo Move"
 msgstr "_Batalkan Langkah"
 
 #. Save menu item
-#: ../glchess/data/glchess.ui.h:6
+#: ../data/gnome-chess.ui.h:6
 msgid "_Resign"
 msgstr "Menye_rah"
 
 #. Claim draw menu item
-#: ../glchess/data/glchess.ui.h:8
+#: ../data/gnome-chess.ui.h:8
 msgid "Claim _Draw"
 msgstr "Klaim _Seri"
 
 #. Settings menu item
-#: ../glchess/data/glchess.ui.h:10 ../glines/data/glines.ui.h:4
-#: ../gnect/src/main.c:1185 ../gnibbles/src/main.c:607
-#: ../gnobots2/src/menu.c:68 ../gnome-sudoku/src/lib/main.py:209
+#: ../data/gnome-chess.ui.h:10
 msgid "_Settings"
 msgstr "_Pengaturan"
 
 #. Help menu item
-#: ../glchess/data/glchess.ui.h:12 ../glines/data/glines.ui.h:5
-#: ../gnect/src/main.c:1186 ../gnibbles/src/main.c:608
-#: ../gnobots2/src/menu.c:69 ../gnome-mahjongg/src/gnome-mahjongg.vala:89
-#: ../gnome-sudoku/src/lib/main.py:218 ../gnomine/src/gnomine.vala:116
-#: ../gnotravex/data/gnotravex.ui.h:16 ../gnotski/src/gnotski.c:399
-#: ../gtali/src/gyahtzee.c:759 ../iagno/data/iagno.ui.h:4
-#: ../lightsoff/src/lightsoff.vala:32 ../quadrapassel/src/quadrapassel.vala:88
-#: ../swell-foop/src/swell-foop.vala:70
+#: ../data/gnome-chess.ui.h:12
 msgid "_Help"
 msgstr "_Bantuan"
 
 #. Help contents menu item
-#: ../glchess/data/glchess.ui.h:14 ../glines/data/glines.ui.h:7
-#: ../glines/src/games-stock.c:247 ../gnect/src/games-stock.c:247
-#: ../gnibbles/src/games-stock.c:247 ../gnobots2/src/games-stock.c:247
-#: ../gnome-sudoku/src/lib/main.py:219 ../gnotski/src/games-stock.c:247
-#: ../gtali/src/games-stock.c:247
+#: ../data/gnome-chess.ui.h:14
 msgid "_Contents"
 msgstr "Daftar _Isi"
 
 #. Tooltip for start new game toolbar button
-#: ../glchess/data/glchess.ui.h:16 ../glines/src/games-stock.c:48
-#: ../gnect/src/games-stock.c:48 ../gnibbles/src/games-stock.c:48
-#: ../gnobots2/src/games-stock.c:48 ../gnobots2/src/menu.c:70
-#: ../gnotski/src/games-stock.c:48 ../gtali/src/games-stock.c:48
+#: ../data/gnome-chess.ui.h:16
 msgid "Start a new game"
 msgstr "Mulai permainan baru"
 
 #. The New Game toolbar button
-#: ../glchess/data/glchess.ui.h:18
-#: ../libgames-support/games-scores-dialog.c:470
+#: ../data/gnome-chess.ui.h:18
 msgid "New Game"
 msgstr "Permainan Baru"
 
 #. The undo move toolbar button
-#: ../glchess/data/glchess.ui.h:20
+#: ../data/gnome-chess.ui.h:20
 msgid "Undo Move"
 msgstr "Batalkan Langkah"
 
 #. The tooltip for the Resign toolbar button
-#: ../glchess/data/glchess.ui.h:22
+#: ../data/gnome-chess.ui.h:22
 msgid "Resign"
 msgstr "Menyerah"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
-#: ../glchess/data/glchess.ui.h:24
+#: ../data/gnome-chess.ui.h:24
 msgid "Rewind to the game start"
 msgstr "Ulangi Permainan"
 
 #. Tooltip on the show previous move navigation button
-#: ../glchess/data/glchess.ui.h:26
+#: ../data/gnome-chess.ui.h:26
 msgid "Show the previous move"
 msgstr "Tampilkan langkah sebelumnya"
 
 #. Tooltip on the show next move navigation button
-#: ../glchess/data/glchess.ui.h:28
+#: ../data/gnome-chess.ui.h:28
 msgid "Show the next move"
 msgstr "Tampilkan langkah berikutnya"
 
 #. Tooltip on the show current move navigation button
-#: ../glchess/data/glchess.ui.h:30
+#: ../data/gnome-chess.ui.h:30
 msgid "Show the current move"
 msgstr "Tampilkan langkah kini"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:1
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:1
 msgid "The width of the window"
 msgstr "Lebar jendela"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:2
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:2
 msgid "The width of the main window in pixels."
 msgstr "Lebar jendela utama dalam piksel."
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:3
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:3
 msgid "The height of the window"
 msgstr "Tinggi jendela"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:4
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:4
 msgid "The height of the main window in pixels."
 msgstr "Tinggi dari jendela utama dalam piksel."
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:5
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:5
 msgid "A flag to enable maximized mode"
 msgstr "Tanda untuk mengaktifkan mode pemaksimalan"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:6
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:6
 msgid "A flag to enable fullscreen mode"
 msgstr "Tampilkan mode layar penuh"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:7
-msgid "The piece to promote pawns to"
-msgstr "Bidak yang akan dipromosikan dari pion"
-
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:8
-msgid ""
-"The piece to promote to when a human player moves a pawn to the far rank"
-msgstr ""
-"Bidak yang akan dipromosikan ketika pemain manusia menggerakkan pion ke "
-"baris terakhir"
-
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:9
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:7
 msgid "A flag to enable 3D mode"
 msgstr "Tampilkan mode 3D"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:10
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:8
 msgid "A flag to smooth (anti-alias) the 3D display"
 msgstr "Perhalus (anti-alias) tampilan 3D"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:11
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:9
 msgid "The piece theme to use"
 msgstr "File tema yang akan dimainkan"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:12
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:10
 msgid "A flag to enable move hints"
 msgstr "Tampilkan petunjuk langkah"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:13
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:11
 msgid "A flag to enable board numbering"
 msgstr "Tampilkan nomor papan"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:14
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:12
 msgid "A flag to enable the move history browser"
 msgstr "Tampilkan riwayat langkah peramban"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:15
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:13
 msgid "A flag to enable the toolbar"
 msgstr "Tampilkan kotak peralatan"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:16
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:14
 msgid "The directory to open the save game dialog in"
 msgstr "Direktori untuk membuka dialok permainan yanng disimpan dalam"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:17
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:15
 msgid "The directory to open the load game dialog in"
 msgstr "DIrektori untuk membuka dialok permainan yang dimuat dalam"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:18
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:16
 msgid "The format to display moves in"
 msgstr "Format untuk menampilkan langkah dalam"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:19
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:17
 msgid "The side of the board that is in the foreground"
 msgstr "Sisi papan yang ada di latar depan"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:20
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:18
 msgid "The duration of a game in seconds (0 for no limit)"
 msgstr "Durasi permainan dalam detik (0 untuk tiada batas)"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:21
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:19
 msgid "true if the human player is playing white"
 msgstr "Benar jika pemain manusia memainkan pihak putih"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:22
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:20
 msgid "The opponent player"
 msgstr "Pemain lawan"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:23
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:21
 msgid ""
 "Can be 'human' (play against another human player), '' (use the first "
 "available chess engine) or the name of a specific engine to play against"
@@ -230,4420 +198,862 @@ msgstr ""
 "Bisa 'manusia' (bermain melawan pemain manusia lain), '' (pakai mesin catur "
 "pertama yang tersedia) atau nama dari mesin tertentu untuk bermain"
 
-#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:24
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:22
 msgid "Difficulty of the opponent chess engine"
 msgstr "Tingkat kesulitan lawan"
 
 #. Title for preferences dialog
-#: ../glchess/data/preferences.ui.h:2 ../glines/src/glines.c:177
+#: ../data/preferences.ui.h:2
 msgid "Preferences"
 msgstr "Preferensi"
 
 #. Preferences Dialog: Label before player side (white/black) combo box
-#: ../glchess/data/preferences.ui.h:4
+#: ../data/preferences.ui.h:4
 msgid "Play as:"
 msgstr "Bermain sebagai:"
 
 #. Preferences Dialog: Label before opposing player combo box
-#: ../glchess/data/preferences.ui.h:6
+#: ../data/preferences.ui.h:6
 msgid "Opposing Player:"
 msgstr "Pemain lawan:"
 
 #. Preferences Dialog: Label before promotion type combo box
-#: ../glchess/data/preferences.ui.h:8
+#: ../data/preferences.ui.h:8
 msgid "Difficulty:"
 msgstr "Kesulitan:"
 
 #. New Game Dialog: Label before game timer settings
-#: ../glchess/data/preferences.ui.h:10
+#: ../data/preferences.ui.h:10
 msgid "Game Duration:"
 msgstr "Durasi permainan:"
 
-#. Preferences Dialog: Label before promotion type combo box
-#: ../glchess/data/preferences.ui.h:12
-msgid "Promotion Type:"
-msgstr "Tipe Promosi:"
-
 #. Preferences dialog: Label to notify user that the settings are applied for the next game
-#: ../glchess/data/preferences.ui.h:14
+#: ../data/preferences.ui.h:12
 msgid "Changes will take effect for the next game."
 msgstr "Perubahan akan diterapkan pada permainan berikutnya."
 
 #. Preferences Dialog: Tab title for game preferences
-#: ../glchess/data/preferences.ui.h:16 ../gnect/src/prefs.c:230
-#: ../gnibbles/src/preferences.c:253 ../gnobots2/src/properties.c:452
-#: ../quadrapassel/src/quadrapassel.vala:305
+#: ../data/preferences.ui.h:14
 msgid "Game"
 msgstr "Permainan"
 
 #. Preferences Dialog: Check box for selecting if 3D view is available
-#: ../glchess/data/preferences.ui.h:18
+#: ../data/preferences.ui.h:16
 msgid "3_D Chess View"
 msgstr "Tampilan catur 3_D"
 
 #. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
-#: ../glchess/data/preferences.ui.h:20
+#: ../data/preferences.ui.h:18
 msgid "_Smooth Display"
 msgstr "Tampilan Halu_s"
 
 #. Preferences Dialog: Label before piece style combo box
-#: ../glchess/data/preferences.ui.h:22
+#: ../data/preferences.ui.h:20
 msgid "Piece Style:"
 msgstr "Gaya Bidak:"
 
 #. Preferences Dialog: Check box for selecting if toolbar is visible
-#: ../glchess/data/preferences.ui.h:24 ../gnome-sudoku/src/lib/main.py:239
+#: ../data/preferences.ui.h:22
 msgid "Show _Toolbar"
 msgstr "_Tampilkan Kotak Peralatan"
 
 #. Preferences Dialog: Check box for selecting if history browser is visible
-#: ../glchess/data/preferences.ui.h:26
+#: ../data/preferences.ui.h:24
 msgid "Show _History"
 msgstr "Tampilkan _Riwayat"
 
 #. Preferences Dialog: Check box for selecting if move hints are visible
-#: ../glchess/data/preferences.ui.h:28
+#: ../data/preferences.ui.h:26
 msgid "_Move Hints"
 msgstr "_Petunjuk Langkah"
 
 #. Preferences Dialog: Check box for selecting if board numbering is visible
-#: ../glchess/data/preferences.ui.h:30
+#: ../data/preferences.ui.h:28
 msgid "_Board Numbering"
 msgstr "_Penomoran Papan"
 
 #. Preferences Dialog: Label before board orientation combo box
-#: ../glchess/data/preferences.ui.h:32
+#: ../data/preferences.ui.h:30
 msgid "Board Orientation:"
 msgstr "Orientasi Papan:"
 
 #. Preferences Dialog: Label before move format combo box
-#: ../glchess/data/preferences.ui.h:34
+#: ../data/preferences.ui.h:32
 msgid "Move Format:"
 msgstr "Bentuk Langkah:"
 
 #. Preferences Dialog: Title of appearance options tab
-#: ../glchess/data/preferences.ui.h:36
+#: ../data/preferences.ui.h:34
 msgid "_Appearance"
 msgstr "Pen_ampilan"
 
-#. Preferences Dialog: Combo box entry for easy game difficulty
-#: ../glchess/data/preferences.ui.h:38 ../gtali/src/setup.c:343
-msgctxt "difficulty"
-msgid "Easy"
-msgstr "Mudah"
-
-#. Preferences Dialog: Combo box entry for normal game difficulty
-#: ../glchess/data/preferences.ui.h:40
-msgctxt "difficulty"
-msgid "Normal"
-msgstr "Normal"
-
-#. Preferences Dialog: Combo box entry for hard game difficulty
-#: ../glchess/data/preferences.ui.h:42 ../gtali/src/setup.c:345
-msgctxt "difficulty"
-msgid "Hard"
-msgstr "Sulit"
-
-#. Preferences Dialog: Combo box entry for human opponent
-#: ../glchess/data/preferences.ui.h:44
-msgctxt "chess-opponent"
-msgid "Human"
-msgstr "Manusia"
-
 #. Preferences Dialog: Combo box entry for playing as white
-#: ../glchess/data/preferences.ui.h:46
+#: ../data/preferences.ui.h:36
 msgctxt "chess-player"
 msgid "White"
 msgstr "Putih"
 
 #. Preferences Dialog: Combo box entry for playing as black
-#: ../glchess/data/preferences.ui.h:48
+#: ../data/preferences.ui.h:38
 msgctxt "chess-player"
 msgid "Black"
 msgstr "Hitam"
 
+#. Preferences Dialog: Combo box entry for easy game difficulty
+#: ../data/preferences.ui.h:40
+msgctxt "difficulty"
+msgid "Easy"
+msgstr "Mudah"
+
+#. Preferences Dialog: Combo box entry for normal game difficulty
+#: ../data/preferences.ui.h:42
+msgctxt "difficulty"
+msgid "Normal"
+msgstr "Normal"
+
+#. Preferences Dialog: Combo box entry for hard game difficulty
+#: ../data/preferences.ui.h:44
+msgctxt "difficulty"
+msgid "Hard"
+msgstr "Sulit"
+
 #. Preferences Dialog: Combo box entry for no game timer
-#: ../glchess/data/preferences.ui.h:50
+#: ../data/preferences.ui.h:46
 msgid "No limit"
 msgstr "Tidak ada Batas"
 
 #. Preferences Dialog: Combo box entry for game timer of one minute
-#: ../glchess/data/preferences.ui.h:52
+#: ../data/preferences.ui.h:48
 msgid "One minute"
 msgstr "Satu menit"
 
 #. Preferences Dialog: Combo box entry for game timer of five minutes
-#: ../glchess/data/preferences.ui.h:54
+#: ../data/preferences.ui.h:50
 msgid "Five minutes"
 msgstr "Lima menit"
 
 #. Preferences Dialog: Combo box entry for game timer of thirty minutes
-#: ../glchess/data/preferences.ui.h:56
+#: ../data/preferences.ui.h:52
 msgid "30 minutes"
 msgstr "30 menit"
 
 #. Preferences Dialog: Combo box entry for game timer of one hour
-#: ../glchess/data/preferences.ui.h:58
+#: ../data/preferences.ui.h:54
 msgid "One hour"
 msgstr "Satu jam"
 
 #. Preferences Dialog: Combo box entry for custom game timer
-#: ../glchess/data/preferences.ui.h:60
+#: ../data/preferences.ui.h:56
 msgid "Custom"
 msgstr "Gubahan"
 
-#. Preferences Dialog: Combo box entry for simple theme
-#: ../glchess/data/preferences.ui.h:62
-msgid "Simple"
-msgstr "Sederhana"
-
-#. Preferences Dialog: Combo box entry for fancy theme
-#: ../glchess/data/preferences.ui.h:64
-msgid "Fancy"
-msgstr "Kesukaan"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the white side
-#: ../glchess/data/preferences.ui.h:66
-msgctxt "chess-side"
-msgid "White Side"
-msgstr "Pihak Putih"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the black side
-#: ../glchess/data/preferences.ui.h:68
-msgctxt "chess-side"
-msgid "Black Side"
-msgstr "Pihak Hitam"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
-#: ../glchess/data/preferences.ui.h:70
-msgctxt "chess-side"
-msgid "Human Side"
-msgstr "Pihak Manusia"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
-#: ../glchess/data/preferences.ui.h:72
-msgctxt "chess-side"
-msgid "Current Player"
-msgstr "Pemain Saat Ini"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)
-#: ../glchess/data/preferences.ui.h:74
-msgctxt "chess-side"
-msgid "Face to Face"
-msgstr "Muka ke Muka"
-
 #. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
-#: ../glchess/data/preferences.ui.h:76
+#: ../data/preferences.ui.h:58
 msgctxt "chess-move-format"
 msgid "Human"
 msgstr "Manusia"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
-#: ../glchess/data/preferences.ui.h:78
+#: ../data/preferences.ui.h:60
 msgctxt "chess-move-format"
 msgid "Standard Algebraic"
 msgstr "Aljabar Standar"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
-#: ../glchess/data/preferences.ui.h:80
+#: ../data/preferences.ui.h:62
 msgctxt "chess-move-format"
 msgid "Figurine"
 msgstr "Figuran"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
-#: ../glchess/data/preferences.ui.h:82
+#: ../data/preferences.ui.h:64
 msgctxt "chess-move-format"
 msgid "Long Algebraic"
 msgstr "Aljabar Panjang"
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a queen
-#: ../glchess/data/preferences.ui.h:84
-msgctxt "chess-piece"
-msgid "Queen"
-msgstr "Ratu"
+#. Preferences Dialog: Combo box entry for human opponent
+#: ../data/preferences.ui.h:66
+msgctxt "chess-opponent"
+msgid "Human"
+msgstr "Manusia"
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a knight
-#: ../glchess/data/preferences.ui.h:86
-msgctxt "chess-piece"
-msgid "Knight"
-msgstr "Kuda"
+#. Preferences Dialog: Combo box entry for setting the board orientation to the white side
+#: ../data/preferences.ui.h:68
+msgctxt "chess-side"
+msgid "White Side"
+msgstr "Pihak Putih"
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a rook
-#: ../glchess/data/preferences.ui.h:88
-msgctxt "chess-piece"
-msgid "Rook"
-msgstr "Benteng"
+#. Preferences Dialog: Combo box entry for setting the board orientation to the black side
+#: ../data/preferences.ui.h:70
+msgctxt "chess-side"
+msgid "Black Side"
+msgstr "Pihak Hitam"
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a bishop
-#: ../glchess/data/preferences.ui.h:90
-msgctxt "chess-piece"
-msgid "Bishop"
-msgstr "Gajah"
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
+#: ../data/preferences.ui.h:72
+msgctxt "chess-side"
+msgid "Human Side"
+msgstr "Pihak Manusia"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
+#: ../data/preferences.ui.h:74
+msgctxt "chess-side"
+msgid "Current Player"
+msgstr "Pemain Saat Ini"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)
+#: ../data/preferences.ui.h:76
+msgctxt "chess-side"
+msgid "Face to Face"
+msgstr "Muka ke Muka"
+
+#. Preferences Dialog: Combo box entry for simple theme
+#: ../data/preferences.ui.h:78
+msgid "Simple"
+msgstr "Sederhana"
+
+#. Preferences Dialog: Combo box entry for fancy theme
+#: ../data/preferences.ui.h:80
+msgid "Fancy"
+msgstr "Kesukaan"
+
+#: ../data/promotion-type-selector.ui.h:1
+msgid "_Queen"
+msgstr "_Ratu"
+
+#: ../data/promotion-type-selector.ui.h:2
+msgid "_Knight"
+msgstr "_Kuda"
+
+#: ../data/promotion-type-selector.ui.h:3
+msgid "_Rook"
+msgstr "_Benteng"
+
+#: ../data/promotion-type-selector.ui.h:4
+msgid "_Bishop"
+msgstr "_Gajah"
+
+#: ../data/promotion-type-selector.ui.h:5
+msgid ""
+"Promotion is a chess rule describing the transformation of a pawn that "
+"reaches its eighth rank into the player's choice of a queen, knight, rook, "
+"or bishop of the same color. The new piece replaces the pawn on the same "
+"square and is part of the move. Every pawn that reaches its eighth rank must "
+"be promoted. Pawn promotion often decides the result of a chess endgame."
+msgstr ""
+"Promosi adalah suatu aturan catur yang menerangkan transformasi dari suatu "
+"bidak yang mencapai baris ke delapan, menjadi ratu, kuda, benteng, atau "
+"gajah dengan warna yang sama. Buah catur baru itu menggantikan bidak pada "
+"kotak yang sama dan menjadi bagian dari langkah. Setiap bidak yang mencapai "
+"baris ke delapan harus dipromosikan. Promosi bidak sering menentukan hasil "
+"dari permainan akhir catur."
+
+#: ../data/promotion-type-selector.ui.h:6
+msgid "Select Pawn Promotion Type"
+msgstr "Pilih Tipe Promosi Bidak"
 
 #. Title of the window when explicitly loaded a file. The first argument is the
 #. * base name of the file (e.g. test.pgn), the second argument is the directory
 #. * (e.g. /home/fred)
-#: ../glchess/src/glchess.vala:242
+#: ../src/gnome-chess.vala:371
 #, c-format
 msgid "%1$s (%2$s) - Chess"
 msgstr "%1$s (%2$s) - Catur"
 
 #. Move History Combo: Go to the start of the game
-#: ../glchess/src/glchess.vala:251
+#: ../src/gnome-chess.vala:380
 msgid "Game Start"
 msgstr "Permainan Dimulai"
 
 #. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
 #. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
-#: ../glchess/src/glchess.vala:481
+#: ../src/gnome-chess.vala:582
 #, c-format
 msgid "White pawn moves from %1$s to %2$s"
 msgstr "Pion putih bergerak dari %1$s ke %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:483
+#: ../src/gnome-chess.vala:584
 #, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s"
 msgstr "Pion putih di %1$s memakan pion hitam di %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:485
+#: ../src/gnome-chess.vala:586
 #, c-format
 msgid "White pawn at %1$s takes the black rook at %2$s"
 msgstr "Pion putih di %1$s memakan benteng hitam di %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:487
+#: ../src/gnome-chess.vala:588
 #, c-format
 msgid "White pawn at %1$s takes the black knight at %2$s"
 msgstr "Pion putih di %1$s memakan kuda hitam di %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:489
+#: ../src/gnome-chess.vala:590
 #, c-format
 msgid "White pawn at %1$s takes the black bishop at %2$s"
 msgstr "Pion putih di %1$s memakan gajah hitam di %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:491
+#: ../src/gnome-chess.vala:592
 #, c-format
 msgid "White pawn at %1$s takes the black queen at %2$s"
 msgstr "Pion putih di %1$s memakan ratu hitam di %2$s"
 
 #. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
-#: ../glchess/src/glchess.vala:493
+#: ../src/gnome-chess.vala:594
 #, c-format
 msgid "White rook moves from %1$s to %2$s"
 msgstr "Benteng putih berpindah dari %1$s ke %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:495
+#: ../src/gnome-chess.vala:596
 #, c-format
 msgid "White rook at %1$s takes the black pawn at %2$s"
 msgstr "Benteng putih di %1$s memakan pion hitam di %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:497
+#: ../src/gnome-chess.vala:598
 #, c-format
 msgid "White rook at %1$s takes the black rook at %2$s"
 msgstr "Benteng putih di %1$s memakan benteng hitam di %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:499
+#: ../src/gnome-chess.vala:600
 #, c-format
 msgid "White rook at %1$s takes the black knight at %2$s"
 msgstr "Benteng putih di %1$s memakan kuda hitam di %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:501
+#: ../src/gnome-chess.vala:602
 #, c-format
 msgid "White rook at %1$s takes the black bishop at %2$s"
 msgstr "Benteng putih di %1$s memakan gajah hitam di %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
-#: ../glchess/src/glchess.vala:503
+#: ../src/gnome-chess.vala:604
 #, c-format
 msgid "White rook at %1$s takes the black queen at %2$s"
 msgstr "Benteng putih di %1$s memakan ratu hitam di %2$s"
 
 #. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
-#: ../glchess/src/glchess.vala:505
+#: ../src/gnome-chess.vala:606
 #, c-format
 msgid "White knight moves from %1$s to %2$s"
 msgstr "Kuda putih berpindah dari %1$s ke %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:507
+#: ../src/gnome-chess.vala:608
 #, c-format
 msgid "White knight at %1$s takes the black pawn at %2$s"
 msgstr "Kuda putih di %1$s memakan pion hitam di %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:509
+#: ../src/gnome-chess.vala:610
 #, c-format
 msgid "White knight at %1$s takes the black rook at %2$s"
 msgstr "Kuda putih di %1$s memakan benteng hitam di %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:511
+#: ../src/gnome-chess.vala:612
 #, c-format
 msgid "White knight at %1$s takes the black knight at %2$s"
 msgstr "Kuda putih di %1$s memakan kuda hitam di %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:513
+#: ../src/gnome-chess.vala:614
 #, c-format
 msgid "White knight at %1$s takes the black bishop at %2$s"
 msgstr "Kuda putih di %1$s memakan gajah hitam di %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:515
+#: ../src/gnome-chess.vala:616
 #, c-format
 msgid "White knight at %1$s takes the black queen at %2$s"
 msgstr "Kuda putih di %1$s memakan ratu hitam di %2$s"
 
 #. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
-#: ../glchess/src/glchess.vala:517
+#: ../src/gnome-chess.vala:618
 #, c-format
 msgid "White bishop moves from %1$s to %2$s"
 msgstr "Gajah putih berpindah dari %1$s ke %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:519
+#: ../src/gnome-chess.vala:620
 #, c-format
 msgid "White bishop at %1$s takes the black pawn at %2$s"
 msgstr "Gajah putih di %1$s memakan pion hitam di %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:521
+#: ../src/gnome-chess.vala:622
 #, c-format
 msgid "White bishop at %1$s takes the black rook at %2$s"
 msgstr "Gajah putih di %1$s memakan benteng hitam di %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:523
+#: ../src/gnome-chess.vala:624
 #, c-format
 msgid "White bishop at %1$s takes the black knight at %2$s"
 msgstr "Gajah putih di %1$s memakan kuda hitam di %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:525
+#: ../src/gnome-chess.vala:626
 #, c-format
 msgid "White bishop at %1$s takes the black bishop at %2$s"
 msgstr "Gajah putih di %1$s memakan gajah hitam di %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:527
+#: ../src/gnome-chess.vala:628
 #, c-format
 msgid "White bishop at %1$s takes the black queen at %2$s"
 msgstr "Gajah putih di %1$s memakan ratu hitam di %2$s"
 
 #. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
-#: ../glchess/src/glchess.vala:529
+#: ../src/gnome-chess.vala:630
 #, c-format
 msgid "White queen moves from %1$s to %2$s"
 msgstr "Ratu putih berpindah dari %1$s ke %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:531
+#: ../src/gnome-chess.vala:632
 #, c-format
 msgid "White queen at %1$s takes the black pawn at %2$s"
 msgstr "Ratu putih di %1$s memakan pion hitam di %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:533
+#: ../src/gnome-chess.vala:634
 #, c-format
 msgid "White queen at %1$s takes the black rook at %2$s"
 msgstr "Ratu putih di %1$s memakan benteng hitam di %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:535
+#: ../src/gnome-chess.vala:636
 #, c-format
 msgid "White queen at %1$s takes the black knight at %2$s"
 msgstr "Ratu putih di %1$s memakan kuda hitam di %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:537
+#: ../src/gnome-chess.vala:638
 #, c-format
 msgid "White queen at %1$s takes the black bishop at %2$s"
 msgstr "Ratu putih di %1$s memakan gajah hitam di %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:539
+#: ../src/gnome-chess.vala:640
 #, c-format
 msgid "White queen at %1$s takes the black queen at %2$s"
 msgstr "Ratu putih di %1$s memakan ratu hitam di %2$s"
 
 #. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
-#: ../glchess/src/glchess.vala:541
+#: ../src/gnome-chess.vala:642
 #, c-format
 msgid "White king moves from %1$s to %2$s"
 msgstr "Raja putih berpindah dari %1$s ke %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:543
+#: ../src/gnome-chess.vala:644
 #, c-format
 msgid "White king at %1$s takes the black pawn at %2$s"
 msgstr "Raja putih di %1$s memakan pion hitam di %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:545
+#: ../src/gnome-chess.vala:646
 #, c-format
 msgid "White king at %1$s takes the black rook at %2$s"
 msgstr "Raja putih di %1$s memakan benteng hitam di %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:547
+#: ../src/gnome-chess.vala:648
 #, c-format
 msgid "White king at %1$s takes the black knight at %2$s"
 msgstr "Raja putih di %1$s memakan kuda hitam di %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:549
+#: ../src/gnome-chess.vala:650
 #, c-format
 msgid "White king at %1$s takes the black bishop at %2$s"
 msgstr "Raja putih di %1$s memakan gajah hitam di %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:551
+#: ../src/gnome-chess.vala:652
 #, c-format
 msgid "White king at %1$s takes the black queen at %2$s"
 msgstr "Raja putih di %1$s memakan ratu hitam di %2$s"
 
 #. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
-#: ../glchess/src/glchess.vala:553
+#: ../src/gnome-chess.vala:654
 #, c-format
 msgid "Black pawn moves from %1$s to %2$s"
 msgstr "Pion hitam berpindah dari %1$s ke %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:555
+#: ../src/gnome-chess.vala:656
 #, c-format
 msgid "Black pawn at %1$s takes the white pawn at %2$s"
 msgstr "Pion hitam di %1$s memakan pion putih di %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:557
+#: ../src/gnome-chess.vala:658
 #, c-format
 msgid "Black pawn at %1$s takes the white rook at %2$s"
 msgstr "Pion hitam di %1$s memakan benteng putih di %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:559
+#: ../src/gnome-chess.vala:660
 #, c-format
 msgid "Black pawn at %1$s takes the white knight at %2$s"
 msgstr "Pion hitam di %1$s memakan kuda putih di %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:561
+#: ../src/gnome-chess.vala:662
 #, c-format
 msgid "Black pawn at %1$s takes the white bishop at %2$s"
 msgstr "Pion hitam di %1$s memakan gajah putih di %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:563
+#: ../src/gnome-chess.vala:664
 #, c-format
 msgid "Black pawn at %1$s takes the white queen at %2$s"
 msgstr "Pion hitam di %1$s memakan ratu putih di %2$s"
 
 #. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
-#: ../glchess/src/glchess.vala:565
+#: ../src/gnome-chess.vala:666
 #, c-format
 msgid "Black rook moves from %1$s to %2$s"
 msgstr "Benteng hitam berpindah dari %1$s ke %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:567
+#: ../src/gnome-chess.vala:668
 #, c-format
 msgid "Black rook at %1$s takes the white pawn at %2$s"
 msgstr "Benteng hitam di %1$s memakan pion putih di %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:569
+#: ../src/gnome-chess.vala:670
 #, c-format
 msgid "Black rook at %1$s takes the white rook at %2$s"
 msgstr "Benteng hitam di %1$s memakan benteng putih di %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:571
+#: ../src/gnome-chess.vala:672
 #, c-format
 msgid "Black rook at %1$s takes the white knight at %2$s"
 msgstr "Benteng hitam di %1$s memakan kuda putih di %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:573
+#: ../src/gnome-chess.vala:674
 #, c-format
 msgid "Black rook at %1$s takes the white bishop at %2$s"
 msgstr "Benteng hitam di %1$s memakan gajah putih di %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:575
+#: ../src/gnome-chess.vala:676
 #, c-format
 msgid "Black rook at %1$s takes the white queen at %2$s"
 msgstr "Benteng hitam di %1$s memakan ratu putih di %2$s"
 
 #. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
-#: ../glchess/src/glchess.vala:577
+#: ../src/gnome-chess.vala:678
 #, c-format
 msgid "Black knight moves from %1$s to %2$s"
 msgstr "Kuda hitam berpindah dari %1$s ke %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:579
+#: ../src/gnome-chess.vala:680
 #, c-format
 msgid "Black knight at %1$s takes the white pawn at %2$s"
 msgstr "Kuda hitam di %1$s memakan pion putih di %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:581
+#: ../src/gnome-chess.vala:682
 #, c-format
 msgid "Black knight at %1$s takes the white rook at %2$s"
 msgstr "Kuda hitam di %1$s memakan benteng putih di %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:583
+#: ../src/gnome-chess.vala:684
 #, c-format
 msgid "Black knight at %1$s takes the white knight at %2$s"
 msgstr "Kuda hitam di %1$s memakan kuda putih di %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:585
+#: ../src/gnome-chess.vala:686
 #, c-format
 msgid "Black knight at %1$s takes the white bishop at %2$s"
 msgstr "Kuda hitam di %1$s memakan gajah putih di %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:587
+#: ../src/gnome-chess.vala:688
 #, c-format
 msgid "Black knight at %1$s takes the white queen at %2$s"
 msgstr "Kuda hitam di %1$s memakan ratu putih di %2$s"
 
 #. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
-#: ../glchess/src/glchess.vala:589
+#: ../src/gnome-chess.vala:690
 #, c-format
 msgid "Black bishop moves from %1$s to %2$s"
 msgstr "Gajah hitam berpindah dari %1$s ke %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:591
+#: ../src/gnome-chess.vala:692
 #, c-format
 msgid "Black bishop at %1$s takes the white pawn at %2$s"
 msgstr "Gajah hitam di %1$s memakan pion putih di %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:593
+#: ../src/gnome-chess.vala:694
 #, c-format
 msgid "Black bishop at %1$s takes the white rook at %2$s"
 msgstr "Gajah hitam di %1$s memakan benteng putih di %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:595
+#: ../src/gnome-chess.vala:696
 #, c-format
 msgid "Black bishop at %1$s takes the white knight at %2$s"
 msgstr "Gajah hitam di %1$s memakan kuda putih di %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:597
+#: ../src/gnome-chess.vala:698
 #, c-format
 msgid "Black bishop at %1$s takes the white bishop at %2$s"
 msgstr "Gajah hitam di %1$s memakan gajah putih di %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:599
+#: ../src/gnome-chess.vala:700
 #, c-format
 msgid "Black bishop at %1$s takes the white queen at %2$s"
 msgstr "Gajah hitam di %1$s memakan ratu putih di %2$s"
 
 #. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
-#: ../glchess/src/glchess.vala:601
+#: ../src/gnome-chess.vala:702
 #, c-format
 msgid "Black queen moves from %1$s to %2$s"
 msgstr "Ratu hitam berpindah dari %1$s ke %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:603
+#: ../src/gnome-chess.vala:704
 #, c-format
 msgid "Black queen at %1$s takes the white pawn at %2$s"
 msgstr "Ratu hitam di %1$s memakan pion putih di %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:605
+#: ../src/gnome-chess.vala:706
 #, c-format
 msgid "Black queen at %1$s takes the white rook at %2$s"
 msgstr "Ratu hitam di %1$s memakan benteng putih di %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:607
+#: ../src/gnome-chess.vala:708
 #, c-format
 msgid "Black queen at %1$s takes the white knight at %2$s"
 msgstr "Ratu hitam di %1$s memakan kuda putih di %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:609
+#: ../src/gnome-chess.vala:710
 #, c-format
 msgid "Black queen at %1$s takes the white bishop at %2$s"
 msgstr "Ratu hitam di %1$s memakan gajah putih di %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
-#: ../glchess/src/glchess.vala:611
+#: ../src/gnome-chess.vala:712
 #, c-format
 msgid "Black queen at %1$s takes the white queen at %2$s"
 msgstr "Ratu hitam di %1$s memakan ratu putih di %2$s"
 
 #. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
-#: ../glchess/src/glchess.vala:613
+#: ../src/gnome-chess.vala:714
 #, c-format
 msgid "Black king moves from %1$s to %2$s"
 msgstr "Raja hitam berpindah dari %1$s ke %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
-#: ../glchess/src/glchess.vala:615
+#: ../src/gnome-chess.vala:716
 #, c-format
 msgid "Black king at %1$s takes the white pawn at %2$s"
 msgstr "Raja hitam di %1$s memakan pion putih di %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
-#: ../glchess/src/glchess.vala:617
+#: ../src/gnome-chess.vala:718
 #, c-format
 msgid "Black king at %1$s takes the white rook at %2$s"
 msgstr "Raja hitam di %1$s memakan benteng putih di %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
-#: ../glchess/src/glchess.vala:619
+#: ../src/gnome-chess.vala:720
 #, c-format
 msgid "Black king at %1$s takes the white knight at %2$s"
 msgstr "Raja hitam di %1$s memakan kuda putih di %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
-#: ../glchess/src/glchess.vala:621
+#: ../src/gnome-chess.vala:722
 #, c-format
 msgid "Black king at %1$s takes the white bishop at %2$s"
 msgstr "Raja hitam di %1$s memakan gajah putih di %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
-#: ../glchess/src/glchess.vala:623
+#: ../src/gnome-chess.vala:724
 #, c-format
 msgid "Black king at %1$s takes the white queen at %2$s"
 msgstr "Raja hitam di %1$s memakan ratu putih di %2$s"
 
 #. Message display when the white player wins
-#: ../glchess/src/glchess.vala:743
+#: ../src/gnome-chess.vala:844
 msgid "White wins"
 msgstr "Pihak Putih Menang"
 
 #. Message display when the black player wins
-#: ../glchess/src/glchess.vala:748
+#: ../src/gnome-chess.vala:849
 msgid "Black wins"
 msgstr "Pihak Hitam Menang"
 
 #. Message display when the game is drawn
-#: ../glchess/src/glchess.vala:753
+#: ../src/gnome-chess.vala:854
 msgid "Game is drawn"
 msgstr "Permainan seri"
 
 #. Message displayed when the game ends due to a player being checkmated
-#: ../glchess/src/glchess.vala:765
+#: ../src/gnome-chess.vala:866
 msgid "Opponent is in check and cannot move (checkmate)"
 msgstr "Lawan terkena sekak dan tidak bisa bergerak (sekakmat)"
 
 #. Message displayed when the game terminates due to a stalemate
-#: ../glchess/src/glchess.vala:769
+#: ../src/gnome-chess.vala:870
 msgid "Opponent cannot move (stalemate)"
 msgstr "Lawan tidak bisa bergerak (jalan buntu)"
 
 #. Message displayed when the game is drawn due to the fifty move rule
-#: ../glchess/src/glchess.vala:773
+#: ../src/gnome-chess.vala:874
 msgid "No piece has been taken or pawn moved in the last fifty moves"
 msgstr ""
 "Tidak ada bidak yang dipilih atau pion bergerak dalam lima puluh langkah "
 "terakhir"
 
 #. Message displayed when the game ends due to one player's clock stopping
-#: ../glchess/src/glchess.vala:777
+#: ../src/gnome-chess.vala:878
 msgid "Opponent has run out of time"
 msgstr "Musuh telah kehabisan waktu"
 
 #. Message displayed when the game is drawn due to the three-fold-repitition rule
-#: ../glchess/src/glchess.vala:781
+#: ../src/gnome-chess.vala:882
 msgid "The same board state has occurred three times (three fold repetition)"
 msgstr "Keadaan papan yang sama telah terjadi tiga kali"
 
 #. Message displayed when the game is drawn due to the insufficient material rule
-#: ../glchess/src/glchess.vala:785
+#: ../src/gnome-chess.vala:886
 msgid "Neither player can cause checkmate (insufficient material)"
 msgstr "Kedua pemain tidak bisa menyebabkan sekakmat"
 
 #. Message displayed when the game ends due to the black player resigning
-#: ../glchess/src/glchess.vala:791
+#: ../src/gnome-chess.vala:892
 msgid "The black player has resigned"
 msgstr "Pemain hitam menyerah"
 
 #. Message displayed when the game ends due to the white player resigning
-#: ../glchess/src/glchess.vala:796
+#: ../src/gnome-chess.vala:897
 msgid "The white player has resigned"
 msgstr "Pemain putih menyerah"
 
 #. Message displayed when a game is abandoned
-#: ../glchess/src/glchess.vala:801
+#: ../src/gnome-chess.vala:902
 msgid "The game has been abandoned"
 msgstr "Permainan telah ditinggalkan"
 
 #. Message displayed when the game ends due to a player dying
-#: ../glchess/src/glchess.vala:806
+#: ../src/gnome-chess.vala:907
 msgid "One of the players has died"
 msgstr "Salah satu pemain telah kalah"
 
-#: ../glchess/src/glchess.vala:871
+#: ../src/gnome-chess.vala:972
 msgid "Save this game before starting a new one?"
 msgstr "Simpan permainan ini sebelum memulai yang baru?"
 
-#: ../glchess/src/glchess.vala:873 ../gnome-sudoku/src/lib/main.py:403
+#: ../src/gnome-chess.vala:974
 msgid "_Abandon game"
 msgstr "Tingg_alkan permainan"
 
-#: ../glchess/src/glchess.vala:874 ../gnome-sudoku/src/lib/main.py:402
+#: ../src/gnome-chess.vala:975
 msgid "_Save game for later"
 msgstr "_Simpan permainan untuk dimainkan lain waktu"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in seconds
-#: ../glchess/src/glchess.vala:1265
+#: ../src/gnome-chess.vala:1363
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "detik"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#: ../glchess/src/glchess.vala:1269
+#: ../src/gnome-chess.vala:1367
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "menit"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../glchess/src/glchess.vala:1273
+#: ../src/gnome-chess.vala:1371
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "jam"
 
-#: ../glchess/src/glchess.vala:1394
+#: ../src/gnome-chess.vala:1486
 msgid ""
 "The 2D/3D chess game for GNOME. \n"
 "\n"
-"glChess is a part of GNOME Games."
+"GNOME Chess is a part of GNOME Games."
 msgstr ""
-"Permainan catur 2D/3D untuk GNOME\n"
+"Permainan catur 2D/3D untuk GNOME. \n"
 "\n"
-"glChess merupakan bagian dari permainan GNOME"
+"Catur GNOME merupakan bagian dari Permainan GNOME."
 
-#: ../glchess/src/glchess.vala:1399 ../glines/src/glines.c:1185
-#: ../gnect/src/main.c:830 ../gnibbles/src/main.c:177
-#: ../gnobots2/src/menu.c:269 ../gnome-mahjongg/src/gnome-mahjongg.vala:566
-#: ../gnome-sudoku/src/lib/defaults.py:53 ../gnomine/src/gnomine.vala:745
-#: ../gnotravex/src/gnotravex.vala:319 ../gnotski/src/gnotski.c:1461
-#: ../gtali/src/gyahtzee.c:620 ../iagno/src/iagno.vala:305
-#: ../lightsoff/src/lightsoff.vala:157
-#: ../quadrapassel/src/quadrapassel.vala:762
-#: ../swell-foop/src/swell-foop.vala:399
+#: ../src/gnome-chess.vala:1491
 msgid "GNOME Games web site"
-msgstr "Situa web Permainan GNOME"
+msgstr "Situs web Permainan GNOME"
 
 #. Title of save game dialog
-#: ../glchess/src/glchess.vala:1453
+#: ../src/gnome-chess.vala:1545
 msgid "Save Chess Game"
 msgstr "Simpan Permainan Catur"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../glchess/src/glchess.vala:1466 ../glchess/src/glchess.vala:1534
+#: ../src/gnome-chess.vala:1558 ../src/gnome-chess.vala:1626
 msgid "PGN files"
 msgstr "Berkas PGN"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../glchess/src/glchess.vala:1473 ../glchess/src/glchess.vala:1541
+#: ../src/gnome-chess.vala:1565 ../src/gnome-chess.vala:1633
 msgid "All files"
 msgstr "Semua berkas"
 
-#: ../glchess/src/glchess.vala:1497
+#: ../src/gnome-chess.vala:1589
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Gagal untuk menyimpan permainan: %s"
 
 #. Title of load game dialog
-#: ../glchess/src/glchess.vala:1521
+#: ../src/gnome-chess.vala:1613
 msgid "Load Chess Game"
 msgstr "Muat Permainan Catur"
 
-#: ../glchess/src/glchess.vala:1563
+#: ../src/gnome-chess.vala:1655
 #, c-format
 msgid "Failed to open game: %s"
 msgstr "Gagal untuk memuat permainan: %s"
 
 #. Help string for command line --version flag
-#: ../glchess/src/glchess.vala:1624
+#: ../src/gnome-chess.vala:1716
 msgid "Show release version"
 msgstr "Tunjukan versi rilis"
 
 #. Arguments and description for --help text
-#: ../glchess/src/glchess.vala:1639
+#: ../src/gnome-chess.vala:1730
 msgid "[FILE] - Play Chess"
 msgstr "[FILE] - Mainkan Catur"
 
 #. Text printed out when an unknown command-line argument provided
-#: ../glchess/src/glchess.vala:1650
+#: ../src/gnome-chess.vala:1741
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr "Jalankan '%s --help' untuk menampilkan semua pilihan baris perintah."
-
-#: ../glines/data/glines.desktop.in.in.h:1 ../glines/src/glines.c:1171
-#: ../glines/src/glines.c:1174 ../glines/src/glines.c:1662
-msgid "Five or More"
-msgstr "Five or More"
-
-#: ../glines/data/glines.desktop.in.in.h:2
-msgid "Remove colored balls from the board by forming lines"
-msgstr "Hapus bola berwarna dari papan dengan membuat baris"
-
-#: ../glines/data/glines-preferences.ui.h:1
-msgid "Five or More Preferences"
-msgstr "Lima atau Lebih Preferensi"
-
-#: ../glines/data/glines-preferences.ui.h:2 ../gnobots2/src/properties.c:489
-#: ../swell-foop/data/preferences.ui.h:6
-msgid "Appearance"
-msgstr "Tampilan"
-
-#: ../glines/data/glines-preferences.ui.h:3
-msgid "_Image:"
-msgstr "_Gambar:"
-
-#: ../glines/data/glines-preferences.ui.h:4
-msgid "B_ackground color:"
-msgstr "W_arna latar belakang:"
-
-#: ../glines/data/glines-preferences.ui.h:5
-msgid "Board Size"
-msgstr "Ukuran Papan"
-
-#: ../glines/data/glines-preferences.ui.h:6
-msgid "_Small"
-msgstr "_Kecil"
-
-#: ../glines/data/glines-preferences.ui.h:7
-#: ../gnome-sudoku/data/print_games.ui.h:7
-msgid "_Medium"
-msgstr "_Sedang"
-
-#: ../glines/data/glines-preferences.ui.h:8
-msgid "_Large"
-msgstr "_Besar"
-
-#: ../glines/data/glines-preferences.ui.h:9
-msgid "General"
-msgstr "Umum"
-
-#: ../glines/data/glines-preferences.ui.h:10
-msgid "_Use fast moves"
-msgstr "G_unakan langkah cepat"
-
-#: ../glines/data/glines.ui.h:1
-msgid "Five or more"
-msgstr "Five or More"
-
-#: ../glines/data/glines.ui.h:3 ../gnect/src/main.c:736
-msgid "Scores"
-msgstr "_Daftar Nilai"
-
-#: ../glines/data/glines.ui.h:8
-msgid "Next:"
-msgstr "Berikutnya:"
-
-#: ../glines/data/glines.ui.h:9
-msgid "0"
-msgstr "0"
-
-#: ../glines/data/glines.ui.h:10 ../gnobots2/src/statusbar.c:68
-#: ../gnomine/src/gnomine.vala:703 ../quadrapassel/src/quadrapassel.vala:174
-msgid "Score:"
-msgstr "Nilai:"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:1
-msgid "Playing field size"
-msgstr "Bermain ukuran bidang"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:2
-msgid ""
-"Playing field size. 1=Small, 2=Medium, 3=Large. Any other value is invalid."
-msgstr ""
-"Bermain ukukran bidang. 1=Kecil, 2=Sedang, 3=Besar. Angka lain tidak valid"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:3
-msgid "Ball style"
-msgstr "Gaya bola"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:4
-msgid "Ball style. The filename of the images to use for the balls."
-msgstr "Gaya bola. Nama berkas citra untuk digunakan untuk bola."
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:5
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:5
-msgid "Background color"
-msgstr "Warna latar belakang"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:6
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:6
-msgid "Background color. The hex specification of the background color."
-msgstr "Warna latar belakang. Spesifikasi nilai heksa warna latar belakang."
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:7
-msgid "Time between moves"
-msgstr "Jeda antara langkah"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:8
-msgid "Time between moves in milliseconds."
-msgstr "Jeda antara langkah dalam milidetik."
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:9
-msgid "Game score"
-msgstr "Skor permainan"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:10
-msgid "Game score from last saved session."
-msgstr "Skor permainan dai sesi terkhir yang disimpan."
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:11
-msgid "Game field"
-msgstr "Bidang permainan"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:12
-msgid "Game field from last saved session."
-msgstr "Bidang permainan dari sesi terakhir yang tersimpan."
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:13
-msgid "Game preview"
-msgstr "Pratinjau permainan"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:14
-msgid "Game preview from last saved session."
-msgstr "Pratinjau permainan dari sesi terkhir yang tersimpan."
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:15
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:39
-#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:1
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:12
-#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:3
-#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:3
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:35
-msgid "Width of the window in pixels"
-msgstr "Lebar jendela dalam piksel"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:16
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:40
-#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:2
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:13
-#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:4
-#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:4
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:36
-msgid "Height of the window in pixels"
-msgstr "Tinggi jendela dalam piksel"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:17
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:41
-#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:3
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:14
-#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:5
-#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:5
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:37
-msgid "true if the window is maximized"
-msgstr "bernilai \"true\" bila jendela dimaksimalkan"
-
-#: ../glines/data/org.gnome.glines.gschema.xml.in.h:18
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:42
-#: ../gnome-mahjongg/data/org.gnome.gnome-mahjongg.gschema.xml.in.h:4
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:15
-#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:6
-#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:6
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:38
-msgid "true if the window is fullscren"
-msgstr "bernilai \"true\" bila jendela sepenuh layar"
-
-#: ../glines/src/games-stock.c:41 ../gnect/src/games-stock.c:41
-#: ../gnibbles/src/games-stock.c:41 ../gnobots2/src/games-stock.c:41
-#: ../gnotski/src/games-stock.c:41 ../gtali/src/games-stock.c:41
-msgid "View help for this game"
-msgstr "Tampilkan bantuan untuk permainan ini"
-
-#: ../glines/src/games-stock.c:42 ../gnect/src/games-stock.c:42
-#: ../gnibbles/src/games-stock.c:42 ../gnobots2/src/games-stock.c:42
-#: ../gnotski/src/games-stock.c:42 ../gtali/src/games-stock.c:42
-msgid "End the current game"
-msgstr "Hentikan permainan saat ini"
-
-#: ../glines/src/games-stock.c:43 ../gnect/src/games-stock.c:43
-#: ../gnibbles/src/games-stock.c:43 ../gnobots2/src/games-stock.c:43
-#: ../gnotski/src/games-stock.c:43 ../gtali/src/games-stock.c:43
-msgid "Toggle fullscreen mode"
-msgstr "Tombol mode layar penuh"
-
-#: ../glines/src/games-stock.c:44 ../gnect/src/games-stock.c:44
-#: ../gnibbles/src/games-stock.c:44 ../gnobots2/src/games-stock.c:44
-#: ../gnotski/src/games-stock.c:44 ../gtali/src/games-stock.c:44
-msgid "Get a hint for your next move"
-msgstr "Dapatkan petunjuk untuk langkah berikutnya"
-
-#: ../glines/src/games-stock.c:45 ../gnect/src/games-stock.c:45
-#: ../gnibbles/src/games-stock.c:45 ../gnobots2/src/games-stock.c:45
-#: ../gnotski/src/games-stock.c:45 ../gtali/src/games-stock.c:45
-msgid "Leave fullscreen mode"
-msgstr "Tinggalkan mode layar penuh"
-
-#: ../glines/src/games-stock.c:46 ../gnect/src/games-stock.c:46
-#: ../gnibbles/src/games-stock.c:46 ../gnobots2/src/games-stock.c:46
-#: ../gnotski/src/games-stock.c:46 ../gtali/src/games-stock.c:46
-msgid "Start a new multiplayer network game"
-msgstr "Mulai permainan jaringan multi-pemain baru"
-
-#: ../glines/src/games-stock.c:47 ../gnect/src/games-stock.c:47
-#: ../gnibbles/src/games-stock.c:47 ../gnobots2/src/games-stock.c:47
-#: ../gnotski/src/games-stock.c:47 ../gtali/src/games-stock.c:47
-msgid "End the current network game and return to network server"
-msgstr "Hentikan permainan jaringan saat ini dan kembali ke server jaringan"
-
-#: ../glines/src/games-stock.c:49 ../gnect/src/games-stock.c:49
-#: ../gnibbles/src/games-stock.c:49 ../gnobots2/src/games-stock.c:49
-#: ../gnotski/src/games-stock.c:49 ../gtali/src/games-stock.c:49
-msgid "Pause the game"
-msgstr "Jeda permainan"
-
-#: ../glines/src/games-stock.c:50 ../gnect/src/games-stock.c:50
-#: ../gnibbles/src/games-stock.c:50 ../gnobots2/src/games-stock.c:50
-#: ../gnotski/src/games-stock.c:50 ../gtali/src/games-stock.c:50
-msgid "Show a list of players in the network game"
-msgstr "Tampilkan daftar permainan di permainan jaringan"
-
-#: ../glines/src/games-stock.c:51 ../gnect/src/games-stock.c:51
-#: ../gnibbles/src/games-stock.c:51 ../gnobots2/src/games-stock.c:51
-#: ../gnotski/src/games-stock.c:51 ../gtali/src/games-stock.c:51
-msgid "Redo the undone move"
-msgstr "Jadikan lagi langkah terakhir"
-
-#: ../glines/src/games-stock.c:52 ../gnect/src/games-stock.c:52
-#: ../gnibbles/src/games-stock.c:52 ../gnobots2/src/games-stock.c:52
-#: ../gnotski/src/games-stock.c:52 ../gtali/src/games-stock.c:52
-msgid "Restart the game"
-msgstr "Ulangi permainan"
-
-#: ../glines/src/games-stock.c:53 ../gnect/src/games-stock.c:53
-#: ../gnibbles/src/games-stock.c:53 ../gnobots2/src/games-stock.c:53
-#: ../gnotski/src/games-stock.c:53 ../gtali/src/games-stock.c:53
-msgid "Resume the paused game"
-msgstr "Lanjutkan permainan yang dijeda"
-
-#: ../glines/src/games-stock.c:54 ../gnect/src/games-stock.c:54
-#: ../gnibbles/src/games-stock.c:54 ../gnobots2/src/games-stock.c:54
-#: ../gnotski/src/games-stock.c:54 ../gtali/src/games-stock.c:54
-msgid "View the scores"
-msgstr "Lihat perolehan nilai"
-
-#: ../glines/src/games-stock.c:55 ../gnect/src/games-stock.c:55
-#: ../gnibbles/src/games-stock.c:55 ../gnobots2/src/games-stock.c:55
-#: ../gnotski/src/games-stock.c:55 ../gtali/src/games-stock.c:55
-msgid "Undo the last move"
-msgstr "Batalkan langkah terakhir"
-
-#: ../glines/src/games-stock.c:56 ../gnect/src/games-stock.c:56
-#: ../gnibbles/src/games-stock.c:56 ../gnobots2/src/games-stock.c:56
-#: ../gnotski/src/games-stock.c:56 ../gtali/src/games-stock.c:56
-msgid "About this game"
-msgstr "Tentang permainan ini"
-
-#: ../glines/src/games-stock.c:57 ../gnect/src/games-stock.c:57
-#: ../gnibbles/src/games-stock.c:57 ../gnobots2/src/games-stock.c:57
-#: ../gnotski/src/games-stock.c:57 ../gtali/src/games-stock.c:57
-msgid "Close this window"
-msgstr "Tutup jendela ini"
-
-#: ../glines/src/games-stock.c:58 ../gnect/src/games-stock.c:58
-#: ../gnibbles/src/games-stock.c:58 ../gnobots2/src/games-stock.c:58
-#: ../gnotski/src/games-stock.c:58 ../gtali/src/games-stock.c:58
-msgid "Configure the game"
-msgstr "Konfigurasi permainan ini"
-
-#: ../glines/src/games-stock.c:59 ../gnect/src/games-stock.c:59
-#: ../gnibbles/src/games-stock.c:59 ../gnobots2/src/games-stock.c:59
-#: ../gnotski/src/games-stock.c:59 ../gtali/src/games-stock.c:59
-msgid "Quit this game"
-msgstr "Keluar dari permainan ini"
-
-#: ../glines/src/games-stock.c:248 ../gnect/src/games-stock.c:248
-#: ../gnibbles/src/games-stock.c:248 ../gnobots2/src/games-stock.c:248
-#: ../gnomine/src/gnomine.vala:111 ../gnomine/src/gnomine.vala:197
-#: ../gnomine/src/gnomine.vala:362 ../gnotravex/src/gnotravex.vala:124
-#: ../gnotravex/src/gnotravex.vala:184 ../gnotski/src/games-stock.c:248
-#: ../gtali/src/games-stock.c:248 ../quadrapassel/src/quadrapassel.vala:142
-#: ../quadrapassel/src/quadrapassel.vala:236
-msgid "_Fullscreen"
-msgstr "Layar _Penuh"
-
-#: ../glines/src/games-stock.c:249 ../gnect/src/games-stock.c:249
-#: ../gnibbles/src/games-stock.c:249 ../gnobots2/src/games-stock.c:249
-#: ../gnome-sudoku/src/lib/main.py:212 ../gnomine/src/gnomine.vala:109
-#: ../gnotski/src/games-stock.c:249 ../gtali/src/games-stock.c:249
-msgid "_Hint"
-msgstr "_Petunjuk"
-
-#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
-#: ../glines/src/games-stock.c:251 ../gnect/src/games-stock.c:251
-#: ../gnibbles/src/games-stock.c:251 ../gnobots2/src/games-stock.c:251
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:104
-#: ../gnomine/src/gnomine.vala:173 ../gnotravex/src/gnotravex.vala:103
-#: ../gnotski/src/games-stock.c:251 ../gtali/src/games-stock.c:251
-#: ../quadrapassel/src/quadrapassel.vala:127
-msgid "_New"
-msgstr "_Baru"
-
-#. Translators: This "_New Game" is for the game-over dialogue
-#: ../glines/src/games-stock.c:253 ../gnect/src/games-stock.c:253
-#: ../gnibbles/src/games-stock.c:253 ../gnobots2/src/game.c:154
-#: ../gnobots2/src/games-stock.c:253
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:83
-#: ../gnome-sudoku/data/select_game.ui.h:1 ../gnomine/src/gnomine.vala:107
-#: ../gnomine/src/gnomine.vala:455 ../gnotravex/data/gnotravex.ui.h:1
-#: ../gnotski/src/games-stock.c:253 ../gnotski/src/gnotski.c:750
-#: ../gtali/src/games-stock.c:253 ../gtali/src/gyahtzee.c:753
-#: ../iagno/data/iagno.ui.h:1 ../lightsoff/src/lightsoff.vala:29
-#: ../quadrapassel/src/quadrapassel.vala:82
-#: ../swell-foop/src/swell-foop.vala:65
-msgid "_New Game"
-msgstr "Mai_nkan Permainan Baru"
-
-#: ../glines/src/games-stock.c:254 ../gnect/src/games-stock.c:254
-#: ../gnibbles/src/games-stock.c:254 ../gnobots2/src/games-stock.c:254
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:119
-#: ../gnotski/src/games-stock.c:254 ../gtali/src/games-stock.c:254
-msgid "_Redo Move"
-msgstr "_Ulangi Langkah"
-
-#. Translators: this is the "Reset" scores button in a scores dialogue
-#: ../glines/src/games-stock.c:256 ../gnect/src/games-stock.c:256
-#: ../gnibbles/src/games-stock.c:256 ../gnobots2/src/games-stock.c:256
-#: ../gnome-sudoku/src/lib/main.py:197 ../gnotski/src/games-stock.c:256
-#: ../gtali/src/games-stock.c:256
-msgid "_Reset"
-msgstr "_Reset"
-
-#. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../glines/src/games-stock.c:258 ../gnect/src/games-stock.c:258
-#: ../gnibbles/src/games-stock.c:258 ../gnobots2/src/games-stock.c:258
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:341
-#: ../gnotski/src/games-stock.c:258 ../gtali/src/games-stock.c:258
-msgid "_Restart"
-msgstr "_Ulangi"
-
-#: ../glines/src/games-stock.c:260 ../gnect/src/games-stock.c:260
-#: ../gnibbles/src/games-stock.c:260 ../gnobots2/src/games-stock.c:260
-#: ../gnotski/src/games-stock.c:260 ../gtali/src/games-stock.c:260
-msgid "_Deal"
-msgstr "_Lakukan"
-
-#: ../glines/src/games-stock.c:261 ../gnect/src/games-stock.c:261
-#: ../gnibbles/src/games-stock.c:261 ../gnobots2/src/games-stock.c:261
-#: ../gnomine/src/gnomine.vala:357 ../gnotravex/src/gnotravex.vala:179
-#: ../gnotski/src/games-stock.c:261 ../gtali/src/games-stock.c:261
-#: ../quadrapassel/src/quadrapassel.vala:231
-msgid "_Leave Fullscreen"
-msgstr "Tinggalkan Mode _Layar Penuh"
-
-#: ../glines/src/games-stock.c:262 ../gnect/src/games-stock.c:262
-#: ../gnibbles/src/games-stock.c:262 ../gnobots2/src/games-stock.c:262
-#: ../gnotski/src/games-stock.c:262 ../gtali/src/games-stock.c:262
-msgid "Network _Game"
-msgstr "_Permainan Jaringan"
-
-#: ../glines/src/games-stock.c:263 ../gnect/src/games-stock.c:263
-#: ../gnibbles/src/games-stock.c:263 ../gnobots2/src/games-stock.c:263
-#: ../gnotski/src/games-stock.c:263 ../gtali/src/games-stock.c:263
-msgid "L_eave Game"
-msgstr "Tingga_lkan permainan"
-
-#: ../glines/src/games-stock.c:264 ../gnect/src/games-stock.c:264
-#: ../gnibbles/src/games-stock.c:264 ../gnobots2/src/games-stock.c:264
-#: ../gnotski/src/games-stock.c:264 ../gtali/src/games-stock.c:264
-msgid "Player _List"
-msgstr "_Daftar Pemain"
-
-#: ../glines/src/games-stock.c:265 ../gnect/src/games-stock.c:265
-#: ../gnibbles/src/games-stock.c:265 ../gnobots2/src/games-stock.c:265
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:135
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:583
-#: ../gnomine/src/gnomine.vala:110 ../gnomine/src/gnomine.vala:190
-#: ../gnomine/src/gnomine.vala:644 ../gnotravex/data/gnotravex.ui.h:2
-#: ../gnotravex/src/gnotravex.vala:117 ../gnotravex/src/gnotravex.vala:367
-#: ../gnotski/src/games-stock.c:265 ../gtali/src/games-stock.c:265
-#: ../quadrapassel/src/quadrapassel.vala:83
-#: ../quadrapassel/src/quadrapassel.vala:135
-#: ../quadrapassel/src/quadrapassel.vala:680
-msgid "_Pause"
-msgstr "_Jeda"
-
-#: ../glines/src/games-stock.c:266 ../gnect/src/games-stock.c:266
-#: ../gnibbles/src/games-stock.c:266 ../gnobots2/src/games-stock.c:266
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:578
-#: ../gnomine/src/gnomine.vala:637 ../gnotravex/src/gnotravex.vala:362
-#: ../gnotski/src/games-stock.c:266 ../gtali/src/games-stock.c:266
-#: ../quadrapassel/src/quadrapassel.vala:675
-msgid "Res_ume"
-msgstr "Lanj_utkan"
-
-#: ../glines/src/games-stock.c:267 ../gnect/src/games-stock.c:267
-#: ../gnibbles/src/games-stock.c:267 ../gnobots2/src/games-stock.c:267
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:85
-#: ../gnomine/src/gnomine.vala:112 ../gnotravex/data/gnotravex.ui.h:9
-#: ../gnotski/src/games-stock.c:267 ../gtali/src/games-stock.c:267
-#: ../gtali/src/gyahtzee.c:756 ../quadrapassel/src/quadrapassel.vala:84
-#: ../swell-foop/src/swell-foop.vala:66
-msgid "_Scores"
-msgstr "_Nilai"
-
-#: ../glines/src/games-stock.c:268 ../gnect/src/games-stock.c:268
-#: ../gnibbles/src/games-stock.c:268 ../gnobots2/src/games-stock.c:268
-#: ../gnotski/src/games-stock.c:268 ../gtali/src/games-stock.c:268
-msgid "_End Game"
-msgstr "H_entikan Permainan"
-
-#. %s is replaced with the name of the game in gnome-games.
-#: ../glines/src/games-stock.c:317 ../gnect/src/games-stock.c:317
-#: ../gnibbles/src/games-stock.c:317 ../gnobots2/src/games-stock.c:317
-#: ../gnotski/src/games-stock.c:317 ../gtali/src/games-stock.c:317
-#, c-format
-msgid ""
-"%s is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version %d of the License, or (at your option) any later "
-"version."
-msgstr ""
-"%s adalah perangkat lunak bebas; anda dapat meredistribusikan dan/atau "
-"merubah perangkat lunak ini dibawah peraturan Lisensi Publik Umum GNU "
-"seperti telah dipublikasikan oleh Free Software Foundatiob; Lisensi versi "
-"%d, atau versi selanjutnya"
-
-#: ../glines/src/games-stock.c:322 ../gnect/src/games-stock.c:322
-#: ../gnibbles/src/games-stock.c:322 ../gnobots2/src/games-stock.c:322
-#: ../gnotski/src/games-stock.c:322 ../gtali/src/games-stock.c:322
-#, c-format
-msgid ""
-"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details."
-msgstr ""
-"%s didistribusikan dengan harapan akan berguna, namun dengan TANPA JAMINAN "
-"APAPUN; termasuk tidak ada jaminan PENDAGANGAN atau KECOCOKAN UNTUK TUJUAN "
-"TERTENTU. Lihat Lisensi Publik Umum GNU untuk informasi lebih lanjut."
-
-#: ../glines/src/games-stock.c:327 ../gnect/src/games-stock.c:327
-#: ../gnibbles/src/games-stock.c:327 ../gnobots2/src/games-stock.c:327
-#: ../gnotski/src/games-stock.c:327 ../gtali/src/games-stock.c:327
-#, c-format
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"%s; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, "
-"Fifth Floor, Boston, MA  02110-1301  USA"
-msgstr ""
-"Anda seharusnya menerima salinan Lisensi Publik Umum GNU bersama %s; jika "
-"tidak, tulis kepada Free Software Foundation, Inc, 51 Franklin Street, Fifth "
-"floor, Boston, MA  02110-1301  USA"
-
-#: ../glines/src/games-stock.c:331 ../gnect/src/games-stock.c:331
-#: ../gnibbles/src/games-stock.c:331 ../gnobots2/src/games-stock.c:331
-#: ../gnotski/src/games-stock.c:331 ../gtali/src/games-stock.c:331
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"this program.  If not, see <http://www.gnu.org/licenses/>."
-msgstr ""
-"Anda seharusnya menerima salinan Lisensi Publik Umum GNU bersama dengan "
-"program ini. Bila tidak, lihat <http://www.gnu.org/licenses/>."
-
-#: ../glines/src/glines.c:79 ../gnomine/src/gnomine.vala:69
-msgctxt "board size"
-msgid "Small"
-msgstr "Kecil"
-
-#: ../glines/src/glines.c:80 ../gnomine/src/gnomine.vala:70
-msgctxt "board size"
-msgid "Medium"
-msgstr "Sedang"
-
-#: ../glines/src/glines.c:81 ../gnomine/src/gnomine.vala:71
-msgctxt "board size"
-msgid "Large"
-msgstr "Besar"
-
-#: ../glines/src/glines.c:171
-msgid "Could not load theme"
-msgstr "Tak bisa memuat tema"
-
-#: ../glines/src/glines.c:197
-#, c-format
-msgid ""
-"Unable to locate file:\n"
-"%s\n"
-"\n"
-"The default theme will be loaded instead."
-msgstr ""
-"Tidak bisa menemukan berkas:\n"
-"%s\n"
-"\n"
-"Tema baku akan dimuat."
-
-#: ../glines/src/glines.c:204
-#, c-format
-msgid ""
-"Unable to locate file:\n"
-"%s\n"
-"\n"
-"Please check that Five or More is installed correctly."
-msgstr ""
-"Tidak dapat memuat berkas:\n"
-"%s\n"
-"\n"
-"Silakan periksa apakah Five or More telah terinstal dengan benar"
-
-#: ../glines/src/glines.c:409
-msgid "Match five objects of the same type in a row to score!"
-msgstr ""
-"Bariskan 5 objek dengan tipe yang sama dalam satu baris untuk menambah skor!"
-
-#: ../glines/src/glines.c:471
-msgid "GNOME Five or More"
-msgstr "GNOME Five or More"
-
-#: ../glines/src/glines.c:473 ../swell-foop/data/preferences.ui.h:2
-msgid "_Board size:"
-msgstr "Ukuran _papan:"
-
-#: ../glines/src/glines.c:490 ../swell-foop/src/game-view.vala:434
-#, c-format
-msgid "Game Over!"
-msgstr "Permainan Usai!"
-
-#. Can't move there!
-#: ../glines/src/glines.c:647
-msgid "You can't move there!"
-msgstr "Anda tidak bisa bergerak ke sana!"
-
-#: ../glines/src/glines.c:1176
-msgid ""
-"GNOME port of the once-popular Color Lines game.\n"
-"\n"
-"Five or More is a part of GNOME Games."
-msgstr ""
-"GNOME port, permainan warna baris yang populer.\n"
-"\n"
-"Five or More adalah bagian dari permainan GNOME"
-
-#: ../glines/src/glines.c:1182 ../gnect/src/main.c:833
-#: ../gnibbles/src/main.c:174 ../gnobots2/src/menu.c:274
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:563
-#: ../gnome-sudoku/src/lib/main.py:669 ../gnomine/src/gnomine.vala:742
-#: ../gnotravex/src/gnotravex.vala:316 ../gnotski/src/gnotski.c:1458
-#: ../gtali/src/gyahtzee.c:616 ../iagno/src/iagno.vala:303
-#: ../lightsoff/src/lightsoff.vala:154
-#: ../quadrapassel/src/quadrapassel.vala:765
-#: ../swell-foop/src/swell-foop.vala:396
-msgid "translator-credits"
-msgstr ""
-"Mohammad DAMT <mdamt@bisnisweb.com>\n"
-"Ahmad Riza H Nst  <rizahnst@gnome.org>\n"
-"Andika Triwidada <andika@gmail.com>, 2010"
-
-#: ../gnect/data/gnect.desktop.in.in.h:1
-msgid "Four-in-a-Row"
-msgstr "Four in a Row"
-
-#: ../gnect/data/gnect.desktop.in.in.h:2
-msgid "Make lines of the same color to win"
-msgstr "Buat garis dengan warna yang sama untuk menang"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:1
-msgid "Level of Player One"
-msgstr "Tingkat pemain satu"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:2
-msgid ""
-"Zero is human; one through three correspond to the level of the computer "
-"player."
-msgstr ""
-"Nol adalah manusia; satu sampai tiga merupakan tingkat pemain komputer."
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:3
-msgid "Level of Player Two"
-msgstr "Tingkat pemain dua"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:4
-msgid "Theme ID"
-msgstr "ID Tema"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:5
-msgid "A number specifying the preferred theme."
-msgstr "Angka yang menspesifikasi tema yang didahulukan."
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:6
-msgid "Animate"
-msgstr "Animasikan"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:7
-msgid "Whether or not to use animation."
-msgstr "Apakah menggunakan animasi."
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:8
-#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:1
-msgid "Sound"
-msgstr "Suara"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:9
-#: ../iagno/data/org.gnome.iagno.gschema.xml.in.h:2
-msgid "Whether or not to play event sounds."
-msgstr "Mainkan suara atau tidak."
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:10 ../gnect/src/prefs.c:316
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:25
-#: ../gnibbles/src/preferences.c:450
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:23
-#: ../quadrapassel/src/quadrapassel.vala:381
-msgid "Move left"
-msgstr "Bergerak ke kiri"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:11
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:24
-msgid "Key press to move left."
-msgstr "Tombol yang ditekan untuk bergerak ke kiri."
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:12 ../gnect/src/prefs.c:317
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:27
-#: ../gnibbles/src/preferences.c:451
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:25
-#: ../quadrapassel/src/quadrapassel.vala:384
-msgid "Move right"
-msgstr "Bergerak ke kanan"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:13
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:26
-msgid "Key press to move right."
-msgstr "Tombol yang ditekan untuk bergerak ke kanan."
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:14 ../gnect/src/prefs.c:318
-msgid "Drop marble"
-msgstr "Jatuhkan marble"
-
-#: ../gnect/data/org.gnome.gnect.gschema.xml.in.h:15
-msgid "Key press to drop a marble."
-msgstr "Tombol yang ditekan untuk menjatuhkan marble."
-
-#: ../gnect/src/games-controls.c:288 ../gnibbles/src/games-controls.c:288
-#: ../gnobots2/src/games-controls.c:288
-msgid "Unknown Command"
-msgstr "Perintah tidak dikenal"
-
-#: ../gnect/src/gfx.c:248
-#, c-format
-msgid ""
-"Unable to load image:\n"
-"%s"
-msgstr ""
-"Gagal memuat gambar:\n"
-"(%s)"
-
-#: ../gnect/src/main.c:524
-msgid "It's a draw!"
-msgstr "Seri!"
-
-#: ../gnect/src/main.c:533 ../gnome-sudoku/src/lib/main.py:391
-msgid "You win!"
-msgstr "Anda menang!"
-
-#: ../gnect/src/main.c:535 ../gnect/src/main.c:554
-msgid "It is your move."
-msgstr "Kini giliran Anda."
-
-#: ../gnect/src/main.c:538
-msgid "I win!"
-msgstr "Saya menang!"
-
-#: ../gnect/src/main.c:540 ../gnect/src/main.c:642
-msgid "Thinking..."
-msgstr "Berpikir..."
-
-#: ../gnect/src/main.c:551
-#, c-format
-msgid "%s wins!"
-msgstr "%s menang!"
-
-#: ../gnect/src/main.c:558
-#, c-format
-msgid "Waiting for %s to move."
-msgstr "Menunggu %s untuk berjalan."
-
-#: ../gnect/src/main.c:659
-#, c-format
-msgid "Hint: Column %d"
-msgstr "Petunjuk: Kolom %d"
-
-#: ../gnect/src/main.c:687 ../gnect/src/main.c:691
-msgid "You:"
-msgstr "Anda:"
-
-#: ../gnect/src/main.c:688 ../gnect/src/main.c:690
-msgid "Me:"
-msgstr "Saya:"
-
-#: ../gnect/src/main.c:780
-msgid "Drawn:"
-msgstr "Diambil:"
-
-#: ../gnect/src/main.c:829
-msgid ""
-"\"Four in a Row\" for GNOME, with a computer player driven by Giuliano "
-"Bertoletti's Velena Engine.\n"
-"\n"
-"\"Four in a Row\" is a part of GNOME Games."
-msgstr ""
-"\"Four in a Row\" untuk GNOME, dengan pemain komputer diciptakan Mesin "
-"Velena milik Giuliano Bertoletti.\n"
-"\n"
-"\"Four in a Row\" adalah bagian dari permainan GNOME."
-
-#: ../gnect/src/main.c:1184 ../gnibbles/src/main.c:606
-#: ../gnobots2/src/menu.c:66 ../gnotski/src/gnotski.c:398
-msgid "_View"
-msgstr "_Tampil"
-
-#: ../gnect/src/main.h:5
-msgid "Four-in-a-row"
-msgstr "Four-in-a-row"
-
-#: ../gnect/src/prefs.c:207
-msgid "Four-in-a-Row Preferences"
-msgstr "Preferensi Four-in-a-Row"
-
-#: ../gnect/src/prefs.c:233
-msgid "Player One:"
-msgstr "Pemain Pertama:"
-
-#: ../gnect/src/prefs.c:244 ../gnect/src/prefs.c:272
-#: ../gtali/src/gyahtzee.c:970 ../gtali/src/yahtzee.c:69
-#: ../iagno/src/iagno.vala:493 ../iagno/src/iagno.vala:522
-msgid "Human"
-msgstr "Manusia"
-
-#: ../gnect/src/prefs.c:248 ../gnect/src/prefs.c:276
-#: ../iagno/src/iagno.vala:497 ../iagno/src/iagno.vala:526
-msgid "Level one"
-msgstr "Tingkat satu"
-
-#: ../gnect/src/prefs.c:252 ../gnect/src/prefs.c:280
-#: ../iagno/src/iagno.vala:501 ../iagno/src/iagno.vala:530
-msgid "Level two"
-msgstr "Tingkat dua"
-
-#: ../gnect/src/prefs.c:256 ../gnect/src/prefs.c:284
-#: ../iagno/src/iagno.vala:505 ../iagno/src/iagno.vala:534
-msgid "Level three"
-msgstr "Tingkat tiga"
-
-#: ../gnect/src/prefs.c:262
-msgid "Player Two:"
-msgstr "Pemain Kedua:"
-
-#: ../gnect/src/prefs.c:290 ../gnome-mahjongg/src/gnome-mahjongg.vala:387
-#: ../swell-foop/data/preferences.ui.h:5
-msgid "_Theme:"
-msgstr "_Tema:"
-
-#: ../gnect/src/prefs.c:303
-msgid "Enable _animation"
-msgstr "Tampilkan _animasi"
-
-#: ../gnect/src/prefs.c:307 ../gnibbles/src/preferences.c:345
-#: ../iagno/src/iagno.vala:539
-msgid "E_nable sounds"
-msgstr "Aktifka_n suara"
-
-#. keyboard tab
-#: ../gnect/src/prefs.c:312
-msgid "Keyboard Controls"
-msgstr "Kontrol Papan Tik"
-
-#: ../gnect/src/theme.c:41
-msgid "Classic"
-msgstr "Klasik"
-
-#: ../gnect/src/theme.c:45 ../gnect/src/theme.c:66 ../gnect/src/theme.c:73
-#: ../gnect/src/theme.c:80 ../gnibbles/src/preferences.c:475
-msgid "Red"
-msgstr "Merah"
-
-#: ../gnect/src/theme.c:45 ../gnibbles/src/preferences.c:478
-msgid "Yellow"
-msgstr "Kuning"
-
-#: ../gnect/src/theme.c:48
-msgid "High Contrast"
-msgstr "Kontras Tinggi"
-
-#: ../gnect/src/theme.c:52 ../gnect/src/theme.c:59
-msgid "Circle"
-msgstr "Lingkaran"
-
-#: ../gnect/src/theme.c:52 ../gnect/src/theme.c:59
-msgid "Cross"
-msgstr "Silang"
-
-#: ../gnect/src/theme.c:55
-msgid "High Contrast Inverse"
-msgstr "Kontras Tinggi Terbalik"
-
-#: ../gnect/src/theme.c:62
-msgid "Cream Marbles"
-msgstr "Krim Marble"
-
-#: ../gnect/src/theme.c:66 ../gnect/src/theme.c:73 ../gnect/src/theme.c:80
-#: ../gnect/src/theme.c:87 ../gnibbles/src/preferences.c:477
-msgid "Blue"
-msgstr "Biru"
-
-#: ../gnect/src/theme.c:69
-msgid "Glass Marbles"
-msgstr "Marble kaca"
-
-#: ../gnect/src/theme.c:76
-msgid "Nightfall"
-msgstr "Senja"
-
-#: ../gnect/src/theme.c:83
-msgid "Blocks"
-msgstr "Blok"
-
-#: ../gnect/src/theme.c:87
-msgid "Orange"
-msgstr "Oranye"
-
-#: ../gnibbles/data/gnibbles.desktop.in.in.h:1 ../gnibbles/src/main.c:162
-#: ../gnibbles/src/main.c:165 ../gnibbles/src/main.c:700
-#: ../gnibbles/src/main.c:771 ../gnibbles/src/main.c:902
-msgid "Nibbles"
-msgstr "Nibbles"
-
-#: ../gnibbles/data/gnibbles.desktop.in.in.h:2
-msgid "Guide a worm around a maze"
-msgstr "Pandu seekor cacing dalam labirin"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:1
-msgid "Number of human players"
-msgstr "Jumlah pemain manusia"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:2
-msgid "Number of human players."
-msgstr "Jumlah pemain manusia."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:3
-msgid "Number of AI players"
-msgstr "Jumlah pemain komputer"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:4
-msgid "Number of AI players."
-msgstr "Jumlah pemain komputer."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:5
-msgid "Game speed"
-msgstr "Kecepatan permainan"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:6
-msgid "Game speed (1=fast, 4=slow)."
-msgstr "Kecepatan permainan (1=cepat, 4=lambat)."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:7
-msgid "Enable fake bonuses"
-msgstr "Aktifkan bonus palsu"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:8
-msgid "Enable fake bonuses."
-msgstr "Aktifkan bonus palsu."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:9
-msgid "Play levels in random order"
-msgstr "Mainkan tingkat dengan urutan acak"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:10
-msgid "Play levels in random order."
-msgstr "Mainkan tingkat dalam urutan acak."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:11
-msgid "Game level to start on"
-msgstr "Mulai permainan pada tingkat"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:12
-msgid "Game level to start on."
-msgstr "Mulai permainan pada tingkat."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:13
-msgid "Enable sounds"
-msgstr "Aktifkan suara"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:14
-msgid "Enable sounds."
-msgstr "Aktifkan suara."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:15
-msgid "Size of game tiles"
-msgstr "Ukuran peta permainan"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:16
-msgid "Size of game tiles."
-msgstr "Ukuran peta permainan."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:17
-msgid "Color to use for worm"
-msgstr "Warna yang digunakan pada cacing"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:18
-msgid "Color to use for worm."
-msgstr "Warna yang digunakan pada cacing."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:19
-msgid "Use relative movement"
-msgstr "Pakai gerakan relatif"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:20
-msgid "Use relative movement (ie. left or right only)."
-msgstr "Pakai gerakan relatif (co: hanya kanan atau kiri)."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:21
-#: ../gnibbles/src/preferences.c:452
-msgid "Move up"
-msgstr "Bergerak ke atas"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:22
-msgid "Key to use for motion up."
-msgstr "Tombol yang digunakan untuk gerakan ke atas."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:23
-#: ../gnibbles/src/preferences.c:453
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:27
-#: ../quadrapassel/src/quadrapassel.vala:387
-msgid "Move down"
-msgstr "Bergerak ke bawah"
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:24
-msgid "Key to use for motion down."
-msgstr "Tombol yang digunakan untuk gerakan ke bawah."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:26
-msgid "Key to use for motion left."
-msgstr "Tombol yang digunakan untuk gerakan ke kiri."
-
-#: ../gnibbles/data/org.gnome.gnibbles.gschema.xml.in.h:28
-msgid "Key to use for motion right."
-msgstr "Tombol yang digunakan untuk gerakan ke kanan."
-
-#: ../gnibbles/src/board.c:245
-#, c-format
-msgid ""
-"Nibbles couldn't load level file:\n"
-"%s\n"
-"\n"
-"Please check your Nibbles installation"
-msgstr ""
-"Nibbles tidak dapat membuka berkas:\n"
-"%s\n"
-"\n"
-"Silakan periksa apakah program Nibbles sudah terinstal dengan benar."
-
-#: ../gnibbles/src/board.c:264
-#, c-format
-msgid ""
-"Level file appears to be damaged:\n"
-"%s\n"
-"\n"
-"Please check your Nibbles installation"
-msgstr ""
-"Tingkat berkas sepertinya rusak:\n"
-"%s\n"
-"\n"
-"Silakan periksa instalasi Nibbles"
-
-#: ../gnibbles/src/gnibbles.c:85
-#, c-format
-msgid ""
-"Nibbles couldn't find pixmap file:\n"
-"%s\n"
-"\n"
-"Please check your Nibbles installation"
-msgstr ""
-"Nibbles tidak dapat menemukan berkas:\n"
-"%s\n"
-"\n"
-"Silakan periksa apakah program Nibbles sudah terinstal dengan benar."
-
-#: ../gnibbles/src/gnibbles.c:356
-msgid "Nibbles Scores"
-msgstr "Skor Nibble"
-
-#: ../gnibbles/src/gnibbles.c:359
-msgid "Speed:"
-msgstr "Kecepatan:"
-
-#: ../gnibbles/src/gnibbles.c:364 ../gnobots2/src/game.c:179
-#: ../gnomine/src/gnomine.vala:470 ../gnotravex/src/gnotravex.vala:244
-#: ../gnotski/src/gnotski.c:773 ../gtali/src/gyahtzee.c:194
-#, c-format
-msgid "Congratulations!"
-msgstr "Selamat!"
-
-#: ../gnibbles/src/gnibbles.c:365 ../gnobots2/src/game.c:180
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:314
-#: ../gnomine/src/gnomine.vala:470 ../gnotravex/src/gnotravex.vala:244
-#: ../gnotski/src/gnotski.c:774 ../gtali/src/gyahtzee.c:195
-#: ../quadrapassel/src/quadrapassel.vala:699
-msgid "Your score is the best!"
-msgstr "Skor Anda adalah yang paling baik!"
-
-#: ../gnibbles/src/gnibbles.c:366 ../gnobots2/src/game.c:181
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:316
-#: ../gnomine/src/gnomine.vala:470 ../gnotravex/src/gnotravex.vala:244
-#: ../gnotski/src/gnotski.c:775 ../gtali/src/gyahtzee.c:196
-#: ../quadrapassel/src/quadrapassel.vala:701
-msgid "Your score has made the top ten."
-msgstr "Skor Anda masuk dalam sepuluh besar."
-
-#: ../gnibbles/src/main.c:66
-msgctxt "game speed"
-msgid "Beginner"
-msgstr "Pemula"
-
-#: ../gnibbles/src/main.c:67
-msgctxt "game speed"
-msgid "Slow"
-msgstr "Lambat"
-
-#: ../gnibbles/src/main.c:68
-msgctxt "game speed"
-msgid "Medium"
-msgstr "Sedang"
-
-#: ../gnibbles/src/main.c:69
-msgctxt "game speed"
-msgid "Fast"
-msgstr "Cepat"
-
-#: ../gnibbles/src/main.c:70
-msgctxt "game speed"
-msgid "Beginner with Fakes"
-msgstr "Pemula dengan kepalsuan"
-
-#: ../gnibbles/src/main.c:71
-msgctxt "game speed"
-msgid "Slow with Fakes"
-msgstr "Lambat dengan kepalsuan"
-
-#: ../gnibbles/src/main.c:72
-msgctxt "game speed"
-msgid "Medium with Fakes"
-msgstr "Sedang dengan kepalsuan"
-
-#: ../gnibbles/src/main.c:73
-msgctxt "game speed"
-msgid "Fast with Fakes"
-msgstr "Cepat dengan kepalsuan"
-
-#: ../gnibbles/src/main.c:171
-msgid ""
-"A worm game for GNOME.\n"
-"\n"
-"Nibbles is a part of GNOME Games."
-msgstr ""
-"Sebuah permainan cacing untuk GNOME.\n"
-"\n"
-"Nibbles merupakan bagian dari permainan GNOME."
-
-#: ../gnibbles/src/main.c:492
-#, c-format
-msgid "Game over! The game has been won by %s!"
-msgstr "Permainan usai! Permainan dimenangkan oleh %s!"
-
-#. Translators: This string will be included in the intro screen, so don't make sure it fits!
-#: ../gnibbles/src/main.c:773
-msgid "A worm game for GNOME."
-msgstr "Sebuah permainan cacing untuk GNOME."
-
-#: ../gnibbles/src/preferences.c:240
-msgid "Nibbles Preferences"
-msgstr "Preferensi Nibbles"
-
-#. Speed
-#: ../gnibbles/src/preferences.c:269
-msgid "Speed"
-msgstr "Kecepatan"
-
-#: ../gnibbles/src/preferences.c:274
-msgid "Nibbles newbie"
-msgstr "Pemula Nibbles"
-
-#: ../gnibbles/src/preferences.c:284
-msgid "My second day"
-msgstr "Hari kedua saya"
-
-#: ../gnibbles/src/preferences.c:294
-msgid "Not too shabby"
-msgstr "Tidak terlalu buruk"
-
-#: ../gnibbles/src/preferences.c:304
-msgid "Finger-twitching good"
-msgstr "Jari-berkedut yang bagus"
-
-#: ../gnibbles/src/preferences.c:318 ../gnibbles/src/preferences.c:457
-msgid "Options"
-msgstr "Opsi"
-
-#: ../gnibbles/src/preferences.c:325
-msgid "_Play levels in random order"
-msgstr "_Mainkan tingkat dalam urutan acak"
-
-#: ../gnibbles/src/preferences.c:335
-msgid "_Enable fake bonuses"
-msgstr "_Aktifkan bonus palsu"
-
-#. starting level
-#: ../gnibbles/src/preferences.c:358 ../quadrapassel/src/quadrapassel.vala:337
-msgid "_Starting level:"
-msgstr "_Tingkat awal:"
-
-#: ../gnibbles/src/preferences.c:387
-msgid "Number of _human players:"
-msgstr "Jumlah pemain manusia:"
-
-#: ../gnibbles/src/preferences.c:408
-msgid "Number of _AI players:"
-msgstr "Juml_ah pemain komputer:"
-
-#: ../gnibbles/src/preferences.c:433
-msgid "Worm"
-msgstr "Cacing"
-
-#: ../gnibbles/src/preferences.c:442
-msgid "Keyboard Options"
-msgstr "Opsi Papan Tik"
-
-#: ../gnibbles/src/preferences.c:462
-msgid "_Use relative movement"
-msgstr "G_unakan pergerakan relatif"
-
-#: ../gnibbles/src/preferences.c:469
-msgid "_Worm color:"
-msgstr "_Warna cacing:"
-
-#: ../gnibbles/src/preferences.c:476
-msgid "Green"
-msgstr "Hijau"
-
-#: ../gnibbles/src/preferences.c:479
-msgid "Cyan"
-msgstr "Cyan"
-
-#: ../gnibbles/src/preferences.c:480
-msgid "Purple"
-msgstr "Ungu"
-
-#: ../gnibbles/src/preferences.c:481
-msgid "Gray"
-msgstr "Kelabu"
-
-#: ../gnibbles/src/scoreboard.c:48
-#, c-format
-msgid "Worm %d:"
-msgstr "Cacing %d:"
-
-#: ../gnobots2/data/gnobots2.desktop.in.in.h:1 ../gnobots2/src/gnobots.c:201
-#: ../gnobots2/src/gnobots.c:214 ../gnobots2/src/menu.c:262
-#: ../gnobots2/src/menu.c:265
-msgid "Robots"
-msgstr "Robot"
-
-#: ../gnobots2/data/gnobots2.desktop.in.in.h:2
-msgid "Avoid the robots and make them crash into each other"
-msgstr "Hindari robot dan buat mereka menabrak satu sama lain"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:1
-msgid "Show toolbar"
-msgstr "Tampilkan kotak peralatan"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:2
-msgid "Show toolbar. A standard option for toolbars."
-msgstr "Tampilkan kotak peralatan. Pilihan baku untuk kotak peralatan."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:3
-msgid "Robot image theme"
-msgstr "Tema citra robot"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:4
-msgid "Robot image theme. The theme of the images to use for the robots."
-msgstr "Tema citra robot. Tema citra yang akan digerakkan ke robot."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:7
-msgid "Game type"
-msgstr "Tipe permainan"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:8
-msgid "Game type. The name of the game variation to use."
-msgstr "Tipe permainan. Nama variasi permainan yang akan digunakan."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:9
-msgid "Use safe moves"
-msgstr "Pakai langkah aman"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:10
-msgid ""
-"Use safe moves. The safe moves option will help you to avoid being killed "
-"due to a mistake. If you try to make a move that would lead to your death "
-"when there is a safe move available you will not be allowed to proceed."
-msgstr ""
-"Pakai langkah aman. Pilihan langkah aman akan membantu anda terhindar dari "
-"kekalahan akibat dari kesalahan. Jika anda mencoba untuk membuat langkah "
-"yang akan menyebabkan anda kalah, anda tidak akan diijinkan untuk mengambil "
-"langkah tersebut."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:11
-msgid "Use super safe moves"
-msgstr "Pakai langkah sangat aman"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:12
-msgid ""
-"Use super safe moves. The player is alerted when there is no safe move and "
-"the only option is to teleport out."
-msgstr ""
-"Pakai langkah sangat aman. Pemain akan diperingatkan jika tidak ada langkah "
-"aman dan pilihan yang tersedia hanyalah teleport."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:13
-msgid "Enable game sounds"
-msgstr "Aktifkan suara"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:14
-msgid "Enable game sounds. Play sounds for various events throughout the game."
-msgstr "Aktifkan suara. Aktifkan suara untuk kejadian dalam permainan."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:15
-#: ../gnobots2/src/properties.c:501
-msgid "Key to move NW"
-msgstr "Tombol untuk bergerak ke Barat Laut"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:16
-msgid "The key used to move north-west."
-msgstr "Tombol yang ditekan untuk bergerak ke utara-barat."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:17
-#: ../gnobots2/src/properties.c:502
-msgid "Key to move N"
-msgstr "Tombol untuk bergerak ke Utara"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:18
-msgid "The key used to move north."
-msgstr "Tombol yang ditekan untuk bergerak ke utara."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:19
-#: ../gnobots2/src/properties.c:503
-msgid "Key to move NE"
-msgstr "Tombol untuk bergerak ke Timur Laut"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:20
-msgid "The key used to move north-east."
-msgstr "Tombol yang ditekan untuk bergerak ke utara-timur."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:21
-#: ../gnobots2/src/properties.c:504
-msgid "Key to move W"
-msgstr "Tombol untuk bergerak ke Barat"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:22
-msgid "The key used to move west."
-msgstr "Tombol yang ditekan untuk bergerak ke barat."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:23
-#: ../gnobots2/src/properties.c:509
-msgid "Key to hold"
-msgstr "Tombol untuk menahan"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:24
-msgid "The key used to hold still."
-msgstr "Tombol yang ditekan agar diam."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:25
-#: ../gnobots2/src/properties.c:505
-msgid "Key to move E"
-msgstr "Tombol untuk bergerak ke Timur"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:26
-msgid "The key used to move east."
-msgstr "Tombol yang ditekan untuk bergerak ke timur."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:27
-#: ../gnobots2/src/properties.c:506
-msgid "Key to move SW"
-msgstr "Tombol untuk bergerak ke Barat Daya"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:28
-msgid "The key used to move south-west."
-msgstr "Tombol yang ditekan untuk bergerak ke selatan-barat."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:29
-#: ../gnobots2/src/properties.c:507
-msgid "Key to move S"
-msgstr "Tombol untuk bergerak ke Selatan"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:30
-msgid "The key used to move south."
-msgstr "Tombol yang ditekan untuk bergerak ke selatan."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:31
-#: ../gnobots2/src/properties.c:508
-msgid "Key to move SE"
-msgstr "Tombol untuk bergerak ke Tenggara"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:32
-msgid "The key used to move south-east."
-msgstr "Tombol yang ditekan untuk bergerak ke selatan-timur."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:33
-#: ../gnobots2/src/properties.c:510
-msgid "Key to teleport"
-msgstr "Tombol untuk teleport"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:34
-msgid "The key used to teleport safely (if possible)."
-msgstr "Tombol untuk teleport dengan aman (jika memungkinkan)."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:35
-#: ../gnobots2/src/properties.c:511
-msgid "Key to teleport randomly"
-msgstr "Tombol untuk teleport secara acak"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:36
-msgid "The key used to teleport randomly."
-msgstr "Tombol untuk teleport secara acak."
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:37
-#: ../gnobots2/src/properties.c:512
-msgid "Key to wait"
-msgstr "Tombol untuk menunggu"
-
-#: ../gnobots2/data/org.gnome.gnobots2.gschema.xml.in.h:38
-msgid "The key used to wait."
-msgstr "Tombol untuk menunggu."
-
-#: ../gnobots2/src/game.c:150 ../gtali/src/gyahtzee.c:212
-msgid "Game over!"
-msgstr "Permainan Usai!"
-
-#: ../gnobots2/src/game.c:152 ../gnomine/src/gnomine.vala:453
-#: ../gnotski/src/gnotski.c:748
-msgid "Great work, but unfortunately your score did not make the top ten."
-msgstr "Kerja bagus, namun skor anda tidak berhasil masuk sepuluh besar."
-
-#: ../gnobots2/src/game.c:167
-msgid "Robots Scores"
-msgstr "Skor Robot"
-
-#: ../gnobots2/src/game.c:170
-msgid "Map:"
-msgstr "Peta:"
-
-#: ../gnobots2/src/game.c:409 ../gnobots2/src/game.c:425
-msgid ""
-"Congratulations, You Have Defeated the Robots!! \n"
-"But Can You do it Again?"
-msgstr ""
-"Selamat, anda telah mengalahkan Robot!! \n"
-"Tapi, Bisakah Anda Melakukannya Lagi?"
-
-#. This should never happen.
-#: ../gnobots2/src/game.c:1187
-msgid "There are no teleport locations left!!"
-msgstr "Tidak ada lokasi teleport yang tersisa!!"
-
-#: ../gnobots2/src/game.c:1215
-msgid "There are no safe locations to teleport to!!"
-msgstr "Tidak ada lokasi aman untuk teleport!!"
-
-#: ../gnobots2/src/gnobots.c:80
-msgid "Set game scenario"
-msgstr "Atur skenario permainan"
-
-#: ../gnobots2/src/gnobots.c:80 ../gnobots2/src/gnobots.c:82
-msgid "NAME"
-msgstr "NAMA"
-
-#: ../gnobots2/src/gnobots.c:82
-msgid "Set game configuration"
-msgstr "Atur konfigurasi permainan"
-
-#: ../gnobots2/src/gnobots.c:84 ../gnobots2/src/gnobots.c:86
-msgid "Initial window position"
-msgstr "Posisi awal jendela"
-
-#: ../gnobots2/src/gnobots.c:84 ../gnotski/src/gnotski.c:445
-msgid "X"
-msgstr "X"
-
-#: ../gnobots2/src/gnobots.c:86 ../gnotski/src/gnotski.c:447
-msgid "Y"
-msgstr "Y"
-
-#: ../gnobots2/src/gnobots.c:91
-msgid "Classic robots"
-msgstr "Robot Klasik"
-
-#: ../gnobots2/src/gnobots.c:92
-msgid "Classic robots with safe moves"
-msgstr "Robot klasik dengan langkah aman"
-
-#: ../gnobots2/src/gnobots.c:93
-msgid "Classic robots with super-safe moves"
-msgstr "Robot klasik dengan langkah sangat aman"
-
-#: ../gnobots2/src/gnobots.c:94
-msgid "Nightmare"
-msgstr "Sangat sulit"
-
-#: ../gnobots2/src/gnobots.c:95
-msgid "Nightmare with safe moves"
-msgstr "Sangat sulit dengan langkah aman"
-
-#: ../gnobots2/src/gnobots.c:96
-msgid "Nightmare with super-safe moves"
-msgstr "Sangat susah dengan langkah sangat aman"
-
-#: ../gnobots2/src/gnobots.c:97
-msgid "Robots2"
-msgstr "Robots2"
-
-#: ../gnobots2/src/gnobots.c:98
-msgid "Robots2 with safe moves"
-msgstr "Robots2 dengan langkah aman"
-
-#: ../gnobots2/src/gnobots.c:99
-msgid "Robots2 with super-safe moves"
-msgstr "Robots2 dengan langkah sangat aman"
-
-#: ../gnobots2/src/gnobots.c:100
-msgid "Robots2 easy"
-msgstr "Robots2 mudah"
-
-#: ../gnobots2/src/gnobots.c:101
-msgid "Robots2 easy with safe moves"
-msgstr "Robots2 mudah dengan langkah aman"
-
-#: ../gnobots2/src/gnobots.c:102
-msgid "Robots2 easy with super-safe moves"
-msgstr "Robots2 mudah dengan langkah sangat aman"
-
-#: ../gnobots2/src/gnobots.c:103
-msgid "Robots with safe teleport"
-msgstr "Robot dengan teleport aman"
-
-#: ../gnobots2/src/gnobots.c:104
-msgid "Robots with safe teleport with safe moves"
-msgstr "Robot dengan teleport aman dan langkah aman"
-
-#: ../gnobots2/src/gnobots.c:105
-msgid "Robots with safe teleport with super-safe moves"
-msgstr "Robot dengan teleport aman dan langkah sangat aman"
-
-#: ../gnobots2/src/gnobots.c:281
-msgid "No game data could be found."
-msgstr "Tidak ada data permainan yang ditemukan."
-
-#: ../gnobots2/src/gnobots.c:283
-msgid ""
-"The program Robots was unable to find any valid game configuration files. "
-"Please check that the program is installed correctly."
-msgstr ""
-"Program Robots tidak dapat menemukan berkas konfigurasi yang benar. Silahkan "
-"periksa apakah program telah terinstal dengan benar"
-
-#: ../gnobots2/src/gnobots.c:299
-msgid "Some graphics files are missing or corrupt."
-msgstr "Beberapa berkas grafik hilang atau rusak."
-
-#: ../gnobots2/src/gnobots.c:301
-msgid ""
-"The program Robots was unable to load all the necessary graphics files. "
-"Please check that the program is installed correctly."
-msgstr ""
-"Program Robots tidak bisa memuat semua berkas grafik yang dibutuhkan. "
-"Silahkan periksa apakah program telah terinstal dengan benar."
-
-#: ../gnobots2/src/graphics.c:152
-#, c-format
-msgid "Could not find '%s' pixmap file\n"
-msgstr "Tidak bisa menemukan '%s' berkas pixmap\n"
-
-#: ../gnobots2/src/menu.c:67 ../gnotravex/data/gnotravex.ui.h:4
-msgid "_Move"
-msgstr "_Pindah"
-
-#: ../gnobots2/src/menu.c:74
-msgid "_Teleport"
-msgstr "_Teleport"
-
-#: ../gnobots2/src/menu.c:75
-msgid "Teleport, safely if possible"
-msgstr "Teleport, dengan aman jika memungkinkan"
-
-#: ../gnobots2/src/menu.c:76
-msgid "_Random"
-msgstr "_Acak"
-
-#: ../gnobots2/src/menu.c:77
-msgid "Teleport randomly"
-msgstr "Teleport secara acak"
-
-#: ../gnobots2/src/menu.c:78
-msgid "_Wait"
-msgstr "_Tunggu"
-
-#: ../gnobots2/src/menu.c:78
-msgid "Wait for the robots"
-msgstr "Tunggu para robot"
-
-#: ../gnobots2/src/menu.c:89
-msgid "_Toolbar"
-msgstr "Bilah Ala_t"
-
-#: ../gnobots2/src/menu.c:89
-msgid "Show or hide the toolbar"
-msgstr "Tampilkan atau sembunyikan bilah alat"
-
-#: ../gnobots2/src/menu.c:270
-msgid ""
-"Based on classic BSD Robots.\n"
-"\n"
-"Robots is a part of GNOME Games."
-msgstr ""
-"Berdasarkan BSD Robots klasik.\n"
-"\n"
-"Robots merupakan bagian dari permainan GNOME."
-
-#: ../gnobots2/src/properties.c:392
-msgid "Robots Preferences"
-msgstr "Preferensi Robots"
-
-#. --- Combo (yahtzee or kismet style ----
-#: ../gnobots2/src/properties.c:417 ../gtali/src/setup.c:356
-msgid "Game Type"
-msgstr "Tipe Permainan"
-
-#: ../gnobots2/src/properties.c:426
-msgid "_Use safe moves"
-msgstr "_Pakai langkah aman"
-
-#: ../gnobots2/src/properties.c:433
-msgid "Prevent accidental moves that result in getting killed."
-msgstr "Mencegah langkah yang tidak sengaja yang mengakibatkan kekalahan."
-
-#: ../gnobots2/src/properties.c:435
-msgid "U_se super safe moves"
-msgstr "Pakai langkah _sangat aman"
-
-#: ../gnobots2/src/properties.c:442
-msgid "Prevents all moves that result in getting killed."
-msgstr "Mencegah semua langkah yang mengakibatkan kekalahan."
-
-#: ../gnobots2/src/properties.c:444 ../quadrapassel/src/quadrapassel.vala:350
-msgid "_Enable sounds"
-msgstr "_Aktifkan suara"
-
-#: ../gnobots2/src/properties.c:450
-msgid "Play sounds for events like winning a level and dying."
-msgstr "Aktifkan suara untuk kejadian seperti menang atau sekarat."
-
-#: ../gnobots2/src/properties.c:465
-msgid "_Image theme:"
-msgstr "Tema c_itra:"
-
-#: ../gnobots2/src/properties.c:477
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:441
-msgid "_Background color:"
-msgstr "Warna latar _belakang:"
-
-#: ../gnobots2/src/properties.c:521
-msgid "_Restore Defaults"
-msgstr "Kembalikan ke Pengatu_ran Baku"
-
-#: ../gnobots2/src/properties.c:526
-msgid "Keyboard"
-msgstr "Papan Ketik"
-
-#: ../gnobots2/src/statusbar.c:76
-msgid "Safe Teleports:"
-msgstr "Teleport Aman:"
-
-#: ../gnobots2/src/statusbar.c:85 ../quadrapassel/src/quadrapassel.vala:192
-msgid "Level:"
-msgstr "Tingkat:"
-
-#: ../gnobots2/src/statusbar.c:94
-msgid "Remaining:"
-msgstr "Tersisa:"
-
-#. ********************************************************************
-#: ../gnome-mahjongg/data/gnome-mahjongg.desktop.in.in.h:1
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:54
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:553
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:764
-msgid "Mahjongg"
-msgstr "Mahjongg"
-
-#: ../gnome-mahjongg/data/gnome-mahjongg.desktop.in.in.h:2
-msgid "Disassemble a pile of tiles by removing matching pairs"
-msgstr "Pisahkan tumpukan kotak dengan menghapus pasangan yang cocok"
-
-#.
-#. * Translatable strings file generated by get_titles.pl.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
-#: ../gnome-mahjongg/data/translatable_game_names.h:6
-msgctxt "mahjongg map name"
-msgid "The Ziggurat"
-msgstr "Ziggurat"
-
-#: ../gnome-mahjongg/data/translatable_game_names.h:7
-msgctxt "mahjongg map name"
-msgid "Four Bridges"
-msgstr "Four Bridges"
-
-#: ../gnome-mahjongg/data/translatable_game_names.h:8
-msgctxt "mahjongg map name"
-msgid "Cloud"
-msgstr "Awan"
-
-#: ../gnome-mahjongg/data/translatable_game_names.h:9
-msgctxt "mahjongg map name"
-msgid "Tic-Tac-Toe"
-msgstr "Tic-Tac-Toe"
-
-#: ../gnome-mahjongg/data/translatable_game_names.h:10
-msgctxt "mahjongg map name"
-msgid "Red Dragon"
-msgstr "Red Dragon"
-
-#: ../gnome-mahjongg/data/translatable_game_names.h:11
-msgctxt "mahjongg map name"
-msgid "Pyramid's Walls"
-msgstr "Tembok Piramida"
-
-#: ../gnome-mahjongg/data/translatable_game_names.h:12
-msgctxt "mahjongg map name"
-msgid "Confounding Cross"
-msgstr "Confounding Cross"
-
-#: ../gnome-mahjongg/data/translatable_game_names.h:13
-msgctxt "mahjongg map name"
-msgid "Difficult"
-msgstr "Sulit"
-
-#: ../gnome-mahjongg/src/game-view.vala:127
-#: ../gnomine/src/minefield-view.vala:398
-#: ../gnotravex/src/puzzle-view.vala:326
-#: ../quadrapassel/src/game-view.vala:330
-msgid "Paused"
-msgstr "Jeda"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:66
-msgid "Moves Left:"
-msgstr "Sisa Langkah:"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:84
-msgid "_Restart Game"
-msgstr "Ulangi Pe_rmainan"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:86
-#: ../gnomine/src/gnomine.vala:113 ../gtali/src/gyahtzee.c:755
-#: ../iagno/data/iagno.ui.h:3 ../quadrapassel/src/quadrapassel.vala:85
-#: ../swell-foop/src/swell-foop.vala:67
-msgid "_Preferences"
-msgstr "_Preferensi"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:90
-#: ../gnomine/src/gnomine.vala:117 ../gnotravex/data/gnotravex.ui.h:17
-#: ../gtali/src/gyahtzee.c:760 ../iagno/data/iagno.ui.h:5
-#: ../lightsoff/src/lightsoff.vala:33 ../quadrapassel/src/quadrapassel.vala:89
-#: ../swell-foop/src/swell-foop.vala:71
-msgid "_About"
-msgstr "Tent_ang"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:93
-#: ../gnomine/src/gnomine.vala:120 ../gnotravex/data/gnotravex.ui.h:18
-#: ../gtali/src/gyahtzee.c:761 ../iagno/data/iagno.ui.h:6
-#: ../lightsoff/src/lightsoff.vala:36 ../quadrapassel/src/quadrapassel.vala:92
-#: ../swell-foop/src/swell-foop.vala:74
-msgid "_Quit"
-msgstr "_Keluar"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:127
-#: ../gnomine/src/gnomine.vala:182
-msgid "Hint"
-msgstr "Petunjuk"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:259
-msgid "Do you want to start a new game with this map?"
-msgstr "Apakah anda ingin memulai permainan baru dengan peta ini?"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:260
-msgid "If you continue playing the next game will use the new map."
-msgstr ""
-"Jika anda melanjutkan bermain, permainan berikutnya akan menggunakan map "
-"yang berbeda."
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:261
-msgid "_Continue playing"
-msgstr "_Lanjutkan bermain"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:262
-msgid "Use _new map"
-msgstr "Gu_nakan peta baru"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:309
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:591
-msgid "Mahjongg Scores"
-msgstr "Nilai Mahjongg"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:310
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:592
-msgid "Layout:"
-msgstr "Tata Letak:"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:311
-#: ../quadrapassel/src/quadrapassel.vala:696
-msgid "Puzzle solved!"
-msgstr "Teka-teki terpecahkan!"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:312
-#: ../quadrapassel/src/quadrapassel.vala:697
-msgid "You didn't make the top ten, better luck next time."
-msgstr ""
-"Anda tidak berhasil masuk ke sepuluh besar, semoga beruntung lain kali."
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:338
-msgid "There are no more moves."
-msgstr "Tidak ada jalan lagi."
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:339
-msgid ""
-"Each puzzle has at least one solution.  You can undo your moves and try and "
-"find the solution for a time penalty, restart this game or start an new one."
-msgstr ""
-"Setiap teka-teki mempunyai sedikitnya satu solusi. Anda dapat membatalkan "
-"langkah anda dan mencoba mencari solusi dengan pinalti waktu, ulang "
-"permainan ini atau mulai permainan baru."
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:342
-msgid "_New game"
-msgstr "Permaina_n Baru"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:370
-msgid "Mahjongg Preferences"
-msgstr "Preferensi Mahjong"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:415
-msgid "_Layout:"
-msgstr "Tata _Letak:"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:517
-#: ../gnomine/src/gnomine.vala:698
-msgid "Main game:"
-msgstr "Permainan utama:"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:526
-msgid "Maps:"
-msgstr "Peta:"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:534
-msgid "Tiles:"
-msgstr "Papan:"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:556
-msgid ""
-"A matching game played with Mahjongg tiles.\n"
-"\n"
-"Mahjongg is a part of GNOME Games."
-msgstr ""
-"Permainan mencocokkan dengan peta Mahjongg.\n"
-"\n"
-"Mahjongg merupakan bagian dari permainan GNOME."
-
-#. Translators: This is the window title for Mahjongg which contains the map name, e.g. 'Mahjongg - Red Dragon'
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:656
-#, c-format
-msgid "Mahjongg - %s"
-msgstr "Mahjongg - %s"
-
-#: ../gnome-mahjongg/src/gnome-mahjongg.vala:669
-#: ../gnomine/src/gnomine.vala:681 ../gnotravex/src/gnotravex.vala:232
-#, c-format
-msgid "Time"
-msgstr "Waktu"
-
-#: ../gnome-sudoku/data/gnome-sudoku.desktop.in.in.h:1
-#: ../gnome-sudoku/src/lib/defaults.py:48
-msgid "Sudoku"
-msgstr "Sudoku"
-
-#: ../gnome-sudoku/data/gnome-sudoku.desktop.in.in.h:2
-msgid "Test your logic skills in this number grid puzzle"
-msgstr "Uji kemampuan logika anda dalam teka-teki ini"
-
-#: ../gnome-sudoku/data/print_games.ui.h:1
-msgid "Print Sudokus"
-msgstr "Cetak Sudoku"
-
-#: ../gnome-sudoku/data/print_games.ui.h:2
-msgid "Print Games"
-msgstr "Cetak Permainan"
-
-#: ../gnome-sudoku/data/print_games.ui.h:3
-msgid "_Number of sudoku to print: "
-msgstr "Jumlah sudoku u_ntuk dicetak: "
-
-#: ../gnome-sudoku/data/print_games.ui.h:4
-msgid "_Sudokus per page: "
-msgstr "_Sudoku per halaman: "
-
-#: ../gnome-sudoku/data/print_games.ui.h:5
-msgid "Levels of difficulty to print"
-msgstr "tingkat kesulitan untuk diprint"
-
-#: ../gnome-sudoku/data/print_games.ui.h:6
-msgid "_Easy"
-msgstr "_Mudah"
-
-#: ../gnome-sudoku/data/print_games.ui.h:8
-msgid "_Hard"
-msgstr "_Sulit"
-
-#: ../gnome-sudoku/data/print_games.ui.h:9
-msgid "_Very Hard"
-msgstr "S_angat sulit"
-
-#: ../gnome-sudoku/data/print_games.ui.h:10
-msgid "Details"
-msgstr "Rincian"
-
-#: ../gnome-sudoku/data/print_games.ui.h:11
-msgid "_Mark games as played once you've printed them."
-msgstr "Tandai per_mainan setelah anda mencetak permainannya."
-
-#: ../gnome-sudoku/data/print_games.ui.h:12
-msgid "_Include games you've already played in list of games to print"
-msgstr ""
-"Masukkan perma_inan yang telah anda mainkan ke daftar permainan untuk dicetak"
-
-#: ../gnome-sudoku/data/select_game.ui.h:2
-msgid "_Saved Games"
-msgstr "Permainan Ter_simpan"
-
-#: ../gnome-sudoku/data/tracker.ui.h:1
-msgid "Add a new tracker"
-msgstr "Tambah sebuah pelacak"
-
-#: ../gnome-sudoku/data/tracker.ui.h:2
-msgid "Remove the selected tracker"
-msgstr "Buang pelacak yang dipilih"
-
-#: ../gnome-sudoku/data/tracker.ui.h:3
-msgid "Make the tracked changes permanent"
-msgstr "Buat perubahan terlacak menjadi permanen"
-
-#: ../gnome-sudoku/data/tracker.ui.h:4 ../gnome-sudoku/src/lib/main.py:750
-msgid "H_ide"
-msgstr "Sembuny_ikan"
-
-#: ../gnome-sudoku/data/tracker.ui.h:5
-msgid "Hide the tracked values"
-msgstr "Sembunyikan nilai pelacak"
-
-#: ../gnome-sudoku/src/lib/defaults.py:47
-msgid "GNOME Sudoku"
-msgstr "GNOME Sudoku"
-
-#: ../gnome-sudoku/src/lib/defaults.py:50
-msgid ""
-"GNOME Sudoku is a simple Sudoku generator and player. Sudoku is a Japanese "
-"logic puzzle.\n"
-"\n"
-"GNOME Sudoku is a part of GNOME Games."
-msgstr ""
-"GNOME Sudoku adalah pembuat dan tempat memainkan Sudoku yang sederhana. "
-"Sudoku adalah teka-teki logika Jepang.\n"
-"\n"
-"GNOME Sudoku adalah bagian dari GNOME Games."
-
-#: ../gnome-sudoku/src/lib/game_selector.py:121
-#: ../gnome-sudoku/src/lib/main.py:627 ../gnome-sudoku/src/lib/printing.py:185
-msgid "Easy"
-msgstr "Mudah"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:122
-#: ../gnome-sudoku/src/lib/main.py:628 ../gnome-sudoku/src/lib/printing.py:186
-msgid "Medium"
-msgstr "Sedang"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:123
-#: ../gnome-sudoku/src/lib/main.py:629 ../gnome-sudoku/src/lib/printing.py:187
-msgid "Hard"
-msgstr "Sulit"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:124
-#: ../gnome-sudoku/src/lib/printing.py:188
-msgid "Very hard"
-msgstr "Sangat sulit"
-
-#. Then we're today
-#. within the minute
-#: ../gnome-sudoku/src/lib/game_selector.py:160
-#, python-format
-msgid "Last played %(n)s second ago"
-msgid_plural "Last played %(n)s seconds ago"
-msgstr[0] "Terakhir dimainkan %(n)s detik lalu"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:164
-#, python-format
-msgid "Last played %(n)s minute ago"
-msgid_plural "Last played %(n)s minutes ago"
-msgstr[0] "Terakhir dimainkan %(n)s menit lalu"
-
-#. Translators, see strftime manual in order to translate %? format strings
-#: ../gnome-sudoku/src/lib/game_selector.py:168
-msgid "Last played at %I:%M %p"
-msgstr "Terakhir dimainkan pada %I:%M %p"
-
-#. Translators, see strftime manual in order to translate %? format strings
-#: ../gnome-sudoku/src/lib/game_selector.py:171
-msgid "Last played yesterday at %I:%M %p"
-msgstr "Terakhir diaminkan kemarin pada %I:%M %p"
-
-#. Translators, see strftime manual in order to translate %? format strings
-#: ../gnome-sudoku/src/lib/game_selector.py:174
-msgid "Last played on %A at %I:%M %p"
-msgstr "Terakhir dimainkan %A pada %I:%M %p"
-
-#. Translators, see strftime manual in order to translate %? format strings
-#: ../gnome-sudoku/src/lib/game_selector.py:177
-msgid "Last played on %B %e %Y"
-msgstr "Terakhir dimainkan pada %B %e %Y"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:190
-msgid "Easy puzzle"
-msgstr "Teka-teki mudah"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:191
-msgid "Medium puzzle"
-msgstr "Teka-teki sedang"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:192
-msgid "Hard puzzle"
-msgstr "Teka-teki sulit"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:193
-msgid "Very hard puzzle"
-msgstr "Teka-teki sangat sulit"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:199
-#, python-format
-msgid "Played for %d hour"
-msgid_plural "Played for %d hours"
-msgstr[0] "Dimainkan %d jam"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:202
-#, python-format
-msgid "Played for %d minute"
-msgid_plural "Played for %d minutes"
-msgstr[0] "Dimainkan %d menit"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:205
-#, python-format
-msgid "Played for %d second"
-msgid_plural "Played for %d seconds"
-msgstr[0] "Dimainkan %d detik"
-
-#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:162
-msgid "Do you really want to do this?"
-msgstr "Apakah ingin melakukan ini?"
-
-#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:196
-msgid "Don't ask me this again."
-msgstr "Jangan tanya saya lagi."
-
-#: ../gnome-sudoku/src/lib/main.py:196
-msgid "New game"
-msgstr "Permainan Baru"
-
-#: ../gnome-sudoku/src/lib/main.py:199 ../iagno/data/iagno.ui.h:2
-msgid "_Undo"
-msgstr "_Batalkan"
-
-#: ../gnome-sudoku/src/lib/main.py:200
-msgid "Undo last action"
-msgstr "Batalkan langkah terakhir"
-
-#: ../gnome-sudoku/src/lib/main.py:201
-msgid "_Redo"
-msgstr "Jadi _Lagi"
-
-#: ../gnome-sudoku/src/lib/main.py:202
-msgid "Redo last action"
-msgstr "Ulangi langkah terakhir"
-
-#: ../gnome-sudoku/src/lib/main.py:203
-msgid "Puzzle _Statistics..."
-msgstr "_Statistik Teka-teki…"
-
-#: ../gnome-sudoku/src/lib/main.py:205
-msgid "_Print..."
-msgstr "_Cetak…"
-
-#: ../gnome-sudoku/src/lib/main.py:206
-msgid "Print _Multiple Sudokus..."
-msgstr "Cetak _Beberapa Sudoku…"
-
-#: ../gnome-sudoku/src/lib/main.py:211
-msgid "_Tools"
-msgstr "Ala_t"
-
-#: ../gnome-sudoku/src/lib/main.py:213
-msgid "Show a square that is easy to fill."
-msgstr "Tunjukkan petak yang mudah diisi."
-
-#: ../gnome-sudoku/src/lib/main.py:214
-msgid "Clear _Top Notes"
-msgstr "Kosongkan Baris A_tas"
-
-#: ../gnome-sudoku/src/lib/main.py:216
-msgid "Clear _Bottom Notes"
-msgstr "Kosongkan Baris _Bawah"
-
-#: ../gnome-sudoku/src/lib/main.py:225
-msgid "Show _Possible Numbers"
-msgstr "Tunjukkan Angka Yang _Mungkin"
-
-#: ../gnome-sudoku/src/lib/main.py:227
-msgid "Always show possible numbers in a square"
-msgstr "Selalu tunjukkan kemungkinan angka dalam kotak"
-
-#: ../gnome-sudoku/src/lib/main.py:231
-msgid "Warn About _Unfillable Squares"
-msgstr "_Peringatkan Tentang Kotak Yang Tidak Dapat Diisi"
-
-#: ../gnome-sudoku/src/lib/main.py:233
-msgid "Warn about squares made unfillable by a move"
-msgstr "Peringatkan tentan kotak yang dibuat tidak dapat diisi oleh langkah"
-
-#: ../gnome-sudoku/src/lib/main.py:235
-msgid "_Track Additions"
-msgstr "_Lacak Penambahan"
-
-#: ../gnome-sudoku/src/lib/main.py:237
-msgid "Mark new additions in a separate color so you can keep track of them."
-msgstr ""
-"Tandai penambahan baru dengan warna berbeda sehingga anda dapat melacaknya."
-
-#: ../gnome-sudoku/src/lib/main.py:240
-msgid "_Highlighter"
-msgstr "_Penyorot"
-
-#: ../gnome-sudoku/src/lib/main.py:241
-msgid "Highlight the current row, column and box"
-msgstr "Sorot baris, kolom dan kotak saat ini"
-
-#: ../gnome-sudoku/src/lib/main.py:366
-#, python-format
-msgid "You completed the puzzle in %d second"
-msgid_plural "You completed the puzzle in %d seconds"
-msgstr[0] "Anda menyelesaikan teka-teki dalam %d detik"
-
-#: ../gnome-sudoku/src/lib/main.py:371 ../gnome-sudoku/src/lib/main.py:379
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d menit"
-
-#: ../gnome-sudoku/src/lib/main.py:372 ../gnome-sudoku/src/lib/main.py:380
-#, python-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d detik"
-
-#: ../gnome-sudoku/src/lib/main.py:373
-#, python-format
-msgid "You completed the puzzle in %(minute)s and %(second)s"
-msgstr "Anda menyelesaikan teka-teki dalam %(minute)s dan %(second)s"
-
-#: ../gnome-sudoku/src/lib/main.py:378
-#, python-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d jam"
-
-#: ../gnome-sudoku/src/lib/main.py:381
-#, python-format
-msgid "You completed the puzzle in %(hour)s, %(minute)s and %(second)s"
-msgstr "Anda menyelesaikan teka-teki dalam %(hour)s, %(minute)s dan %(second)s"
-
-#: ../gnome-sudoku/src/lib/main.py:383
-#, python-format
-msgid "You got %(n)s hint."
-msgid_plural "You got %(n)s hints."
-msgstr[0] "Anda memakai %(n)s petunjuk"
-
-#: ../gnome-sudoku/src/lib/main.py:386
-#, python-format
-msgid "You had %(n)s impossibility pointed out."
-msgid_plural "You had %(n)s impossibilities pointed out."
-msgstr[0] "Anda memakai %(n)s ketidakmungkinan yang ditunjukkan."
-
-#: ../gnome-sudoku/src/lib/main.py:401
-msgid "Save this game before starting new one?"
-msgstr "Simpan permainan ini sebelum memulai yang baru?"
-
-#: ../gnome-sudoku/src/lib/main.py:421
-msgid "Save game before closing?"
-msgstr "Simpan permainan ini sebelum menutup?"
-
-#: ../gnome-sudoku/src/lib/main.py:619
-msgid "Puzzle Information"
-msgstr "Informasi Teka-teki"
-
-#: ../gnome-sudoku/src/lib/main.py:620
-msgid "There is no current puzzle."
-msgstr "Tidak ada teka-teki sekarang."
-
-#: ../gnome-sudoku/src/lib/main.py:625
-msgid "Calculated difficulty: "
-msgstr "Hitung kesulitan: "
-
-#: ../gnome-sudoku/src/lib/main.py:630
-msgid "Very Hard"
-msgstr "Sangat Sulit"
-
-#: ../gnome-sudoku/src/lib/main.py:635
-msgid "Number of moves instantly fillable by elimination: "
-msgstr "Jumlah langkah yang dapat diisi secara langsung dengan eliminasi: "
-
-#: ../gnome-sudoku/src/lib/main.py:638
-msgid "Number of moves instantly fillable by filling: "
-msgstr "Jumlah langkah yang dapat diisi secara langsung dengan pengisian: "
-
-#: ../gnome-sudoku/src/lib/main.py:641
-msgid "Amount of trial-and-error required to solve: "
-msgstr "Jumlah pencobaan dan galat yang dibutuhkan untuk menyelesaikan: "
-
-#: ../gnome-sudoku/src/lib/main.py:644 ../gnome-sudoku/src/lib/main.py:645
-msgid "Puzzle Statistics"
-msgstr "Statistik Teka-teki"
-
-#. FIXME: This should create a pop-up dialog
-#: ../gnome-sudoku/src/lib/main.py:679
-#, python-format
-msgid "Unable to display help: %s"
-msgstr "Tidak bisa menampilkan bantuan: %s"
-
-#: ../gnome-sudoku/src/lib/main.py:735
-msgid "Untracked"
-msgstr "Tidak dilacak"
-
-#: ../gnome-sudoku/src/lib/main.py:744
-msgid "_Remove"
-msgstr "_Hapus"
-
-#: ../gnome-sudoku/src/lib/main.py:745
-msgid "Delete selected tracker."
-msgstr "Hapus pelacak yang dipilih."
-
-#: ../gnome-sudoku/src/lib/main.py:751
-msgid "Hide current tracker entries."
-msgstr "Sembunyikan entri pelacak saat ini."
-
-#: ../gnome-sudoku/src/lib/main.py:756
-msgid "A_pply"
-msgstr "Tera_pkan"
-
-#: ../gnome-sudoku/src/lib/main.py:757
-msgid "Apply all tracked values and remove the tracker."
-msgstr "Terapkan semua nilai yang dilacak dan hapuskan pelacak."
-
-#: ../gnome-sudoku/src/lib/main.py:795
-#, python-format
-msgid "Tracker %s"
-msgstr "Pelacak %s"
-
-#: ../gnome-sudoku/src/lib/number_box.py:68
-msgid "_Clear"
-msgstr "_Kosongkan"
-
-#: ../gnome-sudoku/src/lib/saver.py:155
-msgid "No Space"
-msgstr "Tidak ada Ruang"
-
-#: ../gnome-sudoku/src/lib/saver.py:156
-msgid "No space left on disk"
-msgstr "Tidak ada ruang tersisa dalam disk!"
-
-#: ../gnome-sudoku/src/lib/saver.py:158 ../gnome-sudoku/src/lib/saver.py:165
-#, python-format
-msgid "Unable to create data folder %(path)s."
-msgstr "Tidak dapat membuat folder data %(path)s."
-
-#: ../gnome-sudoku/src/lib/saver.py:159
-msgid "There is no disk space left!"
-msgstr "Tidak ada ruang tersisa dalam disk!"
-
-#: ../gnome-sudoku/src/lib/saver.py:166 ../gnome-sudoku/src/lib/saver.py:191
-#: ../gnome-sudoku/src/lib/saver.py:215 ../gnome-sudoku/src/lib/saver.py:233
-#, python-format
-msgid "Error %(errno)s: %(error)s"
-msgstr "Error %(errno)s: %(error)s"
-
-#: ../gnome-sudoku/src/lib/saver.py:186 ../gnome-sudoku/src/lib/saver.py:187
-msgid "Unable to save game."
-msgstr "Tidak bisa menyimpan permainan."
-
-#: ../gnome-sudoku/src/lib/saver.py:189 ../gnome-sudoku/src/lib/saver.py:214
-#: ../gnome-sudoku/src/lib/saver.py:232
-#, python-format
-msgid "Unable to save file %(filename)s."
-msgstr "Tidak dapat menyimpan berkas %(filename)s."
-
-#: ../gnome-sudoku/src/lib/saver.py:211 ../gnome-sudoku/src/lib/saver.py:212
-msgid "Unable to mark game as finished."
-msgstr "Tidak bisa menandakan permainan sebagai terselesaikan."
-
-#: ../gnome-sudoku/src/lib/saver.py:229 ../gnome-sudoku/src/lib/saver.py:230
-msgid "Sudoku unable to mark game as finished."
-msgstr "Sudoku tidak dapat menandakan permainan sebagai terselesaikan."
-
-#: ../gnomine/data/gnomine.desktop.in.in.h:1 ../gnomine/src/gnomine.vala:86
-#: ../gnomine/src/gnomine.vala:132 ../gnomine/src/gnomine.vala:732
-msgid "Mines"
-msgstr "Mines"
-
-#: ../gnomine/data/gnomine.desktop.in.in.h:2
-msgid "Clear hidden mines from a minefield"
-msgstr "Kosongkan ranjau tersembunyi dari medan ranjau"
-
-#: ../gnomine/data/gnomine.desktop.in.in.h:3
-msgid "minesweeper;"
-msgstr "minesweeper;"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:1
-msgid "Use the unknown flag"
-msgstr "Gunakan bendera tidak diketahui"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:2
-msgid "Set to true to be able to mark squares as unknown."
-msgstr "Atur ke true untuk dapat menandakan kotak sebagai tidak diketahui."
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:3
-msgid "Warning about too many flags"
-msgstr "Peringatan akan terlalu banyak bendera"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:4
-msgid "Set to true to enable warning icons when too many flags are placed."
-msgstr ""
-"Atur ke benar untuk memunjulkan ikon peringatan saat terlalu banyak bendera "
-"yang ditempatkan."
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:5
-msgid "Enable automatic placing of flags"
-msgstr "Aktifkan penempatan bendera otomatis"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:6
-msgid ""
-"Set to true to have gnomine automatically flag squares as mined when enough "
-"squares are revealed"
-msgstr ""
-"Atur ke benar agar gnomines secara otomatis menandakan kotak sebagai "
-"beranjau saat cukup kotak telah dibuka"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:7
-msgid "Number of columns in a custom game"
-msgstr "Jumlah kolom dalam permainan gubahan"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:8
-msgid "Number of rows in a custom game"
-msgstr "Jumlah baris dalam permainan gubahan"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:9
-msgid "The number of mines in a custom game"
-msgstr "Jumlah ranjau dalam permainan gubahan"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:10
-#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:3
-msgid "Board size"
-msgstr "Ukuran papan"
-
-#: ../gnomine/data/org.gnome.gnomine.gschema.xml.in.h:11
-msgid "Size of the board (0-2 = small-large, 3=custom)"
-msgstr "Ukuran papan (0-2 = kecil-besar, 3=gubahan)"
-
-#: ../gnomine/src/gnomine.vala:72
-msgctxt "board size"
-msgid "Custom"
-msgstr "Gubahan"
-
-#: ../gnomine/src/gnomine.vala:108
-msgid "_Replay Size"
-msgstr "Uku_ran Main Ulang"
-
-#. New game screen
-#: ../gnomine/src/gnomine.vala:231
-msgid "Field Size"
-msgstr "Ukuran Papan"
-
-#: ../gnomine/src/gnomine.vala:286
-msgid "H_orizontal:"
-msgstr "H_orisontal:"
-
-#: ../gnomine/src/gnomine.vala:296
-msgid "_Vertical:"
-msgstr "_Vertikal:"
-
-#: ../gnomine/src/gnomine.vala:306
-msgid "_Number of mines:"
-msgstr "Jumlah ra_njau"
-
-#: ../gnomine/src/gnomine.vala:325
-msgid "_Play Game"
-msgstr "_Mainkan"
-
-#: ../gnomine/src/gnomine.vala:372
-#, c-format
-msgid "<b>%d</b> mine"
-msgid_plural "<b>%d</b> mines"
-msgstr[0] "<b>%d</b> ranjau"
-
-#: ../gnomine/src/gnomine.vala:436
-#, c-format
-msgid "Flags: %u/%u"
-msgstr "Flag: %u/%u"
-
-#: ../gnomine/src/gnomine.vala:452
-msgid "The Mines Have Been Cleared!"
-msgstr "Ranjau telah dibersihkan!"
-
-#: ../gnomine/src/gnomine.vala:464
-msgid "Mines Scores"
-msgstr "Skor Mines"
-
-#: ../gnomine/src/gnomine.vala:465 ../gnotravex/src/gnotravex.vala:241
-#: ../gnotravex/src/gnotravex.vala:266 ../swell-foop/src/swell-foop.vala:355
-msgid "Size:"
-msgstr "Ukuran:"
-
-#: ../gnomine/src/gnomine.vala:512
-msgid "Do you want to start a new game?"
-msgstr "Apakah Anda ingin memulai permainan baru?"
-
-#: ../gnomine/src/gnomine.vala:513
-msgid "If you start a new game, your current progress will be lost."
-msgstr "Bila Anda memulai permainan baru, kemajuan Anda kini akan hilang."
-
-#: ../gnomine/src/gnomine.vala:514
-msgid "Keep Current Game"
-msgstr "Pertahankan Permainan Saat Ini"
-
-#: ../gnomine/src/gnomine.vala:515
-msgid "Start New Game"
-msgstr "Mulai permainan baru"
-
-#: ../gnomine/src/gnomine.vala:706
-msgid "Resizing and SVG support:"
-msgstr "Pengukuran ulang dan dukungan SVG:"
-
-#: ../gnomine/src/gnomine.vala:714
-msgid "Faces:"
-msgstr "Muka:"
-
-#: ../gnomine/src/gnomine.vala:718
-msgid "Graphics:"
-msgstr "Grafikk:"
-
-#: ../gnomine/src/gnomine.vala:735
-msgid ""
-"The popular logic puzzle minesweeper. Clear mines from a board using hints "
-"from squares you have already uncovered.\n"
-"\n"
-"Mines is a part of GNOME Games."
-msgstr ""
-"Teka-teki logika yang populer pembersih ranjau. Bersihkan ranjau dari papan "
-"menggunakan petunjuk dari kotak yang telah anda buka\n"
-"\n"
-"Mines merupakan bagian dari permainan GNOME"
-
-#: ../gnomine/src/gnomine.vala:809
-msgid "Mines Preferences"
-msgstr "Preferensi Mines"
-
-#: ../gnomine/src/gnomine.vala:827
-msgid "_Use \"I'm not sure\" flags"
-msgstr "Pakai _bendera \"Saya tidak yakin\""
-
-#: ../gnomine/src/gnomine.vala:833
-msgid "_Warn if too many flags have been placed"
-msgstr "_Peringatkan jika terlalu banyak bendera ditempatkan"
-
-#: ../gnotravex/data/gnotravex.desktop.in.in.h:1
-#: ../gnotravex/src/gnotravex.vala:56 ../gnotravex/src/gnotravex.vala:82
-#: ../gnotravex/src/gnotravex.vala:306
-msgid "Tetravex"
-msgstr "Tetravex"
-
-#: ../gnotravex/data/gnotravex.desktop.in.in.h:2
-msgid "Complete the puzzle by matching numbered tiles"
-msgstr "Selesaikan teka-teki dengan menyesuaikan kotak bernomor"
-
-#: ../gnotravex/data/gnotravex.ui.h:3
-msgid "_Solve"
-msgstr "_Pecahkan"
-
-#: ../gnotravex/data/gnotravex.ui.h:5
-msgid "_Up"
-msgstr "_Naik"
-
-#: ../gnotravex/data/gnotravex.ui.h:6
-msgid "_Left"
-msgstr "_Kiri"
-
-#: ../gnotravex/data/gnotravex.ui.h:7
-msgid "_Right"
-msgstr "Ka_nan"
-
-#: ../gnotravex/data/gnotravex.ui.h:8
-msgid "_Down"
-msgstr "_Turun"
-
-#: ../gnotravex/data/gnotravex.ui.h:10
-msgid "_Size"
-msgstr "_Ukuran"
-
-#: ../gnotravex/data/gnotravex.ui.h:11
-msgid "_2x2"
-msgstr "_2x2"
-
-#: ../gnotravex/data/gnotravex.ui.h:12
-msgid "_3x3"
-msgstr "_3x3"
-
-#: ../gnotravex/data/gnotravex.ui.h:13
-msgid "_4x4"
-msgstr "_4x4"
-
-#: ../gnotravex/data/gnotravex.ui.h:14
-msgid "_5x5"
-msgstr "_5x5"
-
-#: ../gnotravex/data/gnotravex.ui.h:15
-msgid "_6x6"
-msgstr "_6x6"
-
-#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:1
-msgid "The size of the playing grid"
-msgstr "Ukuran papan bermain"
-
-#: ../gnotravex/data/org.gnome.gnotravex.gschema.xml.in.h:2
-msgid "The value of this key is used to decide the size of the playing grid."
-msgstr "Nilai dari kunci ini menentukan ukuran papan permainan."
-
-#: ../gnotravex/src/gnotravex.vala:14
-msgid "2×2"
-msgstr "2×2"
-
-#: ../gnotravex/src/gnotravex.vala:15
-msgid "3×3"
-msgstr "3×3"
-
-#: ../gnotravex/src/gnotravex.vala:16
-msgid "4×4"
-msgstr "4×4"
-
-#: ../gnotravex/src/gnotravex.vala:17
-msgid "5×5"
-msgstr "5×5"
-
-#: ../gnotravex/src/gnotravex.vala:18
-msgid "6×6"
-msgstr "6×6"
-
-#: ../gnotravex/src/gnotravex.vala:111
-msgid "Solve"
-msgstr "Pecahkan"
-
-#: ../gnotravex/src/gnotravex.vala:240 ../gnotravex/src/gnotravex.vala:265
-msgid "Tetravex Scores"
-msgstr "Skor Tetravex"
-
-#: ../gnotravex/src/gnotravex.vala:309
-msgid ""
-"GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
-"the same numbers are touching each other.\n"
-"\n"
-"Tetravex is a part of GNOME Games."
-msgstr ""
-"GNOME Tetravex adalah permainan puzzel simpel dimana bagian harus "
-"diposisikan sehingga angka yang sama saling bersentuhan.\n"
-"\n"
-"Tetravex merupakan bagian dari permainan GNOME"
-
-#: ../gnotski/data/gnotski.desktop.in.in.h:1 ../gnotski/src/gnotski.c:42
-msgid "Klotski"
-msgstr "Klotski"
-
-#: ../gnotski/data/gnotski.desktop.in.in.h:2
-msgid "Slide blocks to solve the puzzle"
-msgstr "Geser blok untuk menyelesaikan teka-teki"
-
-#: ../gnotski/data/org.gnome.gnotski.gschema.xml.in.h:1
-msgid "The puzzle in play"
-msgstr "Puzzel yang sedang dimainkan"
-
-#: ../gnotski/data/org.gnome.gnotski.gschema.xml.in.h:2
-msgid "The number of the puzzle being played."
-msgstr "Angka puzzel yang sedang dimainkan."
-
-#: ../gnotski/src/gnotski.c:93
-msgid "Only 18 steps"
-msgstr "Hanya 18 langkah"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:94 ../gnotski/src/gnotski.c:177
-msgid "Daisy"
-msgstr "Daisy"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:95 ../gnotski/src/gnotski.c:183
-msgid "Violet"
-msgstr "Violet"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:96 ../gnotski/src/gnotski.c:189
-msgid "Poppy"
-msgstr "Poppy"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:97 ../gnotski/src/gnotski.c:195
-msgid "Pansy"
-msgstr "Pansy"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:98 ../gnotski/src/gnotski.c:201
-msgid "Snowdrop"
-msgstr "Snowdrop"
-
-#. puzzle name - sometimes called "Le'Ane Rouge"
-#: ../gnotski/src/gnotski.c:99 ../gnotski/src/gnotski.c:207
-msgid "Red Donkey"
-msgstr "Red Donkey"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:100 ../gnotski/src/gnotski.c:213
-msgid "Trail"
-msgstr "Trail"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:101 ../gnotski/src/gnotski.c:219
-msgid "Ambush"
-msgstr "Ambush"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:102 ../gnotski/src/gnotski.c:225
-msgid "Agatka"
-msgstr "Agatka"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:103 ../gnotski/src/gnotski.c:230
-msgid "Success"
-msgstr "Berhasil"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:104 ../gnotski/src/gnotski.c:235
-msgid "Bone"
-msgstr "Bone"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:105 ../gnotski/src/gnotski.c:241
-msgid "Fortune"
-msgstr "Fortune"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:106 ../gnotski/src/gnotski.c:249
-msgid "Fool"
-msgstr "Fool"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:107 ../gnotski/src/gnotski.c:255
-msgid "Solomon"
-msgstr "Solomon"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:108 ../gnotski/src/gnotski.c:262
-msgid "Cleopatra"
-msgstr "Cleopatra"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:109 ../gnotski/src/gnotski.c:267
-msgid "Shark"
-msgstr "Shark"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:110 ../gnotski/src/gnotski.c:275
-msgid "Rome"
-msgstr "Rome"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:111 ../gnotski/src/gnotski.c:282
-msgid "Pennant Puzzle"
-msgstr "Teka-teki Pennant"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:112 ../gnotski/src/gnotski.c:288
-msgid "Ithaca"
-msgstr "Ithaca"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:113 ../gnotski/src/gnotski.c:309
-msgid "Pelopones"
-msgstr "Pelopones"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:114 ../gnotski/src/gnotski.c:316
-msgid "Transeuropa"
-msgstr "Transeuropa"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:115 ../gnotski/src/gnotski.c:325
-msgid "Lodzianka"
-msgstr "Lodzianka"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:116 ../gnotski/src/gnotski.c:331
-msgid "Polonaise"
-msgstr "Polonaise"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:117 ../gnotski/src/gnotski.c:336
-msgid "Baltic Sea"
-msgstr "Baltic Sea"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:118 ../gnotski/src/gnotski.c:341
-msgid "American Pie"
-msgstr "American Pie"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:119 ../gnotski/src/gnotski.c:353
-msgid "Traffic Jam"
-msgstr "Traffic Jam"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:120 ../gnotski/src/gnotski.c:360
-msgid "Sunshine"
-msgstr "Sunshine"
-
-#. puzzle name
-#: ../gnotski/src/gnotski.c:171
-msgid "Only 18 Steps"
-msgstr "Hanya 18 Langkah"
-
-#. set of puzzles
-#: ../gnotski/src/gnotski.c:401
-msgid "HuaRong Trail"
-msgstr "HuaRong Trail"
-
-#. set of puzzles
-#: ../gnotski/src/gnotski.c:403
-msgid "Challenge Pack"
-msgstr "Pak Tantangan"
-
-#. set of puzzles
-#: ../gnotski/src/gnotski.c:405
-msgid "Skill Pack"
-msgstr "Pak Ketrampilan"
-
-#: ../gnotski/src/gnotski.c:406
-msgid "_Restart Puzzle"
-msgstr "_Ulang Teka-teki"
-
-#: ../gnotski/src/gnotski.c:408
-msgid "Next Puzzle"
-msgstr "Teka-teki Berikutnya"
-
-#: ../gnotski/src/gnotski.c:410
-msgid "Previous Puzzle"
-msgstr "Teka-teki Sebelumnya"
-
-#: ../gnotski/src/gnotski.c:444
-msgid "X location of window"
-msgstr "Lokasi X jendela"
-
-#: ../gnotski/src/gnotski.c:446
-msgid "Y location of window"
-msgstr "Lokasi Y jendela"
-
-#: ../gnotski/src/gnotski.c:600
-msgid "Level completed."
-msgstr "Tingkat diselesaikan."
-
-#: ../gnotski/src/gnotski.c:746
-msgid "The Puzzle Has Been Solved!"
-msgstr "Teka-teki Telah Dipecahkan!"
-
-#: ../gnotski/src/gnotski.c:763
-msgid "Klotski Scores"
-msgstr "Skor Klotzki"
-
-#: ../gnotski/src/gnotski.c:766
-msgid "Puzzle:"
-msgstr "Teka-teki:"
-
-#: ../gnotski/src/gnotski.c:869
-msgid ""
-"The theme for this game failed to render.\n"
-"\n"
-"Please check that Klotski is installed correctly."
-msgstr ""
-"Tema untuk permainan ini gagal untuk dimuat.\n"
-"\n"
-"Silahkan periksa apakah Klotski telah terinstal dengan benar."
-
-#: ../gnotski/src/gnotski.c:1119
-#, c-format
-msgid ""
-"Could not find the image:\n"
-"%s\n"
-"\n"
-"Please check that Klotski is installed correctly."
-msgstr ""
-"Tidak dapat menemukan citra:\n"
-"%s\n"
-"\n"
-"Silahkan periksa apakah Klotski telah terinstal dengan benar."
-
-#: ../gnotski/src/gnotski.c:1158
-#, c-format
-msgid "Moves: %d"
-msgstr "Langkah: %d"
-
-#: ../gnotski/src/gnotski.c:1450
-msgid ""
-"Sliding Block Puzzles\n"
-"\n"
-"Klotski is a part of GNOME Games."
-msgstr ""
-"Teka-teki Menggerakkan Blok\n"
-"\n"
-"Klotski merupakan bagian dari permainan GNOME"
-
-#: ../gtali/data/gtali.desktop.in.in.h:1 ../gtali/src/gyahtzee.c:57
-msgid "Tali"
-msgstr "Tali"
-
-#: ../gtali/data/gtali.desktop.in.in.h:2
-msgid "Beat the odds in a poker-style dice game"
-msgstr "Kalahkan lawan dalam permainan dadu bergaya poker"
-
-#: ../gtali/data/gtali.desktop.in.in.h:3
-msgid "yahtzee;"
-msgstr "yahtzee;"
-
-#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:1
-msgid "Delay between rolls"
-msgstr "Jeda antara pelemparan"
-
-#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:2
-msgid ""
-"Choose whether or not to insert a delay between the computer's dice rolls so "
-"the player can follow what it is doing."
-msgstr ""
-"Pilih apakah menggunakan jeda antara giliran pelemparan dadu komputer "
-"sehingga pemain dapat mengikuti yang dilakukan komputer."
-
-#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:3
-msgid "Display the computer's thoughts"
-msgstr "Tampilkan pikiran komputer"
-
-#: ../gtali/data/org.gnome.gtali.gschema.xml.in.h:4
-msgid ""
-"If set to true, a dump of the AI's working will be done to standard output."
-msgstr ""
-"Jika diatur ke benar, semua pekerjaan komputer akan dikeluarkan ke keluaran "
-"standar."
-
-#: ../gtali/src/clist.c:158
-msgid "Already used! Where do you want to put that?"
-msgstr "Sudah digunakan! Di mana anda ingin menaruh itu?"
-
-#: ../gtali/src/clist.c:414
-#, c-format
-msgid "Score: %d"
-msgstr "Nilai: %d"
-
-#: ../gtali/src/clist.c:416
-#, c-format
-msgid "Field used"
-msgstr "Papan telah terpakai"
-
-#: ../gtali/src/gyahtzee.c:102
-msgid "Delay computer moves"
-msgstr "Jeda pergerakan komputer"
-
-#: ../gtali/src/gyahtzee.c:104
-msgid "Display computer thoughts"
-msgstr "Tampilkan pikiran komputer"
-
-#: ../gtali/src/gyahtzee.c:106
-msgid "Number of computer opponents"
-msgstr "Jumlah lawan komputer"
-
-#: ../gtali/src/gyahtzee.c:106 ../gtali/src/gyahtzee.c:108
-#: ../gtali/src/gyahtzee.c:112 ../gtali/src/gyahtzee.c:114
-msgid "NUMBER"
-msgstr "ANGKA"
-
-#: ../gtali/src/gyahtzee.c:108
-msgid "Number of human opponents"
-msgstr "Jumlah pemain manusia lawan"
-
-#: ../gtali/src/gyahtzee.c:110
-msgid "Game choice: Regular or Colors"
-msgstr "Pilihan permainan: Reguler atau berwarna"
-
-#: ../gtali/src/gyahtzee.c:110
-msgid "STRING"
-msgstr "STRING"
-
-#: ../gtali/src/gyahtzee.c:112
-msgid "Number of computer-only games to play"
-msgstr "Jumlah permainan hanya komputer untuk dimainkan"
-
-#: ../gtali/src/gyahtzee.c:114
-msgid "Number of trials for each roll for the computer"
-msgstr "Jumlah percobaan untuk setiap giliran untuk komputer"
-
-#: ../gtali/src/gyahtzee.c:119 ../gtali/src/setup.c:359
-msgctxt "game type"
-msgid "Regular"
-msgstr "Reguler"
-
-#: ../gtali/src/gyahtzee.c:120 ../gtali/src/setup.c:360
-msgctxt "game type"
-msgid "Colors"
-msgstr "Warna"
-
-#: ../gtali/src/gyahtzee.c:141
-msgid "Roll all!"
-msgstr "Jalankan semua!"
-
-#: ../gtali/src/gyahtzee.c:144 ../gtali/src/gyahtzee.c:791
-msgid "Roll!"
-msgstr "Jalankan!"
-
-#: ../gtali/src/gyahtzee.c:178
-msgid "The game is a draw!"
-msgstr "Permainan seri!"
-
-#: ../gtali/src/gyahtzee.c:192 ../gtali/src/gyahtzee.c:629
-msgid "Tali Scores"
-msgstr "Skor Tali"
-
-#: ../gtali/src/gyahtzee.c:208
-#, c-format
-msgid "%s wins the game with %d point"
-msgid_plural "%s wins the game with %d points"
-msgstr[0] "%s memenangkan pertandingan dengan nilai %d"
-
-#: ../gtali/src/gyahtzee.c:256
-#, c-format
-msgid "Computer playing for %s"
-msgstr "Komputer bermain untuk %s"
-
-#: ../gtali/src/gyahtzee.c:258
-#, c-format
-msgid "%s! -- You're up."
-msgstr "%s! -- Anda naik."
-
-#: ../gtali/src/gyahtzee.c:451
-msgid "Select dice to roll or choose a score slot."
-msgstr "Pilih dadu untuk melempar atau pilih slot nilai."
-
-#: ../gtali/src/gyahtzee.c:479
-msgid "Roll"
-msgstr "Jalankan"
-
-#: ../gtali/src/gyahtzee.c:537
-msgid "You are only allowed three rolls. Choose a score slot."
-msgstr "Anda hanya diijinkan melempar tiga kali. Pilih sebuat slot nilai."
-
-#: ../gtali/src/gyahtzee.c:587
-msgid "GNOME version (1998):"
-msgstr "Versi GNOME (1998):"
-
-#: ../gtali/src/gyahtzee.c:590
-msgid "Console version (1992):"
-msgstr "Versi konsol (1992):"
-
-#: ../gtali/src/gyahtzee.c:593
-msgid "Colors game and multi-level AI (2006):"
-msgstr "Permainan warna dan AI bermacam tingkat (2006):"
-
-#: ../gtali/src/gyahtzee.c:611
-msgid ""
-"A variation on poker with dice and less money.\n"
-"\n"
-"Tali is a part of GNOME Games."
-msgstr ""
-"Variasi poker dengan dadu dan lebih sedikit uang.\n"
-"\n"
-"Tali merupakan bagian dari permainan GNOME."
-
-#: ../gtali/src/setup.c:122
-msgid "Current game will complete with original number of players."
-msgstr "Permainan ini akan lengkap dengan jumlah pemain orisinal."
-
-#: ../gtali/src/setup.c:264
-msgid "Tali Preferences"
-msgstr "Preferensi Tali"
-
-#: ../gtali/src/setup.c:285
-msgid "Human Players"
-msgstr "Pemain Manusia"
-
-#: ../gtali/src/setup.c:295
-msgid "_Number of players:"
-msgstr "Jumlah pemai_n:"
-
-#: ../gtali/src/setup.c:309
-msgid "Computer Opponents"
-msgstr "Komputer Lawan"
-
-#. --- Button ---
-#: ../gtali/src/setup.c:316
-msgid "_Delay between rolls"
-msgstr "Je_da antara pelemparan"
-
-#: ../gtali/src/setup.c:326
-msgid "N_umber of opponents:"
-msgstr "Jumlah lawa_n:"
-
-#: ../gtali/src/setup.c:340
-msgid "_Difficulty:"
-msgstr "_Kesulitan:"
-
-#: ../gtali/src/setup.c:344
-msgctxt "difficulty"
-msgid "Medium"
-msgstr "Sedang"
-
-#. --- PLAYER NAMES FRAME ----
-#: ../gtali/src/setup.c:368
-msgid "Player Names"
-msgstr "Nama pemain"
-
-#: ../gtali/src/yahtzee.c:85 ../gtali/src/yahtzee.c:109
-#: ../gtali/src/yahtzee.c:517
-msgid "1s [total of 1s]"
-msgstr "1s [Jumlah 1s]"
-
-#: ../gtali/src/yahtzee.c:86 ../gtali/src/yahtzee.c:110
-#: ../gtali/src/yahtzee.c:518
-msgid "2s [total of 2s]"
-msgstr "2s [Jumlah 2s]"
-
-#: ../gtali/src/yahtzee.c:87 ../gtali/src/yahtzee.c:111
-#: ../gtali/src/yahtzee.c:519
-msgid "3s [total of 3s]"
-msgstr "3s [Jumlah 3s]"
-
-#: ../gtali/src/yahtzee.c:88 ../gtali/src/yahtzee.c:112
-#: ../gtali/src/yahtzee.c:520
-msgid "4s [total of 4s]"
-msgstr "4s [Jumlah 4s]"
-
-#: ../gtali/src/yahtzee.c:89 ../gtali/src/yahtzee.c:113
-#: ../gtali/src/yahtzee.c:521
-msgid "5s [total of 5s]"
-msgstr "5s [Jumlah 5s]"
-
-#: ../gtali/src/yahtzee.c:90 ../gtali/src/yahtzee.c:114
-#: ../gtali/src/yahtzee.c:522
-msgid "6s [total of 6s]"
-msgstr "6s [Jumlah 6s]"
-
-#. End of upper panel
-#: ../gtali/src/yahtzee.c:92 ../gtali/src/yahtzee.c:117
-#: ../gtali/src/yahtzee.c:523
-msgid "3 of a Kind [total]"
-msgstr "3 sejenis [jumlah]"
-
-#: ../gtali/src/yahtzee.c:93 ../gtali/src/yahtzee.c:524
-msgid "4 of a Kind [total]"
-msgstr "4 sejenis [jumlah]"
-
-#: ../gtali/src/yahtzee.c:94 ../gtali/src/yahtzee.c:525
-msgid "Full House [25]"
-msgstr "Full House [25]"
-
-#: ../gtali/src/yahtzee.c:95 ../gtali/src/yahtzee.c:526
-msgid "Small Straight [30]"
-msgstr "Straight kecil [30]"
-
-#: ../gtali/src/yahtzee.c:96 ../gtali/src/yahtzee.c:121
-#: ../gtali/src/yahtzee.c:527
-msgid "Large Straight [40]"
-msgstr "Straight besar [40]"
-
-#: ../gtali/src/yahtzee.c:97
-msgid "5 of a Kind [50]"
-msgstr "5 sejenis [50]"
-
-#: ../gtali/src/yahtzee.c:98 ../gtali/src/yahtzee.c:124
-#: ../gtali/src/yahtzee.c:529
-msgid "Chance [total]"
-msgstr "Kesempatan [jumlah]"
-
-#. End of lower panel
-#: ../gtali/src/yahtzee.c:100 ../gtali/src/yahtzee.c:126
-msgid "Lower Total"
-msgstr "Jumlah Bawah"
-
-#: ../gtali/src/yahtzee.c:101 ../gtali/src/yahtzee.c:127
-msgid "Grand Total"
-msgstr "Jumlah Keseluruhan"
-
-#. Need to squish between upper and lower pannel
-#: ../gtali/src/yahtzee.c:103 ../gtali/src/yahtzee.c:129
-msgid "Upper total"
-msgstr "Jumlah Atas"
-
-#: ../gtali/src/yahtzee.c:104 ../gtali/src/yahtzee.c:130
-msgid "Bonus if >62"
-msgstr "Bonus jika >62"
-
-#. End of upper panel
-#: ../gtali/src/yahtzee.c:116 ../gtali/src/yahtzee.c:530
-msgid "2 pair Same Color [total]"
-msgstr "2 pair warna sama [jumlah]"
-
-#: ../gtali/src/yahtzee.c:118 ../gtali/src/yahtzee.c:531
-msgid "Full House [15 + total]"
-msgstr "Full House [15 + jumlah]"
-
-#: ../gtali/src/yahtzee.c:119 ../gtali/src/yahtzee.c:532
-msgid "Full House Same Color [20 + total]"
-msgstr "Full House warna sama [20 + jumlah]"
-
-#: ../gtali/src/yahtzee.c:120 ../gtali/src/yahtzee.c:533
-msgid "Flush (all same color) [35]"
-msgstr "Flush (semua berwarna sama) [35]"
-
-#: ../gtali/src/yahtzee.c:122 ../gtali/src/yahtzee.c:534
-msgid "4 of a Kind [25 + total]"
-msgstr "4 sejenis [25 + jumlah]"
-
-#: ../gtali/src/yahtzee.c:123 ../gtali/src/yahtzee.c:535
-msgid "5 of a Kind [50 + total]"
-msgstr "5 sejenis [50 + jumlah]"
-
-#: ../gtali/src/yahtzee.c:251
-msgid "Choose a score slot."
-msgstr "Pilih sebuah slot nilai."
-
-#: ../gtali/src/yahtzee.c:528
-msgid "5 of a Kind [total]"
-msgstr "5 sejenis [jumlah]"
-
-#. Arrgh - lets all use the same tabs under emacs:
-#. Local Variables:
-#. tab-width: 8
-#. c-basic-offset: 8
-#. indent-tabs-mode: nil
-#.
-#: ../iagno/data/iagno.desktop.in.in.h:1 ../iagno/src/iagno.vala:82
-#: ../iagno/src/iagno.vala:295 ../iagno/src/iagno.vala:620
-msgid "Iagno"
-msgstr "Iagno"
-
-#: ../iagno/data/iagno.desktop.in.in.h:2
-msgid "Dominate the board in a classic version of Reversi"
-msgstr "Dominasi papan dengan versi klasik Reversi"
-
-#: ../iagno/data/iagno.desktop.in.in.h:3
-msgid "othello;"
-msgstr "othello;"
-
-#: ../iagno/src/iagno.vala:137 ../iagno/src/iagno.vala:254
-#: ../iagno/src/iagno.vala:262
-msgid "Dark:"
-msgstr "Gelap:"
-
-#: ../iagno/src/iagno.vala:145 ../iagno/src/iagno.vala:255
-#: ../iagno/src/iagno.vala:263
-msgid "Light:"
-msgstr "Terang:"
-
-#: ../iagno/src/iagno.vala:246
-msgid "Light must pass, Dark's move"
-msgstr "Pemain terang harus lewat. Giliran gelap"
-
-#: ../iagno/src/iagno.vala:248
-msgid "Dark must pass, Light's move"
-msgstr "Pemain gelap harus lewat. Giliran terang"
-
-#. Translators: this is a 2 digit representation of the current score.
-#: ../iagno/src/iagno.vala:257 ../iagno/src/iagno.vala:258
-#: ../iagno/src/iagno.vala:265 ../iagno/src/iagno.vala:266
-#, c-format
-msgid "%.2d"
-msgstr "%.2d"
-
-#: ../iagno/src/iagno.vala:300
-msgid ""
-"A disk flipping game derived from Reversi.\n"
-"\n"
-"Iagno is a part of GNOME Games."
-msgstr ""
-"Permainan membalikkan disk yang diturunkan dari Reversi.\n"
-"\n"
-"Iagno merupakan bagian dari permainan GNOME."
-
-#: ../iagno/src/iagno.vala:368
-msgid "Light player wins!"
-msgstr "Pemain terang menang!"
-
-#: ../iagno/src/iagno.vala:370
-msgid "Dark player wins!"
-msgstr "Pemain gelap menang!"
-
-#: ../iagno/src/iagno.vala:372
-msgid "The game was a draw."
-msgstr "Permainan seri."
-
-#: ../iagno/src/iagno.vala:396
-msgid "Invalid move."
-msgstr "Langkah tidak valid."
-
-#: ../iagno/src/iagno.vala:461
-msgid "Iagno Preferences"
-msgstr "Preferensi Iagno"
-
-#: ../iagno/src/iagno.vala:480
-msgid "Dark Player:"
-msgstr "Pemain Gelap:"
-
-#: ../iagno/src/iagno.vala:510
-msgid "Light Player:"
-msgstr "Pemain Terang:"
-
-#: ../iagno/src/iagno.vala:544
-msgid "S_how grid"
-msgstr "_Tunjukkan kisi"
-
-#: ../iagno/src/iagno.vala:549
-msgid "_Flip final results"
-msgstr "_Balik hasil akhir"
-
-#: ../iagno/src/iagno.vala:554
-msgid "_Tile set:"
-msgstr "Se_t kotak:"
-
-#. Score dialog column header for the score time (e.g. 1 minute)
-#: ../libgames-support/games-scores-dialog.c:136
-msgctxt "score-dialog"
-msgid "Time"
-msgstr "Waktu"
-
-#. Score dialog column header for the score value (e.g. 30 moves)
-#: ../libgames-support/games-scores-dialog.c:142
-msgctxt "score-dialog"
-msgid "Score"
-msgstr "Nilai"
-
-#. Score format for time based scores.  %1$d is the time in minutes, %2$d is the time in seconds
-#: ../libgames-support/games-scores-dialog.c:307
-#, c-format
-msgctxt "score-dialog"
-msgid "%1$dm %2$ds"
-msgstr "%1$dm %2$ds"
-
-#. Score dialog column header for the name of the player who recorded the score
-#: ../libgames-support/games-scores-dialog.c:571
-msgctxt "score-dialog"
-msgid "Name"
-msgstr "Nama"
-
-#. Score dialog column header for the date the score was recorded
-#: ../libgames-support/games-scores-dialog.c:580
-msgid "Date"
-msgstr "Tanggal"
-
-#. FIXME: There is basically no range checking.
-#: ../lightsoff/data/lightsoff.desktop.in.in.h:1
-#: ../lightsoff/src/lightsoff.vala:144 ../lightsoff/src/lightsoff.vala:168
-msgid "Lights Off"
-msgstr "Lights Off"
-
-#: ../lightsoff/data/lightsoff.desktop.in.in.h:2
-msgid "Turn off all the lights"
-msgstr "Matikan semua cahaya"
-
-#: ../lightsoff/data/org.gnome.lightsoff.gschema.xml.in.h:1
-msgid "The current level"
-msgstr "Tingkat saat ini"
-
-#: ../lightsoff/data/org.gnome.lightsoff.gschema.xml.in.h:2
-msgid "The users's most recent level."
-msgstr "Tingkat terkini pengguna."
-
-#: ../lightsoff/src/lightsoff.vala:147
-msgid ""
-"Turn off all the lights\n"
-"\n"
-"Lights Off is a part of GNOME Games."
-msgstr ""
-"Matikan semua lampu\n"
-"\n"
-"Lights Off merupakan bagian dari permainan GNOME."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:1
-msgid "Image to use for drawing blocks"
-msgstr "Citra yang digunakan untuk pencitraan blok"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:2
-msgid "Image to use for drawing blocks."
-msgstr "Citra yang digunakan untuk menggambar blok."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:3
-msgid "The theme used for rendering the blocks"
-msgstr "Tema yang digunakan untuk merender blok"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:4
-msgid "The name of the theme used for rendering the blocks and the background."
-msgstr "Tema yang digunakan untuk mencitrakan blok dan latar belakang."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:5
-msgid "Level to start with"
-msgstr "Mulai pada tingkat"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:6
-msgid "Level to start with."
-msgstr "Mulai pada tingkat."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:7
-msgid "Whether to preview the next block"
-msgstr "Apakah tampilkan pemintas blok selanjutnya"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:8
-msgid "Whether to preview the next block."
-msgstr "Apakah tampilkan pemintas blok selanjutnya."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:9
-msgid "Whether to show where the moving piece will land"
-msgstr "Apakah menampilkan dimana blok akan mendarat"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:10
-msgid "Whether to show where the moving piece will land."
-msgstr "Apakah menampilkan dimana blok akan mendarat."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:11
-msgid "Whether to give blocks random colors"
-msgstr "Apakah memberikan blok warna acak"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:12
-msgid "Whether to give blocks random colors."
-msgstr "Apakah memberikan blok warna acak."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:13
-msgid "Whether to rotate counter clock wise"
-msgstr "Apakah memutar berlawanan arah jarum jam"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:14
-msgid "Whether to rotate counter clock wise."
-msgstr "Apakah memutar searah jarum jam."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:15
-msgid "The number of rows to fill"
-msgstr "Jumlah baris untuk diisi"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:16
-msgid ""
-"The number of rows that are filled with random blocks at the start of the "
-"game."
-msgstr "Jumlah baris untuk diisi dengan blok acak pada awal permainan."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:17
-msgid "The density of filled rows"
-msgstr "Kepadatan baris yang terisi"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:18
-msgid ""
-"The density of blocks in rows filled at the start of the game. The value is "
-"between 0 (for no blocks) and 10 (for a completely filled row)."
-msgstr ""
-"Kepadatan blok dalam baris yang terisi pada awal permainan. Nilai tersebut "
-"antara 0 (tidak ada blok) dan 10 (untuk baris yang terpenuhi semua)."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:19
-msgid "Whether to play sounds"
-msgstr "Apakah membunyikan suara"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:20
-msgid "Whether to play sounds."
-msgstr "Apakah membunyikan suara."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:21
-msgid "Whether to pick blocks that are hard to place"
-msgstr "Apakah mengambil blok yang sulit ditempatkan"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:22
-msgid "Whether to pick blocks that are hard to place."
-msgstr "Apakah mengambil blok yang sulit ditempatkan."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:28
-msgid "Key press to move down."
-msgstr "Tombol untuk bergerak ke bawah."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:29
-#: ../quadrapassel/src/quadrapassel.vala:390
-msgid "Drop"
-msgstr "Jatuhkan"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:30
-msgid "Key press to drop."
-msgstr "Tombol untuk menjatuhkan."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:31
-#: ../quadrapassel/src/quadrapassel.vala:393
-msgid "Rotate"
-msgstr "Putar"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:32
-msgid "Key press to rotate."
-msgstr "Tombol untuk memutar."
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:33
-#: ../quadrapassel/src/quadrapassel.vala:396
-msgid "Pause"
-msgstr "Jeda"
-
-#: ../quadrapassel/data/org.gnome.quadrapassel.gschema.xml.in.h:34
-msgid "Key press to pause."
-msgstr "Tombol untuk jeda."
-
-#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:1
-#: ../quadrapassel/src/quadrapassel.vala:99
-#: ../quadrapassel/src/quadrapassel.vala:757
-#: ../quadrapassel/src/quadrapassel.vala:803
-msgid "Quadrapassel"
-msgstr "Quadrapassel"
-
-#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:2
-msgid "Fit falling blocks together"
-msgstr "Jatuhkan blok bersamaan"
-
-#: ../quadrapassel/data/quadrapassel.desktop.in.in.h:3
-msgid "tetris;"
-msgstr "tetris;"
-
-#: ../quadrapassel/src/game-view.vala:332
-msgid "Game Over"
-msgstr "Permainan Usai"
-
-#: ../quadrapassel/src/quadrapassel.vala:183
-msgid "Lines:"
-msgstr "Baris:"
-
-#: ../quadrapassel/src/quadrapassel.vala:290
-msgid "Quadrapassel Preferences"
-msgstr "Preferensi Quadrapassel"
-
-#. pre-filled rows
-#: ../quadrapassel/src/quadrapassel.vala:309
-msgid "_Number of pre-filled rows:"
-msgstr "_Jumlah baris terisi pada awal:"
-
-#. pre-filled rows density
-#: ../quadrapassel/src/quadrapassel.vala:323
-msgid "_Density of blocks in a pre-filled row:"
-msgstr "Kepa_datan blok dalam baris yang terisi pada awal:"
-
-#: ../quadrapassel/src/quadrapassel.vala:355
-msgid "_Preview next block"
-msgstr "_Pratilik blok berikutnya"
-
-#: ../quadrapassel/src/quadrapassel.vala:360
-msgid "Choose difficult _blocks"
-msgstr "Pilih _blok sulit"
-
-#. rotate counter clock wise
-#: ../quadrapassel/src/quadrapassel.vala:366
-msgid "_Rotate blocks counterclockwise"
-msgstr "Puta_r blok berlawanan arah jarum jam"
-
-#: ../quadrapassel/src/quadrapassel.vala:371
-msgid "Show _where the block will land"
-msgstr "Tampilkan _dimana blok akan mendarat"
-
-#: ../quadrapassel/src/quadrapassel.vala:415
-msgid "Controls"
-msgstr "Kontrol"
-
-#: ../quadrapassel/src/quadrapassel.vala:421
-msgid "Theme"
-msgstr "Tema"
-
-#: ../quadrapassel/src/quadrapassel.vala:433
-msgid "Plain"
-msgstr "Polos"
-
-#: ../quadrapassel/src/quadrapassel.vala:438
-msgid "Tango Flat"
-msgstr "Tango rata"
-
-#: ../quadrapassel/src/quadrapassel.vala:443
-msgid "Tango Shaded"
-msgstr "Tango gelap"
-
-#: ../quadrapassel/src/quadrapassel.vala:448
-msgid "Clean"
-msgstr "Kosongkan"
-
-#: ../quadrapassel/src/quadrapassel.vala:695
-#: ../quadrapassel/src/quadrapassel.vala:774
-msgid "Quadrapassel Scores"
-msgstr "Nilai Quadrapassel"
-
-#: ../quadrapassel/src/quadrapassel.vala:759
-msgid ""
-"A classic game of fitting falling blocks together.\n"
-"\n"
-"Quadrapassel is a part of GNOME Games."
-msgstr ""
-"Permainan klasik untuk menyocokkan blok jatuh bersamaan.\n"
-"\n"
-"Quadrapassel merupakan bagian dari permainan GNOME."
-
-#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:1
-msgid "The theme to use"
-msgstr "Tema untuk digunakan"
-
-#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:2
-msgid "The title of the tile theme to use."
-msgstr "Judul tema kotak untuk digunakan."
-
-#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:4
-msgid "The size of the game board."
-msgstr "Ukuran papan permainan."
-
-#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:5
-msgid "Board color count"
-msgstr "Penghitung warna papan"
-
-#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:6
-msgid "The number of colors of tiles to use in the game."
-msgstr "Jumlah warna papan kotak untuk digunakan dalam permainan."
-
-#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:7
-msgid "Zealous animation"
-msgstr "Animasi"
-
-#: ../swell-foop/data/org.gnome.swell-foop.gschema.xml.in.h:8
-msgid "Use more flashy, but slower, animations."
-msgstr "Gunakan animasi yang lebih baik, namun lebih lambat."
-
-#: ../swell-foop/data/preferences.ui.h:1
-#: ../swell-foop/data/swell-foop.desktop.in.in.h:1
-#: ../swell-foop/src/swell-foop.vala:54 ../swell-foop/src/swell-foop.vala:386
-#: ../swell-foop/src/swell-foop.vala:451
-msgid "Swell Foop"
-msgstr "Swell Foop"
-
-#: ../swell-foop/data/preferences.ui.h:3
-msgid "_Number of colors:"
-msgstr "Cacah war_na:"
-
-#: ../swell-foop/data/preferences.ui.h:4
-msgid "Setup"
-msgstr "Setup"
-
-#: ../swell-foop/data/preferences.ui.h:7
-msgid "_Zealous Animation"
-msgstr "Animasi _Lincah"
-
-#: ../swell-foop/data/preferences.ui.h:8
-msgid "Operation"
-msgstr "Operasi"
-
-#: ../swell-foop/data/swell-foop.desktop.in.in.h:2
-msgid "Clear the screen by removing groups of colored and shaped tiles"
-msgstr ""
-"Bersihkan layar dengan menghapus kotak berwarna dan berbentuk yang tergrup"
-
-#. Label showing the number of points at the end of the game
-#: ../swell-foop/src/game-view.vala:433
-#, c-format
-msgid "%u point"
-msgid_plural "%u points"
-msgstr[0] "%u poin"
-
-#: ../swell-foop/src/swell-foop.vala:121 ../swell-foop/src/swell-foop.vala:150
-msgid "Small"
-msgstr "Kecil"
-
-#: ../swell-foop/src/swell-foop.vala:122 ../swell-foop/src/swell-foop.vala:151
-msgid "Normal"
-msgstr "Sedang"
-
-#: ../swell-foop/src/swell-foop.vala:123 ../swell-foop/src/swell-foop.vala:152
-msgid "Large"
-msgstr "Besar"
-
-#. I left one more blank space at the end to make the score not too close to the window border
-#: ../swell-foop/src/swell-foop.vala:205
-#, c-format
-msgid "Score: %4u "
-msgstr "Skor: %4u "
-
-#: ../swell-foop/src/swell-foop.vala:253
-msgid "Colors"
-msgstr "Warna"
-
-#: ../swell-foop/src/swell-foop.vala:257
-msgid "Shapes and Colors"
-msgstr "Bentuk dan Warna"
-
-#: ../swell-foop/src/swell-foop.vala:354
-msgid "Swell Foop Scores"
-msgstr "Nilai Swell Foop"
-
-#: ../swell-foop/src/swell-foop.vala:389
-msgid ""
-"I want to play that game! You know, they all light-up and you click on them "
-"and they vanish!\n"
-"\n"
-"Swell Foop is a part of GNOME Games."
-msgstr ""
-"Aku ingin memainkan permainan itu! Anda tahu, mereka terang dan anda "
-"mengkliknya dan mereka hilang!\n"
-"\n"
-"Swell Foop merupakan bagian dari permainan GNOME"
-
-#: ../swell-foop/src/swell-foop.vala:390
-msgid "Copyright © 2009 Tim Horton"
-msgstr "Hak Cipta © 2009 Tim Horton"
 
