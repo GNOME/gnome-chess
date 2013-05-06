@@ -1477,7 +1477,7 @@ public class Application : Gtk.Application
         about_dialog = new Gtk.AboutDialog ();
         about_dialog.transient_for = window;
         about_dialog.modal = true;
-        about_dialog.program_name = "Chess";
+        about_dialog.program_name = _("Chess");
         about_dialog.version = VERSION;
         about_dialog.copyright = "Copyright 2010 Robert Ancell <robert.ancell@gmail.com>";
         about_dialog.license_type = Gtk.License.GPL_2_0;
