@@ -269,7 +269,10 @@ private class ChessView3D : ChessView
             glTranslatef (-OFFSET, 0.0f, OFFSET);
 
             draw_board ();
-            draw_numbering ();
+            if (scene.show_numbering)
+            {
+                draw_numbering ();
+            }
             draw_pieces ();
 
             glPopMatrix ();
