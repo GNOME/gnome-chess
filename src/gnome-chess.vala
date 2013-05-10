@@ -1198,8 +1198,14 @@ public class Application : Gtk.Application
         var move_combo = (Gtk.ComboBox) preferences_builder.get_object ("move_format_combo");
         set_combo (move_combo, 1, settings.get_string ("move-format"));
 
+        var show_3d_check = (Gtk.CheckButton) preferences_builder.get_object ("show_3d_check");
+
         var theme_combo = (Gtk.ComboBox) preferences_builder.get_object ("piece_style_combo");
         set_combo (theme_combo, 1, settings.get_string ("piece-theme"));
+        theme_combo.sensitive = !show_3d_check.active;
+
+        var show_3d_smooth_check = (Gtk.CheckButton) preferences_builder.get_object ("show_3d_smooth_check");
+        show_3d_smooth_check.sensitive = show_3d_check.active;
 
         preferences_builder.connect_signals (this);
 
