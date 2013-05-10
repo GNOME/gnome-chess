@@ -270,9 +270,7 @@ private class ChessView3D : ChessView
 
             draw_board ();
             if (scene.show_numbering)
-            {
                 draw_numbering ();
-            }
             draw_pieces ();
 
             glPopMatrix ();
