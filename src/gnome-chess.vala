@@ -445,12 +445,21 @@ public class Application : Gtk.Application
             opponent = game.white;
             human_player = game.black;
             opponent_engine = get_engine (white_engine, white_level);
+            opponent.local_human = false;
+            human_player.local_human = true;
         }
         else if (black_engine != null)
         {
             opponent = game.black;
             human_player = game.white;
             opponent_engine = get_engine (black_engine, black_level);
+            opponent.local_human = false;
+            human_player.local_human = true;
+        }
+        else
+        {
+            game.black.local_human = true;
+            game.white.local_human = true;
         }
 
         if (opponent_engine != null)

@@ -180,7 +180,7 @@ public class ChessScene : Object
 
     public void select_square (int file, int rank)
     {
-        if (game == null)
+        if (game == null || !game.current_player.local_human)
             return;
 
         /* Can only control when showing the current move */
