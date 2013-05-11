@@ -13,6 +13,16 @@ public class ChessPlayer : Object
     public signal bool do_resign ();
     public signal bool do_claim_draw ();
 
+    private bool _local_human = false;
+    public bool local_human
+    {
+        get { return _local_human; }
+        set
+        {
+            _local_human = value;
+        }
+    }
+
     public ChessPlayer (Color color)
     {
         this.color = color;
