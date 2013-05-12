@@ -1,4 +1,4 @@
-public class ChessView : Gtk.DrawingArea
+public abstract class ChessView : Gtk.DrawingArea
 {
     private ChessScene _scene;
     public ChessScene scene
