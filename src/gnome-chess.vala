@@ -822,6 +822,18 @@ public class Application : Gtk.Application
             view.queue_draw ();
         }
 
+        if (game.n_moves > 0)
+        {
+            game_needs_saving = true;
+            save_menu.sensitive = true;
+        }
+        else
+        {
+            game_needs_saving = false;
+            save_menu.sensitive = false;
+            save_as_menu.sensitive = false;
+        }
+
         update_history_panel ();
         update_control_buttons ();
     }
