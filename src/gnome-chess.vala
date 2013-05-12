@@ -135,23 +135,26 @@ public class Application : Gtk.Application
         foreach (var profile in ai_profiles)
             message ("Detected AI profile %s in %s", profile.name, profile.path);
 
-        bool from_history = game_file == null ? true : false;
-
         /* Load from history if no game requested */
         if (game_file == null)
         {
             var unfinished = history.get_unfinished ();
             if (unfinished != null)
+            {
+                in_history = true;
                 game_file = unfinished.last().data;
+            }
             else
                 start_new_game ();
         }
+        else
+            in_history = false;
 
         if (game_file != null)
         {
             try
             {
-                load_game (game_file, from_history);
+                load_game (game_file);
             }
             catch (Error e)
             {
@@ -355,7 +358,7 @@ public class Application : Gtk.Application
 
     private void start_game ()
     {
-        if (in_history)
+        if (in_history || game_file == null)
         {
             window.title = /* Title of the main window */
                            _("Chess");
@@ -477,7 +480,8 @@ public class Application : Gtk.Application
             game_move_cb (game, state.last_move);
         }
 
-        game_needs_saving = false;
+        game_needs_saving = in_history;
+        save_menu.sensitive = in_history;
         game.start ();
 
         if (game.result != ChessResult.IN_PROGRESS)
@@ -1671,7 +1675,8 @@ public class Application : Gtk.Application
         {
             try
             {
-                load_game (open_dialog.get_file (), false);
+                in_history = false;
+                load_game (open_dialog.get_file ());
             }
             catch (Error e)
             {
@@ -1690,7 +1695,7 @@ public class Application : Gtk.Application
 
     private void start_new_game ()
     {
-        in_history = true;
+        in_history = false;
         game_file = null;
 
         pgn_game = new PGNGame ();
@@ -1718,13 +1723,12 @@ public class Application : Gtk.Application
         start_game ();
     }
 
-    private void load_game (File file, bool from_history) throws Error
+    private void load_game (File file) throws Error
     {
         var pgn = new PGN.from_file (file);
         pgn_game = pgn.games.nth_data (0);
 
         game_file = file;
-        in_history = from_history;
         start_game ();
     }
 }
