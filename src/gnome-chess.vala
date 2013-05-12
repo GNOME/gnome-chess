@@ -1708,6 +1708,9 @@ public class Application : Gtk.Application
         if (duration > 0)
             pgn_game.time_control = "%d".printf (duration);
         var engine_name = settings.get_string ("opponent");
+        /* explicitly specify engine name in saved game */
+        if (engine_name == "")
+            engine_name = ai_profiles.data.name;
         var engine_level = settings.get_string ("difficulty");
         if (engine_name != null && engine_name != "human")
         {
