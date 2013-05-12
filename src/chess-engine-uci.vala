@@ -5,8 +5,9 @@ public class ChessEngineUCI : ChessEngine
     private string[] options;
     private bool waiting_for_move;
 
-    public ChessEngineUCI (string[] options)
+    public ChessEngineUCI (string binary, string args, string[] options)
     {
+        base (binary, args);
         this.options = options;
         buffer = new char[0];
         moves = "";

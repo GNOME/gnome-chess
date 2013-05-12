@@ -1,7 +1,7 @@
 public abstract class ChessEngine : Object
 {
-    public string binary;
-    public string args;
+    private string binary;
+    private string args;
 
     private Pid pid;
     private int stdin_fd;
@@ -29,7 +29,13 @@ public abstract class ChessEngine : Object
             return _ready;
         }
     }
-    
+
+    public ChessEngine (string binary, string args)
+    {
+        this.binary = binary;
+        this.args = args;
+    }
+
     public bool start ()
     {
         string[] argv = { binary, args, null };

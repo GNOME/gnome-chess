@@ -527,16 +527,14 @@ public class Application : Gtk.Application
         }
 
         if (profile.protocol == "cecp")
-            engine = new ChessEngineCECP (options);
+            engine = new ChessEngineCECP (profile.binary, profile.args, options);
         else if (profile.protocol == "uci")
-            engine = new ChessEngineUCI (options);
+            engine = new ChessEngineUCI (profile.binary, profile.args, options);
         else
         {
             warning ("Unknown AI protocol %s", profile.protocol);
             return null;
         }
-        engine.binary = profile.binary;
-        engine.args = profile.args;
 
         return engine;
     }

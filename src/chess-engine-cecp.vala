@@ -4,8 +4,9 @@ public class ChessEngineCECP : ChessEngine
     private bool moving = false;
     private string[] options;
 
-    public ChessEngineCECP (string[] options)
+    public ChessEngineCECP (string binary, string args, string[] options)
     {
+        base (binary, args);
         this.options = options;
         starting.connect (start_cb);
     }
