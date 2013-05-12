@@ -857,6 +857,9 @@ public class Application : Gtk.Application
 
     private void game_end_cb (ChessGame game)
     {
+        if (opponent_engine != null)
+            opponent_engine.stop ();
+
         string title = "";
         switch (game.result)
         {
