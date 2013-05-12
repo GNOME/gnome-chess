@@ -30,7 +30,7 @@ public abstract class ChessEngine : Object
         }
     }
 
-    public ChessEngine (string binary, string args)
+    public ChessEngine (string binary, string? args)
     {
         this.binary = binary;
         this.args = args;

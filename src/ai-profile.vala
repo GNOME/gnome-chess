@@ -4,7 +4,7 @@ public class AIProfile
     public string protocol;
     public string binary;
     public string path;
-    public string args = "";
+    public string args;
     public string[] easy_options;
     public string[] normal_options;
     public string[] hard_options;
@@ -41,6 +41,8 @@ public List<AIProfile> load_ai_profiles (string filename)
            profile.binary = file.get_value (name, "binary");
            if (file.has_key (name, "args"))
                profile.args = file.get_value (name, "args");
+           else
+               profile.args = null; // bgo#696474
            profile.easy_options = load_options (file, name, "easy");
            profile.normal_options = load_options (file, name, "normal");
            profile.hard_options = load_options (file, name, "hard");
