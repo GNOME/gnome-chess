@@ -1,4 +1,4 @@
-public class ChessEngine : Object
+public abstract class ChessEngine : Object
 {
     public string binary;
     public string args;
@@ -70,21 +70,13 @@ public class ChessEngine : Object
         stopped ();
     }
 
-    public virtual void start_game ()
-    {
-    }
+    public abstract void start_game ();
 
-    public virtual void request_move ()
-    {
-    }
+    public abstract void request_move ();
 
-    public virtual void report_move (ChessMove move)
-    {
-    }
+    public abstract void report_move (ChessMove move);
 
-    public virtual void undo ()
-    {
-    }
+    public abstract void undo ();
 
     public void stop ()
     {
