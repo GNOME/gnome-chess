@@ -11,15 +11,15 @@
 # Yuri Kozlov <yuray@komyakino.ru>, 2010.
 # Valek Filippov <frob@df.ru> 2000-2002
 # Nickolay V. Shmyrev <nshmyrev@yandex.ru>
-# Yuri Myasoedov <omerta13@yandex.ru>, 2012.
+# Yuri Myasoedov <omerta13@yandex.ru>, 2012, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games trunk\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-12-13 18:28+0000\n"
-"PO-Revision-Date: 2012-12-17 12:31+0400\n"
+"POT-Creation-Date: 2013-03-27 16:29+0000\n"
+"PO-Revision-Date: 2013-05-13 21:53+0400\n"
 "Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
 "Language-Team: русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -31,13 +31,17 @@ msgstr ""
 "X-Generator: Gtranslator 2.91.5\n"
 
 #. Title of the main window
-#: ../data/gnome-chess.desktop.in.in.h:1 ../src/gnome-chess.vala:363
+#: ../data/glchess.desktop.in.in.h:1 ../src/gnome-chess.vala:363
 msgid "Chess"
 msgstr "Шахматы"
 
-#: ../data/gnome-chess.desktop.in.in.h:2
+#: ../data/glchess.desktop.in.in.h:2
 msgid "Play the classic two-player boardgame of chess"
 msgstr "Сыграть в классические шахматы"
+
+#: ../data/glchess.desktop.in.in.h:3
+msgid "game;strategy;"
+msgstr "игра;стратегия;"
 
 #. Game menu name
 #: ../data/gnome-chess.ui.h:2
@@ -139,73 +143,62 @@ msgid "A flag to enable fullscreen mode"
 msgstr "Работать в полноэкранном режиме"
 
 #: ../data/org.gnome.gnome-chess.gschema.xml.in.h:7
-msgid "The piece to promote pawns to"
-msgstr "Фигура, в которую нужно превращать пешку при проходе"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:8
-msgid ""
-"The piece to promote to when a human player moves a pawn to the far rank"
-msgstr ""
-"Шахматная фигура, в которую превращается пешка при достижении последней "
-"горизонтали"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:9
 msgid "A flag to enable 3D mode"
 msgstr "Включить трёхмерный режим"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:10
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:8
 msgid "A flag to smooth (anti-alias) the 3D display"
 msgstr "Сглаживать трёхмерное поле"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:11
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:9
 msgid "The piece theme to use"
 msgstr "Использовать тему фигур"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:12
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:10
 msgid "A flag to enable move hints"
 msgstr "Включить подсказки ходов"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:13
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:11
 msgid "A flag to enable board numbering"
 msgstr "Включить нумерацию полей"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:14
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:12
 msgid "A flag to enable the move history browser"
 msgstr "Показывать обозреватель истории ходов"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:15
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:13
 msgid "A flag to enable the toolbar"
 msgstr "Показывать панель инструментов"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:16
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:14
 msgid "The directory to open the save game dialog in"
 msgstr "Каталог в котором открывать диалог сохранения игры"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:17
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:15
 msgid "The directory to open the load game dialog in"
 msgstr "Каталог в котором открывать диалог открытия игры"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:18
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:16
 msgid "The format to display moves in"
 msgstr "Формат отображения ходов"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:19
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:17
 msgid "The side of the board that is in the foreground"
 msgstr "Ближняя сторона доски"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:20
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:18
 msgid "The duration of a game in seconds (0 for no limit)"
 msgstr "Продолжительность игры в секундах (0 — неограниченная)"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:21
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:19
 msgid "true if the human player is playing white"
 msgstr "истинно, если игрок играет белыми"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:22
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:20
 msgid "The opponent player"
 msgstr "Противник"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:23
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:21
 msgid ""
 "Can be 'human' (play against another human player), '' (use the first "
 "available chess engine) or the name of a specific engine to play against"
@@ -213,7 +206,7 @@ msgstr ""
 "Возможные значения: «human» (играть против другого человека), «» (выбрать "
 "первый доступный шахматный движок) или название определённого движка"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:24
+#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:22
 msgid "Difficulty of the opponent chess engine"
 msgstr "Сложность игры шахматного движка"
 
@@ -242,224 +235,195 @@ msgstr "Сложность:"
 msgid "Game Duration:"
 msgstr "Продолжительность игры:"
 
-#. Preferences Dialog: Label before promotion type combo box
-#: ../data/preferences.ui.h:12
-msgid "Promotion Type:"
-msgstr "Фигура продвижения:"
-
 #. Preferences dialog: Label to notify user that the settings are applied for the next game
-#: ../data/preferences.ui.h:14
+#: ../data/preferences.ui.h:12
 msgid "Changes will take effect for the next game."
 msgstr "Изменения вступят в силу для следующей игры."
 
 #. Preferences Dialog: Tab title for game preferences
-#: ../data/preferences.ui.h:16
+#: ../data/preferences.ui.h:14
 msgid "Game"
 msgstr "Игра"
 
 #. Preferences Dialog: Check box for selecting if 3D view is available
-#: ../data/preferences.ui.h:18
+#: ../data/preferences.ui.h:16
 msgid "3_D Chess View"
 msgstr "Трёхм_ерная доска"
 
 #. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
-#: ../data/preferences.ui.h:20
+#: ../data/preferences.ui.h:18
 msgid "_Smooth Display"
 msgstr "_Сглаживать поле"
 
 #. Preferences Dialog: Label before piece style combo box
-#: ../data/preferences.ui.h:22
+#: ../data/preferences.ui.h:20
 msgid "Piece Style:"
 msgstr "Стиль фигур:"
 
 #. Preferences Dialog: Check box for selecting if toolbar is visible
-#: ../data/preferences.ui.h:24
+#: ../data/preferences.ui.h:22
 msgid "Show _Toolbar"
 msgstr "Показать панель _инструментов"
 
 #. Preferences Dialog: Check box for selecting if history browser is visible
-#: ../data/preferences.ui.h:26
+#: ../data/preferences.ui.h:24
 msgid "Show _History"
 msgstr "Пок_азать историю"
 
 #. Preferences Dialog: Check box for selecting if move hints are visible
-#: ../data/preferences.ui.h:28
+#: ../data/preferences.ui.h:26
 msgid "_Move Hints"
 msgstr "Подсказки ход_ов"
 
 #. Preferences Dialog: Check box for selecting if board numbering is visible
-#: ../data/preferences.ui.h:30
+#: ../data/preferences.ui.h:28
 msgid "_Board Numbering"
 msgstr "Координаты пол_ей"
 
 #. Preferences Dialog: Label before board orientation combo box
-#: ../data/preferences.ui.h:32
+#: ../data/preferences.ui.h:30
 msgid "Board Orientation:"
 msgstr "Положение доски:"
 
 #. Preferences Dialog: Label before move format combo box
-#: ../data/preferences.ui.h:34
+#: ../data/preferences.ui.h:32
 msgid "Move Format:"
 msgstr "Формат ходов:"
 
 #. Preferences Dialog: Title of appearance options tab
-#: ../data/preferences.ui.h:36
+#: ../data/preferences.ui.h:34
 msgid "_Appearance"
 msgstr "_Внешний вид"
 
-#. Preferences Dialog: Combo box entry for easy game difficulty
-#: ../data/preferences.ui.h:38
-msgctxt "difficulty"
-msgid "Easy"
-msgstr "Лёгкий"
-
-#. Preferences Dialog: Combo box entry for normal game difficulty
-#: ../data/preferences.ui.h:40
-msgctxt "difficulty"
-msgid "Normal"
-msgstr "Обычный"
-
-#. Preferences Dialog: Combo box entry for hard game difficulty
-#: ../data/preferences.ui.h:42
-msgctxt "difficulty"
-msgid "Hard"
-msgstr "Сложный"
-
-#. Preferences Dialog: Combo box entry for human opponent
-#: ../data/preferences.ui.h:44
-msgctxt "chess-opponent"
-msgid "Human"
-msgstr "Человек"
-
 #. Preferences Dialog: Combo box entry for playing as white
-#: ../data/preferences.ui.h:46
+#: ../data/preferences.ui.h:36
 msgctxt "chess-player"
 msgid "White"
 msgstr "Белые"
 
 #. Preferences Dialog: Combo box entry for playing as black
-#: ../data/preferences.ui.h:48
+#: ../data/preferences.ui.h:38
 msgctxt "chess-player"
 msgid "Black"
 msgstr "Чёрные"
 
+#. Preferences Dialog: Combo box entry for easy game difficulty
+#: ../data/preferences.ui.h:40
+msgctxt "difficulty"
+msgid "Easy"
+msgstr "Лёгкий"
+
+#. Preferences Dialog: Combo box entry for normal game difficulty
+#: ../data/preferences.ui.h:42
+msgctxt "difficulty"
+msgid "Normal"
+msgstr "Обычный"
+
+#. Preferences Dialog: Combo box entry for hard game difficulty
+#: ../data/preferences.ui.h:44
+msgctxt "difficulty"
+msgid "Hard"
+msgstr "Сложный"
+
 #. Preferences Dialog: Combo box entry for no game timer
-#: ../data/preferences.ui.h:50
+#: ../data/preferences.ui.h:46
 msgid "No limit"
 msgstr "неограниченная"
 
 #. Preferences Dialog: Combo box entry for game timer of one minute
-#: ../data/preferences.ui.h:52
+#: ../data/preferences.ui.h:48
 msgid "One minute"
 msgstr "одну минуту"
 
 #. Preferences Dialog: Combo box entry for game timer of five minutes
-#: ../data/preferences.ui.h:54
+#: ../data/preferences.ui.h:50
 msgid "Five minutes"
 msgstr "пять минут"
 
 #. Preferences Dialog: Combo box entry for game timer of thirty minutes
-#: ../data/preferences.ui.h:56
+#: ../data/preferences.ui.h:52
 msgid "30 minutes"
 msgstr "полчаса"
 
 #. Preferences Dialog: Combo box entry for game timer of one hour
-#: ../data/preferences.ui.h:58
+#: ../data/preferences.ui.h:54
 msgid "One hour"
 msgstr "один час"
 
 #. Preferences Dialog: Combo box entry for custom game timer
-#: ../data/preferences.ui.h:60
+#: ../data/preferences.ui.h:56
 msgid "Custom"
 msgstr "другая"
 
-#. Preferences Dialog: Combo box entry for simple theme
-#: ../data/preferences.ui.h:62
-msgid "Simple"
-msgstr "Простой"
-
-#. Preferences Dialog: Combo box entry for fancy theme
-#: ../data/preferences.ui.h:64
-msgid "Fancy"
-msgstr "Причудливый"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the white side
-#: ../data/preferences.ui.h:66
-msgctxt "chess-side"
-msgid "White Side"
-msgstr "Сторона белых"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the black side
-#: ../data/preferences.ui.h:68
-msgctxt "chess-side"
-msgid "Black Side"
-msgstr "Сторона чёрных"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
-#: ../data/preferences.ui.h:70
-msgctxt "chess-side"
-msgid "Human Side"
-msgstr "Сторона человека"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
-#: ../data/preferences.ui.h:72
-msgctxt "chess-side"
-msgid "Current Player"
-msgstr "Текущий игрок"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)
-#: ../data/preferences.ui.h:74
-msgctxt "chess-side"
-msgid "Face to Face"
-msgstr "Лицом к лицу"
-
 #. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
-#: ../data/preferences.ui.h:76
+#: ../data/preferences.ui.h:58
 msgctxt "chess-move-format"
 msgid "Human"
 msgstr "Человек"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
-#: ../data/preferences.ui.h:78
+#: ../data/preferences.ui.h:60
 msgctxt "chess-move-format"
 msgid "Standard Algebraic"
 msgstr "Стандартная алгебраическая"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
-#: ../data/preferences.ui.h:80
+#: ../data/preferences.ui.h:62
 msgctxt "chess-move-format"
 msgid "Figurine"
 msgstr "Фигурная"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
-#: ../data/preferences.ui.h:82
+#: ../data/preferences.ui.h:64
 msgctxt "chess-move-format"
 msgid "Long Algebraic"
 msgstr "Полная алгебраическая"
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a queen
-#: ../data/preferences.ui.h:84
-msgctxt "chess-piece"
-msgid "Queen"
-msgstr "Ферзь"
+#. Preferences Dialog: Combo box entry for human opponent
+#: ../data/preferences.ui.h:66
+msgctxt "chess-opponent"
+msgid "Human"
+msgstr "Человек"
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a knight
-#: ../data/preferences.ui.h:86
-msgctxt "chess-piece"
-msgid "Knight"
-msgstr "Конь"
+#. Preferences Dialog: Combo box entry for setting the board orientation to the white side
+#: ../data/preferences.ui.h:68
+msgctxt "chess-side"
+msgid "White Side"
+msgstr "Сторона белых"
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a rook
-#: ../data/preferences.ui.h:88
-msgctxt "chess-piece"
-msgid "Rook"
-msgstr "Ладья"
+#. Preferences Dialog: Combo box entry for setting the board orientation to the black side
+#: ../data/preferences.ui.h:70
+msgctxt "chess-side"
+msgid "Black Side"
+msgstr "Сторона чёрных"
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a bishop
-#: ../data/preferences.ui.h:90
-msgctxt "chess-piece"
-msgid "Bishop"
-msgstr "Слон"
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
+#: ../data/preferences.ui.h:72
+msgctxt "chess-side"
+msgid "Human Side"
+msgstr "Сторона человека"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
+#: ../data/preferences.ui.h:74
+msgctxt "chess-side"
+msgid "Current Player"
+msgstr "Текущий игрок"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)
+#: ../data/preferences.ui.h:76
+msgctxt "chess-side"
+msgid "Face to Face"
+msgstr "Лицом к лицу"
+
+#. Preferences Dialog: Combo box entry for simple theme
+#: ../data/preferences.ui.h:78
+msgid "Simple"
+msgstr "Простой"
+
+#. Preferences Dialog: Combo box entry for fancy theme
+#: ../data/preferences.ui.h:80
+msgid "Fancy"
+msgstr "Причудливый"
 
 #: ../data/promotion-type-selector.ui.h:1
 msgid "_Queen"
@@ -480,21 +444,6 @@ msgstr "_Слон"
 #: ../data/promotion-type-selector.ui.h:5
 msgid ""
 "Promotion is a chess rule describing the transformation of a pawn that "
-"reaches its eighth rank into the player&apos;s choice of a queen, knight, "
-"rook, or bishop of the same color. The new piece replaces the pawn on the "
-"same square and is part of the move. Every pawn that reaches its eighth rank "
-"must be promoted. Pawn promotion often decides the result of a chess endgame."
-msgstr ""
-"Продвижение пешки — это шахматное правило, описывающее превращение пешки, "
-"достигшей восьмого ряда, в выбранную игроком фигуру того же цвета: ферзя, "
-"коня, ладью или слона. Новая фигура заменяет пешку на том же квадрате и "
-"является частью хода. Каждая пешка, достигшая восьмого ряда, должна быть "
-"превращена в фигуру. Продвижение пешки часто решает исход шахматного "
-"эндшпиля."
-
-#: ../data/promotion-type-selector.ui.h:6
-msgid ""
-"Promotion is a chess rule describing the transformation of a pawn that "
 "reaches its eighth rank into the player's choice of a queen, knight, rook, "
 "or bishop of the same color. The new piece replaces the pawn on the same "
 "square and is part of the move. Every pawn that reaches its eighth rank must "
@@ -507,7 +456,7 @@ msgstr ""
 "превращена в фигуру. Продвижение пешки часто решает исход шахматного "
 "эндшпиля."
 
-#: ../data/promotion-type-selector.ui.h:7
+#: ../data/promotion-type-selector.ui.h:6
 msgid "Select Pawn Promotion Type"
 msgstr "Выберите фигуру продвижения:"
 
@@ -1035,7 +984,7 @@ msgid "_Save game for later"
 msgstr "_Сохранить игру на будущее"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in seconds
-#: ../src/gnome-chess.vala:1366
+#: ../src/gnome-chess.vala:1363
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "секунда"
@@ -1043,7 +992,7 @@ msgstr[1] "секунды"
 msgstr[2] "секунд"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#: ../src/gnome-chess.vala:1370
+#: ../src/gnome-chess.vala:1367
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "минута"
@@ -1051,14 +1000,14 @@ msgstr[1] "минуты"
 msgstr[2] "минут"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../src/gnome-chess.vala:1374
+#: ../src/gnome-chess.vala:1371
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "час"
 msgstr[1] "часа"
 msgstr[2] "часов"
 
-#: ../src/gnome-chess.vala:1495
+#: ../src/gnome-chess.vala:1486
 msgid ""
 "The 2D/3D chess game for GNOME. \n"
 "\n"
@@ -1068,59 +1017,102 @@ msgstr ""
 "\n"
 "GNOME Chess является частью GNOME Games."
 
-#: ../src/gnome-chess.vala:1500
+#: ../src/gnome-chess.vala:1491
 msgid "GNOME Games web site"
 msgstr "Веб-сайт GNOME Games"
 
 #. Title of save game dialog
-#: ../src/gnome-chess.vala:1554
+#: ../src/gnome-chess.vala:1545
 msgid "Save Chess Game"
 msgstr "Сохранить шахматы"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:1567 ../src/gnome-chess.vala:1635
+#: ../src/gnome-chess.vala:1558 ../src/gnome-chess.vala:1626
 msgid "PGN files"
 msgstr "Файлы PGN"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:1574 ../src/gnome-chess.vala:1642
+#: ../src/gnome-chess.vala:1565 ../src/gnome-chess.vala:1633
 msgid "All files"
 msgstr "Все файлы"
 
-#: ../src/gnome-chess.vala:1598
+#: ../src/gnome-chess.vala:1589
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Не удалось сохранить игру: %s"
 
 #. Title of load game dialog
-#: ../src/gnome-chess.vala:1622
+#: ../src/gnome-chess.vala:1613
 msgid "Load Chess Game"
 msgstr "Загрузить шахматы"
 
-#: ../src/gnome-chess.vala:1664
+#: ../src/gnome-chess.vala:1655
 #, c-format
 msgid "Failed to open game: %s"
 msgstr "Не удалось открыть игру: %s"
 
 #. Help string for command line --version flag
-#: ../src/gnome-chess.vala:1725
+#: ../src/gnome-chess.vala:1716
 msgid "Show release version"
 msgstr "Показать номер версии"
 
 #. Arguments and description for --help text
-#: ../src/gnome-chess.vala:1739
+#: ../src/gnome-chess.vala:1730
 msgid "[FILE] - Play Chess"
 msgstr "[ФАЙЛ] — играть в шахматы"
 
 #. Text printed out when an unknown command-line argument provided
-#: ../src/gnome-chess.vala:1750
+#: ../src/gnome-chess.vala:1741
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr ""
 "Запустите «%s --help», чтобы вывести список всех доступных параметров "
 "командной строки."
+
+#~ msgid "The piece to promote pawns to"
+#~ msgstr "Фигура, в которую нужно превращать пешку при проходе"
+
+#~ msgid ""
+#~ "The piece to promote to when a human player moves a pawn to the far rank"
+#~ msgstr ""
+#~ "Шахматная фигура, в которую превращается пешка при достижении последней "
+#~ "горизонтали"
+
+#~ msgid "Promotion Type:"
+#~ msgstr "Фигура продвижения:"
+
+#~ msgctxt "chess-piece"
+#~ msgid "Queen"
+#~ msgstr "Ферзь"
+
+#~ msgctxt "chess-piece"
+#~ msgid "Knight"
+#~ msgstr "Конь"
+
+#~ msgctxt "chess-piece"
+#~ msgid "Rook"
+#~ msgstr "Ладья"
+
+#~ msgctxt "chess-piece"
+#~ msgid "Bishop"
+#~ msgstr "Слон"
+
+#~ msgid ""
+#~ "Promotion is a chess rule describing the transformation of a pawn that "
+#~ "reaches its eighth rank into the player&apos;s choice of a queen, knight, "
+#~ "rook, or bishop of the same color. The new piece replaces the pawn on the "
+#~ "same square and is part of the move. Every pawn that reaches its eighth "
+#~ "rank must be promoted. Pawn promotion often decides the result of a chess "
+#~ "endgame."
+#~ msgstr ""
+#~ "Продвижение пешки — это шахматное правило, описывающее превращение пешки, "
+#~ "достигшей восьмого ряда, в выбранную игроком фигуру того же цвета: ферзя, "
+#~ "коня, ладью или слона. Новая фигура заменяет пешку на том же квадрате и "
+#~ "является частью хода. Каждая пешка, достигшая восьмого ряда, должна быть "
+#~ "превращена в фигуру. Продвижение пешки часто решает исход шахматного "
+#~ "эндшпиля."
 
 #~ msgid "Five or More"
 #~ msgstr "Цветные линии"
