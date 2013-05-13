@@ -434,6 +434,7 @@ public class Application : Gtk.Application
         if (black_level == null)
             black_level = "normal";
 
+        human_player = null;
         opponent = null;
         if (opponent_engine != null)
         {
