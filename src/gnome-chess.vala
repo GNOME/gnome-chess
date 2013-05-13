@@ -844,7 +844,7 @@ public class Application : Gtk.Application
     
     private void update_control_buttons ()
     {
-        var can_resign = game.n_moves > 0;
+        var can_resign = game.n_moves > 0 && game.current_player != opponent;
         resign_menu.sensitive = resign_button.sensitive = can_resign;
 
         /* Can undo once the human player has made a move */
