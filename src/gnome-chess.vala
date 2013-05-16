@@ -63,7 +63,7 @@ public class Application : Gtk.Application
     {
         base.startup ();
 
-        settings = new Settings ("org.gnome.gnome-chess.Settings");
+        settings = new Settings ("org.gnome.gnome-chess");
 
         var data_dir = File.new_for_path (Path.build_filename (Environment.get_user_data_dir (), "gnome-chess", null));
         DirUtils.create_with_parents (data_dir.get_path (), 0755);
