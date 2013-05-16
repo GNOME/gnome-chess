@@ -1208,6 +1208,11 @@ public class Application : Gtk.Application
             if (p.name == opponent_name || (opponent_name == "" && ai_combo.get_active () == -1))
                 ai_combo.set_active_iter (iter);
         }
+        if (ai_combo.get_active () == -1)
+        {
+            ai_combo.set_active (0);
+            settings.set_string ("opponent", "human");
+        }
         settings.bind ("show-history", ai_combo, "visible", SettingsBindFlags.SET);
 
         var difficulty_combo = (Gtk.ComboBox) preferences_builder.get_object ("difficulty_combo");
@@ -1710,9 +1715,13 @@ public class Application : Gtk.Application
         if (duration > 0)
             pgn_game.time_control = "%d".printf (duration);
         var engine_name = settings.get_string ("opponent");
-        /* explicitly specify engine name in saved game */
         if (engine_name == "")
-            engine_name = ai_profiles.data.name;
+        {
+            if (ai_profiles != null)
+                engine_name = ai_profiles.data.name;
+            else
+                engine_name = "human";
+        }
         var engine_level = settings.get_string ("difficulty");
         if (engine_name != null && engine_name != "human")
         {
