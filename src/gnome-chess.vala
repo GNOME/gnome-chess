@@ -845,7 +845,7 @@ public class Application : Gtk.Application
     
     private void update_control_buttons ()
     {
-        var can_resign = game.n_moves > 0 && game.current_player != opponent;
+        var can_resign = game.n_moves > 0;
         resign_menu.sensitive = resign_button.sensitive = can_resign;
 
         /* Can undo once the human player has made a move */
@@ -1018,7 +1018,10 @@ public class Application : Gtk.Application
     [CCode (cname = "G_MODULE_EXPORT resign_cb", instance_pos = -1)]
     public void resign_cb (Gtk.Widget widget)
     {
-        game.current_player.resign ();
+        if (human_player != null)
+            human_player.resign ();
+        else
+            game.current_player.resign ();
     }
 
     [CCode (cname = "G_MODULE_EXPORT claim_draw_cb", instance_pos = -1)]
