@@ -16,7 +16,9 @@ public class ChessClock : Object
     {
         get
         {
-            if (active_color == Color.WHITE)
+            if (timer == null)
+                return 0;
+            else if (active_color == Color.WHITE)
                 return _white_used + (uint) (timer.elapsed () * 1000);
             else
                 return _white_used;
@@ -33,7 +35,9 @@ public class ChessClock : Object
     {
         get
         {
-            if (active_color == Color.WHITE)
+            if (timer == null)
+                return 0;
+            else if (active_color == Color.WHITE)
                 return _black_used;
             else
                 return _black_used + (uint) (timer.elapsed () * 1000);
@@ -60,7 +64,7 @@ public class ChessClock : Object
         }
     }
 
-    private Timer timer;
+    private Timer? timer;
     private uint expire_timeout = 0;
     private uint tick_timeout = 0;
 
@@ -73,7 +77,6 @@ public class ChessClock : Object
         _black_duration = black_duration * 1000;
         _white_used = white_used;
         _black_used = black_used;
-        timer = new Timer ();
     }
     
     private bool is_started
@@ -86,8 +89,13 @@ public class ChessClock : Object
         if (is_started)
             return;
 
-        /* Start stopwatch */
-        timer.start ();
+        if (timer == null)
+        {
+            /* Starts automatically */
+            timer = new Timer ();
+        }
+        else
+            timer.start ();
 
         /* Notify when this timer has expired */
         if (active_color == Color.WHITE)

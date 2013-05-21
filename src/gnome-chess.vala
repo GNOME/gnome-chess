@@ -491,6 +491,9 @@ public class Application : Gtk.Application
         save_menu.sensitive = in_history;
         game.start ();
 
+        if (moves.length > 0)
+            game.clock.start ();
+
         if (game.result != ChessResult.IN_PROGRESS)
             game_end_cb (game);
 

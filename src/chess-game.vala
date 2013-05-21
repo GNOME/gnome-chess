@@ -1427,7 +1427,6 @@ public class ChessGame
         {
             _clock.expired.connect (clock_expired_cb);
             _clock.active_color = current_player.color;
-            _clock.start ();
         }
 
         started ();
