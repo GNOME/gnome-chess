@@ -45,7 +45,7 @@ public class ChessClock : Object
         get { return (black_used + 500) / 1000; }
     }
 
-    public Color _active_color = Color.WHITE;
+    private Color _active_color = Color.WHITE;
     public Color active_color
     {
         get { return _active_color; }
