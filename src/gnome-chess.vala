@@ -404,7 +404,7 @@ public class Application : Gtk.Application
                 /* We only support simple timeouts */
                 var duration = int.parse (control);
                 if (duration > 0)
-                    game.clock = new ChessClock (duration, duration);
+                    game.clock = new ChessClock (duration/2, duration/2);
             }
         }
 
