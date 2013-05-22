@@ -21,6 +21,7 @@ public class Application : Gtk.Application
     private Gtk.Widget undo_button;
     private Gtk.Widget resign_menu;
     private Gtk.Widget resign_button;
+    private Gtk.Widget claim_draw_menu;
     private Gtk.Widget first_move_button;
     private Gtk.Widget prev_move_button;
     private Gtk.Widget next_move_button;
@@ -87,6 +88,7 @@ public class Application : Gtk.Application
         undo_button = (Gtk.Widget) builder.get_object ("undo_move_button");
         resign_menu = (Gtk.Widget) builder.get_object ("resign_item");
         resign_button = (Gtk.Widget) builder.get_object ("resign_button");
+        claim_draw_menu = (Gtk.Widget) builder.get_object ("claim_draw_item");
         first_move_button = (Gtk.Widget) builder.get_object ("first_move_button");
         prev_move_button = (Gtk.Widget) builder.get_object ("prev_move_button");
         next_move_button = (Gtk.Widget) builder.get_object ("next_move_button");
@@ -847,6 +849,7 @@ public class Application : Gtk.Application
     {
         var can_resign = game.n_moves > 0;
         resign_menu.sensitive = resign_button.sensitive = can_resign;
+        claim_draw_menu.sensitive = can_resign;
 
         /* Can undo once the human player has made a move */
         var can_undo = game.n_moves > 0;
@@ -860,6 +863,7 @@ public class Application : Gtk.Application
     {
         resign_menu.sensitive = resign_button.sensitive = false;
         undo_menu.sensitive = undo_button.sensitive = false;
+        claim_draw_menu.sensitive = false;
 
         if (opponent_engine != null)
             opponent_engine.stop ();
