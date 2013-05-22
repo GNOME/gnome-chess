@@ -858,6 +858,9 @@ public class Application : Gtk.Application
 
     private void game_end_cb (ChessGame game)
     {
+        resign_menu.sensitive = resign_button.sensitive = false;
+        undo_menu.sensitive = undo_button.sensitive = false;
+
         if (opponent_engine != null)
             opponent_engine.stop ();
 
