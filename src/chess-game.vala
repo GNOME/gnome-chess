@@ -1454,6 +1454,8 @@ public class ChessGame
         this.result = result;
         this.rule = rule;
         is_started = false;
+        if (_clock != null)
+            _clock.stop();
         ended ();
     }
 
