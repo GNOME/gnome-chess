@@ -87,7 +87,10 @@ public abstract class ChessEngine : Object
     public void stop ()
     {
         if (pid != 0)
-            Posix.kill (pid, Posix.SIGTERM);        
+        {
+            Posix.kill (pid, Posix.SIGTERM);
+            Process.close_pid (pid);
+        }
     }
 
     private bool read_cb (IOChannel source, IOCondition condition)
