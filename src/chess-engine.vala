@@ -7,6 +7,7 @@ public abstract class ChessEngine : Object
     private int stdin_fd;
     private int stderr_fd;
     private IOChannel stdout_channel;
+    private uint stdout_watch_id;
 
     protected virtual void process_input (char[] data) {}
 
@@ -64,7 +65,7 @@ public abstract class ChessEngine : Object
         {
             stderr.printf ("Failed to set input from chess engine to non-blocking: %s", e.message);
         }
-        stdout_channel.add_watch (IOCondition.IN, read_cb);
+        stdout_watch_id = stdout_channel.add_watch (IOCondition.IN, read_cb);
 
         starting ();
 
@@ -86,6 +87,9 @@ public abstract class ChessEngine : Object
 
     public void stop ()
     {
+        if (stdout_watch_id > 0)
+            Source.remove (stdout_watch_id);
+
         if (pid != 0)
         {
             Posix.kill (pid, Posix.SIGTERM);
