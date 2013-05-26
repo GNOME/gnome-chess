@@ -849,7 +849,9 @@ public class Application : Gtk.Application
     {
         var can_resign = game.n_moves > 0;
         resign_menu.sensitive = resign_button.sensitive = can_resign;
-        claim_draw_menu.sensitive = can_resign;
+
+        /* Claim draw only allowed on your own turn */        
+        claim_draw_menu.sensitive = can_resign && game.current_player != opponent;
 
         /* Can undo once the human player has made a move */
         var can_undo = game.n_moves > 0;
