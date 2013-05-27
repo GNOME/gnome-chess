@@ -1,22 +1,36 @@
+gnome-chess 3.9.2
+=================
+
+* Make the computer's pieces uncontrollable
+* Fix Stockfish engine integration
+* Fix massive CPU usage after completing a game against an engine and starting
+  a new one
+* Fix AI hang when loading a game where the human was last to move
+* Fix resigning on your opponent's turn causing him to lose (and you to win)
+* Fix board numbering showing in 3D view when board numbering is disabled
+* Specify the opposing engine in saved games even if it is the default
+* Each player's clock is now initially set to half the game's total duration
+* The clock now begins counting down only after White's first move
+* The clock now stops counting down once the game is over
+* Further improve the algorithm for determining insufficient material
+* Stop the engine immediately when the game ends, not when the next game starts
+* Sensibly set the sensitivity of Smooth Display and Piece Style preferences
+  depending on if 3D view is enabled
+* Improve sensitivity checks for Save As, Undo Move, Resign, and Claim Draw
+* Increase default window width to 700
+* Update the FSF's address in license notices
+* Translate "Chess" on the About page
+* Translation updates
+
 gnome-chess 3.9.1
 =================
 
-Anish A (1):
-      Updated Malayalam Translation
-
-Jiro Matsuzawa (1):
-      help: Fix obsolete product of bugzilla
-
-Michael Catanzaro (6):
-      Respect engine args specified in engines.conf
-      ChessState.get_fen() replaces all knights with kings
-      Insufficient material fixes
-      Chess history doesn't work very well
-      Fix AI hang when Phalanx attempts to promote
-      Add myself to the maintainers list
-
-OKANO Takayoshi (1):
-      l10n: Update Japanese translation
+* Fix autoloading: don't autoload the same game forever
+* Fix engine argument parsing in engines.conf; this makes gnuchess 5.08 work
+* Fix AI hang when Phalanx attempts to promote a pawn
+* Improve the algorithm for detecting insufficient material
+* Update Bugzilla link in documentation for the new gnome-chess module
+* Translation updates
 
 gnome-chess 3.8.0
 =================
