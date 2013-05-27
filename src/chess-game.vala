@@ -1001,15 +1001,6 @@ public class ChessState
                 return true;
             if ((black_bishop_count > 0 || black_knight_count > 0) && white_knight_count > 0)
                 return true;
-
-            /* King and bishop can checkmate vs. king and bishop if bishops are on opposite colors */
-            if (white_bishop_count > 0 && black_bishop_count > 0)
-            {
-                if (white_bishop_on_white_square && black_bishop_on_black_square)
-                    return true;
-                else if (white_bishop_on_black_square && black_bishop_on_white_square)
-                    return true;
-            }
         }
 
         return false;
