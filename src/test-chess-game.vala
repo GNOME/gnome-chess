@@ -128,7 +128,7 @@ class GlChess
 
         /* Not checkmate (piece can be moved to intercept) */
         test_good_move ("k7/7r/8/8/8/8/1R6/1R6 w - - 0 1", "Ra1+",
-                        "k7/7r/8/8/8/8/1R6/R7 b - - 1 1");
+                        "k7/7r/8/8/8/8/1R6/R7 b - - 1 1", ChessResult.IN_PROGRESS);
 
         /* Stalemate */
         test_good_move ("k7/8/7R/8/8/8/8/1R6 w - - 0 1", "Rh7",
@@ -143,17 +143,23 @@ class GlChess
                         "k7/7K/8/8/8/8/8/7N b - - 0 1", ChessResult.DRAW, ChessRule.INSUFFICIENT_MATERIAL);
         /* Sufficient if a knight on each side */
         test_good_move("k7/7p/7K/8/8/8/8/6Nn w - - 0 1", "Kxh7",
-                       "k7/7K/8/8/8/8/8/6Nn b - - 0 1");
+                       "k7/7K/8/8/8/8/8/6Nn b - - 0 1", ChessResult.IN_PROGRESS);
         /* A bishop would suffice as well */
         test_good_move("k7/7p/7K/8/8/8/8/6Nb w - - 0 1", "Kxh7",
-                       "k7/7K/8/8/8/8/8/6Nb b - - 0 1");
+                       "k7/7K/8/8/8/8/8/6Nb b - - 0 1", ChessResult.IN_PROGRESS);
 
-        /* Insufficient material - King and n same-color bishops vs. King and n other-color bishops */
+        /* Insufficient material - King and n same-color bishops vs. King and n same-color bishops */
+        test_good_move("k2b1b1b/6bp/7K/4B1B1/8/8/8/8 w - - 0 1", "Kxh7",
+                       "k2b1b1b/6bK/8/4B1B1/8/8/8/8 b - - 0 1", ChessResult.DRAW, ChessRule.INSUFFICIENT_MATERIAL);
+        /* Sufficient if the players' bishops are on opposite colors */
         test_good_move("k2b1b1b/6bp/7K/5B1B/8/8/8/8 w - - 0 1", "Kxh7",
-                       "k2b1b1b/6bK/8/5B1B/8/8/8/8 b - - 0 1", ChessResult.DRAW, ChessRule.INSUFFICIENT_MATERIAL);
-        /* Sufficient if a bishop is on each color */
+                       "k2b1b1b/6bK/8/5B1B/8/8/8/8 b - - 0 1", ChessResult.IN_PROGRESS);
+        /* Still sufficient with only one bishop per player, opposite colors */
+        test_good_move("k6b/6bp/7K/7B/8/8/8/8 w - - 0 1", "Kxh7",
+                       "k6b/6bK/8/7B/8/8/8/8 b - - 0 1", ChessResult.IN_PROGRESS);
+        /* Sufficient if one player has a bishop on each color */
         test_good_move("k2b1b1b/6bp/7K/6BB/8/8/8/8 w - - 0 1", "Kxh7",
-                       "k2b1b1b/6bK/8/6BB/8/8/8/8 b - - 0 1");
+                       "k2b1b1b/6bK/8/6BB/8/8/8/8 b - - 0 1", ChessResult.IN_PROGRESS);
 
         // FIXME: Need to be able to test claim draw
 

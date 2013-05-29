@@ -980,6 +980,24 @@ public class ChessState
                 }
             }
 
+            /*
+             * We count the following positions as insufficient:
+             *
+             * 1) king versus king
+             * 2) king and bishop versus king
+             * 3) king and knight versus king
+             * 4) king and bishop versus king and bishop with the bishops on
+             *    the same colour. (Any number of additional bishops of either
+             *    color on the same color of square due to underpromotion do
+             *    not affect the situation.)
+             *
+             * From:
+             * https://en.wikipedia.org/wiki/Draw_(chess)#Draws_in_all_games
+             *
+             * Note also that this follows FIDE rules, not USCF rules. E.g.
+             * K+N+N vs. K cannot be forced, so it's not counted as a draw.
+             */
+
             /* Two knights versus king can checkmate (though not against an optimal opponent) */
             if (white_knight_count > 1 || black_knight_count > 1)
                 return true;
@@ -1001,6 +1019,15 @@ public class ChessState
                 return true;
             if ((black_bishop_count > 0 || black_knight_count > 0) && white_knight_count > 0)
                 return true;
+
+            /* King and bishop can checkmate vs. king and bishop if bishops are on opposite colors */
+            if (white_bishop_count > 0 && black_bishop_count > 0)
+            {
+                if (white_bishop_on_white_square && black_bishop_on_black_square)
+                    return true;
+                else if (white_bishop_on_black_square && black_bishop_on_white_square)
+                    return true;
+            }
         }
 
         return false;
