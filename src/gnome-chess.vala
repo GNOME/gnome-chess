@@ -822,13 +822,13 @@ public class Application : Gtk.Application
         model.iter_nth_child (out iter, null, model.iter_n_children (null) - 1);
         model.remove (iter);
 
-        /* If watching this move, go back one */
-        if (scene.move_number > game.n_moves || scene.move_number == -1)
-        {
-            model.iter_nth_child (out iter, null, model.iter_n_children (null) - 1);
-            history_combo.set_active_iter (iter);
-            view.queue_draw ();
-        }
+        /* Always undo from the most recent move */
+        scene.move_number = -1;
+
+        /* Go back one */
+        model.iter_nth_child (out iter, null, model.iter_n_children (null) - 1);
+        history_combo.set_active_iter (iter);
+        view.queue_draw ();
 
         if (game.n_moves > 0)
         {
