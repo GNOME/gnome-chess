@@ -1315,6 +1315,12 @@ public class ChessGame
         black.do_claim_draw.connect (claim_draw_cb);
     }
 
+    ~ChessGame ()
+    {
+        if (_clock != null)
+            _clock.stop ();
+    }
+
     private bool move_cb (ChessPlayer player, string move, bool apply)
     {
         if (!is_started)
