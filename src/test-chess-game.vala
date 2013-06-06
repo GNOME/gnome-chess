@@ -37,7 +37,7 @@ class GlChess
         var move_result = state.get_result (out move_rule);
         if (move_result != result || move_rule != rule)
         {
-            stderr.printf ("%d. FAIL %s + %s has result %d not %d\n", test_count, fen, move, move_result, result);
+            stderr.printf ("%d. FAIL %s + %s has result %s not %s\n", test_count, fen, move, move_result.to_string (), result.to_string ());
             failure_count++;
             return;
         }
