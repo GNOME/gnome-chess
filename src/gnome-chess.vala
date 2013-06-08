@@ -294,6 +294,7 @@ public class Application : Gtk.Application
             else
                 history.update (game_file, "", pgn_game.result);
             debug ("Writing current game to %s", game_file.get_path ());
+            update_pgn_time_remaining ();
             pgn_game.write (game_file);
         }
         catch (Error e)
@@ -398,15 +399,19 @@ public class Application : Gtk.Application
         }
         game = new ChessGame (fen, moves);
 
-        if (pgn_game.time_control != null)
+        /*
+         * We only support simple timeouts
+         * http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm#c9.6.1
+         */
+        if (pgn_game.time_control != null && int.parse (pgn_game.time_control) != 0)
         {
-            var controls = pgn_game.time_control.split (":");
-            foreach (var control in controls)
+            if (pgn_game.white_time_left != null && pgn_game.black_time_left != null)
             {
-                /* We only support simple timeouts */
-                var duration = int.parse (control);
-                if (duration > 0)
-                    game.clock = new ChessClock (duration, duration);
+                var white_seconds = int.parse (pgn_game.white_time_left);
+                var black_seconds = int.parse (pgn_game.black_time_left);
+
+                if (white_seconds > 0 && black_seconds > 0)
+                    game.clock = new ChessClock (white_seconds, black_seconds);
             }
         }
 
@@ -1620,11 +1625,26 @@ public class Application : Gtk.Application
         save_cb (Gtk.ResponseType.OK);
     }
 
+    private void update_pgn_time_remaining ()
+    {
+        if (game.clock != null)
+        {
+            /* We currently only support simple timeouts */
+            uint initial_time = int.parse (pgn_game.time_control);
+            uint white_used = game.clock.white_used_in_seconds;
+            uint black_used = game.clock.black_used_in_seconds;
+
+            pgn_game.white_time_left = (initial_time - white_used).to_string ();
+            pgn_game.black_time_left = (initial_time - black_used).to_string ();
+        }
+    }
+
     private void save_cb (int response_id)
     {
         if (response_id == Gtk.ResponseType.OK)
         {
             save_menu.sensitive = false;
+            update_pgn_time_remaining ();
 
             try
             {
@@ -1723,7 +1743,11 @@ public class Application : Gtk.Application
         pgn_game.time = now.format ("%H:%M:%S");
         var duration = settings.get_int ("duration");
         if (duration > 0)
-            pgn_game.time_control = "%d".printf (duration);
+        {
+            pgn_game.time_control = duration.to_string ();
+            pgn_game.white_time_left = duration.to_string ();
+            pgn_game.black_time_left = duration.to_string ();
+        }
         var engine_name = settings.get_string ("opponent");
         if (engine_name == "")
         {
