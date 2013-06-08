@@ -104,6 +104,16 @@ public class PGNGame
         get { return tags.lookup ("TimeControl"); }
         set { tags.insert ("TimeControl", value); }
     }
+    public string? white_time_left
+    {
+        get { return tags.lookup ("WhiteTimeLeft"); }
+        set { tags.insert ("WhiteTimeLeft", value); }
+    }
+    public string? black_time_left
+    {
+        get { return tags.lookup ("BlackTimeLeft"); }
+        set { tags.insert ("BlackTimeLeft", value); }
+    }
     public bool set_up
     {
         get { string? v = tags.lookup ("SetUp"); return v != null && v == "1" ? true : false; }
