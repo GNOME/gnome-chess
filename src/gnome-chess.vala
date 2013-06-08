@@ -1749,8 +1749,8 @@ public class Application : Gtk.Application
         if (duration > 0)
         {
             pgn_game.time_control = (duration / 2).to_string ();
-            pgn_game.white_time_left = duration.to_string ();
-            pgn_game.black_time_left = duration.to_string ();
+            pgn_game.white_time_left = (duration / 2).to_string ();
+            pgn_game.black_time_left = (duration / 2).to_string ();
         }
         var engine_name = settings.get_string ("opponent");
         if (engine_name == "")
