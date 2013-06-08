@@ -129,6 +129,26 @@ public class PGNGame
         get { return tags.lookup ("Termination"); }
         set { tags.insert ("Termination", value); }
     }
+    public string? white_ai
+    {
+        get { return tags.lookup ("WhiteAI"); }
+        set { tags.insert ("WhiteAI", value); }
+    }
+    public string? white_level
+    {
+        get { return tags.lookup ("WhiteLevel"); }
+        set { tags.insert ("WhiteLevel", value); }
+    }
+    public string? black_ai
+    {
+        get { return tags.lookup ("BlackAI"); }
+        set { tags.insert ("BlackAI", value); }
+    }
+    public string? black_level
+    {
+        get { return tags.lookup ("BlackLevel"); }
+        set { tags.insert ("BlackLevel", value); }
+    }
 
     public PGNGame ()
     {

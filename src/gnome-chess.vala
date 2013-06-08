@@ -431,13 +431,13 @@ public class Application : Gtk.Application
         update_control_buttons ();
 
         // TODO: Could both be engines
-        var white_engine = pgn_game.tags.lookup ("WhiteAI");
-        var white_level = pgn_game.tags.lookup ("WhiteLevel");
+        var white_engine = pgn_game.white_ai;
+        var white_level = pgn_game.white_level;
         if (white_level == null)
             white_level = "normal";
 
-        var black_engine = pgn_game.tags.lookup ("BlackAI");
-        var black_level = pgn_game.tags.lookup ("BlackLevel");
+        var black_engine = pgn_game.black_ai;
+        var black_level = pgn_game.black_level;
         if (black_level == null)
             black_level = "normal";
 
@@ -1765,13 +1765,13 @@ public class Application : Gtk.Application
         {
             if (settings.get_boolean ("play-as-white"))
             {
-                pgn_game.tags.insert ("BlackAI", engine_name);
-                pgn_game.tags.insert ("BlackLevel", engine_level);
+                pgn_game.black_ai = engine_name;
+                pgn_game.black_level = engine_level;
             }
             else
             {
-                pgn_game.tags.insert ("WhiteAI", engine_name);
-                pgn_game.tags.insert ("WhiteLevel", engine_level);
+                pgn_game.white_ai = engine_name;
+                pgn_game.white_level = engine_level;
             }
         }
         start_game ();
