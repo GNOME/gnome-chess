@@ -1577,6 +1577,8 @@ public class Application : Gtk.Application
         child.reparent (vbox);
         child.border_width = dialog.border_width;
         dialog.border_width = 0;
+
+        vbox.set_child_packing (child, true, true, 0, Gtk.PackType.START);
         dialog.add (vbox);
     }
     
