@@ -451,6 +451,7 @@ public class Application : Gtk.Application
             opponent_engine.stopped.disconnect (engine_stopped_cb);
             opponent_engine = null;
         }
+        
         if (white_engine != null)
         {
             opponent = game.white;
@@ -467,13 +468,14 @@ public class Application : Gtk.Application
             opponent.local_human = false;
             human_player.local_human = true;
         }
-        else
+
+        /* Game saved vs. human, or game saved vs. engine but none installed */
+        if (opponent_engine == null)
         {
             game.black.local_human = true;
             game.white.local_human = true;
         }
-
-        if (opponent_engine != null)
+        else
         {
             opponent_engine.ready_changed.connect (engine_ready_cb);
             opponent_engine.moved.connect (engine_move_cb);
