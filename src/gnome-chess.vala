@@ -1556,13 +1556,29 @@ public class Application : Gtk.Application
     [CCode (cname = "G_MODULE_EXPORT save_game_as_cb", instance_pos = -1)]
     public void save_game_as_cb (Gtk.Widget widget)
     {
-        save_game ();
+        present_save_dialog ();
     }
 
     [CCode (cname = "G_MODULE_EXPORT save_game_cb", instance_pos = -1)]
     public void save_game_cb (Gtk.Widget widget)
     {
-        save_game ();
+        if (saved_filename == null)
+        {
+            present_save_dialog ();
+            return;
+        }
+
+        update_pgn_time_remaining ();
+
+        try
+        {
+            pgn_game.write (File.new_for_path (saved_filename));
+            save_menu.sensitive = false;
+        }
+        catch (Error e)
+        {
+            present_save_dialog ();
+        }
     }
 
     private void add_info_bar_to_dialog (Gtk.Dialog dialog, out Gtk.InfoBar info_bar, out Gtk.Label label)
@@ -1587,7 +1603,7 @@ public class Application : Gtk.Application
         dialog.add (vbox);
     }
     
-    private void save_game ()
+    private void present_save_dialog ()
     {
         /* Show active dialog */
         if (save_dialog != null)
@@ -1604,7 +1620,7 @@ public class Application : Gtk.Application
         add_info_bar_to_dialog (save_dialog, out save_dialog_info_bar, out save_dialog_error_label);
 
         save_dialog.file_activated.connect (save_file_cb);        
-        save_dialog.response.connect (save_cb);
+        save_dialog.response.connect (save_dialog_cb);
 
         if (saved_filename != null)
             save_dialog.set_filename (saved_filename);
@@ -1628,11 +1644,11 @@ public class Application : Gtk.Application
         save_dialog.add_filter (all_filter);
 
         save_dialog.present ();
-    }    
+    }
 
     private void save_file_cb ()
     {
-        save_cb (Gtk.ResponseType.OK);
+        save_dialog_cb (Gtk.ResponseType.OK);
     }
 
     private void update_pgn_time_remaining ()
@@ -1649,17 +1665,17 @@ public class Application : Gtk.Application
         }
     }
 
-    private void save_cb (int response_id)
+    private void save_dialog_cb (int response_id)
     {
         if (response_id == Gtk.ResponseType.OK)
         {
-            save_menu.sensitive = false;
             update_pgn_time_remaining ();
 
             try
             {
                 pgn_game.write (save_dialog.get_file ());
                 saved_filename = save_dialog.get_filename ();
+                save_menu.sensitive = false;
             }
             catch (Error e)
             {
