@@ -1627,8 +1627,7 @@ public class Application : Gtk.Application
         if (saved_filename != null)
             save_dialog.set_filename (saved_filename);
         else
-            save_dialog.set_current_name (/* Default filename for the save game dialog */
-                                          _("Untitled Chess Game") + ".pgn");
+            save_dialog.set_current_name ("*.pgn");
 
         /* Filter out non PGN files by default */
         var pgn_filter = new Gtk.FileFilter ();
