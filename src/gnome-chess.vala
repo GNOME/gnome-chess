@@ -49,6 +49,7 @@ public class Application : Gtk.Application
     private bool in_history;
     private File game_file;
     private bool game_needs_saving;
+    private string? saved_filename = null;
     private List<AIProfile> ai_profiles;
     private ChessPlayer? opponent = null;
     private ChessPlayer? human_player = null;
@@ -1609,6 +1610,12 @@ public class Application : Gtk.Application
         save_dialog.file_activated.connect (save_file_cb);        
         save_dialog.response.connect (save_cb);
 
+        if (saved_filename != null)
+            save_dialog.set_filename (saved_filename);
+        else
+            save_dialog.set_current_name (/* Default filename for the save game dialog */
+                                          _("Untitled Chess Game") + ".pgn");
+
         /* Filter out non PGN files by default */
         var pgn_filter = new Gtk.FileFilter ();
         gtk_file_filter_set_name (pgn_filter,
@@ -1656,6 +1663,7 @@ public class Application : Gtk.Application
             try
             {
                 pgn_game.write (save_dialog.get_file ());
+                saved_filename = save_dialog.get_filename ();
             }
             catch (Error e)
             {
@@ -1723,6 +1731,7 @@ public class Application : Gtk.Application
             {
                 in_history = false;
                 load_game (open_dialog.get_file ());
+                saved_filename = open_dialog.get_filename ();
             }
             catch (Error e)
             {
