@@ -1,3 +1,20 @@
+gnome-chess 3.8.3
+=================
+
+* Time remaining is now saved when saving a timed game
+* The chess clock now starts after White's first move
+* Fix segfault when using Undo Move while viewing a previous turn (Chris Cummins)
+* Fix segfault after playing a timed game, then starting a new game, when the original game's timer expired
+* Fix massive CPU usage after playing vs. an engine, then starting a new game
+* Fix the very small save/load dialogs
+* The clock now stops at the end of the game
+* More sensibly set sensitivity of undo, resign, claim draw, and save options
+* Games now save with .pgn extension by default
+* Save now works as expected (instead of functioning the same as Save As)
+* Insufficient material: King and bishop can checkmate king and bishop on opposite color
+* Allow controlling the AI's pieces if no engines are installed (e.g. after loading a game vs. an engine)
+
+
 gnome-chess 3.8.2.1
 ===================
 
