@@ -1677,6 +1677,7 @@ public class Application : Gtk.Application
                 pgn_game.write (save_dialog.get_file ());
                 saved_filename = save_dialog.get_filename ();
                 save_menu.sensitive = false;
+                game_needs_saving = false;
             }
             catch (Error e)
             {
