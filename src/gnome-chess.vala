@@ -1016,8 +1016,18 @@ public class Application : Gtk.Application
                                                             "<span weight=\"bold\" size=\"larger\">%s</span>",
                                                             _("Save this game before starting a new one?"));
             dialog.add_button (Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL);
-            dialog.add_button (_("_Abandon game"), Gtk.ResponseType.NO);
-            dialog.add_button (_("_Save game for later"), Gtk.ResponseType.YES);
+
+            if (game.result == ChessResult.IN_PROGRESS)
+            {
+                dialog.add_button (_("_Abandon game"), Gtk.ResponseType.NO);
+                dialog.add_button (_("_Save game for later"), Gtk.ResponseType.YES);
+            }
+            else
+            {
+                dialog.add_button (_("_Discard game"), Gtk.ResponseType.NO);
+                dialog.add_button (_("_Save game log"), Gtk.ResponseType.YES);
+            }
+
             var result = dialog.run ();
             dialog.destroy ();
             if (result == Gtk.ResponseType.CANCEL)
