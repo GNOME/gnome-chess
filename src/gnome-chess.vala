@@ -877,6 +877,8 @@ public class Application : Gtk.Application
         undo_menu.sensitive = undo_button.sensitive = false;
         claim_draw_menu.sensitive = false;
 
+        game_needs_saving = true;
+
         if (opponent_engine != null)
             opponent_engine.stop ();
 
