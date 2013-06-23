@@ -1032,17 +1032,14 @@ public class Application : Gtk.Application
 
             var result = dialog.run ();
             dialog.destroy ();
+
             if (result == Gtk.ResponseType.CANCEL)
                 return;
-
-            if (result == Gtk.ResponseType.NO)
-            {
-                in_history = false;
-                game_needs_saving = false;
-            }
+            else if (result == Gtk.ResponseType.YES)
+                save_game (Gtk.Stock.DISCARD, Gtk.Stock.SAVE); /* Your very last chance to save */
+            else
+                assert (result == Gtk.ResponseType.NO);
         }
-
-        autosave ();
 
         start_new_game ();
     }
@@ -1605,7 +1602,7 @@ public class Application : Gtk.Application
         dialog.add (vbox);
     }
     
-    private void save_game ()
+    private void save_game (string cancel_button_label = Gtk.Stock.CANCEL, string save_button_label = Gtk.Stock.SAVE)
     {
         /* Show active dialog */
         if (save_dialog != null)
@@ -1617,8 +1614,8 @@ public class Application : Gtk.Application
         save_dialog = new Gtk.FileChooserDialog (/* Title of save game dialog */
                                                  _("Save Chess Game"),
                                                  window, Gtk.FileChooserAction.SAVE,
-                                                 Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
-                                                 Gtk.Stock.SAVE, Gtk.ResponseType.OK, null);
+                                                 cancel_button_label, Gtk.ResponseType.CANCEL,
+                                                 save_button_label, Gtk.ResponseType.OK, null);
         add_info_bar_to_dialog (save_dialog, out save_dialog_info_bar, out save_dialog_error_label);
 
         save_dialog.file_activated.connect (save_file_cb);        
