@@ -1,4 +1,4 @@
-AC_INIT(gnome-chess, 3.9.2)
+AC_INIT([gnome-chess],[3.9.2])
 AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-xz foreign])
 AM_SILENT_RULES([yes])
 AM_MAINTAINER_MODE([enable])
@@ -49,7 +49,7 @@ dnl ###########################################################################
 dnl Files to generate
 dnl ###########################################################################
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
 Makefile
 data/Makefile
 data/icons/Makefile
@@ -63,3 +63,4 @@ help/Makefile
 po/Makefile.in
 src/Makefile
 ])
+AC_OUTPUT
