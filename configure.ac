@@ -1,6 +1,7 @@
 AC_PREQ([2.64])
 AC_INIT([gnome-chess],[3.9.2])
 AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-xz foreign])
+AC_CONFIG_SRCDIR([src/gnome-chess.vala])
 AM_SILENT_RULES([yes])
 AM_MAINTAINER_MODE([enable])
 GNOME_MAINTAINER_MODE_DEFINES
