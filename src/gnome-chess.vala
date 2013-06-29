@@ -750,20 +750,38 @@ public class Application : Gtk.Application
         switch (scene.move_format)
         {
         case "human":
-            int index;
-            if (move.victim == null)
-                index = 0;
-            else
-                index = move.victim.type + 1;
-            index += move.piece.type * 6;
-            if (move.piece.player.color == Color.BLACK)
-                index += 36;
+            if (move.moved_rook == null)
+            {
+                int index;
+                if (move.victim == null)
+                    index = 0;
+                else
+                    index = move.victim.type + 1;
+                index += move.piece.type * 6;
+                if (move.piece.player.color == Color.BLACK)
+                    index += 36;
 
-            // FIXME: Use castling text e.g. "White castles kingside" (do for next release, we are in a string freeze)
-
-            var start = "%c%d".printf ('a' + move.f0, move.r0 + 1);
-            var end = "%c%d".printf ('a' + move.f1, move.r1 + 1);
-            move_text = _(human_descriptions[index]).printf (start, end);
+                var start = "%c%d".printf ('a' + move.f0, move.r0 + 1);
+                var end = "%c%d".printf ('a' + move.f1, move.r1 + 1);
+                move_text = _(human_descriptions[index]).printf (start, end);
+            }
+            else if (move.f0 < move.f1 && move.r0 == 0)
+            {
+                move_text = _("White king castles kingside");
+            }
+            else if (move.f1 < move.f0 && move.r0 == 0)
+            {
+                move_text = _("White king castles queenside");
+            }
+            else if (move.f0 < move.f1 && move.r0 == 7)
+            {
+                move_text = _("Black king castles kingside");
+            }
+            else if (move.f1 < move.f0 && move.r0 == 7)
+            {
+                move_text = _("Black king castles queenside");
+            }
+            else assert_not_reached ();
             break;
 
         case "san":
