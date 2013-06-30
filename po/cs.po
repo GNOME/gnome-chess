@@ -23,8 +23,8 @@ msgstr ""
 "Project-Id-Version: gnome-chess master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2013-06-26 03:01+0000\n"
-"PO-Revision-Date: 2013-06-26 19:07+0200\n"
+"POT-Creation-Date: 2013-06-30 00:46+0000\n"
+"PO-Revision-Date: 2013-06-30 07:34+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -37,7 +37,7 @@ msgstr ""
 
 #. Title of the main window
 #: ../data/glchess.desktop.in.in.h:1 ../src/gnome-chess.vala:368
-#: ../src/gnome-chess.vala:1550
+#: ../src/gnome-chess.vala:1568
 msgid "Chess"
 msgstr "Šachy"
 
@@ -433,38 +433,24 @@ msgid "Fancy"
 msgstr "Zdobené"
 
 #: ../data/promotion-type-selector.ui.h:1
+msgid "Select Promotion Type"
+msgstr "Výběr typu povýšení"
+
+#: ../data/promotion-type-selector.ui.h:2
 msgid "_Queen"
 msgstr "_Dáma"
 
-#: ../data/promotion-type-selector.ui.h:2
+#: ../data/promotion-type-selector.ui.h:3
 msgid "_Knight"
 msgstr "_Jezdec"
 
-#: ../data/promotion-type-selector.ui.h:3
+#: ../data/promotion-type-selector.ui.h:4
 msgid "_Rook"
 msgstr "_Věž"
 
-#: ../data/promotion-type-selector.ui.h:4
+#: ../data/promotion-type-selector.ui.h:5
 msgid "_Bishop"
 msgstr "_Střelec"
-
-#: ../data/promotion-type-selector.ui.h:5
-msgid ""
-"Promotion is a chess rule describing the transformation of a pawn that "
-"reaches its eighth rank into the player's choice of a queen, knight, rook, "
-"or bishop of the same color. The new piece replaces the pawn on the same "
-"square and is part of the move. Every pawn that reaches its eighth rank must "
-"be promoted. Pawn promotion often decides the result of a chess endgame."
-msgstr ""
-"Povýšení je šachové pravidlo měnící pěšáka, který dosáhl osmého pole, na "
-"královnu, jezdce, věž nebo střelce stejné barvy a to podle hráčovy volby. "
-"Nová figura nahradí pěšáka na jeho poli a je součástí tahu. Všichni pěšáci, "
-"kteří dosáhnout osmého pole musí být povýšeni. Povýšení pěšáka často dokáže "
-"rozhodnout výsledek konce hry."
-
-#: ../data/promotion-type-selector.ui.h:6
-msgid "Select Pawn Promotion Type"
-msgstr "Vyberte typ povýšení pěšáka"
 
 #. Title of the window when explicitly loaded a file. The first argument is the
 #. * base name of the file (e.g. test.pgn), the second argument is the directory
@@ -912,96 +898,114 @@ msgstr "Černý král z %1$s bere bílého střelce na %2$s"
 msgid "Black king at %1$s takes the white queen at %2$s"
 msgstr "Černý král z %1$s bere bílou dámu na %2$s"
 
+#: ../src/gnome-chess.vala:770
+msgid "White king castles kingside"
+msgstr "Rošáda bílého krále na královském křídle"
+
+#: ../src/gnome-chess.vala:774
+#| msgid "White king at %1$s takes the black queen at %2$s"
+msgid "White king castles queenside"
+msgstr "Rošáda bílého krále na dámském křídle"
+
+#: ../src/gnome-chess.vala:778
+msgid "Black king castles kingside"
+msgstr "Rošáda černého krále na královském křídle"
+
+#: ../src/gnome-chess.vala:782
+#| msgid "Black king at %1$s takes the white queen at %2$s"
+msgid "Black king castles queenside"
+msgstr "Rošáda černého krále na dámském křídle"
+
 #. Message display when the white player wins
-#: ../src/gnome-chess.vala:891
+#: ../src/gnome-chess.vala:909
 msgid "White wins"
 msgstr "Bílý vyhrává"
 
 #. Message display when the black player wins
-#: ../src/gnome-chess.vala:896
+#: ../src/gnome-chess.vala:914
 msgid "Black wins"
 msgstr "Černý vyhrává"
 
 #. Message display when the game is drawn
-#: ../src/gnome-chess.vala:901
+#: ../src/gnome-chess.vala:919
 msgid "Game is drawn"
 msgstr "Hra skončila remízou"
 
 #. Message displayed when the game ends due to a player being checkmated
-#: ../src/gnome-chess.vala:913
+#: ../src/gnome-chess.vala:931
 msgid "Opponent is in check and cannot move (checkmate)"
 msgstr "Protivník je v šachu a nemůže táhnout (mat)"
 
 #. Message displayed when the game terminates due to a stalemate
-#: ../src/gnome-chess.vala:917
+#: ../src/gnome-chess.vala:935
 msgid "Opponent cannot move (stalemate)"
 msgstr "Protivník nemůže táhnout (pat)"
 
 #. Message displayed when the game is drawn due to the fifty move rule
-#: ../src/gnome-chess.vala:921
+#: ../src/gnome-chess.vala:939
 msgid "No piece has been taken or pawn moved in the last fifty moves"
 msgstr ""
 "V posledních padesáti tazích nebyl vyhozena ani jedna figura a netáhl ani "
 "jeden pěšák"
 
 #. Message displayed when the game ends due to one player's clock stopping
-#: ../src/gnome-chess.vala:925
+#: ../src/gnome-chess.vala:943
 msgid "Opponent has run out of time"
 msgstr "Protivníkovi vypršel čas"
 
 #. Message displayed when the game is drawn due to the three-fold-repitition rule
-#: ../src/gnome-chess.vala:929
+#: ../src/gnome-chess.vala:947
 msgid "The same board state has occurred three times (three fold repetition)"
 msgstr ""
 "Šachovnice se ocitla třikrát ve stejném stavu (třikrát opakovaná pozice)"
 
 #. Message displayed when the game is drawn due to the insufficient material rule
-#: ../src/gnome-chess.vala:933
+#: ../src/gnome-chess.vala:951
 msgid "Neither player can cause checkmate (insufficient material)"
 msgstr "Žádný hráč nemůže způsobit mat (nedostatek figur)"
 
 #. Message displayed when the game ends due to the black player resigning
-#: ../src/gnome-chess.vala:939
+#: ../src/gnome-chess.vala:957
 msgid "The black player has resigned"
 msgstr "Černý hráč partii vzdal"
 
 #. Message displayed when the game ends due to the white player resigning
-#: ../src/gnome-chess.vala:944
+#: ../src/gnome-chess.vala:962
 msgid "The white player has resigned"
 msgstr "Bílý hráč partii vzdal"
 
 #. Message displayed when a game is abandoned
-#: ../src/gnome-chess.vala:949
+#: ../src/gnome-chess.vala:967
 msgid "The game has been abandoned"
 msgstr "Hra byla opuštěna"
 
 #. Message displayed when the game ends due to a player dying
-#: ../src/gnome-chess.vala:954
+#: ../src/gnome-chess.vala:972
 msgid "One of the players has died"
 msgstr "Jeden z hráčů prohrál"
 
-#: ../src/gnome-chess.vala:1019
+#: ../src/gnome-chess.vala:1037
 msgid "Save this game before starting a new one?"
 msgstr "Uložit tuto hru před spuštěním nové?"
 
-#: ../src/gnome-chess.vala:1024
+#: ../src/gnome-chess.vala:1042
 msgid "_Abandon game"
 msgstr "U_končit hru"
 
-#: ../src/gnome-chess.vala:1025
+#: ../src/gnome-chess.vala:1043
 msgid "_Save game for later"
 msgstr "_Uložit hru na později"
 
-#: ../src/gnome-chess.vala:1029
+#: ../src/gnome-chess.vala:1047
 msgid "_Discard game"
 msgstr "Zaho_dit hru"
 
-#: ../src/gnome-chess.vala:1030
+#: ../src/gnome-chess.vala:1048
 msgid "_Save game log"
 msgstr "_Uložit záznam hry"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in seconds
-#: ../src/gnome-chess.vala:1431
+#: ../src/gnome-chess.vala:1449
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "sekunda"
@@ -1009,7 +1013,7 @@ msgstr[1] "sekundy"
 msgstr[2] "sekund"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#: ../src/gnome-chess.vala:1435
+#: ../src/gnome-chess.vala:1453
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minuta"
@@ -1017,14 +1021,14 @@ msgstr[1] "minuty"
 msgstr[2] "minut"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../src/gnome-chess.vala:1439
+#: ../src/gnome-chess.vala:1457
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "hodina"
 msgstr[1] "hodiny"
 msgstr[2] "hodin"
 
-#: ../src/gnome-chess.vala:1554
+#: ../src/gnome-chess.vala:1572
 msgid ""
 "The 2D/3D chess game for GNOME. \n"
 "\n"
@@ -1034,59 +1038,59 @@ msgstr ""
 "\n"
 "GNOME Chess je součástí her GNOME."
 
-#: ../src/gnome-chess.vala:1559
+#: ../src/gnome-chess.vala:1577
 msgid "GNOME Games web site"
 msgstr "Webové stránky her GNOME"
 
 #. Title of save game dialog
-#: ../src/gnome-chess.vala:1615
+#: ../src/gnome-chess.vala:1633
 msgid "Save Chess Game"
 msgstr "Uložit šachovou partii"
 
 #. Default filename for the save game dialog
-#: ../src/gnome-chess.vala:1628
+#: ../src/gnome-chess.vala:1646
 msgid "Untitled Chess Game"
 msgstr "Nepojmenovaná šachová partie"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:1634 ../src/gnome-chess.vala:1719
+#: ../src/gnome-chess.vala:1652 ../src/gnome-chess.vala:1737
 msgid "PGN files"
 msgstr "Soubory PGN"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:1641 ../src/gnome-chess.vala:1726
+#: ../src/gnome-chess.vala:1659 ../src/gnome-chess.vala:1744
 msgid "All files"
 msgstr "Všechny soubory"
 
-#: ../src/gnome-chess.vala:1682
+#: ../src/gnome-chess.vala:1700
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Selhalo uložení hry: %s"
 
 #. Title of load game dialog
-#: ../src/gnome-chess.vala:1706
+#: ../src/gnome-chess.vala:1724
 msgid "Load Chess Game"
 msgstr "Načíst šachovou partii"
 
-#: ../src/gnome-chess.vala:1750
+#: ../src/gnome-chess.vala:1768
 #, c-format
 msgid "Failed to open game: %s"
 msgstr "Selhalo otevření hry: %s"
 
 #. Help string for command line --version flag
-#: ../src/gnome-chess.vala:1821
+#: ../src/gnome-chess.vala:1839
 msgid "Show release version"
 msgstr "Zobrazit verzi vydání"
 
 #. Arguments and description for --help text
-#: ../src/gnome-chess.vala:1835
+#: ../src/gnome-chess.vala:1856
 msgid "[FILE] - Play Chess"
 msgstr "[SOUBOR] – Hrát šachy"
 
 #. Text printed out when an unknown command-line argument provided
-#: ../src/gnome-chess.vala:1846
+#: ../src/gnome-chess.vala:1867
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr ""
