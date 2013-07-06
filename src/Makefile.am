@@ -68,6 +68,8 @@ gnome_chess_VALAFLAGS = \
 
 CLEANFILES = \
 	$(patsubst %.vala,%.c,$(filter %.vala, $(SOURCES))) \
-	*_vala.stamp
+	*_vala.stamp \
+	*.log \
+	*.trs
 
 -include $(top_srcdir)/git.mk
