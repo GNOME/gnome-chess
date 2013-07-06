@@ -8,20 +8,17 @@ public class Application : Gtk.Application
     private Gtk.Builder builder;
     private Gtk.Builder preferences_builder;
     private Gtk.Window window;
-    private Gtk.Widget save_menu;
-    private Gtk.Widget save_as_menu;
-    private Gtk.MenuItem fullscreen_menu;
     private Gtk.InfoBar info_bar;
     private Gtk.Label info_title_label;
     private Gtk.Label info_label;
     private Gtk.Container view_container;
     private ChessScene scene;
     private ChessView view;
-    private Gtk.Widget undo_menu;
+    private Gtk.Widget save_button;
     private Gtk.Widget undo_button;
-    private Gtk.Widget resign_menu;
+    private Gtk.Widget claim_draw_button;
     private Gtk.Widget resign_button;
-    private Gtk.Widget claim_draw_menu;
+    private Gtk.Widget fullscreen_button;
     private Gtk.Widget first_move_button;
     private Gtk.Widget prev_move_button;
     private Gtk.Widget next_move_button;
@@ -54,6 +51,15 @@ public class Application : Gtk.Application
     private ChessPlayer? opponent = null;
     private ChessPlayer? human_player = null;
     private ChessEngine? opponent_engine = null;
+    private bool is_fullscreen = false;
+
+    private const ActionEntry[] app_entries =
+    {
+        { "preferences", preferences_cb },
+        { "help", help_cb },
+        { "about", about_cb },
+        { "quit", quit_cb },
+    };
 
     public Application (File? game_file)
     {
@@ -72,7 +78,22 @@ public class Application : Gtk.Application
 
         history = new History (data_dir);
 
+        add_action_entries (app_entries, this);
+
         builder = new Gtk.Builder ();
+
+        try
+        {
+            builder.add_from_file (Path.build_filename (PKGDATADIR, "menu.ui", null));
+        }
+        catch (Error e)
+        {
+            error ("Error loading menu UI: %s", e.message);
+        }
+
+        var menu = builder.get_object ("appmenu") as MenuModel;
+        set_app_menu (menu);
+
         try
         {
             builder.add_from_file (Path.build_filename (PKGDATADIR, "gnome-chess.ui", null));
@@ -82,14 +103,11 @@ public class Application : Gtk.Application
             warning ("Could not load UI: %s", e.message);
         }
         window = (Gtk.Window) builder.get_object ("gnome_chess_app");
-        save_menu = (Gtk.Widget) builder.get_object ("menu_save_item");
-        save_as_menu = (Gtk.Widget) builder.get_object ("menu_save_as_item");
-        fullscreen_menu = (Gtk.MenuItem) builder.get_object ("fullscreen_item");
-        undo_menu = (Gtk.Widget) builder.get_object ("undo_move_item");
+        save_button = (Gtk.Widget) builder.get_object ("save_game_button");
         undo_button = (Gtk.Widget) builder.get_object ("undo_move_button");
-        resign_menu = (Gtk.Widget) builder.get_object ("resign_item");
+        claim_draw_button = (Gtk.Widget) builder.get_object ("claim_draw_button");
         resign_button = (Gtk.Widget) builder.get_object ("resign_button");
-        claim_draw_menu = (Gtk.Widget) builder.get_object ("claim_draw_item");
+        fullscreen_button = (Gtk.Widget) builder.get_object ("fullscreen_button");
         first_move_button = (Gtk.Widget) builder.get_object ("first_move_button");
         prev_move_button = (Gtk.Widget) builder.get_object ("prev_move_button");
         next_move_button = (Gtk.Widget) builder.get_object ("next_move_button");
@@ -167,10 +185,17 @@ public class Application : Gtk.Application
         }
 
         window.set_default_size (settings.get_int ("width"), settings.get_int ("height"));        
+
         if (settings.get_boolean ("fullscreen"))
+        {
             window.fullscreen ();
+            is_fullscreen = true;
+        }
         else if (settings.get_boolean ("maximized"))
+        {
             window.maximize ();
+        }
+
         show ();
     }
 
@@ -426,8 +451,7 @@ public class Application : Gtk.Application
 
         scene.game = game;
         info_bar.hide ();
-        save_menu.sensitive = false;
-        save_as_menu.sensitive = false;
+        save_button.sensitive = false;
         update_history_panel ();
         update_control_buttons ();
 
@@ -492,7 +516,7 @@ public class Application : Gtk.Application
         }
 
         game_needs_saving = in_history;
-        save_menu.sensitive = in_history;
+        save_button.sensitive = in_history;
         game.start ();
 
         if (moves.length > 0 && game.clock != null)
@@ -825,8 +849,7 @@ public class Application : Gtk.Application
         if (move.number == game.n_moves && scene.move_number == -1)
             history_combo.set_active_iter (iter);
 
-        save_menu.sensitive = true;
-        save_as_menu.sensitive = true;
+        save_button.sensitive = true;
         update_history_panel ();
         update_control_buttons ();
 
@@ -861,13 +884,12 @@ public class Application : Gtk.Application
         if (game.n_moves > 0)
         {
             game_needs_saving = true;
-            save_menu.sensitive = true;
+            save_button.sensitive = true;
         }
         else
         {
             game_needs_saving = false;
-            save_menu.sensitive = false;
-            save_as_menu.sensitive = false;
+            save_button.sensitive = false;
         }
 
         update_history_panel ();
@@ -877,24 +899,24 @@ public class Application : Gtk.Application
     private void update_control_buttons ()
     {
         var can_resign = game.n_moves > 0;
-        resign_menu.sensitive = resign_button.sensitive = can_resign;
+        resign_button.sensitive = can_resign;
 
         /* Claim draw only allowed on your own turn */        
-        claim_draw_menu.sensitive = can_resign && game.current_player != opponent;
+        claim_draw_button.sensitive = can_resign && game.current_player != opponent;
 
         /* Can undo once the human player has made a move */
         var can_undo = game.n_moves > 0;
         if (opponent != null && opponent.color == Color.WHITE)
             can_undo = game.n_moves > 1;
 
-        undo_menu.sensitive = undo_button.sensitive = can_undo;
+        undo_button.sensitive = can_undo;
     }
 
     private void game_end_cb (ChessGame game)
     {
-        resign_menu.sensitive = resign_button.sensitive = false;
-        undo_menu.sensitive = undo_button.sensitive = false;
-        claim_draw_menu.sensitive = false;
+        resign_button.sensitive = false;
+        undo_button.sensitive = false;
+        claim_draw_button.sensitive = false;
 
         game_needs_saving = true;
 
@@ -1016,9 +1038,8 @@ public class Application : Gtk.Application
         }
         if ((event.changed_mask & Gdk.WindowState.FULLSCREEN) != 0)
         {
-            bool is_fullscreen = (event.new_window_state & Gdk.WindowState.FULLSCREEN) != 0;
+            is_fullscreen = (event.new_window_state & Gdk.WindowState.FULLSCREEN) != 0;
             settings.set_boolean ("fullscreen", is_fullscreen);
-            fullscreen_menu.label = is_fullscreen ? Gtk.Stock.LEAVE_FULLSCREEN : Gtk.Stock.FULLSCREEN;
         }
 
         return false;
@@ -1086,8 +1107,7 @@ public class Application : Gtk.Application
             game.opponent.undo ();
     }
 
-    [CCode (cname = "G_MODULE_EXPORT quit_cb", instance_pos = -1)]
-    public void quit_cb (Gtk.Widget widget)
+    public void quit_cb ()
     {
         quit_game ();
     }
@@ -1203,14 +1223,13 @@ public class Application : Gtk.Application
     [CCode (cname = "G_MODULE_EXPORT toggle_fullscreen_cb", instance_pos = -1)]
     public void toggle_fullscreen_cb (Gtk.Widget widget)
     {
-        if (fullscreen_menu.label == Gtk.Stock.FULLSCREEN)
-            window.fullscreen ();
-        else
+        if (is_fullscreen)
             window.unfullscreen ();
+        else
+            window.fullscreen (); 
     }
 
-    [CCode (cname = "G_MODULE_EXPORT preferences_cb", instance_pos = -1)]
-    public void preferences_cb (Gtk.Widget widget)
+    public void preferences_cb ()
     {
         if (preferences_dialog != null)
         {
@@ -1537,8 +1556,7 @@ public class Application : Gtk.Application
         settings.set_string ("board-side", get_combo (combo, 1));    
     }
 
-    [CCode (cname = "G_MODULE_EXPORT help_cb", instance_pos = -1)]
-    public void help_cb (Gtk.Widget widget)
+    public void help_cb ()
     {
         try
         {
@@ -1553,8 +1571,7 @@ public class Application : Gtk.Application
     private const string[] authors = { "Robert Ancell <robert.ancell@gmail.com>", null };
     private const string[] artists = { "John-Paul Gignac (3D Models)", "Max Froumentin (2D Models)", "Hylke Bons <h.bons@student.rug.nl> (icon)", null };
 
-    [CCode (cname = "G_MODULE_EXPORT about_cb", instance_pos = -1)]
-    public void about_cb (Gtk.Widget widget)
+    public void about_cb ()
     {
         if (about_dialog != null)
         {
@@ -1584,12 +1601,6 @@ public class Application : Gtk.Application
     {
         about_dialog.destroy ();
         about_dialog = null;
-    }
-
-    [CCode (cname = "G_MODULE_EXPORT save_game_as_cb", instance_pos = -1)]
-    public void save_game_as_cb (Gtk.Widget widget)
-    {
-        save_game ();
     }
 
     [CCode (cname = "G_MODULE_EXPORT save_game_cb", instance_pos = -1)]
@@ -1692,7 +1703,7 @@ public class Application : Gtk.Application
             {
                 pgn_game.write (save_dialog.get_file ());
                 saved_filename = save_dialog.get_filename ();
-                save_menu.sensitive = false;
+                save_button.sensitive = false;
                 game_needs_saving = false;
             }
             catch (Error e)
@@ -1816,6 +1827,7 @@ public class Application : Gtk.Application
                 pgn_game.white_level = engine_level;
             }
         }
+
         start_game ();
     }
 
