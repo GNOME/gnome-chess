@@ -115,7 +115,6 @@ public class Application : Gtk.Application
         history_combo = (Gtk.ComboBox) builder.get_object ("history_combo");
         white_time_label = (Gtk.Widget) builder.get_object ("white_time_label");
         black_time_label = (Gtk.Widget) builder.get_object ("black_time_label");
-        settings.bind ("show-toolbar", builder.get_object ("toolbar"), "visible", SettingsBindFlags.DEFAULT);
         settings.bind ("show-history", builder.get_object ("navigation_box"), "visible", SettingsBindFlags.DEFAULT);
         var view_box = (Gtk.VBox) builder.get_object ("view_box");
         view_container = (Gtk.Container) builder.get_object ("view_container");
@@ -1251,8 +1250,6 @@ public class Application : Gtk.Application
         settings.bind ("show-numbering", preferences_builder.get_object ("show_numbering_check"),
                        "active", SettingsBindFlags.DEFAULT);
         settings.bind ("show-move-hints", preferences_builder.get_object ("show_move_hints_check"),
-                       "active", SettingsBindFlags.DEFAULT);
-        settings.bind ("show-toolbar", preferences_builder.get_object ("show_toolbar_check"),
                        "active", SettingsBindFlags.DEFAULT);
         settings.bind ("show-history", preferences_builder.get_object ("show_history_check"),
                        "active", SettingsBindFlags.DEFAULT);
