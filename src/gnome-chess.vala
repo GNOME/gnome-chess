@@ -1086,7 +1086,7 @@ public class Application : Gtk.Application
             else if (result == Gtk.ResponseType.YES)
                 save_game (Gtk.Stock.DISCARD, Gtk.Stock.SAVE); /* Your very last chance to save */
             else
-                assert (result == Gtk.ResponseType.NO);
+                warn_if_fail (result == Gtk.ResponseType.NO || result == Gtk.ResponseType.DELETE_EVENT);
         }
 
         start_new_game ();
