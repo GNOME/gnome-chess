@@ -1081,12 +1081,12 @@ public class Application : Gtk.Application
             var result = dialog.run ();
             dialog.destroy ();
 
-            if (result == Gtk.ResponseType.CANCEL)
+            if (result == Gtk.ResponseType.CANCEL || result == Gtk.ResponseType.DELETE_EVENT)
                 return;
             else if (result == Gtk.ResponseType.YES)
                 save_game (Gtk.Stock.DISCARD, Gtk.Stock.SAVE); /* Your very last chance to save */
             else
-                warn_if_fail (result == Gtk.ResponseType.NO || result == Gtk.ResponseType.DELETE_EVENT);
+                warn_if_fail (result == Gtk.ResponseType.NO);
         }
 
         start_new_game ();
