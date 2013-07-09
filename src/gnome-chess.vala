@@ -1021,7 +1021,7 @@ public class Application : Gtk.Application
             dialog.add_button (_("_Save game for later"), Gtk.ResponseType.YES);
             var result = dialog.run ();
             dialog.destroy ();
-            if (result == Gtk.ResponseType.CANCEL)
+            if (result == Gtk.ResponseType.CANCEL || result == Gtk.ResponseType.DELETE_EVENT)
                 return;
 
             if (result == Gtk.ResponseType.NO)
