@@ -316,9 +316,9 @@ private class ChessView3D : ChessView
             for (var file = 0; file < 8; file++)
             {
                 if ((file + rank) % 2 == 0)
-                    glColor3f (0xee / 255f, 0xee / 255f, 0xec / 255f);
-                else
                     glColor3f (0xba / 255f, 0xbd / 255f, 0xb6 / 255f);
+                else
+                    glColor3f (0xee / 255f, 0xee / 255f, 0xec / 255f);
 
                 glBegin (GL_QUADS);
                 GLfloat x0 = BOARD_BORDER + (file * SQUARE_WIDTH);
