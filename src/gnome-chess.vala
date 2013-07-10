@@ -38,6 +38,8 @@ public class Application : Gtk.Application
     private Gtk.Widget black_time_label;
 
     private Gtk.Dialog? preferences_dialog = null;
+    private Gtk.ComboBox side_combo;
+    private Gtk.ComboBox difficulty_combo;
     private Gtk.ComboBox duration_combo;
     private Gtk.Adjustment duration_adjustment;
     private Gtk.Container custom_duration_box;
@@ -1268,7 +1270,7 @@ public class Application : Gtk.Application
         settings.bind ("show-3d-smooth", preferences_builder.get_object ("show_3d_smooth_check"),
                        "active", SettingsBindFlags.DEFAULT);
 
-        var side_combo = (Gtk.ComboBox) preferences_builder.get_object ("side_combo");
+        side_combo = (Gtk.ComboBox) preferences_builder.get_object ("side_combo");
         side_combo.set_active (settings.get_boolean ("play-as-white") ? 0 : 1);
 
         var ai_combo = (Gtk.ComboBox) preferences_builder.get_object ("opponent_combo");
@@ -1291,7 +1293,7 @@ public class Application : Gtk.Application
         }
         settings.bind ("show-history", ai_combo, "visible", SettingsBindFlags.SET);
 
-        var difficulty_combo = (Gtk.ComboBox) preferences_builder.get_object ("difficulty_combo");
+        difficulty_combo = (Gtk.ComboBox) preferences_builder.get_object ("difficulty_combo");
         set_combo (difficulty_combo, 1, settings.get_string ("difficulty"));
 
         duration_combo = (Gtk.ComboBox) preferences_builder.get_object ("duration_combo");
@@ -1316,6 +1318,13 @@ public class Application : Gtk.Application
         show_3d_smooth_check.sensitive = show_3d_check.active;
 
         preferences_builder.connect_signals (this);
+
+        /* Human vs. human */
+        if (ai_combo.get_active () == 0)
+        {
+            side_combo.sensitive = false;
+            difficulty_combo.sensitive = false;
+        }
 
         preferences_dialog.present ();
     }
@@ -1368,6 +1377,9 @@ public class Application : Gtk.Application
         string opponent;
         combo.model.get (iter, 1, out opponent, -1);
         settings.set_string ("opponent", opponent);
+        bool vs_human = (combo.get_active () == 0);
+        side_combo.sensitive = !vs_human;
+        difficulty_combo.sensitive = !vs_human;
     }
 
     [CCode (cname = "G_MODULE_EXPORT difficulty_combo_changed_cb", instance_pos = -1)]
