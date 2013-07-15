@@ -519,7 +519,7 @@ private class ChessView3D : ChessView
 
     public override bool button_press_event (Gdk.EventButton event)
     {
-        if (scene.game == null || event.button != 1)
+        if (scene.game == null || event.button != 1 || scene.game.is_paused)
             return false;
 
         if (!start_gl ())

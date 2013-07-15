@@ -168,4 +168,30 @@ public class ChessClock : Object
 
         timer.reset ();
     }
+
+    public void toggle_paused (bool paused)
+    {
+        if (timer == null)
+            return;
+
+        if (paused)
+        {
+            timer.stop ();
+            Source.remove (expire_timeout);
+            expire_timeout = 0;
+            Source.remove (tick_timeout);
+            tick_timeout = 0;
+        }
+        else
+        {
+            timer.@continue ();
+            if (active_color == Color.WHITE)
+                expire_timeout = Timeout.add (white_duration - _white_used,
+                                              timer_expired_cb);
+            else
+                expire_timeout = Timeout.add (black_duration - _black_used,
+                                              timer_expired_cb);
+            tick_cb ();
+        }
+    }
 }

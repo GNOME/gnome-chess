@@ -26,6 +26,7 @@ public class Application : Gtk.Application
     private ChessView view;
     private Gtk.Widget save_button;
     private Gtk.Widget undo_button;
+    private Gtk.Widget pause_button;
     private Gtk.Widget claim_draw_button;
     private Gtk.Widget resign_button;
     private Gtk.Widget fullscreen_button;
@@ -64,6 +65,20 @@ public class Application : Gtk.Application
     private ChessPlayer? human_player = null;
     private ChessEngine? opponent_engine = null;
     private bool is_fullscreen = false;
+    private bool is_paused = false;
+    private bool widget_sensitivity[8];
+
+    private enum SensitivityIndex
+    {
+        UNDO,
+        CLAIM_DRAW,
+        RESIGN,
+        FIRST_MOVE,
+        PREV_MOVE,
+        NEXT_MOVE,
+        LAST_MOVE,
+        HISTORY
+    }
 
     private const ActionEntry[] app_entries =
     {
@@ -77,6 +92,22 @@ public class Application : Gtk.Application
     {
         Object (application_id: "org.gnome.gnome-chess", flags: ApplicationFlags.FLAGS_NONE);
         this.game_file = game_file;
+    }
+
+    public bool on_window_focus_out (Gdk.EventFocus focus)
+    {
+        if (!is_paused)
+            pause_game_cb (pause_button);
+
+        return false;
+    }
+
+    public bool on_window_focus_in (Gdk.EventFocus focus)
+    {
+        if (is_paused)
+            pause_game_cb (pause_button);
+
+        return false;
     }
 
     public override void startup ()
@@ -117,6 +148,7 @@ public class Application : Gtk.Application
         window = (Gtk.Window) builder.get_object ("gnome_chess_app");
         save_button = (Gtk.Widget) builder.get_object ("save_game_button");
         undo_button = (Gtk.Widget) builder.get_object ("undo_move_button");
+        pause_button = (Gtk.Widget) builder.get_object ("pause_game_button");
         claim_draw_button = (Gtk.Widget) builder.get_object ("claim_draw_button");
         resign_button = (Gtk.Widget) builder.get_object ("resign_button");
         fullscreen_button = (Gtk.Widget) builder.get_object ("fullscreen_button");
@@ -133,6 +165,8 @@ public class Application : Gtk.Application
         builder.connect_signals (this);
 
         add_window (window);
+        window.focus_out_event.connect (on_window_focus_out);
+        window.focus_in_event.connect (on_window_focus_in);
 
         info_bar = new Gtk.InfoBar ();
         var content_area = (Gtk.Container) info_bar.get_content_area ();
@@ -1127,6 +1161,72 @@ public class Application : Gtk.Application
             human_player.undo ();
         else
             game.opponent.undo ();
+    }
+
+    private void stash_button_sensitivity ()
+    {
+        widget_sensitivity[SensitivityIndex.UNDO] = undo_button.sensitive;
+        widget_sensitivity[SensitivityIndex.CLAIM_DRAW] =
+            claim_draw_button.sensitive;
+        widget_sensitivity[SensitivityIndex.RESIGN] = resign_button.sensitive;
+        widget_sensitivity[SensitivityIndex.FIRST_MOVE] =
+            first_move_button.sensitive;
+        widget_sensitivity[SensitivityIndex.PREV_MOVE] =
+            prev_move_button.sensitive;
+        widget_sensitivity[SensitivityIndex.NEXT_MOVE] =
+            next_move_button.sensitive;
+        widget_sensitivity[SensitivityIndex.LAST_MOVE] =
+            last_move_button.sensitive;
+        widget_sensitivity[SensitivityIndex.HISTORY] = history_combo.sensitive;
+    }
+
+    private void revert_button_sensitivity ()
+    {
+        undo_button.sensitive = widget_sensitivity[SensitivityIndex.UNDO];
+        claim_draw_button.sensitive =
+            widget_sensitivity[SensitivityIndex.CLAIM_DRAW];
+        resign_button.sensitive = widget_sensitivity[SensitivityIndex.RESIGN];
+        first_move_button.sensitive =
+            widget_sensitivity[SensitivityIndex.FIRST_MOVE];
+        prev_move_button.sensitive =
+            widget_sensitivity[SensitivityIndex.PREV_MOVE];
+        next_move_button.sensitive =
+            widget_sensitivity[SensitivityIndex.NEXT_MOVE];
+        last_move_button.sensitive =
+            widget_sensitivity[SensitivityIndex.LAST_MOVE];
+        history_combo.sensitive = widget_sensitivity[SensitivityIndex.HISTORY];
+    }
+
+    [CCode (cname = "G_MODULE_EXPORT pause_game_cb", instance_pos = -1)]
+    public void pause_game_cb (Gtk.Widget widget)
+    {
+        is_paused = !is_paused;
+        game.is_paused = is_paused;
+        Gtk.ToolButton tool_button = pause_button as Gtk.ToolButton;
+        if (is_paused)
+        {
+            if (game.clock != null)
+                game.clock.toggle_paused (true);
+            tool_button.stock_id = "gtk-media-play";
+            tool_button.label = "Start";
+            stash_button_sensitivity ();
+            undo_button.sensitive = false;
+            claim_draw_button.sensitive = false;
+            resign_button.sensitive = false;
+            first_move_button.sensitive = false;
+            prev_move_button.sensitive = false;
+            next_move_button.sensitive = false;
+            last_move_button.sensitive = false;
+            history_combo.sensitive = false;
+        }
+        else
+        {
+            if (game.clock != null)
+                game.clock.toggle_paused (false);
+            tool_button.stock_id = "gtk-media-pause";
+            tool_button.label = "Pause";
+            revert_button_sensitivity ();
+        }
     }
 
     public void quit_cb ()

@@ -252,7 +252,7 @@ private class ChessView2D : ChessView
 
     public override bool button_press_event (Gdk.EventButton event)
     {
-        if (scene.game == null || event.button != 1)
+        if (scene.game == null || event.button != 1 || scene.game.is_paused)
             return false;
 
         int file = (int) Math.floor((event.x - 0.5 * get_allocated_width () + square_size * 4) / square_size);

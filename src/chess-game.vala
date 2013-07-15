@@ -1253,6 +1253,7 @@ public enum ChessRule
 public class ChessGame
 {
     public bool is_started;
+    public bool is_paused = false;
     public ChessResult result;
     public ChessRule rule;
     public List<ChessState> move_stack;
