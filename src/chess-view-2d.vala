@@ -114,9 +114,6 @@ private class ChessView2D : ChessView
 
         if (scene.show_numbering)
         {
-            string[] files = { "a", "b", "c", "d", "e", "f", "g", "h" };
-            string[] ranks = { "8", "7", "6", "5", "4", "3", "2", "1" };
-
             /* Files are centered individiual glyph width and combined glyph height,
              * ranks are centered on individual glyph widths and heights */
 
@@ -132,6 +129,28 @@ private class ChessView2D : ChessView
 
             double file_offset = -(square_size * 3.5);
             double rank_offset = -(square_size * 3.5);
+
+            string[] files;
+            string[] ranks;
+
+            Cairo.Matrix matrix;
+            c.get_matrix (out matrix);
+
+            if (scene.board_angle == 180.0)
+            {
+                files = { "h", "g", "f", "e", "d", "c", "b", "a" };
+                ranks = { "1", "2", "3", "4", "5", "6", "7", "8" };
+
+                matrix.scale (-1, -1);
+            }
+            else
+            {
+                files = { "a", "b", "c", "d", "e", "f", "g", "h" };
+                ranks = { "8", "7", "6", "5", "4", "3", "2", "1" };
+            }
+
+            c.save ();
+            c.set_matrix (matrix);
 
             for (int i = 0; i < 8; i++)
             {
@@ -167,6 +186,8 @@ private class ChessView2D : ChessView
                 file_offset += square_size;
                 rank_offset += square_size;
             }
+
+            c.restore ();
         }
 
         /* Draw the pieces */
