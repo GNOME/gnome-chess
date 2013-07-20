@@ -351,7 +351,7 @@ private class ChessView3D : ChessView
 
     private void draw_numbering ()
     {
-        var text_width = BOARD_BORDER * 0.8f;
+        var text_width = BOARD_BORDER * 0.7f;
         var text_offset = (BOARD_BORDER + BOARD_CHAMFER) * 0.5f;
         var offset = BOARD_BORDER + SQUARE_WIDTH * 0.5f;
         var white_z_offset = -text_offset;
@@ -649,7 +649,7 @@ private class ChessView3D : ChessView
         c.set_font_size (width);
         Cairo.FontExtents extents;
         c.font_extents (out extents);
-        var scale = width / (extents.ascent + extents.descent);
+        var scale = width / (extents.height + extents.descent);
 
         var yoffset = height * 0.5;
         var xoffset = width * 0.5;
@@ -682,11 +682,14 @@ private class ChessView3D : ChessView
     
     private void draw_centered_text (Cairo.Context c, double x, double y, double scale, string text)
     {
-        Cairo.TextExtents extents;
-        c.text_extents (text, out extents);
+        Cairo.TextExtents char_extents;
+        c.text_extents (text, out char_extents);
+        /* Don't want the letters to be centered vertically. */
+        Cairo.TextExtents fake_extents;
+        c.text_extents ("abcdefgh", out fake_extents);
         c.save ();
         c.translate (x, y);
-        c.move_to (-extents.width*scale/2, extents.height*scale/2);
+        c.move_to (-char_extents.width*scale/2, fake_extents.height*scale/2);
         c.scale (scale, scale);
         c.show_text (text);
         c.restore ();
