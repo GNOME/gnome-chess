@@ -384,14 +384,28 @@ private class ChessView3D : ChessView
         glTranslatef (x, 0.0f, z);
 
         glBegin (GL_QUADS);
-        glTexCoord2f (l, 0.0f);
-        glVertex3f (-width/2, 0.0f, -width/2);
-        glTexCoord2f (l, 1.0f);
-        glVertex3f (-width/2, 0.0f, width/2);
-        glTexCoord2f (l + w, 1.0f);
-        glVertex3f (width/2, 0.0f, width/2);
-        glTexCoord2f (l + w, 0.0f);
-        glVertex3f (width/2, 0.0f, -width/2);
+        if (scene.board_angle == 180.0)
+        {
+            glTexCoord2f (l + w, 1.0f);
+            glVertex3f (-width/2, 0.0f, -width/2);
+            glTexCoord2f (l + w, 0.0f);
+            glVertex3f (-width/2, 0.0f, width/2);
+            glTexCoord2f (l, 0.0f);
+            glVertex3f (width/2, 0.0f, width/2);
+            glTexCoord2f (l, 1.0f);
+            glVertex3f (width/2, 0.0f, -width/2);
+        }
+        else
+        {
+            glTexCoord2f (l, 0.0f);
+            glVertex3f (-width/2, 0.0f, -width/2);
+            glTexCoord2f (l, 1.0f);
+            glVertex3f (-width/2, 0.0f, width/2);
+            glTexCoord2f (l + w, 1.0f);
+            glVertex3f (width/2, 0.0f, width/2);
+            glTexCoord2f (l + w, 0.0f);
+            glVertex3f (width/2, 0.0f, -width/2);
+        }
         glEnd ();
 
         glPopMatrix ();
