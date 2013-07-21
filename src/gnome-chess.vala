@@ -564,25 +564,28 @@ public class Application : Gtk.Application
             profile = ai_profiles.data;
         }
 
-        string[] options;
+        string[] options, args;
         switch (difficulty)
         {
         case "easy":
             options = profile.easy_options;
+            args = profile.easy_args;
             break;
         default:
         case "normal":
             options = profile.normal_options;
+            args = profile.normal_args;
             break;
         case "hard":
             options = profile.hard_options;
+            args = profile.hard_args;
             break;
         }
 
         if (profile.protocol == "cecp")
-            engine = new ChessEngineCECP (profile.binary, profile.args, options);
+            engine = new ChessEngineCECP (profile.binary, args, options);
         else if (profile.protocol == "uci")
-            engine = new ChessEngineUCI (profile.binary, profile.args, options);
+            engine = new ChessEngineUCI (profile.binary, args, options);
         else
         {
             warning ("Unknown AI protocol %s", profile.protocol);

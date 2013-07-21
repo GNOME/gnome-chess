@@ -11,7 +11,7 @@
 public abstract class ChessEngine : Object
 {
     private string binary;
-    private string args;
+    private string[] args;
 
     private Pid pid;
     private int stdin_fd;
@@ -41,7 +41,7 @@ public abstract class ChessEngine : Object
         }
     }
 
-    public ChessEngine (string binary, string? args)
+    public ChessEngine (string binary, string[] args)
     {
         this.binary = binary;
         this.args = args;
@@ -49,7 +49,11 @@ public abstract class ChessEngine : Object
 
     public bool start ()
     {
-        string[] argv = { binary, args, null };
+        string[] argv = {binary};
+        foreach (var arg in args)
+            argv += arg;
+        argv += null;
+
         int stdout_fd;
         try
         {

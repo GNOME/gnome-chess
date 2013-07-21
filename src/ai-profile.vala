@@ -14,7 +14,9 @@ public class AIProfile
     public string protocol;
     public string binary;
     public string path;
-    public string args;
+    public string[] easy_args;
+    public string[] normal_args;
+    public string[] hard_args;
     public string[] easy_options;
     public string[] normal_options;
     public string[] hard_options;
@@ -49,13 +51,13 @@ public List<AIProfile> load_ai_profiles (string filename)
            profile.name = name;
            profile.protocol = file.get_value (name, "protocol");
            profile.binary = file.get_value (name, "binary");
-           if (file.has_key (name, "args"))
-               profile.args = file.get_value (name, "args");
-           else
-               profile.args = null; // bgo#696474
-           profile.easy_options = load_options (file, name, "easy");
-           profile.normal_options = load_options (file, name, "normal");
-           profile.hard_options = load_options (file, name, "hard");
+
+           profile.easy_args = load_array (file, name, "arg", "easy");
+           profile.normal_args = load_array (file, name, "arg", "normal");
+           profile.hard_args = load_array (file, name, "arg", "hard");
+           profile.easy_options = load_array (file, name, "option", "easy");
+           profile.normal_options = load_array (file, name, "option", "normal");
+           profile.hard_options = load_array (file, name, "option", "hard");
        }
        catch (KeyFileError e)
        {
@@ -73,15 +75,15 @@ public List<AIProfile> load_ai_profiles (string filename)
    return profiles;
 }
 
-private string[] load_options (KeyFile file, string name, string difficulty) throws KeyFileError
+private string[] load_array (KeyFile file, string name, string type, string difficulty) throws KeyFileError
 {
     int count = 0;
-    while (file.has_key (name, "option-%s-%d".printf (difficulty, count)))
+    while (file.has_key (name, "%s-%s-%d".printf (type, difficulty, count)))
         count++;
 
     string[] options = new string[count];
     for (var i = 0; i < count; i++)
-        options[i] = file.get_value (name, "option-%s-%d".printf (difficulty, i));
+        options[i] = file.get_value (name, "%s-%s-%d".printf (type, difficulty, i));
 
     return options;
 }
