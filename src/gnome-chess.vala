@@ -802,19 +802,19 @@ public class Application : Gtk.Application
             }
             else if (move.f0 < move.f1 && move.r0 == 0)
             {
-                move_text = _("White king castles kingside");
+                move_text = _("White castles kingside");
             }
             else if (move.f1 < move.f0 && move.r0 == 0)
             {
-                move_text = _("White king castles queenside");
+                move_text = _("White castles queenside");
             }
             else if (move.f0 < move.f1 && move.r0 == 7)
             {
-                move_text = _("Black king castles kingside");
+                move_text = _("Black castles kingside");
             }
             else if (move.f1 < move.f0 && move.r0 == 7)
             {
-                move_text = _("Black king castles queenside");
+                move_text = _("Black castles queenside");
             }
             else assert_not_reached ();
             break;
