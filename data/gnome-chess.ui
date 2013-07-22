@@ -200,6 +200,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes" comments="Tooltip on the show first move (i.e. game start) navigation button">Rewind to the game start</property>
+                        <accelerator key="Left" signal="activate" modifiers="GDK_SHIFT_MASK | GDK_MOD1_MASK"/>
                         <signal name="clicked" handler="history_start_clicked_cb" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="first_move_image">
@@ -223,6 +224,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes" comments="Tooltip on the show previous move navigation button">Show the previous move</property>
+                        <accelerator key="Left" signal="activate" modifiers="GDK_MOD1_MASK"/>
                         <signal name="clicked" handler="history_previous_clicked_cb" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="prev_move_image">
@@ -245,6 +247,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes" comments="Tooltip on the show next move navigation button">Show the next move</property>
+                        <accelerator key="Right" signal="activate" modifiers="GDK_MOD1_MASK"/>
                         <signal name="clicked" handler="history_next_clicked_cb" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="next_move_image">
@@ -267,6 +270,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes" comments="Tooltip on the show current move navigation button">Show the current move</property>
+                        <accelerator key="Right" signal="activate" modifiers="GDK_SHIFT_MASK | GDK_MOD1_MASK"/>
                         <signal name="clicked" handler="history_latest_clicked_cb" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="last_move_image">
