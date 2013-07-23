@@ -406,10 +406,9 @@ public class Application : Gtk.Application
         else
         {
             var path = game_file.get_path ();
-            window.title = /* Title of the window when explicitly loaded a file. The first argument is the
-                            * base name of the file (e.g. test.pgn), the second argument is the directory
-                            * (e.g. /home/fred) */
-                           _("%1$s (%2$s) - Chess").printf (Path.get_basename (path), Path.get_dirname (path));
+            window.title = /* Title of the window when explicitly loaded a file. The argument is the
+                            * base name of the file (e.g. test.pgn) */
+                           _("Chess - %1$s").printf (Path.get_basename (path));
         }
 
         var model = (Gtk.ListStore) history_combo.model;
