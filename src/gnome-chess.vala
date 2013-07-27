@@ -1538,9 +1538,9 @@ public class Application : Gtk.Application
 
         if (duration >= 0)
             set_duration (duration, false);
-        /* Default to 5 minutes when setting custom duration */
+        /* Default to one hour (30 minutes/player) when setting custom duration */
         else if (get_duration () <= 0)
-            set_duration (5 * 60, false);
+            set_duration (60 * 60, false);
 
         save_duration ();
     }
