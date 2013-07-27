@@ -239,9 +239,6 @@ private class ChessView2D : ChessView
 
     private void draw_piece (Cairo.Context c, Cairo.Surface surface, int size, ChessPiece piece, double alpha)
     {
-        if (scene.board_side == "facetoface" && piece.color == Color.BLACK)
-            c.rotate (Math.PI);
-
         c.translate (-size / 2, -size / 2);
 
         int offset = piece.type;

@@ -161,7 +161,6 @@ public class ChessScene : Object
              {
              default:
              case "white":
-             case "facetoface":
                  return 0.0;
              case "black":
                  return 180.0;
