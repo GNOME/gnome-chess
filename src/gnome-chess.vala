@@ -1086,11 +1086,20 @@ public class Application : Gtk.Application
             dialog.destroy ();
 
             if (result == Gtk.ResponseType.CANCEL || result == Gtk.ResponseType.DELETE_EVENT)
+            {
                 return;
+            }
             else if (result == Gtk.ResponseType.YES)
-                save_game (Gtk.Stock.DISCARD, Gtk.Stock.SAVE); /* Your very last chance to save */
-            else
+            {
+                /* Your very last chance to save */
+                save_game (Gtk.Stock.DISCARD, Gtk.Stock.SAVE);
+            }
+            else if (game.result != ChessResult.IN_PROGRESS)
+            {
                 warn_if_fail (result == Gtk.ResponseType.NO);
+                /* Remove completed game from history */
+                autosave ();
+            }
         }
 
         start_new_game ();
