@@ -24,6 +24,7 @@ public class ChessEngineCECP : ChessEngine
     private void start_cb ()
     {
         write_line ("xboard");
+        write_line ("random");
         foreach (var o in options)
             write_line (o);
         ready = true;
