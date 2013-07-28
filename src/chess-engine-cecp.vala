@@ -89,6 +89,16 @@ public class ChessEngineCECP : ChessEngine
 
     public override void undo ()
     {
+        /*
+         * We're undoing only the most recent move here, so there's no need to
+         * call Undo twice, or to use fanciness like the remove command. This
+         * function will be called twice if we need to undo two moves in a row.
+         *
+         * force is not necessary for GNUChess or Phalanx, but it's required by
+         * CECP and most other engines will move again immediately without it
+         * (leading to an apparent AI hang).
+         */
+        write_line ("force");
         write_line ("undo");
     }
 }
