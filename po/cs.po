@@ -23,8 +23,8 @@ msgstr ""
 "Project-Id-Version: gnome-chess master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2013-07-24 03:37+0000\n"
-"PO-Revision-Date: 2013-07-24 22:27+0200\n"
+"POT-Creation-Date: 2013-07-28 02:20+0000\n"
+"PO-Revision-Date: 2013-07-28 11:20+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -37,7 +37,7 @@ msgstr ""
 
 #. Title of the main window
 #: ../data/glchess.desktop.in.in.h:1 ../src/gnome-chess.vala:404
-#: ../src/gnome-chess.vala:1606
+#: ../src/gnome-chess.vala:1615
 msgid "Chess"
 msgstr "Šachy"
 
@@ -258,90 +258,89 @@ msgstr "Těžké"
 msgid "No limit"
 msgstr "Bez omezení"
 
-#. Preferences Dialog: Combo box entry for game timer of one minute
+#. Preferences Dialog: Combo box entry for game timer of ten minutes
 #: ../data/preferences.ui.h:10
-msgid "One minute"
-msgstr "Jedna minuta"
-
-#. Preferences Dialog: Combo box entry for game timer of five minutes
-#: ../data/preferences.ui.h:12
-msgid "Five minutes"
-msgstr "Pět minut"
+msgid "Ten minutes"
+msgstr "Deset minut"
 
 #. Preferences Dialog: Combo box entry for game timer of thirty minutes
-#: ../data/preferences.ui.h:14
-msgid "30 minutes"
-msgstr "30 minut"
+#: ../data/preferences.ui.h:12
+msgid "Thirty minutes"
+msgstr "Třicet minut"
 
 #. Preferences Dialog: Combo box entry for game timer of one hour
-#: ../data/preferences.ui.h:16
+#: ../data/preferences.ui.h:14
 msgid "One hour"
 msgstr "Jedna hodina"
 
-#. Preferences Dialog: Combo box entry for custom game timer
+#. Preferences Dialog: Combo box entry for game timer of two hours
+#: ../data/preferences.ui.h:16
+msgid "Two hours"
+msgstr "Dvě hodiny"
+
+#. Preferences Dialog: Combo box entry for game timer of three hours
 #: ../data/preferences.ui.h:18
+msgid "Three hours"
+msgstr "Tři hodiny"
+
+#. Preferences Dialog: Combo box entry for custom game timer
+#: ../data/preferences.ui.h:20
 msgid "Custom"
 msgstr "Vlastní"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
-#: ../data/preferences.ui.h:20
+#: ../data/preferences.ui.h:22
 msgctxt "chess-move-format"
 msgid "Human"
 msgstr "Člověk"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
-#: ../data/preferences.ui.h:22
+#: ../data/preferences.ui.h:24
 msgctxt "chess-move-format"
 msgid "Standard Algebraic"
 msgstr "Standardní algebraický"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
-#: ../data/preferences.ui.h:24
+#: ../data/preferences.ui.h:26
 msgctxt "chess-move-format"
 msgid "Figurine"
 msgstr "Figurína"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
-#: ../data/preferences.ui.h:26
+#: ../data/preferences.ui.h:28
 msgctxt "chess-move-format"
 msgid "Long Algebraic"
 msgstr "Dlouhý algebraický"
 
 #. Preferences Dialog: Combo box entry for human opponent
-#: ../data/preferences.ui.h:28
+#: ../data/preferences.ui.h:30
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "Člověk"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the white side
-#: ../data/preferences.ui.h:30
+#: ../data/preferences.ui.h:32
 msgctxt "chess-side"
 msgid "White Side"
 msgstr "Strana bílého"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the black side
-#: ../data/preferences.ui.h:32
+#: ../data/preferences.ui.h:34
 msgctxt "chess-side"
 msgid "Black Side"
 msgstr "Strana černého"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
-#: ../data/preferences.ui.h:34
+#: ../data/preferences.ui.h:36
 msgctxt "chess-side"
 msgid "Human Side"
 msgstr "Strana člověka"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
-#: ../data/preferences.ui.h:36
+#: ../data/preferences.ui.h:38
 msgctxt "chess-side"
 msgid "Current Player"
 msgstr "Současný hráč"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)
-#: ../data/preferences.ui.h:38
-msgctxt "chess-side"
-msgid "Face to Face"
-msgstr "Tváří v tvář"
 
 #. Preferences Dialog: Combo box entry for simple theme
 #: ../data/preferences.ui.h:40
@@ -1010,7 +1009,7 @@ msgid "_Save game log"
 msgstr "_Uložit záznam hry"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in seconds
-#: ../src/gnome-chess.vala:1489
+#: ../src/gnome-chess.vala:1498
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "sekunda"
@@ -1018,7 +1017,7 @@ msgstr[1] "sekundy"
 msgstr[2] "sekund"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#: ../src/gnome-chess.vala:1493
+#: ../src/gnome-chess.vala:1502
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minuta"
@@ -1026,14 +1025,14 @@ msgstr[1] "minuty"
 msgstr[2] "minut"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../src/gnome-chess.vala:1497
+#: ../src/gnome-chess.vala:1506
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "hodina"
 msgstr[1] "hodiny"
 msgstr[2] "hodin"
 
-#: ../src/gnome-chess.vala:1610
+#: ../src/gnome-chess.vala:1619
 msgid ""
 "The 2D/3D chess game for GNOME. \n"
 "\n"
@@ -1043,59 +1042,59 @@ msgstr ""
 "\n"
 "GNOME Chess je součástí her GNOME."
 
-#: ../src/gnome-chess.vala:1615
+#: ../src/gnome-chess.vala:1624
 msgid "GNOME Games web site"
 msgstr "Webové stránky her GNOME"
 
 #. Title of save game dialog
-#: ../src/gnome-chess.vala:1665
+#: ../src/gnome-chess.vala:1674
 msgid "Save Chess Game"
 msgstr "Uložit šachovou partii"
 
 #. Default filename for the save game dialog
-#: ../src/gnome-chess.vala:1678
+#: ../src/gnome-chess.vala:1687
 msgid "Untitled Chess Game"
 msgstr "Nepojmenovaná šachová partie"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:1684 ../src/gnome-chess.vala:1769
+#: ../src/gnome-chess.vala:1693 ../src/gnome-chess.vala:1778
 msgid "PGN files"
 msgstr "Soubory PGN"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:1691 ../src/gnome-chess.vala:1776
+#: ../src/gnome-chess.vala:1700 ../src/gnome-chess.vala:1785
 msgid "All files"
 msgstr "Všechny soubory"
 
-#: ../src/gnome-chess.vala:1732
+#: ../src/gnome-chess.vala:1741
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Selhalo uložení hry: %s"
 
 #. Title of load game dialog
-#: ../src/gnome-chess.vala:1756
+#: ../src/gnome-chess.vala:1765
 msgid "Load Chess Game"
 msgstr "Načíst šachovou partii"
 
-#: ../src/gnome-chess.vala:1800
+#: ../src/gnome-chess.vala:1809
 #, c-format
 msgid "Failed to open game: %s"
 msgstr "Selhalo otevření hry: %s"
 
 #. Help string for command line --version flag
-#: ../src/gnome-chess.vala:1872
+#: ../src/gnome-chess.vala:1881
 msgid "Show release version"
 msgstr "Zobrazit verzi vydání"
 
 #. Arguments and description for --help text
-#: ../src/gnome-chess.vala:1889
+#: ../src/gnome-chess.vala:1898
 msgid "[FILE] - Play Chess"
 msgstr "[SOUBOR] – Hrát šachy"
 
 #. Text printed out when an unknown command-line argument provided
-#: ../src/gnome-chess.vala:1900
+#: ../src/gnome-chess.vala:1909
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr ""
