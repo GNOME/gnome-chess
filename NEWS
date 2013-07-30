@@ -1,3 +1,58 @@
+3.9.5 - July 29, 2013
+=====================
+
+Note for distributors:
+
+We now recommend installing the HoiChess engine by default, instead of GNUChess
+or Phalanx (or really anything else), in order to make the game actually
+winnable for mortals.  See the long-running Bug #475535 for more information on
+why HoiChess is recommended.  The Debian package has build patches, if needed.
+
+Changes since 3.9.4:
+
+- Added support for the Octochess engine
+- Easier Easy/Normal settings for many engines
+- Fix AI hang when using Undo against most CECP engines
+- Fix crash when new game dialog is deleted
+- Don't include path to opened game in window title
+- HIG: preferences options should use sentence capitalization
+- Fix keyboard shortcuts for New/Open/Save/Undo/Fullscreen
+- Don't start new game if new game dialog is deleted
+- 3D: bottom-right corner should be white
+- Preferences: move "opposing player" to the top
+- Side and difficulty selection should be insensitive in human vs. human games
+- Update About dialog copyright notice
+- Fix board numbering when Black is on bottom
+- Some new toolbar items were missing tooltips
+- Add keyboard shortcuts for previous/next move
+- 3D: improve alignment of file letters
+- Autosave: always forget games after they are completed
+- Remove face-to-face board orientation
+- Suggest longer game durations
+- Instruct CECP engines to add randomness to play
+- Updated translations:
+  - Czech
+  - Galacian
+  - Greek
+  - Lithuanian
+  - Spanish
+  - Traditional Chinese
+
+Dependencies changed:
+
+vala >= 21.0 (optional)
+
+All contributors to this release:
+
+Aurimas Černius <aurisc4@gmail.com>
+Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Chris Cummins <christopher.e.cummins@intel.com>
+Daniel Mustieles <daniel.mustieles@gmail.com>
+Dimitris Spingos <dmtrs32@gmail.com>
+Fran Diéguez <fran.dieguez@mabishu.com>
+Marek Černocký <marek@manet.cz>
+Michael Catanzaro <mike.catanzaro@gmail.com>
+
 gnome-chess 3.9.4
 =================
 
