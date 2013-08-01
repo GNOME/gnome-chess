@@ -496,6 +496,7 @@ public class Application : Gtk.Application
         scene.game = game;
         info_bar.hide ();
         save_button.sensitive = false;
+        pause_button.sensitive = (game.clock != null);
         update_history_panel ();
         update_control_buttons ();
 
