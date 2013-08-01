@@ -1202,7 +1202,7 @@ public class Application : Gtk.Application
     {
         is_paused = !is_paused;
         game.is_paused = is_paused;
-        Gtk.ToolButton tool_button = pause_button as Gtk.ToolButton;
+        Gtk.ToolButton tool_button = (Gtk.ToolButton) pause_button;
         if (is_paused)
         {
             if (game.clock != null)
