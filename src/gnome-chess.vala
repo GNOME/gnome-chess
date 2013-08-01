@@ -1228,12 +1228,18 @@ public class Application : Gtk.Application
 
     public void set_paused_state (bool paused)
     {
-        if (paused != is_paused)
+        if (paused == is_paused)
+            return;
+
+        is_paused = paused;
+        game.is_paused = paused;
+
+        if (game.clock != null)
         {
-            is_paused = paused;
-            game.is_paused = paused;
-            if (game.clock != null)
-                game.clock.toggle_paused (paused);
+            if (paused)
+                game.clock.unpause ();
+            else
+                game.clock.pause ();
         }
     }
 
@@ -1269,9 +1275,9 @@ public class Application : Gtk.Application
 
         int used;
         if (color == Color.WHITE)
-            used = (int) (game.clock.white_duration / 1000 - game.clock.white_used_in_seconds);
+            used = (int) (game.clock.white_initial_seconds - game.clock.white_seconds_used);
         else
-            used = (int) (game.clock.black_duration / 1000 - game.clock.black_used_in_seconds);
+            used = (int) (game.clock.black_initial_seconds - game.clock.black_seconds_used);
 
         if (used >= 60)
             return "%d:%02d".printf (used / 60, used % 60);
@@ -1823,8 +1829,8 @@ public class Application : Gtk.Application
         {
             /* We currently only support simple timeouts */
             uint initial_time = int.parse (pgn_game.time_control);
-            uint white_used = game.clock.white_used_in_seconds;
-            uint black_used = game.clock.black_used_in_seconds;
+            uint white_used = game.clock.white_seconds_used;
+            uint black_used = game.clock.black_seconds_used;
 
             pgn_game.white_time_left = (initial_time - white_used).to_string ();
             pgn_game.black_time_left = (initial_time - black_used).to_string ();
