@@ -96,16 +96,16 @@ public class Application : Gtk.Application
 
     public bool on_window_focus_out (Gdk.EventFocus focus)
     {
-        if (!is_paused)
-            pause_game_cb (pause_button);
+        if (((Gtk.ToolButton) pause_button).stock_id == "gtk-media-pause" )
+            set_paused_state (true);
 
         return false;
     }
 
     public bool on_window_focus_in (Gdk.EventFocus focus)
     {
-        if (is_paused)
-            pause_game_cb (pause_button);
+        if (((Gtk.ToolButton) pause_button).stock_id == "gtk-media-pause" )
+            set_paused_state (false);
 
         return false;
     }
@@ -1198,16 +1198,14 @@ public class Application : Gtk.Application
         history_combo.sensitive = widget_sensitivity[SensitivityIndex.HISTORY];
     }
 
-    [CCode (cname = "G_MODULE_EXPORT pause_game_cb", instance_pos = -1)]
-    public void pause_game_cb (Gtk.Widget widget)
+    [CCode (cname = "G_MODULE_EXPORT pause_game_button_pressed_cb", instance_pos = -1)]
+    public void pause_game_button_pressed_cb (Gtk.Widget widget)
     {
-        is_paused = !is_paused;
-        game.is_paused = is_paused;
+        set_paused_state (!is_paused);
+
         Gtk.ToolButton tool_button = (Gtk.ToolButton) pause_button;
         if (is_paused)
         {
-            if (game.clock != null)
-                game.clock.toggle_paused (true);
             tool_button.stock_id = "gtk-media-play";
             tool_button.label = "Start";
             stash_button_sensitivity ();
@@ -1222,11 +1220,20 @@ public class Application : Gtk.Application
         }
         else
         {
-            if (game.clock != null)
-                game.clock.toggle_paused (false);
             tool_button.stock_id = "gtk-media-pause";
             tool_button.label = "Pause";
             revert_button_sensitivity ();
+        }
+    }
+
+    public void set_paused_state (bool paused)
+    {
+        if (paused != is_paused)
+        {
+            is_paused = paused;
+            game.is_paused = paused;
+            if (game.clock != null)
+                game.clock.toggle_paused (paused);
         }
     }
 
