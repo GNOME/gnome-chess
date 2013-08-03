@@ -1228,7 +1228,7 @@ public class Application : Gtk.Application
 
     public void set_paused_state (bool paused)
     {
-        if (paused == is_paused)
+        if (paused == is_paused || game.result != ChessResult.IN_PROGRESS)
             return;
 
         is_paused = paused;
