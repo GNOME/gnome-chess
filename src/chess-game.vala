@@ -1253,7 +1253,6 @@ public enum ChessRule
 public class ChessGame
 {
     public bool is_started;
-    public bool is_paused = false;
     public ChessResult result;
     public ChessRule rule;
     public List<ChessState> move_stack;
@@ -1267,6 +1266,8 @@ public class ChessGame
     public signal void moved (ChessMove move);
     public signal void undo ();
     public signal void ended ();
+
+    public bool is_paused { get; private set; default = false; }
     
     public ChessState current_state
     {
@@ -1491,6 +1492,24 @@ public class ChessGame
     public uint n_moves
     {
         get { return move_stack.length() - 1; }
+    }
+
+    public void pause ()
+    {
+        if (clock != null && result == ChessResult.IN_PROGRESS && !is_paused)
+        {
+            clock.pause ();
+            is_paused = true;
+        }
+    }
+
+    public void unpause ()
+    {
+        if (clock != null && result == ChessResult.IN_PROGRESS && is_paused)
+        {
+            clock.unpause ();
+            is_paused = false;
+        }
     }
 
     private void stop (ChessResult result, ChessRule rule)
