@@ -79,14 +79,14 @@ public class ChessClock : Object
         _black_initial_ms = black_initial_seconds * 1000;
     }
 
-    private bool is_started
+    private bool is_active
     {
         get { return expire_timeout_id != 0; }
     }
     
     public void start ()
     {
-        if (is_started)
+        if (is_active)
             return;
 
         if (timer == null)
@@ -128,7 +128,7 @@ public class ChessClock : Object
 
     public void stop ()
     {
-        if (!is_started)
+        if (!is_active)
             return;
 
         timer.stop ();
@@ -153,7 +153,7 @@ public class ChessClock : Object
 
     public void pause ()
     {
-        if (timer == null)
+        if (!is_active)
             return;
 
         timer.stop ();
@@ -162,7 +162,7 @@ public class ChessClock : Object
 
     public void unpause ()
     {
-        if (timer == null)
+        if (is_active)
             return;
 
         timer.@continue ();
