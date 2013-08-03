@@ -81,7 +81,7 @@ public class ChessClock : Object
 
     private bool is_active
     {
-        get { return expire_timeout_id != 0; }
+        get { return timer != null && expire_timeout_id != 0; }
     }
     
     public void start ()

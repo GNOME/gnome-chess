@@ -495,7 +495,6 @@ public class Application : Gtk.Application
         scene.game = game;
         info_bar.hide ();
         save_button.sensitive = false;
-        pause_button.sensitive = (game.clock != null);
         update_history_panel ();
         update_control_buttons ();
 
@@ -564,7 +563,14 @@ public class Application : Gtk.Application
         game.start ();
 
         if (moves.length > 0 && game.clock != null)
+        {
             game.clock.start ();
+            pause_button.sensitive = true;
+        }
+        else
+        {
+            pause_button.sensitive = false;
+        }
 
         if (game.result != ChessResult.IN_PROGRESS)
             game_end_cb (game);
@@ -673,6 +679,9 @@ public class Application : Gtk.Application
 
     private void game_turn_cb (ChessGame game, ChessPlayer player)
     {
+        if (game.clock != null)
+            pause_button.sensitive = true;
+        
         if (game.is_started && opponent_engine != null && player == opponent)
             opponent_engine.request_move ();
     }
