@@ -1246,9 +1246,9 @@ public class Application : Gtk.Application
         if (game.clock != null)
         {
             if (paused)
-                game.clock.unpause ();
-            else
                 game.clock.pause ();
+            else
+                game.clock.unpause ();
         }
     }
 

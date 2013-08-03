@@ -156,8 +156,8 @@ public class ChessClock : Object
         if (timer == null)
             return;
 
-        timer.@continue ();
-        watch_timer ();
+        timer.stop ();
+        stop_checking_timer ();
     }
 
     public void unpause ()
@@ -165,8 +165,8 @@ public class ChessClock : Object
         if (timer == null)
             return;
 
-        timer.stop ();
-        stop_checking_timer ();
+        timer.@continue ();
+        watch_timer ();
     }
 
     private void watch_timer ()
