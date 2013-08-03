@@ -162,7 +162,7 @@ public class ChessClock : Object
 
     public void unpause ()
     {
-        if (is_active)
+        if (timer == null || is_active)
             return;
 
         timer.@continue ();
