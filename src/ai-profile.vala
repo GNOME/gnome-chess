@@ -21,6 +21,9 @@ public class AIProfile
     public string[] easy_options { get; private set; }
     public string[] normal_options { get; private set; }
     public string[] hard_options { get; private set; }
+    public string[] easy_uci_go_options { get; private set; }
+    public string[] normal_uci_go_options { get; private set; }
+    public string[] hard_uci_go_options { get; private set; }
 
     public static List<AIProfile> load_ai_profiles (string filename)
     {
@@ -57,6 +60,9 @@ public class AIProfile
                profile.easy_options = load_array (file, name, "option", "easy");
                profile.normal_options = load_array (file, name, "option", "normal");
                profile.hard_options = load_array (file, name, "option", "hard");
+               profile.easy_uci_go_options = load_array (file, name, "uci-go-option", "easy");
+               profile.normal_uci_go_options = load_array (file, name, "uci-go-option", "normal");
+               profile.hard_uci_go_options = load_array (file, name, "uci-go-option", "hard");
            }
            catch (KeyFileError e)
            {

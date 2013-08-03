@@ -13,12 +13,14 @@ public class ChessEngineUCI : ChessEngine
     private char[] buffer;
     private string moves;
     private string[] options;
+    private string go_options;
     private bool waiting_for_move;
 
-    public ChessEngineUCI (string binary, string[] args, string[] options)
+    public ChessEngineUCI (string binary, string[] args, string[] options, string[] go_options)
     {
         base (binary, args);
         this.options = options;
+        this.go_options = string.joinv (" ", go_options);
         buffer = new char[0];
         moves = "";
         starting.connect (start_cb);
@@ -41,7 +43,7 @@ public class ChessEngineUCI : ChessEngine
         else
             write_line ("position startpos");
         waiting_for_move = true;
-        write_line ("go wtime 30000 btime 30000");
+        write_line ("go wtime 30000 btime 30000 %s".printf (go_options));
     }
 
     public override void report_move (ChessMove move)
