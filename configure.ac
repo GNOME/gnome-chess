@@ -35,6 +35,15 @@ PKG_CHECK_MODULES(TEST, [
 ])
 
 dnl ###########################################################################
+dnl Disable C warnings
+dnl ###########################################################################
+GNOME_CHESS_CFLAGS="$GNOME_CHESS_CFLAGS -w"
+AC_SUBST([GNOME_CHESS_CFLAGS])
+
+TEST_CFLAGS="$TEST_CFLAGS -w"
+AC_SUBST([TEST_CFLAGS])
+
+dnl ###########################################################################
 dnl Internationalization
 dnl ###########################################################################
 
