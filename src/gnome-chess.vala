@@ -965,6 +965,7 @@ public class Application : Gtk.Application
         resign_button.sensitive = false;
         undo_button.sensitive = false;
         claim_draw_button.sensitive = false;
+        pause_button.sensitive = false;
 
         game_needs_saving = true;
 
