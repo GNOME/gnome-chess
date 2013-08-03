@@ -128,7 +128,13 @@ public class ChessEngineUCI : ChessEngine
     private void configure ()
     {
         foreach (var o in options)
-            write_line ("setoption %s".printf (o));
+        {
+            var line = o.split (" ");
+            var option_value = line[line.length - 1];
+            line = line[0:line.length-1];
+            var option_name = string.joinv (" ", line);
+            write_line ("setoption name %s value %s".printf (option_name, option_value));
+        }
         write_line ("isready");
     }
 }
