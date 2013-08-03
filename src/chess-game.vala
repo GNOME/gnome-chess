@@ -996,16 +996,27 @@ public class ChessState
              * 1) king versus king
              * 2) king and bishop versus king
              * 3) king and knight versus king
-             * 4) king and bishop versus king and bishop with the bishops on
-             *    the same colour. (Any number of additional bishops of either
-             *    color on the same color of square due to underpromotion do
-             *    not affect the situation.)
+             * 4) king and bishop versus king and bishop with the bishops on the same color. (Any
+             *    number of additional bishops of either color on the same color of square due to
+             *    underpromotion do not affect the situation.)
              *
-             * From:
-             * https://en.wikipedia.org/wiki/Draw_(chess)#Draws_in_all_games
+             * From: https://en.wikipedia.org/wiki/Draw_(chess)#Draws_in_all_games
              *
-             * Note also that this follows FIDE rules, not USCF rules. E.g.
-             * K+N+N vs. K cannot be forced, so it's not counted as a draw.
+             * Note also that this follows FIDE rules, not USCF rules. E.g. K+N+N vs. K cannot be
+             * forced, so it's not counted as a draw.
+             *
+             * This is also what CECP engines will be expecting:
+             *
+             * "Note that (in accordance with FIDE rules) only KK, KNK, KBK and KBKB with all
+             * bishops on the same color can be claimed as draws on the basis of insufficient mating
+             * material. The end-games KNNK, KBKN, KNKN and KBKB with unlike bishops do have mate
+             * positions, and cannot be claimed. Complex draws based on locked Pawn chains will not
+             * be recognized as draws by most interfaces, so do not claim in such positions, but
+             * just offer a draw or play on."
+             *
+             * From: http://www.open-aurec.com/wbforum/WinBoard/engine-intf.html
+             *
+             * (In contrast, UCI seems to expect the interface to handle draws itself.)
              */
 
             /* Two knights versus king can checkmate (though not against an optimal opponent) */
