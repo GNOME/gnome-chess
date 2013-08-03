@@ -1112,7 +1112,7 @@ public class Application : Gtk.Application
                                                             Gtk.ButtonsType.NONE,
                                                             "<span weight=\"bold\" size=\"larger\">%s</span>",
                                                             _("Save this game before starting a new one?"));
-            dialog.add_button (Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL);
+            dialog.add_button (_("_Cancel"), Gtk.ResponseType.CANCEL);
 
             if (game.result == ChessResult.IN_PROGRESS)
             {
@@ -1135,7 +1135,7 @@ public class Application : Gtk.Application
             else if (result == Gtk.ResponseType.YES)
             {
                 /* Your very last chance to save */
-                save_game (Gtk.Stock.DISCARD, Gtk.Stock.SAVE);
+                save_game (_("_Discard"), _("_Save"));
             }
             else if (game.result != ChessResult.IN_PROGRESS)
             {
@@ -1770,7 +1770,7 @@ public class Application : Gtk.Application
         dialog.add (vbox);
     }
     
-    private void save_game (string cancel_button_label = Gtk.Stock.CANCEL, string save_button_label = Gtk.Stock.SAVE)
+    private void save_game (string cancel_button_label = N_("_Cancel"), string save_button_label = N_("_Save"))
     {
         /* Show active dialog */
         if (save_dialog != null)
@@ -1873,8 +1873,8 @@ public class Application : Gtk.Application
         open_dialog = new Gtk.FileChooserDialog (/* Title of load game dialog */
                                                  _("Load Chess Game"),
                                                  window, Gtk.FileChooserAction.OPEN,
-                                                 Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
-                                                 Gtk.Stock.OPEN, Gtk.ResponseType.OK, null);
+                                                 _("_Cancel"), Gtk.ResponseType.CANCEL,
+                                                 _("_Open"), Gtk.ResponseType.OK, null);
         add_info_bar_to_dialog (open_dialog, out open_dialog_info_bar, out open_dialog_error_label);
 
         open_dialog.file_activated.connect (open_file_cb);        
