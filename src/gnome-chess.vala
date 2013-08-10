@@ -1031,7 +1031,7 @@ public class Application : Gtk.Application
             break;
         case ChessRule.THREE_FOLD_REPETITION:
             /* Message displayed when the game is drawn due to the three-fold-repitition rule */
-            reason = _("The same board state has occurred three times (three fold repetition)");
+            reason = _("The same board state has occurred three times (threefold repetition)");
             break;
         case ChessRule.INSUFFICIENT_MATERIAL:
             /* Message displayed when the game is drawn due to the insufficient material rule */
