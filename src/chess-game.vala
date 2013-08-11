@@ -1469,18 +1469,25 @@ public class ChessGame
 
     private bool is_three_fold_repeat ()
     {
-        var count = 1;
-
-        foreach (var state in move_stack.next)
+        foreach (var state in move_stack)
         {
-            if (current_state.equals (state))
-            {
-                count++;
-                if (count >= 3)
-                    return true;
-            }
+            if (state_repeated_times (state) >= 3)
+                return true;
         }
 
         return false;
+    }
+
+    private int state_repeated_times (ChessState s1)
+    {
+        var count = 1;
+
+        foreach (var s2 in move_stack)
+        {
+            if (s1 != s2 && s1.equals (s2))
+                count++;
+        }
+
+        return count;
     }
 }
