@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess 3.9.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-08 21:03+0200\n"
-"PO-Revision-Date: 2013-08-08 21:14+0200\n"
+"POT-Creation-Date: 2013-08-12 01:01+0200\n"
+"PO-Revision-Date: 2013-08-12 01:02+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb\n"
@@ -68,8 +68,8 @@ msgid "Undo Move"
 msgstr "Angre trekk"
 
 #: ../data/gnome-chess.ui.h:12
-msgid "Claim that the game is a draw"
-msgstr "Si at spillet er uavgjort"
+msgid "Claim a draw by threefold repetition or the fifty move rule"
+msgstr "Krev remis etter regel for tre repetisjoner eller femti trekk"
 
 #: ../data/gnome-chess.ui.h:13
 msgid "Claim Draw"
@@ -950,7 +950,7 @@ msgstr "Motstanders tid er utløpt"
 
 #. Message displayed when the game is drawn due to the three-fold-repitition rule
 #: ../src/gnome-chess.vala:1034
-msgid "The same board state has occurred three times (three fold repetition)"
+msgid "The same board state has occurred three times (threefold repetition)"
 msgstr "Brettet har hatt samme tilstand tre ganger (tre ganger repetisjon)"
 
 #. Message displayed when the game is drawn due to the insufficient material rule
@@ -1042,6 +1042,10 @@ msgstr ""
 "2D/3D sjakkspill for GNOME.\n"
 "\n"
 "GNOME Chess er en del av GNOME-spillene."
+
+#: ../src/gnome-chess.vala:1740
+msgid "translator-credits"
+msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
 #: ../src/gnome-chess.vala:1742
 msgid "GNOME Games web site"
