@@ -425,21 +425,14 @@ public class ChessState
     public bool equals (ChessState state)
     {
         /* Check first if there is the same layout of pieces (unlikely),
-         * then the move castling and en-passant state are the same,
-         * then finally that it is the same move */
+         * then that the move castling and en-passant state are the same */
         if (piece_masks[Color.WHITE] != state.piece_masks[Color.WHITE] ||
             piece_masks[Color.BLACK] != state.piece_masks[Color.BLACK] || 
             can_castle_kingside[Color.WHITE] != state.can_castle_kingside[Color.WHITE] ||
             can_castle_queenside[Color.WHITE] != state.can_castle_queenside[Color.WHITE] ||
             can_castle_kingside[Color.BLACK] != state.can_castle_kingside[Color.BLACK] ||
             can_castle_queenside[Color.BLACK] != state.can_castle_queenside[Color.BLACK] ||
-            en_passant_index != state.en_passant_index ||
-            (last_move != null) != (state.last_move != null) ||
-            last_move.piece.type != state.last_move.piece.type ||
-            last_move.r0 != state.last_move.r0 ||
-            last_move.f0 != state.last_move.f0 ||
-            last_move.r1 != state.last_move.r1 ||
-            last_move.f1 != state.last_move.f1)
+            en_passant_index != state.en_passant_index)
             return false;
 
         /* Finally check the same piece types are present */
