@@ -1737,7 +1737,7 @@ public class Application : Gtk.Application
         about_dialog.comments = _("The 2D/3D chess game for GNOME. \n\nGNOME Chess is a part of GNOME Games.");
         about_dialog.authors = authors;
         about_dialog.artists = artists;
-        about_dialog.translator_credits = "translator-credits";
+        about_dialog.translator_credits = _("translator-credits");
         about_dialog.website = "http://www.gnome.org/projects/gnome-games/";
         about_dialog.website_label = _("GNOME Games web site");
         about_dialog.logo_icon_name = "gnome-chess";
