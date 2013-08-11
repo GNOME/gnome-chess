@@ -418,6 +418,7 @@ public class ChessState
             state.board[i] = board[i];
         state.piece_masks[Color.WHITE] = piece_masks[Color.WHITE];
         state.piece_masks[Color.BLACK] = piece_masks[Color.BLACK];
+        state.halfmove_clock = halfmove_clock;
 
         return state;
     }
