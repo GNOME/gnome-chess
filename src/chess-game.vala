@@ -1538,7 +1538,7 @@ public class ChessGame
         return false;
     }
 
-    private int state_repeated_times (ChessState s1)
+    public int state_repeated_times (ChessState s1)
     {
         var count = 1;
 

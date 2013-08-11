@@ -1169,7 +1169,39 @@ public class Application : Gtk.Application
     [CCode (cname = "G_MODULE_EXPORT claim_draw_cb", instance_pos = -1)]
     public void claim_draw_cb (Gtk.Widget widget)
     {
-        game.current_player.claim_draw ();
+        if (!game.current_player.claim_draw ())
+        {
+            var dialog = new Gtk.MessageDialog.with_markup (window,
+                                                            Gtk.DialogFlags.MODAL,
+                                                            Gtk.MessageType.INFO,
+                                                            Gtk.ButtonsType.CLOSE,
+                                                            "<span weight=\"bold\" size=\"larger\">%s</span>",
+                                                            _("You cannot currently claim a draw."));
+
+            var repetitions = game.state_repeated_times (game.current_state);
+            var moves = game.current_state.halfmove_clock / 2;
+
+            warn_if_fail (repetitions == 1 || repetitions == 2);
+
+            /* Dialog that appears when Claim Draw is used but a draw cannot be claimed */
+            dialog.format_secondary_text ("• " + (repetitions == 1 ?
+                                                      _("It is the first time this board position has occurred") :
+                                                      _("It is the second time this board position has occurred")) + "\n"
+                                            + "• " + ngettext ("%d move has passed without a capture or pawn advancement",
+                                                               "%d moves have passed without a capture or pawn advancement",
+                                                               moves) + "\n\n"
+                                            + _("You can claim a draw when either:") + "\n\n"
+                                            + "• " + _("Any board position has occurred three times") + "\n"
+                                            + "• " + _("50 moves have passed without a capture or pawn advancement") + "\n\n"
+                                            + _("(Board position is affected by the ability to castle or capture en passant.)") + "\n\n"
+                                            + _("The game is automatically a draw if:") + "\n\n"
+                                            + "• " + _("The current player cannot move (stalemate)") + "\n"
+                                            + "• " + _("Neither player can checkmate (insufficient material)"),
+                                          moves);
+
+            dialog.run ();
+            dialog.destroy ();
+        }
     }
 
     [CCode (cname = "G_MODULE_EXPORT undo_move_cb", instance_pos = -1)]
