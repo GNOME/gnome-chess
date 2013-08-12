@@ -1199,6 +1199,7 @@ public class Application : Gtk.Application
             warning ("Could not load preferences UI: %s", e.message);
         }
         preferences_dialog = (Gtk.Dialog) preferences_builder.get_object ("preferences");
+        preferences_dialog.transient_for = window;
         
         settings.bind ("show-numbering", preferences_builder.get_object ("show_numbering_check"),
                        "active", SettingsBindFlags.DEFAULT);
