@@ -1468,7 +1468,7 @@ public class ChessGame
         ended ();
     }
 
-    private bool is_three_fold_repeat ()
+    public bool is_three_fold_repeat ()
     {
         foreach (var state in move_stack)
         {

@@ -861,7 +861,8 @@ public class Application : Gtk.Application
     {
         var can_resign = game.n_moves > 0 && game.current_player != opponent;
         resign_menu.sensitive = resign_button.sensitive = can_resign;
-        claim_draw_menu.sensitive = can_resign;
+        claim_draw_menu.sensitive = (game.current_state.halfmove_clock >= 100
+                                        || game.is_three_fold_repeat ());
 
         /* Can undo once the human player has made a move */
         var can_undo = game.n_moves > 0;
