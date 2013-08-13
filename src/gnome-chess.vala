@@ -1146,10 +1146,11 @@ public class Application : Gtk.Application
                 /* Your very last chance to save */
                 save_game (_("_Discard"), _("_Save"));
             }
-            else if (game.result != ChessResult.IN_PROGRESS)
+            else
             {
                 warn_if_fail (result == Gtk.ResponseType.NO);
                 /* Remove completed game from history */
+                game_needs_saving = false;
                 autosave ();
             }
         }
