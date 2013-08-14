@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess 3.9.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-12 01:01+0200\n"
-"PO-Revision-Date: 2013-08-12 01:02+0200\n"
+"POT-Creation-Date: 2013-08-14 15:14+0200\n"
+"PO-Revision-Date: 2013-08-14 15:16+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #. Title of the main window
 #: ../data/glchess.desktop.in.in.h:1 ../src/gnome-chess.vala:437
-#: ../src/gnome-chess.vala:1733
+#: ../src/gnome-chess.vala:1766
 msgid "Chess"
 msgstr "Sjakk"
 
@@ -982,8 +982,8 @@ msgstr "En av spillerene er død"
 msgid "Save this game before starting a new one?"
 msgstr "Lagre dette spillet før et nytt startes?"
 
-#: ../src/gnome-chess.vala:1124 ../src/gnome-chess.vala:1782
-#: ../src/gnome-chess.vala:1885
+#: ../src/gnome-chess.vala:1124 ../src/gnome-chess.vala:1815
+#: ../src/gnome-chess.vala:1918
 msgid "_Cancel"
 msgstr "A_vbryt"
 
@@ -1008,32 +1008,81 @@ msgstr "_Lagre logg for spill"
 msgid "_Discard"
 msgstr "_Forkast"
 
-#: ../src/gnome-chess.vala:1147 ../src/gnome-chess.vala:1782
+#: ../src/gnome-chess.vala:1147 ../src/gnome-chess.vala:1815
 msgid "_Save"
 msgstr "_Lagre"
 
+#: ../src/gnome-chess.vala:1179
+msgid "You cannot currently claim a draw."
+msgstr "Du kan ikke kreve uavgjort nå."
+
+#: ../src/gnome-chess.vala:1188
+msgid "It is the first time this board position has occurred"
+msgstr "Det er første gang brettet har hatt denne tilstanden"
+
+#: ../src/gnome-chess.vala:1189
+msgid "It is the second time this board position has occurred"
+msgstr "Det er andre gang brettet har hatt denne tilstanden"
+
+#: ../src/gnome-chess.vala:1190
+#, c-format
+msgid "%d move has passed without a capture or pawn advancement"
+msgid_plural "%d moves have passed without a capture or pawn advancement"
+msgstr[0] "%d trekk har gått uten at en brikke har blitt tatt eller en bonde har avansert"
+msgstr[1] "%d trekk har gått uten at en brikke har blitt tatt eller en bonde har avansert"
+
+#: ../src/gnome-chess.vala:1193
+msgid "You can claim a draw when either:"
+msgstr "Du kan kreve uavgjort når:"
+
+#: ../src/gnome-chess.vala:1194
+msgid "Any board position has occurred three times"
+msgstr "Brettet har hatt samme tilstand tre ganger"
+
+#: ../src/gnome-chess.vala:1195
+msgid "50 moves have passed without a capture or pawn advancement"
+msgstr "50 trekk er gjort uten at brikker har blitt tatt eller en bonde har avansert"
+
+#: ../src/gnome-chess.vala:1196
+#, fuzzy
+msgid ""
+"(Board position is affected by the ability to castle or capture en passant.)"
+msgstr "(Brettets tilstand påvirkes av muligheten til å ...)"
+
+#: ../src/gnome-chess.vala:1197
+msgid "The game is automatically a draw if:"
+msgstr "Spillet er automatisk uavgjort hvis:"
+
+#: ../src/gnome-chess.vala:1198
+msgid "The current player cannot move (stalemate)"
+msgstr "Motstander kan ikke flytte (remis)"
+
+#: ../src/gnome-chess.vala:1199
+msgid "Neither player can checkmate (insufficient material)"
+msgstr "Ingen av spillerene kan forårsake sjakkmatt (ikke nok materiell)"
+
 #. Preferences Dialog: Combo box entry for a custom game timer set in seconds
-#: ../src/gnome-chess.vala:1616
+#: ../src/gnome-chess.vala:1649
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "sekund"
 msgstr[1] "sekunder"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#: ../src/gnome-chess.vala:1620
+#: ../src/gnome-chess.vala:1653
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minutt"
 msgstr[1] "minutter"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../src/gnome-chess.vala:1624
+#: ../src/gnome-chess.vala:1657
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "time"
 msgstr[1] "timer"
 
-#: ../src/gnome-chess.vala:1737
+#: ../src/gnome-chess.vala:1770
 msgid ""
 "The 2D/3D chess game for GNOME. \n"
 "\n"
@@ -1043,67 +1092,67 @@ msgstr ""
 "\n"
 "GNOME Chess er en del av GNOME-spillene."
 
-#: ../src/gnome-chess.vala:1740
+#: ../src/gnome-chess.vala:1773
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
-#: ../src/gnome-chess.vala:1742
+#: ../src/gnome-chess.vala:1775
 msgid "GNOME Games web site"
 msgstr "GNOME spill nettsted"
 
 #. Title of save game dialog
-#: ../src/gnome-chess.vala:1792
+#: ../src/gnome-chess.vala:1825
 msgid "Save Chess Game"
 msgstr "Lagre sjakkspill"
 
 #. Default filename for the save game dialog
-#: ../src/gnome-chess.vala:1805
+#: ../src/gnome-chess.vala:1838
 msgid "Untitled Chess Game"
 msgstr "Sjakkspill uten navn"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:1811 ../src/gnome-chess.vala:1896
+#: ../src/gnome-chess.vala:1844 ../src/gnome-chess.vala:1929
 msgid "PGN files"
 msgstr "PGN-filer"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:1818 ../src/gnome-chess.vala:1903
+#: ../src/gnome-chess.vala:1851 ../src/gnome-chess.vala:1936
 msgid "All files"
 msgstr "Alle filer"
 
-#: ../src/gnome-chess.vala:1859
+#: ../src/gnome-chess.vala:1892
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Klarte ikke å lagre spillet: %s"
 
 #. Title of load game dialog
-#: ../src/gnome-chess.vala:1883
+#: ../src/gnome-chess.vala:1916
 msgid "Load Chess Game"
 msgstr "Last sjakkspill"
 
-#: ../src/gnome-chess.vala:1886
+#: ../src/gnome-chess.vala:1919
 msgid "_Open"
 msgstr "_Åpne"
 
-#: ../src/gnome-chess.vala:1927
+#: ../src/gnome-chess.vala:1960
 #, c-format
 msgid "Failed to open game: %s"
 msgstr "Klarte ikke å åpne spillet: %s"
 
 #. Help string for command line --version flag
-#: ../src/gnome-chess.vala:1999
+#: ../src/gnome-chess.vala:2032
 msgid "Show release version"
 msgstr "Vis versjonsnummer"
 
 #. Arguments and description for --help text
-#: ../src/gnome-chess.vala:2016
+#: ../src/gnome-chess.vala:2049
 msgid "[FILE] - Play Chess"
 msgstr "[FIL] - spill sjakk"
 
 #. Text printed out when an unknown command-line argument provided
-#: ../src/gnome-chess.vala:2027
+#: ../src/gnome-chess.vala:2060
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr ""
