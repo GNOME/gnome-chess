@@ -6,7 +6,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
 uidir = $(pkgdatadir)
-ui_DATA = \
+dist_ui_DATA = \
 	gnome-chess.ui \
 	preferences.ui \
 	promotion-type-selector.ui \
@@ -16,14 +16,11 @@ gsettings_SCHEMAS = org.gnome.gnome-chess.gschema.xml
 @INTLTOOL_XML_NOMERGE_RULE@
 @GSETTINGS_RULES@
 
-sysconf_DATA = engines.conf
+dist_sysconf_DATA = engines.conf
 
-man_MANS = gnome-chess.6
+dist_man_MANS = gnome-chess.6
 
-EXTRA_DIST = engines.conf \
-	     org.gnome.gnome-chess.gschema.xml.in \
-	     $(man_MANS) \
-	     $(ui_DATA)
+EXTRA_DIST = org.gnome.gnome-chess.gschema.xml.in
 
 CLEANFILES = $(desktop_DATA) $(gsettings_SCHEMAS)
 DISTCLEANFILES = $(desktop_DATA) $(gsettings_SCHEMAS)
