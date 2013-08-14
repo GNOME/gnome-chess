@@ -23,8 +23,8 @@ msgstr ""
 "Project-Id-Version: gnome-chess master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2013-08-10 03:53+0000\n"
-"PO-Revision-Date: 2013-08-10 07:40+0200\n"
+"POT-Creation-Date: 2013-08-14 02:32+0000\n"
+"PO-Revision-Date: 2013-08-14 22:35+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -37,7 +37,7 @@ msgstr ""
 
 #. Title of the main window
 #: ../data/glchess.desktop.in.in.h:1 ../src/gnome-chess.vala:437
-#: ../src/gnome-chess.vala:1733
+#: ../src/gnome-chess.vala:1766
 msgid "Chess"
 msgstr "Šachy"
 
@@ -85,8 +85,10 @@ msgid "Undo Move"
 msgstr "Vrátit tah"
 
 #: ../data/gnome-chess.ui.h:12
-msgid "Claim that the game is a draw"
-msgstr "Požádat soupeře o remízu hry"
+msgid "Claim a draw by threefold repetition or the fifty move rule"
+msgstr ""
+"Požádat o remízu, když se třikrát zopakovala pozice nebo podle pravidla "
+"padesáti tahů"
 
 #: ../data/gnome-chess.ui.h:13
 msgid "Claim Draw"
@@ -1001,8 +1003,8 @@ msgstr "Jeden z hráčů prohrál"
 msgid "Save this game before starting a new one?"
 msgstr "Uložit tuto hru před spuštěním nové?"
 
-#: ../src/gnome-chess.vala:1124 ../src/gnome-chess.vala:1782
-#: ../src/gnome-chess.vala:1885
+#: ../src/gnome-chess.vala:1124 ../src/gnome-chess.vala:1815
+#: ../src/gnome-chess.vala:1918
 msgid "_Cancel"
 msgstr "_Zrušit"
 
@@ -1027,12 +1029,69 @@ msgstr "_Uložit záznam hry"
 msgid "_Discard"
 msgstr "Zaho_dit"
 
-#: ../src/gnome-chess.vala:1147 ../src/gnome-chess.vala:1782
+#: ../src/gnome-chess.vala:1147 ../src/gnome-chess.vala:1815
 msgid "_Save"
 msgstr "_Uložit"
 
+#: ../src/gnome-chess.vala:1179
+msgid "You cannot currently claim a draw."
+msgstr "Nyní nemůžete požádat o remízu."
+
+#: ../src/gnome-chess.vala:1188
+msgid "It is the first time this board position has occurred"
+msgstr "Je to poprvé, kdy se vyskytla tato pozice šachovnice"
+
+#: ../src/gnome-chess.vala:1189
+msgid "It is the second time this board position has occurred"
+msgstr "Je to podruhé, kdy se vyskytla tato pozice šachovnice"
+
+#: ../src/gnome-chess.vala:1190
+#, c-format
+msgid "%d move has passed without a capture or pawn advancement"
+msgid_plural "%d moves have passed without a capture or pawn advancement"
+msgstr[0] ""
+"Byl proveden %d tah, aniž by byla sebrána figura nebo bylo taženo pěšcem"
+msgstr[1] ""
+"Byl provedeny %d tahy, aniž by byla sebrána figura nebo bylo taženo pěšcem"
+msgstr[2] ""
+"Byl provedeno %d tahů, aniž by byla sebrána figura nebo bylo taženo pěšcem"
+
+#: ../src/gnome-chess.vala:1193
+msgid "You can claim a draw when either:"
+msgstr "O remízu můžete požádat když:"
+
+#: ../src/gnome-chess.vala:1194
+#| msgid "The same board state has occurred three times (threefold repetition)"
+msgid "Any board position has occurred three times"
+msgstr "Šachovnice se ocitne třikrát ve stejné pozici"
+
+#: ../src/gnome-chess.vala:1195
+msgid "50 moves have passed without a capture or pawn advancement"
+msgstr ""
+"Posledních 50 tahů nebyla sebrána žádná figura ani nebylo taženo pěšcem"
+
+#: ../src/gnome-chess.vala:1196
+msgid ""
+"(Board position is affected by the ability to castle or capture en passant.)"
+msgstr ""
+"(Pozice šachovnice je dána i možností provedení rošády a braní mimochodem.)"
+
+#: ../src/gnome-chess.vala:1197
+msgid "The game is automatically a draw if:"
+msgstr "Hra skončí remízou automaticky když:"
+
+#: ../src/gnome-chess.vala:1198
+#| msgid "Opponent cannot move (stalemate)"
+msgid "The current player cannot move (stalemate)"
+msgstr "Hráč na tahu nemůže táhnout (pat)"
+
+#: ../src/gnome-chess.vala:1199
+#| msgid "Neither player can cause checkmate (insufficient material)"
+msgid "Neither player can checkmate (insufficient material)"
+msgstr "Žádný hráč nemůže způsobit mat (nedostatek figur)"
+
 #. Preferences Dialog: Combo box entry for a custom game timer set in seconds
-#: ../src/gnome-chess.vala:1616
+#: ../src/gnome-chess.vala:1649
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "sekunda"
@@ -1040,7 +1099,7 @@ msgstr[1] "sekundy"
 msgstr[2] "sekund"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#: ../src/gnome-chess.vala:1620
+#: ../src/gnome-chess.vala:1653
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minuta"
@@ -1048,14 +1107,14 @@ msgstr[1] "minuty"
 msgstr[2] "minut"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../src/gnome-chess.vala:1624
+#: ../src/gnome-chess.vala:1657
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "hodina"
 msgstr[1] "hodiny"
 msgstr[2] "hodin"
 
-#: ../src/gnome-chess.vala:1737
+#: ../src/gnome-chess.vala:1770
 msgid ""
 "The 2D/3D chess game for GNOME. \n"
 "\n"
@@ -1065,63 +1124,67 @@ msgstr ""
 "\n"
 "GNOME Chess je součástí her GNOME."
 
-#: ../src/gnome-chess.vala:1742
+#: ../src/gnome-chess.vala:1773
+msgid "translator-credits"
+msgstr "Marek Černocký <marek@manet.cz>"
+
+#: ../src/gnome-chess.vala:1775
 msgid "GNOME Games web site"
 msgstr "Webové stránky her GNOME"
 
 #. Title of save game dialog
-#: ../src/gnome-chess.vala:1792
+#: ../src/gnome-chess.vala:1825
 msgid "Save Chess Game"
 msgstr "Uložit šachovou partii"
 
 #. Default filename for the save game dialog
-#: ../src/gnome-chess.vala:1805
+#: ../src/gnome-chess.vala:1838
 msgid "Untitled Chess Game"
 msgstr "Nepojmenovaná šachová partie"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:1811 ../src/gnome-chess.vala:1896
+#: ../src/gnome-chess.vala:1844 ../src/gnome-chess.vala:1929
 msgid "PGN files"
 msgstr "Soubory PGN"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:1818 ../src/gnome-chess.vala:1903
+#: ../src/gnome-chess.vala:1851 ../src/gnome-chess.vala:1936
 msgid "All files"
 msgstr "Všechny soubory"
 
-#: ../src/gnome-chess.vala:1859
+#: ../src/gnome-chess.vala:1892
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Selhalo uložení hry: %s"
 
 #. Title of load game dialog
-#: ../src/gnome-chess.vala:1883
+#: ../src/gnome-chess.vala:1916
 msgid "Load Chess Game"
 msgstr "Načíst šachovou partii"
 
-#: ../src/gnome-chess.vala:1886
+#: ../src/gnome-chess.vala:1919
 msgid "_Open"
 msgstr "_Otevřít"
 
-#: ../src/gnome-chess.vala:1927
+#: ../src/gnome-chess.vala:1960
 #, c-format
 msgid "Failed to open game: %s"
 msgstr "Selhalo otevření hry: %s"
 
 #. Help string for command line --version flag
-#: ../src/gnome-chess.vala:1999
+#: ../src/gnome-chess.vala:2032
 msgid "Show release version"
 msgstr "Zobrazit verzi vydání"
 
 #. Arguments and description for --help text
-#: ../src/gnome-chess.vala:2016
+#: ../src/gnome-chess.vala:2049
 msgid "[FILE] - Play Chess"
 msgstr "[SOUBOR] – Hrát šachy"
 
 #. Text printed out when an unknown command-line argument provided
-#: ../src/gnome-chess.vala:2027
+#: ../src/gnome-chess.vala:2060
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr ""
