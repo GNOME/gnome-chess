@@ -196,7 +196,7 @@ public class Application : Gtk.Application
         settings.changed.connect (settings_changed_cb);
         settings_changed_cb (settings, "show-3d");
 
-        ai_profiles = AIProfile.load_ai_profiles (Path.build_filename (PKGDATADIR, "engines.conf", null));
+        ai_profiles = AIProfile.load_ai_profiles (Path.build_filename (SYSCONFDIR, "engines.conf", null));
         foreach (var profile in ai_profiles)
             message ("Detected AI profile %s in %s", profile.name, profile.path);
 

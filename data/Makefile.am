@@ -16,8 +16,7 @@ gsettings_SCHEMAS = org.gnome.gnome-chess.gschema.xml
 @INTLTOOL_XML_NOMERGE_RULE@
 @GSETTINGS_RULES@
 
-aidir = $(datadir)/gnome-chess/
-ai_DATA = engines.conf
+sysconf_DATA = engines.conf
 
 man_MANS = gnome-chess.6
 
