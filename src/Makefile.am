@@ -51,7 +51,7 @@ test_chess_pgn_VALAFLAGS = \
 gnome_chess_CFLAGS = \
 	-DVERSION=\"$(VERSION)\" \
 	-DGETTEXT_PACKAGE=\"$(GETTEXT_PACKAGE)\" \
-	-DPKGDATADIR=\"$(datadir)/gnome-chess\" \
+	-DPKGDATADIR=\"$(pkgdatadir)/\" \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-DSYSCONFDIR=\"$(sysconfdir)\" \
 	$(GNOME_CHESS_CFLAGS)

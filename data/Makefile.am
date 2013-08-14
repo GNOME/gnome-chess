@@ -5,7 +5,7 @@ desktop_in_files = glchess.desktop.in.in
 desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-uidir = $(datadir)/gnome-chess
+uidir = $(pkgdatadir)
 ui_DATA = \
 	gnome-chess.ui \
 	preferences.ui \
