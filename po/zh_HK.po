@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games 3.3.91\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-07 12:40+0800\n"
-"PO-Revision-Date: 2013-08-07 12:40+0800\n"
+"POT-Creation-Date: 2013-08-16 12:56+0800\n"
+"PO-Revision-Date: 2013-08-16 12:56+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "Language: \n"
@@ -19,11 +19,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #. Title of the main window
 #: ../data/glchess.desktop.in.in.h:1 ../src/gnome-chess.vala:437
-#: ../src/gnome-chess.vala:1733
+#: ../src/gnome-chess.vala:1767
 msgid "Chess"
 msgstr "國際象棋"
 
@@ -71,8 +71,8 @@ msgid "Undo Move"
 msgstr "回手"
 
 #: ../data/gnome-chess.ui.h:12
-msgid "Claim that the game is a draw"
-msgstr "宣告遊戲為和局"
+msgid "Claim a draw by threefold repetition or the fifty move rule"
+msgstr "根據據三次重複或五十步規則宣布平手"
 
 #: ../data/gnome-chess.ui.h:13
 msgid "Claim Draw"
@@ -949,7 +949,7 @@ msgstr "對手已用盡時間"
 
 #. Message displayed when the game is drawn due to the three-fold-repitition rule
 #: ../src/gnome-chess.vala:1034
-msgid "The same board state has occurred three times (three fold repetition)"
+msgid "The same board state has occurred three times (threefold repetition)"
 msgstr "同樣的局面已經發生三次 (三次重複)"
 
 #. Message displayed when the game is drawn due to the insufficient material rule
@@ -981,8 +981,8 @@ msgstr "其中一個玩家已被將死"
 msgid "Save this game before starting a new one?"
 msgstr "在開始新的遊戲前儲存這個遊戲？"
 
-#: ../src/gnome-chess.vala:1124 ../src/gnome-chess.vala:1782
-#: ../src/gnome-chess.vala:1885
+#: ../src/gnome-chess.vala:1124 ../src/gnome-chess.vala:1816
+#: ../src/gnome-chess.vala:1919
 msgid "_Cancel"
 msgstr "取消(_C)"
 
@@ -1007,29 +1007,76 @@ msgstr "儲存遊戲紀錄(_S)"
 msgid "_Discard"
 msgstr "放棄(_D)"
 
-#: ../src/gnome-chess.vala:1147 ../src/gnome-chess.vala:1782
+#: ../src/gnome-chess.vala:1147 ../src/gnome-chess.vala:1816
 msgid "_Save"
 msgstr "儲存檔案(_S)"
 
+#: ../src/gnome-chess.vala:1180
+msgid "You cannot currently claim a draw."
+msgstr "你目前不能宣布平手。"
+
+#: ../src/gnome-chess.vala:1189
+msgid "It is the first time this board position has occurred"
+msgstr "這是第一次達到這個棋盤位置"
+
+#: ../src/gnome-chess.vala:1190
+msgid "It is the second time this board position has occurred"
+msgstr "這是第二次達到這個棋盤位置"
+
+#: ../src/gnome-chess.vala:1191
+#, c-format
+msgid "%d move has passed without a capture or pawn advancement"
+msgid_plural "%d moves have passed without a capture or pawn advancement"
+msgstr[0] "已經過 %d 步沒有吃子或移動過兵"
+
+#: ../src/gnome-chess.vala:1194
+msgid "You can claim a draw when either:"
+msgstr "你可以宣布平手的時機為："
+
+#: ../src/gnome-chess.vala:1195
+msgid "Any board position has occurred three times"
+msgstr "任何棋盤位置已經發生三次"
+
+#: ../src/gnome-chess.vala:1196
+msgid "50 moves have passed without a capture or pawn advancement"
+msgstr "已經過 50 步沒有吃子或移動過兵"
+
+#: ../src/gnome-chess.vala:1197
+msgid ""
+"(Board position is affected by the ability to castle or capture en passant.)"
+msgstr "(棋盤位置會被王車易位或吃過路兵所影響。)"
+
+#: ../src/gnome-chess.vala:1198
+msgid "The game is automatically a draw if:"
+msgstr "這局棋自動宣布平手時機為："
+
+#: ../src/gnome-chess.vala:1199
+msgid "The current player cannot move (stalemate)"
+msgstr "目前的對手不能再移動 (無子可動)"
+
+#: ../src/gnome-chess.vala:1200
+msgid "Neither player can checkmate (insufficient material)"
+msgstr "沒有玩家可以造成將死對方的情形 (棋不成殺)"
+
 #. Preferences Dialog: Combo box entry for a custom game timer set in seconds
-#: ../src/gnome-chess.vala:1616
+#: ../src/gnome-chess.vala:1650
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "秒"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#: ../src/gnome-chess.vala:1620
+#: ../src/gnome-chess.vala:1654
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "分鐘"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../src/gnome-chess.vala:1624
+#: ../src/gnome-chess.vala:1658
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "小時"
 
-#: ../src/gnome-chess.vala:1737
+#: ../src/gnome-chess.vala:1771
 msgid ""
 "The 2D/3D chess game for GNOME. \n"
 "\n"
@@ -1039,66 +1086,79 @@ msgstr ""
 "\n"
 "GNOME Chess 是 GNOME 遊戲的一部分。"
 
-#: ../src/gnome-chess.vala:1742
+#: ../src/gnome-chess.vala:1774
+msgid "translator-credits"
+msgstr ""
+"如對翻譯有任何意見，請送一封電子郵件給\n"
+"以下地址，GNOME 翻譯隊伍會盡快回覆你：\n"
+"zh-l10n@lists.linux.org.tw\n"
+"\n"
+"Abel Cheung <abel@oaka.org>, 2001-07\n"
+"Fernando <bv1al@journalist.com.tw>, 1999"
+
+#: ../src/gnome-chess.vala:1776
 msgid "GNOME Games web site"
 msgstr "GNOME Games 網站"
 
 #. Title of save game dialog
-#: ../src/gnome-chess.vala:1792
+#: ../src/gnome-chess.vala:1826
 msgid "Save Chess Game"
 msgstr "儲存這局棋"
 
 #. Default filename for the save game dialog
-#: ../src/gnome-chess.vala:1805
+#: ../src/gnome-chess.vala:1839
 msgid "Untitled Chess Game"
 msgstr "無標題的棋局"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:1811 ../src/gnome-chess.vala:1896
+#: ../src/gnome-chess.vala:1845 ../src/gnome-chess.vala:1930
 msgid "PGN files"
 msgstr "PGN 檔案"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:1818 ../src/gnome-chess.vala:1903
+#: ../src/gnome-chess.vala:1852 ../src/gnome-chess.vala:1937
 msgid "All files"
 msgstr "所有檔案"
 
-#: ../src/gnome-chess.vala:1859
+#: ../src/gnome-chess.vala:1893
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "無法儲存遊戲：%s"
 
 #. Title of load game dialog
-#: ../src/gnome-chess.vala:1883
+#: ../src/gnome-chess.vala:1917
 msgid "Load Chess Game"
 msgstr "載入一局棋"
 
-#: ../src/gnome-chess.vala:1886
+#: ../src/gnome-chess.vala:1920
 msgid "_Open"
 msgstr "開啟(_O)"
 
-#: ../src/gnome-chess.vala:1927
+#: ../src/gnome-chess.vala:1961
 #, c-format
 msgid "Failed to open game: %s"
 msgstr "無法開啟遊戲：%s"
 
 #. Help string for command line --version flag
-#: ../src/gnome-chess.vala:1999
+#: ../src/gnome-chess.vala:2033
 msgid "Show release version"
 msgstr "顯示推出版本"
 
 #. Arguments and description for --help text
-#: ../src/gnome-chess.vala:2016
+#: ../src/gnome-chess.vala:2050
 msgid "[FILE] - Play Chess"
 msgstr "[FILE] - 開始下棋"
 
 #. Text printed out when an unknown command-line argument provided
-#: ../src/gnome-chess.vala:2027
+#: ../src/gnome-chess.vala:2061
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr "執行「%s --help」可列出命令列中可用的完整選項。"
+
+#~ msgid "Claim that the game is a draw"
+#~ msgstr "宣告遊戲為和局"
 
 #~ msgid "One minute"
 #~ msgstr "1 分鐘"
@@ -1443,15 +1503,6 @@ msgstr "執行「%s --help」可列出命令列中可用的完整選項。"
 #~ "將一度流行的 Color Lines 遊戲移植到 GNOME 上。\n"
 #~ "\n"
 #~ "五子連色棋是 GNOME 遊戲的一部分。"
-
-#~ msgid "translator-credits"
-#~ msgstr ""
-#~ "如對翻譯有任何意見，請送一封電子郵件給\n"
-#~ "以下地址，GNOME 翻譯團隊會盡快回覆您：\n"
-#~ "zh-l10n@lists.linux.org.tw\n"
-#~ "\n"
-#~ "Abel Cheung <abel@oaka.org>, 2001-07\n"
-#~ "Fernando <bv1al@journalist.com.tw>, 1999"
 
 #~ msgid "Four-in-a-Row"
 #~ msgstr "四子連環棋"
