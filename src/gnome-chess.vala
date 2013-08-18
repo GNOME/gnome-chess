@@ -158,7 +158,6 @@ public class Application : Gtk.Application
         history_combo = (Gtk.ComboBox) builder.get_object ("history_combo");
         white_time_label = (Gtk.Widget) builder.get_object ("white_time_label");
         black_time_label = (Gtk.Widget) builder.get_object ("black_time_label");
-        settings.bind ("show-history", builder.get_object ("navigation_box"), "visible", SettingsBindFlags.DEFAULT);
         var view_box = (Gtk.VBox) builder.get_object ("view_box");
         view_container = (Gtk.Container) builder.get_object ("view_container");
         builder.connect_signals (this);
@@ -1426,8 +1425,6 @@ public class Application : Gtk.Application
                        "active", SettingsBindFlags.DEFAULT);
         settings.bind ("show-move-hints", preferences_builder.get_object ("show_move_hints_check"),
                        "active", SettingsBindFlags.DEFAULT);
-        settings.bind ("show-history", preferences_builder.get_object ("show_history_check"),
-                       "active", SettingsBindFlags.DEFAULT);
         settings.bind ("show-3d", preferences_builder.get_object ("show_3d_check"),
                        "active", SettingsBindFlags.DEFAULT);
         settings.bind ("show-3d-smooth", preferences_builder.get_object ("show_3d_smooth_check"),
@@ -1454,7 +1451,6 @@ public class Application : Gtk.Application
             ai_combo.set_active (0);
             settings.set_string ("opponent", "human");
         }
-        settings.bind ("show-history", ai_combo, "visible", SettingsBindFlags.SET);
 
         difficulty_combo = (Gtk.ComboBox) preferences_builder.get_object ("difficulty_combo");
         set_combo (difficulty_combo, 1, settings.get_string ("difficulty"));
