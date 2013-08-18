@@ -1402,9 +1402,15 @@ public class Application : Gtk.Application
     public void toggle_fullscreen_cb (Gtk.Widget widget)
     {
         if (is_fullscreen)
+        {
+            ((Gtk.ToolButton) fullscreen_button).stock_id = "gtk-fullscreen";
             window.unfullscreen ();
+        }
         else
-            window.fullscreen (); 
+        {
+            ((Gtk.ToolButton) fullscreen_button).stock_id = "gtk-leave-fullscreen";
+            window.fullscreen ();
+        }
     }
 
     public void preferences_cb ()
