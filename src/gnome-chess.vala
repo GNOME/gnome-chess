@@ -1109,52 +1109,58 @@ public class Application : Gtk.Application
         return false;
     }
 
+    private bool prompt_save_game (string prompt_text)
+    {
+        if (!game_needs_saving && (!in_history || game_file == null))
+            return true;
+
+        var dialog = new Gtk.MessageDialog.with_markup (window,
+                                                        Gtk.DialogFlags.MODAL,
+                                                        Gtk.MessageType.QUESTION,
+                                                        Gtk.ButtonsType.NONE,
+                                                        "<span weight=\"bold\" size=\"larger\">%s</span>",
+                                                        prompt_text);
+        dialog.add_button (_("_Cancel"), Gtk.ResponseType.CANCEL);
+
+        if (game.result == ChessResult.IN_PROGRESS)
+        {
+            dialog.add_button (_("_Abandon game"), Gtk.ResponseType.NO);
+            dialog.add_button (_("_Save game for later"), Gtk.ResponseType.YES);
+        }
+        else
+        {
+            dialog.add_button (_("_Discard game"), Gtk.ResponseType.NO);
+            dialog.add_button (_("_Save game log"), Gtk.ResponseType.YES);
+        }
+
+        var result = dialog.run ();
+        dialog.destroy ();
+
+        if (result == Gtk.ResponseType.CANCEL || result == Gtk.ResponseType.DELETE_EVENT)
+        {
+            return false;
+        }
+        else if (result == Gtk.ResponseType.YES)
+        {
+            /* Your very last chance to save */
+            save_game (_("_Discard"), _("_Save"));
+        }
+        else
+        {
+            warn_if_fail (result == Gtk.ResponseType.NO);
+            /* Remove completed game from history */
+            game_needs_saving = false;
+            autosave ();
+        }
+
+        return true;
+    }
+
     [CCode (cname = "G_MODULE_EXPORT new_game_cb", instance_pos = -1)]
     public void new_game_cb (Gtk.Widget widget)
     {
-        if (game_needs_saving || (in_history && game_file != null))
-        {
-            var dialog = new Gtk.MessageDialog.with_markup (window,
-                                                            Gtk.DialogFlags.MODAL,
-                                                            Gtk.MessageType.QUESTION,
-                                                            Gtk.ButtonsType.NONE,
-                                                            "<span weight=\"bold\" size=\"larger\">%s</span>",
-                                                            _("Save this game before starting a new one?"));
-            dialog.add_button (_("_Cancel"), Gtk.ResponseType.CANCEL);
-
-            if (game.result == ChessResult.IN_PROGRESS)
-            {
-                dialog.add_button (_("_Abandon game"), Gtk.ResponseType.NO);
-                dialog.add_button (_("_Save game for later"), Gtk.ResponseType.YES);
-            }
-            else
-            {
-                dialog.add_button (_("_Discard game"), Gtk.ResponseType.NO);
-                dialog.add_button (_("_Save game log"), Gtk.ResponseType.YES);
-            }
-
-            var result = dialog.run ();
-            dialog.destroy ();
-
-            if (result == Gtk.ResponseType.CANCEL || result == Gtk.ResponseType.DELETE_EVENT)
-            {
-                return;
-            }
-            else if (result == Gtk.ResponseType.YES)
-            {
-                /* Your very last chance to save */
-                save_game (_("_Discard"), _("_Save"));
-            }
-            else
-            {
-                warn_if_fail (result == Gtk.ResponseType.NO);
-                /* Remove completed game from history */
-                game_needs_saving = false;
-                autosave ();
-            }
-        }
-
-        start_new_game ();
+        if (prompt_save_game (_("Save this game before starting a new one?")))
+            start_new_game ();
     }
 
     [CCode (cname = "G_MODULE_EXPORT resign_cb", instance_pos = -1)]
@@ -1814,7 +1820,7 @@ public class Application : Gtk.Application
         /* Show active dialog */
         if (save_dialog != null)
         {
-            save_dialog.present ();
+            save_dialog.run ();
             return;
         }
 
@@ -1849,7 +1855,7 @@ public class Application : Gtk.Application
         all_filter.add_pattern ("*");
         save_dialog.add_filter (all_filter);
 
-        save_dialog.present ();
+        save_dialog.run ();
     }    
 
     private void save_file_cb ()
@@ -1902,6 +1908,9 @@ public class Application : Gtk.Application
     [CCode (cname = "G_MODULE_EXPORT open_game_cb", instance_pos = -1)]
     public void open_game_cb (Gtk.Widget widget)
     {
+        if (!prompt_save_game (_("Save this game before loading another one?")))
+            return;
+
         /* Show active dialog */
         if (open_dialog != null)
         {
