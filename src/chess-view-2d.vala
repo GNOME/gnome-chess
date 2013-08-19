@@ -199,6 +199,13 @@ private class ChessView2D : ChessView
             c.restore ();
         }
 
+        /* Draw pause overlay */
+        if (scene.game.is_superpaused)
+        {
+            draw_paused_overlay (c);
+            return true;
+        }
+
         /* Draw the pieces */
         foreach (var model in scene.pieces)
         {

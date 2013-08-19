@@ -239,6 +239,15 @@ private class ChessView3D : ChessView
 
     public override bool draw (Cairo.Context c)
     {
+        if (scene.game.is_superpaused)
+        {
+            glXMakeCurrent (display, X.None, (GLX.Context) null);
+            c.translate (get_allocated_width () / 2, get_allocated_height () / 2);
+            c.rotate (Math.PI * scene.board_angle / 180.0);
+            draw_paused_overlay (c);
+            return true;
+        }
+
         GLfloat[] jitters = {0.0033922635f, 0.3317967229f, 0.2806016275f, -0.2495619123f, -0.273817106f, -0.086844639f};
 
         if (!start_gl ())

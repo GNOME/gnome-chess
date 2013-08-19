@@ -93,6 +93,8 @@ public class ChessScene : Object
             selected_rank = -1;
             selected_file = -1;
             _game.moved.connect (moved_cb);
+            _game.superpaused.connect (paused_cb);
+            _game.unpaused.connect (unpaused_cb);
             _game.undo.connect (undo_cb);
             update_board ();
         }
@@ -234,6 +236,16 @@ public class ChessScene : Object
     private void moved_cb (ChessGame game, ChessMove move)
     {
         update_board ();
+    }
+
+    private void paused_cb (ChessGame game)
+    {
+        changed ();
+    }
+
+    private void unpaused_cb (ChessGame game)
+    {
+        changed ();
     }
 
     private void undo_cb (ChessGame game)

@@ -1259,7 +1259,7 @@ public class Application : Gtk.Application
         if (game.is_paused)
             game.unpause ();
         else
-            game.pause ();
+            game.superpause ();
 
         Gtk.ToolButton tool_button = (Gtk.ToolButton) pause_button;
 
