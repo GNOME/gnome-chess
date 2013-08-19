@@ -1,3 +1,55 @@
+3.9.90 - August 19, 2013
+=====================
+
+Changes since 3.9.5:
+
+* New pause game option added
+* Fix figurine algebraic notation displaying the wrong figures
+* Store only one game at a time in autosave history
+* Prompt the user to save the game before opening a new one
+* Fix viewing arbitrary turns with the history combo box
+* Fullscreen icon should change to unfullscreen icon when in fullscreen view
+* The game will now display a warning and end the game when an engine makes an
+  illegal move, or when a CECP engine claims GNOME Chess allowed an illegal
+  move, instead of hanging forever.
+* Claim Draw now works again
+  * If a draw cannot be claimed, an explanatory dialog is shown
+  * Fix two bugs with threefold repetiton detection
+  * Fix fifty-move rule detection
+* Preferences
+  * Now transient for the main window (not considered separate by GNOME Shell)
+  * Remove show history option
+  * Reorder some preferences
+* engines.conf
+  * Renamed to chess-engines.conf
+  * Now installed into $sysconfdir instead of $(datadir)/gnome-chess
+  * The format for passing UCI options to engines has been simplified
+  * New support for adding arguments to be appended to the UCI go command
+  * UCI engines should now be much easier
+  * Miscellaneous changes to other engines
+  * Amundsen support dropped due to lack of support for Undo
+
+Contributors
+
+* Michael Catanzaro
+* Michael I Doherty
+* Plamena Manolova
+
+Translations
+
+* Brazilian Portuguese (Rafael Ferreira)
+* Czech (Marek Černocký)
+* Galician (Fran Diéguez)
+* Hebrew (Yaron Shahrabani)
+* Hungarian (Gabor Kelemen)
+* Italian (Milo Casagrande)
+* Lithuanian (Aurimas Černius)
+* Norwegian bokmål (Kjartan Maraas)
+* Slovenian (Matej Urbančič)
+* Spanish (Daniel Mustieles)
+* Traditional Chinese (Chao-Hsiung Liao)
+
+
 3.9.5 - July 29, 2013
 =====================
 
