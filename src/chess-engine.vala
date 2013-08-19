@@ -26,6 +26,7 @@ public abstract class ChessEngine : Object
     public signal void moved (string move);
     public signal void resigned ();
     public signal void stopped ();
+    public signal void error ();
     
     private bool _ready = false;
     public bool ready

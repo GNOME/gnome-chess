@@ -516,6 +516,7 @@ public class Application : Gtk.Application
             opponent_engine.ready_changed.disconnect (engine_ready_cb);
             opponent_engine.moved.disconnect (engine_move_cb);
             opponent_engine.stopped.disconnect (engine_stopped_cb);
+            opponent_engine.error.disconnect (engine_error_cb);
             opponent_engine = null;
         }
 
@@ -547,6 +548,7 @@ public class Application : Gtk.Application
             opponent_engine.ready_changed.connect (engine_ready_cb);
             opponent_engine.moved.connect (engine_move_cb);
             opponent_engine.stopped.connect (engine_stopped_cb);
+            opponent_engine.error.connect (engine_error_cb);
             opponent_engine.start ();
         }
 
@@ -656,12 +658,18 @@ public class Application : Gtk.Application
     
     private void engine_move_cb (ChessEngine engine, string move)
     {
-        opponent.move (move);
+        if (!opponent.move (move))
+            game.stop (ChessResult.BUG, ChessRule.BUG);
     }
 
     private void engine_stopped_cb (ChessEngine engine)
     {
         opponent.resign ();
+    }
+
+    private void engine_error_cb (ChessEngine engine)
+    {
+        game.stop (ChessResult.BUG, ChessRule.BUG);
     }
 
     private void game_start_cb (ChessGame game)
@@ -1005,6 +1013,11 @@ public class Application : Gtk.Application
             title = _("Game is drawn");
             pgn_game.result = PGNGame.RESULT_DRAW;            
             break;
+        case ChessResult.BUG:
+            /* Message display when the game cannot continue */
+            title = _("Oops! Something has gone wrong.");
+            /* don't set the pgn_game result; these are standards */
+            break;
         default:
             break;
         }
@@ -1057,6 +1070,11 @@ public class Application : Gtk.Application
             /* Message displayed when the game ends due to a player dying */
             reason = _("One of the players has died");
             pgn_game.termination = PGNGame.TERMINATE_DEATH;
+            break;
+        case ChessRule.BUG:
+            /* Message displayed when something goes wrong with the engine */
+            reason = _("The game cannot continue.");
+            /* Don't set pgn_game termination; these are standards*/
             break;
         }
 

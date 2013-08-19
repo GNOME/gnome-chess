@@ -66,6 +66,8 @@ public class ChessEngineCECP : ChessEngine
 
             if (line.has_prefix ("Illegal move: "))
             {
+                stop ();
+                error ();
             }
             else if (line == "resign" || line == "tellics resign")
             {

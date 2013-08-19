@@ -1239,7 +1239,8 @@ public enum ChessResult
     IN_PROGRESS,
     WHITE_WON,
     BLACK_WON,
-    DRAW
+    DRAW,
+    BUG
 }
 
 public enum ChessRule
@@ -1252,7 +1253,8 @@ public enum ChessRule
     INSUFFICIENT_MATERIAL,
     RESIGN,
     ABANDONMENT,
-    DEATH
+    DEATH,
+    BUG
 }
 
 public class ChessGame
@@ -1531,7 +1533,7 @@ public class ChessGame
         }
     }
 
-    private void stop (ChessResult result, ChessRule rule)
+    public void stop (ChessResult result, ChessRule rule)
     {
         this.result = result;
         this.rule = rule;
