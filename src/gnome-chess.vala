@@ -1034,7 +1034,7 @@ public class Application : Gtk.Application
             break;
         case ChessRule.INSUFFICIENT_MATERIAL:
             /* Message displayed when the game is drawn due to the insufficient material rule */
-            reason = _("Neither player can cause checkmate (insufficient material)");
+            reason = _("Neither player can checkmate (insufficient material)");
             break;
         case ChessRule.RESIGN:
             if (game.result == ChessResult.WHITE_WON)
