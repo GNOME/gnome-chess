@@ -61,6 +61,13 @@ public class History
         }
 
         Sqlite.Statement statement;
+        /*
+         * FIXME  This deletes all games.
+         * It's a quick hack to prevent games from stacking
+         * Real fix is to just remove this entire class
+         * https://bugzilla.gnome.org/show_bug.cgi?id=705878
+         */
+        assert (db.prepare_v2 ("DELETE FROM GameTable", -1, out statement) == Sqlite.OK);
         assert (db.prepare_v2 ("INSERT INTO GameTable (date, path, result) VALUES (0, \"%s\", \"%s\")".printf (relative_path, result), -1, out statement) == Sqlite.OK);
         if (statement.step () != Sqlite.DONE)
             warning ("Failed to insert game into history index: %s", db.errmsg ());
