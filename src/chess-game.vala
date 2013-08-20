@@ -415,10 +415,17 @@ public class ChessState
 
     public bool equals (ChessState state)
     {
-        /* Check first if there is the same layout of pieces (unlikely),
-         * then that the move castling and en-passant state are the same */
+        /*
+         * Check first if there is the same layout of pieces (unlikely),
+         * then that the same player is on move, then that the move castling
+         * and en-passant state are the same.  This follows the rules for
+         * determining threefold repetition:
+         *
+         * https://en.wikipedia.org/wiki/Threefold_repetition
+         */
         if (piece_masks[Color.WHITE] != state.piece_masks[Color.WHITE] ||
             piece_masks[Color.BLACK] != state.piece_masks[Color.BLACK] || 
+            current_player.color != state.current_player.color ||
             can_castle_kingside[Color.WHITE] != state.can_castle_kingside[Color.WHITE] ||
             can_castle_queenside[Color.WHITE] != state.can_castle_queenside[Color.WHITE] ||
             can_castle_kingside[Color.BLACK] != state.can_castle_kingside[Color.BLACK] ||
