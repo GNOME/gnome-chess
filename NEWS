@@ -1,3 +1,20 @@
+gnome-chess 3.8.4
+=================
+
+* Fix Undo causing the game to hang when playing against most CECP engines
+* Fix the History combo box, now again jumps throughout the history
+* Fix figurine algebraic notation displaying the wrong figures for the pieces
+* Bottom-right corner should be white (not black) in 3D view
+* Fix upside-down board numbering when Black is on bottom
+* Some fixes for when a game is autosaved/autoloaded
+* Don't start a new game if the new game dialog is dismissed with the Esc key
+* Fix game disappearing when Preferences is opened in fullscreen view
+* Claim Draw
+  * Menu item is now insensitive until a draw can successfully be claimed, to
+    prevent confusion by the lack of user feedback when no draw is available
+  * Fixes for threefold repetition detection
+  * Fix detection of draws by the fifty-move rule
+
 gnome-chess 3.8.3
 =================
 
@@ -13,7 +30,6 @@ gnome-chess 3.8.3
 * Save now works as expected (instead of functioning the same as Save As)
 * Insufficient material: King and bishop can checkmate king and bishop on opposite color
 * Allow controlling the AI's pieces if no engines are installed (e.g. after loading a game vs. an engine)
-
 
 gnome-chess 3.8.2.1
 ===================
