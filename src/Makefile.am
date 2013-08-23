@@ -22,8 +22,7 @@ gnome_chess_SOURCES = \
 	chess-scene.vala \
 	chess-view.vala \
 	chess-view-2d.vala \
-	chess-view-3d.vala \
-	history.vala
+	chess-view-3d.vala
 
 test_chess_game_SOURCES = \
 	chess-bitboard.vala \

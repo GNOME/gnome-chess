@@ -24,7 +24,6 @@ PKG_CHECK_MODULES(GNOME_CHESS, [
   gmodule-2.0
   gtk+-3.0 >= $GTK_REQUIRED
   librsvg-2.0 >= $RSVG_REQUIRED
-  sqlite3
   gl
   glu
   x11

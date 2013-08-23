@@ -14,7 +14,6 @@ extern void gtk_file_filter_set_name (Gtk.FileFilter filter, string name);
 public class Application : Gtk.Application
 {
     private Settings settings;
-    private History history;
     private Gtk.Builder builder;
     private Gtk.Builder preferences_builder;
     private Gtk.Window window;
@@ -57,6 +56,7 @@ public class Application : Gtk.Application
     private PGNGame pgn_game;
     private ChessGame game;
     private bool in_history;
+    private string autosave_filename;
     private File game_file;
     private bool game_needs_saving;
     private string? saved_filename = null;
@@ -117,8 +117,6 @@ public class Application : Gtk.Application
 
         var data_dir = File.new_for_path (Path.build_filename (Environment.get_user_data_dir (), "gnome-chess", null));
         DirUtils.create_with_parents (data_dir.get_path (), 0755);
-
-        history = new History (data_dir);
 
         add_action_entries (app_entries, this);
 
@@ -199,15 +197,16 @@ public class Application : Gtk.Application
         foreach (var profile in ai_profiles)
             message ("Detected AI profile %s in %s", profile.name, profile.path);
 
+        autosave_filename = data_dir.get_path () + "/autosave.pgn";
+
         /* Load from history if no game requested */
         if (game_file == null)
         {
-            var unfinished = history.get_unfinished ();
-            if (unfinished != null)
-            {
+            if (FileUtils.test (autosave_filename, FileTest.EXISTS))
+                game_file = File.new_for_path (autosave_filename);
+
+            if (game_file != null)
                 in_history = true;
-                game_file = unfinished.last().data;
-            }
             else
                 start_new_game ();
         }
@@ -352,16 +351,15 @@ public class Application : Gtk.Application
         if (!game_needs_saving)
         {
             if (game_file != null)
-                history.remove (game_file);
+                FileUtils.remove (game_file.get_path ());
             return;
         }
 
         try
         {
             if (!in_history || game_file == null)
-                game_file = history.add (pgn_game.date, pgn_game.result);
-            else
-                history.update (game_file, "", pgn_game.result);
+                game_file = File.new_for_path (autosave_filename);
+
             debug ("Writing current game to %s", game_file.get_path ());
             update_pgn_time_remaining ();
             pgn_game.write (game_file);
@@ -1021,7 +1019,7 @@ public class Application : Gtk.Application
         claim_draw_button.sensitive = false;
         pause_button.sensitive = false;
 
-        game_needs_saving = true;
+        game_needs_saving = false;
 
         if (opponent_engine != null)
             opponent_engine.stop ();
