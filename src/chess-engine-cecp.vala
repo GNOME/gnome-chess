@@ -73,8 +73,16 @@ public class ChessEngineCECP : ChessEngine
             {
                 resigned ();
             }
+            else if (line == "game is a draw" ||
+                     line == "draw" ||
+                     line == "Draw" ||
+                     line.has_prefix ("1/2-1/2"))
+            {
+                claim_draw ();
+            }
             else if (line == "offer draw")
             {
+                offer_draw ();
             }
 
             buffer = buffer[offset+1:buffer.length];

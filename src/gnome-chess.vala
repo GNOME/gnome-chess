@@ -518,6 +518,8 @@ public class Application : Gtk.Application
             opponent_engine.resigned.disconnect (engine_resigned_cb);
             opponent_engine.stopped.disconnect (engine_stopped_cb);
             opponent_engine.error.disconnect (engine_error_cb);
+            opponent_engine.claim_draw.disconnect (engine_claim_draw_cb);
+            opponent_engine.offer_draw.disconnect (engine_offer_draw_cb);
             opponent_engine = null;
         }
 
@@ -551,6 +553,8 @@ public class Application : Gtk.Application
             opponent_engine.resigned.connect (engine_resigned_cb);
             opponent_engine.stopped.connect (engine_stopped_cb);
             opponent_engine.error.connect (engine_error_cb);
+            opponent_engine.claim_draw.connect (engine_claim_draw_cb);
+            opponent_engine.offer_draw.connect (engine_offer_draw_cb);
             opponent_engine.start ();
         }
 
@@ -678,6 +682,25 @@ public class Application : Gtk.Application
     private void engine_error_cb (ChessEngine engine)
     {
         game.stop (ChessResult.BUG, ChessRule.BUG);
+    }
+
+    private void engine_claim_draw_cb (ChessEngine engine)
+    {
+        if (!opponent.claim_draw ())
+            game.stop (ChessResult.BUG, ChessRule.BUG);
+    }
+
+    private void engine_offer_draw_cb (ChessEngine engine)
+    {
+        opponent.claim_draw ();
+
+        /*
+         * If the draw cannot be claimed, do nothing.
+         *
+         * In the future we might want to actually give the player a choice
+         * of accepting the draw, but this doesn't make much sense unless the
+         * player can also offer a draw himself.
+         */
     }
 
     private void game_start_cb (ChessGame game)

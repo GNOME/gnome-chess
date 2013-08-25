@@ -27,6 +27,8 @@ public abstract class ChessEngine : Object
     public signal void resigned ();
     public signal void stopped ();
     public signal void error ();
+    public signal void claim_draw ();
+    public signal void offer_draw ();
     
     private bool _ready = false;
     public bool ready
