@@ -515,6 +515,7 @@ public class Application : Gtk.Application
             opponent_engine.stop ();
             opponent_engine.ready_changed.disconnect (engine_ready_cb);
             opponent_engine.moved.disconnect (engine_move_cb);
+            opponent_engine.resigned.disconnect (engine_resigned_cb);
             opponent_engine.stopped.disconnect (engine_stopped_cb);
             opponent_engine.error.disconnect (engine_error_cb);
             opponent_engine = null;
@@ -547,6 +548,7 @@ public class Application : Gtk.Application
         {
             opponent_engine.ready_changed.connect (engine_ready_cb);
             opponent_engine.moved.connect (engine_move_cb);
+            opponent_engine.resigned.connect (engine_resigned_cb);
             opponent_engine.stopped.connect (engine_stopped_cb);
             opponent_engine.error.connect (engine_error_cb);
             opponent_engine.start ();
@@ -662,8 +664,14 @@ public class Application : Gtk.Application
             game.stop (ChessResult.BUG, ChessRule.BUG);
     }
 
+    private void engine_resigned_cb (ChessEngine engine)
+    {
+        opponent.resign ();
+    }
+
     private void engine_stopped_cb (ChessEngine engine)
     {
+        // FIXME should print a different message than normal resign
         opponent.resign ();
     }
 

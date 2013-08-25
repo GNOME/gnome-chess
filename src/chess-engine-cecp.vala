@@ -71,6 +71,7 @@ public class ChessEngineCECP : ChessEngine
             }
             else if (line == "resign" || line == "tellics resign")
             {
+                resigned ();
             }
             else if (line == "offer draw")
             {
