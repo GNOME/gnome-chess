@@ -673,8 +673,7 @@ public class Application : Gtk.Application
 
     private void engine_stopped_cb (ChessEngine engine)
     {
-        // FIXME should print a different message than normal resign
-        opponent.resign ();
+        game.stop (ChessResult.BUG, ChessRule.BUG);
     }
 
     private void engine_error_cb (ChessEngine engine)
