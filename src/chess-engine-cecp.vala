@@ -69,7 +69,9 @@ public class ChessEngineCECP : ChessEngine
                 stop ();
                 error ();
             }
-            else if (line == "resign" || line == "tellics resign")
+            else if (line == "resign" || line == "tellics resign" ||
+                     (line.has_prefix ("1-0 {") && line.contains("resign")) ||
+                     (line.has_prefix ("0-1 {") && line.contains("resign")))
             {
                 resigned ();
             }
