@@ -64,16 +64,17 @@ public class ChessEngineCECP : ChessEngine
                 }
             }
 
-            if (line.has_prefix ("Illegal move: "))
-            {
-                stop ();
-                error ();
-            }
-            else if (line == "resign" || line == "tellics resign" ||
+            if (line == "resign" || line == "tellics resign" ||
                      (line.has_prefix ("1-0 {") && line.contains("resign")) ||
                      (line.has_prefix ("0-1 {") && line.contains("resign")))
             {
                 resigned ();
+            }
+            else if (line.has_prefix ("Illegal move: ") ||
+                     line.has_prefix ("1-0") || line.has_prefix ("0-1"))
+            {
+                stop ();
+                error ();
             }
             else if (line == "game is a draw" ||
                      line == "draw" ||
