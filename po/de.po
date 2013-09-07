@@ -23,16 +23,16 @@ msgstr ""
 "Project-Id-Version: gnome-chess master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2013-08-26 16:30+0000\n"
-"PO-Revision-Date: 2013-07-28 19:52+0100\n"
-"Last-Translator: Benjamin Steinwender <b@stbe.at>\n"
+"POT-Creation-Date: 2013-09-06 09:25+0000\n"
+"PO-Revision-Date: 2013-09-06 12:29+0200\n"
+"Last-Translator: Tobias Endrigkeit <tobiasendrigkeit@outlook.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
 #. Title of the main window
 #: ../data/glchess.desktop.in.in.h:1 ../src/gnome-chess.vala:434
@@ -86,6 +86,8 @@ msgstr "Zug rückgängig"
 #: ../data/gnome-chess.ui.h:12
 msgid "Claim a draw by threefold repetition or the fifty move rule"
 msgstr ""
+"Biete ein Remi an, wenn entweder die Spielfeldposition drei Mal wiederholt "
+"wurde oder die 50-Züge-Regelung eintritt."
 
 # CHECK
 #: ../data/gnome-chess.ui.h:13
@@ -107,10 +109,8 @@ msgstr "Spiel pausieren"
 
 #. The pause game button
 #: ../data/gnome-chess.ui.h:19
-#, fuzzy
-#| msgid "_Pause"
 msgid "Pause"
-msgstr "_Pause"
+msgstr "Pause"
 
 #: ../data/gnome-chess.ui.h:20
 msgid "Toggle fullscreen"
@@ -466,10 +466,8 @@ msgid "_Bishop"
 msgstr "_Läufer"
 
 #: ../src/chess-view.vala:41
-#, fuzzy
-#| msgid "_Pause"
 msgid "Paused"
-msgstr "_Pause"
+msgstr "Pausiert"
 
 #. Title of the window when explicitly loaded a file. The argument is the
 #. * base name of the file (e.g. test.pgn)
@@ -977,20 +975,15 @@ msgstr "Die Zeit des Gegners ist abgelaufen"
 
 #. Message displayed when the game is drawn due to the three-fold-repitition rule
 #: ../src/gnome-chess.vala:1074
-#, fuzzy
-#| msgid ""
-#| "The same board state has occurred three times (three fold repetition)"
 msgid "The same board state has occurred three times (threefold repetition)"
 msgstr ""
-"Der selbe Spielzustand ist drei Mal eingetreten (dreifache Wiederholung)"
+"Der selbe Spielzustand ist drei Mal eingetreten (Dreifache Wiederholung)"
 
 #. Message displayed when the game is drawn due to the insufficient material rule
 #: ../src/gnome-chess.vala:1078 ../src/gnome-chess.vala:1251
-#, fuzzy
-#| msgid "Neither player can cause checkmate (insufficient material)"
 msgid "Neither player can checkmate (insufficient material)"
 msgstr ""
-"Keiner der Spieler kann ein Schachmatt erspielen (unzureichendes "
+"Keiner der Spieler kann ein Schachmatt erspielen (Unzureichendes "
 "Figurenmaterial)"
 
 #. Message displayed when the game ends due to the black player resigning
@@ -1016,12 +1009,12 @@ msgstr "Einer der Spieler ist gestorben"
 #. Message displayed when something goes wrong with the engine
 #: ../src/gnome-chess.vala:1104
 msgid "The game cannot continue."
-msgstr ""
+msgstr "Das Spiel kann nicht fortgesetzt werden."
 
 #: ../src/gnome-chess.vala:1169 ../src/gnome-chess.vala:1870
 #: ../src/gnome-chess.vala:1976
 msgid "_Cancel"
-msgstr ""
+msgstr "A_bbrechen"
 
 # CHECK
 #: ../src/gnome-chess.vala:1173
@@ -1044,16 +1037,12 @@ msgstr "Spielverlauf _speichern"
 # CHECK
 #. Your very last chance to save
 #: ../src/gnome-chess.vala:1192
-#, fuzzy
-#| msgid "_Discard game"
 msgid "_Discard"
 msgstr "Spiel _verwerfen"
 
 #: ../src/gnome-chess.vala:1192 ../src/gnome-chess.vala:1870
-#, fuzzy
-#| msgid "Save"
 msgid "_Save"
-msgstr "Speichern"
+msgstr "_Speichern"
 
 #: ../src/gnome-chess.vala:1208
 msgid "Save this game before starting a new one?"
@@ -1061,38 +1050,40 @@ msgstr "Dieses Spiel vor Beginn eines neuen Spiels speichern?"
 
 #: ../src/gnome-chess.vala:1231
 msgid "You cannot currently claim a draw."
-msgstr ""
+msgstr "Sie können aktuell kein Remi anbieten."
 
 #: ../src/gnome-chess.vala:1240
 msgid "It is the first time this board position has occurred"
-msgstr ""
+msgstr "Es ist das erste Mal, dass diese Spielfeldposition geschehen ist"
 
 #: ../src/gnome-chess.vala:1241
 msgid "It is the second time this board position has occurred"
-msgstr ""
+msgstr "Es ist das zweite Mal, dass diese Spielfeldposition geschehen ist"
 
 #: ../src/gnome-chess.vala:1242
 #, c-format
 msgid "%d move has passed without a capture or pawn advancement"
 msgid_plural "%d moves have passed without a capture or pawn advancement"
 msgstr[0] ""
+"%d Zug ist geschehen ohne dass eine Figur geschlagen oder aufgewertet worden "
+"ist."
 msgstr[1] ""
+"%d Züge sind geschehen ohne dass eine Figur geschlagen oder aufgewertet "
+"worden ist."
 
 #: ../src/gnome-chess.vala:1245
 msgid "You can claim a draw when either:"
-msgstr ""
+msgstr "Sie können ein Remi anbieten, wenn entweder:"
 
 #: ../src/gnome-chess.vala:1246
-#, fuzzy
-#| msgid ""
-#| "The same board state has occurred three times (three fold repetition)"
 msgid "Any board position has occurred three times"
-msgstr ""
-"Der selbe Spielzustand ist drei Mal eingetreten (dreifache Wiederholung)"
+msgstr "Der selbe Spielzustand ist drei Mal eingetreten"
 
 #: ../src/gnome-chess.vala:1247
 msgid "50 moves have passed without a capture or pawn advancement"
 msgstr ""
+"50 Züge sind geschehen ohne dass eine Spielfigur geschlagen oder aufgewertet "
+"worden ist."
 
 #: ../src/gnome-chess.vala:1248
 msgid ""
@@ -1101,11 +1092,9 @@ msgstr ""
 
 #: ../src/gnome-chess.vala:1249
 msgid "The game is automatically a draw if:"
-msgstr ""
+msgstr "Das Spiel ist automatisch ein Remi, wenn:"
 
 #: ../src/gnome-chess.vala:1250
-#, fuzzy
-#| msgid "Opponent cannot move (stalemate)"
 msgid "The current player cannot move (stalemate)"
 msgstr "Der Gegner ist bewegungsunfähig (Patt)"
 
@@ -1191,10 +1180,8 @@ msgid "Failed to save game: %s"
 msgstr "Das Spiel konnte nicht gespeichert werden: %s"
 
 #: ../src/gnome-chess.vala:1963
-#, fuzzy
-#| msgid "Save this game before starting a new one?"
 msgid "Save this game before loading another one?"
-msgstr "Dieses Spiel vor Beginn eines neuen Spiels speichern?"
+msgstr "Dieses Spiel vor dem Laden eines anderen Spiels speichern?"
 
 #. Title of load game dialog
 #: ../src/gnome-chess.vala:1974
@@ -1202,10 +1189,8 @@ msgid "Load Chess Game"
 msgstr "Schach-Partie laden"
 
 #: ../src/gnome-chess.vala:1977
-#, fuzzy
-#| msgid "Open"
 msgid "_Open"
-msgstr "Öffnen"
+msgstr "Ö_ffnen"
 
 #: ../src/gnome-chess.vala:2018
 #, c-format
