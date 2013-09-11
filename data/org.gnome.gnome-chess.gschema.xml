@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <enum id="org.gnome.gnome-chess.MoveFormat">
+    <value value="0" nick="human"/>
+    <value value="1" nick="san"/>
+    <value value="2" nick="fan"/>
+    <value value="3" nick="lan"/>
+  </enum>
+
+  <enum id="org.gnome.gnome-chess.BoardSide">
+    <value value="0" nick="white"/>
+    <value value="1" nick="black"/>
+    <value value="2" nick="human"/>
+    <value value="3" nick="current"/>
+  </enum>
+
+  <enum id="org.gnome.gnome-chess.Difficulty">
+    <value value="0" nick="easy"/>
+    <value value="1" nick="normal"/>
+    <value value="2" nick="hard"/>
+  </enum>
+
+  <schema id="org.gnome.gnome-chess" path="/org/gnome/gnome-chess/" gettext-domain="gnome-games">
+    <key name="width" type="i">
+      <default>700</default>
+      <summary>The width of the window</summary>
+      <description>The width of the main window in pixels.</description>
+    </key>
+    <key name="height" type="i">
+      <default>550</default>
+      <summary>The height of the window</summary>
+      <description>The height of the main window in pixels.</description>
+    </key>
+    <key name="maximized" type="b">
+      <default>false</default>
+      <summary>A flag to enable maximized mode</summary>
+      <description>A flag to enable maximized mode</description>
+    </key>
+    <key name="fullscreen" type="b">
+      <default>false</default>
+      <summary>A flag to enable fullscreen mode</summary>
+      <description>A flag to enable fullscreen mode</description>
+    </key>
+    <key name="show-3d" type="b">
+      <default>false</default>
+      <summary>A flag to enable 3D mode</summary>
+      <description>A flag to enable 3D mode</description>
+    </key>
+    <key name="show-3d-smooth" type="b">
+      <default>false</default>
+      <summary>A flag to smooth (anti-alias) the 3D display</summary>
+      <description>A flag to smooth (anti-alias) the 3D display</description>
+    </key>
+    <key name="piece-theme" type="s">
+      <default>'simple'</default>
+      <summary>The piece theme to use</summary>
+      <description>The piece theme to use</description>
+    </key>
+    <key name="show-move-hints" type="b">
+      <default>true</default>
+      <summary>A flag to enable move hints</summary>
+      <description>A flag to enable move hints</description>
+    </key>
+    <key name="show-numbering" type="b">
+      <default>false</default>
+      <summary>A flag to enable board numbering</summary>
+      <description>A flag to enable board numbering</description>
+    </key>
+    <key name="save-directory" type="s">
+      <default>''</default>
+      <summary>The directory to open the save game dialog in</summary>
+      <description>The directory to open the save game dialog in</description>
+    </key>
+    <key name="load-directory" type="s">
+      <default>''</default>
+      <summary>The directory to open the load game dialog in</summary>
+      <description>The directory to open the load game dialog in</description>
+    </key>
+    <key name="move-format" enum="org.gnome.gnome-chess.MoveFormat">
+      <default>'human'</default>
+      <summary>The format to display moves in</summary>
+      <description>The format to display moves in</description>
+    </key>
+    <key name="board-side" enum="org.gnome.gnome-chess.BoardSide">
+      <default>'human'</default>
+      <summary>The side of the board that is in the foreground</summary>
+      <description>The side of the board that is in the foreground</description>
+    </key>
+    <key name="duration" type="i">
+      <default>0</default>
+      <summary>The duration of a game in seconds (0 for no limit)</summary>
+      <description>The duration of a game in seconds (0 for no limit)</description>
+    </key>
+    <key name="play-as-white" type="b">
+      <default>true</default>
+      <summary>true if the human player is playing white</summary>
+      <description>true if the human player is playing white</description>
+    </key>
+    <key name="opponent" type="s">
+      <default>''</default>
+      <summary>The opponent player</summary>
+      <description>Can be 'human' (play against another human player), '' (use the first available chess engine) or the name of a specific engine to play against</description>
+    </key>
+    <key name="difficulty" enum="org.gnome.gnome-chess.Difficulty">
+      <default>'easy'</default>
+      <summary>Difficulty of the opponent chess engine</summary>
+      <description>Difficulty of the opponent chess engine</description>
+    </key>
+  </schema>
+</schemalist>

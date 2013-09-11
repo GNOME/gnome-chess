@@ -13,16 +13,16 @@ dist_ui_DATA = \
 	menu.ui
 
 gsettings_SCHEMAS = org.gnome.gnome-chess.gschema.xml
-@INTLTOOL_XML_NOMERGE_RULE@
 @GSETTINGS_RULES@
 
 dist_sysconf_DATA = chess-engines.conf
 
 dist_man_MANS = gnome-chess.6
 
-EXTRA_DIST = org.gnome.gnome-chess.gschema.xml.in
+EXTRA_DIST = $(gsettings_SCHEMAS)
 
-CLEANFILES = $(desktop_DATA) $(gsettings_SCHEMAS)
-DISTCLEANFILES = $(desktop_DATA) $(gsettings_SCHEMAS)
+CLEANFILES = glchess.desktop
+
+DISTCLEANFILES = glchess.desktop.in
 
 -include $(top_srcdir)/git.mk
