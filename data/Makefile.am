@@ -5,6 +5,9 @@ desktop_in_files = glchess.desktop.in.in
 desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
+appdatadir = $(datadir)/appdata
+dist_appdata_DATA = gnome-chess.appdata.xml
+
 uidir = $(pkgdatadir)
 dist_ui_DATA = \
 	gnome-chess.ui \
