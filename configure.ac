@@ -1,5 +1,5 @@
-AC_PREREQ([2.64])
-AC_INIT([gnome-chess],[3.9.90])
+AC_PREREQ([2.63])
+AC_INIT([gnome-chess],[3.9.92])
 AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-xz foreign])
 AC_CONFIG_SRCDIR([src/gnome-chess.vala])
 AM_SILENT_RULES([yes])
