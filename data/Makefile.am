@@ -1,8 +1,8 @@
 SUBDIRS = icons pieces textures
 
 desktopdir = $(datadir)/applications
-desktop_in_files = glchess.desktop.in.in
-desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
+desktop_in_files = glchess.desktop.in
+desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
 appdatadir = $(datadir)/appdata
@@ -30,12 +30,11 @@ check-local: $(appdata_DATA) $(desktop_DATA)
 
 EXTRA_DIST = \
 	$(appdata_in_files) \
+	$(desktop_in_files) \
 	$(gsettings_SCHEMAS)
 
 CLEANFILES = \
 	$(appdata_DATA) \
-	glchess.desktop
-
-DISTCLEANFILES = glchess.desktop.in
+	$(desktop_DATA)
 
 -include $(top_srcdir)/git.mk

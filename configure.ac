@@ -71,7 +71,6 @@ data/pieces/3d/Makefile
 data/pieces/fancy/Makefile
 data/pieces/simple/Makefile
 data/textures/Makefile
-data/glchess.desktop.in
 help/Makefile
 po/Makefile.in
 src/Makefile
