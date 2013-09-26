@@ -33,6 +33,8 @@ PKG_CHECK_MODULES(TEST, [
   gio-2.0
 ])
 
+AC_PATH_PROG(APPDATA_VALIDATE, appdata-validate)
+
 dnl ###########################################################################
 dnl Disable C warnings
 dnl ###########################################################################
