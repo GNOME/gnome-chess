@@ -5,11 +5,10 @@ desktop_in_files = glchess.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-@INTLTOOL_XML_NOMERGE_RULE@
 appdatadir = $(datadir)/appdata
-appdata_files = gnome-chess.appdata.xml
-dist_appdata_DATA = $(appdata_in_files:.xml.in=.xml)
 appdata_in_files = gnome-chess.appdata.xml.in
+appdata_DATA = $(appdata_in_files:.appdata.xml.in=.appdata.xml)
+@INTLTOOL_XML_RULE@
 
 uidir = $(pkgdatadir)
 dist_ui_DATA = \
@@ -35,7 +34,7 @@ EXTRA_DIST = \
 	$(gsettings_SCHEMAS)
 
 CLEANFILES = \
-	$(app_data_in_files) \
+	$(appdata_DATA) \
 	$(desktop_DATA)
 
 -include $(top_srcdir)/git.mk
