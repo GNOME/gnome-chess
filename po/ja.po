@@ -8,14 +8,15 @@
 # KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>, 2003.
 # Satoru SATOH <ss@gnome.gr.jp>, 2006.
 # Shushi KUROSE <md81bird@hitaki.net>, 2012.
+# Nishio Futoshi <fut_nis@d3.dion.ne.jp>, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2013-03-27 16:29+0000\n"
-"PO-Revision-Date: 2013-04-13 23:20+0900\n"
-"Last-Translator: OKANO Takayoshi <kano@na.rim.or.jp>\n"
+"POT-Creation-Date: 2013-10-05 14:16+0000\n"
+"PO-Revision-Date: 2013-10-04 23:01+0900\n"
+"Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -24,976 +25,1066 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. Title of the main window
-#: ../data/glchess.desktop.in.in.h:1 ../src/gnome-chess.vala:363
+#: ../data/glchess.desktop.in.in.h:1 ../src/gnome-chess.vala:434
+#: ../src/gnome-chess.vala:1821
 msgid "Chess"
 msgstr "チェス"
 
 #: ../data/glchess.desktop.in.in.h:2
+#, fuzzy
+#| msgid "Play the classic two-player board game of chess"
 msgid "Play the classic two-player boardgame of chess"
-msgstr "古典的な対戦型のチェスゲームをお楽しみください"
+msgstr "二人のプレイヤーで対戦型のチェスゲームをお楽しみください"
 
 #: ../data/glchess.desktop.in.in.h:3
 msgid "game;strategy;"
-msgstr ""
-
-#. Game menu name
-#: ../data/gnome-chess.ui.h:2
-msgid "_Game"
-msgstr "ゲーム(_G)"
-
-#. Undo move menu item
-#: ../data/gnome-chess.ui.h:4
-msgid "_Undo Move"
-msgstr "移動を元に戻す(_U)"
-
-#. Save menu item
-#: ../data/gnome-chess.ui.h:6
-msgid "_Resign"
-msgstr "投了する(_R)"
-
-#. Claim draw menu item
-#: ../data/gnome-chess.ui.h:8
-msgid "Claim _Draw"
-msgstr "引き分けを提案する(_D)"
-
-#. Settings menu item
-#: ../data/gnome-chess.ui.h:10
-msgid "_Settings"
-msgstr "設定(_S)"
-
-#. Help menu item
-#: ../data/gnome-chess.ui.h:12
-msgid "_Help"
-msgstr "ヘルプ(_H)"
-
-#. Help contents menu item
-#: ../data/gnome-chess.ui.h:14
-msgid "_Contents"
-msgstr "目次(_C)"
+msgstr "game;strategy;ゲーム;戦略;"
 
 #. Tooltip for start new game toolbar button
-#: ../data/gnome-chess.ui.h:16
+#: ../data/gnome-chess.ui.h:2
 msgid "Start a new game"
 msgstr "新しいゲームを開始します"
 
 #. The New Game toolbar button
-#: ../data/gnome-chess.ui.h:18
-msgid "New Game"
-msgstr "新しいゲーム"
+#: ../data/gnome-chess.ui.h:4
+msgid "New"
+msgstr "新規"
+
+#: ../data/gnome-chess.ui.h:5
+msgid "Open a saved game"
+msgstr "保存されたゲームを開きます"
+
+#: ../data/gnome-chess.ui.h:6
+msgid "Open"
+msgstr "開く"
+
+#: ../data/gnome-chess.ui.h:7
+msgid "Save the current game"
+msgstr "現在のゲームを保存します"
+
+#: ../data/gnome-chess.ui.h:8
+msgid "Save"
+msgstr "保存"
+
+#: ../data/gnome-chess.ui.h:9
+msgid "Undo your most recent move"
+msgstr "直前の移動を元に戻します"
 
 #. The undo move toolbar button
-#: ../data/gnome-chess.ui.h:20
+#: ../data/gnome-chess.ui.h:11
 msgid "Undo Move"
 msgstr "移動を元に戻す"
 
+# スリーフォールド・レピティションのほうが一般的らしいが、一応日本語も併記
+#: ../data/gnome-chess.ui.h:12
+msgid "Claim a draw by threefold repetition or the fifty move rule"
+msgstr "スリーフォールド・レピティション（同形三復）または、50手ルールで引き分けを提案します"
+
+#: ../data/gnome-chess.ui.h:13
+msgid "Claim Draw"
+msgstr "引き分けを提案する"
+
+#: ../data/gnome-chess.ui.h:14
+msgid "Resign to your opponent"
+msgstr "対戦相手に投了します"
+
 #. The tooltip for the Resign toolbar button
-#: ../data/gnome-chess.ui.h:22
+#: ../data/gnome-chess.ui.h:16
 msgid "Resign"
 msgstr "投了します"
 
+#: ../data/gnome-chess.ui.h:17
+msgid "Pause the game"
+msgstr "ゲームを一時停止します"
+
+#. The pause game button
+#: ../data/gnome-chess.ui.h:19
+msgid "Pause"
+msgstr "一時停止"
+
+#: ../data/gnome-chess.ui.h:20
+msgid "Toggle fullscreen"
+msgstr "フルスクリーンモードを切り替えます"
+
+#: ../data/gnome-chess.ui.h:21
+msgid "Fullscreen"
+msgstr "フルスクリーン"
+
 #. Tooltip on the show first move (i.e. game start) navigation button
-#: ../data/gnome-chess.ui.h:24
+#: ../data/gnome-chess.ui.h:23
 msgid "Rewind to the game start"
 msgstr "ゲームの開始まで戻します"
 
 #. Tooltip on the show previous move navigation button
-#: ../data/gnome-chess.ui.h:26
+#: ../data/gnome-chess.ui.h:25
 msgid "Show the previous move"
 msgstr "直前の移動を表示します"
 
 #. Tooltip on the show next move navigation button
-#: ../data/gnome-chess.ui.h:28
+#: ../data/gnome-chess.ui.h:27
 msgid "Show the next move"
 msgstr "次の移動を表示します"
 
 #. Tooltip on the show current move navigation button
-#: ../data/gnome-chess.ui.h:30
+#: ../data/gnome-chess.ui.h:29
 msgid "Show the current move"
 msgstr "最新の移動を表示します"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:1
-msgid "The width of the window"
-msgstr "ウィンドウの幅"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:2
-msgid "The width of the main window in pixels."
-msgstr "メインウィンドウの幅 (ピクセル単位) です。"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:3
-msgid "The height of the window"
-msgstr "ウィンドウの高さ"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:4
-msgid "The height of the main window in pixels."
-msgstr "メインウィンドウの高さ (ピクセル単位) です。"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:5
-msgid "A flag to enable maximized mode"
-msgstr "最大モードにするフラグです"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:6
-msgid "A flag to enable fullscreen mode"
-msgstr "フルスクリーンモードにするかどうか"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:7
-msgid "A flag to enable 3D mode"
-msgstr "3D表示にするかどうか"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:8
-msgid "A flag to smooth (anti-alias) the 3D display"
-msgstr "アンチエイリアス付きの3D表示にするかどうか"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:9
-msgid "The piece theme to use"
-msgstr "使用する駒のテーマ"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:10
-msgid "A flag to enable move hints"
-msgstr "ヒントを利用できるかどうか"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:11
-msgid "A flag to enable board numbering"
-msgstr "盤面に番号を付与するかどうか"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:12
-msgid "A flag to enable the move history browser"
-msgstr "履歴ブラウザーを表示するかどうか"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:13
-msgid "A flag to enable the toolbar"
-msgstr "ツールバーを表示するかどうか"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:14
-msgid "The directory to open the save game dialog in"
-msgstr "ゲームを保存する際に開くフォルダー"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:15
-msgid "The directory to open the load game dialog in"
-msgstr "ゲームを読み込む際に開くフォルダー"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:16
-msgid "The format to display moves in"
-msgstr "駒の移動を表現する書式"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:17
-msgid "The side of the board that is in the foreground"
-msgstr "手前に来る盤の側"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:18
-msgid "The duration of a game in seconds (0 for no limit)"
-msgstr "ゲームの制限時間(秒)(0の場合は制限なし)"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:19
-msgid "true if the human player is playing white"
-msgstr "人間のプレイヤーが白のプレイヤーの場合は TRUE にしてください"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:20
-msgid "The opponent player"
-msgstr "対戦相手のプレイヤー"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:21
-msgid "Can be 'human' (play against another human player), '' (use the first available chess engine) or the name of a specific engine to play against"
-msgstr "プレイする相手として、'human' (他の人間のプレイヤーと対戦)、'' (最初に利用できるチェスエンジンを使用) もしくは特定のエンジンの名前を指定することができます。"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:22
-msgid "Difficulty of the opponent chess engine"
-msgstr "対戦相手のチェスエンジンの難易度"
-
 #. Title for preferences dialog
-#: ../data/preferences.ui.h:2
+#: ../data/menu.ui.h:1 ../data/preferences.ui.h:44
 msgid "Preferences"
 msgstr "設定"
 
-#. Preferences Dialog: Label before player side (white/black) combo box
-#: ../data/preferences.ui.h:4
-msgid "Play as:"
-msgstr "プレイする側:"
+#: ../data/menu.ui.h:2
+msgid "Help"
+msgstr "ヘルプ"
 
-#. Preferences Dialog: Label before opposing player combo box
-#: ../data/preferences.ui.h:6
-msgid "Opposing Player:"
-msgstr "相手プレイヤー:"
+#: ../data/menu.ui.h:3
+msgid "About"
+msgstr "このアプリケーションについて"
 
-#. Preferences Dialog: Label before promotion type combo box
-#: ../data/preferences.ui.h:8
-msgid "Difficulty:"
-msgstr "難易度:"
+#: ../data/menu.ui.h:4
+msgid "Quit"
+msgstr "終了"
 
-#. New Game Dialog: Label before game timer settings
-#: ../data/preferences.ui.h:10
-msgid "Game Duration:"
-msgstr "ゲーム制限時間:"
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:1
+msgid "The width of the window"
+msgstr "ウィンドウの幅"
 
-#. Preferences dialog: Label to notify user that the settings are applied for the next game
-#: ../data/preferences.ui.h:12
-msgid "Changes will take effect for the next game."
-msgstr "変更点は次のゲームで有効になります。"
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:2
+msgid "The width of the main window in pixels."
+msgstr "メインウィンドウの幅 (ピクセル単位) です。"
 
-#. Preferences Dialog: Tab title for game preferences
-#: ../data/preferences.ui.h:14
-msgid "Game"
-msgstr "ゲーム"
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:3
+msgid "The height of the window"
+msgstr "ウィンドウの高さ"
 
-#. Preferences Dialog: Check box for selecting if 3D view is available
-#: ../data/preferences.ui.h:16
-msgid "3_D Chess View"
-msgstr "3D チェス表示(_D)"
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:4
+msgid "The height of the main window in pixels."
+msgstr "メインウィンドウの高さ (ピクセル単位) です。"
 
-#. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
-#: ../data/preferences.ui.h:18
-msgid "_Smooth Display"
-msgstr "滑らかな表示にする(_S)"
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:5
+msgid "A flag to enable maximized mode"
+msgstr "最大モードにするフラグです"
 
-#. Preferences Dialog: Label before piece style combo box
-#: ../data/preferences.ui.h:20
-msgid "Piece Style:"
-msgstr "駒スタイル:"
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:6
+msgid "A flag to enable fullscreen mode"
+msgstr "フルスクリーンモードにするかどうか"
 
-#. Preferences Dialog: Check box for selecting if toolbar is visible
-#: ../data/preferences.ui.h:22
-msgid "Show _Toolbar"
-msgstr "ツールバーを表示する(_T)"
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:7
+msgid "A flag to enable 3D mode"
+msgstr "3D表示にするかどうか"
 
-#. Preferences Dialog: Check box for selecting if history browser is visible
-#: ../data/preferences.ui.h:24
-msgid "Show _History"
-msgstr "履歴を表示する(_H)"
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:8
+msgid "A flag to smooth (anti-alias) the 3D display"
+msgstr "アンチエイリアス付きの3D表示にするかどうか"
 
-#. Preferences Dialog: Check box for selecting if move hints are visible
-#: ../data/preferences.ui.h:26
-msgid "_Move Hints"
-msgstr "ヒントを出す(_M)"
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:9
+msgid "The piece theme to use"
+msgstr "使用する駒のテーマ"
 
-#. Preferences Dialog: Check box for selecting if board numbering is visible
-#: ../data/preferences.ui.h:28
-msgid "_Board Numbering"
-msgstr "盤面に番号を付ける(_B)"
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:10
+msgid "A flag to enable move hints"
+msgstr "ヒントを利用できるかどうか"
 
-#. Preferences Dialog: Label before board orientation combo box
-#: ../data/preferences.ui.h:30
-msgid "Board Orientation:"
-msgstr "盤面の向き:"
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:11
+msgid "A flag to enable board numbering"
+msgstr "盤面に番号を付与するかどうか"
 
-#. Preferences Dialog: Label before move format combo box
-#: ../data/preferences.ui.h:32
-msgid "Move Format:"
-msgstr "棋譜:"
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:12
+msgid "The directory to open the save game dialog in"
+msgstr "ゲームを保存する際に開くフォルダー"
 
-#. Preferences Dialog: Title of appearance options tab
-#: ../data/preferences.ui.h:34
-msgid "_Appearance"
-msgstr "外観(_A)"
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:13
+msgid "The directory to open the load game dialog in"
+msgstr "ゲームを読み込む際に開くフォルダー"
 
-#. Preferences Dialog: Combo box entry for playing as white
-#: ../data/preferences.ui.h:36
-msgctxt "chess-player"
-msgid "White"
-msgstr "白"
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:14
+msgid "The format to display moves in"
+msgstr "駒の移動を表現する書式"
 
-#. Preferences Dialog: Combo box entry for playing as black
-#: ../data/preferences.ui.h:38
-msgctxt "chess-player"
-msgid "Black"
-msgstr "黒"
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:15
+msgid "The side of the board that is in the foreground"
+msgstr "手前に来る盤の側"
+
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:16
+msgid "The duration of a game in seconds (0 for no limit)"
+msgstr "ゲームの制限時間(秒)(0の場合は制限なし)"
+
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:17
+msgid "true if the human player is playing white"
+msgstr "人間のプレイヤーが白のプレイヤーの場合は TRUE にしてください"
+
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:18
+msgid "The opponent player"
+msgstr "対戦相手のプレイヤー"
+
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:19
+msgid "Can be 'human' (play against another human player), '' (use the first available chess engine) or the name of a specific engine to play against"
+msgstr "プレイする相手として、'human' (他の人間のプレイヤーと対戦)、'' (最初に利用できるチェスエンジンを使用) もしくは特定のエンジンの名前を指定することができます。"
+
+#: ../data/org.gnome.gnome-chess.gschema.xml.h:20
+msgid "Difficulty of the opponent chess engine"
+msgstr "対戦相手のチェスエンジンの難易度"
 
 #. Preferences Dialog: Combo box entry for easy game difficulty
-#: ../data/preferences.ui.h:40
+#: ../data/preferences.ui.h:2
 msgctxt "difficulty"
 msgid "Easy"
 msgstr "初級"
 
 #. Preferences Dialog: Combo box entry for normal game difficulty
-#: ../data/preferences.ui.h:42
+#: ../data/preferences.ui.h:4
 msgctxt "difficulty"
 msgid "Normal"
 msgstr "普通"
 
 #. Preferences Dialog: Combo box entry for hard game difficulty
-#: ../data/preferences.ui.h:44
+#: ../data/preferences.ui.h:6
 msgctxt "difficulty"
 msgid "Hard"
 msgstr "上級"
 
 #. Preferences Dialog: Combo box entry for no game timer
-#: ../data/preferences.ui.h:46
+#: ../data/preferences.ui.h:8
 msgid "No limit"
 msgstr "制限なし"
 
-#. Preferences Dialog: Combo box entry for game timer of one minute
-#: ../data/preferences.ui.h:48
-msgid "One minute"
-msgstr "1分"
-
-#. Preferences Dialog: Combo box entry for game timer of five minutes
-#: ../data/preferences.ui.h:50
-msgid "Five minutes"
-msgstr "5分"
+#. Preferences Dialog: Combo box entry for game timer of ten minutes
+#: ../data/preferences.ui.h:10
+msgid "Ten minutes"
+msgstr "10分"
 
 #. Preferences Dialog: Combo box entry for game timer of thirty minutes
-#: ../data/preferences.ui.h:52
-msgid "30 minutes"
+#: ../data/preferences.ui.h:12
+msgid "Thirty minutes"
 msgstr "30分"
 
 #. Preferences Dialog: Combo box entry for game timer of one hour
-#: ../data/preferences.ui.h:54
+#: ../data/preferences.ui.h:14
 msgid "One hour"
 msgstr "1時間"
 
+#. Preferences Dialog: Combo box entry for game timer of two hours
+#: ../data/preferences.ui.h:16
+msgid "Two hours"
+msgstr "2時間"
+
+#. Preferences Dialog: Combo box entry for game timer of three hours
+#: ../data/preferences.ui.h:18
+msgid "Three hours"
+msgstr "3時間"
+
 #. Preferences Dialog: Combo box entry for custom game timer
-#: ../data/preferences.ui.h:56
+#: ../data/preferences.ui.h:20
 msgid "Custom"
 msgstr "カスタム"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
-#: ../data/preferences.ui.h:58
+#: ../data/preferences.ui.h:22
 msgctxt "chess-move-format"
 msgid "Human"
 msgstr "人間"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
-#: ../data/preferences.ui.h:60
+#: ../data/preferences.ui.h:24
 msgctxt "chess-move-format"
 msgid "Standard Algebraic"
 msgstr "代数式(標準表記法)"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
-#: ../data/preferences.ui.h:62
+#: ../data/preferences.ui.h:26
 msgctxt "chess-move-format"
 msgid "Figurine"
 msgstr "代数式(駒で表記)"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
-#: ../data/preferences.ui.h:64
+#: ../data/preferences.ui.h:28
 msgctxt "chess-move-format"
 msgid "Long Algebraic"
 msgstr "代数式(長表記法)"
 
 #. Preferences Dialog: Combo box entry for human opponent
-#: ../data/preferences.ui.h:66
+#: ../data/preferences.ui.h:30
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "人間"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the white side
-#: ../data/preferences.ui.h:68
+#: ../data/preferences.ui.h:32
 msgctxt "chess-side"
 msgid "White Side"
 msgstr "白"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the black side
-#: ../data/preferences.ui.h:70
+#: ../data/preferences.ui.h:34
 msgctxt "chess-side"
 msgid "Black Side"
 msgstr "黒"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
-#: ../data/preferences.ui.h:72
+#: ../data/preferences.ui.h:36
 msgctxt "chess-side"
 msgid "Human Side"
 msgstr "人間"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
-#: ../data/preferences.ui.h:74
+#: ../data/preferences.ui.h:38
 msgctxt "chess-side"
 msgid "Current Player"
 msgstr "現在のプレイヤー"
 
-#. Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)
-#: ../data/preferences.ui.h:76
-msgctxt "chess-side"
-msgid "Face to Face"
-msgstr "向かい合い"
-
 #. Preferences Dialog: Combo box entry for simple theme
-#: ../data/preferences.ui.h:78
+#: ../data/preferences.ui.h:40
 msgid "Simple"
 msgstr "シンプル"
 
 #. Preferences Dialog: Combo box entry for fancy theme
-#: ../data/preferences.ui.h:80
+#: ../data/preferences.ui.h:42
 msgid "Fancy"
 msgstr "装飾あり"
 
+#. Preferences Dialog: Label before player side (white/black) combo box
+#: ../data/preferences.ui.h:46
+msgid "Play as:"
+msgstr "プレイする側:"
+
+#. Preferences Dialog: Label before opposing player combo box
+#: ../data/preferences.ui.h:48
+msgid "Opposing player:"
+msgstr "相手プレイヤー:"
+
+#. Preferences Dialog: Label before promotion type combo box
+#: ../data/preferences.ui.h:50
+msgid "Difficulty:"
+msgstr "難易度:"
+
+# 直訳ならゲーム時間だが、前訳者を尊重
+#. New Game Dialog: Label before game timer settings
+#: ../data/preferences.ui.h:52
+msgid "Game duration:"
+msgstr "ゲーム制限時間:"
+
+#. Preferences dialog: Label to notify user that the settings are applied for the next game
+#: ../data/preferences.ui.h:54
+msgid "Changes will take effect for the next game."
+msgstr "変更点は次のゲームで有効になります。"
+
+#. Preferences Dialog: Tab title for game preferences
+#: ../data/preferences.ui.h:56
+msgid "Game"
+msgstr "ゲーム"
+
+#. Preferences Dialog: Label before board orientation combo box
+#: ../data/preferences.ui.h:58
+msgid "Board orientation:"
+msgstr "盤面の向き:"
+
+#. Preferences Dialog: Label before move format combo box
+#: ../data/preferences.ui.h:60
+msgid "Move format:"
+msgstr "棋譜:"
+
+#. Preferences Dialog: Check box for selecting if 3D view is available
+#: ../data/preferences.ui.h:62
+msgid "3_D chess view"
+msgstr "3D チェス表示(_D)"
+
+#. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
+#: ../data/preferences.ui.h:64
+msgid "_Smooth display"
+msgstr "滑らかな表示にする(_S)"
+
+#. Preferences Dialog: Check box for selecting if board numbering is visible
+#: ../data/preferences.ui.h:66
+msgid "_Board numbering"
+msgstr "盤面に番号を付ける(_B)"
+
+#. Preferences Dialog: Check box for selecting if move hints are visible
+#: ../data/preferences.ui.h:68
+msgid "_Move hints"
+msgstr "ヒントを出す(_M)"
+
+#. Preferences Dialog: Label before piece style combo box
+#: ../data/preferences.ui.h:70
+msgid "Piece style:"
+msgstr "駒スタイル:"
+
+#. Preferences Dialog: Title of appearance options tab
+#: ../data/preferences.ui.h:72
+msgid "_Appearance"
+msgstr "外観(_A)"
+
+#. Preferences Dialog: Combo box entry for playing as white
+#: ../data/preferences.ui.h:74
+msgctxt "chess-player"
+msgid "White"
+msgstr "白"
+
+#. Preferences Dialog: Combo box entry for playing as black
+#: ../data/preferences.ui.h:76
+msgctxt "chess-player"
+msgid "Black"
+msgstr "黒"
+
 #: ../data/promotion-type-selector.ui.h:1
-#, fuzzy
-#| msgctxt "chess-piece"
-#| msgid "Queen"
-msgid "_Queen"
-msgstr "Q"
+msgid "Select Promotion Type"
+msgstr "プロモーションの種類を選択:"
 
 #: ../data/promotion-type-selector.ui.h:2
-#, fuzzy
-#| msgctxt "chess-piece"
-#| msgid "Knight"
-msgid "_Knight"
-msgstr "騎士"
+msgid "_Queen"
+msgstr "クイーン(_Q)"
 
 #: ../data/promotion-type-selector.ui.h:3
-#, fuzzy
-#| msgctxt "chess-piece"
-#| msgid "Rook"
-msgid "_Rook"
-msgstr "ルーク"
+msgid "_Knight"
+msgstr "ナイト(_K)"
 
 #: ../data/promotion-type-selector.ui.h:4
-#, fuzzy
-#| msgctxt "chess-piece"
-#| msgid "Bishop"
-msgid "_Bishop"
-msgstr "ビショップ"
+msgid "_Rook"
+msgstr "ルーク(_R)"
 
 #: ../data/promotion-type-selector.ui.h:5
-msgid "Promotion is a chess rule describing the transformation of a pawn that reaches its eighth rank into the player's choice of a queen, knight, rook, or bishop of the same color. The new piece replaces the pawn on the same square and is part of the move. Every pawn that reaches its eighth rank must be promoted. Pawn promotion often decides the result of a chess endgame."
-msgstr ""
+msgid "_Bishop"
+msgstr "ビショップ(_B)"
 
-#: ../data/promotion-type-selector.ui.h:6
-#, fuzzy
-#| msgid "Promotion Type:"
-msgid "Select Pawn Promotion Type"
-msgstr "プロモーションの種類:"
+#: ../src/chess-view.vala:41
+msgid "Paused"
+msgstr "一時停止中"
 
-#. Title of the window when explicitly loaded a file. The first argument is the
-#. * base name of the file (e.g. test.pgn), the second argument is the directory
-#. * (e.g. /home/fred)
-#: ../src/gnome-chess.vala:371
+#. Title of the window when explicitly loaded a file. The argument is the
+#. * base name of the file (e.g. test.pgn)
+#: ../src/gnome-chess.vala:441
 #, c-format
-msgid "%1$s (%2$s) - Chess"
-msgstr "%1$s (%2$s) - チェス"
+msgid "Chess - %1$s"
+msgstr "%1$s - チェス"
 
 #. Move History Combo: Go to the start of the game
-#: ../src/gnome-chess.vala:380
+#: ../src/gnome-chess.vala:450
 msgid "Game Start"
 msgstr "ゲーム開始"
 
 #. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
 #. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
-#: ../src/gnome-chess.vala:582
+#: ../src/gnome-chess.vala:728
 #, c-format
 msgid "White pawn moves from %1$s to %2$s"
 msgstr "白のポーンが %1$s から %2$s へ移動した"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:584
+#: ../src/gnome-chess.vala:730
 #, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s"
 msgstr "%1$s にある白のポーンが %2$s にある黒のポーンを獲得した"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:586
+#: ../src/gnome-chess.vala:732
 #, c-format
 msgid "White pawn at %1$s takes the black rook at %2$s"
 msgstr "%1$s にある白のポーンが %2$s にある黒のルークを獲得した"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:588
+#: ../src/gnome-chess.vala:734
 #, c-format
 msgid "White pawn at %1$s takes the black knight at %2$s"
 msgstr "%1$s にある白のポーンが %2$s にある黒のナイトを獲得した"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:590
+#: ../src/gnome-chess.vala:736
 #, c-format
 msgid "White pawn at %1$s takes the black bishop at %2$s"
 msgstr "%1$s にある白のポーンが %2$s にある黒のビショップを獲得した"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:592
+#: ../src/gnome-chess.vala:738
 #, c-format
 msgid "White pawn at %1$s takes the black queen at %2$s"
 msgstr "%1$s にある白のポーンが %2$s にある黒のクイーンを獲得した"
 
 #. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
-#: ../src/gnome-chess.vala:594
+#: ../src/gnome-chess.vala:740
 #, c-format
 msgid "White rook moves from %1$s to %2$s"
 msgstr "白のルークが %1$s から %2$s へ移動した"
 
 #. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:596
+#: ../src/gnome-chess.vala:742
 #, c-format
 msgid "White rook at %1$s takes the black pawn at %2$s"
 msgstr "%1$s にある白のルークが %2$s にある黒のポーンを獲得した"
 
 #. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:598
+#: ../src/gnome-chess.vala:744
 #, c-format
 msgid "White rook at %1$s takes the black rook at %2$s"
 msgstr "%1$s にある白のルークが %2$s にある黒のルークを獲得した"
 
 #. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:600
+#: ../src/gnome-chess.vala:746
 #, c-format
 msgid "White rook at %1$s takes the black knight at %2$s"
 msgstr "%1$s にある白のルークが %2$s にある黒のナイトを獲得した"
 
 #. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:602
+#: ../src/gnome-chess.vala:748
 #, c-format
 msgid "White rook at %1$s takes the black bishop at %2$s"
 msgstr "%1$s にある白のルークが %2$s にある黒のビショップを獲得した"
 
 #. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
-#: ../src/gnome-chess.vala:604
+#: ../src/gnome-chess.vala:750
 #, c-format
 msgid "White rook at %1$s takes the black queen at %2$s"
 msgstr "%1$s にある白のルークが %2$s にある黒のクイーンを獲得した"
 
 #. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
-#: ../src/gnome-chess.vala:606
+#: ../src/gnome-chess.vala:752
 #, c-format
 msgid "White knight moves from %1$s to %2$s"
 msgstr "白のナイトが %1$s から %2$s へ移動した"
 
 #. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:608
+#: ../src/gnome-chess.vala:754
 #, c-format
 msgid "White knight at %1$s takes the black pawn at %2$s"
 msgstr "%1$s にある白のキングが %2$s にある黒のポーンを獲得した"
 
 #. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:610
+#: ../src/gnome-chess.vala:756
 #, c-format
 msgid "White knight at %1$s takes the black rook at %2$s"
 msgstr "%1$s にある白のナイトが %2$s にある黒のルークを獲得した"
 
 #. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:612
+#: ../src/gnome-chess.vala:758
 #, c-format
 msgid "White knight at %1$s takes the black knight at %2$s"
 msgstr "%1$s にある白のナイトが %2$s にある黒のナイトを獲得した"
 
 #. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:614
+#: ../src/gnome-chess.vala:760
 #, c-format
 msgid "White knight at %1$s takes the black bishop at %2$s"
 msgstr "%1$s にある白のナイトが %2$s にある黒のビショップを獲得した"
 
 #. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:616
+#: ../src/gnome-chess.vala:762
 #, c-format
 msgid "White knight at %1$s takes the black queen at %2$s"
 msgstr "%1$s にある白のナイトが %2$s にある黒のクイーンを獲得した"
 
 #. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
-#: ../src/gnome-chess.vala:618
+#: ../src/gnome-chess.vala:764
 #, c-format
 msgid "White bishop moves from %1$s to %2$s"
 msgstr "白のビショップが %1$s から %2$s へ移動した"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:620
+#: ../src/gnome-chess.vala:766
 #, c-format
 msgid "White bishop at %1$s takes the black pawn at %2$s"
 msgstr "%1$s にある白のビショップが %2$s にある黒のポーンを獲得した"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:622
+#: ../src/gnome-chess.vala:768
 #, c-format
 msgid "White bishop at %1$s takes the black rook at %2$s"
 msgstr "%1$s にある白のビショップが %2$s にある黒のルークを獲得した"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:624
+#: ../src/gnome-chess.vala:770
 #, c-format
 msgid "White bishop at %1$s takes the black knight at %2$s"
 msgstr "%1$s にある白のビショップが %2$s にある黒のナイトを獲得した"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:626
+#: ../src/gnome-chess.vala:772
 #, c-format
 msgid "White bishop at %1$s takes the black bishop at %2$s"
 msgstr "%1$s にある白のビショップが %2$s にある黒のビショップを獲得した"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:628
+#: ../src/gnome-chess.vala:774
 #, c-format
 msgid "White bishop at %1$s takes the black queen at %2$s"
 msgstr "%1$s にある白のビショップが %2$s にある黒のクイーンを獲得した"
 
 #. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
-#: ../src/gnome-chess.vala:630
+#: ../src/gnome-chess.vala:776
 #, c-format
 msgid "White queen moves from %1$s to %2$s"
 msgstr "白のクイーンが %1$s から %2$s へ移動した"
 
 #. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:632
+#: ../src/gnome-chess.vala:778
 #, c-format
 msgid "White queen at %1$s takes the black pawn at %2$s"
 msgstr "%1$s にある白のクイーンが %2$s にある黒のポーンを獲得した"
 
 #. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:634
+#: ../src/gnome-chess.vala:780
 #, c-format
 msgid "White queen at %1$s takes the black rook at %2$s"
 msgstr "%1$s にある白のクイーンが %2$s にある黒のルークを獲得した"
 
 #. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:636
+#: ../src/gnome-chess.vala:782
 #, c-format
 msgid "White queen at %1$s takes the black knight at %2$s"
 msgstr "%1$s にある白のクイーンが %2$s にある黒のナイトを獲得した"
 
 #. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:638
+#: ../src/gnome-chess.vala:784
 #, c-format
 msgid "White queen at %1$s takes the black bishop at %2$s"
 msgstr "%1$s にある白のクイーンが %2$s にある黒のビショップを獲得した"
 
 #. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:640
+#: ../src/gnome-chess.vala:786
 #, c-format
 msgid "White queen at %1$s takes the black queen at %2$s"
 msgstr "%1$s にある白のクイーンが %2$s にある黒のクイーンを獲得した"
 
 #. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
-#: ../src/gnome-chess.vala:642
+#: ../src/gnome-chess.vala:788
 #, c-format
 msgid "White king moves from %1$s to %2$s"
 msgstr "白のキングが %1$s から %2$s へ移動した"
 
 #. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:644
+#: ../src/gnome-chess.vala:790
 #, c-format
 msgid "White king at %1$s takes the black pawn at %2$s"
 msgstr "%1$s にある白のキングが %2$s にある黒のポーンを獲得した"
 
 #. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:646
+#: ../src/gnome-chess.vala:792
 #, c-format
 msgid "White king at %1$s takes the black rook at %2$s"
 msgstr "%1$s にある白のキングが %2$s にある黒のルークを獲得した"
 
 #. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:648
+#: ../src/gnome-chess.vala:794
 #, c-format
 msgid "White king at %1$s takes the black knight at %2$s"
 msgstr "%1$s にある白のキングが %2$s にある黒のナイトを獲得した"
 
 #. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:650
+#: ../src/gnome-chess.vala:796
 #, c-format
 msgid "White king at %1$s takes the black bishop at %2$s"
 msgstr "%1$s にある白のキングが %2$s にある黒のビショップを獲得した"
 
 #. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:652
+#: ../src/gnome-chess.vala:798
 #, c-format
 msgid "White king at %1$s takes the black queen at %2$s"
 msgstr "%1$s にある白のキングが %2$s にある黒のクイーンを獲得した"
 
 #. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
-#: ../src/gnome-chess.vala:654
+#: ../src/gnome-chess.vala:800
 #, c-format
 msgid "Black pawn moves from %1$s to %2$s"
 msgstr "黒のポーンが %1$s から %2$s へ移動した"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:656
+#: ../src/gnome-chess.vala:802
 #, c-format
 msgid "Black pawn at %1$s takes the white pawn at %2$s"
 msgstr "%1$s にある黒のポーンが %2$s にある白のポーンを獲得した"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:658
+#: ../src/gnome-chess.vala:804
 #, c-format
 msgid "Black pawn at %1$s takes the white rook at %2$s"
 msgstr "%1$s にある黒のポーンが %2$s にある白のルークを獲得した"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:660
+#: ../src/gnome-chess.vala:806
 #, c-format
 msgid "Black pawn at %1$s takes the white knight at %2$s"
 msgstr "%1$s にある黒のポーンが %2$s にある白のナイトを獲得した"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:662
+#: ../src/gnome-chess.vala:808
 #, c-format
 msgid "Black pawn at %1$s takes the white bishop at %2$s"
 msgstr "%1$s にある黒のポーンが %2$s にある白のビショップを獲得した"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:664
+#: ../src/gnome-chess.vala:810
 #, c-format
 msgid "Black pawn at %1$s takes the white queen at %2$s"
 msgstr "%1$s にある黒のポーンが %2$s にある白のクイーンを獲得した"
 
 #. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
-#: ../src/gnome-chess.vala:666
+#: ../src/gnome-chess.vala:812
 #, c-format
 msgid "Black rook moves from %1$s to %2$s"
 msgstr "黒のルークが %1$s から %2$s へ移動した"
 
 #. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:668
+#: ../src/gnome-chess.vala:814
 #, c-format
 msgid "Black rook at %1$s takes the white pawn at %2$s"
 msgstr "%1$s にある黒のルークが %2$s にある白のポーンを獲得した"
 
 #. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:670
+#: ../src/gnome-chess.vala:816
 #, c-format
 msgid "Black rook at %1$s takes the white rook at %2$s"
 msgstr "%1$s にある黒のルークが %2$s にある白のルークを獲得した"
 
 #. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:672
+#: ../src/gnome-chess.vala:818
 #, c-format
 msgid "Black rook at %1$s takes the white knight at %2$s"
 msgstr "%1$s にある黒のルークが %2$s にある白のナイトを獲得した"
 
 #. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:674
+#: ../src/gnome-chess.vala:820
 #, c-format
 msgid "Black rook at %1$s takes the white bishop at %2$s"
 msgstr "%1$s にある黒のルークが %2$s にある白のビショップを獲得した"
 
 #. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:676
+#: ../src/gnome-chess.vala:822
 #, c-format
 msgid "Black rook at %1$s takes the white queen at %2$s"
 msgstr "%1$s にある黒のルークが %2$s にある白のクイーンを獲得した"
 
 #. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
-#: ../src/gnome-chess.vala:678
+#: ../src/gnome-chess.vala:824
 #, c-format
 msgid "Black knight moves from %1$s to %2$s"
 msgstr "黒のナイトが %1$s から %2$s へ移動した"
 
 #. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:680
+#: ../src/gnome-chess.vala:826
 #, c-format
 msgid "Black knight at %1$s takes the white pawn at %2$s"
 msgstr "%1$s にある黒のナイトが %2$s にある白のポーンを獲得した"
 
 #. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:682
+#: ../src/gnome-chess.vala:828
 #, c-format
 msgid "Black knight at %1$s takes the white rook at %2$s"
 msgstr "%1$s にある黒のナイトが %2$s にある白のルークを獲得した"
 
 #. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:684
+#: ../src/gnome-chess.vala:830
 #, c-format
 msgid "Black knight at %1$s takes the white knight at %2$s"
 msgstr "%1$s にある黒のナイトが %2$s にある白のナイトを獲得した"
 
 #. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:686
+#: ../src/gnome-chess.vala:832
 #, c-format
 msgid "Black knight at %1$s takes the white bishop at %2$s"
 msgstr "%1$s にある黒のナイトが %2$s にある白のビショップを獲得した"
 
 #. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:688
+#: ../src/gnome-chess.vala:834
 #, c-format
 msgid "Black knight at %1$s takes the white queen at %2$s"
 msgstr "%1$s にある黒のナイトが %2$s にある白のクイーンを獲得した"
 
 #. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
-#: ../src/gnome-chess.vala:690
+#: ../src/gnome-chess.vala:836
 #, c-format
 msgid "Black bishop moves from %1$s to %2$s"
 msgstr "黒のビショップが %1$s から %2$s へ移動した"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:692
+#: ../src/gnome-chess.vala:838
 #, c-format
 msgid "Black bishop at %1$s takes the white pawn at %2$s"
 msgstr "%1$s にある黒のビショップが %2$s にある白のポーンを獲得した"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:694
+#: ../src/gnome-chess.vala:840
 #, c-format
 msgid "Black bishop at %1$s takes the white rook at %2$s"
 msgstr "%1$s にある黒のビショップが %2$s にある白のルークを獲得した"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:696
+#: ../src/gnome-chess.vala:842
 #, c-format
 msgid "Black bishop at %1$s takes the white knight at %2$s"
 msgstr "%1$s にある黒のビショップが %2$s にある白のナイトを獲得した"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:698
+#: ../src/gnome-chess.vala:844
 #, c-format
 msgid "Black bishop at %1$s takes the white bishop at %2$s"
 msgstr "%1$s にある黒のビショップが %2$s にある白のビショップを獲得した"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:700
+#: ../src/gnome-chess.vala:846
 #, c-format
 msgid "Black bishop at %1$s takes the white queen at %2$s"
 msgstr "%1$s にある黒のビショップが %2$s にある白のクイーンを獲得した"
 
 #. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
-#: ../src/gnome-chess.vala:702
+#: ../src/gnome-chess.vala:848
 #, c-format
 msgid "Black queen moves from %1$s to %2$s"
 msgstr "黒のクイーンが %1$s から %2$s へ移動した"
 
 #. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:704
+#: ../src/gnome-chess.vala:850
 #, c-format
 msgid "Black queen at %1$s takes the white pawn at %2$s"
 msgstr "%1$s にある黒のクイーンが %2$s にある白のポーンを獲得した"
 
 #. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:706
+#: ../src/gnome-chess.vala:852
 #, c-format
 msgid "Black queen at %1$s takes the white rook at %2$s"
 msgstr "%1$s にある黒のクイーンが %2$s にある白のルークを獲得した"
 
 #. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:708
+#: ../src/gnome-chess.vala:854
 #, c-format
 msgid "Black queen at %1$s takes the white knight at %2$s"
 msgstr "%1$s にある黒のクイーンが %2$s にある白のナイトを獲得した"
 
 #. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:710
+#: ../src/gnome-chess.vala:856
 #, c-format
 msgid "Black queen at %1$s takes the white bishop at %2$s"
 msgstr "%1$s にある黒のクイーンが %2$s にある白のビショップを獲得した"
 
 #. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:712
+#: ../src/gnome-chess.vala:858
 #, c-format
 msgid "Black queen at %1$s takes the white queen at %2$s"
 msgstr "%1$s にある黒のクイーンが %2$s にある白のクイーンを獲得した"
 
 #. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
-#: ../src/gnome-chess.vala:714
+#: ../src/gnome-chess.vala:860
 #, c-format
 msgid "Black king moves from %1$s to %2$s"
 msgstr "黒のキングが %1$s から %2$s へ移動した"
 
 #. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:716
+#: ../src/gnome-chess.vala:862
 #, c-format
 msgid "Black king at %1$s takes the white pawn at %2$s"
 msgstr "%1$s にある黒のキングが %2$s にある白のポーンを獲得した"
 
 #. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:718
+#: ../src/gnome-chess.vala:864
 #, c-format
 msgid "Black king at %1$s takes the white rook at %2$s"
 msgstr "%1$s にある黒のキングが %2$s にある白のルークを獲得した"
 
 #. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:720
+#: ../src/gnome-chess.vala:866
 #, c-format
 msgid "Black king at %1$s takes the white knight at %2$s"
 msgstr "%1$s にある黒のキングが %2$s にある白のナイトを獲得した"
 
 #. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:722
+#: ../src/gnome-chess.vala:868
 #, c-format
 msgid "Black king at %1$s takes the white bishop at %2$s"
 msgstr "%1$s にある黒のキングが %2$s にある白のビショップを獲得した"
 
 #. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
-#: ../src/gnome-chess.vala:724
+#: ../src/gnome-chess.vala:870
 #, c-format
 msgid "Black king at %1$s takes the white queen at %2$s"
 msgstr "%1$s にある黒のキングが %2$s にある白のクイーンを獲得した"
 
+#: ../src/gnome-chess.vala:893
+msgid "White castles kingside"
+msgstr "白がキングサイドへキャスリングした"
+
+#: ../src/gnome-chess.vala:897
+msgid "White castles queenside"
+msgstr "白がクイーンサイドへキャスリングした"
+
+#: ../src/gnome-chess.vala:901
+msgid "Black castles kingside"
+msgstr "黒がキングサイドへキャスリングした"
+
+#: ../src/gnome-chess.vala:905
+msgid "Black castles queenside"
+msgstr "黒がクイーンサイドへキャスリングした"
+
 #. Message display when the white player wins
-#: ../src/gnome-chess.vala:844
+#: ../src/gnome-chess.vala:1031
 msgid "White wins"
 msgstr "白の勝利"
 
 #. Message display when the black player wins
-#: ../src/gnome-chess.vala:849
+#: ../src/gnome-chess.vala:1036
 msgid "Black wins"
 msgstr "黒の勝利"
 
 #. Message display when the game is drawn
-#: ../src/gnome-chess.vala:854
+#: ../src/gnome-chess.vala:1041
 msgid "Game is drawn"
-msgstr "引き分けです"
+msgstr "引き分け"
+
+#. Message display when the game cannot continue
+#: ../src/gnome-chess.vala:1046
+msgid "Oops! Something has gone wrong."
+msgstr "あれっ! 何かおかしいです。"
 
 #. Message displayed when the game ends due to a player being checkmated
-#: ../src/gnome-chess.vala:866
+#: ../src/gnome-chess.vala:1058
 msgid "Opponent is in check and cannot move (checkmate)"
-msgstr "対戦相手がチェックし移動できなくなりました (チェックメイト)"
+msgstr "対戦相手がチェック状態で移動不可能 (チェックメイト)"
 
 #. Message displayed when the game terminates due to a stalemate
-#: ../src/gnome-chess.vala:870
+#: ../src/gnome-chess.vala:1062
 msgid "Opponent cannot move (stalemate)"
-msgstr "対戦相手が移動できなくなりました (ステイルメイト)"
+msgstr "対戦相手が移動不可能 (ステイルメイト)"
 
 #. Message displayed when the game is drawn due to the fifty move rule
-#: ../src/gnome-chess.vala:874
+#: ../src/gnome-chess.vala:1066
 msgid "No piece has been taken or pawn moved in the last fifty moves"
-msgstr "50手ルール (50手の間に両プレイヤーともにポーンを動かさず持ち駒がない状態) です"
+msgstr "50手ルール (50手の間に両プレイヤーともにポーンを動かさず持ち駒がない状態)"
 
 #. Message displayed when the game ends due to one player's clock stopping
-#: ../src/gnome-chess.vala:878
+#: ../src/gnome-chess.vala:1070
 msgid "Opponent has run out of time"
-msgstr "対戦相手の制限時間が過ぎました"
+msgstr "対戦相手が持ち時間切れ"
 
+# 千日手は将棋用語なので同型三復とした
 #. Message displayed when the game is drawn due to the three-fold-repitition rule
-#: ../src/gnome-chess.vala:882
-msgid "The same board state has occurred three times (three fold repetition)"
-msgstr "同一局面が 3 回現れました (千日手)"
+#: ../src/gnome-chess.vala:1074
+msgid "The same board state has occurred three times (threefold repetition)"
+msgstr "同一局面が 3 回出現 (同形三復)"
 
+# コマが足らず、チェックメイトできない状況らしい。そのまま、片仮名のほうが良いかもしれない。
+# 常体の方が良いが、
 #. Message displayed when the game is drawn due to the insufficient material rule
-#: ../src/gnome-chess.vala:886
-msgid "Neither player can cause checkmate (insufficient material)"
-msgstr "両プレイヤーともに相手のキングをチェックメイトできる駒がなくなりました"
+#: ../src/gnome-chess.vala:1078 ../src/gnome-chess.vala:1251
+msgid "Neither player can checkmate (insufficient material)"
+msgstr "両プレイヤーともにチェックメイト不可能 (戦力不足)"
 
 #. Message displayed when the game ends due to the black player resigning
-#: ../src/gnome-chess.vala:892
+#: ../src/gnome-chess.vala:1084
 msgid "The black player has resigned"
-msgstr "黒のプレイヤーが投了しました"
+msgstr "黒のプレイヤーが投了"
 
 #. Message displayed when the game ends due to the white player resigning
-#: ../src/gnome-chess.vala:897
+#: ../src/gnome-chess.vala:1089
 msgid "The white player has resigned"
-msgstr "白のプレイヤーが投了しました"
+msgstr "白のプレイヤーが投了"
 
 #. Message displayed when a game is abandoned
-#: ../src/gnome-chess.vala:902
+#: ../src/gnome-chess.vala:1094
 msgid "The game has been abandoned"
-msgstr "ゲームが放棄されました"
+msgstr "ゲーム放棄"
 
 #. Message displayed when the game ends due to a player dying
-#: ../src/gnome-chess.vala:907
+#: ../src/gnome-chess.vala:1099
 msgid "One of the players has died"
-msgstr "相手プレイヤーが \"お亡くなり\" になりました"
+msgstr "プレイヤーによる自殺手"
 
-#: ../src/gnome-chess.vala:972
-msgid "Save this game before starting a new one?"
-msgstr "新しいゲームを始める前にこのゲームを保存しますか?"
+#. Message displayed when something goes wrong with the engine
+#: ../src/gnome-chess.vala:1104
+msgid "The game cannot continue."
+msgstr "ゲーム続行不可能"
 
-#: ../src/gnome-chess.vala:974
+#: ../src/gnome-chess.vala:1169 ../src/gnome-chess.vala:1870
+#: ../src/gnome-chess.vala:1976
+msgid "_Cancel"
+msgstr "キャンセル(_C)"
+
+#: ../src/gnome-chess.vala:1173
 msgid "_Abandon game"
 msgstr "ゲームを放棄(_A)"
 
-#: ../src/gnome-chess.vala:975
+#: ../src/gnome-chess.vala:1174
 msgid "_Save game for later"
 msgstr "ゲームを保存(_S)"
 
+#: ../src/gnome-chess.vala:1178
+msgid "_Discard game"
+msgstr "ゲームを放棄(_D)"
+
+#: ../src/gnome-chess.vala:1179
+msgid "_Save game log"
+msgstr "ゲームのログを保存(_S)"
+
+#. Your very last chance to save
+#: ../src/gnome-chess.vala:1192
+msgid "_Discard"
+msgstr "破棄(_D)"
+
+#: ../src/gnome-chess.vala:1192 ../src/gnome-chess.vala:1870
+msgid "_Save"
+msgstr "保存(_S)"
+
+#: ../src/gnome-chess.vala:1208
+msgid "Save this game before starting a new one?"
+msgstr "新しいゲームを始める前にこのゲームを保存しますか?"
+
+#: ../src/gnome-chess.vala:1231
+msgid "You cannot currently claim a draw."
+msgstr "現在、引き分けの提案はできません。"
+
+#: ../src/gnome-chess.vala:1240
+msgid "It is the first time this board position has occurred"
+msgstr "同一局面一回目"
+
+#: ../src/gnome-chess.vala:1241
+msgid "It is the second time this board position has occurred"
+msgstr "同一局面二回目"
+
+#: ../src/gnome-chess.vala:1242
+#, c-format
+msgid "%d move has passed without a capture or pawn advancement"
+msgid_plural "%d moves have passed without a capture or pawn advancement"
+msgstr[0] "駒を取ることも、ポーンをすすめることもなく、%d 回移動がパスされました"
+
+#: ../src/gnome-chess.vala:1245
+msgid "You can claim a draw when either:"
+msgstr "いずれかの場合、引き分けの提案ができます:"
+
+#: ../src/gnome-chess.vala:1246
+msgid "Any board position has occurred three times"
+msgstr "同一局面が 3 回現れました (同形三復)"
+
+#: ../src/gnome-chess.vala:1247
+msgid "50 moves have passed without a capture or pawn advancement"
+msgstr "駒を取ることも、ポーンをすすめることもなく、50回パスされました"
+
+#: ../src/gnome-chess.vala:1248
+msgid "(Board position is affected by the ability to castle or capture en passant.)"
+msgstr "(盤面は、キャッスルまたはアンパッサンで駒を取ることにより影響を受けます)"
+
+#: ../src/gnome-chess.vala:1249
+msgid "The game is automatically a draw if:"
+msgstr "以下の場合、ゲームが自動的に引き分けになります:"
+
+#: ../src/gnome-chess.vala:1250
+msgid "The current player cannot move (stalemate)"
+msgstr "現在のプレイヤーが移動不可能 (ステイルメイト)"
+
 #. Preferences Dialog: Combo box entry for a custom game timer set in seconds
-#: ../src/gnome-chess.vala:1363
+#: ../src/gnome-chess.vala:1704
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "秒"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#: ../src/gnome-chess.vala:1367
+#: ../src/gnome-chess.vala:1708
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "分"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../src/gnome-chess.vala:1371
+#: ../src/gnome-chess.vala:1712
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "時間"
 
-#: ../src/gnome-chess.vala:1486
+#: ../src/gnome-chess.vala:1825
 msgid ""
 "The 2D/3D chess game for GNOME. \n"
 "\n"
@@ -1003,54 +1094,73 @@ msgstr ""
 "\n"
 "GNOME Chess は GNOME ゲーム集の一部です。"
 
-#: ../src/gnome-chess.vala:1491
+# 翻訳しない
+#: ../src/gnome-chess.vala:1828
+msgid "translator-credits"
+msgstr ""
+
+#: ../src/gnome-chess.vala:1830
 msgid "GNOME Games web site"
 msgstr "GNOME ゲーム集のウェブサイト"
 
 #. Title of save game dialog
-#: ../src/gnome-chess.vala:1545
+#: ../src/gnome-chess.vala:1880
 msgid "Save Chess Game"
 msgstr "チェスゲームの保存"
 
+# 無題って、Windowsっぽいけど。
+#. Default filename for the save game dialog
+#: ../src/gnome-chess.vala:1893
+msgid "Untitled Chess Game"
+msgstr "無題のチェスゲーム"
+
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:1558 ../src/gnome-chess.vala:1626
+#: ../src/gnome-chess.vala:1899 ../src/gnome-chess.vala:1987
 msgid "PGN files"
 msgstr "PGN ファイル"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:1565 ../src/gnome-chess.vala:1633
+#: ../src/gnome-chess.vala:1906 ../src/gnome-chess.vala:1994
 msgid "All files"
 msgstr "すべてのファイル"
 
-#: ../src/gnome-chess.vala:1589
+#: ../src/gnome-chess.vala:1947
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "ゲームを保存できません: %s"
 
+#: ../src/gnome-chess.vala:1963
+msgid "Save this game before loading another one?"
+msgstr "他のゲームをロードする前にこのゲームを保存しますか?"
+
 #. Title of load game dialog
-#: ../src/gnome-chess.vala:1613
+#: ../src/gnome-chess.vala:1974
 msgid "Load Chess Game"
 msgstr "チェスゲームの読み込み"
 
-#: ../src/gnome-chess.vala:1655
+#: ../src/gnome-chess.vala:1977
+msgid "_Open"
+msgstr "開く(_O)"
+
+#: ../src/gnome-chess.vala:2018
 #, c-format
 msgid "Failed to open game: %s"
 msgstr "ゲームを読み込めませんでした: %s"
 
 #. Help string for command line --version flag
-#: ../src/gnome-chess.vala:1716
+#: ../src/gnome-chess.vala:2090
 msgid "Show release version"
 msgstr "リリースバージョンを表示"
 
 #. Arguments and description for --help text
-#: ../src/gnome-chess.vala:1730
+#: ../src/gnome-chess.vala:2107
 msgid "[FILE] - Play Chess"
 msgstr "[ファイル] - チェスで遊ぶ"
 
 #. Text printed out when an unknown command-line argument provided
-#: ../src/gnome-chess.vala:1741
+#: ../src/gnome-chess.vala:2118
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr "'%s --help' を実行して、利用可能なコマンドラインオプションの全リストを参照してください。"
