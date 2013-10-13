@@ -350,8 +350,7 @@ public class Application : Gtk.Application
         /* Don't autosave if no moves (e.g. they have been undone) or only the computer has moved */
         if (!game_needs_saving)
         {
-            if (game_file != null)
-                FileUtils.remove (game_file.get_path ());
+            FileUtils.remove (autosave_filename);
             return;
         }
 
