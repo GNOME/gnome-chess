@@ -1542,6 +1542,8 @@ public class ChessGame
 
     public void stop (ChessResult result, ChessRule rule)
     {
+        if (!is_started)
+            return;
         this.result = result;
         this.rule = rule;
         is_started = false;
