@@ -118,7 +118,7 @@ public class ChessEngineUCI : ChessEngine
                     break;
 
                 default:
-                    warning ("Unknown command: '%s'", line);
+                    debug ("Unknown command: '%s'", line);
                     break;
                 }
             }
