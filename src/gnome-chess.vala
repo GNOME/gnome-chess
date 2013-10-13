@@ -673,7 +673,18 @@ public class Application : Gtk.Application
 
     private void engine_stopped_cb (ChessEngine engine)
     {
-        game.stop (ChessResult.BUG, ChessRule.BUG);
+        /*
+         * Many engines close themselves immediately after the end of the game.
+         * So wait two seconds before displaying the unfortunate result. The
+         * game is likely to end naturally first. (And in the off chance that
+         * the game really is over but it takes more than two seconds for us to
+         * figure that out, something really HAS gone wrong.)
+         */
+        Timeout.add_seconds (2, () => {
+            game.stop (ChessResult.BUG, ChessRule.BUG);
+            /* Disconnect from the mainloop */
+            return false;
+        });
     }
 
     private void engine_error_cb (ChessEngine engine)
