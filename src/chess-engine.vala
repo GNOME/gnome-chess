@@ -109,8 +109,8 @@ public abstract class ChessEngine : Object
 
         if (pid != 0)
         {
-            Posix.kill (pid, Posix.SIGTERM);
             Process.close_pid (pid);
+            Posix.kill (pid, Posix.SIGTERM);
         }
     }
 
