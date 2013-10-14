@@ -1395,7 +1395,7 @@ public class Application : Gtk.Application
     {
         double alpha = 1.0;
 
-        if (widget.get_state () == Gtk.StateType.INSENSITIVE)
+        if ((widget.get_state_flags () & Gtk.StateFlags.INSENSITIVE) != 0)
             alpha = 0.5;
         c.set_source_rgba (bg[0], bg[1], bg[2], alpha);
         c.paint ();
