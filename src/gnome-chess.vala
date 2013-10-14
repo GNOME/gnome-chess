@@ -315,17 +315,25 @@ public class Application : Gtk.Application
         if (!Gtk.icon_size_lookup (Gtk.IconSize.DIALOG, out width, out height))
             return;
 
-        Gdk.Pixbuf pixbuf;
         try
         {
-            pixbuf = Rsvg.pixbuf_from_file_at_size (filename, width, height);
+            var h = new Rsvg.Handle.from_file (filename);
+
+            var s = new Cairo.ImageSurface (Cairo.Format.ARGB32, width, height);
+            var c = new Cairo.Context (s);
+            var m = Cairo.Matrix.identity ();
+            m.scale ((double) width / h.width, (double) height / h.height);
+            c.set_matrix (m);
+            h.render_cairo (c);
+
+            var p = Gdk.pixbuf_get_from_surface (s, 0, 0, width, height);
+            image.set_from_pixbuf (p);
         }
         catch (Error e)
         {
             warning ("Failed to load image %s: %s", filename, e.message);
             return;
         }
-        image.set_from_pixbuf (pixbuf);
     }
 
     enum PromotionTypeSelected
