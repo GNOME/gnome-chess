@@ -91,6 +91,7 @@ public abstract class ChessEngine : Object
 
     private void engine_stopped_cb (Pid pid, int status)
     {
+        Process.close_pid (pid);
         stopped ();
     }
 
@@ -108,10 +109,7 @@ public abstract class ChessEngine : Object
             Source.remove (stdout_watch_id);
 
         if (pid != 0)
-        {
-            Process.close_pid (pid);
             Posix.kill (pid, Posix.SIGTERM);
-        }
     }
 
     private bool read_cb (IOChannel source, IOCondition condition)
