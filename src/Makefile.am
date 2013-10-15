@@ -30,6 +30,7 @@ test_chess_game_SOURCES = \
 	chess-game.vala \
 	test-chess-game.vala
 test_chess_game_CFLAGS = \
+	-w \
 	$(TEST_CFLAGS)
 test_chess_game_LDADD = \
 	$(TEST_LIBS)
@@ -41,6 +42,7 @@ test_chess_pgn_SOURCES = \
 	chess-pgn.vala \
 	test-chess-pgn.vala
 test_chess_pgn_CFLAGS = \
+	-w \
 	$(TEST_CFLAGS)
 test_chess_pgn_LDADD = \
 	$(TEST_LIBS)
@@ -53,6 +55,7 @@ gnome_chess_CFLAGS = \
 	-DPKGDATADIR=\"$(pkgdatadir)/\" \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-DSYSCONFDIR=\"$(sysconfdir)\" \
+	-w \
 	$(GNOME_CHESS_CFLAGS)
 
 gnome_chess_LDADD = \

@@ -37,15 +37,6 @@ AC_PATH_PROG(APPDATA_VALIDATE, appdata-validate)
 AC_PATH_PROG(DESKTOP_FILE_VALIDATE, desktop-file-validate)
 
 dnl ###########################################################################
-dnl Disable C warnings
-dnl ###########################################################################
-GNOME_CHESS_CFLAGS="$GNOME_CHESS_CFLAGS -w"
-AC_SUBST([GNOME_CHESS_CFLAGS])
-
-TEST_CFLAGS="$TEST_CFLAGS -w"
-AC_SUBST([TEST_CFLAGS])
-
-dnl ###########################################################################
 dnl Internationalization
 dnl ###########################################################################
 
