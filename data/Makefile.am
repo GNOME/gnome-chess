@@ -25,8 +25,12 @@ dist_sysconf_DATA = chess-engines.conf
 dist_man_MANS = gnome-chess.6
 
 check-local: $(appdata_DATA) $(desktop_DATA)
+if VALIDATE_APPDATA
 	$(APPDATA_VALIDATE) $(appdata_DATA)
+endif
+if VALIDATE_DESKTOP_FILE
 	$(DESKTOP_FILE_VALIDATE) $(desktop_DATA)
+endif
 
 EXTRA_DIST = \
 	$(appdata_in_files) \
