@@ -1379,16 +1379,16 @@ public class Application : Gtk.Application
         if (clock == null)
             return "∞";
 
-        int used;
+        int time;
         if (color == Color.WHITE)
-            used = (int) (game.clock.white_initial_seconds - game.clock.white_seconds_used);
+            time = game.clock.white_initial_seconds - game.clock.white_seconds_used;
         else
-            used = (int) (game.clock.black_initial_seconds - game.clock.black_seconds_used);
+            time = game.clock.black_initial_seconds - game.clock.black_seconds_used;
 
-        if (used >= 60)
-            return "%d:%02d".printf (used / 60, used % 60);
+        if (time >= 60)
+            return "%d:%02d".printf (time / 60, time % 60);
         else
-            return ":%02d".printf (used);
+            return ":%02d".printf (time);
     }
 
     private void draw_time (Gtk.Widget widget, Cairo.Context c, string text, double[] fg, double[] bg)

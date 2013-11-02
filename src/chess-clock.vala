@@ -11,45 +11,13 @@
 
 public class ChessClock : Object
 {
-    private uint _white_initial_ms;
-    public uint white_initial_seconds
-    {
-        get { return ms_to_seconds (_white_initial_ms); }
-    }
+    public int white_initial_seconds { get; private set; }
 
-    private uint _black_initial_ms;
-    public uint black_initial_seconds
-    {
-        get { return ms_to_seconds (_black_initial_ms); }
-    }
+    public int black_initial_seconds { get; private set; }
 
-    private uint _white_ms_used = 0;
-    public uint white_seconds_used
-    {
-        get
-        {
-            if (timer == null)
-                return 0;
-            else if (active_color == Color.WHITE)
-                return ms_to_seconds (_white_ms_used + (uint) (timer.elapsed () * 1000));
-            else
-                return ms_to_seconds (_white_ms_used);
-        }
-    }
+    public int white_seconds_used { get; private set; default = 0; }
 
-    private uint _black_ms_used = 0;
-    public uint black_seconds_used
-    {
-        get
-        {
-            if (timer == null)
-                return 0;
-            else if (active_color == Color.WHITE)
-                return ms_to_seconds (_black_ms_used);
-            else
-                return ms_to_seconds (_black_ms_used + (uint) (timer.elapsed () * 1000));
-        }
-    }
+    public int black_seconds_used { get; private set; default = 0; }
 
     private Color _active_color = Color.WHITE;
     public Color active_color
@@ -73,10 +41,10 @@ public class ChessClock : Object
     public signal void tick ();
     public signal void expired ();
 
-    public ChessClock (uint white_initial_seconds, uint black_initial_seconds)
+    public ChessClock (int white_initial_seconds_seconds, int black_initial_seconds_seconds)
     {
-        _white_initial_ms = white_initial_seconds * 1000;
-        _black_initial_ms = black_initial_seconds * 1000;
+        white_initial_seconds = white_initial_seconds_seconds;
+        black_initial_seconds = black_initial_seconds_seconds;
     }
 
     private bool is_active
@@ -111,19 +79,14 @@ public class ChessClock : Object
 
     private bool tick_cb ()
     {
-        if (tick_timeout_id != 0)
-            tick ();
-
-        uint elapsed = (uint) (timer.elapsed () * 1000);
-        uint used;
         if (active_color == Color.WHITE)
-            used = _white_ms_used + elapsed;
+            white_seconds_used++;
         else
-            used = _black_ms_used + elapsed;
-        var next_tick_time = ((used / 1000) + 1) * 1000;
-        tick_timeout_id = Timeout.add (next_tick_time - used, tick_cb);
+            black_seconds_used++;
 
-        return false;
+        tick ();
+
+        return true;
     }
 
     public void stop ()
@@ -132,23 +95,7 @@ public class ChessClock : Object
             return;
 
         timer.stop ();
-        stop_checking_timer ();
-
-        var elapsed = (uint) (timer.elapsed () * 1000);
-        if (active_color == Color.WHITE)
-        {
-            _white_ms_used += elapsed;
-            if (_white_ms_used > _white_initial_ms)
-                _white_ms_used = _white_initial_ms;
-        }
-        else
-        {
-            _black_ms_used += elapsed;
-            if (_black_ms_used > _black_initial_ms)
-                _black_ms_used = _black_initial_ms;
-        }
-
-        timer.reset ();
+        stop_watching_timer ();
     }
 
     public void pause ()
@@ -157,7 +104,7 @@ public class ChessClock : Object
             return;
 
         timer.stop ();
-        stop_checking_timer ();
+        stop_watching_timer ();
     }
 
     public void unpause ()
@@ -173,24 +120,21 @@ public class ChessClock : Object
     {
         /* Notify when this timer has expired */
         if (active_color == Color.WHITE)
-            expire_timeout_id = Timeout.add (_white_initial_ms - _white_ms_used, timer_expired_cb);
+            expire_timeout_id = Timeout.add_seconds (white_initial_seconds - white_seconds_used,
+                                                     timer_expired_cb);
         else
-            expire_timeout_id = Timeout.add (_black_initial_ms - _black_ms_used, timer_expired_cb);
+            expire_timeout_id = Timeout.add_seconds (black_initial_seconds - black_seconds_used,
+                                                     timer_expired_cb);
 
         /* Wake up each second */
-        tick_cb ();
+        tick_timeout_id = Timeout.add_seconds (1, tick_cb);
     }
 
-    private void stop_checking_timer ()
+    private void stop_watching_timer ()
     {
         Source.remove (expire_timeout_id);
         expire_timeout_id = 0;
         Source.remove (tick_timeout_id);
         tick_timeout_id = 0;
-    }
-
-    private uint ms_to_seconds (uint ms)
-    {
-        return (ms + 500) / 1000;
     }
 }
