@@ -41,10 +41,10 @@ public class ChessClock : Object
     public signal void tick ();
     public signal void expired ();
 
-    public ChessClock (int white_initial_seconds_seconds, int black_initial_seconds_seconds)
+    public ChessClock (int white_initial_seconds, int black_initial_seconds)
     {
-        white_initial_seconds = white_initial_seconds_seconds;
-        black_initial_seconds = black_initial_seconds_seconds;
+        this.white_initial_seconds = white_initial_seconds;
+        this.black_initial_seconds = black_initial_seconds;
     }
 
     private bool is_active
