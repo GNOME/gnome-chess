@@ -262,7 +262,8 @@ private class ChessView3D : ChessView
 
         for (var i = 0; i < n_passes; i++)
         {
-            var bg = get_style_context ().get_background_color (get_state_flags ());
+            var window = (Gtk.Window) get_toplevel();
+            var bg = window.get_style_context ().get_background_color (window.get_state_flags ());
             glClearColor ((float) bg.red, (float) bg.green, (float) bg.blue, 1.0f);
             glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
