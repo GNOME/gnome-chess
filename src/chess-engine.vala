@@ -67,7 +67,7 @@ public abstract class ChessEngine : Object
         }
         catch (SpawnError e)
         {
-            stderr.printf ("Failed to execute chess engine: %s\n", e.message);
+            warning ("Failed to execute chess engine: %s\n", e.message);
             return false;
         }
 
@@ -80,7 +80,7 @@ public abstract class ChessEngine : Object
         }
         catch (IOChannelError e)
         {
-            stderr.printf ("Failed to set input from chess engine to non-blocking: %s", e.message);
+            warning ("Failed to set input from chess engine to non-blocking: %s", e.message);
         }
         stdout_watch_id = stdout_channel.add_watch (IOCondition.IN, read_cb);
 
@@ -125,10 +125,12 @@ public abstract class ChessEngine : Object
         }
         catch (ConvertError e)
         {
+            warning ("Failed to read from engine: %s", e.message);
             return false;
         }
         catch (IOChannelError e)
         {
+            warning ("Failed to read from engine: %s", e.message);
             return false;
         }
 
