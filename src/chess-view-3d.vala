@@ -92,6 +92,7 @@ private class ChessView3D : ChessView
         }
         catch (Error e)
         {
+            warning ("failed to load 3ds: %s", e.message);
         }
         create_board ();
     }
