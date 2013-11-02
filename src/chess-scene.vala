@@ -82,12 +82,20 @@ public class ChessScene : Object
     public int selected_rank = -1;
     public int selected_file = -1;
 
+    private uint animate_timeout_id = 0;
+
     private ChessGame? _game = null;
     public ChessGame? game
     {
         get { return _game; }
         set
         {
+            if (animate_timeout_id != 0)
+            {
+                Source.remove (animate_timeout_id);
+                animate_timeout_id = 0;
+                animating = false;
+            }
             _game = value;
             _move_number = -1;
             selected_rank = -1;
@@ -325,7 +333,7 @@ public class ChessScene : Object
             game.add_hold ();
 
             /* Animate every 10ms (up to 100fps) */
-            Timeout.add (10, animate_cb, Priority.DEFAULT_IDLE);
+            animate_timeout_id = Timeout.add (10, animate_cb, Priority.DEFAULT_IDLE);
         }
     }
 
