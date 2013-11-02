@@ -202,6 +202,7 @@ private class ChessView2D : ChessView
         /* Draw pause overlay */
         if (scene.game.is_superpaused)
         {
+            c.rotate (Math.PI * scene.board_angle / 180.0);
             draw_paused_overlay (c);
             return true;
         }

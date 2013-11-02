@@ -243,7 +243,6 @@ private class ChessView3D : ChessView
         {
             glXMakeCurrent (display, X.None, (GLX.Context) null);
             c.translate (get_allocated_width () / 2, get_allocated_height () / 2);
-            c.rotate (Math.PI * scene.board_angle / 180.0);
             draw_paused_overlay (c);
             return true;
         }
