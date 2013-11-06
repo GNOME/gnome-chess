@@ -33,8 +33,8 @@ PKG_CHECK_MODULES(TEST, [
   gio-2.0
 ])
 
-AC_PATH_PROG(APPDATA_VALIDATE, appdata-validate)
-AC_PATH_PROG(DESKTOP_FILE_VALIDATE, desktop-file-validate)
+AC_PATH_PROG([APPDATA_VALIDATE], [appdata-validate], [/bin/true])
+AC_PATH_PROG([DESKTOP_FILE_VALIDATE], [desktop-file-validate], [/bin/true])
 
 dnl ###########################################################################
 dnl Internationalization
