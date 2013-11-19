@@ -1840,7 +1840,7 @@ public class Application : Gtk.Application
         about_dialog.version = VERSION;
         about_dialog.copyright = "Copyright © 2010–2013 Robert Ancell\nCopyright © 2013 Michael Catanzaro";
         about_dialog.license_type = Gtk.License.GPL_2_0;
-        about_dialog.comments = _("The 2D/3D chess game for GNOME. \n\nGNOME Chess is a part of GNOME Games.");
+        about_dialog.comments = _("The 2D/3D chess game for GNOME\n\nGNOME Chess is a part of GNOME Games.");
         about_dialog.authors = authors;
         about_dialog.artists = artists;
         about_dialog.translator_credits = _("translator-credits");
