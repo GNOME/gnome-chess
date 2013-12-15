@@ -156,7 +156,7 @@ public class Application : Gtk.Application
         history_combo = (Gtk.ComboBox) builder.get_object ("history_combo");
         white_time_label = (Gtk.Widget) builder.get_object ("white_time_label");
         black_time_label = (Gtk.Widget) builder.get_object ("black_time_label");
-        var view_box = (Gtk.VBox) builder.get_object ("view_box");
+        var view_box = (Gtk.Box) builder.get_object ("view_box");
         view_container = (Gtk.Container) builder.get_object ("view_container");
         builder.connect_signals (this);
 

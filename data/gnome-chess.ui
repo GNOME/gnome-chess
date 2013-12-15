@@ -13,13 +13,14 @@
     <property name="can_focus">False</property>
     <property name="title">Chess</property>
     <property name="default_width">700</property>
-    <signal name="window-state-event" handler="gnome_chess_app_window_state_event_cb" swapped="no"/>
     <signal name="configure-event" handler="gnome_chess_app_configure_event_cb" swapped="no"/>
     <signal name="delete-event" handler="gnome_chess_app_delete_event_cb" swapped="no"/>
+    <signal name="window-state-event" handler="gnome_chess_app_window_state_event_cb" swapped="no"/>
     <child>
-      <object class="GtkVBox" id="main_vbox">
+      <object class="GtkBox" id="main_vbox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkToolbar" id="toolbar">
             <property name="visible">True</property>
@@ -159,7 +160,6 @@
             <child>
               <object class="GtkToolButton" id="pause_game_button">
                 <property name="visible">True</property>
-                <property name="sensitive">True</property>
                 <property name="can_focus">False</property>
                 <property name="tooltip_text" translatable="yes">Pause the game</property>
                 <property name="label" translatable="yes" comments="The pause game button">Pause</property>
@@ -197,17 +197,18 @@
           </packing>
         </child>
         <child>
-          <object class="GtkVBox" id="view_box">
+          <object class="GtkBox" id="view_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
             <property name="spacing">3</property>
             <child>
-              <object class="GtkHBox" id="navigation_box">
+              <object class="GtkBox" id="navigation_box">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="spacing">6</property>
                 <child>
-                  <object class="GtkHBox" id="left_nav_box">
+                  <object class="GtkBox" id="left_nav_box">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="homogeneous">True</property>
@@ -330,7 +331,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkHBox" id="right_nav_box">
+                  <object class="GtkBox" id="right_nav_box">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="spacing">6</property>
@@ -403,9 +404,9 @@
   </object>
   <object class="GtkSizeGroup" id="nav_bar_sizegroup">
     <widgets>
-      <widget name="right_nav_box"/>
-      <widget name="left_nav_box"/>
       <widget name="toolbar"/>
+      <widget name="left_nav_box"/>
+      <widget name="right_nav_box"/>
     </widgets>
   </object>
 </interface>
