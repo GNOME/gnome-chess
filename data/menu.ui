@@ -25,4 +25,43 @@
       </item>
     </section>
   </menu>
+  <menu id="windowmenu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_New</attribute>
+        <attribute name="action">win.new</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Open…</attribute>
+        <attribute name="action">win.open</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Save</attribute>
+        <attribute name="action">win.save</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Save As…</attribute>
+        <attribute name="action">win.save-as</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Pause</attribute>
+        <attribute name="action">win.pause-resume</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Undo Move</attribute>
+        <attribute name="action">win.undo</attribute>
+        <attribute name="accel">&lt;Primary&gt;Z</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Claim Draw</attribute>
+        <attribute name="action">win.claim-draw</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Resign</attribute>
+        <attribute name="action">win.resign</attribute>
+      </item>
+    </section>
+  </menu>
 </interface>

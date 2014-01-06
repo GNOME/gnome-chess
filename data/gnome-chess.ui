@@ -21,6 +21,25 @@
         <property name="can_focus">False</property>
         <property name="show_close_button">True</property>
         <property name="title" translatable="yes">Chess</property>
+        <child>
+              <object class="GtkMenuButton" id="gear_button">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <style>
+                  <class name="image-button"/>
+                </style>
+                <child>
+                  <object class="GtkImage" id="gear_image">
+                    <property name="visible">True</property>
+                    <property name="icon_size">1</property>
+                    <property name="icon_name">emblem-system-symbolic</property>
+                  </object>
+                </child>
+              </object>
+          <packing>
+            <property name="pack_type">end</property>
+          </packing>
+        </child>
       </object>
     </child>
     <child>
@@ -28,165 +47,6 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkToolbar" id="toolbar">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <style>
-              <class name="primary-toolbar"/>
-            </style>
-            <child>
-              <object class="GtkToolButton" id="new_game_button">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes" comments="Tooltip for start new game toolbar button">Start a new game</property>
-                <property name="label" translatable="yes" comments="The New Game toolbar button">New</property>
-                <property name="use_underline">True</property>
-                <property name="stock_id">gtk-new</property>
-                <accelerator key="n" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
-                <signal name="clicked" handler="new_game_cb" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkToolButton" id="open_game_button">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Open a saved game</property>
-                <property name="label" translatable="yes">Open</property>
-                <property name="use_underline">True</property>
-                <property name="stock_id">gtk-open</property>
-                <accelerator key="o" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
-                <signal name="clicked" handler="open_game_cb" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkToolButton" id="save_game_button">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Save the current game</property>
-                <property name="label" translatable="yes">Save</property>
-                <property name="use_underline">True</property>
-                <property name="stock_id">gtk-save</property>
-                <accelerator key="s" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
-                <signal name="clicked" handler="save_game_cb" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSeparatorToolItem" id="sep1">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkToolButton" id="undo_move_button">
-                <property name="visible">True</property>
-                <property name="sensitive">False</property>
-                <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Undo your most recent move</property>
-                <property name="is_important">True</property>
-                <property name="label" translatable="yes" comments="The undo move toolbar button">Undo Move</property>
-                <property name="use_underline">True</property>
-                <property name="stock_id">gtk-undo</property>
-                <accelerator key="z" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
-                <signal name="clicked" handler="undo_move_cb" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSeparatorToolItem" id="sep2">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkToolButton" id="claim_draw_button">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Claim a draw by threefold repetition or the fifty move rule</property>
-                <property name="is_important">True</property>
-                <property name="label" translatable="yes">Claim Draw</property>
-                <property name="use_underline">True</property>
-                <property name="icon_name">face-plain</property>
-                <signal name="clicked" handler="claim_draw_cb" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkToolButton" id="resign_button">
-                <property name="visible">True</property>
-                <property name="sensitive">False</property>
-                <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Resign to your opponent</property>
-                <property name="is_important">True</property>
-                <property name="label" translatable="yes" comments="The tooltip for the Resign toolbar button">Resign</property>
-                <property name="use_underline">True</property>
-                <property name="icon_name">face-sad</property>
-                <signal name="clicked" handler="resign_cb" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSeparatorToolItem" id="sep3">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkToolButton" id="pause_game_button">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Pause the game</property>
-                <property name="label" translatable="yes" comments="The pause game button">Pause</property>
-                <property name="use_underline">True</property>
-                <property name="stock_id">gtk-media-pause</property>
-                <accelerator key="p" signal="clicked" modifiers="GDK_CONTROL_MASK"/>
-                <signal name="clicked" handler="pause_game_button_pressed_cb" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
         <child>
           <object class="GtkBox" id="view_box">
             <property name="visible">True</property>
@@ -395,7 +255,6 @@
   </object>
   <object class="GtkSizeGroup" id="nav_bar_sizegroup">
     <widgets>
-      <widget name="toolbar"/>
       <widget name="left_nav_box"/>
       <widget name="right_nav_box"/>
     </widgets>
