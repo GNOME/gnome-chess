@@ -9,9 +9,6 @@
  * license.
  */
 
-/* Workaround for https://bugzilla.gnome.org/show_bug.cgi?id=647122 */
-extern void gtk_file_filter_set_name (Gtk.FileFilter filter, string name);
-
 public class Application : Gtk.Application
 {
     private Settings settings;
@@ -1889,16 +1886,14 @@ public class Application : Gtk.Application
 
         /* Filter out non PGN files by default */
         var pgn_filter = new Gtk.FileFilter ();
-        gtk_file_filter_set_name (pgn_filter,
-                                  /* Save Game Dialog: Name of filter to show only PGN files */
-                                  _("PGN files"));
+        /* Save Game Dialog: Name of filter to show only PGN files */
+        pgn_filter.set_filter_name (_("PGN files"));
         pgn_filter.add_pattern ("*.pgn");
         save_dialog.add_filter (pgn_filter);
 
         var all_filter = new Gtk.FileFilter ();
-        gtk_file_filter_set_name (all_filter,
-                                  /* Save Game Dialog: Name of filter to show all files */
-                                  _("All files"));
+        /* Save Game Dialog: Name of filter to show all files */
+        all_filter.set_filter_name (_("All files"));
         all_filter.add_pattern ("*");
         save_dialog.add_filter (all_filter);
 
@@ -1976,16 +1971,14 @@ public class Application : Gtk.Application
 
         /* Filter out non PGN files by default */
         var pgn_filter = new Gtk.FileFilter ();
-        gtk_file_filter_set_name (pgn_filter,
-                                  /* Load Game Dialog: Name of filter to show only PGN files */
-                                  _("PGN files"));
+        /* Load Game Dialog: Name of filter to show only PGN files */
+        pgn_filter.set_filter_name (_("PGN files"));
         pgn_filter.add_pattern ("*.pgn");
         open_dialog.add_filter (pgn_filter);
 
         var all_filter = new Gtk.FileFilter ();
-        gtk_file_filter_set_name (all_filter,
-                                  /* Load Game Dialog: Name of filter to show all files */
-                                  _("All files"));
+        /* Load Game Dialog: Name of filter to show all files */
+        all_filter.set_filter_name (_("All files"));
         all_filter.add_pattern ("*");
         open_dialog.add_filter (all_filter);
 
