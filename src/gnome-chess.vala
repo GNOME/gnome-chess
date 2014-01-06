@@ -466,8 +466,6 @@ public class Application : Gtk.Application
 
         scene.game = game;
         info_bar.hide ();
-        disable_window_action (SAVE_GAME_ACTION_NAME);
-        disable_window_action (SAVE_GAME_AS_ACTION_NAME);
         update_history_panel ();
         update_action_status ();
 
@@ -543,13 +541,11 @@ public class Application : Gtk.Application
         {
             game_needs_saving = true;
             enable_window_action (SAVE_GAME_ACTION_NAME);
-            enable_window_action (SAVE_GAME_AS_ACTION_NAME);
         }
         else
         {
             game_needs_saving = false;
             disable_window_action (SAVE_GAME_ACTION_NAME);
-            disable_window_action (SAVE_GAME_AS_ACTION_NAME);
         }
 
         game.start ();
@@ -1925,6 +1921,7 @@ public class Application : Gtk.Application
         try
         {
             pgn_game.write (game_file);
+            disable_window_action (SAVE_GAME_ACTION_NAME);
         }
         catch (Error e)
         {
@@ -2009,6 +2006,8 @@ public class Application : Gtk.Application
     {
         in_history = false;
         game_file = null;
+
+        disable_window_action (SAVE_GAME_AS_ACTION_NAME);
 
         pgn_game = new PGNGame ();
         var now = new DateTime.now_local ();
