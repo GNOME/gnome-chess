@@ -217,6 +217,7 @@ public class Application : Gtk.Application
             window.maximize ();
         }
 
+        add_accelerators ();
         update_window_menu ();
         show ();
     }
@@ -1030,6 +1031,14 @@ public class Application : Gtk.Application
             enable_window_action (UNDO_MOVE_ACTION_NAME);
         else
             disable_window_action (UNDO_MOVE_ACTION_NAME);
+    }
+
+    private void add_accelerators ()
+    {
+        add_accelerator ("<Control>N", "win." + NEW_GAME_ACTION_NAME, null);
+        add_accelerator ("<Control>O", "win." + OPEN_GAME_ACTION_NAME, null);
+        add_accelerator ("<Control>S", "win." + SAVE_GAME_ACTION_NAME, null);
+        add_accelerator ("<Control>Z", "win." + UNDO_MOVE_ACTION_NAME, null);
     }
 
     private void update_window_menu ()
