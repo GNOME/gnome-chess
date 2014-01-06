@@ -61,20 +61,6 @@ public class Application : Gtk.Application
     private ChessPlayer? opponent = null;
     private ChessPlayer? human_player = null;
     private ChessEngine? opponent_engine = null;
-    private bool widget_sensitivity[8];
-    private bool pause_requested = false;
-
-    private enum SensitivityIndex
-    {
-        UNDO,
-        CLAIM_DRAW,
-        RESIGN,
-        FIRST_MOVE,
-        PREV_MOVE,
-        NEXT_MOVE,
-        LAST_MOVE,
-        HISTORY
-    }
 
     private const ActionEntry[] app_entries =
     {
@@ -404,10 +390,11 @@ public class Application : Gtk.Application
         if (move_number < 0)
             move_number += 1 + n_moves;
 
-        first_move_button.sensitive = n_moves > 0 && move_number != 0;
-        prev_move_button.sensitive = move_number > 0;
-        next_move_button.sensitive = move_number < n_moves;
-        last_move_button.sensitive = n_moves > 0 && move_number != n_moves;
+        first_move_button.sensitive = n_moves > 0 && move_number != 0 && !game.is_paused;
+        prev_move_button.sensitive = move_number > 0 && !game.is_paused;
+        next_move_button.sensitive = move_number < n_moves && !game.is_paused;
+        last_move_button.sensitive = n_moves > 0 && move_number != n_moves && !game.is_paused;
+        history_combo.sensitive = !game.is_paused;
 
         /* Set move text for all moves (it may have changed format) */
         int i = n_moves;
@@ -1025,7 +1012,7 @@ public class Application : Gtk.Application
     
     private void update_action_status ()
     {
-        var can_resign = game.n_moves > 0;
+        var can_resign = game.n_moves > 0 && !game.is_paused;
         if (can_resign)
             enable_window_action (RESIGN_ACTION_NAME);
         else
@@ -1038,9 +1025,9 @@ public class Application : Gtk.Application
             disable_window_action (CLAIM_DRAW_ACTION_NAME);
 
         /* Can undo once the human player has made a move */
-        var can_undo = game.n_moves > 0;
+        var can_undo = game.n_moves > 0 && !game.is_paused;
         if (opponent != null && opponent.color == Color.WHITE)
-            can_undo = game.n_moves > 1;
+            can_undo = game.n_moves > 1 && !game.is_paused;
 
         if (can_undo)
             enable_window_action (UNDO_MOVE_ACTION_NAME);
@@ -1293,76 +1280,15 @@ public class Application : Gtk.Application
             game.opponent.undo ();
     }
 
-    private void stash_action_sensitivity ()
-    {
-        widget_sensitivity[SensitivityIndex.UNDO] = window_action_enabled (UNDO_MOVE_ACTION_NAME);
-        widget_sensitivity[SensitivityIndex.CLAIM_DRAW] = window_action_enabled (CLAIM_DRAW_ACTION_NAME);
-        widget_sensitivity[SensitivityIndex.RESIGN] = window_action_enabled (RESIGN_ACTION_NAME);
-        widget_sensitivity[SensitivityIndex.FIRST_MOVE] =
-            first_move_button.sensitive;
-        widget_sensitivity[SensitivityIndex.PREV_MOVE] =
-            prev_move_button.sensitive;
-        widget_sensitivity[SensitivityIndex.NEXT_MOVE] =
-            next_move_button.sensitive;
-        widget_sensitivity[SensitivityIndex.LAST_MOVE] =
-            last_move_button.sensitive;
-        widget_sensitivity[SensitivityIndex.HISTORY] = history_combo.sensitive;
-    }
-
-    private void revert_action_sensitivity ()
-    {
-        if (widget_sensitivity[SensitivityIndex.UNDO])
-            enable_window_action (UNDO_MOVE_ACTION_NAME);
-        else
-            disable_window_action (UNDO_MOVE_ACTION_NAME);
-        if (widget_sensitivity[SensitivityIndex.CLAIM_DRAW])
-            enable_window_action (CLAIM_DRAW_ACTION_NAME);
-        else
-            disable_window_action (CLAIM_DRAW_ACTION_NAME);
-        if (widget_sensitivity[SensitivityIndex.RESIGN])
-            enable_window_action (RESIGN_ACTION_NAME);
-        else
-            disable_window_action (RESIGN_ACTION_NAME);
-        first_move_button.sensitive =
-            widget_sensitivity[SensitivityIndex.FIRST_MOVE];
-        prev_move_button.sensitive =
-            widget_sensitivity[SensitivityIndex.PREV_MOVE];
-        next_move_button.sensitive =
-            widget_sensitivity[SensitivityIndex.NEXT_MOVE];
-        last_move_button.sensitive =
-            widget_sensitivity[SensitivityIndex.LAST_MOVE];
-        history_combo.sensitive = widget_sensitivity[SensitivityIndex.HISTORY];
-    }
-
     public void pause_resume_cb ()
     {
-        if (pause_requested)
-        {
+        if (game.is_paused)
             game.unpause ();
-            pause_requested = false;
-        }
         else
-        {
             game.pause ();
-            pause_requested = true;
-        }
 
-        if (pause_requested)
-        {
-            stash_action_sensitivity ();
-            disable_window_action (RESIGN_ACTION_NAME);
-            disable_window_action (UNDO_MOVE_ACTION_NAME);
-            disable_window_action (CLAIM_DRAW_ACTION_NAME);
-            first_move_button.sensitive = false;
-            prev_move_button.sensitive = false;
-            next_move_button.sensitive = false;
-            last_move_button.sensitive = false;
-            history_combo.sensitive = false;
-        }
-        else
-        {
-            revert_action_sensitivity ();
-        }
+        update_history_panel ();
+        update_action_status ();
     }
 
     public void quit_cb ()
@@ -2124,11 +2050,6 @@ public class Application : Gtk.Application
     private void disable_window_action (string name)
     {
         ((SimpleAction) window.lookup_action (name)).set_enabled (false);
-    }
-
-    private bool window_action_enabled (string name)
-    {
-        return ((SimpleAction) window.lookup_action (name)).enabled;
     }
 }
 
