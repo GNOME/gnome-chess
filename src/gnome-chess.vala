@@ -342,12 +342,10 @@ public class Application : Gtk.Application
 
         try
         {
-            if (!in_history || game_file == null)
-                game_file = File.new_for_path (autosave_filename);
-
-            debug ("Writing current game to %s", game_file.get_path ());
+            var autosave_file = File.new_for_path (autosave_filename);
+            debug ("Writing current game to %s", autosave_file.get_path ());
             update_pgn_time_remaining ();
-            pgn_game.write (game_file);
+            pgn_game.write (autosave_file);
         }
         catch (Error e)
         {
