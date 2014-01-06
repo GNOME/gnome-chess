@@ -412,7 +412,7 @@ public class Application : Gtk.Application
     private void start_game ()
     {
         if (!in_history && game_file != null)
-            headerbar.set_subtitle (Path.get_basename (game_file.get_path ()));
+            headerbar.set_subtitle (game_file.get_basename ());
         else
             headerbar.set_subtitle (null);
 
