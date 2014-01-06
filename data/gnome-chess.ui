@@ -180,22 +180,6 @@
                 <property name="homogeneous">True</property>
               </packing>
             </child>
-            <child>
-              <object class="GtkToolButton" id="fullscreen_button">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Toggle fullscreen</property>
-                <property name="label" translatable="yes">Fullscreen</property>
-                <property name="use_underline">True</property>
-                <property name="stock_id">gtk-fullscreen</property>
-                <accelerator key="F11" signal="clicked"/>
-                <signal name="clicked" handler="toggle_fullscreen_cb" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
           </object>
           <packing>
             <property name="expand">False</property>

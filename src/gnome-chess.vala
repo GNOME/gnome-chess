@@ -28,7 +28,6 @@ public class Application : Gtk.Application
     private Gtk.Widget pause_button;
     private Gtk.Widget claim_draw_button;
     private Gtk.Widget resign_button;
-    private Gtk.Widget fullscreen_button;
     private Gtk.Widget first_move_button;
     private Gtk.Widget prev_move_button;
     private Gtk.Widget next_move_button;
@@ -65,7 +64,6 @@ public class Application : Gtk.Application
     private ChessPlayer? opponent = null;
     private ChessPlayer? human_player = null;
     private ChessEngine? opponent_engine = null;
-    private bool is_fullscreen = false;
     private bool widget_sensitivity[8];
 
     private enum SensitivityIndex
@@ -170,7 +168,6 @@ public class Application : Gtk.Application
         pause_button = (Gtk.Widget) builder.get_object ("pause_game_button");
         claim_draw_button = (Gtk.Widget) builder.get_object ("claim_draw_button");
         resign_button = (Gtk.Widget) builder.get_object ("resign_button");
-        fullscreen_button = (Gtk.Widget) builder.get_object ("fullscreen_button");
         first_move_button = (Gtk.Widget) builder.get_object ("first_move_button");
         prev_move_button = (Gtk.Widget) builder.get_object ("prev_move_button");
         next_move_button = (Gtk.Widget) builder.get_object ("next_move_button");
@@ -252,12 +249,7 @@ public class Application : Gtk.Application
 
         window.set_default_size (settings.get_int ("width"), settings.get_int ("height"));        
 
-        if (settings.get_boolean ("fullscreen"))
-        {
-            window.fullscreen ();
-            is_fullscreen = true;
-        }
-        else if (settings.get_boolean ("maximized"))
+        if (settings.get_boolean ("maximized"))
         {
             window.maximize ();
         }
@@ -1169,7 +1161,7 @@ public class Application : Gtk.Application
     [CCode (cname = "G_MODULE_EXPORT gnome_chess_app_configure_event_cb", instance_pos = -1)]
     public bool gnome_chess_app_configure_event_cb (Gtk.Widget widget, Gdk.EventConfigure event)
     {
-        if (!settings.get_boolean ("maximized") && !settings.get_boolean ("fullscreen"))
+        if (!settings.get_boolean ("maximized"))
         {
             settings.set_int ("width", event.width);
             settings.set_int ("height", event.height);
@@ -1185,11 +1177,6 @@ public class Application : Gtk.Application
         {
             var is_maximized = (event.new_window_state & Gdk.WindowState.MAXIMIZED) != 0;
             settings.set_boolean ("maximized", is_maximized);
-        }
-        if ((event.changed_mask & Gdk.WindowState.FULLSCREEN) != 0)
-        {
-            is_fullscreen = (event.new_window_state & Gdk.WindowState.FULLSCREEN) != 0;
-            settings.set_boolean ("fullscreen", is_fullscreen);
         }
 
         return false;
@@ -1482,21 +1469,6 @@ public class Application : Gtk.Application
     public void history_start_clicked_cb (Gtk.Widget widget)
     {
         scene.move_number = 0;
-    }
-
-    [CCode (cname = "G_MODULE_EXPORT toggle_fullscreen_cb", instance_pos = -1)]
-    public void toggle_fullscreen_cb (Gtk.Widget widget)
-    {
-        if (is_fullscreen)
-        {
-            ((Gtk.ToolButton) fullscreen_button).stock_id = "gtk-fullscreen";
-            window.unfullscreen ();
-        }
-        else
-        {
-            ((Gtk.ToolButton) fullscreen_button).stock_id = "gtk-leave-fullscreen";
-            window.fullscreen ();
-        }
     }
 
     public void preferences_cb ()
