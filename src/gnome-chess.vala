@@ -36,6 +36,7 @@ public class Application : Gtk.Application
     private Gtk.ComboBox history_combo;
     private Gtk.Widget white_time_label;
     private Gtk.Widget black_time_label;
+    private Gtk.HeaderBar headerbar;
 
     private Gtk.Dialog? preferences_dialog = null;
     private Gtk.ComboBox side_combo;
@@ -85,6 +86,27 @@ public class Application : Gtk.Application
         { "help", help_cb },
         { "about", about_cb },
         { "quit", quit_cb },
+    };
+
+    private const string NEW_GAME_ACTION_NAME = "new";
+    private const string OPEN_GAME_ACTION_NAME = "open";
+    private const string SAVE_GAME_ACTION_NAME = "save";
+    private const string SAVE_GAME_AS_ACTION_NAME = "save-as";
+    private const string UNDO_MOVE_ACTION_NAME = "undo";
+    private const string CLAIM_DRAW_ACTION_NAME = "claim-draw";
+    private const string RESIGN_ACTION_NAME = "resign";
+    private const string PAUSE_RESUME_ACTION_NAME = "pause-resume";
+
+    private const ActionEntry[] window_entries =
+    {
+        { NEW_GAME_ACTION_NAME, new_game_cb },
+        { OPEN_GAME_ACTION_NAME, open_game_cb },
+        { SAVE_GAME_ACTION_NAME, save_game_cb },
+        { SAVE_GAME_AS_ACTION_NAME, save_game_as_cb },
+        { UNDO_MOVE_ACTION_NAME, undo_move_cb },
+        { CLAIM_DRAW_ACTION_NAME, claim_draw_cb },
+        { RESIGN_ACTION_NAME, resign_cb },
+        { PAUSE_RESUME_ACTION_NAME, pause_resume_cb },
     };
 
     public Application (File? game_file)
@@ -158,11 +180,13 @@ public class Application : Gtk.Application
         black_time_label = (Gtk.Widget) builder.get_object ("black_time_label");
         var view_box = (Gtk.Box) builder.get_object ("view_box");
         view_container = (Gtk.Container) builder.get_object ("view_container");
+        headerbar = (Gtk.HeaderBar) builder.get_object ("headerbar");
         builder.connect_signals (this);
 
         add_window (window);
         window.focus_out_event.connect (on_window_focus_out);
         window.focus_in_event.connect (on_window_focus_in);
+        window.icon_name = "gnome-chess";
 
         info_bar = new Gtk.InfoBar ();
         var content_area = (Gtk.Container) info_bar.get_content_area ();
@@ -437,15 +461,13 @@ public class Application : Gtk.Application
     {
         if (in_history || game_file == null)
         {
-            window.title = /* Title of the main window */
-                           _("Chess");
+            /* Title of the main window */
+            headerbar.set_title (_("Chess"));
         }
         else
         {
             var path = game_file.get_path ();
-            window.title = /* Title of the window when explicitly loaded a file. The argument is the
-                            * base name of the file (e.g. test.pgn) */
-                           _("Chess - %1$s").printf (Path.get_basename (path));
+            headerbar.set_title (Path.get_basename (path));
         }
 
         var model = (Gtk.ListStore) history_combo.model;
