@@ -1036,6 +1036,7 @@ public class Application : Gtk.Application
         add_accelerator ("<Control>O", "win." + OPEN_GAME_ACTION_NAME, null);
         add_accelerator ("<Control>S", "win." + SAVE_GAME_ACTION_NAME, null);
         add_accelerator ("<Control>Z", "win." + UNDO_MOVE_ACTION_NAME, null);
+        add_accelerator ("Pause", "win." + PAUSE_RESUME_ACTION_NAME, null);
     }
 
     private void update_window_menu ()
