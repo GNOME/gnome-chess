@@ -1877,7 +1877,7 @@ public class Application : Gtk.Application
         add_info_bar_to_dialog (save_dialog, out save_dialog_info_bar, out save_dialog_error_label);
 
         save_dialog.file_activated.connect (save_file_cb);        
-        save_dialog.response.connect (save_cb);
+        save_dialog.response.connect (save_dialog_cb);
 
         if (saved_filename != null)
             save_dialog.set_filename (saved_filename);
@@ -1903,7 +1903,7 @@ public class Application : Gtk.Application
 
     private void save_file_cb ()
     {
-        save_cb (Gtk.ResponseType.OK);
+        save_dialog_cb (Gtk.ResponseType.OK);
     }
 
     private void update_pgn_time_remaining ()
@@ -1920,7 +1920,7 @@ public class Application : Gtk.Application
         }
     }
 
-    private void save_cb (int response_id)
+    private void save_dialog_cb (int response_id)
     {
         if (response_id == Gtk.ResponseType.OK)
         {
