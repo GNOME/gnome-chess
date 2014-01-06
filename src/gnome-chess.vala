@@ -62,6 +62,7 @@ public class Application : Gtk.Application
     private ChessPlayer? human_player = null;
     private ChessEngine? opponent_engine = null;
     private bool widget_sensitivity[8];
+    private bool pause_requested = false;
 
     private enum SensitivityIndex
     {
@@ -108,22 +109,6 @@ public class Application : Gtk.Application
     {
         Object (application_id: "org.gnome.gnome-chess", flags: ApplicationFlags.FLAGS_NONE);
         this.game_file = game_file;
-    }
-
-    public bool on_window_focus_out (Gdk.EventFocus focus)
-    {
-        if (!game.is_paused || !game.is_superpaused)
-            game.pause ();
-
-        return false;
-    }
-
-    public bool on_window_focus_in (Gdk.EventFocus focus)
-    {
-        if (game.is_paused && !game.is_superpaused)
-            game.unpause ();
-
-        return false;
     }
 
     public override void startup ()
@@ -179,8 +164,6 @@ public class Application : Gtk.Application
         menu_button.set_menu_model (window_menu);
 
         add_window (window);
-        window.focus_out_event.connect (on_window_focus_out);
-        window.focus_in_event.connect (on_window_focus_in);
         window.icon_name = "gnome-chess";
 
         info_bar = new Gtk.InfoBar ();
@@ -1353,12 +1336,18 @@ public class Application : Gtk.Application
 
     public void pause_resume_cb ()
     {
-        if (game.is_superpaused)
+        if (pause_requested)
+        {
             game.unpause ();
+            pause_requested = false;
+        }
         else
-            game.superpause ();
+        {
+            game.pause ();
+            pause_requested = true;
+        }
 
-        if (game.is_paused)
+        if (pause_requested)
         {
             stash_action_sensitivity ();
             disable_window_action (RESIGN_ACTION_NAME);

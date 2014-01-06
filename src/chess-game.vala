@@ -1278,14 +1278,12 @@ public class ChessGame
     public signal void started ();
     public signal void turn_started (ChessPlayer player);
     public signal void moved (ChessMove move);
-    public signal void superpaused ();
+    public signal void paused ();
     public signal void unpaused ();
     public signal void undo ();
     public signal void ended ();
 
     public bool is_paused { get; private set; default = false; }
-    /* Like normal pause, but also draw pause game overlay */
-    public bool is_superpaused { get; private set; default = false; }
     
     public ChessState current_state
     {
@@ -1518,15 +1516,8 @@ public class ChessGame
         {
             clock.pause ();
             is_paused = true;
+            paused ();
         }
-    }
-
-    public void superpause ()
-    {
-        is_superpaused = true;
-        pause ();
-        /* Draw the pause game overlay */
-        superpaused ();
     }
 
     public void unpause ()
@@ -1535,7 +1526,6 @@ public class ChessGame
         {
             clock.unpause ();
             is_paused = false;
-            is_superpaused = false;
             unpaused ();
         }
     }

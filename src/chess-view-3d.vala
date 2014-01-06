@@ -240,7 +240,7 @@ private class ChessView3D : ChessView
 
     public override bool draw (Cairo.Context c)
     {
-        if (scene.game.is_superpaused)
+        if (scene.game.is_paused)
         {
             glXMakeCurrent (display, X.None, (GLX.Context) null);
             c.translate (get_allocated_width () / 2, get_allocated_height () / 2);
