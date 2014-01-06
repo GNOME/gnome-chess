@@ -53,7 +53,6 @@ public class Application : Gtk.Application
     private string autosave_filename;
     private File game_file;
     private bool game_needs_saving;
-    private string? saved_filename = null;
     private List<AIProfile> ai_profiles;
     private ChessPlayer? opponent = null;
     private ChessPlayer? human_player = null;
@@ -1849,9 +1848,9 @@ public class Application : Gtk.Application
 
             try
             {
-                pgn_game.write (save_dialog.get_file ());
-                saved_filename = save_dialog.get_filename ();
-                headerbar.set_subtitle (Path.get_basename (saved_filename));
+                game_file = save_dialog.get_file ();
+                pgn_game.write (game_file);
+                headerbar.set_subtitle (game_file.get_basename ());
                 disable_window_action (SAVE_GAME_ACTION_NAME);
                 game_needs_saving = false;
             }
@@ -1890,8 +1889,8 @@ public class Application : Gtk.Application
         save_dialog.file_activated.connect (() => { save_dialog_cb (Gtk.ResponseType.OK); });
         save_dialog.response.connect (save_dialog_cb);
 
-        if (saved_filename != null)
-            save_dialog.set_filename (saved_filename);
+        if (game_file != null && game_file.get_path () != autosave_filename)
+            save_dialog.set_filename (game_file.get_path ());
         else
             save_dialog.set_current_name (/* Default filename for the save game dialog */
                                           _("Untitled Chess Game") + ".pgn");
@@ -1914,7 +1913,7 @@ public class Application : Gtk.Application
 
     public void save_game_cb ()
     {
-        if (saved_filename == null)
+        if (game_file == null || game_file.get_path () == autosave_filename)
         {
             present_save_dialog ();
             return;
@@ -1924,7 +1923,7 @@ public class Application : Gtk.Application
 
         try
         {
-            pgn_game.write (File.new_for_path (saved_filename));
+            pgn_game.write (game_file);
         }
         catch (Error e)
         {
@@ -1987,8 +1986,8 @@ public class Application : Gtk.Application
             try
             {
                 in_history = false;
-                load_game (open_dialog.get_file ());
-                saved_filename = open_dialog.get_filename ();
+                game_file = open_dialog.get_file ();
+                load_game (game_file);
             }
             catch (Error e)
             {
@@ -2009,7 +2008,6 @@ public class Application : Gtk.Application
     {
         in_history = false;
         game_file = null;
-        saved_filename = null;
 
         pgn_game = new PGNGame ();
         var now = new DateTime.now_local ();
