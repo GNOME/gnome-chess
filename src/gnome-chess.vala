@@ -1812,31 +1812,6 @@ public class Application : Gtk.Application
         about_dialog = null;
     }
 
-    public void save_game_cb ()
-    {
-        if (saved_filename == null)
-        {
-            present_save_dialog ();
-            return;
-        }
-
-        update_pgn_time_remaining ();
-
-        try
-        {
-            pgn_game.write (File.new_for_path (saved_filename));
-        }
-        catch (Error e)
-        {
-            present_save_dialog ();
-        }
-    }
-
-    public void save_game_as_cb ()
-    {
-        present_save_dialog ();
-    }
-
     private void add_info_bar_to_dialog (Gtk.Dialog dialog, out Gtk.InfoBar info_bar, out Gtk.Label label)
     {
         var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
@@ -1857,6 +1832,48 @@ public class Application : Gtk.Application
 
         vbox.set_child_packing (child, true, true, 0, Gtk.PackType.START);
         dialog.add (vbox);
+    }
+
+    private void update_pgn_time_remaining ()
+    {
+        if (game.clock != null)
+        {
+            /* We currently only support simple timeouts */
+            uint initial_time = int.parse (pgn_game.time_control);
+            uint white_used = game.clock.white_seconds_used;
+            uint black_used = game.clock.black_seconds_used;
+
+            pgn_game.white_time_left = (initial_time - white_used).to_string ();
+            pgn_game.black_time_left = (initial_time - black_used).to_string ();
+        }
+    }
+
+    private void save_dialog_cb (int response_id)
+    {
+        if (response_id == Gtk.ResponseType.OK)
+        {
+            update_pgn_time_remaining ();
+
+            try
+            {
+                pgn_game.write (save_dialog.get_file ());
+                saved_filename = save_dialog.get_filename ();
+                disable_window_action (SAVE_GAME_ACTION_NAME);
+                game_needs_saving = false;
+            }
+            catch (Error e)
+            {
+                save_dialog_error_label.set_text (_("Failed to save game: %s").printf (e.message));
+                save_dialog_info_bar.set_message_type (Gtk.MessageType.ERROR);
+                save_dialog_info_bar.show ();
+                return;
+            }
+        }
+
+        save_dialog.destroy ();
+        save_dialog = null;
+        save_dialog_info_bar = null;
+        save_dialog_error_label = null;
     }
     
     private void present_save_dialog (string cancel_button_label = N_("_Cancel"),
@@ -1899,48 +1916,31 @@ public class Application : Gtk.Application
         save_dialog.add_filter (all_filter);
 
         save_dialog.run ();
-    }    
+    }
 
-    private void update_pgn_time_remaining ()
+    public void save_game_cb ()
     {
-        if (game.clock != null)
+        if (saved_filename == null)
         {
-            /* We currently only support simple timeouts */
-            uint initial_time = int.parse (pgn_game.time_control);
-            uint white_used = game.clock.white_seconds_used;
-            uint black_used = game.clock.black_seconds_used;
+            present_save_dialog ();
+            return;
+        }
 
-            pgn_game.white_time_left = (initial_time - white_used).to_string ();
-            pgn_game.black_time_left = (initial_time - black_used).to_string ();
+        update_pgn_time_remaining ();
+
+        try
+        {
+            pgn_game.write (File.new_for_path (saved_filename));
+        }
+        catch (Error e)
+        {
+            present_save_dialog ();
         }
     }
 
-    private void save_dialog_cb (int response_id)
+    public void save_game_as_cb ()
     {
-        if (response_id == Gtk.ResponseType.OK)
-        {
-            update_pgn_time_remaining ();
-
-            try
-            {
-                pgn_game.write (save_dialog.get_file ());
-                saved_filename = save_dialog.get_filename ();
-                disable_window_action (SAVE_GAME_ACTION_NAME);
-                game_needs_saving = false;
-            }
-            catch (Error e)
-            {
-                save_dialog_error_label.set_text (_("Failed to save game: %s").printf (e.message));
-                save_dialog_info_bar.set_message_type (Gtk.MessageType.ERROR);
-                save_dialog_info_bar.show ();
-                return;
-            }
-        }
-
-        save_dialog.destroy ();
-        save_dialog = null;
-        save_dialog_info_bar = null;
-        save_dialog_error_label = null;
+        present_save_dialog ();
     }
 
     public void open_game_cb ()
