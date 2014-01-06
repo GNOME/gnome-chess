@@ -1876,7 +1876,7 @@ public class Application : Gtk.Application
                                                  save_button_label, Gtk.ResponseType.OK, null);
         add_info_bar_to_dialog (save_dialog, out save_dialog_info_bar, out save_dialog_error_label);
 
-        save_dialog.file_activated.connect (save_file_cb);        
+        save_dialog.file_activated.connect (() => { save_dialog_cb (Gtk.ResponseType.OK); });
         save_dialog.response.connect (save_dialog_cb);
 
         if (saved_filename != null)
@@ -1900,11 +1900,6 @@ public class Application : Gtk.Application
 
         save_dialog.run ();
     }    
-
-    private void save_file_cb ()
-    {
-        save_dialog_cb (Gtk.ResponseType.OK);
-    }
 
     private void update_pgn_time_remaining ()
     {
@@ -1967,7 +1962,7 @@ public class Application : Gtk.Application
                                                  _("_Open"), Gtk.ResponseType.OK, null);
         add_info_bar_to_dialog (open_dialog, out open_dialog_info_bar, out open_dialog_error_label);
 
-        open_dialog.file_activated.connect (open_file_cb);        
+        open_dialog.file_activated.connect (open_file_cb);
         open_dialog.response.connect (open_cb);
 
         /* Filter out non PGN files by default */
