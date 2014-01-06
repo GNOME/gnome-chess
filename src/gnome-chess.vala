@@ -414,16 +414,10 @@ public class Application : Gtk.Application
 
     private void start_game ()
     {
-        if (in_history || game_file == null)
-        {
-            /* Title of the main window */
-            headerbar.set_title (_("Chess"));
-        }
+        if (!in_history && game_file != null)
+            headerbar.set_subtitle (Path.get_basename (game_file.get_path ()));
         else
-        {
-            var path = game_file.get_path ();
-            headerbar.set_title (Path.get_basename (path));
-        }
+            headerbar.set_subtitle (null);
 
         var model = (Gtk.ListStore) history_combo.model;
         model.clear ();
@@ -1859,6 +1853,7 @@ public class Application : Gtk.Application
             {
                 pgn_game.write (save_dialog.get_file ());
                 saved_filename = save_dialog.get_filename ();
+                headerbar.set_subtitle (Path.get_basename (saved_filename));
                 disable_window_action (SAVE_GAME_ACTION_NAME);
                 game_needs_saving = false;
             }
@@ -2016,6 +2011,7 @@ public class Application : Gtk.Application
     {
         in_history = false;
         game_file = null;
+        saved_filename = null;
 
         pgn_game = new PGNGame ();
         var now = new DateTime.now_local ();
