@@ -49,7 +49,6 @@ public class Application : Gtk.Application
 
     private PGNGame pgn_game;
     private ChessGame game;
-    private bool in_history;
     private string autosave_filename;
     private File game_file;
     private bool game_needs_saving;
@@ -185,13 +184,9 @@ public class Application : Gtk.Application
             if (FileUtils.test (autosave_filename, FileTest.EXISTS))
                 game_file = File.new_for_path (autosave_filename);
 
-            if (game_file != null)
-                in_history = true;
-            else
+            if (game_file == null)
                 start_new_game ();
         }
-        else
-            in_history = false;
 
         if (game_file != null)
         {
@@ -411,7 +406,7 @@ public class Application : Gtk.Application
 
     private void start_game ()
     {
-        if (!in_history && game_file != null)
+        if (game_file != null && game_file.get_path () != autosave_filename)
             headerbar.set_subtitle (game_file.get_basename ());
         else
             headerbar.set_subtitle (null);
@@ -537,7 +532,7 @@ public class Application : Gtk.Application
             game_move_cb (game, state.last_move);
         }
 
-        if (in_history)
+        if (game_file != null && game_file.get_path () == autosave_filename)
         {
             game_needs_saving = true;
             enable_window_action (SAVE_GAME_ACTION_NAME);
@@ -1192,7 +1187,7 @@ public class Application : Gtk.Application
 
     private bool prompt_save_game (string prompt_text)
     {
-        if (!game_needs_saving && (!in_history || game_file == null))
+        if (!game_needs_saving)
             return true;
 
         var dialog = new Gtk.MessageDialog.with_markup (window,
@@ -1983,7 +1978,6 @@ public class Application : Gtk.Application
         {
             try
             {
-                in_history = false;
                 game_file = open_dialog.get_file ();
                 load_game (game_file);
             }
@@ -2004,7 +1998,6 @@ public class Application : Gtk.Application
 
     private void start_new_game ()
     {
-        in_history = false;
         game_file = null;
 
         disable_window_action (SAVE_GAME_AS_ACTION_NAME);
