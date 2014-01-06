@@ -119,10 +119,10 @@ public class Application : Gtk.Application
             error ("Error loading menu UI: %s", e.message);
         }
 
-        var app_menu = builder.get_object ("appmenu") as MenuModel;
+        var app_menu = (Menu) builder.get_object ("appmenu");
         set_app_menu (app_menu);
 
-        var window_menu = builder.get_object ("windowmenu") as MenuModel;
+        var window_menu = (Menu) builder.get_object ("windowmenu");
 
         try
         {
