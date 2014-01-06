@@ -122,8 +122,6 @@ public class Application : Gtk.Application
         var app_menu = (Menu) builder.get_object ("appmenu");
         set_app_menu (app_menu);
 
-        var window_menu = (Menu) builder.get_object ("windowmenu");
-
         try
         {
             builder.add_from_file (Path.build_filename (PKGDATADIR, "gnome-chess.ui", null));
@@ -147,10 +145,8 @@ public class Application : Gtk.Application
         builder.connect_signals (this);
 
         window.add_action_entries (window_entries, this);
-        menu_button.set_menu_model (window_menu);
-
-        add_window (window);
         window.icon_name = "gnome-chess";
+        add_window (window);
 
         info_bar = new Gtk.InfoBar ();
         var content_area = (Gtk.Container) info_bar.get_content_area ();
@@ -221,6 +217,7 @@ public class Application : Gtk.Application
             window.maximize ();
         }
 
+        update_window_menu ();
         show ();
     }
 
@@ -1035,6 +1032,30 @@ public class Application : Gtk.Application
             disable_window_action (UNDO_MOVE_ACTION_NAME);
     }
 
+    private void update_window_menu ()
+    {
+        var window_menu = new Menu ();
+
+        var section = new Menu ();
+        section.append (_("New"), "win." + NEW_GAME_ACTION_NAME);
+        section.append (_("Open…"), "win." + OPEN_GAME_ACTION_NAME);
+        section.append (_("Save"), "win." + SAVE_GAME_ACTION_NAME);
+        section.append (_("Save As…"), "win." + SAVE_GAME_AS_ACTION_NAME);
+        window_menu.append_section (null, section);
+
+        section = new Menu();
+        if (game.is_paused)
+            section.append (_("Resume"), "win." + PAUSE_RESUME_ACTION_NAME);
+        else
+            section.append (_("Pause"), "win." + PAUSE_RESUME_ACTION_NAME);
+        section.append (_("Undo Move"), "win." + UNDO_MOVE_ACTION_NAME);
+        section.append (_("Claim Draw"), "win." + CLAIM_DRAW_ACTION_NAME);
+        section.append (_("Resign"), "win." + RESIGN_ACTION_NAME);
+        window_menu.append_section (null, section);
+
+        menu_button.set_menu_model (window_menu);
+    }
+
     private void game_end_cb (ChessGame game)
     {
         disable_window_action (RESIGN_ACTION_NAME);
@@ -1289,6 +1310,7 @@ public class Application : Gtk.Application
 
         update_history_panel ();
         update_action_status ();
+        update_window_menu ();
     }
 
     public void quit_cb ()
