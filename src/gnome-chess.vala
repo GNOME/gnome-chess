@@ -1235,7 +1235,7 @@ public class Application : Gtk.Application
         else if (result == Gtk.ResponseType.YES)
         {
             /* Your very last chance to save */
-            save_game (_("_Discard"), _("_Save"));
+            present_save_dialog (_("_Discard"), _("_Save"));
         }
         else
         {
@@ -1816,7 +1816,7 @@ public class Application : Gtk.Application
     {
         if (saved_filename == null)
         {
-            save_game ();
+            present_save_dialog ();
             return;
         }
 
@@ -1828,13 +1828,13 @@ public class Application : Gtk.Application
         }
         catch (Error e)
         {
-            save_game ();
+            present_save_dialog ();
         }
     }
 
     public void save_game_as_cb ()
     {
-        save_game ();
+        present_save_dialog ();
     }
 
     private void add_info_bar_to_dialog (Gtk.Dialog dialog, out Gtk.InfoBar info_bar, out Gtk.Label label)
@@ -1859,7 +1859,8 @@ public class Application : Gtk.Application
         dialog.add (vbox);
     }
     
-    private void save_game (string cancel_button_label = N_("_Cancel"), string save_button_label = N_("_Save"))
+    private void present_save_dialog (string cancel_button_label = N_("_Cancel"),
+                                      string save_button_label = N_("_Save"))
     {
         /* Show active dialog */
         if (save_dialog != null)
