@@ -861,7 +861,7 @@ public class ChessState
         return CheckState.NONE;
     }
 
-    private bool is_in_check (ChessPlayer player)
+    public bool is_in_check (ChessPlayer player)
     {
         var opponent = player.color == Color.WHITE ? players[Color.BLACK] : players[Color.WHITE];
 

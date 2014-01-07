@@ -1015,7 +1015,18 @@ public class Application : Gtk.Application
 
     private void update_headerbar_title ()
     {
-        if (game.current_player.color == Color.WHITE)
+        if ((human_player == null ||
+             human_player.color == game.current_player.color) &&
+            game.current_state.is_in_check (game.current_player))
+        {
+            if (game.current_player.color == Color.WHITE)
+                /* Window title on a White human's turn if he is in check */
+                headerbar.set_title (_("White is in Check"));
+            else
+                /* Window title on a Black human's turn if he is in check */
+                headerbar.set_title (_("Black is in Check"));
+        }
+        else if (game.current_player.color == Color.WHITE)
         {
             if (human_player == null || human_player.color == Color.WHITE)
                 /* Window title on White's turn if White is human */
