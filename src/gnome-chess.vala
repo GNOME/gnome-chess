@@ -659,7 +659,7 @@ public class Application : Gtk.Application
         var original_game = game;
         Timeout.add_seconds (2, () => {
             if (game == original_game)
-                game.stop (ChessResult.BUG, ChessRule.BUG);
+                game.stop (ChessResult.BUG, ChessRule.DEATH);
             /* Disconnect from the main loop */
             return false;
         });
@@ -1174,14 +1174,19 @@ public class Application : Gtk.Application
             pgn_game.termination = PGNGame.TERMINATE_ABANDONED;
             break;
         case ChessRule.DEATH:
-            /* Window subtitle when the game ends due to a player dying.
-             * This is a PGN standard. GNOME Chess will never kill the user. */
-            reason = _("One of the players has died.");
+            if (game.result == ChessResult.BUG)
+                /* Window subtitle when the chess engine dies in the middle of a game */
+                reason = _("The computer player died unexpectedly. The game cannot continue.");
+            else
+                /* Window subtitle when the game ends due to a player dying.
+                 * This is a PGN standard. GNOME Chess will never kill the user. */
+                reason = _("One of the players has died.");
             pgn_game.termination = PGNGame.TERMINATE_DEATH;
             break;
         case ChessRule.BUG:
-            /* Window subtitle when something goes wrong with the engine */
-            reason = _("The computer player died unexpectedly. The game cannot continue.");
+            /* Window subtitle when something goes wrong with the engine...
+             * or when the engine says something is wrong with us! */
+            reason = _("The computer player is very confused. The game cannot continue.");
             /* Don't set pgn_game termination; these are standards*/
             break;
         }
