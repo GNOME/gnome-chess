@@ -1488,13 +1488,6 @@ public class ChessGame
         else
             stop (ChessResult.WHITE_WON, ChessRule.TIMEOUT);
     }
-
-    public void abandon ()
-    {
-        if (!is_started)
-            return;
-        stop (ChessResult.DRAW, ChessRule.ABANDONMENT);
-    }
     
     public ChessPiece? get_piece (int rank, int file, int move_number = -1)
     {
