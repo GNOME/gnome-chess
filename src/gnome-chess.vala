@@ -1078,22 +1078,22 @@ public class Application : Gtk.Application
         switch (game.result)
         {
         case ChessResult.WHITE_WON:
-            /* Message display when the white player wins */
-            title = _("White wins");
+            /* Window title when the white player wins */
+            title = _("White Wins");
             pgn_game.result = PGNGame.RESULT_WHITE;
             break;
         case ChessResult.BLACK_WON:
-            /* Message display when the black player wins */
-            title = _("Black wins");
+            /* Window title when the black player wins */
+            title = _("Black Wins");
             pgn_game.result = PGNGame.RESULT_BLACK;
             break;
         case ChessResult.DRAW:
-            /* Message display when the game is drawn */
-            title = _("Game is drawn");
+            /* Window title when the game is drawn */
+            title = _("Game is Drawn");
             pgn_game.result = PGNGame.RESULT_DRAW;            
             break;
         case ChessResult.BUG:
-            /* Message display when the game cannot continue */
+            /* Window title when the game cannot continue */
             title = _("Oops! Something has gone wrong.");
             /* don't set the pgn_game result; these are standards */
             break;
