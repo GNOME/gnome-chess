@@ -1106,48 +1106,48 @@ public class Application : Gtk.Application
         {
         case ChessRule.CHECKMATE:
             /* Message displayed when the game ends due to a player being checkmated */
-            reason = _("Opponent is in check and cannot move (checkmate)");
+            reason = _("Opponent is in check and cannot move (checkmate).");
             break;
         case ChessRule.STALEMATE:
             /* Message displayed when the game terminates due to a stalemate */
-            reason = _("Opponent cannot move (stalemate)");
+            reason = _("Opponent cannot move (stalemate).");
             break;
         case ChessRule.FIFTY_MOVES:
             /* Message displayed when the game is drawn due to the fifty move rule */
-            reason = _("No piece has been taken or pawn moved in the last fifty moves");
+            reason = _("No piece has been taken or pawn moved in the last fifty moves.");
             break;
         case ChessRule.TIMEOUT:
             /* Message displayed when the game ends due to one player's clock stopping */
-            reason = _("Opponent has run out of time");
+            reason = _("Opponent has run out of time.");
             break;
         case ChessRule.THREE_FOLD_REPETITION:
             /* Message displayed when the game is drawn due to the three-fold-repitition rule */
-            reason = _("The same board state has occurred three times (threefold repetition)");
+            reason = _("The same board state has occurred three times (threefold repetition).");
             break;
         case ChessRule.INSUFFICIENT_MATERIAL:
             /* Message displayed when the game is drawn due to the insufficient material rule */
-            reason = _("Neither player can checkmate (insufficient material)");
+            reason = _("Neither player can checkmate (insufficient material).");
             break;
         case ChessRule.RESIGN:
             if (game.result == ChessResult.WHITE_WON)
             {
                 /* Message displayed when the game ends due to the black player resigning */
-                reason = _("The black player has resigned");
+                reason = _("The black player has resigned.");
             }
             else
             {
                 /* Message displayed when the game ends due to the white player resigning */
-                reason = _("The white player has resigned");
+                reason = _("The white player has resigned.");
             }
             break;
         case ChessRule.ABANDONMENT:
             /* Message displayed when a game is abandoned */
-            reason = _("The game has been abandoned");
+            reason = _("The game has been abandoned.");
             pgn_game.termination = PGNGame.TERMINATE_ABANDONED;
             break;
         case ChessRule.DEATH:
             /* Message displayed when the game ends due to a player dying */
-            reason = _("One of the players has died");
+            reason = _("One of the players has died.");
             pgn_game.termination = PGNGame.TERMINATE_DEATH;
             break;
         case ChessRule.BUG:
