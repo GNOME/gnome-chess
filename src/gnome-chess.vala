@@ -1094,7 +1094,7 @@ public class Application : Gtk.Application
             break;
         case ChessResult.BUG:
             /* Window title when the game cannot continue */
-            title = _("Oops! Something has gone wrong.");
+            title = _("Oops!");
             /* don't set the pgn_game result; these are standards */
             break;
         default:
@@ -1152,7 +1152,7 @@ public class Application : Gtk.Application
             break;
         case ChessRule.BUG:
             /* Message displayed when something goes wrong with the engine */
-            reason = _("The game cannot continue.");
+            reason = _("Something has gone wrong. The game cannot continue.");
             /* Don't set pgn_game termination; these are standards*/
             break;
         }
