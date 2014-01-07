@@ -1,4 +1,5 @@
-/*
+/* -*- Mode: vala; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+ *
  * Copyright (C) 2010-2013 Robert Ancell
  * Copyright (C) 2013-2014 Michael Catanzaro
  *
