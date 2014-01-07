@@ -16,9 +16,6 @@ public class Application : Gtk.Application
     private Gtk.Builder builder;
     private Gtk.Builder preferences_builder;
     private Gtk.ApplicationWindow window;
-    private Gtk.InfoBar info_bar;
-    private Gtk.Label info_title_label;
-    private Gtk.Label info_label;
     private Gtk.Container view_container;
     private ChessScene scene;
     private ChessView view;
@@ -139,7 +136,6 @@ public class Application : Gtk.Application
         history_combo = (Gtk.ComboBox) builder.get_object ("history_combo");
         white_time_label = (Gtk.Widget) builder.get_object ("white_time_label");
         black_time_label = (Gtk.Widget) builder.get_object ("black_time_label");
-        var view_box = (Gtk.Box) builder.get_object ("view_box");
         view_container = (Gtk.Container) builder.get_object ("view_container");
         headerbar = (Gtk.HeaderBar) builder.get_object ("headerbar");
         builder.connect_signals (this);
@@ -154,21 +150,6 @@ public class Application : Gtk.Application
         window.add_action_entries (window_entries, this);
         window.icon_name = "gnome-chess";
         add_window (window);
-
-        info_bar = new Gtk.InfoBar ();
-        var content_area = (Gtk.Container) info_bar.get_content_area ();
-        view_box.pack_start (info_bar, false, true, 0);
-        var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
-        vbox.show ();
-        content_area.add (vbox);
-        info_title_label = new Gtk.Label ("");
-        info_title_label.show ();
-        vbox.pack_start (info_title_label, false, true, 0);
-        vbox.hexpand = true;
-        vbox.vexpand = false;
-        info_label = new Gtk.Label ("");
-        info_label.show ();
-        vbox.pack_start (info_label, true, true, 0);
 
         scene = new ChessScene ();
         scene.is_human.connect ((p) => { return p == human_player; } );
@@ -472,9 +453,6 @@ public class Application : Gtk.Application
             game.clock.tick.connect (game_clock_tick_cb);
 
         scene.game = game;
-        info_bar.hide ();
-        update_history_panel ();
-        update_action_status ();
 
         var white_engine = pgn_game.white_ai;
         var white_level = pgn_game.white_level;
@@ -569,6 +547,8 @@ public class Application : Gtk.Application
         if (game.result != ChessResult.IN_PROGRESS)
             game_end_cb (game);
 
+        update_history_panel ();
+        update_action_status ();
         update_headerbar_title ();
 
         white_time_label.queue_draw ();
@@ -1177,9 +1157,8 @@ public class Application : Gtk.Application
             break;
         }
 
-        info_title_label.set_markup ("<big><b>%s</b></big>".printf (title));
-        info_label.set_text (reason);
-        info_bar.show ();
+        headerbar.set_title (title);
+        headerbar.set_subtitle (reason);
 
         white_time_label.queue_draw ();
         black_time_label.queue_draw ();
