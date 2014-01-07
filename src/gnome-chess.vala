@@ -464,7 +464,6 @@ public class Application : Gtk.Application
         update_history_panel ();
         update_action_status ();
 
-        // TODO: Could both be engines
         var white_engine = pgn_game.white_ai;
         var white_level = pgn_game.white_level;
         if (white_level == null)
