@@ -132,6 +132,10 @@ public class Application : Gtk.Application
         prev_move_button = (Gtk.Widget) builder.get_object ("prev_move_button");
         next_move_button = (Gtk.Widget) builder.get_object ("next_move_button");
         last_move_button = (Gtk.Widget) builder.get_object ("last_move_button");
+        var first_move_image = (Gtk.Image) builder.get_object ("first_move_image");
+        var prev_move_image = (Gtk.Image) builder.get_object ("prev_move_image");
+        var next_move_image = (Gtk.Image) builder.get_object ("next_move_image");
+        var last_move_image = (Gtk.Image) builder.get_object ("last_move_image");
         history_combo = (Gtk.ComboBox) builder.get_object ("history_combo");
         white_time_label = (Gtk.Widget) builder.get_object ("white_time_label");
         black_time_label = (Gtk.Widget) builder.get_object ("black_time_label");
@@ -139,6 +143,13 @@ public class Application : Gtk.Application
         view_container = (Gtk.Container) builder.get_object ("view_container");
         headerbar = (Gtk.HeaderBar) builder.get_object ("headerbar");
         builder.connect_signals (this);
+
+        bool rtl = Gtk.Widget.get_default_direction () == Gtk.TextDirection.RTL;
+
+        first_move_image.icon_name = rtl ? "go-first-rtl-symbolic" : "go-first-symbolic";
+        prev_move_image.icon_name = rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic";
+        next_move_image.icon_name = rtl ? "go-next-rtl-symbolic" : "go-next-symbolic";
+        last_move_image.icon_name = rtl ? "go-last-rtl-symbolic" : "go-last-symbolic";
 
         window.add_action_entries (window_entries, this);
         window.icon_name = "gnome-chess";
