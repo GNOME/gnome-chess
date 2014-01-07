@@ -1105,8 +1105,14 @@ public class Application : Gtk.Application
         switch (game.rule)
         {
         case ChessRule.CHECKMATE:
-            /* Window subtitle when the game ends due to a player being checkmated */
-            reason = _("Opponent is in check and cannot move (checkmate).");
+            if (game.result == ChessResult.WHITE_WON)
+                /* Window subtitle when Black is checkmated */
+                reason = _("Black is in check and cannot move (checkmate).");
+            else if (game.result == ChessResult.BLACK_WON)
+                /* Window subtitle when White is checkmated */
+                reason = _("Black is in check and cannot move (checkmate).");
+            else
+                assert_not_reached ();
             break;
         case ChessRule.STALEMATE:
             /* Window subtitle when the game terminates due to a stalemate */
@@ -1117,8 +1123,14 @@ public class Application : Gtk.Application
             reason = _("No piece has been taken or pawn moved in the last fifty moves.");
             break;
         case ChessRule.TIMEOUT:
-            /* Window subtitle when the game ends due to one player's clock stopping */
-            reason = _("Opponent has run out of time.");
+            if (game.result == ChessResult.WHITE_WON)
+                /* Window subtitle when the game ends due to Black's clock stopping */
+                reason = _("Black has run out of time.");
+            else if (game.result == ChessResult.BLACK_WON)
+                /* Window subtitle when the game ends due to White's clock stopping */
+                reason = _("White has run out of time.");
+            else
+                assert_not_reached ();
             break;
         case ChessRule.THREE_FOLD_REPETITION:
             /* Window subtitle when the game is drawn due to the three-fold-repitition rule */
@@ -1130,15 +1142,13 @@ public class Application : Gtk.Application
             break;
         case ChessRule.RESIGN:
             if (game.result == ChessResult.WHITE_WON)
-            {
                 /* Window subtitle when the game ends due to the black player resigning */
-                reason = _("The black player has resigned.");
-            }
-            else
-            {
+                reason = _("Black has resigned.");
+            else if (game.result == ChessResult.BLACK_WON)
                 /* Window subtitle when the game ends due to the white player resigning */
-                reason = _("The white player has resigned.");
-            }
+                reason = _("White has resigned.");
+            else
+                assert_not_reached ();
             break;
         case ChessRule.ABANDONMENT:
             /* Window subtitle when a game is abandoned */
