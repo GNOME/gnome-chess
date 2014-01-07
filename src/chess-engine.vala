@@ -105,6 +105,7 @@ public abstract class ChessEngine : Object
 
     public void stop ()
     {
+        // FIXME sometimes this source does not exist...
         if (stdout_watch_id > 0)
             Source.remove (stdout_watch_id);
 
