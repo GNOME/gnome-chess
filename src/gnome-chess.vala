@@ -1181,7 +1181,7 @@ public class Application : Gtk.Application
             break;
         case ChessRule.BUG:
             /* Window subtitle when something goes wrong with the engine */
-            reason = _("Something has gone wrong. The game cannot continue.");
+            reason = _("The computer player died unexpectedly. The game cannot continue.");
             /* Don't set pgn_game termination; these are standards*/
             break;
         }
