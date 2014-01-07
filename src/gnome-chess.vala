@@ -558,6 +558,8 @@ public class Application : Gtk.Application
         if (game.result != ChessResult.IN_PROGRESS)
             game_end_cb (game);
 
+        update_headerbar_title ();
+
         white_time_label.queue_draw ();
         black_time_label.queue_draw ();
     }
@@ -941,6 +943,7 @@ public class Application : Gtk.Application
         enable_window_action (SAVE_GAME_AS_ACTION_NAME);
         update_history_panel ();
         update_action_status ();
+        update_headerbar_title ();
 
         if (opponent_engine != null)
             opponent_engine.report_move (move);
@@ -1010,6 +1013,28 @@ public class Application : Gtk.Application
             enable_window_action (UNDO_MOVE_ACTION_NAME);
         else
             disable_window_action (UNDO_MOVE_ACTION_NAME);
+    }
+
+    private void update_headerbar_title ()
+    {
+        if (game.current_player.color == Color.WHITE)
+        {
+            if (human_player == null || human_player.color == Color.WHITE)
+                /* Window title on White's turn if White is human */
+                headerbar.set_title (_("White to Move"));
+            else
+                /* Window title on White's turn if White is a computer */
+                headerbar.set_title (_("White is Thinking…"));
+        }
+        else
+        {
+            if (human_player == null || human_player.color == Color.BLACK)
+                /* Window title on Black's turn if Black is human */
+                headerbar.set_title (_("Black to Move"));
+            else
+                /* Window title on Black's turn if Black is a computer */
+                headerbar.set_title (_("Black is Thinking…"));
+        }
     }
 
     private void add_accelerators ()
