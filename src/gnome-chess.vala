@@ -650,10 +650,17 @@ public class Application : Gtk.Application
          * game is likely to end naturally first. (And in the off chance that
          * the game really is over but it takes more than two seconds for us to
          * figure that out, something really HAS gone wrong.)
+         *
+         * This is complicated a bit more because we have to be sure we're
+         * stopping the original, presumably-buggy game, and not a new one that
+         * the player just happens to have started two seconds after the last
+         * game finished normally.
          */
+        var original_game = game;
         Timeout.add_seconds (2, () => {
-            game.stop (ChessResult.BUG, ChessRule.BUG);
-            /* Disconnect from the mainloop */
+            if (game == original_game)
+                game.stop (ChessResult.BUG, ChessRule.BUG);
+            /* Disconnect from the main loop */
             return false;
         });
     }
