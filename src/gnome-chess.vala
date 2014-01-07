@@ -1105,53 +1105,54 @@ public class Application : Gtk.Application
         switch (game.rule)
         {
         case ChessRule.CHECKMATE:
-            /* Message displayed when the game ends due to a player being checkmated */
+            /* Window subtitle when the game ends due to a player being checkmated */
             reason = _("Opponent is in check and cannot move (checkmate).");
             break;
         case ChessRule.STALEMATE:
-            /* Message displayed when the game terminates due to a stalemate */
+            /* Window subtitle when the game terminates due to a stalemate */
             reason = _("Opponent cannot move (stalemate).");
             break;
         case ChessRule.FIFTY_MOVES:
-            /* Message displayed when the game is drawn due to the fifty move rule */
+            /* Window subtitle when the game is drawn due to the fifty move rule */
             reason = _("No piece has been taken or pawn moved in the last fifty moves.");
             break;
         case ChessRule.TIMEOUT:
-            /* Message displayed when the game ends due to one player's clock stopping */
+            /* Window subtitle when the game ends due to one player's clock stopping */
             reason = _("Opponent has run out of time.");
             break;
         case ChessRule.THREE_FOLD_REPETITION:
-            /* Message displayed when the game is drawn due to the three-fold-repitition rule */
+            /* Window subtitle when the game is drawn due to the three-fold-repitition rule */
             reason = _("The same board state has occurred three times (threefold repetition).");
             break;
         case ChessRule.INSUFFICIENT_MATERIAL:
-            /* Message displayed when the game is drawn due to the insufficient material rule */
+            /* Window subtitle when the game is drawn due to the insufficient material rule */
             reason = _("Neither player can checkmate (insufficient material).");
             break;
         case ChessRule.RESIGN:
             if (game.result == ChessResult.WHITE_WON)
             {
-                /* Message displayed when the game ends due to the black player resigning */
+                /* Window subtitle when the game ends due to the black player resigning */
                 reason = _("The black player has resigned.");
             }
             else
             {
-                /* Message displayed when the game ends due to the white player resigning */
+                /* Window subtitle when the game ends due to the white player resigning */
                 reason = _("The white player has resigned.");
             }
             break;
         case ChessRule.ABANDONMENT:
-            /* Message displayed when a game is abandoned */
+            /* Window subtitle when a game is abandoned */
             reason = _("The game has been abandoned.");
             pgn_game.termination = PGNGame.TERMINATE_ABANDONED;
             break;
         case ChessRule.DEATH:
-            /* Message displayed when the game ends due to a player dying */
+            /* Window subtitle when the game ends due to a player dying.
+             * This is a PGN standard. GNOME Chess will never kill the user. */
             reason = _("One of the players has died.");
             pgn_game.termination = PGNGame.TERMINATE_DEATH;
             break;
         case ChessRule.BUG:
-            /* Message displayed when something goes wrong with the engine */
+            /* Window subtitle when something goes wrong with the engine */
             reason = _("Something has gone wrong. The game cannot continue.");
             /* Don't set pgn_game termination; these are standards*/
             break;
