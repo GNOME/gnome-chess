@@ -138,7 +138,7 @@ public abstract class ChessEngine : Object
 
         if (status == IOStatus.EOF)
         {
-            stdout.printf ("EOF\n");
+            debug ("EOF");
             return false;
         }
         if (status == IOStatus.NORMAL)
