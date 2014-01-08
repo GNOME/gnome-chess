@@ -201,8 +201,8 @@ public class ChessMove
 
     public string get_fan ()
     {
-        const string white_piece_names[] = {"", "♜", "♞", "♝", "♛", "♚"};
-        const string black_piece_names[] = {"", "♖", "♘", "♗", "♕", "♔"};
+        const string white_piece_names[] = {"", "♖", "♘", "♗", "♕", "♔"};
+        const string black_piece_names[] = {"", "♜", "♞", "♝", "♛", "♚"};
         if (piece.color == Color.WHITE)
             return make_san ((string[]) white_piece_names);
         else
