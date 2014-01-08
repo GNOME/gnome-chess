@@ -106,9 +106,11 @@ public abstract class ChessEngine : Object
 
     public void stop ()
     {
-        // FIXME sometimes this source does not exist...
         if (stdout_watch_id > 0)
+        {
             Source.remove (stdout_watch_id);
+            stdout_watch_id = 0;
+        }
 
         if (pid != 0)
             Posix.kill (pid, Posix.SIGTERM);
@@ -128,17 +130,20 @@ public abstract class ChessEngine : Object
         catch (ConvertError e)
         {
             warning ("Failed to read from engine: %s", e.message);
+            stdout_watch_id = 0;
             return false;
         }
         catch (IOChannelError e)
         {
             warning ("Failed to read from engine: %s", e.message);
+            stdout_watch_id = 0;
             return false;
         }
 
         if (status == IOStatus.EOF)
         {
             debug ("EOF");
+            stdout_watch_id = 0;
             return false;
         }
         if (status == IOStatus.NORMAL)
