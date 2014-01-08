@@ -1276,7 +1276,6 @@ public class ChessGame
 
     public const string STANDARD_SETUP = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
-    public signal void started ();
     public signal void turn_started (ChessPlayer player);
     public signal void moved (ChessMove move);
     public signal void paused ();
@@ -1476,7 +1475,6 @@ public class ChessGame
             _clock.active_color = current_player.color;
         }
 
-        started ();
         current_player.start_turn ();
         turn_started (current_player);
     }

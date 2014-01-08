@@ -444,7 +444,6 @@ public class Application : Gtk.Application
             }
         }
 
-        game.started.connect (game_start_cb);
         game.turn_started.connect (game_turn_cb);
         game.moved.connect (game_move_cb);
         game.undo.connect (game_undo_cb);
@@ -534,6 +533,8 @@ public class Application : Gtk.Application
         }
 
         game.start ();
+        if (opponent_engine != null)
+            opponent_engine.start_game ();
 
         if (moves.length > 0 && game.clock != null)
         {
@@ -688,12 +689,6 @@ public class Application : Gtk.Application
          * of accepting the draw, but this doesn't make much sense unless the
          * player can also offer a draw himself.
          */
-    }
-
-    private void game_start_cb (ChessGame game)
-    {
-        if (opponent_engine != null)
-            opponent_engine.start_game ();
     }
 
     private void game_clock_tick_cb (ChessClock clock)
