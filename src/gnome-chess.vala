@@ -1997,7 +1997,7 @@ public class Application : Gtk.Application
                                                  _("_Open"), Gtk.ResponseType.OK, null);
         add_info_bar_to_dialog (open_dialog, out open_dialog_info_bar, out open_dialog_error_label);
 
-        open_dialog.file_activated.connect (open_file_cb);
+        open_dialog.file_activated.connect (() => { open_cb (Gtk.ResponseType.OK); });
         open_dialog.response.connect (open_cb);
 
         /* Filter out non PGN files by default */
@@ -2014,11 +2014,6 @@ public class Application : Gtk.Application
         open_dialog.add_filter (all_filter);
 
         open_dialog.present ();
-    }
-    
-    private void open_file_cb ()
-    {
-        open_cb (Gtk.ResponseType.OK);
     }
 
     private void open_cb (int response_id)
