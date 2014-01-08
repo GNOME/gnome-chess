@@ -540,6 +540,7 @@ public class Application : Gtk.Application
         {
             game.black.local_human = true;
             game.white.local_human = true;
+            human_player = null;
         }
         else
         {
