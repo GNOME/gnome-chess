@@ -105,7 +105,10 @@ public abstract class ChessEngine : Object
     public void stop ()
     {
         if (stdout_watch_id > 0)
+        {
             Source.remove (stdout_watch_id);
+            stdout_watch_id = 0;
+        }
 
         if (pid != 0)
         {
@@ -127,16 +130,19 @@ public abstract class ChessEngine : Object
         }
         catch (ConvertError e)
         {
+            stdout_watch_id = 0;
             return false;
         }
         catch (IOChannelError e)
         {
+            stdout_watch_id = 0;
             return false;
         }
 
         if (status == IOStatus.EOF)
         {
             stdout.printf ("EOF\n");
+            stdout_watch_id = 0;
             return false;
         }
         if (status == IOStatus.NORMAL)
