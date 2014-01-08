@@ -87,9 +87,6 @@ public class ChessEngineUCI : ChessEngine
             {
                 switch (tokens[0])
                 {
-                case "id":
-                    break;
-
                 case "uciok":
                     if (tokens.length != 1)
                         warning ("Unexpected arguments on uciok: %s", line);
@@ -110,16 +107,6 @@ public class ChessEngineUCI : ChessEngine
                     debug ("Engine moves %s", tokens[1]);
                     waiting_for_move = false;
                     moved (tokens[1]);
-                    break;
-
-                case "info":
-                    break;
-
-                case "option":
-                    break;
-
-                default:
-                    debug ("Unknown command: '%s'", line);
                     break;
                 }
             }

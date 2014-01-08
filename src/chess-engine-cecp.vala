@@ -92,10 +92,6 @@ public class ChessEngineCECP : ChessEngine
             {
                 offer_draw ();
             }
-            else
-            {
-                debug ("Unknown command: '%s'", line);
-            }
 
             buffer = buffer[offset+1:buffer.length];
         }
