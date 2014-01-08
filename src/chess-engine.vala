@@ -143,7 +143,6 @@ public abstract class ChessEngine : Object
         }
         if (status == IOStatus.NORMAL)
         {
-            //debug ("Read %zu octets from engine", n_read);
             buf.resize ((int) n_read);
             process_input (buf);
         }
@@ -166,8 +165,6 @@ public abstract class ChessEngine : Object
             n_written = Posix.write(stdin_fd, d, d.length);
             if (n_written < 0)
                 return;
-
-            //debug ("Wrote %zu octets to engine", n_written);
 
             offset += n_written;
         }
