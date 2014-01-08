@@ -511,7 +511,15 @@ public class Application : Gtk.Application
             opponent_engine.error.connect (engine_error_cb);
             opponent_engine.claim_draw.connect (engine_claim_draw_cb);
             opponent_engine.offer_draw.connect (engine_offer_draw_cb);
-            opponent_engine.start ();
+
+            if (!opponent_engine.start ())
+            {
+                disable_window_action (SAVE_GAME_ACTION_NAME);
+                game.result = ChessResult.BUG;
+                game.rule = ChessRule.DEATH;
+                game_end_cb (game);
+                return;
+            }
         }
 
         /* Replay current moves */
