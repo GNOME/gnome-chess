@@ -153,21 +153,13 @@ public abstract class ChessEngine : Object
     protected void write (char[] data)
     {
         size_t offset = 0;
-        size_t n_written;
-        
-        while (offset < data.length)
+        size_t n_written = 0;
+
+        do
         {
-            /* Unnecessary copying but there seems to be a vala bug here */
-            char[] d = new char[data.length - offset];
-            for (int i = 0; i < data.length - offset; i++)
-                d[i] = data[offset + i];
-
-            n_written = Posix.write(stdin_fd, d, d.length);
-            if (n_written < 0)
-                return;
-
+            n_written = Posix.write(stdin_fd, &data[offset], data.length - offset);
             offset += n_written;
-        }
+        } while (n_written > 0 && offset < data.length);
     }
 
     protected void write_line (string line)
