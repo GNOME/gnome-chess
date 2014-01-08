@@ -167,7 +167,7 @@ public class Application : Gtk.Application
 
         ai_profiles = AIProfile.load_ai_profiles (Path.build_filename (SYSCONFDIR, "chess-engines.conf", null));
         foreach (var profile in ai_profiles)
-            message ("Detected AI profile %s in %s", profile.name, profile.path);
+            debug ("Detected AI profile %s in %s", profile.name, profile.path);
 
         autosave_filename = data_dir.get_path () + "/autosave.pgn";
 
