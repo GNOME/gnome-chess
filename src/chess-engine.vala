@@ -113,7 +113,10 @@ public abstract class ChessEngine : Object
         }
 
         if (pid != 0)
+        {
             Posix.kill (pid, Posix.SIGTERM);
+            pid = 0;
+        }
     }
 
     private bool read_cb (IOChannel source, IOCondition condition)
