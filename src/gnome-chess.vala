@@ -1815,7 +1815,7 @@ public class Application : Gtk.Application
     }
 
     private const string[] authors = { "Robert Ancell <robert.ancell@gmail.com>", null };
-    private const string[] artists = { "John-Paul Gignac (3D Models)", "Max Froumentin (2D Models)", "Hylke Bons <h.bons@student.rug.nl> (icon)", null };
+    private const string[] artists = { "John-Paul Gignac (3D Models)", "Max Froumentin (2D Models)", "Jakub Steiner (icon)", null };
 
     public void about_cb ()
     {
