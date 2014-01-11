@@ -18,6 +18,7 @@ public abstract class ChessEngine : Object
     private int stderr_fd;
     private IOChannel stdout_channel;
     private uint stdout_watch_id;
+    private bool started = false;
 
     protected virtual void process_input (char[] data) {}
 
@@ -82,8 +83,10 @@ public abstract class ChessEngine : Object
         {
             stderr.printf ("Failed to set input from chess engine to non-blocking: %s", e.message);
         }
+        stdout_channel.set_close_on_unref (true);
         stdout_watch_id = stdout_channel.add_watch (IOCondition.IN, read_cb);
 
+        started = true;
         starting ();
 
         return true;
@@ -91,6 +94,7 @@ public abstract class ChessEngine : Object
 
     private void engine_stopped_cb (Pid pid, int status)
     {
+        Process.close_pid (pid);
         stopped ();
     }
 
@@ -104,17 +108,32 @@ public abstract class ChessEngine : Object
 
     public void stop ()
     {
-        if (stdout_watch_id > 0)
+        if (!started)
+            return;
+
+        Source.remove (stdout_watch_id);
+
+        try
         {
-            Source.remove (stdout_watch_id);
-            stdout_watch_id = 0;
+            stdout_channel.shutdown (false);
+        }
+        catch (IOChannelError e)
+        {
+            warning ("Failed to close channel to engine's stdout: %s", e.message);
         }
 
-        if (pid != 0)
-        {
-            Posix.kill (pid, Posix.SIGTERM);
-            Process.close_pid (pid);
-        }
+        if (FileUtils.close (stdin_fd) == -1)
+            warning ("Failed to close pipe to engine's stdin: %s",
+                     strerror (errno));
+
+        if (FileUtils.close (stderr_fd) == -1)
+            warning ("Failed to close pipe to engine's stderr: %s",
+                     strerror (errno));
+
+        if (Posix.kill (pid, Posix.SIGTERM) == -1)
+            warning ("Failed to kill engine: %s", strerror (errno));
+
+        started = false;
     }
 
     private bool read_cb (IOChannel source, IOCondition condition)
