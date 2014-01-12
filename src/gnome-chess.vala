@@ -2001,8 +2001,8 @@ public class Application : Gtk.Application
                                                  _("_Open"), Gtk.ResponseType.OK, null);
         add_info_bar_to_dialog (open_dialog, out open_dialog_info_bar, out open_dialog_error_label);
 
-        open_dialog.file_activated.connect (() => open_cb (Gtk.ResponseType.OK));
-        open_dialog.response.connect (open_cb);
+        open_dialog.file_activated.connect (() => open_dialog_cb (Gtk.ResponseType.OK));
+        open_dialog.response.connect (open_dialog_cb);
 
         /* Filter out non PGN files by default */
         var pgn_filter = new Gtk.FileFilter ();
@@ -2020,7 +2020,7 @@ public class Application : Gtk.Application
         open_dialog.present ();
     }
 
-    private void open_cb (int response_id)
+    private void open_dialog_cb (int response_id)
     {
         if (response_id == Gtk.ResponseType.OK)
         {
