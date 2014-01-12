@@ -33,6 +33,9 @@ PKG_CHECK_MODULES(TEST, [
   gio-2.0
 ])
 
+AC_CHECK_HEADERS([linux/prctl.h])
+AM_CONDITIONAL([WITH_PRCTL], [test x$ac_cv_header_linux_prctl_h = xyes])
+
 AC_PATH_PROG([APPDATA_VALIDATE], [appdata-validate], [/bin/true])
 AC_PATH_PROG([DESKTOP_FILE_VALIDATE], [desktop-file-validate], [/bin/true])
 
