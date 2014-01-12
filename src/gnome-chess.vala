@@ -1931,7 +1931,7 @@ public class Application : Gtk.Application
                                                  save_button_label, Gtk.ResponseType.OK, null);
         add_info_bar_to_dialog (save_dialog, out save_dialog_info_bar, out save_dialog_error_label);
 
-        save_dialog.file_activated.connect (() => { save_dialog_cb (Gtk.ResponseType.OK); });
+        save_dialog.file_activated.connect (() => save_dialog_cb (Gtk.ResponseType.OK));
         save_dialog.response.connect (save_dialog_cb);
 
         if (game_file != null && game_file.get_path () != autosave_filename)
@@ -2001,7 +2001,7 @@ public class Application : Gtk.Application
                                                  _("_Open"), Gtk.ResponseType.OK, null);
         add_info_bar_to_dialog (open_dialog, out open_dialog_info_bar, out open_dialog_error_label);
 
-        open_dialog.file_activated.connect (() => { open_cb (Gtk.ResponseType.OK); });
+        open_dialog.file_activated.connect (() => open_cb (Gtk.ResponseType.OK));
         open_dialog.response.connect (open_cb);
 
         /* Filter out non PGN files by default */
