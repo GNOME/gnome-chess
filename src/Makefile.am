@@ -9,6 +9,7 @@ gnome_chess_SOURCES = \
 	gl.vapi \
 	glu.vapi \
 	glx.vapi \
+	prctl.vapi \
 	3ds.vala \
 	gnome-chess.vala \
 	ai-profile.vala \
@@ -65,6 +66,10 @@ gnome_chess_VALAFLAGS = \
     --pkg librsvg-2.0 \
     --pkg posix \
     --pkg sqlite3
+
+if WITH_PRCTL
+    gnome_chess_VALAFLAGS += -D HAVE_LINUX_PRCTL_H
+endif
 
 CLEANFILES = \
 	$(patsubst %.vala,%.c,$(filter %.vala, $(SOURCES))) \
