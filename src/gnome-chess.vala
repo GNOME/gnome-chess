@@ -1836,8 +1836,8 @@ public class Application : Gtk.Application
         about_dialog.authors = authors;
         about_dialog.artists = artists;
         about_dialog.translator_credits = _("translator-credits");
-        about_dialog.website = "http://www.gnome.org/projects/gnome-games/";
-        about_dialog.website_label = _("GNOME Games web site");
+        about_dialog.website = "https://wiki.gnome.org/Apps/Chess";
+        about_dialog.website_label = _("Website");
         about_dialog.logo_icon_name = "gnome-chess";
         about_dialog.response.connect (about_response_cb);
         about_dialog.show ();
