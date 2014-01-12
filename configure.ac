@@ -42,6 +42,9 @@ AC_SUBST([GNOME_CHESS_CFLAGS])
 TEST_CFLAGS="$TEST_CFLAGS -w"
 AC_SUBST([TEST_CFLAGS])
 
+AC_CHECK_HEADERS([linux/prctl.h])
+AM_CONDITIONAL([WITH_PRCTL], [test x$ac_cv_header_linux_prctl_h = xyes])
+
 dnl ###########################################################################
 dnl Internationalization
 dnl ###########################################################################

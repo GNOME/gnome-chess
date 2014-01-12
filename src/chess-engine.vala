@@ -63,7 +63,11 @@ public abstract class ChessEngine : Object
         {
             Process.spawn_async_with_pipes (null, argv, null,
                                             SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD,
+#if HAVE_LINUX_PRCTL_H
+                                            () => Prctl.prctl (Prctl.SET_PDEATHSIG, Posix.SIGTERM),
+#else
                                             null,
+#endif
                                             out pid, out stdin_fd, out stdout_fd, out stderr_fd);
         }
         catch (SpawnError e)
