@@ -226,10 +226,6 @@ public class PGN
 {
     public List<PGNGame> games;
 
-    public PGN ()
-    {
-    }
-
     public PGN.from_string (string data) throws PGNError
     {
         // FIXME: Feed through newline at end to make sure parsing complete
