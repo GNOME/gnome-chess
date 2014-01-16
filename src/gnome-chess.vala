@@ -1900,7 +1900,8 @@ public class Application : Gtk.Application
             }
             catch (Error e)
             {
-                save_dialog_error_label.set_text (_("Failed to save game: %s").printf (e.message));
+                warning ("Failed to save game: %s", e.message);
+                save_dialog_error_label.set_text (_("Failed to save game"));
                 save_dialog_info_bar.set_message_type (Gtk.MessageType.ERROR);
                 save_dialog_info_bar.show ();
                 return;
@@ -2030,7 +2031,8 @@ public class Application : Gtk.Application
             }
             catch (Error e)
             {
-                open_dialog_error_label.set_text (_("Failed to open game: %s").printf (e.message));
+                warning ("Failed to open game: %s", e.message);
+                open_dialog_error_label.set_text (_("Failed to open game"));
                 open_dialog_info_bar.set_message_type (Gtk.MessageType.ERROR);
                 open_dialog_info_bar.show ();
                 return;
