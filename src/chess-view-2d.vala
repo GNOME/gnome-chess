@@ -133,8 +133,12 @@ private class ChessView2D : ChessView
             string[] files;
             string[] ranks;
 
+#if VALA_0_22
+            Cairo.Matrix matrix = c.get_matrix ();
+#else
             Cairo.Matrix matrix;
             c.get_matrix (out matrix);
+#endif
 
             if (scene.board_angle == 180.0)
             {
