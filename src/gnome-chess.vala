@@ -2129,8 +2129,6 @@ class GnomeChess
         /* This can probably be removed if the desktop file is renamed to gnome-chess.desktop */
         Environment.set_prgname ("glchess");
 
-        Gtk.init (ref args);
-
         var c = new OptionContext (/* Arguments and description for --help text */
                                    _("[FILE] - Play Chess"));
         c.add_main_entries (options, GETTEXT_PACKAGE);
