@@ -171,9 +171,10 @@ private class ChessView3D : ChessView
                               GLX_ACCUM_GREEN_SIZE, 1,
                               GLX_ACCUM_BLUE_SIZE, 1,
                               0 }; /* NOTE: Should be None (from X11) but that is a pointer and Vala doesn't like that */
-        drawable = Gdk.X11Window.get_xid (get_window ());
-        display = Gdk.X11Display.get_xdisplay (get_window ().get_display ());
-        var screen = Gdk.X11Screen.get_screen_number (get_screen ());
+        var window = (Gdk.X11.Window) get_window ();
+        drawable = window.get_xid ();
+        display = ((Gdk.X11.Display) window.get_display ()).get_xdisplay ();
+        var screen = ((Gdk.X11.Screen) get_screen ()).get_screen_number ();
         var visual = glXChooseVisual (display, screen, attributes);
         if (visual == null)
             warning ("Failed to get GLX visual on display %p, screen %d", display, screen);
