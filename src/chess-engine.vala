@@ -100,6 +100,7 @@ public abstract class ChessEngine : Object
     private void engine_stopped_cb (Pid pid, int status)
     {
         Process.close_pid (pid);
+        pid = 0;
         stopped ();
     }
 
@@ -135,7 +136,7 @@ public abstract class ChessEngine : Object
             warning ("Failed to close pipe to engine's stderr: %s",
                      strerror (errno));
 
-        if (Posix.kill (pid, Posix.SIGTERM) == -1)
+        if (pid != 0 && Posix.kill (pid, Posix.SIGTERM) == -1)
             warning ("Failed to kill engine: %s", strerror (errno));
 
         started = false;
