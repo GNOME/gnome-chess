@@ -630,6 +630,7 @@ public class Application : Gtk.Application
 
     public override void activate ()
     {
+        base.activate ();
         window.show ();
     }
 
