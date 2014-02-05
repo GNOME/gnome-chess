@@ -94,6 +94,9 @@ public class Application : Gtk.Application
     {
         base.startup ();
 
+        Environment.set_application_name (_("Chess"));
+        Gtk.Window.set_default_icon_name ("gnome-chess");
+
         settings = new Settings ("org.gnome.gnome-chess");
 
         var data_dir = File.new_for_path (Path.build_filename (Environment.get_user_data_dir (), "gnome-chess", null));
@@ -148,7 +151,6 @@ public class Application : Gtk.Application
         last_move_image.icon_name = rtl ? "go-last-rtl-symbolic" : "go-last-symbolic";
 
         window.add_action_entries (window_entries, this);
-        window.icon_name = "gnome-chess";
         add_window (window);
 
         scene = new ChessScene ();
