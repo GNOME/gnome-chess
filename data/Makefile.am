@@ -20,7 +20,8 @@ dist_ui_DATA = \
 gsettings_SCHEMAS = org.gnome.gnome-chess.gschema.xml
 @GSETTINGS_RULES@
 
-dist_sysconf_DATA = chess-engines.conf
+pkgsysconfdir = $(sysconfdir)/gnome-chess
+dist_pkgsysconf_DATA = engines.conf
 
 dist_man_MANS = gnome-chess.6
 

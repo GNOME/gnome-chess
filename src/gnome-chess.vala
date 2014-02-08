@@ -167,7 +167,15 @@ public class Application : Gtk.Application
         settings.changed.connect (settings_changed_cb);
         settings_changed_cb (settings, "show-3d");
 
-        ai_profiles = AIProfile.load_ai_profiles (Path.build_filename (SYSCONFDIR, "chess-engines.conf", null));
+        var system_engine_cfg = Path.build_filename (SYSCONFDIR, "gnome-chess", "engines.conf", null);
+        var user_engine_cfg = Path.build_filename (Environment.get_user_config_dir (), "gnome-chess", "engines.conf", null);
+        if (FileUtils.test (user_engine_cfg, FileTest.EXISTS))
+            ai_profiles = AIProfile.load_ai_profiles (user_engine_cfg);
+        else if (FileUtils.test (system_engine_cfg, FileTest.EXISTS))
+            ai_profiles = AIProfile.load_ai_profiles (system_engine_cfg);
+        else
+            warning ("engines.conf not found");
+
         foreach (var profile in ai_profiles)
             debug ("Detected AI profile %s in %s", profile.name, profile.path);
 
