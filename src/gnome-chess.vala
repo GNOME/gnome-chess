@@ -1137,8 +1137,13 @@ public class Application : Gtk.Application
             pgn_game.result = PGNGame.RESULT_DRAW;            
             break;
         case ChessResult.BUG:
-            /* Window title when the game cannot continue */
-            title = _("Oops!");
+            if (game.rule == ChessRule.DEATH)
+                /* Window title when the chess engine dies unexpectedly */
+                title = _("The computer player died unexpectedly.");
+            else
+                /* Window subtitle when something goes wrong with the engine...
+                 * or when the engine says something is wrong with us! */
+                title = _("The computer player is very confused.");
             /* don't set the pgn_game result; these are standards */
             break;
         default:
@@ -1201,8 +1206,8 @@ public class Application : Gtk.Application
             break;
         case ChessRule.DEATH:
             if (game.result == ChessResult.BUG)
-                /* Window subtitle when the chess engine dies in the middle of a game */
-                reason = _("The computer player died unexpectedly. The game cannot continue.");
+                /* Window subtitle when the chess engine dies unexpectedly. */
+                reason = _("The game cannot continue.");
             else
                 /* Window subtitle when the game ends due to a player dying.
                  * This is a PGN standard. GNOME Chess will never kill the user. */
@@ -1212,7 +1217,7 @@ public class Application : Gtk.Application
         case ChessRule.BUG:
             /* Window subtitle when something goes wrong with the engine...
              * or when the engine says something is wrong with us! */
-            reason = _("The computer player is very confused. The game cannot continue.");
+            reason = _("The game cannot continue.");
             /* Don't set pgn_game termination; these are standards*/
             break;
         }
