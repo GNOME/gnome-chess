@@ -585,6 +585,10 @@ public class Application : Gtk.Application
         if (name == "human")
             return null;
 
+        /* Backwards compatibility with our old spelling of GNU Chess */
+        if (name == "GNUchess")
+            name = "GNU Chess";
+
         foreach (var p in ai_profiles)
         {
             if (name == "" || p.name == name)
