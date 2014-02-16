@@ -1138,7 +1138,7 @@ public class Application : Gtk.Application
                 reason = _("Black is in check and cannot move (checkmate).");
             else if (game.result == ChessResult.BLACK_WON)
                 /* Window subtitle when White is checkmated */
-                reason = _("Black is in check and cannot move (checkmate).");
+                reason = _("White is in check and cannot move (checkmate).");
             else
                 assert_not_reached ();
             break;
