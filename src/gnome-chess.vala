@@ -19,6 +19,7 @@ public class Application : Gtk.Application
     private Gtk.Container view_container;
     private ChessScene scene;
     private ChessView view;
+    private Gtk.Button pause_resume_button;
     private Gtk.MenuButton menu_button;
     private Gtk.Widget first_move_button;
     private Gtk.Widget prev_move_button;
@@ -130,6 +131,7 @@ public class Application : Gtk.Application
         }
         window = (Gtk.ApplicationWindow) builder.get_object ("gnome_chess_app");
         var undo_move_image = (Gtk.Image) builder.get_object ("undo_move_image");
+        pause_resume_button = (Gtk.Button) builder.get_object ("pause_button");
         menu_button = (Gtk.MenuButton) builder.get_object ("gear_button");
         first_move_button = (Gtk.Widget) builder.get_object ("first_move_button");
         prev_move_button = (Gtk.Widget) builder.get_object ("prev_move_button");
@@ -145,6 +147,8 @@ public class Application : Gtk.Application
         view_container = (Gtk.Container) builder.get_object ("view_container");
         headerbar = (Gtk.HeaderBar) builder.get_object ("headerbar");
         builder.connect_signals (this);
+
+        update_pause_resume_button ();
 
         bool rtl = Gtk.Widget.get_default_direction () == Gtk.TextDirection.RTL;
 
@@ -574,6 +578,7 @@ public class Application : Gtk.Application
 
         update_history_panel ();
         update_action_status ();
+        update_pause_resume_button ();
         update_headerbar_title ();
 
         white_time_label.queue_draw ();
@@ -1080,6 +1085,22 @@ public class Application : Gtk.Application
         add_accelerator ("Pause", "win." + PAUSE_RESUME_ACTION_NAME, null);
     }
 
+    private void update_pause_resume_button ()
+    {
+        if (game != null && game.is_paused)
+        {
+            pause_resume_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic",
+                                                                      Gtk.IconSize.BUTTON);
+            pause_resume_button.tooltip_text = _("Unpause the game");
+        }
+        else
+        {
+            pause_resume_button.image = new Gtk.Image.from_icon_name ("media-playback-pause-symbolic",
+                                                                      Gtk.IconSize.BUTTON);
+            pause_resume_button.tooltip_text = _("Pause the game");
+        }
+    }
+
     private void game_end_cb (ChessGame game)
     {
         disable_window_action (RESIGN_ACTION_NAME);
@@ -1350,6 +1371,7 @@ public class Application : Gtk.Application
         else
             game.pause ();
 
+        update_pause_resume_button ();
         update_history_panel ();
         update_action_status ();
     }

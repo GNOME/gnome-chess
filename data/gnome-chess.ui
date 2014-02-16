@@ -51,6 +51,22 @@
           </object>
         </child>
         <child>
+          <object class="GtkButton" id="pause_button">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="action-name">win.pause-resume</property>
+            <style>
+              <class name="image-button"/>
+            </style>
+            <child>
+              <object class="GtkImage" id="pause_image">
+                <property name="visible">True</property>
+                <property name="icon_size">1</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
           <object class="GtkMenuButton" id="gear_button">
             <property name="visible">True</property>
             <property name="valign">center</property>
