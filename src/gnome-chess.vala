@@ -118,6 +118,8 @@ public class Application : Gtk.Application
         var app_menu = (Menu) builder.get_object ("appmenu");
         set_app_menu (app_menu);
 
+        var window_menu = (Menu) builder.get_object ("windowmenu");
+
         try
         {
             builder.add_from_file (Path.build_filename (PKGDATADIR, "gnome-chess.ui", null));
@@ -153,6 +155,8 @@ public class Application : Gtk.Application
         undo_move_image.icon_name = rtl ? "edit-undo-rtl-symbolic" : "edit-undo-symbolic";
 
         window.add_action_entries (window_entries, this);
+        menu_button.set_menu_model (window_menu);
+
         add_window (window);
 
         scene = new ChessScene ();
@@ -214,7 +218,6 @@ public class Application : Gtk.Application
         }
 
         add_accelerators ();
-        update_window_menu ();
         show ();
     }
 
@@ -1077,23 +1080,6 @@ public class Application : Gtk.Application
         add_accelerator ("Pause", "win." + PAUSE_RESUME_ACTION_NAME, null);
     }
 
-    private void update_window_menu ()
-    {
-        var window_menu = new Menu ();
-
-        var section = new Menu ();
-        section.append (_("Save As…"), "win." + SAVE_GAME_AS_ACTION_NAME);
-        if (game.is_paused)
-            section.append (_("Resume"), "win." + PAUSE_RESUME_ACTION_NAME);
-        else
-            section.append (_("Pause"), "win." + PAUSE_RESUME_ACTION_NAME);
-        section.append (_("Claim Draw"), "win." + CLAIM_DRAW_ACTION_NAME);
-        section.append (_("Resign"), "win." + RESIGN_ACTION_NAME);
-        window_menu.append_section (null, section);
-
-        menu_button.set_menu_model (window_menu);
-    }
-
     private void game_end_cb (ChessGame game)
     {
         disable_window_action (RESIGN_ACTION_NAME);
@@ -1366,7 +1352,6 @@ public class Application : Gtk.Application
 
         update_history_panel ();
         update_action_status ();
-        update_window_menu ();
     }
 
     public void quit_cb ()
