@@ -1087,6 +1087,11 @@ public class Application : Gtk.Application
 
     private void update_pause_resume_button ()
     {
+        if (game != null && game.clock == null)
+            pause_resume_button.hide ();
+        else
+            pause_resume_button.show ();
+
         if (game != null && game.is_paused)
         {
             pause_resume_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic",
