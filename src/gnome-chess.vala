@@ -1239,6 +1239,8 @@ public class Application : Gtk.Application
     {
         if (!game.current_player.claim_draw ())
         {
+            game.pause ();
+
             var dialog = new Gtk.MessageDialog.with_markup (window,
                                                             Gtk.DialogFlags.MODAL,
                                                             Gtk.MessageType.INFO,
@@ -1269,6 +1271,7 @@ public class Application : Gtk.Application
 
             dialog.run ();
             dialog.destroy ();
+            game.unpause ();
         }
     }
 
