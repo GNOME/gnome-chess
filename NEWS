@@ -1,3 +1,15 @@
+GNU Chess is now the recommended default chess engine for Linux distributions.
+Feedback on the new difficulty levels is desired!
+
+* WARNING WARNING WARNING *
+
+This version switches to using the UCI protocol to communicate with GNU Chess.
+UCI support was added in GNU Chess 6.0; however, it is buggy and causes 100% CPU
+usage. This is a terrible user experience, and is fixed in GNU Chess 6.1.0.
+And if your distribution still ships GNU Chess 5.x, then it won't work at all.
+
+Please check your version of GNU Chess before updating!
+
 3.11.4 - January 12, 2014
 =========================
 
