@@ -127,6 +127,7 @@ public class Application : Gtk.Application
             warning ("Could not load UI: %s", e.message);
         }
         window = (Gtk.ApplicationWindow) builder.get_object ("gnome_chess_app");
+        var undo_move_image = (Gtk.Image) builder.get_object ("undo_move_image");
         menu_button = (Gtk.MenuButton) builder.get_object ("gear_button");
         first_move_button = (Gtk.Widget) builder.get_object ("first_move_button");
         prev_move_button = (Gtk.Widget) builder.get_object ("prev_move_button");
@@ -149,6 +150,7 @@ public class Application : Gtk.Application
         prev_move_image.icon_name = rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic";
         next_move_image.icon_name = rtl ? "go-next-rtl-symbolic" : "go-next-symbolic";
         last_move_image.icon_name = rtl ? "go-last-rtl-symbolic" : "go-last-symbolic";
+        undo_move_image.icon_name = rtl ? "edit-undo-rtl-symbolic" : "edit-undo-symbolic";
 
         window.add_action_entries (window_entries, this);
         add_window (window);
@@ -1076,18 +1078,11 @@ public class Application : Gtk.Application
         var window_menu = new Menu ();
 
         var section = new Menu ();
-        section.append (_("New"), "win." + NEW_GAME_ACTION_NAME);
-        section.append (_("Open…"), "win." + OPEN_GAME_ACTION_NAME);
-        section.append (_("Save"), "win." + SAVE_GAME_ACTION_NAME);
         section.append (_("Save As…"), "win." + SAVE_GAME_AS_ACTION_NAME);
-        window_menu.append_section (null, section);
-
-        section = new Menu();
         if (game.is_paused)
             section.append (_("Resume"), "win." + PAUSE_RESUME_ACTION_NAME);
         else
             section.append (_("Pause"), "win." + PAUSE_RESUME_ACTION_NAME);
-        section.append (_("Undo Move"), "win." + UNDO_MOVE_ACTION_NAME);
         section.append (_("Claim Draw"), "win." + CLAIM_DRAW_ACTION_NAME);
         section.append (_("Resign"), "win." + RESIGN_ACTION_NAME);
         window_menu.append_section (null, section);

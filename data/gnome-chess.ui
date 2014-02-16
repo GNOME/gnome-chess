@@ -22,6 +22,35 @@
         <property name="show_close_button">True</property>
         <property name="title" translatable="yes">Chess</property>
         <child>
+          <object class="GtkButton" id="new_game_button">
+            <property name="visible">True</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="label" translatable="yes">New Game</property>
+            <property name="action-name">win.new</property>
+            <style>
+              <class name="text-button"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="undo_move_button">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="action-name">win.undo</property>
+            <property name="tooltip-text" translatable="yes">Undo your most recent move</property>
+            <style>
+              <class name="image-button"/>
+            </style>
+            <child>
+              <object class="GtkImage" id="undo_move_image">
+                <property name="visible">True</property>
+                <property name="icon_size">1</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
           <object class="GtkMenuButton" id="gear_button">
             <property name="visible">True</property>
             <property name="valign">center</property>
@@ -33,6 +62,48 @@
                 <property name="visible">True</property>
                 <property name="icon_size">1</property>
                 <property name="icon_name">emblem-system-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack_type">end</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="save_game_button">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="action-name">win.save</property>
+            <property name="tooltip-text" translatable="yes">Save the current game</property>
+            <style>
+              <class name="image-button"/>
+            </style>
+            <child>
+              <object class="GtkImage" id="save_game_image">
+                <property name="visible">True</property>
+                <property name="icon_size">1</property>
+                <property name="icon_name">document-save-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack_type">end</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="open_game_button">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="action-name">win.open</property>
+            <property name="tooltip-text" translatable="yes">Open a saved game</property>
+            <style>
+              <class name="image-button"/>
+            </style>
+            <child>
+              <object class="GtkImage" id="open_game_image">
+                <property name="visible">True</property>
+                <property name="icon_size">1</property>
+                <property name="icon_name">document-open-symbolic</property>
               </object>
             </child>
           </object>
