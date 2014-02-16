@@ -629,11 +629,11 @@ public class Application : Gtk.Application
         if (profile.protocol == "cecp")
         {
             warn_if_fail (uci_go_options.length == 0);
-            engine = new ChessEngineCECP (profile.binary, args, options);
+            engine = new ChessEngineCECP (profile.binary, args, profile.delay_seconds, options);
         }
         else if (profile.protocol == "uci")
         {
-            engine = new ChessEngineUCI (profile.binary, args, options, uci_go_options);
+            engine = new ChessEngineUCI (profile.binary, args, profile.delay_seconds, options, uci_go_options);
         }
         else
         {
@@ -728,7 +728,7 @@ public class Application : Gtk.Application
             enable_window_action (PAUSE_RESUME_ACTION_NAME);
         
         if (game.is_started && opponent_engine != null && player == opponent)
-            opponent_engine.request_move ();
+            opponent_engine.move ();
     }
 
     private void set_move_text (Gtk.TreeIter iter, ChessMove move)

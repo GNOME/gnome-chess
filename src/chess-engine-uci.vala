@@ -1,6 +1,7 @@
 /* -*- Mode: vala; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*-
  *
  * Copyright (C) 2010-2013 Robert Ancell
+ * Copyright (C) 2013-2014 Michael Catanzaro
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -17,9 +18,9 @@ public class ChessEngineUCI : ChessEngine
     private string go_options;
     private bool waiting_for_move;
 
-    public ChessEngineUCI (string binary, string[] args, string[] options, string[] go_options)
+    public ChessEngineUCI (string binary, string[] args, uint delay_seconds, string[] options, string[] go_options)
     {
-        base (binary, args);
+        base (binary, args, delay_seconds);
         this.options = options;
         this.go_options = string.joinv (" ", go_options);
         buffer = new char[0];

@@ -16,6 +16,7 @@ public class AIProfile
     public string protocol { get; private set; }
     public string binary { get; private set; }
     public string path { get; private set; }
+    public uint delay_seconds { get; private set; default = 2; }
     public string[] easy_args { get; private set; }
     public string[] normal_args { get; private set; }
     public string[] hard_args { get; private set; }
@@ -64,6 +65,9 @@ public class AIProfile
                profile.easy_uci_go_options = load_array (file, name, "uci-go-option", "easy");
                profile.normal_uci_go_options = load_array (file, name, "uci-go-option", "normal");
                profile.hard_uci_go_options = load_array (file, name, "uci-go-option", "hard");
+
+               if (file.has_key (name, "delay-before-move"))
+                   profile.delay_seconds = file.get_integer (name, "delay-before-move");
            }
            catch (KeyFileError e)
            {

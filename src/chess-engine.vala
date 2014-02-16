@@ -1,6 +1,7 @@
 /* -*- Mode: vala; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*-
  *
  * Copyright (C) 2010-2013 Robert Ancell
+ * Copyright (C) 2013-2014 Michael Catanzaro
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -13,6 +14,8 @@ public abstract class ChessEngine : Object
 {
     private string binary;
     private string[] args;
+
+    private uint delay_seconds;
 
     private Pid pid;
     private int stdin_fd;
@@ -46,10 +49,11 @@ public abstract class ChessEngine : Object
         }
     }
 
-    public ChessEngine (string binary, string[] args)
+    public ChessEngine (string binary, string[] args, uint delay_seconds)
     {
         this.binary = binary;
         this.args = args;
+        this.delay_seconds = delay_seconds;
     }
 
     public bool start ()
@@ -106,11 +110,20 @@ public abstract class ChessEngine : Object
 
     public abstract void start_game ();
 
-    public abstract void request_move ();
-
     public abstract void report_move (ChessMove move);
 
     public abstract void undo ();
+
+    protected abstract void request_move ();
+
+    public void move ()
+    {
+        Timeout.add_seconds (delay_seconds, () => {
+            request_move ();
+            /* Disconnect from main loop */
+            return false;
+        });
+    }
 
     public void stop ()
     {
