@@ -1095,7 +1095,10 @@ public class Application : Gtk.Application
 
         if (game != null && game.is_paused)
         {
-            pause_resume_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic",
+            bool rtl = Gtk.Widget.get_default_direction () == Gtk.TextDirection.RTL;
+
+            pause_resume_button.image = new Gtk.Image.from_icon_name (rtl ? "media-playback-start-rtl-symbolic" :
+                                                                            "media-playback-start-symbolic",
                                                                       Gtk.IconSize.BUTTON);
             pause_resume_button.tooltip_text = _("Unpause the game");
         }
