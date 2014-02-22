@@ -368,8 +368,7 @@ public class Application : Gtk.Application
                 view_container.remove (view);
                 view.destroy ();
             }
-            // TODO make 3D mode work in Wayland and Mir
-            if (settings.get_boolean ("show-3d") && is_running_in_x11 ())
+            if (settings.get_boolean ("show-3d"))
                 view = new ChessView3D ();
             else
                 view = new ChessView2D ();
@@ -1587,14 +1586,6 @@ public class Application : Gtk.Application
             difficulty_combo.sensitive = false;
         }
 
-        if (!is_running_in_x11 ())
-        {
-            // FIXME leaves ugly blank space
-            // TODO make 3D mode work in Wayland and Mir
-            show_3d_check.hide ();
-            show_3d_smooth_check.hide ();
-        }
-
         preferences_dialog.present ();
     }
 
@@ -2137,14 +2128,6 @@ public class Application : Gtk.Application
 
         game_file = file;
         start_game ();
-    }
-
-    private bool is_running_in_x11 ()
-    {
-        // FIXME surely there's a better way to test this
-        // TODO make 3D mode work in Wayland and Mir
-        var temp_view = new ChessView2D ();
-        return (temp_view.get_window () as Gdk.X11.Window) != null;
     }
 
     private void enable_window_action (string name)
