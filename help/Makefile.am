@@ -1,10 +1,9 @@
 @YELP_HELP_RULES@
 HELP_ID = gnome-chess
 
-HELP_MEDIA = figures/new_game.png \
-	      figures/game.png \
-              figures/preferences_game.png \
-	      figures/preferences_view.png
+HELP_MEDIA = figures/game-3-12.png \
+             figures/preferences-game-3-12.png \
+	     figures/preferences-appearance-3-12.png
 
 HELP_FILES = \
 	index.docbook \
