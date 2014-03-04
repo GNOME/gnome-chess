@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gnome-games 3.3.91\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2014-01-31 23:10+0000\n"
-"PO-Revision-Date: 2014-02-01 18:32+0800\n"
+"POT-Creation-Date: 2014-02-24 19:14+0000\n"
+"PO-Revision-Date: 2014-02-28 09:55+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (traditional)\n"
 "Language: zh_TW\n"
@@ -20,24 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.3\n"
-
-#: ../data/glchess.desktop.in.h:1 ../data/gnome-chess.ui.h:1
-#: ../src/gnome-chess.vala:1831
-msgid "Chess"
-msgstr "國際象棋"
-
-#: ../data/glchess.desktop.in.h:2
-msgid "3D Chess Game"
-msgstr "3D 國際象棋遊戲"
-
-#: ../data/glchess.desktop.in.h:3
-msgid "Play the classic two-player board game of chess"
-msgstr "玩傳統的雙人國際象棋遊戲"
-
-#: ../data/glchess.desktop.in.h:4
-msgid "game;strategy;"
-msgstr "game;strategy;遊戲;策略;"
+"X-Generator: Poedit 1.6.3\n"
 
 #: ../data/gnome-chess.appdata.xml.in.h:1
 msgid "GNOME Chess"
@@ -60,23 +43,59 @@ msgstr ""
 "電腦國際象棋的愛好者會喜歡 GNOME Chess 與所有現代電腦國際象棋引擎的相容性，以"
 "及它自動偵測電腦安裝多種熱門引擎的能力。"
 
-#. Tooltip on the show first move (i.e. game start) navigation button
+#: ../data/gnome-chess.desktop.in.h:1 ../data/gnome-chess.ui.h:1
+#: ../src/gnome-chess.vala:98 ../src/gnome-chess.vala:1864
+msgid "Chess"
+msgstr "國際象棋"
+
+#: ../data/gnome-chess.desktop.in.h:2
+msgid "3D Chess Game"
+msgstr "3D 國際象棋遊戲"
+
+#: ../data/gnome-chess.desktop.in.h:3
+msgid "Play the classic two-player board game of chess"
+msgstr "玩傳統的雙人國際象棋遊戲"
+
+#: ../data/gnome-chess.desktop.in.h:4
+msgid "game;strategy;"
+msgstr "game;strategy;遊戲;策略;"
+
+#: ../data/gnome-chess.ui.h:2
+#| msgid "Game"
+msgid "New Game"
+msgstr "開新棋局"
+
 #: ../data/gnome-chess.ui.h:3
+msgid "Undo your most recent move"
+msgstr "恢復您最後一步棋"
+
+#: ../data/gnome-chess.ui.h:4
+#| msgid "Show the current move"
+msgid "Save the current game"
+msgstr "儲存目前的棋局"
+
+#: ../data/gnome-chess.ui.h:5
+#| msgid "Failed to save game"
+msgid "Open a saved game"
+msgstr "開啟儲存的棋局"
+
+#. Tooltip on the show first move (i.e. game start) navigation button
+#: ../data/gnome-chess.ui.h:7
 msgid "Rewind to the game start"
 msgstr "回捲到遊戲剛開始的時候"
 
 #. Tooltip on the show previous move navigation button
-#: ../data/gnome-chess.ui.h:5
+#: ../data/gnome-chess.ui.h:9
 msgid "Show the previous move"
 msgstr "顯示上一步"
 
 #. Tooltip on the show next move navigation button
-#: ../data/gnome-chess.ui.h:7
+#: ../data/gnome-chess.ui.h:11
 msgid "Show the next move"
 msgstr "顯示下一步"
 
 #. Tooltip on the show current move navigation button
-#: ../data/gnome-chess.ui.h:9
+#: ../data/gnome-chess.ui.h:13
 msgid "Show the current move"
 msgstr "顯示這一步"
 
@@ -96,6 +115,18 @@ msgstr "關於"
 #: ../data/menu.ui.h:4
 msgid "Quit"
 msgstr "結束"
+
+#: ../data/menu.ui.h:5
+msgid "Save As…"
+msgstr "另存為…"
+
+#: ../data/menu.ui.h:6
+msgid "Claim Draw"
+msgstr "宣告平手"
+
+#: ../data/menu.ui.h:7
+msgid "Resign"
+msgstr "認輸"
 
 #: ../data/org.gnome.gnome-chess.gschema.xml.h:1
 msgid "The width of the window"
@@ -405,713 +436,696 @@ msgid "Paused"
 msgstr "已暫停"
 
 #. Move History Combo: Go to the start of the game
-#: ../src/gnome-chess.vala:413
+#: ../src/gnome-chess.vala:432
 msgid "Game Start"
 msgstr "棋局開始"
 
 #. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
 #. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
-#: ../src/gnome-chess.vala:721
+#: ../src/gnome-chess.vala:746
 #, c-format
 msgid "White pawn moves from %1$s to %2$s"
 msgstr "白方士兵從 %1$s 移動到 %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:723
+#: ../src/gnome-chess.vala:748
 #, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s"
 msgstr "白方士兵從 %1$s 吃掉 %2$s 的黑方士兵"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:725
+#: ../src/gnome-chess.vala:750
 #, c-format
 msgid "White pawn at %1$s takes the black rook at %2$s"
 msgstr "白方士兵從 %1$s 吃掉 %2$s 的黑方城堡"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:727
+#: ../src/gnome-chess.vala:752
 #, c-format
 msgid "White pawn at %1$s takes the black knight at %2$s"
 msgstr "白方士兵從 %1$s 吃掉 %2$s 的黑方騎士"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:729
+#: ../src/gnome-chess.vala:754
 #, c-format
 msgid "White pawn at %1$s takes the black bishop at %2$s"
 msgstr "白方士兵從 %1$s 吃掉 %2$s 的黑方主教"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:731
+#: ../src/gnome-chess.vala:756
 #, c-format
 msgid "White pawn at %1$s takes the black queen at %2$s"
 msgstr "白方士兵從 %1$s 吃掉 %2$s 的黑方皇后"
 
 #. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
-#: ../src/gnome-chess.vala:733
+#: ../src/gnome-chess.vala:758
 #, c-format
 msgid "White rook moves from %1$s to %2$s"
 msgstr "白方城堡從 %1$s 移動到 %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:735
+#: ../src/gnome-chess.vala:760
 #, c-format
 msgid "White rook at %1$s takes the black pawn at %2$s"
 msgstr "白方城堡從 %1$s 吃掉 %2$s 的黑方士兵"
 
 #. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:737
+#: ../src/gnome-chess.vala:762
 #, c-format
 msgid "White rook at %1$s takes the black rook at %2$s"
 msgstr "白方城堡從 %1$s 吃掉 %2$s 的黑方城堡"
 
 #. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:739
+#: ../src/gnome-chess.vala:764
 #, c-format
 msgid "White rook at %1$s takes the black knight at %2$s"
 msgstr "白方城堡從 %1$s 吃掉 %2$s 的黑方騎士"
 
 #. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:741
+#: ../src/gnome-chess.vala:766
 #, c-format
 msgid "White rook at %1$s takes the black bishop at %2$s"
 msgstr "白方城堡從 %1$s 吃掉 %2$s 的黑方主教"
 
 #. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
-#: ../src/gnome-chess.vala:743
+#: ../src/gnome-chess.vala:768
 #, c-format
 msgid "White rook at %1$s takes the black queen at %2$s"
 msgstr "白方城堡從 %1$s 吃掉 %2$s 的黑方皇后"
 
 #. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
-#: ../src/gnome-chess.vala:745
+#: ../src/gnome-chess.vala:770
 #, c-format
 msgid "White knight moves from %1$s to %2$s"
 msgstr "白方騎士從 %1$s 移動到 %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:747
+#: ../src/gnome-chess.vala:772
 #, c-format
 msgid "White knight at %1$s takes the black pawn at %2$s"
 msgstr "白方騎士從 %1$s 吃掉 %2$s 的黑方士兵"
 
 #. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:749
+#: ../src/gnome-chess.vala:774
 #, c-format
 msgid "White knight at %1$s takes the black rook at %2$s"
 msgstr "白方騎士從 %1$s 吃掉 %2$s 的黑方城堡"
 
 #. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:751
+#: ../src/gnome-chess.vala:776
 #, c-format
 msgid "White knight at %1$s takes the black knight at %2$s"
 msgstr "白方騎士從 %1$s 吃掉 %2$s 的黑方騎士"
 
 #. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:753
+#: ../src/gnome-chess.vala:778
 #, c-format
 msgid "White knight at %1$s takes the black bishop at %2$s"
 msgstr "白方騎士從 %1$s 吃掉 %2$s 的黑方主教"
 
 #. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:755
+#: ../src/gnome-chess.vala:780
 #, c-format
 msgid "White knight at %1$s takes the black queen at %2$s"
 msgstr "白方騎士從 %1$s 吃掉 %2$s 的黑方皇后"
 
 #. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
-#: ../src/gnome-chess.vala:757
+#: ../src/gnome-chess.vala:782
 #, c-format
 msgid "White bishop moves from %1$s to %2$s"
 msgstr "白方主教從 %1$s 移動到 %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:759
+#: ../src/gnome-chess.vala:784
 #, c-format
 msgid "White bishop at %1$s takes the black pawn at %2$s"
 msgstr "白方主教從 %1$s 吃掉 %2$s 的黑方士兵"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:761
+#: ../src/gnome-chess.vala:786
 #, c-format
 msgid "White bishop at %1$s takes the black rook at %2$s"
 msgstr "白方主教從 %1$s 吃掉 %2$s 的黑方城堡"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:763
+#: ../src/gnome-chess.vala:788
 #, c-format
 msgid "White bishop at %1$s takes the black knight at %2$s"
 msgstr "白方主教從 %1$s 吃掉 %2$s 的黑方騎士"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:765
+#: ../src/gnome-chess.vala:790
 #, c-format
 msgid "White bishop at %1$s takes the black bishop at %2$s"
 msgstr "白方主教從 %1$s 吃掉 %2$s 的黑方主教"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:767
+#: ../src/gnome-chess.vala:792
 #, c-format
 msgid "White bishop at %1$s takes the black queen at %2$s"
 msgstr "白方主教從 %1$s 吃掉 %2$s 的黑方皇后"
 
 #. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
-#: ../src/gnome-chess.vala:769
+#: ../src/gnome-chess.vala:794
 #, c-format
 msgid "White queen moves from %1$s to %2$s"
 msgstr "白方皇后從 %1$s 移動到 %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:771
+#: ../src/gnome-chess.vala:796
 #, c-format
 msgid "White queen at %1$s takes the black pawn at %2$s"
 msgstr "白方皇后從 %1$s 吃掉 %2$s 的黑方士兵"
 
 #. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:773
+#: ../src/gnome-chess.vala:798
 #, c-format
 msgid "White queen at %1$s takes the black rook at %2$s"
 msgstr "白方皇后從 %1$s 吃掉 %2$s 的黑方城堡"
 
 #. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:775
+#: ../src/gnome-chess.vala:800
 #, c-format
 msgid "White queen at %1$s takes the black knight at %2$s"
 msgstr "白方皇后從 %1$s 吃掉 %2$s 的黑方騎士"
 
 #. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:777
+#: ../src/gnome-chess.vala:802
 #, c-format
 msgid "White queen at %1$s takes the black bishop at %2$s"
 msgstr "白方皇后從 %1$s 吃掉 %2$s 的黑方主教"
 
 #. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:779
+#: ../src/gnome-chess.vala:804
 #, c-format
 msgid "White queen at %1$s takes the black queen at %2$s"
 msgstr "白方皇后從 %1$s 吃掉 %2$s 的黑方皇后"
 
 #. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
-#: ../src/gnome-chess.vala:781
+#: ../src/gnome-chess.vala:806
 #, c-format
 msgid "White king moves from %1$s to %2$s"
 msgstr "白方國王從 %1$s 移動到 %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:783
+#: ../src/gnome-chess.vala:808
 #, c-format
 msgid "White king at %1$s takes the black pawn at %2$s"
 msgstr "白方國王從 %1$s 吃掉 %2$s 的黑方士兵"
 
 #. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:785
+#: ../src/gnome-chess.vala:810
 #, c-format
 msgid "White king at %1$s takes the black rook at %2$s"
 msgstr "白方國王從 %1$s 吃掉 %2$s 的黑方城堡"
 
 #. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:787
+#: ../src/gnome-chess.vala:812
 #, c-format
 msgid "White king at %1$s takes the black knight at %2$s"
 msgstr "白方國王從 %1$s 吃掉 %2$s 的黑方騎士"
 
 #. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:789
+#: ../src/gnome-chess.vala:814
 #, c-format
 msgid "White king at %1$s takes the black bishop at %2$s"
 msgstr "白方國王從 %1$s 吃掉 %2$s 的黑方主教"
 
 #. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:791
+#: ../src/gnome-chess.vala:816
 #, c-format
 msgid "White king at %1$s takes the black queen at %2$s"
 msgstr "白方國王從 %1$s 吃掉 %2$s 的黑方皇后"
 
 #. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
-#: ../src/gnome-chess.vala:793
+#: ../src/gnome-chess.vala:818
 #, c-format
 msgid "Black pawn moves from %1$s to %2$s"
 msgstr "黑方士兵從 %1$s 移動到 %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:795
+#: ../src/gnome-chess.vala:820
 #, c-format
 msgid "Black pawn at %1$s takes the white pawn at %2$s"
 msgstr "黑方士兵從 %1$s 吃掉 %2$s 的白方士兵"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:797
+#: ../src/gnome-chess.vala:822
 #, c-format
 msgid "Black pawn at %1$s takes the white rook at %2$s"
 msgstr "黑方士兵從 %1$s 吃掉 %2$s 的白方城堡"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:799
+#: ../src/gnome-chess.vala:824
 #, c-format
 msgid "Black pawn at %1$s takes the white knight at %2$s"
 msgstr "黑方士兵從 %1$s 吃掉 %2$s 的白方騎士"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:801
+#: ../src/gnome-chess.vala:826
 #, c-format
 msgid "Black pawn at %1$s takes the white bishop at %2$s"
 msgstr "黑方士兵從 %1$s 吃掉 %2$s 的白方主教"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:803
+#: ../src/gnome-chess.vala:828
 #, c-format
 msgid "Black pawn at %1$s takes the white queen at %2$s"
 msgstr "黑方士兵從 %1$s 吃掉 %2$s 的白方皇后"
 
 #. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
-#: ../src/gnome-chess.vala:805
+#: ../src/gnome-chess.vala:830
 #, c-format
 msgid "Black rook moves from %1$s to %2$s"
 msgstr "黑方城堡從 %1$s 移動到 %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:807
+#: ../src/gnome-chess.vala:832
 #, c-format
 msgid "Black rook at %1$s takes the white pawn at %2$s"
 msgstr "黑方城堡從 %1$s 吃掉 %2$s 的白方士兵"
 
 #. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:809
+#: ../src/gnome-chess.vala:834
 #, c-format
 msgid "Black rook at %1$s takes the white rook at %2$s"
 msgstr "黑方城堡從 %1$s 吃掉 %2$s 的白方城堡"
 
 #. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:811
+#: ../src/gnome-chess.vala:836
 #, c-format
 msgid "Black rook at %1$s takes the white knight at %2$s"
 msgstr "黑方城堡從 %1$s 吃掉 %2$s 的白方騎士"
 
 #. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:813
+#: ../src/gnome-chess.vala:838
 #, c-format
 msgid "Black rook at %1$s takes the white bishop at %2$s"
 msgstr "黑方城堡從 %1$s 吃掉 %2$s 的白方主教"
 
 #. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:815
+#: ../src/gnome-chess.vala:840
 #, c-format
 msgid "Black rook at %1$s takes the white queen at %2$s"
 msgstr "黑方城堡從 %1$s 吃掉 %2$s 的白方皇后"
 
 #. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
-#: ../src/gnome-chess.vala:817
+#: ../src/gnome-chess.vala:842
 #, c-format
 msgid "Black knight moves from %1$s to %2$s"
 msgstr "黑方騎士從 %1$s 移動到 %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:819
+#: ../src/gnome-chess.vala:844
 #, c-format
 msgid "Black knight at %1$s takes the white pawn at %2$s"
 msgstr "黑方騎士從 %1$s 吃掉 %2$s 的白方士兵"
 
 #. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:821
+#: ../src/gnome-chess.vala:846
 #, c-format
 msgid "Black knight at %1$s takes the white rook at %2$s"
 msgstr "黑方騎士從 %1$s 吃掉 %2$s 的白方城堡"
 
 #. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:823
+#: ../src/gnome-chess.vala:848
 #, c-format
 msgid "Black knight at %1$s takes the white knight at %2$s"
 msgstr "黑方騎士從 %1$s 吃掉 %2$s 的白方騎士"
 
 #. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:825
+#: ../src/gnome-chess.vala:850
 #, c-format
 msgid "Black knight at %1$s takes the white bishop at %2$s"
 msgstr "黑方騎士從 %1$s 吃掉 %2$s 的白方主教"
 
 #. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:827
+#: ../src/gnome-chess.vala:852
 #, c-format
 msgid "Black knight at %1$s takes the white queen at %2$s"
 msgstr "黑方騎士從 %1$s 吃掉 %2$s 的白方皇后"
 
 #. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
-#: ../src/gnome-chess.vala:829
+#: ../src/gnome-chess.vala:854
 #, c-format
 msgid "Black bishop moves from %1$s to %2$s"
 msgstr "黑方主教從 %1$s 移動到 %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:831
+#: ../src/gnome-chess.vala:856
 #, c-format
 msgid "Black bishop at %1$s takes the white pawn at %2$s"
 msgstr "黑方主教從 %1$s 吃掉 %2$s 的白方士兵"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:833
+#: ../src/gnome-chess.vala:858
 #, c-format
 msgid "Black bishop at %1$s takes the white rook at %2$s"
 msgstr "黑方主教從 %1$s 吃掉 %2$s 的白方城堡"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:835
+#: ../src/gnome-chess.vala:860
 #, c-format
 msgid "Black bishop at %1$s takes the white knight at %2$s"
 msgstr "黑方主教從 %1$s 吃掉 %2$s 的白方騎士"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:837
+#: ../src/gnome-chess.vala:862
 #, c-format
 msgid "Black bishop at %1$s takes the white bishop at %2$s"
 msgstr "黑方主教從 %1$s 吃掉 %2$s 的白方主教"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:839
+#: ../src/gnome-chess.vala:864
 #, c-format
 msgid "Black bishop at %1$s takes the white queen at %2$s"
 msgstr "黑方主教從 %1$s 吃掉 %2$s 的白方皇后"
 
 #. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
-#: ../src/gnome-chess.vala:841
+#: ../src/gnome-chess.vala:866
 #, c-format
 msgid "Black queen moves from %1$s to %2$s"
 msgstr "黑方皇后從 %1$s 移動到 %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:843
+#: ../src/gnome-chess.vala:868
 #, c-format
 msgid "Black queen at %1$s takes the white pawn at %2$s"
 msgstr "黑方皇后從 %1$s 吃掉 %2$s 的白方士兵"
 
 #. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:845
+#: ../src/gnome-chess.vala:870
 #, c-format
 msgid "Black queen at %1$s takes the white rook at %2$s"
 msgstr "黑方皇后從 %1$s 吃掉 %2$s 的白方城堡"
 
 #. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:847
+#: ../src/gnome-chess.vala:872
 #, c-format
 msgid "Black queen at %1$s takes the white knight at %2$s"
 msgstr "黑方皇后從 %1$s 吃掉 %2$s 的白方騎士"
 
 #. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:849
+#: ../src/gnome-chess.vala:874
 #, c-format
 msgid "Black queen at %1$s takes the white bishop at %2$s"
 msgstr "黑方皇后從 %1$s 吃掉 %2$s 的白方主教"
 
 #. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:851
+#: ../src/gnome-chess.vala:876
 #, c-format
 msgid "Black queen at %1$s takes the white queen at %2$s"
 msgstr "黑方皇后從 %1$s 吃掉 %2$s 的白方皇后"
 
 #. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
-#: ../src/gnome-chess.vala:853
+#: ../src/gnome-chess.vala:878
 #, c-format
 msgid "Black king moves from %1$s to %2$s"
 msgstr "黑方國王從 %1$s 移動到 %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:855
+#: ../src/gnome-chess.vala:880
 #, c-format
 msgid "Black king at %1$s takes the white pawn at %2$s"
 msgstr "黑方國王從 %1$s 吃掉 %2$s 的白方士兵"
 
 #. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:857
+#: ../src/gnome-chess.vala:882
 #, c-format
 msgid "Black king at %1$s takes the white rook at %2$s"
 msgstr "黑方國王從 %1$s 吃掉 %2$s 的白方城堡"
 
 #. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:859
+#: ../src/gnome-chess.vala:884
 #, c-format
 msgid "Black king at %1$s takes the white knight at %2$s"
 msgstr "黑方國王從 %1$s 吃掉 %2$s 的白方騎士"
 
 #. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:861
+#: ../src/gnome-chess.vala:886
 #, c-format
 msgid "Black king at %1$s takes the white bishop at %2$s"
 msgstr "黑方國王從 %1$s 吃掉 %2$s 的白方主教"
 
 #. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
-#: ../src/gnome-chess.vala:863
+#: ../src/gnome-chess.vala:888
 #, c-format
 msgid "Black king at %1$s takes the white queen at %2$s"
 msgstr "黑方國王從 %1$s 吃掉 %2$s 的白方皇后"
 
-#: ../src/gnome-chess.vala:886
+#: ../src/gnome-chess.vala:911
 msgid "White castles kingside"
 msgstr "白棋國王方"
 
-#: ../src/gnome-chess.vala:890
+#: ../src/gnome-chess.vala:915
 msgid "White castles queenside"
 msgstr "白棋皇后方"
 
-#: ../src/gnome-chess.vala:894
+#: ../src/gnome-chess.vala:919
 msgid "Black castles kingside"
 msgstr "黑棋國王方"
 
-#: ../src/gnome-chess.vala:898
+#: ../src/gnome-chess.vala:923
 msgid "Black castles queenside"
 msgstr "黑棋皇后方"
 
 #. Window title on a White human's turn if he is in check
-#: ../src/gnome-chess.vala:1028
+#: ../src/gnome-chess.vala:1053
 msgid "White is in Check"
 msgstr "白方被將軍"
 
 #. Window title on a Black human's turn if he is in check
-#: ../src/gnome-chess.vala:1031
+#: ../src/gnome-chess.vala:1056
 msgid "Black is in Check"
 msgstr "黑方被將軍"
 
 #. Window title on White's turn if White is human
-#: ../src/gnome-chess.vala:1037
+#: ../src/gnome-chess.vala:1062
 msgid "White to Move"
 msgstr "白方移動"
 
 #. Window title on White's turn if White is a computer
-#: ../src/gnome-chess.vala:1040
+#: ../src/gnome-chess.vala:1065
 msgid "White is Thinking…"
 msgstr "白方考慮中…"
 
 #. Window title on Black's turn if Black is human
-#: ../src/gnome-chess.vala:1046
+#: ../src/gnome-chess.vala:1071
 msgid "Black to Move"
 msgstr "黑方移動"
 
 #. Window title on Black's turn if Black is a computer
-#: ../src/gnome-chess.vala:1049
+#: ../src/gnome-chess.vala:1074
 msgid "Black is Thinking…"
 msgstr "黑方考慮中…"
 
-#: ../src/gnome-chess.vala:1068
-msgid "New"
-msgstr "新遊戲"
+#: ../src/gnome-chess.vala:1102
+msgid "Unpause the game"
+msgstr "取消暫停棋局"
 
-#: ../src/gnome-chess.vala:1069
-msgid "Open…"
-msgstr "開啟…"
-
-#: ../src/gnome-chess.vala:1070
-msgid "Save"
-msgstr "儲存"
-
-#: ../src/gnome-chess.vala:1071
-msgid "Save As…"
-msgstr "另存為…"
-
-#: ../src/gnome-chess.vala:1076
-msgid "Resume"
-msgstr "繼續"
-
-#: ../src/gnome-chess.vala:1078
-msgid "Pause"
-msgstr "暫停"
-
-#: ../src/gnome-chess.vala:1079
-msgid "Undo Move"
-msgstr "回手"
-
-#: ../src/gnome-chess.vala:1080
-msgid "Claim Draw"
-msgstr "宣告平手"
-
-#: ../src/gnome-chess.vala:1081
-msgid "Resign"
-msgstr "認輸"
+#: ../src/gnome-chess.vala:1108
+#| msgid "Failed to save game"
+msgid "Pause the game"
+msgstr "暫停棋局"
 
 #. Window title when the white player wins
-#: ../src/gnome-chess.vala:1104
+#: ../src/gnome-chess.vala:1129
 msgid "White Wins"
 msgstr "白方勝利"
 
 #. Window title when the black player wins
-#: ../src/gnome-chess.vala:1109
+#: ../src/gnome-chess.vala:1134
 msgid "Black Wins"
 msgstr "黑方勝利"
 
 #. Window title when the game is drawn
-#: ../src/gnome-chess.vala:1114
+#: ../src/gnome-chess.vala:1139
 msgid "Game is Drawn"
 msgstr "遊戲平手"
 
-#. Window title when the game cannot continue
-#: ../src/gnome-chess.vala:1119
-msgid "Oops!"
-msgstr "噢！"
+#. Window title when the chess engine dies unexpectedly
+#: ../src/gnome-chess.vala:1145
+#| msgid "The computer player died unexpectedly. The game cannot continue."
+msgid "The computer player died unexpectedly."
+msgstr "電腦玩家未預期的當機。"
+
+#. Window subtitle when something goes wrong with the engine...
+#. * or when the engine says something is wrong with us!
+#: ../src/gnome-chess.vala:1149
+#| msgid "The computer player is very confused. The game cannot continue."
+msgid "The computer player is very confused."
+msgstr "電腦玩家非常困惑。"
 
 #. Window subtitle when Black is checkmated
-#. Window subtitle when White is checkmated
-#: ../src/gnome-chess.vala:1132 ../src/gnome-chess.vala:1135
+#: ../src/gnome-chess.vala:1162
 msgid "Black is in check and cannot move (checkmate)."
 msgstr "黑方被將軍且無法移動 (被將死)。"
 
+#. Window subtitle when White is checkmated
+#: ../src/gnome-chess.vala:1165
+#| msgid "Black is in check and cannot move (checkmate)."
+msgid "White is in check and cannot move (checkmate)."
+msgstr "白方被將軍且無法移動 (被將死)。"
+
 #. Window subtitle when the game terminates due to a stalemate
-#: ../src/gnome-chess.vala:1141
+#: ../src/gnome-chess.vala:1171
 msgid "Opponent cannot move (stalemate)."
 msgstr "對手不能再移動 (無子可動)。"
 
 #. Window subtitle when the game is drawn due to the fifty move rule
-#: ../src/gnome-chess.vala:1145
+#: ../src/gnome-chess.vala:1175
 msgid "No piece has been taken or pawn moved in the last fifty moves."
 msgstr "在最後 50 步中沒有棋子被吃掉或士兵被移動過。"
 
 #. Window subtitle when the game ends due to Black's clock stopping
-#: ../src/gnome-chess.vala:1150
+#: ../src/gnome-chess.vala:1180
 msgid "Black has run out of time."
 msgstr "黑方已用盡時間。"
 
 #. Window subtitle when the game ends due to White's clock stopping
-#: ../src/gnome-chess.vala:1153
+#: ../src/gnome-chess.vala:1183
 msgid "White has run out of time."
 msgstr "白方已用盡時間。"
 
 #. Window subtitle when the game is drawn due to the three-fold-repitition rule
-#: ../src/gnome-chess.vala:1159
+#: ../src/gnome-chess.vala:1189
 msgid "The same board state has occurred three times (threefold repetition)."
 msgstr "任何棋盤位置已經發生三次相同的局面(三次重複)。"
 
 #. Window subtitle when the game is drawn due to the insufficient material rule
-#: ../src/gnome-chess.vala:1163
+#: ../src/gnome-chess.vala:1193
 msgid "Neither player can checkmate (insufficient material)."
 msgstr "沒有玩家可以造成將死對方的情形 (棋不成殺)。"
 
 #. Window subtitle when the game ends due to the black player resigning
-#: ../src/gnome-chess.vala:1168
+#: ../src/gnome-chess.vala:1198
 msgid "Black has resigned."
 msgstr "黑方已投降。"
 
 #. Window subtitle when the game ends due to the white player resigning
-#: ../src/gnome-chess.vala:1171
+#: ../src/gnome-chess.vala:1201
 msgid "White has resigned."
 msgstr "白方已投降。"
 
 #. Window subtitle when a game is abandoned
-#: ../src/gnome-chess.vala:1177
+#: ../src/gnome-chess.vala:1207
 msgid "The game has been abandoned."
 msgstr "這局棋已被放棄。"
 
-#. Window subtitle when the chess engine dies in the middle of a game
-#: ../src/gnome-chess.vala:1183
-msgid "The computer player died unexpectedly. The game cannot continue."
-msgstr "電腦玩家未預期的當機。棋局已不能再繼續。"
+#. Window subtitle when the chess engine dies unexpectedly.
+#. Window subtitle when something goes wrong with the engine...
+#. * or when the engine says something is wrong with us!
+#: ../src/gnome-chess.vala:1213 ../src/gnome-chess.vala:1223
+#| msgid "The game has been abandoned."
+msgid "The game cannot continue."
+msgstr "這局棋已不能繼續。"
 
 #. Window subtitle when the game ends due to a player dying.
 #. * This is a PGN standard. GNOME Chess will never kill the user.
-#: ../src/gnome-chess.vala:1187
+#: ../src/gnome-chess.vala:1217
 msgid "One of the players has died."
 msgstr "玩家中有一方沒有回應。"
 
-#. Window subtitle when something goes wrong with the engine...
-#. * or when the engine says something is wrong with us!
-#: ../src/gnome-chess.vala:1193
-msgid "The computer player is very confused. The game cannot continue."
-msgstr "電腦玩家非常困惑。棋局不能繼續。"
-
-#: ../src/gnome-chess.vala:1252 ../src/gnome-chess.vala:1917
-#: ../src/gnome-chess.vala:2000
+#: ../src/gnome-chess.vala:1282 ../src/gnome-chess.vala:1950
+#: ../src/gnome-chess.vala:2033
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: ../src/gnome-chess.vala:1256
+#: ../src/gnome-chess.vala:1286
 msgid "_Abandon game"
 msgstr "放棄遊戲(_A)"
 
-#: ../src/gnome-chess.vala:1257
+#: ../src/gnome-chess.vala:1287
 msgid "_Save game for later"
 msgstr "儲存遊戲以後再玩(_S)"
 
-#: ../src/gnome-chess.vala:1261
+#: ../src/gnome-chess.vala:1291
 msgid "_Discard game"
 msgstr "放棄遊戲(_D)"
 
-#: ../src/gnome-chess.vala:1262
+#: ../src/gnome-chess.vala:1292
 msgid "_Save game log"
 msgstr "儲存遊戲紀錄(_S)"
 
 #. Your very last chance to save
-#: ../src/gnome-chess.vala:1275
+#: ../src/gnome-chess.vala:1305
 msgid "_Discard"
 msgstr "放棄(_D)"
 
-#: ../src/gnome-chess.vala:1275 ../src/gnome-chess.vala:1918
+#: ../src/gnome-chess.vala:1305 ../src/gnome-chess.vala:1951
 msgid "_Save"
 msgstr "儲存檔案(_S)"
 
-#: ../src/gnome-chess.vala:1290
+#: ../src/gnome-chess.vala:1320
 msgid "Save this game before starting a new one?"
 msgstr "在開始新的遊戲前儲存這個遊戲？"
 
-#: ../src/gnome-chess.vala:1311
+#: ../src/gnome-chess.vala:1343
 msgid "You cannot currently claim a draw."
 msgstr "您目前不能宣布平手。"
 
-#: ../src/gnome-chess.vala:1320
+#: ../src/gnome-chess.vala:1352
 msgid "It is the first time this board position has occurred"
 msgstr "這是第一次達到這個棋盤位置"
 
-#: ../src/gnome-chess.vala:1321
+#: ../src/gnome-chess.vala:1353
 msgid "It is the second time this board position has occurred"
 msgstr "這是第二次達到這個棋盤位置"
 
-#: ../src/gnome-chess.vala:1322
+#: ../src/gnome-chess.vala:1354
 #, c-format
 msgid "%d move has passed without a capture or pawn advancement"
 msgid_plural "%d moves have passed without a capture or pawn advancement"
 msgstr[0] "已經過 %d 步沒有吃子或移動過兵"
 
-#: ../src/gnome-chess.vala:1325
+#: ../src/gnome-chess.vala:1357
 msgid "You can claim a draw when either:"
 msgstr "您可以宣布平手的時機為："
 
-#: ../src/gnome-chess.vala:1326
+#: ../src/gnome-chess.vala:1358
 msgid "Any board position has occurred three times"
 msgstr "任何棋盤位置已經發生三次"
 
-#: ../src/gnome-chess.vala:1327
+#: ../src/gnome-chess.vala:1359
 msgid "50 moves have passed without a capture or pawn advancement"
 msgstr "已經過 50 步沒有吃子或移動過兵"
 
-#: ../src/gnome-chess.vala:1328
+#: ../src/gnome-chess.vala:1360
 msgid ""
 "(Board position is affected by the ability to castle or capture en passant.)"
 msgstr "(棋盤位置會被王車易位或吃過路兵所影響。)"
 
-#: ../src/gnome-chess.vala:1329
+#: ../src/gnome-chess.vala:1361
 msgid "The game is automatically a draw if:"
 msgstr "這局棋自動宣布平手時機為："
 
-#: ../src/gnome-chess.vala:1330
+#: ../src/gnome-chess.vala:1362
 msgid "The current player cannot move (stalemate)"
 msgstr "目前的對手不能再移動 (無子可動)"
 
-#: ../src/gnome-chess.vala:1331
+#: ../src/gnome-chess.vala:1363
 msgid "Neither player can checkmate (insufficient material)"
 msgstr "沒有玩家可以造成將死對方的情形 (棋不成殺)"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in seconds
-#: ../src/gnome-chess.vala:1714
+#: ../src/gnome-chess.vala:1747
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "秒"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#: ../src/gnome-chess.vala:1718
+#: ../src/gnome-chess.vala:1751
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "分鐘"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../src/gnome-chess.vala:1722
+#: ../src/gnome-chess.vala:1755
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "小時"
 
-#: ../src/gnome-chess.vala:1835
+#: ../src/gnome-chess.vala:1868
 msgid ""
 "The 2D/3D chess game for GNOME\n"
 "\n"
@@ -1121,7 +1135,7 @@ msgstr ""
 "\n"
 "GNOME Chess 是 GNOME Games 的一部分。"
 
-#: ../src/gnome-chess.vala:1838
+#: ../src/gnome-chess.vala:1871
 msgid "translator-credits"
 msgstr ""
 "如對翻譯有任何意見，請送一封電子郵件給\n"
@@ -1131,64 +1145,85 @@ msgstr ""
 "Abel Cheung <abel@oaka.org>, 2001-07\n"
 "Fernando <bv1al@journalist.com.tw>, 1999"
 
-#: ../src/gnome-chess.vala:1904
+#: ../src/gnome-chess.vala:1937
 msgid "Failed to save game"
 msgstr "無法儲存遊戲"
 
 #. Title of save game dialog
-#: ../src/gnome-chess.vala:1928
+#: ../src/gnome-chess.vala:1961
 msgid "Save Chess Game"
 msgstr "儲存這局棋"
 
 #. Default filename for the save game dialog
-#: ../src/gnome-chess.vala:1941
+#: ../src/gnome-chess.vala:1974
 msgid "Untitled Chess Game"
 msgstr "無標題的棋局"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:1946 ../src/gnome-chess.vala:2010
+#: ../src/gnome-chess.vala:1979 ../src/gnome-chess.vala:2043
 msgid "PGN files"
 msgstr "PGN 檔案"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:1952 ../src/gnome-chess.vala:2016
+#: ../src/gnome-chess.vala:1985 ../src/gnome-chess.vala:2049
 msgid "All files"
 msgstr "所有檔案"
 
-#: ../src/gnome-chess.vala:1987
+#: ../src/gnome-chess.vala:2020
 msgid "Save this game before loading another one?"
 msgstr "在載入新的遊戲前儲存這個遊戲？"
 
 #. Title of load game dialog
-#: ../src/gnome-chess.vala:1998
+#: ../src/gnome-chess.vala:2031
 msgid "Load Chess Game"
 msgstr "載入一局棋"
 
-#: ../src/gnome-chess.vala:2001
+#: ../src/gnome-chess.vala:2034
 msgid "_Open"
 msgstr "開啟(_O)"
 
-#: ../src/gnome-chess.vala:2035
+#: ../src/gnome-chess.vala:2068
 msgid "Failed to open game"
 msgstr "無法開啟遊戲"
 
 #. Help string for command line --version flag
-#: ../src/gnome-chess.vala:2118
+#: ../src/gnome-chess.vala:2151
 msgid "Show release version"
 msgstr "顯示釋出版本"
 
 #. Arguments and description for --help text
-#: ../src/gnome-chess.vala:2133
+#: ../src/gnome-chess.vala:2163
 msgid "[FILE] - Play Chess"
 msgstr "[FILE] - 開始下棋"
 
 #. Text printed out when an unknown command-line argument provided
-#: ../src/gnome-chess.vala:2144
+#: ../src/gnome-chess.vala:2174
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr "執行「%s --help」可列出命令列中可用的完整選項。"
+
+#~ msgid "New"
+#~ msgstr "新遊戲"
+
+#~ msgid "Open…"
+#~ msgstr "開啟…"
+
+#~ msgid "Save"
+#~ msgstr "儲存"
+
+#~ msgid "Resume"
+#~ msgstr "繼續"
+
+#~ msgid "Pause"
+#~ msgstr "暫停"
+
+#~ msgid "Undo Move"
+#~ msgstr "回手"
+
+#~ msgid "Oops!"
+#~ msgstr "噢！"
 
 #~ msgid "GNOME Games web site"
 #~ msgstr "GNOME Games 網站"
