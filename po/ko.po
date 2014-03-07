@@ -6,8 +6,8 @@
 #
 # Updated for gnome-chess:
 #
-# Changwoo Ryu <cwryu@debian.org>, 2013.
 # Seong-ho Cho <darkcircle.0426@gmail.com>, 2013.
+# Changwoo Ryu <cwryu@debian.org>, 2013-2014.
 #
 #
 # 새로 번역하신 분은 아래 "translator-credits"에 추가하세요.
@@ -16,13 +16,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"chess&keywords=I18N+L10N&component=General\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-chess&keywords=I18N+L10N&component=General\n"
 "POT-Creation-Date: 2014-03-07 07:13+0000\n"
-"PO-Revision-Date: 2013-09-11 20:36+0900\n"
-"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
+"PO-Revision-Date: 2014-03-08 06:33+0900\n"
+"Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
-"Language: Korean\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,23 +29,21 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 
 #: ../data/gnome-chess.appdata.xml.in.h:1
-#, fuzzy
-#| msgid "Chess"
 msgid "GNOME Chess"
-msgstr "체스"
+msgstr "그놈 체스"
 
 #: ../data/gnome-chess.appdata.xml.in.h:2
 msgid ""
 "GNOME Chess is a simple chess game. You can play against your computer at "
 "three different difficulty levels, or against a friend at your computer."
-msgstr ""
+msgstr "그놈 체스는 간단한 체스 게임입니다. 세 가지 난이도로 컴퓨터와 플레이할 수도 있고, 친구를 상대로 플레이할 수도 있습니다."
 
 #: ../data/gnome-chess.appdata.xml.in.h:3
 msgid ""
 "Computer chess enthusiasts will appreciate GNOME Chess's compatibility with "
 "nearly all modern computer chess engines, and its ability to detect several "
 "popular engines automatically if installed."
-msgstr ""
+msgstr "그놈 체스는 현대의 거의 모든 컴퓨터 체스 엔진과 호환됩니다. 그리고 체스 엔진을 설치하면 자동으로 찾습니다."
 
 #: ../data/gnome-chess.desktop.in.h:1 ../data/gnome-chess.ui.h:1
 #: ../src/gnome-chess.vala:98 ../src/gnome-chess.vala:1864
@@ -54,14 +51,10 @@ msgid "Chess"
 msgstr "체스"
 
 #: ../data/gnome-chess.desktop.in.h:2
-#, fuzzy
-#| msgid "Save Chess Game"
 msgid "3D Chess Game"
-msgstr "체스 게임 저장"
+msgstr "3D 체스 게임"
 
 #: ../data/gnome-chess.desktop.in.h:3
-#, fuzzy
-#| msgid "Play the classic two-player boardgame of chess"
 msgid "Play the classic two-player board game of chess"
 msgstr "전통적인 2인 체스 보드 게임을 플레이합니다"
 
@@ -124,7 +117,7 @@ msgstr "끝내기"
 
 #: ../data/menu.ui.h:5
 msgid "Save As…"
-msgstr ""
+msgstr "다른 이름으로 저장…"
 
 #: ../data/menu.ui.h:6
 msgid "Claim Draw"
@@ -333,7 +326,7 @@ msgstr "화려"
 
 #: ../data/preferences.ui.h:45
 msgid "Close"
-msgstr ""
+msgstr "닫기"
 
 #. Preferences Dialog: Label before player side (white/black) combo box
 #: ../data/preferences.ui.h:47
@@ -900,160 +893,122 @@ msgstr "검정 여왕쪽 부분의 루크"
 #. Window title on a White human's turn if he is in check
 #: ../src/gnome-chess.vala:1053
 msgid "White is in Check"
-msgstr ""
+msgstr "흰색이 체크 상태입니다"
 
 #. Window title on a Black human's turn if he is in check
 #: ../src/gnome-chess.vala:1056
 msgid "Black is in Check"
-msgstr ""
+msgstr "검정이 체크 상태입니다"
 
 #. Window title on White's turn if White is human
 #: ../src/gnome-chess.vala:1062
-#, fuzzy
-#| msgctxt "chess-side"
-#| msgid "White Side"
 msgid "White to Move"
-msgstr "흰색 쪽"
+msgstr "흰색 차례"
 
 #. Window title on White's turn if White is a computer
 #: ../src/gnome-chess.vala:1065
 msgid "White is Thinking…"
-msgstr ""
+msgstr "흰색이 생각 중입니다…"
 
 #. Window title on Black's turn if Black is human
 #: ../src/gnome-chess.vala:1071
-#, fuzzy
-#| msgctxt "chess-side"
-#| msgid "Black Side"
 msgid "Black to Move"
-msgstr "검정 쪽"
+msgstr "검정 차례"
 
 #. Window title on Black's turn if Black is a computer
 #: ../src/gnome-chess.vala:1074
 msgid "Black is Thinking…"
-msgstr ""
+msgstr "검정이 생각 중입니다…"
 
 #: ../src/gnome-chess.vala:1102
-#, fuzzy
-#| msgid "Pause the game"
 msgid "Unpause the game"
-msgstr "게임을 잠시 멈춥니다"
+msgstr "게임을 계속 진행합니다"
 
 #: ../src/gnome-chess.vala:1108
 msgid "Pause the game"
-msgstr "게임을 잠시 멈춥니다"
+msgstr "게임을 일시 중지합니다"
 
 #. Window title when the white player wins
 #: ../src/gnome-chess.vala:1129
-#, fuzzy
-#| msgid "White wins"
 msgid "White Wins"
 msgstr "흰색 승리"
 
 #. Window title when the black player wins
 #: ../src/gnome-chess.vala:1134
-#, fuzzy
-#| msgid "Black wins"
 msgid "Black Wins"
 msgstr "검정 승리"
 
 #. Window title when the game is drawn
 #: ../src/gnome-chess.vala:1139
-#, fuzzy
-#| msgid "Game is drawn"
 msgid "Game is Drawn"
-msgstr "게임이 무승부입니다"
+msgstr "무승부"
 
 #. Window title when the chess engine dies unexpectedly
 #: ../src/gnome-chess.vala:1145
 msgid "The computer player died unexpectedly."
-msgstr ""
+msgstr "컴퓨터 플레이어가 갑자기 죽었습니다."
 
 #. Window subtitle when something goes wrong with the engine...
 #. * or when the engine says something is wrong with us!
 #: ../src/gnome-chess.vala:1149
-#, fuzzy
-#| msgid "The white player has resigned"
 msgid "The computer player is very confused."
-msgstr "흰색 플레이어가 항복했습니다"
+msgstr "컴퓨터 플레이어가 매우 혼란스럽습니다."
 
 #. Window subtitle when Black is checkmated
 #: ../src/gnome-chess.vala:1162
-#, fuzzy
-#| msgid "Opponent is in check and cannot move (checkmate)"
 msgid "Black is in check and cannot move (checkmate)."
-msgstr "상대편이 체크 상태이고 움직일 수 없습니다(체크메이트)"
+msgstr "검정이 체크 상태이고 움직일 수 없습니다(체크메이트)."
 
 #. Window subtitle when White is checkmated
 #: ../src/gnome-chess.vala:1165
-#, fuzzy
-#| msgid "Opponent is in check and cannot move (checkmate)"
 msgid "White is in check and cannot move (checkmate)."
-msgstr "상대편이 체크 상태이고 움직일 수 없습니다(체크메이트)"
+msgstr "흰색이 체크 상태이고 움직일 수 없습니다(체크메이트)."
 
 # 체스 용어
 #. Window subtitle when the game terminates due to a stalemate
 #: ../src/gnome-chess.vala:1171
-#, fuzzy
-#| msgid "Opponent cannot move (stalemate)"
 msgid "Opponent cannot move (stalemate)."
-msgstr "상대편이 움직일 수 없습니다(스테일메이트)"
+msgstr "상대편이 움직일 수 없습니다(스테일메이트)."
 
 #. Window subtitle when the game is drawn due to the fifty move rule
 #: ../src/gnome-chess.vala:1175
-#, fuzzy
-#| msgid "No piece has been taken or pawn moved in the last fifty moves"
 msgid "No piece has been taken or pawn moved in the last fifty moves."
-msgstr "잡은 말이 없거나 폰이 마지막 15번째 칸까지 이동했습니다"
+msgstr "잡은 말이 없거나 폰이 마지막 15번째 칸까지 이동했습니다."
 
 #. Window subtitle when the game ends due to Black's clock stopping
 #: ../src/gnome-chess.vala:1180
-#, fuzzy
-#| msgid "Opponent has run out of time"
 msgid "Black has run out of time."
-msgstr "상대편이 제한 시간이 지났습니다"
+msgstr "검정이 제한 시간이 지났습니다."
 
 #. Window subtitle when the game ends due to White's clock stopping
 #: ../src/gnome-chess.vala:1183
-#, fuzzy
-#| msgid "Opponent has run out of time"
 msgid "White has run out of time."
-msgstr "상대편이 제한 시간이 지났습니다"
+msgstr "흰색이 제한 시간이 지났습니다"
 
 #. Window subtitle when the game is drawn due to the three-fold-repitition rule
 #: ../src/gnome-chess.vala:1189
-#, fuzzy
-#| msgid "The same board state has occurred three times (threefold repetition)"
 msgid "The same board state has occurred three times (threefold repetition)."
-msgstr "같은 보드 상태가 세 번 발생했습니다(3수 반복 규칙)"
+msgstr "같은 보드 상태가 세 번 발생했습니다(3수 반복 규칙)."
 
 #. Window subtitle when the game is drawn due to the insufficient material rule
 #: ../src/gnome-chess.vala:1193
-#, fuzzy
-#| msgid "Neither player can checkmate (insufficient material)"
 msgid "Neither player can checkmate (insufficient material)."
-msgstr "어느쪽의 플레이어도 체크메이트를 할 수 없습니다(경우의 수 부족)"
+msgstr "어느쪽의 플레이어도 체크메이트를 할 수 없습니다(경우의 수 부족)."
 
 #. Window subtitle when the game ends due to the black player resigning
 #: ../src/gnome-chess.vala:1198
-#, fuzzy
-#| msgid "The black player has resigned"
 msgid "Black has resigned."
-msgstr "검은 플레이어가 항복했습니다"
+msgstr "검정이 항복했습니다."
 
 #. Window subtitle when the game ends due to the white player resigning
 #: ../src/gnome-chess.vala:1201
-#, fuzzy
-#| msgid "The white player has resigned"
 msgid "White has resigned."
-msgstr "흰색 플레이어가 항복했습니다"
+msgstr "흰색이 항복했습니다."
 
 #. Window subtitle when a game is abandoned
 #: ../src/gnome-chess.vala:1207
-#, fuzzy
-#| msgid "The game has been abandoned"
 msgid "The game has been abandoned."
-msgstr "게임을 버립니다"
+msgstr "게임을 버립니다."
 
 #. Window subtitle when the chess engine dies unexpectedly.
 #. Window subtitle when something goes wrong with the engine...
@@ -1065,10 +1020,8 @@ msgstr "게임을 계속할 수 없습니다."
 #. Window subtitle when the game ends due to a player dying.
 #. * This is a PGN standard. GNOME Chess will never kill the user.
 #: ../src/gnome-chess.vala:1217
-#, fuzzy
-#| msgid "One of the players has died"
 msgid "One of the players has died."
-msgstr "플레이어가 죽었습니다"
+msgstr "플레이어가 죽었습니다."
 
 #: ../src/gnome-chess.vala:1282 ../src/gnome-chess.vala:1950
 #: ../src/gnome-chess.vala:2033
@@ -1173,11 +1126,6 @@ msgid_plural "hours"
 msgstr[0] "시간"
 
 #: ../src/gnome-chess.vala:1868
-#, fuzzy
-#| msgid ""
-#| "The 2D/3D chess game for GNOME. \n"
-#| "\n"
-#| "GNOME Chess is a part of GNOME Games."
 msgid ""
 "The 2D/3D chess game for GNOME\n"
 "\n"
@@ -1195,10 +1143,8 @@ msgstr ""
 "조성호 <darkcircle.0426@gmail.com>"
 
 #: ../src/gnome-chess.vala:1937
-#, fuzzy
-#| msgid "Failed to save game: %s"
 msgid "Failed to save game"
-msgstr "게임 저장에 실패했습니다: %s"
+msgstr "게임 저장에 실패했습니다"
 
 #. Title of save game dialog
 #: ../src/gnome-chess.vala:1961
@@ -1236,10 +1182,8 @@ msgid "_Open"
 msgstr "열기(_O)"
 
 #: ../src/gnome-chess.vala:2068
-#, fuzzy
-#| msgid "Failed to open game: %s"
 msgid "Failed to open game"
-msgstr "게임 열기에 실패했습니다: %s"
+msgstr "게임 열기에 실패했습니다"
 
 #. Help string for command line --version flag
 #: ../src/gnome-chess.vala:2151
@@ -1256,98 +1200,3 @@ msgstr "[파일] - 체스를 플레이합니다"
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr "사용 가능한 모든 옵션의 목록을 보려면 '%s --help' 명령을 실행하십시오."
-
-#~ msgid "Start a new game"
-#~ msgstr "새 게임을 시작합니다"
-
-#~ msgid "New"
-#~ msgstr "새 게임"
-
-#~ msgid "Open"
-#~ msgstr "열기"
-
-#~ msgid "Save"
-#~ msgstr "저장"
-
-#~ msgid "Undo Move"
-#~ msgstr "이동 취소"
-
-#~ msgid "Claim a draw by threefold repetition or the fifty move rule"
-#~ msgstr "3수 반복 규칙과 50수 규칙에 따라 무승부를 선언합니다"
-
-#~ msgid "Resign to your opponent"
-#~ msgstr "상대방에게 항복합니다"
-
-#~ msgid "Pause"
-#~ msgstr "일시 정지"
-
-#~ msgid "Toggle fullscreen"
-#~ msgstr "최대 화면으로 전환합니다"
-
-#~ msgid "Fullscreen"
-#~ msgstr "최대 화면"
-
-#~ msgid "A flag to enable fullscreen mode"
-#~ msgstr "전체 화면 모드를 켜는 플래그"
-
-#~ msgid "Chess - %1$s"
-#~ msgstr "체스 - %1$s"
-
-#~ msgid "Oops! Something has gone wrong."
-#~ msgstr "읔! 무언가 잘못되었습니다."
-
-#~ msgid "GNOME Games web site"
-#~ msgstr "그놈 게임 웹사이트"
-
-#~ msgid "_Game"
-#~ msgstr "게임(_G)"
-
-#~ msgid "_Undo Move"
-#~ msgstr "이동 취소(_U)"
-
-#~ msgid "_Resign"
-#~ msgstr "항복(_R)"
-
-#~ msgid "_Settings"
-#~ msgstr "설정(_S)"
-
-#~ msgid "_Contents"
-#~ msgstr "차례(_C)"
-
-#~ msgid "A flag to enable the move history browser"
-#~ msgstr "움직임 기록 브라우저를 사용하는 플래그"
-
-#~ msgid "A flag to enable the toolbar"
-#~ msgstr "도구 모음을 사용하는 플래그"
-
-#~ msgid "Show _Toolbar"
-#~ msgstr "도구 모음 표시(_T)"
-
-#~ msgid "Show _History"
-#~ msgstr "기록 표시(_H)"
-
-#~ msgid "One minute"
-#~ msgstr "1분"
-
-#~ msgid "30 minutes"
-#~ msgstr "30분"
-
-#~ msgctxt "chess-side"
-#~ msgid "Face to Face"
-#~ msgstr "마주보기"
-
-#~ msgid ""
-#~ "Promotion is a chess rule describing the transformation of a pawn that "
-#~ "reaches its eighth rank into the player's choice of a queen, knight, "
-#~ "rook, or bishop of the same color. The new piece replaces the pawn on the "
-#~ "same square and is part of the move. Every pawn that reaches its eighth "
-#~ "rank must be promoted. Pawn promotion often decides the result of a chess "
-#~ "endgame."
-#~ msgstr ""
-#~ "프로모션이란 8칸 진행한 폰이 플레이어의 선택에 따라 같은 색의 퀸, 나이트, "
-#~ "루크, 비숍으로 바꾸는 체스 규칙을 말합니다. 새 말은 같은 위치의 폰 대신 들"
-#~ "어가고, 한 수의 일부로 취급합니다. 8칸 진행한 모든 폰은 프로모션을 해야 합"
-#~ "니다. 폰 프로모션에 따라 체스 게임의 결과가 결정되기도 합니다."
-
-#~ msgid "%1$s (%2$s) - Chess"
-#~ msgstr "%1$s (%2$s) - 체스"
