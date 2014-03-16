@@ -1,5 +1,5 @@
 AC_PREREQ([2.63])
-AC_INIT([GNOME Chess], [3.11.90], [https://bugzilla.gnome.org/],
+AC_INIT([GNOME Chess], [3.11.92], [https://bugzilla.gnome.org/],
         [gnome-chess], [https://wiki.gnome.org/Apps/Chess])
 AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-xz foreign])
 AC_CONFIG_SRCDIR([src/gnome-chess.vala])
