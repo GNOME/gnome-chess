@@ -1392,6 +1392,42 @@ public class Application : Gtk.Application
             return ":%02d".printf (used);
     }
 
+    /*
+     * Compute the largest possible size the timer label might ever want to take.
+     * The size of the characters may vary by font, but one digit will always
+     * be the largest.
+     */
+    private int compute_time_label_width_request (Cairo.Context c)
+        ensures (result > 0)
+    {
+        Cairo.TextExtents extents;
+        double max = 0;
+
+        c.text_extents ("000∶00", out extents);
+        max = (max > extents.width ? max : extents.width);
+        c.text_extents ("111∶11", out extents);
+        max = (max > extents.width ? max : extents.width);
+        c.text_extents ("222∶22", out extents);
+        max = (max > extents.width ? max : extents.width);
+        c.text_extents ("333∶33", out extents);
+        max = (max > extents.width ? max : extents.width);
+        c.text_extents ("444∶44", out extents);
+        max = (max > extents.width ? max : extents.width);
+        c.text_extents ("555∶55", out extents);
+        max = (max > extents.width ? max : extents.width);
+        c.text_extents ("666∶66", out extents);
+        max = (max > extents.width ? max : extents.width);
+        c.text_extents ("777∶77", out extents);
+        max = (max > extents.width ? max : extents.width);
+        c.text_extents ("888∶88", out extents);
+        max = (max > extents.width ? max : extents.width);
+        c.text_extents ("999∶99", out extents);
+        max = (max > extents.width ? max : extents.width);
+
+        /* Leave a little bit of room to the sides. */
+        return (int) Math.ceil (max) + 6;
+    }
+
     private void draw_time (Gtk.Widget widget, Cairo.Context c, string text, double[] fg, double[] bg)
     {
         double alpha = 1.0;
@@ -1410,7 +1446,10 @@ public class Application : Gtk.Application
                    (widget.get_allocated_height () - extents.height) / 2 - extents.y_bearing);
         c.show_text (text);
 
-        widget.set_size_request ((int) extents.width + 6, -1);
+        int width;
+        widget.get_size_request (out width, null);
+        if (width == -1)
+            widget.set_size_request (compute_time_label_width_request (c), -1);
     }
 
     [CCode (cname = "G_MODULE_EXPORT history_combo_changed_cb", instance_pos = -1)]
