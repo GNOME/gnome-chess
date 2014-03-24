@@ -1428,9 +1428,9 @@ public class Application : Gtk.Application
             time = game.clock.black_initial_seconds - game.clock.black_seconds_used;
 
         if (time >= 60)
-            return "%d:%02d".printf (time / 60, time % 60);
+            return "%d∶%02d".printf (time / 60, time % 60);
         else
-            return ":%02d".printf (time);
+            return "∶%02d".printf (time);
     }
 
     private void draw_time (Gtk.Widget widget, Cairo.Context c, string text, double[] fg, double[] bg)
