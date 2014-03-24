@@ -278,7 +278,8 @@
                     <property name="homogeneous">True</property>
                     <child>
                       <object class="GtkDrawingArea" id="white_time_label">
-                        <property name="width_request">20</property>
+                        <!-- -1 means compute at runtime -->
+                        <property name="width_request">-1</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <signal name="draw" handler="white_time_draw_cb" swapped="no"/>
@@ -291,7 +292,8 @@
                     </child>
                     <child>
                       <object class="GtkDrawingArea" id="black_time_label">
-                        <property name="width_request">20</property>
+                        <!-- -1 means compute at runtime -->
+                        <property name="width_request">-1</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <signal name="draw" handler="black_time_draw_cb" swapped="no"/>
