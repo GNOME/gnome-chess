@@ -1375,6 +1375,8 @@ public class Application : Gtk.Application
             human_player.undo ();
         else
             game.opponent.undo ();
+
+        update_headerbar_title ();
     }
 
     public void pause_resume_cb ()
