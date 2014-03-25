@@ -1444,25 +1444,25 @@ public class Application : Gtk.Application
         Cairo.TextExtents extents;
         double max = 0;
 
-        c.text_extents ("000∶00", out extents);
+        c.text_extents ("000:00", out extents);
         max = (max > extents.width ? max : extents.width);
-        c.text_extents ("111∶11", out extents);
+        c.text_extents ("111:11", out extents);
         max = (max > extents.width ? max : extents.width);
-        c.text_extents ("222∶22", out extents);
+        c.text_extents ("222:22", out extents);
         max = (max > extents.width ? max : extents.width);
-        c.text_extents ("333∶33", out extents);
+        c.text_extents ("333:33", out extents);
         max = (max > extents.width ? max : extents.width);
-        c.text_extents ("444∶44", out extents);
+        c.text_extents ("444:44", out extents);
         max = (max > extents.width ? max : extents.width);
-        c.text_extents ("555∶55", out extents);
+        c.text_extents ("555:55", out extents);
         max = (max > extents.width ? max : extents.width);
-        c.text_extents ("666∶66", out extents);
+        c.text_extents ("666:66", out extents);
         max = (max > extents.width ? max : extents.width);
-        c.text_extents ("777∶77", out extents);
+        c.text_extents ("777:77", out extents);
         max = (max > extents.width ? max : extents.width);
-        c.text_extents ("888∶88", out extents);
+        c.text_extents ("888:88", out extents);
         max = (max > extents.width ? max : extents.width);
-        c.text_extents ("999∶99", out extents);
+        c.text_extents ("999:99", out extents);
         max = (max > extents.width ? max : extents.width);
 
         /* Leave a little bit of room to the sides. */
