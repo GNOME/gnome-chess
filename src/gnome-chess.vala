@@ -2001,8 +2001,8 @@ public class Application : Gtk.Application
         save_dialog = new Gtk.FileChooserDialog (/* Title of save game dialog */
                                                  _("Save Chess Game"),
                                                  window, Gtk.FileChooserAction.SAVE,
-                                                 cancel_button_label, Gtk.ResponseType.CANCEL,
-                                                 save_button_label, Gtk.ResponseType.OK, null);
+                                                 _(cancel_button_label), Gtk.ResponseType.CANCEL,
+                                                 _(save_button_label), Gtk.ResponseType.OK, null);
         add_info_bar_to_dialog (save_dialog, out save_dialog_info_bar, out save_dialog_error_label);
 
         save_dialog.file_activated.connect (() => save_dialog_cb (Gtk.ResponseType.OK));
