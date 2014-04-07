@@ -69,7 +69,6 @@ public class Application : Gtk.Application
     private const string SAVE_GAME_ACTION_NAME = "save";
     private const string SAVE_GAME_AS_ACTION_NAME = "save-as";
     private const string UNDO_MOVE_ACTION_NAME = "undo";
-    private const string CLAIM_DRAW_ACTION_NAME = "claim-draw";
     private const string RESIGN_ACTION_NAME = "resign";
     private const string PAUSE_RESUME_ACTION_NAME = "pause-resume";
 
@@ -80,7 +79,6 @@ public class Application : Gtk.Application
         { SAVE_GAME_ACTION_NAME, save_game_cb },
         { SAVE_GAME_AS_ACTION_NAME, save_game_as_cb },
         { UNDO_MOVE_ACTION_NAME, undo_move_cb },
-        { CLAIM_DRAW_ACTION_NAME, claim_draw_cb },
         { RESIGN_ACTION_NAME, resign_cb },
         { PAUSE_RESUME_ACTION_NAME, pause_resume_cb },
     };
@@ -1025,12 +1023,6 @@ public class Application : Gtk.Application
         else
             disable_window_action (RESIGN_ACTION_NAME);
 
-        /* Claim draw only allowed on your own turn */
-        if (can_resign && game.current_player != opponent)
-            enable_window_action (CLAIM_DRAW_ACTION_NAME);
-        else
-            disable_window_action (CLAIM_DRAW_ACTION_NAME);
-
         /* Can undo once the human player has made a move */
         var can_undo = game.n_moves > 0 && !game.is_paused;
         if (opponent != null && opponent.color == Color.WHITE)
@@ -1113,7 +1105,6 @@ public class Application : Gtk.Application
     {
         disable_window_action (RESIGN_ACTION_NAME);
         disable_window_action (UNDO_MOVE_ACTION_NAME);
-        disable_window_action (CLAIM_DRAW_ACTION_NAME);
         disable_window_action (PAUSE_RESUME_ACTION_NAME);
 
         game_needs_saving = false;
@@ -1351,45 +1342,6 @@ public class Application : Gtk.Application
         {
             if (game.clock != null)
                 game.clock.unpause ();
-        }
-    }
-
-    public void claim_draw_cb ()
-    {
-        if (!game.current_player.claim_draw ())
-        {
-            game.pause ();
-
-            var dialog = new Gtk.MessageDialog (window,
-                                                Gtk.DialogFlags.MODAL,
-                                                Gtk.MessageType.INFO,
-                                                Gtk.ButtonsType.CLOSE,
-                                                _("You cannot currently claim a draw."));
-
-            var repetitions = game.state_repeated_times (game.current_state);
-            var moves = game.current_state.halfmove_clock / 2;
-
-            warn_if_fail (repetitions == 1 || repetitions == 2);
-
-            /* Dialog that appears when Claim Draw is used but a draw cannot be claimed */
-            dialog.format_secondary_text ("• " + (repetitions == 1 ?
-                                                      _("It is the first time this board position has occurred") :
-                                                      _("It is the second time this board position has occurred")) + "\n"
-                                            + "• " + ngettext ("%d move has passed without a capture or pawn advancement",
-                                                               "%d moves have passed without a capture or pawn advancement",
-                                                               moves) + "\n\n"
-                                            + _("You can claim a draw when either:") + "\n\n"
-                                            + "• " + _("Any board position has occurred three times") + "\n"
-                                            + "• " + _("50 moves have passed without a capture or pawn advancement") + "\n\n"
-                                            + _("(Board position is affected by the ability to castle or capture en passant.)") + "\n\n"
-                                            + _("The game is automatically a draw if:") + "\n\n"
-                                            + "• " + _("The current player cannot move (stalemate)") + "\n"
-                                            + "• " + _("Neither player can checkmate (insufficient material)"),
-                                          moves);
-
-            dialog.run ();
-            dialog.destroy ();
-            game.unpause ();
         }
     }
 
