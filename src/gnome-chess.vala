@@ -20,7 +20,6 @@ public class Application : Gtk.Application
     private ChessScene scene;
     private ChessView view;
     private Gtk.Button pause_resume_button;
-    private Gtk.MenuButton menu_button;
     private Gtk.Widget first_move_button;
     private Gtk.Widget prev_move_button;
     private Gtk.Widget next_move_button;
@@ -117,8 +116,6 @@ public class Application : Gtk.Application
         var app_menu = (Menu) builder.get_object ("appmenu");
         set_app_menu (app_menu);
 
-        var window_menu = (Menu) builder.get_object ("windowmenu");
-
         try
         {
             builder.add_from_file (Path.build_filename (PKGDATADIR, "gnome-chess.ui", null));
@@ -130,7 +127,6 @@ public class Application : Gtk.Application
         window = (Gtk.ApplicationWindow) builder.get_object ("gnome_chess_app");
         var undo_move_image = (Gtk.Image) builder.get_object ("undo_move_image");
         pause_resume_button = (Gtk.Button) builder.get_object ("pause_button");
-        menu_button = (Gtk.MenuButton) builder.get_object ("gear_button");
         first_move_button = (Gtk.Widget) builder.get_object ("first_move_button");
         prev_move_button = (Gtk.Widget) builder.get_object ("prev_move_button");
         next_move_button = (Gtk.Widget) builder.get_object ("next_move_button");
@@ -157,7 +153,6 @@ public class Application : Gtk.Application
         undo_move_image.icon_name = rtl ? "edit-undo-rtl-symbolic" : "edit-undo-symbolic";
 
         window.add_action_entries (window_entries, this);
-        menu_button.set_menu_model (window_menu);
 
         add_window (window);
 
