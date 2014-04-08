@@ -1273,12 +1273,11 @@ public class Application : Gtk.Application
         if (!game_needs_saving)
             return true;
 
-        var dialog = new Gtk.MessageDialog.with_markup (window,
-                                                        Gtk.DialogFlags.MODAL,
-                                                        Gtk.MessageType.QUESTION,
-                                                        Gtk.ButtonsType.NONE,
-                                                        "<span weight=\"bold\" size=\"larger\">%s</span>",
-                                                        prompt_text);
+        var dialog = new Gtk.MessageDialog (window,
+                                            Gtk.DialogFlags.MODAL,
+                                            Gtk.MessageType.QUESTION,
+                                            Gtk.ButtonsType.NONE,
+                                            prompt_text);
         dialog.add_button (_("_Cancel"), Gtk.ResponseType.CANCEL);
 
         if (game.result == ChessResult.IN_PROGRESS)
@@ -1335,12 +1334,11 @@ public class Application : Gtk.Application
         {
             game.pause ();
 
-            var dialog = new Gtk.MessageDialog.with_markup (window,
-                                                            Gtk.DialogFlags.MODAL,
-                                                            Gtk.MessageType.INFO,
-                                                            Gtk.ButtonsType.CLOSE,
-                                                            "<span weight=\"bold\" size=\"larger\">%s</span>",
-                                                            _("You cannot currently claim a draw."));
+            var dialog = new Gtk.MessageDialog (window,
+                                                Gtk.DialogFlags.MODAL,
+                                                Gtk.MessageType.INFO,
+                                                Gtk.ButtonsType.CLOSE,
+                                                _("You cannot currently claim a draw."));
 
             var repetitions = game.state_repeated_times (game.current_state);
             var moves = game.current_state.halfmove_clock / 2;
