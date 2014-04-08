@@ -1322,10 +1322,36 @@ public class Application : Gtk.Application
 
     public void resign_cb ()
     {
-        if (human_player != null)
-            human_player.resign ();
+        /* Manually since we don't want to show the pause overlay */
+        if (game.clock != null)
+            game.clock.pause ();
+
+        var dialog = new Gtk.MessageDialog (window,
+                                            Gtk.DialogFlags.MODAL,
+                                            Gtk.MessageType.QUESTION,
+                                            Gtk.ButtonsType.NONE,
+                                            _("Are you sure you want to resign?"));
+        dialog.format_secondary_text (
+            _("This makes sense if you plan to save the game as a record of your loss."));
+        dialog.add_buttons (_("_Keep Playing"), Gtk.ResponseType.REJECT,
+                            _("_Resign"), Gtk.ResponseType.ACCEPT,
+                            null);
+
+        var response = dialog.run ();
+        dialog.destroy ();
+
+        if (response == Gtk.ResponseType.ACCEPT)
+        {
+            if (human_player != null)
+                human_player.resign ();
+            else
+                game.current_player.resign ();
+        }
         else
-            game.current_player.resign ();
+        {
+            if (game.clock != null)
+                game.clock.unpause ();
+        }
     }
 
     public void claim_draw_cb ()
