@@ -1,14 +1,20 @@
 AC_PREREQ([2.63])
 AC_INIT([GNOME Chess], [3.12.0], [https://bugzilla.gnome.org/],
         [gnome-chess], [https://wiki.gnome.org/Apps/Chess])
-AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-xz foreign])
+
+AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([src/gnome-chess.vala])
+
+AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-xz foreign])
 AM_SILENT_RULES([yes])
 AM_MAINTAINER_MODE([enable])
 GNOME_MAINTAINER_MODE_DEFINES
 
 AM_PROG_VALAC([0.23.1.11])
 AM_PROG_CC_C_O
+
+LT_PREREQ([2.2])
+LT_INIT
 
 GLIB_GSETTINGS
 
@@ -30,7 +36,13 @@ PKG_CHECK_MODULES(GNOME_CHESS, [
   x11
 ])
 
+PKG_CHECK_MODULES(LIBCHESS, [
+  glib-2.0
+  gio-2.0
+])
+
 PKG_CHECK_MODULES(TEST, [
+  glib-2.0
   gio-2.0
 ])
 
@@ -67,7 +79,9 @@ data/pieces/fancy/Makefile
 data/pieces/simple/Makefile
 data/textures/Makefile
 help/Makefile
+lib/Makefile
 po/Makefile.in
 src/Makefile
+tests/Makefile
 ])
 AC_OUTPUT

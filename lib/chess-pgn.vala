@@ -174,7 +174,7 @@ public class PGNGame
     }
 
     public string escape (string value)
-    {    
+    {
         var a = value.replace ("\\", "\\\\");
         return a.replace ("\"", "\\\"");
     }
@@ -247,7 +247,7 @@ public class PGN
                line++;
                line_offset = offset + 1;
             }
-            
+
             switch (state)
             {
             case State.TAGS:

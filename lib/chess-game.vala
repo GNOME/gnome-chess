@@ -38,7 +38,7 @@ public class ChessGame
     public ChessResult result;
     public ChessRule rule;
     public List<ChessState> move_stack;
-    
+
     private int hold_count = 0;
 
     public const string STANDARD_SETUP = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
@@ -51,7 +51,7 @@ public class ChessGame
     public signal void ended ();
 
     public bool is_paused { get; private set; default = false; }
-    
+
     public ChessState current_state
     {
        get { return move_stack.data; }
@@ -168,7 +168,7 @@ public class ChessGame
         /* Wait until the hold is removed */
         if (hold_count > 0)
             return;
-            
+
         ChessRule rule;
         var result = current_state.get_result (out rule);
         if (result != ChessResult.IN_PROGRESS)
@@ -253,7 +253,7 @@ public class ChessGame
         else
             stop (ChessResult.WHITE_WON, ChessRule.TIMEOUT);
     }
-    
+
     public ChessPiece? get_piece (int rank, int file, int move_number = -1)
     {
         if (move_number < 0)

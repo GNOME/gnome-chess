@@ -52,7 +52,7 @@ public class ChessClock : Object
     {
         get { return timer != null && expire_timeout_id != 0; }
     }
-    
+
     public void start ()
     {
         if (is_active)
