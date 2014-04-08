@@ -14,4 +14,4 @@
 
 void maybe_kill_orphan_engine ();
 
-#endif GNOME_CHESS_PORTABILITY_H
+#endif /* GNOME_CHESS_PORTABILITY_H */
