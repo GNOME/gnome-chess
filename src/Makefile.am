@@ -21,8 +21,12 @@ gnome_chess_SOURCES = \
 	chess-engine-cecp.vala \
 	chess-engine-uci.vala \
 	chess-game.vala \
+	chess-move.vala \
+	chess-piece.vala \
+	chess-player.vala \
 	chess-pgn.vala \
 	chess-scene.vala \
+	chess-state.vala \
 	chess-view.vala \
 	chess-view-2d.vala \
 	chess-view-3d.vala
@@ -31,6 +35,10 @@ test_chess_game_SOURCES = \
 	chess-bitboard.vala \
 	chess-clock.vala \
 	chess-game.vala \
+	chess-move.vala \
+	chess-piece.vala \
+	chess-player.vala \
+	chess-state.vala \
 	test-chess-game.vala
 test_chess_game_CFLAGS = \
 	-w \
