@@ -67,6 +67,27 @@
           </object>
         </child>
         <child>
+          <object class="GtkButton" id="resign_game_button">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="action-name">win.resign</property>
+            <property name="tooltip-text" translatable="yes">Resign to your opponent</property>
+            <style>
+              <class name="image-button"/>
+            </style>
+            <child>
+              <object class="GtkImage" id="resign_image">
+                <property name="visible">True</property>
+                <property name="icon_size">1</property>
+                <property name="icon_name">face-sad-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack_type">end</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkButton" id="save_game_button">
             <property name="visible">True</property>
             <property name="valign">center</property>
