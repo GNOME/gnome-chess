@@ -700,7 +700,7 @@ public class Application : Gtk.Application
 
     private void engine_claim_draw_cb (ChessEngine engine)
     {
-        if (!opponent.claim_draw ())
+        if (!game.can_claim_draw ())
             game.stop (ChessResult.BUG, ChessRule.BUG);
     }
 

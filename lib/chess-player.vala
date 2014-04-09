@@ -22,7 +22,7 @@ public class ChessPlayer : Object
     public signal bool do_move (string move, bool apply);
     public signal void do_undo ();
     public signal bool do_resign ();
-    public signal bool do_claim_draw ();
+    public signal void do_claim_draw ();
 
     private bool _local_human = false;
     public bool local_human
@@ -80,8 +80,8 @@ public class ChessPlayer : Object
         return do_resign ();
     }
 
-    public bool claim_draw ()
+    public void claim_draw ()
     {
-        return do_claim_draw ();
+        do_claim_draw ();
     }
 }

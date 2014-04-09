@@ -212,19 +212,23 @@ public class ChessGame
         return true;
     }
 
-    private bool claim_draw_cb (ChessPlayer player)
+    private bool is_fifty_move_rule_fulfilled ()
     {
-        if (!is_started)
-            return false;
+        /* Fifty moves per player without capture or pawn advancement */
+        return current_state.halfmove_clock >= 100;
+    }
 
-        if (current_state.halfmove_clock >= 100)
+    public bool can_claim_draw ()
+    {
+        return is_fifty_move_rule_fulfilled () || is_three_fold_repeat ();
+    }
+
+    private void claim_draw_cb ()
+    {
+        if (is_fifty_move_rule_fulfilled ())
             stop (ChessResult.DRAW, ChessRule.FIFTY_MOVES);
         else if (is_three_fold_repeat ())
             stop (ChessResult.DRAW, ChessRule.THREE_FOLD_REPETITION);
-        else
-            return false;
-
-        return true;
     }
 
     public void start ()
