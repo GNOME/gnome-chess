@@ -946,6 +946,8 @@ public class Application : Gtk.Application
 
     private void game_move_cb (ChessGame game, ChessMove move)
     {
+        enable_window_action (NEW_GAME_ACTION_NAME);
+
         /* Need to save after each move */
         game_needs_saving = true;
 
@@ -1009,6 +1011,7 @@ public class Application : Gtk.Application
         else
         {
             game_needs_saving = false;
+            disable_window_action (NEW_GAME_ACTION_NAME);
             disable_window_action (SAVE_GAME_ACTION_NAME);
             disable_window_action (SAVE_GAME_AS_ACTION_NAME);
         }
@@ -2123,6 +2126,7 @@ public class Application : Gtk.Application
     {
         game_file = null;
 
+        disable_window_action (NEW_GAME_ACTION_NAME);
         disable_window_action (SAVE_GAME_AS_ACTION_NAME);
 
         pgn_game = new PGNGame ();
@@ -2164,6 +2168,8 @@ public class Application : Gtk.Application
 
     private void load_game (File file) throws Error
     {
+        enable_window_action (NEW_GAME_ACTION_NAME);
+
         var pgn = new PGN.from_file (file);
         pgn_game = pgn.games.nth_data (0);
 
