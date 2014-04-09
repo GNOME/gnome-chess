@@ -212,6 +212,30 @@ public class ChessGame
         return true;
     }
 
+    private int state_repeated_times (ChessState s1)
+    {
+        var count = 1;
+
+        foreach (var s2 in move_stack)
+        {
+            if (s1 != s2 && s1.equals (s2))
+                count++;
+        }
+
+        return count;
+    }
+
+    public bool is_three_fold_repeat ()
+    {
+        foreach (var state in move_stack)
+        {
+            if (state_repeated_times (state) >= 3)
+                return true;
+        }
+
+        return false;
+    }
+
     public bool is_fifty_move_rule_fulfilled ()
     {
         /* Fifty moves per player without capture or pawn advancement */
@@ -303,29 +327,5 @@ public class ChessGame
         if (_clock != null)
             _clock.stop();
         ended ();
-    }
-
-    public bool is_three_fold_repeat ()
-    {
-        foreach (var state in move_stack)
-        {
-            if (state_repeated_times (state) >= 3)
-                return true;
-        }
-
-        return false;
-    }
-
-    private int state_repeated_times (ChessState s1)
-    {
-        var count = 1;
-
-        foreach (var s2 in move_stack)
-        {
-            if (s1 != s2 && s1.equals (s2))
-                count++;
-        }
-
-        return count;
     }
 }
