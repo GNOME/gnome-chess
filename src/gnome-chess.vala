@@ -1376,10 +1376,14 @@ public class Application : Gtk.Application
                                             Gtk.DialogFlags.MODAL,
                                             Gtk.MessageType.QUESTION,
                                             Gtk.ButtonsType.NONE,
+                                            /* Title of warning dialog when player clicks Resign */
                                             _("Are you sure you want to resign?"));
         dialog.format_secondary_text (
+            /* Text on warningn dialog when player clicks Resign */
             _("This makes sense if you plan to save the game as a record of your loss."));
-        dialog.add_buttons (_("_Keep Playing"), Gtk.ResponseType.REJECT,
+        dialog.add_buttons (/* Option on warning dialog when player clicks resign */
+                            _("_Keep Playing"), Gtk.ResponseType.REJECT,
+                            /* Option on warning dialog when player clicks resign */
                             _("_Resign"), Gtk.ResponseType.ACCEPT,
                             null);
 
