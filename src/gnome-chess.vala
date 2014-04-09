@@ -50,6 +50,7 @@ public class Application : Gtk.Application
     private string autosave_filename;
     private File game_file;
     private bool game_needs_saving;
+    private bool allow_claim_draw_dialog;
     private List<AIProfile> ai_profiles;
     private ChessPlayer? opponent = null;
     private ChessPlayer? human_player = null;
@@ -728,8 +729,13 @@ public class Application : Gtk.Application
         if (game.clock != null)
             enable_window_action (PAUSE_RESUME_ACTION_NAME);
         
-        if (game.is_started && opponent_engine != null && player == opponent)
-            opponent_engine.move ();
+        if (game.is_started)
+        {
+            if (opponent_engine != null && player == opponent)
+                opponent_engine.move ();
+            else if (game.can_claim_draw () && allow_claim_draw_dialog)
+                present_claim_draw_dialog ();
+        }
     }
 
     private void set_move_text (Gtk.TreeIter iter, ChessMove move)
@@ -1298,6 +1304,60 @@ public class Application : Gtk.Application
         }
 
         return true;
+    }
+
+    private void present_claim_draw_dialog ()
+        requires (game.can_claim_draw ())
+    {
+        /* Manually since we don't want to show the pause overlay */
+        if (game.clock != null)
+            game.clock.pause ();
+
+        var dialog = new Gtk.MessageDialog (window,
+                                            Gtk.DialogFlags.MODAL,
+                                            Gtk.MessageType.QUESTION,
+                                            Gtk.ButtonsType.NONE,
+                                            /* Title of claim draw dialog */
+                                            _("Would you like to claim a draw?"));
+
+        string reason;
+        if (game.is_fifty_move_rule_fulfilled ())
+        {
+            /* Message in claim draw dialog when triggered by fifty-move rule */
+            reason = _("Fifty moves have passed without a capture or pawn advancement.");
+        }
+        else if (game.is_three_fold_repeat ())
+        {
+            /* Message in claim draw dialog when triggered by three-fold repetition */
+            reason = _("The current board position has occurred three times.");
+        }
+        else assert_not_reached ();
+
+        dialog.format_secondary_text ("%s\n%s", reason,
+            /* Displays in claim draw dialog to warn player that the dialog only appears once */
+            _("(You will not be offered this choice again.)"));
+
+        dialog.add_buttons (/* Option in claim draw dialog */
+                            _("_Keep Playing"), Gtk.ResponseType.REJECT,
+                            /* Option in claim draw dialog */
+                            _("_Claim Draw"), Gtk.ResponseType.ACCEPT,
+                            null);
+
+        var response = dialog.run ();
+        dialog.destroy ();
+
+        if (response == Gtk.ResponseType.ACCEPT)
+        {
+            game.current_player.claim_draw ();
+        }
+        else
+        {
+            /* Display this dialog only once per game */
+            allow_claim_draw_dialog = false;
+
+            if (game.clock != null)
+                game.clock.unpause ();
+        }
     }
 
     public void new_game_cb ()
@@ -2094,6 +2154,7 @@ public class Application : Gtk.Application
     {
         game_file = null;
 
+        allow_claim_draw_dialog = true;
         disable_window_action (SAVE_GAME_AS_ACTION_NAME);
 
         pgn_game = new PGNGame ();

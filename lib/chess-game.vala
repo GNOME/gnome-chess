@@ -212,7 +212,7 @@ public class ChessGame
         return true;
     }
 
-    private bool is_fifty_move_rule_fulfilled ()
+    public bool is_fifty_move_rule_fulfilled ()
     {
         /* Fifty moves per player without capture or pawn advancement */
         return current_state.halfmove_clock >= 100;
@@ -305,7 +305,7 @@ public class ChessGame
         ended ();
     }
 
-    private bool is_three_fold_repeat ()
+    public bool is_three_fold_repeat ()
     {
         foreach (var state in move_stack)
         {
@@ -316,7 +316,7 @@ public class ChessGame
         return false;
     }
 
-    public int state_repeated_times (ChessState s1)
+    private int state_repeated_times (ChessState s1)
     {
         var count = 1;
 
