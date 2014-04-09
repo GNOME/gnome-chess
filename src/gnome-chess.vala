@@ -49,8 +49,8 @@ public class Application : Gtk.Application
     private ChessGame game;
     private string autosave_filename;
     private File game_file;
-    private bool game_needs_saving;
-    private bool allow_claim_draw_dialog;
+    private bool game_needs_saving = false;
+    private bool allow_claim_draw_dialog = true;
     private List<AIProfile> ai_profiles;
     private ChessPlayer? opponent = null;
     private ChessPlayer? human_player = null;
