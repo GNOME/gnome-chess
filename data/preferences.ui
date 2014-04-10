@@ -209,7 +209,9 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before player side (white/black) combo box">Play as:</property>
+                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before player side (white/black) combo box">_Play as:</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">side_combo</property>
                   </object>
                   <packing>
                     <property name="top_attach">1</property>
@@ -223,7 +225,9 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before opposing player combo box">Opposing player:</property>
+                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before opposing player combo box">_Opposing player:</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">opponent_combo</property>
                   </object>
                   <packing>
                     <property name="x_options">GTK_FILL</property>
@@ -235,7 +239,9 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before promotion type combo box">Difficulty:</property>
+                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before promotion type combo box">_Difficulty:</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">difficulty_combo</property>
                   </object>
                   <packing>
                     <property name="top_attach">2</property>
@@ -367,7 +373,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before game timer settings">Game duration:</property>
+                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before game timer settings">_Game duration:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">duration_combo</property>
                   </object>
@@ -444,7 +450,8 @@
               <object class="GtkLabel" id="label1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes" comments="Preferences Dialog: Tab title for game preferences">Game</property>
+                <property name="label" translatable="yes" comments="Preferences Dialog: Tab title for game preferences">_Game</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="tab_fill">False</property>
@@ -464,7 +471,9 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before board orientation combo box">Board orientation:</property>
+                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before board orientation combo box">Board _orientation:</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">orientation_combo</property>
                   </object>
                   <packing>
                     <property name="x_options">GTK_FILL</property>
@@ -476,7 +485,9 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before move format combo box">Move format:</property>
+                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before move format combo box">Move _format:</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">move_format_combo</property>
                   </object>
                   <packing>
                     <property name="top_attach">1</property>
@@ -630,7 +641,7 @@
                 <child>
                   <object class="GtkComboBox" id="piece_style_combo">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can_focus">True</property>
                     <property name="model">piece_style_model</property>
                     <signal name="changed" handler="piece_style_combo_changed_cb" swapped="no"/>
                     <child>
@@ -653,7 +664,9 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before piece style combo box">Piece style:</property>
+                    <property name="label" translatable="yes" comments="Preferences Dialog: Label before piece style combo box">_Piece style:</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">piece_style_combo</property>
                   </object>
                   <packing>
                     <property name="top_attach">2</property>
