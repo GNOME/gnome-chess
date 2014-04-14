@@ -665,11 +665,35 @@ public class Application : Gtk.Application
             view.queue_draw ();
         }
     }
-    
-    private void engine_move_cb (ChessEngine engine, string move)
+
+    private void do_engine_move (string move)
     {
         if (!opponent.move (move))
             game.stop (ChessResult.BUG, ChessRule.BUG);
+    }
+
+    private void engine_move_cb (ChessEngine engine, string move)
+    {
+        if (!game.is_paused)
+        {
+            do_engine_move (move);
+        }
+        else
+        {
+            Timeout.add_seconds (1, () => {
+                if (game.is_paused)
+                {
+                    /* Keep waiting */
+                    return true;
+                }
+                else
+                {
+                    do_engine_move (move);
+                    /* Disconnect from main loop */
+                    return false;
+                }
+            });
+        }
     }
 
     private void engine_resigned_cb (ChessEngine engine)
