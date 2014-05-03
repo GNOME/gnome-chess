@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2014-02-22 07:12+0000\n"
-"PO-Revision-Date: 2014-02-22 20:02+0200\n"
+"POT-Creation-Date: 2014-05-03 18:08+0000\n"
+"PO-Revision-Date: 2014-05-03 22:02+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -51,7 +51,7 @@ msgstr ""
 "daugelį populiarių variklių, jei šie įdiegti."
 
 #: ../data/gnome-chess.desktop.in.h:1 ../data/gnome-chess.ui.h:1
-#: ../src/gnome-chess.vala:98 ../src/gnome-chess.vala:1873
+#: ../src/gnome-chess.vala:96 ../src/gnome-chess.vala:1967
 msgid "Chess"
 msgstr "Šachmatai"
 
@@ -68,41 +68,43 @@ msgid "game;strategy;"
 msgstr "žaidimas;strategija;"
 
 #: ../data/gnome-chess.ui.h:2
-#| msgid "Game"
-msgid "New Game"
-msgstr "Naujas žaidimas"
+#| msgid "New Game"
+msgid "_New Game"
+msgstr "_Naujas žaidimas"
 
 #: ../data/gnome-chess.ui.h:3
 msgid "Undo your most recent move"
 msgstr "Atšaukti paskutinį ėjimą"
 
 #: ../data/gnome-chess.ui.h:4
-#| msgid "Show the current move"
+msgid "Resign to your opponent"
+msgstr "Pasiduoti"
+
+#: ../data/gnome-chess.ui.h:5
 msgid "Save the current game"
 msgstr "Įrašyti dabartinį ėjimą"
 
-#: ../data/gnome-chess.ui.h:5
-#| msgid "Failed to save game: %s"
+#: ../data/gnome-chess.ui.h:6
 msgid "Open a saved game"
 msgstr "Atverti įrašytą žaidimą"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
-#: ../data/gnome-chess.ui.h:7
+#: ../data/gnome-chess.ui.h:8
 msgid "Rewind to the game start"
 msgstr "Grįžti į žaidimo pradžią"
 
 #. Tooltip on the show previous move navigation button
-#: ../data/gnome-chess.ui.h:9
+#: ../data/gnome-chess.ui.h:10
 msgid "Show the previous move"
 msgstr "Rodyti praeitą ėjimą"
 
 #. Tooltip on the show next move navigation button
-#: ../data/gnome-chess.ui.h:11
+#: ../data/gnome-chess.ui.h:12
 msgid "Show the next move"
 msgstr "Rodyti kitą ėjimą"
 
 #. Tooltip on the show current move navigation button
-#: ../data/gnome-chess.ui.h:13
+#: ../data/gnome-chess.ui.h:14
 msgid "Show the current move"
 msgstr "Rodyti esamą ėjimą"
 
@@ -122,18 +124,6 @@ msgstr "Apie"
 #: ../data/menu.ui.h:4
 msgid "Quit"
 msgstr "Išeiti"
-
-#: ../data/menu.ui.h:5
-msgid "Save As…"
-msgstr "Įrašyti taip…"
-
-#: ../data/menu.ui.h:6
-msgid "Claim Draw"
-msgstr "Reikalauti lygiųjų"
-
-#: ../data/menu.ui.h:7
-msgid "Resign"
-msgstr "Pasiduoti"
 
 #: ../data/org.gnome.gnome-chess.gschema.xml.h:1
 msgid "The width of the window"
@@ -333,88 +323,92 @@ msgstr "Paprasta"
 msgid "Fancy"
 msgstr "Įmantru"
 
-#: ../data/preferences.ui.h:45
-msgid "Close"
-msgstr "Užverti"
-
 #. Preferences Dialog: Label before player side (white/black) combo box
-#: ../data/preferences.ui.h:47
-msgid "Play as:"
-msgstr "Žaisti kaip:"
+#: ../data/preferences.ui.h:46
+#| msgid "Play as:"
+msgid "_Play as:"
+msgstr "Žaisti _kaip:"
 
 #. Preferences Dialog: Label before opposing player combo box
-#: ../data/preferences.ui.h:49
-msgid "Opposing player:"
-msgstr "Priešininkas:"
+#: ../data/preferences.ui.h:48
+#| msgid "Opposing player:"
+msgid "_Opposing player:"
+msgstr "_Priešininkas:"
 
-#. Preferences Dialog: Label before promotion type combo box
-#: ../data/preferences.ui.h:51
-msgid "Difficulty:"
-msgstr "Sunkumas:"
+#. Preferences Dialog: Label before difficulty level combo box
+#: ../data/preferences.ui.h:50
+#| msgid "Difficulty:"
+msgid "_Difficulty:"
+msgstr "_Sunkumas:"
 
-#. New Game Dialog: Label before game timer settings
-#: ../data/preferences.ui.h:53
-msgid "Game duration:"
-msgstr "Žaidimo trukmė:"
+#. Preferences Dialog: Label before game timer settings
+#: ../data/preferences.ui.h:52
+#| msgid "Game duration:"
+msgid "_Game duration:"
+msgstr "Žaidimo _trukmė:"
 
 #. Preferences dialog: Label to notify user that the settings are applied for the next game
-#: ../data/preferences.ui.h:55
+#: ../data/preferences.ui.h:54
 msgid "Changes will take effect for the next game."
 msgstr "Pakeitimai įsigalios kitam žaidimui."
 
 #. Preferences Dialog: Tab title for game preferences
-#: ../data/preferences.ui.h:57
-msgid "Game"
-msgstr "Žaidimas"
+#: ../data/preferences.ui.h:56
+#| msgid "Game"
+msgid "_Game"
+msgstr "Ž_aidimas"
 
 #. Preferences Dialog: Label before board orientation combo box
-#: ../data/preferences.ui.h:59
-msgid "Board orientation:"
-msgstr "Lentos padėtis:"
+#: ../data/preferences.ui.h:58
+#| msgid "Board orientation:"
+msgid "Board _orientation:"
+msgstr "Lentos _padėtis:"
 
 #. Preferences Dialog: Label before move format combo box
-#: ../data/preferences.ui.h:61
-msgid "Move format:"
-msgstr "Ėjimo formatas:"
+#: ../data/preferences.ui.h:60
+#| msgid "Move format:"
+msgid "Move _format:"
+msgstr "Ėjimo _formatas:"
 
 #. Preferences Dialog: Check box for selecting if 3D view is available
-#: ../data/preferences.ui.h:63
+#: ../data/preferences.ui.h:62
 msgid "3_D chess view"
 msgstr "3_D šachmatų vaizdas"
 
 #. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
-#: ../data/preferences.ui.h:65
+#: ../data/preferences.ui.h:64
 msgid "_Smooth display"
 msgstr "Rodyma_s užlyginant"
 
 #. Preferences Dialog: Check box for selecting if board numbering is visible
-#: ../data/preferences.ui.h:67
+#: ../data/preferences.ui.h:66
 msgid "_Board numbering"
 msgstr "Lentos _numeracija"
 
 #. Preferences Dialog: Check box for selecting if move hints are visible
-#: ../data/preferences.ui.h:69
+#: ../data/preferences.ui.h:68
 msgid "_Move hints"
 msgstr "Ėjimo _patarimai"
 
 #. Preferences Dialog: Label before piece style combo box
-#: ../data/preferences.ui.h:71
-msgid "Piece style:"
-msgstr "Figūrų stilius:"
+#: ../data/preferences.ui.h:70
+#| msgid "Piece style:"
+msgid "_Piece style:"
+msgstr "Figūrų _stilius:"
 
 #. Preferences Dialog: Title of appearance options tab
-#: ../data/preferences.ui.h:73
+#: ../data/preferences.ui.h:72
 msgid "_Appearance"
 msgstr "_Išvaizda"
 
 #. Preferences Dialog: Combo box entry for playing as white
-#: ../data/preferences.ui.h:75
+#: ../data/preferences.ui.h:74
 msgctxt "chess-player"
 msgid "White"
 msgstr "Baltieji"
 
 #. Preferences Dialog: Combo box entry for playing as black
-#: ../data/preferences.ui.h:77
+#: ../data/preferences.ui.h:76
 msgctxt "chess-player"
 msgid "Black"
 msgstr "Juodieji"
@@ -444,684 +438,681 @@ msgid "Paused"
 msgstr "Pristabdytas"
 
 #. Move History Combo: Go to the start of the game
-#: ../src/gnome-chess.vala:433
+#: ../src/gnome-chess.vala:426
 msgid "Game Start"
 msgstr "Žaidimo pradžia"
 
 #. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
 #. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
-#: ../src/gnome-chess.vala:747
+#: ../src/gnome-chess.vala:769
 #, c-format
 msgid "White pawn moves from %1$s to %2$s"
 msgstr "Baltasis pėstininkas eina iš %1$s į %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:749
+#: ../src/gnome-chess.vala:771
 #, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s"
 msgstr "Baltasis pėstininkas %1$s kerta juodąjį pėstininką %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:751
+#: ../src/gnome-chess.vala:773
 #, c-format
 msgid "White pawn at %1$s takes the black rook at %2$s"
 msgstr "Baltasis pėstininkas %1$s kerta juodąjį bokštą %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:753
+#: ../src/gnome-chess.vala:775
 #, c-format
 msgid "White pawn at %1$s takes the black knight at %2$s"
 msgstr "Baltasis pėstininkas %1$s kerta juodąjį žirgą %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:755
+#: ../src/gnome-chess.vala:777
 #, c-format
 msgid "White pawn at %1$s takes the black bishop at %2$s"
 msgstr "Baltasis pėstininkas %1$s kerta juodąjį rikį %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:757
+#: ../src/gnome-chess.vala:779
 #, c-format
 msgid "White pawn at %1$s takes the black queen at %2$s"
 msgstr "Baltasis pėstininkas %1$s kerta juodąją valdovę %2$s"
 
 #. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
-#: ../src/gnome-chess.vala:759
+#: ../src/gnome-chess.vala:781
 #, c-format
 msgid "White rook moves from %1$s to %2$s"
 msgstr "Baltasis bokštas eina iš %1$s į %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:761
+#: ../src/gnome-chess.vala:783
 #, c-format
 msgid "White rook at %1$s takes the black pawn at %2$s"
 msgstr "Baltasis bokštas %1$s kerta juodąjį pėstininką %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:763
+#: ../src/gnome-chess.vala:785
 #, c-format
 msgid "White rook at %1$s takes the black rook at %2$s"
 msgstr "Baltasis bokštas %1$s kerta juodąjį bokštą %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:765
+#: ../src/gnome-chess.vala:787
 #, c-format
 msgid "White rook at %1$s takes the black knight at %2$s"
 msgstr "Baltasis bokštas %1$s kerta juodąjį žirgą %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:767
+#: ../src/gnome-chess.vala:789
 #, c-format
 msgid "White rook at %1$s takes the black bishop at %2$s"
 msgstr "Baltasis bokštas %1$s kerta juodąjį rikį %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
-#: ../src/gnome-chess.vala:769
+#: ../src/gnome-chess.vala:791
 #, c-format
 msgid "White rook at %1$s takes the black queen at %2$s"
 msgstr "Baltasis bokštas %1$s kerta juodąją valdovę %2$s"
 
 #. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
-#: ../src/gnome-chess.vala:771
+#: ../src/gnome-chess.vala:793
 #, c-format
 msgid "White knight moves from %1$s to %2$s"
 msgstr "Baltasis žirgas eina iš %1$s į %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:773
+#: ../src/gnome-chess.vala:795
 #, c-format
 msgid "White knight at %1$s takes the black pawn at %2$s"
 msgstr "Baltasis žirgas %1$s kerta juodąjį pėstininką %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:775
+#: ../src/gnome-chess.vala:797
 #, c-format
 msgid "White knight at %1$s takes the black rook at %2$s"
 msgstr "Baltasis žirgas %1$s kerta juodąjį bokštą %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:777
+#: ../src/gnome-chess.vala:799
 #, c-format
 msgid "White knight at %1$s takes the black knight at %2$s"
 msgstr "Baltasis žirgas %1$s kerta juodąjį žirgą %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:779
+#: ../src/gnome-chess.vala:801
 #, c-format
 msgid "White knight at %1$s takes the black bishop at %2$s"
 msgstr "Baltasis žirgas %1$s kerta juodąjį rikį %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:781
+#: ../src/gnome-chess.vala:803
 #, c-format
 msgid "White knight at %1$s takes the black queen at %2$s"
 msgstr "Baltasis žirgas %1$s kerta juodąją valdovę %2$s"
 
 #. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
-#: ../src/gnome-chess.vala:783
+#: ../src/gnome-chess.vala:805
 #, c-format
 msgid "White bishop moves from %1$s to %2$s"
 msgstr "Baltasis rikis eina iš %1$s į %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:785
+#: ../src/gnome-chess.vala:807
 #, c-format
 msgid "White bishop at %1$s takes the black pawn at %2$s"
 msgstr "Baltasis rikis %1$s kerta juodąjį pėstininką %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:787
+#: ../src/gnome-chess.vala:809
 #, c-format
 msgid "White bishop at %1$s takes the black rook at %2$s"
 msgstr "Baltasis rikis %1$s kerta juodąjį bokštą %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:789
+#: ../src/gnome-chess.vala:811
 #, c-format
 msgid "White bishop at %1$s takes the black knight at %2$s"
 msgstr "Baltasis rikis %1$s kerta juodąjį žirgą %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:791
+#: ../src/gnome-chess.vala:813
 #, c-format
 msgid "White bishop at %1$s takes the black bishop at %2$s"
 msgstr "Baltasis rikis %1$s kerta juodąjį rikį %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:793
+#: ../src/gnome-chess.vala:815
 #, c-format
 msgid "White bishop at %1$s takes the black queen at %2$s"
 msgstr "Baltasis rikis %1$s kerta juodąją valdovę %2$s"
 
 #. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
-#: ../src/gnome-chess.vala:795
+#: ../src/gnome-chess.vala:817
 #, c-format
 msgid "White queen moves from %1$s to %2$s"
 msgstr "Baltoji valdovė eina iš %1$s į %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:797
+#: ../src/gnome-chess.vala:819
 #, c-format
 msgid "White queen at %1$s takes the black pawn at %2$s"
 msgstr "Baltoji valdovė %1$s kerta juodąjį pėstininką %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:799
+#: ../src/gnome-chess.vala:821
 #, c-format
 msgid "White queen at %1$s takes the black rook at %2$s"
 msgstr "Baltoji valdovė %1$s kerta juodąjį bokštą %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:801
+#: ../src/gnome-chess.vala:823
 #, c-format
 msgid "White queen at %1$s takes the black knight at %2$s"
 msgstr "Baltoji valdovė %1$s kerta juodąjį žirgą %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:803
+#: ../src/gnome-chess.vala:825
 #, c-format
 msgid "White queen at %1$s takes the black bishop at %2$s"
 msgstr "Baltoji valdovė %1$s kerta juodąjį rikį %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:805
+#: ../src/gnome-chess.vala:827
 #, c-format
 msgid "White queen at %1$s takes the black queen at %2$s"
 msgstr "Baltoji valdovė %1$s kerta juodąją valdovę %2$s"
 
 #. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
-#: ../src/gnome-chess.vala:807
+#: ../src/gnome-chess.vala:829
 #, c-format
 msgid "White king moves from %1$s to %2$s"
 msgstr "Baltasis karalius eina iš %1$s į %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:809
+#: ../src/gnome-chess.vala:831
 #, c-format
 msgid "White king at %1$s takes the black pawn at %2$s"
 msgstr "Baltasis karalius %1$s kerta juodąjį pėstininką %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:811
+#: ../src/gnome-chess.vala:833
 #, c-format
 msgid "White king at %1$s takes the black rook at %2$s"
 msgstr "Baltasis karalius %1$s kerta juodąjį bokštą %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:813
+#: ../src/gnome-chess.vala:835
 #, c-format
 msgid "White king at %1$s takes the black knight at %2$s"
 msgstr "Baltasis karalius %1$s kerta juodąjį žirgą %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:815
+#: ../src/gnome-chess.vala:837
 #, c-format
 msgid "White king at %1$s takes the black bishop at %2$s"
 msgstr "Baltasis karalius %1$s kerta juodąjį rikį %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:817
+#: ../src/gnome-chess.vala:839
 #, c-format
 msgid "White king at %1$s takes the black queen at %2$s"
 msgstr "Baltasis karalius %1$s kerta juodąją valdovę %2$s"
 
 #. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
-#: ../src/gnome-chess.vala:819
+#: ../src/gnome-chess.vala:841
 #, c-format
 msgid "Black pawn moves from %1$s to %2$s"
 msgstr "Juodasis pėstininkas eina iš %1$s į %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:821
+#: ../src/gnome-chess.vala:843
 #, c-format
 msgid "Black pawn at %1$s takes the white pawn at %2$s"
 msgstr "Juodasis pėstininkas %1$s kerta baltąjį pėstininką %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:823
+#: ../src/gnome-chess.vala:845
 #, c-format
 msgid "Black pawn at %1$s takes the white rook at %2$s"
 msgstr "Juodasis pėstininkas %1$s kerta baltąjį bokštą %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:825
+#: ../src/gnome-chess.vala:847
 #, c-format
 msgid "Black pawn at %1$s takes the white knight at %2$s"
 msgstr "Juodasis pėstininkas %1$s kerta baltąjį žirgą %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:827
+#: ../src/gnome-chess.vala:849
 #, c-format
 msgid "Black pawn at %1$s takes the white bishop at %2$s"
 msgstr "Juodasis pėstininkas %1$s kerta baltąjį rikį %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:829
+#: ../src/gnome-chess.vala:851
 #, c-format
 msgid "Black pawn at %1$s takes the white queen at %2$s"
 msgstr "Juodasis pėstininkas %1$s kerta baltąją valdovę %2$s"
 
 #. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
-#: ../src/gnome-chess.vala:831
+#: ../src/gnome-chess.vala:853
 #, c-format
 msgid "Black rook moves from %1$s to %2$s"
 msgstr "Juodasis bokštas %1$s eina iš %1$s į %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:833
+#: ../src/gnome-chess.vala:855
 #, c-format
 msgid "Black rook at %1$s takes the white pawn at %2$s"
 msgstr "Juodasis bokštas %1$s kerta baltąjį pėstininką %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:835
+#: ../src/gnome-chess.vala:857
 #, c-format
 msgid "Black rook at %1$s takes the white rook at %2$s"
 msgstr "Juodasis bokštas %1$s kerta baltąjį bokštą %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:837
+#: ../src/gnome-chess.vala:859
 #, c-format
 msgid "Black rook at %1$s takes the white knight at %2$s"
 msgstr "Juodasis bokštas %1$s kerta baltąjį žirgą %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:839
+#: ../src/gnome-chess.vala:861
 #, c-format
 msgid "Black rook at %1$s takes the white bishop at %2$s"
 msgstr "Juodasis bokštas %1$s kerta baltąjį rikį %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:841
+#: ../src/gnome-chess.vala:863
 #, c-format
 msgid "Black rook at %1$s takes the white queen at %2$s"
 msgstr "Juodasis bokštas %1$s kerta baltąją valdovę %2$s"
 
 #. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
-#: ../src/gnome-chess.vala:843
+#: ../src/gnome-chess.vala:865
 #, c-format
 msgid "Black knight moves from %1$s to %2$s"
 msgstr "Juodasis žirgas %1$s eina iš %1$s į %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:845
+#: ../src/gnome-chess.vala:867
 #, c-format
 msgid "Black knight at %1$s takes the white pawn at %2$s"
 msgstr "Juodasis žirgas %1$s kerta baltąjį pėstininką %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:847
+#: ../src/gnome-chess.vala:869
 #, c-format
 msgid "Black knight at %1$s takes the white rook at %2$s"
 msgstr "Juodasis žirgas %1$s kerta baltąjį bokštą %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:849
+#: ../src/gnome-chess.vala:871
 #, c-format
 msgid "Black knight at %1$s takes the white knight at %2$s"
 msgstr "Juodasis žirgas %1$s kerta baltąjį žirgą %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:851
+#: ../src/gnome-chess.vala:873
 #, c-format
 msgid "Black knight at %1$s takes the white bishop at %2$s"
 msgstr "Juodasis žirgas %1$s kerta baltąjį rikį %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:853
+#: ../src/gnome-chess.vala:875
 #, c-format
 msgid "Black knight at %1$s takes the white queen at %2$s"
 msgstr "Juodasis žirgas %1$s kerta baltąją valdovę %2$s"
 
 #. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
-#: ../src/gnome-chess.vala:855
+#: ../src/gnome-chess.vala:877
 #, c-format
 msgid "Black bishop moves from %1$s to %2$s"
 msgstr "Juodasis rikis %1$s eina iš %1$s į %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:857
+#: ../src/gnome-chess.vala:879
 #, c-format
 msgid "Black bishop at %1$s takes the white pawn at %2$s"
 msgstr "Juodasis rikis %1$s kerta baltąjį pėstininką %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:859
+#: ../src/gnome-chess.vala:881
 #, c-format
 msgid "Black bishop at %1$s takes the white rook at %2$s"
 msgstr "Juodasis rikis %1$s kerta baltąjį bokštą %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:861
+#: ../src/gnome-chess.vala:883
 #, c-format
 msgid "Black bishop at %1$s takes the white knight at %2$s"
 msgstr "Juodasis rikis %1$s kerta baltąjį žirgą %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:863
+#: ../src/gnome-chess.vala:885
 #, c-format
 msgid "Black bishop at %1$s takes the white bishop at %2$s"
 msgstr "Juodasis rikis %1$s kerta baltąjį rikį %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:865
+#: ../src/gnome-chess.vala:887
 #, c-format
 msgid "Black bishop at %1$s takes the white queen at %2$s"
 msgstr "Juodasis rikis %1$s kerta baltąją valdovę %2$s"
 
 #. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
-#: ../src/gnome-chess.vala:867
+#: ../src/gnome-chess.vala:889
 #, c-format
 msgid "Black queen moves from %1$s to %2$s"
 msgstr "Juodoji valdovė %1$s eina iš %1$s į %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:869
+#: ../src/gnome-chess.vala:891
 #, c-format
 msgid "Black queen at %1$s takes the white pawn at %2$s"
 msgstr "Juodoji valdovė %1$s kerta baltąjį pėstininką %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:871
+#: ../src/gnome-chess.vala:893
 #, c-format
 msgid "Black queen at %1$s takes the white rook at %2$s"
 msgstr "Juodoji valdovė %1$s kerta baltąjį bokštą %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:873
+#: ../src/gnome-chess.vala:895
 #, c-format
 msgid "Black queen at %1$s takes the white knight at %2$s"
 msgstr "Juodoji valdovė %1$s kerta baltąjį žirgą %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:875
+#: ../src/gnome-chess.vala:897
 #, c-format
 msgid "Black queen at %1$s takes the white bishop at %2$s"
 msgstr "Juodoji valdovė %1$s kerta baltąjį rikį %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:877
+#: ../src/gnome-chess.vala:899
 #, c-format
 msgid "Black queen at %1$s takes the white queen at %2$s"
 msgstr "Juodoji valdovė %1$s kerta baltąją valdovę %2$s"
 
 #. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
-#: ../src/gnome-chess.vala:879
+#: ../src/gnome-chess.vala:901
 #, c-format
 msgid "Black king moves from %1$s to %2$s"
 msgstr "Juodasis karalius %1$s eina iš %1$s į %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:881
+#: ../src/gnome-chess.vala:903
 #, c-format
 msgid "Black king at %1$s takes the white pawn at %2$s"
 msgstr "Juodasis karalius %1$s kerta baltąjį pėstininką %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:883
+#: ../src/gnome-chess.vala:905
 #, c-format
 msgid "Black king at %1$s takes the white rook at %2$s"
 msgstr "Juodasis karalius %1$s kerta baltąjį bokštą %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:885
+#: ../src/gnome-chess.vala:907
 #, c-format
 msgid "Black king at %1$s takes the white knight at %2$s"
 msgstr "Juodasis karalius %1$s kerta baltąjį žirgą %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:887
+#: ../src/gnome-chess.vala:909
 #, c-format
 msgid "Black king at %1$s takes the white bishop at %2$s"
 msgstr "Juodasis karalius %1$s kerta baltąjį rikį %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
-#: ../src/gnome-chess.vala:889
+#: ../src/gnome-chess.vala:911
 #, c-format
 msgid "Black king at %1$s takes the white queen at %2$s"
 msgstr "Juodasis karalius %1$s kerta baltąją valdovę %2$s"
 
-#: ../src/gnome-chess.vala:912
+#: ../src/gnome-chess.vala:934
 msgid "White castles kingside"
 msgstr "Baltieji bokštai karaliaus pusėje"
 
-#: ../src/gnome-chess.vala:916
+#: ../src/gnome-chess.vala:938
 msgid "White castles queenside"
 msgstr "Baltieji bokštai karalienės pusėje"
 
-#: ../src/gnome-chess.vala:920
+#: ../src/gnome-chess.vala:942
 msgid "Black castles kingside"
 msgstr "Juodieji bokštai karaliaus pusėje"
 
-#: ../src/gnome-chess.vala:924
+#: ../src/gnome-chess.vala:946
 msgid "Black castles queenside"
 msgstr "Juodieji bokštai karalienės pusėje"
 
 #. Window title on a White human's turn if he is in check
-#: ../src/gnome-chess.vala:1054
+#: ../src/gnome-chess.vala:1073
 msgid "White is in Check"
 msgstr "Baltiesiems šachas"
 
 #. Window title on a Black human's turn if he is in check
-#: ../src/gnome-chess.vala:1057
+#: ../src/gnome-chess.vala:1076
 msgid "Black is in Check"
 msgstr "Juodiesiems šachas"
 
 #. Window title on White's turn if White is human
-#: ../src/gnome-chess.vala:1063
+#: ../src/gnome-chess.vala:1082
 msgid "White to Move"
 msgstr "Baltųjų ėjimas"
 
 #. Window title on White's turn if White is a computer
-#: ../src/gnome-chess.vala:1066
+#: ../src/gnome-chess.vala:1085
 msgid "White is Thinking…"
 msgstr "Baltieji galvoja…"
 
 #. Window title on Black's turn if Black is human
-#: ../src/gnome-chess.vala:1072
+#: ../src/gnome-chess.vala:1091
 msgid "Black to Move"
 msgstr "Juodųjų ėjimas"
 
 #. Window title on Black's turn if Black is a computer
-#: ../src/gnome-chess.vala:1075
+#: ../src/gnome-chess.vala:1094
 msgid "Black is Thinking…"
 msgstr "Juodieji galvoja…"
 
-#: ../src/gnome-chess.vala:1103
+#: ../src/gnome-chess.vala:1122
 msgid "Unpause the game"
 msgstr "Tęsti žaidimą"
 
-#: ../src/gnome-chess.vala:1109
+#: ../src/gnome-chess.vala:1128
 msgid "Pause the game"
 msgstr "Pristabdyti žaidimą"
 
 #. Window title when the white player wins
-#: ../src/gnome-chess.vala:1130
+#: ../src/gnome-chess.vala:1148
 msgid "White Wins"
 msgstr "Baltieji laimi"
 
 #. Window title when the black player wins
-#: ../src/gnome-chess.vala:1135
+#: ../src/gnome-chess.vala:1153
 msgid "Black Wins"
 msgstr "Juodieji laimi"
 
 #. Window title when the game is drawn
-#: ../src/gnome-chess.vala:1140
+#: ../src/gnome-chess.vala:1158
 msgid "Game is Drawn"
 msgstr "Žaidimas baigėsi lygiosiomis"
 
 #. Window title when the chess engine dies unexpectedly
-#: ../src/gnome-chess.vala:1146
-#| msgid "The computer player died unexpectedly. The game cannot continue."
+#: ../src/gnome-chess.vala:1164
 msgid "The computer player died unexpectedly."
 msgstr "Kompiuteris netikėtai numirė."
 
 #. Window subtitle when something goes wrong with the engine...
 #. * or when the engine says something is wrong with us!
-#: ../src/gnome-chess.vala:1150
-#| msgid "The computer player is very confused. The game cannot continue."
+#: ../src/gnome-chess.vala:1168
 msgid "The computer player is very confused."
 msgstr "Kompiuterio žaidėjas pasimetė."
 
 #. Window subtitle when Black is checkmated
-#: ../src/gnome-chess.vala:1163
+#: ../src/gnome-chess.vala:1181
 msgid "Black is in check and cannot move (checkmate)."
 msgstr "Juodiesiems šachas ir nebėra ėjimų (matas)."
 
 #. Window subtitle when White is checkmated
-#: ../src/gnome-chess.vala:1166
-#| msgid "Black is in check and cannot move (checkmate)."
+#: ../src/gnome-chess.vala:1184
 msgid "White is in check and cannot move (checkmate)."
 msgstr "Baltiesiems šachas ir nebėra ėjimų (matas)."
 
 #. Window subtitle when the game terminates due to a stalemate
-#: ../src/gnome-chess.vala:1172
+#: ../src/gnome-chess.vala:1190
 msgid "Opponent cannot move (stalemate)."
 msgstr "Priešininkas nebeturi ėjimų (patas)."
 
 #. Window subtitle when the game is drawn due to the fifty move rule
-#: ../src/gnome-chess.vala:1176
+#: ../src/gnome-chess.vala:1194
 msgid "No piece has been taken or pawn moved in the last fifty moves."
 msgstr ""
 "Nenukirsta nei viena figūra ir pėstininkai nejudinti per paskutinius 50 "
 "ėjimų."
 
 #. Window subtitle when the game ends due to Black's clock stopping
-#: ../src/gnome-chess.vala:1181
+#: ../src/gnome-chess.vala:1199
 msgid "Black has run out of time."
 msgstr "Juodiesiems baigėsi laikas."
 
 #. Window subtitle when the game ends due to White's clock stopping
-#: ../src/gnome-chess.vala:1184
+#: ../src/gnome-chess.vala:1202
 msgid "White has run out of time."
 msgstr "Baltiesiems baigėsi laikas."
 
 #. Window subtitle when the game is drawn due to the three-fold-repitition rule
-#: ../src/gnome-chess.vala:1190
+#: ../src/gnome-chess.vala:1208
 msgid "The same board state has occurred three times (threefold repetition)."
 msgstr "Ta pati pozicija pasikartojo tris kartus iš eilės."
 
 #. Window subtitle when the game is drawn due to the insufficient material rule
-#: ../src/gnome-chess.vala:1194
+#: ../src/gnome-chess.vala:1212
 msgid "Neither player can checkmate (insufficient material)."
 msgstr "Nei vienas žaidėjas negali duoti mato (nepakanka figūrų)."
 
 #. Window subtitle when the game ends due to the black player resigning
-#: ../src/gnome-chess.vala:1199
+#: ../src/gnome-chess.vala:1217
 msgid "Black has resigned."
 msgstr "Juodieji pasidavė."
 
 #. Window subtitle when the game ends due to the white player resigning
-#: ../src/gnome-chess.vala:1202
+#: ../src/gnome-chess.vala:1220
 msgid "White has resigned."
 msgstr "Baltieji pasidavė."
 
 #. Window subtitle when a game is abandoned
-#: ../src/gnome-chess.vala:1208
+#: ../src/gnome-chess.vala:1226
 msgid "The game has been abandoned."
 msgstr "Šis žaidimas buvo nutrauktas."
 
 #. Window subtitle when the chess engine dies unexpectedly.
 #. Window subtitle when something goes wrong with the engine...
 #. * or when the engine says something is wrong with us!
-#: ../src/gnome-chess.vala:1214 ../src/gnome-chess.vala:1224
-#| msgid "The game has been abandoned."
+#: ../src/gnome-chess.vala:1232 ../src/gnome-chess.vala:1242
 msgid "The game cannot continue."
 msgstr "Žaidimo negalima tęsti."
 
 #. Window subtitle when the game ends due to a player dying.
 #. * This is a PGN standard. GNOME Chess will never kill the user.
-#: ../src/gnome-chess.vala:1218
+#: ../src/gnome-chess.vala:1236
 msgid "One of the players has died."
 msgstr "Vieno iš žaidėjų nebėra."
 
-#: ../src/gnome-chess.vala:1283 ../src/gnome-chess.vala:1959
-#: ../src/gnome-chess.vala:2042
+#: ../src/gnome-chess.vala:1300 ../src/gnome-chess.vala:2053
+#: ../src/gnome-chess.vala:2136
 msgid "_Cancel"
 msgstr "_Atsisakyti"
 
-#: ../src/gnome-chess.vala:1287
+#: ../src/gnome-chess.vala:1304
 msgid "_Abandon game"
 msgstr "_Palikti žaidimą"
 
-#: ../src/gnome-chess.vala:1288
+#: ../src/gnome-chess.vala:1305
 msgid "_Save game for later"
 msgstr "_Įrašyti žaidimą vėlesniam laikui"
 
-#: ../src/gnome-chess.vala:1292
+#: ../src/gnome-chess.vala:1309
 msgid "_Discard game"
 msgstr "_Palikti žaidimą"
 
-#: ../src/gnome-chess.vala:1293
+#: ../src/gnome-chess.vala:1310
 msgid "_Save game log"
 msgstr "_Įrašyti žaidimo žurnalą"
 
 #. Your very last chance to save
-#: ../src/gnome-chess.vala:1306
+#: ../src/gnome-chess.vala:1323
 msgid "_Discard"
 msgstr "_Palikti"
 
-#: ../src/gnome-chess.vala:1306 ../src/gnome-chess.vala:1960
+#: ../src/gnome-chess.vala:1323 ../src/gnome-chess.vala:2054
 msgid "_Save"
 msgstr "Į_rašyti"
 
-#: ../src/gnome-chess.vala:1321
+#. Title of claim draw dialog
+#: ../src/gnome-chess.vala:1348
+#| msgid "You cannot currently claim a draw."
+msgid "Would you like to claim a draw?"
+msgstr "Ar norite reikalauti lygiųjų?"
+
+#. Message in claim draw dialog when triggered by fifty-move rule
+#: ../src/gnome-chess.vala:1354
+#| msgid "50 moves have passed without a capture or pawn advancement"
+msgid "Fifty moves have passed without a capture or pawn advancement."
+msgstr ""
+"Penkiasdešimt ėjimų atlikta be figūros laimėjimo ar pėstininko paėjimo."
+
+#. Message in claim draw dialog when triggered by three-fold repetition
+#: ../src/gnome-chess.vala:1359
+#| msgid "Any board position has occurred three times"
+msgid "The current board position has occurred three times."
+msgstr "Dabartinė pozicija pasikartojo tris kartus iš eilės."
+
+#. Displays in claim draw dialog to warn player that the dialog only appears once
+#: ../src/gnome-chess.vala:1365
+msgid "(You will not be offered this choice again.)"
+msgstr "(Daugiau tai nebus siūloma.)"
+
+#. Option in claim draw dialog
+#. Option on warning dialog when player clicks resign
+#: ../src/gnome-chess.vala:1368 ../src/gnome-chess.vala:1412
+msgid "_Keep Playing"
+msgstr "_Tęsti žaidimą"
+
+#. Option in claim draw dialog
+#: ../src/gnome-chess.vala:1370
+#| msgid "Claim Draw"
+msgid "_Claim Draw"
+msgstr "_Reikalauti lygiųjų"
+
+#: ../src/gnome-chess.vala:1392
 msgid "Save this game before starting a new one?"
 msgstr "Įrašyti šį žaidimą prieš pradedant naują?"
 
-#: ../src/gnome-chess.vala:1344
-msgid "You cannot currently claim a draw."
-msgstr "Šiuo metu negalite reikalauti lygiųjų."
+#. Title of warning dialog when player clicks Resign
+#: ../src/gnome-chess.vala:1407
+msgid "Are you sure you want to resign?"
+msgstr "Ar tikrai norite pasiduoti?"
 
-#: ../src/gnome-chess.vala:1353
-msgid "It is the first time this board position has occurred"
-msgstr "Ši lentos padėtis pasitaikė pirmą kartą"
+#. Text on warningn dialog when player clicks Resign
+#: ../src/gnome-chess.vala:1410
+msgid "This makes sense if you plan to save the game as a record of your loss."
+msgstr "Tai prasminga, jei norite įrašyti žaidimą kaip pralaimėjimą."
 
-#: ../src/gnome-chess.vala:1354
-msgid "It is the second time this board position has occurred"
-msgstr "Ši lentos padėtis pasitaikė antrą kartą"
-
-#: ../src/gnome-chess.vala:1355
-#, c-format
-msgid "%d move has passed without a capture or pawn advancement"
-msgid_plural "%d moves have passed without a capture or pawn advancement"
-msgstr[0] "%d ėjimas įvykdytas be laimėjimo ar pėstininko paėjimo"
-msgstr[1] "%d ėjimai įvykdyti be laimėjimo ar pėstininko paėjimo"
-msgstr[2] "%d ėjimų įvykdyta be laimėjimo ar pėstininko paėjimo"
-
-#: ../src/gnome-chess.vala:1358
-msgid "You can claim a draw when either:"
-msgstr "Galite reikalauti lygiųjų, kai:"
-
-#: ../src/gnome-chess.vala:1359
-msgid "Any board position has occurred three times"
-msgstr "Ta pati pozicija pasikartojo tris kartus iš eilės"
-
-#: ../src/gnome-chess.vala:1360
-msgid "50 moves have passed without a capture or pawn advancement"
-msgstr "50 ėjimų atlikta be figūros laimėjimo ar pėstininko paėjimo"
-
-#: ../src/gnome-chess.vala:1361
-msgid ""
-"(Board position is affected by the ability to castle or capture en passant.)"
-msgstr ""
-"(Lentos padėtis yra paveikta galimybės atlikti rokiruotę arba nukirsti "
-"prasilenkiant.)"
-
-#: ../src/gnome-chess.vala:1362
-msgid "The game is automatically a draw if:"
-msgstr "Automatiškai fiksuojamos lygiosios, jei:"
-
-#: ../src/gnome-chess.vala:1363
-msgid "The current player cannot move (stalemate)"
-msgstr "Priešininkas negali atlikti ėjimo (patas)"
-
-#: ../src/gnome-chess.vala:1364
-msgid "Neither player can checkmate (insufficient material)"
-msgstr "Nei vienas žaidėjas negali duoti mato (nepakanka figūrų)"
+#. Option on warning dialog when player clicks resign
+#: ../src/gnome-chess.vala:1414
+#| msgid "Resign"
+msgid "_Resign"
+msgstr "_Pasiduoti"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in seconds
-#: ../src/gnome-chess.vala:1756
+#: ../src/gnome-chess.vala:1850
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "sekundė"
@@ -1129,7 +1120,7 @@ msgstr[1] "sekundės"
 msgstr[2] "sekundžių"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#: ../src/gnome-chess.vala:1760
+#: ../src/gnome-chess.vala:1854
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minutė"
@@ -1137,14 +1128,14 @@ msgstr[1] "minutės"
 msgstr[2] "minučių"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../src/gnome-chess.vala:1764
+#: ../src/gnome-chess.vala:1858
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "valanda"
 msgstr[1] "valandos"
 msgstr[2] "valandų"
 
-#: ../src/gnome-chess.vala:1877
+#: ../src/gnome-chess.vala:1971
 msgid ""
 "The 2D/3D chess game for GNOME\n"
 "\n"
@@ -1154,69 +1145,67 @@ msgstr ""
 "\n"
 "GNOME šachmatai yra GNOME žaidimų dalis."
 
-#: ../src/gnome-chess.vala:1880
+#: ../src/gnome-chess.vala:1974
 msgid "translator-credits"
 msgstr ""
 "Išvertė:\n"
 "Aurimas Černius <aurisc4@gmail.com>"
 
-#: ../src/gnome-chess.vala:1946
-#| msgid "Failed to save game: %s"
+#: ../src/gnome-chess.vala:2040
 msgid "Failed to save game"
 msgstr "Nepavyko įrašyti žaidimo"
 
 #. Title of save game dialog
-#: ../src/gnome-chess.vala:1970
+#: ../src/gnome-chess.vala:2064
 msgid "Save Chess Game"
 msgstr "Išsaugoti šachmatų žaidimą"
 
 #. Default filename for the save game dialog
-#: ../src/gnome-chess.vala:1983
+#: ../src/gnome-chess.vala:2077
 msgid "Untitled Chess Game"
 msgstr "Neįvardintas šachmatų žaidimas"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:1988 ../src/gnome-chess.vala:2052
+#: ../src/gnome-chess.vala:2082 ../src/gnome-chess.vala:2146
 msgid "PGN files"
 msgstr "PGN failai"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:1994 ../src/gnome-chess.vala:2058
+#: ../src/gnome-chess.vala:2088 ../src/gnome-chess.vala:2152
 msgid "All files"
 msgstr "Visi failai"
 
-#: ../src/gnome-chess.vala:2029
+#: ../src/gnome-chess.vala:2123
 msgid "Save this game before loading another one?"
 msgstr "Įrašyti šį žaidimą prieš pradedant naują?"
 
 #. Title of load game dialog
-#: ../src/gnome-chess.vala:2040
+#: ../src/gnome-chess.vala:2134
 msgid "Load Chess Game"
 msgstr "Įkelti šachmatų žaidimą"
 
-#: ../src/gnome-chess.vala:2043
+#: ../src/gnome-chess.vala:2137
 msgid "_Open"
 msgstr "_Atverti"
 
-#: ../src/gnome-chess.vala:2077
-#| msgid "Failed to open game: %s"
+#: ../src/gnome-chess.vala:2171
 msgid "Failed to open game"
 msgstr "Nepavyko atverti žaidimo"
 
 #. Help string for command line --version flag
-#: ../src/gnome-chess.vala:2168
+#: ../src/gnome-chess.vala:2258
 msgid "Show release version"
 msgstr "Rodyti leidimo versiją"
 
 #. Arguments and description for --help text
-#: ../src/gnome-chess.vala:2180
+#: ../src/gnome-chess.vala:2270
 msgid "[FILE] - Play Chess"
 msgstr "[FAILAS] - Žaisti šachmatais"
 
 #. Text printed out when an unknown command-line argument provided
-#: ../src/gnome-chess.vala:2191
+#: ../src/gnome-chess.vala:2281
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr "Paleiskite „%s --help“ visam komandų eilutės parinkčių sąrašui."
