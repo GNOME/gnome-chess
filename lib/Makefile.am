@@ -26,7 +26,9 @@ libchess_la_VALAFLAGS = \
 	--header=libchess.h \
 	--vapi=libchess.vapi
 
-EXTRA_DIST = libchess.h
+EXTRA_DIST = \
+	libchess.h \
+	libchess.vapi
 
 CLEANFILES = \
 	$(patsubst %.vala,%.c,$(filter %.vala, $(SOURCES))) \
