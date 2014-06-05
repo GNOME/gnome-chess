@@ -44,9 +44,11 @@
               <class name="image-button"/>
             </style>
             <child>
-              <object class="GtkImage" id="undo_move_image">
+              <object class="GtkImage">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="icon_size">1</property>
+                <property name="icon_name">edit-undo-symbolic</property>
               </object>
             </child>
           </object>
@@ -168,10 +170,15 @@
                         <property name="tooltip_text" translatable="yes" comments="Tooltip on the show first move (i.e. game start) navigation button">Rewind to the game start</property>
                         <accelerator key="Left" signal="activate" modifiers="GDK_SHIFT_MASK | GDK_MOD1_MASK"/>
                         <signal name="clicked" handler="history_start_clicked_cb" swapped="no"/>
+                        <style>
+                          <class name="image-button"/>
+                        </style>
                         <child>
-                          <object class="GtkImage" id="first_move_image">
+                          <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="icon_size">1</property>
+                            <property name="icon_name">go-first-symbolic</property>
                           </object>
                         </child>
                       </object>
@@ -190,10 +197,15 @@
                         <property name="tooltip_text" translatable="yes" comments="Tooltip on the show previous move navigation button">Show the previous move</property>
                         <accelerator key="Left" signal="activate" modifiers="GDK_MOD1_MASK"/>
                         <signal name="clicked" handler="history_previous_clicked_cb" swapped="no"/>
+                        <style>
+                          <class name="image-button"/>
+                        </style>
                         <child>
-                          <object class="GtkImage" id="prev_move_image">
+                          <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="icon_size">1</property>
+                            <property name="icon_name">go-previous-symbolic</property>
                           </object>
                         </child>
                       </object>
@@ -212,10 +224,15 @@
                         <property name="tooltip_text" translatable="yes" comments="Tooltip on the show next move navigation button">Show the next move</property>
                         <accelerator key="Right" signal="activate" modifiers="GDK_MOD1_MASK"/>
                         <signal name="clicked" handler="history_next_clicked_cb" swapped="no"/>
+                        <style>
+                          <class name="image-button"/>
+                        </style>
                         <child>
-                          <object class="GtkImage" id="next_move_image">
+                          <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="icon_size">1</property>
+                            <property name="icon_name">go-next-symbolic</property>
                           </object>
                         </child>
                       </object>
@@ -234,10 +251,15 @@
                         <property name="tooltip_text" translatable="yes" comments="Tooltip on the show current move navigation button">Show the current move</property>
                         <accelerator key="Right" signal="activate" modifiers="GDK_SHIFT_MASK | GDK_MOD1_MASK"/>
                         <signal name="clicked" handler="history_latest_clicked_cb" swapped="no"/>
+                        <style>
+                          <class name="image-button"/>
+                        </style>
                         <child>
-                          <object class="GtkImage" id="last_move_image">
+                          <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="icon_size">1</property>
+                            <property name="icon_name">go-last-symbolic</property>
                           </object>
                         </child>
                       </object>

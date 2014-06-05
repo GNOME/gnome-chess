@@ -126,16 +126,11 @@ public class Application : Gtk.Application
             warning ("Could not load UI: %s", e.message);
         }
         window = (Gtk.ApplicationWindow) builder.get_object ("gnome_chess_app");
-        var undo_move_image = (Gtk.Image) builder.get_object ("undo_move_image");
         pause_resume_button = (Gtk.Button) builder.get_object ("pause_button");
         first_move_button = (Gtk.Widget) builder.get_object ("first_move_button");
         prev_move_button = (Gtk.Widget) builder.get_object ("prev_move_button");
         next_move_button = (Gtk.Widget) builder.get_object ("next_move_button");
         last_move_button = (Gtk.Widget) builder.get_object ("last_move_button");
-        var first_move_image = (Gtk.Image) builder.get_object ("first_move_image");
-        var prev_move_image = (Gtk.Image) builder.get_object ("prev_move_image");
-        var next_move_image = (Gtk.Image) builder.get_object ("next_move_image");
-        var last_move_image = (Gtk.Image) builder.get_object ("last_move_image");
         history_combo = (Gtk.ComboBox) builder.get_object ("history_combo");
         white_time_label = (Gtk.Widget) builder.get_object ("white_time_label");
         black_time_label = (Gtk.Widget) builder.get_object ("black_time_label");
@@ -144,14 +139,6 @@ public class Application : Gtk.Application
         builder.connect_signals (this);
 
         update_pause_resume_button ();
-
-        bool rtl = Gtk.Widget.get_default_direction () == Gtk.TextDirection.RTL;
-
-        first_move_image.icon_name = rtl ? "go-first-rtl-symbolic" : "go-first-symbolic";
-        prev_move_image.icon_name = rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic";
-        next_move_image.icon_name = rtl ? "go-next-rtl-symbolic" : "go-next-symbolic";
-        last_move_image.icon_name = rtl ? "go-last-rtl-symbolic" : "go-last-symbolic";
-        undo_move_image.icon_name = rtl ? "edit-undo-rtl-symbolic" : "edit-undo-symbolic";
 
         window.add_action_entries (window_entries, this);
 
@@ -1114,10 +1101,7 @@ public class Application : Gtk.Application
 
         if (game != null && game.is_paused)
         {
-            bool rtl = Gtk.Widget.get_default_direction () == Gtk.TextDirection.RTL;
-
-            pause_resume_button.image = new Gtk.Image.from_icon_name (rtl ? "media-playback-start-rtl-symbolic" :
-                                                                            "media-playback-start-symbolic",
+            pause_resume_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic",
                                                                       Gtk.IconSize.BUTTON);
             pause_resume_button.tooltip_text = _("Unpause the game");
         }
