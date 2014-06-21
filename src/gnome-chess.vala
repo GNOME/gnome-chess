@@ -1213,7 +1213,7 @@ public class Application : Gtk.Application
             else
                 /* Window subtitle when the game ends due to a player dying.
                  * This is a PGN standard. GNOME Chess will never kill the user. */
-                reason = _("One of the players has died.");
+                reason = _("The game log says a player died!");
             pgn_game.termination = PGNGame.TERMINATE_DEATH;
             break;
         case ChessRule.BUG:
