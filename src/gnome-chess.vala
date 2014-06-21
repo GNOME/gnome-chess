@@ -1470,9 +1470,23 @@ public class Application : Gtk.Application
             time = game.clock.black_initial_seconds - game.clock.black_seconds_used;
 
         if (time >= 60)
-            return "%d∶%02d".printf (time / 60, time % 60);
+        {
+            /* Translators: timer labels in the bottom-right. (Change your preferences
+             * to enable timed games.) The first %d is minutes and the %02d at the end
+             * is seconds. In the middle is a ratio character and a LTR order mark to
+             * force minutes on the left of the ratio in RTL layouts. You probably do
+             * not need to change this, but I'm told you might.... */
+            return _("%d\xE2\x88\xB6\xE2\x80\x8E%02d").printf (time / 60, time % 60);
+        }
         else
-            return "∶%02d".printf (time);
+        {
+            /* Translators: timer labels in the bottom-right. (Change your preferences
+             * to enable timed games.) Less than a minute is left. The %02d at the end
+             * is seconds. Before that is a ratio character and a LTR order mark to
+             * force minutes on the left of the ratio in RTL layouts. You probably do
+             * not need to change this, but I'm told you might.... */
+            return _("\xE2\x88\xB6\xE2\x80\x8E%02d").printf (time);
+        }
     }
 
     /*
