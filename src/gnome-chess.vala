@@ -1143,13 +1143,9 @@ public class Application : Gtk.Application
             pgn_game.result = PGNGame.RESULT_DRAW;            
             break;
         case ChessResult.BUG:
-            if (game.rule == ChessRule.DEATH)
-                /* Window title when the chess engine dies unexpectedly */
-                title = _("The computer player died unexpectedly.");
-            else
-                /* Window subtitle when something goes wrong with the engine...
-                 * or when the engine says something is wrong with us! */
-                title = _("The computer player is very confused.");
+            /* Window title when something goes wrong with the engine...
+             * or when the engine says something is wrong with us! */
+            title = _("Something has gone wrong with the computer player.");
             /* don't set the pgn_game result; these are standards */
             break;
         default:
