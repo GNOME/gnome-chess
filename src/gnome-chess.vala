@@ -460,6 +460,17 @@ public class Application : Gtk.Application
             else
                 warning ("Chess game has SetUp tag but no FEN tag");
         }
+
+        /* Workaround for https://bugzilla.gnome.org/show_bug.cgi?id=732067 */
+        if (game != null)
+        {
+            game.started.disconnect (game_start_cb);
+            game.turn_started.disconnect (game_turn_cb);
+            game.moved.disconnect (game_move_cb);
+            game.undo.disconnect (game_undo_cb);
+            game.ended.disconnect (game_end_cb);
+        }
+
         game = new ChessGame (fen, moves);
 
         /*
