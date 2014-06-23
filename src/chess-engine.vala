@@ -138,12 +138,10 @@ public abstract class ChessEngine : Object
         }
 
         if (FileUtils.close (stdin_fd) == -1)
-            warning ("Failed to close pipe to engine's stdin: %s",
-                     strerror (errno));
+            warning ("Failed to close pipe to engine's stdin: %s", strerror (errno));
 
         if (FileUtils.close (stderr_fd) == -1)
-            warning ("Failed to close pipe to engine's stderr: %s",
-                     strerror (errno));
+            warning ("Failed to close pipe to engine's stderr: %s", strerror (errno));
 
         if (pid != 0 && Posix.kill (pid, Posix.SIGTERM) == -1)
             warning ("Failed to kill engine: %s", strerror (errno));
