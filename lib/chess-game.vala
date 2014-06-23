@@ -32,7 +32,7 @@ public enum ChessRule
     BUG
 }
 
-public class ChessGame
+public class ChessGame : Object
 {
     public bool is_started;
     public ChessResult result;
