@@ -1119,6 +1119,9 @@ public class Application : Gtk.Application
         disable_window_action (UNDO_MOVE_ACTION_NAME);
         disable_window_action (PAUSE_RESUME_ACTION_NAME);
 
+        /* In case of engine desync before the first move, or after undo */
+        enable_window_action (NEW_GAME_ACTION_NAME);
+
         game_needs_saving = false;
 
         if (opponent_engine != null)
