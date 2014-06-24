@@ -19,7 +19,7 @@ public enum PieceType
     KING
 }
 
-public class ChessPiece
+public class ChessPiece : Object
 {
     public ChessPlayer player;
     public PieceType type;

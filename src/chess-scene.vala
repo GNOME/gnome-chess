@@ -9,7 +9,7 @@
  * license.
  */
 
-public class ChessModel
+public class ChessModel : Object
 {
     public ChessPiece piece;
     public double x;

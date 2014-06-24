@@ -11,7 +11,7 @@
 
 using GL;
 
-public class TDSModel
+public class TDSModel : Object
 {
     private GLfloat min_height = float.MAX;
     private GLfloat max_height = float.MIN;

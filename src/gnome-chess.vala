@@ -2242,7 +2242,7 @@ public class Application : Gtk.Application
     }
 }
 
-class GnomeChess
+class GnomeChess : Object
 {
     static bool show_version;
     public static const OptionEntry[] options =

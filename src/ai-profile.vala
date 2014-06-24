@@ -10,7 +10,7 @@
  * license.
  */
 
-public class AIProfile
+public class AIProfile : Object
 {
     public string name { get; private set; }
     public string protocol { get; private set; }

@@ -9,7 +9,7 @@
  * license.
  */
 
-public class BitBoard
+public class BitBoard : Object
 {
     /* Bitboard for each location */
     public static const int64 set_location_masks[] =

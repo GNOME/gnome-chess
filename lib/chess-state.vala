@@ -16,7 +16,7 @@ public enum CheckState
     CHECKMATE
 }
 
-public class ChessState
+public class ChessState : Object
 {
     public int number = 0;
     public ChessPlayer players[2];
