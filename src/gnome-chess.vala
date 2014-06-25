@@ -10,7 +10,7 @@
  * license.
  */
 
-public class Application : Gtk.Application
+public class ChessApplication : Gtk.Application
 {
     private Settings settings;
     private Gtk.Builder builder;
@@ -83,25 +83,75 @@ public class Application : Gtk.Application
         { PAUSE_RESUME_ACTION_NAME, pause_resume_cb },
     };
 
-    public Application (File? game_file)
+    private static const OptionEntry[] option_entries =
     {
-        Object (application_id: "org.gnome.gnome-chess", flags: ApplicationFlags.FLAGS_NONE);
-        this.game_file = game_file;
+        { "version", 'v', 0, OptionArg.NONE, null,
+        /* Help string for command line --version flag */
+        N_("Show release version"), null},
+
+        { null }
+    };
+
+    private ChessApplication ()
+    {
+        Object (application_id: "org.gnome.gnome-chess", flags: ApplicationFlags.HANDLES_OPEN);
+        add_main_option_entries (option_entries);
+    }
+
+    protected override int handle_local_options (GLib.VariantDict options)
+    {
+        if (options.contains ("version"))
+        {
+            /* Not translated so can be easily parsed */
+            stderr.printf ("gnome-chess %s\n", VERSION);
+            return Posix.EXIT_SUCCESS;
+        }
+
+        /* Activate */
+        return -1;
+    }
+
+    public override void open (File[] files, string hint)
+    {
+        if (files.length != 1)
+        {
+            /* May print when started on the command line; a PGN is a saved game file. */
+            warning (_("GNOME Chess can only open one PGN at a time."));
+        }
+
+        game_file = files[0];
+        activate ();
     }
 
     public override void startup ()
     {
         base.startup ();
 
+        Intl.setlocale (LocaleCategory.ALL, "");
+        Intl.bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+        Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+        Intl.textdomain (GETTEXT_PACKAGE);
+
         Environment.set_application_name (_("Chess"));
         Gtk.Window.set_default_icon_name ("gnome-chess");
 
         settings = new Settings ("org.gnome.gnome-chess");
 
+        add_action_entries (app_entries, this);
+    }
+
+    protected override void shutdown ()
+    {
+        if (opponent_engine != null)
+            opponent_engine.stop ();
+
+        base.shutdown ();
+    }
+
+    public override void activate ()
+    {
         var data_dir = File.new_for_path (Path.build_filename (Environment.get_user_data_dir (), "gnome-chess", null));
         DirUtils.create_with_parents (data_dir.get_path (), 0755);
-
-        add_action_entries (app_entries, this);
 
         builder = new Gtk.Builder ();
 
@@ -204,13 +254,7 @@ public class Application : Gtk.Application
 
         add_accelerators ();
         show ();
-    }
-
-    protected override void shutdown ()
-    {
-        base.shutdown ();
-        if (opponent_engine != null)
-            opponent_engine.stop ();
+        window.show ();
     }
 
     public PieceType show_promotion_type_selector ()
@@ -631,12 +675,6 @@ public class Application : Gtk.Application
         }
 
         return engine;
-    }
-
-    public override void activate ()
-    {
-        base.activate ();
-        window.show ();
     }
 
     private void engine_ready_cb (ChessEngine engine)
@@ -2242,54 +2280,9 @@ public class Application : Gtk.Application
     {
         ((SimpleAction) window.lookup_action (name)).set_enabled (false);
     }
-}
-
-class GnomeChess : Object
-{
-    static bool show_version;
-    public static const OptionEntry[] options =
-    {
-        { "version", 'v', 0, OptionArg.NONE, ref show_version,
-          /* Help string for command line --version flag */
-          N_("Show release version"), null},
-        { null }
-    };
 
     public static int main (string[] args)
     {
-        Intl.setlocale (LocaleCategory.ALL, "");
-        Intl.bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
-        Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-        Intl.textdomain (GETTEXT_PACKAGE);
-
-        var c = new OptionContext (/* Arguments and description for --help text */
-                                   _("[FILE] - Play Chess"));
-        c.add_main_entries (options, GETTEXT_PACKAGE);
-        c.add_group (Gtk.get_option_group (true));
-        try
-        {
-            c.parse (ref args);
-        }
-        catch (Error e)
-        {
-            stderr.printf ("%s\n", e.message);
-            stderr.printf (/* Text printed out when an unknown command-line argument provided */
-                           _("Run '%s --help' to see a full list of available command line options."), args[0]);
-            stderr.printf ("\n");
-            return Posix.EXIT_FAILURE;
-        }
-        if (show_version)
-        {
-            /* Note, not translated so can be easily parsed */
-            stderr.printf ("gnome-chess %s\n", VERSION);
-            return Posix.EXIT_SUCCESS;
-        }
-
-        File? game_file = null;
-        if (args.length > 1)
-            game_file = File.new_for_path (args[1]);
-
-        var app = new Application (game_file);
-        return app.run ();
+        return new ChessApplication ().run (args);
     }
 }
