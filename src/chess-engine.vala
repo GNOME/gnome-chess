@@ -16,6 +16,7 @@ public abstract class ChessEngine : Object
     private string[] args;
 
     private uint delay_seconds;
+    private uint pending_move_source_id;
 
     private Pid pid;
     private int stdin_fd;
@@ -108,17 +109,29 @@ public abstract class ChessEngine : Object
 
     public abstract void report_move (ChessMove move);
 
-    public abstract void undo ();
+    protected abstract void do_undo ();
 
     protected abstract void request_move ();
 
     public void move ()
     {
-        Timeout.add_seconds (delay_seconds, () => {
+        pending_move_source_id = Timeout.add_seconds (delay_seconds, () => {
+            pending_move_source_id = 0;
             request_move ();
             /* Disconnect from main loop */
             return false;
         });
+    }
+
+    public void undo ()
+    {
+        if (pending_move_source_id != 0)
+        {
+            Source.remove (pending_move_source_id);
+            pending_move_source_id = 0;
+        }
+
+        do_undo ();
     }
 
     public void stop ()

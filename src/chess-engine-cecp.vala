@@ -119,7 +119,7 @@ public class ChessEngineCECP : ChessEngine
         moving = false;
     }
 
-    public override void undo ()
+    public override void do_undo ()
     {
         /*
          * We're undoing only the most recent move here, so there's no need to

@@ -53,7 +53,7 @@ public class ChessEngineUCI : ChessEngine
         moves += " " + move.get_engine ();
     }
 
-    public override void undo ()
+    public override void do_undo ()
     {
         if (waiting_for_move)
             write_line ("stop");
@@ -105,9 +105,20 @@ public class ChessEngineUCI : ChessEngine
                 case "bestmove":
                     if (tokens.length < 2)
                         warning ("No move with bestmove: %s", line);
-                    debug ("Engine moves %s", tokens[1]);
-                    waiting_for_move = false;
-                    moved (tokens[1]);
+
+                    /* GNU Chess likes to report a move after receiving a stop command,
+                     * and the UCI spec does not seem to prohibit this, so just discard
+                     * the move if we were not expecting it. */
+                    if (waiting_for_move)
+                    {
+                        debug ("Engine moves %s", tokens[1]);
+                        waiting_for_move = false;
+                        moved (tokens[1]);
+                    }
+                    else
+                    {
+                        debug ("Discarding engine move during human's turn (OK after recent Undo)");
+                    }
                     break;
                 }
             }
