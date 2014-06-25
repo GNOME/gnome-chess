@@ -778,16 +778,16 @@ public class ChessApplication : Gtk.Application
 
     private void game_turn_cb (ChessGame game, ChessPlayer player)
     {
+        if (!game.is_started)
+            return;
+
         if (game.clock != null)
             enable_window_action (PAUSE_RESUME_ACTION_NAME);
-        
-        if (game.is_started)
-        {
-            if (opponent_engine != null && player == opponent)
-                opponent_engine.move ();
-            else if (game.can_claim_draw () && allow_claim_draw_dialog)
-                present_claim_draw_dialog ();
-        }
+
+        if (opponent_engine != null && player == opponent)
+            opponent_engine.move ();
+        else if (game.can_claim_draw () && allow_claim_draw_dialog)
+            present_claim_draw_dialog ();
     }
 
     private void set_move_text (Gtk.TreeIter iter, ChessMove move)
