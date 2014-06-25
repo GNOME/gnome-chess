@@ -1028,6 +1028,7 @@ public class Application : Gtk.Application
 
         update_history_panel ();
         update_action_status ();
+        update_headerbar_title ();
     }
     
     private void update_action_status ()
@@ -1420,8 +1421,6 @@ public class Application : Gtk.Application
             human_player.undo ();
         else
             game.opponent.undo ();
-
-        update_headerbar_title ();
     }
 
     public void pause_resume_cb ()
