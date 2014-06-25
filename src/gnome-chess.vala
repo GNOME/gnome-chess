@@ -560,7 +560,7 @@ public class ChessApplication : Gtk.Application
             {
                 disable_window_action (SAVE_GAME_ACTION_NAME);
                 game.result = ChessResult.BUG;
-                game.rule = ChessRule.DEATH;
+                game.rule = ChessRule.BUG;
                 game_end_cb (game);
                 return;
             }
@@ -737,7 +737,7 @@ public class ChessApplication : Gtk.Application
         var original_game = game;
         Timeout.add_seconds (2, () => {
             if (game == original_game)
-                game.stop (ChessResult.BUG, ChessRule.DEATH);
+                game.stop (ChessResult.BUG, ChessRule.BUG);
             /* Disconnect from the main loop */
             return false;
         });
@@ -1185,9 +1185,14 @@ public class ChessApplication : Gtk.Application
             pgn_game.result = PGNGame.RESULT_DRAW;            
             break;
         case ChessResult.BUG:
-            /* Window title when something goes wrong with the engine...
-             * or when the engine says something is wrong with us! */
-            title = _("Something has gone wrong with the computer player.");
+            /*
+             * Window title when something goes wrong with the engine...
+             * or when the engine says something is wrong with us! Translators,
+             * please test to make sure this does not get ellipsized -- you don't
+             * have much room. Set your opponent to GNU Chess, start a new game,
+             * then run 'killall gnuchess' in a terminal.
+             */
+            title = _("Oops! Something has gone wrong.");
             /* don't set the pgn_game result; these are standards */
             break;
         default:
@@ -1249,19 +1254,20 @@ public class ChessApplication : Gtk.Application
             pgn_game.termination = PGNGame.TERMINATE_ABANDONED;
             break;
         case ChessRule.DEATH:
-            if (game.result == ChessResult.BUG)
-                /* Window subtitle when the chess engine dies unexpectedly. */
-                reason = _("The game cannot continue.");
-            else
-                /* Window subtitle when the game ends due to a player dying.
-                 * This is a PGN standard. GNOME Chess will never kill the user. */
-                reason = _("The game log says a player died!");
+            /* Window subtitle when the game ends due to a player dying.
+             * This is a PGN standard. GNOME Chess will never kill the user. */
+            reason = _("The game log says a player died!");
             pgn_game.termination = PGNGame.TERMINATE_DEATH;
             break;
         case ChessRule.BUG:
-            /* Window subtitle when something goes wrong with the engine...
-             * or when the engine says something is wrong with us! */
-            reason = _("The game cannot continue.");
+            /*
+             * Window subtitle when something goes wrong with the engine...
+             * or when the engine says something is wrong with us! Translators,
+             * please test to make sure this does not get ellipsized -- you don't
+             * have much room. Set your opponent to GNU Chess, start a new game,
+             * then run 'killall gnuchess' in a terminal.
+             */
+            reason = _("The computer player is confused. The game cannot continue.");
             /* Don't set pgn_game termination; these are standards*/
             break;
         }
