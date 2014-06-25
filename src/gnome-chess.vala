@@ -1232,12 +1232,12 @@ public class ChessApplication : Gtk.Application
                 assert_not_reached ();
             break;
         case ChessRule.THREE_FOLD_REPETITION:
-            /* Window subtitle when the game is drawn due to the three-fold-repitition rule */
-            reason = _("The same board state has occurred three times (threefold repetition).");
+            /* Window subtitle when the game is drawn due to the three-fold-repetition rule */
+            reason = _("The same board state has occurred three times.");
             break;
         case ChessRule.INSUFFICIENT_MATERIAL:
             /* Window subtitle when the game is drawn due to the insufficient material rule */
-            reason = _("Neither player can checkmate (insufficient material).");
+            reason = _("Neither player can checkmate.");
             break;
         case ChessRule.RESIGN:
             if (game.result == ChessResult.WHITE_WON)
