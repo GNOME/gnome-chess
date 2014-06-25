@@ -757,10 +757,13 @@ public class Application : Gtk.Application
 
     private void game_turn_cb (ChessGame game, ChessPlayer player)
     {
+        if (!game.is_started)
+            return;
+
         if (game.clock != null)
             enable_window_action (PAUSE_RESUME_ACTION_NAME);
         
-        if (game.is_started && opponent_engine != null && player == opponent)
+        if (opponent_engine != null && player == opponent)
             opponent_engine.move ();
     }
 
