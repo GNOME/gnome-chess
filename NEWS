@@ -1,3 +1,16 @@
+3.12.3 - June 26, 2014
+======================
+
+* Fix desync with chess engines when using undo during the engine's turn
+* Fix desync with chess engine when viewing history during the engine's turn
+* Return view to present if viewing history when engine moves
+* Fix clock sometimes unpausing after game ends due to desync with engine
+* Fix Pause button sensitivity after the game is over when browsing history
+* Fix New Game button sensitivity if the game ends before the first move
+  (possible if there is a problem with the chess engine)
+* Workaround Vala signal misfires causing a rare crash when using undo after
+  starting very many new games
+
 3.12.2 - May 11, 2014
 =====================
 
