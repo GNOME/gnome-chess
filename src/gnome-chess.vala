@@ -741,10 +741,13 @@ public class Application : Gtk.Application
 
     private void game_turn_cb (ChessGame game, ChessPlayer player)
     {
+        if (!game.is_started)
+            return;
+
         if (game.clock != null)
             pause_button.sensitive = true;
         
-        if (game.is_started && opponent_engine != null && player == opponent)
+        if (opponent_engine != null && player == opponent)
             opponent_engine.request_move ();
     }
 
