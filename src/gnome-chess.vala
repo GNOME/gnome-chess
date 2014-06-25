@@ -688,7 +688,10 @@ public class ChessApplication : Gtk.Application
     private void do_engine_move (string move)
     {
         if (!opponent.move (move))
+        {
+            warning ("Engine's move %s is illegal! Engine desync?", move);
             game.stop (ChessResult.BUG, ChessRule.BUG);
+        }
     }
 
     private void engine_move_cb (ChessEngine engine, string move)
