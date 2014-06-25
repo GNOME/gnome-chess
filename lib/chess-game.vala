@@ -169,6 +169,9 @@ public class ChessGame : Object
         if (hold_count > 0)
             return;
 
+        if (!is_started)
+            return;
+
         ChessRule rule;
         var result = current_state.get_result (out rule);
         if (result != ChessResult.IN_PROGRESS)
