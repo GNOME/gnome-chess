@@ -739,7 +739,7 @@ public class ChessApplication : Gtk.Application
          */
         var original_game = game;
         Timeout.add_seconds (2, () => {
-            if (game == original_game)
+            if (game == original_game && game.is_started)
                 game.stop (ChessResult.BUG, ChessRule.BUG);
             /* Disconnect from the main loop */
             return false;
