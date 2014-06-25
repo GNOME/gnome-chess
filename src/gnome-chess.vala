@@ -1189,7 +1189,8 @@ public class ChessApplication : Gtk.Application
              * Window title when something goes wrong with the engine...
              * or when the engine says something is wrong with us! Translators,
              * please test to make sure this does not get ellipsized -- you don't
-             * have much room. Set your opponent to GNU Chess, start a new game,
+             * have much room. Set your opponent to GNU Chess, set a time limit
+             * because the pause button eats up some of your space, start a new game,
              * then run 'killall gnuchess' in a terminal.
              */
             title = _("Oops! Something has gone wrong.");
@@ -1264,7 +1265,8 @@ public class ChessApplication : Gtk.Application
              * Window subtitle when something goes wrong with the engine...
              * or when the engine says something is wrong with us! Translators,
              * please test to make sure this does not get ellipsized -- you don't
-             * have much room. Set your opponent to GNU Chess, start a new game,
+             * have much room. Set your opponent to GNU Chess, set a time limit
+             * because the pause button eats up some of your space, start a new game,
              * then run 'killall gnuchess' in a terminal.
              */
             reason = _("The computer player is confused. The game cannot continue.");
