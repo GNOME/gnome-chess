@@ -1261,14 +1261,8 @@ public class ChessApplication : Gtk.Application
             pgn_game.termination = PGNGame.TERMINATE_DEATH;
             break;
         case ChessRule.BUG:
-            /*
-             * Window subtitle when something goes wrong with the engine...
-             * or when the engine says something is wrong with us! Translators,
-             * please test to make sure this does not get ellipsized -- you don't
-             * have much room. Set your opponent to GNU Chess, set a time limit
-             * because the pause button eats up some of your space, start a new game,
-             * then run 'killall gnuchess' in a terminal.
-             */
+            /* Window subtitle when something goes wrong with the engine...
+             * or when the engine says something is wrong with us! */
             reason = _("The computer player is confused. The game cannot continue.");
             /* Don't set pgn_game termination; these are standards*/
             break;
