@@ -81,6 +81,7 @@ private class ChessView3D : ChessView
         black_piece_color = { 0.62f * 0.7f, 0.45f * 0.7f, 0.28f * 0.7f, 1.0f };
         black_piece_specular = { 0.62f, 0.45f, 0.28f, 1.0f };
 
+        double_buffered = false;
         try
         {
             pawn_model = new TDSModel (File.new_for_path (Path.build_filename (PKGDATADIR, "pieces", "3d", "pawn.3ds", null)));
