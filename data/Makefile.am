@@ -17,7 +17,7 @@ dist_ui_DATA = \
 	promotion-type-selector.ui \
 	menu.ui
 
-gsettings_SCHEMAS = org.gnome.gnome-chess.gschema.xml
+gsettings_SCHEMAS = org.gnome.chess.gschema.xml
 @GSETTINGS_RULES@
 
 pkgsysconfdir = $(sysconfdir)/gnome-chess

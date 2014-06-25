@@ -135,7 +135,7 @@ public class ChessApplication : Gtk.Application
         Environment.set_application_name (_("Chess"));
         Gtk.Window.set_default_icon_name ("gnome-chess");
 
-        settings = new Settings ("org.gnome.gnome-chess");
+        settings = new Settings ("org.gnome.chess");
 
         add_action_entries (app_entries, this);
     }

@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <enum id="org.gnome.gnome-chess.MoveFormat">
+  <enum id="org.gnome.chess.MoveFormat">
     <value value="0" nick="human"/>
     <value value="1" nick="san"/>
     <value value="2" nick="fan"/>
     <value value="3" nick="lan"/>
   </enum>
 
-  <enum id="org.gnome.gnome-chess.BoardSide">
+  <enum id="org.gnome.chess.BoardSide">
     <value value="0" nick="white"/>
     <value value="1" nick="black"/>
     <value value="2" nick="human"/>
     <value value="3" nick="current"/>
   </enum>
 
-  <enum id="org.gnome.gnome-chess.Difficulty">
+  <enum id="org.gnome.chess.Difficulty">
     <value value="0" nick="easy"/>
     <value value="1" nick="normal"/>
     <value value="2" nick="hard"/>
   </enum>
 
-  <schema id="org.gnome.gnome-chess" path="/org/gnome/gnome-chess/" gettext-domain="gnome-games">
+  <schema id="org.gnome.chess" path="/org/gnome/chess/" gettext-domain="gnome-chess">
     <key name="width" type="i">
       <default>700</default>
       <summary>The width of the window</summary>
@@ -71,12 +71,12 @@
       <summary>The directory to open the load game dialog in</summary>
       <description>The directory to open the load game dialog in</description>
     </key>
-    <key name="move-format" enum="org.gnome.gnome-chess.MoveFormat">
+    <key name="move-format" enum="org.gnome.chess.MoveFormat">
       <default>'human'</default>
       <summary>The format to display moves in</summary>
       <description>The format to display moves in</description>
     </key>
-    <key name="board-side" enum="org.gnome.gnome-chess.BoardSide">
+    <key name="board-side" enum="org.gnome.chess.BoardSide">
       <default>'human'</default>
       <summary>The side of the board that is in the foreground</summary>
       <description>The side of the board that is in the foreground</description>
@@ -96,7 +96,7 @@
       <summary>The opponent player</summary>
       <description>Can be 'human' (play against another human player), '' (use the first available chess engine) or the name of a specific engine to play against</description>
     </key>
-    <key name="difficulty" enum="org.gnome.gnome-chess.Difficulty">
+    <key name="difficulty" enum="org.gnome.chess.Difficulty">
       <default>'easy'</default>
       <summary>Difficulty of the opponent chess engine</summary>
       <description>Difficulty of the opponent chess engine</description>
