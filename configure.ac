@@ -22,12 +22,13 @@ dnl ###########################################################################
 dnl Dependencies
 dnl ###########################################################################
 
+GLIB_REQUIRED=2.40
 GTK_REQUIRED=3.13.2
 RSVG_REQUIRED=2.32.0
 
 PKG_CHECK_MODULES(GNOME_CHESS, [
-  glib-2.0
-  gio-2.0
+  glib-2.0 >= $GLIB_REQUIRED
+  gio-2.0 >= $GLIB_REQUIRED
   gmodule-2.0
   gtk+-3.0 >= $GTK_REQUIRED
   librsvg-2.0 >= $RSVG_REQUIRED
