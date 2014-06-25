@@ -34,7 +34,7 @@ public class ChessApplication : Gtk.Application
     private Gtk.ComboBox difficulty_combo;
     private Gtk.ComboBox duration_combo;
     private Gtk.Adjustment duration_adjustment;
-    private Gtk.Container custom_duration_box;
+    private Gtk.Box custom_duration_box;
     private Gtk.ComboBox custom_duration_units_combo;
     private uint save_duration_timeout = 0;
     private Gtk.FileChooserDialog? open_dialog = null;
@@ -1695,7 +1695,7 @@ public class ChessApplication : Gtk.Application
 
         duration_combo = (Gtk.ComboBox) preferences_builder.get_object ("duration_combo");
         duration_adjustment = (Gtk.Adjustment) preferences_builder.get_object ("duration_adjustment");
-        custom_duration_box = (Gtk.Container) preferences_builder.get_object ("custom_duration_box");
+        custom_duration_box = (Gtk.Box) preferences_builder.get_object ("custom_duration_box");
         custom_duration_units_combo = (Gtk.ComboBox) preferences_builder.get_object ("custom_duration_units_combo");
         set_duration (settings.get_int ("duration"));
 
