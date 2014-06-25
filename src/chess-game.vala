@@ -1401,6 +1401,9 @@ public class ChessGame : Object
         /* Wait until the hold is removed */
         if (hold_count > 0)
             return;
+
+        if (!is_started)
+            return;
             
         ChessRule rule;
         var result = current_state.get_result (out rule);
