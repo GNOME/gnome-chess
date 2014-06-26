@@ -18,7 +18,6 @@ public enum Color
 public class ChessPlayer : Object
 {
     public Color color;
-    public signal void start_turn ();
     public signal bool do_move (string move, bool apply);
     public signal void do_undo ();
     public signal bool do_resign ();

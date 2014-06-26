@@ -182,7 +182,6 @@ public class ChessGame : Object
         {
             if (_clock != null)
                 _clock.active_color = current_player.color;
-            current_player.start_turn ();
             turn_started (current_player);
         }
     }
@@ -273,7 +272,6 @@ public class ChessGame : Object
             _clock.active_color = current_player.color;
         }
 
-        current_player.start_turn ();
         turn_started (current_player);
     }
 
