@@ -1212,20 +1212,20 @@ public class ChessApplication : Gtk.Application
         case ChessRule.CHECKMATE:
             if (game.result == ChessResult.WHITE_WON)
                 /* Window subtitle when Black is checkmated */
-                reason = _("Black is in check and cannot move (checkmate).");
+                reason = _("Black is in check and cannot move.");
             else if (game.result == ChessResult.BLACK_WON)
                 /* Window subtitle when White is checkmated */
-                reason = _("White is in check and cannot move (checkmate).");
+                reason = _("White is in check and cannot move.");
             else
                 assert_not_reached ();
             break;
         case ChessRule.STALEMATE:
             /* Window subtitle when the game terminates due to a stalemate */
-            reason = _("Opponent cannot move (stalemate).");
+            reason = _("Opponent cannot move.");
             break;
         case ChessRule.FIFTY_MOVES:
             /* Window subtitle when the game is drawn due to the fifty move rule */
-            reason = _("No piece has been taken or pawn moved in the last fifty moves.");
+            reason = _("No piece was taken or pawn moved in fifty moves.");
             break;
         case ChessRule.TIMEOUT:
             if (game.result == ChessResult.WHITE_WON)
