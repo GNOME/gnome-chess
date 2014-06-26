@@ -1436,7 +1436,7 @@ public class ChessApplication : Gtk.Application
                                             /* Title of warning dialog when player clicks Resign */
                                             _("Are you sure you want to resign?"));
         dialog.format_secondary_text (
-            /* Text on warningn dialog when player clicks Resign */
+            /* Text on warning dialog when player clicks Resign */
             _("This makes sense if you plan to save the game as a record of your loss."));
         dialog.add_buttons (/* Option on warning dialog when player clicks resign */
                             _("_Keep Playing"), Gtk.ResponseType.REJECT,
