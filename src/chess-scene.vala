@@ -363,7 +363,6 @@ public class ChessScene : Object
         if (animating)
             return true;
 
-        animating = false;
         game.remove_hold ();
         return false;
     }
