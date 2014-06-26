@@ -51,6 +51,7 @@ public class Application : Gtk.Application
     private string autosave_filename;
     private File game_file;
     private bool game_needs_saving;
+    private bool starting = true;
     private List<AIProfile> ai_profiles;
     private ChessPlayer? opponent = null;
     private ChessPlayer? human_player = null;
@@ -418,6 +419,8 @@ public class Application : Gtk.Application
 
     private void start_game ()
     {
+        starting = true;
+
         if (game_file != null && game_file.get_path () != autosave_filename)
             headerbar.set_subtitle (game_file.get_basename ());
         else
@@ -584,6 +587,15 @@ public class Application : Gtk.Application
 
         white_time_label.queue_draw ();
         black_time_label.queue_draw ();
+
+        starting = false;
+
+        if (white_engine != null && game.current_player.color == Color.WHITE ||
+            black_engine != null && game.current_player.color == Color.BLACK)
+        {
+            assert (opponent_engine != null);
+            opponent_engine.move ();
+        }
     }
 
     private ChessEngine? get_engine (string name, string difficulty)
@@ -757,14 +769,24 @@ public class Application : Gtk.Application
 
     private void game_turn_cb (ChessGame game, ChessPlayer player)
     {
+        /*
+         * Warning: this callback is invoked in response to the signal
+         * ChessGame.turn_started (), which is misleadingly-named. It can fire
+         * whenever an animation completes, such as when moving through history view.
+         * Do not do anything here that cannot safely be done after pressing a
+         * history button; in particular, anything involving an engine is probably
+         * unsafe. Use game_move_cb () instead.
+         *
+         * It is really not possible to detect if we're using the history controls
+         * or not, since even if we're viewing the most recent move, we could have
+         * just returned from the past via history controls.
+         */
+
         if (!game.is_started)
             return;
 
         if (game.clock != null)
             enable_window_action (PAUSE_RESUME_ACTION_NAME);
-        
-        if (opponent_engine != null && player == opponent)
-            opponent_engine.move ();
     }
 
     private void set_move_text (Gtk.TreeIter iter, ChessMove move)
@@ -974,6 +996,8 @@ public class Application : Gtk.Application
 
     private void game_move_cb (ChessGame game, ChessMove move)
     {
+        /* Warning: this callback is invoked several times when loading a game. */
+
         enable_window_action (NEW_GAME_ACTION_NAME);
 
         /* Need to save after each move */
@@ -1002,9 +1026,15 @@ public class Application : Gtk.Application
         update_action_status ();
         update_headerbar_title ();
 
-        if (opponent_engine != null)
-            opponent_engine.report_move (move);
         view.queue_draw ();
+
+        if (opponent_engine != null)
+        {
+            opponent_engine.report_move (move);
+
+            if (move.piece.color != opponent.color && !starting)
+                opponent_engine.move ();
+        }
     }
 
     private void game_undo_cb (ChessGame game)
