@@ -1009,6 +1009,9 @@ public class ChessApplication : Gtk.Application
         if (move.number > pgn_game.moves.length ())
             pgn_game.moves.append (move.get_san ());
 
+        /* Automatically return view to the present */
+        scene.move_number = -1;
+
         var model = (Gtk.ListStore) history_combo.model;
         Gtk.TreeIter iter;
         model.append (out iter);
@@ -1016,7 +1019,7 @@ public class ChessApplication : Gtk.Application
         set_move_text (iter, move);
 
         /* Follow the latest move */
-        if (move.number == game.n_moves && scene.move_number == -1)
+        if (move.number == game.n_moves)
             history_combo.set_active_iter (iter);
 
         enable_window_action (SAVE_GAME_ACTION_NAME);
