@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <!-- interface-requires gtk+ 3.12 -->
   <object class="GtkDialog" id="dialog_promotion_type_selector">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
     <property name="title" translatable="yes">Select Promotion Type</property>
     <property name="type_hint">dialog</property>
     <property name="has_resize_grip">False</property>
+    <property name="use_header_bar">1</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox1">
         <property name="can_focus">False</property>
