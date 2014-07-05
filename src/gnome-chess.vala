@@ -273,6 +273,7 @@ public class ChessApplication : Gtk.Application
         }
 
         Gtk.Dialog promotion_type_selector_dialog = promotion_type_selector_builder.get_object ("dialog_promotion_type_selector") as Gtk.Dialog;
+        promotion_type_selector_dialog.transient_for = window;
 
         string color;
         if (game.current_player.color == Color.WHITE)
