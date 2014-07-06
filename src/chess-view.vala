@@ -303,8 +303,7 @@ public class ChessView : Gtk.DrawingArea
     {
         c.save ();
 
-        /* Have to be opaque since I haven't figured out how to hide the pieces in 3D view */
-        c.set_source_rgba (0, 0, 0, 1);
+        c.set_source_rgba (0, 0, 0, 0.75);
         c.paint ();
 
         c.select_font_face ("Sans", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
