@@ -1,4 +1,4 @@
-SUBDIRS = icons pieces textures
+SUBDIRS = icons pieces
 
 desktopdir = $(datadir)/applications
 desktop_in_files = gnome-chess.desktop.in

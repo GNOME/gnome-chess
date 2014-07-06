@@ -72,10 +72,8 @@ Makefile
 data/Makefile
 data/icons/Makefile
 data/pieces/Makefile
-data/pieces/3d/Makefile
 data/pieces/fancy/Makefile
 data/pieces/simple/Makefile
-data/textures/Makefile
 help/Makefile
 lib/Makefile
 po/Makefile.in
