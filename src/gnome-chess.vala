@@ -1885,10 +1885,6 @@ public class ChessApplication : Gtk.Application
                 model.get (iter, 1, out multiplier, -1);
                 switch (multiplier)
                 {
-                case 1:
-                    model.set (iter, 0, ngettext (/* Preferences Dialog: Combo box entry for a custom game timer set in seconds */
-                                                  "second", "seconds", (ulong) adjustment.value), -1);
-                    break;
                 case 60:
                     model.set (iter, 0, ngettext (/* Preferences Dialog: Combo box entry for a custom game timer set in minutes */
                                                   "minute", "minutes", (ulong) adjustment.value), -1);
@@ -1897,6 +1893,8 @@ public class ChessApplication : Gtk.Application
                     model.set (iter, 0, ngettext (/* Preferences Dialog: Combo box entry for a custom game timer set in hours */
                                                   "hour", "hours", (ulong) adjustment.value), -1);
                     break;
+                default:
+                    assert_not_reached ();
                 }
             } while (model.iter_next (ref iter));
         }
@@ -2226,9 +2224,9 @@ public class ChessApplication : Gtk.Application
         var duration = settings.get_int ("duration");
         if (duration > 0)
         {
-            pgn_game.time_control = (duration / 2).to_string ();
-            pgn_game.white_time_left = (duration / 2).to_string ();
-            pgn_game.black_time_left = (duration / 2).to_string ();
+            pgn_game.time_control = duration.to_string ();
+            pgn_game.white_time_left = duration.to_string ();
+            pgn_game.black_time_left = duration.to_string ();
         }
         var engine_name = settings.get_string ("opponent");
         if (engine_name == "")
