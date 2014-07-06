@@ -207,7 +207,7 @@ public class ChessApplication : Gtk.Application
         settings.bind ("board-side", scene, "board-side", SettingsBindFlags.GET);
 
         view = new ChessView ();
-        view.set_size_request (300, 300);
+        view.set_size_request (400, 400);
         view.scene = scene;
         view_container.add (view);
         view.show ();
