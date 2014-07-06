@@ -199,15 +199,18 @@ public class ChessApplication : Gtk.Application
         scene.is_human.connect ((p) => { return p == human_player; } );
         scene.changed.connect (scene_changed_cb);
         scene.choose_promotion_type.connect (show_promotion_type_selector);
+
         settings.bind ("show-move-hints", scene, "show-move-hints", SettingsBindFlags.GET);
         settings.bind ("show-numbering", scene, "show-numbering", SettingsBindFlags.GET);
         settings.bind ("piece-theme", scene, "theme-name", SettingsBindFlags.GET);
-        settings.bind ("show-3d-smooth", scene, "show-3d-smooth", SettingsBindFlags.GET);
         settings.bind ("move-format", scene, "move-format", SettingsBindFlags.GET);
         settings.bind ("board-side", scene, "board-side", SettingsBindFlags.GET);
 
-        settings.changed.connect (settings_changed_cb);
-        settings_changed_cb (settings, "show-3d");
+        view = new ChessView ();
+        view.set_size_request (300, 300);
+        view.scene = scene;
+        view_container.add (view);
+        view.show ();
 
         var system_engine_cfg = Path.build_filename (SYSCONFDIR, "gnome-chess", "engines.conf", null);
         var user_engine_cfg = Path.build_filename (Environment.get_user_config_dir (), "gnome-chess", "engines.conf", null);
@@ -383,26 +386,6 @@ public class ChessApplication : Gtk.Application
         catch (Error e)
         {
             warning ("Failed to autosave: %s", e.message);
-        }
-    }
-
-    private void settings_changed_cb (Settings settings, string key)
-    {
-        if (key == "show-3d")
-        {
-            if (view != null)
-            {
-                view_container.remove (view);
-                view.destroy ();
-            }
-            if (settings.get_boolean ("show-3d"))
-                view = new ChessView3D ();
-            else
-                view = new ChessView2D ();
-            view.set_size_request (300, 300);
-            view.scene = scene;
-            view_container.add (view);
-            view.show ();
         }
     }
 
@@ -1703,10 +1686,6 @@ public class ChessApplication : Gtk.Application
                        "active", SettingsBindFlags.DEFAULT);
         settings.bind ("show-move-hints", preferences_builder.get_object ("show_move_hints_check"),
                        "active", SettingsBindFlags.DEFAULT);
-        settings.bind ("show-3d", preferences_builder.get_object ("show_3d_check"),
-                       "active", SettingsBindFlags.DEFAULT);
-        settings.bind ("show-3d-smooth", preferences_builder.get_object ("show_3d_smooth_check"),
-                       "active", SettingsBindFlags.DEFAULT);
 
         side_combo = (Gtk.ComboBox) preferences_builder.get_object ("side_combo");
         side_combo.set_active (settings.get_boolean ("play-as-white") ? 0 : 1);
@@ -1745,14 +1724,8 @@ public class ChessApplication : Gtk.Application
         var move_combo = (Gtk.ComboBox) preferences_builder.get_object ("move_format_combo");
         set_combo (move_combo, 1, settings.get_string ("move-format"));
 
-        var show_3d_check = (Gtk.CheckButton) preferences_builder.get_object ("show_3d_check");
-
         var theme_combo = (Gtk.ComboBox) preferences_builder.get_object ("piece_style_combo");
         set_combo (theme_combo, 1, settings.get_string ("piece-theme"));
-        theme_combo.sensitive = !show_3d_check.active;
-
-        var show_3d_smooth_check = (Gtk.CheckButton) preferences_builder.get_object ("show_3d_smooth_check");
-        show_3d_smooth_check.sensitive = show_3d_check.active;
 
         preferences_builder.connect_signals (this);
 
@@ -1990,16 +1963,6 @@ public class ChessApplication : Gtk.Application
         settings.set_string ("piece-theme", get_combo (combo, 1));
     }
 
-    [CCode (cname = "G_MODULE_EXPORT show_3d_toggle_cb", instance_pos = -1)]
-    public void show_3d_toggle_cb (Gtk.ToggleButton widget)
-    {
-        var w = (Gtk.Widget) preferences_builder.get_object ("show_3d_smooth_check");
-        w.sensitive = widget.active;
-
-        w = (Gtk.Widget) preferences_builder.get_object ("piece_style_combo");
-        w.sensitive = !widget.active;
-    }
-
     [CCode (cname = "G_MODULE_EXPORT move_format_combo_changed_cb", instance_pos = -1)]
     public void move_format_combo_changed_cb (Gtk.ComboBox combo)
     {
@@ -2025,7 +1988,7 @@ public class ChessApplication : Gtk.Application
     }
 
     private const string[] authors = { "Robert Ancell <robert.ancell@gmail.com>", null };
-    private const string[] artists = { "John-Paul Gignac (3D Models)", "Max Froumentin (2D Models)", "Jakub Steiner (icon)", null };
+    private const string[] artists = { "Max Froumentin (pieces)", "Jakub Steiner (icon)", null };
 
     public void about_cb ()
     {
