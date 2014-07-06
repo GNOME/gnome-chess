@@ -213,7 +213,7 @@ public class ChessView : Gtk.DrawingArea
         }
 
         /* Draw pause overlay */
-        if (scene.game.is_paused)
+        if (scene.game.should_show_paused_overlay)
         {
             c.rotate (Math.PI * scene.board_angle / 180.0);
             draw_paused_overlay (c);
@@ -273,7 +273,7 @@ public class ChessView : Gtk.DrawingArea
 
     public override bool button_press_event (Gdk.EventButton event)
     {
-        if (scene.game == null || event.button != 1 || scene.game.is_paused)
+        if (scene.game == null || event.button != 1 || scene.game.should_show_paused_overlay)
             return false;
 
         int file = (int) Math.floor((event.x - 0.5 * get_allocated_width () + square_size * 4) / square_size);

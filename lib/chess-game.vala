@@ -51,6 +51,7 @@ public class ChessGame : Object
     public signal void ended ();
 
     public bool is_paused { get; private set; default = false; }
+    public bool should_show_paused_overlay { get; private set; default = false; }
 
     public ChessState current_state
     {
@@ -298,12 +299,13 @@ public class ChessGame : Object
         get { return move_stack.length() - 1; }
     }
 
-    public void pause ()
+    public void pause (bool show_overlay = true)
     {
         if (clock != null && result == ChessResult.IN_PROGRESS && !is_paused)
         {
             clock.pause ();
             is_paused = true;
+            should_show_paused_overlay = show_overlay;
             paused ();
         }
     }
@@ -314,6 +316,7 @@ public class ChessGame : Object
         {
             clock.unpause ();
             is_paused = false;
+            should_show_paused_overlay = false;
             unpaused ();
         }
     }

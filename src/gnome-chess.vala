@@ -1381,9 +1381,7 @@ public class ChessApplication : Gtk.Application
     private void present_claim_draw_dialog ()
         requires (game.can_claim_draw ())
     {
-        /* Manually since we don't want to show the pause overlay */
-        if (game.clock != null)
-            game.clock.pause ();
+        game.pause (false);
 
         var dialog = new Gtk.MessageDialog (window,
                                             Gtk.DialogFlags.MODAL,
@@ -1426,9 +1424,7 @@ public class ChessApplication : Gtk.Application
         {
             /* Display this dialog only once per game */
             allow_claim_draw_dialog = false;
-
-            if (game.clock != null)
-                game.clock.unpause ();
+            game.unpause ();
         }
     }
 
@@ -1440,9 +1436,7 @@ public class ChessApplication : Gtk.Application
 
     public void resign_cb ()
     {
-        /* Manually since we don't want to show the pause overlay */
-        if (game.clock != null)
-            game.clock.pause ();
+        game.pause (false);
 
         var dialog = new Gtk.MessageDialog (window,
                                             Gtk.DialogFlags.MODAL,
@@ -1471,8 +1465,7 @@ public class ChessApplication : Gtk.Application
         }
         else
         {
-            if (game.clock != null)
-                game.clock.unpause ();
+            game.unpause ();
         }
     }
 
