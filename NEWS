@@ -1,3 +1,29 @@
+3.13.4 - July 20, 2014
+======================
+
+Dependencies: GLib 2.40, GTK+ 3.13.2
+
+* Remove 3D mode. Goodbye 3D mode
+* Time control is now a per-player limit, rather than a max duration
+* Fix undo before engine moves
+* Fix engine desync when browsing history on engine's turn
+* Do not enable pause action when browsing history
+* Fix clock unpausing after game is over in rare situations
+* Return view to present when engine moves
+* Reword some error messages
+* Shorten some window subtitles
+* Add command line warning when engine makes illegal move
+* Do not try to stop the game twice when an engine error occurs
+* Ensure new game button is always sensitive when on game over
+* Update header bar title when using Undo
+* Workaround Vala signal misfires that could cause a rare crash
+* Use header bar on promotion dialog
+* Pause overlay is now transparent (but pieces are hidden)
+* Minor improvements to preferences dialog
+* Set bigger minimum size for chess board
+* Miscellaneous code improvements
+* Many updated translations
+
 3.13.1 - April 26, 2014
 =======================
 
