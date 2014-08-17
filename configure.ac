@@ -73,6 +73,8 @@ AC_CONFIG_FILES([
 Makefile
 data/Makefile
 data/icons/Makefile
+data/icons/hicolor/Makefile
+data/icons/HighContrast/Makefile
 data/pieces/Makefile
 data/pieces/fancy/Makefile
 data/pieces/simple/Makefile
