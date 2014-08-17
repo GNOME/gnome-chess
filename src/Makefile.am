@@ -35,6 +35,7 @@ gnome_chess_VALAFLAGS = \
 	--pkg gtk+-3.0 \
 	--pkg librsvg-2.0 \
 	--pkg posix \
+	--target-glib=$(GLIB_REQUIRED) \
 	$(top_builddir)/lib/libchess.vapi
 
 CLEANFILES = \
