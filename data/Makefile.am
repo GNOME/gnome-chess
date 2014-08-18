@@ -5,9 +5,10 @@ desktop_in_files = gnome-chess.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
+appdatadir = $(datadir)/appdata
 appdata_in_files = gnome-chess.appdata.xml.in
-appdata_XML = $(appdata_in_files:.appdata.xml.in=.appdata.xml)
-@APPDATA_XML_RULES@
+appdata_DATA = $(appdata_in_files:.appdata.xml.in=.appdata.xml)
+@INTLTOOL_XML_RULE@
 
 uidir = $(pkgdatadir)
 dist_ui_DATA = \
@@ -24,7 +25,8 @@ dist_pkgsysconf_DATA = engines.conf
 
 dist_man_MANS = gnome-chess.6
 
-check-local: $(desktop_DATA)
+check-local: $(appdata_DATA) $(desktop_DATA)
+	$(APPDATA_VALIDATE) $(appdata_DATA)
 	$(DESKTOP_FILE_VALIDATE) $(desktop_DATA)
 
 EXTRA_DIST = \
@@ -33,7 +35,7 @@ EXTRA_DIST = \
 	$(gsettings_SCHEMAS)
 
 CLEANFILES = \
-	$(appdata_XML) \
+	$(appdata_DATA) \
 	$(desktop_DATA)
 
 -include $(top_srcdir)/git.mk
