@@ -36,11 +36,12 @@ public class ChessClock : Object
     }
 
     private Timer? timer;
-    private uint expire_timeout_id = 0;
     private uint tick_timeout_id = 0;
 
     public signal void tick ();
     public signal void expired ();
+
+    private bool is_active = false;
 
     public ChessClock (int white_initial_seconds, int black_initial_seconds)
     {
@@ -48,15 +49,12 @@ public class ChessClock : Object
         this.black_initial_seconds = black_initial_seconds;
     }
 
-    private bool is_active
-    {
-        get { return timer != null && expire_timeout_id != 0; }
-    }
-
     public void start ()
     {
         if (is_active)
             return;
+
+        is_active = true;
 
         if (timer == null)
         {
@@ -71,13 +69,6 @@ public class ChessClock : Object
         watch_timer ();
     }
 
-    private bool timer_expired_cb ()
-    {
-        stop ();
-        expired ();
-        return false;
-    }
-
     private bool tick_cb ()
     {
         if (active_color == Color.WHITE)
@@ -86,6 +77,13 @@ public class ChessClock : Object
             black_seconds_used++;
 
         tick ();
+
+        if (white_seconds_used >= white_initial_seconds ||
+            black_seconds_used >= black_initial_seconds)
+        {
+            stop ();
+            expired ();
+        }
 
         return true;
     }
@@ -97,6 +95,7 @@ public class ChessClock : Object
 
         timer.stop ();
         stop_watching_timer ();
+        is_active = false;
     }
 
     public void pause ()
@@ -119,22 +118,12 @@ public class ChessClock : Object
 
     private void watch_timer ()
     {
-        /* Notify when this timer has expired */
-        if (active_color == Color.WHITE)
-            expire_timeout_id = Timeout.add_seconds (white_initial_seconds - white_seconds_used,
-                                                     timer_expired_cb);
-        else
-            expire_timeout_id = Timeout.add_seconds (black_initial_seconds - black_seconds_used,
-                                                     timer_expired_cb);
-
         /* Wake up each second */
         tick_timeout_id = Timeout.add_seconds (1, tick_cb);
     }
 
     private void stop_watching_timer ()
     {
-        Source.remove (expire_timeout_id);
-        expire_timeout_id = 0;
         Source.remove (tick_timeout_id);
         tick_timeout_id = 0;
     }
