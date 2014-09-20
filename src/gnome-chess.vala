@@ -1144,12 +1144,12 @@ public class ChessApplication : Gtk.Application
 
     private void add_accelerators ()
     {
-        add_accelerator ("<Primary>N", "win." + NEW_GAME_ACTION_NAME, null);
-        add_accelerator ("<Primary>O", "win." + OPEN_GAME_ACTION_NAME, null);
-        add_accelerator ("<Primary>S", "win." + SAVE_GAME_ACTION_NAME, null);
-        add_accelerator ("<Shift><Primary>S", "win." + SAVE_GAME_AS_ACTION_NAME, null);
-        add_accelerator ("<Primary>Z", "win." + UNDO_MOVE_ACTION_NAME, null);
-        add_accelerator ("Pause", "win." + PAUSE_RESUME_ACTION_NAME, null);
+        set_accels_for_action ("win." + NEW_GAME_ACTION_NAME, {"<Primary>N"});
+        set_accels_for_action ("win." + OPEN_GAME_ACTION_NAME, {"<Primary>O"});
+        set_accels_for_action ("win." + SAVE_GAME_ACTION_NAME, {"<Primary>S"});
+        set_accels_for_action ("win." + SAVE_GAME_AS_ACTION_NAME, {"<Shift><Primary>S"});
+        set_accels_for_action ("win." + UNDO_MOVE_ACTION_NAME, {"<Primary>Z"});
+        set_accels_for_action ("win." + PAUSE_RESUME_ACTION_NAME, {"Pause"});
     }
 
     private void update_pause_resume_button ()
