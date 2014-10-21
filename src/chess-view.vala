@@ -276,8 +276,8 @@ public class ChessView : Gtk.DrawingArea
         if (scene.game == null || event.button != 1 || scene.game.should_show_paused_overlay)
             return false;
 
-        int file = (int) Math.floor((event.x - 0.5 * get_allocated_width () + square_size * 4) / square_size);
-        int rank = 7 - (int) Math.floor((event.y - 0.5 * get_allocated_height () + square_size * 4) / square_size);
+        int file = (int) Math.floor ((event.x - 0.5 * get_allocated_width () + square_size * 4) / square_size);
+        int rank = 7 - (int) Math.floor ((event.y - 0.5 * get_allocated_height () + square_size * 4) / square_size);
 
         // FIXME: Use proper Cairo rotation matrix
         if (scene.board_angle == 180.0)

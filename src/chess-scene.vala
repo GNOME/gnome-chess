@@ -234,7 +234,7 @@ public class ChessScene : Object
                     selected_file, rank, file, true, promotion_selection);
                 selected_rank = selected_file = -1;
             }
-            if (game.current_player.move_with_coords(selected_rank, selected_file, rank, file))
+            if (game.current_player.move_with_coords (selected_rank, selected_file, rank, file))
                 selected_rank = selected_file = -1;            
         }
         

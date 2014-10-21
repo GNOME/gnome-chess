@@ -62,13 +62,13 @@ public class ChessEngineCECP : ChessEngine
                     string move = line[prefix.length:line.length];
                     debug ("Engine moves %s", move);
                     moving = true;
-                    moved (move.strip());
+                    moved (move.strip ());
                 }
             }
 
             if (line == "resign" || line == "tellics resign" ||
-                     (line.has_prefix ("1-0 {") && line.contains("resign")) ||
-                     (line.has_prefix ("0-1 {") && line.contains("resign")))
+                     (line.has_prefix ("1-0 {") && line.contains ("resign")) ||
+                     (line.has_prefix ("0-1 {") && line.contains ("resign")))
             {
                 resigned ();
             }

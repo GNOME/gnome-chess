@@ -208,7 +208,7 @@ public abstract class ChessEngine : Object
 
         do
         {
-            n_written = Posix.write(stdin_fd, &data[offset], data.length - offset);
+            n_written = Posix.write (stdin_fd, &data[offset], data.length - offset);
             offset += n_written;
         } while (n_written > 0 && offset < data.length);
     }

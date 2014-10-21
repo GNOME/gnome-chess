@@ -196,7 +196,7 @@ public class ChessApplication : Gtk.Application
         add_window (window);
 
         scene = new ChessScene ();
-        scene.is_human.connect ((p) => { return p == human_player; } );
+        scene.is_human.connect ((p) => { return p == human_player; });
         scene.changed.connect (scene_changed_cb);
         scene.choose_promotion_type.connect (show_promotion_type_selector);
 
