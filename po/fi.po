@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2014-09-12 18:14+0000\n"
+"POT-Creation-Date: 2014-11-07 07:05+0000\n"
 "PO-Revision-Date: 2014-09-14 17:48+0200\n"
 "Last-Translator: Lauri Nurmi <lanurmi@iki.fi>\n"
 "Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -29,7 +29,6 @@ msgstr ""
 "X-POT-Import-Date: 2012-03-05 14:46:29+0000\n"
 
 #: ../data/gnome-chess.appdata.xml.in.h:1
-#| msgid "Chess"
 msgid "GNOME Chess"
 msgstr "Gnomen Šakki"
 
@@ -53,7 +52,7 @@ msgstr ""
 "tunnistaa monet suositut asennettuna olevat moottorit automaattisesti."
 
 #: ../data/gnome-chess.desktop.in.h:1 ../data/gnome-chess.ui.h:1
-#: ../src/gnome-chess.vala:136 ../src/gnome-chess.vala:1995
+#: ../src/gnome-chess.vala:136 ../src/gnome-chess.vala:1981
 msgid "Chess"
 msgstr "Šakki"
 
@@ -62,7 +61,6 @@ msgid "3D Chess Game"
 msgstr "3D-šakkipeli"
 
 #: ../data/gnome-chess.desktop.in.h:3
-#| msgid "Play the classic two-player boardgame of chess"
 msgid "Play the classic two-player board game of chess"
 msgstr "Pelaa šakkia, klassista kahden pelaajan lautapeliä"
 
@@ -224,7 +222,6 @@ msgstr "Ei rajoitusta"
 
 #. Preferences Dialog: Combo box entry for game timer of five minutes
 #: ../data/preferences.ui.h:10
-#| msgid "Ten minutes"
 msgid "Five minutes"
 msgstr "Viisi minuuttia"
 
@@ -324,13 +321,11 @@ msgstr "Koristeellinen"
 
 #. Preferences Dialog: Label before player side (white/black) combo box
 #: ../data/preferences.ui.h:48
-#| msgid "Play as:"
 msgid "_Play as:"
 msgstr "Oma _väri:"
 
 #. Preferences Dialog: Label before opposing player combo box
 #: ../data/preferences.ui.h:50
-#| msgid "Opposing player:"
 msgid "_Opposing player:"
 msgstr "_Vastustaja:"
 
@@ -341,7 +336,6 @@ msgstr "_Vaikeustaso:"
 
 #. Preferences Dialog: Label before game timer settings
 #: ../data/preferences.ui.h:54
-#| msgid "No limit"
 msgid "_Time limit:"
 msgstr "_Aikaraja:"
 
@@ -357,19 +351,16 @@ msgstr "_Peli"
 
 #. Preferences Dialog: Label before board orientation combo box
 #: ../data/preferences.ui.h:60
-#| msgid "Board orientation:"
 msgid "Board _orientation:"
 msgstr "Laudan _suunta:"
 
 #. Preferences Dialog: Label before move format combo box
 #: ../data/preferences.ui.h:62
-#| msgid "Move format:"
 msgid "Move _format:"
 msgstr "Siirto_tapa:"
 
 #. Preferences Dialog: Label before piece style combo box
 #: ../data/preferences.ui.h:64
-#| msgid "Piece style:"
 msgid "_Piece style:"
 msgstr "_Nappuloiden tyyli:"
 
@@ -903,7 +894,6 @@ msgstr "Musta on šakattu"
 
 #. Window title on White's turn if White is human
 #: ../src/gnome-chess.vala:1129
-#| msgid "Key to move N"
 msgid "White to Move"
 msgstr "Valkoisen siirto"
 
@@ -914,8 +904,6 @@ msgstr "Valkoinen miettii…"
 
 #. Window title on Black's turn if Black is human
 #: ../src/gnome-chess.vala:1138
-#| msgctxt "chess-side"
-#| msgid "Black Side"
 msgid "Black to Move"
 msgstr "Mustan siirto"
 
@@ -925,7 +913,6 @@ msgid "Black is Thinking…"
 msgstr "Musta miettii…"
 
 #: ../src/gnome-chess.vala:1166
-#| msgid "Pause the game"
 msgid "Unpause the game"
 msgstr "Jatka peliä"
 
@@ -962,25 +949,21 @@ msgstr "Hups! Jokin meni pieleen."
 
 #. Window subtitle when Black is checkmated
 #: ../src/gnome-chess.vala:1230
-#| msgid "Opponent is in check and cannot move (checkmate)"
 msgid "Black is in check and cannot move."
 msgstr "Musta on šakattu eikä voi siirtää."
 
 #. Window subtitle when White is checkmated
 #: ../src/gnome-chess.vala:1233
-#| msgid "Opponent is in check and cannot move (checkmate)"
 msgid "White is in check and cannot move."
 msgstr "Valkoinen on šakattu eikä voi siirtää."
 
 #. Window subtitle when the game terminates due to a stalemate
 #: ../src/gnome-chess.vala:1239
-#| msgid "Opponent cannot move (stalemate)"
 msgid "Opponent cannot move."
 msgstr "Vastustaja ei voi siirtää."
 
 #. Window subtitle when the game is drawn due to the fifty move rule
 #: ../src/gnome-chess.vala:1243
-#| msgid "No piece has been taken or pawn moved in the last fifty moves"
 msgid "No piece was taken or pawn moved in fifty moves."
 msgstr ""
 "Nappuloita ei ole syöty tai sotilasta siirretty viimeisten 50 siirron aikana."
@@ -997,13 +980,11 @@ msgstr "Valkoiselta loppui aika."
 
 #. Window subtitle when the game is drawn due to the three-fold-repetition rule
 #: ../src/gnome-chess.vala:1257
-#| msgid "The same board state has occurred three times (threefold repetition)"
 msgid "The same board state has occurred three times."
 msgstr "Samat asemat ovat toistuneet laudalla kolmesti."
 
 #. Window subtitle when the game is drawn due to the insufficient material rule
 #: ../src/gnome-chess.vala:1261
-#| msgid "Neither player can checkmate (insufficient material)"
 msgid "Neither player can checkmate."
 msgstr "Kumpikaan pelaaja ei voi tehdä šakkia ja mattia."
 
@@ -1031,12 +1012,11 @@ msgstr "Pelilokin mukaan pelaaja kuoli!"
 #. Window subtitle when something goes wrong with the engine...
 #. * or when the engine says something is wrong with us!
 #: ../src/gnome-chess.vala:1287
-#| msgid "The computer player is very confused."
 msgid "The computer player is confused. The game cannot continue."
 msgstr "Tietokonepelaaja on hämillään. Peliä ei voi jatkaa."
 
-#: ../src/gnome-chess.vala:1345 ../src/gnome-chess.vala:2081
-#: ../src/gnome-chess.vala:2164
+#: ../src/gnome-chess.vala:1345 ../src/gnome-chess.vala:2067
+#: ../src/gnome-chess.vala:2150
 msgid "_Cancel"
 msgstr "_Peru"
 
@@ -1061,25 +1041,22 @@ msgstr "_Tallenna pelin loki"
 msgid "_Discard"
 msgstr "_Hylkää"
 
-#: ../src/gnome-chess.vala:1368 ../src/gnome-chess.vala:2082
+#: ../src/gnome-chess.vala:1368 ../src/gnome-chess.vala:2068
 msgid "_Save"
 msgstr "_Tallenna"
 
 #. Title of claim draw dialog
 #: ../src/gnome-chess.vala:1391
-#| msgid "You cannot currently claim a draw."
 msgid "Would you like to claim a draw?"
 msgstr "Haluatko esittää tasapeliä?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
 #: ../src/gnome-chess.vala:1397
-#| msgid "50 moves have passed without a capture or pawn advancement"
 msgid "Fifty moves have passed without a capture or pawn advancement."
 msgstr "50 siirtoa on kulunut ilman syöntiä tai sotilaan siirtämistä."
 
 #. Message in claim draw dialog when triggered by three-fold repetition
 #: ../src/gnome-chess.vala:1402
-#| msgid "Any board position has occurred three times"
 msgid "The current board position has occurred three times."
 msgstr "Nykyiset laudan asemat ovat toistuneet kolmesti."
 
@@ -1091,13 +1068,11 @@ msgstr "(Tätä mahdollisuutta ei tarjota enää toistamiseen.)"
 #. Option in claim draw dialog
 #. Option on warning dialog when player clicks resign
 #: ../src/gnome-chess.vala:1411 ../src/gnome-chess.vala:1451
-#| msgid "_Continue playing"
 msgid "_Keep Playing"
 msgstr "_Jatka peliä"
 
 #. Option in claim draw dialog
 #: ../src/gnome-chess.vala:1413
-#| msgid "Claim Draw"
 msgid "_Claim Draw"
 msgstr "_Esitä tasapeliä"
 
@@ -1107,7 +1082,6 @@ msgstr "Tallennetaanko tämä peli ennen uuden aloittamista?"
 
 #. Title of warning dialog when player clicks Resign
 #: ../src/gnome-chess.vala:1446
-#| msgid "Do you really want to do this?"
 msgid "Are you sure you want to resign?"
 msgstr "Haluatko varmasti luovuttaa?"
 
@@ -1121,52 +1095,32 @@ msgstr "Tässä on järkeä, mikäli haluat tallentaa pelin tositteeksi häviös
 msgid "_Resign"
 msgstr "_Luovuta"
 
-#. Translators: timer labels in the bottom-right. (Change your preferences
-#. * to enable timed games.) The first %d is minutes and the %02d at the end
-#. * is seconds. In the middle is a ratio character and a LTR order mark to
-#. * force minutes on the left of the ratio in RTL layouts. You probably do
-#. * not need to change this, but I'm told you might....
-#: ../src/gnome-chess.vala:1535
-#, c-format
-msgid "%d∶‎%02d"
-msgstr "%d∶‎%02d"
-
-#. Translators: timer labels in the bottom-right. (Change your preferences
-#. * to enable timed games.) Less than a minute is left. The %02d at the end
-#. * is seconds. Before that is a ratio character and a LTR order mark to
-#. * force minutes on the left of the ratio in RTL layouts. You probably do
-#. * not need to change this, but I'm told you might....
-#: ../src/gnome-chess.vala:1544
-#, c-format
-msgid "∶‎%02d"
-msgstr "∶‎%02d"
-
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#: ../src/gnome-chess.vala:1890
+#: ../src/gnome-chess.vala:1876
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minuutti"
 msgstr[1] "minuuttia"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../src/gnome-chess.vala:1894
+#: ../src/gnome-chess.vala:1880
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "tunti"
 msgstr[1] "tuntia"
 
-#: ../src/gnome-chess.vala:1999
+#: ../src/gnome-chess.vala:1985
 msgid "A classic game of positional strategy"
 msgstr "Klassinen sijaintistrateginen peli"
 
-#: ../src/gnome-chess.vala:2002
+#: ../src/gnome-chess.vala:1988
 msgid "translator-credits"
 msgstr ""
 "Timo Jyrinki, 2008\n"
 "Ilkka Tuohela, 2006-2009\n"
 "Sami Pesonen, 2002-2005\n"
 "\n"
-"http://www.gnome.fi/\n"
+"https://l10n.gnome.org/teams/fi/\n"
 "\n"
 "Launchpad Contributions:\n"
 "  Heikki Kulhia https://launchpad.net/~hessuk\n"
@@ -1179,48 +1133,54 @@ msgstr ""
 "  Timo Jyrinki https://launchpad.net/~timo-jyrinki\n"
 "  eGetin https://launchpad.net/~egetin"
 
-#: ../src/gnome-chess.vala:2068
+#: ../src/gnome-chess.vala:2054
 msgid "Failed to save game"
 msgstr "Pelin tallennus epäonnistui"
 
 #. Title of save game dialog
-#: ../src/gnome-chess.vala:2092
+#: ../src/gnome-chess.vala:2078
 msgid "Save Chess Game"
 msgstr "Tallenna šakkipeli"
 
 #. Default filename for the save game dialog
-#: ../src/gnome-chess.vala:2105
+#: ../src/gnome-chess.vala:2091
 msgid "Untitled Chess Game"
 msgstr "Nimetön šakkipeli"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:2110 ../src/gnome-chess.vala:2174
+#: ../src/gnome-chess.vala:2096 ../src/gnome-chess.vala:2160
 msgid "PGN files"
 msgstr "PGN-tiedostot"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:2116 ../src/gnome-chess.vala:2180
+#: ../src/gnome-chess.vala:2102 ../src/gnome-chess.vala:2166
 msgid "All files"
 msgstr "Kaikki tiedostot"
 
-#: ../src/gnome-chess.vala:2151
+#: ../src/gnome-chess.vala:2137
 msgid "Save this game before loading another one?"
 msgstr "Tallennetaanko tämä peli ennen uuden lataamista?"
 
 #. Title of load game dialog
-#: ../src/gnome-chess.vala:2162
+#: ../src/gnome-chess.vala:2148
 msgid "Load Chess Game"
 msgstr "Lataa šakkipeli"
 
-#: ../src/gnome-chess.vala:2165
+#: ../src/gnome-chess.vala:2151
 msgid "_Open"
 msgstr "_Avaa"
 
-#: ../src/gnome-chess.vala:2199
+#: ../src/gnome-chess.vala:2185
 msgid "Failed to open game"
 msgstr "Pelin avaus epäonnistui"
+
+#~ msgid "%d∶‎%02d"
+#~ msgstr "%d∶‎%02d"
+
+#~ msgid "∶‎%02d"
+#~ msgstr "∶‎%02d"
 
 #~ msgid "New Game"
 #~ msgstr "Uusi peli"
