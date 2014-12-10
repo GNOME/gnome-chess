@@ -105,6 +105,7 @@ public class ChessClock : Object
 
         timer.stop ();
         stop_watching_timer ();
+	is_active = false;
     }
 
     public void unpause ()
@@ -114,6 +115,7 @@ public class ChessClock : Object
 
         timer.@continue ();
         watch_timer ();
+	is_active = true;
     }
 
     private void watch_timer ()
