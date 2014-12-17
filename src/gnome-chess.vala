@@ -1846,28 +1846,6 @@ public class ChessApplication : Gtk.Application
         int multiplier = 1;
         if (custom_duration_units_combo.get_active_iter (out iter))
             custom_duration_units_combo.model.get (iter, 1, out multiplier, -1);
-
-        switch (multiplier)
-        {
-        case 60:
-            if (duration_adjustment.get_upper () != 600)
-                duration_adjustment.set_upper (600);
-            break;
-        case 3600:
-            if (duration_adjustment.get_upper () != 10)
-            {
-                duration_adjustment.set_upper (10);
-                if (duration_adjustment.value > 10)
-                {
-                    duration_adjustment.value = 10;
-                    magnitude = 10;
-                }
-            }
-            break;
-        default:
-            assert_not_reached ();
-        }
-
         return magnitude * multiplier;
     }
 
