@@ -2047,12 +2047,14 @@ public class ChessApplication : Gtk.Application
         if (game.clock != null)
         {
             /* We currently only support simple timeouts */
-            uint initial_time = int.parse (pgn_game.time_control);
+            uint white_initial_time = int.parse (pgn_game.white_time_left);
+            uint black_initial_time = int.parse (pgn_game.black_time_left);
+
             uint white_used = game.clock.white_seconds_used;
             uint black_used = game.clock.black_seconds_used;
 
-            pgn_game.white_time_left = (initial_time - white_used).to_string ();
-            pgn_game.black_time_left = (initial_time - black_used).to_string ();
+            pgn_game.white_time_left = (white_initial_time - white_used).to_string ();
+            pgn_game.black_time_left = (black_initial_time - black_used).to_string ();
         }
     }
 
