@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: gnome-chess master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2014-12-25 19:09+0000\n"
-"PO-Revision-Date: 2014-12-25 20:23+0100\n"
+"POT-Creation-Date: 2014-12-26 16:37+0000\n"
+"PO-Revision-Date: 2014-12-26 19:07+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -975,17 +975,13 @@ msgstr "Belemu je zmanjkalo časa."
 
 #. Window subtitle when the game is drawn due to the three-fold-repetition rule
 #: ../src/gnome-chess.vala:1257
-#, fuzzy
 msgid "The same board state has occurred three times."
-msgstr ""
-"Enak položaj figur na igralni plošči se je pojavil trikrat (trikratna "
-"ponovitev)"
+msgstr "Enak položaj figur na igralni plošči se je pojavil trikrat."
 
 #. Window subtitle when the game is drawn due to the insufficient material rule
 #: ../src/gnome-chess.vala:1261
-#, fuzzy
 msgid "Neither player can checkmate."
-msgstr "Poizvedba ali je mogoče iskati po skladbi"
+msgstr "Nobeden izmed igralcev ne more zmagati."
 
 #. Window subtitle when the game ends due to the black player resigning
 #: ../src/gnome-chess.vala:1266
@@ -1011,12 +1007,11 @@ msgstr "V dnevniku igre je zapisano, da je igralec končal!"
 #. Window subtitle when something goes wrong with the engine...
 #. * or when the engine says something is wrong with us!
 #: ../src/gnome-chess.vala:1287
-#, fuzzy
 msgid "The computer player is confused. The game cannot continue."
-msgstr "Računalniški nasprotnik je malce zmeden."
+msgstr "Računalniški nasprotnik je malce zmeden. Igre ni mogoče nadaljevati."
 
-#: ../src/gnome-chess.vala:1345 ../src/gnome-chess.vala:2067
-#: ../src/gnome-chess.vala:2150
+#: ../src/gnome-chess.vala:1345 ../src/gnome-chess.vala:2069
+#: ../src/gnome-chess.vala:2152
 msgid "_Cancel"
 msgstr "_Prekliči"
 
@@ -1041,29 +1036,24 @@ msgstr "_Shrani dnevnik igre"
 msgid "_Discard"
 msgstr "_Zavrzi"
 
-#: ../src/gnome-chess.vala:1368 ../src/gnome-chess.vala:2068
+#: ../src/gnome-chess.vala:1368 ../src/gnome-chess.vala:2070
 msgid "_Save"
 msgstr "_Shrani"
 
 #. Title of claim draw dialog
 #: ../src/gnome-chess.vala:1391
-#, fuzzy
 msgid "Would you like to claim a draw?"
-msgstr "Vnesite naslov datoteke, ki jo želite odpreti:"
+msgstr "Ali želite igro predati kot neodločeno?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
 #: ../src/gnome-chess.vala:1397
-#, fuzzy
 msgid "Fifty moves have passed without a capture or pawn advancement."
-msgstr "Izvedenih je 50 potez brez premika kmeta ali jemanja figure"
+msgstr "Izvedenih je 50 potez brez premika kmeta ali jemanja figure."
 
 #. Message in claim draw dialog when triggered by three-fold repetition
 #: ../src/gnome-chess.vala:1402
-#, fuzzy
 msgid "The current board position has occurred three times."
-msgstr ""
-"Enak položaj figur na igralni plošči se je pojavil trikrat (trikratna "
-"ponovitev)"
+msgstr "Enak položaj figur na igralni plošči se je pojavil trikrat."
 
 #. Displays in claim draw dialog to warn player that the dialog only appears once
 #: ../src/gnome-chess.vala:1408
@@ -1094,6 +1084,7 @@ msgstr "Ali ste prepričani, da želite prepustiti igro?"
 #: ../src/gnome-chess.vala:1449
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr ""
+"Dejanje je smiselno, če nameravate shraniti igre kot zapise vaših porazov."
 
 #. Option on warning dialog when player clicks resign
 #: ../src/gnome-chess.vala:1453
@@ -1126,46 +1117,46 @@ msgstr "Klasična strateška igra"
 msgid "translator-credits"
 msgstr "Matej Urbančič <mateju@svn.gnome.org>"
 
-#: ../src/gnome-chess.vala:2054
+#: ../src/gnome-chess.vala:2056
 msgid "Failed to save game"
 msgstr "Ni mogoče shraniti igre"
 
 #. Title of save game dialog
-#: ../src/gnome-chess.vala:2078
+#: ../src/gnome-chess.vala:2080
 msgid "Save Chess Game"
 msgstr "Shrani igro šaha"
 
 #. Default filename for the save game dialog
-#: ../src/gnome-chess.vala:2091
+#: ../src/gnome-chess.vala:2093
 msgid "Untitled Chess Game"
 msgstr "Nenaslovljena igra šaha"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:2096 ../src/gnome-chess.vala:2160
+#: ../src/gnome-chess.vala:2098 ../src/gnome-chess.vala:2162
 msgid "PGN files"
 msgstr "PGN datoteke"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:2102 ../src/gnome-chess.vala:2166
+#: ../src/gnome-chess.vala:2104 ../src/gnome-chess.vala:2168
 msgid "All files"
 msgstr "Vse datoteke"
 
-#: ../src/gnome-chess.vala:2137
+#: ../src/gnome-chess.vala:2139
 msgid "Save this game before loading another one?"
 msgstr "Ali želite igro shraniti preden naložite novo?"
 
 #. Title of load game dialog
-#: ../src/gnome-chess.vala:2148
+#: ../src/gnome-chess.vala:2150
 msgid "Load Chess Game"
 msgstr "Naloži šahovsko igro"
 
-#: ../src/gnome-chess.vala:2151
+#: ../src/gnome-chess.vala:2153
 msgid "_Open"
 msgstr "_Odpri"
 
-#: ../src/gnome-chess.vala:2185
+#: ../src/gnome-chess.vala:2187
 msgid "Failed to open game"
 msgstr "Ni mogoče odpreti igre"
 
