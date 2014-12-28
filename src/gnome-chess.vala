@@ -572,6 +572,15 @@ public class ChessApplication : Gtk.Application
         }
 
         game.start ();
+
+        // If loading a completed saved game
+        if (pgn_game.result == PGNGame.RESULT_WHITE)
+            game.result = ChessResult.WHITE_WON;
+        else if (pgn_game.result == PGNGame.RESULT_BLACK)
+            game.result = ChessResult.BLACK_WON;
+        else if (pgn_game.result == PGNGame.RESULT_DRAW)
+            game.result = ChessResult.DRAW;
+
         if (opponent_engine != null)
             opponent_engine.start_game ();
 
@@ -584,9 +593,6 @@ public class ChessApplication : Gtk.Application
         {
             disable_window_action (PAUSE_RESUME_ACTION_NAME);
         }
-
-        if (game.result != ChessResult.IN_PROGRESS)
-            game_end_cb (game);
 
         update_history_panel ();
         update_action_status ();
@@ -604,6 +610,10 @@ public class ChessApplication : Gtk.Application
             assert (opponent_engine != null);
             opponent_engine.move ();
         }
+
+        // If loading a completed saved game
+        if (game.result != ChessResult.IN_PROGRESS)
+            game.stop (game.result, game.rule);
     }
 
     private ChessEngine? get_engine (string name, string difficulty)
