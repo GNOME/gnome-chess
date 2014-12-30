@@ -20,6 +20,7 @@ public enum ChessResult
 
 public enum ChessRule
 {
+    UNKNOWN,
     CHECKMATE,
     STALEMATE,
     FIFTY_MOVES,
