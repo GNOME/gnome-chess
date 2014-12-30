@@ -470,7 +470,7 @@ public class ChessApplication : Gtk.Application
                 var white_seconds = int.parse (pgn_game.white_time_left);
                 var black_seconds = int.parse (pgn_game.black_time_left);
 
-                if (white_seconds > 0 && black_seconds > 0)
+                if (white_seconds >= 0 && black_seconds >= 0)
                     game.clock = new ChessClock (white_seconds, black_seconds);
             }
         }
@@ -613,7 +613,7 @@ public class ChessApplication : Gtk.Application
 
         // If loading a completed saved game
         if (game.result != ChessResult.IN_PROGRESS)
-            game.stop (game.result, game.rule);
+            game.stop (game.result, ChessRule.UNKNOWN);
     }
 
     private ChessEngine? get_engine (string name, string difficulty)
@@ -1297,6 +1297,12 @@ public class ChessApplication : Gtk.Application
             reason = _("The computer player is confused. The game cannot continue.");
             /* Don't set pgn_game termination; these are standards*/
             break;
+        case ChessRule.UNKNOWN:
+            /* Window subtitle when we don't know the reason
+             * Set it to the pgn_file_name
+             * We are using this when loading completed saved games */
+             reason = game_file.get_basename ();
+             break;
         }
 
         headerbar.set_title (title);
