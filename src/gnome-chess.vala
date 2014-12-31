@@ -711,14 +711,12 @@ public class ChessApplication : Gtk.Application
             Timeout.add_seconds (1, () => {
                 if (game.is_paused)
                 {
-                    /* Keep waiting */
-                    return true;
+                    return Source.CONTINUE;
                 }
                 else
                 {
                     do_engine_move (move);
-                    /* Disconnect from main loop */
-                    return false;
+                    return Source.REMOVE;
                 }
             });
         }
@@ -747,8 +745,7 @@ public class ChessApplication : Gtk.Application
         Timeout.add_seconds (2, () => {
             if (game == original_game && game.is_started)
                 game.stop (ChessResult.BUG, ChessRule.BUG);
-            /* Disconnect from the main loop */
-            return false;
+            return Source.REMOVE;
         });
     }
 
@@ -1892,7 +1889,7 @@ public class ChessApplication : Gtk.Application
         settings.set_int ("duration", get_duration ());
         Source.remove (save_duration_timeout);
         save_duration_timeout = 0;
-        return false;
+        return Source.REMOVE;
     }
 
     [CCode (cname = "G_MODULE_EXPORT duration_changed_cb", instance_pos = -1)]

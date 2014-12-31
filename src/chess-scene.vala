@@ -361,9 +361,9 @@ public class ChessScene : Object
         changed ();
 
         if (animating)
-            return true;
+            return Source.CONTINUE;
 
         game.remove_hold ();
-        return false;
+        return Source.REMOVE;
     }
 }

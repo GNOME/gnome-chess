@@ -118,8 +118,7 @@ public abstract class ChessEngine : Object
         pending_move_source_id = Timeout.add_seconds (delay_seconds, () => {
             pending_move_source_id = 0;
             request_move ();
-            /* Disconnect from main loop */
-            return false;
+            return Source.REMOVE;
         });
     }
 

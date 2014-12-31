@@ -85,7 +85,7 @@ public class ChessClock : Object
             expired ();
         }
 
-        return true;
+        return Source.CONTINUE;
     }
 
     public void stop ()
