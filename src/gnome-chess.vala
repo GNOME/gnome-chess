@@ -1484,6 +1484,10 @@ public class ChessApplication : Gtk.Application
 
     public void undo_move_cb ()
     {
+        // No piece should be selected now
+        scene.selected_rank = -1;
+        scene.selected_file = -1;
+
         if (opponent != null)
             human_player.undo ();
         else
