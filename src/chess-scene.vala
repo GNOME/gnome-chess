@@ -228,10 +228,13 @@ public class ChessScene : Object
             if (can_move && (get_selected_piece ()).type == PieceType.PAWN &&
                 (rank == 0 || rank == 7))
             {
-                /* Prompt user for selecting promotion type */
+                // Prompt user for selecting promotion type
                 PieceType? promotion_selection = choose_promotion_type ();
+
+                // If promotion dialog is closed, do nothing
                 if (promotion_selection == null)
                     return;
+
                 game.current_player.move_with_coords (selected_rank,
                     selected_file, rank, file, true, promotion_selection);
                 selected_rank = selected_file = -1;
