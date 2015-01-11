@@ -77,7 +77,7 @@ public class ChessScene : Object
     private double animation_time;
 
     public signal bool is_human (ChessPlayer player);
-    public signal PieceType choose_promotion_type ();
+    public signal PieceType? choose_promotion_type ();
     public signal void changed ();
 
     public int selected_rank = -1;
@@ -229,7 +229,9 @@ public class ChessScene : Object
                 (rank == 0 || rank == 7))
             {
                 /* Prompt user for selecting promotion type */
-                PieceType promotion_selection = choose_promotion_type ();
+                PieceType? promotion_selection = choose_promotion_type ();
+                if (promotion_selection == null)
+                    return;
                 game.current_player.move_with_coords (selected_rank,
                     selected_file, rank, file, true, promotion_selection);
                 selected_rank = selected_file = -1;

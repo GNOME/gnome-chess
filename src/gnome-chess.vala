@@ -261,7 +261,7 @@ public class ChessApplication : Gtk.Application
         window.show ();
     }
 
-    public PieceType show_promotion_type_selector ()
+    public PieceType? show_promotion_type_selector ()
     {
         Gtk.Builder promotion_type_selector_builder;
 
@@ -298,7 +298,7 @@ public class ChessApplication : Gtk.Application
 
         promotion_type_selector_builder.connect_signals (this);
 
-        PieceType selection;
+        PieceType? selection = null;
         int choice = promotion_type_selector_dialog.run ();
         switch (choice)
         {
@@ -313,9 +313,6 @@ public class ChessApplication : Gtk.Application
                 break;
             case PromotionTypeSelected.BISHOP:
                 selection = PieceType.BISHOP;
-                break;
-            default:
-                selection = PieceType.QUEEN;
                 break;
         }
         promotion_type_selector_dialog.destroy ();
