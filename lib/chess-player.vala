@@ -50,20 +50,20 @@ public class ChessPlayer : Object
 
         switch (promotion_type)
         {
-            case PieceType.QUEEN:
-                /* Default is queen so don't add anything */
-                break;
-            case PieceType.KNIGHT:
-                move += "=N";
-                break;
-            case PieceType.ROOK:
-                move += "=R";
-                break;
-            case PieceType.BISHOP:
-                move += "=B";
-                break;
-            default:
-                break;
+        case PieceType.QUEEN:
+            /* Default is queen so don't add anything */
+            break;
+        case PieceType.KNIGHT:
+            move += "=N";
+            break;
+        case PieceType.ROOK:
+            move += "=R"
+            break;
+        case PieceType.BISHOP:
+            move += "=B";
+            break;
+        default:
+            break;
         }
 
         return do_move (move, apply);
