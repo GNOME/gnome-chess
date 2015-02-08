@@ -302,18 +302,18 @@ public class ChessApplication : Gtk.Application
         int choice = promotion_type_selector_dialog.run ();
         switch (choice)
         {
-            case PromotionTypeSelected.QUEEN:
-                selection = PieceType.QUEEN;
-                break;
-            case PromotionTypeSelected.KNIGHT:
-                selection = PieceType.KNIGHT;
-                break;
-            case PromotionTypeSelected.ROOK:
-                selection = PieceType.ROOK;
-                break;
-            case PromotionTypeSelected.BISHOP:
-                selection = PieceType.BISHOP;
-                break;
+        case PromotionTypeSelected.QUEEN:
+            selection = PieceType.QUEEN;
+            break;
+        case PromotionTypeSelected.KNIGHT:
+            selection = PieceType.KNIGHT;
+            break;
+        case PromotionTypeSelected.ROOK:
+            selection = PieceType.ROOK;
+            break;
+        case PromotionTypeSelected.BISHOP:
+            selection = PieceType.BISHOP;
+            break;
         }
         promotion_type_selector_dialog.destroy ();
 
