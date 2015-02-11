@@ -121,7 +121,7 @@ public class ChessClock : Object
     private void watch_timer ()
     {
         /* Wake up each second */
-        tick_timeout_id = Timeout.add_seconds (1, tick_cb);
+        tick_timeout_id = Timeout.add (1000, tick_cb);
     }
 
     private void stop_watching_timer ()
