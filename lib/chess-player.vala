@@ -57,7 +57,7 @@ public class ChessPlayer : Object
             move += "=N";
             break;
         case PieceType.ROOK:
-            move += "=R"
+            move += "=R";
             break;
         case PieceType.BISHOP:
             move += "=B";
