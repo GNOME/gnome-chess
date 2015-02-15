@@ -309,7 +309,7 @@ public class PGN : Object
                     else
                         rav_level--;
                 }
-                else if (!c.isspace())
+                else if (!c.isspace ())
                     state = State.ERROR;
                 break;
 
