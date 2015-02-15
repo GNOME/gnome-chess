@@ -252,15 +252,13 @@ public class PGN : Object
             {
             case State.TAGS:
                 home_state = State.TAGS;
-                if (c.isspace ())
-                    ; /* Ignore whitespace */
-                else if (c == ';')
+                if (c == ';')
                     state = State.LINE_COMMENT;
                 else if (c == '{')
                     state = State.BRACE_COMMENT;
                 else if (c == '[')
                     state = State.TAG_START;
-                else
+                else if (!c.isspace ())
                 {
                     offset--;
                     state = State.MOVE_TEXT;
@@ -270,9 +268,7 @@ public class PGN : Object
 
             case State.MOVE_TEXT:
                 home_state = State.MOVE_TEXT;
-                if (c.isspace ())
-                    ; /* Ignore whitespace */
-                else if (c == ';')
+                if (c == ';')
                     state = State.LINE_COMMENT;
                 else if (c == '{')
                     state = State.BRACE_COMMENT;
@@ -313,7 +309,7 @@ public class PGN : Object
                     else
                         rav_level--;
                 }
-                else
+                else if (!c.isspace())
                     state = State.ERROR;
                 break;
 

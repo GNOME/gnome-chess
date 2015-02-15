@@ -41,6 +41,7 @@ public class ChessState : Object
     {
     }
 
+    // FIXME Enable or remove these exceptions.
     public ChessState (string fen)
     {
         players[Color.WHITE] = new ChessPlayer (Color.WHITE);
@@ -70,7 +71,7 @@ public class ChessState : Object
 
                 PieceType type;
                 var color = c.isupper () ? Color.WHITE : Color.BLACK;
-                if (!decode_piece_type (c.toupper (), out type))
+                /*if (!*/ decode_piece_type (c.toupper (), out type) //)
                     ;//throw new Error ("");
 
                 int index = get_index (rank, file);
