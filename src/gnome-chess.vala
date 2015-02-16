@@ -27,14 +27,19 @@ public class ChessApplication : Gtk.Application
     private Gtk.ComboBox history_combo;
     private Gtk.Widget white_time_label;
     private Gtk.Widget black_time_label;
+    private Gtk.Widget timer_increment_label;
     private Gtk.HeaderBar headerbar;
 
     private Gtk.Dialog? preferences_dialog = null;
     private Gtk.ComboBox side_combo;
     private Gtk.ComboBox difficulty_combo;
     private Gtk.ComboBox duration_combo;
+    private Gtk.ComboBox clock_type_combo;
     private Gtk.Adjustment duration_adjustment;
+    private Gtk.Adjustment timer_increment_adjustment;
     private Gtk.Box custom_duration_box;
+    private Gtk.Box timer_increment_box;
+    private Gtk.ComboBox timer_increment_units_combo;
     private Gtk.ComboBox custom_duration_units_combo;
     private uint save_duration_timeout = 0;
     private Gtk.FileChooserDialog? open_dialog = null;
@@ -569,6 +574,30 @@ public class ChessApplication : Gtk.Application
         }
 
         game.start ();
+
+        int timer_increment_adj_value = 0;
+        if (pgn_game.timer_increment != null)
+            timer_increment_adj_value = int.parse (pgn_game.timer_increment);
+        else
+        {
+            timer_increment_adj_value = settings.get_int ("timer-increment");
+            pgn_game.timer_increment = timer_increment_adj_value.to_string ();
+        }
+
+        ClockType clock_type = ClockType.SIMPLE;
+        if (pgn_game.clock_type != null)
+            clock_type = ClockType.string_to_enum (pgn_game.clock_type);
+        else
+        {
+            clock_type = ClockType.string_to_enum (settings.get_string ("clock-type"));
+            pgn_game.clock_type = clock_type.to_string ();
+        }
+
+        if (game.clock != null)
+        {
+            game.clock.extra_seconds = (int) timer_increment_adj_value;
+            game.clock.clock_type = clock_type;
+        }
 
         // If loading a completed saved game
         if (pgn_game.result == PGNGame.RESULT_WHITE)
@@ -1535,9 +1564,9 @@ public class ChessApplication : Gtk.Application
 
         int time;
         if (color == Color.WHITE)
-            time = game.clock.white_initial_seconds - game.clock.white_seconds_used;
+            time = game.clock.white_initial_seconds - game.clock.white_seconds_used + game.clock.white_extra_seconds;
         else
-            time = game.clock.black_initial_seconds - game.clock.black_seconds_used;
+            time = game.clock.black_initial_seconds - game.clock.black_seconds_used + game.clock.black_extra_seconds;
 
         if (time >= 60)
             return "%d∶\xE2\x80\x8E%02d".printf (time / 60, time % 60);
@@ -1706,10 +1735,25 @@ public class ChessApplication : Gtk.Application
         set_combo (difficulty_combo, 1, settings.get_string ("difficulty"));
 
         duration_combo = (Gtk.ComboBox) preferences_builder.get_object ("duration_combo");
+        clock_type_combo = (Gtk.ComboBox) preferences_builder.get_object ("clock_type_combo");
         duration_adjustment = (Gtk.Adjustment) preferences_builder.get_object ("duration_adjustment");
+        timer_increment_adjustment = (Gtk.Adjustment) preferences_builder.get_object ("timer_increment_adjustment");
         custom_duration_box = (Gtk.Box) preferences_builder.get_object ("custom_duration_box");
+        timer_increment_box = (Gtk.Box) preferences_builder.get_object ("timer_increment_box");
         custom_duration_units_combo = (Gtk.ComboBox) preferences_builder.get_object ("custom_duration_units_combo");
         set_duration (settings.get_int ("duration"));
+        timer_increment_label = (Gtk.Widget) preferences_builder.get_object ("timer_increment_label");
+        timer_increment_units_combo = (Gtk.ComboBox) preferences_builder.get_object ("timer_increment_units_combo");
+
+        if (pgn_game.clock_type != null)
+            set_clock_type (ClockType.string_to_enum (pgn_game.clock_type));
+        else
+            set_clock_type ((int) ClockType.string_to_enum (settings.get_string ("clock-type")));
+
+        if (pgn_game.timer_increment != null)
+            set_timer_increment (int.parse (pgn_game.timer_increment));
+        else
+            set_timer_increment (settings.get_int ("timer-increment"));
 
         var orientation_combo = (Gtk.ComboBox) preferences_builder.get_object ("orientation_combo");
         set_combo (orientation_combo, 1, settings.get_string ("board-side"));
@@ -1794,6 +1838,61 @@ public class ChessApplication : Gtk.Application
         string difficulty;
         combo.model.get (iter, 1, out difficulty, -1);
         settings.set_string ("difficulty", difficulty);
+    }
+
+    private void set_clock_type (int clock_type)
+    {
+        var model = clock_type_combo.model;
+        Gtk.TreeIter iter, active_iter_clock_type = {};
+
+        /* Find the largest units that can be used for this value */
+        if (model.get_iter_first (out iter))
+        {
+            do
+            {
+                int type;
+                model.get (iter, 1, out type, -1);
+                if (type == clock_type)
+                {
+                    active_iter_clock_type = iter;
+                }
+            } while (model.iter_next (ref iter));
+        }
+
+        clock_type_combo.set_active_iter (active_iter_clock_type);
+        clock_type_changed_cb (clock_type_combo);
+    }
+
+    private void set_timer_increment (int timer_increment)
+    {
+        int timer_increment_multiplier = 1;
+
+        if (timer_increment >= 60)
+        {
+            timer_increment_adjustment.value = timer_increment / 60;
+            timer_increment_multiplier = 60;
+        } else
+            timer_increment_adjustment.value = timer_increment;
+
+        var model = timer_increment_units_combo.model;
+        Gtk.TreeIter iter, reqd_iter = {};
+
+        /* Find the largest units that can be used for this value */
+        if (model.get_iter_first (out iter))
+        {
+            do
+            {
+                int multiplier;
+                model.get (iter, 1, out multiplier, -1);
+                if (multiplier == timer_increment_multiplier)
+                {
+                    reqd_iter = iter;
+                }
+            } while (model.iter_next (ref iter));
+        }
+
+        timer_increment_units_combo.set_active_iter (reqd_iter);
+        timer_increment_units_changed_cb (timer_increment_units_combo);
     }
 
     private void set_duration (int duration, bool simplify = true)
@@ -1930,6 +2029,57 @@ public class ChessApplication : Gtk.Application
         save_duration ();
     }
 
+    [CCode (cname = "G_MODULE_EXPORT timer_increment_units_changed_cb", instance_pos = -1)]
+    public void timer_increment_units_changed_cb (Gtk.Widget widget)
+    {
+        var model = (Gtk.ListStore) timer_increment_units_combo.model;
+        Gtk.TreeIter iter;
+        int multiplier = 0;
+        /* Set the unit labels to the correct plural form */
+        if (model.get_iter_first (out iter))
+        {
+            do
+            {
+                model.get (iter, 1, out multiplier, -1);
+                switch (multiplier)
+                {
+                case 1:
+                    model.set (iter, 0, ngettext (/* Preferences Dialog: Combo box entry for a custom clock type set in seconds */
+                                                  "second", "seconds", (ulong) timer_increment_adjustment.value), -1);
+                    break;
+                case 60:
+                    model.set (iter, 0, ngettext (/* Preferences Dialog: Combo box entry for a custom clock type set in minutes */
+                                                  "minute", "minutes", (ulong) timer_increment_adjustment.value), -1);
+                    break;
+                default:
+                    assert_not_reached ();
+                }
+            } while (model.iter_next (ref iter));
+        }
+
+        if (timer_increment_units_combo.get_active_iter (out iter))
+            timer_increment_units_combo.model.get (iter, 1, out multiplier, -1);
+
+        switch (multiplier)
+        {
+        case 1:
+            if (timer_increment_adjustment.get_upper () != 59)
+                timer_increment_adjustment.set_upper (59);
+            break;
+        case 60:
+            if (timer_increment_adjustment.get_upper () != 10)
+            {
+                timer_increment_adjustment.set_upper (10);
+                if (timer_increment_adjustment.value > 10)
+                    timer_increment_adjustment.value = 10;
+            }
+            break;
+        default:
+            assert_not_reached ();
+        }
+        settings.set_int ("timer-increment", (int) timer_increment_adjustment.value * multiplier);
+    }
+
     private void save_duration ()
     {
         /* Delay writing the value as it this event will be generated a lot spinning through the value */
@@ -1947,6 +2097,10 @@ public class ChessApplication : Gtk.Application
         int duration;
         combo.model.get (iter, 1, out duration, -1);
         custom_duration_box.visible = duration < 0;
+        clock_type_combo.sensitive = duration != 0;
+
+        if (duration == 0)
+            set_clock_type (ClockType.SIMPLE);
 
         if (duration >= 0)
             set_duration (duration, false);
@@ -1955,6 +2109,20 @@ public class ChessApplication : Gtk.Application
             set_duration (60 * 60, false);
 
         save_duration ();
+    }
+
+    [CCode (cname = "G_MODULE_EXPORT clock_type_changed_cb", instance_pos = -1)]
+    public void clock_type_changed_cb (Gtk.ComboBox combo)
+    {
+        Gtk.TreeIter iter;
+        if (!combo.get_active_iter (out iter))
+            return;
+        ClockType clock_type;
+        combo.model.get (iter, 1, out clock_type, -1);
+
+        timer_increment_box.visible = clock_type > 0;
+        timer_increment_label.visible = clock_type > 0;
+        settings.set_string ("clock-type", clock_type.to_string ());
     }
 
     [CCode (cname = "G_MODULE_EXPORT preferences_response_cb", instance_pos = -1)]
@@ -2067,8 +2235,11 @@ public class ChessApplication : Gtk.Application
             uint white_used = game.clock.white_seconds_used;
             uint black_used = game.clock.black_seconds_used;
 
-            pgn_game.white_time_left = (white_initial_time - white_used).to_string ();
-            pgn_game.black_time_left = (black_initial_time - black_used).to_string ();
+            uint white_extra = game.clock.white_extra_seconds;
+            uint black_extra = game.clock.black_extra_seconds;
+
+            pgn_game.white_time_left = (white_initial_time - white_used + white_extra).to_string ();
+            pgn_game.black_time_left = (black_initial_time - black_used + black_extra).to_string ();
         }
     }
 

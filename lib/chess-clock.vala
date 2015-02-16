@@ -10,6 +10,43 @@
  * license.
  */
 
+public enum ClockType
+{
+    SIMPLE,
+    FISCHER,
+    BRONSTEIN;
+
+    public string to_string ()
+    {
+        switch (this)
+        {
+        case SIMPLE:
+            return "simple";
+        case FISCHER:
+            return "fischer";
+        case BRONSTEIN:
+            return "bronstein";
+        default:
+            assert_not_reached ();
+        }
+    }
+
+    public static ClockType string_to_enum (string s)
+    {
+        switch (s)
+        {
+        case "simple":
+            return SIMPLE;
+        case "fischer":
+            return FISCHER;
+        case "bronstein":
+            return BRONSTEIN;
+        default:
+            assert_not_reached ();
+        }
+    }
+}
+
 public class ChessClock : Object
 {
     public int white_initial_seconds { get; private set; }
@@ -20,7 +57,52 @@ public class ChessClock : Object
 
     public int black_seconds_used { get; private set; default = 0; }
 
+    public ClockType clock_type { get; set; default = ClockType.SIMPLE; }
+
+    public int white_prev_move_seconds { get; private set; default = 0; }
+
+    public int black_prev_move_seconds { get; private set; default = 0; }
+
+    public int white_extra_seconds { get; private set; default = 0; }
+
+    public int black_extra_seconds { get; private set; default = 0; }
+
     private Color _active_color = Color.WHITE;
+
+    public int extra_seconds { get; set; default = 0; }
+
+    public void update_prev_move_time ()
+    {
+        if (active_color == Color.WHITE)
+            black_prev_move_seconds = black_seconds_used;
+        else
+            white_prev_move_seconds = white_seconds_used;
+    }
+
+    public void update_extra_seconds ()
+    {
+        int white_move_used = 0, black_move_used = 0;
+        switch (clock_type)
+        {
+        case ClockType.SIMPLE:
+            break;
+        case ClockType.FISCHER:
+            if (active_color == Color.WHITE)
+                white_extra_seconds += extra_seconds;
+            else
+                black_extra_seconds += extra_seconds;
+            break;
+        case ClockType.BRONSTEIN:
+            white_move_used = white_seconds_used - white_prev_move_seconds;
+            black_move_used = black_seconds_used - black_prev_move_seconds;
+            if (active_color != Color.WHITE)
+                white_extra_seconds += int.min(extra_seconds, white_move_used);
+            else
+                black_extra_seconds += int.min(extra_seconds, black_move_used);
+            break;
+        }
+    }
+
     public Color active_color
     {
         get { return _active_color; }
@@ -31,6 +113,12 @@ public class ChessClock : Object
 
             stop ();
             _active_color = value;
+
+            // This is a move switch
+            // Update the clocks for Fischer and Bronstein mode
+            update_extra_seconds ();
+            update_prev_move_time ();
+
             start ();
         }
     }

@@ -125,6 +125,16 @@ public class PGNGame : Object
         get { return tags.lookup ("BlackTimeLeft"); }
         set { tags.insert ("BlackTimeLeft", value); }
     }
+    public string? clock_type
+    {
+        get { return tags.lookup ("X-GNOME-ClockType"); }
+        set { tags.insert ("X-GNOME-ClockType", value); }
+    }
+    public string? timer_increment
+    {
+        get { return tags.lookup ("X-GNOME-TimerIncrement"); }
+        set { tags.insert ("X-GNOME-TimerIncrement", value); }
+    }
     public bool set_up
     {
         get { string? v = tags.lookup ("SetUp"); return v != null && v == "1" ? true : false; }
