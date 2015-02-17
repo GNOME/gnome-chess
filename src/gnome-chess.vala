@@ -550,7 +550,7 @@ public class ChessApplication : Gtk.Application
                 disable_window_action (SAVE_GAME_ACTION_NAME);
                 game.result = ChessResult.BUG;
                 game.rule = ChessRule.BUG;
-                game_end_cb (game);
+                game_end_cb ();
                 return;
             }
         }
@@ -1206,7 +1206,7 @@ public class ChessApplication : Gtk.Application
         }
     }
 
-    private void game_end_cb (ChessGame game)
+    private void game_end_cb ()
     {
         disable_window_action (RESIGN_ACTION_NAME);
         disable_window_action (UNDO_MOVE_ACTION_NAME);
