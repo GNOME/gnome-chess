@@ -297,7 +297,7 @@ public class ChessGame : Object
 
     public uint n_moves
     {
-        get { return move_stack.length() - 1; }
+        get { return move_stack.length () - 1; }
     }
 
     public void pause (bool show_overlay = true)
@@ -330,7 +330,7 @@ public class ChessGame : Object
         this.rule = rule;
         is_started = false;
         if (_clock != null)
-            _clock.stop();
+            _clock.stop ();
         ended ();
     }
 }

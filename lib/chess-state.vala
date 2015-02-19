@@ -144,7 +144,7 @@ public class ChessState : Object
         state.en_passant_index = en_passant_index;
         state.check_state = check_state;
         if (last_move != null)
-            state.last_move = last_move.copy();
+            state.last_move = last_move.copy ();
         for (int i = 0; i < 64; i++)
             state.board[i] = board[i];
         state.piece_masks[Color.WHITE] = piece_masks[Color.WHITE];

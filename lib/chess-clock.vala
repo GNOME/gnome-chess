@@ -96,9 +96,9 @@ public class ChessClock : Object
             white_move_used = white_seconds_used - white_prev_move_seconds;
             black_move_used = black_seconds_used - black_prev_move_seconds;
             if (active_color != Color.WHITE)
-                white_extra_seconds += int.min(extra_seconds, white_move_used);
+                white_extra_seconds += int.min (extra_seconds, white_move_used);
             else
-                black_extra_seconds += int.min(extra_seconds, black_move_used);
+                black_extra_seconds += int.min (extra_seconds, black_move_used);
             break;
         }
     }

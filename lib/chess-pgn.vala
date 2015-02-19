@@ -336,7 +336,7 @@ public class PGN : Object
             case State.TAG_START:
                 if (c.isspace ())
                     continue;
-                else if (c.isalnum())
+                else if (c.isalnum ())
                 {
                     token_start = offset;
                     state = State.TAG_NAME;
@@ -348,10 +348,10 @@ public class PGN : Object
             case State.TAG_NAME:
                 if (c.isspace ())
                 {
-                    tag_name = data[(long)token_start:(long)offset];
+                    tag_name = data[(long) token_start:(long) offset];
                     state = State.PRE_TAG_VALUE;
                 }
-                else if (c.isalnum() || c == '_' || c == '+' || c == '#' || c == '=' || c == ':' || c == '-')
+                else if (c.isalnum () || c == '_' || c == '+' || c == '#' || c == '=' || c == ':' || c == '-')
                     continue;
                 else
                     state = State.ERROR;
@@ -402,7 +402,7 @@ public class PGN : Object
                     continue;
                 else
                 {
-                    string symbol = data[(long)token_start:(long)offset];
+                    string symbol = data[(long) token_start:(long) offset];
 
                     bool is_number = true;
                     for (int i = 0; i < symbol.length; i++)
@@ -441,8 +441,6 @@ public class PGN : Object
                     continue;
                 else
                 {
-                    //string nag = data[(long)token_start:(long)offset];
-                    //stdout.printf ("nag = '%s'\n", nag);
                     state = State.MOVE_TEXT;
                     offset--;
                 }
@@ -451,7 +449,7 @@ public class PGN : Object
             case State.ERROR:
                 size_t char_offset = offset - line_offset - 1;
                 stderr.printf ("%d.%d: error: Unexpected character\n", line, (int) (char_offset + 1));
-                stderr.printf ("%s\n", data[(long)line_offset:(long)offset]);
+                stderr.printf ("%s\n", data[(long) line_offset:(long) offset]);
                 for (int i = 0; i < char_offset; i++)
                     stderr.printf (" ");
                 stderr.printf ("^\n");
@@ -464,7 +462,7 @@ public class PGN : Object
 
         /* Must have at least one game */
         if (games == null)
-            throw new PGNError.LOAD_ERROR("No games in PGN file");
+            throw new PGNError.LOAD_ERROR ("No games in PGN file");
     }
 
     public PGN.from_file (File file) throws Error
