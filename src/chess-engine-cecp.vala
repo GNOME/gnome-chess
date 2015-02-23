@@ -22,7 +22,7 @@ public class ChessEngineCECP : ChessEngine
         this.options = options;
         starting.connect (start_cb);
     }
-    
+
     private void start_cb ()
     {
         write_line ("xboard");
@@ -101,7 +101,7 @@ public class ChessEngineCECP : ChessEngine
     public override void start_game ()
     {
     }
-    
+
     public override void request_move ()
     {
         write_line ("go");

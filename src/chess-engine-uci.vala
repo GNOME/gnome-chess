@@ -82,7 +82,7 @@ public class ChessEngineUCI : ChessEngine
             string line = (string) buffer;
 
             debug ("Read from engine: '%s'", line);
-            
+
             string[] tokens = line.split (" ");
             if (tokens.length > 0)
             {

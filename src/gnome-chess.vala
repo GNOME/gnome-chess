@@ -254,7 +254,7 @@ public class ChessApplication : Gtk.Application
             }
         }
 
-        window.set_default_size (settings.get_int ("width"), settings.get_int ("height"));        
+        window.set_default_size (settings.get_int ("width"), settings.get_int ("height"));
 
         if (settings.get_boolean ("maximized"))
         {
@@ -1057,7 +1057,7 @@ public class ChessApplication : Gtk.Application
         var model = (Gtk.ListStore) history_combo.model;
         Gtk.TreeIter iter;
         model.append (out iter);
-        model.set (iter, 1, move.number, -1);        
+        model.set (iter, 1, move.number, -1);
         set_move_text (iter, move);
 
         /* Follow the latest move */
@@ -1122,7 +1122,7 @@ public class ChessApplication : Gtk.Application
         update_action_status ();
         update_headerbar_title ();
     }
-    
+
     private void update_action_status ()
     {
         var can_resign = game.n_moves > 0 && !game.is_paused;
@@ -1236,7 +1236,7 @@ public class ChessApplication : Gtk.Application
         case ChessResult.DRAW:
             /* Window title when the game is drawn */
             title = _("Game is Drawn");
-            pgn_game.result = PGNGame.RESULT_DRAW;            
+            pgn_game.result = PGNGame.RESULT_DRAW;
             break;
         case ChessResult.BUG:
             /*
@@ -1703,7 +1703,7 @@ public class ChessApplication : Gtk.Application
         }
         preferences_dialog = (Gtk.Dialog) preferences_builder.get_object ("preferences");
         preferences_dialog.transient_for = window;
-        
+
         settings.bind ("show-numbering", preferences_builder.get_object ("show_numbering_check"),
                        "active", SettingsBindFlags.DEFAULT);
         settings.bind ("show-move-hints", preferences_builder.get_object ("show_move_hints_check"),
@@ -1954,7 +1954,7 @@ public class ChessApplication : Gtk.Application
             if (duration >= 0)
                 return duration;
         }
-    
+
         var magnitude = (int) duration_adjustment.value;
         int multiplier = 1;
         if (custom_duration_units_combo.get_active_iter (out iter))
@@ -2153,7 +2153,7 @@ public class ChessApplication : Gtk.Application
     [CCode (cname = "G_MODULE_EXPORT orientation_combo_changed_cb", instance_pos = -1)]
     public void orientation_combo_changed_cb (Gtk.ComboBox combo)
     {
-        settings.set_string ("board-side", get_combo (combo, 1));    
+        settings.set_string ("board-side", get_combo (combo, 1));
     }
 
     public void help_cb ()
@@ -2195,7 +2195,7 @@ public class ChessApplication : Gtk.Application
         about_dialog.response.connect (about_response_cb);
         about_dialog.show ();
     }
-    
+
     private void about_response_cb (int response_id)
     {
         about_dialog.destroy ();
@@ -2272,7 +2272,7 @@ public class ChessApplication : Gtk.Application
         save_dialog_info_bar = null;
         save_dialog_error_label = null;
     }
-    
+
     private void present_save_dialog (string cancel_button_label = N_("_Cancel"),
                                       string save_button_label = N_("_Save"))
     {

@@ -19,7 +19,7 @@ public class ChessModel : Object
     public bool under_threat;
     public bool is_selected;
 
-    public bool moving 
+    public bool moving
     {
         get { return x != target_x || y != target_y; }
     }
@@ -28,7 +28,7 @@ public class ChessModel : Object
     {
         this.piece = piece;
         this.x = this.target_x = x;
-        this.y = this.target_y = y;        
+        this.y = this.target_y = y;
     }
 
     public bool move_to (double x, double y)
@@ -192,7 +192,7 @@ public class ChessScene : Object
         get { return _move_format; }
         set { _move_format = value; changed (); }
     }
-    
+
     public ChessScene ()
     {
         animation_timer = new Timer ();
@@ -242,9 +242,9 @@ public class ChessScene : Object
             // Need to check selected_file here again for promotion case
             if (selected_file != -1 &&
                 game.current_player.move_with_coords (selected_rank, selected_file, rank, file))
-                selected_rank = selected_file = -1;            
+                selected_rank = selected_file = -1;
         }
-        
+
         update_board ();
         changed ();
     }
@@ -268,7 +268,7 @@ public class ChessScene : Object
     {
         update_board ();
     }
-    
+
     private ChessModel? find_model (ChessPiece piece)
     {
         foreach (var model in pieces)
@@ -326,7 +326,7 @@ public class ChessScene : Object
 
         if (!board_changed)
             return;
-            
+
         /* Have to do this as Vala can't assign the value, and copy doesn't ref the objects */
         pieces = null;
         foreach (var model in new_pieces)
