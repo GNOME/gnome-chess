@@ -12,9 +12,7 @@
   <object class="GtkApplicationWindow" id="gnome_chess_app">
     <property name="can_focus">False</property>
     <property name="default_width">700</property>
-    <signal name="configure-event" handler="gnome_chess_app_configure_event_cb" swapped="no"/>
     <signal name="delete-event" handler="gnome_chess_app_delete_event_cb" swapped="no"/>
-    <signal name="window-state-event" handler="gnome_chess_app_window_state_event_cb" swapped="no"/>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="headerbar">
         <property name="visible">True</property>

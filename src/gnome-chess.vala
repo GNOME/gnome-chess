@@ -12,6 +12,11 @@
 
 public class ChessApplication : Gtk.Application
 {
+    private bool is_tiled;
+    private bool is_maximized;
+    private int window_width;
+    private int window_height;
+
     private Settings settings;
     private Gtk.Builder builder;
     private Gtk.Builder preferences_builder;
@@ -151,6 +156,8 @@ public class ChessApplication : Gtk.Application
         window.set_default_size (settings.get_int ("width"), settings.get_int ("height"));
         if (settings.get_boolean ("maximized"))
             window.maximize ();
+        window.size_allocate.connect (size_allocate_cb);
+        window.window_state_event.connect (window_state_event_cb);
 
         pause_resume_button = (Gtk.Button) builder.get_object ("pause_button");
         first_move_button = (Gtk.Widget) builder.get_object ("first_move_button");
@@ -258,6 +265,29 @@ public class ChessApplication : Gtk.Application
             opponent_engine.stop ();
 
         base.shutdown ();
+
+        /* Save window state */
+        settings.set_int ("width", window_width);
+        settings.set_int ("height", window_height);
+        settings.set_boolean ("maximized", is_maximized);
+    }
+
+    private void size_allocate_cb (Gtk.Allocation allocation)
+    {
+        if (is_maximized || is_tiled)
+            return;
+        window_width = allocation.width;
+        window_height = allocation.height;
+    }
+
+    private bool window_state_event_cb (Gdk.EventWindowState event)
+    {
+        if ((event.changed_mask & Gdk.WindowState.MAXIMIZED) != 0)
+            is_maximized = (event.new_window_state & Gdk.WindowState.MAXIMIZED) != 0;
+        /* We don’t save this state, but track it for saving size allocation */
+        if ((event.changed_mask & Gdk.WindowState.TILED) != 0)
+            is_tiled = (event.new_window_state & Gdk.WindowState.TILED) != 0;
+        return false;
     }
 
     public PieceType? show_promotion_type_selector ()
@@ -1323,30 +1353,6 @@ public class ChessApplication : Gtk.Application
     public bool gnome_chess_app_delete_event_cb (Gtk.Widget widget, Gdk.Event event)
     {
         quit_game ();
-        return false;
-    }
-
-    [CCode (cname = "G_MODULE_EXPORT gnome_chess_app_configure_event_cb", instance_pos = -1)]
-    public bool gnome_chess_app_configure_event_cb (Gtk.Widget widget, Gdk.EventConfigure event)
-    {
-        if (!settings.get_boolean ("maximized"))
-        {
-            settings.set_int ("width", event.width);
-            settings.set_int ("height", event.height);
-        }
-
-        return false;
-    }
-
-    [CCode (cname = "G_MODULE_EXPORT gnome_chess_app_window_state_event_cb", instance_pos = -1)]
-    public bool gnome_chess_app_window_state_event_cb (Gtk.Widget widget, Gdk.EventWindowState event)
-    {
-        if ((event.changed_mask & Gdk.WindowState.MAXIMIZED) != 0)
-        {
-            var is_maximized = (event.new_window_state & Gdk.WindowState.MAXIMIZED) != 0;
-            settings.set_boolean ("maximized", is_maximized);
-        }
-
         return false;
     }
 
