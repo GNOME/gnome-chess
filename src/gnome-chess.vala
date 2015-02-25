@@ -117,48 +117,13 @@ public class ChessApplication : Gtk.Application
         return -1;
     }
 
-    public override void open (File[] files, string hint)
-    {
-        if (files.length != 1)
-        {
-            /* May print when started on the command line; a PGN is a saved game file. */
-            warning (_("GNOME Chess can only open one PGN at a time."));
-        }
-
-        game_file = files[0];
-        activate ();
-    }
-
     public override void startup ()
     {
         base.startup ();
 
-        Intl.setlocale (LocaleCategory.ALL, "");
-        Intl.bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
-        Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-        Intl.textdomain (GETTEXT_PACKAGE);
-
-        Environment.set_application_name (_("Chess"));
-        Gtk.Window.set_default_icon_name ("gnome-chess");
-
         settings = new Settings ("org.gnome.chess");
 
         add_action_entries (app_entries, this);
-    }
-
-    protected override void shutdown ()
-    {
-        if (opponent_engine != null)
-            opponent_engine.stop ();
-
-        base.shutdown ();
-    }
-
-    public override void activate ()
-    {
-        var data_dir = File.new_for_path (Path.build_filename (Environment.get_user_data_dir (), "gnome-chess", null));
-        DirUtils.create_with_parents (data_dir.get_path (), 0755);
-
         builder = new Gtk.Builder ();
 
         try
@@ -181,7 +146,12 @@ public class ChessApplication : Gtk.Application
         {
             warning ("Could not load UI: %s", e.message);
         }
+
         window = (Gtk.ApplicationWindow) builder.get_object ("gnome_chess_app");
+        window.set_default_size (settings.get_int ("width"), settings.get_int ("height"));
+        if (settings.get_boolean ("maximized"))
+            window.maximize ();
+
         pause_resume_button = (Gtk.Button) builder.get_object ("pause_button");
         first_move_button = (Gtk.Widget) builder.get_object ("first_move_button");
         prev_move_button = (Gtk.Widget) builder.get_object ("prev_move_button");
@@ -197,6 +167,12 @@ public class ChessApplication : Gtk.Application
         update_pause_resume_button ();
 
         window.add_action_entries (window_entries, this);
+        set_accels_for_action ("win." + NEW_GAME_ACTION_NAME, {"<Primary>N"});
+        set_accels_for_action ("win." + OPEN_GAME_ACTION_NAME, {"<Primary>O"});
+        set_accels_for_action ("win." + SAVE_GAME_ACTION_NAME, {"<Primary>S"});
+        set_accels_for_action ("win." + SAVE_GAME_AS_ACTION_NAME, {"<Shift><Primary>S"});
+        set_accels_for_action ("win." + UNDO_MOVE_ACTION_NAME, {"<Primary>Z"});
+        set_accels_for_action ("win." + PAUSE_RESUME_ACTION_NAME, {"Pause"});
 
         add_window (window);
 
@@ -228,42 +204,60 @@ public class ChessApplication : Gtk.Application
 
         foreach (var profile in ai_profiles)
             debug ("Detected AI profile %s in %s", profile.name, profile.path);
+    }
 
-        autosave_filename = data_dir.get_path () + "/autosave.pgn";
-
-        /* Load from history if no game requested */
-        if (game_file == null)
+    public override void open (File[] files, string hint)
+    {
+        if (files.length != 1)
         {
-            if (FileUtils.test (autosave_filename, FileTest.EXISTS))
+            /* May print when started on the command line; a PGN is a saved game file. */
+            warning (_("GNOME Chess can only open one PGN at a time."));
+        }
+
+        game_file = files[0];
+        activate ();
+    }
+
+    public override void activate ()
+    {
+        if (!window.visible)
+        {
+            var data_dir = File.new_for_path (Path.build_filename (Environment.get_user_data_dir (), "gnome-chess", null));
+            DirUtils.create_with_parents (data_dir.get_path (), 0755);
+
+            autosave_filename = data_dir.get_path () + "/autosave.pgn";
+
+            /* Load from history if no game requested */
+            if (game_file == null && FileUtils.test (autosave_filename, FileTest.EXISTS))
                 game_file = File.new_for_path (autosave_filename);
 
             if (game_file == null)
+            {
                 start_new_game ();
-        }
-
-        if (game_file != null)
-        {
-            try
-            {
-                load_game (game_file);
             }
-            catch (Error e)
+            else
             {
-                stderr.printf ("Failed to load %s: %s\n", game_file.get_path (), e.message);
-                quit ();
+                try
+                {
+                    load_game (game_file);
+                }
+                catch (Error e)
+                {
+                    warning ("Failed to load %s: %s\n", game_file.get_path (), e.message);
+                    quit ();
+                }
             }
         }
 
-        window.set_default_size (settings.get_int ("width"), settings.get_int ("height"));
+        window.present ();
+    }
 
-        if (settings.get_boolean ("maximized"))
-        {
-            window.maximize ();
-        }
+    protected override void shutdown ()
+    {
+        if (opponent_engine != null)
+            opponent_engine.stop ();
 
-        add_accelerators ();
-        show ();
-        window.show ();
+        base.shutdown ();
     }
 
     public PieceType? show_promotion_type_selector ()
@@ -1175,16 +1169,6 @@ public class ChessApplication : Gtk.Application
         }
     }
 
-    private void add_accelerators ()
-    {
-        set_accels_for_action ("win." + NEW_GAME_ACTION_NAME, {"<Primary>N"});
-        set_accels_for_action ("win." + OPEN_GAME_ACTION_NAME, {"<Primary>O"});
-        set_accels_for_action ("win." + SAVE_GAME_ACTION_NAME, {"<Primary>S"});
-        set_accels_for_action ("win." + SAVE_GAME_AS_ACTION_NAME, {"<Shift><Primary>S"});
-        set_accels_for_action ("win." + UNDO_MOVE_ACTION_NAME, {"<Primary>Z"});
-        set_accels_for_action ("win." + PAUSE_RESUME_ACTION_NAME, {"Pause"});
-    }
-
     private void update_pause_resume_button ()
     {
         if (game != null && game.clock == null)
@@ -1333,11 +1317,6 @@ public class ChessApplication : Gtk.Application
 
         white_time_label.queue_draw ();
         black_time_label.queue_draw ();
-    }
-
-    public void show ()
-    {
-        window.show ();
     }
 
     [CCode (cname = "G_MODULE_EXPORT gnome_chess_app_delete_event_cb", instance_pos = -1)]
@@ -2472,6 +2451,14 @@ public class ChessApplication : Gtk.Application
 
     public static int main (string[] args)
     {
+        Intl.setlocale (LocaleCategory.ALL, "");
+        Intl.bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+        Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+        Intl.textdomain (GETTEXT_PACKAGE);
+
+        Environment.set_application_name (_("Chess"));
+        Gtk.Window.set_default_icon_name ("gnome-chess");
+
         return new ChessApplication ().run (args);
     }
 }
