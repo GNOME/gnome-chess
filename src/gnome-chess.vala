@@ -100,7 +100,7 @@ public class ChessApplication : Gtk.Application
 
     private ChessApplication ()
     {
-        Object (application_id: "org.gnome.gnome-chess", flags: ApplicationFlags.HANDLES_OPEN);
+        Object (application_id: "org.gnome.chess", flags: ApplicationFlags.HANDLES_OPEN);
         add_main_option_entries (option_entries);
     }
 
