@@ -18,8 +18,6 @@ public class ChessApplication : Gtk.Application
     private int window_height;
 
     private Settings settings;
-    private Gtk.Builder builder;
-    private Gtk.Builder preferences_builder;
     private Gtk.ApplicationWindow window;
     private Gtk.Container view_container;
     private ChessScene scene;
@@ -129,28 +127,7 @@ public class ChessApplication : Gtk.Application
         settings = new Settings ("org.gnome.chess");
 
         add_action_entries (app_entries, this);
-        builder = new Gtk.Builder ();
-
-        try
-        {
-            builder.add_from_file (Path.build_filename (PKGDATADIR, "menu.ui", null));
-        }
-        catch (Error e)
-        {
-            error ("Error loading menu UI: %s", e.message);
-        }
-
-        var app_menu = (Menu) builder.get_object ("appmenu");
-        set_app_menu (app_menu);
-
-        try
-        {
-            builder.add_from_file (Path.build_filename (PKGDATADIR, "gnome-chess.ui", null));
-        }
-        catch (Error e)
-        {
-            warning ("Could not load UI: %s", e.message);
-        }
+        Gtk.Builder builder = new Gtk.Builder.from_resource ("/org/gnome/chess/ui/gnome-chess.ui");
 
         window = (Gtk.ApplicationWindow) builder.get_object ("gnome_chess_app");
         window.set_default_size (settings.get_int ("width"), settings.get_int ("height"));
@@ -292,17 +269,7 @@ public class ChessApplication : Gtk.Application
 
     public PieceType? show_promotion_type_selector ()
     {
-        Gtk.Builder promotion_type_selector_builder;
-
-        promotion_type_selector_builder = new Gtk.Builder ();
-        try
-        {
-            promotion_type_selector_builder.add_from_file (Path.build_filename (PKGDATADIR, "promotion-type-selector.ui", null));
-        }
-        catch (Error e)
-        {
-            warning ("Could not load promotion type selector UI: %s", e.message);
-        }
+        Gtk.Builder promotion_type_selector_builder = new Gtk.Builder.from_resource ("/org/gnome/chess/ui/promotion-type-selector.ui");
 
         Gtk.Dialog promotion_type_selector_dialog = promotion_type_selector_builder.get_object ("dialog_promotion_type_selector") as Gtk.Dialog;
         promotion_type_selector_dialog.transient_for = window;
@@ -1677,15 +1644,8 @@ public class ChessApplication : Gtk.Application
             return;
         }
 
-        preferences_builder = new Gtk.Builder ();
-        try
-        {
-            preferences_builder.add_from_file (Path.build_filename (PKGDATADIR, "preferences.ui", null));
-        }
-        catch (Error e)
-        {
-            warning ("Could not load preferences UI: %s", e.message);
-        }
+        Gtk.Builder preferences_builder = new Gtk.Builder.from_resource ("/org/gnome/chess/ui/preferences.ui");
+
         preferences_dialog = (Gtk.Dialog) preferences_builder.get_object ("preferences");
         preferences_dialog.transient_for = window;
 

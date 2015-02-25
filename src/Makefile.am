@@ -1,5 +1,7 @@
 bin_PROGRAMS = gnome-chess
 
+BUILT_SOURCES = chess-resources.c
+
 gnome_chess_SOURCES = \
 	config.vapi \
 	portability.vapi \
@@ -11,7 +13,8 @@ gnome_chess_SOURCES = \
 	chess-engine-cecp.vala \
 	chess-engine-uci.vala \
 	chess-scene.vala \
-	chess-view.vala
+	chess-view.vala \
+	$(BUILT_SOURCES)
 
 gnome_chess_CFLAGS = \
 	-w
@@ -38,10 +41,15 @@ gnome_chess_VALAFLAGS = \
 	--target-glib=$(GLIB_REQUIRED) \
 	$(top_builddir)/lib/libchess.vapi
 
+chess-resources.c: $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies chess.gresource.xml)
+	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source chess.gresource.xml
+
 CLEANFILES = \
 	$(patsubst %.vala,%.c,$(filter %.vala, $(SOURCES))) \
 	*_vala.stamp \
 	*.log \
 	*.trs
+
+EXTRA_DIST = chess.gresource.xml
 
 -include $(top_srcdir)/git.mk

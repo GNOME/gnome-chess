@@ -10,8 +10,7 @@ appstream_XML = $(appstream_in_files:.appdata.xml.in=.appdata.xml)
 @APPSTREAM_XML_RULES@
 @INTLTOOL_XML_RULE@
 
-uidir = $(pkgdatadir)
-dist_ui_DATA = \
+dist_noinst_DATA = \
 	gnome-chess.ui \
 	preferences.ui \
 	promotion-type-selector.ui \
