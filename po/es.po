@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: gnome-games.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-02-17 07:07+0000\n"
-"PO-Revision-Date: 2015-02-17 18:03+0100\n"
+"POT-Creation-Date: 2015-02-25 07:10+0000\n"
+"PO-Revision-Date: 2015-02-25 11:00+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -105,7 +105,7 @@ msgid "Show the current move"
 msgstr "Mostrar el movimiento actual"
 
 #. Title for preferences dialog
-#: ../data/menu.ui.h:1 ../data/preferences.ui.h:46
+#: ../data/menu.ui.h:1 ../data/preferences.ui.h:58
 msgid "Preferences"
 msgstr "Preferencias"
 
@@ -216,209 +216,250 @@ msgstr ""
 msgid "Difficulty of the opponent chess engine"
 msgstr "Dificultad del motor de ajedrez del oponente"
 
-#. Preferences Dialog: Combo box entry for easy game difficulty
+#. Preferences dialog: Combo box entry for timer increment
 #: ../data/preferences.ui.h:2
+#| msgid "minute"
+#| msgid_plural "minutes"
+msgctxt "custom_duration_units"
+msgid "minutes"
+msgstr "minutos"
+
+#. Preferences dialog: Combo box entry for time limit
+#: ../data/preferences.ui.h:4
+#| msgid "hour"
+#| msgid_plural "hours"
+msgctxt "custom_duration_units"
+msgid "hours"
+msgstr "horas"
+
+#. Preferences dialog: Combo box entry for timer increment
+#: ../data/preferences.ui.h:6
+#| msgid "second"
+#| msgid_plural "seconds"
+msgctxt "custom_duration_units"
+msgid "seconds"
+msgstr "segundos"
+
+#. Preferences dialog: Combo box entry for clock type
+#: ../data/preferences.ui.h:8
+#| msgid "Simple"
+msgctxt "custom_duration_units"
+msgid "Simple"
+msgstr "Simple"
+
+#. Preferences dialog: Combo box entry for time limit. Fischer is a proper name.
+#: ../data/preferences.ui.h:10
+msgctxt "custom_duration_units"
+msgid "Fischer"
+msgstr "Fischer"
+
+#. Preferences dialog: Combo box entry for time limit. Bronstein is a proper name.
+#: ../data/preferences.ui.h:12
+msgctxt "custom_duration_units"
+msgid "Bronstein"
+msgstr "Bronstein"
+
+#. Preferences Dialog: Combo box entry for easy game difficulty
+#: ../data/preferences.ui.h:14
 msgctxt "difficulty"
 msgid "Easy"
 msgstr "Fácil"
 
 #. Preferences Dialog: Combo box entry for normal game difficulty
-#: ../data/preferences.ui.h:4
+#: ../data/preferences.ui.h:16
 msgctxt "difficulty"
 msgid "Normal"
 msgstr "Normal"
 
 #. Preferences Dialog: Combo box entry for hard game difficulty
-#: ../data/preferences.ui.h:6
+#: ../data/preferences.ui.h:18
 msgctxt "difficulty"
 msgid "Hard"
 msgstr "Difícil"
 
 #. Preferences Dialog: Combo box entry for no game timer
-#: ../data/preferences.ui.h:8
+#: ../data/preferences.ui.h:20
 msgid "No limit"
 msgstr "Sin límite"
 
 #. Preferences Dialog: Combo box entry for game timer of five minutes
-#: ../data/preferences.ui.h:10
+#: ../data/preferences.ui.h:22
 msgid "Five minutes"
 msgstr "Cinco minutos"
 
 #. Preferences Dialog: Combo box entry for game timer of ten minutes
-#: ../data/preferences.ui.h:12
+#: ../data/preferences.ui.h:24
 msgid "Ten minutes"
 msgstr "Diez minutos"
 
 #. Preferences Dialog: Combo box entry for game timer of thirty minutes
-#: ../data/preferences.ui.h:14
+#: ../data/preferences.ui.h:26
 msgid "Thirty minutes"
 msgstr "Treinta minutos"
 
 #. Preferences Dialog: Combo box entry for game timer of one hour
-#: ../data/preferences.ui.h:16
+#: ../data/preferences.ui.h:28
 msgid "One hour"
 msgstr "Una hora"
 
 #. Preferences Dialog: Combo box entry for game timer of two hours
-#: ../data/preferences.ui.h:18
+#: ../data/preferences.ui.h:30
 msgid "Two hours"
 msgstr "Dos horas"
 
 #. Preferences Dialog: Combo box entry for game timer of three hours
-#: ../data/preferences.ui.h:20
+#: ../data/preferences.ui.h:32
 msgid "Three hours"
 msgstr "Tres horas"
 
 #. Preferences Dialog: Combo box entry for custom game timer
-#: ../data/preferences.ui.h:22
+#: ../data/preferences.ui.h:34
 msgid "Custom"
 msgstr "Personalizado"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
-#: ../data/preferences.ui.h:24
+#: ../data/preferences.ui.h:36
 msgctxt "chess-move-format"
 msgid "Human"
 msgstr "Humano"
 
 # #: ../glchess/glade/glchess.glade.h:46
 #. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
-#: ../data/preferences.ui.h:26
+#: ../data/preferences.ui.h:38
 msgctxt "chess-move-format"
 msgid "Standard Algebraic"
 msgstr "Algebraico estándar"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
-#: ../data/preferences.ui.h:28
+#: ../data/preferences.ui.h:40
 msgctxt "chess-move-format"
 msgid "Figurine"
 msgstr "Figura"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
-#: ../data/preferences.ui.h:30
+#: ../data/preferences.ui.h:42
 msgctxt "chess-move-format"
 msgid "Long Algebraic"
 msgstr "Algebraico largo"
 
 #. Preferences Dialog: Combo box entry for human opponent
-#: ../data/preferences.ui.h:32
+#: ../data/preferences.ui.h:44
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "Humano"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the white side
-#: ../data/preferences.ui.h:34
+#: ../data/preferences.ui.h:46
 msgctxt "chess-side"
 msgid "White Side"
 msgstr "Lado blanco"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the black side
-#: ../data/preferences.ui.h:36
+#: ../data/preferences.ui.h:48
 msgctxt "chess-side"
 msgid "Black Side"
 msgstr "Lado negro"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
-#: ../data/preferences.ui.h:38
+#: ../data/preferences.ui.h:50
 msgctxt "chess-side"
 msgid "Human Side"
 msgstr "Lado humano"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
-#: ../data/preferences.ui.h:40
+#: ../data/preferences.ui.h:52
 msgctxt "chess-side"
 msgid "Current Player"
 msgstr "Jugador actual"
 
 #. Preferences Dialog: Combo box entry for simple theme
-#: ../data/preferences.ui.h:42
+#: ../data/preferences.ui.h:54
 msgid "Simple"
 msgstr "Simple"
 
 #. Preferences Dialog: Combo box entry for fancy theme
-#: ../data/preferences.ui.h:44
+#: ../data/preferences.ui.h:56
 msgid "Fancy"
 msgstr "Fantasía"
 
 #. Preferences Dialog: Label before clock type (Fischer/Bronstein) combo box
-#: ../data/preferences.ui.h:48
-#| msgid "Block Style"
+#: ../data/preferences.ui.h:60
 msgid "_Clock type:"
 msgstr "Tipo de _reloj:"
 
 #. Preferences Dialog: Label before timer increment combo box
-#: ../data/preferences.ui.h:50
-#| msgid "_Time limit:"
+#: ../data/preferences.ui.h:62
 msgid "Timer _increment:"
 msgstr "_Incremento del temporizador:"
 
 #. Preferences Dialog: Label before player side (white/black) combo box
-#: ../data/preferences.ui.h:52
+#: ../data/preferences.ui.h:64
 msgid "_Play as:"
 msgstr "_Jugar como:"
 
 #. Preferences Dialog: Label before opposing player combo box
-#: ../data/preferences.ui.h:54
+#: ../data/preferences.ui.h:66
 msgid "_Opposing player:"
 msgstr "_Oponente:"
 
 #. Preferences Dialog: Label before difficulty level combo box
-#: ../data/preferences.ui.h:56
+#: ../data/preferences.ui.h:68
 msgid "_Difficulty:"
 msgstr "_Dificultad:"
 
 #. Preferences Dialog: Label before game timer settings
-#: ../data/preferences.ui.h:58
+#: ../data/preferences.ui.h:70
 msgid "_Time limit:"
 msgstr "_Tiempo límite:"
 
 #. Preferences dialog: Label to notify user that the settings are applied for the next game
-#: ../data/preferences.ui.h:60
+#: ../data/preferences.ui.h:72
 msgid "Changes will take effect for the next game."
 msgstr "Los cambios tendrán efecto en la siguiente partida."
 
 #. Preferences Dialog: Tab title for game preferences
-#: ../data/preferences.ui.h:62
+#: ../data/preferences.ui.h:74
 msgid "_Game"
 msgstr "_Juego"
 
 #. Preferences Dialog: Label before board orientation combo box
-#: ../data/preferences.ui.h:64
+#: ../data/preferences.ui.h:76
 msgid "Board _orientation:"
 msgstr "_Orientación del tablero:"
 
 #. Preferences Dialog: Label before move format combo box
-#: ../data/preferences.ui.h:66
+#: ../data/preferences.ui.h:78
 msgid "Move _format:"
 msgstr "_Formato de jugada:"
 
 #. Preferences Dialog: Label before piece style combo box
-#: ../data/preferences.ui.h:68
+#: ../data/preferences.ui.h:80
 msgid "_Piece style:"
 msgstr "E_stilo de pieza:"
 
 #. Preferences Dialog: Check box for selecting if board numbering is visible
-#: ../data/preferences.ui.h:70
+#: ../data/preferences.ui.h:82
 msgid "_Board numbering"
 msgstr "Numeración de _tablero"
 
 #. Preferences Dialog: Check box for selecting if move hints are visible
-#: ../data/preferences.ui.h:72
+#: ../data/preferences.ui.h:84
 msgid "_Move hints"
 msgstr "Sugerencias de _jugada"
 
 #. Preferences Dialog: Title of appearance options tab
-#: ../data/preferences.ui.h:74
+#: ../data/preferences.ui.h:86
 msgid "_Appearance"
 msgstr "_Aspecto"
 
 #. Preferences Dialog: Combo box entry for playing as white
-#: ../data/preferences.ui.h:76
+#: ../data/preferences.ui.h:88
 msgctxt "chess-player"
 msgid "White"
 msgstr "Blancas"
 
 #. Preferences Dialog: Combo box entry for playing as black
-#: ../data/preferences.ui.h:78
+#: ../data/preferences.ui.h:90
 msgctxt "chess-player"
 msgid "Black"
 msgstr "Negras"
