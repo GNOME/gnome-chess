@@ -11,4 +11,7 @@ REQUIRED_YELP_TOOLS_VERSION=3.1.1
 REQUIRED_GETTEXT_VERSION=0.12
 REQUIRED_INTLTOOL_VERSION=0.40.4
 
+cp ./scripts/pre-commit ./.git/hooks/
+chmod +x ./.git/hooks/pre-commit
+
 . gnome-autogen.sh
