@@ -64,13 +64,18 @@ def main():
             printIssue( currLine, "is greater than 120 charecters" )
             nIssues += 1
 
-        # Lines with trailing white-space or tabs
+        # Lines with trailing white-space or tabspace
         if getLineData( currLine ).endswith( ' \n' ):
             printIssue( currLine, "has trailing whitespace" )
             nIssues += 1
 
         if getLineData( currLine ).endswith( '\t\n' ):
             printIssue( currLine, "has trailing tabspace" )
+            nIssues += 1
+
+        # Lines with tabspace
+        if '\t' in getLineData( currLine ):
+            printIssue( currLine, "has tabspace" )
             nIssues += 1
 
         # Single whitespace before "{"
