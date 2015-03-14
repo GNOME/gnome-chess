@@ -235,6 +235,20 @@ enum State
 public class PGN : Object
 {
     public List<PGNGame> games;
+    private void insert_tag (PGNGame game, string tag_name, string tag_value)
+    {
+        switch (tag_name)
+        {
+        case "X-GNOME-ClockType":
+            if (ClockType.string_to_enum (tag_value) == ClockType.INVALID)
+            {
+                warning ("Invalid clock type in PGN: %s, using a simple clock.", tag_value);
+                tag_value = "simple";
+            }
+            break;
+        }
+        game.tags.insert (tag_name, tag_value);
+    }
 
     public PGN.from_string (string data) throws PGNError
     {
@@ -389,7 +403,7 @@ public class PGN : Object
                     continue;
                 else if (c == ']')
                 {
-                    game.tags.insert (tag_name, tag_value.str);
+                    insert_tag (game, tag_name, tag_value.str);
                     state = State.TAGS;
                 }
                 else

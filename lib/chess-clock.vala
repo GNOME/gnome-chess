@@ -14,7 +14,8 @@ public enum ClockType
 {
     SIMPLE,
     FISCHER,
-    BRONSTEIN;
+    BRONSTEIN,
+    INVALID;
 
     public string to_string ()
     {
@@ -42,7 +43,7 @@ public enum ClockType
         case "bronstein":
             return BRONSTEIN;
         default:
-            assert_not_reached ();
+            return INVALID;
         }
     }
 }
