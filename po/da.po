@@ -1,5 +1,5 @@
 # Danish translation of gnome-games.
-# Copyright (C) 1998-2012 Free Software Foundation, Inc.
+# Copyright (C) 1998-2012, 2015 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-games package.
 # Anders Wegge Jakobsen <wegge@wegge.dk>, 1998.
 # Kenneth Christiansen <kenneth@ripen.dk>, 1998-2001
@@ -7,36 +7,14 @@
 # Ole Laursen <olau@hardworking.dk>, 2001, 02, 03, 04.
 # Martin Willemoes Hansen <mwh@sysrq.dk>, 2004, 05.
 # flemming christensen <fc@stromata.dk>, 2011.
-# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 08, 09, 10, 11, 12, 14.
-#
-# RETMIG: en eller anden med forstand på kabaler skal have oversat
-# navnene på spillene. Der er en kommentar til hver af dem der
-# foreløbigt vist nok kan gå.
-#
-# Konventioner:
-#
-#   AisleRiot -> Kabale
-#   cave -> grotte
-#   hint -> fif
-#   GNOME Robots -> Robotter
-#   Same Gnome (parodi på Same Game i KDE) -> Samspil
-#   Gnibbles, Nibbles -> Orme
-#   score slot -> pointfelt
-#   tracker (gnome-sudoku) -> spor
-#   gtali/tali -> Yatzy
-#
-# Generelt er de fleste spilnavne oversat nådesløst til dansk.
-# Husk at tilføje dig i credit-listen (besked id "translator-credits")
-#
-# Der er en række strenge hvor der står f.eks. "glines|Medium". Så vidt jeg ved kommer der problemer når man oversætter teksten til venstre for |, så lad dette blive stående.
 # Alan Mortensen <alanmortensen.am@gmail.com>, 2013.
-#
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 08, 09, 10, 11, 12, 14, 15
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-20 17:03+0200\n"
-"PO-Revision-Date: 2014-09-20 13:27+0200\n"
+"POT-Creation-Date: 2015-03-15 16:06+0100\n"
+"PO-Revision-Date: 2015-03-15 15:43+0100\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Dansk <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -50,7 +28,11 @@ msgstr ""
 msgid "GNOME Chess"
 msgstr "GNOME Skak"
 
-#: ../data/gnome-chess.appdata.xml.in.h:2
+#: ../data/gnome-chess.appdata.xml.in.h:2 ../data/gnome-chess.desktop.in.h:3
+msgid "Play the classic two-player board game of chess"
+msgstr "Spil det klassiske to-spillers brætspil skak"
+
+#: ../data/gnome-chess.appdata.xml.in.h:3
 msgid ""
 "GNOME Chess is a simple chess game. You can play against your computer at "
 "three different difficulty levels, or against a friend at your computer."
@@ -58,7 +40,7 @@ msgstr ""
 "GNOME Skak er et simpelt skakspil. Du kan spille mod computeren på tre "
 "forskellige sværhedsgrader, eller mod en ven ved computeren."
 
-#: ../data/gnome-chess.appdata.xml.in.h:3
+#: ../data/gnome-chess.appdata.xml.in.h:4
 msgid ""
 "Computer chess enthusiasts will appreciate GNOME Chess's compatibility with "
 "nearly all modern computer chess engines, and its ability to detect several "
@@ -69,17 +51,13 @@ msgstr ""
 "adskillige populære maskiner automatisk hvis installeret."
 
 #: ../data/gnome-chess.desktop.in.h:1 ../data/gnome-chess.ui.h:1
-#: ../src/gnome-chess.vala:136 ../src/gnome-chess.vala:1981
+#: ../src/gnome-chess.vala:2130 ../src/gnome-chess.vala:2425
 msgid "Chess"
 msgstr "Skak"
 
 #: ../data/gnome-chess.desktop.in.h:2
 msgid "3D Chess Game"
 msgstr "3D-skakspil"
-
-#: ../data/gnome-chess.desktop.in.h:3
-msgid "Play the classic two-player board game of chess"
-msgstr "Spil det klassiske to-spillers brætspil skak"
 
 #: ../data/gnome-chess.desktop.in.h:4
 msgid "game;strategy;"
@@ -126,7 +104,7 @@ msgid "Show the current move"
 msgstr "Vis det aktuelle træk"
 
 #. Title for preferences dialog
-#: ../data/menu.ui.h:1 ../data/preferences.ui.h:46
+#: ../data/menu.ui.h:1 ../data/preferences.ui.h:58
 msgid "Preferences"
 msgstr "Indstillinger"
 
@@ -195,14 +173,22 @@ msgid "The duration of a game in seconds (0 for no limit)"
 msgstr "Varigheden af et spil i sekunder (0 for ubegrænset)"
 
 #: ../data/org.gnome.chess.gschema.xml.h:14
+msgid "The type of clock (simple/fischer/bronstein)"
+msgstr "Typen af ur (simpel/fischer/bronstein)"
+
+#: ../data/org.gnome.chess.gschema.xml.h:15
+msgid "The timer increment set corresponding to clock type (1 second minimum)"
+msgstr "Tidsskridtet givet ifølge urtypen (1 sekund minimum)"
+
+#: ../data/org.gnome.chess.gschema.xml.h:16
 msgid "true if the human player is playing white"
 msgstr "sand hvis menneskespilleren spiller hvid"
 
-#: ../data/org.gnome.chess.gschema.xml.h:15
+#: ../data/org.gnome.chess.gschema.xml.h:17
 msgid "The opponent player"
 msgstr "Modstanderen"
 
-#: ../data/org.gnome.chess.gschema.xml.h:16
+#: ../data/org.gnome.chess.gschema.xml.h:18
 msgid ""
 "Can be 'human' (play against another human player), '' (use the first "
 "available chess engine) or the name of a specific engine to play against"
@@ -211,76 +197,112 @@ msgstr ""
 "første tilgængelige skakmotor) eller navnet på en specifik motor, der skal "
 "spilles imod"
 
-#: ../data/org.gnome.chess.gschema.xml.h:17
+#: ../data/org.gnome.chess.gschema.xml.h:19
 msgid "Difficulty of the opponent chess engine"
 msgstr "Sværhedsgrad for modstanderens skakmotor"
 
-#. Preferences Dialog: Combo box entry for easy game difficulty
+#. Preferences dialog: Combo box entry for timer increment
 #: ../data/preferences.ui.h:2
+msgctxt "custom_duration_units"
+msgid "minutes"
+msgstr "minutter"
+
+#. Preferences dialog: Combo box entry for time limit
+#: ../data/preferences.ui.h:4
+msgctxt "custom_duration_units"
+msgid "hours"
+msgstr "timer"
+
+#. Preferences dialog: Combo box entry for timer increment
+#: ../data/preferences.ui.h:6
+msgctxt "custom_duration_units"
+msgid "seconds"
+msgstr "sekunder"
+
+#. Preferences dialog: Combo box entry for clock type
+#: ../data/preferences.ui.h:8
+msgctxt "custom_duration_units"
+msgid "Simple"
+msgstr "Simpelt"
+
+#. Preferences dialog: Combo box entry for time limit. Fischer is a proper name.
+#: ../data/preferences.ui.h:10
+msgctxt "custom_duration_units"
+msgid "Fischer"
+msgstr "Fischer"
+
+#. Preferences dialog: Combo box entry for time limit. Bronstein is a proper name.
+#: ../data/preferences.ui.h:12
+msgctxt "custom_duration_units"
+msgid "Bronstein"
+msgstr "Bronstein"
+
+#. Preferences Dialog: Combo box entry for easy game difficulty
+#: ../data/preferences.ui.h:14
 msgctxt "difficulty"
 msgid "Easy"
 msgstr "Let"
 
 #. Preferences Dialog: Combo box entry for normal game difficulty
-#: ../data/preferences.ui.h:4
+#: ../data/preferences.ui.h:16
 msgctxt "difficulty"
 msgid "Normal"
 msgstr "Normal"
 
 #. Preferences Dialog: Combo box entry for hard game difficulty
-#: ../data/preferences.ui.h:6
+#: ../data/preferences.ui.h:18
 msgctxt "difficulty"
 msgid "Hard"
 msgstr "Svær"
 
 #. Preferences Dialog: Combo box entry for no game timer
-#: ../data/preferences.ui.h:8
+#: ../data/preferences.ui.h:20
 msgid "No limit"
 msgstr "Ubegrænset"
 
 #. Preferences Dialog: Combo box entry for game timer of five minutes
-#: ../data/preferences.ui.h:10
+#: ../data/preferences.ui.h:22
 msgid "Five minutes"
 msgstr "Fem minutter"
 
 #. Preferences Dialog: Combo box entry for game timer of ten minutes
-#: ../data/preferences.ui.h:12
+#: ../data/preferences.ui.h:24
 msgid "Ten minutes"
 msgstr "10 minutter"
 
 #. Preferences Dialog: Combo box entry for game timer of thirty minutes
-#: ../data/preferences.ui.h:14
+#: ../data/preferences.ui.h:26
 msgid "Thirty minutes"
 msgstr "30 minutter"
 
 #. Preferences Dialog: Combo box entry for game timer of one hour
-#: ../data/preferences.ui.h:16
+#: ../data/preferences.ui.h:28
 msgid "One hour"
 msgstr "Én time"
 
 #. Preferences Dialog: Combo box entry for game timer of two hours
-#: ../data/preferences.ui.h:18
+#: ../data/preferences.ui.h:30
 msgid "Two hours"
 msgstr "To timer"
 
 #. Preferences Dialog: Combo box entry for game timer of three hours
-#: ../data/preferences.ui.h:20
+#: ../data/preferences.ui.h:32
 msgid "Three hours"
 msgstr "Tre timer"
 
 #. Preferences Dialog: Combo box entry for custom game timer
-#: ../data/preferences.ui.h:22
+#: ../data/preferences.ui.h:34
 msgid "Custom"
 msgstr "Selvvalgt"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
-#: ../data/preferences.ui.h:24
+#: ../data/preferences.ui.h:36
 msgctxt "chess-move-format"
 msgid "Human"
 msgstr "Menneske"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
-#: ../data/preferences.ui.h:26
+#: ../data/preferences.ui.h:38
 msgctxt "chess-move-format"
 msgid "Standard Algebraic"
 msgstr "Standardalgebraisk"
@@ -288,126 +310,136 @@ msgstr "Standardalgebraisk"
 # Indtil nogen kan finde et accepteret dansk ord, må vi hellere benytte figurine som her:
 # http://da.wikipedia.org/wiki/Algebraisk_notation
 #. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
-#: ../data/preferences.ui.h:28
+#: ../data/preferences.ui.h:40
 msgctxt "chess-move-format"
 msgid "Figurine"
 msgstr "Figurine (symboler)"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
-#: ../data/preferences.ui.h:30
+#: ../data/preferences.ui.h:42
 msgctxt "chess-move-format"
 msgid "Long Algebraic"
 msgstr "Lang algebraisk"
 
 #. Preferences Dialog: Combo box entry for human opponent
-#: ../data/preferences.ui.h:32
+#: ../data/preferences.ui.h:44
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "Menneske"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the white side
-#: ../data/preferences.ui.h:34
+#: ../data/preferences.ui.h:46
 msgctxt "chess-side"
 msgid "White Side"
 msgstr "Hvid side"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the black side
-#: ../data/preferences.ui.h:36
+#: ../data/preferences.ui.h:48
 msgctxt "chess-side"
 msgid "Black Side"
 msgstr "Sort side"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
-#: ../data/preferences.ui.h:38
+#: ../data/preferences.ui.h:50
 msgctxt "chess-side"
 msgid "Human Side"
 msgstr "Menneskeside"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
-#: ../data/preferences.ui.h:40
+#: ../data/preferences.ui.h:52
 msgctxt "chess-side"
 msgid "Current Player"
 msgstr "Nuværende spiller"
 
 #. Preferences Dialog: Combo box entry for simple theme
-#: ../data/preferences.ui.h:42
+#: ../data/preferences.ui.h:54
 msgid "Simple"
 msgstr "Enkel"
 
 #. Preferences Dialog: Combo box entry for fancy theme
-#: ../data/preferences.ui.h:44
+#: ../data/preferences.ui.h:56
 msgid "Fancy"
 msgstr "Smart"
 
+#. Preferences Dialog: Label before clock type (Fischer/Bronstein) combo box
+#: ../data/preferences.ui.h:60
+msgid "_Clock type:"
+msgstr "_Urtype:"
+
+#. Preferences Dialog: Label before timer increment combo box
+#: ../data/preferences.ui.h:62
+msgid "Timer _increment:"
+msgstr "Tids_skridt:"
+
 #. Preferences Dialog: Label before player side (white/black) combo box
-#: ../data/preferences.ui.h:48
+#: ../data/preferences.ui.h:64
 msgid "_Play as:"
 msgstr "_Spil som:"
 
 #. Preferences Dialog: Label before opposing player combo box
-#: ../data/preferences.ui.h:50
+#: ../data/preferences.ui.h:66
 msgid "_Opposing player:"
 msgstr "_Modstander:"
 
 #. Preferences Dialog: Label before difficulty level combo box
-#: ../data/preferences.ui.h:52
+#: ../data/preferences.ui.h:68
 msgid "_Difficulty:"
 msgstr "_Sværhedsgrad:"
 
 #. Preferences Dialog: Label before game timer settings
-#: ../data/preferences.ui.h:54
+#: ../data/preferences.ui.h:70
 msgid "_Time limit:"
 msgstr "_Tidsgrænse:"
 
 #. Preferences dialog: Label to notify user that the settings are applied for the next game
-#: ../data/preferences.ui.h:56
+#: ../data/preferences.ui.h:72
 msgid "Changes will take effect for the next game."
 msgstr "Ændringer vil træde i kraft for næste spil."
 
 #. Preferences Dialog: Tab title for game preferences
-#: ../data/preferences.ui.h:58
+#: ../data/preferences.ui.h:74
 msgid "_Game"
 msgstr "_Spil"
 
 #. Preferences Dialog: Label before board orientation combo box
-#: ../data/preferences.ui.h:60
+#: ../data/preferences.ui.h:76
 msgid "Board _orientation:"
 msgstr "Bræt_orientering:"
 
 #. Preferences Dialog: Label before move format combo box
-#: ../data/preferences.ui.h:62
+#: ../data/preferences.ui.h:78
 msgid "Move _format:"
 msgstr "Træk_format:"
 
 #. Preferences Dialog: Label before piece style combo box
-#: ../data/preferences.ui.h:64
+#: ../data/preferences.ui.h:80
 msgid "_Piece style:"
 msgstr "_Brikstil:"
 
 #. Preferences Dialog: Check box for selecting if board numbering is visible
-#: ../data/preferences.ui.h:66
+#: ../data/preferences.ui.h:82
 msgid "_Board numbering"
 msgstr "_Brætnummerering"
 
 #. Preferences Dialog: Check box for selecting if move hints are visible
-#: ../data/preferences.ui.h:68
+#: ../data/preferences.ui.h:84
 msgid "_Move hints"
 msgstr "_Trækforslag"
 
 #. Preferences Dialog: Title of appearance options tab
-#: ../data/preferences.ui.h:70
+#: ../data/preferences.ui.h:86
 msgid "_Appearance"
 msgstr "_Udseende"
 
 # ligesom 7-kabale, men man kan se alle kortene fra starten
 #. Preferences Dialog: Combo box entry for playing as white
-#: ../data/preferences.ui.h:72
+#: ../data/preferences.ui.h:88
 msgctxt "chess-player"
 msgid "White"
 msgstr "Hvid"
 
 #. Preferences Dialog: Combo box entry for playing as black
-#: ../data/preferences.ui.h:74
+#: ../data/preferences.ui.h:90
 msgctxt "chess-player"
 msgid "Black"
 msgstr "Sort"
@@ -437,519 +469,519 @@ msgid "Paused"
 msgstr "Pause"
 
 #. Help string for command line --version flag
-#: ../src/gnome-chess.vala:91
+#: ../src/gnome-chess.vala:99
 msgid "Show release version"
 msgstr "Vis udgivelsesversion"
 
 #. May print when started on the command line; a PGN is a saved game file.
-#: ../src/gnome-chess.vala:120
+#: ../src/gnome-chess.vala:198
 msgid "GNOME Chess can only open one PGN at a time."
 msgstr "GNOME Chess kan kun åbne en enkelt PGN ad gangen."
 
 #. Move History Combo: Go to the start of the game
-#: ../src/gnome-chess.vala:444
+#: ../src/gnome-chess.vala:437
 msgid "Game Start"
 msgstr "Spilstart"
 
 #. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
 #. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
-#: ../src/gnome-chess.vala:804
+#: ../src/gnome-chess.vala:828
 #, c-format
 msgid "White pawn moves from %1$s to %2$s"
 msgstr "Hvid bonde flytter fra %1$s til %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:806
+#: ../src/gnome-chess.vala:830
 #, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s"
 msgstr "Hvid bonde på %1$s slår den sorte bonde på %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:808
+#: ../src/gnome-chess.vala:832
 #, c-format
 msgid "White pawn at %1$s takes the black rook at %2$s"
 msgstr "Hvid bonde på %1$s slår det sorte tårn på %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:810
+#: ../src/gnome-chess.vala:834
 #, c-format
 msgid "White pawn at %1$s takes the black knight at %2$s"
 msgstr "Hvid bonde på %1$s slår den sorte springer på %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:812
+#: ../src/gnome-chess.vala:836
 #, c-format
 msgid "White pawn at %1$s takes the black bishop at %2$s"
 msgstr "Hvid bonde på %1$s slår den sorte løber på %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:814
+#: ../src/gnome-chess.vala:838
 #, c-format
 msgid "White pawn at %1$s takes the black queen at %2$s"
 msgstr "Hvid bonde på %1$s slår den sorte dronning på %2$s"
 
 #. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
-#: ../src/gnome-chess.vala:816
+#: ../src/gnome-chess.vala:840
 #, c-format
 msgid "White rook moves from %1$s to %2$s"
 msgstr "Hvidt tårn flytter fra %1$s til %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:818
+#: ../src/gnome-chess.vala:842
 #, c-format
 msgid "White rook at %1$s takes the black pawn at %2$s"
 msgstr "Hvidt tårn på %1$s slår den sorte bonde på %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:820
+#: ../src/gnome-chess.vala:844
 #, c-format
 msgid "White rook at %1$s takes the black rook at %2$s"
 msgstr "Hvidt tårn på %1$s slår det sorte tårn på %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:822
+#: ../src/gnome-chess.vala:846
 #, c-format
 msgid "White rook at %1$s takes the black knight at %2$s"
 msgstr "Hvidt tårn på %1$s slår den sorte springer på %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:824
+#: ../src/gnome-chess.vala:848
 #, c-format
 msgid "White rook at %1$s takes the black bishop at %2$s"
 msgstr "Hvidt tårn på %1$s slår den sorte løber på %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
-#: ../src/gnome-chess.vala:826
+#: ../src/gnome-chess.vala:850
 #, c-format
 msgid "White rook at %1$s takes the black queen at %2$s"
 msgstr "Hvidt tårn på %1$s slår den sorte dronning på %2$s"
 
 #. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
-#: ../src/gnome-chess.vala:828
+#: ../src/gnome-chess.vala:852
 #, c-format
 msgid "White knight moves from %1$s to %2$s"
 msgstr "Hvid springer flytter fra %1$s til %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:830
+#: ../src/gnome-chess.vala:854
 #, c-format
 msgid "White knight at %1$s takes the black pawn at %2$s"
 msgstr "Hvid springer på %1$s slår den sorte bonde på %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:832
+#: ../src/gnome-chess.vala:856
 #, c-format
 msgid "White knight at %1$s takes the black rook at %2$s"
 msgstr "Hvid springer på %1$s slår det sorte tårn på %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:834
+#: ../src/gnome-chess.vala:858
 #, c-format
 msgid "White knight at %1$s takes the black knight at %2$s"
 msgstr "Hvid springer på %1$s slår den sorte springer på %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:836
+#: ../src/gnome-chess.vala:860
 #, c-format
 msgid "White knight at %1$s takes the black bishop at %2$s"
 msgstr "Hvid springer på %1$s slår den sorte løber på %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:838
+#: ../src/gnome-chess.vala:862
 #, c-format
 msgid "White knight at %1$s takes the black queen at %2$s"
 msgstr "Hvid springer på %1$s slår den sorte dronning på %2$s"
 
 #. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
-#: ../src/gnome-chess.vala:840
+#: ../src/gnome-chess.vala:864
 #, c-format
 msgid "White bishop moves from %1$s to %2$s"
 msgstr "Hvid løber flytter fra %1$s til %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:842
+#: ../src/gnome-chess.vala:866
 #, c-format
 msgid "White bishop at %1$s takes the black pawn at %2$s"
 msgstr "Hvid løber på %1$s slår den sorte bonde på %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:844
+#: ../src/gnome-chess.vala:868
 #, c-format
 msgid "White bishop at %1$s takes the black rook at %2$s"
 msgstr "Hvid løber på %1$s slår det sorte tårn på %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:846
+#: ../src/gnome-chess.vala:870
 #, c-format
 msgid "White bishop at %1$s takes the black knight at %2$s"
 msgstr "Hvid løber på %1$s slår den sorte springer på %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:848
+#: ../src/gnome-chess.vala:872
 #, c-format
 msgid "White bishop at %1$s takes the black bishop at %2$s"
 msgstr "Hvid løber på %1$s slår den sorte løber på %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:850
+#: ../src/gnome-chess.vala:874
 #, c-format
 msgid "White bishop at %1$s takes the black queen at %2$s"
 msgstr "Hvid løber på %1$s slår den sorte dronning på %2$s"
 
 #. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
-#: ../src/gnome-chess.vala:852
+#: ../src/gnome-chess.vala:876
 #, c-format
 msgid "White queen moves from %1$s to %2$s"
 msgstr "Hvid dronning flytter fra %1$s til %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:854
+#: ../src/gnome-chess.vala:878
 #, c-format
 msgid "White queen at %1$s takes the black pawn at %2$s"
 msgstr "Hvid dronning på %1$s slår den sorte bonde på %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:856
+#: ../src/gnome-chess.vala:880
 #, c-format
 msgid "White queen at %1$s takes the black rook at %2$s"
 msgstr "Hvid dronning på %1$s slår det sorte tårn på %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:858
+#: ../src/gnome-chess.vala:882
 #, c-format
 msgid "White queen at %1$s takes the black knight at %2$s"
 msgstr "Hvid dronning på %1$s slår den sorte springer på %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:860
+#: ../src/gnome-chess.vala:884
 #, c-format
 msgid "White queen at %1$s takes the black bishop at %2$s"
 msgstr "Hvid dronning på %1$s slår den sorte løber på %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:862
+#: ../src/gnome-chess.vala:886
 #, c-format
 msgid "White queen at %1$s takes the black queen at %2$s"
 msgstr "Hvid dronning på %1$s slår den sorte dronning på %2$s"
 
 #. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
-#: ../src/gnome-chess.vala:864
+#: ../src/gnome-chess.vala:888
 #, c-format
 msgid "White king moves from %1$s to %2$s"
 msgstr "Hvid konge flytter fra %1$s til %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:866
+#: ../src/gnome-chess.vala:890
 #, c-format
 msgid "White king at %1$s takes the black pawn at %2$s"
 msgstr "Hvid konge på %1$s slår den sorte bonde på %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:868
+#: ../src/gnome-chess.vala:892
 #, c-format
 msgid "White king at %1$s takes the black rook at %2$s"
 msgstr "Hvid konge på %1$s slår det sorte tårn på %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:870
+#: ../src/gnome-chess.vala:894
 #, c-format
 msgid "White king at %1$s takes the black knight at %2$s"
 msgstr "Hvid konge på %1$s slår den sorte springer på %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:872
+#: ../src/gnome-chess.vala:896
 #, c-format
 msgid "White king at %1$s takes the black bishop at %2$s"
 msgstr "Hvid konge på %1$s slår den sorte løber på %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:874
+#: ../src/gnome-chess.vala:898
 #, c-format
 msgid "White king at %1$s takes the black queen at %2$s"
 msgstr "Hvid konge på %1$s slår den sorte dronning på %2$s"
 
 #. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
-#: ../src/gnome-chess.vala:876
+#: ../src/gnome-chess.vala:900
 #, c-format
 msgid "Black pawn moves from %1$s to %2$s"
 msgstr "Sort bonde flytter fra %1$s til %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:878
+#: ../src/gnome-chess.vala:902
 #, c-format
 msgid "Black pawn at %1$s takes the white pawn at %2$s"
 msgstr "Sort bonde på %1$s slår den hvide bonde på %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:880
+#: ../src/gnome-chess.vala:904
 #, c-format
 msgid "Black pawn at %1$s takes the white rook at %2$s"
 msgstr "Sort bonde på %1$s slår det hvide tårn på %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:882
+#: ../src/gnome-chess.vala:906
 #, c-format
 msgid "Black pawn at %1$s takes the white knight at %2$s"
 msgstr "Sort bonde på %1$s slår den hvide springer på %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:884
+#: ../src/gnome-chess.vala:908
 #, c-format
 msgid "Black pawn at %1$s takes the white bishop at %2$s"
 msgstr "Sort bonde på %1$s slår den hvide løber på %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:886
+#: ../src/gnome-chess.vala:910
 #, c-format
 msgid "Black pawn at %1$s takes the white queen at %2$s"
 msgstr "Sort bonde på %1$s slår den hvide dronning på %2$s"
 
 #. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
-#: ../src/gnome-chess.vala:888
+#: ../src/gnome-chess.vala:912
 #, c-format
 msgid "Black rook moves from %1$s to %2$s"
 msgstr "Sort tårn flytter fra %1$s til %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:890
+#: ../src/gnome-chess.vala:914
 #, c-format
 msgid "Black rook at %1$s takes the white pawn at %2$s"
 msgstr "Sort tårn på %1$s slår den hvide bonde på %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:892
+#: ../src/gnome-chess.vala:916
 #, c-format
 msgid "Black rook at %1$s takes the white rook at %2$s"
 msgstr "Sort tårn på %1$s slår det hvide tårn på %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:894
+#: ../src/gnome-chess.vala:918
 #, c-format
 msgid "Black rook at %1$s takes the white knight at %2$s"
 msgstr "Sort tårn på %1$s slår den hvide springer på %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:896
+#: ../src/gnome-chess.vala:920
 #, c-format
 msgid "Black rook at %1$s takes the white bishop at %2$s"
 msgstr "Sort tårn på %1$s slår den hvide løber på %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:898
+#: ../src/gnome-chess.vala:922
 #, c-format
 msgid "Black rook at %1$s takes the white queen at %2$s"
 msgstr "Sort tårn på %1$s slår den hvide dronning på %2$s"
 
 #. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
-#: ../src/gnome-chess.vala:900
+#: ../src/gnome-chess.vala:924
 #, c-format
 msgid "Black knight moves from %1$s to %2$s"
 msgstr "Sort springer flytter fra %1$s til %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:902
+#: ../src/gnome-chess.vala:926
 #, c-format
 msgid "Black knight at %1$s takes the white pawn at %2$s"
 msgstr "Sort springer på %1$s slår den hvide bonde på %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:904
+#: ../src/gnome-chess.vala:928
 #, c-format
 msgid "Black knight at %1$s takes the white rook at %2$s"
 msgstr "Sort springer på %1$s slår det hvide tårn på %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:906
+#: ../src/gnome-chess.vala:930
 #, c-format
 msgid "Black knight at %1$s takes the white knight at %2$s"
 msgstr "Sort springer på %1$s slår den hvide springer på %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:908
+#: ../src/gnome-chess.vala:932
 #, c-format
 msgid "Black knight at %1$s takes the white bishop at %2$s"
 msgstr "Sort springer på %1$s slår den hvide løber på %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:910
+#: ../src/gnome-chess.vala:934
 #, c-format
 msgid "Black knight at %1$s takes the white queen at %2$s"
 msgstr "Sort springer på %1$s slår den hvide dronning på %2$s"
 
 #. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
-#: ../src/gnome-chess.vala:912
+#: ../src/gnome-chess.vala:936
 #, c-format
 msgid "Black bishop moves from %1$s to %2$s"
 msgstr "Sort løber flytter fra %1$s til %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:914
+#: ../src/gnome-chess.vala:938
 #, c-format
 msgid "Black bishop at %1$s takes the white pawn at %2$s"
 msgstr "Sort løber på %1$s slår den hvide bonde på %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:916
+#: ../src/gnome-chess.vala:940
 #, c-format
 msgid "Black bishop at %1$s takes the white rook at %2$s"
 msgstr "Sort løber på %1$s slår det hvide tårn på %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:918
+#: ../src/gnome-chess.vala:942
 #, c-format
 msgid "Black bishop at %1$s takes the white knight at %2$s"
 msgstr "Sort løber på %1$s slår den hvide springer på %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:920
+#: ../src/gnome-chess.vala:944
 #, c-format
 msgid "Black bishop at %1$s takes the white bishop at %2$s"
 msgstr "Sort løber på %1$s slår den hvide løber på %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:922
+#: ../src/gnome-chess.vala:946
 #, c-format
 msgid "Black bishop at %1$s takes the white queen at %2$s"
 msgstr "Sort løber på %1$s slår den hvide dronning på %2$s"
 
 #. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
-#: ../src/gnome-chess.vala:924
+#: ../src/gnome-chess.vala:948
 #, c-format
 msgid "Black queen moves from %1$s to %2$s"
 msgstr "Sort dronning flytter fra %1$s til %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:926
+#: ../src/gnome-chess.vala:950
 #, c-format
 msgid "Black queen at %1$s takes the white pawn at %2$s"
 msgstr "Sort dronning på %1$s slår den hvide bonde på %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:928
+#: ../src/gnome-chess.vala:952
 #, c-format
 msgid "Black queen at %1$s takes the white rook at %2$s"
 msgstr "Sort dronning på %1$s slår det hvide tårn på %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:930
+#: ../src/gnome-chess.vala:954
 #, c-format
 msgid "Black queen at %1$s takes the white knight at %2$s"
 msgstr "Sort dronning på %1$s slår den hvide springer på %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:932
+#: ../src/gnome-chess.vala:956
 #, c-format
 msgid "Black queen at %1$s takes the white bishop at %2$s"
 msgstr "Sort dronning på %1$s slår den hvide løber på %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:934
+#: ../src/gnome-chess.vala:958
 #, c-format
 msgid "Black queen at %1$s takes the white queen at %2$s"
 msgstr "Sort dronning på %1$s slår den hvide dronning på %2$s"
 
 #. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
-#: ../src/gnome-chess.vala:936
+#: ../src/gnome-chess.vala:960
 #, c-format
 msgid "Black king moves from %1$s to %2$s"
 msgstr "Sort konge flytter fra %1$s til %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:938
+#: ../src/gnome-chess.vala:962
 #, c-format
 msgid "Black king at %1$s takes the white pawn at %2$s"
 msgstr "Sort konge på %1$s slår den hvide bonde på %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:940
+#: ../src/gnome-chess.vala:964
 #, c-format
 msgid "Black king at %1$s takes the white rook at %2$s"
 msgstr "Sort konge på %1$s slår det hvide tårn på %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:942
+#: ../src/gnome-chess.vala:966
 #, c-format
 msgid "Black king at %1$s takes the white knight at %2$s"
 msgstr "Sort konge på %1$s slår den hvide springer på %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:944
+#: ../src/gnome-chess.vala:968
 #, c-format
 msgid "Black king at %1$s takes the white bishop at %2$s"
 msgstr "Sort konge på %1$s slår den hvide løber på %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
-#: ../src/gnome-chess.vala:946
+#: ../src/gnome-chess.vala:970
 #, c-format
 msgid "Black king at %1$s takes the white queen at %2$s"
 msgstr "Sort konge på %1$s slår den hvide dronning på %2$s"
 
-#: ../src/gnome-chess.vala:969
+#: ../src/gnome-chess.vala:993
 msgid "White castles kingside"
 msgstr "Hvid rokerer kort"
 
-#: ../src/gnome-chess.vala:973
+#: ../src/gnome-chess.vala:997
 msgid "White castles queenside"
 msgstr "Hvid rokerer langt"
 
-#: ../src/gnome-chess.vala:977
+#: ../src/gnome-chess.vala:1001
 msgid "Black castles kingside"
 msgstr "Sort rokerer kort"
 
-#: ../src/gnome-chess.vala:981
+#: ../src/gnome-chess.vala:1005
 msgid "Black castles queenside"
 msgstr "Sort rokerer langt"
 
 #. Window title on a White human's turn if he is in check
-#: ../src/gnome-chess.vala:1120
+#: ../src/gnome-chess.vala:1144
 msgid "White is in Check"
 msgstr "Hvid er i skak"
 
 #. Window title on a Black human's turn if he is in check
-#: ../src/gnome-chess.vala:1123
+#: ../src/gnome-chess.vala:1147
 msgid "Black is in Check"
 msgstr "Sort er i skak"
 
 #. Window title on White's turn if White is human
-#: ../src/gnome-chess.vala:1129
+#: ../src/gnome-chess.vala:1153
 msgid "White to Move"
 msgstr "Hvid i trækket"
 
 #. Window title on White's turn if White is a computer
-#: ../src/gnome-chess.vala:1132
+#: ../src/gnome-chess.vala:1156
 msgid "White is Thinking…"
 msgstr "Hvid tænker…"
 
 #. Window title on Black's turn if Black is human
-#: ../src/gnome-chess.vala:1138
+#: ../src/gnome-chess.vala:1162
 msgid "Black to Move"
 msgstr "Sort i trækket"
 
 #. Window title on Black's turn if Black is a computer
-#: ../src/gnome-chess.vala:1141
+#: ../src/gnome-chess.vala:1165
 msgid "Black is Thinking…"
 msgstr "Sort tænker…"
 
-#: ../src/gnome-chess.vala:1166
+#: ../src/gnome-chess.vala:1180
 msgid "Unpause the game"
 msgstr "Sæt spillet i gang igen"
 
-#: ../src/gnome-chess.vala:1172
+#: ../src/gnome-chess.vala:1186
 msgid "Pause the game"
 msgstr "Sæt spillet på pause"
 
 #. Window title when the white player wins
-#: ../src/gnome-chess.vala:1195
+#: ../src/gnome-chess.vala:1209
 msgid "White Wins"
 msgstr "Hvid vinder"
 
 #. Window title when the black player wins
-#: ../src/gnome-chess.vala:1200
+#: ../src/gnome-chess.vala:1214
 msgid "Black Wins"
 msgstr "Sort vinder"
 
 #. Window title when the game is drawn
-#: ../src/gnome-chess.vala:1205
+#: ../src/gnome-chess.vala:1219
 msgid "Game is Drawn"
 msgstr "Spillet blev remis"
 
@@ -961,182 +993,190 @@ msgstr "Spillet blev remis"
 #. * because the pause button eats up some of your space, start a new game,
 #. * then run 'killall gnuchess' in a terminal.
 #.
-#: ../src/gnome-chess.vala:1217
+#: ../src/gnome-chess.vala:1231
 msgid "Oops! Something has gone wrong."
 msgstr "Ups! Noget er gået galt."
 
 #. Window subtitle when Black is checkmated
-#: ../src/gnome-chess.vala:1230
+#: ../src/gnome-chess.vala:1244
 msgid "Black is in check and cannot move."
 msgstr "Sort er i skak og kan ikke trække."
 
 #. Window subtitle when White is checkmated
-#: ../src/gnome-chess.vala:1233
+#: ../src/gnome-chess.vala:1247
 msgid "White is in check and cannot move."
 msgstr "Hvid er skak og kan ikke trække."
 
 #. Window subtitle when the game terminates due to a stalemate
-#: ../src/gnome-chess.vala:1239
+#: ../src/gnome-chess.vala:1253
 msgid "Opponent cannot move."
 msgstr "Modstanderen kan ikke trække."
 
 #. Window subtitle when the game is drawn due to the fifty move rule
-#: ../src/gnome-chess.vala:1243
+#: ../src/gnome-chess.vala:1257
 msgid "No piece was taken or pawn moved in fifty moves."
 msgstr ""
 "Ingen brik er blevet slået, og ingen bonde flyttet i de sidste halvtreds "
 "træk."
 
 #. Window subtitle when the game ends due to Black's clock stopping
-#: ../src/gnome-chess.vala:1248
+#: ../src/gnome-chess.vala:1262
 msgid "Black has run out of time."
 msgstr "Sort er løbet tør for tid."
 
 #. Window subtitle when the game ends due to White's clock stopping
-#: ../src/gnome-chess.vala:1251
+#: ../src/gnome-chess.vala:1265
 msgid "White has run out of time."
 msgstr "Hvid er løbet tør for tid."
 
 #. Window subtitle when the game is drawn due to the three-fold-repetition rule
-#: ../src/gnome-chess.vala:1257
+#: ../src/gnome-chess.vala:1271
 msgid "The same board state has occurred three times."
 msgstr "Den samme brætstilling er forekommet tre gange."
 
 #. Window subtitle when the game is drawn due to the insufficient material rule
-#: ../src/gnome-chess.vala:1261
+#: ../src/gnome-chess.vala:1275
 msgid "Neither player can checkmate."
 msgstr "Ingen spiller kan sætte skakmat."
 
 #. Window subtitle when the game ends due to the black player resigning
-#: ../src/gnome-chess.vala:1266
+#: ../src/gnome-chess.vala:1280
 msgid "Black has resigned."
 msgstr "Sort har opgivet."
 
 #. Window subtitle when the game ends due to the white player resigning
-#: ../src/gnome-chess.vala:1269
+#: ../src/gnome-chess.vala:1283
 msgid "White has resigned."
 msgstr "Hvid har opgivet."
 
 #. Window subtitle when a game is abandoned
-#: ../src/gnome-chess.vala:1275
+#: ../src/gnome-chess.vala:1289
 msgid "The game has been abandoned."
 msgstr "Spillet er blevet forladt."
 
 #. Window subtitle when the game ends due to a player dying.
 #. * This is a PGN standard. GNOME Chess will never kill the user.
-#: ../src/gnome-chess.vala:1281
+#: ../src/gnome-chess.vala:1295
 msgid "The game log says a player died!"
 msgstr "Spillets log siger at en spiller døde!"
 
 #. Window subtitle when something goes wrong with the engine...
 #. * or when the engine says something is wrong with us!
-#: ../src/gnome-chess.vala:1287
+#: ../src/gnome-chess.vala:1301
 msgid "The computer player is confused. The game cannot continue."
 msgstr "Computerspilleren er forvirret. Spillet kan ikke fortsætte."
 
-#: ../src/gnome-chess.vala:1345 ../src/gnome-chess.vala:2067
-#: ../src/gnome-chess.vala:2150
+#: ../src/gnome-chess.vala:1336 ../src/gnome-chess.vala:2221
+#: ../src/gnome-chess.vala:2304
 msgid "_Cancel"
 msgstr "_Annullér"
 
-#: ../src/gnome-chess.vala:1349
+#: ../src/gnome-chess.vala:1340
 msgid "_Abandon game"
 msgstr "_Forlad spillet"
 
-#: ../src/gnome-chess.vala:1350
+#: ../src/gnome-chess.vala:1341
 msgid "_Save game for later"
 msgstr "_Gem spillet til senere"
 
-#: ../src/gnome-chess.vala:1354
+#: ../src/gnome-chess.vala:1345
 msgid "_Discard game"
 msgstr "_Gem ikke spillet"
 
-#: ../src/gnome-chess.vala:1355
+#: ../src/gnome-chess.vala:1346
 msgid "_Save game log"
 msgstr "_Gem spilloggen"
 
 #. Your very last chance to save
-#: ../src/gnome-chess.vala:1368
+#: ../src/gnome-chess.vala:1359
 msgid "_Discard"
 msgstr "Gem _ikke"
 
-#: ../src/gnome-chess.vala:1368 ../src/gnome-chess.vala:2068
+#: ../src/gnome-chess.vala:1359 ../src/gnome-chess.vala:2222
 msgid "_Save"
 msgstr "_Gem"
 
 #. Title of claim draw dialog
-#: ../src/gnome-chess.vala:1391
+#: ../src/gnome-chess.vala:1382
 msgid "Would you like to claim a draw?"
 msgstr "Ønsker du at erklære remis?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: ../src/gnome-chess.vala:1397
+#: ../src/gnome-chess.vala:1388
 msgid "Fifty moves have passed without a capture or pawn advancement."
 msgstr ""
 "Der er foretaget 50 træk uden at nogen brik er blevet slået eller en bonde "
 "flyttet."
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: ../src/gnome-chess.vala:1402
+#: ../src/gnome-chess.vala:1393
 msgid "The current board position has occurred three times."
 msgstr "Den nuværende brætstilling er forekommet tre gange."
 
 #. Displays in claim draw dialog to warn player that the dialog only appears once
-#: ../src/gnome-chess.vala:1408
+#: ../src/gnome-chess.vala:1399
 msgid "(You will not be offered this choice again.)"
 msgstr "(Du vil ikke blive tilbudt dette valg igen.)"
 
 #. Option in claim draw dialog
 #. Option on warning dialog when player clicks resign
-#: ../src/gnome-chess.vala:1411 ../src/gnome-chess.vala:1451
+#: ../src/gnome-chess.vala:1402 ../src/gnome-chess.vala:1442
 msgid "_Keep Playing"
 msgstr "_Fortsæt spillet"
 
 #. Option in claim draw dialog
-#: ../src/gnome-chess.vala:1413
+#: ../src/gnome-chess.vala:1404
 msgid "_Claim Draw"
 msgstr "_Erklær remis"
 
-#: ../src/gnome-chess.vala:1433
+#: ../src/gnome-chess.vala:1424
 msgid "Save this game before starting a new one?"
 msgstr "Gem dette spil før der startes et nyt?"
 
 #. Title of warning dialog when player clicks Resign
-#: ../src/gnome-chess.vala:1446
+#: ../src/gnome-chess.vala:1437
 msgid "Are you sure you want to resign?"
 msgstr "Er du sikker på at du vil give op?"
 
 #. Text on warning dialog when player clicks Resign
-#: ../src/gnome-chess.vala:1449
+#: ../src/gnome-chess.vala:1440
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr ""
 "Dette giver mening hvis du regner med at gemme spillet for at notere dit "
 "nederlag."
 
 #. Option on warning dialog when player clicks resign
-#: ../src/gnome-chess.vala:1453
+#: ../src/gnome-chess.vala:1444
 msgid "_Resign"
 msgstr "_Giv op"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#: ../src/gnome-chess.vala:1876
+#. Preferences Dialog: Combo box entry for a custom clock type set in minutes
+#: ../src/gnome-chess.vala:1956 ../src/gnome-chess.vala:1997
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minut"
 msgstr[1] "minutter"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../src/gnome-chess.vala:1880
+#: ../src/gnome-chess.vala:1960
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "time"
 msgstr[1] "timer"
 
-#: ../src/gnome-chess.vala:1985
+#. Preferences Dialog: Combo box entry for a custom clock type set in seconds
+#: ../src/gnome-chess.vala:1993
+msgid "second"
+msgid_plural "seconds"
+msgstr[0] "sekund"
+msgstr[1] "sekunder"
+
+#: ../src/gnome-chess.vala:2134
 msgid "A classic game of positional strategy"
 msgstr "Et klassisk spil om positionsstrategi"
 
-#: ../src/gnome-chess.vala:1988
+#: ../src/gnome-chess.vala:2137
 msgid "translator-credits"
 msgstr ""
 "Anders Wegge Jakobsen\n"
@@ -1150,46 +1190,46 @@ msgstr ""
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Mere info: http://www.dansk-gruppen.dk"
 
-#: ../src/gnome-chess.vala:2054
+#: ../src/gnome-chess.vala:2208
 msgid "Failed to save game"
 msgstr "Kunne ikke gemme spillet"
 
 #. Title of save game dialog
-#: ../src/gnome-chess.vala:2078
+#: ../src/gnome-chess.vala:2232
 msgid "Save Chess Game"
 msgstr "Gem skakspil"
 
 #. Default filename for the save game dialog
-#: ../src/gnome-chess.vala:2091
+#: ../src/gnome-chess.vala:2245
 msgid "Untitled Chess Game"
 msgstr "Unavngivet skakspil"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:2096 ../src/gnome-chess.vala:2160
+#: ../src/gnome-chess.vala:2250 ../src/gnome-chess.vala:2314
 msgid "PGN files"
 msgstr "PGN-filer"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:2102 ../src/gnome-chess.vala:2166
+#: ../src/gnome-chess.vala:2256 ../src/gnome-chess.vala:2320
 msgid "All files"
 msgstr "Alle filer"
 
-#: ../src/gnome-chess.vala:2137
+#: ../src/gnome-chess.vala:2291
 msgid "Save this game before loading another one?"
 msgstr "Gem dette spil før der indlæses et nyt?"
 
 #. Title of load game dialog
-#: ../src/gnome-chess.vala:2148
+#: ../src/gnome-chess.vala:2302
 msgid "Load Chess Game"
 msgstr "Indlæs skakspil"
 
 # Vi gætter på at det er et verbum eftersom de ligger i noget der hedder launch.c
-#: ../src/gnome-chess.vala:2151
+#: ../src/gnome-chess.vala:2305
 msgid "_Open"
 msgstr "_Åbn"
 
-#: ../src/gnome-chess.vala:2185
+#: ../src/gnome-chess.vala:2339
 msgid "Failed to open game"
 msgstr "Kunne ikke åbne spil"
