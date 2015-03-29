@@ -239,15 +239,46 @@ public class PGN : Object
     {
         switch (tag_name)
         {
+        case "WhiteTimeLeft":
+            if (int64.try_parse (tag_value) == false)
+                warning ("Invalid %s : %s in PGN, setting timer to infinity.", tag_name, tag_value);
+            else
+                game.tags.insert (tag_name, tag_value);
+            break;
+        case "BlackTimeLeft":
+            if (int64.try_parse (tag_value) == false)
+                warning ("Invalid %s : %s in PGN, setting timer to infinity.", tag_name, tag_value);
+            else
+                game.tags.insert (tag_name, tag_value);
+            break;
+        case "TimeControl":
+            if (int64.try_parse (tag_value) == true)
+            {
+                if (game.tags["WhiteTimeLeft"] != null && game.tags["BlackTimeLeft"] != null)
+                    game.tags.insert (tag_name, tag_value);
+            }
+            else
+                warning ("Invalid %s : %s in PGN, setting timer to infinity.", tag_name, tag_value);
+            break;
         case "X-GNOME-ClockType":
             if (ClockType.string_to_enum (tag_value) == ClockType.INVALID)
             {
                 warning ("Invalid clock type in PGN: %s, using a simple clock.", tag_value);
-                tag_value = "simple";
+                game.tags.insert (tag_name, "simple");
             }
             break;
+        case "X-GNOME-TimerIncrement":
+            if (int64.try_parse (tag_value) == false)
+            {
+                warning ("Invalid timer increment in PGN: %s, using a simple clock.", tag_value);
+                game.tags["X-GNOME-ClockType"] = "simple";
+                game.tags.insert (tag_name, "0");
+            }
+            break;
+        default:
+            game.tags.insert (tag_name, tag_value);
+            break;
         }
-        game.tags.insert (tag_name, tag_value);
     }
 
     public PGN.from_string (string data) throws PGNError
