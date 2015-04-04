@@ -1,6 +1,7 @@
 noinst_LTLIBRARIES = libchess.la
 
 libchess_la_SOURCES = \
+	config.vapi \
 	chess-bitboard.vala \
 	chess-clock.vala \
 	chess-game.vala \
@@ -14,7 +15,8 @@ libchess_la_CFLAGS = \
 	-w
 
 libchess_la_CPPFLAGS = \
-	$(LIBCHESS_CFLAGS)
+	$(LIBCHESS_CFLAGS) \
+	-DGETTEXT_PACKAGE=\"$(GETTEXT_PACKAGE)\"
 
 libchess_la_LIBADD = \
 	$(LIBCHESS_LIBS)

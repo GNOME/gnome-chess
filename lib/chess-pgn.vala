@@ -241,13 +241,13 @@ public class PGN : Object
         {
         case "WhiteTimeLeft":
             if (int64.try_parse (tag_value) == false)
-                warning ("Invalid %s : %s in PGN, setting timer to infinity.", tag_name, tag_value);
+                warning (_("Invalid %s : %s in PGN, setting timer to infinity."), tag_name, tag_value);
             else
                 game.tags.insert (tag_name, tag_value);
             break;
         case "BlackTimeLeft":
             if (int64.try_parse (tag_value) == false)
-                warning ("Invalid %s : %s in PGN, setting timer to infinity.", tag_name, tag_value);
+                warning (_("Invalid %s : %s in PGN, setting timer to infinity."), tag_name, tag_value);
             else
                 game.tags.insert (tag_name, tag_value);
             break;
@@ -258,19 +258,19 @@ public class PGN : Object
                     game.tags.insert (tag_name, tag_value);
             }
             else
-                warning ("Invalid %s : %s in PGN, setting timer to infinity.", tag_name, tag_value);
+                warning (_("Invalid %s : %s in PGN, setting timer to infinity."), tag_name, tag_value);
             break;
         case "X-GNOME-ClockType":
             if (ClockType.string_to_enum (tag_value) == ClockType.INVALID)
             {
-                warning ("Invalid clock type in PGN: %s, using a simple clock.", tag_value);
+                warning (_("Invalid clock type in PGN: %s, using a simple clock."), tag_value);
                 game.tags.insert (tag_name, "simple");
             }
             break;
         case "X-GNOME-TimerIncrement":
             if (int64.try_parse (tag_value) == false)
             {
-                warning ("Invalid timer increment in PGN: %s, using a simple clock.", tag_value);
+                warning (_("Invalid timer increment in PGN: %s, using a simple clock."), tag_value);
                 game.tags["X-GNOME-ClockType"] = "simple";
                 game.tags.insert (tag_name, "0");
             }
