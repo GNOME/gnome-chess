@@ -1655,7 +1655,7 @@ public class ChessApplication : Gtk.Application
                        "active", SettingsBindFlags.DEFAULT);
 
         side_combo = (Gtk.ComboBox) preferences_builder.get_object ("side_combo");
-        side_combo.set_active (settings.get_boolean ("play-as-white") ? 0 : 1);
+        side_combo.set_active (settings.get_enum ("play-as"));
 
         var ai_combo = (Gtk.ComboBox) preferences_builder.get_object ("opponent_combo");
         var ai_model = (Gtk.ListStore) ai_combo.model;
@@ -1755,9 +1755,10 @@ public class ChessApplication : Gtk.Application
         Gtk.TreeIter iter;
         if (!combo.get_active_iter (out iter))
             return;
-        bool play_as_white;
-        combo.model.get (iter, 1, out play_as_white, -1);
-        settings.set_boolean ("play-as-white", play_as_white);
+        int player;
+        combo.model.get (iter, 1, out player, -1);
+
+        settings.set_enum ("play-as", player);
     }
 
     [CCode (cname = "G_MODULE_EXPORT opponent_combo_changed_cb", instance_pos = -1)]
@@ -2379,16 +2380,30 @@ public class ChessApplication : Gtk.Application
         var engine_level = settings.get_string ("difficulty");
         if (engine_name != null && engine_name != "human")
         {
-            if (settings.get_boolean ("play-as-white"))
+            var play_as = settings.get_string ("play-as");
+
+            if (play_as == "alternate")
+            {
+                var last_side = settings.get_string ("last-played-as");
+                play_as = (last_side == "white" ? "black" : "white");
+            }
+
+            if (play_as == "white")
             {
                 pgn_game.black_ai = engine_name;
                 pgn_game.black_level = engine_level;
             }
-            else
+            else if (play_as == "black")
             {
                 pgn_game.white_ai = engine_name;
                 pgn_game.white_level = engine_level;
             }
+            else
+            {
+                assert_not_reached ();
+            }
+
+            settings.set_string ("last-played-as", play_as);
         }
 
         start_game ();

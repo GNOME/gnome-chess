@@ -7,6 +7,12 @@
     <value value="3" nick="lan"/>
   </enum>
 
+  <enum id="org.gnome.chess.PlayAs">
+    <value value="0" nick="white"/>
+    <value value="1" nick="black"/>
+    <value value="2" nick="alternate"/>
+  </enum>
+
   <enum id="org.gnome.chess.BoardSide">
     <value value="0" nick="white"/>
     <value value="1" nick="black"/>
@@ -92,10 +98,15 @@
       <summary>The timer increment set corresponding to clock type (1 second minimum)</summary>
       <description>The timer increment set corresponding to clock type (1 second minimum)</description>
     </key>
-    <key name="play-as-white" type="b">
-      <default>true</default>
-      <summary>true if the human player is playing white</summary>
-      <description>true if the human player is playing white</description>
+    <key name="play-as" enum="org.gnome.chess.PlayAs">
+      <default>'white'</default>
+      <summary>The board side to play as</summary>
+      <description>The board side to play as</description>
+    </key>
+    <key name="last-played-as" enum="org.gnome.chess.PlayAs">
+      <default>'white'</default>
+      <summary>The last side the player played as</summary>
+      <description>This is needed when play-as is set to alternate. This should only be set to black or white.</description>
     </key>
     <key name="opponent" type="s">
       <default>''</default>
