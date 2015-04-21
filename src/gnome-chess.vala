@@ -2142,6 +2142,19 @@ public class ChessApplication : Gtk.Application
         about_dialog.show ();
     }
 
+    private void run_invalid_pgn_dialog ()
+    {
+        var invalid_pgn_dialog = new Gtk.MessageDialog (window,
+                                                       Gtk.DialogFlags.MODAL,
+                                                       Gtk.MessageType.ERROR,
+                                                       Gtk.ButtonsType.NONE,
+                                                       _("This does not look like a valid PGN game."));
+        invalid_pgn_dialog.add_button (_("_OK"), Gtk.ResponseType.OK);
+
+        invalid_pgn_dialog.run ();
+        invalid_pgn_dialog.destroy ();
+    }
+
     private void about_response_cb (int response_id)
     {
         about_dialog.destroy ();
@@ -2416,8 +2429,17 @@ public class ChessApplication : Gtk.Application
         var pgn = new PGN.from_file (file);
         pgn_game = pgn.games.nth_data (0);
 
-        game_file = file;
-        start_game ();
+        if (pgn_game == null)
+        {
+            run_invalid_pgn_dialog ();
+            pgn_game = new PGNGame ();
+            game_file = null;
+        }
+        else
+        {
+            game_file = file;
+            start_game ();
+        }
     }
 
     private void enable_window_action (string name)
