@@ -23,8 +23,8 @@ msgstr ""
 "Project-Id-Version: gnome-chess master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-03-04 07:11+0000\n"
-"PO-Revision-Date: 2015-03-04 14:01+0100\n"
+"POT-Creation-Date: 2015-04-25 06:21+0000\n"
+"PO-Revision-Date: 2015-04-25 12:22+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -62,7 +62,7 @@ msgstr ""
 "populární šachová jádra, automaticky vyhledat, že jsou nainstalována."
 
 #: ../data/gnome-chess.desktop.in.h:1 ../data/gnome-chess.ui.h:1
-#: ../src/gnome-chess.vala:2130 ../src/gnome-chess.vala:2425
+#: ../src/gnome-chess.vala:2131 ../src/gnome-chess.vala:2462
 msgid "Chess"
 msgstr "Šachy"
 
@@ -193,14 +193,26 @@ msgstr ""
 "Nastavení prodlužování času odpovídá typu hodin (nejmenší možná je 1 vteřina)"
 
 #: ../data/org.gnome.chess.gschema.xml.h:16
-msgid "true if the human player is playing white"
-msgstr "Zapnuto, pokud lidský hráč hraje bílými"
+msgid "The board side to play as"
+msgstr "Strana, za kterou má hráč hrát"
 
 #: ../data/org.gnome.chess.gschema.xml.h:17
+msgid "The last side the player played as"
+msgstr "Naposledy zvolená strana, za kterou hráč hrál"
+
+#: ../data/org.gnome.chess.gschema.xml.h:18
+msgid ""
+"This is needed when play-as is set to alternate. This should only be set to "
+"black or white."
+msgstr ""
+"Tento údaj je zapotřebí, když je strana, za kterou hráč hraje, nastavena na "
+"střídání. Mělo by být nastaveno buď na „black“ (černý) nebo „white“ (bílý)."
+
+#: ../data/org.gnome.chess.gschema.xml.h:19
 msgid "The opponent player"
 msgstr "Protihráč"
 
-#: ../data/org.gnome.chess.gschema.xml.h:18
+#: ../data/org.gnome.chess.gschema.xml.h:20
 msgid ""
 "Can be 'human' (play against another human player), '' (use the first "
 "available chess engine) or the name of a specific engine to play against"
@@ -209,22 +221,18 @@ msgstr ""
 "první dostupné herní jádro) nebo název konkrétního herního jádra, proti "
 "kterému se má hrát"
 
-#: ../data/org.gnome.chess.gschema.xml.h:19
+#: ../data/org.gnome.chess.gschema.xml.h:21
 msgid "Difficulty of the opponent chess engine"
 msgstr "Náročnost herního jádra jako protihráče"
 
 #. Preferences dialog: Combo box entry for timer increment
 #: ../data/preferences.ui.h:2
-#| msgid "minute"
-#| msgid_plural "minutes"
 msgctxt "custom_duration_units"
 msgid "minutes"
 msgstr "minut"
 
 #. Preferences dialog: Combo box entry for time limit
 #: ../data/preferences.ui.h:4
-#| msgid "hour"
-#| msgid_plural "hours"
 msgctxt "custom_duration_units"
 msgid "hours"
 msgstr "hodin"
@@ -237,7 +245,6 @@ msgstr "vteřin"
 
 #. Preferences dialog: Combo box entry for clock type
 #: ../data/preferences.ui.h:8
-#| msgid "Simple"
 msgctxt "custom_duration_units"
 msgid "Simple"
 msgstr "Jednoduché"
@@ -383,7 +390,6 @@ msgstr "Typ _hodin:"
 
 #. Preferences Dialog: Label before timer increment combo box
 #: ../data/preferences.ui.h:62
-#| msgid "_Time limit:"
 msgid "Timer _increment:"
 msgstr "Prodl_užování času:"
 
@@ -459,6 +465,12 @@ msgctxt "chess-player"
 msgid "Black"
 msgstr "Černý"
 
+#. Preferences Dialog: Combo box entry for alterning between black and white
+#: ../data/preferences.ui.h:92
+msgctxt "chess-player"
+msgid "Alternate"
+msgstr "Střídat"
+
 #: ../data/promotion-type-selector.ui.h:1
 msgid "Select Promotion Type"
 msgstr "Výběr typu povýšení"
@@ -478,6 +490,22 @@ msgstr "_Věž"
 #: ../data/promotion-type-selector.ui.h:5
 msgid "_Bishop"
 msgstr "_Střelec"
+
+#: ../lib/chess-pgn.vala:244 ../lib/chess-pgn.vala:250
+#: ../lib/chess-pgn.vala:261
+#, c-format
+msgid "Invalid %s : %s in PGN, setting timer to infinity."
+msgstr "Neplatný údaj %s: %s v PGN, čas se nastaví na nekonečný."
+
+#: ../lib/chess-pgn.vala:266
+#, c-format
+msgid "Invalid clock type in PGN: %s, using a simple clock."
+msgstr "Neplatný typ hodin v PGN: %s, použijí se jednoduché hodiny."
+
+#: ../lib/chess-pgn.vala:273
+#, c-format
+msgid "Invalid timer increment in PGN: %s, using a simple clock."
+msgstr "Neplatné prodlužování času v PGN: %s, použijí se jednoduché hodiny."
 
 #: ../src/chess-view.vala:312
 msgid "Paused"
@@ -1081,8 +1109,8 @@ msgstr "Podle záznamu hry hráč zemřel!"
 msgid "The computer player is confused. The game cannot continue."
 msgstr "Počítačový hráč jse zcela zmaten. Hra nemůže pokračovat."
 
-#: ../src/gnome-chess.vala:1336 ../src/gnome-chess.vala:2221
-#: ../src/gnome-chess.vala:2304
+#: ../src/gnome-chess.vala:1336 ../src/gnome-chess.vala:2235
+#: ../src/gnome-chess.vala:2318
 msgid "_Cancel"
 msgstr "_Zrušit"
 
@@ -1107,7 +1135,7 @@ msgstr "_Uložit záznam hry"
 msgid "_Discard"
 msgstr "Zaho_dit"
 
-#: ../src/gnome-chess.vala:1359 ../src/gnome-chess.vala:2222
+#: ../src/gnome-chess.vala:1359 ../src/gnome-chess.vala:2236
 msgid "_Save"
 msgstr "_Uložit"
 
@@ -1167,7 +1195,7 @@ msgstr "Vzdá_t"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
 #. Preferences Dialog: Combo box entry for a custom clock type set in minutes
-#: ../src/gnome-chess.vala:1956 ../src/gnome-chess.vala:1997
+#: ../src/gnome-chess.vala:1957 ../src/gnome-chess.vala:1998
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minuta"
@@ -1175,7 +1203,7 @@ msgstr[1] "minuty"
 msgstr[2] "minut"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../src/gnome-chess.vala:1960
+#: ../src/gnome-chess.vala:1961
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "hodina"
@@ -1183,63 +1211,74 @@ msgstr[1] "hodiny"
 msgstr[2] "hodin"
 
 #. Preferences Dialog: Combo box entry for a custom clock type set in seconds
-#: ../src/gnome-chess.vala:1993
+#: ../src/gnome-chess.vala:1994
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "vteřina"
 msgstr[1] "vteřiny"
 msgstr[2] "vteřin"
 
-#: ../src/gnome-chess.vala:2134
+#: ../src/gnome-chess.vala:2135
 msgid "A classic game of positional strategy"
 msgstr "Klasická tahová strategie"
 
-#: ../src/gnome-chess.vala:2137
+#: ../src/gnome-chess.vala:2138
 msgid "translator-credits"
 msgstr "Marek Černocký <marek@manet.cz>"
 
-#: ../src/gnome-chess.vala:2208
+#: ../src/gnome-chess.vala:2151
+msgid "This does not look like a valid PGN game."
+msgstr "Nevypadá to jako platný zápis hry v PGN."
+
+#: ../src/gnome-chess.vala:2152
+msgid "_OK"
+msgstr "_Budiž"
+
+#: ../src/gnome-chess.vala:2222
 msgid "Failed to save game"
 msgstr "Selhalo uložení hry"
 
 #. Title of save game dialog
-#: ../src/gnome-chess.vala:2232
+#: ../src/gnome-chess.vala:2246
 msgid "Save Chess Game"
 msgstr "Uložit šachovou partii"
 
 #. Default filename for the save game dialog
-#: ../src/gnome-chess.vala:2245
+#: ../src/gnome-chess.vala:2259
 msgid "Untitled Chess Game"
 msgstr "Nepojmenovaná šachová partie"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:2250 ../src/gnome-chess.vala:2314
+#: ../src/gnome-chess.vala:2264 ../src/gnome-chess.vala:2328
 msgid "PGN files"
 msgstr "Soubory PGN"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:2256 ../src/gnome-chess.vala:2320
+#: ../src/gnome-chess.vala:2270 ../src/gnome-chess.vala:2334
 msgid "All files"
 msgstr "Všechny soubory"
 
-#: ../src/gnome-chess.vala:2291
+#: ../src/gnome-chess.vala:2305
 msgid "Save this game before loading another one?"
 msgstr "Uložit tuto hru před načtením další?"
 
 #. Title of load game dialog
-#: ../src/gnome-chess.vala:2302
+#: ../src/gnome-chess.vala:2316
 msgid "Load Chess Game"
 msgstr "Načíst šachovou partii"
 
-#: ../src/gnome-chess.vala:2305
+#: ../src/gnome-chess.vala:2319
 msgid "_Open"
 msgstr "_Otevřít"
 
-#: ../src/gnome-chess.vala:2339
+#: ../src/gnome-chess.vala:2353
 msgid "Failed to open game"
 msgstr "Selhalo otevření hry"
+
+#~ msgid "true if the human player is playing white"
+#~ msgstr "Zapnuto, pokud lidský hráč hraje bílými"
 
 #~ msgid "%d∶‎%02d"
 #~ msgstr "%d∶‎%02d"
