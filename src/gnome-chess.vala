@@ -450,7 +450,17 @@ public class ChessApplication : Gtk.Application
             else
                 warning ("Chess game has SetUp tag but no FEN tag");
         }
-        game = new ChessGame (fen, moves);
+
+        try
+        {
+            game = new ChessGame (fen, moves);
+        }
+        catch (Error e)
+        {
+            run_invalid_move_dialog (e.message);
+            start_new_game ();
+            return;
+        }
 
         /*
          * We only support simple timeouts
@@ -2153,6 +2163,19 @@ public class ChessApplication : Gtk.Application
 
         invalid_pgn_dialog.run ();
         invalid_pgn_dialog.destroy ();
+    }
+
+    private void run_invalid_move_dialog (string error_message)
+    {
+        var invalid_move_dialog = new Gtk.MessageDialog (window,
+                                                        Gtk.DialogFlags.MODAL,
+                                                        Gtk.MessageType.ERROR,
+                                                        Gtk.ButtonsType.NONE,
+                                                        error_message);
+        invalid_move_dialog.add_button (_("_OK"), Gtk.ResponseType.OK);
+
+        invalid_move_dialog.run ();
+        invalid_move_dialog.destroy ();
     }
 
     private void about_response_cb (int response_id)

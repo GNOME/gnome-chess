@@ -87,7 +87,7 @@ public class ChessGame : Object
         }
     }
 
-    public ChessGame (string fen = STANDARD_SETUP, string[]? moves = null)
+    public ChessGame (string fen = STANDARD_SETUP, string[]? moves = null) throws PGNError
     {
         is_started = false;
         move_stack.prepend (new ChessState (fen));
@@ -98,7 +98,10 @@ public class ChessGame : Object
             for (var i = 0; i < moves.length; i++)
             {
                 if (!do_move (current_player, moves[i], true))
-                    warning ("Invalid move %s", moves[i]);
+                {
+                    /* Message when the game cannot be loaded due to an invalid move in the file. */
+                    throw new PGNError.LOAD_ERROR (_("Failed to load PGN: move %s is invalid."), moves[i]);
+                }
             }
         }
 
