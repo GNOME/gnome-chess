@@ -9,7 +9,7 @@
  * license.
  */
 
-class GlChess
+class GNOMEChess
 {
     static int test_count = 0;
     static int failure_count = 0;
