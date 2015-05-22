@@ -1,17 +1,19 @@
 #!/bin/sh
-# Run this to generate all the initial makefiles, etc.
+srcdir=`dirname $0`
+[ -z "$srcdir" ] && srcdir=.
+
+if [ ! -f "$srcdir/configure.ac" ]; then
+	echo "$srcdir doesn't look like source directory for GNOME Chess" >&2
+	exit 1
+fi
 
 which gnome-autogen.sh || {
-    echo "You need to install gnome-common from GNOME git (or from"
-    echo "your OS vendor's package manager)."
-    exit 1
+	echo "You need to install gnome-common from GNOME Git"
+	exit 1
 }
 
-REQUIRED_YELP_TOOLS_VERSION=3.1.1
-REQUIRED_GETTEXT_VERSION=0.12
-REQUIRED_INTLTOOL_VERSION=0.40.4
+if [ -d .git ] && [ ! -e .git/hooks/pre-commit ]; then
+	ln -s ../libgames-support/style-checker .git/hooks/pre-commit && echo "Enabled pre-commit style checker." || :
+fi
 
-cp ./scripts/pre-commit ./.git/hooks/
-chmod +x ./.git/hooks/pre-commit
-
-. gnome-autogen.sh
+. gnome-autogen.sh "$@"
