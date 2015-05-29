@@ -8,7 +8,6 @@ AC_CONFIG_SRCDIR([src/gnome-chess.vala])
 AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-xz foreign])
 AM_SILENT_RULES([yes])
 AM_MAINTAINER_MODE([enable])
-GNOME_MAINTAINER_MODE_DEFINES
 
 AM_PROG_VALAC([0.27.1])
 AM_PROG_CC_C_O
