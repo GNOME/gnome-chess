@@ -17,6 +17,10 @@ if [ "$#" = 0 -a "x$NOCONFIGURE" = "x" ]; then
         echo "" >&2
 fi
 
+if [ -d $srcdir/.git ] && [ ! -e $srcdir/.git/hooks/pre-commit ]; then
+	ln -s $srcdir/../libgames-support/style-checker $srcdir/.git/hooks/pre-commit && echo "Enabled pre-commit style checker." || :
+fi
+
 set -x
 
 aclocal --install || exit 1
