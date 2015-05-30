@@ -1,6 +1,6 @@
 SUBDIRS = data lib src tests help po
 
-ACLOCAL_AMFLAGS = -I m4
+ACLOCAL_AMFLAGS = --install -I m4 ${ACLOCAL_FLAGS}
 
 EXTRA_DIST = autogen.sh NEWS
 
