@@ -18,17 +18,19 @@ if [ "$#" = 0 -a "x$NOCONFIGURE" = "x" ]; then
 fi
 
 if [ -d $srcdir/.git ] && [ ! -e $srcdir/.git/hooks/pre-commit ]; then
-	ln -s $srcdir/../libgames-support/style-checker $srcdir/.git/hooks/pre-commit && echo "Enabled pre-commit style checker." || :
+        ln -s $srcdir/../libgames-support/style-checker $srcdir/.git/hooks/pre-commit && echo "Enabled pre-commit style checker." || :
 fi
 
 set -x
-
 aclocal --install || exit 1
 intltoolize --force --copy --automake || exit 1
 autoreconf --verbose --force --install -Wno-portability || exit 1
+set +x
 
 if [ "$NOCONFIGURE" = "" ]; then
+        set -x
         $srcdir/configure "$@" || exit 1
+        set +x
 
         if [ "$1" = "--help" ]; then exit 0 else
                 echo "Now type \`make\' to compile $PKG_NAME" || exit 1
@@ -36,5 +38,3 @@ if [ "$NOCONFIGURE" = "" ]; then
 else
         echo "Skipping configure process."
 fi
-
-set +x
