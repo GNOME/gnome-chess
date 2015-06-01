@@ -35,21 +35,21 @@ msgstr ""
 "Project-Id-Version: gnome-games.HEAD.el\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-02-26 07:12+0000\n"
-"PO-Revision-Date: 2015-02-26 12:35+0200\n"
-"Last-Translator: Maria Mavridou <mavridou@gmail.com>\n"
-"Language-Team: team@gnome.gr\n"
+"POT-Creation-Date: 2015-05-29 06:20+0000\n"
+"PO-Revision-Date: 2015-05-30 11:56+0300\n"
+"Last-Translator: Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>\n"
+"Language-Team: www.gnome.gr\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/gnome-chess.appdata.xml.in.h:1
 msgid "GNOME Chess"
-msgstr "Σκάκι"
+msgstr "Σκάκι GNOME"
 
 #: ../data/gnome-chess.appdata.xml.in.h:2 ../data/gnome-chess.desktop.in.h:3
 msgid "Play the classic two-player board game of chess"
@@ -76,7 +76,7 @@ msgstr ""
 "είναι εγκατεστημένες."
 
 #: ../data/gnome-chess.desktop.in.h:1 ../data/gnome-chess.ui.h:1
-#: ../src/gnome-chess.vala:2130 ../src/gnome-chess.vala:2425
+#: ../src/gnome-chess.vala:2141 ../src/gnome-chess.vala:2485
 msgid "Chess"
 msgstr "Σκάκι"
 
@@ -167,7 +167,7 @@ msgstr "Σημαία για την ενεργοποίηση της λειτου�
 
 #: ../data/org.gnome.chess.gschema.xml.h:6
 msgid "The piece theme to use"
-msgstr "Το στυλ κομματιών που θα χρησιμοποιηθεί"
+msgstr "Το θέμα των κομματιών που θα χρησιμοποιηθεί"
 
 #: ../data/org.gnome.chess.gschema.xml.h:7
 msgid "A flag to enable move hints"
@@ -212,20 +212,20 @@ msgstr ""
 "δευτερόλεπτο τουλάχιστον)"
 
 #: ../data/org.gnome.chess.gschema.xml.h:16
-msgid "Seconds white has used until last move (0 for first move)"
-msgstr ""
-"Δευτερόλεπτα που ο λευκός έχει χρησιμοποιήσει μέχρι την τελευταία κίνηση (0 "
-"για την πρώτη κίνηση)"
+msgid "The board side to play as"
+msgstr "Η πλευρά της σκακιέρας που θα παίξει ως"
 
 #: ../data/org.gnome.chess.gschema.xml.h:17
-msgid "Seconds black has used until last move (0 for first move)"
-msgstr ""
-"Δευτερόλεπτα που ο μαύρος έχει χρησιμοποιήσει μέχρι την τελευταία κίνηση (0 "
-"για την πρώτη κίνηση)"
+msgid "The last side the player played as"
+msgstr "Η τελευταία πλευρά που ο παίκτης έπαιξε ως"
 
 #: ../data/org.gnome.chess.gschema.xml.h:18
-msgid "true if the human player is playing white"
-msgstr "αληθές αν ο παίχτης, άνθρωπος, παίζει με τα λευκά"
+msgid ""
+"This is needed when play-as is set to alternate. This should only be set to "
+"black or white."
+msgstr ""
+"Αυτό χρειάζεται όταν το παίζω ως είναι ρυθμισμένο στο εναλλακτικό. Αυτό "
+"πρέπει να ορίζεται μόνο σε μαύρο ή λευκό."
 
 #: ../data/org.gnome.chess.gschema.xml.h:19
 msgid "The opponent player"
@@ -236,9 +236,9 @@ msgid ""
 "Can be 'human' (play against another human player), '' (use the first "
 "available chess engine) or the name of a specific engine to play against"
 msgstr ""
-"Μπορεί να είναι 'άνθρωπος' (παίξτε εναντίον ενός άλλου ανθρώπου-παίχτη), "
-"'' (χρήση της πρώτης διαθέσιμης μηχανής σκακιού) ή προσδιορίστε το όνομα "
-"μιας συγκεκριμένης μηχανής για να παίξετε εναντίον της"
+"Μπορεί να είναι 'άνθρωπος' (παίξτε εναντίον ενός άλλου ανθρώπου-παίχτη), '' "
+"(χρήση της πρώτης διαθέσιμης μηχανής σκακιού) ή προσδιορίστε το όνομα μιας "
+"συγκεκριμένης μηχανής για να παίξετε εναντίον της"
 
 #: ../data/org.gnome.chess.gschema.xml.h:21
 msgid "Difficulty of the opponent chess engine"
@@ -246,31 +246,24 @@ msgstr "Επίπεδο δυσκολίας της μηχανής του σκακ�
 
 #. Preferences dialog: Combo box entry for timer increment
 #: ../data/preferences.ui.h:2
-#| msgid "minute"
-#| msgid_plural "minutes"
 msgctxt "custom_duration_units"
 msgid "minutes"
 msgstr "λεπτά"
 
 #. Preferences dialog: Combo box entry for time limit
 #: ../data/preferences.ui.h:4
-#| msgid "hour"
-#| msgid_plural "hours"
 msgctxt "custom_duration_units"
 msgid "hours"
 msgstr "ώρες"
 
 #. Preferences dialog: Combo box entry for timer increment
 #: ../data/preferences.ui.h:6
-#| msgid "second"
-#| msgid_plural "seconds"
 msgctxt "custom_duration_units"
 msgid "seconds"
 msgstr "δευτερόλεπτα"
 
 #. Preferences dialog: Combo box entry for clock type
 #: ../data/preferences.ui.h:8
-#| msgid "Simple"
 msgctxt "custom_duration_units"
 msgid "Simple"
 msgstr "Απλό"
@@ -492,6 +485,12 @@ msgctxt "chess-player"
 msgid "Black"
 msgstr "Μαύρα"
 
+#. Preferences Dialog: Combo box entry for alterning between black and white
+#: ../data/preferences.ui.h:92
+msgctxt "chess-player"
+msgid "Alternate"
+msgstr "Εναλλαγή"
+
 #: ../data/promotion-type-selector.ui.h:1
 msgid "Select Promotion Type"
 msgstr "Επιλέξτε τύπο προαγωγής"
@@ -511,6 +510,28 @@ msgstr "Πύ_ργος"
 #: ../data/promotion-type-selector.ui.h:5
 msgid "_Bishop"
 msgstr "_Αξιωματικός"
+
+#. Message when the game cannot be loaded due to an invalid move in the file.
+#: ../lib/chess-game.vala:103
+#, c-format
+msgid "Failed to load PGN: move %s is invalid."
+msgstr "Αποτυχία φόρτωσης του PGN: η κίνηση %s είναι άκυρη."
+
+#: ../lib/chess-pgn.vala:244 ../lib/chess-pgn.vala:250
+#: ../lib/chess-pgn.vala:261
+#, c-format
+msgid "Invalid %s : %s in PGN, setting timer to infinity."
+msgstr "Άκυρο %s : το %s στο PGN, ορίζει το χρονόμετρο στο άπειρο."
+
+#: ../lib/chess-pgn.vala:266
+#, c-format
+msgid "Invalid clock type in PGN: %s, using a simple clock."
+msgstr "Άκυρος τύπος ρολογιού στο PGN: %s, χρήση απλού ρολογιού."
+
+#: ../lib/chess-pgn.vala:273
+#, c-format
+msgid "Invalid timer increment in PGN: %s, using a simple clock."
+msgstr "Άκυρη αύξηση χρονομέτρου στο PGN: %s, χρήση απλού ρολογιού."
 
 #: ../src/chess-view.vala:312
 msgid "Paused"
@@ -533,503 +554,503 @@ msgstr "Έναρξη παρτίδας"
 
 #. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
 #. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
-#: ../src/gnome-chess.vala:828
+#: ../src/gnome-chess.vala:838
 #, c-format
 msgid "White pawn moves from %1$s to %2$s"
 msgstr "Λευκό πιόνι μετακινείται από το %1$s στο %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:830
+#: ../src/gnome-chess.vala:840
 #, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s"
-msgstr "Λευκό πιόνι στο %1$s αιχμαλωτίζει μαύρο πιόνι στο %2$s"
+msgstr "Το λευκό πιόνι στο %1$s παίρνει το μαύρο πιόνι στο %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:832
+#: ../src/gnome-chess.vala:842
 #, c-format
 msgid "White pawn at %1$s takes the black rook at %2$s"
-msgstr "Λευκό πιόνι στο %1$s αιχμαλωτίζει μαύρο πύργο στο %2$s"
+msgstr "Το λευκό πιόνι στο %1$s παίρνει τον μαύρο πύργο στο %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:834
+#: ../src/gnome-chess.vala:844
 #, c-format
 msgid "White pawn at %1$s takes the black knight at %2$s"
-msgstr "Λευκό πιόνι στο %1$s αιχμαλωτίζει μαύρο ίππο στο %2$s"
+msgstr "Το λευκό πιόνι στο %1$s παίρνει τον μαύρο ίππο στο %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:836
+#: ../src/gnome-chess.vala:846
 #, c-format
 msgid "White pawn at %1$s takes the black bishop at %2$s"
-msgstr "Λευκό πιόνι στο %1$s αιχμαλωτίζει μαύρο αξιωματικό στο %2$s"
+msgstr "Το λευκό πιόνι στο %1$s παίρνει τον μαύρο αξιωματικό στο %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:838
+#: ../src/gnome-chess.vala:848
 #, c-format
 msgid "White pawn at %1$s takes the black queen at %2$s"
-msgstr "Λευκό πιόνι στο %1$s αιχμαλωτίζει τη μαύρη βασίλισσα στο %2$s"
+msgstr "Το λευκό πιόνι στο %1$s παίρνει τη μαύρη βασίλισσα στο %2$s"
 
 #. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
-#: ../src/gnome-chess.vala:840
+#: ../src/gnome-chess.vala:850
 #, c-format
 msgid "White rook moves from %1$s to %2$s"
 msgstr "Λευκός πύργος μετακινείται από το %1$s στο %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:842
+#: ../src/gnome-chess.vala:852
 #, c-format
 msgid "White rook at %1$s takes the black pawn at %2$s"
-msgstr "Λευκός πύργος στο %1$s αιχμαλωτίζει μαύρο πιόνι στο %2$s"
+msgstr "Ο λευκός πύργος στο %1$s παίρνει το μαύρο πιόνι στο %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:844
+#: ../src/gnome-chess.vala:854
 #, c-format
 msgid "White rook at %1$s takes the black rook at %2$s"
-msgstr "Λευκός πύργος στο %1$s αιχμαλωτίζει μαύρο πύργο στο %2$s"
+msgstr "Ο λευκός πύργος στο %1$s παίρνει τον μαύρο πύργο στο %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:846
+#: ../src/gnome-chess.vala:856
 #, c-format
 msgid "White rook at %1$s takes the black knight at %2$s"
-msgstr "Λευκός πύργος στο %1$s αιχμαλωτίζει μαύρο ίππο στο %2$s"
+msgstr "Ο λευκός πύργος στο %1$s παίρνει τον μαύρο ίππο στο %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:848
+#: ../src/gnome-chess.vala:858
 #, c-format
 msgid "White rook at %1$s takes the black bishop at %2$s"
-msgstr "Λευκός πύργος στο %1$s αιχμαλωτίζει μαύρο αξιωματικό στο %2$s"
+msgstr "Ο λευκός πύργος στο %1$s παίρνει τον μαύρο αξιωματικό στο %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
-#: ../src/gnome-chess.vala:850
+#: ../src/gnome-chess.vala:860
 #, c-format
 msgid "White rook at %1$s takes the black queen at %2$s"
-msgstr "Λευκός πύργος στο %1$s αιχμαλωτίζει μαύρη βασίλισσα στο %2$s"
+msgstr "Ο λευκός πύργος στο %1$s παίρνει τη μαύρη βασίλισσα στο %2$s"
 
 #. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
-#: ../src/gnome-chess.vala:852
+#: ../src/gnome-chess.vala:862
 #, c-format
 msgid "White knight moves from %1$s to %2$s"
 msgstr "Λευκός ίππος μετακινείται από το %1$s στο %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:854
+#: ../src/gnome-chess.vala:864
 #, c-format
 msgid "White knight at %1$s takes the black pawn at %2$s"
-msgstr "Λευκός ίππος στο %1$s αιχμαλωτίζει μαύρο πιόνι στο %2$s"
+msgstr "Ο λευκός ίππος στο %1$s παίρνει το μαύρο πιόνι στο %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:856
+#: ../src/gnome-chess.vala:866
 #, c-format
 msgid "White knight at %1$s takes the black rook at %2$s"
-msgstr "Λευκός ίππος στο %1$s αιχμαλωτίζει μαύρο πύργο στο %2$s"
+msgstr "Ο λευκός ίππος στο %1$s παίρνει τον μαύρο πύργο στο %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:858
+#: ../src/gnome-chess.vala:868
 #, c-format
 msgid "White knight at %1$s takes the black knight at %2$s"
-msgstr "Λευκός ίππος στο %1$s αιχμαλωτίζει μαύρο ίππο στο %2$s"
+msgstr "Ο λευκός ίππος στο %1$s παίρνει τον μαύρο ίππο στο %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:860
+#: ../src/gnome-chess.vala:870
 #, c-format
 msgid "White knight at %1$s takes the black bishop at %2$s"
-msgstr "Λευκός ίππος στο %1$s αιχμαλωτίζει μαύρο αξιωματικό στο %2$s"
+msgstr "Ο λευκός ίππος στο %1$s παίρνει τον μαύρο αξιωματικό στο %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:862
+#: ../src/gnome-chess.vala:872
 #, c-format
 msgid "White knight at %1$s takes the black queen at %2$s"
-msgstr "Λευκός ίππος στο %1$s αιχμαλωτίζει μαύρη βασίλισσα στο %2$s"
+msgstr "Ο λευκός ίππος στο %1$s παίρνει τη μαύρη βασίλισσα στο %2$s"
 
 #. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
-#: ../src/gnome-chess.vala:864
+#: ../src/gnome-chess.vala:874
 #, c-format
 msgid "White bishop moves from %1$s to %2$s"
 msgstr "Λευκός αξιωματικός μετακινείται από το %1$s στο %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:866
+#: ../src/gnome-chess.vala:876
 #, c-format
 msgid "White bishop at %1$s takes the black pawn at %2$s"
-msgstr "Λευκός αξιωματικός στο %1$s αιχμαλωτίζει μαύρο πιόνι στο %2$s"
+msgstr "Ο λευκός αξιωματικός στο %1$s παίρνει το μαύρο πιόνι στο %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:868
+#: ../src/gnome-chess.vala:878
 #, c-format
 msgid "White bishop at %1$s takes the black rook at %2$s"
-msgstr "Λευκός αξιωματικός στο %1$s αιχμαλωτίζει μαύρο πύργο στο %2$s"
+msgstr "Ο λευκός αξιωματικός στο %1$s παίρνει τον μαύρο πύργο στο %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:870
+#: ../src/gnome-chess.vala:880
 #, c-format
 msgid "White bishop at %1$s takes the black knight at %2$s"
-msgstr "Λευκός αξιωματικός στο %1$s αιχμαλωτίζει μαύρο ίππο στο %2$s"
+msgstr "Ο λευκός αξιωματικός στο %1$s παίρνει τον μαύρο ίππο στο %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:872
+#: ../src/gnome-chess.vala:882
 #, c-format
 msgid "White bishop at %1$s takes the black bishop at %2$s"
-msgstr "Λευκός αξιωματικός στο %1$s αιχμαλωτίζει μαύρο αξιωματικό στο %2$s"
+msgstr "Ο λευκός αξιωματικός στο %1$s παίρνει τον μαύρο αξιωματικό στο %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:874
+#: ../src/gnome-chess.vala:884
 #, c-format
 msgid "White bishop at %1$s takes the black queen at %2$s"
-msgstr "Λευκός αξιωματικός στο %1$s αιχμαλωτίζει μαύρη βασίλισσα στο %2$s"
+msgstr "Ο λευκός αξιωματικός στο %1$s παίρνει τη μαύρη βασίλισσα στο %2$s"
 
 #. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
-#: ../src/gnome-chess.vala:876
+#: ../src/gnome-chess.vala:886
 #, c-format
 msgid "White queen moves from %1$s to %2$s"
 msgstr "Λευκή βασίλισσα μετακινείται από το %1$s στο %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:878
+#: ../src/gnome-chess.vala:888
 #, c-format
 msgid "White queen at %1$s takes the black pawn at %2$s"
-msgstr "Λευκή βασίλισσα στο %1$s αιχμαλωτίζει μαύρο πιόνι στο %2$s"
+msgstr "Η λευκή βασίλισσα στο %1$s παίρνει το μαύρο πιόνι στο %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:880
+#: ../src/gnome-chess.vala:890
 #, c-format
 msgid "White queen at %1$s takes the black rook at %2$s"
-msgstr "Λευκή βασίλισσα στο %1$s αιχμαλωτίζει μαύρο πύργο στο %2$s"
+msgstr "Η λευκή βασίλισσα στο %1$s παίρνει τον μαύρο πύργο στο %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:882
+#: ../src/gnome-chess.vala:892
 #, c-format
 msgid "White queen at %1$s takes the black knight at %2$s"
-msgstr "Λευκή βασίλισσα στο %1$s αιχμαλωτίζει μαύρο ίππο στο %2$s"
+msgstr "Η λευκή βασίλισσα στο %1$s παίρνει τον μαύρο ίππο στο %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:884
+#: ../src/gnome-chess.vala:894
 #, c-format
 msgid "White queen at %1$s takes the black bishop at %2$s"
-msgstr "Λευκή βασίλισσα στο %1$s αιχμαλωτίζει μαύρο αξιωματικό στο %2$s"
+msgstr "Η Λευκή βασίλισσα στο %1$s παίρνει τον μαύρο αξιωματικό στο %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:886
+#: ../src/gnome-chess.vala:896
 #, c-format
 msgid "White queen at %1$s takes the black queen at %2$s"
-msgstr "Λευκή βασίλισσα στο %1$s αιχμαλωτίζει μαύρη βασίλισσα στο %2$s"
+msgstr "Η λευκή βασίλισσα στο %1$s παίρνει τη μαύρη βασίλισσα στο %2$s"
 
 #. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
-#: ../src/gnome-chess.vala:888
+#: ../src/gnome-chess.vala:898
 #, c-format
 msgid "White king moves from %1$s to %2$s"
 msgstr "Λευκός βασιλιάς μετακινείται από το %1$s στο %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:890
+#: ../src/gnome-chess.vala:900
 #, c-format
 msgid "White king at %1$s takes the black pawn at %2$s"
-msgstr "Λευκός βασιλιάς στο %1$s αιχμαλωτίζει μαύρο πιόνι στο %2$s"
+msgstr "Ο λευκός βασιλιάς στο %1$s παίρνει το μαύρο πιόνι στο %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:892
+#: ../src/gnome-chess.vala:902
 #, c-format
 msgid "White king at %1$s takes the black rook at %2$s"
-msgstr "Λευκός βασιλιάς στο %1$s αιχμαλωτίζει μαύρο πύργο στο %2$s"
+msgstr "Ο λευκός βασιλιάς στο %1$s παίρνει τον μαύρο πύργο στο %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:894
+#: ../src/gnome-chess.vala:904
 #, c-format
 msgid "White king at %1$s takes the black knight at %2$s"
-msgstr "Λευκός βασιλιάς στο %1$s αιχμαλωτίζει μαύρο ίππο στο %2$s"
+msgstr "Ο λευκός βασιλιάς στο %1$s παίρνει τον μαύρο ίππο στο %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:896
+#: ../src/gnome-chess.vala:906
 #, c-format
 msgid "White king at %1$s takes the black bishop at %2$s"
-msgstr "Λευκός βασιλιάς στο %1$s αιχμαλωτίζει μαύρο αξιωματικό στο %2$s"
+msgstr "Ο λευκός βασιλιάς στο %1$s παίρνει τον μαύρο αξιωματικό στο %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:898
+#: ../src/gnome-chess.vala:908
 #, c-format
 msgid "White king at %1$s takes the black queen at %2$s"
-msgstr "Λευκός βασιλιάς στο %1$s αιχμαλωτίζει μαύρη βασίλισσα στο %2$s"
+msgstr "Ο λευκός βασιλιάς στο %1$s παίρνει τη μαύρη βασίλισσα στο %2$s"
 
 #. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
-#: ../src/gnome-chess.vala:900
+#: ../src/gnome-chess.vala:910
 #, c-format
 msgid "Black pawn moves from %1$s to %2$s"
 msgstr "Μαύρο πιόνι μετακινείται από το %1$s στο %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:902
+#: ../src/gnome-chess.vala:912
 #, c-format
 msgid "Black pawn at %1$s takes the white pawn at %2$s"
-msgstr "Μαύρο πιόνι στο %1$s αιχμαλωτίζει λευκό πιόνι στο %2$s"
+msgstr "Το μαύρο πιόνι στο %1$s παίρνει το λευκό πιόνι στο %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:904
+#: ../src/gnome-chess.vala:914
 #, c-format
 msgid "Black pawn at %1$s takes the white rook at %2$s"
-msgstr "Μαύρο πιόνι στο %1$s αιχμαλωτίζει λευκό πύργο στο %2$s"
+msgstr "Το μαύρο πιόνι στο %1$s παίρνει τον λευκό πύργο στο %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:906
+#: ../src/gnome-chess.vala:916
 #, c-format
 msgid "Black pawn at %1$s takes the white knight at %2$s"
-msgstr "Μαύρο πιόνι στο %1$s αιχμαλωτίζει λευκό ίππο στο %2$s"
+msgstr "Το μαύρο πιόνι στο %1$s παίρνει τον λευκό ίππο στο %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:908
+#: ../src/gnome-chess.vala:918
 #, c-format
 msgid "Black pawn at %1$s takes the white bishop at %2$s"
-msgstr "Μαύρο πιόνι στο %1$s αιχμαλωτίζει λευκό αξιωματικό στο %2$s"
+msgstr "Το μαύρο πιόνι στο %1$s παίρνει τον λευκό αξιωματικό στο %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:910
+#: ../src/gnome-chess.vala:920
 #, c-format
 msgid "Black pawn at %1$s takes the white queen at %2$s"
-msgstr "Μαύρο πιόνι στο %1$s αιχμαλωτίζει λευκή βασίλισσα στο %2$s"
+msgstr "Το μαύρο πιόνι στο %1$s παίρνει τη λευκή βασίλισσα στο %2$s"
 
 #. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
-#: ../src/gnome-chess.vala:912
+#: ../src/gnome-chess.vala:922
 #, c-format
 msgid "Black rook moves from %1$s to %2$s"
 msgstr "Μαύρος πύργος μετακινείται από το %1$s στο %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:914
-#, c-format
-msgid "Black rook at %1$s takes the white pawn at %2$s"
-msgstr "Μαύρος πύργος στο %1$s αιχμαλωτίζει λευκό πιόνι στο %2$s"
-
-#. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:916
-#, c-format
-msgid "Black rook at %1$s takes the white rook at %2$s"
-msgstr "Μαύρος πύργος στο %1$s αιχμαλωτίζει λευκό πύργο στο %2$s"
-
-#. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:918
-#, c-format
-msgid "Black rook at %1$s takes the white knight at %2$s"
-msgstr "Μαύρος πύργος στο %1$s αιχμαλωτίζει λευκό ίππο στο %2$s"
-
-#. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:920
-#, c-format
-msgid "Black rook at %1$s takes the white bishop at %2$s"
-msgstr "Μαύρος πύργος στο %1$s αιχμαλωτίζει λευκό αξιωματικό στο %2$s"
-
-#. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:922
-#, c-format
-msgid "Black rook at %1$s takes the white queen at %2$s"
-msgstr "Μαύρος πύργος στο %1$s αιχμαλωτίζει λευκή βασίλισσα στο %2$s"
-
-#. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
 #: ../src/gnome-chess.vala:924
 #, c-format
-msgid "Black knight moves from %1$s to %2$s"
-msgstr "Μαύρος ίππος μετακινείται από το %1$s στο %2$s"
+msgid "Black rook at %1$s takes the white pawn at %2$s"
+msgstr "Ο μαύρος πύργος στο %1$s παίρνει το λευκό πιόνι στο %2$s"
 
-#. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
+#. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
 #: ../src/gnome-chess.vala:926
 #, c-format
-msgid "Black knight at %1$s takes the white pawn at %2$s"
-msgstr "Μαύρος ίππος στο %1$s αιχμαλωτίζει λευκό πιόνι στο %2$s"
+msgid "Black rook at %1$s takes the white rook at %2$s"
+msgstr "Ο μαύρος πύργος στο %1$s παίρνει τον λευκό πύργο στο %2$s"
 
-#. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
+#. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
 #: ../src/gnome-chess.vala:928
 #, c-format
-msgid "Black knight at %1$s takes the white rook at %2$s"
-msgstr "Μαύρος ίππος στο %1$s αιχμαλωτίζει λευκό πύργο στο %2$s"
+msgid "Black rook at %1$s takes the white knight at %2$s"
+msgstr "Ο μαύρος πύργος στο %1$s παίρνει τον λευκό ίππο στο %2$s"
 
-#. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
+#. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
 #: ../src/gnome-chess.vala:930
 #, c-format
-msgid "Black knight at %1$s takes the white knight at %2$s"
-msgstr "Μαύρος ίππος στο %1$s αιχμαλωτίζει λευκό ίππο στο %2$s"
+msgid "Black rook at %1$s takes the white bishop at %2$s"
+msgstr "Ο μαύρος πύργος στο %1$s παίρνει τον λευκό αξιωματικό στο %2$s"
 
-#. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
+#. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
 #: ../src/gnome-chess.vala:932
 #, c-format
-msgid "Black knight at %1$s takes the white bishop at %2$s"
-msgstr "Μαύρος ίππος στο %1$s αιχμαλωτίζει λευκό αξιωματικό στο %2$s"
+msgid "Black rook at %1$s takes the white queen at %2$s"
+msgstr "Ο μαύρος πύργος στο %1$s παίρνει τη λευκή βασίλισσα στο %2$s"
 
-#. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
+#. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
 #: ../src/gnome-chess.vala:934
 #, c-format
-msgid "Black knight at %1$s takes the white queen at %2$s"
-msgstr "Μαύρος ίππος στο %1$s αιχμαλωτίζει λευκή βασίλισσα στο %2$s"
+msgid "Black knight moves from %1$s to %2$s"
+msgstr "Ο μαύρος ίππος μετακινείται από το %1$s στο %2$s"
 
-#. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
+#. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
 #: ../src/gnome-chess.vala:936
 #, c-format
-msgid "Black bishop moves from %1$s to %2$s"
-msgstr "Μαύρος αξιωματικός μετακινείται από το %1$s στο %2$s"
+msgid "Black knight at %1$s takes the white pawn at %2$s"
+msgstr "Ο μαύρος ίππος στο %1$s παίρνει το λευκό πιόνι στο %2$s"
 
-#. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
+#. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
 #: ../src/gnome-chess.vala:938
 #, c-format
-msgid "Black bishop at %1$s takes the white pawn at %2$s"
-msgstr "Μαύρος αξιωματικός στο %1$s αιχμαλωτίζει λευκό πιόνι στο %2$s"
+msgid "Black knight at %1$s takes the white rook at %2$s"
+msgstr "Ο μαύρος ίππος στο %1$s παίρνει τον λευκό πύργο στο %2$s"
 
-#. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
+#. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
 #: ../src/gnome-chess.vala:940
 #, c-format
-msgid "Black bishop at %1$s takes the white rook at %2$s"
-msgstr "Μαύρος αξιωματικός στο %1$s αιχμαλωτίζει λευκό πύργο στο %2$s"
+msgid "Black knight at %1$s takes the white knight at %2$s"
+msgstr "Ο μαύρος ίππος στο %1$s παίρνει τον λευκό ίππο στο %2$s"
 
-#. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
+#. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
 #: ../src/gnome-chess.vala:942
 #, c-format
-msgid "Black bishop at %1$s takes the white knight at %2$s"
-msgstr "Μαύρος αξιωματικός στο %1$s αιχμαλωτίζει λευκό ίππο στο %2$s"
+msgid "Black knight at %1$s takes the white bishop at %2$s"
+msgstr "Ο μαύρος ίππος στο %1$s παίρνει τον λευκό αξιωματικό στο %2$s"
 
-#. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
+#. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
 #: ../src/gnome-chess.vala:944
 #, c-format
-msgid "Black bishop at %1$s takes the white bishop at %2$s"
-msgstr "Μαύρος αξιωματικός στο %1$s αιχμαλωτίζει λευκό αξιωματικό στο %2$s"
+msgid "Black knight at %1$s takes the white queen at %2$s"
+msgstr "Ο μαύρος ίππος στο %1$s παίρνει τη λευκή βασίλισσα στο %2$s"
 
-#. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
+#. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
 #: ../src/gnome-chess.vala:946
 #, c-format
-msgid "Black bishop at %1$s takes the white queen at %2$s"
-msgstr "Μαύρος αξιωματικός στο %1$s αιχμαλωτίζει λευκή βασίλισσα στο %2$s"
+msgid "Black bishop moves from %1$s to %2$s"
+msgstr "Ο μαύρος αξιωματικός μετακινείται από το %1$s στο %2$s"
 
-#. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
+#. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
 #: ../src/gnome-chess.vala:948
 #, c-format
-msgid "Black queen moves from %1$s to %2$s"
-msgstr "Μαύρη βασίλισσα μετακινείται από το %1$s στο %2$s"
+msgid "Black bishop at %1$s takes the white pawn at %2$s"
+msgstr "Ο Μαύρος αξιωματικός στο %1$s παίρνει το λευκό πιόνι στο %2$s"
 
-#. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
+#. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
 #: ../src/gnome-chess.vala:950
 #, c-format
-msgid "Black queen at %1$s takes the white pawn at %2$s"
-msgstr "Μαύρη βασίλισσα στο %1$s αιχμαλωτίζει λευκό πιόνι στο %2$s"
+msgid "Black bishop at %1$s takes the white rook at %2$s"
+msgstr "Ο μαύρος αξιωματικός στο %1$s παίρνει τον λευκό πύργο στο %2$s"
 
-#. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
+#. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
 #: ../src/gnome-chess.vala:952
 #, c-format
-msgid "Black queen at %1$s takes the white rook at %2$s"
-msgstr "Μαύρη βασίλισσα στο %1$s αιχμαλωτίζει λευκό πύργο στο %2$s"
+msgid "Black bishop at %1$s takes the white knight at %2$s"
+msgstr "Ο μαύρος αξιωματικός στο %1$s παίρνει τον λευκό ίππο στο %2$s"
 
-#. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
+#. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
 #: ../src/gnome-chess.vala:954
 #, c-format
-msgid "Black queen at %1$s takes the white knight at %2$s"
-msgstr "Μαύρη βασίλισσα στο %1$s αιχμαλωτίζει λευκό ίππο στο %2$s"
+msgid "Black bishop at %1$s takes the white bishop at %2$s"
+msgstr "Ο μαύρος αξιωματικός στο %1$s παίρνει τον λευκό αξιωματικό στο %2$s"
 
-#. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
+#. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
 #: ../src/gnome-chess.vala:956
 #, c-format
-msgid "Black queen at %1$s takes the white bishop at %2$s"
-msgstr "Μαύρη βασίλισσα στο %1$s αιχμαλωτίζει λευκό αξιωματικό στο %2$s"
+msgid "Black bishop at %1$s takes the white queen at %2$s"
+msgstr "Ο μαύρος αξιωματικός στο %1$s παίρνει τη λευκή βασίλισσα στο %2$s"
 
-#. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
+#. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
 #: ../src/gnome-chess.vala:958
 #, c-format
-msgid "Black queen at %1$s takes the white queen at %2$s"
-msgstr "Μαύρη βασίλισσα στο %1$s αιχμαλωτίζει λευκή βασίλισσα στο %2$s"
+msgid "Black queen moves from %1$s to %2$s"
+msgstr "Η μαύρη βασίλισσα μετακινείται από το %1$s στο %2$s"
 
-#. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
+#. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
 #: ../src/gnome-chess.vala:960
 #, c-format
-msgid "Black king moves from %1$s to %2$s"
-msgstr "Μαύρος βασιλιάς μετακινείται από το %1$s στο %2$s"
+msgid "Black queen at %1$s takes the white pawn at %2$s"
+msgstr "Η μαύρη βασίλισσα στο %1$s παίρνει το λευκό πιόνι στο %2$s"
 
-#. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
+#. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
 #: ../src/gnome-chess.vala:962
 #, c-format
-msgid "Black king at %1$s takes the white pawn at %2$s"
-msgstr "Μαύρος βασιλιάς στο %1$s αιχμαλωτίζει λευκό πιόνι στο %2$s"
+msgid "Black queen at %1$s takes the white rook at %2$s"
+msgstr "Η μαύρη βασίλισσα στο %1$s παίρνει τον λευκό πύργο στο %2$s"
 
-#. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
+#. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
 #: ../src/gnome-chess.vala:964
 #, c-format
-msgid "Black king at %1$s takes the white rook at %2$s"
-msgstr "Μαύρος βασιλιάς στο %1$s αιχμαλωτίζει λευκό πύργο στο %2$s"
+msgid "Black queen at %1$s takes the white knight at %2$s"
+msgstr "Η μαύρη βασίλισσα στο %1$s παίρνει τον λευκό ίππο στο %2$s"
 
-#. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
+#. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
 #: ../src/gnome-chess.vala:966
 #, c-format
-msgid "Black king at %1$s takes the white knight at %2$s"
-msgstr "Μαύρος βασιλιάς στο %1$s αιχμαλωτίζει λευκό ίππο στο %2$s"
+msgid "Black queen at %1$s takes the white bishop at %2$s"
+msgstr "Η μαύρη βασίλισσα στο %1$s παίρνει τον λευκό αξιωματικό στο %2$s"
 
-#. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
+#. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
 #: ../src/gnome-chess.vala:968
 #, c-format
-msgid "Black king at %1$s takes the white bishop at %2$s"
-msgstr "Μαύρος βασιλιάς στο %1$s αιχμαλωτίζει λευκό αξιωματικό στο %2$s"
+msgid "Black queen at %1$s takes the white queen at %2$s"
+msgstr "Η μαύρη βασίλισσα στο %1$s παίρνει τη λευκή βασίλισσα στο %2$s"
 
-#. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
+#. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
 #: ../src/gnome-chess.vala:970
 #, c-format
-msgid "Black king at %1$s takes the white queen at %2$s"
-msgstr "Μαύρος βασιλιάς στο %1$s αιχμαλωτίζει λευκή βασίλισσα στο %2$s"
+msgid "Black king moves from %1$s to %2$s"
+msgstr "Ο μαύρος βασιλιάς μετακινείται από το %1$s στο %2$s"
 
-#: ../src/gnome-chess.vala:993
+#. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
+#: ../src/gnome-chess.vala:972
+#, c-format
+msgid "Black king at %1$s takes the white pawn at %2$s"
+msgstr "Ο μαύρος βασιλιάς στο %1$s παίρνει το λευκό πιόνι στο %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
+#: ../src/gnome-chess.vala:974
+#, c-format
+msgid "Black king at %1$s takes the white rook at %2$s"
+msgstr "Ο μαύρος βασιλιάς στο %1$s παίρνει τον λευκό πύργο στο %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
+#: ../src/gnome-chess.vala:976
+#, c-format
+msgid "Black king at %1$s takes the white knight at %2$s"
+msgstr "Ο μαύρος βασιλιάς στο %1$s παίρνει τον λευκό ίππο στο %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
+#: ../src/gnome-chess.vala:978
+#, c-format
+msgid "Black king at %1$s takes the white bishop at %2$s"
+msgstr "Ο μαύρος βασιλιάς στο %1$s παίρνει τον λευκό αξιωματικό στο %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
+#: ../src/gnome-chess.vala:980
+#, c-format
+msgid "Black king at %1$s takes the white queen at %2$s"
+msgstr "Ο μαύρος βασιλιάς στο %1$s παίρνει τη λευκή βασίλισσα στο %2$s"
+
+#: ../src/gnome-chess.vala:1003
 msgid "White castles kingside"
 msgstr "Ροκέ λευκών στην πλευρά του βασιλιά"
 
-#: ../src/gnome-chess.vala:997
+#: ../src/gnome-chess.vala:1007
 msgid "White castles queenside"
 msgstr "Ροκέ λευκών στην πλευρά της βασίλισσας"
 
-#: ../src/gnome-chess.vala:1001
+#: ../src/gnome-chess.vala:1011
 msgid "Black castles kingside"
 msgstr "Ροκέ μαύρων στην πλευρά του βασιλιά"
 
-#: ../src/gnome-chess.vala:1005
+#: ../src/gnome-chess.vala:1015
 msgid "Black castles queenside"
 msgstr "Ροκέ μαύρων στην πλευρά της βασίλισσας"
 
 #. Window title on a White human's turn if he is in check
-#: ../src/gnome-chess.vala:1144
+#: ../src/gnome-chess.vala:1154
 msgid "White is in Check"
 msgstr "Σαχ στον λευκό"
 
 #. Window title on a Black human's turn if he is in check
-#: ../src/gnome-chess.vala:1147
+#: ../src/gnome-chess.vala:1157
 msgid "Black is in Check"
 msgstr "Σαχ στον μαύρο"
 
 #. Window title on White's turn if White is human
-#: ../src/gnome-chess.vala:1153
+#: ../src/gnome-chess.vala:1163
 msgid "White to Move"
 msgstr "Η κίνηση στον λευκό"
 
 #. Window title on White's turn if White is a computer
-#: ../src/gnome-chess.vala:1156
+#: ../src/gnome-chess.vala:1166
 msgid "White is Thinking…"
 msgstr "Ο λευκός σκέπτεται…"
 
 #. Window title on Black's turn if Black is human
-#: ../src/gnome-chess.vala:1162
+#: ../src/gnome-chess.vala:1172
 msgid "Black to Move"
 msgstr "Η κίνηση στον μαύρο"
 
 #. Window title on Black's turn if Black is a computer
-#: ../src/gnome-chess.vala:1165
+#: ../src/gnome-chess.vala:1175
 msgid "Black is Thinking…"
 msgstr "Ο μαύρος σκέπτεται…"
 
-#: ../src/gnome-chess.vala:1180
+#: ../src/gnome-chess.vala:1190
 msgid "Unpause the game"
 msgstr "Αναίρεση παύσης της παρτίδας"
 
-#: ../src/gnome-chess.vala:1186
+#: ../src/gnome-chess.vala:1196
 msgid "Pause the game"
 msgstr "Παύση παρτίδας"
 
 #. Window title when the white player wins
-#: ../src/gnome-chess.vala:1209
+#: ../src/gnome-chess.vala:1219
 msgid "White Wins"
 msgstr "Τα λευκά κέρδισαν"
 
 #. Window title when the black player wins
-#: ../src/gnome-chess.vala:1214
+#: ../src/gnome-chess.vala:1224
 msgid "Black Wins"
 msgstr "Τα μαύρα κέρδισαν"
 
 #. Window title when the game is drawn
-#: ../src/gnome-chess.vala:1219
+#: ../src/gnome-chess.vala:1229
 msgid "Game is Drawn"
 msgstr "Η παρτίδα είναι ισόπαλη"
 
@@ -1041,190 +1062,190 @@ msgstr "Η παρτίδα είναι ισόπαλη"
 #. * because the pause button eats up some of your space, start a new game,
 #. * then run 'killall gnuchess' in a terminal.
 #.
-#: ../src/gnome-chess.vala:1231
+#: ../src/gnome-chess.vala:1241
 msgid "Oops! Something has gone wrong."
 msgstr "Ώχ! Κάτι πήγε στραβά."
 
 #. Window subtitle when Black is checkmated
-#: ../src/gnome-chess.vala:1244
+#: ../src/gnome-chess.vala:1254
 msgid "Black is in check and cannot move."
 msgstr "Ο μαύρος είναι σε θέση σαχ και δεν μπορεί να μετακινηθεί."
 
 #. Window subtitle when White is checkmated
-#: ../src/gnome-chess.vala:1247
+#: ../src/gnome-chess.vala:1257
 msgid "White is in check and cannot move."
 msgstr "Ο λευκός είναι σε θέση σαχ και δεν μπορεί να μετακινηθεί."
 
 #. Window subtitle when the game terminates due to a stalemate
-#: ../src/gnome-chess.vala:1253
+#: ../src/gnome-chess.vala:1263
 msgid "Opponent cannot move."
 msgstr "Αδυναμία κίνησης αντιπάλου (πατ)."
 
 #. Window subtitle when the game is drawn due to the fifty move rule
-#: ../src/gnome-chess.vala:1257
+#: ../src/gnome-chess.vala:1267
 msgid "No piece was taken or pawn moved in fifty moves."
 msgstr ""
 "Δεν έχει αιχμαλωτιστεί κανένα κομμάτι ή έχει κινηθεί πιόνι σε 50 κινήσεις."
 
 #. Window subtitle when the game ends due to Black's clock stopping
-#: ../src/gnome-chess.vala:1262
+#: ../src/gnome-chess.vala:1272
 msgid "Black has run out of time."
 msgstr "Τέλειωσε ο χρόνος του μαύρου."
 
 #. Window subtitle when the game ends due to White's clock stopping
-#: ../src/gnome-chess.vala:1265
+#: ../src/gnome-chess.vala:1275
 msgid "White has run out of time."
 msgstr "Τέλειωσε ο χρόνος του λευκού."
 
 #. Window subtitle when the game is drawn due to the three-fold-repetition rule
-#: ../src/gnome-chess.vala:1271
+#: ../src/gnome-chess.vala:1281
 msgid "The same board state has occurred three times."
 msgstr "Η ίδια θέση στην σκακιέρα έχει προκύψει τρεις φορές (ισοπαλία)."
 
 #. Window subtitle when the game is drawn due to the insufficient material rule
-#: ../src/gnome-chess.vala:1275
+#: ../src/gnome-chess.vala:1285
 msgid "Neither player can checkmate."
 msgstr ""
 "Κανένας από τους παίκτες δεν μπορεί να επιτύχει σαχ ματ (ανεπαρκή κομμάτια)."
 
 #. Window subtitle when the game ends due to the black player resigning
-#: ../src/gnome-chess.vala:1280
+#: ../src/gnome-chess.vala:1290
 msgid "Black has resigned."
 msgstr "Τα μαύρα παραιτήθηκαν."
 
 #. Window subtitle when the game ends due to the white player resigning
-#: ../src/gnome-chess.vala:1283
+#: ../src/gnome-chess.vala:1293
 msgid "White has resigned."
 msgstr "Τα λευκά παραιτήθηκαν."
 
 #. Window subtitle when a game is abandoned
-#: ../src/gnome-chess.vala:1289
+#: ../src/gnome-chess.vala:1299
 msgid "The game has been abandoned."
 msgstr "Εγκαταλείφθηκε η παρτίδα."
 
 #. Window subtitle when the game ends due to a player dying.
 #. * This is a PGN standard. GNOME Chess will never kill the user.
-#: ../src/gnome-chess.vala:1295
+#: ../src/gnome-chess.vala:1305
 msgid "The game log says a player died!"
 msgstr "Το αρχείο καταγραφής του παιχνιδιού λέει ένας παίκτης έχασε!"
 
 #. Window subtitle when something goes wrong with the engine...
 #. * or when the engine says something is wrong with us!
-#: ../src/gnome-chess.vala:1301
+#: ../src/gnome-chess.vala:1311
 msgid "The computer player is confused. The game cannot continue."
 msgstr ""
 "Ο παίκτης του υπολογιστή είναι σε σύγχυση. Η παρτίδα δεν μπορεί να "
 "συνεχιστεί."
 
-#: ../src/gnome-chess.vala:1336 ../src/gnome-chess.vala:2221
-#: ../src/gnome-chess.vala:2304
+#: ../src/gnome-chess.vala:1346 ../src/gnome-chess.vala:2258
+#: ../src/gnome-chess.vala:2341
 msgid "_Cancel"
 msgstr "_Ακύρωση"
 
-#: ../src/gnome-chess.vala:1340
+#: ../src/gnome-chess.vala:1350
 msgid "_Abandon game"
 msgstr "Ε_γκατάλειψη παρτίδας"
 
-#: ../src/gnome-chess.vala:1341
+#: ../src/gnome-chess.vala:1351
 msgid "_Save game for later"
 msgstr "Απο_θήκευση παρτίδας για αργότερα"
 
-#: ../src/gnome-chess.vala:1345
+#: ../src/gnome-chess.vala:1355
 msgid "_Discard game"
 msgstr "Απόρρι_ψη παρτίδας"
 
-#: ../src/gnome-chess.vala:1346
+#: ../src/gnome-chess.vala:1356
 msgid "_Save game log"
 msgstr "Απο_θήκευση καταγραφής παιχνιδιού"
 
 #. Your very last chance to save
-#: ../src/gnome-chess.vala:1359
+#: ../src/gnome-chess.vala:1369
 msgid "_Discard"
 msgstr "Α_πόρριψη"
 
-#: ../src/gnome-chess.vala:1359 ../src/gnome-chess.vala:2222
+#: ../src/gnome-chess.vala:1369 ../src/gnome-chess.vala:2259
 msgid "_Save"
 msgstr "_Αποθήκευση"
 
 #. Title of claim draw dialog
-#: ../src/gnome-chess.vala:1382
+#: ../src/gnome-chess.vala:1392
 msgid "Would you like to claim a draw?"
 msgstr "Θα θέλατε να ζητήσετε ισοπαλία;"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: ../src/gnome-chess.vala:1388
+#: ../src/gnome-chess.vala:1398
 msgid "Fifty moves have passed without a capture or pawn advancement."
 msgstr "Πενήντα κινήσεις έχουν περάσει χωρίς αιχμαλωσία ή προαγωγή πιονιού."
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: ../src/gnome-chess.vala:1393
+#: ../src/gnome-chess.vala:1403
 msgid "The current board position has occurred three times."
 msgstr "Η ίδια θέση στην σκακιέρα έχει προκύψει τρεις φορές."
 
 #. Displays in claim draw dialog to warn player that the dialog only appears once
-#: ../src/gnome-chess.vala:1399
+#: ../src/gnome-chess.vala:1409
 msgid "(You will not be offered this choice again.)"
 msgstr "(Δεν θα σας προσφερθεί αυτή η επιλογή ξανά.)"
 
 #. Option in claim draw dialog
 #. Option on warning dialog when player clicks resign
-#: ../src/gnome-chess.vala:1402 ../src/gnome-chess.vala:1442
+#: ../src/gnome-chess.vala:1412 ../src/gnome-chess.vala:1452
 msgid "_Keep Playing"
 msgstr "Συνέ_χιση παιχνιδιού"
 
 #. Option in claim draw dialog
-#: ../src/gnome-chess.vala:1404
+#: ../src/gnome-chess.vala:1414
 msgid "_Claim Draw"
 msgstr "Αί_τημα ισοπαλίας"
 
-#: ../src/gnome-chess.vala:1424
+#: ../src/gnome-chess.vala:1434
 msgid "Save this game before starting a new one?"
 msgstr "Αποθήκευση αυτής της παρτίδας πριν να ξεκινήσει καινούργια;"
 
 #. Title of warning dialog when player clicks Resign
-#: ../src/gnome-chess.vala:1437
+#: ../src/gnome-chess.vala:1447
 msgid "Are you sure you want to resign?"
 msgstr "Είστε σίγουροι ότι θέλετε να παραιτηθείτε;"
 
 #. Text on warning dialog when player clicks Resign
-#: ../src/gnome-chess.vala:1440
+#: ../src/gnome-chess.vala:1450
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr ""
 "Αυτό έχει νόημα αν σκοπεύετε να αποθηκεύσετε την παρτίδας ως μια καταγραφή "
 "των ηττών σας."
 
 #. Option on warning dialog when player clicks resign
-#: ../src/gnome-chess.vala:1444
+#: ../src/gnome-chess.vala:1454
 msgid "_Resign"
 msgstr "Παραίτ_ηση"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
 #. Preferences Dialog: Combo box entry for a custom clock type set in minutes
-#: ../src/gnome-chess.vala:1956 ../src/gnome-chess.vala:1997
+#: ../src/gnome-chess.vala:1967 ../src/gnome-chess.vala:2008
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "λεπτό"
 msgstr[1] "λεπτά"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../src/gnome-chess.vala:1960
+#: ../src/gnome-chess.vala:1971
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "ώρα"
 msgstr[1] "ώρες"
 
 #. Preferences Dialog: Combo box entry for a custom clock type set in seconds
-#: ../src/gnome-chess.vala:1993
+#: ../src/gnome-chess.vala:2004
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "δευτερόλεπτο"
 msgstr[1] "δευτερόλεπτα"
 
-#: ../src/gnome-chess.vala:2134
+#: ../src/gnome-chess.vala:2145
 msgid "A classic game of positional strategy"
 msgstr "Ένα κλασικό παιχνίδι στρατηγικής"
 
-#: ../src/gnome-chess.vala:2137
+#: ../src/gnome-chess.vala:2148
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
@@ -1239,48 +1260,69 @@ msgstr ""
 "Για περισσότερες πληροφορίες, επισκεφθείτε τη σελίδα\n"
 "http://gnome.gr/"
 
-#: ../src/gnome-chess.vala:2208
+#: ../src/gnome-chess.vala:2161
+msgid "This does not look like a valid PGN game."
+msgstr "Αυτό δεν μοιάζει με έγκυρο παιχνίδι PGN."
+
+#: ../src/gnome-chess.vala:2162 ../src/gnome-chess.vala:2175
+msgid "_OK"
+msgstr "Ε_ντάξει"
+
+#: ../src/gnome-chess.vala:2245
 msgid "Failed to save game"
 msgstr "Αδυναμία αποθήκευσης της παρτίδας"
 
 #. Title of save game dialog
-#: ../src/gnome-chess.vala:2232
+#: ../src/gnome-chess.vala:2269
 msgid "Save Chess Game"
 msgstr "Αποθήκευση της παρτίδας"
 
 #. Default filename for the save game dialog
-#: ../src/gnome-chess.vala:2245
+#: ../src/gnome-chess.vala:2282
 msgid "Untitled Chess Game"
 msgstr "Ανώνυμο παιχνίδι σκακιού"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:2250 ../src/gnome-chess.vala:2314
+#: ../src/gnome-chess.vala:2287 ../src/gnome-chess.vala:2351
 msgid "PGN files"
 msgstr "Αρχεία PGN"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:2256 ../src/gnome-chess.vala:2320
+#: ../src/gnome-chess.vala:2293 ../src/gnome-chess.vala:2357
 msgid "All files"
 msgstr "Όλα τα αρχεία"
 
-#: ../src/gnome-chess.vala:2291
+#: ../src/gnome-chess.vala:2328
 msgid "Save this game before loading another one?"
 msgstr "Αποθήκευση αυτής της παρτίδας πριν τη φόρτωση καινούργιας;"
 
 #. Title of load game dialog
-#: ../src/gnome-chess.vala:2302
+#: ../src/gnome-chess.vala:2339
 msgid "Load Chess Game"
 msgstr "Φόρτωση παρτίδας"
 
-#: ../src/gnome-chess.vala:2305
+#: ../src/gnome-chess.vala:2342
 msgid "_Open"
 msgstr "Άν_οιγμα"
 
-#: ../src/gnome-chess.vala:2339
+#: ../src/gnome-chess.vala:2376
 msgid "Failed to open game"
 msgstr "Αποτυχία ανοίγματος παρτίδας"
+
+#~ msgid "Seconds white has used until last move (0 for first move)"
+#~ msgstr ""
+#~ "Δευτερόλεπτα που ο λευκός έχει χρησιμοποιήσει μέχρι την τελευταία κίνηση "
+#~ "(0 για την πρώτη κίνηση)"
+
+#~ msgid "Seconds black has used until last move (0 for first move)"
+#~ msgstr ""
+#~ "Δευτερόλεπτα που ο μαύρος έχει χρησιμοποιήσει μέχρι την τελευταία κίνηση "
+#~ "(0 για την πρώτη κίνηση)"
+
+#~ msgid "true if the human player is playing white"
+#~ msgstr "αληθές αν ο παίχτης, άνθρωπος, παίζει με τα λευκά"
 
 #~ msgid "%d∶‎%02d"
 #~ msgstr "%d∶‎%02d"
