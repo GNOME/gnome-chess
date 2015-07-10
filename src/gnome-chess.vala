@@ -120,6 +120,19 @@ public class ChessApplication : Gtk.Application
         return -1;
     }
 
+    private void run_no_engine_dialog ()
+    {
+        var no_engine_dialog = new Gtk.MessageDialog (window,
+                                                      Gtk.DialogFlags.MODAL,
+                                                      Gtk.MessageType.ERROR,
+                                                      Gtk.ButtonsType.NONE,
+                                                      _("No chess engine is installed."));
+        no_engine_dialog.add_button (_("_OK"), Gtk.ResponseType.OK);
+
+        no_engine_dialog.run ();
+        no_engine_dialog.destroy ();
+    }
+
     public override void startup ()
     {
         base.startup ();
@@ -185,6 +198,9 @@ public class ChessApplication : Gtk.Application
             ai_profiles = AIProfile.load_ai_profiles (system_engine_cfg);
         else
             warning ("engines.conf not found");
+
+        if (ai_profiles == null)
+           run_no_engine_dialog ();
 
         foreach (var profile in ai_profiles)
             debug ("Detected AI profile %s in %s", profile.name, profile.path);
