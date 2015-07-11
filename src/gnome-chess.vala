@@ -126,7 +126,7 @@ public class ChessApplication : Gtk.Application
                                                       Gtk.DialogFlags.MODAL,
                                                       Gtk.MessageType.ERROR,
                                                       Gtk.ButtonsType.NONE,
-                                                      _("No chess engine is installed."));
+                                                      _("No chess engine is installed. You will not be able to play against the computer."));
         no_engine_dialog.add_button (_("_OK"), Gtk.ResponseType.OK);
 
         no_engine_dialog.run ();
