@@ -64,6 +64,7 @@ public class ChessApplication : Gtk.Application
     private ChessPlayer? opponent = null;
     private ChessPlayer? human_player = null;
     private ChessEngine? opponent_engine = null;
+    private int engine_timeout_counter = 10;
 
     private const ActionEntry[] app_entries =
     {
@@ -816,8 +817,35 @@ public class ChessApplication : Gtk.Application
          */
     }
 
+    private void check_engine_timeout ()
+        requires (engine_timeout_counter >= 0)
+        ensures (engine_timeout_counter >= 0)
+    {
+        if (opponent_engine == null)
+            return;
+
+        if (pgn_game.white_ai != null && game.current_player.color == Color.WHITE ||
+            pgn_game.black_ai != null && game.current_player.color == Color.BLACK)
+        {
+            engine_timeout_counter -= 1;
+
+            if (engine_timeout_counter == 0)
+            {
+                // Chess engine did not move for a long time
+                // End the game assuming a buggy engine
+                engine_error_cb (opponent_engine);
+            }
+        }
+        else
+        {
+            // Reset the engine timeout
+            engine_timeout_counter = 10;
+        }
+    }
+
     private void game_clock_tick_cb (ChessClock clock)
     {
+        check_engine_timeout ();
         white_time_label.queue_draw ();
         black_time_label.queue_draw ();
     }
