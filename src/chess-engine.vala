@@ -19,8 +19,8 @@ public abstract class ChessEngine : Object
     private uint pending_move_source_id;
 
     private Pid pid = 0;
-    private int stdin_fd = 0;
-    private int stderr_fd = 0;
+    private int stdin_fd = -1;
+    private int stderr_fd = -1;
     private IOChannel? stdout_channel;
     private uint stdout_watch_id = 0;
     private bool started = false;
@@ -60,8 +60,8 @@ public abstract class ChessEngine : Object
     public bool start ()
         requires (pid == 0)
         requires (stdout_watch_id == 0)
-        requires (stdin_fd == 0)
-        requires (stderr_fd == 0)
+        requires (stdin_fd == -1)
+        requires (stderr_fd == -1)
         requires (!started)
     {
         string[] argv = {binary};
@@ -104,12 +104,16 @@ public abstract class ChessEngine : Object
     }
 
     private void engine_stopped_cb (Pid pid, int status)
-        requires (pid == this.pid)
-        requires (pid != 0)
     {
-        Process.close_pid (pid);
-        this.pid = 0;
-        stopped ();
+        // This function could be called because the engine quit on its own, or
+        // it could be called because we killed the engine ourselves in
+        // ChessEngine.stop(). If it quit on its own, we need to clean up here.
+        if (started) {
+            stop (false);
+            // This signal is only to be emitted when the chess engine stops
+            // itself, not when another class calls ChessEngine.stop ().
+            stopped ();
+        }
     }
 
     public abstract void start_game ();
@@ -140,14 +144,15 @@ public abstract class ChessEngine : Object
         do_undo ();
     }
 
-    public void stop ()
+    public void stop (bool kill_engine = true)
         requires (!started || stdout_channel != null)
-        requires (!started || stdin_fd != 0)
-        requires (!started || stderr_fd != 0)
+        requires (!started || stdin_fd != -1)
+        requires (!started || stderr_fd != -1)
         requires (!started || pid != 0)
     {
         if (!started)
             return;
+        started = false;
 
         // This can be unset on errors in read_cb.
         if (stdout_watch_id != 0)
@@ -161,17 +166,20 @@ public abstract class ChessEngine : Object
         {
             warning ("Failed to close channel to engine's stdout: %s", e.message);
         }
+        stdout_channel = null;
 
         if (FileUtils.close (stdin_fd) == -1)
             warning ("Failed to close pipe to engine's stdin: %s", strerror (errno));
+        stdin_fd = -1;
 
         if (FileUtils.close (stderr_fd) == -1)
             warning ("Failed to close pipe to engine's stderr: %s", strerror (errno));
+        stderr_fd = -1;
 
-        if (Posix.kill (pid, Posix.SIGTERM) == -1)
+        if (kill_engine && Posix.kill (pid, Posix.SIGTERM) == -1)
             warning ("Failed to kill engine: %s", strerror (errno));
-
-        started = false;
+        Process.close_pid (pid);
+        pid = 0;
     }
 
     private bool read_cb (IOChannel source, IOCondition condition)
