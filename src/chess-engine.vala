@@ -31,7 +31,7 @@ public abstract class ChessEngine : Object
     public signal void ready_changed ();
     public signal void moved (string move);
     public signal void resigned ();
-    public signal void stopped ();
+    public signal void stopped_unexpectedly ();
     public signal void error ();
     public signal void claim_draw ();
     public signal void offer_draw ();
@@ -110,9 +110,7 @@ public abstract class ChessEngine : Object
         // ChessEngine.stop(). If it quit on its own, we need to clean up here.
         if (started) {
             stop (false);
-            // This signal is only to be emitted when the chess engine stops
-            // itself, not when another class calls ChessEngine.stop ().
-            stopped ();
+            stopped_unexpectedly ();
         }
     }
 

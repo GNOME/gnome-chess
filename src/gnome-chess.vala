@@ -771,7 +771,7 @@ public class ChessApplication : Gtk.Application
         opponent.resign ();
     }
 
-    private void engine_stopped_cb (ChessEngine engine)
+    private void engine_stopped_unexpectedly_cb (ChessEngine engine)
     {
         /*
          * Many engines close themselves immediately after the end of the game.
