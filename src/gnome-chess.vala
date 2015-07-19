@@ -522,7 +522,7 @@ public class ChessApplication : Gtk.Application
             opponent_engine.ready_changed.disconnect (engine_ready_cb);
             opponent_engine.moved.disconnect (engine_move_cb);
             opponent_engine.resigned.disconnect (engine_resigned_cb);
-            opponent_engine.stopped.disconnect (engine_stopped_cb);
+            opponent_engine.stopped_unexpectedly.disconnect (engine_stopped_unexpectedly_cb);
             opponent_engine.error.disconnect (engine_error_cb);
             opponent_engine.claim_draw.disconnect (engine_claim_draw_cb);
             opponent_engine.offer_draw.disconnect (engine_offer_draw_cb);
@@ -558,7 +558,7 @@ public class ChessApplication : Gtk.Application
             opponent_engine.ready_changed.connect (engine_ready_cb);
             opponent_engine.moved.connect (engine_move_cb);
             opponent_engine.resigned.connect (engine_resigned_cb);
-            opponent_engine.stopped.connect (engine_stopped_cb);
+            opponent_engine.stopped_unexpectedly.connect (engine_stopped_unexpectedly_cb);
             opponent_engine.error.connect (engine_error_cb);
             opponent_engine.claim_draw.connect (engine_claim_draw_cb);
             opponent_engine.offer_draw.connect (engine_offer_draw_cb);
