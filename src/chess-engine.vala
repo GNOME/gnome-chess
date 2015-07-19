@@ -101,7 +101,7 @@ public abstract class ChessEngine : Object
     private void engine_stopped_cb (Pid pid, int status)
     {
         Process.close_pid (pid);
-        pid = 0;
+        this.pid = 0;
         stopped ();
     }
 
