@@ -18,11 +18,11 @@ public abstract class ChessEngine : Object
     private uint delay_seconds;
     private uint pending_move_source_id;
 
-    private Pid pid;
-    private int stdin_fd;
-    private int stderr_fd;
-    private IOChannel stdout_channel;
-    private uint stdout_watch_id;
+    private Pid pid = 0;
+    private int stdin_fd = 0;
+    private int stderr_fd = 0;
+    private IOChannel? stdout_channel;
+    private uint stdout_watch_id = 0;
     private bool started = false;
 
     protected virtual void process_input (char[] data) {}
@@ -58,6 +58,11 @@ public abstract class ChessEngine : Object
     }
 
     public bool start ()
+        requires (pid == 0)
+        requires (stdout_watch_id == 0)
+        requires (stdin_fd == 0)
+        requires (stderr_fd == 0)
+        requires (!started)
     {
         string[] argv = {binary};
         foreach (var arg in args)
@@ -99,6 +104,8 @@ public abstract class ChessEngine : Object
     }
 
     private void engine_stopped_cb (Pid pid, int status)
+        requires (pid == this.pid)
+        requires (pid != 0)
     {
         Process.close_pid (pid);
         this.pid = 0;
@@ -134,11 +141,17 @@ public abstract class ChessEngine : Object
     }
 
     public void stop ()
+        requires (!started || stdout_channel != null)
+        requires (!started || stdin_fd != 0)
+        requires (!started || stderr_fd != 0)
+        requires (!started || pid != 0)
     {
         if (!started)
             return;
 
-        Source.remove (stdout_watch_id);
+        // This can be unset on errors in read_cb.
+        if (stdout_watch_id != 0)
+            Source.remove (stdout_watch_id);
 
         try
         {
@@ -155,13 +168,14 @@ public abstract class ChessEngine : Object
         if (FileUtils.close (stderr_fd) == -1)
             warning ("Failed to close pipe to engine's stderr: %s", strerror (errno));
 
-        if (pid != 0 && Posix.kill (pid, Posix.SIGTERM) == -1)
+        if (Posix.kill (pid, Posix.SIGTERM) == -1)
             warning ("Failed to kill engine: %s", strerror (errno));
 
         started = false;
     }
 
     private bool read_cb (IOChannel source, IOCondition condition)
+        requires (stdout_watch_id != 0)
     {
         char[] buf;
         size_t n_read;
