@@ -106,9 +106,12 @@ public class ChessEngineUCI : ChessEngine
                     if (tokens.length < 2)
                         warning ("No move with bestmove: %s", line);
 
-                    /* GNU Chess likes to report a move after receiving a stop command,
+                    /*
+                     * GNU Chess likes to report a move after receiving a stop command,
                      * and the UCI spec does not seem to prohibit this, so just discard
-                     * the move if we were not expecting it. */
+                     * the move if we were not expecting it. This commonly occurs when
+                     * the game is over, or after performing undo.
+                     */
                     if (waiting_for_move)
                     {
                         debug ("Engine moves %s", tokens[1]);
@@ -117,7 +120,7 @@ public class ChessEngineUCI : ChessEngine
                     }
                     else
                     {
-                        debug ("Discarding engine move during human's turn (OK after recent Undo)");
+                        debug ("Discarding engine move %s during human's turn", tokens[1]);
                     }
                     break;
                 }
