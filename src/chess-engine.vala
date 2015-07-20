@@ -58,6 +58,11 @@ public abstract class ChessEngine : Object
         this.delay_seconds = delay_seconds;
     }
 
+    ~ChessEngine ()
+    {
+        assert(!started);
+    }
+
     public bool start ()
         requires (pid == 0)
         requires (child_watch_id == 0)
