@@ -22,6 +22,7 @@ public abstract class ChessEngine : Object
     private int stdin_fd = -1;
     private int stderr_fd = -1;
     private IOChannel? stdout_channel;
+    private uint child_watch_id = 0;
     private uint stdout_watch_id = 0;
     private bool started = false;
 
@@ -59,6 +60,7 @@ public abstract class ChessEngine : Object
 
     public bool start ()
         requires (pid == 0)
+        requires (child_watch_id == 0)
         requires (stdout_watch_id == 0)
         requires (stdin_fd == -1)
         requires (stderr_fd == -1)
@@ -83,7 +85,7 @@ public abstract class ChessEngine : Object
             return false;
         }
 
-        ChildWatch.add (pid, engine_stopped_cb);
+        child_watch_id = ChildWatch.add (pid, engine_stopped_cb);
 
         stdout_channel = new IOChannel.unix_new (stdout_fd);
         try
@@ -103,15 +105,12 @@ public abstract class ChessEngine : Object
         return true;
     }
 
-    private void engine_stopped_cb (Pid pid, int status)
+    private void engine_stopped_cb (Pid pid)
+        requires (pid == this.pid)
+        requires (started)
     {
-        // This function could be called because the engine quit on its own, or
-        // it could be called because we killed the engine ourselves in
-        // ChessEngine.stop(). If it quit on its own, we need to clean up here.
-        if (started) {
-            stop (false);
-            stopped_unexpectedly ();
-        }
+        stop (false);
+        stopped_unexpectedly ();
     }
 
     public abstract void start_game ();
@@ -147,6 +146,7 @@ public abstract class ChessEngine : Object
         requires (!started || stdin_fd != -1)
         requires (!started || stderr_fd != -1)
         requires (!started || pid != 0)
+        requires (!started || child_watch_id != 0)
     {
         if (!started)
             return;
@@ -173,6 +173,9 @@ public abstract class ChessEngine : Object
         if (FileUtils.close (stderr_fd) == -1)
             warning ("Failed to close pipe to engine's stderr: %s", strerror (errno));
         stderr_fd = -1;
+
+        Source.remove (child_watch_id);
+        child_watch_id = 0;
 
         if (kill_engine && Posix.kill (pid, Posix.SIGTERM) == -1)
             warning ("Failed to kill engine: %s", strerror (errno));
