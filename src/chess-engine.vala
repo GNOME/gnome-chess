@@ -60,7 +60,7 @@ public abstract class ChessEngine : Object
 
     ~ChessEngine ()
     {
-        assert(!started);
+        assert (!started);
     }
 
     public bool start ()
