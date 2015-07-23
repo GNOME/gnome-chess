@@ -158,8 +158,10 @@ public abstract class ChessEngine : Object
         started = false;
 
         // This can be unset on errors in read_cb.
-        if (stdout_watch_id != 0)
+        if (stdout_watch_id != 0) {
             Source.remove (stdout_watch_id);
+            stdout_watch_id = 0;
+        }
 
         try
         {
