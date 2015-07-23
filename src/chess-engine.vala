@@ -110,9 +110,9 @@ public abstract class ChessEngine : Object
         return true;
     }
 
-    private void engine_stopped_cb (Pid pid)
+    private void engine_stopped_cb (Pid pid_engine)
         requires (started)
-        requires (pid == this.pid)
+        requires (pid_engine == this.pid)
     {
         stop (false);
         stopped_unexpectedly ();
