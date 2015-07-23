@@ -18,7 +18,7 @@ if [ "$#" = 0 -a "x$NOCONFIGURE" = "x" ]; then
 fi
 
 if [ -d $srcdir/.git ] && [ ! -e $srcdir/.git/hooks/pre-commit ]; then
-        ln -s $srcdir/../libgames-support/style-checker $srcdir/.git/hooks/pre-commit && echo "Enabled pre-commit style checker." || :
+        ln -s ../../../libgames-support/style-checker $srcdir/.git/hooks/pre-commit && echo "Enabled pre-commit style checker." || :
 fi
 
 set -x
