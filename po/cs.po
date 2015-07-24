@@ -23,8 +23,8 @@ msgstr ""
 "Project-Id-Version: gnome-chess master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-05-07 06:14+0000\n"
-"PO-Revision-Date: 2015-05-07 12:28+0200\n"
+"POT-Creation-Date: 2015-07-24 06:25+0000\n"
+"PO-Revision-Date: 2015-07-24 15:30+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -62,7 +62,7 @@ msgstr ""
 "populární šachová jádra, automaticky vyhledat, že jsou nainstalována."
 
 #: ../data/gnome-chess.desktop.in.h:1 ../data/gnome-chess.ui.h:1
-#: ../src/gnome-chess.vala:2141 ../src/gnome-chess.vala:2485
+#: ../src/gnome-chess.vala:2185 ../src/gnome-chess.vala:2529
 msgid "Chess"
 msgstr "Šachy"
 
@@ -518,519 +518,531 @@ msgid "Paused"
 msgstr "Pozastaveno"
 
 #. Help string for command line --version flag
-#: ../src/gnome-chess.vala:99
+#: ../src/gnome-chess.vala:100
 msgid "Show release version"
 msgstr "Zobrazit verzi vydání"
 
+#: ../src/gnome-chess.vala:130
+msgid ""
+"No chess engine is installed. You will not be able to play against the "
+"computer."
+msgstr ""
+"Není nainstalované žádné šachové jádro. Nebudete moci hrát proti počítači."
+
+#: ../src/gnome-chess.vala:131 ../src/gnome-chess.vala:2206
+#: ../src/gnome-chess.vala:2219
+msgid "_OK"
+msgstr "_Budiž"
+
 #. May print when started on the command line; a PGN is a saved game file.
-#: ../src/gnome-chess.vala:198
+#: ../src/gnome-chess.vala:215
 msgid "GNOME Chess can only open one PGN at a time."
 msgstr "Šachy GNOME nemohou otevřít naráz více PGN."
 
 #. Move History Combo: Go to the start of the game
-#: ../src/gnome-chess.vala:437
+#: ../src/gnome-chess.vala:454
 msgid "Game Start"
 msgstr "Začátek hry"
 
 #. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
 #. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
-#: ../src/gnome-chess.vala:838
+#: ../src/gnome-chess.vala:882
 #, c-format
 msgid "White pawn moves from %1$s to %2$s"
 msgstr "Bílý pěšák táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:840
+#: ../src/gnome-chess.vala:884
 #, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s"
 msgstr "Bílý pěšák z %1$s bere černého pěšáka na %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:842
+#: ../src/gnome-chess.vala:886
 #, c-format
 msgid "White pawn at %1$s takes the black rook at %2$s"
 msgstr "Bílý pěšák z %1$s bere černou věž na %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:844
+#: ../src/gnome-chess.vala:888
 #, c-format
 msgid "White pawn at %1$s takes the black knight at %2$s"
 msgstr "Bílý pěšák z %1$s bere černého koně na %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:846
+#: ../src/gnome-chess.vala:890
 #, c-format
 msgid "White pawn at %1$s takes the black bishop at %2$s"
 msgstr "Bílý pěšák z %1$s bere černého střelce na %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:848
+#: ../src/gnome-chess.vala:892
 #, c-format
 msgid "White pawn at %1$s takes the black queen at %2$s"
 msgstr "Bílý pěšák z %1$s bere černou dámu na %2$s"
 
 #. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
-#: ../src/gnome-chess.vala:850
+#: ../src/gnome-chess.vala:894
 #, c-format
 msgid "White rook moves from %1$s to %2$s"
 msgstr "Bílá věž táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:852
+#: ../src/gnome-chess.vala:896
 #, c-format
 msgid "White rook at %1$s takes the black pawn at %2$s"
 msgstr "Bílá věž z %1$s bere černého pěšáka na %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:854
+#: ../src/gnome-chess.vala:898
 #, c-format
 msgid "White rook at %1$s takes the black rook at %2$s"
 msgstr "Bílá věž z %1$s bere černou věž na %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:856
+#: ../src/gnome-chess.vala:900
 #, c-format
 msgid "White rook at %1$s takes the black knight at %2$s"
 msgstr "Bílá věž z %1$s bere černého koně na %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:858
+#: ../src/gnome-chess.vala:902
 #, c-format
 msgid "White rook at %1$s takes the black bishop at %2$s"
 msgstr "Bílá věž z %1$s bere černého střelce na %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
-#: ../src/gnome-chess.vala:860
+#: ../src/gnome-chess.vala:904
 #, c-format
 msgid "White rook at %1$s takes the black queen at %2$s"
 msgstr "Bílá věž z %1$s bere černou dámu na %2$s"
 
 #. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
-#: ../src/gnome-chess.vala:862
+#: ../src/gnome-chess.vala:906
 #, c-format
 msgid "White knight moves from %1$s to %2$s"
 msgstr "Bílý kůň táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:864
+#: ../src/gnome-chess.vala:908
 #, c-format
 msgid "White knight at %1$s takes the black pawn at %2$s"
 msgstr "Bílý kůň z %1$s bere černého pěšáka na %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:866
+#: ../src/gnome-chess.vala:910
 #, c-format
 msgid "White knight at %1$s takes the black rook at %2$s"
 msgstr "Bílý kůň z %1$s bere černou věž na %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:868
+#: ../src/gnome-chess.vala:912
 #, c-format
 msgid "White knight at %1$s takes the black knight at %2$s"
 msgstr "Bílý kůň z %1$s bere černého koně na %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:870
+#: ../src/gnome-chess.vala:914
 #, c-format
 msgid "White knight at %1$s takes the black bishop at %2$s"
 msgstr "Bílý kůň z %1$s bere černého střelce na %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:872
+#: ../src/gnome-chess.vala:916
 #, c-format
 msgid "White knight at %1$s takes the black queen at %2$s"
 msgstr "Bílý kůň z %1$s bere černou dámu na %2$s"
 
 #. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
-#: ../src/gnome-chess.vala:874
+#: ../src/gnome-chess.vala:918
 #, c-format
 msgid "White bishop moves from %1$s to %2$s"
 msgstr "Bílý střelec táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:876
+#: ../src/gnome-chess.vala:920
 #, c-format
 msgid "White bishop at %1$s takes the black pawn at %2$s"
 msgstr "Bílý střelec z %1$s bere černého pěšáka na %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:878
+#: ../src/gnome-chess.vala:922
 #, c-format
 msgid "White bishop at %1$s takes the black rook at %2$s"
 msgstr "Bílý střelec z %1$s bere černou věž na %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:880
+#: ../src/gnome-chess.vala:924
 #, c-format
 msgid "White bishop at %1$s takes the black knight at %2$s"
 msgstr "Bílý střelec z %1$s bere černého koně na %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:882
+#: ../src/gnome-chess.vala:926
 #, c-format
 msgid "White bishop at %1$s takes the black bishop at %2$s"
 msgstr "Bílý střelec z %1$s bere černého střelce na %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:884
+#: ../src/gnome-chess.vala:928
 #, c-format
 msgid "White bishop at %1$s takes the black queen at %2$s"
 msgstr "Bílý střelec z %1$s bere černou dámu na %2$s"
 
 #. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
-#: ../src/gnome-chess.vala:886
+#: ../src/gnome-chess.vala:930
 #, c-format
 msgid "White queen moves from %1$s to %2$s"
 msgstr "Bílá dáma táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:888
+#: ../src/gnome-chess.vala:932
 #, c-format
 msgid "White queen at %1$s takes the black pawn at %2$s"
 msgstr "Bílá dáma z %1$s bere černého pěšáka na %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:890
+#: ../src/gnome-chess.vala:934
 #, c-format
 msgid "White queen at %1$s takes the black rook at %2$s"
 msgstr "Bílá dáma z %1$s bere černou věž na %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:892
+#: ../src/gnome-chess.vala:936
 #, c-format
 msgid "White queen at %1$s takes the black knight at %2$s"
 msgstr "Bílá dáma z %1$s bere černého koně na %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:894
+#: ../src/gnome-chess.vala:938
 #, c-format
 msgid "White queen at %1$s takes the black bishop at %2$s"
 msgstr "Bílá dáma z %1$s bere černého střelce na %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:896
+#: ../src/gnome-chess.vala:940
 #, c-format
 msgid "White queen at %1$s takes the black queen at %2$s"
 msgstr "Bílá dáma z %1$s bere černou dámu na %2$s"
 
 #. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
-#: ../src/gnome-chess.vala:898
+#: ../src/gnome-chess.vala:942
 #, c-format
 msgid "White king moves from %1$s to %2$s"
 msgstr "Bílý král táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:900
+#: ../src/gnome-chess.vala:944
 #, c-format
 msgid "White king at %1$s takes the black pawn at %2$s"
 msgstr "Bílý král z %1$s bere černého pěšáka na %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:902
+#: ../src/gnome-chess.vala:946
 #, c-format
 msgid "White king at %1$s takes the black rook at %2$s"
 msgstr "Bílý král z %1$s bere černou věž na %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:904
+#: ../src/gnome-chess.vala:948
 #, c-format
 msgid "White king at %1$s takes the black knight at %2$s"
 msgstr "Bílý král z %1$s bere černého koně na %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:906
+#: ../src/gnome-chess.vala:950
 #, c-format
 msgid "White king at %1$s takes the black bishop at %2$s"
 msgstr "Bílý král z %1$s bere černého střelce na %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:908
+#: ../src/gnome-chess.vala:952
 #, c-format
 msgid "White king at %1$s takes the black queen at %2$s"
 msgstr "Bílý král z %1$s bere černou dámu na %2$s"
 
 #. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
-#: ../src/gnome-chess.vala:910
+#: ../src/gnome-chess.vala:954
 #, c-format
 msgid "Black pawn moves from %1$s to %2$s"
 msgstr "Černý pěšák táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:912
+#: ../src/gnome-chess.vala:956
 #, c-format
 msgid "Black pawn at %1$s takes the white pawn at %2$s"
 msgstr "Černý pěšák z %1$s bere bílého pěšáka na %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:914
+#: ../src/gnome-chess.vala:958
 #, c-format
 msgid "Black pawn at %1$s takes the white rook at %2$s"
 msgstr "Černý pěšák z %1$s bere bílou věž na %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:916
+#: ../src/gnome-chess.vala:960
 #, c-format
 msgid "Black pawn at %1$s takes the white knight at %2$s"
 msgstr "Černý pěšák z %1$s bere bílého koně na %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:918
+#: ../src/gnome-chess.vala:962
 #, c-format
 msgid "Black pawn at %1$s takes the white bishop at %2$s"
 msgstr "Černý pěšák z %1$s bere bílého střelce na %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:920
+#: ../src/gnome-chess.vala:964
 #, c-format
 msgid "Black pawn at %1$s takes the white queen at %2$s"
 msgstr "Černý pěšák z %1$s bere bílou dámu na %2$s"
 
 #. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
-#: ../src/gnome-chess.vala:922
+#: ../src/gnome-chess.vala:966
 #, c-format
 msgid "Black rook moves from %1$s to %2$s"
 msgstr "Černá věž táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:924
+#: ../src/gnome-chess.vala:968
 #, c-format
 msgid "Black rook at %1$s takes the white pawn at %2$s"
 msgstr "Černá věž z %1$s bere bílého pěšáka na %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:926
+#: ../src/gnome-chess.vala:970
 #, c-format
 msgid "Black rook at %1$s takes the white rook at %2$s"
 msgstr "Černá věž z %1$s bere bílou věž na %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:928
+#: ../src/gnome-chess.vala:972
 #, c-format
 msgid "Black rook at %1$s takes the white knight at %2$s"
 msgstr "Černá věž z %1$s bere bílého koně na %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:930
+#: ../src/gnome-chess.vala:974
 #, c-format
 msgid "Black rook at %1$s takes the white bishop at %2$s"
 msgstr "Černá věž z %1$s bere bílého střelce na %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:932
+#: ../src/gnome-chess.vala:976
 #, c-format
 msgid "Black rook at %1$s takes the white queen at %2$s"
 msgstr "Černá věž z %1$s bere bílou dámu na %2$s"
 
 #. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
-#: ../src/gnome-chess.vala:934
+#: ../src/gnome-chess.vala:978
 #, c-format
 msgid "Black knight moves from %1$s to %2$s"
 msgstr "Černý kůň táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:936
+#: ../src/gnome-chess.vala:980
 #, c-format
 msgid "Black knight at %1$s takes the white pawn at %2$s"
 msgstr "Černý kůň z %1$s bere bílého pěšáka na %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:938
+#: ../src/gnome-chess.vala:982
 #, c-format
 msgid "Black knight at %1$s takes the white rook at %2$s"
 msgstr "Černý kůň z %1$s bere bílou věž na %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:940
+#: ../src/gnome-chess.vala:984
 #, c-format
 msgid "Black knight at %1$s takes the white knight at %2$s"
 msgstr "Černý kůň z %1$s bere bílého koně na %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:942
+#: ../src/gnome-chess.vala:986
 #, c-format
 msgid "Black knight at %1$s takes the white bishop at %2$s"
 msgstr "Černý kůň z %1$s bere bílého střelce na %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:944
+#: ../src/gnome-chess.vala:988
 #, c-format
 msgid "Black knight at %1$s takes the white queen at %2$s"
 msgstr "Černý kůň z %1$s bere bílou dámu na %2$s"
 
 #. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
-#: ../src/gnome-chess.vala:946
+#: ../src/gnome-chess.vala:990
 #, c-format
 msgid "Black bishop moves from %1$s to %2$s"
 msgstr "Černý střelec táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:948
+#: ../src/gnome-chess.vala:992
 #, c-format
 msgid "Black bishop at %1$s takes the white pawn at %2$s"
 msgstr "Černý střelec z %1$s bere bílého pěšáka na %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:950
+#: ../src/gnome-chess.vala:994
 #, c-format
 msgid "Black bishop at %1$s takes the white rook at %2$s"
 msgstr "Černý střelec z %1$s bere bílou věž na %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:952
+#: ../src/gnome-chess.vala:996
 #, c-format
 msgid "Black bishop at %1$s takes the white knight at %2$s"
 msgstr "Černý střelec z %1$s bere bílého koně na %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:954
+#: ../src/gnome-chess.vala:998
 #, c-format
 msgid "Black bishop at %1$s takes the white bishop at %2$s"
 msgstr "Černý střelec z %1$s bere bílého střelce na %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:956
+#: ../src/gnome-chess.vala:1000
 #, c-format
 msgid "Black bishop at %1$s takes the white queen at %2$s"
 msgstr "Černý střelec z %1$s bere bílou dámu na %2$s"
 
 #. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
-#: ../src/gnome-chess.vala:958
+#: ../src/gnome-chess.vala:1002
 #, c-format
 msgid "Black queen moves from %1$s to %2$s"
 msgstr "Černá dáma táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:960
+#: ../src/gnome-chess.vala:1004
 #, c-format
 msgid "Black queen at %1$s takes the white pawn at %2$s"
 msgstr "Černá dáma z %1$s bere bílého pěšáka na %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:962
+#: ../src/gnome-chess.vala:1006
 #, c-format
 msgid "Black queen at %1$s takes the white rook at %2$s"
 msgstr "Černá dáma z %1$s bere bílou věž na %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:964
+#: ../src/gnome-chess.vala:1008
 #, c-format
 msgid "Black queen at %1$s takes the white knight at %2$s"
 msgstr "Černá dáma z %1$s bere bílého koně na %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:966
+#: ../src/gnome-chess.vala:1010
 #, c-format
 msgid "Black queen at %1$s takes the white bishop at %2$s"
 msgstr "Černá dáma z %1$s bere bílého střelce na %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:968
+#: ../src/gnome-chess.vala:1012
 #, c-format
 msgid "Black queen at %1$s takes the white queen at %2$s"
 msgstr "Černá dáma z %1$s bere bílou dámu na %2$s"
 
 #. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
-#: ../src/gnome-chess.vala:970
+#: ../src/gnome-chess.vala:1014
 #, c-format
 msgid "Black king moves from %1$s to %2$s"
 msgstr "Černý král táhne z %1$s na %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:972
+#: ../src/gnome-chess.vala:1016
 #, c-format
 msgid "Black king at %1$s takes the white pawn at %2$s"
 msgstr "Černý král z %1$s bere bílého pěšáka na %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:974
+#: ../src/gnome-chess.vala:1018
 #, c-format
 msgid "Black king at %1$s takes the white rook at %2$s"
 msgstr "Černý král z %1$s bere bílou věž na %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:976
+#: ../src/gnome-chess.vala:1020
 #, c-format
 msgid "Black king at %1$s takes the white knight at %2$s"
 msgstr "Černý král z %1$s bere bílého koně na %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:978
+#: ../src/gnome-chess.vala:1022
 #, c-format
 msgid "Black king at %1$s takes the white bishop at %2$s"
 msgstr "Černý král z %1$s bere bílého střelce na %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
-#: ../src/gnome-chess.vala:980
+#: ../src/gnome-chess.vala:1024
 #, c-format
 msgid "Black king at %1$s takes the white queen at %2$s"
 msgstr "Černý král z %1$s bere bílou dámu na %2$s"
 
-#: ../src/gnome-chess.vala:1003
+#: ../src/gnome-chess.vala:1047
 msgid "White castles kingside"
 msgstr "Bílá rošáda na královském křídle"
 
-#: ../src/gnome-chess.vala:1007
+#: ../src/gnome-chess.vala:1051
 msgid "White castles queenside"
 msgstr "Bílá rošáda na dámském křídle"
 
-#: ../src/gnome-chess.vala:1011
+#: ../src/gnome-chess.vala:1055
 msgid "Black castles kingside"
 msgstr "Černá rošáda na královském křídle"
 
-#: ../src/gnome-chess.vala:1015
+#: ../src/gnome-chess.vala:1059
 msgid "Black castles queenside"
 msgstr "Černá rošáda na dámském křídle"
 
 #. Window title on a White human's turn if he is in check
-#: ../src/gnome-chess.vala:1154
+#: ../src/gnome-chess.vala:1198
 msgid "White is in Check"
 msgstr "Bílý má šach"
 
 #. Window title on a Black human's turn if he is in check
-#: ../src/gnome-chess.vala:1157
+#: ../src/gnome-chess.vala:1201
 msgid "Black is in Check"
 msgstr "Černý má šach"
 
 #. Window title on White's turn if White is human
-#: ../src/gnome-chess.vala:1163
+#: ../src/gnome-chess.vala:1207
 msgid "White to Move"
 msgstr "Bílý je na tahu"
 
 #. Window title on White's turn if White is a computer
-#: ../src/gnome-chess.vala:1166
+#: ../src/gnome-chess.vala:1210
 msgid "White is Thinking…"
 msgstr "Bílý přemýšlí…"
 
 #. Window title on Black's turn if Black is human
-#: ../src/gnome-chess.vala:1172
+#: ../src/gnome-chess.vala:1216
 msgid "Black to Move"
 msgstr "Černý je na tahu"
 
 #. Window title on Black's turn if Black is a computer
-#: ../src/gnome-chess.vala:1175
+#: ../src/gnome-chess.vala:1219
 msgid "Black is Thinking…"
 msgstr "Černý přemýšlí…"
 
-#: ../src/gnome-chess.vala:1190
+#: ../src/gnome-chess.vala:1234
 msgid "Unpause the game"
 msgstr "Pokračovat ve hře"
 
-#: ../src/gnome-chess.vala:1196
+#: ../src/gnome-chess.vala:1240
 msgid "Pause the game"
 msgstr "Pozastavit hru"
 
 #. Window title when the white player wins
-#: ../src/gnome-chess.vala:1219
+#: ../src/gnome-chess.vala:1263
 msgid "White Wins"
 msgstr "Bílý vyhrává"
 
 #. Window title when the black player wins
-#: ../src/gnome-chess.vala:1224
+#: ../src/gnome-chess.vala:1268
 msgid "Black Wins"
 msgstr "Černý vyhrává"
 
 #. Window title when the game is drawn
-#: ../src/gnome-chess.vala:1229
+#: ../src/gnome-chess.vala:1273
 msgid "Game is Drawn"
 msgstr "Hra skončila remízou"
 
@@ -1042,166 +1054,166 @@ msgstr "Hra skončila remízou"
 #. * because the pause button eats up some of your space, start a new game,
 #. * then run 'killall gnuchess' in a terminal.
 #.
-#: ../src/gnome-chess.vala:1241
+#: ../src/gnome-chess.vala:1285
 msgid "Oops! Something has gone wrong."
 msgstr "Problém! Něco se stalo špatně."
 
 #. Window subtitle when Black is checkmated
-#: ../src/gnome-chess.vala:1254
+#: ../src/gnome-chess.vala:1298
 msgid "Black is in check and cannot move."
 msgstr "Černý je v šachu a nemůže táhnout."
 
 #. Window subtitle when White is checkmated
-#: ../src/gnome-chess.vala:1257
+#: ../src/gnome-chess.vala:1301
 msgid "White is in check and cannot move."
 msgstr "Bílý je v šachu a nemůže táhnout."
 
 #. Window subtitle when the game terminates due to a stalemate
-#: ../src/gnome-chess.vala:1263
+#: ../src/gnome-chess.vala:1307
 msgid "Opponent cannot move."
 msgstr "Protivník nemůže táhnout."
 
 #. Window subtitle when the game is drawn due to the fifty move rule
-#: ../src/gnome-chess.vala:1267
+#: ../src/gnome-chess.vala:1311
 msgid "No piece was taken or pawn moved in fifty moves."
 msgstr ""
 "V posledních padesáti tazích nebyla sebrána žádná figura a netáhl žádný "
 "pěšák."
 
 #. Window subtitle when the game ends due to Black's clock stopping
-#: ../src/gnome-chess.vala:1272
+#: ../src/gnome-chess.vala:1316
 msgid "Black has run out of time."
 msgstr "Černému vypršel čas."
 
 #. Window subtitle when the game ends due to White's clock stopping
-#: ../src/gnome-chess.vala:1275
+#: ../src/gnome-chess.vala:1319
 msgid "White has run out of time."
 msgstr "Bílému vypršel čas."
 
 #. Window subtitle when the game is drawn due to the three-fold-repetition rule
-#: ../src/gnome-chess.vala:1281
+#: ../src/gnome-chess.vala:1325
 msgid "The same board state has occurred three times."
 msgstr "Šachovnice se ocitla třikrát po sobě ve stejné pozici, jak je teď."
 
 #. Window subtitle when the game is drawn due to the insufficient material rule
-#: ../src/gnome-chess.vala:1285
+#: ../src/gnome-chess.vala:1329
 msgid "Neither player can checkmate."
 msgstr "Žádný hráč nemůže způsobit mat."
 
 #. Window subtitle when the game ends due to the black player resigning
-#: ../src/gnome-chess.vala:1290
+#: ../src/gnome-chess.vala:1334
 msgid "Black has resigned."
 msgstr "Černý partii vzdal."
 
 #. Window subtitle when the game ends due to the white player resigning
-#: ../src/gnome-chess.vala:1293
+#: ../src/gnome-chess.vala:1337
 msgid "White has resigned."
 msgstr "Bílý partii vzdal."
 
 #. Window subtitle when a game is abandoned
-#: ../src/gnome-chess.vala:1299
+#: ../src/gnome-chess.vala:1343
 msgid "The game has been abandoned."
 msgstr "Hra byla opuštěna."
 
 #. Window subtitle when the game ends due to a player dying.
 #. * This is a PGN standard. GNOME Chess will never kill the user.
-#: ../src/gnome-chess.vala:1305
+#: ../src/gnome-chess.vala:1349
 msgid "The game log says a player died!"
 msgstr "Podle záznamu hry hráč zemřel!"
 
 #. Window subtitle when something goes wrong with the engine...
 #. * or when the engine says something is wrong with us!
-#: ../src/gnome-chess.vala:1311
+#: ../src/gnome-chess.vala:1355
 msgid "The computer player is confused. The game cannot continue."
 msgstr "Počítačový hráč jse zcela zmaten. Hra nemůže pokračovat."
 
-#: ../src/gnome-chess.vala:1346 ../src/gnome-chess.vala:2258
-#: ../src/gnome-chess.vala:2341
+#: ../src/gnome-chess.vala:1390 ../src/gnome-chess.vala:2302
+#: ../src/gnome-chess.vala:2385
 msgid "_Cancel"
 msgstr "_Zrušit"
 
-#: ../src/gnome-chess.vala:1350
+#: ../src/gnome-chess.vala:1394
 msgid "_Abandon game"
 msgstr "U_končit hru"
 
-#: ../src/gnome-chess.vala:1351
+#: ../src/gnome-chess.vala:1395
 msgid "_Save game for later"
 msgstr "_Uložit hru na později"
 
-#: ../src/gnome-chess.vala:1355
+#: ../src/gnome-chess.vala:1399
 msgid "_Discard game"
 msgstr "Zaho_dit hru"
 
-#: ../src/gnome-chess.vala:1356
+#: ../src/gnome-chess.vala:1400
 msgid "_Save game log"
 msgstr "_Uložit záznam hry"
 
 #. Your very last chance to save
-#: ../src/gnome-chess.vala:1369
+#: ../src/gnome-chess.vala:1413
 msgid "_Discard"
 msgstr "Zaho_dit"
 
-#: ../src/gnome-chess.vala:1369 ../src/gnome-chess.vala:2259
+#: ../src/gnome-chess.vala:1413 ../src/gnome-chess.vala:2303
 msgid "_Save"
 msgstr "_Uložit"
 
 #. Title of claim draw dialog
-#: ../src/gnome-chess.vala:1392
+#: ../src/gnome-chess.vala:1436
 msgid "Would you like to claim a draw?"
 msgstr "Chtěli byste požádat o remízu?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: ../src/gnome-chess.vala:1398
+#: ../src/gnome-chess.vala:1442
 msgid "Fifty moves have passed without a capture or pawn advancement."
 msgstr ""
 "Posledních padesát tahů nebyla sebrána žádná figura, ani nebylo taženo "
 "pěšcem."
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: ../src/gnome-chess.vala:1403
+#: ../src/gnome-chess.vala:1447
 msgid "The current board position has occurred three times."
 msgstr "Šachovnice se ocitla třikrát po sobě ve stejné pozici, jak je teď."
 
 #. Displays in claim draw dialog to warn player that the dialog only appears once
-#: ../src/gnome-chess.vala:1409
+#: ../src/gnome-chess.vala:1453
 msgid "(You will not be offered this choice again.)"
 msgstr "(Tato možnost vám nebude nabízena znovu.)"
 
 #. Option in claim draw dialog
 #. Option on warning dialog when player clicks resign
-#: ../src/gnome-chess.vala:1412 ../src/gnome-chess.vala:1452
+#: ../src/gnome-chess.vala:1456 ../src/gnome-chess.vala:1496
 msgid "_Keep Playing"
 msgstr "Po_kračovat ve hře"
 
 #. Option in claim draw dialog
-#: ../src/gnome-chess.vala:1414
+#: ../src/gnome-chess.vala:1458
 msgid "_Claim Draw"
 msgstr "_Požádat o remízu"
 
-#: ../src/gnome-chess.vala:1434
+#: ../src/gnome-chess.vala:1478
 msgid "Save this game before starting a new one?"
 msgstr "Uložit tuto hru před spuštěním nové?"
 
 #. Title of warning dialog when player clicks Resign
-#: ../src/gnome-chess.vala:1447
+#: ../src/gnome-chess.vala:1491
 msgid "Are you sure you want to resign?"
 msgstr "Opravdu chcete hru vzdát?"
 
 #. Text on warning dialog when player clicks Resign
-#: ../src/gnome-chess.vala:1450
+#: ../src/gnome-chess.vala:1494
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr ""
 "To má smysl, pokud máte v úmyslu si hru uloži jako záznam postupu, který "
 "vedl k prohře."
 
 #. Option on warning dialog when player clicks resign
-#: ../src/gnome-chess.vala:1454
+#: ../src/gnome-chess.vala:1498
 msgid "_Resign"
 msgstr "Vzdá_t"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
 #. Preferences Dialog: Combo box entry for a custom clock type set in minutes
-#: ../src/gnome-chess.vala:1967 ../src/gnome-chess.vala:2008
+#: ../src/gnome-chess.vala:2011 ../src/gnome-chess.vala:2052
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minuta"
@@ -1209,7 +1221,7 @@ msgstr[1] "minuty"
 msgstr[2] "minut"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../src/gnome-chess.vala:1971
+#: ../src/gnome-chess.vala:2015
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "hodina"
@@ -1217,69 +1229,65 @@ msgstr[1] "hodiny"
 msgstr[2] "hodin"
 
 #. Preferences Dialog: Combo box entry for a custom clock type set in seconds
-#: ../src/gnome-chess.vala:2004
+#: ../src/gnome-chess.vala:2048
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "vteřina"
 msgstr[1] "vteřiny"
 msgstr[2] "vteřin"
 
-#: ../src/gnome-chess.vala:2145
+#: ../src/gnome-chess.vala:2189
 msgid "A classic game of positional strategy"
 msgstr "Klasická tahová strategie"
 
-#: ../src/gnome-chess.vala:2148
+#: ../src/gnome-chess.vala:2192
 msgid "translator-credits"
 msgstr "Marek Černocký <marek@manet.cz>"
 
-#: ../src/gnome-chess.vala:2161
+#: ../src/gnome-chess.vala:2205
 msgid "This does not look like a valid PGN game."
 msgstr "Nevypadá to jako platný zápis hry v PGN."
 
-#: ../src/gnome-chess.vala:2162 ../src/gnome-chess.vala:2175
-msgid "_OK"
-msgstr "_Budiž"
-
-#: ../src/gnome-chess.vala:2245
+#: ../src/gnome-chess.vala:2289
 msgid "Failed to save game"
 msgstr "Selhalo uložení hry"
 
 #. Title of save game dialog
-#: ../src/gnome-chess.vala:2269
+#: ../src/gnome-chess.vala:2313
 msgid "Save Chess Game"
 msgstr "Uložit šachovou partii"
 
 #. Default filename for the save game dialog
-#: ../src/gnome-chess.vala:2282
+#: ../src/gnome-chess.vala:2326
 msgid "Untitled Chess Game"
 msgstr "Nepojmenovaná šachová partie"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:2287 ../src/gnome-chess.vala:2351
+#: ../src/gnome-chess.vala:2331 ../src/gnome-chess.vala:2395
 msgid "PGN files"
 msgstr "Soubory PGN"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:2293 ../src/gnome-chess.vala:2357
+#: ../src/gnome-chess.vala:2337 ../src/gnome-chess.vala:2401
 msgid "All files"
 msgstr "Všechny soubory"
 
-#: ../src/gnome-chess.vala:2328
+#: ../src/gnome-chess.vala:2372
 msgid "Save this game before loading another one?"
 msgstr "Uložit tuto hru před načtením další?"
 
 #. Title of load game dialog
-#: ../src/gnome-chess.vala:2339
+#: ../src/gnome-chess.vala:2383
 msgid "Load Chess Game"
 msgstr "Načíst šachovou partii"
 
-#: ../src/gnome-chess.vala:2342
+#: ../src/gnome-chess.vala:2386
 msgid "_Open"
 msgstr "_Otevřít"
 
-#: ../src/gnome-chess.vala:2376
+#: ../src/gnome-chess.vala:2420
 msgid "Failed to open game"
 msgstr "Selhalo otevření hry"
 
