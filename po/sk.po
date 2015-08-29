@@ -5,21 +5,23 @@
 # Marcel Telka <marcel@telka.sk>, 2005, 2008.
 # Peter Mráz <etkinator@gmail.com>, 2010, 2011.
 # Ján Kyselica <kyselica.jan@gmail.com>, 2013.
+# Dušan Kazik <prescott66@gmail.com>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-07-28 06:23+0000\n"
-"PO-Revision-Date: 2015-07-28 17:00+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"chess&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2015-08-29 18:26+0000\n"
+"PO-Revision-Date: 2015-08-29 21:29+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
-"Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
+"Language-Team: slovenčina <>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 1.8.2\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
 #: ../data/gnome-chess.appdata.xml.in.h:1
 msgid "GNOME Chess"
@@ -31,18 +33,24 @@ msgstr "Hrajte klasický stolný šach pre dvoch hráčov"
 
 #: ../data/gnome-chess.appdata.xml.in.h:3
 msgid ""
-"GNOME Chess is a simple chess game. You can play against your computer at three different difficulty levels, or against a friend at your computer."
-msgstr "Šach GNOME je jednoduchá hra, ktorú môžete hrať proti počítaču (tri úrovne obtiažnosti) alebo proti vášmu kamarátovi na vašom počítači."
+"GNOME Chess is a simple chess game. You can play against your computer at "
+"three different difficulty levels, or against a friend at your computer."
+msgstr ""
+"Šach GNOME je jednoduchá hra, ktorú môžete hrať proti počítaču (tri úrovne "
+"obtiažnosti) alebo proti vášmu kamarátovi na vašom počítači."
 
 #: ../data/gnome-chess.appdata.xml.in.h:4
 msgid ""
-"Computer chess enthusiasts will appreciate GNOME Chess's compatibility with nearly all modern computer chess engines, and its ability to detect "
-"several popular engines automatically if installed."
+"Computer chess enthusiasts will appreciate GNOME Chess's compatibility with "
+"nearly all modern computer chess engines, and its ability to detect several "
+"popular engines automatically if installed."
 msgstr ""
-"Nadšenci v oblasti počítačového šachu ocenia kompatibilitu s takmer všetkými modernými šachovými strojmi, a tiež schopnosť automatického zistenia "
-"ich prítomnosti na vašom počítači."
+"Nadšenci v oblasti počítačového šachu ocenia kompatibilitu s takmer všetkými "
+"modernými šachovými strojmi, a tiež schopnosť automatického zistenia ich "
+"prítomnosti na vašom počítači."
 
-#: ../data/gnome-chess.desktop.in.h:1 ../data/gnome-chess.ui.h:1 ../src/gnome-chess.vala:2185 ../src/gnome-chess.vala:2529
+#: ../data/gnome-chess.desktop.in.h:1 ../data/gnome-chess.ui.h:1
+#: ../src/gnome-chess.vala:2185 ../src/gnome-chess.vala:2529
 msgid "Chess"
 msgstr "Šach"
 
@@ -170,7 +178,8 @@ msgstr "Typ hodín (simple(jednoduché)/fischer/bronstein)"
 
 #: ../data/org.gnome.chess.gschema.xml.h:15
 msgid "The timer increment set corresponding to clock type (1 second minimum)"
-msgstr "Prírastok časomeru nastavený podľa adekvátneho typu hodín (minimum 1 sekunda)"
+msgstr ""
+"Prírastok časomeru nastavený podľa adekvátneho typu hodín (minimum 1 sekunda)"
 
 #: ../data/org.gnome.chess.gschema.xml.h:16
 msgid "The board side to play as"
@@ -181,8 +190,12 @@ msgid "The last side the player played as"
 msgstr "Naposledy použitá strana, na ktorej hral hráč"
 
 #: ../data/org.gnome.chess.gschema.xml.h:18
-msgid "This is needed when play-as is set to alternate. This should only be set to black or white."
+msgid ""
+"This is needed when play-as is set to alternate. This should only be set to "
+"black or white."
 msgstr ""
+"Táto vlastnosť je potrebná, keď strana hráča nastavená na striedanie. Mala "
+"by byť nastavená na „black“ (čierny) alebo „white“ (biely)."
 
 #: ../data/org.gnome.chess.gschema.xml.h:19
 msgid "The opponent player"
@@ -190,10 +203,12 @@ msgstr "Protihráč"
 
 #: ../data/org.gnome.chess.gschema.xml.h:20
 msgid ""
-"Can be 'human' (play against another human player), '' (use the first available chess engine) or the name of a specific engine to play against"
+"Can be 'human' (play against another human player), '' (use the first "
+"available chess engine) or the name of a specific engine to play against"
 msgstr ""
-"Môže byť 'human' (hra proti druhému človeku v úlohe protihráča), '' (použije prvý dostupný šachový stroj) alebo názov konkrétneho šachového "
-"stroja, proti ktorému sa bude hrať"
+"Môže byť 'human' (hra proti druhému človeku v úlohe protihráča), '' (použije "
+"prvý dostupný šachový stroj) alebo názov konkrétneho šachového stroja, proti "
+"ktorému sa bude hrať"
 
 #: ../data/org.gnome.chess.gschema.xml.h:21
 msgid "Difficulty of the opponent chess engine"
@@ -445,7 +460,7 @@ msgstr "Čierny"
 #: ../data/preferences.ui.h:92
 msgctxt "chess-player"
 msgid "Alternate"
-msgstr "Alternatívny"
+msgstr "Striedať"
 
 # PK: je to spravne?
 # PM: Je to v predvolbách pred rozbalovacím zoznamom, v ktorom sa nastavuje za aku figurku sa ma zamenit pesiak ked príde na posledné pole sachovnice
@@ -475,10 +490,11 @@ msgstr "_Strelec"
 msgid "Failed to load PGN: move %s is invalid."
 msgstr "Zlyhalo načítanie PGN: ťah %s je neplatný"
 
-#: ../lib/chess-pgn.vala:244 ../lib/chess-pgn.vala:250 ../lib/chess-pgn.vala:261
+#: ../lib/chess-pgn.vala:244 ../lib/chess-pgn.vala:250
+#: ../lib/chess-pgn.vala:261
 #, c-format
 msgid "Invalid %s : %s in PGN, setting timer to infinity."
-msgstr ""
+msgstr "Neplatná značka %s : %s v PGN. Nastavuje sa časovač na nekonečno."
 
 #: ../lib/chess-pgn.vala:266
 #, c-format
@@ -500,10 +516,15 @@ msgid "Show release version"
 msgstr "Zobraziť verziu vydania"
 
 #: ../src/gnome-chess.vala:130
-msgid "No chess engine is installed. You will not be able to play against the computer."
-msgstr "Nie je nainštalovaný žiadny obslužný program pre šach. Nebudete môcť hrať proti počítaču."
+msgid ""
+"No chess engine is installed. You will not be able to play against the "
+"computer."
+msgstr ""
+"Nie je nainštalovaný žiadny obslužný program pre šach. Nebudete môcť hrať "
+"proti počítaču."
 
-#: ../src/gnome-chess.vala:131 ../src/gnome-chess.vala:2206 ../src/gnome-chess.vala:2219
+#: ../src/gnome-chess.vala:131 ../src/gnome-chess.vala:2206
+#: ../src/gnome-chess.vala:2219
 msgid "_OK"
 msgstr "_OK"
 
@@ -1050,7 +1071,9 @@ msgstr "Protihráč sa nevie pohnúť."
 #. Window subtitle when the game is drawn due to the fifty move rule
 #: ../src/gnome-chess.vala:1311
 msgid "No piece was taken or pawn moved in fifty moves."
-msgstr "Za posledných päťdesiat ťahov nebola vyhodená žiadna figúrka ani sa neťahalo žiadnym pešiakom."
+msgstr ""
+"Za posledných päťdesiat ťahov nebola vyhodená žiadna figúrka ani sa neťahalo "
+"žiadnym pešiakom."
 
 #. Window subtitle when the game ends due to Black's clock stopping
 #: ../src/gnome-chess.vala:1316
@@ -1099,7 +1122,8 @@ msgstr "Záznam hry tvrdí, že hráč zomrel!"
 msgid "The computer player is confused. The game cannot continue."
 msgstr "Automat hrajúci za počítač je veľmi zmätený. V hre sa nedá pokračovať."
 
-#: ../src/gnome-chess.vala:1390 ../src/gnome-chess.vala:2302 ../src/gnome-chess.vala:2385
+#: ../src/gnome-chess.vala:1390 ../src/gnome-chess.vala:2302
+#: ../src/gnome-chess.vala:2385
 msgid "_Cancel"
 msgstr "_Zrušiť"
 
@@ -1265,10 +1289,12 @@ msgid "Failed to open game"
 msgstr "Otvorenie hry zlyhalo"
 
 #~ msgid "Seconds white has used until last move (0 for first move)"
-#~ msgstr "Počet sekúnd, ktoré ubehli po posledný ťah bieleho hráča (0 pre prvý ťah)"
+#~ msgstr ""
+#~ "Počet sekúnd, ktoré ubehli po posledný ťah bieleho hráča (0 pre prvý ťah)"
 
 #~ msgid "Seconds black has used until last move (0 for first move)"
-#~ msgstr "Počet sekúnd, ktoré ubehli po posledný ťah čierneho hráča (0 pre prvý ťah)"
+#~ msgstr ""
+#~ "Počet sekúnd, ktoré ubehli po posledný ťah čierneho hráča (0 pre prvý ťah)"
 
 #~ msgid "true if the human player is playing white"
 #~ msgstr "true, ak človek hrá bielymi figúrkami"
