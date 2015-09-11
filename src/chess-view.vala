@@ -37,7 +37,7 @@ public class ChessView : Gtk.DrawingArea
 
     public ChessView ()
     {
-        add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
+        add_events (Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.BUTTON_RELEASE_MASK);
     }
 
     public override bool configure_event (Gdk.EventConfigure event)
