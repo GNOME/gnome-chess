@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: gnome-chess\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-03-07 07:10+0000\n"
-"PO-Revision-Date: 2015-03-08 04:06+0900\n"
+"POT-Creation-Date: 2015-09-11 18:31+0000\n"
+"PO-Revision-Date: 2015-09-12 13:28+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -55,7 +55,7 @@ msgstr ""
 "을 설치하면 자동으로 찾습니다."
 
 #: ../data/gnome-chess.desktop.in.h:1 ../data/gnome-chess.ui.h:1
-#: ../src/gnome-chess.vala:2130 ../src/gnome-chess.vala:2425
+#: ../src/gnome-chess.vala:2185 ../src/gnome-chess.vala:2529
 msgid "Chess"
 msgstr "체스"
 
@@ -178,21 +178,31 @@ msgstr "게임의 길이, 초 단위(0은 무제한)"
 
 #: ../data/org.gnome.chess.gschema.xml.h:14
 msgid "The type of clock (simple/fischer/bronstein)"
-msgstr "시계의 종류 (simple/fischer/bronstein)"
+msgstr "시계의 종류(simple/fischer/bronstein)"
 
 #: ../data/org.gnome.chess.gschema.xml.h:15
 msgid "The timer increment set corresponding to clock type (1 second minimum)"
-msgstr "시계 종류에 따라 타이머 증가 설정 (최소 1초)"
+msgstr "시계 종류에 따라 타이머 증가 설정(최소 1초)"
 
 #: ../data/org.gnome.chess.gschema.xml.h:16
-msgid "true if the human player is playing white"
-msgstr "참이면 사람 플레이어가 백을 플레이"
+msgid "The board side to play as"
+msgstr "플레이할 보드 위치"
 
 #: ../data/org.gnome.chess.gschema.xml.h:17
+msgid "The last side the player played as"
+msgstr "플레이어가 최근에 플레이한 보드 위치"
+
+#: ../data/org.gnome.chess.gschema.xml.h:18
+msgid ""
+"This is needed when play-as is set to alternate. This should only be set to "
+"black or white."
+msgstr "play-as 값이 alternate일 경우 필요한 값입니다. black이나 white로만 설정할 수 있습니다."
+
+#: ../data/org.gnome.chess.gschema.xml.h:19
 msgid "The opponent player"
 msgstr "적 플레이어"
 
-#: ../data/org.gnome.chess.gschema.xml.h:18
+#: ../data/org.gnome.chess.gschema.xml.h:20
 msgid ""
 "Can be 'human' (play against another human player), '' (use the first "
 "available chess engine) or the name of a specific engine to play against"
@@ -200,7 +210,7 @@ msgstr ""
 "가능한 값은 'human' (다른 사람 플레이어와 플레이), '' (처음 체스 엔진 사용), "
 "또는 플레이할 엔진의 이름."
 
-#: ../data/org.gnome.chess.gschema.xml.h:19
+#: ../data/org.gnome.chess.gschema.xml.h:21
 msgid "Difficulty of the opponent chess engine"
 msgstr "상대 체스 엔진의 난이도"
 
@@ -365,7 +375,7 @@ msgstr "화려"
 #. Preferences Dialog: Label before clock type (Fischer/Bronstein) combo box
 #: ../data/preferences.ui.h:60
 msgid "_Clock type:"
-msgstr "시계 종류(_C)"
+msgstr "시계 종류(_C):"
 
 #. Preferences Dialog: Label before timer increment combo box
 #: ../data/preferences.ui.h:62
@@ -444,6 +454,12 @@ msgctxt "chess-player"
 msgid "Black"
 msgstr "검정"
 
+#. Preferences Dialog: Combo box entry for alterning between black and white
+#: ../data/preferences.ui.h:92
+msgctxt "chess-player"
+msgid "Alternate"
+msgstr "반대측"
+
 # 체스 용어 - 체스 말이 보드 맨 끝까지 갔을 때 뭘로 바꿀지
 #: ../data/promotion-type-selector.ui.h:1
 msgid "Select Promotion Type"
@@ -466,524 +482,557 @@ msgstr "루크(_R)"
 msgid "_Bishop"
 msgstr "비숍(_B)"
 
+#. Message when the game cannot be loaded due to an invalid move in the file.
+#: ../lib/chess-game.vala:103
+#, c-format
+msgid "Failed to load PGN: move %s is invalid."
+msgstr "PGN 읽어들이기에 실패했습니다: %s 움직임이 올바르지 않습니다."
+
+#: ../lib/chess-pgn.vala:244 ../lib/chess-pgn.vala:250
+#: ../lib/chess-pgn.vala:261
+#, c-format
+msgid "Invalid %s : %s in PGN, setting timer to infinity."
+msgstr "PGN에서 \"%s : %s\" 설정이 올바르지 않습니다. 시간을 무한으로 설정합니다."
+
+#: ../lib/chess-pgn.vala:266
+#, c-format
+msgid "Invalid clock type in PGN: %s, using a simple clock."
+msgstr "PGN에서 시계 종류가 올바르지 않습니다: %s. 간단한 시계를 사용합니다."
+
+#: ../lib/chess-pgn.vala:273
+#, c-format
+msgid "Invalid timer increment in PGN: %s, using a simple clock."
+msgstr "PGN에서 타이머 증가값이 올바르지 않습니다: %s. 간단한 시계를 사용합니다."
+
 #: ../src/chess-view.vala:312
 msgid "Paused"
 msgstr "일시 정지함"
 
 #. Help string for command line --version flag
-#: ../src/gnome-chess.vala:99
+#: ../src/gnome-chess.vala:100
 msgid "Show release version"
 msgstr "릴리스 버전을 표시합니다"
 
+#: ../src/gnome-chess.vala:130
+msgid ""
+"No chess engine is installed. You will not be able to play against the "
+"computer."
+msgstr "체스 엔진을 설치하지 않았습니다. 컴퓨터를 상대로 플레이할 수 없습니다."
+
+#: ../src/gnome-chess.vala:131 ../src/gnome-chess.vala:2206
+#: ../src/gnome-chess.vala:2219
+msgid "_OK"
+msgstr "확인(_O)"
+
 #. May print when started on the command line; a PGN is a saved game file.
-#: ../src/gnome-chess.vala:198
+#: ../src/gnome-chess.vala:215
 msgid "GNOME Chess can only open one PGN at a time."
 msgstr "그놈 체스는 한 번에 하나의 PGN 파일만 열 수 있습니다."
 
 #. Move History Combo: Go to the start of the game
-#: ../src/gnome-chess.vala:437
+#: ../src/gnome-chess.vala:454
 msgid "Game Start"
 msgstr "게임 시작"
 
 #. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
 #. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
-#: ../src/gnome-chess.vala:828
+#: ../src/gnome-chess.vala:882
 #, c-format
 msgid "White pawn moves from %1$s to %2$s"
 msgstr "흰색 폰이 %1$s에서 %2$s 위치로 이동"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:830
+#: ../src/gnome-chess.vala:884
 #, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s"
 msgstr "흰색 폰이(위치 %1$s) 검은색 폰을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:832
+#: ../src/gnome-chess.vala:886
 #, c-format
 msgid "White pawn at %1$s takes the black rook at %2$s"
 msgstr "흰색 폰이(위치 %1$s) 검은색 루크를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:834
+#: ../src/gnome-chess.vala:888
 #, c-format
 msgid "White pawn at %1$s takes the black knight at %2$s"
 msgstr "흰색 폰이(위치 %1$s) 검은색 나이트를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:836
+#: ../src/gnome-chess.vala:890
 #, c-format
 msgid "White pawn at %1$s takes the black bishop at %2$s"
 msgstr "흰색 폰이(위치 %1$s) 검은색 비숍을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:838
+#: ../src/gnome-chess.vala:892
 #, c-format
 msgid "White pawn at %1$s takes the black queen at %2$s"
 msgstr "흰색 폰이(위치 %1$s) 검은색 퀸을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
-#: ../src/gnome-chess.vala:840
+#: ../src/gnome-chess.vala:894
 #, c-format
 msgid "White rook moves from %1$s to %2$s"
 msgstr "흰색 루크가 %1$s에서 %2$s 위치로 이동"
 
 #. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:842
+#: ../src/gnome-chess.vala:896
 #, c-format
 msgid "White rook at %1$s takes the black pawn at %2$s"
 msgstr "흰색 루크가(위치 %1$s) 검은색 폰을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:844
+#: ../src/gnome-chess.vala:898
 #, c-format
 msgid "White rook at %1$s takes the black rook at %2$s"
 msgstr "흰색 루크가(위치 %1$s) 검은색 루크를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:846
+#: ../src/gnome-chess.vala:900
 #, c-format
 msgid "White rook at %1$s takes the black knight at %2$s"
 msgstr "흰색 루크가(위치 %1$s) 검은색 나이트를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:848
+#: ../src/gnome-chess.vala:902
 #, c-format
 msgid "White rook at %1$s takes the black bishop at %2$s"
 msgstr "흰색 루크가(위치 %1$s) 검은색 비숍을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
-#: ../src/gnome-chess.vala:850
+#: ../src/gnome-chess.vala:904
 #, c-format
 msgid "White rook at %1$s takes the black queen at %2$s"
 msgstr "흰색 루크가(위치 %1$s) 검은색 퀸을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
-#: ../src/gnome-chess.vala:852
+#: ../src/gnome-chess.vala:906
 #, c-format
 msgid "White knight moves from %1$s to %2$s"
 msgstr "흰색 나이트가 %1$s에서 %2$s 위치로 이동"
 
 #. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:854
+#: ../src/gnome-chess.vala:908
 #, c-format
 msgid "White knight at %1$s takes the black pawn at %2$s"
 msgstr "흰색 나이트가(위치 %1$s) 검은색 폰을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:856
+#: ../src/gnome-chess.vala:910
 #, c-format
 msgid "White knight at %1$s takes the black rook at %2$s"
 msgstr "흰색 나이트가(위치 %1$s) 검은색 루크를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:858
+#: ../src/gnome-chess.vala:912
 #, c-format
 msgid "White knight at %1$s takes the black knight at %2$s"
 msgstr "흰색 나이트가(위치 %1$s) 검은색 나이트를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:860
+#: ../src/gnome-chess.vala:914
 #, c-format
 msgid "White knight at %1$s takes the black bishop at %2$s"
 msgstr "흰색 나이트가(위치 %1$s) 검은색 비숍을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:862
+#: ../src/gnome-chess.vala:916
 #, c-format
 msgid "White knight at %1$s takes the black queen at %2$s"
 msgstr "흰색 나이트가(위치 %1$s) 검은색 퀸을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
-#: ../src/gnome-chess.vala:864
+#: ../src/gnome-chess.vala:918
 #, c-format
 msgid "White bishop moves from %1$s to %2$s"
 msgstr "흰색 비숍이 %1$s에서 %2$s 위치로 이동"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:866
+#: ../src/gnome-chess.vala:920
 #, c-format
 msgid "White bishop at %1$s takes the black pawn at %2$s"
 msgstr "흰색 비숍이(위치 %1$s) 검은색 폰을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:868
+#: ../src/gnome-chess.vala:922
 #, c-format
 msgid "White bishop at %1$s takes the black rook at %2$s"
 msgstr "흰색 비숍이(위치 %1$s) 검은색 루크를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:870
+#: ../src/gnome-chess.vala:924
 #, c-format
 msgid "White bishop at %1$s takes the black knight at %2$s"
 msgstr "흰색 비숍이(위치 %1$s) 검은색 나이트를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:872
+#: ../src/gnome-chess.vala:926
 #, c-format
 msgid "White bishop at %1$s takes the black bishop at %2$s"
 msgstr "흰색 비숍이(위치 %1$s) 검은색 비숍을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:874
+#: ../src/gnome-chess.vala:928
 #, c-format
 msgid "White bishop at %1$s takes the black queen at %2$s"
 msgstr "흰색 비숍이(위치 %1$s) 검은색 퀸을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
-#: ../src/gnome-chess.vala:876
+#: ../src/gnome-chess.vala:930
 #, c-format
 msgid "White queen moves from %1$s to %2$s"
 msgstr "흰색 퀸이 %1$s에서 %2$s 위치로 이동"
 
 #. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:878
+#: ../src/gnome-chess.vala:932
 #, c-format
 msgid "White queen at %1$s takes the black pawn at %2$s"
 msgstr "흰색 퀸이(위치 %1$s) 검은색 폰을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:880
+#: ../src/gnome-chess.vala:934
 #, c-format
 msgid "White queen at %1$s takes the black rook at %2$s"
 msgstr "흰색 퀸이(위치 %1$s) 검은색 루크를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:882
+#: ../src/gnome-chess.vala:936
 #, c-format
 msgid "White queen at %1$s takes the black knight at %2$s"
 msgstr "흰색 퀸이(위치 %1$s) 검은색 나이트를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:884
+#: ../src/gnome-chess.vala:938
 #, c-format
 msgid "White queen at %1$s takes the black bishop at %2$s"
 msgstr "흰색 퀸이(위치 %1$s) 검은색 비숍을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:886
+#: ../src/gnome-chess.vala:940
 #, c-format
 msgid "White queen at %1$s takes the black queen at %2$s"
 msgstr "흰색 퀸이(위치 %1$s) 검은색 퀸을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
-#: ../src/gnome-chess.vala:888
+#: ../src/gnome-chess.vala:942
 #, c-format
 msgid "White king moves from %1$s to %2$s"
 msgstr "흰색 킹이 %1$s에서 %2$s 위치로 이동"
 
 #. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:890
+#: ../src/gnome-chess.vala:944
 #, c-format
 msgid "White king at %1$s takes the black pawn at %2$s"
 msgstr "흰색 킹이(위치 %1$s) 검은색 폰을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:892
+#: ../src/gnome-chess.vala:946
 #, c-format
 msgid "White king at %1$s takes the black rook at %2$s"
 msgstr "흰색 킹이(위치 %1$s) 검은색 루크를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:894
+#: ../src/gnome-chess.vala:948
 #, c-format
 msgid "White king at %1$s takes the black knight at %2$s"
 msgstr "흰색 킹이(위치 %1$s) 검은색 나이트를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:896
+#: ../src/gnome-chess.vala:950
 #, c-format
 msgid "White king at %1$s takes the black bishop at %2$s"
 msgstr "흰색 킹이(위치 %1$s) 검은색 비숍을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:898
+#: ../src/gnome-chess.vala:952
 #, c-format
 msgid "White king at %1$s takes the black queen at %2$s"
 msgstr "흰색 킹이(위치 %1$s) 검은색 퀸을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
-#: ../src/gnome-chess.vala:900
+#: ../src/gnome-chess.vala:954
 #, c-format
 msgid "Black pawn moves from %1$s to %2$s"
 msgstr "검은색 폰이 %1$s에서 %2$s 위치로 이동"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:902
+#: ../src/gnome-chess.vala:956
 #, c-format
 msgid "Black pawn at %1$s takes the white pawn at %2$s"
 msgstr "검은색 폰이(위치 %1$s) 흰색 폰을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:904
+#: ../src/gnome-chess.vala:958
 #, c-format
 msgid "Black pawn at %1$s takes the white rook at %2$s"
 msgstr "검은색 폰이(위치 %1$s) 흰색 루크를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:906
+#: ../src/gnome-chess.vala:960
 #, c-format
 msgid "Black pawn at %1$s takes the white knight at %2$s"
 msgstr "검은색 폰이(위치 %1$s) 흰색 나이트를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:908
+#: ../src/gnome-chess.vala:962
 #, c-format
 msgid "Black pawn at %1$s takes the white bishop at %2$s"
 msgstr "검은색 폰이(위치 %1$s) 흰색 비숍을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:910
+#: ../src/gnome-chess.vala:964
 #, c-format
 msgid "Black pawn at %1$s takes the white queen at %2$s"
 msgstr "검은색 폰이(위치 %1$s) 흰색 퀸을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
-#: ../src/gnome-chess.vala:912
+#: ../src/gnome-chess.vala:966
 #, c-format
 msgid "Black rook moves from %1$s to %2$s"
 msgstr "검은색 루크가 %1$s에서 %2$s 위치로 이동"
 
 #. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:914
+#: ../src/gnome-chess.vala:968
 #, c-format
 msgid "Black rook at %1$s takes the white pawn at %2$s"
 msgstr "검은색 루크가(위치 %1$s) 흰색 폰을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:916
+#: ../src/gnome-chess.vala:970
 #, c-format
 msgid "Black rook at %1$s takes the white rook at %2$s"
 msgstr "검은색 루크가(위치 %1$s) 흰색 루크를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:918
+#: ../src/gnome-chess.vala:972
 #, c-format
 msgid "Black rook at %1$s takes the white knight at %2$s"
 msgstr "검은색 루크가(위치 %1$s) 흰색 나이트를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:920
+#: ../src/gnome-chess.vala:974
 #, c-format
 msgid "Black rook at %1$s takes the white bishop at %2$s"
 msgstr "검은색 루크가(위치 %1$s) 흰색 비숍을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:922
+#: ../src/gnome-chess.vala:976
 #, c-format
 msgid "Black rook at %1$s takes the white queen at %2$s"
 msgstr "검은색 루크가(위치 %1$s) 흰색 퀸을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
-#: ../src/gnome-chess.vala:924
+#: ../src/gnome-chess.vala:978
 #, c-format
 msgid "Black knight moves from %1$s to %2$s"
 msgstr "검은색 나이트가 %1$s에서 %2$s 위치로 이동"
 
 #. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:926
+#: ../src/gnome-chess.vala:980
 #, c-format
 msgid "Black knight at %1$s takes the white pawn at %2$s"
 msgstr "검은색 나이트가(위치 %1$s) 흰색 폰을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:928
+#: ../src/gnome-chess.vala:982
 #, c-format
 msgid "Black knight at %1$s takes the white rook at %2$s"
 msgstr "검은색 나이트가(위치 %1$s) 흰색 루크를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:930
+#: ../src/gnome-chess.vala:984
 #, c-format
 msgid "Black knight at %1$s takes the white knight at %2$s"
 msgstr "검은색 나이트가(위치 %1$s) 흰색 나이트를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:932
+#: ../src/gnome-chess.vala:986
 #, c-format
 msgid "Black knight at %1$s takes the white bishop at %2$s"
 msgstr "검은색 나이트가(위치 %1$s) 흰색 비숍을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:934
+#: ../src/gnome-chess.vala:988
 #, c-format
 msgid "Black knight at %1$s takes the white queen at %2$s"
 msgstr "검은색 나이트가(위치 %1$s) 흰색 퀸을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
-#: ../src/gnome-chess.vala:936
+#: ../src/gnome-chess.vala:990
 #, c-format
 msgid "Black bishop moves from %1$s to %2$s"
 msgstr "검은색 비숍이 %1$s에서 %2$s 위치로 이동"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:938
+#: ../src/gnome-chess.vala:992
 #, c-format
 msgid "Black bishop at %1$s takes the white pawn at %2$s"
 msgstr "검은색 비숍이(위치 %1$s) 흰색 폰을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:940
+#: ../src/gnome-chess.vala:994
 #, c-format
 msgid "Black bishop at %1$s takes the white rook at %2$s"
 msgstr "검은색 비숍이(위치 %1$s) 흰색 루크를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:942
+#: ../src/gnome-chess.vala:996
 #, c-format
 msgid "Black bishop at %1$s takes the white knight at %2$s"
 msgstr "검은색 비숍이(위치 %1$s) 흰색 나이트를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:944
+#: ../src/gnome-chess.vala:998
 #, c-format
 msgid "Black bishop at %1$s takes the white bishop at %2$s"
 msgstr "검은색 비숍이(위치 %1$s) 흰색 비숍을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:946
+#: ../src/gnome-chess.vala:1000
 #, c-format
 msgid "Black bishop at %1$s takes the white queen at %2$s"
 msgstr "검은색 비숍이(위치 %1$s) 흰색 퀸을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
-#: ../src/gnome-chess.vala:948
+#: ../src/gnome-chess.vala:1002
 #, c-format
 msgid "Black queen moves from %1$s to %2$s"
 msgstr "검은색 퀸이 %1$s에서 %2$s 위치로 이동"
 
 #. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:950
+#: ../src/gnome-chess.vala:1004
 #, c-format
 msgid "Black queen at %1$s takes the white pawn at %2$s"
 msgstr "검은색 퀸이(위치 %1$s) 흰색 폰을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:952
+#: ../src/gnome-chess.vala:1006
 #, c-format
 msgid "Black queen at %1$s takes the white rook at %2$s"
 msgstr "검은색 퀸이(위치 %1$s) 흰색 루크를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:954
+#: ../src/gnome-chess.vala:1008
 #, c-format
 msgid "Black queen at %1$s takes the white knight at %2$s"
 msgstr "검은색 퀸이(위치 %1$s) 흰색 나이트를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:956
+#: ../src/gnome-chess.vala:1010
 #, c-format
 msgid "Black queen at %1$s takes the white bishop at %2$s"
 msgstr "검은색 퀸이(위치 %1$s) 흰색 비숍을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:958
+#: ../src/gnome-chess.vala:1012
 #, c-format
 msgid "Black queen at %1$s takes the white queen at %2$s"
 msgstr "검은색 퀸이(위치 %1$s) 흰색 퀸을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
-#: ../src/gnome-chess.vala:960
+#: ../src/gnome-chess.vala:1014
 #, c-format
 msgid "Black king moves from %1$s to %2$s"
 msgstr "검은색 킹이 %1$s에서 %2$s 위치로 이동"
 
 #. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:962
+#: ../src/gnome-chess.vala:1016
 #, c-format
 msgid "Black king at %1$s takes the white pawn at %2$s"
 msgstr "검은색 킹이(위치 %1$s) 흰색 폰을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:964
+#: ../src/gnome-chess.vala:1018
 #, c-format
 msgid "Black king at %1$s takes the white rook at %2$s"
 msgstr "검은색 킹이(위치 %1$s) 흰색 루크를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:966
+#: ../src/gnome-chess.vala:1020
 #, c-format
 msgid "Black king at %1$s takes the white knight at %2$s"
 msgstr "검은색 킹이(위치 %1$s) 흰색 나이트를(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:968
+#: ../src/gnome-chess.vala:1022
 #, c-format
 msgid "Black king at %1$s takes the white bishop at %2$s"
 msgstr "검은색 킹이(위치 %1$s) 흰색 비숍을(위치 %2$s) 먹음"
 
 #. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
-#: ../src/gnome-chess.vala:970
+#: ../src/gnome-chess.vala:1024
 #, c-format
 msgid "Black king at %1$s takes the white queen at %2$s"
 msgstr "검은색 킹이(위치 %1$s) 흰색 퀸을(위치 %2$s) 먹음"
 
-#: ../src/gnome-chess.vala:993
+#: ../src/gnome-chess.vala:1047
 msgid "White castles kingside"
 msgstr "흰색 왕쪽 부분의 루크"
 
-#: ../src/gnome-chess.vala:997
+#: ../src/gnome-chess.vala:1051
 msgid "White castles queenside"
 msgstr "흰색 여왕쪽 부분의 루크"
 
-#: ../src/gnome-chess.vala:1001
+#: ../src/gnome-chess.vala:1055
 msgid "Black castles kingside"
 msgstr "검정 왕쪽 부분의 루크"
 
-#: ../src/gnome-chess.vala:1005
+#: ../src/gnome-chess.vala:1059
 msgid "Black castles queenside"
 msgstr "검정 여왕쪽 부분의 루크"
 
 #. Window title on a White human's turn if he is in check
-#: ../src/gnome-chess.vala:1144
+#: ../src/gnome-chess.vala:1198
 msgid "White is in Check"
 msgstr "흰색이 체크 상태입니다"
 
 #. Window title on a Black human's turn if he is in check
-#: ../src/gnome-chess.vala:1147
+#: ../src/gnome-chess.vala:1201
 msgid "Black is in Check"
 msgstr "검정이 체크 상태입니다"
 
 #. Window title on White's turn if White is human
-#: ../src/gnome-chess.vala:1153
+#: ../src/gnome-chess.vala:1207
 msgid "White to Move"
 msgstr "흰색 차례"
 
 #. Window title on White's turn if White is a computer
-#: ../src/gnome-chess.vala:1156
+#: ../src/gnome-chess.vala:1210
 msgid "White is Thinking…"
 msgstr "흰색이 생각 중입니다…"
 
 #. Window title on Black's turn if Black is human
-#: ../src/gnome-chess.vala:1162
+#: ../src/gnome-chess.vala:1216
 msgid "Black to Move"
 msgstr "검정 차례"
 
 #. Window title on Black's turn if Black is a computer
-#: ../src/gnome-chess.vala:1165
+#: ../src/gnome-chess.vala:1219
 msgid "Black is Thinking…"
 msgstr "검정이 생각 중입니다…"
 
-#: ../src/gnome-chess.vala:1180
+#: ../src/gnome-chess.vala:1234
 msgid "Unpause the game"
 msgstr "게임을 계속 진행합니다"
 
-#: ../src/gnome-chess.vala:1186
+#: ../src/gnome-chess.vala:1240
 msgid "Pause the game"
 msgstr "게임을 일시 중지합니다"
 
 #. Window title when the white player wins
-#: ../src/gnome-chess.vala:1209
+#: ../src/gnome-chess.vala:1263
 msgid "White Wins"
 msgstr "흰색 승리"
 
 #. Window title when the black player wins
-#: ../src/gnome-chess.vala:1214
+#: ../src/gnome-chess.vala:1268
 msgid "Black Wins"
 msgstr "검정 승리"
 
 #. Window title when the game is drawn
-#: ../src/gnome-chess.vala:1219
+#: ../src/gnome-chess.vala:1273
 msgid "Game is Drawn"
 msgstr "무승부"
 
@@ -995,310 +1044,230 @@ msgstr "무승부"
 #. * because the pause button eats up some of your space, start a new game,
 #. * then run 'killall gnuchess' in a terminal.
 #.
-#: ../src/gnome-chess.vala:1231
+#: ../src/gnome-chess.vala:1285
 msgid "Oops! Something has gone wrong."
 msgstr "앗! 무언가 잘못되었습니다."
 
 #. Window subtitle when Black is checkmated
-#: ../src/gnome-chess.vala:1244
+#: ../src/gnome-chess.vala:1298
 msgid "Black is in check and cannot move."
 msgstr "검정이 체크 상태이고 움직일 수 없습니다."
 
 #. Window subtitle when White is checkmated
-#: ../src/gnome-chess.vala:1247
+#: ../src/gnome-chess.vala:1301
 msgid "White is in check and cannot move."
 msgstr "흰색이 체크 상태이고 움직일 수 없습니다."
 
 #. Window subtitle when the game terminates due to a stalemate
-#: ../src/gnome-chess.vala:1253
+#: ../src/gnome-chess.vala:1307
 msgid "Opponent cannot move."
 msgstr "상대편이 움직일 수 없습니다."
 
 #. Window subtitle when the game is drawn due to the fifty move rule
-#: ../src/gnome-chess.vala:1257
+#: ../src/gnome-chess.vala:1311
 msgid "No piece was taken or pawn moved in fifty moves."
 msgstr "잡은 말이 없거나 폰이 15칸을 이동했습니다."
 
 #. Window subtitle when the game ends due to Black's clock stopping
-#: ../src/gnome-chess.vala:1262
+#: ../src/gnome-chess.vala:1316
 msgid "Black has run out of time."
 msgstr "검정이 제한 시간이 지났습니다."
 
 #. Window subtitle when the game ends due to White's clock stopping
-#: ../src/gnome-chess.vala:1265
+#: ../src/gnome-chess.vala:1319
 msgid "White has run out of time."
 msgstr "흰색이 제한 시간이 지났습니다."
 
 #. Window subtitle when the game is drawn due to the three-fold-repetition rule
-#: ../src/gnome-chess.vala:1271
+#: ../src/gnome-chess.vala:1325
 msgid "The same board state has occurred three times."
 msgstr "같은 보드 상태가 세 번 발생했습니다."
 
 #. Window subtitle when the game is drawn due to the insufficient material rule
-#: ../src/gnome-chess.vala:1275
+#: ../src/gnome-chess.vala:1329
 msgid "Neither player can checkmate."
 msgstr "어느쪽의 플레이어도 체크메이트를 할 수 없습니다."
 
 #. Window subtitle when the game ends due to the black player resigning
-#: ../src/gnome-chess.vala:1280
+#: ../src/gnome-chess.vala:1334
 msgid "Black has resigned."
 msgstr "검정이 항복했습니다."
 
 #. Window subtitle when the game ends due to the white player resigning
-#: ../src/gnome-chess.vala:1283
+#: ../src/gnome-chess.vala:1337
 msgid "White has resigned."
 msgstr "흰색이 항복했습니다."
 
 #. Window subtitle when a game is abandoned
-#: ../src/gnome-chess.vala:1289
+#: ../src/gnome-chess.vala:1343
 msgid "The game has been abandoned."
 msgstr "게임을 버립니다."
 
 #. Window subtitle when the game ends due to a player dying.
 #. * This is a PGN standard. GNOME Chess will never kill the user.
-#: ../src/gnome-chess.vala:1295
+#: ../src/gnome-chess.vala:1349
 msgid "The game log says a player died!"
 msgstr "게임 기록에 따르면 플레이어가 죽었습니다!"
 
 #. Window subtitle when something goes wrong with the engine...
 #. * or when the engine says something is wrong with us!
-#: ../src/gnome-chess.vala:1301
+#: ../src/gnome-chess.vala:1355
 msgid "The computer player is confused. The game cannot continue."
 msgstr "컴퓨터 플레이어가 매우 혼란스럽습니다. 게임을 계속할 수 없습니다."
 
-#: ../src/gnome-chess.vala:1336 ../src/gnome-chess.vala:2221
-#: ../src/gnome-chess.vala:2304
+#: ../src/gnome-chess.vala:1390 ../src/gnome-chess.vala:2302
+#: ../src/gnome-chess.vala:2385
 msgid "_Cancel"
 msgstr "취소(_C)"
 
-#: ../src/gnome-chess.vala:1340
+#: ../src/gnome-chess.vala:1394
 msgid "_Abandon game"
 msgstr "게임 포기하기(_A)"
 
-#: ../src/gnome-chess.vala:1341
+#: ../src/gnome-chess.vala:1395
 msgid "_Save game for later"
 msgstr "다음을 위해 게임 저장(_S)"
 
-#: ../src/gnome-chess.vala:1345
+#: ../src/gnome-chess.vala:1399
 msgid "_Discard game"
 msgstr "게임 버리기(_D)"
 
-#: ../src/gnome-chess.vala:1346
+#: ../src/gnome-chess.vala:1400
 msgid "_Save game log"
 msgstr "게임 기록 저장(_S)"
 
 #. Your very last chance to save
-#: ../src/gnome-chess.vala:1359
+#: ../src/gnome-chess.vala:1413
 msgid "_Discard"
 msgstr "버리기(_D)"
 
-#: ../src/gnome-chess.vala:1359 ../src/gnome-chess.vala:2222
+#: ../src/gnome-chess.vala:1413 ../src/gnome-chess.vala:2303
 msgid "_Save"
 msgstr "저장(_S)"
 
 #. Title of claim draw dialog
-#: ../src/gnome-chess.vala:1382
+#: ../src/gnome-chess.vala:1436
 msgid "Would you like to claim a draw?"
 msgstr "무승부 선언을 하시겠습니까?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: ../src/gnome-chess.vala:1388
+#: ../src/gnome-chess.vala:1442
 msgid "Fifty moves have passed without a capture or pawn advancement."
 msgstr "말의 포획 또는 폰의 전진 없이 50번의 말의 이동이 있습니다."
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: ../src/gnome-chess.vala:1393
+#: ../src/gnome-chess.vala:1447
 msgid "The current board position has occurred three times."
 msgstr "현재 체스판의 상태가 세 번 발생했습니다."
 
 #. Displays in claim draw dialog to warn player that the dialog only appears once
-#: ../src/gnome-chess.vala:1399
+#: ../src/gnome-chess.vala:1453
 msgid "(You will not be offered this choice again.)"
 msgstr "(이 선택을 할 기회는 나중에 다시 없습니다.)"
 
 #. Option in claim draw dialog
 #. Option on warning dialog when player clicks resign
-#: ../src/gnome-chess.vala:1402 ../src/gnome-chess.vala:1442
+#: ../src/gnome-chess.vala:1456 ../src/gnome-chess.vala:1496
 msgid "_Keep Playing"
 msgstr "계속 플레이(_K)"
 
 #. Option in claim draw dialog
-#: ../src/gnome-chess.vala:1404
+#: ../src/gnome-chess.vala:1458
 msgid "_Claim Draw"
 msgstr "무승부 선언(_C)"
 
-#: ../src/gnome-chess.vala:1424
+#: ../src/gnome-chess.vala:1478
 msgid "Save this game before starting a new one?"
 msgstr "새로 시작하기 전에 이 게임을 저장하시겠습니까?"
 
 #. Title of warning dialog when player clicks Resign
-#: ../src/gnome-chess.vala:1437
+#: ../src/gnome-chess.vala:1491
 msgid "Are you sure you want to resign?"
 msgstr "정말로 항복하시겠습니까?"
 
 #. Text on warning dialog when player clicks Resign
-#: ../src/gnome-chess.vala:1440
+#: ../src/gnome-chess.vala:1494
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr "패배로 기록할 게임을 저장하고 싶으면 항복할 수 있습니다."
 
 #. Option on warning dialog when player clicks resign
-#: ../src/gnome-chess.vala:1444
+#: ../src/gnome-chess.vala:1498
 msgid "_Resign"
 msgstr "항복(_R)"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
 #. Preferences Dialog: Combo box entry for a custom clock type set in minutes
-#: ../src/gnome-chess.vala:1956 ../src/gnome-chess.vala:1997
+#: ../src/gnome-chess.vala:2011 ../src/gnome-chess.vala:2052
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "분"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../src/gnome-chess.vala:1960
+#: ../src/gnome-chess.vala:2015
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "시간"
 
 #. Preferences Dialog: Combo box entry for a custom clock type set in seconds
-#: ../src/gnome-chess.vala:1993
+#: ../src/gnome-chess.vala:2048
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "초"
 
-#: ../src/gnome-chess.vala:2134
+#: ../src/gnome-chess.vala:2189
 msgid "A classic game of positional strategy"
 msgstr "전통적인 보드 전략 게임"
 
-#: ../src/gnome-chess.vala:2137
+#: ../src/gnome-chess.vala:2192
 msgid "translator-credits"
 msgstr ""
 "백관선 <backiss@kornet.net>\n"
-"류창우 <cwryu@debian.org>\n"
-"조성호 <darkcircle.0426@gmail.com>"
+"조성호 <darkcircle.0426@gmail.com>\n"
+"류창우 <cwryu@debian.org>"
 
-#: ../src/gnome-chess.vala:2208
+#: ../src/gnome-chess.vala:2205
+msgid "This does not look like a valid PGN game."
+msgstr "올바른 PGN 게임처럼 보이지 않습니다."
+
+#: ../src/gnome-chess.vala:2289
 msgid "Failed to save game"
 msgstr "게임 저장에 실패했습니다"
 
 #. Title of save game dialog
-#: ../src/gnome-chess.vala:2232
+#: ../src/gnome-chess.vala:2313
 msgid "Save Chess Game"
 msgstr "체스 게임 저장"
 
 #. Default filename for the save game dialog
-#: ../src/gnome-chess.vala:2245
+#: ../src/gnome-chess.vala:2326
 msgid "Untitled Chess Game"
 msgstr "제목 없는 체스 게임"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:2250 ../src/gnome-chess.vala:2314
+#: ../src/gnome-chess.vala:2331 ../src/gnome-chess.vala:2395
 msgid "PGN files"
 msgstr "PGN 파일"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:2256 ../src/gnome-chess.vala:2320
+#: ../src/gnome-chess.vala:2337 ../src/gnome-chess.vala:2401
 msgid "All files"
 msgstr "모든 파일"
 
-#: ../src/gnome-chess.vala:2291
+#: ../src/gnome-chess.vala:2372
 msgid "Save this game before loading another one?"
 msgstr "다른 게임을 불러오기 전에 이 게임을 저장하시겠습니까?"
 
 #. Title of load game dialog
-#: ../src/gnome-chess.vala:2302
+#: ../src/gnome-chess.vala:2383
 msgid "Load Chess Game"
 msgstr "체스 게임 읽어들이기"
 
-#: ../src/gnome-chess.vala:2305
+#: ../src/gnome-chess.vala:2386
 msgid "_Open"
 msgstr "열기(_O)"
 
-#: ../src/gnome-chess.vala:2339
+#: ../src/gnome-chess.vala:2420
 msgid "Failed to open game"
 msgstr "게임 열기에 실패했습니다"
-
-#~ msgid "%d∶‎%02d"
-#~ msgstr "%d∶‎%02d"
-
-#~ msgid "∶‎%02d"
-#~ msgstr "∶‎%02d"
-
-#~ msgid "Save As…"
-#~ msgstr "다른 이름으로 저장…"
-
-#~ msgid "A flag to enable 3D mode"
-#~ msgstr "3차원 모드를 켜는 플래그"
-
-#~ msgid "A flag to smooth (anti-alias) the 3D display"
-#~ msgstr "3차원 화면을 부드럽게 하는(안티알리아싱) 플래그"
-
-#~ msgid "Close"
-#~ msgstr "닫기"
-
-#~ msgid "Game duration:"
-#~ msgstr "게임 길이:"
-
-#~ msgid "3_D chess view"
-#~ msgstr "3차원 체스 보기(_D)"
-
-#~ msgid "_Smooth display"
-#~ msgstr "부드럽게 표시(_S)"
-
-#~ msgid "The computer player died unexpectedly."
-#~ msgstr "컴퓨터 플레이어가 갑자기 죽었습니다."
-
-#~ msgid "The game cannot continue."
-#~ msgstr "게임을 계속할 수 없습니다."
-
-#~ msgid "One of the players has died."
-#~ msgstr "플레이어가 죽었습니다."
-
-# NOTE: 3수 반복 규칙 경고
-#~ msgid "It is the first time this board position has occurred"
-#~ msgstr "이 수의 동작이 처음 일어났습니다"
-
-# NOTE: 3수 반복 규칙 경고
-#~ msgid "It is the second time this board position has occurred"
-#~ msgstr "이 수의 동작이 두번째로 일어났습니다"
-
-#~ msgid "%d move has passed without a capture or pawn advancement"
-#~ msgid_plural "%d moves have passed without a capture or pawn advancement"
-#~ msgstr[0] "말의 포획 또는 폰의 전진 없이 %d번의 말의 이동이 있었습니다"
-
-#~ msgid "You can claim a draw when either:"
-#~ msgstr "다음의 모든 경우에 무승부를 선언할 수 있습니다:"
-
-#~ msgid ""
-#~ "(Board position is affected by the ability to castle or capture en "
-#~ "passant.)"
-#~ msgstr ""
-#~ "(보드 위치는 루크의 능력 또는 말을 건너뛰어 잡는데 영향을 받습니다.)"
-
-#~ msgid "The game is automatically a draw if:"
-#~ msgstr "다음의 경우 게임은 자동으로 무승부가 됩니다:"
-
-# 체스 용어
-#~ msgid "The current player cannot move (stalemate)"
-#~ msgstr "현재 플레이어가 움직일 수 없습니다(스테일메이트)"
-
-#~ msgid "Neither player can checkmate (insufficient material)"
-#~ msgstr "어느쪽의 플레이어도 체크메이트를 할 수 없습니다(경우의 수 부족)"
-
-#~ msgid ""
-#~ "The 2D/3D chess game for GNOME\n"
-#~ "\n"
-#~ "GNOME Chess is a part of GNOME Games."
-#~ msgstr ""
-#~ "그놈 2D/3D 체스.\n"
-#~ "\n"
-#~ "그놈 체스는 그놈 게임의 일부입니다."
-
-#~ msgid "[FILE] - Play Chess"
-#~ msgstr "[파일] - 체스를 플레이합니다"
-
-#~ msgid ""
-#~ "Run '%s --help' to see a full list of available command line options."
-#~ msgstr ""
-#~ "사용 가능한 모든 옵션의 목록을 보려면 '%s --help' 명령을 실행하십시오."
