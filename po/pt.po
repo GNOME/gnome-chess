@@ -73,7 +73,7 @@ msgstr "Desfazer o seu movimento mais recente"
 
 #: ../data/gnome-chess.ui.h:4
 msgid "Resign to your opponent"
-msgstr "Desistir"
+msgstr "Ceder o jogo ao oponente"
 
 #: ../data/gnome-chess.ui.h:5
 msgid "Save the current game"
@@ -86,17 +86,17 @@ msgstr "Abrir um jogo gravado"
 #. Tooltip on the show first move (i.e. game start) navigation button
 #: ../data/gnome-chess.ui.h:8
 msgid "Rewind to the game start"
-msgstr "Retroceder até ao início do jogo"
+msgstr "Recuar até ao início do jogo"
 
 #. Tooltip on the show previous move navigation button
 #: ../data/gnome-chess.ui.h:10
 msgid "Show the previous move"
-msgstr "Mostrar a última jogada"
+msgstr "Mostrar a jogada anterior"
 
 #. Tooltip on the show next move navigation button
 #: ../data/gnome-chess.ui.h:12
 msgid "Show the next move"
-msgstr "Mostrar a próxima jogada"
+msgstr "Mostrar a jogada seguinte"
 
 #. Tooltip on the show current move navigation button
 #: ../data/gnome-chess.ui.h:14
@@ -154,11 +154,11 @@ msgstr "Um parâmetro para ativar a numeração de tabuleiros"
 
 #: ../data/org.gnome.chess.gschema.xml.h:9
 msgid "The directory to open the save game dialog in"
-msgstr "A pasta onde abrir o diálogo de gravar jogo"
+msgstr "A pasta onde abrir o diálogo de gravação de jogos"
 
 #: ../data/org.gnome.chess.gschema.xml.h:10
 msgid "The directory to open the load game dialog in"
-msgstr "A pasta onde abrir o diálogo de carregar jogo"
+msgstr "A pasta onde abrir o diálogo de carregamento de jogos"
 
 #: ../data/org.gnome.chess.gschema.xml.h:11
 msgid "The format to display moves in"
@@ -421,12 +421,12 @@ msgstr "_Formato da jogada:"
 #. Preferences Dialog: Label before piece style combo box
 #: ../data/preferences.ui.h:80
 msgid "_Piece style:"
-msgstr "_Estilo das peças:"
+msgstr "Estilo das _Peças:"
 
 #. Preferences Dialog: Check box for selecting if board numbering is visible
 #: ../data/preferences.ui.h:82
 msgid "_Board numbering"
-msgstr "Numeração no _Tabuleiro"
+msgstr "_Numeração no tabuleiro"
 
 #. Preferences Dialog: Check box for selecting if move hints are visible
 #: ../data/preferences.ui.h:84
@@ -1028,7 +1028,7 @@ msgstr ""
 #. Window subtitle when the game ends due to Black's clock stopping
 #: ../src/gnome-chess.vala:1262
 msgid "Black has run out of time."
-msgstr "A pretas ficaram sem tempo."
+msgstr "As pretas ficaram sem tempo."
 
 #. Window subtitle when the game ends due to White's clock stopping
 #: ../src/gnome-chess.vala:1265
@@ -1043,7 +1043,7 @@ msgstr "A mesma posição do tabuleiro ocorreu três vezes (terceira repetição
 #. Window subtitle when the game is drawn due to the insufficient material rule
 #: ../src/gnome-chess.vala:1275
 msgid "Neither player can checkmate."
-msgstr "Nenhum jogador pode fazer xeque-mate."
+msgstr "Nenhum jogador pode fazer xeque-mate (material insuficiente)."
 
 #. Window subtitle when the game ends due to the black player resigning
 #: ../src/gnome-chess.vala:1280
@@ -1070,7 +1070,7 @@ msgstr "O diário de jogo diz que um dos jogadores morreu!"
 #. * or when the engine says something is wrong with us!
 #: ../src/gnome-chess.vala:1301
 msgid "The computer player is confused. The game cannot continue."
-msgstr "O computador está muito confuso. O jogo não pode continuar."
+msgstr "O computador está muito confuso. O jogo não pode continuar"
 
 #: ../src/gnome-chess.vala:1336 ../src/gnome-chess.vala:2221
 #: ../src/gnome-chess.vala:2304
@@ -1111,7 +1111,7 @@ msgstr "Quer declarar um empate?"
 #: ../src/gnome-chess.vala:1388
 msgid "Fifty moves have passed without a capture or pawn advancement."
 msgstr ""
-"Passaram-se cinquenta movimentos sem uma captura ou o avanço de um peão."
+"Passaram-se cinquenta movimentos sem uma captura ou o avanço de um peão"
 
 #. Message in claim draw dialog when triggered by three-fold repetition
 #: ../src/gnome-chess.vala:1393
@@ -1146,7 +1146,7 @@ msgstr "Tem a certeza que quer desistir?"
 #. Text on warning dialog when player clicks Resign
 #: ../src/gnome-chess.vala:1440
 msgid "This makes sense if you plan to save the game as a record of your loss."
-msgstr "Faz sentido se etá a pensar gravar o jogo como registo da sua perda."
+msgstr "Faz sentido se está a pensar gravar o jogo como registo da sua perda."
 
 #. Option on warning dialog when player clicks resign
 #: ../src/gnome-chess.vala:1444
@@ -1213,7 +1213,7 @@ msgstr "Todos os ficheiros"
 
 #: ../src/gnome-chess.vala:2291
 msgid "Save this game before loading another one?"
-msgstr "Guardar este jogo antes de abrir outro?"
+msgstr "Gravar este jogo antes de abrir outro?"
 
 #. Title of load game dialog
 #: ../src/gnome-chess.vala:2302
