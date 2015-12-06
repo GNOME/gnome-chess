@@ -12,8 +12,14 @@ cd $srcdir
         exit 1
 }
 
-if [ -d $srcdir/.git ] && [ ! -L $srcdir/.git/hooks/pre-commit ]; then
-        ln -s ../../../libgames-support/style-checker $srcdir/.git/hooks/pre-commit && echo "Enabled pre-commit style checker." || :
+# Use the style-checker as pre-commit and pre-applypatch hooks
+if [ -d $srcdir/.git ]; then
+        if [  -L $srcdir/.git/hooks/pre-commit ]; then
+            ln -s ../../../libgames-support/style-checker $srcdir/.git/hooks/pre-commit && echo "Enabled pre-commit style checker." || :
+        fi
+        if [  -L $srcdir/.git/hooks/pre-applypatch ]; then
+            ln -s ../../../libgames-support/style-checker $srcdir/.git/hooks/pre-applypatch && echo "Enabled pre-applypatch style checker." || :
+        fi
 fi
 
 PKG_NAME=`autoconf --trace 'AC_INIT:$1' configure.ac`
