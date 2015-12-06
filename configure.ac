@@ -22,7 +22,7 @@ dnl Dependencies
 dnl ###########################################################################
 
 GLIB_REQUIRED=2.40
-GTK_REQUIRED=3.15.0
+GTK_REQUIRED=3.16.0
 RSVG_REQUIRED=2.32.0
 
 AC_SUBST([GLIB_REQUIRED])
