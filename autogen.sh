@@ -12,7 +12,7 @@ cd $srcdir
         exit 1
 }
 
-if [ -d $srcdir/.git ] && [ ! -e $srcdir/.git/hooks/pre-commit ]; then
+if [ -d $srcdir/.git ] && [ ! -L $srcdir/.git/hooks/pre-commit ]; then
         ln -s ../../../libgames-support/style-checker $srcdir/.git/hooks/pre-commit && echo "Enabled pre-commit style checker." || :
 fi
 
