@@ -28,21 +28,21 @@ RSVG_REQUIRED=2.32.0
 AC_SUBST([GLIB_REQUIRED])
 
 PKG_CHECK_MODULES(GNOME_CHESS, [
-  glib-2.0 >= $GLIB_REQUIRED
   gio-2.0 >= $GLIB_REQUIRED
+  glib-2.0 >= $GLIB_REQUIRED
   gmodule-2.0
   gtk+-3.0 >= $GTK_REQUIRED
   librsvg-2.0 >= $RSVG_REQUIRED
 ])
 
 PKG_CHECK_MODULES(LIBCHESS, [
-  glib-2.0
   gio-2.0
+  glib-2.0
 ])
 
 PKG_CHECK_MODULES(TEST, [
-  glib-2.0
   gio-2.0
+  glib-2.0
 ])
 
 AC_CHECK_HEADERS([linux/prctl.h])
