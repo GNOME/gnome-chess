@@ -36,6 +36,6 @@ CLEANFILES = \
 	$(appstream_XML) \
 	$(desktop_DATA)
 
-DISTCHECK_CONFIGURE_FLAGS == --enable-appdata-check
+AM_DISTCHECK_CONFIGURE_FLAGS == --enable-appdata-check
 
 -include $(top_srcdir)/git.mk
