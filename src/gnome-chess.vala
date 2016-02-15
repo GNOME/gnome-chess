@@ -5,7 +5,7 @@
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 2 of the License, or (at your option) any later
+ * Foundation, either version 3 of the License, or (at your option) any later
  * version. See http://www.gnu.org/copyleft/gpl.html the full text of the
  * license.
  */
@@ -2185,7 +2185,7 @@ public class ChessApplication : Gtk.Application
         about_dialog.program_name = _("Chess");
         about_dialog.version = VERSION;
         about_dialog.copyright = "Copyright © 2010–2013 Robert Ancell\nCopyright © 2013–2014 Michael Catanzaro";
-        about_dialog.license_type = Gtk.License.GPL_2_0;
+        about_dialog.license_type = Gtk.License.GPL_3_0;
         about_dialog.comments = _("A classic game of positional strategy");
         about_dialog.authors = authors;
         about_dialog.artists = artists;
