@@ -65,6 +65,9 @@ public class ChessApplication : Gtk.Application
     private ChessPlayer? human_player = null;
     private ChessEngine? opponent_engine = null;
     private int engine_timeout_counter = 10;
+    private string copyrights = """Copyright © 2010–2013 Robert Ancell
+Copyright © 2013–2014 Michael Catanzaro
+Copyright © 2015–2016 Sahil Sareen""";
 
     private const ActionEntry[] app_entries =
     {
@@ -2184,7 +2187,7 @@ public class ChessApplication : Gtk.Application
         about_dialog.modal = true;
         about_dialog.program_name = _("Chess");
         about_dialog.version = VERSION;
-        about_dialog.copyright = "Copyright © 2010–2013 Robert Ancell\nCopyright © 2013–2014 Michael Catanzaro";
+        about_dialog.copyright = copyrights;
         about_dialog.license_type = Gtk.License.GPL_3_0;
         about_dialog.comments = _("A classic game of positional strategy");
         about_dialog.authors = authors;
