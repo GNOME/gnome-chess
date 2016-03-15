@@ -2,6 +2,7 @@
  *
  * Copyright (C) 2010-2013 Robert Ancell
  * Copyright (C) 2013-2014 Michael Catanzaro
+ * Copyright (C) 2015-2016 Sahil Sareen
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
