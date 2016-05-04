@@ -59,7 +59,6 @@ public class ChessApplication : Gtk.Application
     private string autosave_filename;
     private File game_file;
     private bool game_needs_saving = false;
-    private bool allow_claim_draw_dialog = true;
     private bool starting = true;
     private List<AIProfile> ai_profiles;
     private ChessPlayer? opponent = null;
@@ -876,7 +875,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         if (game.clock != null)
             enable_window_action (PAUSE_RESUME_ACTION_NAME);
 
-        if (game.can_claim_draw () && allow_claim_draw_dialog)
+        if (game.can_claim_draw ())
             present_claim_draw_dialog ();
     }
 
@@ -1453,9 +1452,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         }
         else assert_not_reached ();
 
-        dialog.format_secondary_text ("%s\n%s", reason,
-            /* Displays in claim draw dialog to warn player that the dialog only appears once */
-            _("(You will not be offered this choice again.)"));
+        dialog.secondary_text = reason;
 
         dialog.add_buttons (/* Option in claim draw dialog */
                             _("_Keep Playing"), Gtk.ResponseType.REJECT,
@@ -1472,8 +1469,6 @@ Copyright © 2015–2016 Sahil Sareen""";
         }
         else
         {
-            /* Display this dialog only once per game */
-            allow_claim_draw_dialog = false;
             game.unpause ();
         }
     }
@@ -2439,7 +2434,6 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         game_file = null;
 
-        allow_claim_draw_dialog = true;
         disable_window_action (NEW_GAME_ACTION_NAME);
         disable_window_action (SAVE_GAME_AS_ACTION_NAME);
 
