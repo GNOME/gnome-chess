@@ -25,8 +25,10 @@ public enum ChessRule
     CHECKMATE,
     STALEMATE,
     FIFTY_MOVES,
+    SEVENTY_FIVE_MOVES,
     TIMEOUT,
     THREE_FOLD_REPETITION,
+    FIVE_FOLD_REPETITION,
     INSUFFICIENT_MATERIAL,
     RESIGN,
     ABANDONMENT,
@@ -183,13 +185,25 @@ public class ChessGame : Object
         if (result != ChessResult.IN_PROGRESS)
         {
             stop (result, rule);
+            return;
         }
-        else
+
+        if (is_five_fold_repeat ())
         {
-            if (_clock != null)
-                _clock.active_color = current_player.color;
-            turn_started (current_player);
+            stop (ChessResult.DRAW, ChessRule.FIVE_FOLD_REPETITION);
+            return;
         }
+
+        /* Note this test must occur after the test for checkmate in current_state.get_result (). */
+        if (is_seventy_five_move_rule_fulfilled ())
+        {
+            stop (ChessResult.DRAW, ChessRule.SEVENTY_FIVE_MOVES);
+            return;
+        }
+
+        if (_clock != null)
+            _clock.active_color = current_player.color;
+        turn_started (current_player);
     }
 
     private void undo_cb (ChessPlayer player)
@@ -233,21 +247,37 @@ public class ChessGame : Object
         return count;
     }
 
-    public bool is_three_fold_repeat ()
+    private bool is_n_fold_repeat (int n)
     {
         foreach (var state in move_stack)
         {
-            if (state_repeated_times (state) >= 3)
+            if (state_repeated_times (state) >= n)
                 return true;
         }
 
         return false;
     }
 
+    public bool is_three_fold_repeat ()
+    {
+        return is_n_fold_repeat (3);
+    }
+
+    public bool is_five_fold_repeat ()
+    {
+        return is_n_fold_repeat (5);
+    }
+
     public bool is_fifty_move_rule_fulfilled ()
     {
-        /* Fifty moves per player without capture or pawn advancement */
+        /* Fifty moves *per player* without capture or pawn advancement */
         return current_state.halfmove_clock >= 100;
+    }
+
+    public bool is_seventy_five_move_rule_fulfilled ()
+    {
+        /* 75 moves *per player* without capture or pawn advancement */
+        return current_state.halfmove_clock >= 150;
     }
 
     public bool can_claim_draw ()

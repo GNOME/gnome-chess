@@ -1314,6 +1314,10 @@ Copyright © 2015–2016 Sahil Sareen""";
             /* Window subtitle when the game is drawn due to the fifty move rule */
             reason = _("No piece was taken or pawn moved in fifty moves.");
             break;
+        case ChessRule.SEVENTY_FIVE_MOVES:
+            /* Window subtitle when the game is drawn due to the 75 move rule */
+            reason = _("No piece was taken or pawn moved in 75 moves.");
+            break;
         case ChessRule.TIMEOUT:
             if (game.result == ChessResult.WHITE_WON)
                 /* Window subtitle when the game ends due to Black's clock stopping */
@@ -1327,6 +1331,10 @@ Copyright © 2015–2016 Sahil Sareen""";
         case ChessRule.THREE_FOLD_REPETITION:
             /* Window subtitle when the game is drawn due to the three-fold-repetition rule */
             reason = _("The same board state has occurred three times.");
+            break;
+        case ChessRule.FIVE_FOLD_REPETITION:
+            /* Window subtitle when the game is drawn due to the five-fold-repetition rule */
+            reason = _("The same board state has occurred five times.");
             break;
         case ChessRule.INSUFFICIENT_MATERIAL:
             /* Window subtitle when the game is drawn due to the insufficient material rule */
