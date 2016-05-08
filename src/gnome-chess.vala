@@ -125,17 +125,19 @@ Copyright © 2015–2016 Sahil Sareen""";
         return -1;
     }
 
-    private void run_no_engine_dialog ()
+    private void display_no_engine_info_bar ()
     {
-        var no_engine_dialog = new Gtk.MessageDialog (window,
-                                                      Gtk.DialogFlags.MODAL,
-                                                      Gtk.MessageType.ERROR,
-                                                      Gtk.ButtonsType.NONE,
-                                                      _("No chess engine is installed. You will not be able to play against the computer."));
-        no_engine_dialog.add_button (_("_OK"), Gtk.ResponseType.OK);
+        Gtk.InfoBar? no_engine_info_bar = null;
+        Gtk.Label? no_engine_error_label = null;
+        // Info bar to indicate no chess engines are installed
+        add_info_bar_to_bin (window, out no_engine_info_bar, out no_engine_error_label);
 
-        no_engine_dialog.run ();
-        no_engine_dialog.destroy ();
+        no_engine_error_label.set_text (_("No chess engine is installed. " +
+          "You will not be able to play against the computer."));
+        no_engine_info_bar.set_message_type (Gtk.MessageType.ERROR);
+        no_engine_info_bar.show ();
+        no_engine_info_bar.set_show_close_button (true);
+        no_engine_info_bar.response.connect (() => no_engine_info_bar.hide ());
     }
 
     public override void startup ()
@@ -205,7 +207,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             warning ("engines.conf not found");
 
         if (ai_profiles == null)
-           run_no_engine_dialog ();
+            display_no_engine_info_bar ();
 
         foreach (var profile in ai_profiles)
             debug ("Detected AI profile %s in %s", profile.name, profile.path);
@@ -2231,7 +2233,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         about_dialog = null;
     }
 
-    private void add_info_bar_to_dialog (Gtk.Dialog dialog, out Gtk.InfoBar info_bar, out Gtk.Label label)
+    private void add_info_bar_to_bin (Gtk.Bin bin, out Gtk.InfoBar info_bar, out Gtk.Label label)
     {
         var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         vbox.show ();
@@ -2244,13 +2246,13 @@ Copyright © 2015–2016 Sahil Sareen""";
         content_area.add (label);
         label.show ();
 
-        var child = (Gtk.Container) dialog.get_child ();
+        var child = (Gtk.Container) bin.get_child ();
         child.reparent (vbox);
-        child.border_width = dialog.border_width;
-        dialog.border_width = 0;
+        child.border_width = bin.border_width;
+        bin.border_width = 0;
 
         vbox.set_child_packing (child, true, true, 0, Gtk.PackType.START);
-        dialog.add (vbox);
+        bin.add (vbox);
     }
 
     private void update_pgn_time_remaining ()
@@ -2317,7 +2319,7 @@ Copyright © 2015–2016 Sahil Sareen""";
                                                  window, Gtk.FileChooserAction.SAVE,
                                                  _(cancel_button_label), Gtk.ResponseType.CANCEL,
                                                  _(save_button_label), Gtk.ResponseType.OK, null);
-        add_info_bar_to_dialog (save_dialog, out save_dialog_info_bar, out save_dialog_error_label);
+        add_info_bar_to_bin (save_dialog, out save_dialog_info_bar, out save_dialog_error_label);
 
         save_dialog.file_activated.connect (() => save_dialog_cb (Gtk.ResponseType.OK));
         save_dialog.response.connect (save_dialog_cb);
@@ -2387,7 +2389,7 @@ Copyright © 2015–2016 Sahil Sareen""";
                                                  window, Gtk.FileChooserAction.OPEN,
                                                  _("_Cancel"), Gtk.ResponseType.CANCEL,
                                                  _("_Open"), Gtk.ResponseType.OK, null);
-        add_info_bar_to_dialog (open_dialog, out open_dialog_info_bar, out open_dialog_error_label);
+        add_info_bar_to_bin (open_dialog, out open_dialog_info_bar, out open_dialog_error_label);
 
         open_dialog.file_activated.connect (() => open_dialog_cb (Gtk.ResponseType.OK));
         open_dialog.response.connect (open_dialog_cb);
