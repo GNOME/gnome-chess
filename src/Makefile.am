@@ -38,17 +38,20 @@ gnome_chess_VALAFLAGS = \
 	--pkg gtk+-3.0 \
 	--pkg librsvg-2.0 \
 	--pkg posix \
+	--gresources $(builddir)/chess.gresource.xml \
 	--target-glib=$(GLIB_REQUIRED) \
 	$(top_builddir)/lib/libchess.vapi
 
-chess-resources.c: $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies chess.gresource.xml)
-	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source chess.gresource.xml
+chess-resources.c: chess.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies chess.gresource.xml)
+	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $<
 
 CLEANFILES = \
 	$(patsubst %.vala,%.c,$(filter %.vala, $(SOURCES))) \
 	*_vala.stamp \
 	*.log \
 	*.trs
+
+MAINTAINERCLEANFILES = chess-resources.c
 
 EXTRA_DIST = chess.gresource.xml
 
