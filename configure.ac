@@ -60,8 +60,10 @@ dnl ###########################################################################
 dnl Internationalization
 dnl ###########################################################################
 
-IT_PROG_INTLTOOL([0.50])
-AC_SUBST(GETTEXT_PACKAGE, gnome-chess)
+AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.19.8])
+
+AC_SUBST([GETTEXT_PACKAGE], [gnome-chess])
 
 dnl ###########################################################################
 dnl Documentation
