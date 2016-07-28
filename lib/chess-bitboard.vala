@@ -9,7 +9,7 @@
  * license.
  */
 
-public class BitBoard : Object
+namespace BitBoard
 {
     /* Bitboard for each location */
     public const int64 set_location_masks[] =
@@ -1291,7 +1291,7 @@ public class BitBoard : Object
         0x6c38000000000000, 0x5070000000000000, 0xa0e0000000000000, 0x40c0000000000000
     };
 
-    public static string to_string (int64 mask)
+    public string to_string (int64 mask)
     {
         var string = "+---+---+---+---+---+---+---+---+\n";
         int rowCount = 0;
