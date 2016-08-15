@@ -16,7 +16,7 @@ cd $srcdir
 if [ -d $srcdir/.git ]; then
 	for HOOK in pre-commit pre-applypatch; do
                 if [ ! -L $srcdir/.git/hooks/$HOOK ]; then
-                        ln -s ../../../libgames-support/style-checker \
+                        ln -s ../../../libgnome-games-support/style-checker \
                                 $srcdir/.git/hooks/$HOOK && echo "Enabled $HOOK style checker."
                 fi
         done
