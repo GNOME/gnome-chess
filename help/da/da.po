@@ -1,1669 +1,1305 @@
-# Danish translation for gnome-games.
-# Copyright (C) 2009 gnome-games's COPYRIGHT HOLDER.
+# Danish translation of gnome-games.
+# Copyright (C) 1998-2012, 2015-2016 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-games package.
-# Joe Hansen (joedalton2@yahoo.dk), 2009.
+#
+# Anders Wegge Jakobsen <wegge@wegge.dk>, 1998.
+# Kenneth Christiansen <kenneth@ripen.dk>, 1998-2001
+# Keld Simonsen <keld@dkuug.dk>, 2000-2002.
+# Ole Laursen <olau@hardworking.dk>, 2001, 02, 03, 04.
+# Martin Willemoes Hansen <mwh@sysrq.dk>, 2004, 05.
+# flemming christensen <fc@stromata.dk>, 2011.
 # Alan Mortensen <alanmortensen.am@gmail.com>, 2013.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 08, 09, 10, 11, 12, 14, 15, 16
+# scootergrisen, 2015.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-games master\n"
-"POT-Creation-Date: 2013-09-13 03:08+0000\n"
-"PO-Revision-Date: 2013-10-30 19:41+0100\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
-"Language-Team: Dansk <dansk@dansk-gruppen.dk>\n"
+"Project-Id-Version: gnome-games\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"chess&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2016-09-12 00:04+0000\n"
+"PO-Revision-Date: 2016-09-08 03:14+0200\n"
+"Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
+"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: \n"
+"X-Language: da_DK\n"
+"X-Source-Language: C\n"
 
-#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
-#| msgid "translator-credits"
-msgctxt "_"
+#: data/gnome-chess.appdata.xml.in:7
+msgid "GNOME Chess"
+msgstr "GNOME Skak"
+
+#: data/gnome-chess.appdata.xml.in:8 data/gnome-chess.desktop.in:5
+msgid "Play the classic two-player board game of chess"
+msgstr "Spil det klassiske brætspil skak med to spillere"
+
+#: data/gnome-chess.appdata.xml.in:10
+msgid ""
+"GNOME Chess is a simple chess game. You can play against your computer at "
+"three different difficulty levels, or against a friend at your computer."
+msgstr ""
+"GNOME Skak er et simpelt skakspil. Du kan spille mod computeren på tre "
+"forskellige sværhedsgrader, eller mod en ven ved computeren."
+
+#: data/gnome-chess.appdata.xml.in:14
+msgid ""
+"Computer chess enthusiasts will appreciate GNOME Chess's compatibility with "
+"nearly all modern computer chess engines, and its ability to detect several "
+"popular engines automatically if installed."
+msgstr ""
+"Computerskakentusiaster vil sætte pris på GNOME Skaks kompatibilitet med "
+"næsten alle moderne computerskakmaskiner, samt programmets evne til at finde "
+"adskillige populære maskiner automatisk hvis installeret."
+
+#: data/gnome-chess.desktop.in:3 data/gnome-chess.ui:21
+#: src/gnome-chess.vala:2190 src/gnome-chess.vala:2534
+msgid "Chess"
+msgstr "Skak"
+
+#: data/gnome-chess.desktop.in:4
+msgid "Chess Game"
+msgstr "Skakspil"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/gnome-chess.desktop.in:7
+msgid "game;strategy;"
+msgstr "spil;strategi;"
+
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/gnome-chess.desktop.in:15
+msgid "gnome-chess"
+msgstr "gnome-chess"
+
+#: data/gnome-chess.ui:27
+msgid "_New Game"
+msgstr "_Nyt spil"
+
+#: data/gnome-chess.ui:40
+msgid "Undo your most recent move"
+msgstr "Fortryd dit seneste træk"
+
+#: data/gnome-chess.ui:75
+msgid "Resign to your opponent"
+msgstr "Giv op overfor din modstander"
+
+#: data/gnome-chess.ui:96
+msgid "Save the current game"
+msgstr "Gem det aktuelle spil"
+
+#: data/gnome-chess.ui:117
+msgid "Open a saved game"
+msgstr "Åbn et gemt spil"
+
+#. Tooltip on the show first move (i.e. game start) navigation button
+#: data/gnome-chess.ui:168
+msgid "Rewind to the game start"
+msgstr "Tilbage til spillets start"
+
+#. Tooltip on the show previous move navigation button
+#: data/gnome-chess.ui:195
+msgid "Show the previous move"
+msgstr "Vis det forrige træk"
+
+#. Tooltip on the show next move navigation button
+#: data/gnome-chess.ui:222
+msgid "Show the next move"
+msgstr "Vis det næste træk"
+
+#. Tooltip on the show current move navigation button
+#: data/gnome-chess.ui:249
+msgid "Show the current move"
+msgstr "Vis det aktuelle træk"
+
+#. Title for preferences dialog
+#: data/menu.ui:7 data/preferences.ui:226
+msgid "Preferences"
+msgstr "Indstillinger"
+
+#: data/menu.ui:13
+msgid "Help"
+msgstr "Hjælp"
+
+#: data/menu.ui:18
+msgid "About"
+msgstr "Om"
+
+#: data/menu.ui:22
+msgid "Quit"
+msgstr "Afslut"
+
+#: data/org.gnome.chess.gschema.xml:38
+msgid "The width of the window"
+msgstr "Vinduets bredde"
+
+#: data/org.gnome.chess.gschema.xml:39
+msgid "The width of the main window in pixels."
+msgstr "Hovedvinduets bredde i pixels."
+
+#: data/org.gnome.chess.gschema.xml:43
+msgid "The height of the window"
+msgstr "Vinduets højde"
+
+#: data/org.gnome.chess.gschema.xml:44
+msgid "The height of the main window in pixels."
+msgstr "Hovedvinduets højde i pixels."
+
+#: data/org.gnome.chess.gschema.xml:48 data/org.gnome.chess.gschema.xml:49
+msgid "A flag to enable maximized mode"
+msgstr "Et flag der aktiverer maksimeret tilstand"
+
+#: data/org.gnome.chess.gschema.xml:53 data/org.gnome.chess.gschema.xml:54
+msgid "The piece theme to use"
+msgstr "Briktemaet der skal benyttes"
+
+#: data/org.gnome.chess.gschema.xml:58 data/org.gnome.chess.gschema.xml:59
+msgid "A flag to enable move hints"
+msgstr "Et flag der aktiverer tips til træk"
+
+#: data/org.gnome.chess.gschema.xml:63 data/org.gnome.chess.gschema.xml:64
+msgid "A flag to enable board numbering"
+msgstr "Et flag der aktiverer brætnummerering"
+
+#: data/org.gnome.chess.gschema.xml:68 data/org.gnome.chess.gschema.xml:69
+msgid "The directory to open the save game dialog in"
+msgstr "Mappen som dialogen til at gemme spil åbner"
+
+#: data/org.gnome.chess.gschema.xml:73 data/org.gnome.chess.gschema.xml:74
+msgid "The directory to open the load game dialog in"
+msgstr "Mappen som dialogen til at indlæse spil åbner"
+
+#: data/org.gnome.chess.gschema.xml:78 data/org.gnome.chess.gschema.xml:79
+msgid "The format to display moves in"
+msgstr "Formatet til visning af træk"
+
+#: data/org.gnome.chess.gschema.xml:83 data/org.gnome.chess.gschema.xml:84
+msgid "The side of the board that is in the foreground"
+msgstr "Brætsiden der er i forgrunden"
+
+#: data/org.gnome.chess.gschema.xml:88 data/org.gnome.chess.gschema.xml:89
+msgid "The duration of a game in seconds (0 for no limit)"
+msgstr "Varigheden af et spil i sekunder (0 for ubegrænset)"
+
+#: data/org.gnome.chess.gschema.xml:93 data/org.gnome.chess.gschema.xml:94
+msgid "The type of clock (simple/fischer/bronstein)"
+msgstr "Typen af ur (simpel/fischer/bronstein)"
+
+#: data/org.gnome.chess.gschema.xml:98 data/org.gnome.chess.gschema.xml:99
+msgid "The timer increment set corresponding to clock type (1 second minimum)"
+msgstr "Tidstillæg sat ifølge urtypen (minimum 1 sekund)"
+
+#: data/org.gnome.chess.gschema.xml:103 data/org.gnome.chess.gschema.xml:104
+msgid "The board side to play as"
+msgstr "Brætsiden der skal spilles"
+
+#: data/org.gnome.chess.gschema.xml:108
+msgid "The last side the player played as"
+msgstr "Siden som spilleren sidst spillede"
+
+#: data/org.gnome.chess.gschema.xml:109
+msgid ""
+"This is needed when play-as is set to alternate. This should only be set to "
+"black or white."
+msgstr ""
+"Skal bruges når \"Spil som\" er sat til \"Skift\". Skal kun indstilles til "
+"\"Sort\" eller \"Hvid\"."
+
+#: data/org.gnome.chess.gschema.xml:113
+msgid "The opponent player"
+msgstr "Modstanderen"
+
+#: data/org.gnome.chess.gschema.xml:114
+msgid ""
+"Can be 'human' (play against another human player), '' (use the first "
+"available chess engine) or the name of a specific engine to play against"
+msgstr ""
+"Kan være \"human\" (spil mod en anden menneskelig spiller), \"\" (brug "
+"første tilgængelige skakmotor) eller navnet på en bestemt motor, der skal "
+"spilles imod"
+
+#: data/org.gnome.chess.gschema.xml:118 data/org.gnome.chess.gschema.xml:119
+msgid "Difficulty of the opponent chess engine"
+msgstr "Sværhedsgrad for modstanderens skakmotor"
+
+#. Preferences dialog: Combo box entry for time limit
+#. Preferences dialog: Combo box entry for timer increment
+#: data/preferences.ui:13 data/preferences.ui:35
+msgctxt "custom_duration_units"
+msgid "minutes"
+msgstr "minutter"
+
+#. Preferences dialog: Combo box entry for time limit
+#: data/preferences.ui:17
+msgctxt "custom_duration_units"
+msgid "hours"
+msgstr "timer"
+
+#. Preferences dialog: Combo box entry for timer increment
+#: data/preferences.ui:31
+msgctxt "custom_duration_units"
+msgid "seconds"
+msgstr "sekunder"
+
+#. Preferences dialog: Combo box entry for clock type
+#: data/preferences.ui:49
+msgctxt "custom_duration_units"
+msgid "Simple"
+msgstr "Simpel"
+
+#. Preferences dialog: Combo box entry for time limit. Fischer is a proper name.
+#: data/preferences.ui:53
+msgctxt "custom_duration_units"
+msgid "Fischer"
+msgstr "Fischer"
+
+#. Preferences dialog: Combo box entry for time limit. Bronstein is a proper name.
+#: data/preferences.ui:57
+msgctxt "custom_duration_units"
+msgid "Bronstein"
+msgstr "Bronstein"
+
+#. Preferences Dialog: Combo box entry for easy game difficulty
+#: data/preferences.ui:71
+msgctxt "difficulty"
+msgid "Easy"
+msgstr "Let"
+
+#. Preferences Dialog: Combo box entry for normal game difficulty
+#: data/preferences.ui:75
+msgctxt "difficulty"
+msgid "Normal"
+msgstr "Normal"
+
+#. Preferences Dialog: Combo box entry for hard game difficulty
+#: data/preferences.ui:79
+msgctxt "difficulty"
+msgid "Hard"
+msgstr "Svær"
+
+#. Preferences Dialog: Combo box entry for no game timer
+#: data/preferences.ui:107
+msgid "No limit"
+msgstr "Ubegrænset"
+
+#. Preferences Dialog: Combo box entry for game timer of five minutes
+#: data/preferences.ui:111
+msgid "Five minutes"
+msgstr "5 minutter"
+
+#. Preferences Dialog: Combo box entry for game timer of ten minutes
+#: data/preferences.ui:115
+msgid "Ten minutes"
+msgstr "10 minutter"
+
+#. Preferences Dialog: Combo box entry for game timer of thirty minutes
+#: data/preferences.ui:119
+msgid "Thirty minutes"
+msgstr "30 minutter"
+
+#. Preferences Dialog: Combo box entry for game timer of one hour
+#: data/preferences.ui:123
+msgid "One hour"
+msgstr "1 time"
+
+#. Preferences Dialog: Combo box entry for game timer of two hours
+#: data/preferences.ui:127
+msgid "Two hours"
+msgstr "2 timer"
+
+#. Preferences Dialog: Combo box entry for game timer of three hours
+#: data/preferences.ui:131
+msgid "Three hours"
+msgstr "3 timer"
+
+#. Preferences Dialog: Combo box entry for custom game timer
+#: data/preferences.ui:135
+msgid "Custom"
+msgstr "Brugerdefineret"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
+#: data/preferences.ui:149
+msgctxt "chess-move-format"
+msgid "Human"
+msgstr "Menneske"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
+#: data/preferences.ui:153
+msgctxt "chess-move-format"
+msgid "Standard Algebraic"
+msgstr "Standardalgebraisk"
+
+# Indtil nogen kan finde et accepteret dansk ord, må vi hellere benytte figurine som her:
+# http://da.wikipedia.org/wiki/Algebraisk_notation
+#. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
+#: data/preferences.ui:157
+msgctxt "chess-move-format"
+msgid "Figurine"
+msgstr "Figurine (symboler)"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
+#: data/preferences.ui:161
+msgctxt "chess-move-format"
+msgid "Long Algebraic"
+msgstr "Lang algebraisk"
+
+#. Preferences Dialog: Combo box entry for human opponent
+#: data/preferences.ui:175
+msgctxt "chess-opponent"
+msgid "Human"
+msgstr "Menneske"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the white side
+#: data/preferences.ui:189
+msgctxt "chess-side"
+msgid "White Side"
+msgstr "Hvid side"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the black side
+#: data/preferences.ui:193
+msgctxt "chess-side"
+msgid "Black Side"
+msgstr "Sort side"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
+#: data/preferences.ui:197
+msgctxt "chess-side"
+msgid "Human Side"
+msgstr "Menneskeside"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
+#: data/preferences.ui:201
+msgctxt "chess-side"
+msgid "Current Player"
+msgstr "Nuværende spiller"
+
+#. Preferences Dialog: Combo box entry for simple theme
+#: data/preferences.ui:215
+msgid "Simple"
+msgstr "Enkel"
+
+#. Preferences Dialog: Combo box entry for fancy theme
+#: data/preferences.ui:219
+msgid "Fancy"
+msgstr "Fancy"
+
+#. Preferences Dialog: Label before clock type (Fischer/Bronstein) combo box
+#: data/preferences.ui:259
+msgid "_Clock type:"
+msgstr "_Urtype:"
+
+#. Preferences Dialog: Label before timer increment combo box
+#: data/preferences.ui:275
+msgid "Timer _increment:"
+msgstr "Tids_forøgelse:"
+
+#. Preferences Dialog: Label before player side (white/black) combo box
+#: data/preferences.ui:312
+msgid "_Play as:"
+msgstr "_Spil som:"
+
+#. Preferences Dialog: Label before opposing player combo box
+#: data/preferences.ui:328
+msgid "_Opposing player:"
+msgstr "_Modstander:"
+
+#. Preferences Dialog: Label before difficulty level combo box
+#: data/preferences.ui:344
+msgid "_Difficulty:"
+msgstr "_Sværhedsgrad:"
+
+#. Preferences Dialog: Label before game timer settings
+#: data/preferences.ui:521
+msgid "_Time limit:"
+msgstr "_Tidsgrænse:"
+
+#. Preferences dialog: Label to notify user that the settings are applied for the next game
+#: data/preferences.ui:576
+msgid "Changes will take effect for the next game."
+msgstr "Ændringer træder i kraft ved næste spil."
+
+#. Preferences Dialog: Tab title for game preferences
+#: data/preferences.ui:598
+msgid "_Game"
+msgstr "_Spil"
+
+#. Preferences Dialog: Label before board orientation combo box
+#: data/preferences.ui:619
+msgid "Board _orientation:"
+msgstr "Bræt_orientering:"
+
+#. Preferences Dialog: Label before move format combo box
+#: data/preferences.ui:633
+msgid "Move _format:"
+msgstr "Træk_format:"
+
+#. Preferences Dialog: Label before piece style combo box
+#: data/preferences.ui:649
+msgid "_Piece style:"
+msgstr "_Brikstil:"
+
+#. Preferences Dialog: Check box for selecting if board numbering is visible
+#: data/preferences.ui:730
+msgid "_Board numbering"
+msgstr "_Brætnummerering"
+
+#. Preferences Dialog: Check box for selecting if move hints are visible
+#: data/preferences.ui:745
+msgid "_Move hints"
+msgstr "_Tips til træk"
+
+#. Preferences Dialog: Title of appearance options tab
+#: data/preferences.ui:774
+msgid "_Appearance"
+msgstr "_Udseende"
+
+# ligesom 7-kabale, men man kan se alle kortene fra starten
+#. Preferences Dialog: Combo box entry for playing as white
+#: data/preferences.ui:801
+msgctxt "chess-player"
+msgid "White"
+msgstr "Hvid"
+
+#. Preferences Dialog: Combo box entry for playing as black
+#: data/preferences.ui:805
+msgctxt "chess-player"
+msgid "Black"
+msgstr "Sort"
+
+#. Preferences Dialog: Combo box entry for alterning between black and white
+#: data/preferences.ui:809
+msgctxt "chess-player"
+msgid "Alternate"
+msgstr "Skift"
+
+#: data/promotion-type-selector.ui:7
+msgid "Select Promotion Type"
+msgstr "Vælg typen af bondeforvandling"
+
+#: data/promotion-type-selector.ui:41
+msgid "_Queen"
+msgstr "_Dronning"
+
+#: data/promotion-type-selector.ui:91
+msgid "_Knight"
+msgstr "_Springer"
+
+#: data/promotion-type-selector.ui:141
+msgid "_Rook"
+msgstr "_Tårn"
+
+#: data/promotion-type-selector.ui:191
+msgid "_Bishop"
+msgstr "_Løber"
+
+#. Message when the game cannot be loaded due to an invalid move in the file.
+#: lib/chess-game.vala:104
+#, c-format
+msgid "Failed to load PGN: move %s is invalid."
+msgstr "Indlæsning af PGN mislykkedes: trækket %s er ulovligt."
+
+#: lib/chess-pgn.vala:245 lib/chess-pgn.vala:251 lib/chess-pgn.vala:262
+#, c-format
+msgid "Invalid %s : %s in PGN, setting timer to infinity."
+msgstr "Ugyldig %s : %s i PGN, indstiller tid til uendeligt."
+
+#: lib/chess-pgn.vala:267
+#, c-format
+msgid "Invalid clock type in PGN: %s, using a simple clock."
+msgstr "Ugyldig urtype i PGN: %s, bruger et simpelt ur."
+
+#: lib/chess-pgn.vala:274
+#, c-format
+msgid "Invalid timer increment in PGN: %s, using a simple clock."
+msgstr "Ugyldig tidstillæg i PGN: %s, bruger et simpelt ur."
+
+#: src/chess-view.vala:317
+msgid "Paused"
+msgstr "Pause"
+
+#. Help string for command line --version flag
+#: src/gnome-chess.vala:104
+msgid "Show release version"
+msgstr "Vis udgivelsesversion"
+
+#. Info bar to indicate no chess engines are installed
+#: src/gnome-chess.vala:135
+msgid ""
+"No chess engine is installed. You will not be able to play against the "
+"computer."
+msgstr ""
+"Der er ikke installeret nogen skakmotor. Du vil ikke have mulighed for at "
+"spille mod computeren."
+
+#. May print when started on the command line; a PGN is a saved game file.
+#: src/gnome-chess.vala:221
+msgid "GNOME Chess can only open one PGN at a time."
+msgstr "GNOME Skak kan kun åbne én PGN ad gangen."
+
+#. Move History Combo: Go to the start of the game
+#: src/gnome-chess.vala:459
+msgid "Game Start"
+msgstr "Spilstart"
+
+#. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
+#. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
+#: src/gnome-chess.vala:887
+#, c-format
+msgid "White pawn moves from %1$s to %2$s"
+msgstr "Hvid bonde flytter fra %1$s til %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
+#: src/gnome-chess.vala:889
+#, c-format
+msgid "White pawn at %1$s takes the black pawn at %2$s"
+msgstr "Hvid bonde på %1$s slår sort bonde på %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
+#: src/gnome-chess.vala:891
+#, c-format
+msgid "White pawn at %1$s takes the black rook at %2$s"
+msgstr "Hvid bonde på %1$s slår sort tårn på %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
+#: src/gnome-chess.vala:893
+#, c-format
+msgid "White pawn at %1$s takes the black knight at %2$s"
+msgstr "Hvid bonde på %1$s slår sort springer på %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
+#: src/gnome-chess.vala:895
+#, c-format
+msgid "White pawn at %1$s takes the black bishop at %2$s"
+msgstr "Hvid bonde på %1$s slår sort løber på %2$s"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
+#: src/gnome-chess.vala:897
+#, c-format
+msgid "White pawn at %1$s takes the black queen at %2$s"
+msgstr "Hvid bonde på %1$s slår sort dronning på %2$s"
+
+#. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
+#: src/gnome-chess.vala:899
+#, c-format
+msgid "White rook moves from %1$s to %2$s"
+msgstr "Hvidt tårn flytter fra %1$s til %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
+#: src/gnome-chess.vala:901
+#, c-format
+msgid "White rook at %1$s takes the black pawn at %2$s"
+msgstr "Hvidt tårn på %1$s slår sort bonde på %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
+#: src/gnome-chess.vala:903
+#, c-format
+msgid "White rook at %1$s takes the black rook at %2$s"
+msgstr "Hvidt tårn på %1$s slår sort tårn på %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
+#: src/gnome-chess.vala:905
+#, c-format
+msgid "White rook at %1$s takes the black knight at %2$s"
+msgstr "Hvidt tårn på %1$s slår sort springer på %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
+#: src/gnome-chess.vala:907
+#, c-format
+msgid "White rook at %1$s takes the black bishop at %2$s"
+msgstr "Hvidt tårn på %1$s slår sort løber på %2$s"
+
+#. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
+#: src/gnome-chess.vala:909
+#, c-format
+msgid "White rook at %1$s takes the black queen at %2$s"
+msgstr "Hvidt tårn på %1$s slår sort dronning på %2$s"
+
+#. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
+#: src/gnome-chess.vala:911
+#, c-format
+msgid "White knight moves from %1$s to %2$s"
+msgstr "Hvid springer flytter fra %1$s til %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
+#: src/gnome-chess.vala:913
+#, c-format
+msgid "White knight at %1$s takes the black pawn at %2$s"
+msgstr "Hvid springer på %1$s slår sort bonde på %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
+#: src/gnome-chess.vala:915
+#, c-format
+msgid "White knight at %1$s takes the black rook at %2$s"
+msgstr "Hvid springer på %1$s slår sort tårn på %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
+#: src/gnome-chess.vala:917
+#, c-format
+msgid "White knight at %1$s takes the black knight at %2$s"
+msgstr "Hvid springer på %1$s slår sort springer på %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
+#: src/gnome-chess.vala:919
+#, c-format
+msgid "White knight at %1$s takes the black bishop at %2$s"
+msgstr "Hvid springer på %1$s slår sort løber på %2$s"
+
+#. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
+#: src/gnome-chess.vala:921
+#, c-format
+msgid "White knight at %1$s takes the black queen at %2$s"
+msgstr "Hvid springer på %1$s slår sort dronning på %2$s"
+
+#. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
+#: src/gnome-chess.vala:923
+#, c-format
+msgid "White bishop moves from %1$s to %2$s"
+msgstr "Hvid løber flytter fra %1$s til %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
+#: src/gnome-chess.vala:925
+#, c-format
+msgid "White bishop at %1$s takes the black pawn at %2$s"
+msgstr "Hvid løber på %1$s slår sort bonde på %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
+#: src/gnome-chess.vala:927
+#, c-format
+msgid "White bishop at %1$s takes the black rook at %2$s"
+msgstr "Hvid løber på %1$s slår sort tårn på %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
+#: src/gnome-chess.vala:929
+#, c-format
+msgid "White bishop at %1$s takes the black knight at %2$s"
+msgstr "Hvid løber på %1$s slår sort springer på %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
+#: src/gnome-chess.vala:931
+#, c-format
+msgid "White bishop at %1$s takes the black bishop at %2$s"
+msgstr "Hvid løber på %1$s slår sort løber på %2$s"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
+#: src/gnome-chess.vala:933
+#, c-format
+msgid "White bishop at %1$s takes the black queen at %2$s"
+msgstr "Hvid løber på %1$s slår sort dronning på %2$s"
+
+#. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
+#: src/gnome-chess.vala:935
+#, c-format
+msgid "White queen moves from %1$s to %2$s"
+msgstr "Hvid dronning flytter fra %1$s til %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
+#: src/gnome-chess.vala:937
+#, c-format
+msgid "White queen at %1$s takes the black pawn at %2$s"
+msgstr "Hvid dronning på %1$s slår sort bonde på %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
+#: src/gnome-chess.vala:939
+#, c-format
+msgid "White queen at %1$s takes the black rook at %2$s"
+msgstr "Hvid dronning på %1$s slår sort tårn på %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
+#: src/gnome-chess.vala:941
+#, c-format
+msgid "White queen at %1$s takes the black knight at %2$s"
+msgstr "Hvid dronning på %1$s slår sort springer på %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
+#: src/gnome-chess.vala:943
+#, c-format
+msgid "White queen at %1$s takes the black bishop at %2$s"
+msgstr "Hvid dronning på %1$s slår sort løber på %2$s"
+
+#. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
+#: src/gnome-chess.vala:945
+#, c-format
+msgid "White queen at %1$s takes the black queen at %2$s"
+msgstr "Hvid dronning på %1$s slår sort dronning på %2$s"
+
+#. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
+#: src/gnome-chess.vala:947
+#, c-format
+msgid "White king moves from %1$s to %2$s"
+msgstr "Hvid konge flytter fra %1$s til %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
+#: src/gnome-chess.vala:949
+#, c-format
+msgid "White king at %1$s takes the black pawn at %2$s"
+msgstr "Hvid konge på %1$s slår sort bonde på %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
+#: src/gnome-chess.vala:951
+#, c-format
+msgid "White king at %1$s takes the black rook at %2$s"
+msgstr "Hvid konge på %1$s slår sort tårn på %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
+#: src/gnome-chess.vala:953
+#, c-format
+msgid "White king at %1$s takes the black knight at %2$s"
+msgstr "Hvid konge på %1$s slår sort springer på %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
+#: src/gnome-chess.vala:955
+#, c-format
+msgid "White king at %1$s takes the black bishop at %2$s"
+msgstr "Hvid konge på %1$s slår sort løber på %2$s"
+
+#. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
+#: src/gnome-chess.vala:957
+#, c-format
+msgid "White king at %1$s takes the black queen at %2$s"
+msgstr "Hvid konge på %1$s slår sort dronning på %2$s"
+
+#. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
+#: src/gnome-chess.vala:959
+#, c-format
+msgid "Black pawn moves from %1$s to %2$s"
+msgstr "Sort bonde flytter fra %1$s til %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
+#: src/gnome-chess.vala:961
+#, c-format
+msgid "Black pawn at %1$s takes the white pawn at %2$s"
+msgstr "Sort bonde på %1$s slår hvid bonde på %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
+#: src/gnome-chess.vala:963
+#, c-format
+msgid "Black pawn at %1$s takes the white rook at %2$s"
+msgstr "Sort bonde på %1$s slår hvidt tårn på %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
+#: src/gnome-chess.vala:965
+#, c-format
+msgid "Black pawn at %1$s takes the white knight at %2$s"
+msgstr "Sort bonde på %1$s slår hvid springer på %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
+#: src/gnome-chess.vala:967
+#, c-format
+msgid "Black pawn at %1$s takes the white bishop at %2$s"
+msgstr "Sort bonde på %1$s slår hvid løber på %2$s"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
+#: src/gnome-chess.vala:969
+#, c-format
+msgid "Black pawn at %1$s takes the white queen at %2$s"
+msgstr "Sort bonde på %1$s slår hvid dronning på %2$s"
+
+#. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
+#: src/gnome-chess.vala:971
+#, c-format
+msgid "Black rook moves from %1$s to %2$s"
+msgstr "Sort tårn flytter fra %1$s til %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
+#: src/gnome-chess.vala:973
+#, c-format
+msgid "Black rook at %1$s takes the white pawn at %2$s"
+msgstr "Sort tårn på %1$s slår hvid bonde på %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
+#: src/gnome-chess.vala:975
+#, c-format
+msgid "Black rook at %1$s takes the white rook at %2$s"
+msgstr "Sort tårn på %1$s slår hvidt tårn på %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
+#: src/gnome-chess.vala:977
+#, c-format
+msgid "Black rook at %1$s takes the white knight at %2$s"
+msgstr "Sort tårn på %1$s slår hvid springer på %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
+#: src/gnome-chess.vala:979
+#, c-format
+msgid "Black rook at %1$s takes the white bishop at %2$s"
+msgstr "Sort tårn på %1$s slår hvid løber på %2$s"
+
+#. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
+#: src/gnome-chess.vala:981
+#, c-format
+msgid "Black rook at %1$s takes the white queen at %2$s"
+msgstr "Sort tårn på %1$s slår hvid dronning på %2$s"
+
+#. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
+#: src/gnome-chess.vala:983
+#, c-format
+msgid "Black knight moves from %1$s to %2$s"
+msgstr "Sort springer flytter fra %1$s til %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
+#: src/gnome-chess.vala:985
+#, c-format
+msgid "Black knight at %1$s takes the white pawn at %2$s"
+msgstr "Sort springer på %1$s slår hvid bonde på %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
+#: src/gnome-chess.vala:987
+#, c-format
+msgid "Black knight at %1$s takes the white rook at %2$s"
+msgstr "Sort springer på %1$s slår hvidt tårn på %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
+#: src/gnome-chess.vala:989
+#, c-format
+msgid "Black knight at %1$s takes the white knight at %2$s"
+msgstr "Sort springer på %1$s slår hvid springer på %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
+#: src/gnome-chess.vala:991
+#, c-format
+msgid "Black knight at %1$s takes the white bishop at %2$s"
+msgstr "Sort springer på %1$s slår hvid løber på %2$s"
+
+#. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
+#: src/gnome-chess.vala:993
+#, c-format
+msgid "Black knight at %1$s takes the white queen at %2$s"
+msgstr "Sort springer på %1$s slår hvid dronning på %2$s"
+
+#. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
+#: src/gnome-chess.vala:995
+#, c-format
+msgid "Black bishop moves from %1$s to %2$s"
+msgstr "Sort løber flytter fra %1$s til %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
+#: src/gnome-chess.vala:997
+#, c-format
+msgid "Black bishop at %1$s takes the white pawn at %2$s"
+msgstr "Sort løber på %1$s slår hvid bonde på %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
+#: src/gnome-chess.vala:999
+#, c-format
+msgid "Black bishop at %1$s takes the white rook at %2$s"
+msgstr "Sort løber på %1$s slår hvidt tårn på %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
+#: src/gnome-chess.vala:1001
+#, c-format
+msgid "Black bishop at %1$s takes the white knight at %2$s"
+msgstr "Sort løber på %1$s slår hvid springer på %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
+#: src/gnome-chess.vala:1003
+#, c-format
+msgid "Black bishop at %1$s takes the white bishop at %2$s"
+msgstr "Sort løber på %1$s slår hvid løber på %2$s"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
+#: src/gnome-chess.vala:1005
+#, c-format
+msgid "Black bishop at %1$s takes the white queen at %2$s"
+msgstr "Sort løber på %1$s slår hvid dronning på %2$s"
+
+#. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
+#: src/gnome-chess.vala:1007
+#, c-format
+msgid "Black queen moves from %1$s to %2$s"
+msgstr "Sort dronning flytter fra %1$s til %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
+#: src/gnome-chess.vala:1009
+#, c-format
+msgid "Black queen at %1$s takes the white pawn at %2$s"
+msgstr "Sort dronning på %1$s slår hvid bonde på %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
+#: src/gnome-chess.vala:1011
+#, c-format
+msgid "Black queen at %1$s takes the white rook at %2$s"
+msgstr "Sort dronning på %1$s slår hvidt tårn på %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
+#: src/gnome-chess.vala:1013
+#, c-format
+msgid "Black queen at %1$s takes the white knight at %2$s"
+msgstr "Sort dronning på %1$s slår hvid springer på %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
+#: src/gnome-chess.vala:1015
+#, c-format
+msgid "Black queen at %1$s takes the white bishop at %2$s"
+msgstr "Sort dronning på %1$s slår hvid løber på %2$s"
+
+#. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
+#: src/gnome-chess.vala:1017
+#, c-format
+msgid "Black queen at %1$s takes the white queen at %2$s"
+msgstr "Sort dronning på %1$s slår hvid dronning på %2$s"
+
+#. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
+#: src/gnome-chess.vala:1019
+#, c-format
+msgid "Black king moves from %1$s to %2$s"
+msgstr "Sort konge flytter fra %1$s til %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
+#: src/gnome-chess.vala:1021
+#, c-format
+msgid "Black king at %1$s takes the white pawn at %2$s"
+msgstr "Sort konge på %1$s slår hvid bonde på %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
+#: src/gnome-chess.vala:1023
+#, c-format
+msgid "Black king at %1$s takes the white rook at %2$s"
+msgstr "Sort konge på %1$s slår hvidt tårn på %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
+#: src/gnome-chess.vala:1025
+#, c-format
+msgid "Black king at %1$s takes the white knight at %2$s"
+msgstr "Sort konge på %1$s slår hvid springer på %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
+#: src/gnome-chess.vala:1027
+#, c-format
+msgid "Black king at %1$s takes the white bishop at %2$s"
+msgstr "Sort konge på %1$s slår hvid løber på %2$s"
+
+#. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
+#: src/gnome-chess.vala:1029
+#, c-format
+msgid "Black king at %1$s takes the white queen at %2$s"
+msgstr "Sort konge på %1$s slår hvid dronning på %2$s"
+
+#: src/gnome-chess.vala:1052
+msgid "White castles kingside"
+msgstr "Hvid rokerer kort"
+
+#: src/gnome-chess.vala:1056
+msgid "White castles queenside"
+msgstr "Hvid rokerer langt"
+
+#: src/gnome-chess.vala:1060
+msgid "Black castles kingside"
+msgstr "Sort rokerer kort"
+
+#: src/gnome-chess.vala:1064
+msgid "Black castles queenside"
+msgstr "Sort rokerer langt"
+
+#. Window title on a White human's turn if he is in check
+#: src/gnome-chess.vala:1203
+msgid "White is in Check"
+msgstr "Hvid er i skak"
+
+#. Window title on a Black human's turn if he is in check
+#: src/gnome-chess.vala:1206
+msgid "Black is in Check"
+msgstr "Sort er i skak"
+
+#. Window title on White's turn if White is human
+#: src/gnome-chess.vala:1212
+msgid "White to Move"
+msgstr "Hvid i trækket"
+
+#. Window title on White's turn if White is a computer
+#: src/gnome-chess.vala:1215
+msgid "White is Thinking…"
+msgstr "Hvid tænker…"
+
+#. Window title on Black's turn if Black is human
+#: src/gnome-chess.vala:1221
+msgid "Black to Move"
+msgstr "Sort i trækket"
+
+#. Window title on Black's turn if Black is a computer
+#: src/gnome-chess.vala:1224
+msgid "Black is Thinking…"
+msgstr "Sort tænker…"
+
+#: src/gnome-chess.vala:1239
+msgid "Unpause the game"
+msgstr "Fortsæt spillet"
+
+#: src/gnome-chess.vala:1245
+msgid "Pause the game"
+msgstr "Sæt spillet på pause"
+
+#. Window title when the white player wins
+#: src/gnome-chess.vala:1268
+msgid "White Wins"
+msgstr "Hvid vinder"
+
+#. Window title when the black player wins
+#: src/gnome-chess.vala:1273
+msgid "Black Wins"
+msgstr "Sort vinder"
+
+#. Window title when the game is drawn
+#: src/gnome-chess.vala:1278
+msgid "Game is Drawn"
+msgstr "Spillet blev remis"
+
+#.
+#. * Window title when something goes wrong with the engine...
+#. * or when the engine says something is wrong with us! Translators,
+#. * please test to make sure this does not get ellipsized -- you don't
+#. * have much room. Set your opponent to GNU Chess, set a time limit
+#. * because the pause button eats up some of your space, start a new game,
+#. * then run 'killall gnuchess' in a terminal.
+#.
+#: src/gnome-chess.vala:1290
+msgid "Oops! Something has gone wrong."
+msgstr "Ups! Noget er gået galt."
+
+#. Window subtitle when Black is checkmated
+#: src/gnome-chess.vala:1303
+msgid "Black is in check and cannot move."
+msgstr "Sort er i skak og kan ikke trække."
+
+#. Window subtitle when White is checkmated
+#: src/gnome-chess.vala:1306
+msgid "White is in check and cannot move."
+msgstr "Hvid er skak og kan ikke trække."
+
+#. Window subtitle when the game terminates due to a stalemate
+#: src/gnome-chess.vala:1312
+msgid "Opponent cannot move."
+msgstr "Modstanderen kan ikke trække."
+
+# scootergrisen: "or" skal muligvis rettes to "and" i kildesproget
+#. Window subtitle when the game is drawn due to the fifty move rule
+#: src/gnome-chess.vala:1316
+msgid "No piece was taken or pawn moved in fifty moves."
+msgstr ""
+"Ingen brik er blevet slået, og ingen bonde er flyttet inden for de sidste 50 "
+"træk."
+
+#. Window subtitle when the game ends due to Black's clock stopping
+#: src/gnome-chess.vala:1321
+msgid "Black has run out of time."
+msgstr "Sort er løbet tør for tid."
+
+#. Window subtitle when the game ends due to White's clock stopping
+#: src/gnome-chess.vala:1324
+msgid "White has run out of time."
+msgstr "Hvid er løbet tør for tid."
+
+#. Window subtitle when the game is drawn due to the three-fold-repetition rule
+#: src/gnome-chess.vala:1330
+msgid "The same board state has occurred three times."
+msgstr "Den samme brætstilling er forekommet tre gange."
+
+#. Window subtitle when the game is drawn due to the insufficient material rule
+#: src/gnome-chess.vala:1334
+msgid "Neither player can checkmate."
+msgstr "Ingen spiller kan sætte skakmat."
+
+#. Window subtitle when the game ends due to the black player resigning
+#: src/gnome-chess.vala:1339
+msgid "Black has resigned."
+msgstr "Sort har givet op."
+
+#. Window subtitle when the game ends due to the white player resigning
+#: src/gnome-chess.vala:1342
+msgid "White has resigned."
+msgstr "Hvid har givet op."
+
+#. Window subtitle when a game is abandoned
+#: src/gnome-chess.vala:1348
+msgid "The game has been abandoned."
+msgstr "Spillet er blevet forladt."
+
+#. Window subtitle when the game ends due to a player dying.
+#. * This is a PGN standard. GNOME Chess will never kill the user.
+#: src/gnome-chess.vala:1354
+msgid "The game log says a player died!"
+msgstr "Spilloggen siger at en spiller døde!"
+
+#. Window subtitle when something goes wrong with the engine...
+#. * or when the engine says something is wrong with us!
+#: src/gnome-chess.vala:1360
+msgid "The computer player is confused. The game cannot continue."
+msgstr "Computerspilleren er forvirret. Spillet kan ikke fortsætte."
+
+#: src/gnome-chess.vala:1395 src/gnome-chess.vala:2307
+#: src/gnome-chess.vala:2390
+msgid "_Cancel"
+msgstr "_Annullér"
+
+#: src/gnome-chess.vala:1399
+msgid "_Abandon game"
+msgstr "_Forlad spillet"
+
+#: src/gnome-chess.vala:1400
+msgid "_Save game for later"
+msgstr "_Gem spillet til senere"
+
+#: src/gnome-chess.vala:1404
+msgid "_Discard game"
+msgstr "_Gem ikke spillet"
+
+#: src/gnome-chess.vala:1405
+msgid "_Save game log"
+msgstr "_Gem spillog"
+
+#. Your very last chance to save
+#: src/gnome-chess.vala:1418
+msgid "_Discard"
+msgstr "_Afvis"
+
+#: src/gnome-chess.vala:1418 src/gnome-chess.vala:2308
+msgid "_Save"
+msgstr "_Gem"
+
+#. Title of claim draw dialog
+#: src/gnome-chess.vala:1441
+msgid "Would you like to claim a draw?"
+msgstr "Ønsker du at kræve remis?"
+
+#. Message in claim draw dialog when triggered by fifty-move rule
+#: src/gnome-chess.vala:1447
+msgid "Fifty moves have passed without a capture or pawn advancement."
+msgstr ""
+"Der er foretaget 50 træk uden at nogen brik er blevet slået eller en bonde "
+"flyttet."
+
+#. Message in claim draw dialog when triggered by three-fold repetition
+#: src/gnome-chess.vala:1452
+msgid "The current board position has occurred three times."
+msgstr "Den nuværende brætstilling er forekommet tre gange."
+
+#. Displays in claim draw dialog to warn player that the dialog only appears once
+#: src/gnome-chess.vala:1458
+msgid "(You will not be offered this choice again.)"
+msgstr "(du vil ikke blive tilbudt dette valg igen.)"
+
+#. Option in claim draw dialog
+#. Option on warning dialog when player clicks resign
+#: src/gnome-chess.vala:1461 src/gnome-chess.vala:1501
+msgid "_Keep Playing"
+msgstr "_Fortsæt med at spille"
+
+#. Option in claim draw dialog
+#: src/gnome-chess.vala:1463
+msgid "_Claim Draw"
+msgstr "_Kræv remis"
+
+#: src/gnome-chess.vala:1483
+msgid "Save this game before starting a new one?"
+msgstr "Gem dette spil før et nyt startes?"
+
+#. Title of warning dialog when player clicks Resign
+#: src/gnome-chess.vala:1496
+msgid "Are you sure you want to resign?"
+msgstr "Er du sikker på at du vil give op?"
+
+#. Text on warning dialog when player clicks Resign
+#: src/gnome-chess.vala:1499
+msgid "This makes sense if you plan to save the game as a record of your loss."
+msgstr ""
+"Dette giver mening hvis du regner med at gemme spillet for at notere dit "
+"nederlag."
+
+#. Option on warning dialog when player clicks resign
+#: src/gnome-chess.vala:1503
+msgid "_Resign"
+msgstr "_Giv op"
+
+#. Preferences Dialog: Combo box entry for a custom game timer set in minutes
+#. Preferences Dialog: Combo box entry for a custom clock type set in minutes
+#: src/gnome-chess.vala:2016 src/gnome-chess.vala:2057
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] "minut"
+msgstr[1] "minutter"
+
+#. Preferences Dialog: Combo box entry for a custom game timer set in hours
+#: src/gnome-chess.vala:2020
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "time"
+msgstr[1] "timer"
+
+#. Preferences Dialog: Combo box entry for a custom clock type set in seconds
+#: src/gnome-chess.vala:2053
+msgid "second"
+msgid_plural "seconds"
+msgstr[0] "sekund"
+msgstr[1] "sekunder"
+
+#: src/gnome-chess.vala:2194
+msgid "A classic game of positional strategy"
+msgstr "Et klassisk spil om positionsstrategi"
+
+#: src/gnome-chess.vala:2197
 msgid "translator-credits"
 msgstr ""
-"Joe Hansen <joedalton2@yahoo.dk>, 2009.\n"
-"Alan Mortensen <alanmortensen.am@gmail.com>, 2013.\n"
+"Anders Wegge Jakobsen\n"
+"Keld Simonsen\n"
+"Kenneth Christiansen\n"
+"Martin Willemoes Hansen\n"
+"Ole Laursen\n"
+"Ask Hjorth Larsen\n"
+"Alan Mortensen\n"
+"scootergrisen\n"
 "\n"
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Mere info: http://www.dansk-gruppen.dk"
 
-#. (itstool) path: media
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/index.page:6
-msgctxt "_"
-msgid "external ref='figures/logo.png' md5='5663650492a8f3d9921675c7649c0b2b'"
-msgstr "external ref='figures/logo.png' md5='5663650492a8f3d9921675c7649c0b2b'"
-
-#. (itstool) path: media
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/index.page:19
-msgctxt "_"
-msgid ""
-"external ref='figures/logo32.png' md5='9977fa6602db11899f6ea4559f366e06'"
-msgstr ""
-"external ref='figures/logo32.png' md5='9977fa6602db11899f6ea4559f366e06'"
-
-#. (itstool) path: info/title
-#: C/index.page:7
-#| msgid "GNUChess"
-msgctxt "link"
-msgid "GNOME Chess"
-msgstr "GNOME Skak"
-
-#. (itstool) path: info/title
-#: C/index.page:8
-#| msgid "GNUChess"
-msgctxt "text"
-msgid "GNOME Chess"
-msgstr "GNOME Skak"
-
-#. (itstool) path: credit/name
-#: C/index.page:11
-msgid "Tiffany Antopolski"
-msgstr "Tiffany Antopolski"
-
-#. (itstool) path: license/p
-#: C/index.page:15
-msgid "Creative Commons Share Alike 3.0"
-msgstr "Creative Commons Share Alike 3.0"
-
-#. (itstool) path: page/title
-#: C/index.page:19
-msgid ""
-"<media type=\"image\" src=\"figures/logo32.png\">GNOME Chess logo</"
-"media>GNOME Chess"
-msgstr ""
-"<media type=\"image\" src=\"figures/logo32.png\">GNOME Skak logo</"
-"media>GNOME Skak"
-
-#. (itstool) path: page/p
-#: C/index.page:20
-msgid ""
-"<app>GNOME Chess</app> is GNOME's chess game. It lets you play against the "
-"computer or another person. GNOME Chess can detect known <link xref=\"chess-"
-"engines\">chess engines</link> for computer players. It also allows you to "
-"play against other people over a <link xref=\"chess-engines\">network</link>."
-msgstr ""
-"<app>GNOME Skak</app> er GNOMEs skakspil. Det lader dig spille mod "
-"computeren eller en anden person. GNOME Skak kan detektere kendte <link xref="
-"\"chess-engines\">skakmotorer</link> for computerspillere. Det tillader dig "
-"også at spille mod andre mennesker over et <link xref=\"chess-engines"
-"\">netværk</link>."
-
-#. (itstool) path: section/title
-#: C/index.page:23
-#| msgid "Game Draw"
-msgid "Game Play"
-msgstr "Spillet"
-
-#. (itstool) path: section/title
-#: C/index.page:27
-msgid "Useful tips"
-msgstr "Nyttige tips"
-
-#. (itstool) path: section/title
-#: C/index.page:31
-msgid "Advanced"
-msgstr "Avanceret"
-
-#. (itstool) path: section/title
-#: C/index.page:35
-msgid "Get Involved"
-msgstr "Deltag i projektet"
-
-#. (itstool) path: imagedata
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/index.docbook:190
-#| msgid "@@image: 'figures/game.png'; md5=723c4ae135926d00c67b9e5dba160a00"
-msgctxt "_"
-msgid "external ref='figures/game.png' md5='723c4ae135926d00c67b9e5dba160a00'"
-msgstr "external ref='figures/game.png' md5='723c4ae135926d00c67b9e5dba160a00'"
-
-#. (itstool) path: imagedata
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/index.docbook:217
-#| msgid ""
-#| "@@image: 'figures/new_game.png'; md5=6e8c77ee96b3810693b2c7ff5ab62dd3"
-msgctxt "_"
-msgid ""
-"external ref='figures/new_game.png' md5='6e8c77ee96b3810693b2c7ff5ab62dd3'"
-msgstr ""
-"external ref='figures/new_game.png' md5='6e8c77ee96b3810693b2c7ff5ab62dd3'"
-
-#. (itstool) path: imagedata
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/index.docbook:575
-#| msgid ""
-#| "@@image: 'figures/preferences_game.png'; "
-#| "md5=cfc33e3282db5c47cc598dd7ea6b3bad"
-msgctxt "_"
-msgid ""
-"external ref='figures/preferences_game.png' "
-"md5='cfc33e3282db5c47cc598dd7ea6b3bad'"
-msgstr ""
-"external ref='figures/preferences_game.png' "
-"md5='cfc33e3282db5c47cc598dd7ea6b3bad'"
-
-#. (itstool) path: imagedata
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/index.docbook:600
-#| msgid ""
-#| "@@image: 'figures/preferences_view.png'; "
-#| "md5=b59e2c72a675d517bbfce6c3f826a344"
-msgctxt "_"
-msgid ""
-"external ref='figures/preferences_view.png' "
-"md5='b59e2c72a675d517bbfce6c3f826a344'"
-msgstr ""
-"external ref='figures/preferences_view.png' "
-"md5='b59e2c72a675d517bbfce6c3f826a344'"
-
-#. (itstool) path: articleinfo/title
-#: C/index.docbook:26
-msgid "<application>Chess</application> Manual"
-msgstr "Manual for <application>Skak</application>"
-
-#. (itstool) path: abstract/para
-#: C/index.docbook:29
-#| msgid ""
-#| "glChess is a game for playing the classic board game of chess, in which "
-#| "two players simulate a battle by capturing the opponents pieces and "
-#| "ultimately the king. It can be played in 2D or 3D mode, full screen or in "
-#| "a window."
-msgid ""
-"GNOME Chess is a game for playing the classic board game of chess, in which "
-"two players simulate a battle by capturing the opponents pieces and "
-"ultimately the king. It can be played in 2D or 3D mode, full screen or in a "
-"window."
-msgstr ""
-"GNOME Skak er det klassiske brætspil skak, hvor to spillere simulerer en "
-"kamp ved at slå modstanderens brikker og til sidst sætte modstanderens "
-"kongen skakmat. Det kan spilles i 2D- eller 3D-tilstand, fuldskærm eller i "
-"et vindue."
-
-#. (itstool) path: articleinfo/copyright
-#: C/index.docbook:36
-msgid "<year>2006-2008</year> <holder>Andreas Røsdal</holder>"
-msgstr "<year>2006-2008</year> <holder>Andreas Røsdal</holder>"
-
-#. (itstool) path: publisher/publishername
-#. (itstool) path: revdescription/para
-#: C/index.docbook:52 C/index.docbook:92
-msgid "GNOME Documentation Project"
-msgstr "GNOME-dokumentationprojekt"
-
-#. (itstool) path: legalnotice/para
-#: C/index.docbook:2
-msgid ""
-"This document is dual-licensed. You may either distribute and/or modify it "
-"under the terms of the <ulink type=\"help\" url=\"help:gpl\">GNU General "
-"Public License</ulink>, which the <link linkend=\"license\">program is "
-"licensed</link> under, or you can distribute it under the terms of the GNU "
-"Free Documentation License. A copy of this follows."
-msgstr ""
-"Dette dokument er underlagt to licenser. Du kan enten distribuere og/eller "
-"modificere det under betingelserne for <ulink type=\"help\" url=\"help:gpl\">"
-"\"GNU General Public License\"</ulink>, som <link linkend=\"license"
-"\">programmet er licenseret</link> under, eller du kan distribuere det under "
-"betingelserne for the \"GNU Free Documentation License\". En kopi af denne "
-"følger."
-
-#. (itstool) path: legalnotice/para
-#: C/index.docbook:11
-msgid ""
-"Permission is granted to copy, distribute and/or modify this document under "
-"the terms of the GNU Free Documentation License (GFDL), Version 1.1 or any "
-"later version published by the Free Software Foundation with no Invariant "
-"Sections, no Front-Cover Texts, and no Back-Cover Texts. You can find a copy "
-"of the GFDL at this <ulink type=\"help\" url=\"help:fdl\">link</ulink> or in "
-"the file COPYING-DOCS distributed with this manual."
-msgstr ""
-"Tilladelse er givet til at kopiere, distribuere og/eller ændre dette "
-"dokument under betingelserne i GNU Free Documentation License (GFDL), "
-"version 1.1 eller enhver senere version udgivet af Free Software Foundation; "
-"uden invariante afsnit, forsidetekster, samt bagsidetekster. Du kan se en "
-"kopi af GFDL her <ulink type=\"help\" url=\"help:fdl\">link</ulink>, eller i "
-"filen COPYING-DOCS som distribueres sammen med denne manual."
-
-#. (itstool) path: legalnotice/para
-#: C/index.docbook:21 C/legal.xml:21
-msgid ""
-"This manual is part of a collection of GNOME manuals distributed under the "
-"GFDL. If you want to distribute this manual separately from the collection, "
-"you can do so by adding a copy of the license to the manual, as described in "
-"section 6 of the license."
-msgstr ""
-"Denne manual er en del af den samling af GNOME-manualer som udgives under "
-"GFDL. Hvis du ønsker at distribuere denne manuel adskilt fra samlingen, kan "
-"du gøre dette ved at tilføje en kopi af licensen til manualen, som beskrevet "
-"i afsnit 6 af licensen."
-
-#. (itstool) path: legalnotice/para
-#: C/index.docbook:28 C/legal.xml:28
-msgid ""
-"Many of the names used by companies to distinguish their products and "
-"services are claimed as trademarks. Where those names appear in any GNOME "
-"documentation, and the members of the GNOME Documentation Project are made "
-"aware of those trademarks, then the names are in capital letters or initial "
-"capital letters."
-msgstr ""
-"En stor del af de navne, som anvendes af firmaer til at identificere deres "
-"produkter og tjenester, er registrerede varemærker. Hvor disse navne fremgår "
-"i en hvilken som helst GNOME-dokumentation, og medlemmerne af GNOME-"
-"dokumentationsprojeket er gjort opmærksom på disse varemærker, er disse "
-"navne vist med store bogstaver eller stort begyndelsesbogstav."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:44 C/legal.xml:44
-msgid ""
-"DOCUMENT IS PROVIDED ON AN \"AS IS\" BASIS, WITHOUT WARRANTY OF ANY KIND, "
-"EITHER EXPRESSED OR IMPLIED, INCLUDING, WITHOUT LIMITATION, WARRANTIES THAT "
-"THE DOCUMENT OR MODIFIED VERSION OF THE DOCUMENT IS FREE OF DEFECTS "
-"MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE OR NON-INFRINGING. THE ENTIRE "
-"RISK AS TO THE QUALITY, ACCURACY, AND PERFORMANCE OF THE DOCUMENT OR "
-"MODIFIED VERSION OF THE DOCUMENT IS WITH YOU. SHOULD ANY DOCUMENT OR "
-"MODIFIED VERSION PROVE DEFECTIVE IN ANY RESPECT, YOU (NOT THE INITIAL "
-"WRITER, AUTHOR OR ANY CONTRIBUTOR) ASSUME THE COST OF ANY NECESSARY "
-"SERVICING, REPAIR OR CORRECTION. THIS DISCLAIMER OF WARRANTY CONSTITUTES AN "
-"ESSENTIAL PART OF THIS LICENSE. NO USE OF ANY DOCUMENT OR MODIFIED VERSION "
-"OF THE DOCUMENT IS AUTHORIZED HEREUNDER EXCEPT UNDER THIS DISCLAIMER; AND"
-msgstr ""
-"DETTE DOKUMENT GØRES TILGÆNGELIGT SOM DET ER, UDEN NOGEN FORM FOR GARANTI, "
-"HVERKEN UDTRYKT ELLER ANTYDET, DERIBLANDT, UDEN BEGRÆNSNINGER, GARANTIER OM "
-"AT DOKUMENTET ELLER ÆNDREDE VERSIONER AF DOKUMENTET ER UDEN DEFEKTER, "
-"PASSENDE TIL ET BESTEMT FORMÅL ELLER IKKE-KRÆNKENDE. DU HÆFTER SELV FOR HELE "
-"RISIKOEN VEDRØRENDE KVALITET, KORREKTHED OG YDELSE FOR DOKUMENTET ELLER "
-"ÆNDREDE VERSIONER AF DOKUMENTET. SKULLE ET DOKUMENT ELLER EN ÆNDRET VERSION "
-"AF ET DOKUMENT VISE SIG AT VÆRE DEFEKT PÅ EN HVILKEN SOM HELST MÅDE, HÆFTER "
-"DU FOR BETALING FOR EVENTUEL NØDVENDIG SERVICE, REPARATION ELLER KORREKTION "
-"(OG IKKE HVERKEN DEN OPRINDELIGE FORFATTER, SKRIBENT ELLER NOGEN ANDEN "
-"BIDRAGYDER). DENNE ERKLÆRING OM GARANTIFORBEHOLD ER EN ESSENTIEL DEL AF "
-"DENNE LICENS. INGEN BRUG AF NOGET DOKUMENT ELLER ÆNDRET VERSION AF "
-"DOKUMENTET ER AUTORISERET HERUNDER BORTSET FRA DENNE ANSVARSFRASKRIVELSE OG"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:64 C/legal.xml:64
-msgid ""
-"UNDER NO CIRCUMSTANCES AND UNDER NO LEGAL THEORY, WHETHER IN TORT (INCLUDING "
-"NEGLIGENCE), CONTRACT, OR OTHERWISE, SHALL THE AUTHOR, INITIAL WRITER, ANY "
-"CONTRIBUTOR, OR ANY DISTRIBUTOR OF THE DOCUMENT OR MODIFIED VERSION OF THE "
-"DOCUMENT, OR ANY SUPPLIER OF ANY OF SUCH PARTIES, BE LIABLE TO ANY PERSON "
-"FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES OF "
-"ANY CHARACTER INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF GOODWILL, "
-"WORK STOPPAGE, COMPUTER FAILURE OR MALFUNCTION, OR ANY AND ALL OTHER DAMAGES "
-"OR LOSSES ARISING OUT OF OR RELATING TO USE OF THE DOCUMENT AND MODIFIED "
-"VERSIONS OF THE DOCUMENT, EVEN IF SUCH PARTY SHALL HAVE BEEN INFORMED OF THE "
-"POSSIBILITY OF SUCH DAMAGES."
-msgstr ""
-"UNDER INGEN OMSTÆNDIGHEDER OG UNDER INGEN JURIDISK TEORI, UANSET OM DET ER "
-"EN BEVIDST SKADENDE HANDLING (INKLUSIVE UFORSVARLIGHED) ELLER PÅ HVILKEN SOM "
-"HELST ANDEN MÅDE, KAN FORFATTEREN, SKRIBENT, BIDRAGYDERE, DISTRIBUTØRER "
-"ELLER LEVERANDØR AF DETTE DOKUMENT ELLER MODIFICEREDE VERSIONER GØRES "
-"ANSVARLIG OVERFOR NOGEN PERSON FOR NOGEN DIREKTE, INDIREKTE, SPECIEL, "
-"TILFÆLDIG ELLER FØLGENDE SKADE PÅFØRT NOGEN INKLUSIVE, UDEN BEGRÆNSNING, "
-"SKADE SOM FØLGE AF TAB AF RYGTE, ARBEJDSSTOP, COMPUTERFEJL ELLER -SVIGT, "
-"ELLER ENHVER ANDEN FORM FOR SKADE ELLER TAB SOM ER OPSTÅET I FORBINDELSE MED "
-"BRUG AF DETTE DOKUMENT ELLER MODIFICEREDE VERSIONER HERAF, SELV HVIS EN "
-"SÅDAN PART HAR VÆRET INFORMERET OM MULIGHEDEN FOR SÅDANNE SKADER."
-
-#. (itstool) path: legalnotice/para
-#: C/index.docbook:37 C/legal.xml:37
-#| msgid ""
-#| "DOCUMENT AND MODIFIED VERSIONS OF THE DOCUMENT ARE PROVIDED UNDER THE "
-#| "TERMS OF THE GNU FREE DOCUMENTATION LICENSE WITH THE FURTHER "
-#| "UNDERSTANDING THAT: <placeholder-1/>"
-msgid ""
-"DOCUMENT AND MODIFIED VERSIONS OF THE DOCUMENT ARE PROVIDED UNDER THE TERMS "
-"OF THE GNU FREE DOCUMENTATION LICENSE WITH THE FURTHER UNDERSTANDING THAT: "
-"<_:orderedlist-1/>"
-msgstr ""
-"DOKUMENTET OG ÆNDREDE VERSIONER AF DOKUMENTET STILLES TIL RÅDIGHED UNDER "
-"\"GNU FREE DOCOMENTATION LICENSE\" MED FØLGENDE BETINGELSER: <_:"
-"orderedlist-1/>"
-
-#. (itstool) path: authorgroup/author
-#: C/index.docbook:61
-msgid ""
-"<firstname>Andreas</firstname> <surname>Røsdal</surname> <affiliation> "
-"<address> <email>andrearo@pvv.ntnu.no</email> </address> </affiliation>"
-msgstr ""
-"<firstname>Andreas</firstname> <surname>Røsdal</surname> <affiliation> "
-"<address> <email>andrearo@pvv.ntnu.no</email> </address> </affiliation>"
-
-#. (itstool) path: revdescription/para
-#: C/index.docbook:89
-msgid "Andreas Røsdal <email>andrearo@pvv.ntnu.no</email>"
-msgstr "Andreas Røsdal <email>andrearo@pvv.ntnu.no</email>"
-
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:85
-msgid ""
-"<revnumber>Chess Manual V2.18</revnumber> <date>December</date> <_:"
-"revdescription-1/>"
-msgstr ""
-"<revnumber>Skakmanual V2.18</revnumber> <date>December</date> <_:"
-"revdescription-1/>"
-
-#. (itstool) path: revhistory/revision
-#: C/index.docbook:95
-msgid ""
-"<revnumber>1</revnumber> <date>December 2006</date> <authorinitials>AR</"
-"authorinitials> <revremark> First draft completed. </revremark>"
-msgstr ""
-"<revnumber>1</revnumber> <date>December 2006</date> <authorinitials>AR</"
-"authorinitials> <revremark> Første udkast fuldført. </revremark>"
-
-#. (itstool) path: articleinfo/releaseinfo
-#: C/index.docbook:105
-msgid "This manual describes version 2.18 of Chess."
-msgstr "Denne manual beskriver version 2.18 af Skak."
-
-#. (itstool) path: legalnotice/title
-#: C/index.docbook:112
-msgid "Feedback"
-msgstr "Tilbagemeldinger"
-
-#. (itstool) path: legalnotice/para
-#: C/index.docbook:113
-msgid ""
-"To report a bug or make a suggestion regarding the <application>Chess</"
-"application> application or this manual, follow the directions in the <ulink "
-"url=\"ghelp:user-guide?feedback-bugs\" type=\"help\">GNOME Feedback Page</"
-"ulink>."
-msgstr ""
-"Hvis du ønsker at indrapportere en fejl eller komme med et forslag "
-"vedrørende <application>Skak</application> eller denne manual så følg "
-"vejledningen på siden <ulink url=\"ghelp:user-guide?feedback-bugs\" type="
-"\"help\">tilbagemeldinger omkring GNOME</ulink>."
-
-#. (itstool) path: article/indexterm
-#: C/index.docbook:123
-msgid "<primary>GNOME Chess</primary>"
-msgstr "<primary>GNOME Skak</primary>"
-
-#. (itstool) path: sect1/title
-#: C/index.docbook:130
-msgid "Introduction"
-msgstr "Introduktion"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:132
-msgid "Overview of Chess"
-msgstr "Overblik over spillet skak"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:134
-#| msgid ""
-#| "Chess is a two-player strategy board game. <application>glChess</"
-#| "application> is a 2D/3D chess game, where games can be played between a "
-#| "combination of human and computer players. glChess detects known third "
-#| "party chess engines for computer players. The game was originally "
-#| "developed by Robert Ancell, now the game is included in gnome-games."
-msgid ""
-"Chess is a two-player strategy board game. <application>GNOME Chess</"
-"application> is a 2D/3D chess game, where games can be played between a "
-"combination of human and computer players. GNOME Chess detects known third "
-"party chess engines for computer players. The game was originally developed "
-"by Robert Ancell, now the game is included in gnome-games."
-msgstr ""
-"Skak er et strategibrætspil for 2 personer. <application>GNOME Skak</"
-"application> er et 2D/3D skakspil, hvor spil kan afvikles via en kombination "
-"af mennesker og computerspillere. GNOME SKAK opfanger kendte tredjeparts "
-"skakmotorer for computerspillere. Spillet blev oprindelig udviklet af Robert "
-"Ancell og er nu inkluderet i gnome-games."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:140
-#| msgid ""
-#| "<application>glChess</application> is written in Python and uses GTK+ and "
-#| "Cairo to render the chess board. 3D support is optionally available using "
-#| "OpenGl, using the Python OpenGL and GtkGLExt libraries. As with most "
-#| "modern 3D programs hardware acceleration is recommended but it should run "
-#| "OK in software. glChess is bundled with GNU Chess as the default chess "
-#| "AI. glChess can be played in network mode against other players on the "
-#| "Internet."
-msgid ""
-"<application>GNOME Chess</application> is written in Python and uses GTK+ "
-"and Cairo to render the chess board. 3D support is optionally available "
-"using OpenGl, using the Python OpenGL and GtkGLExt libraries. As with most "
-"modern 3D programs hardware acceleration is recommended but it should run OK "
-"in software. GNOME Chess is bundled with GNU Chess as the default chess AI. "
-"GNOME Chess can be played in network mode against other players on the "
-"Internet."
-msgstr ""
-"<application>GNOME Skak</application> er skrevet i Python og bruger GTK+ og "
-"Cairo til at tegne skakbrættet. 3D-understøttelse er valgfrit tilgængelig "
-"med brug af OpenGl, og brug af Python OpenGl- og GtkGLExt-"
-"programbiblioteker. Som med de fleste moderne 3D-programmer er "
-"hardwareacceleration anbefalet, men spillet burde køre tilfredsstillende "
-"uden hardwareacceleration. Med GNOME Skak følger, som standard, den kunstige "
-"intelligens GNU Chess. GNOME Skak kan spilles i netværkstilstand mod andre "
-"spillere over internettet."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:147
-msgid ""
-"Chess is played on a square chessboard, consisting of 64 squares of "
-"alternating color. Each player begins the game with sixteen pieces: one "
-"king, one queen, two rooks, two knights, two bishops, and eight pawns. One "
-"player controls the white pieces and the other player controls the black "
-"pieces; the player that controls white is the first to move. The players "
-"take turns moving pieces; certain moves involve a \"capturing\" of an "
-"opponent's piece, removing it from the chessboard. The object of the game is "
-"to checkmate the opponent's king. This occurs when the king is under "
-"immediate attack (in check) and there is no way to remove it from attack on "
-"the next move. Theoreticians have developed extensive chess strategies and "
-"tactics since the game's inception."
-msgstr ""
-"Skak spilles på et kvadratisk skakbræt bestående af 64 felter med "
-"forskellige farver. Hver spiller begynder spillet med 16 brikker: En konge, "
-"en dronning, to tårne, to knægte, to løbere, og otte bønder. En spiller "
-"kontrollerer de hvide brikker og den anden spiller de sorte; den spiller som "
-"kontrollerer hvid begynder spillet. Spillerne skiftes til at flytte brikker; "
-"visse træk medfører, at en modstanders brik \"slås ud af brættet\", og den "
-"fjernes efterfølgende fra brættet. Formålet med spillet er at sætte "
-"modstanderens konge skakmat. Dette opnås, når kongen er under umiddelbart "
-"angreb (skak), og kongen ikke kan sikres mod et angreb i næste runde. "
-"Teoretikere har udviklet omfattende skakstrategier og -taktikker, siden "
-"spillet blev opfundet."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:150
-msgid ""
-"The current form of the game emerged in South Europe in the second half of "
-"the 15th century after evolving from similar, much older games of Asian "
-"origin. Chess is one of the world's most popular board games. The tradition "
-"of competitive chess began in the 16th century. The first official World "
-"Chess Champion, Wilhelm Steinitz, claimed his title in 1886; his modern "
-"equivalent, Vladimir Kramnik, is the 14th Champion in the lineage. There are "
-"also biennial world team events called Chess Olympiads. Since the 20th "
-"century, two international organizations, the World Chess Federation and the "
-"International Correspondence Chess Federation have organized and overseen "
-"the top chess competitions and international titles."
-msgstr ""
-"Den nuværende udgave af spillet opstod i Sydeuropa i den anden halvdel af "
-"det 15. århundrede efter inspiration fra meget ældre spil med asiatisk "
-"oprindelse. Skak er et af verdens mest populære brætspil. Traditionen med "
-"turneringsskak begyndte i det 16. århundrede. Den første officielle "
-"verdensmester Wilhelm Steinitz fik sin titel i 1886; hans tilsvarende "
-"moderne modpart, Vladimir Kramnik, er den 14. mester i rækken. Der afholdes "
-"også turneringer for hold hvert andet år, som kaldes for skakolympiader. "
-"Siden det 20. århundrede har to internationale organisationer, the World "
-"Chess Federation og the International Correspondence Chess Federation "
-"organiseret og kontrolleret skakkonkurrencer og internationale titler for "
-"eliten."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:153
-msgid ""
-"One of the goals of early computer scientists was to create a chess-playing "
-"machine, and today's chess is deeply influenced by the overwhelming "
-"abilities of current chess programs. In 1997, a match between Garry "
-"Kasparov, then World Champion, and IBM's Deep Blue chess program proved that "
-"computers are able to beat even the strongest human players."
-msgstr ""
-"Et af målene for de første computervidenskabsmænd var at skabe en "
-"skakspillende maskine, og dagens skak er dybt påvirket af de imponerende "
-"evner, de moderne skakprogrammer har. I 1997 beviste en kamp mellem Garry "
-"Kasparov, verdensmesteren og IBM's Deep Blue-skakprogram, at computere kan "
-"slå selv den stærkeste skakspiller."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:157
-#| msgid ""
-#| "To run <application>glChess</application>, select <guimenuitem>Chess</"
-#| "guimenuitem> from the <guisubmenu>Games</guisubmenu> submenu of the "
-#| "<guimenu>Main Menu</guimenu>, or type <command>glchess</command> on the "
-#| "command line."
-msgid ""
-"To run <application>GNOME Chess</application>, select <guimenuitem>Chess</"
-"guimenuitem> from the <guisubmenu>Games</guisubmenu> submenu of the "
-"<guimenu>Main Menu</guimenu>, or type <command>gnome-chess</command> on the "
-"command line."
-msgstr ""
-"For at køre <application>GNOME Skak</application> vælges <guisubmenu>Spil</"
-"guisubmenu><guimenuitem>Skak</guimenuitem> fra <guimenu>Hovedmenuen</"
-"guimenu>, eller tast <command>gnome-chess</command> fra kommandolinjen."
-
-#. (itstool) path: sect1/title
-#: C/index.docbook:170
-#| msgid "Playing glChess"
-msgid "Playing GNOME Chess"
-msgstr "Spil GNOME Skak"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:172
-msgid "Main game window"
-msgstr "Spillets hovedvindue"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:174
-#| msgid ""
-#| "Starting glChess displays the main game window as shown below. The game "
-#| "is played by moving chess pieces using the mouse. Each player alternates "
-#| "to move a piece in the appropriate colour, from one board position to "
-#| "another valid board position. The main game window is organized in three "
-#| "main areas: In the top menu and toolbar area, most common game actions "
-#| "can be made. The chess board is in the middle of the window, where the "
-#| "game is played by moving chess pieces using the mouse. Finally, the game "
-#| "history panel is shown at the bottom, where information about the game "
-#| "history, the remaining move time and buttons for showing previous or next "
-#| "moves are available."
-msgid ""
-"Starting GNOME Chess displays the main game window as shown below. The game "
-"is played by moving chess pieces using the mouse. Each player alternates to "
-"move a piece in the appropriate colour, from one board position to another "
-"valid board position. The main game window is organized in three main areas: "
-"In the top menu and toolbar area, most common game actions can be made. The "
-"chess board is in the middle of the window, where the game is played by "
-"moving chess pieces using the mouse. Finally, the game history panel is "
-"shown at the bottom, where information about the game history, the remaining "
-"move time and buttons for showing previous or next moves are available."
-msgstr ""
-"Ved opstart af GNOME Skak vises spillets hovedvindue som vist nedenfor. "
-"Spillet afvikles ved at flytte skakbrikker med musen. Hver spiller skiftes "
-"til at rykke en brik, der har spillerens farve, fra en brætposition til en "
-"anden gyldig brætposition. Spillets hovedvindue er organiseret i tre "
-"hovedområder: I topmenuen og værktøjsbjælkeområdet kan de fleste "
-"spilhandlinger udføres. Skakbrættet befinder sig i midten af vinduet, hvor "
-"spillet afvikles ved at flytte brikker med musen. Endelig vises spillets "
-"historikpanel i bunden, hvor information om spillets historik, den "
-"resterende rundetid og knapper, der kan vise de forrige eller næste "
-"flytninger, er tilgængelige."
-
-#. (itstool) path: figure/title
-#: C/index.docbook:186
-#| msgid "Main window in glChess"
-msgid "Main window in GNOME Chess"
-msgstr "Hovedvindue i GNOME Skak"
-
-#. (itstool) path: screenshot/mediaobject
-#: C/index.docbook:188
-msgid ""
-"<imageobject> <imagedata fileref=\"figures/game.png\" format=\"PNG\" "
-"srccredit=\"Andreas\"/> </imageobject> <textobject> <phrase>Main window in "
-"GNOME Chess.</phrase> </textobject>"
-msgstr ""
-"<imageobject> <imagedata fileref=\"figures/game.png\" format=\"PNG\" "
-"srccredit=\"Andreas\"/> </imageobject> <textobject> <phrase>Hovedvindue i "
-"GNOME Skak.</phrase> </textobject>"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:201
-msgid "Starting a new game"
-msgstr "Starte et nyt spil"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:202
-msgid ""
-"To start a new game, press the <guibutton>New Game</guibutton> buttton on "
-"the toolbar. The new game dialog is then shown, which allows you to setup a "
-"new game with the settings of your choice. In the <interface>game "
-"properties</interface> section, the game name and time-limit for each "
-"player's move is set. In the <interface>players</interface> section, it is "
-"possible to setup the number of human and AI players. If you have installed "
-"any supported chess engines as AI players, these will be displayed in the "
-"list of available players. Finally, the difficulty setting of the AI players "
-"is set in the <interface>difficulty</interface> section."
-msgstr ""
-"For at starte et nyt spil vælges knappen <guibutton>Nyt spil</guibutton> på "
-"værktøjsbjælken. Det nye spilvindue vises herefter, hvilket gør, at du kan "
-"sætte et nyt spil op, med de indstillinger du ønsker. I sektionen "
-"<interface>spilegenskaber</interface> angives spillets navn og "
-"tidsbegrænsning for hver spiller. I sektionen <interface>spillere</"
-"interface> er det muligt at angive antallet af spillere og computerspillere "
-"med kunstig intelligens. Hvis du har installeret en understøttet skakmotor "
-"som computerspiller, vil disse blive vist i listen over tilgængelige "
-"spillere. Endelig angives sværhedsgraden på computerspillerne i sektionen "
-"<interface>sværhedsgrad</interface>."
-
-#. (itstool) path: figure/title
-#: C/index.docbook:213
-msgid "Start new game dialog"
-msgstr "Vinduet til nyt spil"
-
-#. (itstool) path: screenshot/mediaobject
-#: C/index.docbook:215
-msgid ""
-"<imageobject> <imagedata fileref=\"figures/new_game.png\" format=\"PNG\" "
-"srccredit=\"Andreas\"/> </imageobject> <textobject> <phrase>Start new game "
-"dialog for GNOME Chess.</phrase> </textobject>"
-msgstr ""
-"<imageobject> <imagedata fileref=\"figures/new_game.png\" format=\"PNG\" "
-"srccredit=\"Andreas\"/> </imageobject> <textobject> <phrase>Vinduet til nyt "
-"spil for GNOME Skak.</phrase> </textobject>"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:232
-msgid "Menus"
-msgstr "Menuer"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:233
-msgid ""
-"The menu bar, located at the top of the <interface>Main Window</interface>, "
-"contains the following menus:"
-msgstr ""
-"Menubjælken, placeret i toppen af <interface>Hovedvinduet</interface>, "
-"indeholder de følgende menuer:"
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:240
-msgid "<guimenu>Game</guimenu>"
-msgstr "<guimenu>Spil</guimenu>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:246
-#| msgid ""
-#| "<menuchoice><shortcut><keysym>Ctrl+N</keysym></shortcut><guimenuitem>New</"
-#| "guimenuitem></menuchoice> This starts a new game of <application>Chess</"
-#| "application>."
-msgid ""
-"<menuchoice> <shortcut> <keysym>Ctrl+N</keysym> </shortcut> "
-"<guimenuitem>New</guimenuitem> </menuchoice> This starts a new game of "
-"<application>Chess</application>."
-msgstr ""
-"<menuchoice> <shortcut> <keysym>Ctrl+N</keysym> </shortcut> "
-"<guimenuitem>Nyt</guimenuitem> </menuchoice> Dette starter et nyt spil "
-"<application>Skak</application>."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:257
-#| msgid ""
-#| "<menuchoice><shortcut><keysym>Ctrl+O</keysym></"
-#| "shortcut><guimenuitem>Open</guimenuitem></menuchoice> Loads a previously "
-#| "saved game."
-msgid ""
-"<menuchoice> <shortcut> <keysym>Ctrl+O</keysym> </shortcut> "
-"<guimenuitem>Open</guimenuitem> </menuchoice> Loads a previously saved game."
-msgstr ""
-"<menuchoice> <shortcut> <keysym>Ctrl+O</keysym> </shortcut> "
-"<guimenuitem>Åbn</guimenuitem> </menuchoice> Indlæser et tidligere gemt spil."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:268
-#| msgid ""
-#| "<menuchoice><shortcut><keysym>Ctrl+S</keysym></"
-#| "shortcut><guimenuitem>Save</guimenuitem></menuchoice> Saves the current "
-#| "game of chess."
-msgid ""
-"<menuchoice> <shortcut> <keysym>Ctrl+S</keysym> </shortcut> "
-"<guimenuitem>Save</guimenuitem> </menuchoice> Saves the current game of "
-"chess."
-msgstr ""
-"<menuchoice> <shortcut> <keysym>Ctrl+S</keysym> </shortcut> "
-"<guimenuitem>Gem</guimenuitem> </menuchoice> Gemmer det aktuelle skakspil."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:279
-#| msgid ""
-#| "<menuchoice><guimenuitem>Save AS</guimenuitem></menuchoice> Saves the "
-#| "current game of chess with a new filename."
-msgid ""
-"<menuchoice> <guimenuitem>Save As</guimenuitem> </menuchoice> Saves the "
-"current game of chess with a new filename."
-msgstr ""
-"<menuchoice> <guimenuitem>Gem som</guimenuitem> </menuchoice> Gemmer det "
-"aktuelle skakspil med et nyt filnavn."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:288
-#| msgid ""
-#| "<menuchoice><shortcut><keysym>Ctrl+L</keysym></"
-#| "shortcut><guimenuitem>Network Game</guimenuitem></menuchoice> This starts "
-#| "a network multiplayer game using GGZ Gaming Zone."
-msgid ""
-"<menuchoice> <shortcut> <keysym>Ctrl+L</keysym> </shortcut> "
-"<guimenuitem>Network Game</guimenuitem> </menuchoice> This starts a network "
-"multiplayer game using GGZ Gaming Zone."
-msgstr ""
-"<menuchoice> <shortcut> <keysym>Ctrl+L</keysym> </shortcut> "
-"<guimenuitem>Netværksspil</guimenuitem> </menuchoice> Dette starter et "
-"netværksspil for flere spillere med brug af GGZ Gaming Zone."
-
-# Indvi i (kunne måske også være erkend at)
-#. (itstool) path: listitem/para
-#: C/index.docbook:299
-#| msgid ""
-#| "<menuchoice><guimenuitem>Resign</guimenuitem></menuchoice> To concede "
-#| "loss of the game, so that the opponent wins the game."
-msgid ""
-"<menuchoice> <guimenuitem>Resign</guimenuitem> </menuchoice> To concede loss "
-"of the game, so that the opponent wins the game."
-msgstr ""
-"<menuchoice> <guimenuitem>Giv op</guimenuitem> </menuchoice> Acceptér at "
-"spillet er tabt, så modstanderen vinder spillet."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:307
-#| msgid ""
-#| "<menuchoice><guimenuitem>Claim Draw</guimenuitem></menuchoice> If a "
-#| "claimed draw is accepted, the game ends without victory for either player."
-msgid ""
-"<menuchoice> <guimenuitem>Claim Draw</guimenuitem> </menuchoice> If a "
-"claimed draw is accepted, the game ends without victory for either player."
-msgstr ""
-"<menuchoice> <guimenuitem>Erklær remis</guimenuitem> </menuchoice>. Hvis en "
-"remis accepteres, ender spillet uden sejr for nogen af spillerne."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:315
-#| msgid ""
-#| "<menuchoice><shortcut><keysym>Ctrl+Q</keysym></"
-#| "shortcut><guimenuitem>Quit</guimenuitem></menuchoice> Ends the game."
-msgid ""
-"<menuchoice> <shortcut> <keysym>Ctrl+Q</keysym> </shortcut> "
-"<guimenuitem>Quit</guimenuitem> </menuchoice> Ends the game."
-msgstr ""
-"<menuchoice> <shortcut> <keysym>Ctrl+Q</keysym> </shortcut> "
-"<guimenuitem>Afslut</guimenuitem> </menuchoice> Afslutter spillet."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:242 C/index.docbook:334 C/index.docbook:374
-#: C/index.docbook:394
-#| msgid "This menu contains: <placeholder-1/>"
-msgid "This menu contains: <_:itemizedlist-1/>"
-msgstr "Denne menu indeholder: <_:itemizedlist-1/>"
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:332
-msgid "<guimenu>View</guimenu>"
-msgstr "<guimenu>Vis</guimenu>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:338
-#| msgid ""
-#| "<menuchoice><shortcut><keysym>F11</keysym></"
-#| "shortcut><guimenuitem>Fullscreen</guimenuitem></menuchoice> Shows the "
-#| "game window in fullscreen mode."
-msgid ""
-"<menuchoice> <shortcut> <keysym>F11</keysym> </shortcut> "
-"<guimenuitem>Fullscreen</guimenuitem> </menuchoice> Shows the game window in "
-"fullscreen mode."
-msgstr ""
-"<menuchoice> <shortcut> <keysym>F11</keysym> </shortcut> "
-"<guimenuitem>Fuldskærm</guimenuitem> </menuchoice> Viser spilvinduet i "
-"fuldskærmstilstand."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:349
-#| msgid ""
-#| "<menuchoice><guimenuitem>3D Chess View</guimenuitem></menuchoice> Enables "
-#| "3D chess view mode using OpenGL. This requires Python OpenGL and Python "
-#| "GTKGLExt installed, in addition to a 3D graphics card setup properly. "
-#| "Please contact your system administrator if you have problems, either way "
-#| "you will always be able to play chess in 2D mode."
-msgid ""
-"<menuchoice> <guimenuitem>3D Chess View</guimenuitem> </menuchoice> Enables "
-"3D chess view mode using OpenGL. This requires Python OpenGL and Python "
-"GTKGLExt installed, in addition to a 3D graphics card setup properly. Please "
-"contact your system administrator if you have problems, either way you will "
-"always be able to play chess in 2D mode."
-msgstr ""
-"<menuchoice> <guimenuitem>3D-skakvisning</guimenuitem> </menuchoice> Slår 3D-"
-"skakvisningstilstand med brug af OpenGL til. Dette kræver, at Python OpenGL "
-"og Python GTKGLExt er installeret samt et korrekt opsat 3D-grafikkort. "
-"Kontakt venligst din systemadministrator, hvis du har problemer; uanset hvad "
-"vil du altid kunne spille skak i 2D-tilstand."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:359
-#| msgid ""
-#| "<menuchoice><guimenuitem>Show Logs</guimenuitem></menuchoice> Show logs "
-#| "for debugging glChess and the active chess AI engines."
-msgid ""
-"<menuchoice> <guimenuitem>Show Logs</guimenuitem> </menuchoice> Show logs "
-"for debugging GNOME Chess and the active chess AI engines."
-msgstr ""
-"<menuchoice> <guimenuitem>Vis log</guimenuitem> </menuchoice> Viser log, der "
-"kan hjælpe med fejlsøgning i GNOME Skak, og den aktive skakmotor, der driver "
-"den kunstige intelligens."
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:372
-msgid "<guimenu>Settings</guimenu>"
-msgstr "<guimenu>Indstillinger</guimenu>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:378
-#| msgid ""
-#| "<menuchoice><guimenuitem>Preferences</guimenuitem></menuchoice> This "
-#| "opens your window to edit <link linkend=\"prefs\"> preferences.</link>"
-msgid ""
-"<menuchoice> <guimenuitem>Preferences</guimenuitem> </menuchoice> This opens "
-"your window to edit <link linkend=\"prefs\"> preferences.</link>"
-msgstr ""
-"<menuchoice> <guimenuitem>Indstillinger</guimenuitem> </menuchoice> Dette "
-"åbner vinduet, hvor du kan redigere <link linkend=\"prefs\"> indstillingerne."
-"</link>"
-
-#. (itstool) path: varlistentry/term
-#: C/index.docbook:392
-msgid "<guimenu>Help</guimenu>"
-msgstr "<guimenu>Hjælp</guimenu>"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:398
-#| msgid ""
-#| "<menuchoice><shortcut><keysym>F1</keysym></"
-#| "shortcut><guimenuitem>Contents</guimenuitem></menuchoice> Display this "
-#| "manual."
-msgid ""
-"<menuchoice> <shortcut> <keysym>F1</keysym> </shortcut> "
-"<guimenuitem>Contents</guimenuitem> </menuchoice> Display this manual."
-msgstr ""
-"<menuchoice> <shortcut> <keysym>F1</keysym> </shortcut> "
-"<guimenuitem>Indhold</guimenuitem></menuchoice> Vis denne manual."
-
-# engelsk fejl her , -> and
-#. (itstool) path: listitem/para
-#: C/index.docbook:407
-#| msgid ""
-#| "<guimenuitem>About</guimenuitem> This opens the <interface>About</"
-#| "interface> dialog which shows basic information about "
-#| "<application>glChess</application>, such as the author's name, the "
-#| "version number of the game."
-msgid ""
-"<guimenuitem>About</guimenuitem> This opens the <interface>About</interface> "
-"dialog which shows basic information about <application>GNOME Chess</"
-"application>, such as the author's name, the version number of the game."
-msgstr ""
-"<guimenuitem>Om</guimenuitem> Dette åbner vinduet <interface>Om</interface>, "
-"som viser grundlæggende information om <application>GNOME Skak</"
-"application>, såsom forfatterens navn og spillets versionsnummer."
-
-#. (itstool) path: sect1/title
-#: C/index.docbook:429
-msgid "Chess Rules"
-msgstr "Skakregler"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:431
-msgid "The Rules of Chess"
-msgstr "Reglerne i skak"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:435
-msgid ""
-"Chess is played on a square board of eight rows (called ranks and denoted "
-"with numbers 1 to 8) and eight columns (called files and denoted with "
-"letters a to h) of squares. The colors of the sixty-four squares alternate "
-"between light and dark, and are referred to as \"light squares\" and \"dark "
-"squares\". The chessboard is placed so that each player has a white square "
-"in the near right hand corner, and the pieces are set out as shown in the "
-"diagram, with each queen on a square that matches its color."
-msgstr ""
-"Skak spilles på et kvadratisk bræt bestående af otte rækker (benævnt med "
-"numrene 1 til 8) og otte søjler (benævnt med bogstaverne a til h) i alt 64 "
-"kvadrater. Farverne på de 64 kvadrater er skiftevis lyse og mørke, og "
-"refereres til som \"lyse felter\" og \"mørke felter\". Skakbrættet er "
-"placeret, så hver spiller har et hvidt felt i sit nedre højre hjørne, og "
-"brikkerne sættes op som vist i diagrammet, med hver dronning på et felt som "
-"svarer til dens farve."
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:437
-msgid ""
-"Each player begins the game with sixteen pieces: each player's pieces "
-"comprise one king, one queen, two rooks, two bishops, two knights and eight "
-"pawns. One player, referred to as White, controls the white pieces and the "
-"other player, Black, controls the black pieces; White is always the first "
-"player to move. The colors are chosen either by a friendly agreement, by a "
-"game of chance or by a tournament director. The players alternate moving one "
-"piece at a time (with the exception of castling, when two pieces are moved "
-"at the same time). Pieces are moved to either an unoccupied square, or one "
-"occupied by an opponent's piece, capturing it and removing it from play. "
-"With one exception (en passant), all pieces capture opponent's pieces by "
-"moving to the square that the opponent's piece occupies."
-msgstr ""
-"Hver spiller begynder spillet med 16 brikker: Hver spillers brikker består "
-"af en konge, en dronning, to tårne, to løbere, to springere (heste) og otte "
-"bønder. Én spiller, kaldet hvid, kontrollerer de hvide brikker og den anden "
-"spiller, sort, kontrollerer de sorte brikker; hvid er altid den første til "
-"at flytte en brik. Farverne vælges enten efter fælles overenskomst, ved "
-"lodtrækning eller af en turneringsleder. Spillerne skiftes til at flytte en "
-"brik (med undtagelse af rokade, hvor to brikker flyttes på samme tid). "
-"Brikker flyttes enten til en ubesat plads, eller en besat af en af "
-"modstanderens brikker, hvorved den fanges og fjernes fra spillet. Med en "
-"undtagelse (en passant), fanger man en modstanders brik ved at flytte til "
-"det felt, hvor modstanderens brik stod."
-
-#. (itstool) path: sect3/title
-#: C/index.docbook:441
-msgid "King"
-msgstr "Konge"
-
-#. (itstool) path: sect3/para
-#: C/index.docbook:442
-msgid ""
-"When a king is under direct attack by one (or possibly two) of the "
-"opponent's pieces, the player is said to be in check. When in check, only "
-"moves that remove the king from attack are permitted. The player must not "
-"make any move that would place his king in check. The object of the game is "
-"to checkmate the opponent; this occurs when the opponent's king is in check, "
-"and there are no moves that remove the king from attack."
-msgstr ""
-"Når en konge er under direkte angreb af en (eller muligvis to) af "
-"modstanderens brikker, siges spilleren at være i skak. Når man er skak, er "
-"kun træk, som fjerner kongen fra skak, tilladte. Spilleren må ikke foretage "
-"et træk som sætter sin egen konge skak. Formålet med spillet er at sætte "
-"modstanderen skakmat; dette sker når modstanderens konge er skak, og der "
-"ingen træk kan foretages, som fjerner angrebet mod kongen."
-
-#. (itstool) path: sect3/para
-#: C/index.docbook:444
-msgid ""
-"The king can move only one square horizontally, vertically, or diagonally. "
-"Once in the game, each king is allowed to make a special double move, to "
-"castle. Castling consists of moving the king two squares towards a rook, "
-"then moving the rook onto the square over which the king crossed. Castling "
-"is only permissible if all of the following conditions hold:"
-msgstr ""
-"Kongen kan kun bevæge sig et felt enten horisontalt, vertikalt eller "
-"diagonalt. En gang i spillet har kongen tilladelse til at foretage et "
-"speciel dobbelttræk, en rokade. Rokade består i at flytte kongen to træk mod "
-"et tårn, derefter flyttes tårnet til feltet som kongen har krydset. Rokade "
-"er kun tilladt hvis alle de følgende betingelser er overholdt:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:449
-msgid ""
-"The player must never have moved both the king and the rook involved in "
-"castling."
-msgstr ""
-"Spilleren må ikke tidligere have flyttet kongen og tårnet involveret i "
-"rokaden."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:452
-msgid "There must be no pieces between the king and the rook."
-msgstr "Der må ikke være brikker mellem kongen og tårnet."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:455
-msgid ""
-"The king may not currently be in check, nor may the king pass through "
-"squares that are under attack by enemy pieces. As with any move, castling is "
-"illegal if it would place the king in check."
-msgstr ""
-"Kongen må ikke være i skak, og han må heller ikke passere igennem felter, "
-"som er under angreb af fjendtlige brikker. Som alle andre træk er rokade "
-"ugyldigt, hvis det placerer kongen i skak."
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:458
-msgid ""
-"The king and the rook must be on the same rank (to exclude castling with a "
-"promoted pawn)."
-msgstr ""
-"Kongen og tårnet skal være på den samme række (hvilket udelukker rokade med "
-"en forfremmet bonde)."
-
-#. (itstool) path: sect3/title
-#: C/index.docbook:463
-msgid "Rook"
-msgstr "Tårn"
-
-#. (itstool) path: sect3/para
-#: C/index.docbook:464
-msgid ""
-"The rook moves any number of vacant squares vertically or horizontally (it "
-"is also involved in the king's special move of castling)."
-msgstr ""
-"Tårnet kan bevæge sig over alle ledige felter vertikalt eller horisontalt "
-"(den er også en del af kongens specielle træk: Rokaden)."
-
-#. (itstool) path: sect3/title
-#: C/index.docbook:469
-msgid "Bishop"
-msgstr "Løber"
-
-#. (itstool) path: sect3/para
-#: C/index.docbook:470
-msgid ""
-"The bishop moves any number of vacant squares in any direction diagonally. "
-"Note that a bishop never changes square color, therefore players speak about "
-"\"light-squared\" or \"dark-squared\" bishops."
-msgstr ""
-"Løberen bevæger sig over alle ledige felter diagonalt. Bemærk at en løber "
-"aldrig skifter feltfarve, derfor taler spillere om \"hvide\" eller \"sorte\" "
-"løbere."
-
-#. (itstool) path: sect3/title
-#: C/index.docbook:475
-msgid "Queen"
-msgstr "Dronning"
-
-#. (itstool) path: sect3/para
-#: C/index.docbook:476
-msgid ""
-"The queen can move any number of vacant squares diagonally, horizontally, or "
-"vertically."
-msgstr ""
-"Dronningen kan bevæge sig over alle ledige felter diagonalt, horisontalt "
-"eller vertikalt."
-
-#. (itstool) path: sect3/title
-#: C/index.docbook:481
-msgid "Knight"
-msgstr "Springer"
-
-#. (itstool) path: sect3/para
-#: C/index.docbook:482
-msgid ""
-"The knight can jump over occupied squares and moves two spaces horizontally "
-"and one space vertically or vice versa, making an \"L\" shape. A knight in "
-"the middle of the board has eight squares to which it can move. Note that "
-"every time a knight moves, it changes square color."
-msgstr ""
-"Springeren (Hesten) kan springe over besatte felter og flytte to felter "
-"horisontalt og et felt vertikalt eller omvendt, i form af et \"L\". Det "
-"kaldes også for \"To felter frem og et til siden\". En springer i midten af "
-"brættet har 8 felter, den kan flytte til. Bemærk at hver gang en springer "
-"flyttes skifter den feltfarve."
-
-#. (itstool) path: sect3/title
-#: C/index.docbook:488
-msgid "Pawns"
-msgstr "Bønder"
-
-# " " omkring en passant er ikke korrekt, men hvordan laver man kursiv?
-#. (itstool) path: sect3/para
-#: C/index.docbook:489
-msgid ""
-"Pawns have the most complex rules of movement: A pawn can move forward one "
-"square, if that square is unoccupied. If it has not moved yet, the pawn has "
-"the option of moving two squares forward, if both squares in front of the "
-"pawn are unoccupied. A pawn cannot move backward. When such an initial two "
-"square advance is made that puts that pawn horizontally adjacent to an "
-"opponent's pawn, the opponent's pawn can capture that pawn \"en passant\" as "
-"if it moved forward only one square rather than two, but only on the "
-"immediately subsequent move. Pawns are the only pieces that capture "
-"differently than they move. They can capture an enemy piece on either of the "
-"two spaces adjacent to the space in front of them (i.e., the two squares "
-"diagonally in front of them), but cannot move to these spaces if they are "
-"vacant. If a pawn advances all the way to its eighth rank, it is then "
-"promoted (converted) to a queen, rook, bishop, or knight of the same color. "
-"In practice, the pawn is almost always promoted to a queen."
-msgstr ""
-"Bønder har de mest komplekse regler for træk: En bonde kan bevæge sig fremad "
-"et felt, hvis dette felt er ubesat. Hvis bonden endnu ikke har bevæget sig i "
-"spillet, kan den vælge at bevæge sig to felter fremad, hvis begge felter "
-"foran den er ubesatte. En bonde kan ikke flytte bagud. Når et sådant træk "
-"over to felter foretages og det anbringer bonden horisontalt ved siden af en "
-"modstanders bonde, kan denne bonde fange den flyttende bonde (\"en passant"
-"\"), som om den kun flyttede et felt fremfor to, men kun i det følgende "
-"træk. Bønder er de eneste brikker, som slår fjendtlige brikker af brættet på "
-"en anderledes måde end de flyttes. De kan slå en fjendtlig brik på hver af "
-"de to felter ved siden af feltet umiddelbart foran dem (det vil sige, de to "
-"felter diagonalt foran dem), men de kan ikke flyttes til disse felter, hvis "
-"de er ledige. Hvis en bonde når frem til 8. række forfremmes den "
-"(konverteres) til en dronning, tårn, løber eller springer (hest) af samme "
-"farve. I praksis forfremmes bonden næsten altid til en dronning."
-
-#. (itstool) path: sect3/title
-#: C/index.docbook:496
-msgid "Remaining movement rules"
-msgstr "Tilbageværende bevægelsesregler"
-
-#. (itstool) path: sect3/para
-#: C/index.docbook:497
-msgid ""
-"With the exception of the knight, pieces cannot jump over each other. One's "
-"own pieces (\"friendly pieces\") cannot be passed if they are in the line of "
-"movement, and a friendly piece can never replace another friendly piece. "
-"Enemy pieces cannot be passed, but they can be \"captured\". When a piece is "
-"captured (or taken), the attacking piece replaces the enemy piece on its "
-"square (en passant being the only exception). The captured piece is thus "
-"removed from the game and may not be returned to play for the remainder of "
-"the game. The king cannot be captured, only put in check. If a player is "
-"unable to get the king out of check, checkmate results, with the loss of the "
-"game."
-msgstr ""
-"Med undtagelsen af springeren (hesten), kan brikker ikke springe hen over "
-"hinanden. Ens egne brikker (\"venligsindede brikker\") kan ikke passeres, "
-"hvis de er i vejen for bevægelsen, og en venligsindede brik kan aldrig "
-"erstatte en venligsindede brik. Fjendtlige brikker kan ikke passeres, men de "
-"kan \"slås ud af brættet\". Når en brik er slået ud (eller fanget), "
-"erstatter den angribende brik den fjendtlige brik på dennes felt (en passant "
-"er den eneste undtagelse). Den ramte brik fjernes så fra spillet og må ikke "
-"bruges igen i resten af spillet. Kongen kan ikke slås ud af brættet, skakmat "
-"medfører at spillet tabes."
-
-#. (itstool) path: sect3/para
-#: C/index.docbook:500
-msgid ""
-"Chess games do not have to end in checkmate — either player may resign if "
-"the situation looks hopeless. Games also may end in a draw (tie). A draw can "
-"occur in several situations, including draw by agreement, stalemate, "
-"threefold repetition of a position, the fifty move rule, or a draw by "
-"impossibility of checkmate (usually because of insufficient material to "
-"checkmate)."
-msgstr ""
-"Skakspil behøver ikke nødvendigvis at ende med skakmat — enhver af de to "
-"spillere kan give op, hvis situationen ser håbløs ud. Spil kan også ende med "
-"en remis (uafgjort). En remis kan opstå i flere situationer, inklusiv remis "
-"efter aftale, pat, trefoldig gentagelse af en position, reglen om 50 træk, "
-"eller en remis hvis en skakmat er umulig (normalt på grund af mangel på "
-"brikker, der kan opnå en skakmat)."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:508
-msgid "Timed Games"
-msgstr "Spil på tid"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:509
-msgid ""
-"Games can be played with a time-limit by setting a move time when creating a "
-"new game. In timed games each player has a certain amount of time available "
-"for deciding which moves to make, and the time remaining for each player "
-"decreases only when it is their turn to move."
-msgstr ""
-"Spil kan afvikles med en tidsbegrænsning ved at angive en maksimal spiltid, "
-"når et et nyt spil oprettes. I spil på tid har hver spiller et givet tidsrum "
-"tilgængelig, hvor de skal have afviklet deres træk indenfor, og den "
-"tilbageværende tid, for hver spiller, går kun ned, når det er deres tur til "
-"at trække."
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:517
-msgid "Game Draw"
-msgstr "Remis (uafgjort)"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:518
-msgid ""
-"A game that ends without victory for either player. Most drawn games are "
-"draws by agreement based upon the rules. The other ways that a game can end "
-"in a draw are stalemate, three-fold repetition, the fifty-move rule, and "
-"insufficient material. A position is said to be a draw (or a drawn position) "
-"if either player can, through correct play, eventually force the game into a "
-"position where the game must end in a draw, regardless of the moves made by "
-"the other player."
-msgstr ""
-"Et spil som ender uden sejr for nogen af spillerne. De fleste spil, der "
-"ender med remis (uafgjort), sker efter indbyrdes aftale, baseret på "
-"reglerne. De øvrige måder et spil kan ende med remis på er: pat, trefoldig "
-"gentagelse af en position, reglen om 50 træk, eller en remis hvis en skakmat "
-"er umulig. En position siges at være remis, hvis en af spillerne kan, "
-"igennem lovlige træk, tvinge spillet i en position, hvor spillet vil ende "
-"med remis, uanset trækkene fortaget af den anden spiller."
-
-#. (itstool) path: sect3/title
-#: C/index.docbook:524
-msgid "Stalemate"
-msgstr "Pat"
-
-#. (itstool) path: sect3/para
-#: C/index.docbook:525
-msgid ""
-"A stalemate is a position in which the player whose turn it is to move has "
-"no legal move and his king is not in check. A stalemate results in an "
-"immediate draw."
-msgstr ""
-"Pat er en position hvor spilleren, der har det næste træk, ikke har nogle "
-"lovlige træk og kongen ikke er i skak. En pat medfører med det samme remis "
-"(uafgjort)."
-
-#. (itstool) path: sect3/title
-#: C/index.docbook:531
-msgid "Threefold repetetion"
-msgstr "Trefoldig gentagelse"
-
-#. (itstool) path: sect3/para
-#: C/index.docbook:532
-msgid ""
-"The game is drawn if the same position occurs three times with the same "
-"player to move, and with each player having the same set of legal moves each "
-"time (the latter includes the right to take en passant and the right to "
-"castle)."
-msgstr ""
-"Spillet ender med remis, hvis den samme position opstår tre gange, hvor den "
-"samme spiller skal trække, og hvor hver spiller har de samme lovlige træk, "
-"de kan foretage hver gang (det sidste inkluderer retten til at lave en "
-"passant og retten til rokade)."
-
-#. (itstool) path: sect3/title
-#: C/index.docbook:539
-msgid "Fifty move rule"
-msgstr "Reglen om 50 træk"
-
-#. (itstool) path: sect3/para
-#: C/index.docbook:540
-msgid ""
-"The fifty move rule states that the game is drawn after fifty moves from "
-"each side without a pawn move or capture."
-msgstr ""
-"Reglen om 50 træk angiver, at spillet er remis efter 50 træk fra hver side, "
-"hvor en bonde ikke har bevæget sig eller er blevet slået ud."
-
-#. (itstool) path: sect3/title
-#: C/index.docbook:546
-msgid "Insufficient material"
-msgstr "Skakmat kan ikke opnås"
-
-#. (itstool) path: sect3/para
-#: C/index.docbook:547
-msgid ""
-"An endgame scenario in which all pawns have been captured, and one side has "
-"only its king remaining while the other is down to just a king or a king "
-"plus one knight or one bishop. The position is a draw because it is "
-"impossible for the dominant side to deliver checkmate regardless of play. "
-"Situations where checkmate is possible only if the inferior side blunders "
-"are covered by the fifty-move rule."
-msgstr ""
-"Et slutspilsscenarie hvor alle bønder er slået ud, og en side kun har sin "
-"konge tilbage, mens den anden side kun har en konge eller en konge plus en "
-"springer eller en løber. Positionen er remis, da det er umuligt for den "
-"dominerende part at udløse skakmat, uanset hvordan der trækkes. Situationer "
-"hvor skakmat kun er muligt, hvis den svage side kvajer sig er dækket af "
-"reglen om 50 træk."
-
-#. (itstool) path: sect1/title
-#: C/index.docbook:561
-msgid "Game Settings"
-msgstr "Spilopsætning"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:565
-msgid "Game Preferences"
-msgstr "Spilindstillinger"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:566
-msgid ""
-"This preference dialog allows you to modify board orientation, move format "
-"and promotion type."
-msgstr ""
-"Dette indstillingsvindue tillader dig at ændre brætorientering, flytteformat "
-"og forfremmelsestype."
-
-#. (itstool) path: figure/title
-#: C/index.docbook:571
-#| msgid "Game preferences dialog for glChess"
-msgid "Game preferences dialog for GNOME Chess"
-msgstr "Vindue for spilindstillinger til GNOME Skak"
-
-#. (itstool) path: screenshot/mediaobject
-#: C/index.docbook:573
-msgid ""
-"<imageobject> <imagedata fileref=\"figures/preferences_game.png\" format="
-"\"PNG\" srccredit=\"Andreas\"/> </imageobject> <textobject> <phrase>Game "
-"preferences dialog for GNOME Chess.</phrase> </textobject>"
-msgstr ""
-"<imageobject> <imagedata fileref=\"figures/preferences_game.png\" format="
-"\"PNG\" srccredit=\"Andreas\"/> </imageobject> <textobject> <phrase>Vindue "
-"for spilindstillinger til GNOME Skak.</phrase> </textobject>"
-
-#. (itstool) path: sect2/title
-#: C/index.docbook:590
-msgid "View Preferences"
-msgstr "Visningsindstillinger"
-
-#. (itstool) path: sect2/para
-#: C/index.docbook:591
-#| msgid ""
-#| "This preference dialog allows you to modify the look and feel of glChess."
-msgid ""
-"This preference dialog allows you to modify the look and feel of GNOME Chess."
-msgstr ""
-"Dette indstillingsvindue giver dig mulighed for at ændre udseendet og "
-"oplevelsen af GNOME Skak."
-
-#. (itstool) path: figure/title
-#: C/index.docbook:596
-#| msgid "View preferences dialog for glChess"
-msgid "View preferences dialog for GNOME Chess"
-msgstr "Vis indstillingsvindue for GNOME Skak"
-
-#. (itstool) path: screenshot/mediaobject
-#: C/index.docbook:598
-msgid ""
-"<imageobject> <imagedata fileref=\"figures/preferences_view.png\" format="
-"\"PNG\" srccredit=\"Andreas\"/> </imageobject> <textobject> <phrase>View "
-"preferences dialog for GNOME Chess.</phrase> </textobject>"
-msgstr ""
-"<imageobject> <imagedata fileref=\"figures/preferences_view.png\" format="
-"\"PNG\" srccredit=\"Andreas\"/> </imageobject> <textobject> <phrase>Vis "
-"indstillingsvindue for GNOME Skak.</phrase> </textobject>"
-
-#. (itstool) path: sect1/title
-#: C/index.docbook:616
-msgid "Chess Engines"
-msgstr "Skakmotorer"
-
-#. (itstool) path: sect1/para
-#: C/index.docbook:618
-#| msgid ""
-#| "glChess should be able to use any Chess Engine Communication Protocol or "
-#| "Universal Chess Interface compatible chess engines, including these chess "
-#| "engines:"
-msgid ""
-"GNOME Chess should be able to use any Chess Engine Communication Protocol or "
-"Universal Chess Interface compatible chess engines, including these chess "
-"engines:"
-msgstr ""
-"GNOME Skak bør være i stand til at anvende enhver kommunikationsprotokol for "
-"skakmotorer eller kompatible Universal Chess Interface-skakmotorer, inklusiv "
-"disse skakmotorer:"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:626
-msgid "GNUChess"
-msgstr "GNUChess"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:629
-msgid "Sjeng"
-msgstr "Sjeng"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:632
-msgid "Amy"
-msgstr "Amy"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:635
-msgid "Crafty"
-msgstr "Crafty"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:638
-msgid "Faile"
-msgstr "Faile"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:641
-msgid "Phalanx"
-msgstr "Phalanx"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:644
-msgid "Glaurung"
-msgstr "Glaurung"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:647
-msgid "HoiChess"
-msgstr "HoiChess"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:650
-msgid "Diablo"
-msgstr "Diablo"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:653
-msgid "BBChess"
-msgstr "BBChess"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:656
-msgid "Fruit"
-msgstr "Fruit"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:659
-msgid "Shredder"
-msgstr "Shredder"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:662
-msgid "Toga II"
-msgstr "Toga II"
-
-#. (itstool) path: listitem/para
-#: C/index.docbook:665
-msgid "Boo's Chess Engine"
-msgstr "Boos skakmotor"
-
-#. (itstool) path: sect1/title
-#: C/index.docbook:674
-msgid "Authors"
-msgstr "Forfattere"
-
-#. (itstool) path: sect1/para
-#: C/index.docbook:675
-#| msgid ""
-#| "<application>glChess</application> was written by Robert Ancell, and is "
-#| "now maintained in gnome-games. This documentation was originally written "
-#| "by Andreas Røsdal, with input from several GPL sources. To report a bug "
-#| "or make a suggestion regarding this application or this manual, follow "
-#| "the directions in this <ulink url=\"ghelp:user-guide?feedback-bugs\" type="
-#| "\"help\">document</ulink>."
-msgid ""
-"<application>GNOME Chess</application> was written by Robert Ancell, and is "
-"now maintained in gnome-games. This documentation was originally written by "
-"Andreas Røsdal, with input from several GPL sources. To report a bug or make "
-"a suggestion regarding this application or this manual, follow the "
-"directions in this <ulink url=\"ghelp:user-guide?feedback-bugs\" type=\"help"
-"\">document</ulink>."
-msgstr ""
-"<application>GNOME Skak</application> er programmeret af Robert Ancell, og "
-"vedligeholdes nu i gnome-games. Denne manual blev oprindelig skrevet af "
-"Andreas Røsdal med hjælp fra flere GPL-kilder. For at indrapportere en fejl "
-"eller komme med et forslag vedrørende dette program eller denne manual, så "
-"følg vejledningen i dette <ulink url=\"ghelp:user-guide?feedback-bugs\" type="
-"\"help\">dokument</ulink>."
-
-#. (itstool) path: sect1/title
-#: C/index.docbook:700
-msgid "License"
-msgstr "Licens"
-
-#. (itstool) path: sect1/para
-#: C/index.docbook:701
-msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the <citetitle>GNU General Public License</citetitle> as "
-"published by the Free Software Foundation; either version 2 of the License, "
-"or (at your option) any later version."
-msgstr ""
-"Dette program er frit software: du kan distribuere den og/eller ændre den "
-"under betingelserne i <citetitle>GNU General Public License</citetitle> der "
-"udgives af Free Software Foundation; enten version 2 eller (ved dit valg) "
-"enhver senere version."
-
-#. (itstool) path: sect1/para
-#: C/index.docbook:708
-msgid ""
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE. See the <citetitle>GNU General Public "
-"License</citetitle> for more details."
-msgstr ""
-"Dette program distribueres i håb om, at det vil vise sig nyttigt, men UDEN "
-"NOGEN FORM FOR GARANTI, uden selv de underforståede garantier omkring "
-"SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Yderligere detaljer kan "
-"læses i <citetitle>GNU General Public License</citetitle>."
-
-#. (itstool) path: para/address
-#: C/index.docbook:721
-#, no-wrap
-msgid ""
-"\n"
-"    Free Software Foundation, Inc.\n"
-"    <street>59 Temple Place</street> - Suite 330\n"
-"    <city>Boston</city>, <state>MA</state> <postcode>02111-1307</postcode>\n"
-"    <country>USA</country>\n"
-"   "
-msgstr ""
-"\n"
-"    Free Software Foundation, Inc.\n"
-"    <street>59 Temple Place</street> - Suite 330\n"
-"    <city>Boston</city>, <state>MA</state> <postcode>02111-1307</postcode>\n"
-"    <country>USA</country>\n"
-"   "
-
-#. (itstool) path: sect1/para
-#: C/index.docbook:714
-#| msgid ""
-#| "A copy of the <citetitle>GNU General Public License</citetitle> is "
-#| "included as an appendix to the <citetitle>GNOME Users Guide</citetitle>. "
-#| "You may also obtain a copy of the <citetitle>GNU General Public License</"
-#| "citetitle> from the Free Software Foundation by visiting <ulink type="
-#| "\"http\" url=\"http://www.fsf.org\">their Web site</ulink> or by writing "
-#| "to <address> Free Software Foundation, Inc. <street>59 Temple Place</"
-#| "street> - Suite 330 <city>Boston</city>, <state>MA</"
-#| "state><postcode>02111-1307</postcode><country>USA</country></address>"
-msgid ""
-"A copy of the <citetitle>GNU General Public License</citetitle> is included "
-"as an appendix to the <citetitle>GNOME Users Guide</citetitle>. You may also "
-"obtain a copy of the <citetitle>GNU General Public License</citetitle> from "
-"the Free Software Foundation by visiting <ulink type=\"http\" url=\"http://"
-"www.fsf.org\">their Web site</ulink> or by writing to <_:address-1/>"
-msgstr ""
-"En kopi af <citetitle>GNU General Public License</citetitle> er inkluderet "
-"som et tillæg til <citetitle>GNOME-brugervejledningen</citetitle>. Du kan "
-"også få en kopi af <citetitle>GNU General Public License</citetitle> fra "
-"Free Software Foundtation ved at besøge <ulink url=\"http://www.fsf.org\" "
-"type=\"http\">deres hjemmeside</ulink> eller skrive til <_:address-1/>"
-
-#. (itstool) path: para/ulink
-#: C/legal.xml:5
-msgid "GNU General Public License"
-msgstr "GNU General Public License"
-
-#. (itstool) path: para/link
-#: C/legal.xml:6
-msgid "program is licensed"
-msgstr "programmet er licenseret"
-
-# Jeg ved ikke, hvad <_:link-2/> henviser til, så ved ikke, hvordan det skal oversættes.
-#. (itstool) path: legalnotice/para
-#: C/legal.xml:2
-msgid ""
-"This document is dual-licensed. You may either distribute and/or modify it "
-"under the terms of the <_:ulink-1/>, which the <_:link-2/> under, or you can "
-"distribute it under the terms of the GNU Free Documentation License. A copy "
-"of this follows."
-msgstr ""
-"Dette dokument er underlagt to licenser. Du kan enten distribuere og/eller "
-"modificere det under betingelserne for <_:ulink-1/>, som <_:link-2/> under, "
-"eller du kan distribuere det under betingelserne for the \"GNU Free "
-"Documentation License\". En kopi af denne følger."
-
-#. (itstool) path: para/ulink
-#: C/legal.xml:18
-msgid "link"
-msgstr "henvisning"
-
-#. (itstool) path: legalnotice/para
-#: C/legal.xml:11
-#| msgid ""
-#| "Permission is granted to copy, distribute and/or modify this document "
-#| "under the terms of the GNU Free Documentation License (GFDL), Version 1.1 "
-#| "or any later version published by the Free Software Foundation with no "
-#| "Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. You "
-#| "can find a copy of the GFDL at this <ulink type=\"help\" url=\"help:fdl"
-#| "\">link</ulink> or in the file COPYING-DOCS distributed with this manual."
-msgid ""
-"Permission is granted to copy, distribute and/or modify this document under "
-"the terms of the GNU Free Documentation License (GFDL), Version 1.1 or any "
-"later version published by the Free Software Foundation with no Invariant "
-"Sections, no Front-Cover Texts, and no Back-Cover Texts. You can find a copy "
-"of the GFDL at this <_:ulink-1/> or in the file COPYING-DOCS distributed "
-"with this manual."
-msgstr ""
-"Tilladelse er givet til at kopiere, distribuere og/eller ændre dette "
-"dokument under betingelserne i GNU Free Documentation License (GFDL), "
-"version 1.1 eller enhver senere version udgivet af Free Software Foundation "
-"uden invariante afsnit, forsidetekster, samt bagsidetekster. Du kan se en "
-"kopi af GFDL her <_:ulink-1/> eller i filen COPYING-DOCS som distribueres "
-"sammen med denne manual."
-
-#~ msgid "2006-2008"
-#~ msgstr "2006-2008"
-
-#~ msgid "Andreas Røsdal"
-#~ msgstr "Andreas Røsdal"
-
-#~ msgid "Andreas"
-#~ msgstr "Andreas"
-
-#~ msgid "Røsdal"
-#~ msgstr "Røsdal"
-
-#~ msgid "andrearo@pvv.ntnu.no"
-#~ msgstr "andrearo@pvv.ntnu.no"
-
-#~ msgid "Chess Manual V2.18"
-#~ msgstr "Skakmanual version 2.18"
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "December 2006"
-#~ msgstr "December 2006"
-
-#~ msgid "AR"
-#~ msgstr "AR"
-
-#~ msgid "First draft completed."
-#~ msgstr "Første udkast færdig."
-
-#~ msgid "glChess"
-#~ msgstr "glChess"
-
-#~ msgid "Main window in glChess."
-#~ msgstr "Hovedvindue i glChess."
-
-#~ msgid "Start new game dialog for glChess."
-#~ msgstr "Vinduet til nyt spil i glChess."
-
-#~ msgid "Game"
-#~ msgstr "Spil"
-
-#~ msgid "View"
-#~ msgstr "Vis"
-
-#~ msgid "Settings"
-#~ msgstr "Opsætning"
-
-#~ msgid "Help"
-#~ msgstr "Hjælp"
-
-#~ msgid "Game preferences dialog for glChes."
-#~ msgstr "Vindue for spilindstillinger til glChes."
-
-#~ msgid "View preferences dialog for glChess."
-#~ msgstr "Vis indstillingsvindue for glChess."
-
-#~ msgid "Amundsen"
-#~ msgstr "Amundsen"
-
-#~ msgid "Known Bugs and Limitations"
-#~ msgstr "Kendte fejl og begrænsninger"
-
-#~ msgid ""
-#~ "There are no documented bugs or limitations in glChess. To find areas "
-#~ "where you can help improve glChess, please refer to the TODO file which "
-#~ "is distributed with the game."
-#~ msgstr ""
-#~ "Der er ingen dokumenterede fejl eller begrænsninger i glChess. For at "
-#~ "finde områder hvor du kan hjælpe med at forbedre glChess, så se venligst "
-#~ "i TODO-filen (den er på engelsk) som distribueres med spillet."
-
-#~ msgid "December"
-#~ msgstr "December"
+#: src/gnome-chess.vala:2210
+msgid "This does not look like a valid PGN game."
+msgstr "Det ser ikke ud til at være et gyldigt PGN-spil."
+
+#: src/gnome-chess.vala:2211 src/gnome-chess.vala:2224
+msgid "_OK"
+msgstr "_OK"
+
+#: src/gnome-chess.vala:2294
+msgid "Failed to save game"
+msgstr "Kunne ikke gemme spillet"
+
+#. Title of save game dialog
+#: src/gnome-chess.vala:2318
+msgid "Save Chess Game"
+msgstr "Gem skakspil"
+
+#. Default filename for the save game dialog
+#: src/gnome-chess.vala:2331
+msgid "Untitled Chess Game"
+msgstr "Unavngivet skakspil"
+
+#. Save Game Dialog: Name of filter to show only PGN files
+#. Load Game Dialog: Name of filter to show only PGN files
+#: src/gnome-chess.vala:2336 src/gnome-chess.vala:2400
+msgid "PGN files"
+msgstr "PGN-filer"
+
+#. Save Game Dialog: Name of filter to show all files
+#. Load Game Dialog: Name of filter to show all files
+#: src/gnome-chess.vala:2342 src/gnome-chess.vala:2406
+msgid "All files"
+msgstr "Alle filer"
+
+#: src/gnome-chess.vala:2377
+msgid "Save this game before loading another one?"
+msgstr "Gem dette spil før et andet indlæses?"
+
+#. Title of load game dialog
+#: src/gnome-chess.vala:2388
+msgid "Load Chess Game"
+msgstr "Indlæs skakspil"
+
+#: src/gnome-chess.vala:2391
+msgid "_Open"
+msgstr "_Åbn"
+
+#: src/gnome-chess.vala:2425
+msgid "Failed to open game"
+msgstr "Kunne ikke åbne spil"
