@@ -10,7 +10,7 @@
   <!ENTITY version "2.22">
 ]>
 
-<!-- 
+<!--
       (Do not remove this comment block.)
   Maintained by the GNOME Documentation Project
   http://developer.gnome.org/projects/gdp
@@ -24,12 +24,12 @@
 <!-- appropriate code -->
 <articleinfo>
  <title>&app; Manual</title>
- 
+
  <abstract role="description">
        <para>
-	GNOME Chess is a game for playing the classic board game of chess, 
-	in which two players simulate a battle by capturing the opponents 
-	pieces and ultimately the king. It can be played in 2D or 3D mode, 
+	GNOME Chess is a game for playing the classic board game of chess,
+	in which two players simulate a battle by capturing the opponents
+	pieces and ultimately the king. It can be played in 2D or 3D mode,
 	full screen or in a window.
        </para>
  </abstract>
@@ -45,52 +45,52 @@
   </copyright>
 
    -->
-<!-- An address can be added to the publisher information.  If a role is 
-     not specified, the publisher/author is the same for all versions of the 
+<!-- An address can be added to the publisher information.  If a role is
+     not specified, the publisher/author is the same for all versions of the
      document.  -->
-    <publisher role="maintainer"> 
-      <publishername> GNOME Documentation Project </publishername> 
-    </publisher> 
+    <publisher role="maintainer">
+      <publishername> GNOME Documentation Project </publishername>
+    </publisher>
 
    &legal;
-   <!-- This file  contains link to license for the documentation (GNU FDL), and 
-        other legal stuff such as "NO WARRANTY" statement. Please do not change 
+   <!-- This file  contains link to license for the documentation (GNU FDL), and
+        other legal stuff such as "NO WARRANTY" statement. Please do not change
 	any of this. -->
 
-    <authorgroup> 
-      <author> 
-	<firstname>Andreas</firstname> 
-	<surname>Røsdal</surname> 
-	<affiliation> 
-	  <address> <email>andrearo@pvv.ntnu.no</email> </address> 
-	</affiliation> 
-      </author> 
+    <authorgroup>
+      <author>
+	<firstname>Andreas</firstname>
+	<surname>Røsdal</surname>
+	<affiliation>
+	  <address> <email>andrearo@pvv.ntnu.no</email> </address>
+	</affiliation>
+      </author>
 <!-- This is appropriate place for other contributors: translators,
       maintainers,  etc. Commented out by default.
        <othercredit role="translator">
-	<firstname>Latin</firstname> 
-	<surname>Translator 1</surname> 
-	<affiliation> 
-	  <orgname>Latin Translation Team</orgname> 
-	  <address> <email>translator@gnome.org</email> </address> 
+	<firstname>Latin</firstname>
+	<surname>Translator 1</surname>
+	<affiliation>
+	  <orgname>Latin Translation Team</orgname>
+	  <address> <email>translator@gnome.org</email> </address>
 	</affiliation>
 	<contrib>Latin translation</contrib>
       </othercredit>
 -->
     </authorgroup>
-	
+
 	<releaseinfo revision="2.26" role="review"/>
-    
+
 <revhistory>
-      <revision> 
-	<revnumber>&appname; Manual V&manrevision;</revnumber> 
-	<date>&date;</date> 
-	<revdescription> 
+      <revision>
+	<revnumber>&appname; Manual V&manrevision;</revnumber>
+	<date>&date;</date>
+	<revdescription>
 	  <para role="author">Andreas Røsdal
 	    <email>andrearo@pvv.ntnu.no</email>
 	  </para>
 	  <para role="publisher">GNOME Documentation Project</para>
-	</revdescription> 
+	</revdescription>
       </revision>
   <revision>
    <revnumber>1</revnumber>
@@ -108,20 +108,20 @@
     listed in bugzilla.gnome.org and bugzilla.ximian.com. For other
     applications, please provide your own feedback info or remove thsi
     section altogether -->
-    <legalnotice> 
-      <title>Feedback</title> 
+    <legalnotice>
+      <title>Feedback</title>
       <para>To report a bug or make a suggestion regarding the &app; application or
-	this manual, follow the directions in the 
+	this manual, follow the directions in the
 	<ulink url="ghelp:user-guide?feedback-bugs"
-	  type="help">GNOME Feedback Page</ulink>. 
+	  type="help">GNOME Feedback Page</ulink>.
       </para>
 <!-- Translators may also add here feedback address for translations -->
     </legalnotice>
 
 </articleinfo>
 
-  <indexterm zone="index"> 
-    <primary>GNOME Chess</primary> 
+  <indexterm zone="index">
+    <primary>GNOME Chess</primary>
   </indexterm>
 
 <!-- ============= Document Body ============================= -->
@@ -130,7 +130,7 @@
  <title>Introduction</title>
  <sect2 id="what">
   <title>Overview of Chess</title>
-  
+
   <para>
 	Chess is a two-player strategy board game. <application>GNOME Chess</application> is a 2D/3D chess game, where games
 	can be played between a combination of human and computer players. GNOME Chess detects known third party chess engines
@@ -138,10 +138,10 @@
   </para>
 
   <para>
-	<application>GNOME Chess</application> is written in Python and uses GTK+ and Cairo to render the chess board. 3D support is 
+	<application>GNOME Chess</application> is written in Python and uses GTK+ and Cairo to render the chess board. 3D support is
 	optionally available using OpenGl,
 	using the Python OpenGL and GtkGLExt libraries. As with most modern 3D programs hardware acceleration is recommended but it should
-	run OK in software. GNOME Chess is bundled with GNU Chess as the default chess AI. GNOME Chess can be played in network mode against 
+	run OK in software. GNOME Chess is bundled with GNU Chess as the default chess AI. GNOME Chess can be played in network mode against
 	other players on the Internet.
   </para>
   <para>
@@ -159,7 +159,7 @@ One of the goals of early computer scientists was to create a chess-playing mach
    <guimenuitem>Chess</guimenuitem> from the
    <guisubmenu>Games</guisubmenu> submenu of the <guimenu>Main
    Menu</guimenu>, or type <command>gnome-chess</command> on the
-   command line. 
+   command line.
   </para>
  </sect2>
 
@@ -174,7 +174,7 @@ One of the goals of early computer scientists was to create a chess-playing mach
      <para>
 Starting GNOME Chess displays the main game window as shown below. The game is played
 by moving chess pieces using the mouse. Each player alternates to move a piece in the appropriate
-colour, from one board position to another valid board position. 
+colour, from one board position to another valid board position.
 The main game window is organized in three main areas: In the top menu and toolbar area,
 most common game actions can be made. The chess board is in the middle of the window,
 where the game is played by moving chess pieces using the mouse. Finally, the game
@@ -185,13 +185,13 @@ move time and buttons for showing previous or next moves are available.
  <figure id="main-game-shot">
   <title>Main window in GNOME Chess</title>
   <screenshot>
-    <mediaobject> 
+    <mediaobject>
     <imageobject>
   <imagedata fileref="figures/game-3-12.png" format="PNG" srccredit="Andreas"/>
    </imageobject>
-    <textobject> 
-      <phrase>Main window in GNOME Chess.</phrase> 
-    </textobject> 
+    <textobject>
+      <phrase>Main window in GNOME Chess.</phrase>
+    </textobject>
   </mediaobject>
   </screenshot>
  </figure>
@@ -279,7 +279,7 @@ To start a new game, press the <guibutton>New Game</guibutton> button on the too
           <menuchoice>
            <guimenuitem>Resign</guimenuitem>
           </menuchoice>
-           To concede loss of the game, so that the opponent wins the game. 
+           To concede loss of the game, so that the opponent wins the game.
          </para>
         </listitem>
         <listitem>
@@ -287,7 +287,7 @@ To start a new game, press the <guibutton>New Game</guibutton> button on the too
           <menuchoice>
            <guimenuitem>Claim Draw</guimenuitem>
           </menuchoice>
-	    If a claimed draw is accepted, the game ends without victory for either player. 
+	    If a claimed draw is accepted, the game ends without victory for either player.
           </para>
         </listitem>
         <listitem>
@@ -365,7 +365,7 @@ To start a new game, press the <guibutton>New Game</guibutton> button on the too
        </itemizedlist>
       </para>
      </listitem>
-    </varlistentry>   
+    </varlistentry>
 
     <varlistentry>
      <term><guimenu>Help</guimenu></term>
@@ -487,7 +487,7 @@ Chess games do not have to end in checkmate — either player may resign if the 
 <title>Timed Games</title>
 <para>
 Games can be played with a time-limit by setting a move time when creating a new game. In timed games each
-player has a certain amount of time available for deciding which moves to make, and the time remaining 
+player has a certain amount of time available for deciding which moves to make, and the time remaining
 for each player decreases only when it is their turn to move.
 </para>
 </sect2>
@@ -556,13 +556,13 @@ An endgame scenario in which all pawns have been captured, and one side has only
  <figure id="preferences-game-shot">
   <title>Game preferences dialog for GNOME Chess</title>
   <screenshot>
-    <mediaobject> 
+    <mediaobject>
     <imageobject>
   <imagedata fileref="figures/preferences-game-3-12.png" format="PNG" srccredit="Andreas"/>
    </imageobject>
-    <textobject> 
-      <phrase>Game preferences dialog for GNOME Chess.</phrase> 
-    </textobject> 
+    <textobject>
+      <phrase>Game preferences dialog for GNOME Chess.</phrase>
+    </textobject>
   </mediaobject>
   </screenshot>
  </figure>
@@ -583,13 +583,13 @@ An endgame scenario in which all pawns have been captured, and one side has only
  <figure id="preferences-appearance-shot">
   <title>Appearance preferences dialog for GNOME Chess</title>
   <screenshot>
-    <mediaobject> 
+    <mediaobject>
     <imageobject>
   <imagedata fileref="figures/preferences-appearance-3-12.png" format="PNG" srccredit="Andreas"/>
    </imageobject>
-    <textobject> 
+    <textobject>
       <phrase>Appearance preferences dialog for GNOME Chess.</phrase>
-    </textobject> 
+    </textobject>
   </mediaobject>
   </screenshot>
  </figure>
@@ -663,9 +663,9 @@ An endgame scenario in which all pawns have been captured, and one side has only
   <para>
    <application>GNOME Chess</application> was written by Robert Ancell,
    and is now maintained in gnome-games. This documentation was originally written
-   by Andreas Røsdal, with input from several GPL sources. 
+   by Andreas Røsdal, with input from several GPL sources.
    To report a bug or make a suggestion regarding this application or
-   this manual, follow the directions in this 
+   this manual, follow the directions in this
    <ulink url="ghelp:user-guide?feedback-bugs" type="help">document</ulink>.
   </para>
 
