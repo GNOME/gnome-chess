@@ -1147,7 +1147,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         model.remove (ref iter);
 #else
         model.remove (iter);
-#fi
+#endif
 
         /* Always undo from the most recent move */
         scene.move_number = -1;
