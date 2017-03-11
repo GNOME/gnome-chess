@@ -96,7 +96,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         { PAUSE_RESUME_ACTION_NAME, pause_resume_cb },
     };
 
-    private static const OptionEntry[] option_entries =
+    private const OptionEntry[] option_entries =
     {
         { "version", 'v', 0, OptionArg.NONE, null,
         /* Help string for command line --version flag */
