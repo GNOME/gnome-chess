@@ -1702,7 +1702,7 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         if (preferences_dialog != null)
         {
-            preferences_dialog.present ();
+            preferences_dialog.run ();
             return;
         }
 
@@ -1780,7 +1780,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             difficulty_combo.sensitive = false;
         }
 
-        preferences_dialog.present ();
+        preferences_dialog.run ();
     }
 
     private void set_combo (Gtk.ComboBox combo, int value_index, string value)
