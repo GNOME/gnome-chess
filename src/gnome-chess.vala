@@ -1143,11 +1143,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         var model = (Gtk.ListStore) history_combo.model;
         Gtk.TreeIter iter;
         model.iter_nth_child (out iter, null, model.iter_n_children (null) - 1);
-#if VALA_0_36
         model.remove (ref iter);
-#else
-        model.remove (iter);
-#endif
 
         /* Always undo from the most recent move */
         scene.move_number = -1;

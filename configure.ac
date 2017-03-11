@@ -8,7 +8,7 @@ AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-xz foreign])
 AM_SILENT_RULES([yes])
 AM_MAINTAINER_MODE([enable])
 
-AM_PROG_VALAC([0.27.1])
+AM_PROG_VALAC([0.35.7])
 
 LT_PREREQ([2.2])
 LT_INIT
