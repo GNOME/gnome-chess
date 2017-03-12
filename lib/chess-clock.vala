@@ -168,8 +168,8 @@ public class ChessClock : Object
 
         tick ();
 
-        if (white_seconds_used >= white_initial_seconds ||
-            black_seconds_used >= black_initial_seconds)
+        if (white_seconds_used >= white_initial_seconds + white_extra_seconds ||
+            black_seconds_used >= black_initial_seconds + black_extra_seconds)
         {
             stop ();
             expired ();
