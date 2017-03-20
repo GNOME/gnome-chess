@@ -1,5 +1,5 @@
 AC_PREREQ([2.63])
-AC_INIT([GNOME Chess], [3.23.92.5], [https://bugzilla.gnome.org/],
+AC_INIT([GNOME Chess], [3.24.0], [https://bugzilla.gnome.org/],
         [gnome-chess], [https://wiki.gnome.org/Apps/Chess])
 
 AC_CONFIG_MACRO_DIR([m4])
