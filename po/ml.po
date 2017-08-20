@@ -7,15 +7,16 @@
 # Abhishek Jacob <abhishekjacob123@gmail.com>, 2009.
 # Mohammed Sadik pk <sadiqpkp@gmail.com>, 2012.
 # Nandaja Varma <nandaja.varma@gmail.com>, 2013.
+# Anish Sheela <aneesh.nl@gmail.com>, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games.master.ml\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2013-04-15 04:47+0000\n"
-"PO-Revision-Date: 2013-04-26 17:42+0530\n"
-"Last-Translator: Nandaja Varma <nandaja.varma@gmail.com>\n"
-"Language-Team: Malayalam team\n"
+"POT-Creation-Date: 2017-02-28 06:53+0000\n"
+"PO-Revision-Date: 2017-08-08 15:28+0530\n"
+"Last-Translator: Anish Sheela <aneesh.nl@gmail.com>\n"
+"Language-Team: Swatantra Malayalam Computing <discuss@lists.smc.org.in>\n"
 "Language: ml\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,175 +26,197 @@ msgstr ""
 "X-DamnedLies-Scope: partial\n"
 "X-Project-Style: gnome\n"
 
-#. Title of the main window
-#: ../data/glchess.desktop.in.in.h:1 ../src/gnome-chess.vala:361
+#: data/gnome-chess.appdata.xml.in:7
+#| msgid "Chess"
+msgid "GNOME Chess"
+msgstr "ഗ്നോം ചെസ്സ്"
+
+#: data/gnome-chess.appdata.xml.in:8 data/gnome-chess.desktop.in:5
+#| msgid "Play the classic two-player boardgame of chess"
+msgid "Play the classic two-player board game of chess"
+msgstr "രണ്ടു പേര്‍ക്ക് കളിക്കാവുന്ന ക്ലാസ്സിക്‌ ചെസ്സ്‌ കളി കളിക്കൂ"
+
+#: data/gnome-chess.appdata.xml.in:10
+msgid ""
+"GNOME Chess is a simple chess game. You can play against your computer at "
+"three different difficulty levels, or against a friend at your computer."
+msgstr ""
+
+#: data/gnome-chess.appdata.xml.in:14
+msgid ""
+"Computer chess enthusiasts will appreciate GNOME Chess’s compatibility with "
+"nearly all modern computer chess engines, and its ability to detect several "
+"popular engines automatically if installed."
+msgstr ""
+
+#: data/gnome-chess.appdata.xml.in:39
+msgid "The GNOME Project"
+msgstr "ഗ്നോം പ്രോജക്റ്റ്"
+
+#: data/gnome-chess.desktop.in:3 data/gnome-chess.ui:21
+#: src/gnome-chess.vala:2197 src/gnome-chess.vala:2540
 msgid "Chess"
 msgstr "ചെസ്സ്"
 
-#: ../data/glchess.desktop.in.in.h:2
-msgid "Play the classic two-player boardgame of chess"
-msgstr "രണ്ടു പേര്‍ക്ക് കളിക്കാവുന്ന ക്ലാസ്സിക്‌ ചെസ്സ്‌ കളി കളിക്കൂ"
+#: data/gnome-chess.desktop.in:4
+#| msgid "Save Chess Game"
+msgid "Chess Game"
+msgstr "ചെസ്സ് കളി"
 
-#: ../data/glchess.desktop.in.in.h:3
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/gnome-chess.desktop.in:7
 msgid "game;strategy;"
-msgstr "കളി;തന്ത്രം;"
+msgstr "game;strategy;"
 
-#. Game menu name
-#: ../data/gnome-chess.ui.h:2
-msgid "_Game"
-msgstr "_കളി"
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/gnome-chess.desktop.in:15
+#| msgid "gnomes"
+msgid "gnome-chess"
+msgstr "gnome-chess"
 
-#. Undo move menu item
-#: ../data/gnome-chess.ui.h:4
-msgid "_Undo Move"
-msgstr "വരുത്തിയ നീക്കം വേണ്ട എന്ന് വയ്ക്കുക(_U)"
+#: data/gnome-chess.ui:27
+msgid "_New Game"
+msgstr "പുതിയ കളി (_N)"
 
-#. Save menu item
-#: ../data/gnome-chess.ui.h:6
-msgid "_Resign"
-msgstr "_അവസാനിപ്പിക്കുക"
+#: data/gnome-chess.ui:40
+msgid "Undo your most recent move"
+msgstr "ഏറ്റവും അവസാമത്ത മൂവ് തിരിച്ചാക്കുക"
 
-#. Claim draw menu item
-#: ../data/gnome-chess.ui.h:8
-msgid "Claim _Draw"
-msgstr "_സമനില അവകാശപ്പെടുക"
+#: data/gnome-chess.ui:75
+#| msgid "Number of computer opponents"
+msgid "Resign to your opponent"
+msgstr "തോല്‍വി സമ്മതിക്കുക"
 
-#. Settings menu item
-#: ../data/gnome-chess.ui.h:10
-msgid "_Settings"
-msgstr "_ക്രമികരണങ്ങള്‍ "
+#: data/gnome-chess.ui:96
+#| msgid "End the current game"
+msgid "Save the current game"
+msgstr "നിലവിലുള്ള കളി സൂക്ഷിക്കുക"
 
-#. Help menu item
-#: ../data/gnome-chess.ui.h:12
-msgid "_Help"
-msgstr "_സഹായം"
-
-#. Help contents menu item
-#: ../data/gnome-chess.ui.h:14
-msgid "_Contents"
-msgstr "_ഉള്ളടക്കം"
-
-#. Tooltip for start new game toolbar button
-#: ../data/gnome-chess.ui.h:16
-msgid "Start a new game"
-msgstr "ഒരു പുതിയ കളി തുടങ്ങൂ"
-
-#. The New Game toolbar button
-#: ../data/gnome-chess.ui.h:18
-msgid "New Game"
-msgstr "പുതിയ കളി"
-
-#. The undo move toolbar button
-#: ../data/gnome-chess.ui.h:20
-msgid "Undo Move"
-msgstr "വരുത്തിയ നീക്കം വേണ്ട എന്ന് വയ്ക്കുക"
-
-#. The tooltip for the Resign toolbar button
-#: ../data/gnome-chess.ui.h:22
-msgid "Resign"
-msgstr "അവസാനിപ്പിക്കുക"
+#: data/gnome-chess.ui:117
+#| msgid "Load a saved game"
+msgid "Open a saved game"
+msgstr "സൂക്ഷിച്ച ഒരു കളി തുറക്കുക"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
-#: ../data/gnome-chess.ui.h:24
+#: data/gnome-chess.ui:168
 msgid "Rewind to the game start"
 msgstr "കളിയുടെ ആരംഭത്തിലേക്ക് തിരികെ പോകുക"
 
 #. Tooltip on the show previous move navigation button
-#: ../data/gnome-chess.ui.h:26
+#: data/gnome-chess.ui:195
 msgid "Show the previous move"
 msgstr "തോട്ട് മുമ്പ് നടത്തിയ നീക്കം കാണുക"
 
 #. Tooltip on the show next move navigation button
-#: ../data/gnome-chess.ui.h:28
+#: data/gnome-chess.ui:222
 msgid "Show the next move"
 msgstr "അടുത്ത നീക്കം കാണിക്കുക"
 
 #. Tooltip on the show current move navigation button
-#: ../data/gnome-chess.ui.h:30
+#: data/gnome-chess.ui:249
 msgid "Show the current move"
 msgstr "ഇപ്പോഴത്തെ നീക്കം കാണിക്കുക"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:1
+#. Title for preferences dialog
+#: data/menu.ui:7 data/preferences.ui:226
+msgid "Preferences"
+msgstr "മുന്‍ഗണനകള്‍"
+
+#: data/menu.ui:13
+msgid "Help"
+msgstr "സഹായം "
+
+#: data/menu.ui:18
+msgid "About"
+msgstr "സംബന്ധിച്ച്"
+
+#: data/menu.ui:22
+#| msgid "_Quit"
+msgid "Quit"
+msgstr "നിര്‍ത്തുക"
+
+#: data/org.gnome.chess.gschema.xml:38
 msgid "The width of the window"
 msgstr "ജാലകത്തിന്റെ വീതി"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:2
+#: data/org.gnome.chess.gschema.xml:39
 msgid "The width of the main window in pixels."
 msgstr "പ്രധാന ജാലകത്തിന്റെ വീതി പിക്സലുകളില്‍."
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:3
+#: data/org.gnome.chess.gschema.xml:43
 msgid "The height of the window"
 msgstr "ജാലകത്തിന്റെ ഉയരം"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:4
+#: data/org.gnome.chess.gschema.xml:44
 msgid "The height of the main window in pixels."
 msgstr "പ്രധാന ജാലകത്തിന്റെ ഉയരം പിക്സലുകളില്‍."
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:5
+#: data/org.gnome.chess.gschema.xml:48 data/org.gnome.chess.gschema.xml:49
 msgid "A flag to enable maximized mode"
 msgstr "മാക്സിമൈസ്ഡ് രീതി സജ്ജമാക്കുന്നതിനുള്ള ഫ്ളാഗ്"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:6
-msgid "A flag to enable fullscreen mode"
-msgstr "സ്ക്രീന്‍ പരമാവധി വലുതാക്കുന്നത് സജ്ജമാക്കുന്നതിനുള്ള ഒരു ഫ്ളാഗ്"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:7
-msgid "A flag to enable 3D mode"
-msgstr "3D മോഡ് സജ്ജമാക്കുന്നതിനുള്ള ഫ്ളാഗ്"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:8
-msgid "A flag to smooth (anti-alias) the 3D display"
-msgstr "3-ഡി പ്രദര്‍ശനം മിനുസമാക്കാന്‍ ഉള്ള ഫ്ലാഗ്"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:9
+#: data/org.gnome.chess.gschema.xml:53 data/org.gnome.chess.gschema.xml:54
 msgid "The piece theme to use"
 msgstr "കള്ളികളില്‍ ഉപയോഗിക്കുന്നതിനുളള ഥീം"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:10
+#: data/org.gnome.chess.gschema.xml:58 data/org.gnome.chess.gschema.xml:59
 msgid "A flag to enable move hints"
 msgstr "നീക്കങ്ങള്‍ക്കുള്ള സൂചനകള്‍ സജ്ജമാക്കുന്നതിനുള്ള ഫ്ളാഗ്"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:11
+#: data/org.gnome.chess.gschema.xml:63 data/org.gnome.chess.gschema.xml:64
 msgid "A flag to enable board numbering"
 msgstr "ബോര്‍ഡിന് നംബര്‍ സജ്ജമാക്കുന്നതിനായി ഒരു ഫ്ളാഗ് നല്‍കുക"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:12
-msgid "A flag to enable the move history browser"
-msgstr "മുന്‍ നീക്കങ്ങളിലുള്ള പരുതല്‍ സജ്ജമാക്കുന്നതിനുള്ള ഫ്ളാഗ്"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:13
-msgid "A flag to enable the toolbar"
-msgstr "ടൂള്‍ബാര്‍ സജ്ജമാക്കുന്നതിനുള്ള ഒരു ഫ്ളാഗ്"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:14
+#: data/org.gnome.chess.gschema.xml:68 data/org.gnome.chess.gschema.xml:69
 msgid "The directory to open the save game dialog in"
 msgstr "കളി സൂക്ഷിക്കുന്നതിനുള്ള ഡയലോഗ് തുറക്കുന്നതിനുള്ള ഡയറക്ടറി"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:15
+#: data/org.gnome.chess.gschema.xml:73 data/org.gnome.chess.gschema.xml:74
 msgid "The directory to open the load game dialog in"
 msgstr "കളി ലഭ്യമാക്കുന്നതിനുള്ള ഡയലോഗ് തുറക്കുന്നതിനുള്ള ഡയറക്ടറി"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:16
+#: data/org.gnome.chess.gschema.xml:78 data/org.gnome.chess.gschema.xml:79
 msgid "The format to display moves in"
 msgstr "നീക്കങ്ങള്‍ കാണിക്കുന്ന രീതി"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:17
+#: data/org.gnome.chess.gschema.xml:83 data/org.gnome.chess.gschema.xml:84
 msgid "The side of the board that is in the foreground"
 msgstr "ബോര്‍ഡിന്റെ പുരോതലത്തിലുള്ള വശം"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:18
+#: data/org.gnome.chess.gschema.xml:88 data/org.gnome.chess.gschema.xml:89
 msgid "The duration of a game in seconds (0 for no limit)"
 msgstr "ഒരു കളിയുടെ നീളം സെക്കണ്ടുകളില്‍ (ലിമിറ്റ് വേണ്ടെങ്കില്‍ 0)"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:19
-msgid "true if the human player is playing white"
-msgstr "മനുഷ്യ കളിക്കാരന്‍ വെള്ള കളിക്കുകയാണെങ്കില്‍ 'ശരി'."
+#: data/org.gnome.chess.gschema.xml:93 data/org.gnome.chess.gschema.xml:94
+msgid "The type of clock (simple/fischer/bronstein)"
+msgstr "ക്ലോക്ക് രീതി (ലളിതം/ഫിഷര്‍/ബ്രോണ്‍സ്റ്റീന്‍)"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:20
+#: data/org.gnome.chess.gschema.xml:98 data/org.gnome.chess.gschema.xml:99
+msgid "The timer increment set corresponding to clock type (1 second minimum)"
+msgstr ""
+
+#: data/org.gnome.chess.gschema.xml:103 data/org.gnome.chess.gschema.xml:104
+#| msgid "The board side to display"
+msgid "The board side to play as"
+msgstr "ഏത് വശത്ത് കളിക്കണം"
+
+#: data/org.gnome.chess.gschema.xml:108
+msgid "The last side the player played as"
+msgstr "അവസാനത്തെ കളിക്കാരന്‍ ഈ വശത്ത് കളിച്ചു"
+
+#: data/org.gnome.chess.gschema.xml:109
+msgid ""
+"This is needed when play-as is set to alternate. This should only be set to "
+"black or white."
+msgstr ""
+"കളിക്കുന്നത് മാറി മാറി രീതിയില്‍ സജ്ജീകരിച്ചാല്‍ ഇത് വേണം. ഇത് കറുപ്പോ "
+"വെള്ളയോ മാത്രമായേ വെക്കാന്‍ പാടുള്ളു."
+
+#: data/org.gnome.chess.gschema.xml:113
 msgid "The opponent player"
 msgstr "എതിരാളി"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:21
+#: data/org.gnome.chess.gschema.xml:114
 msgid ""
 "Can be 'human' (play against another human player), '' (use the first "
 "available chess engine) or the name of a specific engine to play against"
@@ -201,864 +224,1256 @@ msgstr ""
 "'മനുഷ്യന്‍' ആകാം (വേറെ മനുഷ്യനായി കളിക്കൂ), \"(ആദ്യം കിട്ടുന്ന ചെസ്സ്‌ എന്‍ജിന്‍ ഉപയോഗിക്കുക) "
 "അല്ലെങ്കില്‍ എതിര്‍ കളിക്കേണ്ട എങ്ങിനിന്റെ നാമം"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:22
+#: data/org.gnome.chess.gschema.xml:118 data/org.gnome.chess.gschema.xml:119
 msgid "Difficulty of the opponent chess engine"
 msgstr "എതിര്‍ വശത്തുള്ള ചെസ്സ്‌ എങ്ങിനിന്റെ കാഠിന്യം"
 
-#. Title for preferences dialog
-#: ../data/preferences.ui.h:2
-msgid "Preferences"
-msgstr "മുന്‍ഗണനകള്‍"
+#. Preferences dialog: Combo box entry for time limit
+#. Preferences dialog: Combo box entry for timer increment
+#: data/preferences.ui:13 data/preferences.ui:35
+#| msgid "minute"
+#| msgid_plural "minutes"
+msgctxt "custom_duration_units"
+msgid "minutes"
+msgstr "മിനിറ്റ്"
 
-#. Preferences Dialog: Label before player side (white/black) combo box
-#: ../data/preferences.ui.h:4
-msgid "Play as:"
-msgstr "ആരായി കളിക്കുന്നു:"
+#. Preferences dialog: Combo box entry for time limit
+#: data/preferences.ui:17
+#| msgid "hour"
+#| msgid_plural "hours"
+msgctxt "custom_duration_units"
+msgid "hours"
+msgstr "മണിക്കൂര്‍"
 
-#. Preferences Dialog: Label before opposing player combo box
-#: ../data/preferences.ui.h:6
-msgid "Opposing Player:"
-msgstr "എതിരാളി:"
+#. Preferences dialog: Combo box entry for timer increment
+#: data/preferences.ui:31
+#| msgid "second"
+#| msgid_plural "seconds"
+msgctxt "custom_duration_units"
+msgid "seconds"
+msgstr "നിമിഷം"
 
-#. Preferences Dialog: Label before promotion type combo box
-#: ../data/preferences.ui.h:8
-msgid "Difficulty:"
-msgstr "പ്രയാസം:"
+#. Preferences dialog: Combo box entry for clock type
+#: data/preferences.ui:49
+#| msgid "Simple"
+msgctxt "custom_duration_units"
+msgid "Simple"
+msgstr "ലളിതം"
 
-#. New Game Dialog: Label before game timer settings
-#: ../data/preferences.ui.h:10
-msgid "Game Duration:"
-msgstr "കളിയുടെ ദൈര്‍ഘ്യം:"
+#. Preferences dialog: Combo box entry for time limit. Fischer is a proper name.
+#: data/preferences.ui:53
+msgctxt "custom_duration_units"
+msgid "Fischer"
+msgstr "ഫീഷര്‍"
 
-#. Preferences dialog: Label to notify user that the settings are applied for the next game
-#: ../data/preferences.ui.h:12
-msgid "Changes will take effect for the next game."
-msgstr "മാറ്റങ്ങള്‍ അടുത്ത കളി മുതല്‍ പ്രാഭല്യത്തില്‍ വരുന്നതാണ്"
-
-#. Preferences Dialog: Tab title for game preferences
-#: ../data/preferences.ui.h:14
-msgid "Game"
-msgstr "കളി "
-
-#. Preferences Dialog: Check box for selecting if 3D view is available
-#: ../data/preferences.ui.h:16
-msgid "3_D Chess View"
-msgstr "3_ഡി ചെസ്സ് ദൃശ്യം"
-
-#. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
-#: ../data/preferences.ui.h:18
-msgid "_Smooth Display"
-msgstr "ലളിതമായ പ്രദര്‍ശനം"
-
-#. Preferences Dialog: Label before piece style combo box
-#: ../data/preferences.ui.h:20
-msgid "Piece Style:"
-msgstr "കള്ളികളുടെ ശൈലി:"
-
-#. Preferences Dialog: Check box for selecting if toolbar is visible
-#: ../data/preferences.ui.h:22
-msgid "Show _Toolbar"
-msgstr "ഉപകരണനിര കാണിക്കുക (_T)"
-
-#. Preferences Dialog: Check box for selecting if history browser is visible
-#: ../data/preferences.ui.h:24
-msgid "Show _History"
-msgstr "_ഹിസ്റ്ററി കാണിക്കുക"
-
-#. Preferences Dialog: Check box for selecting if move hints are visible
-#: ../data/preferences.ui.h:26
-msgid "_Move Hints"
-msgstr "_നീക്കങ്ങള്‍ക്കുള്ള സൂചന "
-
-#. Preferences Dialog: Check box for selecting if board numbering is visible
-#: ../data/preferences.ui.h:28
-msgid "_Board Numbering"
-msgstr "_ബോര്‍ഡിനുള്ള നംബര്‍"
-
-#. Preferences Dialog: Label before board orientation combo box
-#: ../data/preferences.ui.h:30
-msgid "Board Orientation:"
-msgstr "ബോര്‍ഡിന്റെ ക്രമികരണം:"
-
-#. Preferences Dialog: Label before move format combo box
-#: ../data/preferences.ui.h:32
-msgid "Move Format:"
-msgstr "നീക്കം നടത്തേണ്ട രീതി:"
-
-#. Preferences Dialog: Title of appearance options tab
-#: ../data/preferences.ui.h:34
-msgid "_Appearance"
-msgstr "_കാഴ്ച"
-
-#. Preferences Dialog: Combo box entry for playing as white
-#: ../data/preferences.ui.h:36
-msgctxt "chess-player"
-msgid "White"
-msgstr "വെളുപ്പ്"
-
-#. Preferences Dialog: Combo box entry for playing as black
-#: ../data/preferences.ui.h:38
-msgctxt "chess-player"
-msgid "Black"
-msgstr "കറുപ്പ്"
+#. Preferences dialog: Combo box entry for time limit. Bronstein is a proper name.
+#: data/preferences.ui:57
+msgctxt "custom_duration_units"
+msgid "Bronstein"
+msgstr "ബ്രോണ്‍സ്റ്റീന്‍"
 
 #. Preferences Dialog: Combo box entry for easy game difficulty
-#: ../data/preferences.ui.h:40
+#: data/preferences.ui:71
 msgctxt "difficulty"
 msgid "Easy"
 msgstr "എളുപ്പം"
 
 #. Preferences Dialog: Combo box entry for normal game difficulty
-#: ../data/preferences.ui.h:42
+#: data/preferences.ui:75
 msgctxt "difficulty"
 msgid "Normal"
 msgstr "സാധാരണ"
 
 #. Preferences Dialog: Combo box entry for hard game difficulty
-#: ../data/preferences.ui.h:44
+#: data/preferences.ui:79
 msgctxt "difficulty"
 msgid "Hard"
 msgstr "കഠിനം"
 
 #. Preferences Dialog: Combo box entry for no game timer
-#: ../data/preferences.ui.h:46
+#: data/preferences.ui:107
 msgid "No limit"
 msgstr "പരിധിയില്ല"
 
-#. Preferences Dialog: Combo box entry for game timer of one minute
-#: ../data/preferences.ui.h:48
-msgid "One minute"
-msgstr "ഒരു മിനിറ്റ്"
-
 #. Preferences Dialog: Combo box entry for game timer of five minutes
-#: ../data/preferences.ui.h:50
+#: data/preferences.ui:111
 msgid "Five minutes"
 msgstr "അഞ്ച് മിനിറ്റ്"
 
+#. Preferences Dialog: Combo box entry for game timer of ten minutes
+#: data/preferences.ui:115
+#| msgid "Five minutes"
+msgid "Ten minutes"
+msgstr "പത്ത് മിനിറ്റ്"
+
 #. Preferences Dialog: Combo box entry for game timer of thirty minutes
-#: ../data/preferences.ui.h:52
-msgid "30 minutes"
-msgstr "മുപ്പത് മിനിറ്റ്"
+#: data/preferences.ui:119
+#| msgid "Five minutes"
+msgid "Thirty minutes"
+msgstr "അര മണിക്കുര്‍"
 
 #. Preferences Dialog: Combo box entry for game timer of one hour
-#: ../data/preferences.ui.h:54
+#: data/preferences.ui:123
 msgid "One hour"
 msgstr "ഒരു മണിക്കൂര്‍"
 
+#. Preferences Dialog: Combo box entry for game timer of two hours
+#: data/preferences.ui:127
+#| msgid "Two Suits"
+msgid "Two hours"
+msgstr "രണ്ട് മണിക്കുര്‍"
+
+#. Preferences Dialog: Combo box entry for game timer of three hours
+#: data/preferences.ui:131
+#| msgid "One hour"
+msgid "Three hours"
+msgstr "മൂന്ന് മണിക്കുര്‍"
+
 #. Preferences Dialog: Combo box entry for custom game timer
-#: ../data/preferences.ui.h:56
+#: data/preferences.ui:135
 msgid "Custom"
 msgstr "യഥേഷ്ടം"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
-#: ../data/preferences.ui.h:58
+#: data/preferences.ui:149
 msgctxt "chess-move-format"
 msgid "Human"
 msgstr "മനുഷ്യന്‍"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
-#: ../data/preferences.ui.h:60
+#: data/preferences.ui:153
 msgctxt "chess-move-format"
 msgid "Standard Algebraic"
 msgstr "സ്റ്റാന്‍ഡേര്‍ഡ് ആല്‍ജീബ്രായിക്"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
-#: ../data/preferences.ui.h:62
+#: data/preferences.ui:157
 msgctxt "chess-move-format"
 msgid "Figurine"
 msgstr "ഫിഗറിന്‍"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
-#: ../data/preferences.ui.h:64
+#: data/preferences.ui:161
 msgctxt "chess-move-format"
 msgid "Long Algebraic"
 msgstr "ലോങ് അല്‍ജീബ്രായിക്"
 
 #. Preferences Dialog: Combo box entry for human opponent
-#: ../data/preferences.ui.h:66
+#: data/preferences.ui:175
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "മനുഷ്യന്‍"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the white side
-#: ../data/preferences.ui.h:68
+#: data/preferences.ui:189
 msgctxt "chess-side"
 msgid "White Side"
 msgstr "വെള്ള ഭാഗം"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the black side
-#: ../data/preferences.ui.h:70
+#: data/preferences.ui:193
 msgctxt "chess-side"
 msgid "Black Side"
 msgstr "കറുത്ത ഭാഗം"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
-#: ../data/preferences.ui.h:72
+#: data/preferences.ui:197
 msgctxt "chess-side"
 msgid "Human Side"
 msgstr "മനുഷ്യന്റെ ഭാഗം"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
-#: ../data/preferences.ui.h:74
+#: data/preferences.ui:201
 msgctxt "chess-side"
 msgid "Current Player"
 msgstr "ഇപ്പോഴുള്ള കളിക്കാരന്‍"
 
-#. Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)
-#: ../data/preferences.ui.h:76
-msgctxt "chess-side"
-msgid "Face to Face"
-msgstr "മുഖാമുഖം"
-
 #. Preferences Dialog: Combo box entry for simple theme
-#: ../data/preferences.ui.h:78
+#: data/preferences.ui:215
 msgid "Simple"
 msgstr "ലഘുവായത്"
 
 #. Preferences Dialog: Combo box entry for fancy theme
-#: ../data/preferences.ui.h:80
+#: data/preferences.ui:219
 msgid "Fancy"
 msgstr "പാന്‍സി"
 
+#. Preferences Dialog: Label before clock type (Fischer/Bronstein) combo box
+#: data/preferences.ui:259
+#| msgid "Block Style"
+msgid "_Clock type:"
+msgstr "ക്ലോക്ക് രീതി (_C):"
+
+#. Preferences Dialog: Label before timer increment combo box
+#: data/preferences.ui:275
+msgid "Timer _increment:"
+msgstr "ടൈമര്‍ വര്‍ദ്ധന (_i):"
+
+#. Preferences Dialog: Label before player side (white/black) combo box
+#: data/preferences.ui:312
+#| msgid "Play as:"
+msgid "_Play as:"
+msgstr "ആരായി കളിക്കുന്നു (_P):"
+
+#. Preferences Dialog: Label before opposing player combo box
+#: data/preferences.ui:328
+#| msgid "Opposing Player:"
+msgid "_Opposing player:"
+msgstr "എതിരാളി (_O):"
+
+#. Preferences Dialog: Label before difficulty level combo box
+#: data/preferences.ui:344
+msgid "_Difficulty:"
+msgstr "കാഠിന്യത (_D):"
+
+#. Preferences Dialog: Label before game timer settings
+#: data/preferences.ui:521
+#| msgid "No limit"
+msgid "_Time limit:"
+msgstr "സമയ പരിധി (_T):"
+
+#. Preferences dialog: Label to notify user that the settings are applied for the next game
+#: data/preferences.ui:576
+msgid "Changes will take effect for the next game."
+msgstr "മാറ്റങ്ങള്‍ അടുത്ത കളി മുതല്‍ പ്രാഭല്യത്തില്‍ വരുന്നതാണ്"
+
+#. Preferences Dialog: Tab title for game preferences
+#: data/preferences.ui:598
+msgid "_Game"
+msgstr "കളി (_G)"
+
+#. Preferences Dialog: Label before board orientation combo box
+#: data/preferences.ui:619
+#| msgid "Board Orientation:"
+msgid "Board _orientation:"
+msgstr "ബോര്‍ഡിന്റെ ക്രമികരണം (_o):"
+
+#. Preferences Dialog: Label before move format combo box
+#: data/preferences.ui:633
+#| msgid "Move Format:"
+msgid "Move _format:"
+msgstr "നീക്കം നടത്തേണ്ട രീതി (_f):"
+
+#. Preferences Dialog: Label before piece style combo box
+#: data/preferences.ui:649
+#| msgid "Piece Style:"
+msgid "_Piece style:"
+msgstr "കരുക്കളുടെ ശൈലി (_P):"
+
+#. Preferences Dialog: Check box for selecting if board numbering is visible
+#: data/preferences.ui:730
+#| msgid "_Board Numbering"
+msgid "_Board numbering"
+msgstr "ബോര്‍ഡിനുള്ള നംബര്‍ (_B)"
+
+#. Preferences Dialog: Check box for selecting if move hints are visible
+#: data/preferences.ui:745
+#| msgid "_Move Hints"
+msgid "_Move hints"
+msgstr "നീക്കങ്ങള്‍ക്കുള്ള സൂചന (_M)"
+
+#. Preferences Dialog: Title of appearance options tab
+#: data/preferences.ui:774
+msgid "_Appearance"
+msgstr "കാഴ്ച (_A)"
+
+#. Preferences Dialog: Combo box entry for playing as white
+#: data/preferences.ui:801
+msgctxt "chess-player"
+msgid "White"
+msgstr "വെളുപ്പ്"
+
+#. Preferences Dialog: Combo box entry for playing as black
+#: data/preferences.ui:805
+msgctxt "chess-player"
+msgid "Black"
+msgstr "കറുപ്പ്"
+
+#. Preferences Dialog: Combo box entry for alterning between black and white
+#: data/preferences.ui:809
+msgctxt "chess-player"
+msgid "Alternate"
+msgstr "മാറി മാറി"
+
+#: data/promotion-type-selector.ui:7
+#| msgid "Select Pawn Promotion Type"
+msgid "Select Promotion Type"
+msgstr "സ്ഥാനക്കയറ്റ തരം തിരഞ്ഞെടുക്കുക"
+
 # ml.wikipedia.org/wiki/ചെസ്സ്
-#: ../data/promotion-type-selector.ui.h:1
+#: data/promotion-type-selector.ui:41
 msgid "_Queen"
-msgstr "_രാജ്ഞി"
+msgstr "രാജ്ഞി (_Q)"
 
-#: ../data/promotion-type-selector.ui.h:2
+#: data/promotion-type-selector.ui:91
 msgid "_Knight"
-msgstr "_നൈറ്റ്"
+msgstr "കുതിര (_K)"
 
-#: ../data/promotion-type-selector.ui.h:3
+#: data/promotion-type-selector.ui:141
 msgid "_Rook"
-msgstr "_തേര്"
+msgstr "തേര് (_R)"
 
-#: ../data/promotion-type-selector.ui.h:4
+#: data/promotion-type-selector.ui:191
 msgid "_Bishop"
-msgstr "_ആന"
+msgstr "ആന (_B)"
 
-#: ../data/promotion-type-selector.ui.h:5
-msgid ""
-"Promotion is a chess rule describing the transformation of a pawn that "
-"reaches its eighth rank into the player's choice of a queen, knight, rook, "
-"or bishop of the same color. The new piece replaces the pawn on the same "
-"square and is part of the move. Every pawn that reaches its eighth rank must "
-"be promoted. Pawn promotion often decides the result of a chess endgame."
-msgstr ""
-"സ്ഥാനകയറ്റം കാലാളിന്റെ ഭാവ മാറ്റം തീരുമാനിക്കുന്ന ഒരു ചെസ്സ്‌ നിയമം ആണ്. എട്ടാമത്തെ റാങ്ക് "
-"എത്തുന്ന കാലാളിനെ ഒരു രാജ്ഞിയോ, നൈറ്റോ, തേരോ ആനയോ ആയി മാറ്റാം. ഈ പുതിയ കണ്ണി "
-"കാലാളിന്റെ അതേ ചതുരത്തില്‍ മാറ്റണം. എട്ടാമത്തെ റാങ്കില്‍ എത്തുന്ന എല്ലാ കാലാളെയും ഇങ്ങനെ "
-"ഉയര്‍ത്തണം.  കാലാളിന്റെ സ്ഥാനകയറ്റം മിക്യവാരും ആ കളിയുടെ പരിണാമം തീരുമാനിക്കും."
-
-#: ../data/promotion-type-selector.ui.h:6
-msgid "Select Pawn Promotion Type"
-msgstr "കാലാളിന്റെ സ്ഥാനക്കയറ്റ തരം തിരഞ്ഞെടുക്കുക"
-
-#. Title of the window when explicitly loaded a file. The first argument is the
-#. * base name of the file (e.g. test.pgn), the second argument is the directory
-#. * (e.g. /home/fred)
-#: ../src/gnome-chess.vala:369
+#. Message when the game cannot be loaded due to an invalid move in the file.
+#: lib/chess-game.vala:106
 #, c-format
-msgid "%1$s (%2$s) - Chess"
-msgstr "%1$s (%2$s) - ചെസ്സ്"
+msgid "Failed to load PGN: move %s is invalid."
+msgstr "PQN ലഭ്യമാക്കാന്‍ പറ്റിയില്ല: %s നീക്കം സാധുവല്ല."
+
+#: lib/chess-pgn.vala:245 lib/chess-pgn.vala:251 lib/chess-pgn.vala:262
+#, c-format
+msgid "Invalid %s : %s in PGN, setting timer to infinity."
+msgstr "%s സാധുവല്ല : %s PGN ല്‍, ടൈമര്‍ അനന്തതയില്‍ വെയ്ക്കുന്നു."
+
+#: lib/chess-pgn.vala:267
+#, c-format
+msgid "Invalid clock type in PGN: %s, using a simple clock."
+msgstr ""
+"PGN ല്‍ സാധുവല്ലാത്ത ക്ലോക്ക് രീതി: %s, ലളിതമായ ക്ലോക്ക് ഉപയോഗിക്കുന്നു."
+
+#: lib/chess-pgn.vala:274
+#, c-format
+msgid "Invalid timer increment in PGN: %s, using a simple clock."
+msgstr ""
+"PGN ല്‍ സാധുവല്ലാത്ത ടൈമര്‍ വര്‍ദ്ധന: %s, ലളിതമായ ക്ലോക്ക് ഉപയോഗിക്കുന്നു."
+
+#: src/chess-view.vala:317
+msgid "Paused"
+msgstr "കളി നിര്‍ത്തിവച്ചിരിക്കുന്നു"
+
+#. Help string for command line --version flag
+#: src/gnome-chess.vala:103
+msgid "Show release version"
+msgstr "റിലീസ്‌ പതിപ്പ്‌ ഏതാണെന്ന് കാണിക്കുക"
+
+#. Info bar to indicate no chess engines are installed
+#: src/gnome-chess.vala:134
+msgid ""
+"No chess engine is installed. You will not be able to play against the "
+"computer."
+msgstr ""
+"ഒരു ചെസ്സ് എഞ്ചിനും ഇന്‍സ്റ്റാള്‍ ചെയ്തിട്ടില്ല. നിങ്ങള്‍ക്ക് "
+"കമ്പ്യുട്ടറുമായി കളിക്കാന്‍ പറ്റില്ല."
+
+#. May print when started on the command line; a PGN is a saved game file.
+#: src/gnome-chess.vala:220
+#| msgid "You can only play one game at a time."
+msgid "GNOME Chess can only open one PGN at a time."
+msgstr "ഗ്നോം ചെസ്സിന് ഒരു സമയത്ത് ഒരു PGN മാത്രമേ തുറക്കാന്‍ പറ്റുള്ളു."
 
 #. Move History Combo: Go to the start of the game
-#: ../src/gnome-chess.vala:378
+#: src/gnome-chess.vala:458
 msgid "Game Start"
 msgstr "കളിയുടെ തുടക്കം"
 
 #. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
 #. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
-#: ../src/gnome-chess.vala:581
+#: src/gnome-chess.vala:886
 #, c-format
 msgid "White pawn moves from %1$s to %2$s"
 msgstr "വെളുത്ത കാലാള്‍ %1$s-ല്‍ നിന്ന് %2$s-ലേക്ക് നീങ്ങി"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:583
+#: src/gnome-chess.vala:888
 #, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത കാലാള്‍ %2$s-ലെ കറുത്ത കാലാളിനെ വെട്ടി"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:585
+#: src/gnome-chess.vala:890
 #, c-format
 msgid "White pawn at %1$s takes the black rook at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത കാലാള്‍ %2$s-ലെ കറുത്ത തേരിനെ വെട്ടി"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:587
+#: src/gnome-chess.vala:892
 #, c-format
 msgid "White pawn at %1$s takes the black knight at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത കാലാള്‍ %2$s-ലെ കറുത്ത കുതിരയെ വെട്ടി"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:589
+#: src/gnome-chess.vala:894
 #, c-format
 msgid "White pawn at %1$s takes the black bishop at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത കാലാള്‍ %2$s-ലെ കറുത്ത ആനയെ വെട്ടി"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:591
+#: src/gnome-chess.vala:896
 #, c-format
 msgid "White pawn at %1$s takes the black queen at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത കാലാള്‍ %2$s-ലെ കറുത്ത റാണിയെ വെട്ടി"
 
 #. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
-#: ../src/gnome-chess.vala:593
+#: src/gnome-chess.vala:898
 #, c-format
 msgid "White rook moves from %1$s to %2$s"
 msgstr "വെളുത്ത തേര് %1$s-ല്‍ നിന്ന് %2$s-ലേക്ക് നീങ്ങി"
 
 #. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:595
+#: src/gnome-chess.vala:900
 #, c-format
 msgid "White rook at %1$s takes the black pawn at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത തേര് %2$s-ലെ കറുത്ത കാലാളിനെ വെട്ടി"
 
 #. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:597
+#: src/gnome-chess.vala:902
 #, c-format
 msgid "White rook at %1$s takes the black rook at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത തേര് %2$s-ലെ കറുത്ത തേരിനെ വെട്ടി"
 
 #. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:599
+#: src/gnome-chess.vala:904
 #, c-format
 msgid "White rook at %1$s takes the black knight at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത തേര് %2$s-ലെ കറുത്ത കുതിരയെ വെട്ടി"
 
 #. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:601
+#: src/gnome-chess.vala:906
 #, c-format
 msgid "White rook at %1$s takes the black bishop at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത തേര് %2$s-ലെ കറുത്ത ആനയെ വെട്ടി"
 
 #. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
-#: ../src/gnome-chess.vala:603
+#: src/gnome-chess.vala:908
 #, c-format
 msgid "White rook at %1$s takes the black queen at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത തേര് %2$s-ലെ കറുത്ത റാണിയെ വെട്ടി"
 
 #. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
-#: ../src/gnome-chess.vala:605
+#: src/gnome-chess.vala:910
 #, c-format
 msgid "White knight moves from %1$s to %2$s"
 msgstr "വെളുത്ത കുതിര %1$s-ല്‍ നിന്ന് %2$s-ലേക്ക് നീങ്ങി"
 
 #. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:607
+#: src/gnome-chess.vala:912
 #, c-format
 msgid "White knight at %1$s takes the black pawn at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത കുതിര %2$s-ലെ കറുത്ത കാലാളിനെ വെട്ടി"
 
 #. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:609
+#: src/gnome-chess.vala:914
 #, c-format
 msgid "White knight at %1$s takes the black rook at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത കുതിര %2$s-ലെ കറുത്ത തേരിനെ വെട്ടി"
 
 #. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:611
+#: src/gnome-chess.vala:916
 #, c-format
 msgid "White knight at %1$s takes the black knight at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത കുതിര %2$s-ലെ കറുത്ത കുതിരയെ വെട്ടി"
 
 #. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:613
+#: src/gnome-chess.vala:918
 #, c-format
 msgid "White knight at %1$s takes the black bishop at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത കുതിര %2$s-ലെ കറുത്ത ആനയെ വെട്ടി"
 
 #. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:615
+#: src/gnome-chess.vala:920
 #, c-format
 msgid "White knight at %1$s takes the black queen at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത കുതിര %2$s-ലെ കറുത്ത റാണിയെ വെട്ടി"
 
 #. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
-#: ../src/gnome-chess.vala:617
+#: src/gnome-chess.vala:922
 #, c-format
 msgid "White bishop moves from %1$s to %2$s"
 msgstr "വെളുത്ത ആന %1$s-ല്‍ നിന്ന് %2$s-ലേക്ക് നീങ്ങി"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:619
+#: src/gnome-chess.vala:924
 #, c-format
 msgid "White bishop at %1$s takes the black pawn at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത ആന %2$s-ലെ കറുത്ത കാലാളിനെ വെട്ടി"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:621
+#: src/gnome-chess.vala:926
 #, c-format
 msgid "White bishop at %1$s takes the black rook at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത ആന %2$s-ലെ കറുത്ത തേരിനെ വെട്ടി"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:623
+#: src/gnome-chess.vala:928
 #, c-format
 msgid "White bishop at %1$s takes the black knight at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത ആന %2$s-ലെ കറുത്ത കുതിരയെ വെട്ടി"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:625
+#: src/gnome-chess.vala:930
 #, c-format
 msgid "White bishop at %1$s takes the black bishop at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത ആന %2$s-ലെ കറുത്ത തേരിനെ വെട്ടി"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:627
+#: src/gnome-chess.vala:932
 #, c-format
 msgid "White bishop at %1$s takes the black queen at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത ആന %2$s-ലെ കറുത്ത റാണിയെ വെട്ടി"
 
 #. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
-#: ../src/gnome-chess.vala:629
+#: src/gnome-chess.vala:934
 #, c-format
 msgid "White queen moves from %1$s to %2$s"
 msgstr "വെളുത്ത റാണി %1$s-ല്‍ നിന്ന് %2$s-ലേക്ക് നീങ്ങി"
 
 #. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:631
+#: src/gnome-chess.vala:936
 #, c-format
 msgid "White queen at %1$s takes the black pawn at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത റാണി %2$s-ലെ കറുത്ത കാലാളിനെ വെട്ടി"
 
 #. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:633
+#: src/gnome-chess.vala:938
 #, c-format
 msgid "White queen at %1$s takes the black rook at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത റാണി %2$s-ലെ കറുത്ത തേരിനെ വെട്ടി"
 
 #. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:635
+#: src/gnome-chess.vala:940
 #, c-format
 msgid "White queen at %1$s takes the black knight at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത റാണി %2$s-ലെ കറുത്ത കുതിരയെ വെട്ടി"
 
 #. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:637
+#: src/gnome-chess.vala:942
 #, c-format
 msgid "White queen at %1$s takes the black bishop at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത റാണി %2$s-ലെ കറുത്ത ആനയെ വെട്ടി"
 
 #. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:639
+#: src/gnome-chess.vala:944
 #, c-format
 msgid "White queen at %1$s takes the black queen at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത റാണി %2$s-ലെ കറുത്ത റാണിയെ വെട്ടി"
 
 #. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
-#: ../src/gnome-chess.vala:641
+#: src/gnome-chess.vala:946
 #, c-format
 msgid "White king moves from %1$s to %2$s"
 msgstr "വെളുത്ത രാജാവ് %1$s-ല്‍ നിന്ന് %2$s-ലേക്ക് നീങ്ങി"
 
 #. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:643
+#: src/gnome-chess.vala:948
 #, c-format
 msgid "White king at %1$s takes the black pawn at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത രാജാവ്  %2$s-ലെ കറുത്ത കാലാളിനെ വെട്ടി"
 
 #. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:645
+#: src/gnome-chess.vala:950
 #, c-format
 msgid "White king at %1$s takes the black rook at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത രാജാവ്  %2$s-ലെ കറുത്ത തേരിനെ വെട്ടി"
 
 #. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:647
+#: src/gnome-chess.vala:952
 #, c-format
 msgid "White king at %1$s takes the black knight at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത രാജാവ്  %2$s-ലെ കറുത്ത കുതിരയെ വെട്ടി"
 
 #. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:649
+#: src/gnome-chess.vala:954
 #, c-format
 msgid "White king at %1$s takes the black bishop at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത രാജാവ്  %2$s-ലെ കറുത്ത തേരിനെ വെട്ടി"
 
 #. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:651
+#: src/gnome-chess.vala:956
 #, c-format
 msgid "White king at %1$s takes the black queen at %2$s"
 msgstr "%1$s-ലെ വെളുത്ത രാജാവ്  %2$s-ലെ കറുത്ത രാജ്ഞിയെ വെട്ടി"
 
 #. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
-#: ../src/gnome-chess.vala:653
+#: src/gnome-chess.vala:958
 #, c-format
 msgid "Black pawn moves from %1$s to %2$s"
 msgstr "കറുത്ത കാലാള്‍ %1$s-ല്‍ നിന്ന് %2$s-ലേക്ക് നീങ്ങി"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:655
+#: src/gnome-chess.vala:960
 #, c-format
 msgid "Black pawn at %1$s takes the white pawn at %2$s"
 msgstr "%1$s-ലെ കറുത്ത കാലാള്‍ %2$s-ലെ വെളുത്ത കാലാളിനെ വെട്ടി"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:657
+#: src/gnome-chess.vala:962
 #, c-format
 msgid "Black pawn at %1$s takes the white rook at %2$s"
 msgstr "%1$s-ലെ കറുത്ത കാലാള്‍ %2$s-ലെ വെളുത്ത ആനയെ വെട്ടി"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:659
+#: src/gnome-chess.vala:964
 #, c-format
 msgid "Black pawn at %1$s takes the white knight at %2$s"
 msgstr "%1$s-ലെ കറുത്ത കാലാള്‍ %2$s-ലെ വെളുത്ത കുതിരയെ വെട്ടി"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:661
+#: src/gnome-chess.vala:966
 #, c-format
 msgid "Black pawn at %1$s takes the white bishop at %2$s"
 msgstr "%1$s-ലെ കറുത്ത കാലാള്‍ %2$s-ലെ വെളുത്ത തേരിനെ വെട്ടി"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:663
+#: src/gnome-chess.vala:968
 #, c-format
 msgid "Black pawn at %1$s takes the white queen at %2$s"
 msgstr "%1$s-ലെ കറുത്ത കാലാള്‍ %2$s-ലെ വെളുത്ത രാജ്ഞിയെ വെട്ടി"
 
 #. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
-#: ../src/gnome-chess.vala:665
+#: src/gnome-chess.vala:970
 #, c-format
 msgid "Black rook moves from %1$s to %2$s"
 msgstr "കറുത്ത ആന %1$s-ല്‍ നിന്ന് %2$s-ലേക്ക് നീങ്ങി"
 
 #. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:667
+#: src/gnome-chess.vala:972
 #, c-format
 msgid "Black rook at %1$s takes the white pawn at %2$s"
 msgstr "%1$s-ലെ കറുത്ത ആന %2$s-ലെ വെളുത്ത കാലാളിനെ വെട്ടി"
 
 #. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:669
+#: src/gnome-chess.vala:974
 #, c-format
 msgid "Black rook at %1$s takes the white rook at %2$s"
 msgstr "%1$s-ലെ കറുത്ത ആന %2$s-ലെ വെളുത്ത ആനയെ വെട്ടി"
 
 #. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:671
+#: src/gnome-chess.vala:976
 #, c-format
 msgid "Black rook at %1$s takes the white knight at %2$s"
 msgstr "%1$s-ലെ കറുത്ത ആന %2$s-ലെ വെളുത്ത കുതിരയെ വെട്ടി"
 
 #. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:673
+#: src/gnome-chess.vala:978
 #, c-format
 msgid "Black rook at %1$s takes the white bishop at %2$s"
 msgstr "%1$s-ലെ കറുത്ത ആന %2$s-ലെ വെളുത്ത തേരിനെ വെട്ടി"
 
 #. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:675
+#: src/gnome-chess.vala:980
 #, c-format
 msgid "Black rook at %1$s takes the white queen at %2$s"
 msgstr "%1$s-ലെ കറുത്ത ആന %2$s-ലെ വെളുത്ത രാജ്ഞിയെ വെട്ടി"
 
 #. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
-#: ../src/gnome-chess.vala:677
+#: src/gnome-chess.vala:982
 #, c-format
 msgid "Black knight moves from %1$s to %2$s"
 msgstr "കറുത്ത കുതിര %1$s-ല്‍ നിന്ന് %2$s-ലേക്ക് നീങ്ങി"
 
 #. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:679
+#: src/gnome-chess.vala:984
 #, c-format
 msgid "Black knight at %1$s takes the white pawn at %2$s"
 msgstr "%1$s-ലെ കറുത്ത കുതിര %2$s-ലെ വെളുത്ത കാലാളിനെ വെട്ടി"
 
 #. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:681
+#: src/gnome-chess.vala:986
 #, c-format
 msgid "Black knight at %1$s takes the white rook at %2$s"
 msgstr "%1$s-ലെ കറുത്ത കുതിര %2$s-ലെ വെളുത്ത ആനയെ വെട്ടി"
 
 #. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:683
+#: src/gnome-chess.vala:988
 #, c-format
 msgid "Black knight at %1$s takes the white knight at %2$s"
 msgstr "%1$s-ലെ കറുത്ത കുതിര %2$s-ലെ വെളുത്ത കുതിരയെ വെട്ടി"
 
 #. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:685
+#: src/gnome-chess.vala:990
 #, c-format
 msgid "Black knight at %1$s takes the white bishop at %2$s"
 msgstr "%1$s-ലെ കറുത്ത കുതിര %2$s-ലെ വെളുത്ത തേരിനെ വെട്ടി"
 
 #. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:687
+#: src/gnome-chess.vala:992
 #, c-format
 msgid "Black knight at %1$s takes the white queen at %2$s"
 msgstr "%1$s-ലെ കറുത്ത കുതിര %2$s-ലെ വെളുത്ത രാജ്ഞിയെ വെട്ടി"
 
 #. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
-#: ../src/gnome-chess.vala:689
+#: src/gnome-chess.vala:994
 #, c-format
 msgid "Black bishop moves from %1$s to %2$s"
 msgstr "കറുത്ത തേര് %1$s-ല്‍ നിന്ന് %2$s-ലേക്ക് നീങ്ങി"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:691
+#: src/gnome-chess.vala:996
 #, c-format
 msgid "Black bishop at %1$s takes the white pawn at %2$s"
 msgstr "%1$s-ലെ കറുത്ത തേര് %2$s-ലെ വെളുത്ത കാലാളിനെ വെട്ടി"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:693
+#: src/gnome-chess.vala:998
 #, c-format
 msgid "Black bishop at %1$s takes the white rook at %2$s"
 msgstr "%1$s-ലെ കറുത്ത തേര് %2$s-ലെ വെളുത്ത ആനയെ വെട്ടി"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:695
+#: src/gnome-chess.vala:1000
 #, c-format
 msgid "Black bishop at %1$s takes the white knight at %2$s"
 msgstr "%1$s-ലെ കറുത്ത തേര് %2$s-ലെ വെളുത്ത കുതിരയെ വെട്ടി"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:697
+#: src/gnome-chess.vala:1002
 #, c-format
 msgid "Black bishop at %1$s takes the white bishop at %2$s"
 msgstr "%1$s-ലെ കറുത്ത തേര് %2$s-ലെ വെളുത്ത തേരിനെ വെട്ടി"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:699
+#: src/gnome-chess.vala:1004
 #, c-format
 msgid "Black bishop at %1$s takes the white queen at %2$s"
 msgstr "%1$s-ലെ കറുത്ത തേര് %2$s-ലെ വെളുത്ത രാജ്ഞിയെ വെട്ടി"
 
 #. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
-#: ../src/gnome-chess.vala:701
+#: src/gnome-chess.vala:1006
 #, c-format
 msgid "Black queen moves from %1$s to %2$s"
 msgstr "കറുത്ത രാജ്ഞി %1$s-ല്‍ നിന്ന് %2$s-ലേക്ക് നീങ്ങി"
 
 #. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:703
+#: src/gnome-chess.vala:1008
 #, c-format
 msgid "Black queen at %1$s takes the white pawn at %2$s"
 msgstr "%1$s-ലെ കറുത്ത രാജ്ഞി %2$s-ലെ വെളുത്ത കാലാളിനെ വെട്ടി"
 
 #. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:705
+#: src/gnome-chess.vala:1010
 #, c-format
 msgid "Black queen at %1$s takes the white rook at %2$s"
 msgstr "%1$s-ലെ കറുത്ത രാജ്ഞി %2$s-ലെ വെളുത്ത ആനയെ വെട്ടി"
 
 #. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:707
+#: src/gnome-chess.vala:1012
 #, c-format
 msgid "Black queen at %1$s takes the white knight at %2$s"
 msgstr "%1$s-ലെ കറുത്ത രാജ്ഞി %2$s-ലെ വെളുത്ത കുതിരയെ വെട്ടി"
 
 #. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:709
+#: src/gnome-chess.vala:1014
 #, c-format
 msgid "Black queen at %1$s takes the white bishop at %2$s"
 msgstr "%1$s-ലെ കറുത്ത രാജ്ഞി %2$s-ലെ വെളുത്ത തേരിനെ വെട്ടി"
 
 #. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:711
+#: src/gnome-chess.vala:1016
 #, c-format
 msgid "Black queen at %1$s takes the white queen at %2$s"
 msgstr "%1$s-ലെ കറുത്ത രാജ്ഞി %2$s-ലെ വെളുത്ത രാജ്ഞിയെ വെട്ടി"
 
 #. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
-#: ../src/gnome-chess.vala:713
+#: src/gnome-chess.vala:1018
 #, c-format
 msgid "Black king moves from %1$s to %2$s"
 msgstr "കറുത്ത രാജാവ് %1$s-ല്‍ നിന്ന് %2$s-ലേക്ക് നീങ്ങി"
 
 #. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:715
+#: src/gnome-chess.vala:1020
 #, c-format
 msgid "Black king at %1$s takes the white pawn at %2$s"
-msgstr "%1$s-ലെ കറുത്ത രാജാവ്  %2$s-ലെ വെളുത്ത കാലാളിനെ വെട്ടി"
+msgstr "%1$s-ലെ കറുത്ത രാജാവ് %2$s-ലെ വെളുത്ത കാലാളിനെ വെട്ടി"
 
 #. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:717
+#: src/gnome-chess.vala:1022
 #, c-format
 msgid "Black king at %1$s takes the white rook at %2$s"
-msgstr "%1$s-ലെ കറുത്ത രാജാവ്  %2$s-ലെ വെളുത്ത ആനയെ വെട്ടി"
+msgstr "%1$s-ലെ കറുത്ത രാജാവ് %2$s-ലെ വെളുത്ത ആനയെ വെട്ടി"
 
 #. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:719
+#: src/gnome-chess.vala:1024
 #, c-format
 msgid "Black king at %1$s takes the white knight at %2$s"
-msgstr "%1$s-ലെ കറുത്ത രാജാവ്  %2$s-ലെ വെളുത്ത കുതിരയെ വെട്ടി"
+msgstr "%1$s-ലെ കറുത്ത രാജാവ് %2$s-ലെ വെളുത്ത കുതിരയെ വെട്ടി"
 
 #. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:721
+#: src/gnome-chess.vala:1026
 #, c-format
 msgid "Black king at %1$s takes the white bishop at %2$s"
-msgstr "%1$s-ലെ കറുത്ത രാജാവ്  %2$s-ലെ വെളുത്ത തേരിനെ വെട്ടി"
+msgstr "%1$s-ലെ കറുത്ത രാജാവ് %2$s-ലെ വെളുത്ത തേരിനെ വെട്ടി"
 
 #. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
-#: ../src/gnome-chess.vala:723
+#: src/gnome-chess.vala:1028
 #, c-format
 msgid "Black king at %1$s takes the white queen at %2$s"
 msgstr "%1$s-ലെ കറുത്ത രാജാവ് %2$s-ലെ വെളുത്ത രാജ്ഞിയെ വെട്ടി"
 
-#. Message display when the white player wins
-#: ../src/gnome-chess.vala:843
-msgid "White wins"
+#: src/gnome-chess.vala:1051
+#| msgid "White castles long"
+msgid "White castles kingside"
+msgstr "രാജാവിന്റെ വശത്തോട്ട് വെള്ള ക്യാസില്‍ ചെയ്തു"
+
+#: src/gnome-chess.vala:1055
+#| msgid "White castles long"
+msgid "White castles queenside"
+msgstr "രാജ്ഞിയുടെ വശത്തോട്ട് വെള്ള ക്യാസില്‍ ചെയ്തു"
+
+#: src/gnome-chess.vala:1059
+#| msgid "Black castles long"
+msgid "Black castles kingside"
+msgstr "രാജാവിന്റെ വശത്തോട്ട് കറുപ്പ് ക്യാസില്‍ ചെയ്തു"
+
+#: src/gnome-chess.vala:1063
+#| msgid "Black castles long"
+msgid "Black castles queenside"
+msgstr "രാജ്ഞിയുടെ വശത്തോട്ടെ കറുപ്പ് ക്യാസില്‍ ചെയ്തു"
+
+#. Window title on a White human's turn if he is in check
+#: src/gnome-chess.vala:1206
+msgid "White is in Check"
+msgstr "വെള്ള ചെക്കിലാണ്"
+
+#. Window title on a Black human's turn if he is in check
+#: src/gnome-chess.vala:1209
+msgid "Black is in Check"
+msgstr "കറുപ്പ് ചെക്കിലാണ്"
+
+#. Window title on White's turn if White is human
+#: src/gnome-chess.vala:1215
+#| msgid "_Click to Move"
+msgid "White to Move"
+msgstr "വെള്ള നീക്കാനുണ്ട്"
+
+#. Window title on White's turn if White is a computer
+#: src/gnome-chess.vala:1218
+msgid "White is Thinking…"
+msgstr "വെള്ള അലോചിക്കുന്നു…"
+
+#. Window title on Black's turn if Black is human
+#: src/gnome-chess.vala:1224
+#| msgid "_Click to Move"
+msgid "Black to Move"
+msgstr "കറുപ്പ് നീക്കാനുണ്ട്"
+
+#. Window title on Black's turn if Black is a computer
+#: src/gnome-chess.vala:1227
+msgid "Black is Thinking…"
+msgstr "കറുപ്പ് ആലോചിക്കുന്നു…"
+
+#: src/gnome-chess.vala:1242
+#| msgid "Pause the game"
+msgid "Unpause the game"
+msgstr "കളി പുനരാരംഭിക്കുക"
+
+#: src/gnome-chess.vala:1248
+msgid "Pause the game"
+msgstr "കളി താല്‍ക്കാലികമായി നിര്‍ത്തുക"
+
+#. Window title when the white player wins
+#: src/gnome-chess.vala:1271
+#| msgid "White wins"
+msgid "White Wins"
 msgstr "വെള്ള വിജയിച്ചു"
 
-#. Message display when the black player wins
-#: ../src/gnome-chess.vala:848
-msgid "Black wins"
+#. Window title when the black player wins
+#: src/gnome-chess.vala:1276
+#| msgid "Black wins"
+msgid "Black Wins"
 msgstr "കറുത്ത വിജയിച്ചു"
 
-#. Message display when the game is drawn
-#: ../src/gnome-chess.vala:853
-msgid "Game is drawn"
+#. Window title when the game is drawn
+#: src/gnome-chess.vala:1281
+#| msgid "Game is drawn"
+msgid "Game is Drawn"
 msgstr "കളി സമനിലയില്‍"
 
-#. Message displayed when the game ends due to a player being checkmated
-#: ../src/gnome-chess.vala:865
-msgid "Opponent is in check and cannot move (checkmate)"
-msgstr "എതിരാളി ചെക്കിലാണ്, ഇനി നീങ്ങുവാന്‍ സാധ്യമല്ല (ചെക്ക്മേറ്റ്)"
+#.
+#. * Window title when something goes wrong with the engine...
+#. * or when the engine says something is wrong with us! Translators,
+#. * please test to make sure this does not get ellipsized -- you don't
+#. * have much room. Set your opponent to GNU Chess, set a time limit
+#. * because the pause button eats up some of your space, start a new game,
+#. * then run 'killall gnuchess' in a terminal.
+#.
+#: src/gnome-chess.vala:1293
+msgid "Oops! Something has gone wrong."
+msgstr "അയ്യോ! എന്തോ പറ്റി."
 
-#. Message displayed when the game terminates due to a stalemate
-#: ../src/gnome-chess.vala:869
-msgid "Opponent cannot move (stalemate)"
-msgstr "എതിരാളിയ്ക്ക് നീങ്ങുവാന്‍ സാധ്യമല്ല (സ്റ്റേല്‍മേറ്റ്)"
+#. Window subtitle when Black is checkmated
+#: src/gnome-chess.vala:1306
+#| msgid "Opponent is in check and cannot move (checkmate)"
+msgid "Black is in check and cannot move."
+msgstr "കറുപ്പ് ചെക്കിലാണ്, ഇനി നീങ്ങുവാന്‍ സാധ്യമല്ല."
 
-#. Message displayed when the game is drawn due to the fifty move rule
-#: ../src/gnome-chess.vala:873
-msgid "No piece has been taken or pawn moved in the last fifty moves"
-msgstr "കഴിഞ്ഞ 50 നീക്കങ്ങളില്‍ ഒരു കരുവും വെട്ടപ്പെടുകയോ കാലാള്‍ നീങ്ങുകയോ ചെയ്തിട്ടില്ല"
+#. Window subtitle when White is checkmated
+#: src/gnome-chess.vala:1309
+#| msgid "Opponent is in check and cannot move (checkmate)"
+msgid "White is in check and cannot move."
+msgstr "വെള്ള ചെക്കിലാണ്, ഇനി നീങ്ങുവാന്‍ സാധ്യമല്ല."
 
-#. Message displayed when the game ends due to one player's clock stopping
-#: ../src/gnome-chess.vala:877
-msgid "Opponent has run out of time"
-msgstr "എതിരാളിയുടെ സമയം കഴിഞ്ഞിരിക്കുന്നു"
+#. Window subtitle when the game terminates due to a stalemate
+#: src/gnome-chess.vala:1315
+#| msgid "Opponent cannot move (stalemate)"
+msgid "Opponent cannot move."
+msgstr "എതിരാളിയ്ക്ക് നീങ്ങുവാന്‍ സാധ്യമല്ല."
 
-#. Message displayed when the game is drawn due to the three-fold-repitition rule
-#: ../src/gnome-chess.vala:881
-msgid "The same board state has occurred three times (three fold repetition)"
-msgstr "ഈ ബോര്‍ഡിന്റെ അവസ്ഥ മൂന്നു തവണ ഉണ്ടായിരിക്കുന്നു (മൂന്ന് ആവര്‍ത്തനം)"
+#. Window subtitle when the game is drawn due to the fifty move rule
+#: src/gnome-chess.vala:1319
+#| msgid "No piece has been taken or pawn moved in the last fifty moves"
+msgid "No piece was taken or pawn moved in fifty moves."
+msgstr ""
+"കഴിഞ്ഞ 50 നീക്കങ്ങളില്‍ ഒരു കരുവും വെട്ടപ്പെടുകയോ കാലാള്‍ നീങ്ങുകയോ "
+"ചെയ്തിട്ടില്ല."
 
-#. Message displayed when the game is drawn due to the insufficient material rule
-#: ../src/gnome-chess.vala:885
-msgid "Neither player can cause checkmate (insufficient material)"
-msgstr "ഒരു കളിക്കാരനും ചെക്ക്മേറ്റ് ആകുവാന്‍ സാധ്യമല്ല (ആവശ്യമുള്ളവ ലഭ്യമല്ല)"
+#. Window subtitle when the game is drawn due to the 75 move rule
+#: src/gnome-chess.vala:1323
+#| msgid "No piece has been taken or pawn moved in the last fifty moves"
+msgid "No piece was taken or pawn moved in 75 moves."
+msgstr ""
+"കഴിഞ്ഞ 75 നീക്കങ്ങളില്‍ ഒരു കരുവും വെട്ടപ്പെടുകയോ കാലാള്‍ നീങ്ങുകയോ "
+"ചെയ്തിട്ടില്ല."
 
-#. Message displayed when the game ends due to the black player resigning
-#: ../src/gnome-chess.vala:891
-msgid "The black player has resigned"
-msgstr "കറുത്ത കളിക്കാരന്‍ കളി നിര്‍ത്തിയിരിക്കുന്നു"
+#. Window subtitle when the game ends due to Black's clock stopping
+#: src/gnome-chess.vala:1328
+#| msgid "Opponent has run out of time"
+msgid "Black has run out of time."
+msgstr "കറുപ്പിന്റെ സമയം കഴിഞ്ഞിരിക്കുന്നു."
 
-#. Message displayed when the game ends due to the white player resigning
-#: ../src/gnome-chess.vala:896
-msgid "The white player has resigned"
-msgstr "വെളുത്ത കളിക്കാരന്‍ കളി നിര്‍ത്തിയിരിക്കുന്നു"
+#. Window subtitle when the game ends due to White's clock stopping
+#: src/gnome-chess.vala:1331
+#| msgid "Opponent has run out of time"
+msgid "White has run out of time."
+msgstr "വെള്ളയുടെ സമയം കഴിഞ്ഞിരിക്കുന്നു."
 
-#. Message displayed when a game is abandoned
-#: ../src/gnome-chess.vala:901
-msgid "The game has been abandoned"
-msgstr "കളി ഉപേക്ഷിച്ചു"
+#. Window subtitle when the game is drawn due to the three-fold-repetition rule
+#: src/gnome-chess.vala:1337
+#| msgid ""
+#| "The same board state has occurred three times (three fold repetition)"
+msgid "The same board state has occurred three times."
+msgstr "ഈ ബോര്‍ഡിന്റെ അവസ്ഥ മൂന്നു തവണ ഉണ്ടായിരിക്കുന്നു."
 
-#. Message displayed when the game ends due to a player dying
-#: ../src/gnome-chess.vala:906
-msgid "One of the players has died"
-msgstr "ഒരു കളിക്കാരന്‍ അവസാനിച്ചിരിക്കുന്നു"
+#. Window subtitle when the game is drawn due to the five-fold-repetition rule
+#: src/gnome-chess.vala:1341
+#| msgid ""
+#| "The same board state has occurred three times (three fold repetition)"
+msgid "The same board state has occurred five times."
+msgstr "ഈ ബോര്‍ഡിന്റെ അവസ്ഥ അഞ്ച് തവണ ഉണ്ടായിരിക്കുന്നു."
 
-#: ../src/gnome-chess.vala:971
+#. Window subtitle when the game is drawn due to the insufficient material rule
+#: src/gnome-chess.vala:1345
+#| msgid "Neither player can cause checkmate (insufficient material)"
+msgid "Neither player can checkmate."
+msgstr "ഒരു കളിക്കാരനും ചെക്ക്മേറ്റ് ആകുവാന്‍ സാധ്യമല്ല."
+
+#. Window subtitle when the game ends due to the black player resigning
+#: src/gnome-chess.vala:1350
+#| msgid "The black player has resigned"
+msgid "Black has resigned."
+msgstr "കറുത്ത കളിക്കാരന്‍ കീഴടങ്ങി."
+
+#. Window subtitle when the game ends due to the white player resigning
+#: src/gnome-chess.vala:1353
+#| msgid "The white player has resigned"
+msgid "White has resigned."
+msgstr "വെളുത്ത കളിക്കാരന്‍ കീഴടങ്ങി."
+
+#. Window subtitle when a game is abandoned
+#: src/gnome-chess.vala:1359
+#| msgid "The game has been abandoned"
+msgid "The game has been abandoned."
+msgstr "ഈ കളി ഉപേക്ഷിച്ചു."
+
+#. Window subtitle when the game ends due to a player dying.
+#. * This is a PGN standard. GNOME Chess will never kill the user.
+#: src/gnome-chess.vala:1365
+msgid "The game log says a player died!"
+msgstr "ഒരു കളിക്കാരന്‍ മരിച്ചതായി കളിയുടെ ലോഗ് പറയുന്നു!"
+
+#. Window subtitle when something goes wrong with the engine...
+#. * or when the engine says something is wrong with us!
+#: src/gnome-chess.vala:1371
+msgid "The computer player is confused. The game cannot continue."
+msgstr "കമ്പ്യുട്ടര്‍ കളിക്കാരന്‍ ആശയകുഴപ്പത്തിലാണ്. കളി തുടരാന്‍ പറ്റില്ല."
+
+#: src/gnome-chess.vala:1406 src/gnome-chess.vala:2314
+#: src/gnome-chess.vala:2397
+msgid "_Cancel"
+msgstr "റദ്ദാക്കുക (_C)"
+
+#: src/gnome-chess.vala:1410
+msgid "_Abandon game"
+msgstr "കളി ഉപേക്ഷിക്കുക (_A)"
+
+#: src/gnome-chess.vala:1411
+msgid "_Save game for later"
+msgstr "പിന്നീട് കളിക്കുന്നതിനായി കളി സൂക്ഷിക്കുക (_S)"
+
+#: src/gnome-chess.vala:1415
+#| msgid "Card games:"
+msgid "_Discard game"
+msgstr "കളി ഉപേക്ഷിക്കുക (_D)"
+
+#: src/gnome-chess.vala:1416
+#| msgid "_Save game for later"
+msgid "_Save game log"
+msgstr "കളിയുടെ ലോഗ് സൂക്ഷിക്കുക (_S)"
+
+#. Your very last chance to save
+#: src/gnome-chess.vala:1429
+msgid "_Discard"
+msgstr "ഉപേക്ഷിക്കു (_D)"
+
+#: src/gnome-chess.vala:1429 src/gnome-chess.vala:2315
+msgid "_Save"
+msgstr "സൂക്ഷിക്കു (_S)"
+
+#. Title of claim draw dialog
+#: src/gnome-chess.vala:1452
+#| msgid "Would you like insurance?"
+msgid "Would you like to claim a draw?"
+msgstr "നിങ്ങള്‍ സമനില ആവശ്യപ്പെടാന്‍ ഉദ്ദേശിക്കുന്നുണ്ടോ?"
+
+#. Message in claim draw dialog when triggered by fifty-move rule
+#: src/gnome-chess.vala:1458
+msgid "Fifty moves have passed without a capture or pawn advancement."
+msgstr "വെട്ടാതെയും കാലാളെ നീക്കാതെയും അന്‍പത് നീക്കങ്ങള്‍ കഴിഞ്ഞു."
+
+#. Message in claim draw dialog when triggered by three-fold repetition
+#: src/gnome-chess.vala:1463
+#| msgid ""
+#| "The same board state has occurred three times (three fold repetition)"
+msgid "The current board position has occurred three times."
+msgstr "ഈ ബോര്‍ഡിന്റെ അവസ്ഥ മൂന്നു തവണ ഉണ്ടായിരിക്കുന്നു."
+
+#. Option in claim draw dialog
+#. Option on warning dialog when player clicks resign
+#: src/gnome-chess.vala:1470 src/gnome-chess.vala:1508
+#| msgid "Playing"
+msgid "_Keep Playing"
+msgstr "കളി തുടരുക (_K)"
+
+#. Option in claim draw dialog
+#: src/gnome-chess.vala:1472
+#| msgid "Claim _Draw"
+msgid "_Claim Draw"
+msgstr "സമനില അവകാശപ്പെടുക (_C)"
+
+#: src/gnome-chess.vala:1490
 msgid "Save this game before starting a new one?"
 msgstr "പുതിയ കളി തുടങ്ങുന്നതിന് മുന്‍പ് ഈ കളി സൂക്ഷിക്കണമോ?"
 
-#: ../src/gnome-chess.vala:973
-msgid "_Abandon game"
-msgstr "കളി _ഉപേക്ഷിക്കുക"
+#. Title of warning dialog when player clicks Resign
+#: src/gnome-chess.vala:1503
+#| msgid "Are you sure you want to quit?"
+msgid "Are you sure you want to resign?"
+msgstr "നിങ്ങള്‍ക്ക് കീഴടങ്ങണമെന്ന് ഉറപ്പാണോ?"
 
-#: ../src/gnome-chess.vala:974
-msgid "_Save game for later"
-msgstr "പിന്നീട് കളിക്കുന്നതിനായി കളി _സൂക്ഷിക്കുക"
+#. Text on warning dialog when player clicks Resign
+#: src/gnome-chess.vala:1506
+msgid "This makes sense if you plan to save the game as a record of your loss."
+msgstr ""
+"നിങ്ങളുടെ പരാജയത്തിന്റെ ഒരു രേഖയായി സൂക്ഷിക്കാന്‍ ചിലപ്പോള്‍ ഉപകാരപെടും."
 
-#. Preferences Dialog: Combo box entry for a custom game timer set in seconds
-#: ../src/gnome-chess.vala:1362
-msgid "second"
-msgid_plural "seconds"
-msgstr[0] "നിമിഷം"
-msgstr[1] "നിമിഷങ്ങള്‍"
+#. Option on warning dialog when player clicks resign
+#: src/gnome-chess.vala:1510
+msgid "_Resign"
+msgstr "കീഴടങ്ങുക (_R)"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#: ../src/gnome-chess.vala:1366
+#. Preferences Dialog: Combo box entry for a custom clock type set in minutes
+#: src/gnome-chess.vala:2023 src/gnome-chess.vala:2064
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "മിനിറ്റ്"
 msgstr[1] "മിനിറ്റുകള്‍"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../src/gnome-chess.vala:1370
+#: src/gnome-chess.vala:2027
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "മണിക്കൂര്‍"
 msgstr[1] "മണിക്കൂറുകള്‍"
 
-#: ../src/gnome-chess.vala:1485
-msgid ""
-"The 2D/3D chess game for GNOME. \n"
-"\n"
-"GNOME Chess is a part of GNOME Games."
-msgstr ""
-"ഗ്നോമിനുള്ള 2D/3D ചെസ് കളി. \n"
-"\n"
-"ഗ്നോം ചെസ്സ്‌ ഗ്നോ കളികളുടെ ഒരു ഭാഗമാണ്."
+#. Preferences Dialog: Combo box entry for a custom clock type set in seconds
+#: src/gnome-chess.vala:2060
+msgid "second"
+msgid_plural "seconds"
+msgstr[0] "നിമിഷം"
+msgstr[1] "നിമിഷങ്ങള്‍"
 
-#: ../src/gnome-chess.vala:1490
-msgid "GNOME Games web site"
-msgstr "ഗ്നോ കളികളുടെ വെബ് സൈറ്റ്"
+#: src/gnome-chess.vala:2201
+msgid "A classic game of positional strategy"
+msgstr ""
+
+#: src/gnome-chess.vala:2204
+msgid "translator-credits"
+msgstr ""
+"എഫ്.എസ്.എഫ് - ഇന്ത്യ <gnu@gnu.org.in>\n"
+"അനി പീറ്റര്‍ <apeter@redhat.com>\n"
+"അഭിഷേക് ജേക്കബ് <abhishekjacob123@gmail.com>\n"
+"Mohammed Sadiq <sadiqpkp@gmail.com>\n"
+"അനീഷ് ഷീല <aneesh.nl@gmail.com>"
+
+#: src/gnome-chess.vala:2217
+msgid "This does not look like a valid PGN game."
+msgstr "ഇത് ഒരു സാധുവായ PQN കളിയായി തോന്നുന്നില്ല."
+
+#: src/gnome-chess.vala:2218 src/gnome-chess.vala:2231
+msgid "_OK"
+msgstr "ശരി (_O)"
+
+#: src/gnome-chess.vala:2301
+#| msgid "Failed to save game: %s"
+msgid "Failed to save game"
+msgstr "കളി സൂക്ഷിക്കുന്നതില്‍ പരാജയപ്പെട്ടു"
 
 #. Title of save game dialog
-#: ../src/gnome-chess.vala:1544
+#: src/gnome-chess.vala:2325
 msgid "Save Chess Game"
-msgstr "ചതുരംഗ കളി സൂക്ഷിക്കുക"
+msgstr "ചെസ്സ് കളി സൂക്ഷിക്കുക"
+
+#. Default filename for the save game dialog
+#: src/gnome-chess.vala:2338
+#| msgid "Load Chess Game"
+msgid "Untitled Chess Game"
+msgstr "പേരില്ലാത്ത ചെസ്സ് കളി"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:1557 ../src/gnome-chess.vala:1625
+#: src/gnome-chess.vala:2343 src/gnome-chess.vala:2407
 msgid "PGN files"
 msgstr "പി.ജി.എന്‍. ഫയലുകള്‍"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:1564 ../src/gnome-chess.vala:1632
+#: src/gnome-chess.vala:2349 src/gnome-chess.vala:2413
 msgid "All files"
 msgstr "എല്ലാ ഫയലുകളും"
 
-#: ../src/gnome-chess.vala:1588
-#, c-format
-msgid "Failed to save game: %s"
-msgstr "കളി സൂക്ഷിക്കുന്നതില്‍ പരാജയപ്പെട്ടു: %s"
+#: src/gnome-chess.vala:2384
+#| msgid "Save this game before starting a new one?"
+msgid "Save this game before loading another one?"
+msgstr "പുതിയ കളി തുടങ്ങുന്നതിന് മുന്‍പ് ഈ കളി സൂക്ഷിക്കണമോ?"
 
 #. Title of load game dialog
-#: ../src/gnome-chess.vala:1612
+#: src/gnome-chess.vala:2395
 msgid "Load Chess Game"
-msgstr "ചതുരംഗം ലഭ്യമാക്കുക"
+msgstr "ചെസ്സ് ലഭ്യമാക്കുക"
 
-#: ../src/gnome-chess.vala:1654
-#, c-format
-msgid "Failed to open game: %s"
-msgstr "കളി തുറക്കുന്നതില്‍ പരാജയപ്പെട്ടു: %s"
+#: src/gnome-chess.vala:2398
+#| msgid "Open"
+msgid "_Open"
+msgstr "തുറക്കുക  (_O)"
 
-#. Help string for command line --version flag
-#: ../src/gnome-chess.vala:1715
-msgid "Show release version"
-msgstr "റിലീസ്‌ പതിപ്പ്‌ ഏതാണെന്ന് കാണിക്കുക"
+#: src/gnome-chess.vala:2432
+#| msgid "Failed to open game: %s"
+msgid "Failed to open game"
+msgstr "കളി തുറക്കുന്നതില്‍ പരാജയപ്പെട്ടു"
 
-#. Arguments and description for --help text
-#: ../src/gnome-chess.vala:1729
-msgid "[FILE] - Play Chess"
-msgstr "[FILE] - ചെസ്സ്‌ കളിക്കൂ"
+#~ msgid "_Undo Move"
+#~ msgstr "വരുത്തിയ നീക്കം വേണ്ട എന്ന് വയ്ക്കുക(_U)"
 
-#. Text printed out when an unknown command-line argument provided
-#: ../src/gnome-chess.vala:1740
-#, c-format
-msgid "Run '%s --help' to see a full list of available command line options."
-msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായി '%s --help' പ്രവര്‍ത്തിപ്പിക്കുക."
+#~ msgid "_Settings"
+#~ msgstr "_ക്രമികരണങ്ങള്‍ "
+
+#~ msgid "_Help"
+#~ msgstr "_സഹായം"
+
+#~ msgid "_Contents"
+#~ msgstr "_ഉള്ളടക്കം"
+
+#~ msgid "Start a new game"
+#~ msgstr "ഒരു പുതിയ കളി തുടങ്ങൂ"
+
+#~ msgid "New Game"
+#~ msgstr "പുതിയ കളി"
+
+#~ msgid "Undo Move"
+#~ msgstr "വരുത്തിയ നീക്കം വേണ്ട എന്ന് വയ്ക്കുക"
+
+#~ msgid "Resign"
+#~ msgstr "അവസാനിപ്പിക്കുക"
+
+#~ msgid "A flag to enable fullscreen mode"
+#~ msgstr "സ്ക്രീന്‍ പരമാവധി വലുതാക്കുന്നത് സജ്ജമാക്കുന്നതിനുള്ള ഒരു ഫ്ളാഗ്"
+
+#~ msgid "A flag to enable 3D mode"
+#~ msgstr "3D മോഡ് സജ്ജമാക്കുന്നതിനുള്ള ഫ്ളാഗ്"
+
+#~ msgid "A flag to smooth (anti-alias) the 3D display"
+#~ msgstr "3-ഡി പ്രദര്‍ശനം മിനുസമാക്കാന്‍ ഉള്ള ഫ്ലാഗ്"
+
+#~ msgid "A flag to enable the move history browser"
+#~ msgstr "മുന്‍ നീക്കങ്ങളിലുള്ള പരുതല്‍ സജ്ജമാക്കുന്നതിനുള്ള ഫ്ളാഗ്"
+
+#~ msgid "A flag to enable the toolbar"
+#~ msgstr "ടൂള്‍ബാര്‍ സജ്ജമാക്കുന്നതിനുള്ള ഒരു ഫ്ളാഗ്"
+
+#~ msgid "true if the human player is playing white"
+#~ msgstr "മനുഷ്യ കളിക്കാരന്‍ വെള്ള കളിക്കുകയാണെങ്കില്‍ 'ശരി'."
+
+#~ msgid "Difficulty:"
+#~ msgstr "പ്രയാസം:"
+
+#~ msgid "Game Duration:"
+#~ msgstr "കളിയുടെ ദൈര്‍ഘ്യം:"
+
+#~ msgid "Game"
+#~ msgstr "കളി "
+
+#~ msgid "3_D Chess View"
+#~ msgstr "3_ഡി ചെസ്സ് ദൃശ്യം"
+
+#~ msgid "_Smooth Display"
+#~ msgstr "ലളിതമായ പ്രദര്‍ശനം"
+
+#~ msgid "Show _Toolbar"
+#~ msgstr "ഉപകരണനിര കാണിക്കുക (_T)"
+
+#~ msgid "Show _History"
+#~ msgstr "_ഹിസ്റ്ററി കാണിക്കുക"
+
+#~ msgid "One minute"
+#~ msgstr "ഒരു മിനിറ്റ്"
+
+#~ msgid "30 minutes"
+#~ msgstr "മുപ്പത് മിനിറ്റ്"
+
+#~ msgctxt "chess-side"
+#~ msgid "Face to Face"
+#~ msgstr "മുഖാമുഖം"
+
+#~ msgid ""
+#~ "Promotion is a chess rule describing the transformation of a pawn that "
+#~ "reaches its eighth rank into the player's choice of a queen, knight, "
+#~ "rook, or bishop of the same color. The new piece replaces the pawn on the "
+#~ "same square and is part of the move. Every pawn that reaches its eighth "
+#~ "rank must be promoted. Pawn promotion often decides the result of a chess "
+#~ "endgame."
+#~ msgstr ""
+#~ "സ്ഥാനകയറ്റം കാലാളിന്റെ ഭാവ മാറ്റം തീരുമാനിക്കുന്ന ഒരു ചെസ്സ്‌ നിയമം ആണ്. എട്ടാമത്തെ റാങ്ക് "
+#~ "എത്തുന്ന കാലാളിനെ ഒരു രാജ്ഞിയോ, നൈറ്റോ, തേരോ ആനയോ ആയി മാറ്റാം. ഈ പുതിയ കണ്ണി "
+#~ "കാലാളിന്റെ അതേ ചതുരത്തില്‍ മാറ്റണം. എട്ടാമത്തെ റാങ്കില്‍ എത്തുന്ന എല്ലാ കാലാളെയും ഇങ്ങനെ "
+#~ "ഉയര്‍ത്തണം.  കാലാളിന്റെ സ്ഥാനകയറ്റം മിക്യവാരും ആ കളിയുടെ പരിണാമം തീരുമാനിക്കും."
+
+#~ msgid "%1$s (%2$s) - Chess"
+#~ msgstr "%1$s (%2$s) - ചെസ്സ്"
+
+#~ msgid "One of the players has died"
+#~ msgstr "ഒരു കളിക്കാരന്‍ അവസാനിച്ചിരിക്കുന്നു"
+
+#~ msgid ""
+#~ "The 2D/3D chess game for GNOME. \n"
+#~ "\n"
+#~ "GNOME Chess is a part of GNOME Games."
+#~ msgstr ""
+#~ "ഗ്നോമിനുള്ള 2D/3D ചെസ് കളി. \n"
+#~ "\n"
+#~ "ഗ്നോം ചെസ്സ്‌ ഗ്നോ കളികളുടെ ഒരു ഭാഗമാണ്."
+
+#~ msgid "GNOME Games web site"
+#~ msgstr "ഗ്നോ കളികളുടെ വെബ് സൈറ്റ്"
+
+#~ msgid "[FILE] - Play Chess"
+#~ msgstr "[FILE] - ചെസ്സ്‌ കളിക്കൂ"
+
+#~ msgid ""
+#~ "Run '%s --help' to see a full list of available command line options."
+#~ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായി '%s --help' പ്രവര്‍ത്തിപ്പിക്കുക."
 
 #~ msgid "The piece to promote pawns to"
 #~ msgstr "കാലാളിന് ഏത് കരുവായി സ്ഥാനക്കയറ്റം നല്‍കണമെന്ന്"
@@ -1212,13 +1627,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 
 #~ msgid "You can't move there!"
 #~ msgstr "ആ നീക്കം തെറ്റാണ്!"
-
-#~ msgid "translator-credits"
-#~ msgstr ""
-#~ "എഫ്.എസ്.എഫ് - ഇന്ത്യ <gnu@gnu.org.in>\n"
-#~ "അനി പീറ്റര്‍ <apeter@redhat.com>\n"
-#~ "അഭിഷേക് ജേക്കബ് <abhishekjacob123@gmail.com>\n"
-#~ "Mohammed Sadiq <sadiqpkp@gmail.com"
 
 #~ msgid "Four-in-a-Row"
 #~ msgstr "വരിയില്‍ നാല്"
@@ -1715,9 +2123,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 #~ msgid "Great work, but unfortunately your score did not make the top ten."
 #~ msgstr "കളി നന്നായിരുന്നു, പക്ഷേ ആദ്യത്തെ പത്ത് പേരില്‍ ആവാന്‍ നിങ്ങള്‍ക്ക് സാധ്യമായില്ല."
 
-#~ msgid "_New Game"
-#~ msgstr "പുതിയ കളി (_N)"
-
 #~ msgid "Robots Scores"
 #~ msgstr "റോബോട്ട്സ് സ്ക്കോറുകള്‍ "
 
@@ -1861,9 +2266,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 
 #~ msgid "eggs"
 #~ msgstr "eggs"
-
-#~ msgid "gnomes"
-#~ msgstr "gnomes"
 
 #~ msgid "mice"
 #~ msgstr "mice"
@@ -2272,9 +2674,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 #~ msgid "Mines Preferences"
 #~ msgstr "Mines മുന്‍ഗണനകള്‍"
 
-#~ msgid "Paused"
-#~ msgstr "കളി നിര്‍ത്തിവച്ചിരിക്കുന്നു"
-
 #~ msgid "Tetravex"
 #~ msgstr "ടെട്രാവെക്സ്"
 
@@ -2497,9 +2896,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 #~ msgid "Display computer thoughts"
 #~ msgstr "കംപ്യൂട്ടറിന്റെ നിഗമനങ്ങള്‍ കാണിക്കുക"
 
-#~ msgid "Number of computer opponents"
-#~ msgstr "എത്ര കംപ്യൂട്ടര്‍ എതിരാളികള്‍"
-
 #~ msgid "NUMBER"
 #~ msgstr "എണ്ണം"
 
@@ -2563,9 +2959,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 
 #~ msgid "N_umber of opponents:"
 #~ msgstr "എതിരാളികളുടെ എ_ണ്ണം:"
-
-#~ msgid "_Difficulty:"
-#~ msgstr "_കാഠിന്യത:"
 
 #~ msgctxt "difficulty"
 #~ msgid "Medium"
@@ -2707,9 +3100,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 #~ msgid "View help for this game"
 #~ msgstr "ഈ കളിയ്ക്കുള്ള സഹായം കാണുക"
 
-#~ msgid "End the current game"
-#~ msgstr "നിലവിലുള്ള കളി അവസാനിപ്പിക്കുക"
-
 #~ msgid "Get a hint for your next move"
 #~ msgstr "അടുത്ത നീക്കത്തിനായി ഒരു സൂചന നല്‍കുക"
 
@@ -2721,9 +3111,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 
 #~ msgid "End the current network game and return to network server"
 #~ msgstr "ഈ നെറ്റ്‌വര്‍ക്ക് കളി അവസാനിപ്പിച്ച് നെറ്റ്‌വര്‍ക്ക് സര്‍വറിലേക്ക് മടങ്ങുക"
-
-#~ msgid "Pause the game"
-#~ msgstr "കളി താല്‍ക്കാലികമായി നിര്‍ത്തുക"
 
 #~ msgid "Show a list of players in the network game"
 #~ msgstr "നെറ്റ്‌വര്‍ക്ക് കളിയിലുള്ള കളിക്കാരുടെ പട്ടിക കാണിക്കുക"
@@ -2841,15 +3228,8 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 #~ msgid "The current level"
 #~ msgstr "നിലവിലുള്ള ലെവല്‍"
 
-#, fuzzy
-#~ msgid "The users's most recent level."
-#~ msgstr "നിലവിലുള്ള ലെവല്‍"
-
 #~ msgid "_About"
 #~ msgstr "_സംബന്ധിച്ച്"
-
-#~ msgid "_Quit"
-#~ msgstr "_നിര്‍ത്തുക"
 
 #~ msgid ""
 #~ "Turn off all the lights\n"
@@ -3082,9 +3462,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 
 #~ msgid "Controls"
 #~ msgstr "നിയന്ത്രണങ്ങള്‍"
-
-#~ msgid "Block Style"
-#~ msgstr "ബ്ലോക്ക് ശൈലി"
 
 #~ msgid "Plain"
 #~ msgstr "പ്ളെയിന്‍"
@@ -3835,9 +4212,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 #~ msgid "There are no more moves"
 #~ msgstr "ഇനി നീക്കങ്ങള്‍ ഇല്ല"
 
-#~ msgid "Card games:"
-#~ msgstr "ചീട്ട് കളികള്‍:"
-
 #~ msgid "Card themes:"
 #~ msgstr "കാര്‍ഡിന്റെ പ്രമേയം: "
 
@@ -3910,9 +4284,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 
 #~ msgid "Show or hide statusbar"
 #~ msgstr "അവസ്ഥാപട്ട കാണിക്കുകയോ മറയ്ക്കുകയോ ചെയ്യുക"
-
-#~ msgid "_Click to Move"
-#~ msgstr "നീക്കുന്നതിനായി _ക്ലിക്ക് ചെയ്യുക"
 
 #~ msgid "Pick up and drop cards by clicking"
 #~ msgstr "ക്ലിക്ക് ചെയ്ത് ചീട്ടെടുത്ത ഇടുക"
@@ -4298,9 +4669,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 #~ msgid "Please fill in empty pile first."
 #~ msgstr "ഒഴിഞ്ഞ അടുക്ക്‌ ആദ്യം നിറയ്ക്കുക"
 
-#~ msgid "Two Suits"
-#~ msgstr "പെട്ടിയിലെ നാലു ഇനം ചീട്ടുകള്‍"
-
 #~ msgid "Allow temporary spots use"
 #~ msgstr "താല്‍കാലിക കളങ്ങള്‍ ഉപയോഗിക്കാന്‍ അനുവദിക്കുക"
 
@@ -4419,9 +4787,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 
 #~ msgid "Card Style"
 #~ msgstr "ചീട്ടിന്റെ രീതി"
-
-#~ msgid "Would you like insurance?"
-#~ msgstr "നിങ്ങള്‍ക്ക് ഇന്‍ശുറന്‍സ് വേണമോ?"
 
 #~ msgid "Blackjack Preferences"
 #~ msgstr "ബ്ലാക്ക്ജാക്കിന്റെ മുന്‍ഗണനകള്‍"
@@ -4688,9 +5053,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 #~ msgid "--> Table"
 #~ msgstr "--> ടേബിള്‍"
 
-#~ msgid "Playing"
-#~ msgstr "കളിക്കുന്നു"
-
 #~ msgid "<-- Table"
 #~ msgstr "<-- ടേബിള്‍"
 
@@ -4952,9 +5314,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 #~ msgid "Launch failed"
 #~ msgstr "ലഭ്യമാക്കാനായില്ല"
 
-#~ msgid "You can only play one game at a time."
-#~ msgstr "നിങ്ങള്‍ക്ക് ഒരു സമയത്ത് ഒരു മാത്രമേ കളിക്കാന്‍ പാടുള്ളൂ."
-
 #~ msgid "Game Error"
 #~ msgstr "കളിയില്‍ പിശക്"
 
@@ -4984,9 +5343,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 #~ msgstr ""
 #~ "ഇത് കളിക്കുന്നതിനായി നിങ്ങള്‍ നേരിട്ട് GGZ ക്ലൈന്റ് \n"
 #~ "ലഭ്യമാക്കേണ്ടതുണ്ട്."
-
-#~ msgid "About"
-#~ msgstr "സംബന്ധിച്ച്"
 
 #~ msgid "Message of the Day"
 #~ msgstr "ഇന്നത്തെ സന്ദേശം"
@@ -5187,17 +5543,11 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 #~ msgid "Computer"
 #~ msgstr "കംപ്യൂട്ടര്‍"
 
-#~ msgid "Open"
-#~ msgstr "തുറക്കുക"
-
 #~ msgid "Reserved for"
 #~ msgstr "നീക്കി വച്ചിരിക്കുന്നു"
 
 #~ msgid "Launch"
 #~ msgstr "ലഭ്യമാക്കുക"
-
-#~ msgid "Are you sure you want to quit?"
-#~ msgstr "നിങ്ങള്‍ക്ക് പുറത്ത് കടക്കണമെന്നുറപ്പാണോ?"
 
 #~ msgid "Quit?"
 #~ msgstr "പുറത്ത് കടക്കണമോ?"
@@ -5301,9 +5651,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 
 #~ msgid "MOTD"
 #~ msgstr "MOTD"
-
-#~ msgid "Help"
-#~ msgstr "സഹായം "
 
 #~ msgid "Contents"
 #~ msgstr "ഉള്ളടക്കം"
@@ -5449,9 +5796,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 #~ msgid "The amount of time each player has to move in new games"
 #~ msgstr "പുതിയ കളികളിയില്‍ ഓരോ കളിക്കാരും നീങ്ങുന്നതിനായി ആവശ്യമുള്ള സമയം"
 
-#~ msgid "The board side to display"
-#~ msgstr "ദൃശ്യമാക്കുന്നു ബോര്‍ഡിന്റെ വലിപ്പം"
-
 #~ msgid "The default player difficulty for black in new games"
 #~ msgstr "പുതിയ കളി തുടങ്ങുമ്പോള്‍ കറുപ്പിന് സ്വതവേയുള്ള പ്രയാസനില"
 
@@ -5463,9 +5807,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 
 #~ msgid "The default player type for white in new games"
 #~ msgstr "പുതിയ കളികളില്‍ വെളുപ്പിന് സ്വതവേയുള്ള തരം കളിക്കാരന്‍"
-
-#~ msgid "Load a saved game"
-#~ msgstr "സൂക്ഷിച്ച ഒരു കളി കളിക്കുക"
 
 #~ msgid "Logs"
 #~ msgstr "ലോഗുകള്‍"
@@ -5647,12 +5988,6 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 
 #~ msgid "No comment"
 #~ msgstr "അഭിപ്രായമില്ല"
-
-#~ msgid "White castles long"
-#~ msgstr "White castles long"
-
-#~ msgid "Black castles long"
-#~ msgstr "Black castles long"
 
 #~ msgid "White castles short"
 #~ msgstr "White castles short"
@@ -6501,14 +6836,8 @@ msgstr "മുഴുവന്‍ ആജ്ഞകളും കാണാനായ�
 #~ msgid "Could not show link"
 #~ msgstr "കണ്ണി കാണിക്കുവാന്‍ സാധിച്ചില്ല"
 
-#~ msgid "_Cancel"
-#~ msgstr "റദ്ദാക്കുക (_C)"
-
 #~ msgid "_Close"
 #~ msgstr "അടയ്ക്കുക (_C)"
-
-#~ msgid "_OK"
-#~ msgstr "ശരി (_O)"
 
 #~ msgid "Use colors from GNOME theme"
 #~ msgstr "ഗ്നോം പ്രമേയത്തില്‍ നിന്നും നിറങ്ങള്‍ ഉപോഗിക്കുക"
