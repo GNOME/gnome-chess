@@ -18,10 +18,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-01-22 22:36+0000\n"
-"PO-Revision-Date: 2017-01-30 03:04+0100\n"
+"POT-Creation-Date: 2017-09-09 04:34+0000\n"
+"PO-Revision-Date: 2017-10-07 20:20+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -55,7 +55,7 @@ msgid ""
 "popular engines automatically if installed."
 msgstr ""
 "Wielbiciele komputerowych szachów z pewnością docenią zgodność Szachów GNOME "
-"z prawie wszystkimi nowoczesnymi mechanizmami gry w szachy i ich możliwość "
+"z prawie wszystkimi współczesnymi mechanizmami szachowymi i ich możliwość "
 "automatycznego wykrywania zainstalowanych mechanizmów."
 
 #: data/gnome-chess.appdata.xml.in:39
@@ -91,7 +91,7 @@ msgstr "Cofa ostatni ruch"
 
 #: data/gnome-chess.ui:75
 msgid "Resign to your opponent"
-msgstr "Rezygnuje na rzecz przeciwnika"
+msgstr "Poddaje grę na rzecz przeciwnika"
 
 #: data/gnome-chess.ui:96
 msgid "Save the current game"
@@ -160,7 +160,7 @@ msgstr "Tryb zmaksymalizowany"
 
 #: data/org.gnome.chess.gschema.xml:53 data/org.gnome.chess.gschema.xml:54
 msgid "The piece theme to use"
-msgstr "Motyw figur, który ma być użyty"
+msgstr "Używany motyw figur"
 
 #: data/org.gnome.chess.gschema.xml:58 data/org.gnome.chess.gschema.xml:59
 msgid "A flag to enable move hints"
@@ -184,7 +184,7 @@ msgstr "Format wyświetlania ruchów"
 
 #: data/org.gnome.chess.gschema.xml:83 data/org.gnome.chess.gschema.xml:84
 msgid "The side of the board that is in the foreground"
-msgstr "Strona planszy w tle"
+msgstr "Strona szachownicy z przodu"
 
 #: data/org.gnome.chess.gschema.xml:88 data/org.gnome.chess.gschema.xml:89
 msgid "The duration of a game in seconds (0 for no limit)"
@@ -192,15 +192,15 @@ msgstr "Czas trwania gry w sekundach (0 oznacza brak ograniczenia)"
 
 #: data/org.gnome.chess.gschema.xml:93 data/org.gnome.chess.gschema.xml:94
 msgid "The type of clock (simple/fischer/bronstein)"
-msgstr "Typ zegara (simple/fischer/bronstein)"
+msgstr "Typ zegara (prosty/Fischera/Bronsteina)"
 
 #: data/org.gnome.chess.gschema.xml:98 data/org.gnome.chess.gschema.xml:99
 msgid "The timer increment set corresponding to clock type (1 second minimum)"
-msgstr "Przyrost czasu odpowiedni do typu zegara (minimum jedna sekunda)"
+msgstr "Dodawany czas odpowiedni do typu zegara (co najmniej jedna sekunda)"
 
 #: data/org.gnome.chess.gschema.xml:103 data/org.gnome.chess.gschema.xml:104
 msgid "The board side to play as"
-msgstr "Którą stroną planszy grać"
+msgstr "Którą stroną grać"
 
 #: data/org.gnome.chess.gschema.xml:108
 msgid "The last side the player played as"
@@ -260,13 +260,13 @@ msgstr "Prosty"
 #: data/preferences.ui:53
 msgctxt "custom_duration_units"
 msgid "Fischer"
-msgstr "Fischer"
+msgstr "Fischera"
 
 #. Preferences dialog: Combo box entry for time limit. Bronstein is a proper name.
 #: data/preferences.ui:57
 msgctxt "custom_duration_units"
 msgid "Bronstein"
-msgstr "Bronstein"
+msgstr "Bronsteina"
 
 #. Preferences Dialog: Combo box entry for easy game difficulty
 #: data/preferences.ui:71
@@ -324,13 +324,13 @@ msgstr "Trzy godziny"
 #. Preferences Dialog: Combo box entry for custom game timer
 #: data/preferences.ui:135
 msgid "Custom"
-msgstr "Własny"
+msgstr "Inne"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
 #: data/preferences.ui:149
 msgctxt "chess-move-format"
 msgid "Human"
-msgstr "Czytelne dla człowieka"
+msgstr "Czytelny dla człowieka"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
 #: data/preferences.ui:153
@@ -342,7 +342,7 @@ msgstr "Standardowa (szachowa) notacja algebraiczna"
 #: data/preferences.ui:157
 msgctxt "chess-move-format"
 msgid "Figurine"
-msgstr "Symbole graficzne"
+msgstr "Symbole szachowe"
 
 #. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
 #: data/preferences.ui:161
@@ -372,7 +372,7 @@ msgstr "Strona czarnych"
 #: data/preferences.ui:197
 msgctxt "chess-side"
 msgid "Human Side"
-msgstr "Strona gracza"
+msgstr "Strona człowieka"
 
 #. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
 #: data/preferences.ui:201
@@ -398,7 +398,7 @@ msgstr "Typ _zegara:"
 #. Preferences Dialog: Label before timer increment combo box
 #: data/preferences.ui:275
 msgid "Timer _increment:"
-msgstr "_Przyrost czasu:"
+msgstr "_Dodawany czas:"
 
 #. Preferences Dialog: Label before player side (white/black) combo box
 #: data/preferences.ui:312
@@ -433,7 +433,7 @@ msgstr "_Gra"
 #. Preferences Dialog: Label before board orientation combo box
 #: data/preferences.ui:619
 msgid "Board _orientation:"
-msgstr "_Układ szachownicy:"
+msgstr "_Kierunek szachownicy:"
 
 #. Preferences Dialog: Label before move format combo box
 #: data/preferences.ui:633
@@ -480,7 +480,7 @@ msgstr "Naprzemiennie"
 
 #: data/promotion-type-selector.ui:7
 msgid "Select Promotion Type"
-msgstr "Wybór rodzaju promocji"
+msgstr "Wybór rodzaju przemiany"
 
 #: data/promotion-type-selector.ui:41
 msgid "_Queen"
@@ -517,8 +517,7 @@ msgstr "Nieprawidłowy typ zegara w pliku PGN: %s, używanie prostego zegara."
 #: lib/chess-pgn.vala:274
 #, c-format
 msgid "Invalid timer increment in PGN: %s, using a simple clock."
-msgstr ""
-"Nieprawidłowy przyrost czasu w pliku PGN: %s, używanie prostego zegara."
+msgstr "Nieprawidłowy dodawany czas w pliku PGN: %s, używanie prostego zegara."
 
 #: src/chess-view.vala:317
 msgid "Paused"
@@ -541,7 +540,7 @@ msgstr ""
 #. May print when started on the command line; a PGN is a saved game file.
 #: src/gnome-chess.vala:220
 msgid "GNOME Chess can only open one PGN at a time."
-msgstr "Gra Szachy GNOME może otwierać tylko jeden plik PGN naraz."
+msgstr "Szachy GNOME mogą otwierać tylko jeden plik PGN naraz."
 
 #. Move History Combo: Go to the start of the game
 #: src/gnome-chess.vala:458
@@ -553,7 +552,7 @@ msgstr "Początek gry"
 #: src/gnome-chess.vala:886
 #, c-format
 msgid "White pawn moves from %1$s to %2$s"
-msgstr "Biały pion przestawiony z %1$s na %2$s"
+msgstr "Biały pion rusza się z %1$s na %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
 #: src/gnome-chess.vala:888
@@ -589,7 +588,7 @@ msgstr "Biały pion z %1$s bije czarnego hetmana na %2$s"
 #: src/gnome-chess.vala:898
 #, c-format
 msgid "White rook moves from %1$s to %2$s"
-msgstr "Biała wieża przestawiona z %1$s na %2$s"
+msgstr "Biała wieża rusza się z %1$s na %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
 #: src/gnome-chess.vala:900
@@ -625,7 +624,7 @@ msgstr "Biała wieża z %1$s bije czarnego hetmana na %2$s"
 #: src/gnome-chess.vala:910
 #, c-format
 msgid "White knight moves from %1$s to %2$s"
-msgstr "Biały skoczek przestawiony z %1$s na %2$s"
+msgstr "Biały skoczek rusza się z %1$s na %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
 #: src/gnome-chess.vala:912
@@ -661,7 +660,7 @@ msgstr "Biały skoczek z %1$s bije czarnego hetmana na %2$s"
 #: src/gnome-chess.vala:922
 #, c-format
 msgid "White bishop moves from %1$s to %2$s"
-msgstr "Biały goniec przestawiony z %1$s na %2$s"
+msgstr "Biały goniec rusza się z %1$s na %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
 #: src/gnome-chess.vala:924
@@ -697,7 +696,7 @@ msgstr "Biały goniec z %1$s bije czarnego hetmana na %2$s"
 #: src/gnome-chess.vala:934
 #, c-format
 msgid "White queen moves from %1$s to %2$s"
-msgstr "Biały hetman przestawiony z %1$s na %2$s"
+msgstr "Biały hetman rusza się z %1$s na %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
 #: src/gnome-chess.vala:936
@@ -733,7 +732,7 @@ msgstr "Biały hetman z %1$s bije czarnego hetmana na %2$s"
 #: src/gnome-chess.vala:946
 #, c-format
 msgid "White king moves from %1$s to %2$s"
-msgstr "Biały król przestawiony z %1$s na %2$s"
+msgstr "Biały król rusza się z %1$s na %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
 #: src/gnome-chess.vala:948
@@ -769,7 +768,7 @@ msgstr "Biały król z %1$s bije czarnego hetmana na %2$s"
 #: src/gnome-chess.vala:958
 #, c-format
 msgid "Black pawn moves from %1$s to %2$s"
-msgstr "Czarny pion przestawiony z %1$s na %2$s"
+msgstr "Czarny pion rusza się z %1$s na %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
 #: src/gnome-chess.vala:960
@@ -805,7 +804,7 @@ msgstr "Czarny pion z %1$s bije białego hetmana na %2$s"
 #: src/gnome-chess.vala:970
 #, c-format
 msgid "Black rook moves from %1$s to %2$s"
-msgstr "Czarna wieża przestawiona z %1$s na %2$s"
+msgstr "Czarna wieża rusza się z %1$s na %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
 #: src/gnome-chess.vala:972
@@ -841,7 +840,7 @@ msgstr "Czarna wieża z %1$s bije białego hetmana na %2$s"
 #: src/gnome-chess.vala:982
 #, c-format
 msgid "Black knight moves from %1$s to %2$s"
-msgstr "Czarny skoczek przestawiony z %1$s na %2$s"
+msgstr "Czarny skoczek rusza się z %1$s na %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
 #: src/gnome-chess.vala:984
@@ -877,7 +876,7 @@ msgstr "Czarny skoczek z %1$s bije białego hetmana na %2$s"
 #: src/gnome-chess.vala:994
 #, c-format
 msgid "Black bishop moves from %1$s to %2$s"
-msgstr "Czarny goniec przestawiony z %1$s na %2$s"
+msgstr "Czarny goniec rusza się z %1$s na %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
 #: src/gnome-chess.vala:996
@@ -913,7 +912,7 @@ msgstr "Czarny goniec z %1$s bije białego hetmana na %2$s"
 #: src/gnome-chess.vala:1006
 #, c-format
 msgid "Black queen moves from %1$s to %2$s"
-msgstr "Czarny hetman przestawiony z %1$s na %2$s"
+msgstr "Czarny hetman rusza się z %1$s na %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
 #: src/gnome-chess.vala:1008
@@ -949,7 +948,7 @@ msgstr "Czarny hetman z %1$s bije białego hetmana na %2$s"
 #: src/gnome-chess.vala:1018
 #, c-format
 msgid "Black king moves from %1$s to %2$s"
-msgstr "Czarny król przestawiony z %1$s na %2$s"
+msgstr "Czarny król rusza się z %1$s na %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
 #: src/gnome-chess.vala:1020
@@ -1015,7 +1014,7 @@ msgstr "Ruch białego gracza"
 #. Window title on White's turn if White is a computer
 #: src/gnome-chess.vala:1214
 msgid "White is Thinking…"
-msgstr "Biały gracz się namyśla…"
+msgstr "Biały gracz myśli…"
 
 #. Window title on Black's turn if Black is human
 #: src/gnome-chess.vala:1220
@@ -1025,7 +1024,7 @@ msgstr "Ruch czarnego gracza"
 #. Window title on Black's turn if Black is a computer
 #: src/gnome-chess.vala:1223
 msgid "Black is Thinking…"
-msgstr "Czarny gracz się namyśla…"
+msgstr "Czarny gracz myśli…"
 
 #: src/gnome-chess.vala:1238
 msgid "Unpause the game"
@@ -1081,25 +1080,25 @@ msgstr "Przeciwnik nie może się ruszyć."
 #: src/gnome-chess.vala:1315
 msgid "No piece was taken or pawn moved in fifty moves."
 msgstr ""
-"Żadna figura nie została zbita ani żaden pion nie został przesunięty "
-"w ostatnich pięćdziesięciu ruchach."
+"Żadna figura nie została zbita ani żaden pion nie ruszył się w ostatnich "
+"pięćdziesięciu ruchach."
 
 #. Window subtitle when the game is drawn due to the 75 move rule
 #: src/gnome-chess.vala:1319
 msgid "No piece was taken or pawn moved in 75 moves."
 msgstr ""
-"Żadna figura nie została zbita ani żaden pion nie został przesunięty "
-"w ostatnich 75 ruchach."
+"Żadna figura nie została zbita ani żaden pion nie ruszył się w ostatnich 75 "
+"ruchach."
 
 #. Window subtitle when the game ends due to Black's clock stopping
 #: src/gnome-chess.vala:1324
 msgid "Black has run out of time."
-msgstr "Czarnemu graczowi zabrakło czasu."
+msgstr "Czarnemu graczowi skończył się czas."
 
 #. Window subtitle when the game ends due to White's clock stopping
 #: src/gnome-chess.vala:1327
 msgid "White has run out of time."
-msgstr "Białemu graczowi zabrakło czasu."
+msgstr "Białemu graczowi skończył się czas."
 
 #. Window subtitle when the game is drawn due to the three-fold-repetition rule
 #: src/gnome-chess.vala:1333
@@ -1119,12 +1118,12 @@ msgstr "Żaden z graczy nie może spowodować mata."
 #. Window subtitle when the game ends due to the black player resigning
 #: src/gnome-chess.vala:1346
 msgid "Black has resigned."
-msgstr "Gracz czarny zrezygnował."
+msgstr "Czarny gracz poddał grę."
 
 #. Window subtitle when the game ends due to the white player resigning
 #: src/gnome-chess.vala:1349
 msgid "White has resigned."
-msgstr "Biały gracz zrezygnował."
+msgstr "Biały gracz poddał grę."
 
 #. Window subtitle when a game is abandoned
 #: src/gnome-chess.vala:1355
@@ -1150,7 +1149,7 @@ msgstr "_Anuluj"
 
 #: src/gnome-chess.vala:1406
 msgid "_Abandon game"
-msgstr "P_orzuć grę"
+msgstr "_Porzuć grę"
 
 #: src/gnome-chess.vala:1407
 msgid "_Save game for later"
@@ -1162,7 +1161,7 @@ msgstr "_Odrzuć grę"
 
 #: src/gnome-chess.vala:1412
 msgid "_Save game log"
-msgstr "_Zapisz dziennik gry"
+msgstr "_Zapisz przebieg gry"
 
 #. Your very last chance to save
 #: src/gnome-chess.vala:1425
@@ -1181,7 +1180,7 @@ msgstr "Zaproponować remis?"
 #. Message in claim draw dialog when triggered by fifty-move rule
 #: src/gnome-chess.vala:1454
 msgid "Fifty moves have passed without a capture or pawn advancement."
-msgstr "Minęło pięćdziesiąt ruchów bez bicia lub promocji piona."
+msgstr "Minęło pięćdziesiąt ruchów bez bicia lub ruchu piona."
 
 #. Message in claim draw dialog when triggered by three-fold repetition
 #: src/gnome-chess.vala:1459
@@ -1206,7 +1205,7 @@ msgstr "Zapisać bieżącą grę przed rozpoczęciem nowej?"
 #. Title of warning dialog when player clicks Resign
 #: src/gnome-chess.vala:1499
 msgid "Are you sure you want to resign?"
-msgstr "Na pewno zrezygnować?"
+msgstr "Na pewno poddać grę?"
 
 #. Text on warning dialog when player clicks Resign
 #: src/gnome-chess.vala:1502
@@ -1216,7 +1215,7 @@ msgstr "Ma to sens, jeśli gra ma zostać zachowana jako zapis porażki."
 #. Option on warning dialog when player clicks resign
 #: src/gnome-chess.vala:1506
 msgid "_Resign"
-msgstr "_Zrezygnuj"
+msgstr "_Poddaj"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
 #. Preferences Dialog: Combo box entry for a custom clock type set in minutes
@@ -1245,7 +1244,7 @@ msgstr[2] "sekund"
 
 #: src/gnome-chess.vala:2197
 msgid "A classic game of positional strategy"
-msgstr "Klasyczna gra pozycyjno-strategiczna"
+msgstr "Klasyczna gra strategiczna"
 
 #: src/gnome-chess.vala:2200
 msgid "translator-credits"

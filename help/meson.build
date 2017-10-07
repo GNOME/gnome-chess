@@ -23,6 +23,7 @@ help_languages = [
   'ja',
   'ko',
   'oc',
+  'pl',
   'pt_BR',
   'ru',
   'sl',
