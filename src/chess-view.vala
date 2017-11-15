@@ -63,7 +63,7 @@ public class ChessView : Gtk.DrawingArea
         }
         catch (Error e)
         {
-            stderr.printf ("Failed to load piece svg: %s", e.message);
+            stderr.printf ("Failed to load piece svg: %s\n", e.message);
             return;
         }
 
