@@ -30,5 +30,9 @@ i18n.merge_file(
   install_dir: join_paths(datadir, 'metainfo')
 )
 
+install_data('org.gnome.chess.gschema.xml',
+  install_dir: join_paths(datadir, 'glib-2.0', 'schemas')
+)
+
 # The man page
 install_man('gnome-chess.6')
