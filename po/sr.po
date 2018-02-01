@@ -19,8 +19,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
-"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
 
 #: data/gnome-chess.appdata.xml.in:7
@@ -40,10 +40,6 @@ msgstr ""
 "на три различита нивоа тежине, или против пријатеља на вашем рачунару."
 
 #: data/gnome-chess.appdata.xml.in:14
-#| msgid ""
-#| "Computer chess enthusiasts will appreciate GNOME Chess's compatibility "
-#| "with nearly all modern computer chess engines, and its ability to detect "
-#| "several popular engines automatically if installed."
 msgid ""
 "Computer chess enthusiasts will appreciate GNOME Chess’s compatibility with "
 "nearly all modern computer chess engines, and its ability to detect several "
@@ -1081,7 +1077,6 @@ msgstr "Није узета фигура или пешак није помере
 
 #. Window subtitle when the game is drawn due to the 75 move rule
 #: src/gnome-chess.vala:1319
-#| msgid "No piece was taken or pawn moved in fifty moves."
 msgid "No piece was taken or pawn moved in 75 moves."
 msgstr "Није узета фигура или пешак није померен у последњих 75 потеза."
 
@@ -1102,7 +1097,6 @@ msgstr "Исти распоред фигура на табли се јавио �
 
 #. Window subtitle when the game is drawn due to the five-fold-repetition rule
 #: src/gnome-chess.vala:1337
-#| msgid "The same board state has occurred three times."
 msgid "The same board state has occurred five times."
 msgstr "Исти распоред фигура на табли се јавио пет пута."
 
@@ -1307,133 +1301,3 @@ msgstr "_Отвори"
 #: src/gnome-chess.vala:2428
 msgid "Failed to open game"
 msgstr "Нисам успео да отворим игру"
-
-#~ msgid "(You will not be offered this choice again.)"
-#~ msgstr "(Овај избор вам више неће бити понуђен.)"
-
-#~ msgid "true if the human player is playing white"
-#~ msgstr "означено ако људски играч игра белим"
-
-#~ msgid "Save As…"
-#~ msgstr "Сачувај као…"
-
-#~ msgid "A flag to enable 3D mode"
-#~ msgstr "Ознака за 3Д мод"
-
-#~ msgid "A flag to smooth (anti-alias) the 3D display"
-#~ msgstr "Ознака за омекшавање 3Д приказа"
-
-#~ msgid "Close"
-#~ msgstr "Затвори"
-
-#~ msgid "Game duration:"
-#~ msgstr "Трајање игре:"
-
-#~ msgid "3_D chess view"
-#~ msgstr "_3Д шаховски поглед"
-
-#~ msgid "_Smooth display"
-#~ msgstr "_Умекшај приказ"
-
-#~ msgid "The computer player died unexpectedly."
-#~ msgstr "Машински играч се неочекивано урушио."
-
-#~ msgid "The game cannot continue."
-#~ msgstr "Игра не може да се настави."
-
-#~| msgid "One of the players has died"
-#~ msgid "One of the players has died."
-#~ msgstr "Један од играча је поражен."
-
-#~ msgid "It is the first time this board position has occurred"
-#~ msgstr "Ово је први пут да се овај распоред појављује на табли"
-
-#~ msgid "It is the second time this board position has occurred"
-#~ msgstr "Ово је други пут да се овај распоред појављује на табли"
-
-#~ msgid "%d move has passed without a capture or pawn advancement"
-#~ msgid_plural "%d moves have passed without a capture or pawn advancement"
-#~ msgstr[0] "%d потез је одигран без одузимања фигуре или напредовања пешака"
-#~ msgstr[1] ""
-#~ "%d потеза су одиграна без одузимања фигуре или напредовања пешака"
-#~ msgstr[2] ""
-#~ "%d потеза је одиграно без одузимања фигуре или напредовања пешака"
-#~ msgstr[3] ""
-#~ "Један потез је одигран без одузимања фигуре или напредовања пешака"
-
-#~ msgid "You can claim a draw when either:"
-#~ msgstr "Можете да захтевате реми када:"
-
-#~ msgid ""
-#~ "(Board position is affected by the ability to castle or capture en "
-#~ "passant.)"
-#~ msgstr ""
-#~ "(Положај на табли зависи од способности за извршавањем рокаде или "
-#~ "одузимањем пешака ан пасан.)"
-
-#~ msgid "The game is automatically a draw if:"
-#~ msgstr "Игра се одмах завршава ремијем ако:"
-
-#~ msgid "The current player cannot move (stalemate)"
-#~ msgstr "Противник нема више потеза (безизлазан положај)"
-
-#~ msgid "Neither player can checkmate (insufficient material)"
-#~ msgstr "Ни један играч не може да зада шах-мат (реми)"
-
-#~| msgid ""
-#~| "The 2D/3D chess game for GNOME. \n"
-#~| "\n"
-#~| "GNOME Chess is a part of GNOME Games."
-#~ msgid ""
-#~ "The 2D/3D chess game for GNOME\n"
-#~ "\n"
-#~ "GNOME Chess is a part of GNOME Games."
-#~ msgstr ""
-#~ "2Д/3Д шаховска игра за Гном. \n"
-#~ "\n"
-#~ "Гномов шах је део Гномових игара."
-
-#~ msgid "[FILE] - Play Chess"
-#~ msgstr "[ДАТОТЕКА] — Играјте шах"
-
-#~ msgid ""
-#~ "Run '%s --help' to see a full list of available command line options."
-#~ msgstr ""
-#~ "Покрените „%s --help“ да видите читав списак доступних опција линије "
-#~ "наредби."
-
-#~ msgid "Start a new game"
-#~ msgstr "Започните нову игру"
-
-#~ msgid "New"
-#~ msgstr "Нова"
-
-#~ msgid "Open"
-#~ msgstr "Отвори"
-
-#~ msgid "Save"
-#~ msgstr "Сачувај"
-
-#~ msgid "Undo Move"
-#~ msgstr "Опозови потез"
-
-#~ msgid "Claim a draw by threefold repetition or the fifty move rule"
-#~ msgstr "Захтевајте реми правилом троструког понављања или педесет потеза"
-
-#~ msgid "Pause"
-#~ msgstr "Паузирај"
-
-#~ msgid "Toggle fullscreen"
-#~ msgstr "Преко целог екрана"
-
-#~ msgid "Fullscreen"
-#~ msgstr "Цео екран"
-
-#~ msgid "A flag to enable fullscreen mode"
-#~ msgstr "Ознака за омогућавање целог екрана"
-
-#~ msgid "Chess - %1$s"
-#~ msgstr "Шах — %1$s"
-
-#~ msgid "GNOME Games web site"
-#~ msgstr "Веб сајт Гномових игара"

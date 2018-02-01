@@ -19,8 +19,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
-"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
 
 #: data/gnome-chess.appdata.xml.in:7
@@ -40,10 +40,6 @@ msgstr ""
 "na tri različita nivoa težine, ili protiv prijatelja na vašem računaru."
 
 #: data/gnome-chess.appdata.xml.in:14
-#| msgid ""
-#| "Computer chess enthusiasts will appreciate GNOME Chess's compatibility "
-#| "with nearly all modern computer chess engines, and its ability to detect "
-#| "several popular engines automatically if installed."
 msgid ""
 "Computer chess enthusiasts will appreciate GNOME Chess’s compatibility with "
 "nearly all modern computer chess engines, and its ability to detect several "
@@ -219,8 +215,8 @@ msgid ""
 "Can be 'human' (play against another human player), '' (use the first "
 "available chess engine) or the name of a specific engine to play against"
 msgstr ""
-"Može biti „čovek“ (igrajte protiv drugog ljudskog igrača), „“ (koristite prvu "
-"slobodnu šahovsku mašinu) ili naziv određene mašine protiv koje ćete da "
+"Može biti „čovek“ (igrajte protiv drugog ljudskog igrača), „“ (koristite "
+"prvu slobodnu šahovsku mašinu) ili naziv određene mašine protiv koje ćete da "
 "igrate"
 
 #: data/org.gnome.chess.gschema.xml:118 data/org.gnome.chess.gschema.xml:119
@@ -1081,7 +1077,6 @@ msgstr "Nije uzeta figura ili pešak nije pomeren u poslednjih pedeset poteza."
 
 #. Window subtitle when the game is drawn due to the 75 move rule
 #: src/gnome-chess.vala:1319
-#| msgid "No piece was taken or pawn moved in fifty moves."
 msgid "No piece was taken or pawn moved in 75 moves."
 msgstr "Nije uzeta figura ili pešak nije pomeren u poslednjih 75 poteza."
 
@@ -1102,7 +1097,6 @@ msgstr "Isti raspored figura na tabli se javio tri puta."
 
 #. Window subtitle when the game is drawn due to the five-fold-repetition rule
 #: src/gnome-chess.vala:1337
-#| msgid "The same board state has occurred three times."
 msgid "The same board state has occurred five times."
 msgstr "Isti raspored figura na tabli se javio pet puta."
 
@@ -1307,133 +1301,3 @@ msgstr "_Otvori"
 #: src/gnome-chess.vala:2428
 msgid "Failed to open game"
 msgstr "Nisam uspeo da otvorim igru"
-
-#~ msgid "(You will not be offered this choice again.)"
-#~ msgstr "(Ovaj izbor vam više neće biti ponuđen.)"
-
-#~ msgid "true if the human player is playing white"
-#~ msgstr "označeno ako ljudski igrač igra belim"
-
-#~ msgid "Save As…"
-#~ msgstr "Sačuvaj kao…"
-
-#~ msgid "A flag to enable 3D mode"
-#~ msgstr "Oznaka za 3D mod"
-
-#~ msgid "A flag to smooth (anti-alias) the 3D display"
-#~ msgstr "Oznaka za omekšavanje 3D prikaza"
-
-#~ msgid "Close"
-#~ msgstr "Zatvori"
-
-#~ msgid "Game duration:"
-#~ msgstr "Trajanje igre:"
-
-#~ msgid "3_D chess view"
-#~ msgstr "_3D šahovski pogled"
-
-#~ msgid "_Smooth display"
-#~ msgstr "_Umekšaj prikaz"
-
-#~ msgid "The computer player died unexpectedly."
-#~ msgstr "Mašinski igrač se neočekivano urušio."
-
-#~ msgid "The game cannot continue."
-#~ msgstr "Igra ne može da se nastavi."
-
-#~| msgid "One of the players has died"
-#~ msgid "One of the players has died."
-#~ msgstr "Jedan od igrača je poražen."
-
-#~ msgid "It is the first time this board position has occurred"
-#~ msgstr "Ovo je prvi put da se ovaj raspored pojavljuje na tabli"
-
-#~ msgid "It is the second time this board position has occurred"
-#~ msgstr "Ovo je drugi put da se ovaj raspored pojavljuje na tabli"
-
-#~ msgid "%d move has passed without a capture or pawn advancement"
-#~ msgid_plural "%d moves have passed without a capture or pawn advancement"
-#~ msgstr[0] "%d potez je odigran bez oduzimanja figure ili napredovanja pešaka"
-#~ msgstr[1] ""
-#~ "%d poteza su odigrana bez oduzimanja figure ili napredovanja pešaka"
-#~ msgstr[2] ""
-#~ "%d poteza je odigrano bez oduzimanja figure ili napredovanja pešaka"
-#~ msgstr[3] ""
-#~ "Jedan potez je odigran bez oduzimanja figure ili napredovanja pešaka"
-
-#~ msgid "You can claim a draw when either:"
-#~ msgstr "Možete da zahtevate remi kada:"
-
-#~ msgid ""
-#~ "(Board position is affected by the ability to castle or capture en "
-#~ "passant.)"
-#~ msgstr ""
-#~ "(Položaj na tabli zavisi od sposobnosti za izvršavanjem rokade ili "
-#~ "oduzimanjem pešaka an pasan.)"
-
-#~ msgid "The game is automatically a draw if:"
-#~ msgstr "Igra se odmah završava remijem ako:"
-
-#~ msgid "The current player cannot move (stalemate)"
-#~ msgstr "Protivnik nema više poteza (bezizlazan položaj)"
-
-#~ msgid "Neither player can checkmate (insufficient material)"
-#~ msgstr "Ni jedan igrač ne može da zada šah-mat (remi)"
-
-#~| msgid ""
-#~| "The 2D/3D chess game for GNOME. \n"
-#~| "\n"
-#~| "GNOME Chess is a part of GNOME Games."
-#~ msgid ""
-#~ "The 2D/3D chess game for GNOME\n"
-#~ "\n"
-#~ "GNOME Chess is a part of GNOME Games."
-#~ msgstr ""
-#~ "2D/3D šahovska igra za Gnom. \n"
-#~ "\n"
-#~ "Gnomov šah je deo Gnomovih igara."
-
-#~ msgid "[FILE] - Play Chess"
-#~ msgstr "[DATOTEKA] — Igrajte šah"
-
-#~ msgid ""
-#~ "Run '%s --help' to see a full list of available command line options."
-#~ msgstr ""
-#~ "Pokrenite „%s --help“ da vidite čitav spisak dostupnih opcija linije "
-#~ "naredbi."
-
-#~ msgid "Start a new game"
-#~ msgstr "Započnite novu igru"
-
-#~ msgid "New"
-#~ msgstr "Nova"
-
-#~ msgid "Open"
-#~ msgstr "Otvori"
-
-#~ msgid "Save"
-#~ msgstr "Sačuvaj"
-
-#~ msgid "Undo Move"
-#~ msgstr "Opozovi potez"
-
-#~ msgid "Claim a draw by threefold repetition or the fifty move rule"
-#~ msgstr "Zahtevajte remi pravilom trostrukog ponavljanja ili pedeset poteza"
-
-#~ msgid "Pause"
-#~ msgstr "Pauziraj"
-
-#~ msgid "Toggle fullscreen"
-#~ msgstr "Preko celog ekrana"
-
-#~ msgid "Fullscreen"
-#~ msgstr "Ceo ekran"
-
-#~ msgid "A flag to enable fullscreen mode"
-#~ msgstr "Oznaka za omogućavanje celog ekrana"
-
-#~ msgid "Chess - %1$s"
-#~ msgstr "Šah — %1$s"
-
-#~ msgid "GNOME Games web site"
-#~ msgstr "Veb sajt Gnomovih igara"
