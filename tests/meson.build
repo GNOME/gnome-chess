@@ -23,8 +23,7 @@ foreach _test: tests
     include_directories: config_h_dir,
     vala_args: tests_vala_args,
     c_args: tests_c_args,
-    dependencies: tests_deps,
-    install: true,
+    dependencies: tests_deps
   )
 
   test(_test, test_bin)
