@@ -24,12 +24,11 @@ libchess_deps = [
   posix,
 ]
 
-libchess = library('gnome-libchess', libchess_sources,
+libchess = static_library('libchess', libchess_sources,
   include_directories: config_h_dir,
   vala_args: libchess_vala_args,
   c_args: libchess_c_args,
-  dependencies: libchess_deps,
-  install: true,
+  dependencies: libchess_deps
 )
 
 libchess_dep = declare_dependency(
