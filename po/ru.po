@@ -20,9 +20,9 @@ msgstr ""
 "Project-Id-Version: gnome-games trunk\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-02-28 06:53+0000\n"
-"PO-Revision-Date: 2017-03-14 20:55+0400\n"
-"Last-Translator: Yuri Myasoedov <ymyasoedov@yandex.ru>\n"
+"POT-Creation-Date: 2018-03-26 20:13+0000\n"
+"PO-Revision-Date: 2018-04-12 22:43+0300\n"
+"Last-Translator: Stas Solovey <whats_up@tut.by>\n"
 "Language-Team: Русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: data/gnome-chess.appdata.xml.in:7
 msgid "GNOME Chess"
@@ -45,7 +45,7 @@ msgid ""
 "GNOME Chess is a simple chess game. You can play against your computer at "
 "three different difficulty levels, or against a friend at your computer."
 msgstr ""
-"«Шахматы GNOME» — это простая игра в шахматы. Вы можете играть против "
+"Шахматы GNOME — это простая игра в шахматы. Вы можете играть против "
 "компьютера на трёх различных уровнях сложности, а также против другого "
 "человека за ваших компьютером."
 
@@ -64,7 +64,7 @@ msgid "The GNOME Project"
 msgstr "Проект GNOME"
 
 #: data/gnome-chess.desktop.in:3 data/gnome-chess.ui:21
-#: src/gnome-chess.vala:2197 src/gnome-chess.vala:2540
+#: src/gnome-chess.vala:2193 src/gnome-chess.vala:2536
 msgid "Chess"
 msgstr "Шахматы"
 
@@ -482,7 +482,7 @@ msgstr "Чередовать"
 
 #: data/promotion-type-selector.ui:7
 msgid "Select Promotion Type"
-msgstr "Выберите фигуру продвижения:"
+msgstr "Выберите фигуру продвижения"
 
 #: data/promotion-type-selector.ui:41
 msgid "_Queen"
@@ -521,9 +521,10 @@ msgstr "Недопустимый тип часов в PGN: %s, использу�
 msgid "Invalid timer increment in PGN: %s, using a simple clock."
 msgstr "Недопустимый инкремент таймера в PGN: %s, используются простые часы."
 
+# «Приостановлено» не влазит и ломает интерфейс
 #: src/chess-view.vala:317
 msgid "Paused"
-msgstr "Приостановлено"
+msgstr "Пауза"
 
 #. Help string for command line --version flag
 #: src/gnome-chess.vala:103
@@ -999,55 +1000,55 @@ msgid "Black castles queenside"
 msgstr "Чёрные делают длинную рокировку"
 
 #. Window title on a White human's turn if he is in check
-#: src/gnome-chess.vala:1206
+#: src/gnome-chess.vala:1202
 msgid "White is in Check"
 msgstr "Белые под шахом"
 
 #. Window title on a Black human's turn if he is in check
-#: src/gnome-chess.vala:1209
+#: src/gnome-chess.vala:1205
 msgid "Black is in Check"
 msgstr "Чёрные под шахом"
 
 #. Window title on White's turn if White is human
-#: src/gnome-chess.vala:1215
+#: src/gnome-chess.vala:1211
 msgid "White to Move"
 msgstr "Ход белых"
 
 #. Window title on White's turn if White is a computer
-#: src/gnome-chess.vala:1218
+#: src/gnome-chess.vala:1214
 msgid "White is Thinking…"
 msgstr "Белые думают…"
 
 #. Window title on Black's turn if Black is human
-#: src/gnome-chess.vala:1224
+#: src/gnome-chess.vala:1220
 msgid "Black to Move"
 msgstr "Ход чёрных"
 
 #. Window title on Black's turn if Black is a computer
-#: src/gnome-chess.vala:1227
+#: src/gnome-chess.vala:1223
 msgid "Black is Thinking…"
 msgstr "Чёрные думают…"
 
-#: src/gnome-chess.vala:1242
+#: src/gnome-chess.vala:1238
 msgid "Unpause the game"
 msgstr "Возобновить игру"
 
-#: src/gnome-chess.vala:1248
+#: src/gnome-chess.vala:1244
 msgid "Pause the game"
 msgstr "Приостановить игру"
 
 #. Window title when the white player wins
-#: src/gnome-chess.vala:1271
+#: src/gnome-chess.vala:1267
 msgid "White Wins"
 msgstr "Белые победили"
 
 #. Window title when the black player wins
-#: src/gnome-chess.vala:1276
+#: src/gnome-chess.vala:1272
 msgid "Black Wins"
 msgstr "Чёрные победили"
 
 #. Window title when the game is drawn
-#: src/gnome-chess.vala:1281
+#: src/gnome-chess.vala:1277
 msgid "Game is Drawn"
 msgstr "Ничья"
 
@@ -1059,167 +1060,167 @@ msgstr "Ничья"
 #. * because the pause button eats up some of your space, start a new game,
 #. * then run 'killall gnuchess' in a terminal.
 #.
-#: src/gnome-chess.vala:1293
+#: src/gnome-chess.vala:1289
 msgid "Oops! Something has gone wrong."
 msgstr "Ой! Что-то пошло не так."
 
 #. Window subtitle when Black is checkmated
-#: src/gnome-chess.vala:1306
+#: src/gnome-chess.vala:1302
 msgid "Black is in check and cannot move."
 msgstr "Чёрные находится под шахом и не могут сделать ход."
 
 #. Window subtitle when White is checkmated
-#: src/gnome-chess.vala:1309
+#: src/gnome-chess.vala:1305
 msgid "White is in check and cannot move."
 msgstr "Белые находится под шахом и не могут сделать ход."
 
 #. Window subtitle when the game terminates due to a stalemate
-#: src/gnome-chess.vala:1315
+#: src/gnome-chess.vala:1311
 msgid "Opponent cannot move."
 msgstr "Противник не может сделать ход."
 
 #. Window subtitle when the game is drawn due to the fifty move rule
-#: src/gnome-chess.vala:1319
+#: src/gnome-chess.vala:1315
 msgid "No piece was taken or pawn moved in fifty moves."
 msgstr ""
 "За последние 50 ходов не было ни одного взятия и ни одного хода пешкой."
 
 #. Window subtitle when the game is drawn due to the 75 move rule
-#: src/gnome-chess.vala:1323
+#: src/gnome-chess.vala:1319
 msgid "No piece was taken or pawn moved in 75 moves."
 msgstr ""
 "За последние 75 ходов не было ни одного взятия и ни одного хода пешкой."
 
 #. Window subtitle when the game ends due to Black's clock stopping
-#: src/gnome-chess.vala:1328
+#: src/gnome-chess.vala:1324
 msgid "Black has run out of time."
 msgstr "У чёрных закончилось время."
 
 #. Window subtitle when the game ends due to White's clock stopping
-#: src/gnome-chess.vala:1331
+#: src/gnome-chess.vala:1327
 msgid "White has run out of time."
 msgstr "У белых закончилось время."
 
 #. Window subtitle when the game is drawn due to the three-fold-repetition rule
-#: src/gnome-chess.vala:1337
+#: src/gnome-chess.vala:1333
 msgid "The same board state has occurred three times."
 msgstr "Троекратное повторение одной и той же позиции."
 
 #. Window subtitle when the game is drawn due to the five-fold-repetition rule
-#: src/gnome-chess.vala:1341
+#: src/gnome-chess.vala:1337
 msgid "The same board state has occurred five times."
 msgstr "Пятикратное повторение одной и той же позиции."
 
 #. Window subtitle when the game is drawn due to the insufficient material rule
-#: src/gnome-chess.vala:1345
+#: src/gnome-chess.vala:1341
 msgid "Neither player can checkmate."
 msgstr "Ни один игрок не может поставить мат."
 
 #. Window subtitle when the game ends due to the black player resigning
-#: src/gnome-chess.vala:1350
+#: src/gnome-chess.vala:1346
 msgid "Black has resigned."
 msgstr "Чёрные сдались."
 
 #. Window subtitle when the game ends due to the white player resigning
-#: src/gnome-chess.vala:1353
+#: src/gnome-chess.vala:1349
 msgid "White has resigned."
 msgstr "Белые сдались."
 
 #. Window subtitle when a game is abandoned
-#: src/gnome-chess.vala:1359
+#: src/gnome-chess.vala:1355
 msgid "The game has been abandoned."
 msgstr "Игра оставлена."
 
 #. Window subtitle when the game ends due to a player dying.
 #. * This is a PGN standard. GNOME Chess will never kill the user.
-#: src/gnome-chess.vala:1365
+#: src/gnome-chess.vala:1361
 msgid "The game log says a player died!"
 msgstr "Журнал игры сообщает, что игрок умер!"
 
 #. Window subtitle when something goes wrong with the engine...
 #. * or when the engine says something is wrong with us!
-#: src/gnome-chess.vala:1371
+#: src/gnome-chess.vala:1367
 msgid "The computer player is confused. The game cannot continue."
 msgstr "Компьютерный игрок в замешательстве. Невозможно продолжить игру."
 
-#: src/gnome-chess.vala:1406 src/gnome-chess.vala:2314
-#: src/gnome-chess.vala:2397
+#: src/gnome-chess.vala:1402 src/gnome-chess.vala:2310
+#: src/gnome-chess.vala:2393
 msgid "_Cancel"
 msgstr "_Отменить"
 
-#: src/gnome-chess.vala:1410
+#: src/gnome-chess.vala:1406
 msgid "_Abandon game"
 msgstr "Забр_осить игру"
 
-#: src/gnome-chess.vala:1411
+#: src/gnome-chess.vala:1407
 msgid "_Save game for later"
 msgstr "_Сохранить игру на будущее"
 
-#: src/gnome-chess.vala:1415
+#: src/gnome-chess.vala:1411
 msgid "_Discard game"
 msgstr "За_бросить игру"
 
-#: src/gnome-chess.vala:1416
+#: src/gnome-chess.vala:1412
 msgid "_Save game log"
 msgstr "_Сохранить журнал игры"
 
 #. Your very last chance to save
-#: src/gnome-chess.vala:1429
+#: src/gnome-chess.vala:1425
 msgid "_Discard"
 msgstr "_Забросить"
 
-#: src/gnome-chess.vala:1429 src/gnome-chess.vala:2315
+#: src/gnome-chess.vala:1425 src/gnome-chess.vala:2311
 msgid "_Save"
 msgstr "_Сохранить"
 
 #. Title of claim draw dialog
-#: src/gnome-chess.vala:1452
+#: src/gnome-chess.vala:1448
 msgid "Would you like to claim a draw?"
 msgstr "Хотите предложить предложить ничью?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: src/gnome-chess.vala:1458
+#: src/gnome-chess.vala:1454
 msgid "Fifty moves have passed without a capture or pawn advancement."
 msgstr "Сделано 50 ходов без взятия фигуры и без продвижения пешки."
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: src/gnome-chess.vala:1463
+#: src/gnome-chess.vala:1459
 msgid "The current board position has occurred three times."
 msgstr "Произошло троекратное повторение одной и той же позиции."
 
 #. Option in claim draw dialog
 #. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1470 src/gnome-chess.vala:1508
+#: src/gnome-chess.vala:1466 src/gnome-chess.vala:1504
 msgid "_Keep Playing"
 msgstr "_Продолжить игру"
 
 #. Option in claim draw dialog
-#: src/gnome-chess.vala:1472
+#: src/gnome-chess.vala:1468
 msgid "_Claim Draw"
 msgstr "_Предложить ничью"
 
-#: src/gnome-chess.vala:1490
+#: src/gnome-chess.vala:1486
 msgid "Save this game before starting a new one?"
 msgstr "Сохранить текущую игру перед началом новой?"
 
 #. Title of warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1503
+#: src/gnome-chess.vala:1499
 msgid "Are you sure you want to resign?"
 msgstr "Уверены, что хотите сдаться?"
 
 #. Text on warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1506
+#: src/gnome-chess.vala:1502
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr "Это имеет смысл, если вы хотите сохранить проигранную игру."
 
 #. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1510
+#: src/gnome-chess.vala:1506
 msgid "_Resign"
 msgstr "Сд_аться"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
 #. Preferences Dialog: Combo box entry for a custom clock type set in minutes
-#: src/gnome-chess.vala:2023 src/gnome-chess.vala:2064
+#: src/gnome-chess.vala:2019 src/gnome-chess.vala:2060
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "минута"
@@ -1227,7 +1228,7 @@ msgstr[1] "минуты"
 msgstr[2] "минут"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: src/gnome-chess.vala:2027
+#: src/gnome-chess.vala:2023
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "час"
@@ -1235,68 +1236,70 @@ msgstr[1] "часа"
 msgstr[2] "часов"
 
 #. Preferences Dialog: Combo box entry for a custom clock type set in seconds
-#: src/gnome-chess.vala:2060
+#: src/gnome-chess.vala:2056
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "секунда"
 msgstr[1] "секунды"
 msgstr[2] "секунд"
 
-#: src/gnome-chess.vala:2201
+#: src/gnome-chess.vala:2197
 msgid "A classic game of positional strategy"
 msgstr "Классическая позиционная стратегия"
 
-#: src/gnome-chess.vala:2204
+#: src/gnome-chess.vala:2200
 msgid "translator-credits"
-msgstr "Юрий Мясоедов <ymyasoedov@yandex.ru>, 2013-2014."
+msgstr ""
+"Юрий Мясоедов <ymyasoedov@yandex.ru>, 2013-2014.\n"
+"Станислав Соловей <whats_up@tut.by>, 2018."
 
-#: src/gnome-chess.vala:2217
+#: src/gnome-chess.vala:2213
 msgid "This does not look like a valid PGN game."
 msgstr "Кажется, игра PGN некорректна."
 
-#: src/gnome-chess.vala:2218 src/gnome-chess.vala:2231
+#: src/gnome-chess.vala:2214 src/gnome-chess.vala:2227
 msgid "_OK"
-msgstr "_OK"
+msgstr "_ОК"
 
-#: src/gnome-chess.vala:2301
+#: src/gnome-chess.vala:2297
 msgid "Failed to save game"
 msgstr "Не удалось сохранить игру"
 
 #. Title of save game dialog
-#: src/gnome-chess.vala:2325
+#: src/gnome-chess.vala:2321
 msgid "Save Chess Game"
 msgstr "Сохранить игру"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:2338
+#: src/gnome-chess.vala:2334
 msgid "Untitled Chess Game"
 msgstr "Безымянная игра"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:2343 src/gnome-chess.vala:2407
+#: src/gnome-chess.vala:2339 src/gnome-chess.vala:2403
 msgid "PGN files"
 msgstr "Файлы PGN"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:2349 src/gnome-chess.vala:2413
+#: src/gnome-chess.vala:2345 src/gnome-chess.vala:2409
 msgid "All files"
 msgstr "Все файлы"
 
-#: src/gnome-chess.vala:2384
+#: src/gnome-chess.vala:2380
 msgid "Save this game before loading another one?"
-msgstr "Сохранить эту игру перед загрузкой новой игры?"
+msgstr "Сохранить эту игру перед загрузкой другой?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:2395
+#: src/gnome-chess.vala:2391
 msgid "Load Chess Game"
 msgstr "Загрузить игру"
 
-#: src/gnome-chess.vala:2398
+#: src/gnome-chess.vala:2394
 msgid "_Open"
 msgstr "_Открыть"
 
-#: src/gnome-chess.vala:2432
+#: src/gnome-chess.vala:2428
 msgid "Failed to open game"
 msgstr "Не удалось открыть игру"
