@@ -1196,8 +1196,8 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     private void update_headerbar_title ()
     {
-        if ((human_player == null ||
-             human_player.color == game.current_player.color) &&
+        if (human_player != null &&
+            human_player.color == game.current_player.color &&
             game.current_state.is_in_check (game.current_player))
         {
             if (game.current_player.color == Color.WHITE)
