@@ -66,7 +66,7 @@ public class ChessApplication : Gtk.Application
     private ChessEngine? opponent_engine = null;
     private int engine_timeout_counter = 10;
     private string copyrights = """Copyright © 2010–2013 Robert Ancell
-Copyright © 2013–2014 Michael Catanzaro
+Copyright © 2013–2018 Michael Catanzaro
 Copyright © 2015–2016 Sahil Sareen""";
 
     private const ActionEntry[] app_entries =
