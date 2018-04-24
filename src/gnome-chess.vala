@@ -874,12 +874,6 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         if (game.clock != null)
             enable_window_action (PAUSE_RESUME_ACTION_NAME);
-
-        /* FIXME: This looks like the wrong place for this, as per the
-         * warning comment just above.
-         */
-        if (game.can_claim_draw ())
-            present_claim_draw_dialog ();
     }
 
     private void set_move_text (Gtk.TreeIter iter, ChessMove move)
@@ -1127,13 +1121,23 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         view.queue_draw ();
 
-        if (opponent_engine != null)
-        {
-            opponent_engine.report_move (move);
+        /* Remaining work goes in a timeout to give the game widget a chance to
+         * redraw first, so the pieces are shown to move before displaying the
+         * claim draw dialog. */
+        Timeout.add(100, () => {
+            if (game.can_claim_draw ())
+                present_claim_draw_dialog ();
 
-            if (move.piece.color != opponent.color && !starting)
-                opponent_engine.move ();
-        }
+            if (opponent_engine != null)
+            {
+                opponent_engine.report_move (move);
+
+                if (move.piece.color != opponent.color && !starting && game.is_started)
+                    opponent_engine.move ();
+            }
+
+            return Source.REMOVE;
+        });
     }
 
     private void game_undo_cb (ChessGame game)
