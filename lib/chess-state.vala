@@ -536,7 +536,7 @@ public class ChessState : Object
             last_move.promotion_piece = board[end];
         last_move.victim = victim;
         if (rook_end >= 0)
-            last_move.moved_rook = board[rook_end];
+            last_move.castling_rook = board[rook_end];
         last_move.r0 = r0;
         last_move.f0 = f0;
         last_move.r1 = r1;

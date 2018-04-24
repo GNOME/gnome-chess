@@ -149,8 +149,8 @@ public class ChessGame : Object
         if (state.last_move.victim != null)
             state.last_move.victim.died ();
         state.last_move.piece.moved ();
-        if (state.last_move.moved_rook != null)
-            state.last_move.moved_rook.moved ();
+        if (state.last_move.castling_rook != null)
+            state.last_move.castling_rook.moved ();
         moved (state.last_move);
         complete_move ();
 

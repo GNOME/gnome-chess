@@ -14,7 +14,7 @@ public class ChessMove : Object
     public int number;
     public ChessPiece piece;
     public ChessPiece? promotion_piece;
-    public ChessPiece? moved_rook;
+    public ChessPiece? castling_rook;
     public ChessPiece? victim;
     public int r0;
     public int f0;
@@ -26,7 +26,7 @@ public class ChessMove : Object
 
     public string get_lan ()
     {
-        if (moved_rook != null)
+        if (castling_rook != null)
         {
             if (f1 > f0)
                 return "O-O";
@@ -75,7 +75,7 @@ public class ChessMove : Object
 
     private string make_san (string[] piece_names)
     {
-        if (moved_rook != null)
+        if (castling_rook != null)
         {
             if (f1 > f0)
                 return "O-O";
@@ -127,7 +127,7 @@ public class ChessMove : Object
         move.number = number;
         move.piece = piece;
         move.promotion_piece = promotion_piece;
-        move.moved_rook = moved_rook;
+        move.castling_rook = castling_rook;
         move.victim = victim;
         move.r0 = r0;
         move.f0 = f0;

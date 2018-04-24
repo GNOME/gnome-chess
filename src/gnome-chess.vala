@@ -1031,7 +1031,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         switch (scene.move_format)
         {
         case "human":
-            if (move.moved_rook == null)
+            if (move.castling_rook == null)
             {
                 int index;
                 if (move.victim == null)
