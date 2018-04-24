@@ -875,6 +875,9 @@ Copyright © 2015–2016 Sahil Sareen""";
         if (game.clock != null)
             enable_window_action (PAUSE_RESUME_ACTION_NAME);
 
+        /* FIXME: This looks like the wrong place for this, as per the
+         * warning comment just above.
+         */
         if (game.can_claim_draw ())
             present_claim_draw_dialog ();
     }
