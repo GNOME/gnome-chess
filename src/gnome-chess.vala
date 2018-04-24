@@ -1034,7 +1034,27 @@ Copyright © 2015–2016 Sahil Sareen""";
         switch (scene.move_format)
         {
         case "human":
-            if (move.castling_rook == null)
+            if (move.en_passant)
+            {
+                if (move.r0 < move.r1)
+                    move_text = _("White pawn captures black pawn en passant");
+                else
+                    move_text = _("Black pawn captures white pawn en passant");
+            }
+            else if (move.castling_rook != null)
+            {
+                if (move.f0 < move.f1 && move.r0 == 0)
+                    move_text = _("White castles kingside");
+                else if (move.f1 < move.f0 && move.r0 == 0)
+                    move_text = _("White castles queenside");
+                else if (move.f0 < move.f1 && move.r0 == 7)
+                    move_text = _("Black castles kingside");
+                else if (move.f1 < move.f0 && move.r0 == 7)
+                    move_text = _("Black castles queenside");
+                else
+                    assert_not_reached ();
+            }
+            else
             {
                 int index;
                 if (move.victim == null)
@@ -1049,23 +1069,6 @@ Copyright © 2015–2016 Sahil Sareen""";
                 var end = "%c%d".printf ('a' + move.f1, move.r1 + 1);
                 move_text = _(human_descriptions[index]).printf (start, end);
             }
-            else if (move.f0 < move.f1 && move.r0 == 0)
-            {
-                move_text = _("White castles kingside");
-            }
-            else if (move.f1 < move.f0 && move.r0 == 0)
-            {
-                move_text = _("White castles queenside");
-            }
-            else if (move.f0 < move.f1 && move.r0 == 7)
-            {
-                move_text = _("Black castles kingside");
-            }
-            else if (move.f1 < move.f0 && move.r0 == 7)
-            {
-                move_text = _("Black castles queenside");
-            }
-            else assert_not_reached ();
             break;
 
         case "san":

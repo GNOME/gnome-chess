@@ -22,6 +22,7 @@ public class ChessMove : Object
     public int f1;
     public bool ambiguous_rank;
     public bool ambiguous_file;
+    public bool en_passant;
     public CheckState check_state;
 
     public string get_lan ()
@@ -135,6 +136,7 @@ public class ChessMove : Object
         move.f1 = f1;
         move.ambiguous_rank = ambiguous_rank;
         move.ambiguous_file = ambiguous_file;
+        move.en_passant = en_passant;
         move.check_state = check_state;
         return move;
     }

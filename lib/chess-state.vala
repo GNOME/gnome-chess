@@ -317,6 +317,7 @@ public class ChessState : Object
         /* Check special moves */
         int rook_start = -1, rook_end = -1;
         bool is_promotion = false;
+        bool en_passant = false;
         bool ambiguous_rank = false;
         bool ambiguous_file = false;
         switch (piece.type)
@@ -325,6 +326,7 @@ public class ChessState : Object
             /* Check if taking an marched pawn */
             if (victim == null && end == en_passant_index)
             {
+                en_passant = true;
                 victim_index = get_index (r1 == 2 ? 3 : 4, f1);
                 victim = board[victim_index];
             }
@@ -543,6 +545,7 @@ public class ChessState : Object
         last_move.f1 = f1;
         last_move.ambiguous_rank = ambiguous_rank;
         last_move.ambiguous_file = ambiguous_file;
+        last_move.en_passant = en_passant;
         last_move.check_state = check_state;
 
         return true;
