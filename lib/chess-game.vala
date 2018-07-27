@@ -313,10 +313,12 @@ public class ChessGame : Object
 
     private void clock_expired_cb (ChessClock clock)
     {
-        if (current_player.color == Color.WHITE)
+        if (clock.white_remaining_seconds <= 0)
             stop (ChessResult.BLACK_WON, ChessRule.TIMEOUT);
-        else
+        else if (clock.black_remaining_seconds <= 0)
             stop (ChessResult.WHITE_WON, ChessRule.TIMEOUT);
+        else
+            assert_not_reached ();
     }
 
     public ChessPiece? get_piece (int rank, int file, int move_number = -1)
