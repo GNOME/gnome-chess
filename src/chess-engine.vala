@@ -185,7 +185,7 @@ public abstract class ChessEngine : Object
         Source.remove (child_watch_id);
         child_watch_id = 0;
 
-        if (kill_engine && Posix.kill (pid, Posix.SIGTERM) == -1)
+        if (kill_engine && Posix.kill (pid, Posix.Signal.TERM) == -1)
             warning ("Failed to kill engine: %s", strerror (errno));
         Process.close_pid (pid);
         pid = 0;
