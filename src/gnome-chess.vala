@@ -1124,15 +1124,16 @@ Copyright © 2015–2016 Sahil Sareen""";
         /* Remaining work goes in a timeout to give the game widget a chance to
          * redraw first, so the pieces are shown to move before displaying the
          * claim draw dialog. */
+        var started = !starting && game.is_started;
         Timeout.add(100, () => {
-            if (game.can_claim_draw ())
+            if (game.can_claim_draw () && started)
                 present_claim_draw_dialog ();
 
             if (opponent_engine != null)
             {
                 opponent_engine.report_move (move);
 
-                if (move.piece.color != opponent.color && !starting && game.is_started)
+                if (move.piece.color != opponent.color && started)
                     opponent_engine.move ();
             }
 
