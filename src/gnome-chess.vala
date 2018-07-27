@@ -1597,9 +1597,9 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         int time;
         if (color == Color.WHITE)
-            time = game.clock.white_initial_seconds - game.clock.white_seconds_used + game.clock.white_extra_seconds;
+            time = game.clock.white_remaining_seconds;
         else
-            time = game.clock.black_initial_seconds - game.clock.black_seconds_used + game.clock.black_extra_seconds;
+            time = game.clock.black_remaining_seconds;
 
         if (time >= 60)
             return "%d∶\xE2\x80\x8E%02d".printf (time / 60, time % 60);
@@ -2282,17 +2282,8 @@ Copyright © 2015–2016 Sahil Sareen""";
         if (game.clock != null)
         {
             /* We currently only support simple timeouts */
-            uint white_initial_time = int.parse (pgn_game.white_time_left);
-            uint black_initial_time = int.parse (pgn_game.black_time_left);
-
-            uint white_used = game.clock.white_seconds_used;
-            uint black_used = game.clock.black_seconds_used;
-
-            uint white_extra = game.clock.white_extra_seconds;
-            uint black_extra = game.clock.black_extra_seconds;
-
-            pgn_game.white_time_left = (white_initial_time - white_used + white_extra).to_string ();
-            pgn_game.black_time_left = (black_initial_time - black_used + black_extra).to_string ();
+            pgn_game.white_time_left = game.clock.white_remaining_seconds.to_string ();
+            pgn_game.black_time_left = game.clock.black_remaining_seconds.to_string ();
         }
     }
 
