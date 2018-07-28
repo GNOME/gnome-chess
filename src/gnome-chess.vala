@@ -47,11 +47,7 @@ public class ChessApplication : Gtk.Application
     private Gtk.ComboBox custom_duration_units_combo;
     private uint save_duration_timeout = 0;
     private Gtk.FileChooserDialog? open_dialog = null;
-    private Gtk.InfoBar? open_dialog_info_bar = null;
-    private Gtk.Label? open_dialog_error_label = null;
     private Gtk.FileChooserDialog? save_dialog = null;
-    private Gtk.InfoBar? save_dialog_info_bar = null;
-    private Gtk.Label? save_dialog_error_label = null;
     private Gtk.AboutDialog? about_dialog = null;
 
     private PGNGame pgn_game;
@@ -238,21 +234,9 @@ Copyright © 2015–2016 Sahil Sareen""";
                 game_file = File.new_for_path (autosave_filename);
 
             if (game_file == null)
-            {
                 start_new_game ();
-            }
             else
-            {
-                try
-                {
-                    load_game (game_file);
-                }
-                catch (Error e)
-                {
-                    warning ("Failed to load %s: %s\n", game_file.get_path (), e.message);
-                    quit ();
-                }
-            }
+                load_game (game_file);
         }
 
         window.present ();
@@ -2296,6 +2280,9 @@ Copyright © 2015–2016 Sahil Sareen""";
             try
             {
                 game_file = save_dialog.get_file ();
+                save_dialog.destroy ();
+                save_dialog = null;
+
                 pgn_game.write (game_file);
                 headerbar.set_subtitle (game_file.get_basename ());
                 disable_window_action (SAVE_GAME_ACTION_NAME);
@@ -2303,18 +2290,18 @@ Copyright © 2015–2016 Sahil Sareen""";
             }
             catch (Error e)
             {
-                warning ("Failed to save game: %s", e.message);
-                save_dialog_error_label.set_text (_("Failed to save game"));
-                save_dialog_info_bar.set_message_type (Gtk.MessageType.ERROR);
-                save_dialog_info_bar.show ();
-                return;
+                var error_dialog = new Gtk.MessageDialog (window,
+                                                          Gtk.DialogFlags.MODAL,
+                                                          Gtk.MessageType.ERROR,
+                                                          Gtk.ButtonsType.NONE,
+                                                          _("Failed to save game: %s"),
+                                                          e.message);
+                error_dialog.add_button (_("_OK"), Gtk.ResponseType.OK);
+
+                error_dialog.run ();
+                error_dialog.destroy ();
             }
         }
-
-        save_dialog.destroy ();
-        save_dialog = null;
-        save_dialog_info_bar = null;
-        save_dialog_error_label = null;
     }
 
     private void present_save_dialog (string cancel_button_label = N_("_Cancel"),
@@ -2332,7 +2319,6 @@ Copyright © 2015–2016 Sahil Sareen""";
                                                  window, Gtk.FileChooserAction.SAVE,
                                                  _(cancel_button_label), Gtk.ResponseType.CANCEL,
                                                  _(save_button_label), Gtk.ResponseType.OK, null);
-        add_info_bar_to_bin (save_dialog, out save_dialog_info_bar, out save_dialog_error_label);
 
         save_dialog.file_activated.connect (() => save_dialog_cb (Gtk.ResponseType.OK));
         save_dialog.response.connect (save_dialog_cb);
@@ -2402,7 +2388,6 @@ Copyright © 2015–2016 Sahil Sareen""";
                                                  window, Gtk.FileChooserAction.OPEN,
                                                  _("_Cancel"), Gtk.ResponseType.CANCEL,
                                                  _("_Open"), Gtk.ResponseType.OK, null);
-        add_info_bar_to_bin (open_dialog, out open_dialog_info_bar, out open_dialog_error_label);
 
         open_dialog.file_activated.connect (() => open_dialog_cb (Gtk.ResponseType.OK));
         open_dialog.response.connect (open_dialog_cb);
@@ -2427,25 +2412,12 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         if (response_id == Gtk.ResponseType.OK)
         {
-            try
-            {
-                game_file = open_dialog.get_file ();
-                load_game (game_file);
-            }
-            catch (Error e)
-            {
-                warning ("Failed to open game: %s", e.message);
-                open_dialog_error_label.set_text (_("Failed to open game"));
-                open_dialog_info_bar.set_message_type (Gtk.MessageType.ERROR);
-                open_dialog_info_bar.show ();
-                return;
-            }
-        }
+            game_file = open_dialog.get_file ();
+            open_dialog.destroy ();
+            open_dialog = null;
 
-        open_dialog.destroy ();
-        open_dialog = null;
-        open_dialog_info_bar = null;
-        open_dialog_error_label = null;
+            load_game (game_file);
+        }
     }
 
     private void start_new_game ()
@@ -2506,12 +2478,19 @@ Copyright © 2015–2016 Sahil Sareen""";
         start_game ();
     }
 
-    private void load_game (File file) throws Error
+    private void load_game (File file)
     {
         enable_window_action (NEW_GAME_ACTION_NAME);
 
-        var pgn = new PGN.from_file (file);
-        pgn_game = pgn.games.nth_data (0);
+        try
+        {
+            var pgn = new PGN.from_file (file);
+            pgn_game = pgn.games.nth_data (0);
+        }
+        catch (Error e)
+        {
+            pgn_game = null;
+        }
 
         if (pgn_game == null)
         {
