@@ -138,6 +138,11 @@
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <child>
+          <object class="GtkInfoBar" id="info_bar">
+            <property name="visible">False</property>
+          </object>
+        </child>
+        <child>
           <object class="GtkBox" id="view_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>

@@ -20,6 +20,7 @@ public class ChessApplication : Gtk.Application
 
     private Settings settings;
     private Gtk.ApplicationWindow window;
+    private Gtk.InfoBar info_bar;
     private Gtk.Container view_container;
     private ChessScene scene;
     private ChessView view;
@@ -122,17 +123,14 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     private void display_no_engine_info_bar ()
     {
-        Gtk.InfoBar? no_engine_info_bar = null;
-        Gtk.Label? no_engine_error_label = null;
-        // Info bar to indicate no chess engines are installed
-        add_info_bar_to_bin (window, out no_engine_info_bar, out no_engine_error_label);
+        var label = new Gtk.Label (_("No chess engine is installed. You will not be able to play against the computer."));
+        label.show ();
 
-        no_engine_error_label.set_text (_("No chess engine is installed. " +
-          "You will not be able to play against the computer."));
-        no_engine_info_bar.set_message_type (Gtk.MessageType.ERROR);
-        no_engine_info_bar.show ();
-        no_engine_info_bar.set_show_close_button (true);
-        no_engine_info_bar.response.connect (() => no_engine_info_bar.hide ());
+        info_bar.get_content_area ().add (label);
+        info_bar.set_message_type (Gtk.MessageType.ERROR);
+        info_bar.set_show_close_button (true);
+        info_bar.response.connect (() => info_bar.destroy ());
+        info_bar.show ();
     }
 
     public override void startup ()
@@ -151,6 +149,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         window.size_allocate.connect (size_allocate_cb);
         window.window_state_event.connect (window_state_event_cb);
 
+        info_bar = (Gtk.InfoBar) builder.get_object ("info_bar");
         pause_resume_button = (Gtk.Button) builder.get_object ("pause_button");
         first_move_button = (Gtk.Widget) builder.get_object ("first_move_button");
         prev_move_button = (Gtk.Widget) builder.get_object ("prev_move_button");
@@ -2237,28 +2236,6 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         about_dialog.destroy ();
         about_dialog = null;
-    }
-
-    private void add_info_bar_to_bin (Gtk.Bin bin, out Gtk.InfoBar info_bar, out Gtk.Label label)
-    {
-        var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        vbox.show ();
-
-        info_bar = new Gtk.InfoBar ();
-        var content_area = (Gtk.Container) info_bar.get_content_area ();
-        vbox.pack_start (info_bar, false, true, 0);
-
-        label = new Gtk.Label ("");
-        content_area.add (label);
-        label.show ();
-
-        var child = (Gtk.Container) bin.get_child ();
-        child.reparent (vbox);
-        child.border_width = bin.border_width;
-        bin.border_width = 0;
-
-        vbox.set_child_packing (child, true, true, 0, Gtk.PackType.START);
-        bin.add (vbox);
     }
 
     private void update_pgn_time_remaining ()
