@@ -1423,8 +1423,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         }
         else if (result == Gtk.ResponseType.YES)
         {
-            /* Your very last chance to save */
-            present_save_dialog (_("_Discard"), _("_Save"));
+            present_save_dialog ();
         }
         else
         {
@@ -2248,8 +2247,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         }
     }
 
-    private void present_save_dialog (string cancel_button_label = N_("_Cancel"),
-                                      string save_button_label = N_("_Save"))
+    private void present_save_dialog ()
     {
         /* Show active dialog */
         if (save_dialog == null)
@@ -2257,8 +2255,8 @@ Copyright © 2015–2016 Sahil Sareen""";
             save_dialog = new Gtk.FileChooserNative (/* Title of save game dialog */
                                                      _("Save Chess Game"),
                                                      window, Gtk.FileChooserAction.SAVE,
-                                                     _(save_button_label),
-                                                     _(cancel_button_label));
+                                                     _("_Save"),
+                                                     _("_Cancel"));
 
             if (game_file != null && game_file.get_path () != autosave_filename)
                 save_dialog.set_filename (game_file.get_path ());
