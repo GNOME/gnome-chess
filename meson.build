@@ -39,7 +39,7 @@ has_prctl = meson.get_compiler('c').has_header('sys/prctl.h')
 
 # Configuration
 conf = configuration_data()
-conf.set10('HAVE_PRCTL', has_prctl)
+conf.set10('HAVE_LINUX_PRCTL_H', has_prctl)
 conf.set_quoted('GETTEXT_PACKAGE', meson.project_name())
 conf.set_quoted('LOCALEDIR', localedir)
 conf.set_quoted('PACKAGE_NAME', meson.project_name())
