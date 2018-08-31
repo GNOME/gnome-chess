@@ -5,22 +5,21 @@
 # Peteris Krisjanis <peteris.krisjanis@os.lv>, 2002.
 # Raivis Dejus <orvils@gmail.com>, 2006, 2007.
 # Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2010, 2011.
-# Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011, 2012, 2013, 2014, 2016, 2017.
+# Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011, 2012, 2013, 2014, 2016, 2017, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: lv\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-02-28 06:53+0000\n"
-"PO-Revision-Date: 2017-03-18 14:34+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
+"POT-Creation-Date: 2018-08-16 17:35+0000\n"
+"PO-Revision-Date: 2018-08-31 20:53+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
-"2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 :"
+" 2);\n"
 "X-Generator: Lokalize 2.0\n"
 "X-Poedit-Language: Latvian\n"
 "X-Poedit-Country: LATVIA\n"
@@ -56,7 +55,7 @@ msgid "The GNOME Project"
 msgstr "GNOME projekts"
 
 #: data/gnome-chess.desktop.in:3 data/gnome-chess.ui:21
-#: src/gnome-chess.vala:2197 src/gnome-chess.vala:2540
+#: src/gnome-chess.vala:2194 src/gnome-chess.vala:2480
 msgid "Chess"
 msgstr "Šahs"
 
@@ -95,22 +94,22 @@ msgid "Open a saved game"
 msgstr "Atvērt saglabātu spēli"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
-#: data/gnome-chess.ui:168
+#: data/gnome-chess.ui:173
 msgid "Rewind to the game start"
 msgstr "Pārtīt uz spēles sākumu"
 
 #. Tooltip on the show previous move navigation button
-#: data/gnome-chess.ui:195
+#: data/gnome-chess.ui:200
 msgid "Show the previous move"
 msgstr "Parādīt iepriekšējo gājienu"
 
 #. Tooltip on the show next move navigation button
-#: data/gnome-chess.ui:222
+#: data/gnome-chess.ui:227
 msgid "Show the next move"
 msgstr "Parādīt nākamo gājienu"
 
 #. Tooltip on the show current move navigation button
-#: data/gnome-chess.ui:249
+#: data/gnome-chess.ui:254
 msgid "Show the current move"
 msgstr "Parādīt pašreizējo gājienu"
 
@@ -519,526 +518,543 @@ msgid "Paused"
 msgstr "Apturēts"
 
 #. Help string for command line --version flag
-#: src/gnome-chess.vala:103
+#: src/gnome-chess.vala:100
 msgid "Show release version"
 msgstr "Rādīt laidiena versiju"
 
-#. Info bar to indicate no chess engines are installed
-#: src/gnome-chess.vala:134
+#: src/gnome-chess.vala:126
 msgid ""
 "No chess engine is installed. You will not be able to play against the "
 "computer."
 msgstr "Nav instalētu šaha dziņu. Jūs nevarēsiet spēlēt pret datoru."
 
 #. May print when started on the command line; a PGN is a saved game file.
-#: src/gnome-chess.vala:220
+#: src/gnome-chess.vala:215
 msgid "GNOME Chess can only open one PGN at a time."
 msgstr "GNOME šahs vienlaicīgi var atvērt tikai vienu PGN."
 
 #. Move History Combo: Go to the start of the game
-#: src/gnome-chess.vala:458
+#: src/gnome-chess.vala:441
 msgid "Game Start"
 msgstr "Spēles sākums"
 
 #. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
 #. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
-#: src/gnome-chess.vala:886
+#: src/gnome-chess.vala:866
 #, c-format
 msgid "White pawn moves from %1$s to %2$s"
 msgstr "Baltais bandinieks iet no %1$s uz %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
-#: src/gnome-chess.vala:888
+#: src/gnome-chess.vala:868
 #, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s"
 msgstr "Baltais bandinieks no %1$s ņem melno bandinieku uz %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
-#: src/gnome-chess.vala:890
+#: src/gnome-chess.vala:870
 #, c-format
 msgid "White pawn at %1$s takes the black rook at %2$s"
 msgstr "Baltais bandinieks no %1$s ņem melno torni uz %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
-#: src/gnome-chess.vala:892
+#: src/gnome-chess.vala:872
 #, c-format
 msgid "White pawn at %1$s takes the black knight at %2$s"
 msgstr "Baltais bandinieks no %1$s ņem melno zirdziņu uz %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
-#: src/gnome-chess.vala:894
+#: src/gnome-chess.vala:874
 #, c-format
 msgid "White pawn at %1$s takes the black bishop at %2$s"
 msgstr "Baltais bandinieks no %1$s ņem melno laidni uz %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
-#: src/gnome-chess.vala:896
+#: src/gnome-chess.vala:876
 #, c-format
 msgid "White pawn at %1$s takes the black queen at %2$s"
 msgstr "Baltais bandinieks no %1$s ņem melno dāmu uz %2$s"
 
 #. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
-#: src/gnome-chess.vala:898
+#: src/gnome-chess.vala:878
 #, c-format
 msgid "White rook moves from %1$s to %2$s"
 msgstr "Baltais tornis iet no %1$s uz %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
-#: src/gnome-chess.vala:900
+#: src/gnome-chess.vala:880
 #, c-format
 msgid "White rook at %1$s takes the black pawn at %2$s"
 msgstr "Baltais tornis no %1$s ņem melno bandinieku uz %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
-#: src/gnome-chess.vala:902
+#: src/gnome-chess.vala:882
 #, c-format
 msgid "White rook at %1$s takes the black rook at %2$s"
 msgstr "Baltais tornis no %1$s ņem melno torni uz %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
-#: src/gnome-chess.vala:904
+#: src/gnome-chess.vala:884
 #, c-format
 msgid "White rook at %1$s takes the black knight at %2$s"
 msgstr "Baltais tornis no %1$s ņem melno zirdziņu uz %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
-#: src/gnome-chess.vala:906
+#: src/gnome-chess.vala:886
 #, c-format
 msgid "White rook at %1$s takes the black bishop at %2$s"
 msgstr "Baltais tornis no %1$s ņem melno laidni uz %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
-#: src/gnome-chess.vala:908
+#: src/gnome-chess.vala:888
 #, c-format
 msgid "White rook at %1$s takes the black queen at %2$s"
 msgstr "Baltais tornis no %1$s ņem melno dāmu uz %2$s"
 
 #. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
-#: src/gnome-chess.vala:910
+#: src/gnome-chess.vala:890
 #, c-format
 msgid "White knight moves from %1$s to %2$s"
 msgstr "Baltais zirdziņš iet no %1$s uz %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
-#: src/gnome-chess.vala:912
+#: src/gnome-chess.vala:892
 #, c-format
 msgid "White knight at %1$s takes the black pawn at %2$s"
 msgstr "Baltais zirdziņš no %1$s ņem melno bandinieku uz %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
-#: src/gnome-chess.vala:914
+#: src/gnome-chess.vala:894
 #, c-format
 msgid "White knight at %1$s takes the black rook at %2$s"
 msgstr "Baltais zirdziņš no %1$s ņem melno torni uz %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
-#: src/gnome-chess.vala:916
+#: src/gnome-chess.vala:896
 #, c-format
 msgid "White knight at %1$s takes the black knight at %2$s"
 msgstr "Baltais zirdziņš no %1$s ņem melno zirdziņu uz %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
-#: src/gnome-chess.vala:918
+#: src/gnome-chess.vala:898
 #, c-format
 msgid "White knight at %1$s takes the black bishop at %2$s"
 msgstr "Baltais zirdziņš no %1$s ņem melno laidni uz %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
-#: src/gnome-chess.vala:920
+#: src/gnome-chess.vala:900
 #, c-format
 msgid "White knight at %1$s takes the black queen at %2$s"
 msgstr "Baltais zirdziņš no %1$s ņem melno dāmu uz %2$s"
 
 #. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
-#: src/gnome-chess.vala:922
+#: src/gnome-chess.vala:902
 #, c-format
 msgid "White bishop moves from %1$s to %2$s"
 msgstr "Baltais laidnis iet no %1$s uz %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
-#: src/gnome-chess.vala:924
+#: src/gnome-chess.vala:904
 #, c-format
 msgid "White bishop at %1$s takes the black pawn at %2$s"
 msgstr "Baltais laidnis no %1$s ņem melno bandinieku uz %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
-#: src/gnome-chess.vala:926
+#: src/gnome-chess.vala:906
 #, c-format
 msgid "White bishop at %1$s takes the black rook at %2$s"
 msgstr "Baltais laidnis no %1$s ņem melno torni uz %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
-#: src/gnome-chess.vala:928
+#: src/gnome-chess.vala:908
 #, c-format
 msgid "White bishop at %1$s takes the black knight at %2$s"
 msgstr "Baltais laidnis no %1$s ņem melno zirdziņu uz %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
-#: src/gnome-chess.vala:930
+#: src/gnome-chess.vala:910
 #, c-format
 msgid "White bishop at %1$s takes the black bishop at %2$s"
 msgstr "Baltais laidnis no %1$s ņem melno laidni uz %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
-#: src/gnome-chess.vala:932
+#: src/gnome-chess.vala:912
 #, c-format
 msgid "White bishop at %1$s takes the black queen at %2$s"
 msgstr "Baltais laidnis no %1$s ņem melno dāmu uz %2$s"
 
 #. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
-#: src/gnome-chess.vala:934
+#: src/gnome-chess.vala:914
 #, c-format
 msgid "White queen moves from %1$s to %2$s"
 msgstr "Baltā dāma iet no %1$s uz %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
-#: src/gnome-chess.vala:936
+#: src/gnome-chess.vala:916
 #, c-format
 msgid "White queen at %1$s takes the black pawn at %2$s"
 msgstr "Baltā dāma no %1$s ņem melno bandinieku uz %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
-#: src/gnome-chess.vala:938
+#: src/gnome-chess.vala:918
 #, c-format
 msgid "White queen at %1$s takes the black rook at %2$s"
 msgstr "Baltā dāma no %1$s ņem melno torni uz %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
-#: src/gnome-chess.vala:940
+#: src/gnome-chess.vala:920
 #, c-format
 msgid "White queen at %1$s takes the black knight at %2$s"
 msgstr "Baltā dāma no %1$s ņem melno zirdziņu uz %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
-#: src/gnome-chess.vala:942
+#: src/gnome-chess.vala:922
 #, c-format
 msgid "White queen at %1$s takes the black bishop at %2$s"
 msgstr "Baltā dāma no %1$s ņem melno laidni uz %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
-#: src/gnome-chess.vala:944
+#: src/gnome-chess.vala:924
 #, c-format
 msgid "White queen at %1$s takes the black queen at %2$s"
 msgstr "Baltā dāma no %1$s ņem melno dāmu uz %2$s"
 
 #. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
-#: src/gnome-chess.vala:946
+#: src/gnome-chess.vala:926
 #, c-format
 msgid "White king moves from %1$s to %2$s"
 msgstr "Baltais karalis iet no %1$s uz %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
-#: src/gnome-chess.vala:948
+#: src/gnome-chess.vala:928
 #, c-format
 msgid "White king at %1$s takes the black pawn at %2$s"
 msgstr "Baltais karalis no %1$s ņem melno bandinieku uz %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
-#: src/gnome-chess.vala:950
+#: src/gnome-chess.vala:930
 #, c-format
 msgid "White king at %1$s takes the black rook at %2$s"
 msgstr "Baltais karalis no %1$s ņem melno torni uz %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
-#: src/gnome-chess.vala:952
+#: src/gnome-chess.vala:932
 #, c-format
 msgid "White king at %1$s takes the black knight at %2$s"
 msgstr "Baltais karalis no %1$s ņem melno zirdziņu uz %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
-#: src/gnome-chess.vala:954
+#: src/gnome-chess.vala:934
 #, c-format
 msgid "White king at %1$s takes the black bishop at %2$s"
 msgstr "Baltais karalis no %1$s ņem melno laidni uz %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
-#: src/gnome-chess.vala:956
+#: src/gnome-chess.vala:936
 #, c-format
 msgid "White king at %1$s takes the black queen at %2$s"
 msgstr "Baltais karalis no %1$s ņem melno dāmu uz %2$s"
 
 #. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
-#: src/gnome-chess.vala:958
+#: src/gnome-chess.vala:938
 #, c-format
 msgid "Black pawn moves from %1$s to %2$s"
 msgstr "Melnais bandinieks iet no %1$s uz %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
-#: src/gnome-chess.vala:960
+#: src/gnome-chess.vala:940
 #, c-format
 msgid "Black pawn at %1$s takes the white pawn at %2$s"
 msgstr "Melnais bandinieks no %1$s ņem balto bandinieku uz %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
-#: src/gnome-chess.vala:962
+#: src/gnome-chess.vala:942
 #, c-format
 msgid "Black pawn at %1$s takes the white rook at %2$s"
 msgstr "Melnais bandinieks no %1$s ņem balto torni uz %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
-#: src/gnome-chess.vala:964
+#: src/gnome-chess.vala:944
 #, c-format
 msgid "Black pawn at %1$s takes the white knight at %2$s"
 msgstr "Melnais bandinieks no %1$s ņem balto zirdziņu uz %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
-#: src/gnome-chess.vala:966
+#: src/gnome-chess.vala:946
 #, c-format
 msgid "Black pawn at %1$s takes the white bishop at %2$s"
 msgstr "Melnais bandinieks no %1$s ņem balto laidni uz %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
-#: src/gnome-chess.vala:968
+#: src/gnome-chess.vala:948
 #, c-format
 msgid "Black pawn at %1$s takes the white queen at %2$s"
 msgstr "Melnais bandinieks no %1$s ņem balto dāmu uz %2$s"
 
 #. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
-#: src/gnome-chess.vala:970
+#: src/gnome-chess.vala:950
 #, c-format
 msgid "Black rook moves from %1$s to %2$s"
 msgstr "Melnais tornis iet no %1$s uz %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
-#: src/gnome-chess.vala:972
+#: src/gnome-chess.vala:952
 #, c-format
 msgid "Black rook at %1$s takes the white pawn at %2$s"
 msgstr "Melnais tornis no %1$s ņem balto bandinieku uz %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
-#: src/gnome-chess.vala:974
+#: src/gnome-chess.vala:954
 #, c-format
 msgid "Black rook at %1$s takes the white rook at %2$s"
 msgstr "Melnais tornis no %1$s ņem balto torni uz %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
-#: src/gnome-chess.vala:976
+#: src/gnome-chess.vala:956
 #, c-format
 msgid "Black rook at %1$s takes the white knight at %2$s"
 msgstr "Melnais tornis no %1$s ņem balto zirdziņu uz %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
-#: src/gnome-chess.vala:978
+#: src/gnome-chess.vala:958
 #, c-format
 msgid "Black rook at %1$s takes the white bishop at %2$s"
 msgstr "Melnais tornis no %1$s ņem balto laidni uz %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
-#: src/gnome-chess.vala:980
+#: src/gnome-chess.vala:960
 #, c-format
 msgid "Black rook at %1$s takes the white queen at %2$s"
 msgstr "Melnais tornis no %1$s ņem balto dāmu uz %2$s"
 
 #. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
-#: src/gnome-chess.vala:982
+#: src/gnome-chess.vala:962
 #, c-format
 msgid "Black knight moves from %1$s to %2$s"
 msgstr "Melnais zirdziņš iet no %1$s uz %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
-#: src/gnome-chess.vala:984
+#: src/gnome-chess.vala:964
 #, c-format
 msgid "Black knight at %1$s takes the white pawn at %2$s"
 msgstr "Melnais zirdziņš no %1$s ņem balto bandinieku uz %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
-#: src/gnome-chess.vala:986
+#: src/gnome-chess.vala:966
 #, c-format
 msgid "Black knight at %1$s takes the white rook at %2$s"
 msgstr "Melnais zirdziņš no %1$s ņem balto torni uz %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
-#: src/gnome-chess.vala:988
+#: src/gnome-chess.vala:968
 #, c-format
 msgid "Black knight at %1$s takes the white knight at %2$s"
 msgstr "Melnais zirdziņš no %1$s ņem balto zirdziņu uz %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
-#: src/gnome-chess.vala:990
+#: src/gnome-chess.vala:970
 #, c-format
 msgid "Black knight at %1$s takes the white bishop at %2$s"
 msgstr "Melnais zirdziņš no %1$s ņem balto laidni uz %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
-#: src/gnome-chess.vala:992
+#: src/gnome-chess.vala:972
 #, c-format
 msgid "Black knight at %1$s takes the white queen at %2$s"
 msgstr "Melnais zirdziņš no %1$s ņem balto dāmu uz %2$s"
 
 #. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
-#: src/gnome-chess.vala:994
+#: src/gnome-chess.vala:974
 #, c-format
 msgid "Black bishop moves from %1$s to %2$s"
 msgstr "Melnais laidnis iet no %1$s uz %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
-#: src/gnome-chess.vala:996
+#: src/gnome-chess.vala:976
 #, c-format
 msgid "Black bishop at %1$s takes the white pawn at %2$s"
 msgstr "Melnais laidnis no %1$s ņem balto bandinieku uz %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
-#: src/gnome-chess.vala:998
+#: src/gnome-chess.vala:978
 #, c-format
 msgid "Black bishop at %1$s takes the white rook at %2$s"
 msgstr "Melnais laidnis no %1$s ņem balto torni uz %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
-#: src/gnome-chess.vala:1000
+#: src/gnome-chess.vala:980
 #, c-format
 msgid "Black bishop at %1$s takes the white knight at %2$s"
 msgstr "Melnais laidnis no %1$s ņem balto zirdziņu uz %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
-#: src/gnome-chess.vala:1002
+#: src/gnome-chess.vala:982
 #, c-format
 msgid "Black bishop at %1$s takes the white bishop at %2$s"
 msgstr "Melnais laidnis no %1$s ņem balto laidni uz %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
-#: src/gnome-chess.vala:1004
+#: src/gnome-chess.vala:984
 #, c-format
 msgid "Black bishop at %1$s takes the white queen at %2$s"
 msgstr "Melnais laidnis no %1$s ņem balto dāmu uz %2$s"
 
 #. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
-#: src/gnome-chess.vala:1006
+#: src/gnome-chess.vala:986
 #, c-format
 msgid "Black queen moves from %1$s to %2$s"
 msgstr "Melnā dāma iet no %1$s uz %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
-#: src/gnome-chess.vala:1008
+#: src/gnome-chess.vala:988
 #, c-format
 msgid "Black queen at %1$s takes the white pawn at %2$s"
 msgstr "Melnā dāma no %1$s ņem balto bandinieku uz %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
-#: src/gnome-chess.vala:1010
+#: src/gnome-chess.vala:990
 #, c-format
 msgid "Black queen at %1$s takes the white rook at %2$s"
 msgstr "Melnā dāma no %1$s ņem balto torni uz %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
-#: src/gnome-chess.vala:1012
+#: src/gnome-chess.vala:992
 #, c-format
 msgid "Black queen at %1$s takes the white knight at %2$s"
 msgstr "Melnā dāma no %1$s ņem balto zirdziņu uz %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
-#: src/gnome-chess.vala:1014
+#: src/gnome-chess.vala:994
 #, c-format
 msgid "Black queen at %1$s takes the white bishop at %2$s"
 msgstr "Melnā dāma no %1$s ņem balto laidni uz %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
-#: src/gnome-chess.vala:1016
+#: src/gnome-chess.vala:996
 #, c-format
 msgid "Black queen at %1$s takes the white queen at %2$s"
 msgstr "Melnā dāma no %1$s ņem balto dāmu uz %2$s"
 
 #. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
-#: src/gnome-chess.vala:1018
+#: src/gnome-chess.vala:998
 #, c-format
 msgid "Black king moves from %1$s to %2$s"
 msgstr "Melnais karalis iet no %1$s uz %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
-#: src/gnome-chess.vala:1020
+#: src/gnome-chess.vala:1000
 #, c-format
 msgid "Black king at %1$s takes the white pawn at %2$s"
 msgstr "Melnais karalis no %1$s ņem balto bandinieku uz %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
-#: src/gnome-chess.vala:1022
+#: src/gnome-chess.vala:1002
 #, c-format
 msgid "Black king at %1$s takes the white rook at %2$s"
 msgstr "Melnais karalis no %1$s ņem balto torni uz %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
-#: src/gnome-chess.vala:1024
+#: src/gnome-chess.vala:1004
 #, c-format
 msgid "Black king at %1$s takes the white knight at %2$s"
 msgstr "Melnais karalis no %1$s ņem balto zirdziņu uz %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
-#: src/gnome-chess.vala:1026
+#: src/gnome-chess.vala:1006
 #, c-format
 msgid "Black king at %1$s takes the white bishop at %2$s"
 msgstr "Melnais karalis no %1$s ņem balto laidni uz %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
-#: src/gnome-chess.vala:1028
+#: src/gnome-chess.vala:1008
 #, c-format
 msgid "Black king at %1$s takes the white queen at %2$s"
 msgstr "Melnais karalis no %1$s ņem balto dāmu uz %2$s"
 
-#: src/gnome-chess.vala:1051
+#: src/gnome-chess.vala:1017
+#| msgid "White pawn at %1$s takes the black pawn at %2$s"
+msgid "White pawn captures black pawn en passant"
+msgstr "Baltais bandinieks ņem melno bandinieku garāmejot"
+
+#: src/gnome-chess.vala:1019
+#| msgid "Black pawn at %1$s takes the white pawn at %2$s"
+msgid "Black pawn captures white pawn en passant"
+msgstr "Melnais bandinieks ņem balto bandinieku garāmejot"
+
+#: src/gnome-chess.vala:1024
 msgid "White castles kingside"
 msgstr "Baltais veic rokādi karaļa pusē"
 
-#: src/gnome-chess.vala:1055
+#: src/gnome-chess.vala:1026
 msgid "White castles queenside"
 msgstr "Baltais veic rokādi dāmas pusē"
 
-#: src/gnome-chess.vala:1059
+#: src/gnome-chess.vala:1028
 msgid "Black castles kingside"
 msgstr "Melnais veic rokādi karaļa pusē"
 
-#: src/gnome-chess.vala:1063
+#: src/gnome-chess.vala:1030
 msgid "Black castles queenside"
 msgstr "Melnais veic rokādi dāmas pusē"
 
 #. Window title on a White human's turn if he is in check
-#: src/gnome-chess.vala:1206
+#: src/gnome-chess.vala:1196
 msgid "White is in Check"
 msgstr "Baltajam ir šahs"
 
 #. Window title on a Black human's turn if he is in check
-#: src/gnome-chess.vala:1209
+#: src/gnome-chess.vala:1199
 msgid "Black is in Check"
 msgstr "Melnajam ir šahs"
 
+#: src/gnome-chess.vala:1205
+msgid "Black performed an en passant capture"
+msgstr "Melnais paņēma garāmejot"
+
+#: src/gnome-chess.vala:1207
+msgid "White performed an en passant capture"
+msgstr "Baltais paņēma garāmejot"
+
 #. Window title on White's turn if White is human
-#: src/gnome-chess.vala:1215
+#: src/gnome-chess.vala:1213
 msgid "White to Move"
 msgstr "Baltā gājiens"
 
 #. Window title on White's turn if White is a computer
-#: src/gnome-chess.vala:1218
+#: src/gnome-chess.vala:1216
 msgid "White is Thinking…"
 msgstr "Baltais domā…"
 
 #. Window title on Black's turn if Black is human
-#: src/gnome-chess.vala:1224
+#: src/gnome-chess.vala:1222
 msgid "Black to Move"
 msgstr "Melnā gājiens"
 
 #. Window title on Black's turn if Black is a computer
-#: src/gnome-chess.vala:1227
+#: src/gnome-chess.vala:1225
 msgid "Black is Thinking…"
 msgstr "Melnais domā…"
 
-#: src/gnome-chess.vala:1242
+#: src/gnome-chess.vala:1240
 msgid "Unpause the game"
 msgstr "Turpināt spēli"
 
-#: src/gnome-chess.vala:1248
+#: src/gnome-chess.vala:1246
 msgid "Pause the game"
 msgstr "Pauzēt spēli"
 
 #. Window title when the white player wins
-#: src/gnome-chess.vala:1271
+#: src/gnome-chess.vala:1269
 msgid "White Wins"
 msgstr "Balto puse uzvar"
 
 #. Window title when the black player wins
-#: src/gnome-chess.vala:1276
+#: src/gnome-chess.vala:1274
 msgid "Black Wins"
 msgstr "Melno puse uzvar"
 
 #. Window title when the game is drawn
-#: src/gnome-chess.vala:1281
+#: src/gnome-chess.vala:1279
 msgid "Game is Drawn"
 msgstr "Spēle beidzās ar neizšķirtu"
 
@@ -1050,168 +1066,159 @@ msgstr "Spēle beidzās ar neizšķirtu"
 #. * because the pause button eats up some of your space, start a new game,
 #. * then run 'killall gnuchess' in a terminal.
 #.
-#: src/gnome-chess.vala:1293
+#: src/gnome-chess.vala:1291
 msgid "Oops! Something has gone wrong."
 msgstr "Ak vai! Kaut kas nogāja greizi."
 
 #. Window subtitle when Black is checkmated
-#: src/gnome-chess.vala:1306
+#: src/gnome-chess.vala:1304
 msgid "Black is in check and cannot move."
 msgstr "Melnajam ir šahs un tas nevar veikt gājienu."
 
 #. Window subtitle when White is checkmated
-#: src/gnome-chess.vala:1309
+#: src/gnome-chess.vala:1307
 msgid "White is in check and cannot move."
 msgstr "Baltajam ir šahs un tas nevar veikt gājienu."
 
 #. Window subtitle when the game terminates due to a stalemate
-#: src/gnome-chess.vala:1315
+#: src/gnome-chess.vala:1313
 msgid "Opponent cannot move."
 msgstr "Pretinieks nevar veikt gājienu."
 
 #. Window subtitle when the game is drawn due to the fifty move rule
-#: src/gnome-chess.vala:1319
+#: src/gnome-chess.vala:1317
 msgid "No piece was taken or pawn moved in fifty moves."
 msgstr ""
 "Neviens kauliņš nav paņemts vai bandinieks pagājis pēdējos piecdesmit "
 "gājienos."
 
 #. Window subtitle when the game is drawn due to the 75 move rule
-#: src/gnome-chess.vala:1323
+#: src/gnome-chess.vala:1321
 msgid "No piece was taken or pawn moved in 75 moves."
 msgstr ""
 "Neviens kauliņš nav paņemts vai bandinieks pagājis pēdējos 75 gājienos."
 
 #. Window subtitle when the game ends due to Black's clock stopping
-#: src/gnome-chess.vala:1328
+#: src/gnome-chess.vala:1326
 msgid "Black has run out of time."
 msgstr "Melnajiem beidzās laiks."
 
 #. Window subtitle when the game ends due to White's clock stopping
-#: src/gnome-chess.vala:1331
+#: src/gnome-chess.vala:1329
 msgid "White has run out of time."
 msgstr "Baltajiem beidzās laiks."
 
 #. Window subtitle when the game is drawn due to the three-fold-repetition rule
-#: src/gnome-chess.vala:1337
+#: src/gnome-chess.vala:1335
 msgid "The same board state has occurred three times."
 msgstr "Tāds pats galdiņa stāvoklis ir atkārtojies trīs reizes."
 
 #. Window subtitle when the game is drawn due to the five-fold-repetition rule
-#: src/gnome-chess.vala:1341
+#: src/gnome-chess.vala:1339
 msgid "The same board state has occurred five times."
 msgstr "Tāds pats galdiņa stāvoklis ir atkārtojies piecas reizes."
 
 #. Window subtitle when the game is drawn due to the insufficient material rule
-#: src/gnome-chess.vala:1345
+#: src/gnome-chess.vala:1343
 msgid "Neither player can checkmate."
 msgstr "Neviens spēlētājs nevar pieteikt šahu un matu."
 
 #. Window subtitle when the game ends due to the black player resigning
-#: src/gnome-chess.vala:1350
+#: src/gnome-chess.vala:1348
 msgid "Black has resigned."
 msgstr "Melnie padevās."
 
 #. Window subtitle when the game ends due to the white player resigning
-#: src/gnome-chess.vala:1353
+#: src/gnome-chess.vala:1351
 msgid "White has resigned."
 msgstr "Baltie padevās."
 
 #. Window subtitle when a game is abandoned
-#: src/gnome-chess.vala:1359
+#: src/gnome-chess.vala:1357
 msgid "The game has been abandoned."
 msgstr "Spēle tika pamesta."
 
 #. Window subtitle when the game ends due to a player dying.
 #. * This is a PGN standard. GNOME Chess will never kill the user.
-#: src/gnome-chess.vala:1365
+#: src/gnome-chess.vala:1363
 msgid "The game log says a player died!"
 msgstr "Spēles žurnālā redzams, ka spēlētājs nomira!"
 
 #. Window subtitle when something goes wrong with the engine...
 #. * or when the engine says something is wrong with us!
-#: src/gnome-chess.vala:1371
+#: src/gnome-chess.vala:1369
 msgid "The computer player is confused. The game cannot continue."
 msgstr "Datora spēlētājs ir apjucis. Spēle nevar turpināties."
 
-#: src/gnome-chess.vala:1406 src/gnome-chess.vala:2314
-#: src/gnome-chess.vala:2397
+#: src/gnome-chess.vala:1404 src/gnome-chess.vala:2259
+#: src/gnome-chess.vala:2351
 msgid "_Cancel"
 msgstr "At_celt"
 
-#: src/gnome-chess.vala:1410
+#: src/gnome-chess.vala:1408
 msgid "_Abandon game"
 msgstr "P_amest spēli"
 
-#: src/gnome-chess.vala:1411
+#: src/gnome-chess.vala:1409
 msgid "_Save game for later"
 msgstr "_Saglabāt spēli vēlākam laikam"
 
-#: src/gnome-chess.vala:1415
+#: src/gnome-chess.vala:1413
 msgid "_Discard game"
 msgstr "_Atmest spēli"
 
-#: src/gnome-chess.vala:1416
+#: src/gnome-chess.vala:1414
 msgid "_Save game log"
 msgstr "_Saglabāt spēles žurnālu"
 
-#. Your very last chance to save
-#: src/gnome-chess.vala:1429
-msgid "_Discard"
-msgstr "_Atmest"
-
-#: src/gnome-chess.vala:1429 src/gnome-chess.vala:2315
-msgid "_Save"
-msgstr "_Saglabāt"
-
 #. Title of claim draw dialog
-#: src/gnome-chess.vala:1452
+#: src/gnome-chess.vala:1449
 msgid "Would you like to claim a draw?"
 msgstr "Vai vēlaties pieteikt neizšķirtu?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: src/gnome-chess.vala:1458
+#: src/gnome-chess.vala:1455
 msgid "Fifty moves have passed without a capture or pawn advancement."
 msgstr "Ir pagājuši 50 gājieni bez paņemšanas vai bandinieka pavirzīšanās"
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: src/gnome-chess.vala:1463
+#: src/gnome-chess.vala:1460
 msgid "The current board position has occurred three times."
 msgstr "Pašreizējais gadiņa izkārtojums ir atkārtojies trīs reizes."
 
 #. Option in claim draw dialog
 #. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1470 src/gnome-chess.vala:1508
+#: src/gnome-chess.vala:1467 src/gnome-chess.vala:1505
 msgid "_Keep Playing"
 msgstr "_Turpināt spēlēt"
 
 #. Option in claim draw dialog
-#: src/gnome-chess.vala:1472
+#: src/gnome-chess.vala:1469
 msgid "_Claim Draw"
 msgstr "_Pieteikt neizšķiru"
 
-#: src/gnome-chess.vala:1490
+#: src/gnome-chess.vala:1487
 msgid "Save this game before starting a new one?"
 msgstr "Saglabāt šo spēli, pirms sākt jaunu?"
 
 #. Title of warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1503
+#: src/gnome-chess.vala:1500
 msgid "Are you sure you want to resign?"
 msgstr "Vai tiešām vēlaties padoties?"
 
 #. Text on warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1506
+#: src/gnome-chess.vala:1503
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr "Tam ir jēga, ja plānojat saglabāt spēli, kā sava zaudējuma protokolu."
 
 #. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1510
+#: src/gnome-chess.vala:1507
 msgid "_Resign"
 msgstr "_Padoties"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
 #. Preferences Dialog: Combo box entry for a custom clock type set in minutes
-#: src/gnome-chess.vala:2023 src/gnome-chess.vala:2064
+#: src/gnome-chess.vala:2020 src/gnome-chess.vala:2061
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minūte"
@@ -1219,7 +1226,7 @@ msgstr[1] "minūtes"
 msgstr[2] "minūšu"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: src/gnome-chess.vala:2027
+#: src/gnome-chess.vala:2024
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "stunda"
@@ -1227,71 +1234,80 @@ msgstr[1] "stundas"
 msgstr[2] "stundu"
 
 #. Preferences Dialog: Combo box entry for a custom clock type set in seconds
-#: src/gnome-chess.vala:2060
+#: src/gnome-chess.vala:2057
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "sekunde"
 msgstr[1] "sekundes"
 msgstr[2] "sekunžu"
 
-#: src/gnome-chess.vala:2201
+#: src/gnome-chess.vala:2198
 msgid "A classic game of positional strategy"
 msgstr "Klasiska pozīciju stratēģijas spēle."
 
-#: src/gnome-chess.vala:2204
+#: src/gnome-chess.vala:2201
 msgid "translator-credits"
 msgstr ""
 "Raivis Dejus <orvils@gmail.com>\n"
 "Sandra Zabarovska <sandra.zabarovska@gmail.com>\n"
 "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
 
-#: src/gnome-chess.vala:2217
+#: src/gnome-chess.vala:2214
 msgid "This does not look like a valid PGN game."
 msgstr "Tā neizskatās pēc derīgas PGN datnes."
 
-#: src/gnome-chess.vala:2218 src/gnome-chess.vala:2231
+#: src/gnome-chess.vala:2215 src/gnome-chess.vala:2228
+#: src/gnome-chess.vala:2305
 msgid "_OK"
 msgstr "_Labi"
 
-#: src/gnome-chess.vala:2301
-msgid "Failed to save game"
-msgstr "Neizdevās saglabāt spēli"
-
 #. Title of save game dialog
-#: src/gnome-chess.vala:2325
+#: src/gnome-chess.vala:2256
 msgid "Save Chess Game"
 msgstr "Saglabāt šaha spēli"
 
+#: src/gnome-chess.vala:2258
+msgid "_Save"
+msgstr "_Saglabāt"
+
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:2338
+#: src/gnome-chess.vala:2265
 msgid "Untitled Chess Game"
 msgstr "Nenosaukta šaha spēle"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:2343 src/gnome-chess.vala:2407
+#: src/gnome-chess.vala:2270 src/gnome-chess.vala:2356
 msgid "PGN files"
 msgstr "PGN datnes"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:2349 src/gnome-chess.vala:2413
+#: src/gnome-chess.vala:2276 src/gnome-chess.vala:2362
 msgid "All files"
 msgstr "Visas datnes"
 
-#: src/gnome-chess.vala:2384
+#: src/gnome-chess.vala:2303
+#, c-format
+#| msgid "Failed to save game"
+msgid "Failed to save game: %s"
+msgstr "Neizdevās saglabāt spēli: %s"
+
+#: src/gnome-chess.vala:2341
 msgid "Save this game before loading another one?"
 msgstr "Saglabāt šo spēli, pirms ielādēt nākamo?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:2395
+#: src/gnome-chess.vala:2348
 msgid "Load Chess Game"
 msgstr "Ielādē šaha spēli"
 
-#: src/gnome-chess.vala:2398
+#: src/gnome-chess.vala:2350
 msgid "_Open"
 msgstr "_Atvērt"
 
-#: src/gnome-chess.vala:2432
-msgid "Failed to open game"
-msgstr "Neizdevās atvērt spēli"
+#~ msgid "_Discard"
+#~ msgstr "_Atmest"
+
+#~ msgid "Failed to open game"
+#~ msgstr "Neizdevās atvērt spēli"
