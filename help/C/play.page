@@ -4,21 +4,42 @@
   <info>
     <link type="guide" xref="index#play" />
     <revision version="0.1" date="2011-12-10" status="stub"/>
+    <revision pkgversion="3.28" version="0.2" date="2018-09-05" status="review"/>
 
-    <credit type="author copyright">
-      <name></name>
-      <email></email>
-      <years>2011</years>
+    <credit type="author">
+      <name>Andre Klapper</name>
+      <email>ak-47@gmx.net</email>
     </credit>
 
     <desc></desc>
   </info>
 
-  <title>How to Play</title>
+  <title>How to play</title>
 
-<media type="image" src="./figures/game-3-28.png" width="600">
-  <p>The main window in <app>GNOME Chess</app></p>
-</media>
+  <p>The player who controls the white pieces is the first to move. Click on
+  the piece that you plan to move. If <link xref="change-look-feel"><gui>Move
+  hints</gui></link> has been enabled, the possible fields onto which the piece
+  can be moved will display the chosen piece in a transparent way. Click on the
+  field onto which you want to move the piece. Afterwards, it is the turn of
+  the <link xref="chess-engines">opponent</link>.</p>
 
+  <p>Starting GNOME Chess displays the main game window as shown below.</p>
+
+  <media type="image" src="./figures/game-3-28.png" width="600">
+    <p>The main window in <app>GNOME Chess</app></p>
+  </media>
+
+  <p>The main game window is organized in three main areas:</p>
+  <list>
+    <item><p>In the top menu, you can start a <gui style="button">New Game</gui>,
+    revert your last move(s), pause the game, <link xref="save-resume">save and
+    resume a game</link>, and resign.</p></item>
+    <item><p>The chess board is in the middle of the window, where the game is
+    played by moving pieces using the mouse.</p></item>
+    <item><p>At the bottom, the game history panel is shown and allows going
+    back, a dropdown lists the history of the performed moves, and on the right
+    the <link xref="timer">remaining move time for each player</link> is
+    displayed.</p></item>
+  </list>
 
 </page>
