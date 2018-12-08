@@ -1,12 +1,24 @@
 help_sources = [
-  'index.docbook',
-  'legal.xml',
+  'bug-filing.page',
+  'change-board-orientation.page',
+  'change-look-feel.page',
+  'chess-engines.page',
+  'develop.page',
+  'documentation.page',
+  'index.page',
+  'license.page',
+  'play.page',
+  'rules.page',
+  'save-resume.page',
+  'shortcuts.page',
+  'timer.page',
+  'translate.page',
 ]
 
 help_media = [
-  'figures/game-3-12.png',
-  'figures/preferences-game-3-12.png',
-  'figures/preferences-appearance-3-12.png',
+  'figures/game-3-28.png',
+  'figures/logo.png',
+  'figures/logo32.png',
 ]
 
 gnome.yelp(meson.project_name(),
