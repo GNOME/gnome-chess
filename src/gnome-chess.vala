@@ -140,6 +140,8 @@ Copyright © 2015–2016 Sahil Sareen""";
         settings = new Settings ("org.gnome.chess");
 
         add_action_entries (app_entries, this);
+        set_accels_for_action ("app.help", {"F1"});
+        set_accels_for_action ("app.quit", {"<Primary>q", "<Primary>w"});
         Gtk.Builder builder = new Gtk.Builder.from_resource ("/org/gnome/chess/ui/gnome-chess.ui");
 
         window = (Gtk.ApplicationWindow) builder.get_object ("gnome_chess_app");
