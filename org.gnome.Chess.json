@@ -1,13 +1,10 @@
 {
-    "app-id": "org.gnome.chess",
+    "app-id": "org.gnome.Chess",
     "runtime": "org.gnome.Platform",
     "runtime-version": "master",
     "sdk": "org.gnome.Sdk",
     "command": "gnome-chess",
     "tags": ["nightly"],
-    "copy-icon": true,
-    "rename-icon": "gnome-chess",
-    "rename-desktop-file": "gnome-chess.desktop",
     "desktop-file-name-prefix": "(Nightly) ",
     "finish-args": [
         /* X11 + XShm access */
@@ -18,9 +15,6 @@
         "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
         "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
     ],
-    "build-options": {
-        "cflags": "-O2 -g"
-    },
     "cleanup": ["/share/gnuchess", "/share/info", "/share/man"],
     "modules": [
         {

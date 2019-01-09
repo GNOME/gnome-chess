@@ -12,8 +12,8 @@ install_data('engines.conf',
 
 # The desktop file
 i18n.merge_file(
-  input: 'gnome-chess.desktop.in',
-  output: 'gnome-chess.desktop',
+  input: '@0@.desktop.in'.format(application_id),
+  output: '@0@.desktop'.format(application_id),
   type: 'desktop',
   po_dir: po_dir,
   install: true,
@@ -22,15 +22,15 @@ i18n.merge_file(
 
 # The appdata file
 i18n.merge_file(
-  input: 'gnome-chess.appdata.xml.in',
-  output: 'gnome-chess.appdata.xml',
+  input: '@0@.appdata.xml.in'.format(application_id),
+  output: '@0@.appdata.xml'.format(application_id),
   type: 'xml',
   po_dir: po_dir,
   install: true,
   install_dir: join_paths(datadir, 'metainfo')
 )
 
-install_data('org.gnome.chess.gschema.xml',
+install_data('@0@.gschema.xml'.format(application_id),
   install_dir: join_paths(datadir, 'glib-2.0', 'schemas')
 )
 

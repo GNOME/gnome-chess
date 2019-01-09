@@ -1,6 +1,6 @@
 # The resource file
 resource_files = files('chess.gresource.xml')
-resources = gnome.compile_resources('org.gnome.chess', resource_files,
+resources = gnome.compile_resources(application_id, resource_files,
   source_dir: '../data',
   c_name: 'resources'
 )

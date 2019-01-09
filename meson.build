@@ -3,7 +3,7 @@ project('gnome-chess', [ 'vala', 'c' ],
   license: 'GPL3+',
   meson_version: '>= 0.37',
 )
-
+application_id = 'org.gnome.Chess'
 gnome = import('gnome')
 i18n = import('i18n')
 

@@ -104,7 +104,7 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     private ChessApplication ()
     {
-        Object (application_id: "org.gnome.chess", flags: ApplicationFlags.HANDLES_OPEN);
+        Object (application_id: "org.gnome.Chess", flags: ApplicationFlags.HANDLES_OPEN);
         add_main_option_entries (option_entries);
     }
 
@@ -137,12 +137,12 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         base.startup ();
 
-        settings = new Settings ("org.gnome.chess");
+        settings = new Settings ("org.gnome.Chess");
 
         add_action_entries (app_entries, this);
         set_accels_for_action ("app.help", {"F1"});
         set_accels_for_action ("app.quit", {"<Primary>q", "<Primary>w"});
-        Gtk.Builder builder = new Gtk.Builder.from_resource ("/org/gnome/chess/ui/gnome-chess.ui");
+        Gtk.Builder builder = new Gtk.Builder.from_resource ("/org/gnome/Chess/ui/gnome-chess.ui");
 
         window = (Gtk.ApplicationWindow) builder.get_object ("gnome_chess_app");
         window.set_default_size (settings.get_int ("width"), settings.get_int ("height"));
@@ -275,7 +275,7 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     public PieceType? show_promotion_type_selector ()
     {
-        Gtk.Builder promotion_type_selector_builder = new Gtk.Builder.from_resource ("/org/gnome/chess/ui/promotion-type-selector.ui");
+        Gtk.Builder promotion_type_selector_builder = new Gtk.Builder.from_resource ("/org/gnome/Chess/ui/promotion-type-selector.ui");
 
         Gtk.Dialog promotion_type_selector_dialog = promotion_type_selector_builder.get_object ("dialog_promotion_type_selector") as Gtk.Dialog;
         promotion_type_selector_dialog.transient_for = window;
@@ -1709,7 +1709,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             return;
         }
 
-        Gtk.Builder preferences_builder = new Gtk.Builder.from_resource ("/org/gnome/chess/ui/preferences.ui");
+        Gtk.Builder preferences_builder = new Gtk.Builder.from_resource ("/org/gnome/Chess/ui/preferences.ui");
 
         preferences_dialog = (Gtk.Dialog) preferences_builder.get_object ("preferences");
         preferences_dialog.transient_for = window;
@@ -2202,7 +2202,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         about_dialog.artists = artists;
         about_dialog.translator_credits = _("translator-credits");
         about_dialog.website = "https://wiki.gnome.org/Apps/Chess";
-        about_dialog.logo_icon_name = "gnome-chess";
+        about_dialog.logo_icon_name = "org.gnome.Chess";
         about_dialog.response.connect (about_response_cb);
         about_dialog.show ();
     }
@@ -2480,7 +2480,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         Intl.textdomain (GETTEXT_PACKAGE);
 
         Environment.set_application_name (_("Chess"));
-        Gtk.Window.set_default_icon_name ("gnome-chess");
+        Gtk.Window.set_default_icon_name ("org.gnome.Chess");
 
         return new ChessApplication ().run (args);
     }
