@@ -19,8 +19,7 @@ desktop_file = i18n.merge_file(
   install: true,
   install_dir: join_paths(datadir, 'applications')
 )
-d
-esktop_file_validate = find_program('desktop-file-validate', required: false)
+desktop_file_validate = find_program('desktop-file-validate', required: false)
 if desktop_file_validate.found()
   test(
     'validate-desktop',
