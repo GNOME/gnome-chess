@@ -10,7 +10,6 @@ help_sources = [
   'play.page',
   'rules.page',
   'save-resume.page',
-  'shortcuts.page',
   'timer.page',
   'translate.page',
 ]
