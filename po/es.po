@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games.master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2018-12-09 11:10+0000\n"
-"PO-Revision-Date: 2019-01-08 15:47+0100\n"
+"POT-Creation-Date: 2019-01-09 16:03+0000\n"
+"PO-Revision-Date: 2019-01-14 15:31+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -24,58 +24,7 @@ msgstr ""
 "X-Generator: Gtranslator 2.91.7\n"
 "X-Project-Style: gnome\n"
 
-#: data/gnome-chess.appdata.xml.in:7
-msgid "GNOME Chess"
-msgstr "GNOME Ajedrez"
-
-#: data/gnome-chess.appdata.xml.in:8 data/gnome-chess.desktop.in:5
-msgid "Play the classic two-player board game of chess"
-msgstr "Juegue una partida clásica de ajedrez de dos jugadores"
-
-#: data/gnome-chess.appdata.xml.in:10
-msgid ""
-"GNOME Chess is a simple chess game. You can play against your computer at "
-"three different difficulty levels, or against a friend at your computer."
-msgstr ""
-"GNOME Ajedrez es un sencillo juego de ajedrez. Puede jugar contra el equipo "
-"en tres niveles de dificultad, o contra un amigo en su equipo."
-
-#: data/gnome-chess.appdata.xml.in:14
-msgid ""
-"Computer chess enthusiasts will appreciate GNOME Chess’s compatibility with "
-"nearly all modern computer chess engines, and its ability to detect several "
-"popular engines automatically if installed."
-msgstr ""
-"Los amantes de los juegos de ajedrez para ordenador apreciarán la "
-"compatibilidad de GNOME Ajedrez con casi todos los motores de ajedrez "
-"modernos para ordenador, y su capacidad para detectar automáticamente varios "
-"motores populares si están instalados."
-
-#: data/gnome-chess.appdata.xml.in:39
-msgid "The GNOME Project"
-msgstr "El Proyecto GNOME"
-
-#: data/gnome-chess.desktop.in:3 data/gnome-chess.ui:41
-#: src/gnome-chess.vala:2196 src/gnome-chess.vala:2482
-msgid "Chess"
-msgstr "Ajedrez"
-
-#: data/gnome-chess.desktop.in:4
-msgid "Chess Game"
-msgstr "Juego de ajedrez"
-
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/gnome-chess.desktop.in:7
-msgid "game;strategy;"
-msgstr "juego;estrategia;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/gnome-chess.desktop.in:15
-msgid "gnome-chess"
-msgstr "gnome-chess"
-
 #: data/gnome-chess.ui:7
-#| msgid "Preferences"
 msgid "_Preferences"
 msgstr "Prefere_ncias"
 
@@ -84,13 +33,17 @@ msgid "_Keyboard Shortcuts"
 msgstr "Atajos del _teclado"
 
 #: data/gnome-chess.ui:15
-#| msgid "Help"
 msgid "_Help"
 msgstr "A_yuda"
 
 #: data/gnome-chess.ui:19
 msgid "_About Chess"
 msgstr "_Acerca de Ajedrez"
+
+#: data/gnome-chess.ui:41 data/org.gnome.Chess.desktop.in:3
+#: src/gnome-chess.vala:2196 src/gnome-chess.vala:2482
+msgid "Chess"
+msgstr "Ajedrez"
 
 #: data/gnome-chess.ui:47
 msgid "_New Game"
@@ -143,25 +96,21 @@ msgid "Start a new game"
 msgstr "Iniciar un juego nuevo"
 
 #: data/help-overlay.ui:24
-#| msgid "Open a saved game"
 msgctxt "shortcut window"
 msgid "Open a saved game"
 msgstr "Abrir un juego guardado"
 
 #: data/help-overlay.ui:31
-#| msgid "Pause the game"
 msgctxt "shortcut window"
 msgid "Pause the game"
 msgstr "Pausar el juego"
 
 #: data/help-overlay.ui:38
-#| msgid "Pause the game"
 msgctxt "shortcut window"
 msgid "Save the game"
 msgstr "Guardar el juego"
 
 #: data/help-overlay.ui:45
-#| msgid "Save the current game"
 msgctxt "shortcut window"
 msgid "Save the game with a different name"
 msgstr "Guardar el juego con un nombre diferente"
@@ -172,19 +121,16 @@ msgid "Undo move"
 msgstr "Deshacer mover"
 
 #: data/help-overlay.ui:59
-#| msgid "Quit"
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Salir"
 
 #: data/help-overlay.ui:66
-#| msgid "Help"
 msgctxt "shortcut window"
 msgid "Help"
 msgstr "Ayuda"
 
 #: data/help-overlay.ui:72
-#| msgid "Help"
 msgctxt "shortcut window"
 msgid "Show Help"
 msgstr "Mostrar la ayuda"
@@ -200,100 +146,142 @@ msgid "History"
 msgstr "Histórico"
 
 #: data/help-overlay.ui:92
-#| msgid "Rewind to the game start"
 msgctxt "shortcut window"
 msgid "Rewind to the game start"
 msgstr "Volver al inicio del juego"
 
 #: data/help-overlay.ui:99
-#| msgid "Show the previous move"
 msgctxt "shortcut window"
 msgid "Show the previous move"
 msgstr "Mostrar el movimiento anterior"
 
 #: data/help-overlay.ui:106
-#| msgid "Show the next move"
 msgctxt "shortcut window"
 msgid "Show the next move"
 msgstr "Mostrar el movimiento siguiente"
 
 #: data/help-overlay.ui:113
-#| msgid "Show the current move"
 msgctxt "shortcut window"
 msgid "Show the current move"
 msgstr "Mostrar el movimiento actual"
 
-#: data/org.gnome.chess.gschema.xml:38
+#: data/org.gnome.Chess.appdata.xml.in:7
+msgid "GNOME Chess"
+msgstr "GNOME Ajedrez"
+
+#: data/org.gnome.Chess.appdata.xml.in:8 data/org.gnome.Chess.desktop.in:5
+msgid "Play the classic two-player board game of chess"
+msgstr "Juegue una partida clásica de ajedrez de dos jugadores"
+
+#: data/org.gnome.Chess.appdata.xml.in:10
+msgid ""
+"GNOME Chess is a simple chess game. You can play against your computer at "
+"three different difficulty levels, or against a friend at your computer."
+msgstr ""
+"GNOME Ajedrez es un sencillo juego de ajedrez. Puede jugar contra el equipo "
+"en tres niveles de dificultad, o contra un amigo en su equipo."
+
+#: data/org.gnome.Chess.appdata.xml.in:14
+msgid ""
+"Computer chess enthusiasts will appreciate GNOME Chess’s compatibility with "
+"nearly all modern computer chess engines, and its ability to detect several "
+"popular engines automatically if installed."
+msgstr ""
+"Los amantes de los juegos de ajedrez para ordenador apreciarán la "
+"compatibilidad de GNOME Ajedrez con casi todos los motores de ajedrez "
+"modernos para ordenador, y su capacidad para detectar automáticamente varios "
+"motores populares si están instalados."
+
+#: data/org.gnome.Chess.appdata.xml.in:40
+msgid "The GNOME Project"
+msgstr "El Proyecto GNOME"
+
+#: data/org.gnome.Chess.desktop.in:4
+msgid "Chess Game"
+msgstr "Juego de ajedrez"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Chess.desktop.in:7
+msgid "game;strategy;"
+msgstr "juego;estrategia;"
+
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/org.gnome.Chess.desktop.in:15
+#| msgid "gnome-chess"
+msgid "org.gnome.Chess"
+msgstr "org.gnome.Chess"
+
+#: data/org.gnome.Chess.gschema.xml:38
 msgid "The width of the window"
 msgstr "La anchura de la ventana"
 
-#: data/org.gnome.chess.gschema.xml:39
+#: data/org.gnome.Chess.gschema.xml:39
 msgid "The width of the main window in pixels."
 msgstr "La anchura de la ventana principal en píxeles."
 
-#: data/org.gnome.chess.gschema.xml:43
+#: data/org.gnome.Chess.gschema.xml:43
 msgid "The height of the window"
 msgstr "La altura de la ventana"
 
-#: data/org.gnome.chess.gschema.xml:44
+#: data/org.gnome.Chess.gschema.xml:44
 msgid "The height of the main window in pixels."
 msgstr "La altura de la ventana principal en píxeles."
 
-#: data/org.gnome.chess.gschema.xml:48 data/org.gnome.chess.gschema.xml:49
+#: data/org.gnome.Chess.gschema.xml:48 data/org.gnome.Chess.gschema.xml:49
 msgid "A flag to enable maximized mode"
 msgstr "Un indicador para activar el modo maximizado"
 
-#: data/org.gnome.chess.gschema.xml:53 data/org.gnome.chess.gschema.xml:54
+#: data/org.gnome.Chess.gschema.xml:53 data/org.gnome.Chess.gschema.xml:54
 msgid "The piece theme to use"
 msgstr "El estilo de pieza que usar"
 
-#: data/org.gnome.chess.gschema.xml:58 data/org.gnome.chess.gschema.xml:59
+#: data/org.gnome.Chess.gschema.xml:58 data/org.gnome.Chess.gschema.xml:59
 msgid "A flag to enable move hints"
 msgstr "Un indicador para activar las sugerencias de jugada"
 
-#: data/org.gnome.chess.gschema.xml:63 data/org.gnome.chess.gschema.xml:64
+#: data/org.gnome.Chess.gschema.xml:63 data/org.gnome.Chess.gschema.xml:64
 msgid "A flag to enable board numbering"
 msgstr "Un indicador para activar la numeración de tableros"
 
-#: data/org.gnome.chess.gschema.xml:68 data/org.gnome.chess.gschema.xml:69
+#: data/org.gnome.Chess.gschema.xml:68 data/org.gnome.Chess.gschema.xml:69
 msgid "The directory to open the save game dialog in"
 msgstr "La carpeta en la que se abrirá el diálogo «Guardar partida»"
 
-#: data/org.gnome.chess.gschema.xml:73 data/org.gnome.chess.gschema.xml:74
+#: data/org.gnome.Chess.gschema.xml:73 data/org.gnome.Chess.gschema.xml:74
 msgid "The directory to open the load game dialog in"
 msgstr "La carpeta en la que se abrirá el diálogo «Cargar partida»"
 
-#: data/org.gnome.chess.gschema.xml:78 data/org.gnome.chess.gschema.xml:79
+#: data/org.gnome.Chess.gschema.xml:78 data/org.gnome.Chess.gschema.xml:79
 msgid "The format to display moves in"
 msgstr "El formato en el que mostrar jugadas"
 
-#: data/org.gnome.chess.gschema.xml:83 data/org.gnome.chess.gschema.xml:84
+#: data/org.gnome.Chess.gschema.xml:83 data/org.gnome.Chess.gschema.xml:84
 msgid "The side of the board that is in the foreground"
 msgstr "El lado del tablero que está en primer plano"
 
-#: data/org.gnome.chess.gschema.xml:88 data/org.gnome.chess.gschema.xml:89
+#: data/org.gnome.Chess.gschema.xml:88 data/org.gnome.Chess.gschema.xml:89
 msgid "The duration of a game in seconds (0 for no limit)"
 msgstr "La duración del juego en segundos (0 para «sin límite»)"
 
-#: data/org.gnome.chess.gschema.xml:93 data/org.gnome.chess.gschema.xml:94
+#: data/org.gnome.Chess.gschema.xml:93 data/org.gnome.Chess.gschema.xml:94
 msgid "The type of clock (simple/fischer/bronstein)"
 msgstr "El tipo de reloj (simple/fischer/bronstein)"
 
-#: data/org.gnome.chess.gschema.xml:98 data/org.gnome.chess.gschema.xml:99
+#: data/org.gnome.Chess.gschema.xml:98 data/org.gnome.Chess.gschema.xml:99
 msgid "The timer increment set corresponding to clock type (1 second minimum)"
 msgstr ""
 "El incremento del temporizador establecido correspondiente al tipo de reloj "
 "(mínimo 1 segundo)"
 
-#: data/org.gnome.chess.gschema.xml:103 data/org.gnome.chess.gschema.xml:104
+#: data/org.gnome.Chess.gschema.xml:103 data/org.gnome.Chess.gschema.xml:104
 msgid "The board side to play as"
 msgstr "El lado del tablero en el que jugar"
 
-#: data/org.gnome.chess.gschema.xml:108
+#: data/org.gnome.Chess.gschema.xml:108
 msgid "The last side the player played as"
 msgstr "El último lado del tablero en el que se jugó"
 
-#: data/org.gnome.chess.gschema.xml:109
+#: data/org.gnome.Chess.gschema.xml:109
 msgid ""
 "This is needed when play-as is set to alternate. This should only be set to "
 "black or white."
@@ -301,11 +289,11 @@ msgstr ""
 "Esto es necesario cuando el tipo de juego se establecer como «alternar». "
 "Esto sólo se debe establecer a blancas o negras."
 
-#: data/org.gnome.chess.gschema.xml:113
+#: data/org.gnome.Chess.gschema.xml:113
 msgid "The opponent player"
 msgstr "El oponente"
 
-#: data/org.gnome.chess.gschema.xml:114
+#: data/org.gnome.Chess.gschema.xml:114
 msgid ""
 "Can be 'human' (play against another human player), '' (use the first "
 "available chess engine) or the name of a specific engine to play against"
@@ -314,7 +302,7 @@ msgstr ""
 "motor de ajedrez disponible) o el nombre de un motor específico contra el "
 "que jugar"
 
-#: data/org.gnome.chess.gschema.xml:118 data/org.gnome.chess.gschema.xml:119
+#: data/org.gnome.Chess.gschema.xml:118 data/org.gnome.Chess.gschema.xml:119
 msgid "Difficulty of the opponent chess engine"
 msgstr "Dificultad del motor de ajedrez del oponente"
 
