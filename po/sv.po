@@ -1,18 +1,18 @@
 # Swedish messages for gnome-chess.
-# Copyright © 1999-2018 Free Software Foundation, Inc.
+# Copyright © 1999-2019 Free Software Foundation, Inc.
 # Andreas Persenius <ndap@swipnet.se>, 1999.
 # Andreas Hyden <a.hyden@cyberpoint.se>
 # Martin Norbäck <d95mback@dtek.chalmers.se>, 2000.
 # Christian Rose <menthos@menthos.com>, 2000, 2001, 2002, 2003, 2004, 2005.
 # Daniel Nylander <po@danielnylander.se>, 2006, 2007, 2008, 2009, 2010, 2011, 2012.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2014, 2015, 2016, 2017, 2018.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2014, 2015, 2016, 2017, 2018, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2018-12-09 11:10+0000\n"
-"PO-Revision-Date: 2018-12-28 15:11+0100\n"
+"POT-Creation-Date: 2019-01-09 16:03+0000\n"
+"PO-Revision-Date: 2019-01-25 13:17+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -21,55 +21,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2\n"
-
-#: data/gnome-chess.appdata.xml.in:7
-msgid "GNOME Chess"
-msgstr "GNOME Schack"
-
-#: data/gnome-chess.appdata.xml.in:8 data/gnome-chess.desktop.in:5
-msgid "Play the classic two-player board game of chess"
-msgstr "Spela schack, det klassiska brädspelet för två spelare"
-
-#: data/gnome-chess.appdata.xml.in:10
-msgid ""
-"GNOME Chess is a simple chess game. You can play against your computer at "
-"three different difficulty levels, or against a friend at your computer."
-msgstr ""
-"GNOME Schack är ett enkelt schackspel. Du kan spela mot din dator på tre "
-"olika svårighetsnivåer, eller mot en vän vid din dator."
-
-#: data/gnome-chess.appdata.xml.in:14
-msgid ""
-"Computer chess enthusiasts will appreciate GNOME Chess’s compatibility with "
-"nearly all modern computer chess engines, and its ability to detect several "
-"popular engines automatically if installed."
-msgstr ""
-"Datorschacksentusiaster kommer uppskatta den kompatibilitet GNOME Schack har "
-"med nästan alla moderna datorschackmotorer, och dess förmåga att upptäcka "
-"flera populära motorer automatiskt om de finns installerade."
-
-#: data/gnome-chess.appdata.xml.in:39
-msgid "The GNOME Project"
-msgstr "GNOME-projektet"
-
-#: data/gnome-chess.desktop.in:3 data/gnome-chess.ui:41
-#: src/gnome-chess.vala:2196 src/gnome-chess.vala:2482
-msgid "Chess"
-msgstr "Schack"
-
-#: data/gnome-chess.desktop.in:4
-msgid "Chess Game"
-msgstr "Schackspel"
-
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/gnome-chess.desktop.in:7
-msgid "game;strategy;"
-msgstr "spel;strategi;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/gnome-chess.desktop.in:15
-msgid "gnome-chess"
-msgstr "gnome-chess"
 
 #: data/gnome-chess.ui:7
 msgid "_Preferences"
@@ -86,6 +37,11 @@ msgstr "_Hjälp"
 #: data/gnome-chess.ui:19
 msgid "_About Chess"
 msgstr "_Om Schack"
+
+#: data/gnome-chess.ui:41 data/org.gnome.Chess.desktop.in:3
+#: src/gnome-chess.vala:2196 src/gnome-chess.vala:2482
+msgid "Chess"
+msgstr "Schack"
 
 #: data/gnome-chess.ui:47
 msgid "_New Game"
@@ -207,75 +163,120 @@ msgctxt "shortcut window"
 msgid "Show the current move"
 msgstr "Visa aktuellt drag"
 
-#: data/org.gnome.chess.gschema.xml:38
+#: data/org.gnome.Chess.appdata.xml.in:7
+msgid "GNOME Chess"
+msgstr "GNOME Schack"
+
+#: data/org.gnome.Chess.appdata.xml.in:8 data/org.gnome.Chess.desktop.in:5
+msgid "Play the classic two-player board game of chess"
+msgstr "Spela schack, det klassiska brädspelet för två spelare"
+
+#: data/org.gnome.Chess.appdata.xml.in:10
+msgid ""
+"GNOME Chess is a simple chess game. You can play against your computer at "
+"three different difficulty levels, or against a friend at your computer."
+msgstr ""
+"GNOME Schack är ett enkelt schackspel. Du kan spela mot din dator på tre "
+"olika svårighetsnivåer, eller mot en vän vid din dator."
+
+#: data/org.gnome.Chess.appdata.xml.in:14
+msgid ""
+"Computer chess enthusiasts will appreciate GNOME Chess’s compatibility with "
+"nearly all modern computer chess engines, and its ability to detect several "
+"popular engines automatically if installed."
+msgstr ""
+"Datorschacksentusiaster kommer uppskatta den kompatibilitet GNOME Schack har "
+"med nästan alla moderna datorschackmotorer, och dess förmåga att upptäcka "
+"flera populära motorer automatiskt om de finns installerade."
+
+#: data/org.gnome.Chess.appdata.xml.in:40
+msgid "The GNOME Project"
+msgstr "GNOME-projektet"
+
+#: data/org.gnome.Chess.desktop.in:4
+msgid "Chess Game"
+msgstr "Schackspel"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Chess.desktop.in:7
+msgid "game;strategy;"
+msgstr "spel;strategi;"
+
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/org.gnome.Chess.desktop.in:15
+#| msgid "gnome-chess"
+msgid "org.gnome.Chess"
+msgstr "org.gnome.Chess"
+
+#: data/org.gnome.Chess.gschema.xml:38
 msgid "The width of the window"
 msgstr "Bredden på fönstret"
 
-#: data/org.gnome.chess.gschema.xml:39
+#: data/org.gnome.Chess.gschema.xml:39
 msgid "The width of the main window in pixels."
 msgstr "Bredden på huvudfönstret i bildpunkter."
 
-#: data/org.gnome.chess.gschema.xml:43
+#: data/org.gnome.Chess.gschema.xml:43
 msgid "The height of the window"
 msgstr "Höjden på fönstret"
 
-#: data/org.gnome.chess.gschema.xml:44
+#: data/org.gnome.Chess.gschema.xml:44
 msgid "The height of the main window in pixels."
 msgstr "Höjden på huvudfönstret i bildpunkter."
 
-#: data/org.gnome.chess.gschema.xml:48 data/org.gnome.chess.gschema.xml:49
+#: data/org.gnome.Chess.gschema.xml:48 data/org.gnome.Chess.gschema.xml:49
 msgid "A flag to enable maximized mode"
 msgstr "En flagga för att aktivera maximerat läge"
 
-#: data/org.gnome.chess.gschema.xml:53 data/org.gnome.chess.gschema.xml:54
+#: data/org.gnome.Chess.gschema.xml:53 data/org.gnome.Chess.gschema.xml:54
 msgid "The piece theme to use"
 msgstr "Pjästemat att använda"
 
-#: data/org.gnome.chess.gschema.xml:58 data/org.gnome.chess.gschema.xml:59
+#: data/org.gnome.Chess.gschema.xml:58 data/org.gnome.Chess.gschema.xml:59
 msgid "A flag to enable move hints"
 msgstr "En flagga för att aktivera dragtips"
 
-#: data/org.gnome.chess.gschema.xml:63 data/org.gnome.chess.gschema.xml:64
+#: data/org.gnome.Chess.gschema.xml:63 data/org.gnome.Chess.gschema.xml:64
 msgid "A flag to enable board numbering"
 msgstr "En flagga för att aktivera brädnumrering"
 
-#: data/org.gnome.chess.gschema.xml:68 data/org.gnome.chess.gschema.xml:69
+#: data/org.gnome.Chess.gschema.xml:68 data/org.gnome.Chess.gschema.xml:69
 msgid "The directory to open the save game dialog in"
 msgstr "Katalogen där dialogen Spara spel öppnas i"
 
-#: data/org.gnome.chess.gschema.xml:73 data/org.gnome.chess.gschema.xml:74
+#: data/org.gnome.Chess.gschema.xml:73 data/org.gnome.Chess.gschema.xml:74
 msgid "The directory to open the load game dialog in"
 msgstr "Katalogen där dialogen Läs in spel öppnas i"
 
-#: data/org.gnome.chess.gschema.xml:78 data/org.gnome.chess.gschema.xml:79
+#: data/org.gnome.Chess.gschema.xml:78 data/org.gnome.Chess.gschema.xml:79
 msgid "The format to display moves in"
 msgstr "Formatet att visa drag i"
 
-#: data/org.gnome.chess.gschema.xml:83 data/org.gnome.chess.gschema.xml:84
+#: data/org.gnome.Chess.gschema.xml:83 data/org.gnome.Chess.gschema.xml:84
 msgid "The side of the board that is in the foreground"
 msgstr "Sidan av brädet som är i förgrunden"
 
-#: data/org.gnome.chess.gschema.xml:88 data/org.gnome.chess.gschema.xml:89
+#: data/org.gnome.Chess.gschema.xml:88 data/org.gnome.Chess.gschema.xml:89
 msgid "The duration of a game in seconds (0 for no limit)"
 msgstr "Speltiden för ett spel i sekunder (0 för ingen gräns)"
 
-#: data/org.gnome.chess.gschema.xml:93 data/org.gnome.chess.gschema.xml:94
+#: data/org.gnome.Chess.gschema.xml:93 data/org.gnome.Chess.gschema.xml:94
 msgid "The type of clock (simple/fischer/bronstein)"
 msgstr "Typen av klocka (simple/fischer/bronstein)"
 
-#: data/org.gnome.chess.gschema.xml:98 data/org.gnome.chess.gschema.xml:99
+#: data/org.gnome.Chess.gschema.xml:98 data/org.gnome.Chess.gschema.xml:99
 msgid "The timer increment set corresponding to clock type (1 second minimum)"
 msgstr "Tidsökningen som satts för motsvarande klocktyp (minst 1 sekund)"
 
-#: data/org.gnome.chess.gschema.xml:103 data/org.gnome.chess.gschema.xml:104
+#: data/org.gnome.Chess.gschema.xml:103 data/org.gnome.Chess.gschema.xml:104
 msgid "The board side to play as"
 msgstr "Sidan av brädet att spela som"
 
-#: data/org.gnome.chess.gschema.xml:108
+#: data/org.gnome.Chess.gschema.xml:108
 msgid "The last side the player played as"
 msgstr "Den senaste sidan spelaren spelade som"
 
-#: data/org.gnome.chess.gschema.xml:109
+#: data/org.gnome.Chess.gschema.xml:109
 msgid ""
 "This is needed when play-as is set to alternate. This should only be set to "
 "black or white."
@@ -283,11 +284,11 @@ msgstr ""
 "Detta behövs då play-as är satt till växla. Detta ska endast ställas in till "
 "black (svart) eller white (vit)."
 
-#: data/org.gnome.chess.gschema.xml:113
+#: data/org.gnome.Chess.gschema.xml:113
 msgid "The opponent player"
 msgstr "Motståndaren"
 
-#: data/org.gnome.chess.gschema.xml:114
+#: data/org.gnome.Chess.gschema.xml:114
 msgid ""
 "Can be 'human' (play against another human player), '' (use the first "
 "available chess engine) or the name of a specific engine to play against"
@@ -296,7 +297,7 @@ msgstr ""
 "första tillgängliga schackmotor) eller namnet på en specifik motor att spela "
 "mot"
 
-#: data/org.gnome.chess.gschema.xml:118 data/org.gnome.chess.gschema.xml:119
+#: data/org.gnome.Chess.gschema.xml:118 data/org.gnome.Chess.gschema.xml:119
 msgid "Difficulty of the opponent chess engine"
 msgstr "Svårighetsgrad för motståndarens schackmotor"
 
