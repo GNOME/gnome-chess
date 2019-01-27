@@ -1457,12 +1457,12 @@ Copyright © 2015–2016 Sahil Sareen""";
         if (game.is_fifty_move_rule_fulfilled ())
         {
             /* Message in claim draw dialog when triggered by fifty-move rule */
-            reason = _("Fifty moves have passed without a capture or pawn advancement.");
+            reason = _("You may claim a draw because fifty moves have passed without a capture or pawn advancement. (The computer player may still choose to claim a draw even if you choose to keep playing.)");
         }
         else if (game.is_three_fold_repeat ())
         {
             /* Message in claim draw dialog when triggered by three-fold repetition */
-            reason = _("The current board position has occurred three times.");
+            reason = _("You may claim a draw because the current board position has occurred three times. (The computer player may still choose to claim a draw even if you choose to keep playing.)");
         }
         else assert_not_reached ();
 
