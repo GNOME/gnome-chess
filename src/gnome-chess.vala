@@ -787,7 +787,9 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     private void engine_claim_draw_cb (ChessEngine engine)
     {
-        if (!game.can_claim_draw ())
+        if (game.can_claim_draw ())
+            opponent.claim_draw ();
+        else
             game.stop (ChessResult.BUG, ChessRule.BUG);
     }
 
