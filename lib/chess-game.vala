@@ -286,6 +286,7 @@ public class ChessGame : Object
     }
 
     private void claim_draw_cb ()
+        requires (can_claim_draw ())
     {
         if (is_fifty_move_rule_fulfilled ())
             stop (ChessResult.DRAW, ChessRule.FIFTY_MOVES);

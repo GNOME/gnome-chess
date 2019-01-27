@@ -797,7 +797,8 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     private void engine_offer_draw_cb (ChessEngine engine)
     {
-        opponent.claim_draw ();
+        if (game.can_claim_draw ())
+            opponent.claim_draw ();
 
         /*
          * If the draw cannot be claimed, do nothing.
