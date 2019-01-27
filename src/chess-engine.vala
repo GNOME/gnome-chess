@@ -23,7 +23,6 @@ public abstract class ChessEngine : Object
     private int stdin_fd = -1;
     private int stderr_fd = -1;
     private IOChannel? stdout_channel;
-    private uint child_watch_id = 0;
     private uint stdout_watch_id = 0;
     private bool started = false;
 
@@ -66,7 +65,6 @@ public abstract class ChessEngine : Object
 
     public bool start ()
         requires (pid == 0)
-        requires (child_watch_id == 0)
         requires (stdout_watch_id == 0)
         requires (stdin_fd == -1)
         requires (stderr_fd == -1)
@@ -91,7 +89,7 @@ public abstract class ChessEngine : Object
             return false;
         }
 
-        child_watch_id = ChildWatch.add (pid, engine_stopped_cb);
+        ChildWatch.add (pid, engine_stopped_cb);
 
         stdout_channel = new IOChannel.unix_new (stdout_fd);
         try
@@ -112,11 +110,18 @@ public abstract class ChessEngine : Object
     }
 
     private void engine_stopped_cb (Pid pid)
-        requires (started)
-        requires (pid == this.pid)
     {
-        stop (false);
-        stopped_unexpectedly ();
+        /* Important: this ChildWatch callback needs to execute once for
+         * every engine process, because we rely on GLib reaping the
+         * engine immediately before executing this callback.
+         */
+        Process.close_pid (pid);
+
+        if (this.pid == pid)
+        {
+            stop (false);
+            stopped_unexpectedly ();
+        }
     }
 
     public abstract void start_game ();
@@ -152,7 +157,6 @@ public abstract class ChessEngine : Object
         requires (!started || stdin_fd != -1)
         requires (!started || stderr_fd != -1)
         requires (!started || pid != 0)
-        requires (!started || child_watch_id != 0)
     {
         if (!started)
             return;
@@ -182,12 +186,8 @@ public abstract class ChessEngine : Object
             warning ("Failed to close pipe to engine's stderr: %s", strerror (errno));
         stderr_fd = -1;
 
-        Source.remove (child_watch_id);
-        child_watch_id = 0;
-
         if (kill_engine && Posix.kill (pid, Posix.Signal.TERM) == -1)
             warning ("Failed to kill engine: %s", strerror (errno));
-        Process.close_pid (pid);
         pid = 0;
     }
 
