@@ -8,10 +8,6 @@ resources = gnome.compile_resources(application_id, resource_files,
 # The gnome-chess binary
 chess_sources = [
   resources,
-
-  'portability.c',
-  'portability.vapi',
-
   'ai-profile.vala',
   'chess-engine-cecp.vala',
   'chess-engine-uci.vala',

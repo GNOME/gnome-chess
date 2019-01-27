@@ -80,8 +80,7 @@ public abstract class ChessEngine : Object
         {
             Process.spawn_async_with_pipes (null, argv, null,
                                             SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD,
-                                            () => Portability.maybe_kill_orphan_engine (),
-                                            out pid, out stdin_fd, out stdout_fd, out stderr_fd);
+                                            null, out pid, out stdin_fd, out stdout_fd, out stderr_fd);
         }
         catch (SpawnError e)
         {
