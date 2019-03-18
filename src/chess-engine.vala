@@ -51,7 +51,7 @@ public abstract class ChessEngine : Object
         }
     }
 
-    public ChessEngine (string binary, string[] args, uint delay_seconds)
+    protected ChessEngine (string binary, string[] args, uint delay_seconds)
     {
         this.binary = binary;
         this.args = args;
