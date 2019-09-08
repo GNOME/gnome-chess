@@ -304,7 +304,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             set_layout_mode(LayoutMode.NARROW);
         else if (event.width > 700 && layout_mode == LayoutMode.NARROW)
             set_layout_mode(LayoutMode.NORMAL);
-        return false;
+        return Gdk.EVENT_PROPAGATE;
     }
 
     public PieceType? show_promotion_type_selector ()
