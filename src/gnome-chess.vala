@@ -13,6 +13,12 @@
 
 public class ChessApplication : Gtk.Application
 {
+    private enum LayoutMode {
+        NORMAL,
+        NARROW
+    }
+    private LayoutMode layout_mode;
+
     private bool is_tiled;
     private bool is_maximized;
     private int window_width;
@@ -25,6 +31,7 @@ public class ChessApplication : Gtk.Application
     private ChessScene scene;
     private ChessView view;
     private Gtk.Button pause_resume_button;
+    private Gtk.Box navigation_box;
     private Gtk.Widget first_move_button;
     private Gtk.Widget prev_move_button;
     private Gtk.Widget next_move_button;
@@ -150,9 +157,11 @@ Copyright © 2015–2016 Sahil Sareen""";
             window.maximize ();
         window.size_allocate.connect (size_allocate_cb);
         window.window_state_event.connect (window_state_event_cb);
+        window.configure_event.connect (configure_event_cb);
 
         info_bar = (Gtk.InfoBar) builder.get_object ("info_bar");
         pause_resume_button = (Gtk.Button) builder.get_object ("pause_button");
+        navigation_box = (Gtk.Box) builder.get_object ("navigation_box");
         first_move_button = (Gtk.Widget) builder.get_object ("first_move_button");
         prev_move_button = (Gtk.Widget) builder.get_object ("prev_move_button");
         next_move_button = (Gtk.Widget) builder.get_object ("next_move_button");
@@ -256,6 +265,22 @@ Copyright © 2015–2016 Sahil Sareen""";
         settings.set_boolean ("maximized", is_maximized);
     }
 
+    private void set_layout_mode(LayoutMode new_layout_mode)
+    {
+        if (layout_mode == new_layout_mode)
+            return;
+        layout_mode = new_layout_mode;
+
+        Gtk.Orientation orientation;
+
+        if (layout_mode == LayoutMode.NORMAL)
+            orientation = Gtk.Orientation.HORIZONTAL;
+        else
+            orientation = Gtk.Orientation.VERTICAL;
+
+        navigation_box.set_orientation(orientation);
+    }
+
     private void size_allocate_cb (Gtk.Allocation allocation)
     {
         if (is_maximized || is_tiled)
@@ -270,6 +295,15 @@ Copyright © 2015–2016 Sahil Sareen""";
         /* We don’t save this state, but track it for saving size allocation */
         if ((event.changed_mask & Gdk.WindowState.TILED) != 0)
             is_tiled = (event.new_window_state & Gdk.WindowState.TILED) != 0;
+        return false;
+    }
+
+    private bool configure_event_cb (Gdk.EventConfigure event)
+    {
+        if (event.width <= 700 && layout_mode == LayoutMode.NORMAL)
+            set_layout_mode(LayoutMode.NARROW);
+        else if (event.width > 700 && layout_mode == LayoutMode.NARROW)
+            set_layout_mode(LayoutMode.NORMAL);
         return false;
     }
 
