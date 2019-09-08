@@ -4,6 +4,20 @@
   <menu id="app-menu">
     <section>
       <item>
+        <attribute name="label" translatable="yes">_Open Game</attribute>
+        <attribute name="action">win.open</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Save Game</attribute>
+        <attribute name="action">win.save-as</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Resign Game</attribute>
+        <attribute name="action">win.resign</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
         <attribute name="label" translatable="yes">_Preferences</attribute>
         <attribute name="action">app.preferences</attribute>
       </item>
@@ -86,69 +100,6 @@
               </object>
             </child>
           </object>
-        </child>
-        <child>
-          <object class="GtkButton" id="resign_game_button">
-            <property name="visible">True</property>
-            <property name="valign">center</property>
-            <property name="action-name">win.resign</property>
-            <property name="tooltip-text" translatable="yes">Resign to your opponent</property>
-            <style>
-              <class name="image-button"/>
-            </style>
-            <child>
-              <object class="GtkImage" id="resign_image">
-                <property name="visible">True</property>
-                <property name="icon_size">1</property>
-                <property name="icon_name">face-sad-symbolic</property>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="pack_type">end</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="save_game_button">
-            <property name="visible">True</property>
-            <property name="valign">center</property>
-            <property name="action-name">win.save-as</property>
-            <property name="tooltip-text" translatable="yes">Save the current game</property>
-            <style>
-              <class name="image-button"/>
-            </style>
-            <child>
-              <object class="GtkImage" id="save_game_image">
-                <property name="visible">True</property>
-                <property name="icon_size">1</property>
-                <property name="icon_name">document-save-as-symbolic</property>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="pack_type">end</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="open_game_button">
-            <property name="visible">True</property>
-            <property name="valign">center</property>
-            <property name="action-name">win.open</property>
-            <property name="tooltip-text" translatable="yes">Open a saved game</property>
-            <style>
-              <class name="image-button"/>
-            </style>
-            <child>
-              <object class="GtkImage" id="open_game_image">
-                <property name="visible">True</property>
-                <property name="icon_size">1</property>
-                <property name="icon_name">document-open-symbolic</property>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="pack_type">end</property>
-          </packing>
         </child>
         <child>
           <object class="GtkMenuButton" id="menu_button">
@@ -431,8 +382,6 @@
       <widget name="new_game_button"/>
       <widget name="undo_move_button"/>
       <widget name="pause_button"/>
-      <widget name="save_game_button"/>
-      <widget name="open_game_button"/>
     </widgets>
   </object>
   <object class="GtkSizeGroup" id="right_nav_box_sizegroup">
