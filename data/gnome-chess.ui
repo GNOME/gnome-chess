@@ -78,22 +78,6 @@
           </object>
         </child>
         <child>
-          <object class="GtkButton" id="pause_button">
-            <property name="visible">True</property>
-            <property name="valign">center</property>
-            <property name="action-name">win.pause-resume</property>
-            <style>
-              <class name="image-button"/>
-            </style>
-            <child>
-              <object class="GtkImage" id="pause_image">
-                <property name="visible">True</property>
-                <property name="icon_size">1</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
           <object class="GtkButton" id="resign_game_button">
             <property name="visible">True</property>
             <property name="valign">center</property>
@@ -360,7 +344,6 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="spacing">6</property>
-                    <property name="homogeneous">True</property>
                     <child>
                       <object class="GtkDrawingArea" id="white_time_label">
                         <!-- -1 means compute at runtime -->
@@ -387,6 +370,25 @@
                         <property name="expand">True</property>
                         <property name="fill">True</property>
                         <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="pause_button">
+                        <property name="visible">True</property>
+                        <property name="valign">center</property>
+                        <property name="action-name">win.pause-resume</property>
+                        <style>
+                          <class name="image-button"/>
+                        </style>
+                        <child>
+                          <object class="GtkImage" id="pause_image">
+                            <property name="visible">True</property>
+                            <property name="icon_size">1</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -434,7 +436,6 @@
     <widgets>
       <widget name="new_game_button"/>
       <widget name="undo_move_button"/>
-      <widget name="pause_button"/>
       <widget name="save_game_button"/>
       <widget name="open_game_button"/>
     </widgets>
@@ -442,9 +443,9 @@
   <object class="GtkSizeGroup" id="right_nav_box_sizegroup">
     <property name="mode">vertical</property>
     <widgets>
-      <widget name="white_time_label"/>
-      <widget name="black_time_label"/>
+      <widget name="left_nav_box"/>
       <widget name="history_combo"/>
+      <widget name="right_nav_box"/>
     </widgets>
   </object>
 </interface>
