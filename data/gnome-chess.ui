@@ -328,7 +328,9 @@
                         <property name="model">history_model</property>
                         <signal name="changed" handler="history_combo_changed_cb" swapped="no"/>
                         <child>
-                          <object class="GtkCellRendererText" id="history_combo_cellrenderer"/>
+                          <object class="GtkCellRendererText" id="history_combo_cellrenderer">
+                            <property name="ellipsize">PANGO_ELLIPSIZE_END</property>
+                          </object>
                           <attributes>
                             <attribute name="text">0</attribute>
                           </attributes>
