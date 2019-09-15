@@ -131,6 +131,7 @@ Copyright © 2015–2016 Sahil Sareen""";
     private void display_no_engine_info_bar ()
     {
         var label = new Gtk.Label (_("No chess engine is installed. You will not be able to play against the computer."));
+        label.set_line_wrap(true);
         label.show ();
 
         info_bar.get_content_area ().add (label);
