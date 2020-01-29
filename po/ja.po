@@ -1,5 +1,5 @@
 # gnome-chess ja.po.
-# Copyright (C) 1998-2019 Free Software Foundation, Inc.
+# Copyright (C) 1998-2020 Free Software Foundation, Inc.
 # Yukihiro Nakai <Nakai@technologist.com>, 1998.
 # Akira Higuchi <a-higuti@math.sci.hokudai.ac.jp>, 1999.
 # Yuusuke Tahara <tahara@gnome.gr.jp>, 2000.
@@ -10,14 +10,14 @@
 # Shushi KUROSE <md81bird@hitaki.net>, 2012.
 # Nishio Futoshi <fut_nis@d3.dion.ne.jp>, 2013.
 # Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2013.
-# sicklylife <translation@sicklylife.jp>, 2019.
+# sicklylife <translation@sicklylife.jp>, 2019-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
 "POT-Creation-Date: 2019-09-25 19:14+0000\n"
-"PO-Revision-Date: 2019-09-20 19:30+0900\n"
+"PO-Revision-Date: 2020-01-29 21:00+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -27,22 +27,16 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: data/gnome-chess.ui:7
-#, fuzzy
-#| msgid "_New Game"
 msgid "_Open Game"
-msgstr "新しいゲーム(_N)"
+msgstr "ゲームを開く(_O)"
 
 #: data/gnome-chess.ui:11
-#, fuzzy
-#| msgid "_Save game log"
 msgid "_Save Game"
-msgstr "ゲームのログを保存(_S)"
+msgstr "ゲームを保存(_S)"
 
 #: data/gnome-chess.ui:17
-#, fuzzy
-#| msgid "_Resign"
 msgid "_Resign Game"
-msgstr "投了(_R)"
+msgstr "ゲームを投了(_R)"
 
 #: data/gnome-chess.ui:23
 msgid "_Preferences"
@@ -1061,16 +1055,12 @@ msgid "Black king at %1$s takes the white queen at %2$s"
 msgstr "%1$s にある黒のキングが %2$s にある白のクイーンを獲得した"
 
 #: src/gnome-chess.vala:1057
-#, fuzzy
-#| msgid "White pawn at %1$s takes the black pawn at %2$s"
 msgid "White pawn captures black pawn en passant"
-msgstr "%1$s にある白のポーンが %2$s にある黒のポーンを獲得した"
+msgstr ""
 
 #: src/gnome-chess.vala:1059
-#, fuzzy
-#| msgid "Black pawn at %1$s takes the white pawn at %2$s"
 msgid "Black pawn captures white pawn en passant"
-msgstr "%1$s にある黒のポーンが %2$s にある白のポーンを獲得した"
+msgstr ""
 
 #: src/gnome-chess.vala:1064
 msgid "White castles kingside"
@@ -1178,19 +1168,15 @@ msgstr "対戦相手が移動不可能です。"
 
 #. Window subtitle when the game is drawn due to the fifty move rule
 #: src/gnome-chess.vala:1357
-#, fuzzy
-#| msgid "No piece has been taken or pawn moved in the last fifty moves"
 msgid "No piece was taken or pawn moved in fifty moves."
 msgstr ""
-"50手ルール (50手の間に両プレイヤーともにポーンを動かさず持ち駒がない状態)"
+"50 手の間に駒が取られることもポーンを動かすこともありませんでした。"
 
 #. Window subtitle when the game is drawn due to the 75 move rule
 #: src/gnome-chess.vala:1361
-#, fuzzy
-#| msgid "No piece has been taken or pawn moved in the last fifty moves"
 msgid "No piece was taken or pawn moved in 75 moves."
 msgstr ""
-"50手ルール (50手の間に両プレイヤーともにポーンを動かさず持ち駒がない状態)"
+"75 手の間に駒が取られることもポーンを動かすこともありませんでした。"
 
 #. Window subtitle when the game ends due to Black's clock stopping
 #: src/gnome-chess.vala:1366
@@ -1244,10 +1230,9 @@ msgstr ""
 #. Window subtitle when something goes wrong with the engine...
 #. * or when the engine says something is wrong with us!
 #: src/gnome-chess.vala:1409
-#, fuzzy
-#| msgid "The game cannot continue."
 msgid "The computer player is confused. The game cannot continue."
-msgstr "ゲーム続行不可能"
+msgstr "コンピュータープレイヤーに問題が発生しました。ゲームを続"
+"行できません。"
 
 #: src/gnome-chess.vala:1444 src/gnome-chess.vala:2299
 #: src/gnome-chess.vala:2391
@@ -1361,7 +1346,7 @@ msgstr ""
 
 #: src/gnome-chess.vala:2254
 msgid "This does not look like a valid PGN game."
-msgstr ""
+msgstr "これは正常な PGN ゲームではありません。"
 
 #: src/gnome-chess.vala:2255 src/gnome-chess.vala:2268
 #: src/gnome-chess.vala:2345
