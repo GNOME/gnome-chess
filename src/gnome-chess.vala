@@ -261,9 +261,11 @@ Copyright © 2015–2016 Sahil Sareen""";
         base.shutdown ();
 
         /* Save window state */
+        settings.delay ();
         settings.set_int ("width", window_width);
         settings.set_int ("height", window_height);
         settings.set_boolean ("maximized", is_maximized);
+        settings.apply ();
     }
 
     private void set_layout_mode(LayoutMode new_layout_mode)

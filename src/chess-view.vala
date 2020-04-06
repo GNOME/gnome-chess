@@ -36,7 +36,7 @@ public class ChessView : Gtk.DrawingArea
         get { return square_size / 2; }
     }
 
-    public ChessView ()
+    construct
     {
         add_events (Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.BUTTON_RELEASE_MASK);
     }
