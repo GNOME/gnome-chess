@@ -2206,7 +2206,7 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         try
         {
-            show_uri (window.get_screen (), "help:gnome-chess", get_current_event_time ());
+            show_uri_on_window (window, "help:gnome-chess", get_current_event_time ());
         }
         catch (Error e)
         {
