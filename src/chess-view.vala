@@ -19,6 +19,8 @@ public class ChessView : Gtk.DrawingArea
     private Cairo.Surface? selected_model_surface;
     private string loaded_theme_name = "";
 
+    private Gtk.GestureMultiPress click_controller; // for keeping in memory
+
     private ChessScene _scene;
     public ChessScene scene
     {
@@ -39,6 +41,8 @@ public class ChessView : Gtk.DrawingArea
     construct
     {
         add_events (Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.BUTTON_RELEASE_MASK);
+
+        init_mouse ();
     }
 
     public override bool configure_event (Gdk.EventConfigure event)
@@ -272,17 +276,24 @@ public class ChessView : Gtk.DrawingArea
         c.paint_with_alpha (alpha);
     }
 
-    public override bool button_press_event (Gdk.EventButton event)
+    private inline void init_mouse ()
     {
-        if (scene.game == null || event.button != 1 || scene.game.should_show_paused_overlay)
-            return false;
+        click_controller = new Gtk.GestureMultiPress (this);
+        click_controller.pressed.connect (on_click);
+    }
+
+    private inline void on_click (Gtk.GestureMultiPress _click_controller, int n_press, double event_x, double event_y)
+    {
+        uint button = _click_controller.get_button ();
+        if (scene.game == null || button != Gdk.BUTTON_PRIMARY || scene.game.should_show_paused_overlay)
+            return;
 
         // If the game is over, disable selection of pieces
         if (scene.game.result != ChessResult.IN_PROGRESS)
-            return false;
+            return;
 
-        int file = (int) Math.floor ((event.x - 0.5 * get_allocated_width () + square_size * 4) / square_size);
-        int rank = 7 - (int) Math.floor ((event.y - 0.5 * get_allocated_height () + square_size * 4) / square_size);
+        int file = (int) Math.floor ((event_x - 0.5 * get_allocated_width () + square_size * 4) / square_size);
+        int rank = 7 - (int) Math.floor ((event_y - 0.5 * get_allocated_height () + square_size * 4) / square_size);
 
         // FIXME: Use proper Cairo rotation matrix
         if (scene.board_angle == 180.0)
@@ -292,11 +303,9 @@ public class ChessView : Gtk.DrawingArea
         }
 
         if (file < 0 || file >= 8 || rank < 0 || rank >= 8)
-            return false;
+            return;
 
         scene.select_square (file, rank);
-
-        return true;
     }
 
     private void scene_changed_cb (ChessScene scene)
