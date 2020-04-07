@@ -35,10 +35,10 @@ public class ChessApplication : Gtk.Application
     private ChessView view;
     private Button pause_resume_button;
     private Box navigation_box;
-    private Widget first_move_button;
-    private Widget prev_move_button;
-    private Widget next_move_button;
-    private Widget last_move_button;
+    private Button first_move_button;
+    private Button prev_move_button;
+    private Button next_move_button;
+    private Button last_move_button;
     private ComboBox history_combo;
     private DrawingArea white_time_label;
     private DrawingArea black_time_label;
@@ -163,16 +163,21 @@ Copyright © 2015–2016 Sahil Sareen""";
         info_bar = (InfoBar) builder.get_object ("info_bar");
         pause_resume_button = (Button) builder.get_object ("pause_button");
         navigation_box = (Box) builder.get_object ("navigation_box");
-        first_move_button = (Widget) builder.get_object ("first_move_button");
-        prev_move_button = (Widget) builder.get_object ("prev_move_button");
-        next_move_button = (Widget) builder.get_object ("next_move_button");
-        last_move_button = (Widget) builder.get_object ("last_move_button");
+        first_move_button = (Button) builder.get_object ("first_move_button");
+        prev_move_button  = (Button) builder.get_object ("prev_move_button");
+        next_move_button  = (Button) builder.get_object ("next_move_button");
+        last_move_button  = (Button) builder.get_object ("last_move_button");
         history_combo = (ComboBox) builder.get_object ("history_combo");
         white_time_label = (DrawingArea) builder.get_object ("white_time_label");
         black_time_label = (DrawingArea) builder.get_object ("black_time_label");
         view_container = (Box) builder.get_object ("view_container");
         headerbar = (HeaderBar) builder.get_object ("headerbar");
-     // builder.connect_signals (this);
+
+        first_move_button.clicked.connect (history_start_clicked_cb);
+        prev_move_button.clicked.connect (history_previous_clicked_cb);
+        next_move_button.clicked.connect (history_next_clicked_cb);
+        last_move_button.clicked.connect (history_latest_clicked_cb);
+        history_combo.changed.connect (history_combo_changed_cb);
 
         white_time_label.set_draw_func (white_time_draw_cb);
         black_time_label.set_draw_func (black_time_draw_cb);
@@ -1698,8 +1703,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             widget.set_size_request (compute_time_label_width_request (c), -1);
     }
 
-    [CCode (cname = "history_combo_changed_cb", instance_pos = -1)]
-    public void history_combo_changed_cb (ComboBox combo)
+    private inline void history_combo_changed_cb (ComboBox combo)
     {
         TreeIter iter;
         if (!combo.get_active_iter (out iter))
@@ -1711,14 +1715,12 @@ Copyright © 2015–2016 Sahil Sareen""";
         scene.move_number = move_number;
     }
 
-    [CCode (cname = "history_latest_clicked_cb", instance_pos = -1)]
-    public void history_latest_clicked_cb (Widget widget)
+    private inline void history_latest_clicked_cb (Widget widget)
     {
         scene.move_number = -1;
     }
 
-    [CCode (cname = "history_next_clicked_cb", instance_pos = -1)]
-    public void history_next_clicked_cb (Widget widget)
+    private inline void history_next_clicked_cb (Widget widget)
     {
         if (scene.move_number == -1)
             return;
@@ -1730,8 +1732,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             scene.move_number = move_number;
     }
 
-    [CCode (cname = "history_previous_clicked_cb", instance_pos = -1)]
-    public void history_previous_clicked_cb (Widget widget)
+    private inline void history_previous_clicked_cb (Widget widget)
     {
         if (scene.move_number == 0)
             return;
@@ -1742,8 +1743,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             scene.move_number = scene.move_number - 1;
     }
 
-    [CCode (cname = "history_start_clicked_cb", instance_pos = -1)]
-    public void history_start_clicked_cb (Widget widget)
+    private inline void history_start_clicked_cb (Widget widget)
     {
         scene.move_number = 0;
     }
@@ -1821,7 +1821,19 @@ Copyright © 2015–2016 Sahil Sareen""";
         var theme_combo = (ComboBox) preferences_builder.get_object ("piece_style_combo");
         set_combo (theme_combo, 1, settings.get_string ("piece-theme"));
 
-     // preferences_builder.connect_signals (this);
+        preferences_dialog.response.connect (preferences_response_cb);
+        clock_type_combo.changed.connect (clock_type_changed_cb);
+        timer_increment_units_combo.changed.connect (timer_increment_units_changed_cb);
+        side_combo.changed.connect (side_combo_changed_cb);
+        ai_combo.changed.connect (opponent_combo_changed_cb);
+        difficulty_combo.changed.connect (difficulty_combo_changed_cb);
+        custom_duration_units_combo.changed.connect (duration_units_changed_cb);
+        duration_combo.changed.connect (duration_combo_changed_cb);
+        orientation_combo.changed.connect (orientation_combo_changed_cb);
+        move_combo.changed.connect (move_format_combo_changed_cb);
+        theme_combo.changed.connect (piece_style_combo_changed_cb);
+        timer_increment_adjustment.value_changed.connect (timer_increment_units_changed_cb);
+        duration_adjustment.value_changed.connect (duration_changed_cb);
 
         /* Human vs. human */
         if (ai_combo.get_active () == 0)
@@ -1861,8 +1873,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         return value;
     }
 
-    [CCode (cname = "side_combo_changed_cb", instance_pos = -1)]
-    public void side_combo_changed_cb (ComboBox combo)
+    private inline void side_combo_changed_cb (ComboBox combo)
     {
         TreeIter iter;
         if (!combo.get_active_iter (out iter))
@@ -1873,8 +1884,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         settings.set_enum ("play-as", player);
     }
 
-    [CCode (cname = "opponent_combo_changed_cb", instance_pos = -1)]
-    public void opponent_combo_changed_cb (ComboBox combo)
+    private inline void opponent_combo_changed_cb (ComboBox combo)
     {
         TreeIter iter;
         if (!combo.get_active_iter (out iter))
@@ -1887,8 +1897,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         difficulty_combo.sensitive = !vs_human;
     }
 
-    [CCode (cname = "difficulty_combo_changed_cb", instance_pos = -1)]
-    public void difficulty_combo_changed_cb (ComboBox combo)
+    private inline void difficulty_combo_changed_cb (ComboBox combo)
     {
         TreeIter iter;
         if (!combo.get_active_iter (out iter))
@@ -1950,7 +1959,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         }
 
         timer_increment_units_combo.set_active_iter (reqd_iter);
-        timer_increment_units_changed_cb (timer_increment_units_combo);
+        timer_increment_units_changed_cb ();
     }
 
     private void set_duration (int duration, bool simplify = true)
@@ -2050,8 +2059,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         return Source.REMOVE;
     }
 
-    [CCode (cname = "duration_changed_cb", instance_pos = -1)]
-    public void duration_changed_cb (Adjustment adjustment)
+    private inline void duration_changed_cb (Adjustment adjustment)
     {
         var model = (Gtk.ListStore) custom_duration_units_combo.model;
         TreeIter iter;
@@ -2081,14 +2089,12 @@ Copyright © 2015–2016 Sahil Sareen""";
         save_duration ();
     }
 
-    [CCode (cname = "duration_units_changed_cb", instance_pos = -1)]
-    public void duration_units_changed_cb (Widget widget)
+    private inline void duration_units_changed_cb (Widget widget)
     {
         save_duration ();
     }
 
-    [CCode (cname = "timer_increment_units_changed_cb", instance_pos = -1)]
-    public void timer_increment_units_changed_cb (Widget widget)
+    private void timer_increment_units_changed_cb ()
     {
         var model = (Gtk.ListStore) timer_increment_units_combo.model;
         TreeIter iter;
@@ -2146,8 +2152,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         save_duration_timeout = Timeout.add (100, save_duration_cb);
     }
 
-    [CCode (cname = "duration_combo_changed_cb", instance_pos = -1)]
-    public void duration_combo_changed_cb (ComboBox combo)
+    private inline void duration_combo_changed_cb (ComboBox combo)
     {
         TreeIter iter;
         if (!combo.get_active_iter (out iter))
@@ -2169,8 +2174,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         save_duration ();
     }
 
-    [CCode (cname = "clock_type_changed_cb", instance_pos = -1)]
-    public void clock_type_changed_cb (ComboBox combo)
+    private void clock_type_changed_cb (ComboBox combo)
     {
         TreeIter iter;
         if (!combo.get_active_iter (out iter))
@@ -2183,8 +2187,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         settings.set_string ("clock-type", clock_type.to_string ());
     }
 
-    [CCode (cname = "preferences_response_cb", instance_pos = -1)]
-    public void preferences_response_cb (Widget widget, int response_id)
+    private inline void preferences_response_cb (Widget widget, int response_id)
     {
         preferences_dialog.hide ();
     }
@@ -2196,20 +2199,17 @@ Copyright © 2015–2016 Sahil Sareen""";
         return true;
     }
 
-    [CCode (cname = "piece_style_combo_changed_cb", instance_pos = -1)]
-    public void piece_style_combo_changed_cb (ComboBox combo)
+    private inline void piece_style_combo_changed_cb (ComboBox combo)
     {
         settings.set_string ("piece-theme", get_combo (combo, 1));
     }
 
-    [CCode (cname = "move_format_combo_changed_cb", instance_pos = -1)]
-    public void move_format_combo_changed_cb (ComboBox combo)
+    private inline void move_format_combo_changed_cb (ComboBox combo)
     {
         settings.set_string ("move-format", get_combo (combo, 1));
     }
 
-    [CCode (cname = "orientation_combo_changed_cb", instance_pos = -1)]
-    public void orientation_combo_changed_cb (ComboBox combo)
+    private inline void orientation_combo_changed_cb (ComboBox combo)
     {
         settings.set_string ("board-side", get_combo (combo, 1));
     }
