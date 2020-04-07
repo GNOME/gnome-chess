@@ -2,48 +2,48 @@
 <interface>
   <!-- interface-requires gtk+ 3.12 -->
   <object class="GtkDialog" id="dialog_promotion_type_selector">
-    <property name="can_focus">False</property>
-    <property name="border_width">5</property>
+    <property name="can-focus">False</property>
+    <property name="border-width">5</property>
     <property name="title" translatable="yes">Select Promotion Type</property>
-    <property name="type_hint">dialog</property>
-    <property name="has_resize_grip">False</property>
-    <property name="use_header_bar">1</property>
+    <property name="type-hint">dialog</property>
+    <property name="has-resize-grip">False</property>
+    <property name="use-header-bar">1</property>
     <child internal-child="vbox">
-      <object class="GtkBox" id="dialog-vbox1">
-        <property name="can_focus">False</property>
-        <property name="margin_left">12</property>
-        <property name="margin_right">12</property>
-        <property name="margin_top">6</property>
-        <property name="margin_bottom">20</property>
+      <object class="GtkBox">
+        <property name="can-focus">False</property>
+        <property name="margin-left">12</property>
+        <property name="margin-right">12</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">20</property>
         <child internal-child="action_area">
-          <object class="GtkButtonBox" id="dialog-action_area1">
-            <property name="can_focus">False</property>
-            <property name="layout_style">center</property>
+          <object class="GtkButtonBox">
+            <property name="can-focus">False</property>
+            <property name="layout-style">center</property>
             <child>
-              <object class="GtkToggleButton" id="togglebutton_queen">
-                <property name="width_request">100</property>
-                <property name="height_request">120</property>
+              <object class="GtkToggleButton" id="togglebutton-queen">
+                <property name="width-request">100</property>
+                <property name="height-request">120</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_underline">True</property>
-                <property name="image_position">top</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-underline">True</property>
+                <property name="image-position">top</property>
                 <child>
-                  <object class="GtkGrid" id="grid_queen">
+                  <object class="GtkGrid">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">center</property>
                     <property name="valign">center</property>
                     <child>
-                      <object class="GtkLabel" id="label_queen">
+                      <object class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">_Queen</property>
-                        <property name="use_underline">True</property>
+                        <property name="use-underline">True</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">1</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">1</property>
                         <property name="width">1</property>
                         <property name="height">1</property>
                       </packing>
@@ -51,11 +51,11 @@
                     <child>
                       <object class="GtkImage" id="image_queen">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">0</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">0</property>
                         <property name="width">1</property>
                         <property name="height">1</property>
                       </packing>
@@ -70,30 +70,30 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToggleButton" id="togglebutton_knight">
-                <property name="width_request">100</property>
-                <property name="height_request">120</property>
+              <object class="GtkToggleButton" id="togglebutton-knight">
+                <property name="width-request">100</property>
+                <property name="height-request">120</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_underline">True</property>
-                <property name="image_position">top</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-underline">True</property>
+                <property name="image-position">top</property>
                 <child>
-                  <object class="GtkGrid" id="grid_knight">
+                  <object class="GtkGrid">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">center</property>
                     <property name="valign">center</property>
                     <child>
-                      <object class="GtkLabel" id="label_knight">
+                      <object class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">_Knight</property>
-                        <property name="use_underline">True</property>
+                        <property name="use-underline">True</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">1</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">1</property>
                         <property name="width">1</property>
                         <property name="height">1</property>
                       </packing>
@@ -101,11 +101,11 @@
                     <child>
                       <object class="GtkImage" id="image_knight">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">0</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">0</property>
                         <property name="width">1</property>
                         <property name="height">1</property>
                       </packing>
@@ -120,30 +120,30 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToggleButton" id="togglebutton_rook">
-                <property name="width_request">100</property>
-                <property name="height_request">120</property>
+              <object class="GtkToggleButton" id="togglebutton-rook">
+                <property name="width-request">100</property>
+                <property name="height-request">120</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_underline">True</property>
-                <property name="image_position">top</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-underline">True</property>
+                <property name="image-position">top</property>
                 <child>
-                  <object class="GtkGrid" id="grid_rook">
+                  <object class="GtkGrid">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">center</property>
                     <property name="valign">center</property>
                     <child>
-                      <object class="GtkLabel" id="label_rook">
+                      <object class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">_Rook</property>
-                        <property name="use_underline">True</property>
+                        <property name="use-underline">True</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">1</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">1</property>
                         <property name="width">1</property>
                         <property name="height">1</property>
                       </packing>
@@ -151,11 +151,11 @@
                     <child>
                       <object class="GtkImage" id="image_rook">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">0</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">0</property>
                         <property name="width">1</property>
                         <property name="height">1</property>
                       </packing>
@@ -170,30 +170,30 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToggleButton" id="togglebutton_bishop">
-                <property name="width_request">100</property>
-                <property name="height_request">120</property>
+              <object class="GtkToggleButton" id="togglebutton-bishop">
+                <property name="width-request">100</property>
+                <property name="height-request">120</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_underline">True</property>
-                <property name="image_position">top</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-underline">True</property>
+                <property name="image-position">top</property>
                 <child>
-                  <object class="GtkGrid" id="grid_bishop">
+                  <object class="GtkGrid">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">center</property>
                     <property name="valign">center</property>
                     <child>
-                      <object class="GtkLabel" id="label_bishop">
+                      <object class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">_Bishop</property>
-                        <property name="use_underline">True</property>
+                        <property name="use-underline">True</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">1</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">1</property>
                         <property name="width">1</property>
                         <property name="height">1</property>
                       </packing>
@@ -201,11 +201,11 @@
                     <child>
                       <object class="GtkImage" id="image_bishop">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                       </object>
                       <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">0</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">0</property>
                         <property name="width">1</property>
                         <property name="height">1</property>
                       </packing>
@@ -223,17 +223,17 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
       </object>
     </child>
     <action-widgets>
-      <action-widget response="0">togglebutton_queen</action-widget>
-      <action-widget response="1">togglebutton_knight</action-widget>
-      <action-widget response="2">togglebutton_rook</action-widget>
-      <action-widget response="3">togglebutton_bishop</action-widget>
+      <action-widget response="0">togglebutton-queen</action-widget>
+      <action-widget response="1">togglebutton-knight</action-widget>
+      <action-widget response="2">togglebutton-rook</action-widget>
+      <action-widget response="3">togglebutton-bishop</action-widget>
     </action-widgets>
   </object>
 </interface>

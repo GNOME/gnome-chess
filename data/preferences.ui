@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 3.12 -->
-  <object class="GtkListStore" id="custom_duration_units_model">
+  <object class="GtkListStore" id="custom-duration-units-model">
     <columns>
       <!-- column-name label -->
       <column type="gchararray"/>
@@ -19,7 +19,7 @@
       </row>
     </data>
   </object>
-  <object class="GtkListStore" id="timer_increment_units_model">
+  <object class="GtkListStore" id="timer-increment-units-model">
     <columns>
       <!-- column-name label -->
       <column type="gchararray"/>
@@ -37,7 +37,7 @@
       </row>
     </data>
   </object>
-  <object class="GtkListStore" id="clock_type_model">
+  <object class="GtkListStore" id="clock-type-model">
     <columns>
       <!-- column-name label -->
       <column type="gchararray"/>
@@ -59,7 +59,7 @@
       </row>
     </data>
   </object>
-  <object class="GtkListStore" id="difficulty_model">
+  <object class="GtkListStore" id="difficulty-model">
     <columns>
       <!-- column-name label -->
       <column type="gchararray"/>
@@ -84,18 +84,18 @@
   <object class="GtkAdjustment" id="timer_increment_adjustment">
     <property name="lower">1</property>
     <property name="upper">59</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
     <signal name="value-changed" handler="timer_increment_units_changed_cb" swapped="no"/>
   </object>
   <object class="GtkAdjustment" id="duration_adjustment">
     <property name="lower">1</property>
     <property name="upper">10</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
     <signal name="value-changed" handler="duration_changed_cb" swapped="no"/>
   </object>
-  <object class="GtkListStore" id="duration_model">
+  <object class="GtkListStore" id="duration-model">
     <columns>
       <!-- column-name label -->
       <column type="gchararray"/>
@@ -137,7 +137,7 @@
       </row>
     </data>
   </object>
-  <object class="GtkListStore" id="move_format_model">
+  <object class="GtkListStore" id="move-format-model">
     <columns>
       <!-- column-name label -->
       <column type="gchararray"/>
@@ -163,7 +163,7 @@
       </row>
     </data>
   </object>
-  <object class="GtkListStore" id="opponent_model">
+  <object class="GtkListStore" id="opponent-model">
     <columns>
       <!-- column-name label -->
       <column type="gchararray"/>
@@ -177,7 +177,7 @@
       </row>
     </data>
   </object>
-  <object class="GtkListStore" id="orientation_model">
+  <object class="GtkListStore" id="orientation-model">
     <columns>
       <!-- column-name label -->
       <column type="gchararray"/>
@@ -203,7 +203,7 @@
       </row>
     </data>
   </object>
-  <object class="GtkListStore" id="piece_style_model">
+  <object class="GtkListStore" id="piece-style-model">
     <columns>
       <!-- column-name label -->
       <column type="gchararray"/>
@@ -222,38 +222,38 @@
     </data>
   </object>
   <object class="GtkDialog" id="preferences">
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="title" translatable="yes" comments="Title for preferences dialog">Preferences</property>
     <property name="resizable">False</property>
-    <property name="destroy_with_parent">True</property>
-    <property name="type_hint">dialog</property>
-    <property name="use_header_bar">1</property>
+    <property name="destroy-with-parent">True</property>
+    <property name="type-hint">dialog</property>
+    <property name="use-header-bar">1</property>
     <signal name="delete-event" handler="preferences_delete_event_cb" swapped="no"/>
     <signal name="response" handler="preferences_response_cb" swapped="no"/>
     <child internal-child="vbox">
-      <object class="GtkBox" id="dialog-vbox1">
+      <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <child>
-          <object class="GtkNotebook" id="notebook1">
+          <object class="GtkNotebook">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="border_width">5</property>
+            <property name="can-focus">True</property>
+            <property name="border-width">5</property>
             <child>
               <object class="GtkGrid">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="border_width">10</property>
-                <property name="column_spacing">5</property>
-                <property name="row_spacing">5</property>
+                <property name="can-focus">False</property>
+                <property name="border-width">10</property>
+                <property name="column-spacing">5</property>
+                <property name="row-spacing">5</property>
                 <child>
-                  <object class="GtkLabel" id="clock_type_label">
+                  <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes" comments="Preferences Dialog: Label before clock type (Fischer/Bronstein) combo box">_Clock type:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">clock_type_combo</property>
+                    <property name="use-underline">True</property>
+                    <property name="mnemonic-widget">clock_type_combo</property>
                   </object>
                   <packing>
                     <property name="top-attach">5</property>
@@ -263,11 +263,11 @@
                 <child>
                   <object class="GtkLabel" id="timer_increment_label">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes" comments="Preferences Dialog: Label before timer increment combo box">Timer _increment:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">timer_increment_spin</property>
+                    <property name="use-underline">True</property>
+                    <property name="mnemonic-widget">timer-increment-spin</property>
                   </object>
                   <packing>
                     <property name="top-attach">6</property>
@@ -278,11 +278,11 @@
                   <object class="GtkComboBox" id="clock_type_combo">
                     <property name="visible">True</property>
                     <property name="hexpand">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">clock_type_model</property>
+                    <property name="can-focus">False</property>
+                    <property name="model">clock-type-model</property>
                     <signal name="changed" handler="clock_type_changed_cb" swapped="no"/>
                     <child>
-                      <object class="GtkCellRendererText" id="clock_type_cellrenderer"/>
+                      <object class="GtkCellRendererText"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -294,13 +294,13 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="side_label">
+                  <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes" comments="Preferences Dialog: Label before player side (white/black) combo box">_Play as:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">side_combo</property>
+                    <property name="use-underline">True</property>
+                    <property name="mnemonic-widget">side_combo</property>
                   </object>
                   <packing>
                     <property name="top-attach">1</property>
@@ -308,13 +308,13 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="opposing_player_label">
+                  <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes" comments="Preferences Dialog: Label before opposing player combo box">_Opposing player:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">opponent_combo</property>
+                    <property name="use-underline">True</property>
+                    <property name="mnemonic-widget">opponent_combo</property>
                   </object>
                   <packing>
                     <property name="top-attach">0</property>
@@ -322,13 +322,13 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label2">
+                  <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes" comments="Preferences Dialog: Label before difficulty level combo box">_Difficulty:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">difficulty_combo</property>
+                    <property name="use-underline">True</property>
+                    <property name="mnemonic-widget">difficulty_combo</property>
                   </object>
                   <packing>
                     <property name="top-attach">2</property>
@@ -339,15 +339,15 @@
                   <object class="GtkBox" id="timer_increment_box">
                     <property name="visible">True</property>
                     <property name="hexpand">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="spacing">6</property>
                     <child>
-                      <object class="GtkSpinButton" id="timer_increment_spin">
+                      <object class="GtkSpinButton" id="timer-increment-spin">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="invisible_char">•</property>
+                        <property name="can-focus">True</property>
+                        <property name="invisible-char">•</property>
                         <property name="adjustment">timer_increment_adjustment</property>
-                        <property name="climb_rate">1</property>
+                        <property name="climb-rate">1</property>
                         <property name="numeric">True</property>
                       </object>
                       <packing>
@@ -359,11 +359,11 @@
                     <child>
                       <object class="GtkComboBox" id="timer_increment_units_combo">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="model">timer_increment_units_model</property>
+                        <property name="can-focus">False</property>
+                        <property name="model">timer-increment-units-model</property>
                         <signal name="changed" handler="timer_increment_units_changed_cb" swapped="no"/>
                         <child>
-                          <object class="GtkCellRendererText" id="timer_increment_units_cellrenderer"/>
+                          <object class="GtkCellRendererText"/>
                           <attributes>
                             <attribute name="text">0</attribute>
                           </attributes>
@@ -385,11 +385,11 @@
                   <object class="GtkComboBox" id="side_combo">
                     <property name="visible">True</property>
                     <property name="hexpand">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">side_model</property>
+                    <property name="can-focus">False</property>
+                    <property name="model">side-model</property>
                     <signal name="changed" handler="side_combo_changed_cb" swapped="no"/>
                     <child>
-                      <object class="GtkCellRendererText" id="side_cellrenderer"/>
+                      <object class="GtkCellRendererText"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -404,11 +404,11 @@
                   <object class="GtkComboBox" id="opponent_combo">
                     <property name="visible">True</property>
                     <property name="hexpand">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">opponent_model</property>
+                    <property name="can-focus">False</property>
+                    <property name="model">opponent-model</property>
                     <signal name="changed" handler="opponent_combo_changed_cb" swapped="no"/>
                     <child>
-                      <object class="GtkCellRendererText" id="opponent_cellrenderer"/>
+                      <object class="GtkCellRendererText"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -423,11 +423,11 @@
                   <object class="GtkComboBox" id="difficulty_combo">
                     <property name="visible">True</property>
                     <property name="hexpand">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">difficulty_model</property>
+                    <property name="can-focus">False</property>
+                    <property name="model">difficulty-model</property>
                     <signal name="changed" handler="difficulty_combo_changed_cb" swapped="no"/>
                     <child>
-                      <object class="GtkCellRendererText" id="difficulty_cellrenderer"/>
+                      <object class="GtkCellRendererText"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -442,15 +442,15 @@
                   <object class="GtkBox" id="custom_duration_box">
                     <property name="visible">True</property>
                     <property name="hexpand">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="spacing">6</property>
                     <child>
-                      <object class="GtkSpinButton" id="custom_duration_spin">
+                      <object class="GtkSpinButton">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="invisible_char">•</property>
+                        <property name="can-focus">True</property>
+                        <property name="invisible-char">•</property>
                         <property name="adjustment">duration_adjustment</property>
-                        <property name="climb_rate">1</property>
+                        <property name="climb-rate">1</property>
                         <property name="numeric">True</property>
                       </object>
                       <packing>
@@ -462,11 +462,11 @@
                     <child>
                       <object class="GtkComboBox" id="custom_duration_units_combo">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="model">custom_duration_units_model</property>
+                        <property name="can-focus">False</property>
+                        <property name="model">custom-duration-units-model</property>
                         <signal name="changed" handler="duration_units_changed_cb" swapped="no"/>
                         <child>
-                          <object class="GtkCellRendererText" id="custom_duration_units_cellrenderer"/>
+                          <object class="GtkCellRendererText"/>
                           <attributes>
                             <attribute name="text">0</attribute>
                           </attributes>
@@ -485,13 +485,13 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label3">
+                  <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes" comments="Preferences Dialog: Label before game timer settings">_Time limit:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">duration_combo</property>
+                    <property name="use-underline">True</property>
+                    <property name="mnemonic-widget">duration_combo</property>
                   </object>
                   <packing>
                     <property name="top-attach">3</property>
@@ -502,11 +502,11 @@
                   <object class="GtkComboBox" id="duration_combo">
                     <property name="visible">True</property>
                     <property name="hexpand">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">duration_model</property>
+                    <property name="can-focus">False</property>
+                    <property name="model">duration-model</property>
                     <signal name="changed" handler="duration_combo_changed_cb" swapped="no"/>
                     <child>
-                      <object class="GtkCellRendererText" id="duration_cellrenderer"/>
+                      <object class="GtkCellRendererText"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -518,15 +518,15 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkBox" id="hbox2">
+                  <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="hexpand">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="spacing">5</property>
                     <child>
-                      <object class="GtkImage" id="image1">
+                      <object class="GtkImage">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="icon-name">dialog-information-symbolic</property>
                         <property name="icon-size">6</property>
                       </object>
@@ -537,9 +537,9 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="label4">
+                      <object class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
                         <property name="label" translatable="yes" comments="Preferences dialog: Label to notify user that the settings are applied for the next game">Changes will take effect for the next game.</property>
                       </object>
@@ -559,31 +559,31 @@
               </object>
             </child>
             <child type="tab">
-              <object class="GtkLabel" id="label1">
+              <object class="GtkLabel">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="label" translatable="yes" comments="Preferences Dialog: Tab title for game preferences">_Game</property>
-                <property name="use_underline">True</property>
+                <property name="use-underline">True</property>
               </object>
               <packing>
-                <property name="tab_fill">False</property>
+                <property name="tab-fill">False</property>
               </packing>
             </child>
             <child>
               <object class="GtkGrid">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="border_width">10</property>
-                <property name="column_spacing">5</property>
-                <property name="row_spacing">5</property>
+                <property name="can-focus">False</property>
+                <property name="border-width">10</property>
+                <property name="column-spacing">5</property>
+                <property name="row-spacing">5</property>
                 <child>
-                  <object class="GtkLabel" id="board_label">
+                  <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes" comments="Preferences Dialog: Label before board orientation combo box">Board _orientation:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">orientation_combo</property>
+                    <property name="use-underline">True</property>
+                    <property name="mnemonic-widget">orientation_combo</property>
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
@@ -591,13 +591,13 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="format_label">
+                  <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes" comments="Preferences Dialog: Label before move format combo box">Move _format:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">move_format_combo</property>
+                    <property name="use-underline">True</property>
+                    <property name="mnemonic-widget">move_format_combo</property>
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
@@ -605,13 +605,13 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="piece_style_label">
+                  <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes" comments="Preferences Dialog: Label before piece style combo box">_Piece style:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">piece_style_combo</property>
+                    <property name="use-underline">True</property>
+                    <property name="mnemonic-widget">piece_style_combo</property>
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
@@ -622,11 +622,11 @@
                   <object class="GtkComboBox" id="orientation_combo">
                     <property name="visible">True</property>
                     <property name="hexpand">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">orientation_model</property>
+                    <property name="can-focus">False</property>
+                    <property name="model">orientation-model</property>
                     <signal name="changed" handler="orientation_combo_changed_cb" swapped="no"/>
                     <child>
-                      <object class="GtkCellRendererText" id="orientation_cellrenderer"/>
+                      <object class="GtkCellRendererText"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -641,11 +641,11 @@
                   <object class="GtkComboBox" id="move_format_combo">
                     <property name="visible">True</property>
                     <property name="hexpand">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="model">move_format_model</property>
+                    <property name="can-focus">False</property>
+                    <property name="model">move-format-model</property>
                     <signal name="changed" handler="move_format_combo_changed_cb" swapped="no"/>
                     <child>
-                      <object class="GtkCellRendererText" id="move_format_cellrenderer"/>
+                      <object class="GtkCellRendererText"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -660,11 +660,11 @@
                   <object class="GtkComboBox" id="piece_style_combo">
                     <property name="visible">True</property>
                     <property name="hexpand">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="model">piece_style_model</property>
+                    <property name="can-focus">True</property>
+                    <property name="model">piece-style-model</property>
                     <signal name="changed" handler="piece_style_combo_changed_cb" swapped="no"/>
                     <child>
-                      <object class="GtkCellRendererText" id="piece_style_cellrenderer"/>
+                      <object class="GtkCellRendererText"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -679,10 +679,10 @@
                   <object class="GtkCheckButton" id="show_numbering_check">
                     <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if board numbering is visible">_Board numbering</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="use_underline">True</property>
-                    <property name="draw_indicator">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">False</property>
+                    <property name="use-underline">True</property>
+                    <property name="draw-indicator">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
@@ -694,10 +694,10 @@
                   <object class="GtkCheckButton" id="show_move_hints_check">
                     <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if move hints are visible">_Move hints</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="use_underline">True</property>
-                    <property name="draw_indicator">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">False</property>
+                    <property name="use-underline">True</property>
+                    <property name="draw-indicator">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">0</property>
@@ -711,15 +711,15 @@
               </packing>
             </child>
             <child type="tab">
-              <object class="GtkLabel" id="view_label">
+              <object class="GtkLabel">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="label" translatable="yes" comments="Preferences Dialog: Title of appearance options tab">_Appearance</property>
-                <property name="use_underline">True</property>
+                <property name="use-underline">True</property>
               </object>
               <packing>
                 <property name="position">1</property>
-                <property name="tab_fill">False</property>
+                <property name="tab-fill">False</property>
               </packing>
             </child>
           </object>
@@ -732,7 +732,7 @@
       </object>
     </child>
   </object>
-  <object class="GtkListStore" id="side_model">
+  <object class="GtkListStore" id="side-model">
     <columns>
       <!-- column-name label -->
       <column type="gchararray"/>
