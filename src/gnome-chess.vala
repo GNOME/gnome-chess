@@ -370,9 +370,11 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     private void set_piece_image (Image image, string filename)
     {
-        int width, height;
-        if (!icon_size_lookup (IconSize.DIALOG, out width, out height))
-            return;
+//        int width, height;
+//        if (!icon_size_lookup (IconSize.DIALOG, out width, out height))
+//            return;
+        int width = 100;
+        int height = 100;
 
         try
         {
