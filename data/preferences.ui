@@ -240,17 +240,12 @@
             <property name="can_focus">True</property>
             <property name="border_width">5</property>
             <child>
-              <object class="GtkTable" id="game_table1">
+              <object class="GtkGrid">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="border_width">10</property>
-                <property name="n_rows">8</property>
-                <property name="n_columns">2</property>
                 <property name="column_spacing">5</property>
                 <property name="row_spacing">5</property>
-                <child>
-                  <placeholder/>
-                </child>
                 <child>
                   <object class="GtkLabel" id="clock_type_label">
                     <property name="visible">True</property>
@@ -261,10 +256,8 @@
                     <property name="mnemonic_widget">clock_type_combo</property>
                   </object>
                   <packing>
-                    <property name="top_attach">5</property>
-                    <property name="bottom_attach">6</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
+                    <property name="top-attach">5</property>
+                    <property name="left-attach">0</property>
                   </packing>
                 </child>
                 <child>
@@ -277,15 +270,14 @@
                     <property name="mnemonic_widget">timer_increment_spin</property>
                   </object>
                   <packing>
-                    <property name="top_attach">6</property>
-                    <property name="bottom_attach">7</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
+                    <property name="top-attach">6</property>
+                    <property name="left-attach">0</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkComboBox" id="clock_type_combo">
                     <property name="visible">True</property>
+                    <property name="hexpand">True</property>
                     <property name="can_focus">False</property>
                     <property name="model">clock_type_model</property>
                     <signal name="changed" handler="clock_type_changed_cb" swapped="no"/>
@@ -297,11 +289,8 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">5</property>
-                    <property name="bottom_attach">6</property>
-                    <property name="y_options">GTK_FILL</property>
+                    <property name="top-attach">5</property>
+                    <property name="left-attach">1</property>
                   </packing>
                 </child>
                 <child>
@@ -314,10 +303,8 @@
                     <property name="mnemonic_widget">side_combo</property>
                   </object>
                   <packing>
-                    <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
+                    <property name="top-attach">1</property>
+                    <property name="left-attach">0</property>
                   </packing>
                 </child>
                 <child>
@@ -330,10 +317,8 @@
                     <property name="mnemonic_widget">opponent_combo</property>
                   </object>
                   <packing>
-                    <property name="top_attach">0</property>
-                    <property name="bottom_attach">1</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
+                    <property name="top-attach">0</property>
+                    <property name="left-attach">0</property>
                   </packing>
                 </child>
                 <child>
@@ -346,15 +331,14 @@
                     <property name="mnemonic_widget">difficulty_combo</property>
                   </object>
                   <packing>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
+                    <property name="top-attach">2</property>
+                    <property name="left-attach">0</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkBox" id="timer_increment_box">
                     <property name="visible">True</property>
+                    <property name="hexpand">True</property>
                     <property name="can_focus">False</property>
                     <property name="spacing">6</property>
                     <child>
@@ -393,17 +377,14 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">6</property>
-                    <property name="bottom_attach">7</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options">GTK_FILL</property>
+                    <property name="top-attach">6</property>
+                    <property name="left-attach">1</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkComboBox" id="side_combo">
                     <property name="visible">True</property>
+                    <property name="hexpand">True</property>
                     <property name="can_focus">False</property>
                     <property name="model">side_model</property>
                     <signal name="changed" handler="side_combo_changed_cb" swapped="no"/>
@@ -415,16 +396,14 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="y_options">GTK_FILL</property>
+                    <property name="top-attach">1</property>
+                    <property name="left-attach">1</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkComboBox" id="opponent_combo">
                     <property name="visible">True</property>
+                    <property name="hexpand">True</property>
                     <property name="can_focus">False</property>
                     <property name="model">opponent_model</property>
                     <signal name="changed" handler="opponent_combo_changed_cb" swapped="no"/>
@@ -436,15 +415,14 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options">GTK_FILL</property>
+                    <property name="top-attach">0</property>
+                    <property name="left-attach">1</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkComboBox" id="difficulty_combo">
                     <property name="visible">True</property>
+                    <property name="hexpand">True</property>
                     <property name="can_focus">False</property>
                     <property name="model">difficulty_model</property>
                     <signal name="changed" handler="difficulty_combo_changed_cb" swapped="no"/>
@@ -456,17 +434,14 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options">GTK_FILL</property>
+                    <property name="top-attach">2</property>
+                    <property name="left-attach">1</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkBox" id="custom_duration_box">
                     <property name="visible">True</property>
+                    <property name="hexpand">True</property>
                     <property name="can_focus">False</property>
                     <property name="spacing">6</property>
                     <child>
@@ -505,12 +480,8 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">4</property>
-                    <property name="bottom_attach">5</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options">GTK_FILL</property>
+                    <property name="top-attach">4</property>
+                    <property name="left-attach">1</property>
                   </packing>
                 </child>
                 <child>
@@ -523,15 +494,14 @@
                     <property name="mnemonic_widget">duration_combo</property>
                   </object>
                   <packing>
-                    <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
+                    <property name="top-attach">3</property>
+                    <property name="left-attach">0</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkComboBox" id="duration_combo">
                     <property name="visible">True</property>
+                    <property name="hexpand">True</property>
                     <property name="can_focus">False</property>
                     <property name="model">duration_model</property>
                     <signal name="changed" handler="duration_combo_changed_cb" swapped="no"/>
@@ -543,16 +513,14 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                    <property name="y_options">GTK_FILL</property>
+                    <property name="top-attach">3</property>
+                    <property name="left-attach">1</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkBox" id="hbox2">
                     <property name="visible">True</property>
+                    <property name="hexpand">True</property>
                     <property name="can_focus">False</property>
                     <property name="spacing">5</property>
                     <child>
@@ -583,10 +551,9 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">7</property>
-                    <property name="bottom_attach">8</property>
-                    <property name="y_options">GTK_FILL</property>
+                    <property name="top-attach">7</property>
+                    <property name="left-attach">0</property>
+                    <property name="width">2</property>
                   </packing>
                 </child>
               </object>
@@ -603,12 +570,10 @@
               </packing>
             </child>
             <child>
-              <object class="GtkTable" id="table1">
+              <object class="GtkGrid">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="border_width">10</property>
-                <property name="n_rows">4</property>
-                <property name="n_columns">2</property>
                 <property name="column_spacing">5</property>
                 <property name="row_spacing">5</property>
                 <child>
@@ -621,8 +586,8 @@
                     <property name="mnemonic_widget">orientation_combo</property>
                   </object>
                   <packing>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">0</property>
                   </packing>
                 </child>
                 <child>
@@ -635,10 +600,8 @@
                     <property name="mnemonic_widget">move_format_combo</property>
                   </object>
                   <packing>
-                    <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">1</property>
                   </packing>
                 </child>
                 <child>
@@ -651,15 +614,14 @@
                     <property name="mnemonic_widget">piece_style_combo</property>
                   </object>
                   <packing>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">2</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkComboBox" id="orientation_combo">
                     <property name="visible">True</property>
+                    <property name="hexpand">True</property>
                     <property name="can_focus">False</property>
                     <property name="model">orientation_model</property>
                     <signal name="changed" handler="orientation_combo_changed_cb" swapped="no"/>
@@ -671,14 +633,14 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="y_options">GTK_FILL</property>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">0</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkComboBox" id="move_format_combo">
                     <property name="visible">True</property>
+                    <property name="hexpand">True</property>
                     <property name="can_focus">False</property>
                     <property name="model">move_format_model</property>
                     <signal name="changed" handler="move_format_combo_changed_cb" swapped="no"/>
@@ -690,17 +652,14 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options">GTK_FILL</property>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">1</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkComboBox" id="piece_style_combo">
                     <property name="visible">True</property>
+                    <property name="hexpand">True</property>
                     <property name="can_focus">True</property>
                     <property name="model">piece_style_model</property>
                     <signal name="changed" handler="piece_style_combo_changed_cb" swapped="no"/>
@@ -712,54 +671,38 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options">GTK_FILL</property>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">2</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkBox" id="view_box">
+                  <object class="GtkCheckButton" id="show_numbering_check">
+                    <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if board numbering is visible">_Board numbering</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="orientation">vertical</property>
-                    <child>
-                      <object class="GtkCheckButton" id="show_numbering_check">
-                        <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if board numbering is visible">_Board numbering</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="draw_indicator">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">3</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkCheckButton" id="show_move_hints_check">
-                        <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if move hints are visible">_Move hints</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="draw_indicator">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">4</property>
-                      </packing>
-                    </child>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="use_underline">True</property>
+                    <property name="draw_indicator">True</property>
                   </object>
                   <packing>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">3</property>
+                    <property name="width">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkCheckButton" id="show_move_hints_check">
+                    <property name="label" translatable="yes" comments="Preferences Dialog: Check box for selecting if move hints are visible">_Move hints</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="use_underline">True</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">4</property>
+                    <property name="width">2</property>
                   </packing>
                 </child>
               </object>
