@@ -42,20 +42,20 @@ public class ChessView : Gtk.DrawingArea
     {
         add_events (Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.BUTTON_RELEASE_MASK);
 
+        size_allocate.connect (on_size_allocate);
+
         init_mouse ();
     }
 
-    public override bool configure_event (Gdk.EventConfigure event)
+    private inline void on_size_allocate (int width, int height)
     {
-        int short_edge = int.min (get_allocated_width (), get_allocated_height ());
+        int short_edge = int.min (width, height);       // TODO width or get_size() result?
 
         square_size = (int) Math.floor ((short_edge - 2 * border) / 9.0);
         var extra = square_size * 0.1;
         if (extra < 3)
             extra = 3;
         selected_square_size = square_size + 2 * (int) (extra + 0.5);
-
-        return true;
     }
 
     private void render_piece (Cairo.Context c1, Cairo.Context c2, string name, int offset)

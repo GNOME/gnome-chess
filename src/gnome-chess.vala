@@ -159,9 +159,8 @@ Copyright © 2015–2016 Sahil Sareen""";
         window.set_default_size (settings.get_int ("width"), settings.get_int ("height"));
         if (settings.get_boolean ("maximized"))
             window.maximize ();
-        window.size_allocate.connect (size_allocate_cb);
+        window.size_allocate.connect (on_size_allocate);
         window.map.connect (init_state_watcher);
-        window.configure_event.connect (configure_event_cb);
 
         info_bar = (InfoBar) builder.get_object ("info_bar");
         pause_resume_button = (Button) builder.get_object ("pause_button");
@@ -280,8 +279,13 @@ Copyright © 2015–2016 Sahil Sareen""";
         navigation_box.set_orientation ((layout_mode == LayoutMode.NORMAL) ? Orientation.HORIZONTAL : Orientation.VERTICAL);
     }
 
-    private void size_allocate_cb (Allocation allocation)
+    private inline void on_size_allocate (int width, int height)
     {
+        if (width <= 500 && layout_mode == LayoutMode.NORMAL)       // TODO width or get_size() result?
+            set_layout_mode (LayoutMode.NARROW);
+        else if (width > 500 && layout_mode == LayoutMode.NARROW)
+            set_layout_mode (LayoutMode.NORMAL);
+
         if (window_is_maximized || window_is_tiled || window_is_fullscreen)
             return;
         window.get_size (out window_width, out window_height);
@@ -313,15 +317,6 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         /* tiled: not saved, but should not change saved window size */
         window_is_tiled = (state & tiled_state) != 0;
-    }
-
-    private bool configure_event_cb (Gdk.EventConfigure event)
-    {
-        if (event.width <= 500 && layout_mode == LayoutMode.NORMAL)
-            set_layout_mode (LayoutMode.NARROW);
-        else if (event.width > 500 && layout_mode == LayoutMode.NARROW)
-            set_layout_mode (LayoutMode.NORMAL);
-        return Gdk.EVENT_PROPAGATE;
     }
 
     public PieceType? show_promotion_type_selector ()
