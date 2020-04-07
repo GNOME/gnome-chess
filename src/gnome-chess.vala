@@ -174,7 +174,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         black_time_label = (Widget) builder.get_object ("black_time_label");
         view_container = (Container) builder.get_object ("view_container");
         headerbar = (HeaderBar) builder.get_object ("headerbar");
-        builder.connect_signals (this);
+     // builder.connect_signals (this);
 
         update_pause_resume_button ();
 
@@ -344,7 +344,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         filename = Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, "%sBishop.svg".printf (color));
         set_piece_image ((Image) promotion_type_selector_builder.get_object ("image_bishop"), filename);
 
-        promotion_type_selector_builder.connect_signals (this);
+     // promotion_type_selector_builder.connect_signals (this);
 
         PieceType? selection = null;
         int choice = promotion_type_selector_dialog.run ();
@@ -1821,7 +1821,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         var theme_combo = (ComboBox) preferences_builder.get_object ("piece_style_combo");
         set_combo (theme_combo, 1, settings.get_string ("piece-theme"));
 
-        preferences_builder.connect_signals (this);
+     // preferences_builder.connect_signals (this);
 
         /* Human vs. human */
         if (ai_combo.get_active () == 0)
