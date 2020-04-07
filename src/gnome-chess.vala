@@ -137,7 +137,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         label.set_wrap (true);
         label.show ();
 
-        info_bar.get_content_area ().add (label);
+        info_bar.add (label);
         info_bar.set_message_type (MessageType.ERROR);
         info_bar.set_show_close_button (true);
         info_bar.response.connect (() => info_bar.destroy ());
