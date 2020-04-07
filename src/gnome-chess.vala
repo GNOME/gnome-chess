@@ -1286,15 +1286,13 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         if (game != null && game.is_paused)
         {
-            pause_resume_button.image = new Image.from_icon_name ("media-playback-start-symbolic",
-                                                                  IconSize.BUTTON);
-            pause_resume_button.tooltip_text = _("Unpause the game");
+            pause_resume_button.set_icon_name ("media-playback-start-symbolic");
+            pause_resume_button.set_tooltip_text (_("Unpause the game"));
         }
         else
         {
-            pause_resume_button.image = new Image.from_icon_name ("media-playback-pause-symbolic",
-                                                                  IconSize.BUTTON);
-            pause_resume_button.tooltip_text = _("Pause the game");
+            pause_resume_button.set_icon_name ("media-playback-pause-symbolic");
+            pause_resume_button.set_tooltip_text (_("Pause the game"));
         }
     }
 
