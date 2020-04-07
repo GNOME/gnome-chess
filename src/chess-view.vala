@@ -19,7 +19,7 @@ public class ChessView : Gtk.DrawingArea
     private Cairo.Surface? selected_model_surface;
     private string loaded_theme_name = "";
 
-    private Gtk.GestureMultiPress click_controller; // for keeping in memory
+    private Gtk.GestureClick click_controller;          // for keeping in memory
 
     private ChessScene _scene;
     public ChessScene scene
@@ -278,11 +278,12 @@ public class ChessView : Gtk.DrawingArea
 
     private inline void init_mouse ()
     {
-        click_controller = new Gtk.GestureMultiPress (this);    // only reacts to Gdk.BUTTON_PRIMARY
+        click_controller = new Gtk.GestureClick ();     // only reacts to Gdk.BUTTON_PRIMARY
         click_controller.pressed.connect (on_click);
+        add_controller (click_controller);
     }
 
-    private inline void on_click (Gtk.GestureMultiPress _click_controller, int n_press, double event_x, double event_y)
+    private inline void on_click (Gtk.GestureClick _click_controller, int n_press, double event_x, double event_y)
     {
         if (scene.game == null || scene.game.should_show_paused_overlay)
             return;
