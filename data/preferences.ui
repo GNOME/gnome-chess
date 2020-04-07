@@ -86,14 +86,12 @@
     <property name="upper">59</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
-    <signal name="value-changed" handler="timer_increment_units_changed_cb" swapped="no"/>
   </object>
   <object class="GtkAdjustment" id="duration_adjustment">
     <property name="lower">1</property>
     <property name="upper">10</property>
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
-    <signal name="value-changed" handler="duration_changed_cb" swapped="no"/>
   </object>
   <object class="GtkListStore" id="duration-model">
     <columns>
@@ -228,7 +226,6 @@
     <property name="destroy-with-parent">True</property>
     <property name="use-header-bar">1</property>
 <!--    <signal name="delete-event" handler="preferences_delete_event_cb" swapped="no"/>-->
-    <signal name="response" handler="preferences_response_cb" swapped="no"/>
     <child internal-child="content_area">
       <object class="GtkBox">
         <property name="can-focus">False</property>
@@ -282,7 +279,6 @@
                         <property name="hexpand">True</property>
                         <property name="can-focus">False</property>
                         <property name="model">clock-type-model</property>
-                        <signal name="changed" handler="clock_type_changed_cb" swapped="no"/>
                         <child>
                           <object class="GtkCellRendererText"/>
                           <attributes>
@@ -354,7 +350,6 @@
                             <property name="hexpand">True</property>
                             <property name="can-focus">False</property>
                             <property name="model">timer-increment-units-model</property>
-                            <signal name="changed" handler="timer_increment_units_changed_cb" swapped="no"/>
                             <child>
                               <object class="GtkCellRendererText"/>
                               <attributes>
@@ -374,7 +369,6 @@
                         <property name="hexpand">True</property>
                         <property name="can-focus">False</property>
                         <property name="model">side-model</property>
-                        <signal name="changed" handler="side_combo_changed_cb" swapped="no"/>
                         <child>
                           <object class="GtkCellRendererText"/>
                           <attributes>
@@ -392,7 +386,6 @@
                         <property name="hexpand">True</property>
                         <property name="can-focus">False</property>
                         <property name="model">opponent-model</property>
-                        <signal name="changed" handler="opponent_combo_changed_cb" swapped="no"/>
                         <child>
                           <object class="GtkCellRendererText"/>
                           <attributes>
@@ -410,7 +403,6 @@
                         <property name="hexpand">True</property>
                         <property name="can-focus">False</property>
                         <property name="model">difficulty-model</property>
-                        <signal name="changed" handler="difficulty_combo_changed_cb" swapped="no"/>
                         <child>
                           <object class="GtkCellRendererText"/>
                           <attributes>
@@ -443,7 +435,6 @@
                             <property name="hexpand">True</property>
                             <property name="can-focus">False</property>
                             <property name="model">custom-duration-units-model</property>
-                            <signal name="changed" handler="duration_units_changed_cb" swapped="no"/>
                             <child>
                               <object class="GtkCellRendererText"/>
                               <attributes>
@@ -476,7 +467,6 @@
                         <property name="hexpand">True</property>
                         <property name="can-focus">False</property>
                         <property name="model">duration-model</property>
-                        <signal name="changed" handler="duration_combo_changed_cb" swapped="no"/>
                         <child>
                           <object class="GtkCellRendererText"/>
                           <attributes>
@@ -583,7 +573,6 @@
                         <property name="hexpand">True</property>
                         <property name="can-focus">False</property>
                         <property name="model">orientation-model</property>
-                        <signal name="changed" handler="orientation_combo_changed_cb" swapped="no"/>
                         <child>
                           <object class="GtkCellRendererText"/>
                           <attributes>
@@ -601,7 +590,6 @@
                         <property name="hexpand">True</property>
                         <property name="can-focus">False</property>
                         <property name="model">move-format-model</property>
-                        <signal name="changed" handler="move_format_combo_changed_cb" swapped="no"/>
                         <child>
                           <object class="GtkCellRendererText"/>
                           <attributes>
@@ -619,7 +607,6 @@
                         <property name="hexpand">True</property>
                         <property name="can-focus">True</property>
                         <property name="model">piece-style-model</property>
-                        <signal name="changed" handler="piece_style_combo_changed_cb" swapped="no"/>
                         <child>
                           <object class="GtkCellRendererText"/>
                           <attributes>
