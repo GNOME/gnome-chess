@@ -135,13 +135,11 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         var label = new Label (_("No chess engine is installed. You will not be able to play against the computer."));
         label.set_wrap (true);
-        label.show ();
 
         info_bar.add (label);
         info_bar.set_message_type (MessageType.ERROR);
         info_bar.set_show_close_button (true);
         info_bar.response.connect (() => info_bar.destroy ());
-        info_bar.show ();
     }
 
     public override void startup ()
@@ -208,7 +206,6 @@ Copyright © 2015–2016 Sahil Sareen""";
         view.hexpand = true;
         view.vexpand = true;
         view_container.insert_child_after (view, /* insert first */ null);
-        view.show ();
 
         var system_engine_cfg = Path.build_filename (SYSCONFDIR, "gnome-chess", "engines.conf", null);
         var user_engine_cfg = Path.build_filename (Environment.get_user_config_dir (), "gnome-chess", "engines.conf", null);
@@ -2254,7 +2251,6 @@ Copyright © 2015–2016 Sahil Sareen""";
         about_dialog.website = "https://wiki.gnome.org/Apps/Chess";
         about_dialog.logo_icon_name = "org.gnome.Chess";
         about_dialog.response.connect (about_response_cb);
-        about_dialog.show ();
     }
 
     private void run_invalid_pgn_dialog ()
