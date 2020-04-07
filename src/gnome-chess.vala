@@ -30,7 +30,7 @@ public class ChessApplication : Gtk.Application
     private GLib.Settings settings;
     private ApplicationWindow window;
     private InfoBar info_bar;
-    private Container view_container;
+    private Box view_container;
     private ChessScene scene;
     private ChessView view;
     private Button pause_resume_button;
@@ -40,8 +40,8 @@ public class ChessApplication : Gtk.Application
     private Widget next_move_button;
     private Widget last_move_button;
     private ComboBox history_combo;
-    private Widget white_time_label;
-    private Widget black_time_label;
+    private DrawingArea white_time_label;
+    private DrawingArea black_time_label;
     private Widget timer_increment_label;
     private HeaderBar headerbar;
 
@@ -170,11 +170,14 @@ Copyright © 2015–2016 Sahil Sareen""";
         next_move_button = (Widget) builder.get_object ("next_move_button");
         last_move_button = (Widget) builder.get_object ("last_move_button");
         history_combo = (ComboBox) builder.get_object ("history_combo");
-        white_time_label = (Widget) builder.get_object ("white_time_label");
-        black_time_label = (Widget) builder.get_object ("black_time_label");
-        view_container = (Container) builder.get_object ("view_container");
+        white_time_label = (DrawingArea) builder.get_object ("white_time_label");
+        black_time_label = (DrawingArea) builder.get_object ("black_time_label");
+        view_container = (Box) builder.get_object ("view_container");
         headerbar = (HeaderBar) builder.get_object ("headerbar");
      // builder.connect_signals (this);
+
+        white_time_label.set_draw_func (white_time_draw_cb);
+        black_time_label.set_draw_func (black_time_draw_cb);
 
         update_pause_resume_button ();
 
@@ -202,7 +205,9 @@ Copyright © 2015–2016 Sahil Sareen""";
         view = new ChessView ();
         view.set_size_request (100, 100);
         view.scene = scene;
-        view_container.add (view);
+        view.hexpand = true;
+        view.vexpand = true;
+        view_container.insert_child_after (view, /* insert first */ null);
         view.show ();
 
         var system_engine_cfg = Path.build_filename (SYSCONFDIR, "gnome-chess", "engines.conf", null);
@@ -1435,12 +1440,12 @@ Copyright © 2015–2016 Sahil Sareen""";
         black_time_label.queue_draw ();
     }
 
-    [CCode (cname = "gnome_chess_app_delete_event_cb", instance_pos = -1)]
-    public bool gnome_chess_app_delete_event_cb (Widget widget, Gdk.Event event)
-    {
-        quit_game ();
-        return false;
-    }
+//    [CCode (cname = "gnome_chess_app_delete_event_cb", instance_pos = -1)]
+//    public bool gnome_chess_app_delete_event_cb (Widget widget, Gdk.Event event)
+//    {
+//        quit_game ();
+//        return false;
+//    }
 
     private bool prompt_save_game (string prompt_text)
     {
@@ -1603,24 +1608,20 @@ Copyright © 2015–2016 Sahil Sareen""";
         quit_game ();
     }
 
-    [CCode (cname = "white_time_draw_cb", instance_pos = -1)]
-    public bool white_time_draw_cb (Widget widget, Cairo.Context c)
+    private inline void white_time_draw_cb (Widget widget, Cairo.Context c)
     {
         double fg[3] = { 0.0, 0.0, 0.0 };
         double bg[3] = { 1.0, 1.0, 1.0 };
 
         draw_time (widget, c, make_clock_text (game.clock, Color.WHITE), fg, bg);
-        return false;
     }
 
-    [CCode (cname = "black_time_draw_cb", instance_pos = -1)]
-    public bool black_time_draw_cb (Widget widget, Cairo.Context c)
+    private inline void black_time_draw_cb (Widget widget, Cairo.Context c)
     {
         double fg[3] = { 1.0, 1.0, 1.0 };
         double bg[3] = { 0.0, 0.0, 0.0 };
 
         draw_time (widget, c, make_clock_text (game.clock, Color.BLACK), fg, bg);
-        return false;
     }
 
     private string make_clock_text (ChessClock? clock, Color color)
