@@ -43,6 +43,7 @@ public class ChessView : Gtk.DrawingArea
         size_allocate.connect (on_size_allocate);
 
         init_mouse ();
+        set_draw_func (draw);
     }
 
     private inline void on_size_allocate (int width, int height)
@@ -109,11 +110,11 @@ public class ChessView : Gtk.DrawingArea
         loaded_theme_name = scene.theme_name;
     }
 
-    public override bool draw (Cairo.Context c)
+    private inline void draw (Gtk.DrawingArea _this, Cairo.Context c, int new_width, int new_height)
     {
         load_theme (c);
 
-        c.translate (get_allocated_width () / 2, get_allocated_height () / 2);
+        c.translate (new_width / 2, new_height / 2);
         //c.scale (s, s);
         c.rotate (Math.PI * scene.board_angle / 180.0);
 
@@ -220,7 +221,7 @@ public class ChessView : Gtk.DrawingArea
         {
             c.rotate (Math.PI * scene.board_angle / 180.0);
             draw_paused_overlay (c);
-            return true;
+            return;
         }
 
         /* Draw the pieces */
@@ -233,7 +234,7 @@ public class ChessView : Gtk.DrawingArea
 
             draw_piece (c,
                         model.is_selected ? selected_model_surface : model_surface,
-						model.is_selected ? selected_square_size : square_size,
+                        model.is_selected ? selected_square_size : square_size,
                         model.piece, model.under_threat && scene.show_move_hints ? 0.8 : 1.0);
 
             c.restore ();
@@ -257,8 +258,6 @@ public class ChessView : Gtk.DrawingArea
                 }
             }
         }
-
-        return true;
     }
 
     private void draw_piece (Cairo.Context c, Cairo.Surface surface, int size, ChessPiece piece, double alpha)
