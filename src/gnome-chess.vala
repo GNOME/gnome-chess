@@ -21,8 +21,9 @@ public class ChessApplication : Gtk.Application
     }
     private LayoutMode layout_mode;
 
-    private bool is_tiled;
-    private bool is_maximized;
+    private bool window_is_fullscreen;
+    private bool window_is_tiled;
+    private bool window_is_maximized;
     private int window_width;
     private int window_height;
 
@@ -159,7 +160,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         if (settings.get_boolean ("maximized"))
             window.maximize ();
         window.size_allocate.connect (size_allocate_cb);
-        window.window_state_event.connect (window_state_event_cb);
+        window.map.connect (init_state_watcher);
         window.configure_event.connect (configure_event_cb);
 
         info_bar = (InfoBar) builder.get_object ("info_bar");
@@ -266,7 +267,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         settings.delay ();
         settings.set_int ("width", window_width);
         settings.set_int ("height", window_height);
-        settings.set_boolean ("maximized", is_maximized);
+        settings.set_boolean ("maximized", window_is_maximized || window_is_fullscreen);
         settings.apply ();
     }
 
@@ -281,19 +282,37 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     private void size_allocate_cb (Allocation allocation)
     {
-        if (is_maximized || is_tiled)
+        if (window_is_maximized || window_is_tiled || window_is_fullscreen)
             return;
         window.get_size (out window_width, out window_height);
     }
 
-    private bool window_state_event_cb (Gdk.EventWindowState event)
+    private inline void init_state_watcher ()
     {
-        if ((event.changed_mask & Gdk.WindowState.MAXIMIZED) != 0)
-            is_maximized = (event.new_window_state & Gdk.WindowState.MAXIMIZED) != 0;
-        /* We don’t save this state, but track it for saving size allocation */
-        if ((event.changed_mask & Gdk.WindowState.TILED) != 0)
-            is_tiled = (event.new_window_state & Gdk.WindowState.TILED) != 0;
-        return false;
+        Gdk.Surface? nullable_surface = window.get_surface ();     // TODO report bug, get_surface() returns a nullable Surface
+        if (nullable_surface == null || !((!) nullable_surface is Gdk.Toplevel))
+            assert_not_reached ();
+        surface = (Gdk.Toplevel) (!) nullable_surface;
+        surface.notify ["state"].connect (on_window_state_event);
+    }
+
+    private Gdk.Toplevel surface;
+    private const Gdk.SurfaceState tiled_state = Gdk.SurfaceState.TILED
+                                               | Gdk.SurfaceState.TOP_TILED
+                                               | Gdk.SurfaceState.BOTTOM_TILED
+                                               | Gdk.SurfaceState.LEFT_TILED
+                                               | Gdk.SurfaceState.RIGHT_TILED;
+    private inline void on_window_state_event ()
+    {
+        Gdk.SurfaceState state = surface.get_state ();
+
+        window_is_maximized = (state & Gdk.SurfaceState.MAXIMIZED) != 0;
+
+        /* fullscreen: saved as maximized */
+        window_is_fullscreen = (state & Gdk.SurfaceState.FULLSCREEN) != 0;
+
+        /* tiled: not saved, but should not change saved window size */
+        window_is_tiled = (state & tiled_state) != 0;
     }
 
     private bool configure_event_cb (Gdk.EventConfigure event)
