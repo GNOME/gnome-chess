@@ -40,8 +40,6 @@ public class ChessView : Gtk.DrawingArea
 
     construct
     {
-        add_events (Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.BUTTON_RELEASE_MASK);
-
         size_allocate.connect (on_size_allocate);
 
         init_mouse ();
