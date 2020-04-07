@@ -2308,7 +2308,7 @@ Copyright © 2015–2016 Sahil Sareen""";
                                                  _("_Cancel"));
 
             if (game_file != null && game_file.get_path () != autosave_filename)
-                save_dialog.set_filename (game_file.get_path ());
+                save_dialog.set_file (game_file);
             else
                 save_dialog.set_current_name (/* Default filename for the save game dialog */
                                               _("Untitled Chess Game") + ".pgn");
