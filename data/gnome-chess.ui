@@ -39,7 +39,7 @@
       </item>
     </section>
   </menu>
-  <object class="GtkListStore" id="history_model">
+  <object class="GtkListStore" id="history-model">
     <columns>
       <!-- column-name label -->
       <column type="gchararray"/>
@@ -48,22 +48,22 @@
     </columns>
   </object>
   <object class="GtkApplicationWindow" id="gnome_chess_app">
-    <property name="can_focus">False</property>
-    <property name="default_width">700</property>
+    <property name="can-focus">False</property>
+    <property name="default-width">700</property>
     <signal name="delete-event" handler="gnome_chess_app_delete_event_cb" swapped="no"/>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="headerbar">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="show_close_button">True</property>
+        <property name="can-focus">False</property>
+        <property name="show-close-button">True</property>
         <property name="title" translatable="yes">Chess</property>
         <child>
-          <object class="GtkButton" id="new_game_button">
+          <object class="GtkButton" id="new-game-button">
             <property name="visible">True</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="label" translatable="yes">_New Game</property>
-            <property name="use_underline">True</property>
+            <property name="use-underline">True</property>
             <property name="action-name">win.new</property>
             <style>
               <class name="text-button"/>
@@ -71,7 +71,7 @@
           </object>
         </child>
         <child>
-          <object class="GtkButton" id="undo_move_button">
+          <object class="GtkButton" id="undo-move-button">
             <property name="visible">True</property>
             <property name="valign">center</property>
             <property name="action-name">win.undo</property>
@@ -82,9 +82,9 @@
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="icon_size">1</property>
-                <property name="icon_name">edit-undo-symbolic</property>
+                <property name="can-focus">False</property>
+                <property name="icon-size">1</property>
+                <property name="icon-name">edit-undo-symbolic</property>
               </object>
             </child>
           </object>
@@ -98,37 +98,37 @@
               <class name="image-button"/>
             </style>
             <child>
-              <object class="GtkImage" id="pause_image">
+              <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="icon_size">1</property>
+                <property name="icon-size">1</property>
               </object>
             </child>
           </object>
         </child>
         <child>
-          <object class="GtkMenuButton" id="menu_button">
+          <object class="GtkMenuButton">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can-focus">True</property>
             <property name="menu-model">app-menu</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="icon_name">open-menu-symbolic</property>
-                <property name="icon_size">1</property>
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="icon-size">1</property>
               </object>
             </child>
           </object>
           <packing>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">1</property>
           </packing>
         </child>
       </object>
     </child>
     <child>
-      <object class="GtkBox" id="main_vbox">
+      <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkInfoBar" id="info_bar">
@@ -136,28 +136,28 @@
           </object>
         </child>
         <child>
-          <object class="GtkBox" id="view_box">
+          <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
             <property name="spacing">3</property>
             <child>
               <object class="GtkBox" id="navigation_box">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="spacing">6</property>
                 <property name="margin-left">6</property>
                 <property name="margin-right">6</property>
                 <property name="margin-bottom">6</property>
                 <child>
-                  <object class="GtkBox" id="history_box">
+                  <object class="GtkBox">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="spacing">6</property>
                     <child>
-                      <object class="GtkBox" id="left_nav_box">
+                      <object class="GtkBox">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="homogeneous">True</property>
                         <style>
                           <class name="raised"/>
@@ -167,9 +167,9 @@
                           <object class="GtkButton" id="first_move_button">
                             <property name="visible">True</property>
                             <property name="sensitive">False</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes" comments="Tooltip on the show first move (i.e. game start) navigation button">Rewind to the game start</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">False</property>
+                            <property name="tooltip-text" translatable="yes" comments="Tooltip on the show first move (i.e. game start) navigation button">Rewind to the game start</property>
                             <accelerator key="Left" signal="activate" modifiers="GDK_SHIFT_MASK | GDK_MOD1_MASK"/>
                             <signal name="clicked" handler="history_start_clicked_cb" swapped="no"/>
                             <style>
@@ -178,9 +178,9 @@
                             <child>
                               <object class="GtkImage">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="icon_size">1</property>
-                                <property name="icon_name">go-first-symbolic</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-size">1</property>
+                                <property name="icon-name">go-first-symbolic</property>
                               </object>
                             </child>
                           </object>
@@ -194,9 +194,9 @@
                           <object class="GtkButton" id="prev_move_button">
                             <property name="visible">True</property>
                             <property name="sensitive">False</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes" comments="Tooltip on the show previous move navigation button">Show the previous move</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">False</property>
+                            <property name="tooltip-text" translatable="yes" comments="Tooltip on the show previous move navigation button">Show the previous move</property>
                             <accelerator key="Left" signal="activate" modifiers="GDK_MOD1_MASK"/>
                             <signal name="clicked" handler="history_previous_clicked_cb" swapped="no"/>
                             <style>
@@ -205,9 +205,9 @@
                             <child>
                               <object class="GtkImage">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="icon_size">1</property>
-                                <property name="icon_name">go-previous-symbolic</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-size">1</property>
+                                <property name="icon-name">go-previous-symbolic</property>
                               </object>
                             </child>
                           </object>
@@ -221,9 +221,9 @@
                           <object class="GtkButton" id="next_move_button">
                             <property name="visible">True</property>
                             <property name="sensitive">False</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes" comments="Tooltip on the show next move navigation button">Show the next move</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">False</property>
+                            <property name="tooltip-text" translatable="yes" comments="Tooltip on the show next move navigation button">Show the next move</property>
                             <accelerator key="Right" signal="activate" modifiers="GDK_MOD1_MASK"/>
                             <signal name="clicked" handler="history_next_clicked_cb" swapped="no"/>
                             <style>
@@ -232,9 +232,9 @@
                             <child>
                               <object class="GtkImage">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="icon_size">1</property>
-                                <property name="icon_name">go-next-symbolic</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-size">1</property>
+                                <property name="icon-name">go-next-symbolic</property>
                               </object>
                             </child>
                           </object>
@@ -248,9 +248,9 @@
                           <object class="GtkButton" id="last_move_button">
                             <property name="visible">True</property>
                             <property name="sensitive">False</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes" comments="Tooltip on the show current move navigation button">Show the current move</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">False</property>
+                            <property name="tooltip-text" translatable="yes" comments="Tooltip on the show current move navigation button">Show the current move</property>
                             <accelerator key="Right" signal="activate" modifiers="GDK_SHIFT_MASK | GDK_MOD1_MASK"/>
                             <signal name="clicked" handler="history_latest_clicked_cb" swapped="no"/>
                             <style>
@@ -259,9 +259,9 @@
                             <child>
                               <object class="GtkImage">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="icon_size">1</property>
-                                <property name="icon_name">go-last-symbolic</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-size">1</property>
+                                <property name="icon-name">go-last-symbolic</property>
                               </object>
                             </child>
                           </object>
@@ -281,11 +281,11 @@
                     <child>
                       <object class="GtkComboBox" id="history_combo">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="model">history_model</property>
+                        <property name="can-focus">False</property>
+                        <property name="model">history-model</property>
                         <signal name="changed" handler="history_combo_changed_cb" swapped="no"/>
                         <child>
-                          <object class="GtkCellRendererText" id="history_combo_cellrenderer">
+                          <object class="GtkCellRendererText">
                             <property name="ellipsize">PANGO_ELLIPSIZE_END</property>
                           </object>
                           <attributes>
@@ -307,17 +307,17 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkBox" id="right_nav_box">
+                  <object class="GtkBox">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="spacing">6</property>
                     <property name="homogeneous">True</property>
                     <child>
                       <object class="GtkDrawingArea" id="white_time_label">
                         <!-- -1 means compute at runtime -->
-                        <property name="width_request">-1</property>
+                        <property name="width-request">-1</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <signal name="draw" handler="white_time_draw_cb" swapped="no"/>
                       </object>
                       <packing>
@@ -329,9 +329,9 @@
                     <child>
                       <object class="GtkDrawingArea" id="black_time_label">
                         <!-- -1 means compute at runtime -->
-                        <property name="width_request">-1</property>
+                        <property name="width-request">-1</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <signal name="draw" handler="black_time_draw_cb" swapped="no"/>
                       </object>
                       <packing>
@@ -351,14 +351,14 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="pack_type">end</property>
+                <property name="pack-type">end</property>
                 <property name="position">0</property>
               </packing>
             </child>
             <child>
               <object class="GtkAlignment" id="view_container">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <child>
                   <placeholder/>
                 </child>
@@ -366,7 +366,7 @@
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
-                <property name="pack_type">end</property>
+                <property name="pack-type">end</property>
                 <property name="position">1</property>
               </packing>
             </child>
@@ -380,15 +380,15 @@
       </object>
     </child>
   </object>
-  <object class="GtkSizeGroup" id="header_bar_buttons_sizegroup">
+  <object class="GtkSizeGroup">
     <property name="mode">vertical</property>
     <widgets>
-      <widget name="new_game_button"/>
-      <widget name="undo_move_button"/>
+      <widget name="new-game-button"/>
+      <widget name="undo-move-button"/>
       <widget name="pause_button"/>
     </widgets>
   </object>
-  <object class="GtkSizeGroup" id="right_nav_box_sizegroup">
+  <object class="GtkSizeGroup">
     <property name="mode">vertical</property>
     <widgets>
       <widget name="white_time_label"/>
