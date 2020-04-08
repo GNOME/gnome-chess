@@ -6,6 +6,7 @@
     <child>
       <object class="GtkShortcutsSection">
         <property name="visible">1</property>
+        <property name="max-height">8</property>
         <child>
           <object class="GtkShortcutsGroup">
             <property name="title" translatable="yes" context="shortcut window">General</property>
@@ -63,26 +64,6 @@
         </child>
         <child>
           <object class="GtkShortcutsGroup">
-            <property name="title" translatable="yes" context="shortcut window">Help</property>
-            <property name="visible">1</property>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="visible">1</property>
-                <property name="accelerator">F1</property>
-                <property name="title" translatable="yes" context="shortcut window">Show Help</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="visible">1</property>
-                <property name="accelerator">&lt;Primary&gt;question &lt;Primary&gt;F1</property>
-                <property name="title" translatable="yes" context="shortcut window">Show Keyboard Shortcuts</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkShortcutsGroup">
             <property name="title" translatable="yes" context="shortcut window">History</property>
             <property name="visible">1</property>
             <child>
@@ -113,8 +94,28 @@
                 <property name="title" translatable="yes" context="shortcut window">Show the current move</property>
               </object>
             </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcutsGroup">
+            <property name="title" translatable="yes" context="shortcut window">Help</property>
+            <property name="visible">1</property>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">1</property>
+                <property name="accelerator">F1</property>
+                <property name="title" translatable="yes" context="shortcut window">Show Help</property>
               </object>
             </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">1</property>
+                <property name="accelerator">&lt;Primary&gt;question &lt;Primary&gt;F1</property>
+                <property name="title" translatable="yes" context="shortcut window">Show Keyboard Shortcuts</property>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
   </object>
