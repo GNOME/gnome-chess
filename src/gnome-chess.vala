@@ -179,13 +179,13 @@ Copyright © 2015–2016 Sahil Sareen""";
         update_pause_resume_button ();
 
         window.add_action_entries (window_entries, this);
-        set_accels_for_action ("win." + NEW_GAME_ACTION_NAME, {"<Primary>N"});
-        set_accels_for_action ("win." + OPEN_GAME_ACTION_NAME, {"<Primary>O"});
-        set_accels_for_action ("win." + SAVE_GAME_ACTION_NAME, {"<Primary>S"});
-        set_accels_for_action ("win." + SAVE_GAME_AS_ACTION_NAME, {"<Shift><Primary>S"});
-        set_accels_for_action ("win." + UNDO_MOVE_ACTION_NAME, {"<Primary>Z"});
-        set_accels_for_action ("win." + PAUSE_RESUME_ACTION_NAME, {"Pause"});
-
+        set_accels_for_action ("win." + NEW_GAME_ACTION_NAME,       {        "<Primary>n"       });
+        set_accels_for_action ("win." + OPEN_GAME_ACTION_NAME,      {        "<Primary>o"       });
+        set_accels_for_action ("win." + SAVE_GAME_ACTION_NAME,      {        "<Primary>s"       });
+        set_accels_for_action ("win." + SAVE_GAME_AS_ACTION_NAME,   { "<Shift><Primary>s"       });
+        set_accels_for_action ("win." + UNDO_MOVE_ACTION_NAME,      {        "<Primary>z"       });
+        set_accels_for_action ("win." + PAUSE_RESUME_ACTION_NAME,   {        "<Primary>p",
+                                                                                      "Pause"   });
         add_window (window);
 
         scene = new ChessScene ();
