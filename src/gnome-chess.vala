@@ -150,7 +150,7 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         add_action_entries (app_entries, this);
         set_accels_for_action ("app.help", {"F1"});
-        set_accels_for_action ("app.quit", {"<Primary>q", "<Primary>w"});
+        set_accels_for_action ("app.quit", {"<Control>q", "<Control>w"});
         Builder builder = new Builder.from_resource ("/org/gnome/Chess/ui/gnome-chess.ui");
 
         window = (ApplicationWindow) builder.get_object ("gnome_chess_app");
@@ -185,12 +185,12 @@ Copyright © 2015–2016 Sahil Sareen""";
         update_pause_resume_button ();
 
         window.add_action_entries (window_entries, this);
-        set_accels_for_action ("win." + NEW_GAME_ACTION_NAME,       {        "<Primary>n"       });
-        set_accels_for_action ("win." + OPEN_GAME_ACTION_NAME,      {        "<Primary>o"       });
-        set_accels_for_action ("win." + SAVE_GAME_ACTION_NAME,      {        "<Primary>s"       });
-        set_accels_for_action ("win." + SAVE_GAME_AS_ACTION_NAME,   { "<Shift><Primary>s"       });
-        set_accels_for_action ("win." + UNDO_MOVE_ACTION_NAME,      {        "<Primary>z"       });
-        set_accels_for_action ("win." + PAUSE_RESUME_ACTION_NAME,   {        "<Primary>p",
+        set_accels_for_action ("win." + NEW_GAME_ACTION_NAME,       {        "<Control>n"       });
+        set_accels_for_action ("win." + OPEN_GAME_ACTION_NAME,      {        "<Control>o"       });
+        set_accels_for_action ("win." + SAVE_GAME_ACTION_NAME,      {        "<Control>s"       });
+        set_accels_for_action ("win." + SAVE_GAME_AS_ACTION_NAME,   { "<Shift><Control>s"       });
+        set_accels_for_action ("win." + UNDO_MOVE_ACTION_NAME,      {        "<Control>z"       });
+        set_accels_for_action ("win." + PAUSE_RESUME_ACTION_NAME,   {        "<Control>p",
                                                                                       "Pause"   });
         add_window (window);
 
