@@ -278,14 +278,13 @@ public class ChessView : Gtk.DrawingArea
 
     private inline void init_mouse ()
     {
-        click_controller = new Gtk.GestureMultiPress (this);
+        click_controller = new Gtk.GestureMultiPress (this);    // only reacts to Gdk.BUTTON_PRIMARY
         click_controller.pressed.connect (on_click);
     }
 
     private inline void on_click (Gtk.GestureMultiPress _click_controller, int n_press, double event_x, double event_y)
     {
-        uint button = _click_controller.get_button ();
-        if (scene.game == null || button != Gdk.BUTTON_PRIMARY || scene.game.should_show_paused_overlay)
+        if (scene.game == null || scene.game.should_show_paused_overlay)
             return;
 
         // If the game is over, disable selection of pieces
