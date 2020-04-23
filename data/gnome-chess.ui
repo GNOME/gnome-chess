@@ -96,17 +96,18 @@
             <property name="can-focus">True</property>
             <property name="menu-model">app-menu</property>
             <property name="icon-name">open-menu-symbolic</property>
-            <child>
-              <object class='GtkShortcutController'>
-                <property name='scope'>managed</property>
-                <child>
-                  <object class='GtkShortcut'>
-                    <property name='trigger'>F10</property>
-                    <property name='action'>activate</property>
-                  </object>
-                </child>
-              </object>
-            </child>
+<!--            <accelerator key="F10" signal="activate"/>-->
+<!--            <child> https://gitlab.gnome.org/GNOME/gtk/-/issues/2634 -->
+<!--              <object class='GtkShortcutController'>-->
+<!--                <property name='scope'>managed</property>-->
+<!--                <child>-->
+<!--                  <object class='GtkShortcut'>-->
+<!--                    <property name='trigger'>F10</property>-->
+<!--                    <property name='action'>TODO</property>-->
+<!--                  </object>-->
+<!--                </child>-->
+<!--              </object>-->
+<!--            </child>-->
           </object>
         </child>
       </object>
