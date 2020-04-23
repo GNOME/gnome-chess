@@ -2216,14 +2216,7 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     public void help_cb ()
     {
-        try
-        {
-            show_uri_on_window (window, "help:gnome-chess", get_current_event_time ());
-        }
-        catch (Error e)
-        {
-            warning ("Unable to open help: %s", e.message);
-        }
+        show_uri (window, "help:gnome-chess", Gdk.CURRENT_TIME);
     }
 
     private const string[] authors = { "Robert Ancell <robert.ancell@gmail.com>", null };
