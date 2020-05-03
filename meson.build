@@ -24,6 +24,7 @@ pkgdatadir = join_paths(datadir, meson.project_name())
 sysconfdir = join_paths(get_option('prefix'), get_option('sysconfdir'))
 pkgsysconfdir = join_paths(sysconfdir, meson.project_name())
 po_dir = join_paths(meson.source_root(), 'po')
+bindir = join_paths(get_option('prefix'), get_option('bindir'))
 
 # Dependencies
 min_glib_version = '2.44.0'

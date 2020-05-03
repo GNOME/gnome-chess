@@ -30,6 +30,17 @@ if desktop_file_validate.found()
   )
 endif
 
+# Make D-Bus activatable
+service_conf = configuration_data()
+service_conf.set('bindir', bindir)
+
+configure_file(
+  input: '@0@.service.in'.format(application_id),
+  output: '@0@.service'.format(application_id),
+  install: true,
+  install_dir: join_paths(datadir, 'dbus-1', 'services'),
+  configuration: service_conf
+)
 
 # The appdata file
 appdata_file = i18n.merge_file(
