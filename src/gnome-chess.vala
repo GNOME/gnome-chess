@@ -158,7 +158,6 @@ Copyright © 2015–2016 Sahil Sareen""";
             window.maximize ();
         window.size_allocate.connect (size_allocate_cb);
         window.window_state_event.connect (window_state_event_cb);
-        window.configure_event.connect (configure_event_cb);
 
         info_bar = (Gtk.InfoBar) builder.get_object ("info_bar");
         pause_resume_button = (Gtk.Button) builder.get_object ("pause_button");
@@ -287,6 +286,10 @@ Copyright © 2015–2016 Sahil Sareen""";
         if (is_maximized || is_tiled)
             return;
         window.get_size (out window_width, out window_height);
+        if (window_width <= 500 && layout_mode == LayoutMode.NORMAL)
+            set_layout_mode (LayoutMode.NARROW);
+        else if (window_width > 500 && layout_mode == LayoutMode.NARROW)
+            set_layout_mode (LayoutMode.NORMAL);
     }
 
     private bool window_state_event_cb (Gdk.EventWindowState event)
@@ -297,15 +300,6 @@ Copyright © 2015–2016 Sahil Sareen""";
         if ((event.changed_mask & Gdk.WindowState.TILED) != 0)
             is_tiled = (event.new_window_state & Gdk.WindowState.TILED) != 0;
         return false;
-    }
-
-    private bool configure_event_cb (Gdk.EventConfigure event)
-    {
-        if (event.width <= 500 && layout_mode == LayoutMode.NORMAL)
-            set_layout_mode(LayoutMode.NARROW);
-        else if (event.width > 500 && layout_mode == LayoutMode.NARROW)
-            set_layout_mode(LayoutMode.NORMAL);
-        return Gdk.EVENT_PROPAGATE;
     }
 
     public PieceType? show_promotion_type_selector ()
