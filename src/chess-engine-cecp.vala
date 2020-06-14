@@ -78,11 +78,6 @@ public class ChessEngineCECP : ChessEngine
                 stop ();
                 error ();
             }
-            else if (line.has_prefix ("1-0") || line.has_prefix ("0-1"))
-            {
-                /* The engine thinks the game is over and will not play on. */
-                stop ();
-            }
             else if (line == "game is a draw" ||
                      line == "draw" ||
                      line == "Draw" ||

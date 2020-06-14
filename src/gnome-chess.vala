@@ -1163,6 +1163,7 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         /* Remove from the PGN game */
         pgn_game.moves.remove_link (pgn_game.moves.last ());
+        pgn_game.result = PGNGame.RESULT_IN_PROGRESS;
 
         /* Remove from the history */
         var model = (Gtk.ListStore) history_combo.model;
@@ -1255,6 +1256,7 @@ Copyright © 2015–2016 Sahil Sareen""";
                 /* Window title on Black's turn if Black is a computer */
                 headerbar.set_title (_("Black is Thinking…"));
         }
+        headerbar.set_subtitle (null);
     }
 
     private void update_pause_resume_button ()
@@ -1281,16 +1283,12 @@ Copyright © 2015–2016 Sahil Sareen""";
     private void game_end_cb ()
     {
         disable_window_action (RESIGN_ACTION_NAME);
-        disable_window_action (UNDO_MOVE_ACTION_NAME);
         disable_window_action (PAUSE_RESUME_ACTION_NAME);
 
         /* In case of engine desync before the first move, or after undo */
         enable_window_action (NEW_GAME_ACTION_NAME);
 
         game_needs_saving = false;
-
-        if (opponent_engine != null)
-            opponent_engine.stop ();
 
         string title = "";
         switch (game.result)
