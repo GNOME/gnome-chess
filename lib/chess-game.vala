@@ -216,8 +216,17 @@ public class ChessGame : Object
         if (move_stack.next == null)
             return;
 
-        /* Pop off the move state and notify */
+        /* Pop off the move state */
         move_stack.remove_link (move_stack);
+
+        /* Restart the game if undo was done after end of the game */
+        if (result != ChessResult.IN_PROGRESS)
+        {
+            result = ChessResult.IN_PROGRESS;
+            start ();
+        }
+
+        /* Notify */
         undo ();
     }
 
