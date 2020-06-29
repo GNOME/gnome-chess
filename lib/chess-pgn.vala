@@ -26,8 +26,12 @@ private int str_index (string name)
         return 5;
     else if (name == "Result")
         return 6;
+    else if (name == "WhiteTimeLeft")
+         return 7;
+    else if (name == "BlackTimeLeft")
+         return 8;
     else
-        return 7;
+        return 9;
 }
 
 private int compare_tag (string name0, string name1)
@@ -36,7 +40,7 @@ private int compare_tag (string name0, string name1)
     int str_index1 = str_index (name1);
 
     /* If both not in STR then just order alphabetically */
-    if (str_index0 == 7 && str_index1 == 7)
+    if (str_index0 == 9 && str_index1 == 9)
         return strcmp (name0, name1);
     else
         return str_index0 - str_index1;
