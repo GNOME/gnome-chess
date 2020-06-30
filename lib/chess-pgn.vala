@@ -254,10 +254,7 @@ public class PGN : Object
             break;
         case "TimeControl":
             if (int64.try_parse (tag_value) == true)
-            {
-                if (game.tags["WhiteTimeLeft"] != null && game.tags["BlackTimeLeft"] != null)
-                    game.tags.insert (tag_name, tag_value);
-            }
+                game.tags.insert (tag_name, tag_value);
             else
                 warning (_("Invalid %s : %s in PGN, setting timer to infinity."), tag_name, tag_value);
             break;
