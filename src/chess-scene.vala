@@ -372,6 +372,7 @@ public class ChessScene : Object
             return Source.CONTINUE;
 
         game.remove_hold ();
+        animate_timeout_id = 0;
         return Source.REMOVE;
     }
 }
