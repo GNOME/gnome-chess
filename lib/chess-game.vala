@@ -247,25 +247,14 @@ public class ChessGame : Object
         return count;
     }
 
-    private bool is_n_fold_repeat (int n)
-    {
-        foreach (var state in move_stack)
-        {
-            if (state_repeated_times (state) >= n)
-                return true;
-        }
-
-        return false;
-    }
-
     public bool is_three_fold_repeat ()
     {
-        return is_n_fold_repeat (3);
+        return state_repeated_times (current_state) >= 3;
     }
 
     public bool is_five_fold_repeat ()
     {
-        return is_n_fold_repeat (5);
+        return state_repeated_times (current_state) >= 5;
     }
 
     public bool is_fifty_move_rule_fulfilled ()
