@@ -249,7 +249,8 @@ public class ChessGame : Object
 
     public bool is_three_fold_repeat ()
     {
-        return state_repeated_times (current_state) >= 3;
+        var repeated = state_repeated_times (current_state);
+        return repeated == 3 || repeated == 4;
     }
 
     public bool is_five_fold_repeat ()
@@ -260,7 +261,7 @@ public class ChessGame : Object
     public bool is_fifty_move_rule_fulfilled ()
     {
         /* Fifty moves *per player* without capture or pawn advancement */
-        return current_state.halfmove_clock >= 100;
+        return current_state.halfmove_clock >= 100 && current_state.halfmove_clock < 150;
     }
 
     public bool is_seventy_five_move_rule_fulfilled ()
