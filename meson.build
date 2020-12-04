@@ -1,7 +1,7 @@
 project('gnome-chess', [ 'vala', 'c' ],
   version: '3.38.0',
   license: 'GPL3+',
-  meson_version: '>= 0.37',
+  meson_version: '>= 0.50',
 )
 application_id = 'org.gnome.Chess'
 gnome = import('gnome')
@@ -33,7 +33,7 @@ gio = dependency('gio-unix-2.0', version: '>=' + min_glib_version)
 glib = dependency('glib-2.0', version: '>=' + min_glib_version)
 gmodule = dependency('gmodule-2.0', version: '>=' + min_glib_version)
 gtk = dependency('gtk+-3.0', version: '>= 3.20.0')
-librsvg = dependency('librsvg-2.0', version: '>= 2.32.0')
+librsvg = dependency('librsvg-2.0', version: '>= 2.46.0')
 
 posix = meson.get_compiler('vala').find_library('posix')
 
