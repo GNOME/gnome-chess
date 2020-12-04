@@ -1266,9 +1266,9 @@ Copyright © 2015–2016 Sahil Sareen""";
                  game.current_state.last_move.en_passant)
         {
             if (game.current_player.color == Color.WHITE)
-                headerbar.set_title (_("Black performed an en passant capture"));
+                headerbar.set_title (_("Black captured en passant"));
             else
-                headerbar.set_title (_("White performed an en passant capture"));
+                headerbar.set_title (_("White captured en passant"));
         }
         else if (game.current_player.color == Color.WHITE)
         {
