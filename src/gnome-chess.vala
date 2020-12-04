@@ -303,9 +303,9 @@ Copyright © 2015–2016 Sahil Sareen""";
         if (is_maximized || is_tiled)
             return;
         window.get_size (out window_width, out window_height);
-        if (window_width <= 500 && layout_mode == LayoutMode.NORMAL)
+        if (window_width <= 450 && layout_mode == LayoutMode.NORMAL)
             set_layout_mode (LayoutMode.NARROW);
-        else if (window_width > 500 && layout_mode == LayoutMode.NARROW)
+        else if (window_width > 450 && layout_mode == LayoutMode.NARROW)
             set_layout_mode (LayoutMode.NORMAL);
     }
 
