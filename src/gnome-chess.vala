@@ -28,6 +28,8 @@ public class ChessApplication : Gtk.Application
 
     private GLib.Settings settings;
     private ApplicationWindow window;
+    private HeaderBar main_headerbar;
+    private HeaderBar inner_headerbar;
     private InfoBar info_bar;
     private Container view_container;
     private ChessScene scene;
@@ -43,7 +45,6 @@ public class ChessApplication : Gtk.Application
     private Widget white_time_label;
     private Widget black_time_label;
     private Widget timer_increment_label;
-    private HeaderBar headerbar;
 
     private Dialog? preferences_dialog = null;
     private ComboBox side_combo;
@@ -162,6 +163,8 @@ Copyright © 2015–2016 Sahil Sareen""";
         window.size_allocate.connect (size_allocate_cb);
         window.window_state_event.connect (window_state_event_cb);
 
+        main_headerbar = (HeaderBar) builder.get_object ("main_headerbar");
+        inner_headerbar = (HeaderBar) builder.get_object ("inner_headerbar");
         info_bar = (InfoBar) builder.get_object ("info_bar");
         pause_resume_button = (Button) builder.get_object ("pause_button");
         navigation_box = (Box) builder.get_object ("navigation_box");
@@ -174,7 +177,6 @@ Copyright © 2015–2016 Sahil Sareen""";
         white_time_label = (Widget) builder.get_object ("white_time_label");
         black_time_label = (Widget) builder.get_object ("black_time_label");
         view_container = (Container) builder.get_object ("view_container");
-        headerbar = (HeaderBar) builder.get_object ("headerbar");
         builder.connect_signals (this);
 
         update_pause_resume_button ();
@@ -277,7 +279,23 @@ Copyright © 2015–2016 Sahil Sareen""";
             return;
         layout_mode = new_layout_mode;
 
-        navigation_box.set_orientation ((layout_mode == LayoutMode.NORMAL) ? Orientation.HORIZONTAL : Orientation.VERTICAL);
+        if (layout_mode == LayoutMode.NORMAL)
+        {
+            main_headerbar.title = inner_headerbar.title;
+            main_headerbar.subtitle = inner_headerbar.subtitle;
+            inner_headerbar.visible = false;
+
+            navigation_box.set_orientation (Orientation.HORIZONTAL);
+        }
+        else
+        {
+            inner_headerbar.title = main_headerbar.title;
+            inner_headerbar.subtitle = main_headerbar.subtitle;
+            inner_headerbar.visible = true;
+            main_headerbar.title = _("Chess");
+
+            navigation_box.set_orientation (Orientation.VERTICAL);
+        }
     }
 
     private void size_allocate_cb (Allocation allocation)
@@ -458,9 +476,9 @@ Copyright © 2015–2016 Sahil Sareen""";
         starting = true;
 
         if (game_file != null && game_file.get_path () != autosave_filename)
-            headerbar.set_subtitle (game_file.get_basename ());
+            main_headerbar.set_subtitle (game_file.get_basename ());
         else
-            headerbar.set_subtitle (null);
+            main_headerbar.set_subtitle (null);
 
         var model = (Gtk.ListStore) history_combo.model;
         model.clear ();
@@ -1221,8 +1239,18 @@ Copyright © 2015–2016 Sahil Sareen""";
             disable_window_action (UNDO_MOVE_ACTION_NAME);
     }
 
-    private void update_headerbar_title ()
+    private void update_headerbar_title (string? title = null, string? subtitle = null)
     {
+        var headerbar = layout_mode == LayoutMode.NORMAL ? main_headerbar : inner_headerbar;
+
+        if (title != null)
+        {
+            headerbar.set_title (title);
+            if (subtitle != null)
+                headerbar.set_subtitle (subtitle);
+            return;
+        }
+
         if (human_player != null &&
             human_player.color == game.current_player.color &&
             game.current_state.is_in_check (game.current_player))
@@ -1410,8 +1438,7 @@ Copyright © 2015–2016 Sahil Sareen""";
              break;
         }
 
-        headerbar.set_title (title);
-        headerbar.set_subtitle (reason);
+        update_headerbar_title (title, reason);
 
         white_time_label.queue_draw ();
         black_time_label.queue_draw ();
@@ -2315,7 +2342,7 @@ Copyright © 2015–2016 Sahil Sareen""";
                 save_dialog = null;
 
                 pgn_game.write (game_file);
-                headerbar.set_subtitle (game_file.get_basename ());
+                main_headerbar.set_subtitle (game_file.get_basename ());
                 disable_window_action (SAVE_GAME_ACTION_NAME);
                 game_needs_saving = false;
             }
