@@ -817,6 +817,8 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         if (game.can_claim_draw ())
             opponent.claim_draw ();
+        else if (!game.current_state.can_move (game.current_state.current_player))
+            game.stop (ChessResult.DRAW, ChessRule.STALEMATE);
         else
             game.stop (ChessResult.BUG, ChessRule.BUG);
     }

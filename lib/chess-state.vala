@@ -642,7 +642,7 @@ public class ChessState : Object
         return true;
     }
 
-    private bool can_move (ChessPlayer player)
+    public bool can_move (ChessPlayer player)
     {
         bool have_pieces = false;
 
