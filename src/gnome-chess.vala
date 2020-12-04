@@ -380,10 +380,7 @@ Copyright © 2015–2016 Sahil Sareen""";
 
             var s = new Cairo.ImageSurface (Cairo.Format.ARGB32, width, height);
             var c = new Cairo.Context (s);
-            var m = Cairo.Matrix.identity ();
-            m.scale ((double) width / h.width, (double) height / h.height);
-            c.set_matrix (m);
-            h.render_cairo (c);
+            h.render_document (c, Rsvg.Rectangle () { width = width, height = height, x = 0, y = 0 });
 
             var p = Gdk.pixbuf_get_from_surface (s, 0, 0, width, height);
             image.set_from_pixbuf (p);

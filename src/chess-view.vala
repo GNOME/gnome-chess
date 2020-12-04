@@ -67,21 +67,19 @@ public class ChessView : Gtk.DrawingArea
         }
         catch (Error e)
         {
-            stderr.printf ("Failed to load piece svg: %s\n", e.message);
+            warning ("Failed to load piece SVG: %s", e.message);
             return;
         }
 
-        c1.save ();
-        c1.translate (square_size * offset, 0);
-        c1.scale ((double) square_size / handle.width, (double) square_size / handle.height);
-        handle.render_cairo (c1);
-        c1.restore ();
-
-        c2.save ();
-        c2.translate (selected_square_size * offset, 0);
-        c2.scale ((double) selected_square_size / handle.width, (double) selected_square_size / handle.height);
-        handle.render_cairo (c2);
-        c2.restore ();
+        try
+        {
+            handle.render_document (c1, Rsvg.Rectangle () { height = square_size, width = square_size, x = square_size * offset, y = 0 });
+            handle.render_document (c2, Rsvg.Rectangle () { height = selected_square_size, width = selected_square_size, x = selected_square_size * offset, y = 0 });
+        }
+        catch (Error e)
+        {
+            warning ("Failed to render piece SVG: %s", e.message);
+        }
     }
 
     private void load_theme (Cairo.Context c)
