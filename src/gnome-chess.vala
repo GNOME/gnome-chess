@@ -355,6 +355,10 @@ Copyright © 2015–2016 Sahil Sareen""";
         promotion_type_selector_dialog = (Dialog) promotion_type_selector_builder.get_object ("dialog_promotion_type_selector");
         promotion_type_selector_dialog.transient_for = window;
 
+        var button_box = (ButtonBox) promotion_type_selector_builder.get_object ("button_box");
+        if (layout_mode == LayoutMode.NARROW)
+            button_box.orientation = Orientation.VERTICAL;
+
         string color;
         if (game.current_player.color == Color.WHITE)
             color = "white";
