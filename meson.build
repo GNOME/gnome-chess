@@ -47,6 +47,7 @@ conf.set_quoted('PACKAGE_VERSION', meson.project_version())
 conf.set_quoted('PKGDATADIR', pkgdatadir)
 conf.set_quoted('SYSCONFDIR', sysconfdir)
 conf.set_quoted('VERSION', meson.project_version())
+conf.set_quoted('G_LOG_DOMAIN', meson.project_name())
 configure_file(output: 'config.h', configuration: conf)
 
 # Post-install scripts
