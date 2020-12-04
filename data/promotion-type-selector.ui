@@ -10,17 +10,14 @@
     <property name="use-header-bar">1</property>
     <child internal-child="vbox">
       <object class="GtkBox">
-        <property name="can-focus">False</property>
-        <property name="margin-left">12</property>
-        <property name="margin-right">12</property>
-        <property name="margin-top">6</property>
-        <property name="margin-bottom">20</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox">
+        <child>
+          <object class="GtkButtonBox" id="button_box">
+            <property name="visible">true</property>
             <property name="can-focus">False</property>
-            <property name="layout-style">center</property>
+            <property name="margin">6</property>
+            <property name="layout-style">expand</property>
             <child>
-              <object class="GtkToggleButton" id="togglebutton-queen">
+              <object class="GtkButton" id="button_queen">
                 <property name="width-request">100</property>
                 <property name="height-request">120</property>
                 <property name="visible">True</property>
@@ -28,6 +25,7 @@
                 <property name="receives-default">True</property>
                 <property name="use-underline">True</property>
                 <property name="image-position">top</property>
+                <signal name="clicked" handler="queen_selected_cb"/>
                 <child>
                   <object class="GtkGrid">
                     <property name="visible">True</property>
@@ -70,7 +68,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToggleButton" id="togglebutton-knight">
+              <object class="GtkButton" id="button_knight">
                 <property name="width-request">100</property>
                 <property name="height-request">120</property>
                 <property name="visible">True</property>
@@ -78,6 +76,7 @@
                 <property name="receives-default">True</property>
                 <property name="use-underline">True</property>
                 <property name="image-position">top</property>
+                <signal name="clicked" handler="knight_selected_cb"/>
                 <child>
                   <object class="GtkGrid">
                     <property name="visible">True</property>
@@ -120,7 +119,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToggleButton" id="togglebutton-rook">
+              <object class="GtkButton" id="button_rook">
                 <property name="width-request">100</property>
                 <property name="height-request">120</property>
                 <property name="visible">True</property>
@@ -128,6 +127,7 @@
                 <property name="receives-default">True</property>
                 <property name="use-underline">True</property>
                 <property name="image-position">top</property>
+                <signal name="clicked" handler="rook_selected_cb"/>
                 <child>
                   <object class="GtkGrid">
                     <property name="visible">True</property>
@@ -170,7 +170,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToggleButton" id="togglebutton-bishop">
+              <object class="GtkButton" id="button_bishop">
                 <property name="width-request">100</property>
                 <property name="height-request">120</property>
                 <property name="visible">True</property>
@@ -178,6 +178,7 @@
                 <property name="receives-default">True</property>
                 <property name="use-underline">True</property>
                 <property name="image-position">top</property>
+                <signal name="clicked" handler="bishop_selected_cb"/>
                 <child>
                   <object class="GtkGrid">
                     <property name="visible">True</property>
@@ -220,20 +221,8 @@
               </packing>
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">0</property>
-          </packing>
         </child>
       </object>
     </child>
-    <action-widgets>
-      <action-widget response="0">togglebutton-queen</action-widget>
-      <action-widget response="1">togglebutton-knight</action-widget>
-      <action-widget response="2">togglebutton-rook</action-widget>
-      <action-widget response="3">togglebutton-bishop</action-widget>
-    </action-widgets>
   </object>
 </interface>

@@ -61,6 +61,7 @@ public class ChessApplication : Gtk.Application
     private FileChooserNative open_dialog = null;
     private FileChooserNative? save_dialog = null;
     private AboutDialog? about_dialog = null;
+    private Dialog? promotion_type_selector_dialog = null;
 
     private PGNGame pgn_game;
     private ChessGame game;
@@ -319,11 +320,39 @@ Copyright © 2015–2016 Sahil Sareen""";
         return false;
     }
 
+    [CCode (cname = "queen_selected_cb", instance_pos = -1)]
+    public void queen_selected_cb (Button button)
+        requires (promotion_type_selector_dialog != null)
+    {
+        promotion_type_selector_dialog.response (PromotionTypeSelected.QUEEN);
+    }
+
+    [CCode (cname = "knight_selected_cb", instance_pos = -1)]
+    public void knight_selected_cb (Button button)
+        requires (promotion_type_selector_dialog != null)
+    {
+        promotion_type_selector_dialog.response (PromotionTypeSelected.KNIGHT);
+    }
+
+    [CCode (cname = "rook_selected_cb", instance_pos = -1)]
+    public void rook_selected_cb (Button button)
+        requires (promotion_type_selector_dialog != null)
+    {
+        promotion_type_selector_dialog.response (PromotionTypeSelected.KNIGHT);
+    }
+
+    [CCode (cname = "bishop_selected_cb", instance_pos = -1)]
+    public void bishop_selected_cb (Button button)
+        requires (promotion_type_selector_dialog != null)
+    {
+        promotion_type_selector_dialog.response (PromotionTypeSelected.BISHOP);
+    }
+
     public PieceType? show_promotion_type_selector ()
     {
-        Builder promotion_type_selector_builder = new Builder.from_resource ("/org/gnome/Chess/ui/promotion-type-selector.ui");
+        var promotion_type_selector_builder = new Builder.from_resource ("/org/gnome/Chess/ui/promotion-type-selector.ui");
 
-        Dialog promotion_type_selector_dialog = (Dialog) promotion_type_selector_builder.get_object ("dialog_promotion_type_selector");
+        promotion_type_selector_dialog = (Dialog) promotion_type_selector_builder.get_object ("dialog_promotion_type_selector");
         promotion_type_selector_dialog.transient_for = window;
 
         string color;
@@ -364,6 +393,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             break;
         }
         promotion_type_selector_dialog.destroy ();
+        promotion_type_selector_dialog = null;
 
         return selection;
     }
