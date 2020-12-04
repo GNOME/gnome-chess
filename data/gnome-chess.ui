@@ -131,167 +131,93 @@
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
+        <property name="spacing">3</property>
         <child>
           <object class="GtkInfoBar" id="info_bar">
             <property name="visible">False</property>
           </object>
         </child>
         <child>
-          <object class="GtkBox">
+          <object class="GtkAlignment" id="view_container">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="orientation">vertical</property>
-            <property name="spacing">3</property>
             <child>
-              <object class="GtkBox" id="navigation_box">
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="navigation_box">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="spacing">6</property>
+            <property name="margin-left">6</property>
+            <property name="margin-right">6</property>
+            <property name="margin-bottom">6</property>
+            <child>
+              <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="spacing">6</property>
-                <property name="margin-left">6</property>
-                <property name="margin-right">6</property>
-                <property name="margin-bottom">6</property>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="spacing">6</property>
+                    <property name="homogeneous">True</property>
+                    <style>
+                      <class name="raised"/>
+                      <class name="linked"/>
+                    </style>
                     <child>
-                      <object class="GtkBox">
+                      <object class="GtkButton" id="first_move_button">
                         <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="homogeneous">True</property>
+                        <property name="sensitive">False</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">False</property>
+                        <property name="tooltip-text" translatable="yes" comments="Tooltip on the show first move (i.e. game start) navigation button">Rewind to the game start</property>
+                        <accelerator key="Left" signal="activate" modifiers="GDK_SHIFT_MASK | GDK_MOD1_MASK"/>
+                        <signal name="clicked" handler="history_start_clicked_cb" swapped="no"/>
                         <style>
-                          <class name="raised"/>
-                          <class name="linked"/>
+                          <class name="image-button"/>
                         </style>
                         <child>
-                          <object class="GtkButton" id="first_move_button">
+                          <object class="GtkImage">
                             <property name="visible">True</property>
-                            <property name="sensitive">False</property>
-                            <property name="can-focus">True</property>
-                            <property name="receives-default">False</property>
-                            <property name="tooltip-text" translatable="yes" comments="Tooltip on the show first move (i.e. game start) navigation button">Rewind to the game start</property>
-                            <accelerator key="Left" signal="activate" modifiers="GDK_SHIFT_MASK | GDK_MOD1_MASK"/>
-                            <signal name="clicked" handler="history_start_clicked_cb" swapped="no"/>
-                            <style>
-                              <class name="image-button"/>
-                            </style>
-                            <child>
-                              <object class="GtkImage">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="icon-size">1</property>
-                                <property name="icon-name">go-first-symbolic</property>
-                              </object>
-                            </child>
+                            <property name="can-focus">False</property>
+                            <property name="icon-size">1</property>
+                            <property name="icon-name">go-first-symbolic</property>
                           </object>
-                          <packing>
-                            <property name="expand">True</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="prev_move_button">
-                            <property name="visible">True</property>
-                            <property name="sensitive">False</property>
-                            <property name="can-focus">True</property>
-                            <property name="receives-default">False</property>
-                            <property name="tooltip-text" translatable="yes" comments="Tooltip on the show previous move navigation button">Show the previous move</property>
-                            <accelerator key="Left" signal="activate" modifiers="GDK_MOD1_MASK"/>
-                            <signal name="clicked" handler="history_previous_clicked_cb" swapped="no"/>
-                            <style>
-                              <class name="image-button"/>
-                            </style>
-                            <child>
-                              <object class="GtkImage">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="icon-size">1</property>
-                                <property name="icon-name">go-previous-symbolic</property>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">True</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="next_move_button">
-                            <property name="visible">True</property>
-                            <property name="sensitive">False</property>
-                            <property name="can-focus">True</property>
-                            <property name="receives-default">False</property>
-                            <property name="tooltip-text" translatable="yes" comments="Tooltip on the show next move navigation button">Show the next move</property>
-                            <accelerator key="Right" signal="activate" modifiers="GDK_MOD1_MASK"/>
-                            <signal name="clicked" handler="history_next_clicked_cb" swapped="no"/>
-                            <style>
-                              <class name="image-button"/>
-                            </style>
-                            <child>
-                              <object class="GtkImage">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="icon-size">1</property>
-                                <property name="icon-name">go-next-symbolic</property>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">True</property>
-                            <property name="fill">True</property>
-                            <property name="position">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="last_move_button">
-                            <property name="visible">True</property>
-                            <property name="sensitive">False</property>
-                            <property name="can-focus">True</property>
-                            <property name="receives-default">False</property>
-                            <property name="tooltip-text" translatable="yes" comments="Tooltip on the show current move navigation button">Show the current move</property>
-                            <accelerator key="Right" signal="activate" modifiers="GDK_SHIFT_MASK | GDK_MOD1_MASK"/>
-                            <signal name="clicked" handler="history_latest_clicked_cb" swapped="no"/>
-                            <style>
-                              <class name="image-button"/>
-                            </style>
-                            <child>
-                              <object class="GtkImage">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="icon-size">1</property>
-                                <property name="icon-name">go-last-symbolic</property>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">True</property>
-                            <property name="fill">True</property>
-                            <property name="position">3</property>
-                          </packing>
                         </child>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
+                        <property name="expand">True</property>
                         <property name="fill">True</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkComboBox" id="history_combo">
+                      <object class="GtkButton" id="prev_move_button">
                         <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="model">history-model</property>
-                        <signal name="changed" handler="history_combo_changed_cb" swapped="no"/>
+                        <property name="sensitive">False</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">False</property>
+                        <property name="tooltip-text" translatable="yes" comments="Tooltip on the show previous move navigation button">Show the previous move</property>
+                        <accelerator key="Left" signal="activate" modifiers="GDK_MOD1_MASK"/>
+                        <signal name="clicked" handler="history_previous_clicked_cb" swapped="no"/>
+                        <style>
+                          <class name="image-button"/>
+                        </style>
                         <child>
-                          <object class="GtkCellRendererText">
-                            <property name="ellipsize">PANGO_ELLIPSIZE_END</property>
+                          <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="icon-size">1</property>
+                            <property name="icon-name">go-previous-symbolic</property>
                           </object>
-                          <attributes>
-                            <attribute name="text">0</attribute>
-                          </attributes>
                         </child>
                       </object>
                       <packing>
@@ -300,6 +226,108 @@
                         <property name="position">1</property>
                       </packing>
                     </child>
+                    <child>
+                      <object class="GtkButton" id="next_move_button">
+                        <property name="visible">True</property>
+                        <property name="sensitive">False</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">False</property>
+                        <property name="tooltip-text" translatable="yes" comments="Tooltip on the show next move navigation button">Show the next move</property>
+                        <accelerator key="Right" signal="activate" modifiers="GDK_MOD1_MASK"/>
+                        <signal name="clicked" handler="history_next_clicked_cb" swapped="no"/>
+                        <style>
+                          <class name="image-button"/>
+                        </style>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="icon-size">1</property>
+                            <property name="icon-name">go-next-symbolic</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="last_move_button">
+                        <property name="visible">True</property>
+                        <property name="sensitive">False</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">False</property>
+                        <property name="tooltip-text" translatable="yes" comments="Tooltip on the show current move navigation button">Show the current move</property>
+                        <accelerator key="Right" signal="activate" modifiers="GDK_SHIFT_MASK | GDK_MOD1_MASK"/>
+                        <signal name="clicked" handler="history_latest_clicked_cb" swapped="no"/>
+                        <style>
+                          <class name="image-button"/>
+                        </style>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="icon-size">1</property>
+                            <property name="icon-name">go-last-symbolic</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="history_combo">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="model">history-model</property>
+                    <signal name="changed" handler="history_combo_changed_cb" swapped="no"/>
+                    <child>
+                      <object class="GtkCellRendererText">
+                        <property name="ellipsize">PANGO_ELLIPSIZE_END</property>
+                      </object>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="clock_box">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="spacing">6</property>
+                <property name="homogeneous">True</property>
+                <child>
+                  <object class="GtkDrawingArea" id="white_time_label">
+                    <!-- -1 means compute at runtime -->
+                    <property name="width-request">-1</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <signal name="draw" handler="white_time_draw_cb" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">True</property>
@@ -308,74 +336,30 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkBox" id="clock_box">
+                  <object class="GtkDrawingArea" id="black_time_label">
+                    <!-- -1 means compute at runtime -->
+                    <property name="width-request">-1</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="spacing">6</property>
-                    <property name="homogeneous">True</property>
-                    <child>
-                      <object class="GtkDrawingArea" id="white_time_label">
-                        <!-- -1 means compute at runtime -->
-                        <property name="width-request">-1</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <signal name="draw" handler="white_time_draw_cb" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkDrawingArea" id="black_time_label">
-                        <!-- -1 means compute at runtime -->
-                        <property name="width-request">-1</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <signal name="draw" handler="black_time_draw_cb" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
+                    <signal name="draw" handler="black_time_draw_cb" swapped="no"/>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
+                    <property name="expand">True</property>
                     <property name="fill">True</property>
-                    <property name="position">2</property>
+                    <property name="position">1</property>
                   </packing>
                 </child>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="pack-type">end</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkAlignment" id="view_container">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <child>
-                  <placeholder/>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="pack-type">end</property>
-                <property name="position">1</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>
           <packing>
-            <property name="expand">True</property>
+            <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">2</property>
           </packing>
         </child>
       </object>
