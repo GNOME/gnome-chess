@@ -39,6 +39,7 @@ public class ChessApplication : Gtk.Application
     private Widget next_move_button;
     private Widget last_move_button;
     private ComboBox history_combo;
+    private Box clock_box;
     private Widget white_time_label;
     private Widget black_time_label;
     private Widget timer_increment_label;
@@ -169,6 +170,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         next_move_button = (Widget) builder.get_object ("next_move_button");
         last_move_button = (Widget) builder.get_object ("last_move_button");
         history_combo = (ComboBox) builder.get_object ("history_combo");
+        clock_box = (Box) builder.get_object ("clock_box");
         white_time_label = (Widget) builder.get_object ("white_time_label");
         black_time_label = (Widget) builder.get_object ("black_time_label");
         view_container = (Container) builder.get_object ("view_container");
@@ -625,6 +627,8 @@ Copyright © 2015–2016 Sahil Sareen""";
             clock_type = ClockType.string_to_enum (settings.get_string ("clock-type"));
             pgn_game.clock_type = clock_type.to_string ();
         }
+
+        clock_box.visible = game.clock != null;
 
         if (game.clock != null)
         {
@@ -1596,10 +1600,8 @@ Copyright © 2015–2016 Sahil Sareen""";
     }
 
     private string make_clock_text (ChessClock? clock, Color color)
+        requires (clock != null)
     {
-        if (clock == null)
-            return "∞";
-
         int time;
         if (color == Color.WHITE)
             time = game.clock.white_remaining_seconds;
