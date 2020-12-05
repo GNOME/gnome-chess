@@ -106,7 +106,7 @@
           </object>
         </child>
         <child>
-          <object class="GtkMenuButton">
+          <object class="GtkMenuButton" id="menu_button">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="menu-model">app-menu</property>
@@ -135,6 +135,23 @@
         <child>
           <object class="GtkInfoBar" id="info_bar">
             <property name="visible">False</property>
+            <child internal-child="content_area">
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <child>
+                  <object class="GtkLabel" id="info_bar_label">
+                    <property name="visible">True</property>
+                    <property name="ellipsize">end</property>
+                    <property name="justify">center</property>
+                    <property name="use-markup">true</property>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
           </object>
         </child>
         <child>

@@ -29,6 +29,7 @@ public class ChessApplication : Gtk.Application
     private GLib.Settings settings;
     private ApplicationWindow window;
     private InfoBar info_bar;
+    private Label info_bar_label;
     private Container view_container;
     private ChessScene scene;
     private ChessView view;
@@ -44,6 +45,7 @@ public class ChessApplication : Gtk.Application
     private Widget black_time_label;
     private Widget timer_increment_label;
     private HeaderBar headerbar;
+    private MenuButton menu_button;
 
     private Dialog? preferences_dialog = null;
     private ComboBox side_combo;
@@ -132,19 +134,6 @@ Copyright © 2015–2016 Sahil Sareen""";
         return -1;
     }
 
-    private void display_no_engine_info_bar ()
-    {
-        var label = new Label (_("No chess engine is installed. You will not be able to play against the computer."));
-        label.set_line_wrap (true);
-        label.show ();
-
-        info_bar.get_content_area ().add (label);
-        info_bar.set_message_type (MessageType.ERROR);
-        info_bar.set_show_close_button (true);
-        info_bar.response.connect (() => info_bar.destroy ());
-        info_bar.show ();
-    }
-
     public override void startup ()
     {
         base.startup ();
@@ -164,6 +153,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         window.window_state_event.connect (window_state_event_cb);
 
         info_bar = (InfoBar) builder.get_object ("info_bar");
+        info_bar_label = (Label) builder.get_object ("info_bar_label");
         pause_resume_button = (Button) builder.get_object ("pause_button");
         navigation_box = (Box) builder.get_object ("navigation_box");
         first_move_button = (Widget) builder.get_object ("first_move_button");
@@ -176,6 +166,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         black_time_label = (Widget) builder.get_object ("black_time_label");
         view_container = (Container) builder.get_object ("view_container");
         headerbar = (HeaderBar) builder.get_object ("headerbar");
+        menu_button = (MenuButton) builder.get_object ("menu_button");
         builder.connect_signals (this);
 
         update_pause_resume_button ();
@@ -215,9 +206,6 @@ Copyright © 2015–2016 Sahil Sareen""";
             ai_profiles = AIProfile.load_ai_profiles (system_engine_cfg);
         else
             warning ("engines.conf not found");
-
-        if (ai_profiles == null)
-            display_no_engine_info_bar ();
 
         foreach (var profile in ai_profiles)
             debug ("Detected AI profile %s in %s", profile.name, profile.path);
@@ -276,9 +264,40 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         if (layout_mode == new_layout_mode)
             return;
+
         layout_mode = new_layout_mode;
 
-        navigation_box.set_orientation ((layout_mode == LayoutMode.NORMAL) ? Orientation.HORIZONTAL : Orientation.VERTICAL);
+        if (layout_mode == LayoutMode.NORMAL)
+        {
+            if (info_bar_label.label.contains ("\n"))
+            {
+                var split = info_bar_label.label.split ("\n", 2);
+                headerbar.title = split[0];
+                headerbar.subtitle = split[1];
+            }
+            else
+            {
+                headerbar.title = info_bar_label.label;
+            }
+
+            info_bar.visible = false;
+
+            navigation_box.set_orientation (Orientation.HORIZONTAL);
+        }
+        else
+        {
+            if (headerbar.subtitle != null)
+                info_bar_label.label = "%s\n%s".printf (headerbar.title, headerbar.subtitle);
+            else
+                info_bar_label.label = headerbar.title;
+
+            info_bar.visible = true;
+
+            headerbar.title = _("Chess");
+            headerbar.subtitle = null;
+
+            navigation_box.set_orientation (Orientation.VERTICAL);
+        }
     }
 
     private void size_allocate_cb (Allocation allocation)
@@ -691,7 +710,18 @@ Copyright © 2015–2016 Sahil Sareen""";
         update_history_panel ();
         update_action_status ();
         update_pause_resume_button ();
-        update_headerbar_title ();
+
+        if (ai_profiles == null)
+        {
+            /* Warning at start of game when no chess engine is installed. */
+            update_game_status (_("No chess engine is installed."),
+                                /* Warning at start of game when no chess engine is installed. */
+                                _("You will not be able to play against the computer."));
+        }
+        else
+        {
+            update_game_status ();
+        }
 
         white_time_label.queue_draw ();
         black_time_label.queue_draw ();
@@ -1186,7 +1216,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         enable_window_action (SAVE_GAME_AS_ACTION_NAME);
         update_history_panel ();
         update_action_status ();
-        update_headerbar_title ();
+        update_game_status ();
 
         view.queue_draw ();
 
@@ -1250,7 +1280,7 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         update_history_panel ();
         update_action_status ();
-        update_headerbar_title ();
+        update_game_status ();
     }
 
     private void update_action_status ()
@@ -1272,48 +1302,71 @@ Copyright © 2015–2016 Sahil Sareen""";
             disable_window_action (UNDO_MOVE_ACTION_NAME);
     }
 
-    private void update_headerbar_title ()
+    private string compute_game_status ()
     {
         if (human_player != null &&
             human_player.color == game.current_player.color &&
             game.current_state.is_in_check (game.current_player))
         {
             if (game.current_player.color == Color.WHITE)
-                /* Window title on a White human's turn if he is in check */
-                headerbar.set_title (_("White is in Check"));
+                /* Game status on White's turn when in check */
+               return _("White is in Check");
             else
-                /* Window title on a Black human's turn if he is in check */
-                headerbar.set_title (_("Black is in Check"));
+                /* Game status on Black's turn when in check */
+                return _("Black is in Check");
         }
         else if (game.current_state.last_move != null &&
                  game.current_state.last_move.en_passant)
         {
             if (game.current_player.color == Color.WHITE)
-                /* Window title when Black captures White's pawn en passant */
-                headerbar.set_title (_("Black captured en passant"));
+                /* Game status when Black captures White's pawn en passant */
+                return _("Black captured en passant");
             else
-                /* Window title when White captures Black's pawn en passant */
-                headerbar.set_title (_("White captured en passant"));
+                /* Game status when White captures Black's pawn en passant */
+                return _("White captured en passant");
         }
         else if (game.current_player.color == Color.WHITE)
         {
             if (human_player == null || human_player.color == Color.WHITE)
-                /* Window title on White's turn if White is human */
-                headerbar.set_title (_("White to Move"));
+                /* Game status on White's turn if White is human */
+                return _("White to Move");
             else
-                /* Window title on White's turn if White is a computer */
-                headerbar.set_title (_("White is Thinking…"));
+                /* Game status on White's turn if White is a computer */
+                return _("White is Thinking…");
         }
         else
         {
             if (human_player == null || human_player.color == Color.BLACK)
-                /* Window title on Black's turn if Black is human */
-                headerbar.set_title (_("Black to Move"));
+                /* Game status on Black's turn if Black is human */
+                return _("Black to Move");
             else
-                /* Window title on Black's turn if Black is a computer */
-                headerbar.set_title (_("Black is Thinking…"));
+                /* Game status on Black's turn if Black is a computer */
+                return _("Black is Thinking…");
         }
-        headerbar.set_subtitle (null);
+    }
+
+    private void update_game_status (string? label = null, string? sublabel = null)
+    {
+        if (layout_mode == LayoutMode.NORMAL)
+        {
+            headerbar.set_title (label != null ? label : compute_game_status ());
+            headerbar.set_subtitle (sublabel);
+            return;
+        }
+        else
+        {
+            if (sublabel == null)
+            {
+                info_bar_label.label = (label != null ? label : compute_game_status ());
+            }
+            else
+            {
+                info_bar_label.label = "%s\n%s".printf (label, sublabel);
+                // Hack: avoid info bar when the size of the label increases.
+                info_bar.visible = false;
+                info_bar.visible = true;
+            }
+        }
     }
 
     private void update_pause_resume_button ()
@@ -1347,124 +1400,114 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         game_needs_saving = false;
 
-        string title = "";
+        string what = "";
         switch (game.result)
         {
         case ChessResult.WHITE_WON:
-            /* Window title when the white player wins */
-            title = _("White Wins");
+            /* Game status when the white player wins */
+            what = _("White Wins");
             pgn_game.result = PGNGame.RESULT_WHITE;
             break;
         case ChessResult.BLACK_WON:
-            /* Window title when the black player wins */
-            title = _("Black Wins");
+            /* Game status when the black player wins */
+            what = _("Black Wins");
             pgn_game.result = PGNGame.RESULT_BLACK;
             break;
         case ChessResult.DRAW:
-            /* Window title when the game is drawn */
-            title = _("Game is Drawn");
+            /* Game status when the game is drawn */
+            what = _("Game is Drawn");
             pgn_game.result = PGNGame.RESULT_DRAW;
             break;
         case ChessResult.BUG:
-            /*
-             * Window title when something goes wrong with the engine...
-             * or when the engine says something is wrong with us! Translators,
-             * please test to make sure this does not get ellipsized -- you don't
-             * have much room. Set your opponent to GNU Chess, set a time limit
-             * because the pause button eats up some of your space, start a new game,
-             * then run 'killall gnuchess' in a terminal.
-             */
-            title = _("Oops! Something has gone wrong.");
+            /* Game status when something goes wrong with the engine. */
+            what = _("Oops! Something has gone wrong.");
             /* don't set the pgn_game result; these are standards */
             break;
         default:
             break;
         }
 
-        string reason = "";
+        string why = "";
         switch (game.rule)
         {
         case ChessRule.CHECKMATE:
             if (game.result == ChessResult.WHITE_WON)
-                /* Window subtitle when Black is checkmated */
-                reason = _("Black is in check and cannot move.");
+                /* Game status when Black is checkmated */
+                why = _("Black is in check and cannot move.");
             else if (game.result == ChessResult.BLACK_WON)
-                /* Window subtitle when White is checkmated */
-                reason = _("White is in check and cannot move.");
+                /* Game status when White is checkmated */
+                why = _("White is in check and cannot move.");
             else
                 assert_not_reached ();
             break;
         case ChessRule.STALEMATE:
-            /* Window subtitle when the game terminates due to a stalemate */
-            reason = _("Opponent cannot move.");
+            /* Game status when the game terminates due to a stalemate */
+            why = _("Opponent cannot move.");
             break;
         case ChessRule.FIFTY_MOVES:
-            /* Window subtitle when the game is drawn due to the fifty move rule */
-            reason = _("No piece was taken or pawn moved in fifty moves.");
+            /* Game status when the game is drawn due to the fifty move rule */
+            why = _("No piece was taken or pawn moved in fifty moves.");
             break;
         case ChessRule.SEVENTY_FIVE_MOVES:
-            /* Window subtitle when the game is drawn due to the 75 move rule */
-            reason = _("No piece was taken or pawn moved in 75 moves.");
+            /* Game status when the game is drawn due to the 75 move rule */
+            why = _("No piece was taken or pawn moved in 75 moves.");
             break;
         case ChessRule.TIMEOUT:
             if (game.result == ChessResult.WHITE_WON)
-                /* Window subtitle when the game ends due to Black's clock stopping */
-                reason = _("Black has run out of time.");
+                /* Game status when the game ends due to Black's clock stopping */
+                why = _("Black has run out of time.");
             else if (game.result == ChessResult.BLACK_WON)
-                /* Window subtitle when the game ends due to White's clock stopping */
-                reason = _("White has run out of time.");
+                /* Game status when the game ends due to White's clock stopping */
+                why = _("White has run out of time.");
             else
                 assert_not_reached ();
             break;
         case ChessRule.THREE_FOLD_REPETITION:
-            /* Window subtitle when the game is drawn due to the three-fold-repetition rule */
-            reason = _("The same board state has occurred three times.");
+            /* Game status when the game is drawn due to the three-fold-repetition rule */
+            why = _("The same board state has occurred three times.");
             break;
         case ChessRule.FIVE_FOLD_REPETITION:
-            /* Window subtitle when the game is drawn due to the five-fold-repetition rule */
-            reason = _("The same board state has occurred five times.");
+            /* Game status when the game is drawn due to the five-fold-repetition rule */
+            why = _("The same board state has occurred five times.");
             break;
         case ChessRule.INSUFFICIENT_MATERIAL:
-            /* Window subtitle when the game is drawn due to the insufficient material rule */
-            reason = _("Neither player can checkmate.");
+            /* Game status when the game is drawn due to the insufficient material rule */
+            why = _("Neither player can checkmate.");
             break;
         case ChessRule.RESIGN:
             if (game.result == ChessResult.WHITE_WON)
-                /* Window subtitle when the game ends due to the black player resigning */
-                reason = _("Black has resigned.");
+                /* Game status when the game ends due to the black player resigning */
+                why = _("Black has resigned.");
             else if (game.result == ChessResult.BLACK_WON)
-                /* Window subtitle when the game ends due to the white player resigning */
-                reason = _("White has resigned.");
+                /* Game status when the game ends due to the white player resigning */
+                why = _("White has resigned.");
             else
                 assert_not_reached ();
             break;
         case ChessRule.ABANDONMENT:
-            /* Window subtitle when a game is abandoned */
-            reason = _("The game has been abandoned.");
+            /* Game status when a game is abandoned */
+            why = _("The game has been abandoned.");
             pgn_game.termination = PGNGame.TERMINATE_ABANDONED;
             break;
         case ChessRule.DEATH:
-            /* Window subtitle when the game ends due to a player dying.
-             * This is a PGN standard. GNOME Chess will never kill the user. */
-            reason = _("The game log says a player died!");
+            /* Game status when the game ends due to a player dying during the game. */
+            why = _("The game log says a player died!");
             pgn_game.termination = PGNGame.TERMINATE_DEATH;
             break;
         case ChessRule.BUG:
-            /* Window subtitle when something goes wrong with the engine...
-             * or when the engine says something is wrong with us! */
-            reason = _("The computer player is confused. The game cannot continue.");
+            /* Game status when something goes wrong with the engine. */
+            why = _("The computer player is confused. The game cannot continue.");
             /* Don't set pgn_game termination; these are standards*/
             break;
         case ChessRule.UNKNOWN:
-            /* Window subtitle when we don't know the reason
+            /* Game status when we don't know the why the game ended
              * Set it to the pgn_file_name
              * We are using this when loading completed saved games */
-             reason = game_file.get_basename ();
+             why = game_file.get_basename ();
              break;
         }
 
-        headerbar.set_title (title);
-        headerbar.set_subtitle (reason);
+        update_game_status (what, why);
 
         white_time_label.queue_draw ();
         black_time_label.queue_draw ();
