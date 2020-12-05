@@ -53,6 +53,8 @@ public class ChessMove : Object
         case CheckState.CHECKMATE:
             builder.append_c ('#');
             break;
+        default:
+            break;
         }
 
         return builder.str;
@@ -104,6 +106,8 @@ public class ChessMove : Object
             break;
         case CheckState.CHECKMATE:
             builder.append_c ('#');
+            break;
+        default:
             break;
         }
 

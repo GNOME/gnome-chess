@@ -206,8 +206,6 @@ public class ChessClock : Object
         int white_move_used = 0, black_move_used = 0;
         switch (clock_type)
         {
-        case ClockType.SIMPLE:
-            break;
         case ClockType.FISCHER:
             if (active_color == Color.WHITE)
                 white_extra_seconds += extra_seconds;
@@ -221,6 +219,8 @@ public class ChessClock : Object
                 white_extra_seconds += int.min (extra_seconds, white_move_used);
             else
                 black_extra_seconds += int.min (extra_seconds, black_move_used);
+            break;
+        default:
             break;
         }
     }
