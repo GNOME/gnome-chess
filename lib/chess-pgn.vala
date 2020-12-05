@@ -119,13 +119,13 @@ public class PGNGame : Object
     }
     public string? white_time_left
     {
-        get { return tags.lookup ("WhiteTimeLeft"); }
-        set { tags.insert ("WhiteTimeLeft", value); }
+        get { return tags.lookup ("X-GNOME-WhiteTimeLeft"); }
+        set { tags.insert ("X-GNOME-WhiteTimeLeft", value); }
     }
     public string? black_time_left
     {
-        get { return tags.lookup ("BlackTimeLeft"); }
-        set { tags.insert ("BlackTimeLeft", value); }
+        get { return tags.lookup ("X-GNOME-BlackTimeLeft"); }
+        set { tags.insert ("X-GNOME-BlackTimeLeft", value); }
     }
     public string? clock_type
     {
@@ -154,23 +154,23 @@ public class PGNGame : Object
     }
     public string? white_ai
     {
-        get { return tags.lookup ("WhiteAI"); }
-        set { tags.insert ("WhiteAI", value); }
+        get { return tags.lookup ("X-GNOME-WhiteAI"); }
+        set { tags.insert ("X-GNOME-WhiteAI", value); }
     }
     public string? white_level
     {
-        get { return tags.lookup ("WhiteLevel"); }
-        set { tags.insert ("WhiteLevel", value); }
+        get { return tags.lookup ("X-GNOME-WhiteLevel"); }
+        set { tags.insert ("X-GNOME-WhiteLevel", value); }
     }
     public string? black_ai
     {
-        get { return tags.lookup ("BlackAI"); }
-        set { tags.insert ("BlackAI", value); }
+        get { return tags.lookup ("X-GNOME-BlackAI"); }
+        set { tags.insert ("X-GNOME-BlackAI", value); }
     }
     public string? black_level
     {
-        get { return tags.lookup ("BlackLevel"); }
-        set { tags.insert ("BlackLevel", value); }
+        get { return tags.lookup ("X-GNOME-BlackLevel"); }
+        set { tags.insert ("X-GNOME-BlackLevel", value); }
     }
 
     public PGNGame ()
@@ -241,29 +241,31 @@ public class PGN : Object
     {
         switch (tag_name)
         {
-        case "WhiteTimeLeft":
-            if (int64.try_parse (tag_value) == false)
-                warning (_("Invalid %s : %s in PGN, setting timer to infinity."), tag_name, tag_value);
-            else
-                game.tags.insert (tag_name, tag_value);
-            break;
-        case "BlackTimeLeft":
-            if (int64.try_parse (tag_value) == false)
-                warning (_("Invalid %s : %s in PGN, setting timer to infinity."), tag_name, tag_value);
-            else
-                game.tags.insert (tag_name, tag_value);
-            break;
         case "TimeControl":
             if (int64.try_parse (tag_value) == true)
-                game.tags.insert (tag_name, tag_value);
+                game.tags.insert ("TimeControl", tag_value);
             else
                 warning (_("Invalid %s : %s in PGN, setting timer to infinity."), tag_name, tag_value);
+            break;
+        case "WhiteTimeLeft":
+        case "X-GNOME-WhiteTimeLeft":
+            if (int64.try_parse (tag_value) == false)
+                warning (_("Invalid %s : %s in PGN, setting timer to infinity."), tag_name, tag_value);
+            else
+                game.tags.insert ("X-GNOME-WhiteTimeLeft", tag_value);
+            break;
+        case "BlackTimeLeft":
+        case "X-GNOME-BlackTimeLeft":
+            if (int64.try_parse (tag_value) == false)
+                warning (_("Invalid %s : %s in PGN, setting timer to infinity."), tag_name, tag_value);
+            else
+                game.tags.insert ("X-GNOME-BlackTimeLeft", tag_value);
             break;
         case "X-GNOME-ClockType":
             if (ClockType.string_to_enum (tag_value) == ClockType.INVALID)
             {
                 warning (_("Invalid clock type in PGN: %s, using a simple clock."), tag_value);
-                game.tags.insert (tag_name, "simple");
+                game.tags.insert ("X-GNOME-ClockType", "simple");
             }
             break;
         case "X-GNOME-TimerIncrement":
@@ -271,8 +273,24 @@ public class PGN : Object
             {
                 warning (_("Invalid timer increment in PGN: %s, using a simple clock."), tag_value);
                 game.tags["X-GNOME-ClockType"] = "simple";
-                game.tags.insert (tag_name, "0");
+                game.tags.insert ("X-GNOME-TimerIncrement", "0");
             }
+            break;
+        case "WhiteAI":
+        case "X-GNOME-WhiteAI":
+            game.tags.insert ("X-GNOME-WhiteAI", tag_value);
+            break;
+        case "WhiteLevel":
+        case "X-GNOME-WhiteLevel":
+            game.tags.insert ("X-GNOME-WhiteLevel", tag_value);
+            break;
+        case "BlackAI":
+        case "X-GNOME-BlackAI":
+            game.tags.insert ("X-GNOME-BlackAI", tag_value);
+            break;
+        case "BlackLevel":
+        case "X-GNOME-BlackLevel":
+            game.tags.insert ("X-GNOME-BlackLevel", tag_value);
             break;
         default:
             game.tags.insert (tag_name, tag_value);
