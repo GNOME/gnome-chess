@@ -10,6 +10,7 @@
  * license.
  */
 
+/* This is the Seven Tag Roster (STR). They have to appear at the top, in this order. */
 private int str_index (string name)
 {
     if (name == "Event")
