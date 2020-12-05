@@ -52,7 +52,7 @@
     <property name="default-width">700</property>
     <signal name="delete-event" handler="gnome_chess_app_delete_event_cb" swapped="no"/>
     <child type="titlebar">
-      <object class="GtkHeaderBar" id="main_headerbar">
+      <object class="GtkHeaderBar" id="headerbar">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="show-close-button">True</property>
@@ -135,11 +135,6 @@
         <child>
           <object class="GtkInfoBar" id="info_bar">
             <property name="visible">False</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkHeaderBar" id="inner_headerbar">
-            <property name="can-focus">False</property>
           </object>
         </child>
         <child>
