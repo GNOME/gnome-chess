@@ -45,7 +45,6 @@ public class ChessApplication : Gtk.Application
     private Widget black_time_label;
     private Widget timer_increment_label;
     private HeaderBar headerbar;
-    private MenuButton menu_button;
 
     private Dialog? preferences_dialog = null;
     private ComboBox side_combo;
@@ -166,7 +165,6 @@ Copyright © 2015–2016 Sahil Sareen""";
         black_time_label = (Widget) builder.get_object ("black_time_label");
         view_container = (Container) builder.get_object ("view_container");
         headerbar = (HeaderBar) builder.get_object ("headerbar");
-        menu_button = (MenuButton) builder.get_object ("menu_button");
         builder.connect_signals (this);
 
         update_pause_resume_button ();
