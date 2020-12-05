@@ -764,6 +764,13 @@ Copyright © 2015–2016 Sahil Sareen""";
         var original_game = game;
         var original_state = game.current_state;
 
+        /* We don't inform the engine that the game has ended when the user
+         * resigns. So if the game is over, and the next game has not yet
+         * begun, we need to ignore it.
+         */
+        if (!game.is_started)
+            return;
+
         if (!game.is_paused)
         {
             do_engine_move (move);
