@@ -814,6 +814,9 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     private void engine_move_cb (ChessEngine engine, string move)
     {
+        var original_game = game;
+        var original_state = game.current_state;
+
         if (!game.is_paused)
         {
             do_engine_move (move);
@@ -827,7 +830,15 @@ Copyright © 2015–2016 Sahil Sareen""";
                 }
                 else
                 {
-                    do_engine_move (move);
+                    /* If the user has started a new game, then the state of the game is no longer
+                     * what it was at the time.
+                     * the engine moved, we need to discard the move. The engine will move again.
+                     */
+                    if (game == original_game)
+                    {
+                        assert (game.current_state == original_state);
+                        do_engine_move (move);
+                    }
                     return Source.REMOVE;
                 }
             });
