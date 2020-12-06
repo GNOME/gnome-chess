@@ -1,3 +1,18 @@
+3.38.1 - December 6, 2020
+=========================
+
+- Try to make all chess engines easier on Easy and Normal difficulty (#18)
+- Fix saved timed matches opening as untimed matches (#45, Amandeep Singh)
+- Fix claim draw dialog appearing every turn after threefold repetition (#47)
+- Fix bogus "computer player is confused" errors in several situations:
+  - When the engine is stalemated
+  - When starting a new game while the game is paused, if the engine has moved during pause (#49)
+  - When resigning immediately before the engine moves (#49)
+- Fix file chooser defaulting to /run when game is saved for a second time under flatpak (#53)
+- Fix detection of stalled chess engine in untimed games (#54)
+- Fix claim draw dialog appearing before a forced draw
+- Fix ChessScene removing invalid GSource
+
 3.38.0 - September 11, 2020
 ===========================
 
