@@ -68,7 +68,7 @@ public class ChessApplication : Gtk.Application
     private ChessPlayer? opponent = null;
     private ChessPlayer? human_player = null;
     private ChessEngine? opponent_engine = null;
-    private int engine_timeout_counter = 10;
+    private uint engine_timeout_source = 0;
     private string copyrights = """Copyright © 2010–2013 Robert Ancell
 Copyright © 2013–2018 Michael Catanzaro
 Copyright © 2015–2016 Sahil Sareen""";
@@ -670,6 +670,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             black_engine != null && game.current_player.color == Color.BLACK)
         {
             assert (opponent_engine != null);
+            update_engine_timeout ();
             opponent_engine.move ();
         }
 
@@ -858,35 +859,8 @@ Copyright © 2015–2016 Sahil Sareen""";
          */
     }
 
-    private void check_engine_timeout ()
-        requires (engine_timeout_counter >= 0)
-        ensures (engine_timeout_counter >= 0)
-    {
-        if (opponent_engine == null)
-            return;
-
-        if (pgn_game.white_ai != null && game.current_player.color == Color.WHITE ||
-            pgn_game.black_ai != null && game.current_player.color == Color.BLACK)
-        {
-            engine_timeout_counter -= 1;
-
-            if (engine_timeout_counter == 0)
-            {
-                // Chess engine did not move for a long time
-                // End the game assuming a buggy engine
-                engine_error_cb (opponent_engine);
-            }
-        }
-        else
-        {
-            // Reset the engine timeout
-            engine_timeout_counter = 10;
-        }
-    }
-
     private void game_clock_tick_cb (ChessClock clock)
     {
-        check_engine_timeout ();
         white_time_label.queue_draw ();
         black_time_label.queue_draw ();
     }
@@ -1121,6 +1095,26 @@ Copyright © 2015–2016 Sahil Sareen""";
         model.set (iter, 0, label, -1);
     }
 
+    private void update_engine_timeout ()
+    {
+        if (engine_timeout_source != 0)
+        {
+            Source.remove(engine_timeout_source);
+            engine_timeout_source = 0;
+        }
+
+        if (pgn_game.white_ai != null && game.current_player.color == Color.WHITE ||
+            pgn_game.black_ai != null && game.current_player.color == Color.BLACK)
+        {
+            engine_timeout_source = Timeout.add_seconds (30, () => {
+                engine_timeout_source = 0;
+                warning ("Engine did not move for 30 seconds! Game over.");
+                engine_error_cb (opponent_engine);
+                return Source.REMOVE;
+            });
+        }
+    }
+
     private void game_move_cb (ChessGame game, ChessMove move)
     {
         /* Warning: this callback is invoked several times when loading a game. */
@@ -1158,7 +1152,7 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         view.queue_draw ();
 
-        /* Remaining work goes in a timeout to give the game widget a chance to
+        /* This work goes in a timeout to give the game widget a chance to
          * redraw first, so the pieces are shown to move before displaying the
          * claim draw dialog. */
         var started = !starting && game.is_started;
@@ -1176,6 +1170,9 @@ Copyright © 2015–2016 Sahil Sareen""";
 
             return Source.REMOVE;
         });
+
+        if (started)
+            update_engine_timeout ();
     }
 
     private void game_undo_cb (ChessGame game)
