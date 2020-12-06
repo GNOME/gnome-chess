@@ -1382,7 +1382,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             break;
         case ChessResult.BUG:
             /* Game status when something goes wrong with the engine. */
-            what = _("Oops! Something has gone wrong.");
+            what = _("Oops!");
             /* don't set the pgn_game result; these are standards */
             break;
         default:
