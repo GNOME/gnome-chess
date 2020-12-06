@@ -2391,11 +2391,30 @@ Copyright © 2015–2016 Sahil Sareen""";
                                                  _("_Save"),
                                                  _("_Cancel"));
 
-            if (game_file != null && game_file.get_path () != autosave_filename)
-                save_dialog.set_filename (game_file.get_path ());
-            else
+            var set_filename = false;
+            if (game_file != null)
+            {
+                /* If the path is under /run, we are probably sandboxed, and the
+                 * path we see is entirely different from the path to the file
+                 * on the host system. In this case, we should force the user to
+                 * navigate the filesystem rather than displaying /run, which
+                 * would be meaningless to the user.
+                 *
+                 * Also, of course we don't want to preselect the autosave file.
+                 */
+                var path = game_file.get_path ();
+                if (path != autosave_filename && !path.has_prefix ("/run"))
+                {
+                    save_dialog.set_filename (path);
+                    set_filename = true;
+                }
+            }
+
+            if (!set_filename)
+            {
                 save_dialog.set_current_name (/* Default filename for the save game dialog */
                                               _("Untitled Chess Game") + ".pgn");
+            }
 
             /* Filter out non PGN files by default */
             var pgn_filter = new FileFilter ();
