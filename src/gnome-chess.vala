@@ -1068,14 +1068,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         switch (scene.move_format)
         {
         case "human":
-            if (move.en_passant)
-            {
-                if (move.r0 < move.r1)
-                    move_text = _("White pawn captures black pawn en passant");
-                else
-                    move_text = _("Black pawn captures white pawn en passant");
-            }
-            else if (move.castling_rook != null)
+            if (move.castling_rook != null)
             {
                 if (move.f0 < move.f1 && move.r0 == 0)
                     move_text = _("White castles kingside");
@@ -1101,7 +1094,19 @@ Copyright © 2015–2016 Sahil Sareen""";
 
                 var start = "%c%d".printf ('a' + move.f0, move.r0 + 1);
                 var end = "%c%d".printf ('a' + move.f1, move.r1 + 1);
-                move_text = _(human_descriptions[index]).printf (start, end);
+                var template = _(human_descriptions[index]);
+                if (move.en_passant)
+                {
+                    if (move.r0 < move.r1)
+                    {   /* Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s en passant */
+                        template = _("White pawn at %1$s takes the black pawn at %2$s en passant");
+                    }
+                    else
+                    {   /* Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s en passant */
+                        template = _("Black pawn at %1$s takes white pawn at %2$s en passant");
+                    }
+                }
+                move_text = template.printf (start, end);
             }
             break;
 
