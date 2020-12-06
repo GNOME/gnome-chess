@@ -1309,10 +1309,10 @@ Copyright © 2015–2016 Sahil Sareen""";
         {
             if (game.current_player.color == Color.WHITE)
                 /* Game status when Black captures White's pawn en passant */
-                return _("Black captured en passant");
+                return _("Black captured White's pawn <span font_style='italic'>en passant</span>.");
             else
                 /* Game status when White captures Black's pawn en passant */
-                return _("White captured en passant");
+                return _("White captured Black's pawn <span font_style='italic'>en passant</span>.");
         }
 
         return null;
