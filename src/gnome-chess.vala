@@ -68,7 +68,6 @@ public class ChessApplication : Gtk.Application
     private string autosave_filename;
     private File game_file;
     private bool game_needs_saving = false;
-    private bool subtitle_is_filename = false;
     private bool starting = true;
     private List<AIProfile> ai_profiles;
     private ChessPlayer? opponent = null;
@@ -266,39 +265,7 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         layout_mode = new_layout_mode;
 
-        if (layout_mode == LayoutMode.NORMAL)
-        {
-            if (info_bar_label.label.contains ("\n"))
-            {
-                var split = info_bar_label.label.split ("\n", 2);
-                headerbar.title = split[0];
-                headerbar.subtitle = split[1];
-            }
-            else
-            {
-                headerbar.title = info_bar_label.label;
-            }
-
-            info_bar.visible = false;
-
-            navigation_box.set_orientation (Orientation.HORIZONTAL);
-        }
-        else
-        {
-            if (headerbar.subtitle != null && !subtitle_is_filename)
-                info_bar_label.label = "%s\n%s".printf (headerbar.title, headerbar.subtitle);
-            else
-                info_bar_label.label = headerbar.title;
-
-            info_bar.visible = true;
-
-            headerbar.title = _("Chess");
-
-            if (!subtitle_is_filename)
-                headerbar.subtitle = null;
-
-            navigation_box.set_orientation (Orientation.VERTICAL);
-        }
+        navigation_box.set_orientation (layout_mode == LayoutMode.NORMAL ? Orientation.HORIZONTAL : Orientation.VERTICAL);
     }
 
     private void size_allocate_cb (Allocation allocation)
@@ -508,16 +475,10 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         starting = true;
 
-        if (game_file != null && game_file.get_path () != autosave_filename && layout_mode == LayoutMode.NORMAL)
-        {
-            headerbar.set_subtitle (game_file.get_basename ());
-            subtitle_is_filename = true;
-        }
+        if (game_file != null && game_file.get_path () != autosave_filename)
+            headerbar.subtitle = game_file.get_basename ();
         else
-        {
-            headerbar.set_subtitle (null);
-            subtitle_is_filename = false;
-        }
+            headerbar.subtitle = null;
 
         var model = (Gtk.ListStore) history_combo.model;
         model.clear ();
@@ -720,10 +681,9 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         if (ai_profiles == null)
         {
-            /* Warning at start of game when no chess engine is installed. */
-            update_game_status (_("No chess engine is installed."),
+            update_game_status (null,
                                 /* Warning at start of game when no chess engine is installed. */
-                                _("You will not be able to play against the computer."));
+                                _("No chess engine is installed. You will not be able to play against the computer."));
         }
         else
         {
@@ -1309,7 +1269,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             disable_window_action (UNDO_MOVE_ACTION_NAME);
     }
 
-    private string compute_game_status ()
+    private string compute_current_title ()
     {
         if (human_player != null &&
             human_player.color == game.current_player.color &&
@@ -1321,16 +1281,6 @@ Copyright © 2015–2016 Sahil Sareen""";
             else
                 /* Game status on Black's turn when in check */
                 return _("Black is in Check");
-        }
-        else if (game.current_state.last_move != null &&
-                 game.current_state.last_move.en_passant)
-        {
-            if (game.current_player.color == Color.WHITE)
-                /* Game status when Black captures White's pawn en passant */
-                return _("Black captured en passant");
-            else
-                /* Game status when White captures Black's pawn en passant */
-                return _("White captured en passant");
         }
         else if (game.current_player.color == Color.WHITE)
         {
@@ -1352,33 +1302,28 @@ Copyright © 2015–2016 Sahil Sareen""";
         }
     }
 
-    private void update_game_status (string? label = null, string? sublabel = null)
+    private string? compute_status_info ()
     {
-        if (layout_mode == LayoutMode.NORMAL)
+        if (game.current_state.last_move != null &&
+            game.current_state.last_move.en_passant)
         {
-            headerbar.set_title (label != null ? label : compute_game_status ());
-
-            if (sublabel != null)
-            {
-                headerbar.set_subtitle (sublabel);
-                subtitle_is_filename = false;
-            }
-            return;
-        }
-        else
-        {
-            if (sublabel == null)
-            {
-                info_bar_label.label = (label != null ? label : compute_game_status ());
-            }
+            if (game.current_player.color == Color.WHITE)
+                /* Game status when Black captures White's pawn en passant */
+                return _("Black captured en passant");
             else
-            {
-                info_bar_label.label = "%s\n%s".printf (label, sublabel);
-                // Hack: avoid info bar when the size of the label increases.
-                info_bar.visible = false;
-                info_bar.visible = true;
-            }
+                /* Game status when White captures Black's pawn en passant */
+                return _("White captured en passant");
         }
+
+        return null;
+    }
+
+    private void update_game_status (string? title = null, string? info = null)
+    {
+        headerbar.title = title != null ? title : compute_current_title ();
+        info_bar_label.label = info != null ? info : compute_status_info ();
+        /* Setting the label to null actually just sets it to an empty string. */
+        info_bar.visible = info_bar_label.label != "";
     }
 
     private void update_pause_resume_button ()
@@ -2447,11 +2392,7 @@ Copyright © 2015–2016 Sahil Sareen""";
                 disable_window_action (SAVE_GAME_ACTION_NAME);
                 game_needs_saving = false;
 
-                if (layout_mode == LayoutMode.NORMAL)
-                {
-                    headerbar.set_subtitle (game_file.get_basename ());
-                    subtitle_is_filename = true;
-                }
+                headerbar.subtitle = game_file.get_basename ();
             }
             catch (Error e)
             {
