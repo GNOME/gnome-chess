@@ -1172,6 +1172,9 @@ Copyright © 2015–2016 Sahil Sareen""";
             engine_timeout_source = 0;
         }
 
+        if (!game.is_started)
+            return;
+
         if (pgn_game.white_ai != null && game.current_player.color == Color.WHITE ||
             pgn_game.black_ai != null && game.current_player.color == Color.BLACK)
         {
@@ -1517,6 +1520,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         }
 
         update_game_status (what, why);
+        update_engine_timeout ();
 
         white_time_label.queue_draw ();
         black_time_label.queue_draw ();
