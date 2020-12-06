@@ -2428,6 +2428,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         try
         {
             pgn_game.write (game_file);
+            game_needs_saving = false;
             disable_window_action (SAVE_GAME_ACTION_NAME);
         }
         catch (Error e)
