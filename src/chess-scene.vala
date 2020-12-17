@@ -78,8 +78,10 @@ public class ChessScene : Object
     private double animation_time;
 
     public signal bool is_human (ChessPlayer player);
-    public signal PieceType? choose_promotion_type ();
     public signal void changed ();
+
+    public delegate void PromotionTypeCompletionHandler (PieceType? type);
+    public signal void choose_promotion_type (owned PromotionTypeCompletionHandler handler);
 
     public int selected_rank = -1;
     public int selected_file = -1;
@@ -225,24 +227,29 @@ public class ChessScene : Object
         else if (selected_file != -1)
         {
             bool can_move = game.current_player.move_with_coords (selected_rank, selected_file,
-                rank, file, false);
-            if (can_move && (get_selected_piece ()).type == PieceType.PAWN &&
+                                                                  rank, file, false);
+
+            if (can_move && get_selected_piece ().type == PieceType.PAWN &&
                 (rank == 0 || rank == 7))
             {
                 // Prompt user for selecting promotion type
-                PieceType? promotion_selection = choose_promotion_type ();
+                choose_promotion_type ((promotion_selection) => {
+                    if (promotion_selection != null)
+                    {
+                        game.current_player.move_with_coords (selected_rank,
+                                                              selected_file,
+                                                              rank, file,
+                                                              true, promotion_selection);
+                        selected_rank = selected_file = -1;
 
-                // If promotion dialog is closed, do nothing
-                if (promotion_selection == null)
-                    return;
-
-                game.current_player.move_with_coords (selected_rank,
-                    selected_file, rank, file, true, promotion_selection);
-                selected_rank = selected_file = -1;
+                        update_board ();
+                        changed ();
+                    }
+                });
+                return;
             }
-            // Need to check selected_file here again for promotion case
-            if (selected_file != -1 &&
-                game.current_player.move_with_coords (selected_rank, selected_file, rank, file))
+
+            if (game.current_player.move_with_coords (selected_rank, selected_file, rank, file))
                 selected_rank = selected_file = -1;
         }
 

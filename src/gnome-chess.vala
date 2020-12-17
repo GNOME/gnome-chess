@@ -21,29 +21,24 @@ public class ChessApplication : Gtk.Application
     }
     private LayoutMode layout_mode;
 
-    private bool is_tiled;
-    private bool is_maximized;
-    private int window_width;
-    private int window_height;
-
     private GLib.Settings settings;
-    private ApplicationWindow window;
+    private unowned ApplicationWindow window;
+    private Box main_box;
     private InfoBar info_bar;
     private Label info_bar_label;
-    private Container view_container;
     private ChessScene scene;
     private ChessView view;
     private Button pause_resume_button;
     private Box navigation_box;
-    private Widget first_move_button;
-    private Widget prev_move_button;
-    private Widget next_move_button;
-    private Widget last_move_button;
+    private Button first_move_button;
+    private Button prev_move_button;
+    private Button next_move_button;
+    private Button last_move_button;
     private ComboBox history_combo;
     private Box clock_box;
-    private Widget white_time_label;
-    private Widget black_time_label;
-    private Widget timer_increment_label;
+    private DrawingArea white_time_label;
+    private DrawingArea black_time_label;
+    private Label timer_increment_label;
     private HeaderBar headerbar;
 
     private Dialog? preferences_dialog = null;
@@ -58,10 +53,17 @@ public class ChessApplication : Gtk.Application
     private ComboBox timer_increment_units_combo;
     private ComboBox custom_duration_units_combo;
     private uint save_duration_timeout = 0;
-    private FileChooserNative open_dialog = null;
+    private FileChooserNative? open_dialog = null;
     private FileChooserNative? save_dialog = null;
+    private delegate void PromptSaveGameCallback (bool cancelled);
+    private PromptSaveGameCallback? prompt_save_game_cb = null;
+    private MessageDialog? prompt_save_game_dialog = null;
+    private MessageDialog? save_error_dialog = null;
+    private MessageDialog? claim_draw_dialog = null;
+    private MessageDialog? resign_dialog = null;
     private AboutDialog? about_dialog = null;
     private Dialog? promotion_type_selector_dialog = null;
+    private ChessScene.PromotionTypeCompletionHandler? promotion_type_completion_handler = null;
 
     private PGNGame pgn_game;
     private ChessGame game;
@@ -93,6 +95,10 @@ Copyright © 2015–2016 Sahil Sareen""";
     private const string UNDO_MOVE_ACTION_NAME = "undo";
     private const string RESIGN_ACTION_NAME = "resign";
     private const string PAUSE_RESUME_ACTION_NAME = "pause-resume";
+    private const string HISTORY_GO_FIRST_ACTION_NAME = "go-first";
+    private const string HISTORY_GO_PREVIOUS_ACTION_NAME = "go-previous";
+    private const string HISTORY_GO_NEXT_ACTION_NAME = "go-next";
+    private const string HISTORY_GO_LAST_ACTION_NAME = "go-last";
 
     private const GLib.ActionEntry[] window_entries =
     {
@@ -103,6 +109,10 @@ Copyright © 2015–2016 Sahil Sareen""";
         { UNDO_MOVE_ACTION_NAME, undo_move_cb },
         { RESIGN_ACTION_NAME, resign_cb },
         { PAUSE_RESUME_ACTION_NAME, pause_resume_cb },
+        { HISTORY_GO_FIRST_ACTION_NAME, history_go_first_cb },
+        { HISTORY_GO_PREVIOUS_ACTION_NAME, history_go_previous_cb },
+        { HISTORY_GO_NEXT_ACTION_NAME, history_go_next_cb },
+        { HISTORY_GO_LAST_ACTION_NAME, history_go_last_cb },
     };
 
     private const OptionEntry[] option_entries =
@@ -141,42 +151,57 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         add_action_entries (app_entries, this);
         set_accels_for_action ("app.help", {"F1"});
-        set_accels_for_action ("app.quit", {"<Primary>q", "<Primary>w"});
-        Builder builder = new Builder.from_resource ("/org/gnome/Chess/ui/gnome-chess.ui");
+        set_accels_for_action ("app.quit", {"<Control>q", "<Control>w"});
+
+        Builder builder = new Builder ();
+        builder.set_current_object (this);
+        try
+        {
+            builder.add_from_resource ("/org/gnome/Chess/ui/gnome-chess.ui");
+        }
+        catch (Error e)
+        {
+            error ("Failed to load UI resource: %s", e.message);
+        }
 
         window = (ApplicationWindow) builder.get_object ("gnome_chess_app");
         window.set_default_size (settings.get_int ("width"), settings.get_int ("height"));
         if (settings.get_boolean ("maximized"))
             window.maximize ();
-        window.size_allocate.connect (size_allocate_cb);
-        window.window_state_event.connect (window_state_event_cb);
 
+        main_box = (Box) builder.get_object ("main_box");
         info_bar = (InfoBar) builder.get_object ("info_bar");
         info_bar_label = (Label) builder.get_object ("info_bar_label");
         pause_resume_button = (Button) builder.get_object ("pause_button");
         navigation_box = (Box) builder.get_object ("navigation_box");
-        first_move_button = (Widget) builder.get_object ("first_move_button");
-        prev_move_button = (Widget) builder.get_object ("prev_move_button");
-        next_move_button = (Widget) builder.get_object ("next_move_button");
-        last_move_button = (Widget) builder.get_object ("last_move_button");
+        first_move_button = (Button) builder.get_object ("first_move_button");
+        prev_move_button = (Button) builder.get_object ("prev_move_button");
+        next_move_button = (Button) builder.get_object ("next_move_button");
+        last_move_button = (Button) builder.get_object ("last_move_button");
         history_combo = (ComboBox) builder.get_object ("history_combo");
         clock_box = (Box) builder.get_object ("clock_box");
-        white_time_label = (Widget) builder.get_object ("white_time_label");
-        black_time_label = (Widget) builder.get_object ("black_time_label");
-        view_container = (Container) builder.get_object ("view_container");
+        white_time_label = (DrawingArea) builder.get_object ("white_time_label");
+        black_time_label = (DrawingArea) builder.get_object ("black_time_label");
         headerbar = (HeaderBar) builder.get_object ("headerbar");
-        builder.connect_signals (this);
 
         update_pause_resume_button ();
 
         window.add_action_entries (window_entries, this);
-        set_accels_for_action ("win." + NEW_GAME_ACTION_NAME,       {        "<Primary>n"       });
-        set_accels_for_action ("win." + OPEN_GAME_ACTION_NAME,      {        "<Primary>o"       });
-        set_accels_for_action ("win." + SAVE_GAME_ACTION_NAME,      {        "<Primary>s"       });
-        set_accels_for_action ("win." + SAVE_GAME_AS_ACTION_NAME,   { "<Shift><Primary>s"       });
-        set_accels_for_action ("win." + UNDO_MOVE_ACTION_NAME,      {        "<Primary>z"       });
-        set_accels_for_action ("win." + PAUSE_RESUME_ACTION_NAME,   {        "<Primary>p",
-                                                                                      "Pause"   });
+        set_accels_for_action ("win." + NEW_GAME_ACTION_NAME,            {        "<Control>n"     });
+        set_accels_for_action ("win." + OPEN_GAME_ACTION_NAME,           {        "<Control>o"     });
+        set_accels_for_action ("win." + SAVE_GAME_ACTION_NAME,           {        "<Control>s"     });
+        set_accels_for_action ("win." + SAVE_GAME_AS_ACTION_NAME,        { "<Shift><Control>s"     });
+        set_accels_for_action ("win." + UNDO_MOVE_ACTION_NAME,           {        "<Control>z"     });
+        set_accels_for_action ("win." + PAUSE_RESUME_ACTION_NAME,        {        "<Control>p",
+                                                                                           "Pause" });
+        set_accels_for_action ("win." + HISTORY_GO_FIRST_ACTION_NAME,    {     "<Shift><Alt>Left"  });
+        set_accels_for_action ("win." + HISTORY_GO_PREVIOUS_ACTION_NAME, {            "<Alt>Left"  });
+        set_accels_for_action ("win." + HISTORY_GO_NEXT_ACTION_NAME,     {            "<Alt>Right" });
+        set_accels_for_action ("win." + HISTORY_GO_LAST_ACTION_NAME,     {     "<Shift><Alt>Right"  });
+
+        window.notify["default-height"].connect (window_state_changed_cb);
+        window.notify["default-width"].connect (window_state_changed_cb);
+
         add_window (window);
 
         scene = new ChessScene ();
@@ -193,8 +218,11 @@ Copyright © 2015–2016 Sahil Sareen""";
         view = new ChessView ();
         view.set_size_request (100, 100);
         view.scene = scene;
-        view_container.add (view);
+        main_box.insert_child_after (view, info_bar);
         view.show ();
+
+        white_time_label.set_draw_func (draw_white_time_label);
+        black_time_label.set_draw_func (draw_black_time_label);
 
         var system_engine_cfg = Path.build_filename (SYSCONFDIR, "gnome-chess", "engines.conf", null);
         var user_engine_cfg = Path.build_filename (Environment.get_user_config_dir (), "gnome-chess", "engines.conf", null);
@@ -249,13 +277,6 @@ Copyright © 2015–2016 Sahil Sareen""";
             opponent_engine.stop ();
 
         base.shutdown ();
-
-        /* Save window state */
-        settings.delay ();
-        settings.set_int ("width", window_width);
-        settings.set_int ("height", window_height);
-        settings.set_boolean ("maximized", is_maximized);
-        settings.apply ();
     }
 
     private void set_layout_mode (LayoutMode new_layout_mode)
@@ -265,28 +286,24 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         layout_mode = new_layout_mode;
 
-        navigation_box.set_orientation (layout_mode == LayoutMode.NORMAL ? Orientation.HORIZONTAL : Orientation.VERTICAL);
+        Idle.add(() => {
+            navigation_box.set_orientation (layout_mode == LayoutMode.NORMAL ? Orientation.HORIZONTAL : Orientation.VERTICAL);
+            return Source.REMOVE;
+        });
     }
 
-    private void size_allocate_cb (Allocation allocation)
+    private void window_state_changed_cb ()
     {
-        if (is_maximized || is_tiled)
+        if (window.fullscreened || window.maximized)
             return;
-        window.get_size (out window_width, out window_height);
-        if (window_width <= 500 && layout_mode == LayoutMode.NORMAL)
-            set_layout_mode (LayoutMode.NARROW);
-        else if (window_width > 500 && layout_mode == LayoutMode.NARROW)
-            set_layout_mode (LayoutMode.NORMAL);
-    }
 
-    private bool window_state_event_cb (Gdk.EventWindowState event)
-    {
-        if ((event.changed_mask & Gdk.WindowState.MAXIMIZED) != 0)
-            is_maximized = (event.new_window_state & Gdk.WindowState.MAXIMIZED) != 0;
-        /* We don’t save this state, but track it for saving size allocation */
-        if ((event.changed_mask & Gdk.WindowState.TILED) != 0)
-            is_tiled = (event.new_window_state & Gdk.WindowState.TILED) != 0;
-        return false;
+        if (window.default_width == 0 || window.default_height == 0)
+            return;
+
+        if (window.default_width <= 500 && layout_mode == LayoutMode.NORMAL)
+            set_layout_mode (LayoutMode.NARROW);
+        else if (window.default_width > 500 && layout_mode == LayoutMode.NARROW)
+            set_layout_mode (LayoutMode.NORMAL);
     }
 
     [CCode (cname = "queen_selected_cb", instance_pos = -1)]
@@ -317,81 +334,103 @@ Copyright © 2015–2016 Sahil Sareen""";
         promotion_type_selector_dialog.response (PromotionTypeSelected.BISHOP);
     }
 
-    public PieceType? show_promotion_type_selector ()
+    private void promotion_type_selector_response_cb (int response_id)
+        requires (promotion_type_completion_handler != null)
     {
-        var promotion_type_selector_builder = new Builder.from_resource ("/org/gnome/Chess/ui/promotion-type-selector.ui");
-
-        promotion_type_selector_dialog = (Dialog) promotion_type_selector_builder.get_object ("dialog_promotion_type_selector");
-        promotion_type_selector_dialog.transient_for = window;
-
-        var button_box = (ButtonBox) promotion_type_selector_builder.get_object ("button_box");
-        if (layout_mode == LayoutMode.NARROW)
-            button_box.orientation = Orientation.VERTICAL;
-
-        string color;
-        if (game.current_player.color == Color.WHITE)
-            color = "white";
-        else
-            color = "black";
-
-        var filename = Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, "%sQueen.svg".printf (color));
-        set_piece_image ((Image) promotion_type_selector_builder.get_object ("image_queen"), filename);
-
-        filename = Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, "%sKnight.svg".printf (color));
-        set_piece_image ((Image) promotion_type_selector_builder.get_object ("image_knight"), filename);
-
-        filename = Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, "%sRook.svg".printf (color));
-        set_piece_image ((Image) promotion_type_selector_builder.get_object ("image_rook"), filename);
-
-        filename = Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, "%sBishop.svg".printf (color));
-        set_piece_image ((Image) promotion_type_selector_builder.get_object ("image_bishop"), filename);
-
-        promotion_type_selector_builder.connect_signals (this);
-
-        PieceType? selection = null;
-        int choice = promotion_type_selector_dialog.run ();
-        switch (choice)
+        switch (response_id)
         {
         case PromotionTypeSelected.QUEEN:
-            selection = PieceType.QUEEN;
+            promotion_type_completion_handler (PieceType.QUEEN);
             break;
         case PromotionTypeSelected.KNIGHT:
-            selection = PieceType.KNIGHT;
+            promotion_type_completion_handler (PieceType.KNIGHT);
             break;
         case PromotionTypeSelected.ROOK:
-            selection = PieceType.ROOK;
+            promotion_type_completion_handler (PieceType.ROOK);
             break;
         case PromotionTypeSelected.BISHOP:
-            selection = PieceType.BISHOP;
+            promotion_type_completion_handler (PieceType.BISHOP);
+            break;
+        default:
+            promotion_type_completion_handler (null);
             break;
         }
-        promotion_type_selector_dialog.destroy ();
-        promotion_type_selector_dialog = null;
 
-        return selection;
+        promotion_type_selector_dialog.hide ();
+
+        promotion_type_completion_handler = null;
+    }
+
+    public void show_promotion_type_selector (owned ChessScene.PromotionTypeCompletionHandler handler)
+        requires (promotion_type_completion_handler == null)
+    {
+        if (promotion_type_selector_dialog == null)
+        {
+            Builder builder = new Builder ();
+            builder.set_current_object (this);
+            try
+            {
+                builder.add_from_resource ("/org/gnome/Chess/ui/promotion-type-selector.ui");
+            }
+            catch (Error e)
+            {
+                error ("Failed to load UI resource: %s", e.message);
+            }
+
+            promotion_type_selector_dialog = (Dialog) builder.get_object ("dialog_promotion_type_selector");
+            promotion_type_selector_dialog.transient_for = window;
+            promotion_type_selector_dialog.modal = true;
+
+            var button_box = (Box) builder.get_object ("button_box");
+            if (layout_mode == LayoutMode.NARROW)
+                button_box.orientation = Orientation.VERTICAL;
+
+            string color;
+            if (game.current_player.color == Color.WHITE)
+                color = "white";
+            else
+                color = "black";
+
+            var filename = Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, "%sQueen.svg".printf (color));
+            set_piece_image ((Image) builder.get_object ("image_queen"), filename);
+
+            filename = Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, "%sKnight.svg".printf (color));
+            set_piece_image ((Image) builder.get_object ("image_knight"), filename);
+
+            filename = Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, "%sRook.svg".printf (color));
+            set_piece_image ((Image) builder.get_object ("image_rook"), filename);
+
+            filename = Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, "%sBishop.svg".printf (color));
+            set_piece_image ((Image) builder.get_object ("image_bishop"), filename);
+
+            promotion_type_selector_dialog.response.connect (promotion_type_selector_response_cb);
+        }
+
+        promotion_type_selector_dialog.show ();
+
+        promotion_type_completion_handler = (type) => handler (type);
     }
 
     private void set_piece_image (Image image, string filename)
     {
-        int width, height;
-        if (!icon_size_lookup (IconSize.DIALOG, out width, out height))
-            return;
+        const int size = 48;
 
         try
         {
             var h = new Rsvg.Handle.from_file (filename);
 
-            var s = new Cairo.ImageSurface (Cairo.Format.ARGB32, width, height);
+            var s = new Cairo.ImageSurface (Cairo.Format.ARGB32, size, size);
             var c = new Cairo.Context (s);
-            h.render_document (c, Rsvg.Rectangle () { width = width, height = height, x = 0, y = 0 });
+            h.render_document (c, Rsvg.Rectangle () { width = size, height = size, x = 0, y = 0 });
 
-            var p = Gdk.pixbuf_get_from_surface (s, 0, 0, width, height);
+            var p = Gdk.pixbuf_get_from_surface (s, 0, 0, size, size);
             image.set_from_pixbuf (p);
+
+            image.height_request = size;
         }
         catch (Error e)
         {
             warning ("Failed to load image %s: %s", filename, e.message);
-            return;
         }
     }
 
@@ -409,7 +448,16 @@ Copyright © 2015–2016 Sahil Sareen""";
             save_duration_cb ();
 
         autosave ();
+
+        /* Save window state */
+        settings.delay ();
+        settings.set_int ("width", window.default_width);
+        settings.set_int ("height", window.default_height);
+        settings.set_boolean ("maximized", window.maximized);
+        settings.apply ();
+
         window.destroy ();
+        window = null;
     }
 
     private void autosave ()
@@ -444,10 +492,26 @@ Copyright © 2015–2016 Sahil Sareen""";
         if (move_number < 0)
             move_number += 1 + n_moves;
 
-        first_move_button.sensitive = n_moves > 0 && move_number != 0 && !game.is_paused;
-        prev_move_button.sensitive = move_number > 0 && !game.is_paused;
-        next_move_button.sensitive = move_number < n_moves && !game.is_paused;
-        last_move_button.sensitive = n_moves > 0 && move_number != n_moves && !game.is_paused;
+        if (n_moves > 0 && move_number != 0 && !game.is_paused)
+            enable_window_action (HISTORY_GO_FIRST_ACTION_NAME);
+        else
+            disable_window_action (HISTORY_GO_FIRST_ACTION_NAME);
+
+        if (move_number > 0 && !game.is_paused)
+            enable_window_action (HISTORY_GO_PREVIOUS_ACTION_NAME);
+        else
+            disable_window_action (HISTORY_GO_PREVIOUS_ACTION_NAME);
+
+        if (move_number < n_moves && !game.is_paused)
+            enable_window_action (HISTORY_GO_NEXT_ACTION_NAME);
+        else
+            disable_window_action (HISTORY_GO_NEXT_ACTION_NAME);
+
+        if (n_moves > 0 && move_number != n_moves && !game.is_paused)
+            enable_window_action (HISTORY_GO_LAST_ACTION_NAME);
+        else
+            disable_window_action (HISTORY_GO_LAST_ACTION_NAME);
+
         history_combo.sensitive = !game.is_paused;
 
         /* Set move text for all moves (it may have changed format) */
@@ -474,11 +538,6 @@ Copyright © 2015–2016 Sahil Sareen""";
     private void start_game ()
     {
         starting = true;
-
-        if (game_file != null && game_file.get_path () != autosave_filename)
-            headerbar.subtitle = game_file.get_basename ();
-        else
-            headerbar.subtitle = null;
 
         var model = (Gtk.ListStore) history_combo.model;
         model.clear ();
@@ -1325,7 +1384,7 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     private void update_game_status (string? title = null, string? info = null)
     {
-        headerbar.title = title != null ? title : compute_current_title ();
+        window.title = title != null ? title : compute_current_title ();
         info_bar_label.label = info != null ? info : compute_status_info ();
         /* Setting the label to null actually just sets it to an empty string. */
         info_bar.visible = info_bar_label.label != "";
@@ -1340,14 +1399,12 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         if (game != null && game.is_paused)
         {
-            pause_resume_button.image = new Image.from_icon_name ("media-playback-start-symbolic",
-                                                                  IconSize.BUTTON);
+            pause_resume_button.icon_name = "media-playback-start-symbolic";
             pause_resume_button.tooltip_text = _("Unpause the game");
         }
         else
         {
-            pause_resume_button.image = new Image.from_icon_name ("media-playback-pause-symbolic",
-                                                                  IconSize.BUTTON);
+            pause_resume_button.icon_name = "media-playback-pause-symbolic";
             pause_resume_button.tooltip_text = _("Pause the game");
         }
     }
@@ -1476,56 +1533,76 @@ Copyright © 2015–2016 Sahil Sareen""";
         black_time_label.queue_draw ();
     }
 
-    [CCode (cname = "gnome_chess_app_delete_event_cb", instance_pos = -1)]
-    public bool gnome_chess_app_delete_event_cb (Widget widget, Gdk.Event event)
+    private void prompt_save_game_response_cb (int response_id)
+        requires (prompt_save_game_cb != null)
     {
-        quit_game ();
-        return false;
-    }
-
-    private bool prompt_save_game (string prompt_text)
-    {
-        if (!game_needs_saving)
-            return true;
-
-        var dialog = new MessageDialog (window,
-                                        DialogFlags.MODAL,
-                                        MessageType.QUESTION,
-                                        ButtonsType.NONE,
-                                        prompt_text);
-        dialog.add_button (_("_Cancel"), ResponseType.CANCEL);
-
-        if (game.result == ChessResult.IN_PROGRESS)
+        if (response_id == ResponseType.CANCEL || response_id == ResponseType.DELETE_EVENT)
         {
-            dialog.add_button (_("_Abandon game"), ResponseType.NO);
-            dialog.add_button (_("_Save game for later"), ResponseType.YES);
+            prompt_save_game_cb (true);
+            prompt_save_game_cb = null;
         }
-        else
-        {
-            dialog.add_button (_("_Discard game"), ResponseType.NO);
-            dialog.add_button (_("_Save game log"), ResponseType.YES);
-        }
-
-        var result = dialog.run ();
-        dialog.destroy ();
-
-        if (result == ResponseType.CANCEL || result == ResponseType.DELETE_EVENT)
-        {
-            return false;
-        }
-        else if (result == ResponseType.YES)
+        else if (response_id == ResponseType.YES)
         {
             present_save_dialog ();
+            prompt_save_game_cb (false);
         }
         else
         {
-            warn_if_fail (result == ResponseType.NO);
+            warn_if_fail (response_id == ResponseType.NO);
             /* Remove completed game from history */
             game_needs_saving = false;
             autosave ();
+
+            prompt_save_game_cb (false);
+            prompt_save_game_cb = null;
         }
 
-        return true;
+        prompt_save_game_dialog.hide ();
+    }
+
+    private void prompt_save_game (string prompt_text)
+        requires (prompt_save_game_cb != null)
+    {
+        if (!game_needs_saving)
+        {
+            prompt_save_game_cb (false);
+            return;
+        }
+
+        if (prompt_save_game_dialog == null)
+        {
+            prompt_save_game_dialog = new MessageDialog (window,
+                                                         DialogFlags.MODAL,
+                                                         MessageType.QUESTION,
+                                                         ButtonsType.NONE,
+                                                         prompt_text);
+            prompt_save_game_dialog.add_button (_("_Cancel"), ResponseType.CANCEL);
+
+            if (game.result == ChessResult.IN_PROGRESS)
+            {
+                prompt_save_game_dialog.add_button (_("_Abandon game"), ResponseType.NO);
+                prompt_save_game_dialog.add_button (_("_Save game for later"), ResponseType.YES);
+            }
+            else
+            {
+                prompt_save_game_dialog.add_button (_("_Discard game"), ResponseType.NO);
+                prompt_save_game_dialog.add_button (_("_Save game log"), ResponseType.YES);
+            }
+
+            prompt_save_game_dialog.response.connect (prompt_save_game_response_cb);
+        }
+
+        prompt_save_game_dialog.show ();
+    }
+
+    private void claim_draw_response_cb (int response_id)
+    {
+        game.unpause ();
+
+        if (response_id == ResponseType.ACCEPT)
+            game.current_player.claim_draw ();
+
+        claim_draw_dialog.hide ();
     }
 
     private void present_claim_draw_dialog ()
@@ -1533,80 +1610,96 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         game.pause (false);
 
-        var dialog = new MessageDialog (window,
-                                        DialogFlags.MODAL,
-                                        MessageType.QUESTION,
-                                        ButtonsType.NONE,
-                                        /* Title of claim draw dialog */
-                                        _("Would you like to claim a draw?"));
-
-        string reason;
-        if (game.is_fifty_move_rule_fulfilled ())
+        if (claim_draw_dialog == null)
         {
-            /* Message in claim draw dialog when triggered by fifty-move rule */
-            reason = _("You may claim a draw because fifty moves have passed without a capture or pawn advancement. (The computer player may still choose to claim a draw even if you choose to keep playing.)");
+            claim_draw_dialog = new MessageDialog (window,
+                                                   DialogFlags.MODAL,
+                                                   MessageType.QUESTION,
+                                                   ButtonsType.NONE,
+                                                   /* Title of claim draw dialog */
+                                                   _("Would you like to claim a draw?"));
+
+            string reason;
+            if (game.is_fifty_move_rule_fulfilled ())
+            {
+                /* Message in claim draw dialog when triggered by fifty-move rule */
+                reason = _("You may claim a draw because fifty moves have passed without a capture or pawn advancement. (The computer player may still choose to claim a draw even if you choose to keep playing.)");
+            }
+            else if (game.is_three_fold_repeat ())
+            {
+                /* Message in claim draw dialog when triggered by three-fold repetition */
+                reason = _("You may claim a draw because the current board position has occurred three times. (The computer player may still choose to claim a draw even if you choose to keep playing.)");
+            }
+            else assert_not_reached ();
+
+            claim_draw_dialog.secondary_text = reason;
+
+            claim_draw_dialog.add_buttons (/* Option in claim draw dialog */
+                                           _("_Keep Playing"), ResponseType.REJECT,
+                                           /* Option in claim draw dialog */
+                                           _("_Claim Draw"), ResponseType.ACCEPT,
+                                           null);
+
+            claim_draw_dialog.response.connect (claim_draw_response_cb);
         }
-        else if (game.is_three_fold_repeat ())
-        {
-            /* Message in claim draw dialog when triggered by three-fold repetition */
-            reason = _("You may claim a draw because the current board position has occurred three times. (The computer player may still choose to claim a draw even if you choose to keep playing.)");
-        }
-        else assert_not_reached ();
 
-        dialog.secondary_text = reason;
-
-        dialog.add_buttons (/* Option in claim draw dialog */
-                            _("_Keep Playing"), ResponseType.REJECT,
-                            /* Option in claim draw dialog */
-                            _("_Claim Draw"), ResponseType.ACCEPT,
-                            null);
-
-        var response = dialog.run ();
-        dialog.destroy ();
-        game.unpause ();
-
-        if (response == ResponseType.ACCEPT)
-        {
-            game.current_player.claim_draw ();
-        }
+        claim_draw_dialog.show ();
     }
 
-    public void new_game_cb ()
+    private void new_game_prompt_save_game_cb (bool cancelled)
     {
-        if (prompt_save_game (_("Save this game before starting a new one?")))
+        prompt_save_game_cb = null;
+
+        if (!cancelled)
             start_new_game ();
     }
 
-    public void resign_cb ()
+    public void new_game_cb ()
+        requires (prompt_save_game_cb == null)
     {
-        game.pause (false);
+        prompt_save_game_cb = new_game_prompt_save_game_cb;
+        prompt_save_game (_("Save this game before starting a new one?"));
+    }
 
-        var dialog = new MessageDialog (window,
-                                        DialogFlags.MODAL,
-                                        MessageType.QUESTION,
-                                        ButtonsType.NONE,
-                                        /* Title of warning dialog when player clicks Resign */
-                                        _("Are you sure you want to resign?"));
-        dialog.format_secondary_text (
-            /* Text on warning dialog when player clicks Resign */
-            _("This makes sense if you plan to save the game as a record of your loss."));
-        dialog.add_buttons (/* Option on warning dialog when player clicks resign */
-                            _("_Keep Playing"), ResponseType.REJECT,
-                            /* Option on warning dialog when player clicks resign */
-                            _("_Resign"), ResponseType.ACCEPT,
-                            null);
-
-        var response = dialog.run ();
-        dialog.destroy ();
+    private void resign_response_cb (int response_id)
+    {
         game.unpause ();
 
-        if (response == ResponseType.ACCEPT)
+        if (response_id == ResponseType.ACCEPT)
         {
             if (human_player != null)
                 human_player.resign ();
             else
                 game.current_player.resign ();
         }
+
+        resign_dialog.hide ();
+    }
+
+    public void resign_cb ()
+    {
+        game.pause (false);
+
+        if (resign_dialog == null)
+        {
+            resign_dialog = new MessageDialog (window,
+                                               DialogFlags.MODAL,
+                                               MessageType.QUESTION,
+                                               ButtonsType.NONE,
+                                               /* Title of warning dialog when player clicks Resign */
+                                               _("Are you sure you want to resign?"));
+            resign_dialog.format_secondary_text (
+                /* Text on warning dialog when player clicks Resign */
+                _("This makes sense if you plan to save the game as a record of your loss."));
+            resign_dialog.add_buttons (/* Option on warning dialog when player clicks resign */
+                                       _("_Keep Playing"), ResponseType.REJECT,
+                                       /* Option on warning dialog when player clicks resign */
+                                       _("_Resign"), ResponseType.ACCEPT,
+                                       null);
+        }
+
+        resign_dialog.response.connect (resign_response_cb);
+        resign_dialog.show ();
     }
 
     public void undo_move_cb ()
@@ -1638,24 +1731,14 @@ Copyright © 2015–2016 Sahil Sareen""";
         quit_game ();
     }
 
-    [CCode (cname = "white_time_draw_cb", instance_pos = -1)]
-    public bool white_time_draw_cb (Widget widget, Cairo.Context c)
+    private void draw_white_time_label (DrawingArea drawing_area, Cairo.Context c, int width, int height)
     {
-        double fg[3] = { 0.0, 0.0, 0.0 };
-        double bg[3] = { 1.0, 1.0, 1.0 };
-
-        draw_time (widget, c, make_clock_text (game.clock, Color.WHITE), fg, bg);
-        return false;
+        draw_time (drawing_area, c, width, height, make_clock_text (game.clock, Color.WHITE), { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 });
     }
 
-    [CCode (cname = "black_time_draw_cb", instance_pos = -1)]
-    public bool black_time_draw_cb (Widget widget, Cairo.Context c)
+    private void draw_black_time_label (DrawingArea drawing_area, Cairo.Context c, int width, int height)
     {
-        double fg[3] = { 1.0, 1.0, 1.0 };
-        double bg[3] = { 0.0, 0.0, 0.0 };
-
-        draw_time (widget, c, make_clock_text (game.clock, Color.BLACK), fg, bg);
-        return false;
+        draw_time (drawing_area, c, width, height, make_clock_text (game.clock, Color.BLACK), { 1.0, 1.0, 1.0 }, { 0.0, 0.0, 0.0 });
     }
 
     private string make_clock_text (ChessClock? clock, Color color)
@@ -1673,8 +1756,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             return "∶\xE2\x80\x8E%02d".printf (time);
     }
 
-    /*
-     * Compute the largest possible size the timer label might ever want to take.
+    /* Compute the largest possible size the timer label might ever want to take.
      * The size of the characters may vary by font, but one digit will always
      * be the largest.
      */
@@ -1709,10 +1791,25 @@ Copyright © 2015–2016 Sahil Sareen""";
         return (int) Math.ceil (max) + 6;
     }
 
-    private void draw_time (Widget widget, Cairo.Context c, string text, double[] fg, double[] bg)
+    private void draw_time (Widget widget, Cairo.Context c, int width, int height, string text, double[] fg, double[] bg)
     {
-        double alpha = 1.0;
+        /* We need to draw text on our cairo context to properly compute our
+         * required size. But the only place we are able to access the cairo
+         * context is here, the draw function. And we are not allowed to set our
+         * size inside the draw function. So the best we can do is schedule the
+         * size computation and queue draw again when that's done.
+         */
+        if (widget.width_request == -1)
+        {
+            Idle.add(() => {
+                widget.set_size_request (compute_time_label_width_request (c), -1);
+                widget.queue_draw ();
+                return Source.REMOVE;
+            });
+            return;
+        }
 
+        double alpha = 1.0;
         if ((widget.get_state_flags () & StateFlags.INSENSITIVE) != 0)
             alpha = 0.5;
         c.set_source_rgba (bg[0], bg[1], bg[2], alpha);
@@ -1726,11 +1823,6 @@ Copyright © 2015–2016 Sahil Sareen""";
         c.move_to ((widget.get_allocated_width () - extents.width) / 2 - extents.x_bearing,
                    (widget.get_allocated_height () - extents.height) / 2 - extents.y_bearing);
         c.show_text (text);
-
-        int width;
-        widget.get_size_request (out width, null);
-        if (width == -1)
-            widget.set_size_request (compute_time_label_width_request (c), -1);
     }
 
     [CCode (cname = "history_combo_changed_cb", instance_pos = -1)]
@@ -1746,14 +1838,23 @@ Copyright © 2015–2016 Sahil Sareen""";
         scene.move_number = move_number;
     }
 
-    [CCode (cname = "history_latest_clicked_cb", instance_pos = -1)]
-    public void history_latest_clicked_cb (Widget widget)
+    private void history_go_first_cb ()
     {
-        scene.move_number = -1;
+        scene.move_number = 0;
     }
 
-    [CCode (cname = "history_next_clicked_cb", instance_pos = -1)]
-    public void history_next_clicked_cb (Widget widget)
+    private void history_go_previous_cb ()
+    {
+        if (scene.move_number == 0)
+            return;
+
+        if (scene.move_number == -1)
+            scene.move_number = (int) game.n_moves - 1;
+        else
+            scene.move_number = scene.move_number - 1;
+    }
+
+    private void history_go_next_cb ()
     {
         if (scene.move_number == -1)
             return;
@@ -1765,46 +1866,51 @@ Copyright © 2015–2016 Sahil Sareen""";
             scene.move_number = move_number;
     }
 
-    [CCode (cname = "history_previous_clicked_cb", instance_pos = -1)]
-    public void history_previous_clicked_cb (Widget widget)
+    private void history_go_last_cb ()
     {
-        if (scene.move_number == 0)
-            return;
-
-        if (scene.move_number == -1)
-            scene.move_number = (int) game.n_moves - 1;
-        else
-            scene.move_number = scene.move_number - 1;
+        scene.move_number = -1;
     }
 
-    [CCode (cname = "history_start_clicked_cb", instance_pos = -1)]
-    public void history_start_clicked_cb (Widget widget)
+    private void preferences_response_cb (int response_id)
     {
-        scene.move_number = 0;
+        preferences_dialog.hide ();
     }
 
     public void preferences_cb ()
     {
         if (preferences_dialog != null)
         {
-            preferences_dialog.run ();
+            preferences_dialog.show ();
             return;
         }
 
-        Builder preferences_builder = new Builder.from_resource ("/org/gnome/Chess/ui/preferences.ui");
+        Builder builder = new Builder ();
+        builder.set_current_object (this);
+        try
+        {
+            builder.add_from_resource ("/org/gnome/Chess/ui/preferences.ui");
+        }
+        catch (Error e)
+        {
+            error ("Failed to load UI resource: %s", e.message);
+        }
 
-        preferences_dialog = (Dialog) preferences_builder.get_object ("preferences");
+        preferences_dialog = (Dialog) builder.get_object ("preferences");
         preferences_dialog.transient_for = window;
+        preferences_dialog.modal = true;
 
-        settings.bind ("show-numbering", preferences_builder.get_object ("show_numbering_check"),
+        settings.bind ("show-numbering", builder.get_object ("show_numbering_check"),
                        "active", SettingsBindFlags.DEFAULT);
-        settings.bind ("show-move-hints", preferences_builder.get_object ("show_move_hints_check"),
+        settings.bind ("show-move-hints", builder.get_object ("show_move_hints_check"),
                        "active", SettingsBindFlags.DEFAULT);
 
-        side_combo = (ComboBox) preferences_builder.get_object ("side_combo");
+        side_combo = (ComboBox) builder.get_object ("side_combo");
         side_combo.set_active (settings.get_enum ("play-as"));
 
-        var ai_combo = (ComboBox) preferences_builder.get_object ("opponent_combo");
+        difficulty_combo = (ComboBox) builder.get_object ("difficulty_combo");
+        set_combo (difficulty_combo, 1, settings.get_string ("difficulty"));
+
+        var ai_combo = (ComboBox) builder.get_object ("opponent_combo");
         var ai_model = (Gtk.ListStore) ai_combo.model;
         var opponent_name = settings.get_string ("opponent");
         if (opponent_name == "human")
@@ -1823,19 +1929,16 @@ Copyright © 2015–2016 Sahil Sareen""";
             settings.set_string ("opponent", "human");
         }
 
-        difficulty_combo = (ComboBox) preferences_builder.get_object ("difficulty_combo");
-        set_combo (difficulty_combo, 1, settings.get_string ("difficulty"));
-
-        duration_combo = (ComboBox) preferences_builder.get_object ("duration_combo");
-        clock_type_combo = (ComboBox) preferences_builder.get_object ("clock_type_combo");
-        duration_adjustment = (Adjustment) preferences_builder.get_object ("duration_adjustment");
-        timer_increment_adjustment = (Adjustment) preferences_builder.get_object ("timer_increment_adjustment");
-        custom_duration_box = (Box) preferences_builder.get_object ("custom_duration_box");
-        timer_increment_box = (Box) preferences_builder.get_object ("timer_increment_box");
-        custom_duration_units_combo = (ComboBox) preferences_builder.get_object ("custom_duration_units_combo");
+        duration_adjustment = (Adjustment) builder.get_object ("duration_adjustment");
+        timer_increment_adjustment = (Adjustment) builder.get_object ("timer_increment_adjustment");
+        custom_duration_box = (Box) builder.get_object ("custom_duration_box");
+        timer_increment_box = (Box) builder.get_object ("timer_increment_box");
+        custom_duration_units_combo = (ComboBox) builder.get_object ("custom_duration_units_combo");
+        timer_increment_label = (Label) builder.get_object ("timer_increment_label");
+        timer_increment_units_combo = (ComboBox) builder.get_object ("timer_increment_units_combo");
+        clock_type_combo = (ComboBox) builder.get_object ("clock_type_combo");
+        duration_combo = (ComboBox) builder.get_object ("duration_combo");
         set_duration (settings.get_int ("duration"));
-        timer_increment_label = (Widget) preferences_builder.get_object ("timer_increment_label");
-        timer_increment_units_combo = (ComboBox) preferences_builder.get_object ("timer_increment_units_combo");
 
         if (pgn_game.clock_type != null)
             set_clock_type (ClockType.string_to_enum (pgn_game.clock_type));
@@ -1847,16 +1950,14 @@ Copyright © 2015–2016 Sahil Sareen""";
         else
             set_timer_increment (settings.get_int ("timer-increment"));
 
-        var orientation_combo = (ComboBox) preferences_builder.get_object ("orientation_combo");
+        var orientation_combo = (ComboBox) builder.get_object ("orientation_combo");
         set_combo (orientation_combo, 1, settings.get_string ("board-side"));
 
-        var move_combo = (ComboBox) preferences_builder.get_object ("move_format_combo");
+        var move_combo = (ComboBox) builder.get_object ("move_format_combo");
         set_combo (move_combo, 1, settings.get_string ("move-format"));
 
-        var theme_combo = (ComboBox) preferences_builder.get_object ("piece_style_combo");
+        var theme_combo = (ComboBox) builder.get_object ("piece_style_combo");
         set_combo (theme_combo, 1, settings.get_string ("piece-theme"));
-
-        preferences_builder.connect_signals (this);
 
         /* Human vs. human */
         if (ai_combo.get_active () == 0)
@@ -1865,7 +1966,8 @@ Copyright © 2015–2016 Sahil Sareen""";
             difficulty_combo.sensitive = false;
         }
 
-        preferences_dialog.run ();
+        preferences_dialog.response.connect (preferences_response_cb);
+        preferences_dialog.show ();
     }
 
     private void set_combo (ComboBox combo, int value_index, string value)
@@ -2218,19 +2320,6 @@ Copyright © 2015–2016 Sahil Sareen""";
         settings.set_string ("clock-type", clock_type.to_string ());
     }
 
-    [CCode (cname = "preferences_response_cb", instance_pos = -1)]
-    public void preferences_response_cb (Widget widget, int response_id)
-    {
-        preferences_dialog.hide ();
-    }
-
-    [CCode (cname = "preferences_delete_event_cb", instance_pos = -1)]
-    public bool preferences_delete_event_cb (Widget widget, Gdk.Event event)
-    {
-        preferences_response_cb (widget, ResponseType.CANCEL);
-        return true;
-    }
-
     [CCode (cname = "piece_style_combo_changed_cb", instance_pos = -1)]
     public void piece_style_combo_changed_cb (ComboBox combo)
     {
@@ -2251,14 +2340,7 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     public void help_cb ()
     {
-        try
-        {
-            show_uri_on_window (window, "help:gnome-chess", get_current_event_time ());
-        }
-        catch (Error e)
-        {
-            warning ("Unable to open help: %s", e.message);
-        }
+        show_uri (window, "help:gnome-chess", Gdk.CURRENT_TIME);
     }
 
     private const string[] authors = { "Robert Ancell <robert.ancell@gmail.com>", null };
@@ -2268,7 +2350,7 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         if (about_dialog != null)
         {
-            about_dialog.present ();
+            about_dialog.show ();
             return;
         }
 
@@ -2285,7 +2367,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         about_dialog.translator_credits = _("translator-credits");
         about_dialog.website = "https://wiki.gnome.org/Apps/Chess";
         about_dialog.logo_icon_name = "org.gnome.Chess";
-        about_dialog.response.connect (about_response_cb);
+        about_dialog.hide_on_close = true;
         about_dialog.show ();
     }
 
@@ -2298,8 +2380,8 @@ Copyright © 2015–2016 Sahil Sareen""";
                                                     _("This does not look like a valid PGN game."));
         invalid_pgn_dialog.add_button (_("_OK"), ResponseType.OK);
 
-        invalid_pgn_dialog.run ();
-        invalid_pgn_dialog.destroy ();
+        invalid_pgn_dialog.response.connect (() => invalid_pgn_dialog.destroy ());
+        invalid_pgn_dialog.show ();
     }
 
     private void run_invalid_move_dialog (string error_message)
@@ -2311,14 +2393,8 @@ Copyright © 2015–2016 Sahil Sareen""";
                                                      error_message);
         invalid_move_dialog.add_button (_("_OK"), ResponseType.OK);
 
-        invalid_move_dialog.run ();
-        invalid_move_dialog.destroy ();
-    }
-
-    private void about_response_cb (int response_id)
-    {
-        about_dialog.destroy ();
-        about_dialog = null;
+        invalid_move_dialog.response.connect (() => invalid_move_dialog.destroy ());
+        invalid_move_dialog.show ();
     }
 
     private void update_pgn_time_remaining ()
@@ -2328,6 +2404,47 @@ Copyright © 2015–2016 Sahil Sareen""";
             /* We currently only support simple timeouts */
             pgn_game.white_time_left = game.clock.white_remaining_seconds.to_string ();
             pgn_game.black_time_left = game.clock.black_remaining_seconds.to_string ();
+        }
+    }
+
+    private void save_dialog_response_cb (int response_id)
+    {
+        if (response_id == ResponseType.ACCEPT)
+        {
+            update_pgn_time_remaining ();
+
+            try
+            {
+                game_file = save_dialog.get_file ();
+                pgn_game.write (game_file);
+
+                disable_window_action (SAVE_GAME_ACTION_NAME);
+                game_needs_saving = false;
+            }
+            catch (Error e)
+            {
+                if (save_error_dialog == null)
+                {
+                    save_error_dialog = new MessageDialog (window,
+                                                           DialogFlags.MODAL,
+                                                           MessageType.ERROR,
+                                                           ButtonsType.NONE,
+                                                           _("Failed to save game: %s"),
+                                                           e.message);
+                    save_error_dialog.add_button (_("_OK"), ResponseType.OK);
+                    save_error_dialog.response.connect (() => save_error_dialog.hide ());
+                }
+
+                save_error_dialog.show ();
+            }
+        }
+
+        save_dialog.hide ();
+
+        if (prompt_save_game_cb != null)
+        {
+            prompt_save_game_cb (false);
+            prompt_save_game_cb = null;
         }
     }
 
@@ -2342,7 +2459,7 @@ Copyright © 2015–2016 Sahil Sareen""";
                                                  _("_Save"),
                                                  _("_Cancel"));
 
-            var set_filename = false;
+            var set_file = false;
             if (game_file != null)
             {
                 /* If the path is under /run, we are probably sandboxed, and the
@@ -2356,12 +2473,19 @@ Copyright © 2015–2016 Sahil Sareen""";
                 var path = game_file.get_path ();
                 if (path != autosave_filename && !path.has_prefix ("/run"))
                 {
-                    save_dialog.set_filename (path);
-                    set_filename = true;
+                    try
+                    {
+                        save_dialog.set_file (game_file);
+                        set_file = true;
+                    }
+                    catch (Error e)
+                    {
+                        warning ("Failed to set file chooser default file: %s", e.message);
+                    }
                 }
             }
 
-            if (!set_filename)
+            if (!set_file)
             {
                 save_dialog.set_current_name (/* Default filename for the save game dialog */
                                               _("Untitled Chess Game") + ".pgn");
@@ -2379,40 +2503,12 @@ Copyright © 2015–2016 Sahil Sareen""";
             all_filter.set_filter_name (_("All files"));
             all_filter.add_pattern ("*");
             save_dialog.add_filter (all_filter);
+
+            save_dialog.modal = true;
+            save_dialog.response.connect (save_dialog_response_cb);
         }
 
-        var response_id = save_dialog.run ();
-        if (response_id == ResponseType.ACCEPT)
-        {
-            update_pgn_time_remaining ();
-
-            try
-            {
-                game_file = save_dialog.get_file ();
-                save_dialog.destroy ();
-                save_dialog = null;
-
-                pgn_game.write (game_file);
-
-                disable_window_action (SAVE_GAME_ACTION_NAME);
-                game_needs_saving = false;
-
-                headerbar.subtitle = game_file.get_basename ();
-            }
-            catch (Error e)
-            {
-                var error_dialog = new MessageDialog (window,
-                                                      DialogFlags.MODAL,
-                                                      MessageType.ERROR,
-                                                      ButtonsType.NONE,
-                                                      _("Failed to save game: %s"),
-                                                      e.message);
-                error_dialog.add_button (_("_OK"), ResponseType.OK);
-
-                error_dialog.run ();
-                error_dialog.destroy ();
-            }
-        }
+        save_dialog.show ();
     }
 
     public void save_game_cb ()
@@ -2442,9 +2538,22 @@ Copyright © 2015–2016 Sahil Sareen""";
         present_save_dialog ();
     }
 
-    public void open_game_cb ()
+    private void open_game_response_cb (int response_id)
     {
-        if (!prompt_save_game (_("Save this game before loading another one?")))
+        if (response_id == ResponseType.ACCEPT)
+        {
+            game_file = open_dialog.get_file ();
+            load_game (game_file);
+        }
+
+        open_dialog.hide ();
+    }
+
+    private void open_game_prompt_save_game_cb (bool cancelled)
+    {
+        prompt_save_game_cb = null;
+
+        if (cancelled)
             return;
 
         /* Show active dialog */
@@ -2468,17 +2577,19 @@ Copyright © 2015–2016 Sahil Sareen""";
             all_filter.set_filter_name (_("All files"));
             all_filter.add_pattern ("*");
             open_dialog.add_filter (all_filter);
+
+            open_dialog.modal = true;
+            open_dialog.response.connect (open_game_response_cb);
         }
 
-        var response_id = open_dialog.run ();
-        if (response_id == ResponseType.ACCEPT)
-        {
-            game_file = open_dialog.get_file ();
-            open_dialog.destroy ();
-            open_dialog = null;
+        open_dialog.show ();
+    }
 
-            load_game (game_file);
-        }
+    public void open_game_cb ()
+        requires (prompt_save_game_cb == null)
+    {
+        prompt_save_game_cb = open_game_prompt_save_game_cb;
+        prompt_save_game (_("Save this game before loading another one?"));
     }
 
     private void start_new_game ()

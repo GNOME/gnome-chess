@@ -19,7 +19,7 @@ public class ChessView : Gtk.DrawingArea
     private Cairo.Surface? selected_model_surface;
     private string loaded_theme_name = "";
 
-    private Gtk.GestureMultiPress click_controller; // for keeping in memory
+    private Gtk.GestureClick click_controller; // for keeping in memory
 
     private ChessScene _scene;
     public ChessScene scene
@@ -40,22 +40,22 @@ public class ChessView : Gtk.DrawingArea
 
     construct
     {
-        add_events (Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.BUTTON_RELEASE_MASK);
-
         init_mouse ();
+        set_draw_func (draw);
+
+        hexpand = true;
+        vexpand = true;
     }
 
-    public override bool configure_event (Gdk.EventConfigure event)
+    public override void resize (int width, int height)
     {
-        int short_edge = int.min (get_allocated_width (), get_allocated_height ());
+        int short_edge = int.min (width, height);
 
         square_size = (int) Math.floor ((short_edge - 2 * border) / 9.0);
         var extra = square_size * 0.1;
         if (extra < 3)
             extra = 3;
         selected_square_size = square_size + 2 * (int) (extra + 0.5);
-
-        return true;
     }
 
     private void render_piece (Cairo.Context c1, Cairo.Context c2, string name, int offset)
@@ -109,12 +109,11 @@ public class ChessView : Gtk.DrawingArea
         loaded_theme_name = scene.theme_name;
     }
 
-    public override bool draw (Cairo.Context c)
+    public void draw (Gtk.DrawingArea self, Cairo.Context c, int width, int height)
     {
         load_theme (c);
 
         c.translate (get_allocated_width () / 2, get_allocated_height () / 2);
-        //c.scale (s, s);
         c.rotate (Math.PI * scene.board_angle / 180.0);
 
         int board_size = (int) Math.ceil (square_size * 4 + border_size);
@@ -220,7 +219,7 @@ public class ChessView : Gtk.DrawingArea
         {
             c.rotate (Math.PI * scene.board_angle / 180.0);
             draw_paused_overlay (c);
-            return true;
+            return;
         }
 
         /* Draw the pieces */
@@ -257,8 +256,6 @@ public class ChessView : Gtk.DrawingArea
                 }
             }
         }
-
-        return true;
     }
 
     private void draw_piece (Cairo.Context c, Cairo.Surface surface, int size, ChessPiece piece, double alpha)
@@ -274,13 +271,14 @@ public class ChessView : Gtk.DrawingArea
         c.paint_with_alpha (alpha);
     }
 
-    private inline void init_mouse ()
+    private void init_mouse ()
     {
-        click_controller = new Gtk.GestureMultiPress (this);    // only reacts to Gdk.BUTTON_PRIMARY
+        click_controller = new Gtk.GestureClick ();    // only reacts to Gdk.BUTTON_PRIMARY
         click_controller.pressed.connect (on_click);
+        add_controller (click_controller);
     }
 
-    private inline void on_click (Gtk.GestureMultiPress _click_controller, int n_press, double event_x, double event_y)
+    private void on_click (Gtk.GestureClick _click_controller, int n_press, double event_x, double event_y)
     {
         if (scene.game == null || scene.game.should_show_paused_overlay)
             return;
