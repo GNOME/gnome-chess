@@ -1,5 +1,11 @@
 subdir('icons')
 
+# The resource file
+resource_files = files('chess.gresource.xml')
+resources = gnome.compile_resources(application_id, resource_files,
+  c_name: 'resources'
+)
+
 # The engines.conf file
 install_data('engines.conf',
   install_dir: pkgsysconfdir,
