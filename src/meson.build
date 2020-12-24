@@ -4,6 +4,7 @@ chess_sources = [
   'chess-scene.vala',
   'chess-view.vala',
   'gnome-chess.vala',
+  'preferences-dialog.vala',
   'promotion-type-selector-dialog.vala',
 ]
 
