@@ -38,17 +38,10 @@ public class ChessApplication : Gtk.Application
     private Gtk.DrawingArea black_time_label;
 
     private PreferencesDialog? preferences_dialog = null;
+    private Gtk.AboutDialog? about_dialog = null;
     private Gtk.FileChooserNative? open_dialog = null;
     private Gtk.FileChooserNative? save_dialog = null;
-    private delegate void PromptSaveGameCallback (bool cancelled);
-    private PromptSaveGameCallback? prompt_save_game_cb = null;
-    private Gtk.MessageDialog? prompt_save_game_dialog = null;
-    private Gtk.MessageDialog? save_error_dialog = null;
-    private Gtk.MessageDialog? claim_draw_dialog = null;
-    private Gtk.MessageDialog? resign_dialog = null;
-    private Gtk.AboutDialog? about_dialog = null;
-    private PromotionTypeSelectorDialog? promotion_type_selector_dialog = null;
-    private ChessScene.PromotionTypeCompletionHandler? promotion_type_completion_handler = null;
+    private ulong save_dialog_response_id = 0;
 
     private PGNGame pgn_game;
     private ChessGame game;
@@ -1378,77 +1371,59 @@ Copyright © 2015–2016 Sahil Sareen""";
         black_time_label.queue_draw ();
     }
 
-    private void prompt_save_game_response_cb (int response_id)
-        requires (prompt_save_game_cb != null)
-    {
-        if (response_id == Gtk.ResponseType.CANCEL || response_id == Gtk.ResponseType.DELETE_EVENT)
-        {
-            prompt_save_game_cb (true);
-            prompt_save_game_cb = null;
-        }
-        else if (response_id == Gtk.ResponseType.YES)
-        {
-            present_save_dialog ();
-            prompt_save_game_cb (false);
-        }
-        else
-        {
-            warn_if_fail (response_id == Gtk.ResponseType.NO);
-
-            /* Remove completed game from history */
-            game_needs_saving = false;
-            autosave ();
-
-            prompt_save_game_cb (false);
-            prompt_save_game_cb = null;
-        }
-
-        prompt_save_game_dialog.hide ();
-    }
-
-    private void prompt_save_game (string prompt_text)
-        requires (prompt_save_game_cb != null)
+    private delegate void PromptSaveGameCallback (bool cancelled);
+    private void prompt_save_game (string prompt_text, PromptSaveGameCallback callback)
     {
         if (!game_needs_saving)
         {
-            prompt_save_game_cb (false);
+            callback (false);
             return;
         }
 
-        if (prompt_save_game_dialog == null)
-        {
-            prompt_save_game_dialog = new Gtk.MessageDialog (window,
+        var prompt_save_game_dialog = new Gtk.MessageDialog (window,
                                                              Gtk.DialogFlags.MODAL,
                                                              Gtk.MessageType.QUESTION,
                                                              Gtk.ButtonsType.NONE,
                                                              prompt_text);
-            prompt_save_game_dialog.add_button (_("_Cancel"), Gtk.ResponseType.CANCEL);
+        prompt_save_game_dialog.add_button (_("_Cancel"), Gtk.ResponseType.CANCEL);
 
-            if (game.result == ChessResult.IN_PROGRESS)
+        if (game.result == ChessResult.IN_PROGRESS)
+        {
+            prompt_save_game_dialog.add_button (_("_Abandon game"), Gtk.ResponseType.NO);
+            prompt_save_game_dialog.add_button (_("_Save game for later"), Gtk.ResponseType.YES);
+        }
+        else
+        {
+            prompt_save_game_dialog.add_button (_("_Discard game"), Gtk.ResponseType.NO);
+            prompt_save_game_dialog.add_button (_("_Save game log"), Gtk.ResponseType.YES);
+        }
+
+        prompt_save_game_dialog.response.connect ((response_id) => {
+            if (response_id == Gtk.ResponseType.CANCEL || response_id == Gtk.ResponseType.DELETE_EVENT)
             {
-                prompt_save_game_dialog.add_button (_("_Abandon game"), Gtk.ResponseType.NO);
-                prompt_save_game_dialog.add_button (_("_Save game for later"), Gtk.ResponseType.YES);
+                callback (true);
+            }
+            else if (response_id == Gtk.ResponseType.YES)
+            {
+                present_save_dialog ((saved) => {
+                    callback (!saved);
+                });
             }
             else
             {
-                prompt_save_game_dialog.add_button (_("_Discard game"), Gtk.ResponseType.NO);
-                prompt_save_game_dialog.add_button (_("_Save game log"), Gtk.ResponseType.YES);
+                warn_if_fail (response_id == Gtk.ResponseType.NO);
+
+                /* Remove completed game from history */
+                game_needs_saving = false;
+                autosave ();
+
+                callback (false);
             }
 
-            prompt_save_game_dialog.response.connect (prompt_save_game_response_cb);
-        }
+            prompt_save_game_dialog.destroy ();
+        });
 
         prompt_save_game_dialog.show ();
-    }
-
-    private void claim_draw_response_cb (int response_id)
-    {
-        game.unpause ();
-
-        if (response_id == Gtk.ResponseType.ACCEPT)
-            game.current_player.claim_draw ();
-
-        claim_draw_dialog.hide ();
     }
 
     private void present_claim_draw_dialog ()
@@ -1456,95 +1431,88 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         game.pause (false);
 
-        if (claim_draw_dialog == null)
-        {
-            claim_draw_dialog = new Gtk.MessageDialog (window,
+        var claim_draw_dialog = new Gtk.MessageDialog (window,
                                                        Gtk.DialogFlags.MODAL,
                                                        Gtk.MessageType.QUESTION,
                                                        Gtk.ButtonsType.NONE,
                                                        /* Title of claim draw dialog */
                                                        _("Would you like to claim a draw?"));
 
-            string reason;
-            if (game.is_fifty_move_rule_fulfilled ())
-            {
-                /* Message in claim draw dialog when triggered by fifty-move rule */
-                reason = _("You may claim a draw because fifty moves have passed without a capture or pawn advancement. (The computer player may still choose to claim a draw even if you choose to keep playing.)");
-            }
-            else if (game.is_three_fold_repeat ())
-            {
-                /* Message in claim draw dialog when triggered by three-fold repetition */
-                reason = _("You may claim a draw because the current board position has occurred three times. (The computer player may still choose to claim a draw even if you choose to keep playing.)");
-            }
-            else assert_not_reached ();
-
-            claim_draw_dialog.secondary_text = reason;
-
-            claim_draw_dialog.add_buttons (/* Option in claim draw dialog */
-                                           _("_Keep Playing"), Gtk.ResponseType.REJECT,
-                                           /* Option in claim draw dialog */
-                                           _("_Claim Draw"), Gtk.ResponseType.ACCEPT,
-                                           null);
-
-            claim_draw_dialog.response.connect (claim_draw_response_cb);
+        string reason;
+        if (game.is_fifty_move_rule_fulfilled ())
+        {
+            /* Message in claim draw dialog when triggered by fifty-move rule */
+            reason = _("You may claim a draw because fifty moves have passed without a capture or pawn advancement. (The computer player may still choose to claim a draw even if you choose to keep playing.)");
         }
+        else if (game.is_three_fold_repeat ())
+        {
+            /* Message in claim draw dialog when triggered by three-fold repetition */
+            reason = _("You may claim a draw because the current board position has occurred three times. (The computer player may still choose to claim a draw even if you choose to keep playing.)");
+        }
+        else
+            assert_not_reached ();
+
+        claim_draw_dialog.secondary_text = reason;
+
+        claim_draw_dialog.add_buttons (/* Option in claim draw dialog */
+                                       _("_Keep Playing"), Gtk.ResponseType.REJECT,
+                                       /* Option in claim draw dialog */
+                                       _("_Claim Draw"), Gtk.ResponseType.ACCEPT,
+                                       null);
+
+        claim_draw_dialog.response.connect ((response_id) => {
+            game.unpause ();
+
+            if (response_id == Gtk.ResponseType.ACCEPT)
+                game.current_player.claim_draw ();
+
+            claim_draw_dialog.destroy ();
+        });
 
         claim_draw_dialog.show ();
     }
 
-    private void new_game_prompt_save_game_cb (bool cancelled)
-    {
-        prompt_save_game_cb = null;
-
-        if (!cancelled)
-            start_new_game ();
-    }
-
     public void new_game_cb ()
-        requires (prompt_save_game_cb == null)
     {
-        prompt_save_game_cb = new_game_prompt_save_game_cb;
-        prompt_save_game (_("Save this game before starting a new one?"));
-    }
-
-    private void resign_response_cb (int response_id)
-    {
-        game.unpause ();
-
-        if (response_id == Gtk.ResponseType.ACCEPT)
-        {
-            if (human_player != null)
-                human_player.resign ();
-            else
-                game.current_player.resign ();
-        }
-
-        resign_dialog.hide ();
+        prompt_save_game (_("Save this game before starting a new one?"), (cancelled) => {
+            if (!cancelled)
+                start_new_game ();
+        });
     }
 
     public void resign_cb ()
     {
         game.pause (false);
 
-        if (resign_dialog == null)
-        {
-            resign_dialog = new Gtk.MessageDialog (window,
-                                                   Gtk.DialogFlags.MODAL,
-                                                   Gtk.MessageType.QUESTION,
-                                                   Gtk.ButtonsType.NONE,
-                                                   /* Title of warning dialog when player clicks Resign */
-                                                   _("Are you sure you want to resign?"));
-            resign_dialog.format_secondary_text (
-                /* Text on warning dialog when player clicks Resign */
-                _("This makes sense if you plan to save the game as a record of your loss."));
-            resign_dialog.add_buttons (/* Option on warning dialog when player clicks resign */
-                                       _("_Keep Playing"), Gtk.ResponseType.REJECT,
-                                       /* Option on warning dialog when player clicks resign */
-                                       _("_Resign"), Gtk.ResponseType.ACCEPT,
-                                       null);
-        }
+        var resign_dialog = new Gtk.MessageDialog (window,
+                                               Gtk.DialogFlags.MODAL,
+                                               Gtk.MessageType.QUESTION,
+                                               Gtk.ButtonsType.NONE,
+                                               /* Title of warning dialog when player clicks Resign */
+                                               _("Are you sure you want to resign?"));
+        resign_dialog.format_secondary_text (
+            /* Text on warning dialog when player clicks Resign */
+            _("This makes sense if you plan to save the game as a record of your loss."));
+        resign_dialog.add_buttons (/* Option on warning dialog when player clicks resign */
+                                   _("_Keep Playing"), Gtk.ResponseType.REJECT,
+                                   /* Option on warning dialog when player clicks resign */
+                                   _("_Resign"), Gtk.ResponseType.ACCEPT,
+                                   null);
 
-        resign_dialog.response.connect (resign_response_cb);
+        resign_dialog.response.connect ((response_id) => {
+            game.unpause ();
+
+            if (response_id == Gtk.ResponseType.ACCEPT)
+            {
+                if (human_player != null)
+                    human_player.resign ();
+                else
+                    game.current_player.resign ();
+            }
+
+            resign_dialog.destroy ();
+        });
+
         resign_dialog.show ();
     }
 
@@ -1763,50 +1731,39 @@ Copyright © 2015–2016 Sahil Sareen""";
         about_dialog.show ();
     }
 
-    private void promotion_type_selector_response_cb (int response_id)
-        requires (promotion_type_completion_handler != null)
-    {
-        switch (response_id)
-        {
-        case PromotionTypeSelectorDialog.SelectedType.QUEEN:
-            promotion_type_completion_handler (PieceType.QUEEN);
-            break;
-        case PromotionTypeSelectorDialog.SelectedType.KNIGHT:
-            promotion_type_completion_handler (PieceType.KNIGHT);
-            break;
-        case PromotionTypeSelectorDialog.SelectedType.ROOK:
-            promotion_type_completion_handler (PieceType.ROOK);
-            break;
-        case PromotionTypeSelectorDialog.SelectedType.BISHOP:
-            promotion_type_completion_handler (PieceType.BISHOP);
-            break;
-        default:
-            promotion_type_completion_handler (null);
-            break;
-        }
-
-        /* We cannot cache this dialog because it uses the piece color of the current player. */
-        promotion_type_selector_dialog.destroy ();
-        promotion_type_selector_dialog = null;
-
-        promotion_type_completion_handler = null;
-    }
-
     private void show_promotion_type_selector (owned ChessScene.PromotionTypeCompletionHandler handler)
-        requires (promotion_type_completion_handler == null)
     {
-        if (promotion_type_selector_dialog == null)
-        {
-            promotion_type_selector_dialog = new PromotionTypeSelectorDialog (window,
+        /* We cannot cache this dialog because it uses the piece color of the current player. */
+        var promotion_type_selector_dialog = new PromotionTypeSelectorDialog (window,
                                                                               game.current_player.color,
                                                                               scene.theme_name,
                                                                               layout_mode);
-            promotion_type_selector_dialog.response.connect (promotion_type_selector_response_cb);
-        }
+
+        promotion_type_selector_dialog.response.connect ((response_id) => {
+            switch (response_id)
+            {
+            case PromotionTypeSelectorDialog.SelectedType.QUEEN:
+                handler (PieceType.QUEEN);
+                break;
+            case PromotionTypeSelectorDialog.SelectedType.KNIGHT:
+                handler (PieceType.KNIGHT);
+                break;
+            case PromotionTypeSelectorDialog.SelectedType.ROOK:
+                handler (PieceType.ROOK);
+                break;
+            case PromotionTypeSelectorDialog.SelectedType.BISHOP:
+                handler (PieceType.BISHOP);
+                break;
+            default:
+                handler (null);
+                break;
+            }
+
+            promotion_type_selector_dialog.destroy ();
+            promotion_type_selector_dialog = null;
+        });
 
         promotion_type_selector_dialog.show ();
-
-        promotion_type_completion_handler = (type) => handler (type);
     }
 
     private void run_invalid_pgn_dialog ()
@@ -1845,50 +1802,9 @@ Copyright © 2015–2016 Sahil Sareen""";
         }
     }
 
-    private void save_dialog_response_cb (int response_id)
+    private delegate void PresentSaveDialogCallback (bool saved);
+    private void present_save_dialog (PresentSaveDialogCallback? callback = null)
     {
-        if (response_id == Gtk.ResponseType.ACCEPT)
-        {
-            update_pgn_time_remaining ();
-
-            try
-            {
-                game_file = save_dialog.get_file ();
-                pgn_game.write (game_file);
-
-                disable_window_action (SAVE_GAME_ACTION_NAME);
-                game_needs_saving = false;
-            }
-            catch (Error e)
-            {
-                if (save_error_dialog == null)
-                {
-                    save_error_dialog = new Gtk.MessageDialog (window,
-                                                               Gtk.DialogFlags.MODAL,
-                                                               Gtk.MessageType.ERROR,
-                                                               Gtk.ButtonsType.NONE,
-                                                               _("Failed to save game: %s"),
-                                                               e.message);
-                    save_error_dialog.add_button (_("_OK"), Gtk.ResponseType.OK);
-                    save_error_dialog.response.connect (() => save_error_dialog.hide ());
-                }
-
-                save_error_dialog.show ();
-            }
-        }
-
-        save_dialog.hide ();
-
-        if (prompt_save_game_cb != null)
-        {
-            prompt_save_game_cb (false);
-            prompt_save_game_cb = null;
-        }
-    }
-
-    private void present_save_dialog ()
-    {
-        /* Show active dialog */
         if (save_dialog == null)
         {
             save_dialog = new Gtk.FileChooserNative (/* Title of save game dialog */
@@ -1943,8 +1859,55 @@ Copyright © 2015–2016 Sahil Sareen""";
             save_dialog.add_filter (all_filter);
 
             save_dialog.modal = true;
-            save_dialog.response.connect (save_dialog_response_cb);
         }
+
+        /* We have to reconnect the signal each time we show the dialog to
+         * ensure we execute the current callback.
+         */
+        if (save_dialog_response_id != 0)
+            save_dialog.disconnect (save_dialog_response_id);
+
+        save_dialog_response_id = save_dialog.response.connect ((response_id) => {
+            if (response_id == Gtk.ResponseType.ACCEPT)
+            {
+                update_pgn_time_remaining ();
+
+                try
+                {
+                    game_file = save_dialog.get_file ();
+                    pgn_game.write (game_file);
+
+                    disable_window_action (SAVE_GAME_ACTION_NAME);
+                    game_needs_saving = false;
+
+                    if (callback != null)
+                        callback (true);
+                }
+                catch (Error e)
+                {
+                    var save_error_dialog = new Gtk.MessageDialog (window,
+                                                                   Gtk.DialogFlags.MODAL,
+                                                                   Gtk.MessageType.ERROR,
+                                                                   Gtk.ButtonsType.NONE,
+                                                                   _("Failed to save game: %s"),
+                                                                   e.message);
+                    save_error_dialog.add_button (_("_OK"), Gtk.ResponseType.OK);
+                    save_error_dialog.response.connect (() => {
+                        save_error_dialog.destroy ();
+                        if (callback != null)
+                            callback (false);
+                    });
+
+                    save_error_dialog.show ();
+                }
+            }
+            else if (callback != null)
+            {
+                callback (false);
+            }
+
+            save_dialog.hide ();
+        });
 
         save_dialog.show ();
     }
@@ -1976,58 +1939,47 @@ Copyright © 2015–2016 Sahil Sareen""";
         present_save_dialog ();
     }
 
-    private void open_game_response_cb (int response_id)
-    {
-        if (response_id == Gtk.ResponseType.ACCEPT)
-        {
-            game_file = open_dialog.get_file ();
-            load_game (game_file);
-        }
-
-        open_dialog.hide ();
-    }
-
-    private void open_game_prompt_save_game_cb (bool cancelled)
-    {
-        prompt_save_game_cb = null;
-
-        if (cancelled)
-            return;
-
-        /* Show active dialog */
-        if (open_dialog == null)
-        {
-            open_dialog = new Gtk.FileChooserNative (/* Title of load game dialog */
-                                                     _("Load Chess Game"),
-                                                     window, Gtk.FileChooserAction.OPEN,
-                                                     _("_Open"),
-                                                     _("_Cancel"));
-
-            /* Filter out non PGN files by default */
-            var pgn_filter = new Gtk.FileFilter ();
-            /* Load Game Dialog: Name of filter to show only PGN files */
-            pgn_filter.set_filter_name (_("PGN files"));
-            pgn_filter.add_pattern ("*.pgn");
-            open_dialog.add_filter (pgn_filter);
-
-            var all_filter = new Gtk.FileFilter ();
-            /* Load Game Dialog: Name of filter to show all files */
-            all_filter.set_filter_name (_("All files"));
-            all_filter.add_pattern ("*");
-            open_dialog.add_filter (all_filter);
-
-            open_dialog.modal = true;
-            open_dialog.response.connect (open_game_response_cb);
-        }
-
-        open_dialog.show ();
-    }
-
     public void open_game_cb ()
-        requires (prompt_save_game_cb == null)
     {
-        prompt_save_game_cb = open_game_prompt_save_game_cb;
-        prompt_save_game (_("Save this game before loading another one?"));
+        prompt_save_game (_("Save this game before loading another one?"), (cancelled) => {
+            if (cancelled)
+                return;
+
+            if (open_dialog == null)
+            {
+                open_dialog = new Gtk.FileChooserNative (/* Title of load game dialog */
+                                                         _("Load Chess Game"),
+                                                         window, Gtk.FileChooserAction.OPEN,
+                                                         _("_Open"),
+                                                         _("_Cancel"));
+                open_dialog.modal = true;
+
+                /* Filter out non PGN files by default */
+                var pgn_filter = new Gtk.FileFilter ();
+                /* Load Game Dialog: Name of filter to show only PGN files */
+                pgn_filter.set_filter_name (_("PGN files"));
+                pgn_filter.add_pattern ("*.pgn");
+                open_dialog.add_filter (pgn_filter);
+
+                var all_filter = new Gtk.FileFilter ();
+                /* Load Game Dialog: Name of filter to show all files */
+                all_filter.set_filter_name (_("All files"));
+                all_filter.add_pattern ("*");
+                open_dialog.add_filter (all_filter);
+
+                open_dialog.response.connect ((response_id) => {
+                    if (response_id == Gtk.ResponseType.ACCEPT)
+                    {
+                        game_file = open_dialog.get_file ();
+                        load_game (game_file);
+                    }
+
+                    open_dialog.hide ();
+                });
+            }
+
+            open_dialog.show ();
+        });
     }
 
     private void start_new_game ()
