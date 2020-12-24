@@ -18,7 +18,7 @@ public class PreferencesDialog : Gtk.Dialog
     private uint save_duration_timeout = 0;
 
     [GtkChild]
-    private unowned Gtk.Box main_box;
+    private unowned Gtk.Box? main_box;
     [GtkChild]
     private unowned Gtk.CheckButton show_numbering_check;
     [GtkChild]
