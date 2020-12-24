@@ -4,6 +4,10 @@
   <menu id="app-menu">
     <section>
       <item>
+        <attribute name="label" translatable="yes">_New Game</attribute>
+        <attribute name="action">win.new</attribute>
+      </item>
+      <item>
         <attribute name="label" translatable="yes">_Open Game…</attribute>
         <attribute name="action">win.open</attribute>
       </item>
@@ -56,18 +60,6 @@
     <child type="titlebar">
       <object class="GtkHeaderBar" id="headerbar">
         <property name="can-focus">0</property>
-        <child>
-          <object class="GtkButton" id="new-game-button">
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="label" translatable="yes">_New Game</property>
-            <property name="use-underline">1</property>
-            <property name="action-name">win.new</property>
-            <style>
-              <class name="text-button"/>
-            </style>
-          </object>
-        </child>
         <child>
           <object class="GtkButton" id="undo-move-button">
             <property name="valign">center</property>
@@ -261,14 +253,6 @@
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkSizeGroup">
-    <property name="mode">vertical</property>
-    <widgets>
-      <widget name="new-game-button"/>
-      <widget name="undo-move-button"/>
-      <widget name="pause_button"/>
-    </widgets>
   </object>
   <object class="GtkSizeGroup">
     <property name="mode">vertical</property>
