@@ -63,7 +63,8 @@ public class ChessView : Gtk.DrawingArea
         Rsvg.Handle handle;
         try
         {
-            handle = new Rsvg.Handle.from_file (Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, name + ".svg", null));
+            var stream = resources_open_stream (Path.build_path ("/", "/org/gnome/Chess/pieces", scene.theme_name, name + ".svg"), ResourceLookupFlags.NONE);
+            handle = new Rsvg.Handle.from_stream_sync (stream, null, Rsvg.HandleFlags.FLAGS_NONE, null);
         }
         catch (Error e)
         {

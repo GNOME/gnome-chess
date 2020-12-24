@@ -1,10 +1,5 @@
 subdir('icons')
 
-# The SVGs of the chess pieces
-install_subdir('pieces',
-  install_dir: join_paths(datadir, meson.project_name())
-)
-
 # The engines.conf file
 install_data('engines.conf',
   install_dir: pkgsysconfdir,

@@ -391,17 +391,17 @@ Copyright © 2015–2016 Sahil Sareen""";
             else
                 color = "black";
 
-            var filename = Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, "%sQueen.svg".printf (color));
-            set_piece_image ((Image) builder.get_object ("image_queen"), filename);
+            var resource_path = Path.build_path ("/", "/org/gnome/Chess/pieces", scene.theme_name, "%sQueen.svg".printf (color));
+            set_piece_image ((Image) builder.get_object ("image_queen"), resource_path);
 
-            filename = Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, "%sKnight.svg".printf (color));
-            set_piece_image ((Image) builder.get_object ("image_knight"), filename);
+            resource_path = Path.build_path ("/", "/org/gnome/Chess/pieces", scene.theme_name, "%sKnight.svg".printf (color));
+            set_piece_image ((Image) builder.get_object ("image_knight"), resource_path);
 
-            filename = Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, "%sRook.svg".printf (color));
-            set_piece_image ((Image) builder.get_object ("image_rook"), filename);
+            resource_path = Path.build_path ("/", "/org/gnome/Chess/pieces", scene.theme_name, "%sRook.svg".printf (color));
+            set_piece_image ((Image) builder.get_object ("image_rook"), resource_path);
 
-            filename = Path.build_filename (PKGDATADIR, "pieces", scene.theme_name, "%sBishop.svg".printf (color));
-            set_piece_image ((Image) builder.get_object ("image_bishop"), filename);
+            resource_path = Path.build_path ("/", "/org/gnome/Chess/pieces", scene.theme_name, "%sBishop.svg".printf (color));
+            set_piece_image ((Image) builder.get_object ("image_bishop"), resource_path);
 
             promotion_type_selector_dialog.response.connect (promotion_type_selector_response_cb);
         }
@@ -411,13 +411,14 @@ Copyright © 2015–2016 Sahil Sareen""";
         promotion_type_completion_handler = (type) => handler (type);
     }
 
-    private void set_piece_image (Image image, string filename)
+    private void set_piece_image (Image image, string resource_path)
     {
         const int size = 48;
 
         try
         {
-            var h = new Rsvg.Handle.from_file (filename);
+            var stream = resources_open_stream (resource_path, ResourceLookupFlags.NONE);
+            var h = new Rsvg.Handle.from_stream_sync (stream, null, Rsvg.HandleFlags.FLAGS_NONE, null);
 
             var s = new Cairo.ImageSurface (Cairo.Format.ARGB32, size, size);
             var c = new Cairo.Context (s);
@@ -430,7 +431,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         }
         catch (Error e)
         {
-            warning ("Failed to load image %s: %s", filename, e.message);
+            warning ("Failed to load image %s: %s", resource_path, e.message);
         }
     }
 
