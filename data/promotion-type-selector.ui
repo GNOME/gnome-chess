@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk" version="4.0"/>
-  <object class="GtkDialog" id="dialog_promotion_type_selector">
+  <template class="PromotionTypeSelectorDialog" parent="GtkDialog">
     <property name="can-focus">0</property>
     <property name="title" translatable="yes">Select Promotion Type</property>
     <property name="use-header-bar">1</property>
@@ -13,7 +13,7 @@
         <property name="margin-top">6</property>
         <property name="margin-bottom">6</property>
         <child>
-          <object class="GtkButton" id="button_queen">
+          <object class="GtkButton">
             <property name="width-request">100</property>
             <property name="height-request">120</property>
             <property name="receives-default">1</property>
@@ -36,7 +36,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkImage" id="image_queen">
+                  <object class="GtkImage" id="queen_image">
                     <property name="can-focus">0</property>
                     <layout>
                       <property name="column">0</property>
@@ -49,7 +49,7 @@
           </object>
         </child>
         <child>
-          <object class="GtkButton" id="button_knight">
+          <object class="GtkButton">
             <property name="width-request">100</property>
             <property name="height-request">120</property>
             <property name="receives-default">1</property>
@@ -72,7 +72,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkImage" id="image_knight">
+                  <object class="GtkImage" id="knight_image">
                     <property name="can-focus">0</property>
                     <layout>
                       <property name="column">0</property>
@@ -85,7 +85,7 @@
           </object>
         </child>
         <child>
-          <object class="GtkButton" id="button_rook">
+          <object class="GtkButton">
             <property name="width-request">100</property>
             <property name="height-request">120</property>
             <property name="receives-default">1</property>
@@ -108,7 +108,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkImage" id="image_rook">
+                  <object class="GtkImage" id="rook_image">
                     <property name="can-focus">0</property>
                     <layout>
                       <property name="column">0</property>
@@ -121,7 +121,7 @@
           </object>
         </child>
         <child>
-          <object class="GtkButton" id="button_bishop">
+          <object class="GtkButton">
             <property name="width-request">100</property>
             <property name="height-request">120</property>
             <property name="receives-default">1</property>
@@ -144,7 +144,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkImage" id="image_bishop">
+                  <object class="GtkImage" id="bishop_image">
                     <property name="can-focus">0</property>
                     <layout>
                       <property name="column">0</property>
@@ -161,5 +161,5 @@
         </style>
       </object>
     </child>
-  </object>
+  </template>
 </interface>

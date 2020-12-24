@@ -4,10 +4,12 @@ chess_sources = [
   'chess-scene.vala',
   'chess-view.vala',
   'gnome-chess.vala',
+  'promotion-type-selector-dialog.vala',
 ]
 
 chess_vala_args = [
   '--target-glib=@0@'.format(min_glib_version),
+  '--gresources', resource_files,
 ]
 
 chess_c_args = [

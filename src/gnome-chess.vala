@@ -15,7 +15,7 @@ using Gtk;
 
 public class ChessApplication : Gtk.Application
 {
-    private enum LayoutMode {
+    public enum LayoutMode {
         NORMAL,
         NARROW
     }
@@ -62,7 +62,7 @@ public class ChessApplication : Gtk.Application
     private MessageDialog? claim_draw_dialog = null;
     private MessageDialog? resign_dialog = null;
     private AboutDialog? about_dialog = null;
-    private Dialog? promotion_type_selector_dialog = null;
+    private PromotionTypeSelectorDialog? promotion_type_selector_dialog = null;
     private ChessScene.PromotionTypeCompletionHandler? promotion_type_completion_handler = null;
 
     private PGNGame pgn_game;
@@ -304,143 +304,6 @@ Copyright © 2015–2016 Sahil Sareen""";
             set_layout_mode (LayoutMode.NARROW);
         else if (window.default_width > 500 && layout_mode == LayoutMode.NARROW)
             set_layout_mode (LayoutMode.NORMAL);
-    }
-
-    [CCode (cname = "queen_selected_cb", instance_pos = -1)]
-    public void queen_selected_cb (Button button)
-        requires (promotion_type_selector_dialog != null)
-    {
-        promotion_type_selector_dialog.response (PromotionTypeSelected.QUEEN);
-    }
-
-    [CCode (cname = "knight_selected_cb", instance_pos = -1)]
-    public void knight_selected_cb (Button button)
-        requires (promotion_type_selector_dialog != null)
-    {
-        promotion_type_selector_dialog.response (PromotionTypeSelected.KNIGHT);
-    }
-
-    [CCode (cname = "rook_selected_cb", instance_pos = -1)]
-    public void rook_selected_cb (Button button)
-        requires (promotion_type_selector_dialog != null)
-    {
-        promotion_type_selector_dialog.response (PromotionTypeSelected.KNIGHT);
-    }
-
-    [CCode (cname = "bishop_selected_cb", instance_pos = -1)]
-    public void bishop_selected_cb (Button button)
-        requires (promotion_type_selector_dialog != null)
-    {
-        promotion_type_selector_dialog.response (PromotionTypeSelected.BISHOP);
-    }
-
-    private void promotion_type_selector_response_cb (int response_id)
-        requires (promotion_type_completion_handler != null)
-    {
-        switch (response_id)
-        {
-        case PromotionTypeSelected.QUEEN:
-            promotion_type_completion_handler (PieceType.QUEEN);
-            break;
-        case PromotionTypeSelected.KNIGHT:
-            promotion_type_completion_handler (PieceType.KNIGHT);
-            break;
-        case PromotionTypeSelected.ROOK:
-            promotion_type_completion_handler (PieceType.ROOK);
-            break;
-        case PromotionTypeSelected.BISHOP:
-            promotion_type_completion_handler (PieceType.BISHOP);
-            break;
-        default:
-            promotion_type_completion_handler (null);
-            break;
-        }
-
-        promotion_type_selector_dialog.hide ();
-
-        promotion_type_completion_handler = null;
-    }
-
-    public void show_promotion_type_selector (owned ChessScene.PromotionTypeCompletionHandler handler)
-        requires (promotion_type_completion_handler == null)
-    {
-        if (promotion_type_selector_dialog == null)
-        {
-            Builder builder = new Builder ();
-            builder.set_current_object (this);
-            try
-            {
-                builder.add_from_resource ("/org/gnome/Chess/ui/promotion-type-selector.ui");
-            }
-            catch (Error e)
-            {
-                error ("Failed to load UI resource: %s", e.message);
-            }
-
-            promotion_type_selector_dialog = (Dialog) builder.get_object ("dialog_promotion_type_selector");
-            promotion_type_selector_dialog.transient_for = window;
-            promotion_type_selector_dialog.modal = true;
-
-            var button_box = (Box) builder.get_object ("button_box");
-            if (layout_mode == LayoutMode.NARROW)
-                button_box.orientation = Orientation.VERTICAL;
-
-            string color;
-            if (game.current_player.color == Color.WHITE)
-                color = "white";
-            else
-                color = "black";
-
-            var resource_path = Path.build_path ("/", "/org/gnome/Chess/pieces", scene.theme_name, "%sQueen.svg".printf (color));
-            set_piece_image ((Image) builder.get_object ("image_queen"), resource_path);
-
-            resource_path = Path.build_path ("/", "/org/gnome/Chess/pieces", scene.theme_name, "%sKnight.svg".printf (color));
-            set_piece_image ((Image) builder.get_object ("image_knight"), resource_path);
-
-            resource_path = Path.build_path ("/", "/org/gnome/Chess/pieces", scene.theme_name, "%sRook.svg".printf (color));
-            set_piece_image ((Image) builder.get_object ("image_rook"), resource_path);
-
-            resource_path = Path.build_path ("/", "/org/gnome/Chess/pieces", scene.theme_name, "%sBishop.svg".printf (color));
-            set_piece_image ((Image) builder.get_object ("image_bishop"), resource_path);
-
-            promotion_type_selector_dialog.response.connect (promotion_type_selector_response_cb);
-        }
-
-        promotion_type_selector_dialog.show ();
-
-        promotion_type_completion_handler = (type) => handler (type);
-    }
-
-    private void set_piece_image (Image image, string resource_path)
-    {
-        const int size = 48;
-
-        try
-        {
-            var stream = resources_open_stream (resource_path, ResourceLookupFlags.NONE);
-            var h = new Rsvg.Handle.from_stream_sync (stream, null, Rsvg.HandleFlags.FLAGS_NONE, null);
-
-            var s = new Cairo.ImageSurface (Cairo.Format.ARGB32, size, size);
-            var c = new Cairo.Context (s);
-            h.render_document (c, Rsvg.Rectangle () { width = size, height = size, x = 0, y = 0 });
-
-            var p = Gdk.pixbuf_get_from_surface (s, 0, 0, size, size);
-            image.set_from_pixbuf (p);
-
-            image.height_request = size;
-        }
-        catch (Error e)
-        {
-            warning ("Failed to load image %s: %s", resource_path, e.message);
-        }
-    }
-
-    enum PromotionTypeSelected
-    {
-        QUEEN,
-        KNIGHT,
-        ROOK,
-        BISHOP
     }
 
     public void quit_game ()
@@ -2370,6 +2233,52 @@ Copyright © 2015–2016 Sahil Sareen""";
         about_dialog.logo_icon_name = "org.gnome.Chess";
         about_dialog.hide_on_close = true;
         about_dialog.show ();
+    }
+
+    private void promotion_type_selector_response_cb (int response_id)
+        requires (promotion_type_completion_handler != null)
+    {
+        switch (response_id)
+        {
+        case PromotionTypeSelectorDialog.SelectedType.QUEEN:
+            promotion_type_completion_handler (PieceType.QUEEN);
+            break;
+        case PromotionTypeSelectorDialog.SelectedType.KNIGHT:
+            promotion_type_completion_handler (PieceType.KNIGHT);
+            break;
+        case PromotionTypeSelectorDialog.SelectedType.ROOK:
+            promotion_type_completion_handler (PieceType.ROOK);
+            break;
+        case PromotionTypeSelectorDialog.SelectedType.BISHOP:
+            promotion_type_completion_handler (PieceType.BISHOP);
+            break;
+        default:
+            promotion_type_completion_handler (null);
+            break;
+        }
+
+        /* We cannot cache this dialog because it uses the piece color of the current player. */
+        promotion_type_selector_dialog.destroy ();
+        promotion_type_selector_dialog = null;
+
+        promotion_type_completion_handler = null;
+    }
+
+    private void show_promotion_type_selector (owned ChessScene.PromotionTypeCompletionHandler handler)
+        requires (promotion_type_completion_handler == null)
+    {
+        if (promotion_type_selector_dialog == null)
+        {
+            promotion_type_selector_dialog = new PromotionTypeSelectorDialog (window,
+                                                                              game.current_player.color,
+                                                                              scene.theme_name,
+                                                                              layout_mode);
+            promotion_type_selector_dialog.response.connect (promotion_type_selector_response_cb);
+        }
+
+        promotion_type_selector_dialog.show ();
+
+        promotion_type_completion_handler = (type) => handler (type);
     }
 
     private void run_invalid_pgn_dialog ()
