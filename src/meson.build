@@ -8,10 +8,6 @@ resources = gnome.compile_resources(application_id, resource_files,
 # The gnome-chess binary
 chess_sources = [
   resources,
-  'ai-profile.vala',
-  'chess-engine-cecp.vala',
-  'chess-engine-uci.vala',
-  'chess-engine.vala',
   'chess-scene.vala',
   'chess-view.vala',
   'gnome-chess.vala',
@@ -32,6 +28,7 @@ chess_deps = [
   librsvg,
   posix,
   libchess_dep,
+  libengine_dep,
 ]
 
 executable('gnome-chess', chess_sources,
