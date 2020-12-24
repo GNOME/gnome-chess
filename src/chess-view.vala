@@ -27,6 +27,7 @@ public class ChessView : Gtk.DrawingArea
         get { return _scene; }
         set
         {
+            _scene.changed.disconnect (scene_changed_cb);
             _scene = value;
             _scene.changed.connect (scene_changed_cb);
             queue_draw ();
