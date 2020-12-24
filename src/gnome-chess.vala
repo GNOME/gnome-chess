@@ -1461,7 +1461,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             break;
         case ChessRule.STALEMATE:
             /* Game status when the game terminates due to a stalemate */
-            why = _("Opponent cannot move.");
+            why = _("Player cannot move.");
             break;
         case ChessRule.FIFTY_MOVES:
             /* Game status when the game is drawn due to the fifty move rule */
