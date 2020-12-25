@@ -30,7 +30,6 @@ public class ChessEngineCECP : ChessEngine
         write_line ("random");
         foreach (var o in options)
             write_line (o);
-        ready = true;
     }
 
     public override void process_input (char[] data)

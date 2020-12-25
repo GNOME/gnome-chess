@@ -98,8 +98,6 @@ public class ChessEngineUCI : ChessEngine
                 case "readyok":
                     if (tokens.length != 1)
                         warning ("Unexpected arguments on readyok: %s", line);
-
-                    ready = true;
                     break;
 
                 case "bestmove":

@@ -450,7 +450,6 @@ Copyright © 2015–2016 Sahil Sareen""";
         if (opponent_engine != null)
         {
             opponent_engine.stop ();
-            opponent_engine.ready_changed.disconnect (engine_ready_cb);
             opponent_engine.moved.disconnect (engine_move_cb);
             opponent_engine.resigned.disconnect (engine_resigned_cb);
             opponent_engine.stopped_unexpectedly.disconnect (engine_stopped_unexpectedly_cb);
@@ -486,7 +485,6 @@ Copyright © 2015–2016 Sahil Sareen""";
         }
         else
         {
-            opponent_engine.ready_changed.connect (engine_ready_cb);
             opponent_engine.moved.connect (engine_move_cb);
             opponent_engine.resigned.connect (engine_resigned_cb);
             opponent_engine.stopped_unexpectedly.connect (engine_stopped_unexpectedly_cb);
@@ -669,14 +667,6 @@ Copyright © 2015–2016 Sahil Sareen""";
         }
 
         return engine;
-    }
-
-    private void engine_ready_cb (ChessEngine engine)
-    {
-        if (opponent_engine.ready)
-        {
-            view.queue_draw ();
-        }
     }
 
     private void do_engine_move (string move)

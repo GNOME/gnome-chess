@@ -29,27 +29,12 @@ public abstract class ChessEngine : Object
     protected virtual void process_input (char[] data) {}
 
     public signal void starting ();
-    public signal void ready_changed ();
     public signal void moved (string move);
     public signal void resigned ();
     public signal void stopped_unexpectedly ();
     public signal void error ();
     public signal void claim_draw ();
     public signal void offer_draw ();
-
-    private bool _ready = false;
-    public bool ready
-    {
-        protected set
-        {
-           _ready = value;
-           ready_changed ();
-        }
-        public get
-        {
-            return _ready;
-        }
-    }
 
     protected ChessEngine (string binary, string[] args, uint delay_seconds)
     {
