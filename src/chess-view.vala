@@ -25,7 +25,7 @@ public class ChessView : Gtk.DrawingArea
     public ChessScene scene
     {
         get { return _scene; }
-        set
+        construct set
         {
             _scene = value;
             _scene.changed.connect (scene_changed_cb);
@@ -36,6 +36,11 @@ public class ChessView : Gtk.DrawingArea
     private double border_size
     {
         get { return square_size / 2; }
+    }
+
+    public ChessView (ChessScene scene)
+    {
+        Object (scene: scene);
     }
 
     construct

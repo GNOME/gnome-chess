@@ -192,9 +192,8 @@ Copyright © 2015–2016 Sahil Sareen""";
         settings.bind ("move-format", scene, "move-format", SettingsBindFlags.GET);
         settings.bind ("board-side", scene, "board-side", SettingsBindFlags.GET);
 
-        view = new ChessView ();
+        view = new ChessView (scene);
         view.set_size_request (100, 100);
-        view.scene = scene;
         main_box.insert_child_after (view, info_bar);
         view.show ();
 
