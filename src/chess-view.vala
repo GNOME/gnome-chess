@@ -41,15 +41,13 @@ public class ChessView : Gtk.DrawingArea
     public ChessView (ChessScene scene)
     {
         Object (scene: scene);
-    }
 
-    construct
-    {
         init_mouse ();
         set_draw_func (draw);
 
         hexpand = true;
         vexpand = true;
+        set_size_request (100, 100);
     }
 
     public override void resize (int width, int height)

@@ -32,12 +32,12 @@ public class PromotionTypeSelectorDialog : Gtk.Dialog
     [GtkChild]
     private unowned Gtk.Image bishop_image;
 
-    public PromotionTypeSelectorDialog (Gtk.Window window, Color color, string theme, ChessApplication.LayoutMode layout_mode)
+    public PromotionTypeSelectorDialog (Gtk.Window window, Color color, string theme, ChessWindow.LayoutMode layout_mode)
     {
         transient_for = window;
         modal = true;
 
-        if (layout_mode == ChessApplication.LayoutMode.NARROW)
+        if (layout_mode == ChessWindow.LayoutMode.NARROW)
             button_box.orientation = Gtk.Orientation.VERTICAL;
 
         var color_string = color == Color.WHITE ? "white" : "black";

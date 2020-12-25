@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk" version="4.0"/>
-  <menu id="app-menu">
+  <menu id="app_menu">
     <section>
       <item>
         <attribute name="label" translatable="yes">_New Game</attribute>
-        <attribute name="action">win.new</attribute>
+        <attribute name="action">app.new</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">_Open Game…</attribute>
-        <attribute name="action">win.open</attribute>
+        <attribute name="action">app.open</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">_Save Game</attribute>
-        <attribute name="action">win.save</attribute>
+        <attribute name="action">app.save</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">_Save Game As…</attribute>
-        <attribute name="action">win.save-as</attribute>
+        <attribute name="action">app.save-as</attribute>
       </item>
     </section>
     <section>
       <item>
         <attribute name="label" translatable="yes">_Resign Game</attribute>
-        <attribute name="action">win.resign</attribute>
+        <attribute name="action">app.resign</attribute>
       </item>
     </section>
     <section>
@@ -35,7 +35,7 @@
     <section>
       <item>
         <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
-        <attribute name="action">win.show-help-overlay</attribute>
+        <attribute name="action">app.show-help-overlay</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">_Help</attribute>
@@ -47,23 +47,23 @@
       </item>
     </section>
   </menu>
-  <object class="GtkListStore" id="history-model">
+  <object class="GtkListStore" id="history_model">
     <columns>
       <column type="gchararray"/>
       <column type="gint"/>
     </columns>
   </object>
-  <object class="GtkApplicationWindow" id="gnome_chess_app">
+  <template class="ChessWindow" parent="GtkApplicationWindow">
     <property name="can-focus">0</property>
     <property name="default-width">700</property>
     <property name="title" translatable="yes">Chess</property>
     <child type="titlebar">
-      <object class="GtkHeaderBar" id="headerbar">
+      <object class="GtkHeaderBar">
         <property name="can-focus">0</property>
         <child>
-          <object class="GtkButton" id="undo-move-button">
+          <object class="GtkButton">
             <property name="valign">center</property>
-            <property name="action-name">win.undo</property>
+            <property name="action-name">app.undo</property>
             <property name="tooltip-text" translatable="yes">Undo your most recent move</property>
             <style>
               <class name="image-button"/>
@@ -78,9 +78,9 @@
           </object>
         </child>
         <child>
-          <object class="GtkButton" id="pause_button">
+          <object class="GtkButton" id="pause_resume_button">
             <property name="valign">center</property>
-            <property name="action-name">win.pause-resume</property>
+            <property name="action-name">app.pause-resume</property>
             <style>
               <class name="image-button"/>
             </style>
@@ -94,7 +94,7 @@
         <child type="end">
           <object class="GtkMenuButton">
             <property name="icon-name">open-menu-symbolic</property>
-            <property name="menu-model">app-menu</property>
+            <property name="menu-model">app_menu</property>
           </object>
         </child>
       </object>
@@ -144,7 +144,7 @@
                     </style>
                     <child>
                       <object class="GtkButton" id="first_move_button">
-			<property name="action-name">win.go-first</property>
+			<property name="action-name">app.go-first</property>
                         <property name="sensitive">0</property>
                         <property name="tooltip-text" translatable="yes" comments="Tooltip on the show first move (i.e. game start) navigation button">Rewind to the game start</property>
                         <style>
@@ -161,7 +161,7 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="prev_move_button">
-			<property name="action-name">win.go-previous</property>
+			<property name="action-name">app.go-previous</property>
                         <property name="sensitive">0</property>
                         <property name="tooltip-text" translatable="yes" comments="Tooltip on the show previous move navigation button">Show the previous move</property>
                         <style>
@@ -178,7 +178,7 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="next_move_button">
-			<property name="action-name">win.go-next</property>
+			<property name="action-name">app.go-next</property>
                         <property name="sensitive">0</property>
                         <property name="tooltip-text" translatable="yes" comments="Tooltip on the show next move navigation button">Show the next move</property>
                         <style>
@@ -195,7 +195,7 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="last_move_button">
-			<property name="action-name">win.go-last</property>
+			<property name="action-name">app.go-last</property>
                         <property name="sensitive">0</property>
                         <property name="tooltip-text" translatable="yes" comments="Tooltip on the show current move navigation button">Show the current move</property>
                         <style>
@@ -216,7 +216,7 @@
                   <object class="GtkComboBox" id="history_combo">
                     <property name="hexpand">1</property>
                     <property name="can-focus">0</property>
-                    <property name="model">history-model</property>
+                    <property name="model">history_model</property>
                     <signal name="changed" handler="history_combo_changed_cb" swapped="no"/>
                     <child>
                       <object class="GtkCellRendererText">
@@ -253,7 +253,7 @@
         </child>
       </object>
     </child>
-  </object>
+  </template>
   <object class="GtkSizeGroup">
     <property name="mode">vertical</property>
     <widgets>

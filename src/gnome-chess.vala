@@ -11,31 +11,40 @@
  * license.
  */
 
+public const string NEW_GAME_ACTION_NAME = "new";
+public const string OPEN_GAME_ACTION_NAME = "open";
+public const string SAVE_GAME_ACTION_NAME = "save";
+public const string SAVE_GAME_AS_ACTION_NAME = "save-as";
+public const string UNDO_MOVE_ACTION_NAME = "undo";
+public const string RESIGN_ACTION_NAME = "resign";
+public const string PAUSE_RESUME_ACTION_NAME = "pause-resume";
+public const string HISTORY_GO_FIRST_ACTION_NAME = "go-first";
+public const string HISTORY_GO_PREVIOUS_ACTION_NAME = "go-previous";
+public const string HISTORY_GO_NEXT_ACTION_NAME = "go-next";
+public const string HISTORY_GO_LAST_ACTION_NAME = "go-last";
+public const string PREFERENCES_ACTION_NAME = "preferences";
+public const string HELP_ACTION_NAME = "help";
+public const string ABOUT_ACTION_NAME = "about";
+public const string QUIT_ACTION_NAME = "quit";
+
 public class ChessApplication : Gtk.Application
 {
-    public enum LayoutMode {
-        NORMAL,
-        NARROW
-    }
-    private LayoutMode layout_mode;
-
     private GLib.Settings settings;
-    private unowned Gtk.ApplicationWindow window;
-    private Gtk.Box main_box;
-    private Gtk.InfoBar info_bar;
-    private Gtk.Label info_bar_label;
-    private ChessScene scene;
-    private ChessView view;
-    private Gtk.Button pause_resume_button;
-    private Gtk.Box navigation_box;
-    private Gtk.Button first_move_button;
-    private Gtk.Button prev_move_button;
-    private Gtk.Button next_move_button;
-    private Gtk.Button last_move_button;
-    private Gtk.ComboBox history_combo;
-    private Gtk.Box clock_box;
-    private Gtk.DrawingArea white_time_label;
-    private Gtk.DrawingArea black_time_label;
+
+    public unowned ChessWindow window
+    {
+        get; private set;
+    }
+
+    public ChessView view
+    {
+        get { return window.view; }
+    }
+
+    public ChessScene scene
+    {
+        get { return view.scene; }
+    }
 
     private PreferencesDialog? preferences_dialog = null;
     private Gtk.AboutDialog? about_dialog = null;
@@ -44,7 +53,7 @@ public class ChessApplication : Gtk.Application
     private ulong save_dialog_response_id = 0;
 
     private PGNGame pgn_game;
-    private ChessGame game;
+    private ChessGame? game = null;
     private string autosave_filename;
     private File game_file;
     private bool game_needs_saving = false;
@@ -58,27 +67,7 @@ public class ChessApplication : Gtk.Application
 Copyright © 2013–2020 Michael Catanzaro
 Copyright © 2015–2016 Sahil Sareen""";
 
-    private const ActionEntry[] app_entries =
-    {
-        { "preferences", preferences_cb },
-        { "help", help_cb },
-        { "about", about_cb },
-        { "quit", quit_cb },
-    };
-
-    private const string NEW_GAME_ACTION_NAME = "new";
-    private const string OPEN_GAME_ACTION_NAME = "open";
-    private const string SAVE_GAME_ACTION_NAME = "save";
-    private const string SAVE_GAME_AS_ACTION_NAME = "save-as";
-    private const string UNDO_MOVE_ACTION_NAME = "undo";
-    private const string RESIGN_ACTION_NAME = "resign";
-    private const string PAUSE_RESUME_ACTION_NAME = "pause-resume";
-    private const string HISTORY_GO_FIRST_ACTION_NAME = "go-first";
-    private const string HISTORY_GO_PREVIOUS_ACTION_NAME = "go-previous";
-    private const string HISTORY_GO_NEXT_ACTION_NAME = "go-next";
-    private const string HISTORY_GO_LAST_ACTION_NAME = "go-last";
-
-    private const ActionEntry[] window_entries =
+    private const ActionEntry[] action_entries =
     {
         { NEW_GAME_ACTION_NAME, new_game_cb },
         { OPEN_GAME_ACTION_NAME, open_game_cb },
@@ -91,6 +80,10 @@ Copyright © 2015–2016 Sahil Sareen""";
         { HISTORY_GO_PREVIOUS_ACTION_NAME, history_go_previous_cb },
         { HISTORY_GO_NEXT_ACTION_NAME, history_go_next_cb },
         { HISTORY_GO_LAST_ACTION_NAME, history_go_last_cb },
+        { PREFERENCES_ACTION_NAME, preferences_cb },
+        { HELP_ACTION_NAME, help_cb },
+        { ABOUT_ACTION_NAME, about_cb },
+        { QUIT_ACTION_NAME, quit_cb },
     };
 
     private const OptionEntry[] option_entries =
@@ -127,64 +120,27 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         settings = new Settings ("org.gnome.Chess");
 
-        add_action_entries (app_entries, this);
-        set_accels_for_action ("app.help", {"F1"});
-        set_accels_for_action ("app.quit", {"<Control>q", "<Control>w"});
+        add_action_entries (action_entries, this);
+        set_accels_for_action ("app." + NEW_GAME_ACTION_NAME,            {        "<Control>n"     });
+        set_accels_for_action ("app." + OPEN_GAME_ACTION_NAME,           {        "<Control>o"     });
+        set_accels_for_action ("app." + SAVE_GAME_ACTION_NAME,           {        "<Control>s"     });
+        set_accels_for_action ("app." + SAVE_GAME_AS_ACTION_NAME,        { "<Shift><Control>s"     });
+        set_accels_for_action ("app." + UNDO_MOVE_ACTION_NAME,           {        "<Control>z"     });
+        set_accels_for_action ("app." + PAUSE_RESUME_ACTION_NAME,        {        "<Control>p",
+                                                                                           "Pause" });
+        set_accels_for_action ("app." + HISTORY_GO_FIRST_ACTION_NAME,    {     "<Shift><Alt>Left"  });
+        set_accels_for_action ("app." + HISTORY_GO_PREVIOUS_ACTION_NAME, {            "<Alt>Left"  });
+        set_accels_for_action ("app." + HISTORY_GO_NEXT_ACTION_NAME,     {            "<Alt>Right" });
+        set_accels_for_action ("app." + HISTORY_GO_LAST_ACTION_NAME,     {     "<Shift><Alt>Right" });
+        set_accels_for_action ("app." + HELP_ACTION_NAME,                {                 "F1"    });
+        set_accels_for_action ("app." + QUIT_ACTION_NAME,                {        "<Control>q",
+                                                                                  "<Control>w"     });
 
-        var builder = new Gtk.Builder ();
-        builder.set_current_object (this);
-        try
-        {
-            builder.add_from_resource ("/org/gnome/Chess/ui/gnome-chess.ui");
-        }
-        catch (Error e)
-        {
-            error ("Failed to load UI resource: %s", e.message);
-        }
-
-        window = (Gtk.ApplicationWindow) builder.get_object ("gnome_chess_app");
+        window = new ChessWindow (this);
         window.set_default_size (settings.get_int ("width"), settings.get_int ("height"));
         if (settings.get_boolean ("maximized"))
             window.maximize ();
-
-        main_box = (Gtk.Box) builder.get_object ("main_box");
-        info_bar = (Gtk.InfoBar) builder.get_object ("info_bar");
-        info_bar_label = (Gtk.Label) builder.get_object ("info_bar_label");
-        pause_resume_button = (Gtk.Button) builder.get_object ("pause_button");
-        navigation_box = (Gtk.Box) builder.get_object ("navigation_box");
-        first_move_button = (Gtk.Button) builder.get_object ("first_move_button");
-        prev_move_button = (Gtk.Button) builder.get_object ("prev_move_button");
-        next_move_button = (Gtk.Button) builder.get_object ("next_move_button");
-        last_move_button = (Gtk.Button) builder.get_object ("last_move_button");
-        history_combo = (Gtk.ComboBox) builder.get_object ("history_combo");
-        clock_box = (Gtk.Box) builder.get_object ("clock_box");
-        white_time_label = (Gtk.DrawingArea) builder.get_object ("white_time_label");
-        black_time_label = (Gtk.DrawingArea) builder.get_object ("black_time_label");
-
-        update_pause_resume_button ();
-
-        window.add_action_entries (window_entries, this);
-        set_accels_for_action ("win." + NEW_GAME_ACTION_NAME,            {        "<Control>n"     });
-        set_accels_for_action ("win." + OPEN_GAME_ACTION_NAME,           {        "<Control>o"     });
-        set_accels_for_action ("win." + SAVE_GAME_ACTION_NAME,           {        "<Control>s"     });
-        set_accels_for_action ("win." + SAVE_GAME_AS_ACTION_NAME,        { "<Shift><Control>s"     });
-        set_accels_for_action ("win." + UNDO_MOVE_ACTION_NAME,           {        "<Control>z"     });
-        set_accels_for_action ("win." + PAUSE_RESUME_ACTION_NAME,        {        "<Control>p",
-                                                                                           "Pause" });
-        set_accels_for_action ("win." + HISTORY_GO_FIRST_ACTION_NAME,    {     "<Shift><Alt>Left"  });
-        set_accels_for_action ("win." + HISTORY_GO_PREVIOUS_ACTION_NAME, {            "<Alt>Left"  });
-        set_accels_for_action ("win." + HISTORY_GO_NEXT_ACTION_NAME,     {            "<Alt>Right" });
-        set_accels_for_action ("win." + HISTORY_GO_LAST_ACTION_NAME,     {     "<Shift><Alt>Right"  });
-
-        window.notify["default-height"].connect (window_state_changed_cb);
-        window.notify["default-width"].connect (window_state_changed_cb);
-
         add_window (window);
-
-        scene = new ChessScene ();
-        scene.is_human.connect ((p) => { return p == human_player; });
-        scene.changed.connect (scene_changed_cb);
-        scene.choose_promotion_type.connect (show_promotion_type_selector);
 
         settings.bind ("show-move-hints", scene, "show-move-hints", SettingsBindFlags.GET);
         settings.bind ("show-numbering", scene, "show-numbering", SettingsBindFlags.GET);
@@ -192,13 +148,8 @@ Copyright © 2015–2016 Sahil Sareen""";
         settings.bind ("move-format", scene, "move-format", SettingsBindFlags.GET);
         settings.bind ("board-side", scene, "board-side", SettingsBindFlags.GET);
 
-        view = new ChessView (scene);
-        view.set_size_request (100, 100);
-        main_box.insert_child_after (view, info_bar);
-        view.show ();
-
-        white_time_label.set_draw_func (draw_white_time_label);
-        black_time_label.set_draw_func (draw_black_time_label);
+        scene.is_human.connect ((p) => { return p == human_player; });
+        scene.choose_promotion_type.connect (show_promotion_type_selector);
 
         var system_engine_cfg = Path.build_filename (SYSCONFDIR, "gnome-chess", "engines.conf", null);
         var user_engine_cfg = Path.build_filename (Environment.get_user_config_dir (), "gnome-chess", "engines.conf", null);
@@ -255,33 +206,6 @@ Copyright © 2015–2016 Sahil Sareen""";
         base.shutdown ();
     }
 
-    private void set_layout_mode(LayoutMode new_layout_mode)
-    {
-        if (layout_mode == new_layout_mode)
-            return;
-
-        layout_mode = new_layout_mode;
-
-        Idle.add(() => {
-            navigation_box.set_orientation (layout_mode == LayoutMode.NORMAL ? Gtk.Orientation.HORIZONTAL : Gtk.Orientation.VERTICAL);
-            return Source.REMOVE;
-        });
-    }
-
-    private void window_state_changed_cb ()
-    {
-        if (window.fullscreened || window.maximized)
-            return;
-
-        if (window.default_width == 0 || window.default_height == 0)
-            return;
-
-        if (window.default_width <= 500 && layout_mode == LayoutMode.NORMAL)
-            set_layout_mode (LayoutMode.NARROW);
-        else if (window.default_width > 500 && layout_mode == LayoutMode.NARROW)
-            set_layout_mode (LayoutMode.NORMAL);
-    }
-
     public void quit_game ()
     {
         autosave ();
@@ -319,71 +243,9 @@ Copyright © 2015–2016 Sahil Sareen""";
         }
     }
 
-    private void update_history_panel ()
-    {
-        if (game == null)
-            return;
-
-        var move_number = scene.move_number;
-        var n_moves = (int) game.n_moves;
-        if (move_number < 0)
-            move_number += 1 + n_moves;
-
-        if (n_moves > 0 && move_number != 0 && !game.is_paused)
-            enable_window_action (HISTORY_GO_FIRST_ACTION_NAME);
-        else
-            disable_window_action (HISTORY_GO_FIRST_ACTION_NAME);
-
-        if (move_number > 0 && !game.is_paused)
-            enable_window_action (HISTORY_GO_PREVIOUS_ACTION_NAME);
-        else
-            disable_window_action (HISTORY_GO_PREVIOUS_ACTION_NAME);
-
-        if (move_number < n_moves && !game.is_paused)
-            enable_window_action (HISTORY_GO_NEXT_ACTION_NAME);
-        else
-            disable_window_action (HISTORY_GO_NEXT_ACTION_NAME);
-
-        if (n_moves > 0 && move_number != n_moves && !game.is_paused)
-            enable_window_action (HISTORY_GO_LAST_ACTION_NAME);
-        else
-            disable_window_action (HISTORY_GO_LAST_ACTION_NAME);
-
-        history_combo.sensitive = !game.is_paused;
-
-        /* Set move text for all moves (it may have changed format) */
-        int i = n_moves;
-        foreach (var state in game.move_stack)
-        {
-            if (state.last_move != null)
-            {
-                Gtk.TreeIter iter;
-                if (history_combo.model.iter_nth_child (out iter, null, i))
-                    set_move_text (iter, state.last_move);
-            }
-            i--;
-        }
-
-        history_combo.set_active (move_number);
-    }
-
-    private void scene_changed_cb (ChessScene scene)
-    {
-        update_history_panel ();
-    }
-
     private void start_game ()
     {
         starting = true;
-
-        var model = (Gtk.ListStore) history_combo.model;
-        model.clear ();
-        Gtk.TreeIter iter;
-        model.append (out iter);
-        model.set (iter, 0,
-                   /* Move History Combo: Go to the start of the game */
-                   _("Game Start"), 1, 0, -1);
-        history_combo.set_active_iter (iter);
 
         string fen = ChessGame.STANDARD_SETUP;
         string[] moves = new string[pgn_game.moves.length ()];
@@ -399,13 +261,21 @@ Copyright © 2015–2016 Sahil Sareen""";
                 warning ("Chess game has SetUp tag but no FEN tag");
         }
 
+        if (game != null)
+        {
+            game.turn_started.disconnect (game_turn_cb);
+            game.moved.disconnect (game_move_cb);
+            game.undo.disconnect (game_undo_cb);
+            game.ended.connect (game_end_cb);
+        }
+
         try
         {
             game = new ChessGame (fen, moves);
         }
         catch (Error e)
         {
-            run_invalid_move_dialog (e.message);
+            show_invalid_move_dialog (e.message);
             start_new_game ();
             return;
         }
@@ -430,10 +300,10 @@ Copyright © 2015–2016 Sahil Sareen""";
         game.moved.connect (game_move_cb);
         game.undo.connect (game_undo_cb);
         game.ended.connect (game_end_cb);
-        if (game.clock != null)
-            game.clock.tick.connect (game_clock_tick_cb);
 
         scene.game = game;
+
+        window.start_game ();
 
         var white_engine = pgn_game.white_ai;
         var white_level = pgn_game.white_level;
@@ -494,7 +364,7 @@ Copyright © 2015–2016 Sahil Sareen""";
 
             if (!opponent_engine.start ())
             {
-                disable_window_action (SAVE_GAME_ACTION_NAME);
+                disable_action (SAVE_GAME_ACTION_NAME);
                 game.result = ChessResult.BUG;
                 game.rule = ChessRule.BUG;
                 game_end_cb ();
@@ -512,12 +382,12 @@ Copyright © 2015–2016 Sahil Sareen""";
         if (game_file != null && game_file.get_path () == autosave_filename)
         {
             game_needs_saving = true;
-            enable_window_action (SAVE_GAME_ACTION_NAME);
+            enable_action (SAVE_GAME_ACTION_NAME);
         }
         else
         {
             game_needs_saving = false;
-            disable_window_action (SAVE_GAME_ACTION_NAME);
+            disable_action (SAVE_GAME_ACTION_NAME);
         }
 
         game.start ();
@@ -540,7 +410,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             pgn_game.clock_type = clock_type.to_string ();
         }
 
-        clock_box.visible = game.clock != null;
+        window.set_clock_visible (game.clock != null);
 
         if (game.clock != null)
         {
@@ -562,30 +432,27 @@ Copyright © 2015–2016 Sahil Sareen""";
         if (moves.length > 0 && game.clock != null)
         {
             game.clock.start ();
-            enable_window_action (PAUSE_RESUME_ACTION_NAME);
+            enable_action (PAUSE_RESUME_ACTION_NAME);
         }
         else
         {
-            disable_window_action (PAUSE_RESUME_ACTION_NAME);
+            disable_action (PAUSE_RESUME_ACTION_NAME);
         }
 
-        update_history_panel ();
         update_action_status ();
-        update_pause_resume_button ();
+        window.update_history_panel ();
+        window.update_pause_resume_button ();
 
         if (ai_profiles == null)
         {
-            update_game_status (null,
-                                /* Warning at start of game when no chess engine is installed. */
-                                _("No chess engine is installed. You will not be able to play against the computer."));
+            window.update_game_status (null,
+                                       /* Warning at start of game when no chess engine is installed. */
+                                       _("No chess engine is installed. You will not be able to play against the computer."));
         }
         else
         {
-            update_game_status ();
+            window.update_game_status ();
         }
-
-        white_time_label.queue_draw ();
-        black_time_label.queue_draw ();
 
         starting = false;
 
@@ -774,12 +641,6 @@ Copyright © 2015–2016 Sahil Sareen""";
          */
     }
 
-    private void game_clock_tick_cb (ChessClock clock)
-    {
-        white_time_label.queue_draw ();
-        black_time_label.queue_draw ();
-    }
-
     private void game_turn_cb (ChessGame game, ChessPlayer player)
     {
         /*
@@ -799,220 +660,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             return;
 
         if (game.clock != null)
-            enable_window_action (PAUSE_RESUME_ACTION_NAME);
-    }
-
-    private void set_move_text (Gtk.TreeIter iter, ChessMove move)
-    {
-        /* Note there are no move formats for pieces taking kings and this is not allowed in Chess rules */
-        const string human_descriptions[] = {/* Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4' */
-                                             N_("White pawn moves from %1$s to %2$s"),
-                                             /* Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s */
-                                             N_("White pawn at %1$s takes the black pawn at %2$s"),
-                                             /* Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s */
-                                             N_("White pawn at %1$s takes the black rook at %2$s"),
-                                             /* Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s */
-                                             N_("White pawn at %1$s takes the black knight at %2$s"),
-                                             /* Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s */
-                                             N_("White pawn at %1$s takes the black bishop at %2$s"),
-                                             /* Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s */
-                                             N_("White pawn at %1$s takes the black queen at %2$s"),
-                                             /* Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5' */
-                                             N_("White rook moves from %1$s to %2$s"),
-                                             /* Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s */
-                                             N_("White rook at %1$s takes the black pawn at %2$s"),
-                                             /* Human Move String: Description of a white rook at %1$s capturing a rook at %2$s */
-                                             N_("White rook at %1$s takes the black rook at %2$s"),
-                                             /* Human Move String: Description of a white rook at %1$s capturing a knight at %2$s */
-                                             N_("White rook at %1$s takes the black knight at %2$s"),
-                                             /* Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s */
-                                             N_("White rook at %1$s takes the black bishop at %2$s"),
-                                             /* Human Move String: Description of a white rook at %1$s capturing a queen at %2$s" */
-                                             N_("White rook at %1$s takes the black queen at %2$s"),
-                                             /* Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3' */
-                                             N_("White knight moves from %1$s to %2$s"),
-                                             /* Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s */
-                                             N_("White knight at %1$s takes the black pawn at %2$s"),
-                                             /* Human Move String: Description of a white knight at %1$s capturing a rook at %2$s */
-                                             N_("White knight at %1$s takes the black rook at %2$s"),
-                                             /* Human Move String: Description of a white knight at %1$s capturing a knight at %2$s */
-                                             N_("White knight at %1$s takes the black knight at %2$s"),
-                                             /* Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s */
-                                             N_("White knight at %1$s takes the black bishop at %2$s"),
-                                             /* Human Move String: Description of a white knight at %1$s capturing a queen at %2$s */
-                                             N_("White knight at %1$s takes the black queen at %2$s"),
-                                             /* Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5' */
-                                             N_("White bishop moves from %1$s to %2$s"),
-                                             /* Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s */
-                                             N_("White bishop at %1$s takes the black pawn at %2$s"),
-                                             /* Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s */
-                                             N_("White bishop at %1$s takes the black rook at %2$s"),
-                                             /* Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s */
-                                             N_("White bishop at %1$s takes the black knight at %2$s"),
-                                             /* Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s */
-                                             N_("White bishop at %1$s takes the black bishop at %2$s"),
-                                             /* Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s */
-                                             N_("White bishop at %1$s takes the black queen at %2$s"),
-                                             /* Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4' */
-                                             N_("White queen moves from %1$s to %2$s"),
-                                             /* Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s */
-                                             N_("White queen at %1$s takes the black pawn at %2$s"),
-                                             /* Human Move String: Description of a white queen at %1$s capturing a rook at %2$s */
-                                             N_("White queen at %1$s takes the black rook at %2$s"),
-                                             /* Human Move String: Description of a white queen at %1$s capturing a knight at %2$s */
-                                             N_("White queen at %1$s takes the black knight at %2$s"),
-                                             /* Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s */
-                                             N_("White queen at %1$s takes the black bishop at %2$s"),
-                                             /* Human Move String: Description of a white queen at %1$s capturing a queen at %2$s */
-                                             N_("White queen at %1$s takes the black queen at %2$s"),
-                                             /* Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1' */
-                                             N_("White king moves from %1$s to %2$s"),
-                                             /* Human Move String: Description of a white king at %1$s capturing a pawn at %2$s */
-                                             N_("White king at %1$s takes the black pawn at %2$s"),
-                                             /* Human Move String: Description of a white king at %1$s capturing a rook at %2$s */
-                                             N_("White king at %1$s takes the black rook at %2$s"),
-                                             /* Human Move String: Description of a white king at %1$s capturing a knight at %2$s */
-                                             N_("White king at %1$s takes the black knight at %2$s"),
-                                             /* Human Move String: Description of a white king at %1$s capturing a bishop at %2$s */
-                                             N_("White king at %1$s takes the black bishop at %2$s"),
-                                             /* Human Move String: Description of a white king at %1$s capturing a queen at %2$s */
-                                             N_("White king at %1$s takes the black queen at %2$s"),
-                                             /* Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6' */
-                                             N_("Black pawn moves from %1$s to %2$s"),
-                                             /* Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s */
-                                             N_("Black pawn at %1$s takes the white pawn at %2$s"),
-                                             /* Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s */
-                                             N_("Black pawn at %1$s takes the white rook at %2$s"),
-                                             /* Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s */
-                                             N_("Black pawn at %1$s takes the white knight at %2$s"),
-                                             /* Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s */
-                                             N_("Black pawn at %1$s takes the white bishop at %2$s"),
-                                             /* Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s */
-                                             N_("Black pawn at %1$s takes the white queen at %2$s"),
-                                             /* Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4' */
-                                             N_("Black rook moves from %1$s to %2$s"),
-                                             /* Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s */
-                                             N_("Black rook at %1$s takes the white pawn at %2$s"),
-                                             /* Human Move String: Description of a black rook at %1$s capturing a rook at %2$s */
-                                             N_("Black rook at %1$s takes the white rook at %2$s"),
-                                             /* Human Move String: Description of a black rook at %1$s capturing a knight at %2$s */
-                                             N_("Black rook at %1$s takes the white knight at %2$s"),
-                                             /* Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s */
-                                             N_("Black rook at %1$s takes the white bishop at %2$s"),
-                                             /* Human Move String: Description of a black rook at %1$s capturing a queen at %2$s */
-                                             N_("Black rook at %1$s takes the white queen at %2$s"),
-                                             /* Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6' */
-                                             N_("Black knight moves from %1$s to %2$s"),
-                                             /* Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s */
-                                             N_("Black knight at %1$s takes the white pawn at %2$s"),
-                                             /* Human Move String: Description of a black knight at %1$s capturing a rook at %2$s */
-                                             N_("Black knight at %1$s takes the white rook at %2$s"),
-                                             /* Human Move String: Description of a black knight at %1$s capturing a knight at %2$s */
-                                             N_("Black knight at %1$s takes the white knight at %2$s"),
-                                             /* Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s */
-                                             N_("Black knight at %1$s takes the white bishop at %2$s"),
-                                             /* Human Move String: Description of a black knight at %1$s capturing a queen at %2$s */
-                                             N_("Black knight at %1$s takes the white queen at %2$s"),
-                                             /* Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3' */
-                                             N_("Black bishop moves from %1$s to %2$s"),
-                                             /* Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s */
-                                             N_("Black bishop at %1$s takes the white pawn at %2$s"),
-                                             /* Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s */
-                                             N_("Black bishop at %1$s takes the white rook at %2$s"),
-                                             /* Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s */
-                                             N_("Black bishop at %1$s takes the white knight at %2$s"),
-                                             /* Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s */
-                                             N_("Black bishop at %1$s takes the white bishop at %2$s"),
-                                             /* Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s */
-                                             N_("Black bishop at %1$s takes the white queen at %2$s"),
-                                             /* Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5' */
-                                             N_("Black queen moves from %1$s to %2$s"),
-                                             /* Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s */
-                                             N_("Black queen at %1$s takes the white pawn at %2$s"),
-                                             /* Human Move String: Description of a black queen at %1$s capturing a rook at %2$s */
-                                             N_("Black queen at %1$s takes the white rook at %2$s"),
-                                             /* Human Move String: Description of a black queen at %1$s capturing a knight at %2$s */
-                                             N_("Black queen at %1$s takes the white knight at %2$s"),
-                                             /* Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s */
-                                             N_("Black queen at %1$s takes the white bishop at %2$s"),
-                                             /* Human Move String: Description of a black queen at %1$s capturing a queen at %2$s */
-                                             N_("Black queen at %1$s takes the white queen at %2$s"),
-                                             /* Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8' */
-                                             N_("Black king moves from %1$s to %2$s"),
-                                             /* Human Move String: Description of a black king at %1$s capturing a pawn at %2$s */
-                                             N_("Black king at %1$s takes the white pawn at %2$s"),
-                                             /* Human Move String: Description of a black king at %1$s capturing a rook at %2$s */
-                                             N_("Black king at %1$s takes the white rook at %2$s"),
-                                             /* Human Move String: Description of a black king at %1$s capturing a knight at %2$s */
-                                             N_("Black king at %1$s takes the white knight at %2$s"),
-                                             /* Human Move String: Description of a black king at %1$s capturing a bishop at %2$s */
-                                             N_("Black king at %1$s takes the white bishop at %2$s"),
-                                             /* Human Move String: Description of a black king at %1$s capturing a queen at %2$s" */
-                                             N_("Black king at %1$s takes the white queen at %2$s")};
-
-        var move_text = "";
-        switch (scene.move_format)
-        {
-        case "human":
-            if (move.castling_rook != null)
-            {
-                if (move.f0 < move.f1 && move.r0 == 0)
-                    move_text = _("White castles kingside");
-                else if (move.f1 < move.f0 && move.r0 == 0)
-                    move_text = _("White castles queenside");
-                else if (move.f0 < move.f1 && move.r0 == 7)
-                    move_text = _("Black castles kingside");
-                else if (move.f1 < move.f0 && move.r0 == 7)
-                    move_text = _("Black castles queenside");
-                else
-                    assert_not_reached ();
-            }
-            else
-            {
-                int index;
-                if (move.victim == null)
-                    index = 0;
-                else
-                    index = move.victim.type + 1;
-                index += move.piece.type * 6;
-                if (move.piece.player.color == Color.BLACK)
-                    index += 36;
-
-                var start = "%c%d".printf ('a' + move.f0, move.r0 + 1);
-                var end = "%c%d".printf ('a' + move.f1, move.r1 + 1);
-                var template = _(human_descriptions[index]);
-                if (move.en_passant)
-                {
-                    if (move.r0 < move.r1)
-                    {   /* Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s en passant */
-                        template = _("White pawn at %1$s takes the black pawn at %2$s en passant");
-                    }
-                    else
-                    {   /* Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s en passant */
-                        template = _("Black pawn at %1$s takes white pawn at %2$s en passant");
-                    }
-                }
-                move_text = template.printf (start, end);
-            }
-            break;
-
-        case "san":
-            move_text = move.get_san ();
-            break;
-
-        case "fan":
-            move_text = move.get_fan ();
-            break;
-
-        default:
-        case "lan":
-            move_text = move.get_lan ();
-            break;
-        }
-
-        var model = (Gtk.ListStore) history_combo.model;
-        var label = "%u%c. %s".printf ((move.number + 1) / 2, move.number % 2 == 0 ? 'b' : 'a', move_text);
-        model.set (iter, 0, label, -1);
+            enable_action (PAUSE_RESUME_ACTION_NAME);
     }
 
     private void update_engine_timeout ()
@@ -1042,7 +690,7 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         /* Warning: this callback is invoked several times when loading a game. */
 
-        enable_window_action (NEW_GAME_ACTION_NAME);
+        enable_action (NEW_GAME_ACTION_NAME);
 
         /* Need to save after each move */
         game_needs_saving = true;
@@ -1054,24 +702,13 @@ Copyright © 2015–2016 Sahil Sareen""";
         if (move.number > pgn_game.moves.length ())
             pgn_game.moves.append (move.get_san ());
 
-        /* Automatically return view to the present */
-        scene.move_number = -1;
+        window.move (move);
 
-        var model = (Gtk.ListStore) history_combo.model;
-        Gtk.TreeIter iter;
-        model.append (out iter);
-        model.set (iter, 1, move.number, -1);
-        set_move_text (iter, move);
-
-        /* Follow the latest move */
-        if (move.number == game.n_moves)
-            history_combo.set_active_iter (iter);
-
-        enable_window_action (SAVE_GAME_ACTION_NAME);
-        enable_window_action (SAVE_GAME_AS_ACTION_NAME);
-        update_history_panel ();
+        enable_action (SAVE_GAME_ACTION_NAME);
+        enable_action (SAVE_GAME_AS_ACTION_NAME);
         update_action_status ();
-        update_game_status ();
+        window.update_history_panel ();
+        window.update_game_status ();
 
         view.queue_draw ();
 
@@ -1108,46 +745,34 @@ Copyright © 2015–2016 Sahil Sareen""";
         pgn_game.moves.remove_link (pgn_game.moves.last ());
         pgn_game.result = PGNGame.RESULT_IN_PROGRESS;
 
-        /* Remove from the history */
-        var model = (Gtk.ListStore) history_combo.model;
-        Gtk.TreeIter iter;
-        model.iter_nth_child (out iter, null, model.iter_n_children (null) - 1);
-        model.remove (ref iter);
-
-        /* Always undo from the most recent move */
-        scene.move_number = -1;
-
-        /* Go back one */
-        model.iter_nth_child (out iter, null, model.iter_n_children (null) - 1);
-        history_combo.set_active_iter (iter);
-        view.queue_draw ();
+        window.undo ();
 
         if (game.n_moves > 0)
         {
             game_needs_saving = true;
-            enable_window_action (SAVE_GAME_ACTION_NAME);
-            enable_window_action (SAVE_GAME_AS_ACTION_NAME);
+            enable_action (SAVE_GAME_ACTION_NAME);
+            enable_action (SAVE_GAME_AS_ACTION_NAME);
         }
         else
         {
             game_needs_saving = false;
-            disable_window_action (NEW_GAME_ACTION_NAME);
-            disable_window_action (SAVE_GAME_ACTION_NAME);
-            disable_window_action (SAVE_GAME_AS_ACTION_NAME);
+            disable_action (NEW_GAME_ACTION_NAME);
+            disable_action (SAVE_GAME_ACTION_NAME);
+            disable_action (SAVE_GAME_AS_ACTION_NAME);
         }
 
-        update_history_panel ();
         update_action_status ();
-        update_game_status ();
+        window.update_history_panel ();
+        window.update_game_status ();
     }
 
     private void update_action_status ()
     {
         var can_resign = game.n_moves > 0 && !game.is_paused;
         if (can_resign)
-            enable_window_action (RESIGN_ACTION_NAME);
+            enable_action (RESIGN_ACTION_NAME);
         else
-            disable_window_action (RESIGN_ACTION_NAME);
+            disable_action (RESIGN_ACTION_NAME);
 
         /* Can undo once the human player has made a move */
         var can_undo = game.n_moves > 0 && !game.is_paused;
@@ -1155,12 +780,12 @@ Copyright © 2015–2016 Sahil Sareen""";
             can_undo = game.n_moves > 1 && !game.is_paused;
 
         if (can_undo)
-            enable_window_action (UNDO_MOVE_ACTION_NAME);
+            enable_action (UNDO_MOVE_ACTION_NAME);
         else
-            disable_window_action (UNDO_MOVE_ACTION_NAME);
+            disable_action (UNDO_MOVE_ACTION_NAME);
     }
 
-    private string compute_current_title ()
+    public string compute_current_title ()
     {
         if (human_player != null &&
             human_player.color == game.current_player.color &&
@@ -1193,7 +818,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         }
     }
 
-    private string? compute_status_info ()
+    public string? compute_status_info ()
     {
         if (game.current_state.last_move != null &&
             game.current_state.last_move.en_passant)
@@ -1209,40 +834,13 @@ Copyright © 2015–2016 Sahil Sareen""";
         return null;
     }
 
-    private void update_game_status (string? title = null, string? info = null)
-    {
-        window.title = title != null ? title : compute_current_title ();
-        info_bar_label.label = info != null ? info : compute_status_info ();
-        /* Setting the label to null actually just sets it to an empty string. */
-        info_bar.visible = info_bar_label.label != "";
-    }
-
-    private void update_pause_resume_button ()
-    {
-        if (game != null && game.clock == null)
-            pause_resume_button.hide ();
-        else
-            pause_resume_button.show ();
-
-        if (game != null && game.is_paused)
-        {
-            pause_resume_button.icon_name = "media-playback-start-symbolic";
-            pause_resume_button.tooltip_text = _("Unpause the game");
-        }
-        else
-        {
-            pause_resume_button.icon_name = "media-playback-pause-symbolic";
-            pause_resume_button.tooltip_text = _("Pause the game");
-        }
-    }
-
     private void game_end_cb ()
     {
-        disable_window_action (RESIGN_ACTION_NAME);
-        disable_window_action (PAUSE_RESUME_ACTION_NAME);
+        disable_action (RESIGN_ACTION_NAME);
+        disable_action (PAUSE_RESUME_ACTION_NAME);
 
         /* In case of engine desync before the first move, or after undo */
-        enable_window_action (NEW_GAME_ACTION_NAME);
+        enable_action (NEW_GAME_ACTION_NAME);
 
         game_needs_saving = false;
 
@@ -1353,11 +951,9 @@ Copyright © 2015–2016 Sahil Sareen""";
              break;
         }
 
-        update_game_status (what, why);
+        window.update_game_status (what, why);
+        window.end_game ();
         update_engine_timeout ();
-
-        white_time_label.queue_draw ();
-        black_time_label.queue_draw ();
     }
 
     private delegate void PromptSaveGameCallback (bool cancelled);
@@ -1524,121 +1120,14 @@ Copyright © 2015–2016 Sahil Sareen""";
         else
             game.pause ();
 
-        update_pause_resume_button ();
-        update_history_panel ();
         update_action_status ();
+        window.update_history_panel ();
+        window.update_pause_resume_button ();
     }
 
     public void quit_cb ()
     {
         quit_game ();
-    }
-
-    private void draw_white_time_label (Gtk.DrawingArea drawing_area, Cairo.Context c, int width, int height)
-    {
-        draw_time (drawing_area, c, width, height, make_clock_text (game.clock, Color.WHITE), { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 });
-    }
-
-    private void draw_black_time_label (Gtk.DrawingArea drawing_area, Cairo.Context c, int width, int height)
-    {
-        draw_time (drawing_area, c, width, height, make_clock_text (game.clock, Color.BLACK), { 1.0, 1.0, 1.0 }, { 0.0, 0.0, 0.0 });
-    }
-
-    private string make_clock_text (ChessClock? clock, Color color)
-        requires (clock != null)
-    {
-        int time;
-        if (color == Color.WHITE)
-            time = game.clock.white_remaining_seconds;
-        else
-            time = game.clock.black_remaining_seconds;
-
-        if (time >= 60)
-            return "%d∶\xE2\x80\x8E%02d".printf (time / 60, time % 60);
-        else
-            return "∶\xE2\x80\x8E%02d".printf (time);
-    }
-
-    /* Compute the largest possible size the timer label might ever want to take.
-     * The size of the characters may vary by font, but one digit will always
-     * be the largest.
-     */
-    private int compute_time_label_width_request (Cairo.Context c)
-        ensures (result > 0)
-    {
-        Cairo.TextExtents extents;
-        double max = 0;
-
-        c.text_extents ("000∶00", out extents);
-        max = (max > extents.width ? max : extents.width);
-        c.text_extents ("111∶11", out extents);
-        max = (max > extents.width ? max : extents.width);
-        c.text_extents ("222∶22", out extents);
-        max = (max > extents.width ? max : extents.width);
-        c.text_extents ("333∶33", out extents);
-        max = (max > extents.width ? max : extents.width);
-        c.text_extents ("444∶44", out extents);
-        max = (max > extents.width ? max : extents.width);
-        c.text_extents ("555∶55", out extents);
-        max = (max > extents.width ? max : extents.width);
-        c.text_extents ("666∶66", out extents);
-        max = (max > extents.width ? max : extents.width);
-        c.text_extents ("777∶77", out extents);
-        max = (max > extents.width ? max : extents.width);
-        c.text_extents ("888∶88", out extents);
-        max = (max > extents.width ? max : extents.width);
-        c.text_extents ("999∶99", out extents);
-        max = (max > extents.width ? max : extents.width);
-
-        /* Leave a little bit of room to the sides. */
-        return (int) Math.ceil (max) + 6;
-    }
-
-    private void draw_time (Gtk.Widget widget, Cairo.Context c, int width, int height, string text, double[] fg, double[] bg)
-    {
-        /* We need to draw text on our cairo context to properly compute our
-         * required size. But the only place we are able to access the cairo
-         * context is here, the draw function. And we are not allowed to set our
-         * size inside the draw function. So the best we can do is schedule the
-         * size computation and queue draw again when that's done.
-         */
-        if (widget.width_request == -1)
-        {
-            Idle.add(() => {
-                widget.set_size_request (compute_time_label_width_request (c), -1);
-                widget.queue_draw ();
-                return Source.REMOVE;
-            });
-            return;
-        }
-
-        double alpha = 1.0;
-        if ((widget.get_state_flags () & Gtk.StateFlags.INSENSITIVE) != 0)
-            alpha = 0.5;
-        c.set_source_rgba (bg[0], bg[1], bg[2], alpha);
-        c.paint ();
-
-        c.set_source_rgba (fg[0], fg[1], fg[2], alpha);
-        c.select_font_face ("fixed", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
-        c.set_font_size (0.6 * widget.get_allocated_height ());
-        Cairo.TextExtents extents;
-        c.text_extents (text, out extents);
-        c.move_to ((widget.get_allocated_width () - extents.width) / 2 - extents.x_bearing,
-                   (widget.get_allocated_height () - extents.height) / 2 - extents.y_bearing);
-        c.show_text (text);
-    }
-
-    [CCode (cname = "history_combo_changed_cb", instance_pos = -1)]
-    public void history_combo_changed_cb (Gtk.ComboBox combo)
-    {
-        Gtk.TreeIter iter;
-        if (!combo.get_active_iter (out iter))
-            return;
-        int move_number;
-        combo.model.get (iter, 1, out move_number, -1);
-        if (game == null || move_number == game.n_moves)
-            move_number = -1;
-        scene.move_number = move_number;
     }
 
     private void history_go_first_cb ()
@@ -1726,7 +1215,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         var promotion_type_selector_dialog = new PromotionTypeSelectorDialog (window,
                                                                               game.current_player.color,
                                                                               scene.theme_name,
-                                                                              layout_mode);
+                                                                              window.layout_mode);
 
         promotion_type_selector_dialog.response.connect ((response_id) => {
             switch (response_id)
@@ -1768,7 +1257,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         invalid_pgn_dialog.show ();
     }
 
-    private void run_invalid_move_dialog (string error_message)
+    private void show_invalid_move_dialog (string error_message)
     {
         var invalid_move_dialog = new Gtk.MessageDialog (window,
                                                         Gtk.DialogFlags.MODAL,
@@ -1866,7 +1355,7 @@ Copyright © 2015–2016 Sahil Sareen""";
                     game_file = save_dialog.get_file ();
                     pgn_game.write (game_file);
 
-                    disable_window_action (SAVE_GAME_ACTION_NAME);
+                    disable_action (SAVE_GAME_ACTION_NAME);
                     game_needs_saving = false;
 
                     if (callback != null)
@@ -1915,7 +1404,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         {
             pgn_game.write (game_file);
             game_needs_saving = false;
-            disable_window_action (SAVE_GAME_ACTION_NAME);
+            disable_action (SAVE_GAME_ACTION_NAME);
         }
         catch (Error e)
         {
@@ -1975,8 +1464,8 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         game_file = null;
 
-        disable_window_action (NEW_GAME_ACTION_NAME);
-        disable_window_action (SAVE_GAME_AS_ACTION_NAME);
+        disable_action (NEW_GAME_ACTION_NAME);
+        disable_action (SAVE_GAME_AS_ACTION_NAME);
 
         pgn_game = new PGNGame ();
         var now = new DateTime.now_local ();
@@ -2031,7 +1520,7 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     private void load_game (File file)
     {
-        enable_window_action (NEW_GAME_ACTION_NAME);
+        enable_action (NEW_GAME_ACTION_NAME);
 
         try
         {
@@ -2056,14 +1545,14 @@ Copyright © 2015–2016 Sahil Sareen""";
         }
     }
 
-    private void enable_window_action (string name)
+    public void enable_action (string name)
     {
-        ((SimpleAction) window.lookup_action (name)).set_enabled (true);
+        ((SimpleAction) lookup_action (name)).set_enabled (true);
     }
 
-    private void disable_window_action (string name)
+    public void disable_action (string name)
     {
-        ((SimpleAction) window.lookup_action (name)).set_enabled (false);
+        ((SimpleAction) lookup_action (name)).set_enabled (false);
     }
 
     public static int main (string[] args)
