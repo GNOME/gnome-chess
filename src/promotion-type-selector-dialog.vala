@@ -22,7 +22,7 @@ public class PromotionTypeSelectorDialog : Gtk.Dialog
     }
 
     [GtkChild]
-    private unowned Gtk.Box? button_box;
+    private unowned Gtk.Box button_box;
     [GtkChild]
     private unowned Gtk.Image queen_image;
     [GtkChild]
@@ -52,17 +52,6 @@ public class PromotionTypeSelectorDialog : Gtk.Dialog
 
         resource_path = Path.build_path ("/", "/org/gnome/Chess/pieces", theme, "%sBishop.svg".printf (color_string));
         set_piece_image (bishop_image, resource_path);
-    }
-
-    public override void dispose ()
-    {
-        if (button_box != null)
-        {
-            button_box.unparent ();
-            button_box = null;
-        }
-
-        base.dispose ();
     }
 
     private void set_piece_image (Gtk.Image image, string resource_path)

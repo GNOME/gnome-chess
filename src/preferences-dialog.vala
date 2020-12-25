@@ -18,8 +18,6 @@ public class PreferencesDialog : Gtk.Dialog
     private uint save_duration_timeout = 0;
 
     [GtkChild]
-    private unowned Gtk.Box? main_box;
-    [GtkChild]
     private unowned Gtk.CheckButton show_numbering_check;
     [GtkChild]
     private unowned Gtk.CheckButton show_move_hints_check;
@@ -115,17 +113,6 @@ public class PreferencesDialog : Gtk.Dialog
             Source.remove (save_duration_timeout);
             save_duration_cb ();
         }
-    }
-
-    public override void dispose ()
-    {
-        if (main_box != null)
-        {
-            main_box.unparent ();
-            main_box = null;
-        }
-
-        base.dispose ();
     }
 
     private void set_combo (Gtk.ComboBox combo, int value_index, string value)
