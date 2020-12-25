@@ -100,14 +100,26 @@ public class ChessScene : Object
                 animate_timeout_id = 0;
                 animating = false;
             }
+
+            if (_game != null)
+            {
+                _game.moved.disconnect (moved_cb);
+                _game.paused.disconnect (paused_cb);
+                _game.unpaused.disconnect (unpaused_cb);
+                _game.undo.disconnect (undo_cb);
+            }
+
             _game = value;
-            _move_number = -1;
-            selected_rank = -1;
-            selected_file = -1;
+
             _game.moved.connect (moved_cb);
             _game.paused.connect (paused_cb);
             _game.unpaused.connect (unpaused_cb);
             _game.undo.connect (undo_cb);
+
+            _move_number = -1;
+            selected_rank = -1;
+            selected_file = -1;
+
             update_board ();
         }
     }
