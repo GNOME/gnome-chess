@@ -1070,11 +1070,11 @@ Copyright © 2015–2016 Sahil Sareen""";
         game.pause (false);
 
         var resign_dialog = new Gtk.MessageDialog (window,
-                                               Gtk.DialogFlags.MODAL,
-                                               Gtk.MessageType.QUESTION,
-                                               Gtk.ButtonsType.NONE,
-                                               /* Title of warning dialog when player clicks Resign */
-                                               _("Are you sure you want to resign?"));
+                                                   Gtk.DialogFlags.MODAL,
+                                                   Gtk.MessageType.QUESTION,
+                                                   Gtk.ButtonsType.NONE,
+                                                   /* Title of warning dialog when player clicks Resign */
+                                                   _("Are you sure you want to resign?"));
         resign_dialog.format_secondary_text (
             /* Text on warning dialog when player clicks Resign */
             _("This makes sense if you plan to save the game as a record of your loss."));
@@ -1247,10 +1247,10 @@ Copyright © 2015–2016 Sahil Sareen""";
     private void run_invalid_pgn_dialog ()
     {
         var invalid_pgn_dialog = new Gtk.MessageDialog (window,
-                                                       Gtk.DialogFlags.MODAL,
-                                                       Gtk.MessageType.ERROR,
-                                                       Gtk.ButtonsType.NONE,
-                                                       _("This does not look like a valid PGN game."));
+                                                        Gtk.DialogFlags.MODAL,
+                                                        Gtk.MessageType.ERROR,
+                                                        Gtk.ButtonsType.NONE,
+                                                        _("This does not look like a valid PGN game."));
         invalid_pgn_dialog.add_button (_("_OK"), Gtk.ResponseType.OK);
 
         invalid_pgn_dialog.response.connect (() => invalid_pgn_dialog.destroy ());
@@ -1260,10 +1260,10 @@ Copyright © 2015–2016 Sahil Sareen""";
     private void show_invalid_move_dialog (string error_message)
     {
         var invalid_move_dialog = new Gtk.MessageDialog (window,
-                                                        Gtk.DialogFlags.MODAL,
-                                                        Gtk.MessageType.ERROR,
-                                                        Gtk.ButtonsType.NONE,
-                                                        error_message);
+                                                         Gtk.DialogFlags.MODAL,
+                                                         Gtk.MessageType.ERROR,
+                                                         Gtk.ButtonsType.NONE,
+                                                         error_message);
         invalid_move_dialog.add_button (_("_OK"), Gtk.ResponseType.OK);
 
         invalid_move_dialog.response.connect (() => invalid_move_dialog.destroy ());
