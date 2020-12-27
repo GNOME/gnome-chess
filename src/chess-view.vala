@@ -19,8 +19,6 @@ public class ChessView : Gtk.DrawingArea
     private Cairo.Surface? selected_model_surface;
     private string loaded_theme_name = "";
 
-    private Gtk.GestureClick click_controller; // for keeping in memory
-
     private ChessScene _scene;
     public ChessScene scene
     {
@@ -42,7 +40,10 @@ public class ChessView : Gtk.DrawingArea
     {
         Object (scene: scene);
 
-        init_mouse ();
+        var click_controller = new Gtk.GestureClick (); // only reacts to Gdk.BUTTON_PRIMARY
+        click_controller.pressed.connect (on_click);
+        add_controller (click_controller);
+
         set_draw_func (draw);
 
         hexpand = true;
@@ -273,13 +274,6 @@ public class ChessView : Gtk.DrawingArea
         c.rectangle (0, 0, size, size);
         c.clip ();
         c.paint_with_alpha (alpha);
-    }
-
-    private void init_mouse ()
-    {
-        click_controller = new Gtk.GestureClick ();    // only reacts to Gdk.BUTTON_PRIMARY
-        click_controller.pressed.connect (on_click);
-        add_controller (click_controller);
     }
 
     private void on_click (Gtk.GestureClick _click_controller, int n_press, double event_x, double event_y)
