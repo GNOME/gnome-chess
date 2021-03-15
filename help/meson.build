@@ -16,8 +16,7 @@ help_sources = [
 
 help_media = [
   'figures/gnome-chess-3-32.png',
-  'figures/logo.png',
-  'figures/logo32.png',
+  'figures/org.gnome.Chess.svg',
 ]
 
 gnome.yelp(meson.project_name(),
