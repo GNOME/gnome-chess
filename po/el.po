@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games.HEAD.el\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2020-12-26 11:14+0000\n"
-"PO-Revision-Date: 2020-09-11 22:19+0300\n"
+"POT-Creation-Date: 2021-02-24 14:37+0000\n"
+"PO-Revision-Date: 2021-03-18 10:23+0200\n"
 "Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
 "Language-Team: www.gnome.gr\n"
 "Language: el\n"
@@ -51,20 +51,16 @@ msgid "_New Game"
 msgstr "_Νέα παρτίδα"
 
 #: data/chess-window.ui:11
-#, fuzzy
-#| msgid "_Open Game"
 msgid "_Open Game…"
-msgstr "Ά_νοιγμα παρτίδας"
+msgstr "Ά_νοιγμα παρτίδας…"
 
 #: data/chess-window.ui:15
 msgid "_Save Game"
 msgstr "_Αποθήκευση παρτίδας"
 
 #: data/chess-window.ui:19
-#, fuzzy
-#| msgid "_Save Game"
 msgid "_Save Game As…"
-msgstr "_Αποθήκευση παρτίδας"
+msgstr "_Αποθήκευση παρτίδας ως…"
 
 #: data/chess-window.ui:25
 msgid "_Resign Game"
@@ -228,7 +224,7 @@ msgstr ""
 "και τη δυνατότητά του να αναγνωρίζει αυτόματα πολλές δημοφιλείς μηχανές, αν "
 "είναι εγκατεστημένες."
 
-#: data/org.gnome.Chess.appdata.xml.in:52
+#: data/org.gnome.Chess.appdata.xml.in:54
 msgid "The GNOME Project"
 msgstr "Το έργο GNOME"
 
@@ -634,7 +630,7 @@ msgstr "Άκυρος τύπος ρολογιού στο PGN: %s, χρήση απ
 msgid "Invalid timer increment in PGN: %s, using a simple clock."
 msgstr "Άκυρη αύξηση χρονομέτρου στο PGN: %s, χρήση απλού ρολογιού."
 
-#: src/chess-view.vala:325
+#: src/chess-view.vala:319
 msgid "Paused"
 msgstr "Παύση"
 
@@ -1097,17 +1093,15 @@ msgstr "Ροκέ μαύρων στην πλευρά της βασίλισσας"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s en passant
 #: src/chess-window.vala:483
-#, fuzzy, c-format
-#| msgid "White pawn at %1$s takes the black pawn at %2$s"
+#, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s en passant"
-msgstr "Το λευκό πιόνι στο %1$s παίρνει το μαύρο πιόνι στο %2$s"
+msgstr "Το λευκό πιόνι στο %1$s παίρνει εν διελεύσει το μαύρο πιόνι στο %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s en passant
 #: src/chess-window.vala:487
-#, fuzzy, c-format
-#| msgid "Black pawn at %1$s takes the white pawn at %2$s"
+#, c-format
 msgid "Black pawn at %1$s takes white pawn at %2$s en passant"
-msgstr "Το μαύρο πιόνι στο %1$s παίρνει το λευκό πιόνι στο %2$s"
+msgstr "Το μαύρο πιόνι στο %1$s παίρνει εν διελεύσει το λευκό πιόνι στο %2$s"
 
 #. Move History Combo: Go to the start of the game
 #: src/chess-window.vala:521
@@ -1165,20 +1159,17 @@ msgstr "Ο μαύρος σκέπτεται…"
 
 #. Game status when Black captures White's pawn en passant
 #: src/gnome-chess.vala:828
-#, fuzzy
-#| msgid "Black pawn at %1$s takes the white pawn at %2$s"
 msgid ""
 "Black captured White's pawn <span font_style='italic'>en passant</span>."
 msgstr ""
-"Το μαύρο πιόνι πήρε το λευκό <span font_style='italic'>en passant</span>."
+"Το μαύρο πιόνι πήρε το λευκό <span font_style='italic'>εν διελεύσει</span>."
 
 #. Game status when White captures Black's pawn en passant
 #: src/gnome-chess.vala:831
-#, fuzzy
 msgid ""
 "White captured Black's pawn <span font_style='italic'>en passant</span>."
 msgstr ""
-"Το λευκό πιόνι πήρε το μαύρο <span font_style='italic'>en passant</span>."
+"Το λευκό πιόνι πήρε το μαύρο <span font_style='italic'>εν διελεύσει</span>."
 
 #. Game status when the white player wins
 #: src/gnome-chess.vala:852
@@ -1212,8 +1203,6 @@ msgstr "Ο λευκός είναι σε θέση σαχ και δεν μπορε
 
 #. Game status when the game terminates due to a stalemate
 #: src/gnome-chess.vala:889
-#, fuzzy
-#| msgid "Opponent cannot move."
 msgid "Player cannot move."
 msgstr "Αδυναμία κίνησης αντιπάλου (πατ)."
 
@@ -1378,6 +1367,7 @@ msgstr ""
 " Μαρία Θουκυδίδου <marablack3@gmail.com>\n"
 " Μαρία Μαυρίδου <mavridou@gmail.com>\n"
 " Βασίλης Κοσμίδης <skyhirules@gmail.com>\n"
+" Ευστάθιος Ιωσηφίδης <iosifidis@opensuse.org>\n"
 "\n"
 "Για περισσότερες πληροφορίες, επισκεφθείτε τη σελίδα\n"
 "http://gnome.gr/"
