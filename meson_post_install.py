@@ -9,7 +9,7 @@ schemadir = os.path.join(install_prefix, 'share', 'glib-2.0', 'schemas')
 
 if not os.environ.get('DESTDIR'):
   print('Update icon cache...')
-  subprocess.call(['gtk-update-icon-cache', '-f', '-t', icondir])
+  subprocess.call(['gtk4-update-icon-cache', '-f', '-t', icondir])
 
   print('Compiling gsettings schemas...')
   subprocess.call(['glib-compile-schemas', schemadir])
