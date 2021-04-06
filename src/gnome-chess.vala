@@ -676,9 +676,9 @@ Copyright © 2015–2016 Sahil Sareen""";
         if (pgn_game.white_ai != null && game.current_player.color == Color.WHITE ||
             pgn_game.black_ai != null && game.current_player.color == Color.BLACK)
         {
-            engine_timeout_source = Timeout.add_seconds (10, () => {
+            engine_timeout_source = Timeout.add_seconds (30, () => {
                 engine_timeout_source = 0;
-                warning ("Engine did not move for 10 seconds! Game over.");
+                warning ("Engine did not move for 30 seconds! Game over.");
                 engine_error_cb (opponent_engine);
                 return Source.REMOVE;
             });
