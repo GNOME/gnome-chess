@@ -203,11 +203,6 @@ Copyright © 2015–2016 Sahil Sareen""";
         if (opponent_engine != null)
             opponent_engine.stop ();
 
-        base.shutdown ();
-    }
-
-    public void quit_game ()
-    {
         autosave ();
 
         /* Save window state */
@@ -217,8 +212,12 @@ Copyright © 2015–2016 Sahil Sareen""";
         settings.set_boolean ("maximized", window.maximized);
         settings.apply ();
 
+        base.shutdown ();
+    }
+
+    public void quit_game ()
+    {
         window.destroy ();
-        window = null;
     }
 
     private void autosave ()
