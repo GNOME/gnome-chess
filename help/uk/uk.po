@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess master\n"
-"POT-Creation-Date: 2021-03-15 14:28+0000\n"
-"PO-Revision-Date: 2021-03-15 17:24+0200\n"
+"POT-Creation-Date: 2021-04-06 18:16+0000\n"
+"PO-Revision-Date: 2021-04-07 09:00+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Lokalize 20.11.70\n"
+"X-Generator: Lokalize 20.12.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -24,7 +24,7 @@ msgstr "Юрій Чорноіван <yurchor@ukr.net>, 2020"
 
 #. (itstool) path: credit/name
 #: C/bug-filing.page:9 C/change-board-orientation.page:16 C/develop.page:10
-#: C/documentation.page:8 C/index.page:12 C/save-resume.page:16
+#: C/documentation.page:8 C/index.page:12 C/save-resume.page:17
 #: C/translate.page:11
 msgid "Tiffany Antopolski"
 msgstr "Tiffany Antopolski"
@@ -37,7 +37,7 @@ msgstr "2011"
 
 #. (itstool) path: license/p
 #: C/bug-filing.page:14 C/develop.page:15 C/documentation.page:13
-#: C/index.page:16 C/save-resume.page:25 C/translate.page:20
+#: C/index.page:16 C/save-resume.page:30 C/translate.page:20
 msgid "Creative Commons Share Alike 3.0"
 msgstr "Creative Commons Share Alike 3.0"
 
@@ -124,7 +124,7 @@ msgstr ""
 "щойно над ним попрацює хтось із розробників."
 
 #. (itstool) path: credit/name
-#: C/change-board-orientation.page:11 C/save-resume.page:12
+#: C/change-board-orientation.page:11 C/save-resume.page:13
 msgid "Brian Grohe"
 msgstr "Brian Grohe"
 
@@ -135,7 +135,7 @@ msgstr "2012"
 
 #. (itstool) path: credit/name
 #: C/change-board-orientation.page:20 C/change-look-feel.page:11
-#: C/chess-engines.page:11 C/play.page:10 C/save-resume.page:20 C/timer.page:10
+#: C/chess-engines.page:11 C/play.page:11 C/save-resume.page:21 C/timer.page:11
 msgid "Andre Klapper"
 msgstr "Андре Клаппер (Andre Klapper)"
 
@@ -203,7 +203,7 @@ msgstr ""
 "виконайте такі дії:"
 
 #. (itstool) path: item/p
-#: C/chess-engines.page:24 C/timer.page:23
+#: C/chess-engines.page:24 C/timer.page:28
 msgid ""
 "Press the menu button in the top-right corner of the window and select "
 "<guiseq><gui style=\"menuitem\">Preferences</gui> <gui style=\"menuitem"
@@ -304,8 +304,6 @@ msgstr ""
 
 #. (itstool) path: info/title
 #: C/index.page:7
-#| msgctxt "link"
-#| msgid "GNOME Chess"
 msgctxt "link:trail"
 msgid "GNOME Chess"
 msgstr "Шахи GNOME"
@@ -324,8 +322,6 @@ msgstr "Шахи GNOME"
 
 #. (itstool) path: page/title
 #: C/index.page:20
-#| msgctxt "link"
-#| msgid "GNOME Chess"
 msgid "<_:media-1/>GNOME Chess"
 msgstr "<_:media-1/>Шахи GNOME"
 
@@ -453,13 +449,19 @@ msgstr ""
 "CreativeCommons</link> або прочитайте повністю <link href=\"https://"
 "creativecommons.org/licenses/by-sa/3.0/\">Commons Deed</link>."
 
+#. (itstool) path: credit/name
+#: C/play.page:15 C/save-resume.page:25 C/timer.page:15
+msgid "Rafael Fontenelle"
+msgstr ""
+"Рафаель Фонтенелле (Rafael Fontenelle)"
+
 #. (itstool) path: page/title
-#: C/play.page:17
+#: C/play.page:22
 msgid "How to play"
 msgstr "Як грати"
 
 #. (itstool) path: page/p
-#: C/play.page:19
+#: C/play.page:24
 msgid ""
 "The player who controls the white pieces is the first to move. Click on the "
 "piece that you plan to move. If <link xref=\"change-look-feel\"><gui>Move "
@@ -476,7 +478,7 @@ msgstr ""
 "link>."
 
 #. (itstool) path: page/p
-#: C/play.page:26
+#: C/play.page:31
 msgid "Starting GNOME Chess displays the main game window as shown below."
 msgstr ""
 "Після запуску «Шахами GNOME» буде показано головне вікно програми, подібне "
@@ -487,38 +489,45 @@ msgstr ""
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/play.page:28
+#: C/play.page:33
+#| msgctxt "_"
+#| msgid ""
+#| "external ref='./figures/gnome-chess-3-32.png' "
+#| "md5='696d50257ae0cdbe240365972bf054a6'"
 msgctxt "_"
 msgid ""
-"external ref='./figures/gnome-chess-3-32.png' "
-"md5='696d50257ae0cdbe240365972bf054a6'"
+"external ref='./figures/gnome-chess-40.png' "
+"md5='8f4b73fe7ee26338e1aa0e0b5d5fbdce'"
 msgstr ""
-"external ref='./figures/gnome-chess-3-32.png' "
-"md5='696d50257ae0cdbe240365972bf054a6'"
+"external ref='./figures/gnome-chess-40.png' "
+"md5='8f4b73fe7ee26338e1aa0e0b5d5fbdce'"
 
 #. (itstool) path: media/p
-#: C/play.page:29
+#: C/play.page:34
 msgid "The main window in <app>GNOME Chess</app>"
 msgstr "Головне вікно <app>Шахів GNOME</app>"
 
 #. (itstool) path: page/p
-#: C/play.page:32
+#: C/play.page:37
 msgid "The main game window is organized in three main areas:"
 msgstr "Головне вікно програми поділено на три основні області:"
 
 #. (itstool) path: item/p
-#: C/play.page:34
+#: C/play.page:39
+#| msgid ""
+#| "In the top menu, you can start a <gui style=\"button\">New Game</gui>, "
+#| "revert your last move(s), pause the game, <link xref=\"save-resume\">save "
+#| "and resume a game</link>, and resign."
 msgid ""
-"In the top menu, you can start a <gui style=\"button\">New Game</gui>, "
-"revert your last move(s), pause the game, <link xref=\"save-resume\">save "
-"and resume a game</link>, and resign."
+"In the header bar, you can revert your last move(s) and pause the game, and "
+"in the menu button in the top-right corner of the window you can start a "
+"<gui style=\"button\">New Game</gui>, <link xref=\"save-resume\">save and "
+"resume a game</link>, and resign."
 msgstr ""
-"Верхня панель меню. За її допомогою ви можете почати <gui style=\"button"
-"\">Нову гру</gui>, скасувати ваші ходи, призупинити гру, <link xref=\"save-"
-"resume\">зберегти або відновити гру</link> і здатися."
+"За допомогою смужки заголовка вікна ви можете скасувати ваші останні ходи і призупинити гру. За допомогою кнопки меню у верхньому правому куті вікна ви можете розпочати <gui style=\"button\">Нову гру</gui>, <link xref=\"save-resume\">зберегти і поновити гру</link> або здатися."
 
 #. (itstool) path: item/p
-#: C/play.page:37
+#: C/play.page:43
 msgid ""
 "The chess board is in the middle of the window, where the game is played by "
 "moving pieces using the mouse."
@@ -527,10 +536,15 @@ msgstr ""
 "відбувається гра. Фігури можна пересувати за допомогою вказівника миші."
 
 #. (itstool) path: item/p
-#: C/play.page:39
+#: C/play.page:45
+#| msgid ""
+#| "At the bottom, the game history panel is shown and allows going back, a "
+#| "dropdown lists the history of the performed moves, and on the right the "
+#| "<link xref=\"timer\">remaining move time for each player</link> is "
+#| "displayed."
 msgid ""
 "At the bottom, the game history panel is shown and allows going back, a "
-"dropdown lists the history of the performed moves, and on the right the "
+"dropdown menu lists the history of the performed moves, and on the right the "
 "<link xref=\"timer\">remaining move time for each player</link> is displayed."
 msgstr ""
 "У нижній частині вікна буде показано панель журналу гри, за допомогою якої "
@@ -555,31 +569,35 @@ msgstr ""
 "wiki/Chess\">книга з шахів на en.wikibooks.org</link>."
 
 #. (itstool) path: page/title
-#: C/save-resume.page:29
+#: C/save-resume.page:34
 msgid "Save and resume"
 msgstr "Збереження і відновлення гри"
 
 #. (itstool) path: section/title
-#: C/save-resume.page:32
+#: C/save-resume.page:37
 msgid "Saving your game"
 msgstr "Збереження гри"
 
 #. (itstool) path: section/p
-#: C/save-resume.page:33
+#: C/save-resume.page:38
 msgid "To save your game:"
 msgstr "Щоб зберегти гру, виконайте такі дії:"
 
 #. (itstool) path: item/p
-#: C/save-resume.page:35
+#: C/save-resume.page:40
+#| msgid ""
+#| "Press the menu button in the top-right corner of the window and select "
+#| "<guiseq><gui style=\"menuitem\">Preferences</gui> <gui style=\"menuitem"
+#| "\">Game</gui></guiseq>."
 msgid ""
-"Click the <gui style=\"button\">Save the current game</gui> button in the "
-"header bar."
+"Press the menu button in the top-right corner of the window and select <gui "
+"style=\"menuitem\">Save Game</gui>."
 msgstr ""
-"Натисніть кнопку <gui style=\"button\">Зберегти поточну гру</gui> на панелі "
-"заголовка вікна програми."
+"Натисніть кнопку меню у верхньому правому куті вікна і виберіть <gui "
+"style=\"menuitem\">Зберегти гру</gui>."
 
 #. (itstool) path: item/p
-#: C/save-resume.page:36
+#: C/save-resume.page:42
 msgid ""
 "Select a location for your game. It is best to save it in a location you "
 "will easily remember for future retrieval."
@@ -588,56 +606,60 @@ msgstr ""
 "розташування якого ви зможете без проблем згодом пригадати."
 
 #. (itstool) path: item/p
-#: C/save-resume.page:37
+#: C/save-resume.page:44
 msgid "Click <gui>Save</gui>."
 msgstr "Натисніть <gui>Зберегти</gui>."
 
 #. (itstool) path: section/title
-#: C/save-resume.page:42
+#: C/save-resume.page:49
 msgid "Resuming your game"
 msgstr "Відновлення гри"
 
 #. (itstool) path: section/p
-#: C/save-resume.page:43
+#: C/save-resume.page:50
 msgid "To resume a previously saved game:"
 msgstr "Щоб відновити раніше збережену гру, виконайте такі дії:"
 
 #. (itstool) path: item/p
-#: C/save-resume.page:45
+#: C/save-resume.page:52
+#| msgid ""
+#| "Press the menu button in the top-right corner of the window and select "
+#| "<guiseq><gui style=\"menuitem\">Preferences</gui> <gui style=\"menuitem"
+#| "\">Game</gui></guiseq>."
 msgid ""
-"Click the <gui style=\"button\">Open a saved game</gui> button in the header "
-"bar."
+"Press the menu button in the top-right corner of the window and select <gui "
+"style=\"menuitem\">Open Game…</gui>."
 msgstr ""
-"Натисніть кнопку <gui style=\"button\">Відкрити збережену гру</gui> на "
-"панелі заголовка вікна програми."
+"Натисніть кнопку меню у верхньому правому куті вікна і виберіть <gui "
+"style=\"menuitem\">Відкрити гру</gui>."
 
 #. (itstool) path: item/p
-#: C/save-resume.page:46
+#: C/save-resume.page:54
 msgid "Select the file for your saved game."
 msgstr "Виберіть файл, до якого було збережено гру."
 
 #. (itstool) path: item/p
-#: C/save-resume.page:47
+#: C/save-resume.page:55
 msgid "Click <gui>Open</gui>."
 msgstr "Клацніть на <gui>«Відкрити»</gui>."
 
 #. (itstool) path: page/title
-#: C/timer.page:17
+#: C/timer.page:22
 msgid "Time limits"
 msgstr "Обмеження за часом"
 
 #. (itstool) path: page/p
-#: C/timer.page:18
+#: C/timer.page:23
 msgid "By default, there is no limit for the players."
 msgstr "Типово, гра не обмежує ходи гравців за часом."
 
 #. (itstool) path: steps/title
-#: C/timer.page:21
+#: C/timer.page:26
 msgid "To set a time limit:"
 msgstr "Щоб встановити обмеження за часом, виконайте такі дії:"
 
 #. (itstool) path: item/p
-#: C/timer.page:28
+#: C/timer.page:33
 msgid ""
 "Under <gui>Time limit</gui>, change <gui style=\"menuitem\">No limit</gui> "
 "to the time that each player has in total for the game."
@@ -647,7 +669,7 @@ msgstr ""
 "на гру."
 
 #. (itstool) path: item/p
-#: C/timer.page:31
+#: C/timer.page:36
 msgid ""
 "You can also change the <gui>Clock type</gui> if you do not want a simple "
 "clock that counts down."
@@ -656,12 +678,20 @@ msgstr ""
 "інший годинник, окрім годинника зі зворотним відліком."
 
 #. (itstool) path: page/p
-#: C/timer.page:36
+#: C/timer.page:41
 msgid ""
 "The remaining times for each player are displayed in the bottom right corner."
 msgstr ""
 "Час, який лишився у кожного з гравців, буде показано у нижньому правому куті "
 "вікна програми."
+
+#. (itstool) path: note/p
+#: C/timer.page:44
+msgid ""
+"When <gui style=\"menuitem\">No limit</gui> was set and you set a time "
+"limit, restart to remaining times in the main window."
+msgstr ""
+"Якщо було встановлено <gui style=\"menuitem\">Без обмежень</gui>, і ви встановили нове обмеження, перезапустіть програму, щоб оновити параметри часу у головному вікні."
 
 #. (itstool) path: credit/name
 #: C/translate.page:16
@@ -729,6 +759,20 @@ msgstr ""
 "Крім того, ви можете зв'язатися із командою з інтернаціоналізації за "
 "допомогою відповідного <link href=\"https://mail.gnome.org/mailman/listinfo/"
 "gnome-i18n\">списку листування</link>."
+
+#~ msgid ""
+#~ "Click the <gui style=\"button\">Save the current game</gui> button in the "
+#~ "header bar."
+#~ msgstr ""
+#~ "Натисніть кнопку <gui style=\"button\">Зберегти поточну гру</gui> на "
+#~ "панелі заголовка вікна програми."
+
+#~ msgid ""
+#~ "Click the <gui style=\"button\">Open a saved game</gui> button in the "
+#~ "header bar."
+#~ msgstr ""
+#~ "Натисніть кнопку <gui style=\"button\">Відкрити збережену гру</gui> на "
+#~ "панелі заголовка вікна програми."
 
 #~ msgctxt "_"
 #~ msgid ""
