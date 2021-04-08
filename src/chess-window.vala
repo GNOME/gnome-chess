@@ -54,8 +54,6 @@ public class ChessWindow : Gtk.ApplicationWindow
 
     private ChessApplication app;
 
-    private ulong clock_tick_signal_id = 0;
-
     [GtkChild]
     private unowned Gtk.Box main_box;
     [GtkChild]
@@ -524,15 +522,9 @@ public class ChessWindow : Gtk.ApplicationWindow
         white_time_label.queue_draw ();
         black_time_label.queue_draw ();
 
-        if (clock_tick_signal_id != 0)
-        {
-            disconnect (clock_tick_signal_id);
-            clock_tick_signal_id = 0;
-        }
-
         if (game.clock != null)
         {
-            clock_tick_signal_id = game.clock.tick.connect (() => {
+            game.clock.tick.connect (() => {
                 white_time_label.queue_draw ();
                 black_time_label.queue_draw ();
             });
