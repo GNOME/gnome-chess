@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess doc\n"
-"POT-Creation-Date: 2021-03-15 14:28+0000\n"
-"PO-Revision-Date: 2021-03-15 21:43+0100\n"
+"POT-Creation-Date: 2021-04-06 20:48+0000\n"
+"PO-Revision-Date: 2021-04-14 18:44+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #. (itstool) path: credit/name
 #: C/bug-filing.page:9 C/change-board-orientation.page:16 C/develop.page:10
-#: C/documentation.page:8 C/index.page:12 C/save-resume.page:16
+#: C/documentation.page:8 C/index.page:12 C/save-resume.page:17
 #: C/translate.page:11
 msgid "Tiffany Antopolski"
 msgstr "Tiffany Antopolski"
@@ -39,7 +39,7 @@ msgstr "2011"
 
 #. (itstool) path: license/p
 #: C/bug-filing.page:14 C/develop.page:15 C/documentation.page:13
-#: C/index.page:16 C/save-resume.page:25 C/translate.page:20
+#: C/index.page:16 C/save-resume.page:30 C/translate.page:20
 msgid "Creative Commons Share Alike 3.0"
 msgstr "Creative Commons DelaLika 3.0"
 
@@ -120,7 +120,7 @@ msgstr ""
 "uppdateras allt eftersom den hanteras."
 
 #. (itstool) path: credit/name
-#: C/change-board-orientation.page:11 C/save-resume.page:12
+#: C/change-board-orientation.page:11 C/save-resume.page:13
 msgid "Brian Grohe"
 msgstr "Brian Grohe"
 
@@ -131,7 +131,7 @@ msgstr "2012"
 
 #. (itstool) path: credit/name
 #: C/change-board-orientation.page:20 C/change-look-feel.page:11
-#: C/chess-engines.page:11 C/play.page:10 C/save-resume.page:20 C/timer.page:10
+#: C/chess-engines.page:11 C/play.page:11 C/save-resume.page:21 C/timer.page:11
 msgid "Andre Klapper"
 msgstr "Andre Klapper"
 
@@ -195,7 +195,7 @@ msgid "To change the computer engine, or to play with a friend:"
 msgstr "För att ändra spelmotor för datorn, eller för att spela med en vän:"
 
 #. (itstool) path: item/p
-#: C/chess-engines.page:24 C/timer.page:23
+#: C/chess-engines.page:24 C/timer.page:28
 msgid ""
 "Press the menu button in the top-right corner of the window and select "
 "<guiseq><gui style=\"menuitem\">Preferences</gui> <gui style=\"menuitem"
@@ -438,13 +438,18 @@ msgstr ""
 "by-sa/3.0/legalcode\">CreativeCommons webbplats</link>, eller läs <link href="
 "\"https://creativecommons.org/licenses/by-sa/3.0/\">Commons Deed</link>."
 
+#. (itstool) path: credit/name
+#: C/play.page:15 C/save-resume.page:25 C/timer.page:15
+msgid "Rafael Fontenelle"
+msgstr "Rafael Fontenelle"
+
 #. (itstool) path: page/title
-#: C/play.page:17
+#: C/play.page:22
 msgid "How to play"
 msgstr "Hur man spelar"
 
 #. (itstool) path: page/p
-#: C/play.page:19
+#: C/play.page:24
 msgid ""
 "The player who controls the white pieces is the first to move. Click on the "
 "piece that you plan to move. If <link xref=\"change-look-feel\"><gui>Move "
@@ -461,7 +466,7 @@ msgstr ""
 "link> tur."
 
 #. (itstool) path: page/p
-#: C/play.page:26
+#: C/play.page:31
 msgid "Starting GNOME Chess displays the main game window as shown below."
 msgstr "Vid start visar GNOME Schack huvudspelfönstret som visas nedan."
 
@@ -470,38 +475,40 @@ msgstr "Vid start visar GNOME Schack huvudspelfönstret som visas nedan."
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/play.page:28
+#: C/play.page:33
 msgctxt "_"
 msgid ""
-"external ref='./figures/gnome-chess-3-32.png' "
-"md5='696d50257ae0cdbe240365972bf054a6'"
+"external ref='./figures/gnome-chess-40.png' "
+"md5='8f4b73fe7ee26338e1aa0e0b5d5fbdce'"
 msgstr ""
-"external ref='./figures/gnome-chess-3-32.png' "
-"md5='696d50257ae0cdbe240365972bf054a6'"
+"external ref='./figures/gnome-chess-40.png' "
+"md5='8f4b73fe7ee26338e1aa0e0b5d5fbdce'"
 
 #. (itstool) path: media/p
-#: C/play.page:29
+#: C/play.page:34
 msgid "The main window in <app>GNOME Chess</app>"
 msgstr "Huvudfönstret i <app>GNOME Schack</app>"
 
 #. (itstool) path: page/p
-#: C/play.page:32
+#: C/play.page:37
 msgid "The main game window is organized in three main areas:"
 msgstr "Det huvudsakliga spelfönstret är uppdelat i tre huvudområden:"
 
 #. (itstool) path: item/p
-#: C/play.page:34
+#: C/play.page:39
 msgid ""
-"In the top menu, you can start a <gui style=\"button\">New Game</gui>, "
-"revert your last move(s), pause the game, <link xref=\"save-resume\">save "
-"and resume a game</link>, and resign."
+"In the header bar, you can revert your last move(s) and pause the game, and "
+"in the menu button in the top-right corner of the window you can start a "
+"<gui style=\"button\">New Game</gui>, <link xref=\"save-resume\">save and "
+"resume a game</link>, and resign."
 msgstr ""
-"I den övre menyn kan du starta ett <gui style=\"button\">Nytt spel</gui>, "
-"göra dina senaste drag ogjorda, pausa spelet, <link xref=\"save-resume"
-"\">spara och återuppta ett spel</link>, samt ge upp."
+"I rubrikraden kan du göra dina senaste drag ogjorda och pausa spelet, och i "
+"menyknappen i fönstrets övre högra hörn kan du starta ett <gui style=\"button"
+"\">Nytt spel</gui>, <link xref=\"save-resume\">spara och återuppta ett spel</"
+"link>, samt ge upp."
 
 #. (itstool) path: item/p
-#: C/play.page:37
+#: C/play.page:43
 msgid ""
 "The chess board is in the middle of the window, where the game is played by "
 "moving pieces using the mouse."
@@ -510,10 +517,10 @@ msgstr ""
 "på pjäser med musen."
 
 #. (itstool) path: item/p
-#: C/play.page:39
+#: C/play.page:45
 msgid ""
 "At the bottom, the game history panel is shown and allows going back, a "
-"dropdown lists the history of the performed moves, and on the right the "
+"dropdown menu lists the history of the performed moves, and on the right the "
 "<link xref=\"timer\">remaining move time for each player</link> is displayed."
 msgstr ""
 "Längst ner visas spelets historikpanel som tillåter dig att gå bakåt, en "
@@ -537,31 +544,31 @@ msgstr ""
 "org</link>."
 
 #. (itstool) path: page/title
-#: C/save-resume.page:29
+#: C/save-resume.page:34
 msgid "Save and resume"
 msgstr "Spara och återuppta"
 
 #. (itstool) path: section/title
-#: C/save-resume.page:32
+#: C/save-resume.page:37
 msgid "Saving your game"
 msgstr "Spara ditt spel"
 
 #. (itstool) path: section/p
-#: C/save-resume.page:33
+#: C/save-resume.page:38
 msgid "To save your game:"
 msgstr "För att spara ditt spel:"
 
 #. (itstool) path: item/p
-#: C/save-resume.page:35
+#: C/save-resume.page:40
 msgid ""
-"Click the <gui style=\"button\">Save the current game</gui> button in the "
-"header bar."
+"Press the menu button in the top-right corner of the window and select <gui "
+"style=\"menuitem\">Save Game</gui>."
 msgstr ""
-"Klicka på knappen <gui style=\"button\">Spara aktuellt spel</gui> i "
-"rubrikraden."
+"Tryck på menyknappen i fönstrets övre högra hörn och välj <gui style="
+"\"menuitem\">Spara spel</gui>."
 
 #. (itstool) path: item/p
-#: C/save-resume.page:36
+#: C/save-resume.page:42
 msgid ""
 "Select a location for your game. It is best to save it in a location you "
 "will easily remember for future retrieval."
@@ -570,56 +577,56 @@ msgstr ""
 "lätt kommer ihåg så att du kommer åt det i framtiden."
 
 #. (itstool) path: item/p
-#: C/save-resume.page:37
+#: C/save-resume.page:44
 msgid "Click <gui>Save</gui>."
 msgstr "Klicka på <gui>Spara</gui>."
 
 #. (itstool) path: section/title
-#: C/save-resume.page:42
+#: C/save-resume.page:49
 msgid "Resuming your game"
 msgstr "Återuppta ditt spel"
 
 #. (itstool) path: section/p
-#: C/save-resume.page:43
+#: C/save-resume.page:50
 msgid "To resume a previously saved game:"
 msgstr "För att återuppta ett tidigare sparat spel:"
 
 #. (itstool) path: item/p
-#: C/save-resume.page:45
+#: C/save-resume.page:52
 msgid ""
-"Click the <gui style=\"button\">Open a saved game</gui> button in the header "
-"bar."
+"Press the menu button in the top-right corner of the window and select <gui "
+"style=\"menuitem\">Open Game…</gui>."
 msgstr ""
-"Klicka på knappen <gui style=\"button\">Öppna ett sparat spel</gui> i "
-"rubrikraden."
+"Tryck på menyknappen i fönstrets övre högra hörn och välj <gui style="
+"\"menuitem\">Öppna spel…</gui>."
 
 #. (itstool) path: item/p
-#: C/save-resume.page:46
+#: C/save-resume.page:54
 msgid "Select the file for your saved game."
 msgstr "Välj filen för ditt sparade spel."
 
 #. (itstool) path: item/p
-#: C/save-resume.page:47
+#: C/save-resume.page:55
 msgid "Click <gui>Open</gui>."
 msgstr "Klicka på <gui>Öppna</gui>."
 
 #. (itstool) path: page/title
-#: C/timer.page:17
+#: C/timer.page:22
 msgid "Time limits"
 msgstr "Tidsgränser"
 
 #. (itstool) path: page/p
-#: C/timer.page:18
+#: C/timer.page:23
 msgid "By default, there is no limit for the players."
 msgstr "Som standard finns det ingen tidsgräns för spelarna."
 
 #. (itstool) path: steps/title
-#: C/timer.page:21
+#: C/timer.page:26
 msgid "To set a time limit:"
 msgstr "För att ställa in en tidsgräns:"
 
 #. (itstool) path: item/p
-#: C/timer.page:28
+#: C/timer.page:33
 msgid ""
 "Under <gui>Time limit</gui>, change <gui style=\"menuitem\">No limit</gui> "
 "to the time that each player has in total for the game."
@@ -628,7 +635,7 @@ msgstr ""
 "till den totala tiden som varje spelare ska ha för spelet."
 
 #. (itstool) path: item/p
-#: C/timer.page:31
+#: C/timer.page:36
 msgid ""
 "You can also change the <gui>Clock type</gui> if you do not want a simple "
 "clock that counts down."
@@ -637,11 +644,21 @@ msgstr ""
 "som räknar ner."
 
 #. (itstool) path: page/p
-#: C/timer.page:36
+#: C/timer.page:41
 msgid ""
 "The remaining times for each player are displayed in the bottom right corner."
 msgstr ""
 "De återstående tiderna för varje spelare visas i det nedre högra hörnet."
+
+#. (itstool) path: note/p
+#: C/timer.page:44
+msgid ""
+"When <gui style=\"menuitem\">No limit</gui> was set and you set a time "
+"limit, restart to remaining times in the main window."
+msgstr ""
+"När <gui style=\"menuitem\">Ingen gräns</gui> ställts in och du ställer in "
+"en tidsgräns, starta ett nytt spel för att visa kvarvarande tider i "
+"huvudfönstret."
 
 #. (itstool) path: credit/name
 #: C/translate.page:16
@@ -707,6 +724,20 @@ msgid ""
 msgstr ""
 "Alternativt kan du kontakta internationaliseringsgruppen via deras <link "
 "href=\"https://mail.gnome.org/mailman/listinfo/gnome-i18n\">sändlista</link>."
+
+#~ msgid ""
+#~ "Click the <gui style=\"button\">Save the current game</gui> button in the "
+#~ "header bar."
+#~ msgstr ""
+#~ "Klicka på knappen <gui style=\"button\">Spara aktuellt spel</gui> i "
+#~ "rubrikraden."
+
+#~ msgid ""
+#~ "Click the <gui style=\"button\">Open a saved game</gui> button in the "
+#~ "header bar."
+#~ msgstr ""
+#~ "Klicka på knappen <gui style=\"button\">Öppna ett sparat spel</gui> i "
+#~ "rubrikraden."
 
 #~ msgctxt "_"
 #~ msgid ""
