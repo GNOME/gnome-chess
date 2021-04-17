@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess master\n"
-"POT-Creation-Date: 2021-04-06 18:16+0000\n"
-"PO-Revision-Date: 2021-04-07 09:00+0300\n"
+"POT-Creation-Date: 2021-04-17 13:28+0000\n"
+"PO-Revision-Date: 2021-04-17 21:56+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -452,8 +452,7 @@ msgstr ""
 #. (itstool) path: credit/name
 #: C/play.page:15 C/save-resume.page:25 C/timer.page:15
 msgid "Rafael Fontenelle"
-msgstr ""
-"Рафаель Фонтенелле (Rafael Fontenelle)"
+msgstr "Рафаель Фонтенелле (Rafael Fontenelle)"
 
 #. (itstool) path: page/title
 #: C/play.page:22
@@ -490,10 +489,6 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/play.page:33
-#| msgctxt "_"
-#| msgid ""
-#| "external ref='./figures/gnome-chess-3-32.png' "
-#| "md5='696d50257ae0cdbe240365972bf054a6'"
 msgctxt "_"
 msgid ""
 "external ref='./figures/gnome-chess-40.png' "
@@ -514,17 +509,16 @@ msgstr "Головне вікно програми поділено на три 
 
 #. (itstool) path: item/p
 #: C/play.page:39
-#| msgid ""
-#| "In the top menu, you can start a <gui style=\"button\">New Game</gui>, "
-#| "revert your last move(s), pause the game, <link xref=\"save-resume\">save "
-#| "and resume a game</link>, and resign."
 msgid ""
 "In the header bar, you can revert your last move(s) and pause the game, and "
 "in the menu button in the top-right corner of the window you can start a "
 "<gui style=\"button\">New Game</gui>, <link xref=\"save-resume\">save and "
 "resume a game</link>, and resign."
 msgstr ""
-"За допомогою смужки заголовка вікна ви можете скасувати ваші останні ходи і призупинити гру. За допомогою кнопки меню у верхньому правому куті вікна ви можете розпочати <gui style=\"button\">Нову гру</gui>, <link xref=\"save-resume\">зберегти і поновити гру</link> або здатися."
+"За допомогою смужки заголовка вікна ви можете скасувати ваші останні ходи і "
+"призупинити гру. За допомогою кнопки меню у верхньому правому куті вікна ви "
+"можете розпочати <gui style=\"button\">Нову гру</gui>, <link xref=\"save-"
+"resume\">зберегти і поновити гру</link> або здатися."
 
 #. (itstool) path: item/p
 #: C/play.page:43
@@ -537,11 +531,6 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/play.page:45
-#| msgid ""
-#| "At the bottom, the game history panel is shown and allows going back, a "
-#| "dropdown lists the history of the performed moves, and on the right the "
-#| "<link xref=\"timer\">remaining move time for each player</link> is "
-#| "displayed."
 msgid ""
 "At the bottom, the game history panel is shown and allows going back, a "
 "dropdown menu lists the history of the performed moves, and on the right the "
@@ -585,16 +574,12 @@ msgstr "Щоб зберегти гру, виконайте такі дії:"
 
 #. (itstool) path: item/p
 #: C/save-resume.page:40
-#| msgid ""
-#| "Press the menu button in the top-right corner of the window and select "
-#| "<guiseq><gui style=\"menuitem\">Preferences</gui> <gui style=\"menuitem"
-#| "\">Game</gui></guiseq>."
 msgid ""
 "Press the menu button in the top-right corner of the window and select <gui "
 "style=\"menuitem\">Save Game</gui>."
 msgstr ""
-"Натисніть кнопку меню у верхньому правому куті вікна і виберіть <gui "
-"style=\"menuitem\">Зберегти гру</gui>."
+"Натисніть кнопку меню у верхньому правому куті вікна і виберіть <gui style="
+"\"menuitem\">Зберегти гру</gui>."
 
 #. (itstool) path: item/p
 #: C/save-resume.page:42
@@ -622,16 +607,12 @@ msgstr "Щоб відновити раніше збережену гру, вик
 
 #. (itstool) path: item/p
 #: C/save-resume.page:52
-#| msgid ""
-#| "Press the menu button in the top-right corner of the window and select "
-#| "<guiseq><gui style=\"menuitem\">Preferences</gui> <gui style=\"menuitem"
-#| "\">Game</gui></guiseq>."
 msgid ""
 "Press the menu button in the top-right corner of the window and select <gui "
 "style=\"menuitem\">Open Game…</gui>."
 msgstr ""
-"Натисніть кнопку меню у верхньому правому куті вікна і виберіть <gui "
-"style=\"menuitem\">Відкрити гру</gui>."
+"Натисніть кнопку меню у верхньому правому куті вікна і виберіть <gui style="
+"\"menuitem\">Відкрити гру</gui>."
 
 #. (itstool) path: item/p
 #: C/save-resume.page:54
@@ -687,11 +668,15 @@ msgstr ""
 
 #. (itstool) path: note/p
 #: C/timer.page:44
+#| msgid ""
+#| "When <gui style=\"menuitem\">No limit</gui> was set and you set a time "
+#| "limit, restart to remaining times in the main window."
 msgid ""
 "When <gui style=\"menuitem\">No limit</gui> was set and you set a time "
-"limit, restart to remaining times in the main window."
+"limit, start a new game to display remaining times in the main window."
 msgstr ""
-"Якщо було встановлено <gui style=\"menuitem\">Без обмежень</gui>, і ви встановили нове обмеження, перезапустіть програму, щоб оновити параметри часу у головному вікні."
+"Якщо було встановлено <gui style=\"menuitem\">Без обмежень</gui>, і ви "
+"встановили нове обмеження, почніть нову гру, щоб програма почала показувати залишковий час у головному вікні."
 
 #. (itstool) path: credit/name
 #: C/translate.page:16
