@@ -15,7 +15,7 @@ help_sources = [
 ]
 
 help_media = [
-  'figures/gnome-chess-3-32.png',
+  'figures/gnome-chess-40.png',
   'figures/org.gnome.Chess.svg',
 ]
 
