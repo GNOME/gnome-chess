@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Chess HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2021-04-29 15:03+0000\n"
-"PO-Revision-Date: 2021-06-01 20:25+0200\n"
+"POT-Creation-Date: 2021-06-01 18:28+0000\n"
+"PO-Revision-Date: 2021-11-10 18:21+0100\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: Tot En Òc\n"
 "Language: oc\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0\n"
 "X-Project-Style: gnome\n"
 
 #: data/chess-window.ui:7
@@ -134,8 +134,6 @@ msgid "History"
 msgstr "Istòria"
 
 #: data/help-overlay.ui:68
-#, fuzzy
-#| msgid "Rewind to the game start"
 msgctxt "shortcut window"
 msgid "Rewind to the game start"
 msgstr "Tornar al començament de la partida"
@@ -187,11 +185,6 @@ msgstr ""
 "tres nivèls de dificultat diferents o contra un amic."
 
 #: data/org.gnome.Chess.appdata.xml.in:14
-#, fuzzy
-#| msgid ""
-#| "Computer chess enthusiasts will appreciate GNOME Chess's compatibility "
-#| "with nearly all modern computer chess engines, and its ability to detect "
-#| "several popular engines automatically if installed."
 msgid ""
 "Computer chess enthusiasts will appreciate GNOME Chess’s compatibility with "
 "nearly all modern computer chess engines, and its ability to detect several "
@@ -591,8 +584,8 @@ msgstr "Lo cargament del PGN a fracassat : lo desplaçament %s es pas valable.
 
 #: lib/chess-pgn.vala:248 lib/chess-pgn.vala:253 lib/chess-pgn.vala:260
 #, c-format
-msgid "Invalid %s : %s in PGN, setting timer to infinity."
-msgstr "Sequéncia %s : %s pas valable dins lo PGN, relòtge sens limit."
+msgid "Invalid %s : %s in PGN, setting timer to infinity."
+msgstr "%s invalida : %s dins lo PGN, relòtge sens limit."
 
 #: lib/chess-pgn.vala:267
 #, c-format
@@ -1071,15 +1064,13 @@ msgstr "Los negres fan lo grand ròc (costat reina)"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s en passant
 #: src/chess-window.vala:481
-#, fuzzy, c-format
-#| msgid "White pawn at %1$s takes the black pawn at %2$s"
+#, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s en passant"
 msgstr "Lo pion blanc en %1$s pren lo pion negre en %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s en passant
 #: src/chess-window.vala:485
-#, fuzzy, c-format
-#| msgid "Black pawn at %1$s takes the white pawn at %2$s"
+#, c-format
 msgid "Black pawn at %1$s takes white pawn at %2$s en passant"
 msgstr "Lo pion negre en %1$s pren lo pion blanc en %2$s"
 
@@ -1192,12 +1183,9 @@ msgstr ""
 
 #. Game status when the game is drawn due to the 75 move rule
 #: src/gnome-chess.vala:896
-#, fuzzy
-#| msgid "No piece was taken or pawn moved in fifty moves."
 msgid "No piece was taken or pawn moved in 75 moves."
 msgstr ""
-"Cap de pèça es pas estada presa e cap de pion a pas bolegat en cinquanta "
-"còps."
+"Cap de pèça es pas estada presa e cap de pion a pas bolegat en 75 còps."
 
 #. Game status when the game ends due to Black's clock stopping
 #: src/gnome-chess.vala:901
@@ -1216,10 +1204,8 @@ msgstr "Una meteissa posicion s'es produita tres còps de suita."
 
 #. Game status when the game is drawn due to the five-fold-repetition rule
 #: src/gnome-chess.vala:914
-#, fuzzy
-#| msgid "The same board state has occurred three times."
 msgid "The same board state has occurred five times."
-msgstr "Una meteissa posicion s'es produita tres còps de suita."
+msgstr "Una meteissa posicion s'es producha cinc còps de seguida."
 
 #. Game status when the game is drawn due to the insufficient material rule
 #: src/gnome-chess.vala:918
