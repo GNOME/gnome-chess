@@ -27,7 +27,7 @@ public const string HELP_ACTION_NAME = "help";
 public const string ABOUT_ACTION_NAME = "about";
 public const string QUIT_ACTION_NAME = "quit";
 
-public class ChessApplication : Gtk.Application
+public class ChessApplication : Adw.Application
 {
     private GLib.Settings settings;
 

@@ -22,6 +22,7 @@ chess_deps = [
   glib,
   gmodule,
   gtk,
+  libadwaita,
   librsvg,
   posix,
   libchess_dep,
