@@ -33,7 +33,7 @@ gio = dependency('gio-unix-2.0', version: '>=' + min_glib_version)
 glib = dependency('glib-2.0', version: '>=' + min_glib_version)
 gmodule = dependency('gmodule-2.0', version: '>=' + min_glib_version)
 gtk = dependency('gtk4')
-libadwaita = dependency('libadwaita-1')
+libadwaita = dependency('libadwaita-1', version: '>= 1.0.0.alpha.3')
 librsvg = dependency('librsvg-2.0', version: '>= 2.46.0')
 
 posix = meson.get_compiler('vala').find_library('posix')
