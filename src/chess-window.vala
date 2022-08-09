@@ -247,14 +247,26 @@ public class ChessWindow : Gtk.ApplicationWindow
         c.set_source_rgba (bg[0], bg[1], bg[2], alpha);
         c.paint ();
 
+        var pango_context = Pango.cairo_create_context (c);
+        Pango.cairo_context_set_font_options (pango_context, get_font_options ());
+        var layout = new Pango.Layout (pango_context);
+        layout.set_font_description (Pango.FontDescription.from_string ("Sans Bold 14"));
+        layout.set_text (text, -1);
+
+        // https://docs.microsoft.com/en-us/typography/opentype/spec/features_pt#tnum
+        var attributes = new Pango.AttrList ();
+        attributes.insert (new Pango.AttrFontFeatures ("tnum=1"));
+        layout.set_attributes (attributes);
+
+        int layout_width;
+        int layout_height;
+        layout.get_size (out layout_width, out layout_height);
+        layout_width /= Pango.SCALE;
+        layout_height /= Pango.SCALE;
+        c.move_to ((widget.get_allocated_width () - layout_width) / 2,
+                   (widget.get_allocated_height () - layout_height) / 2);
         c.set_source_rgba (fg[0], fg[1], fg[2], alpha);
-        c.select_font_face ("fixed", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
-        c.set_font_size (0.6 * widget.get_allocated_height ());
-        Cairo.TextExtents extents;
-        c.text_extents (text, out extents);
-        c.move_to ((widget.get_allocated_width () - extents.width) / 2 - extents.x_bearing,
-                   (widget.get_allocated_height () - extents.height) / 2 - extents.y_bearing);
-        c.show_text (text);
+        Pango.cairo_show_layout (c, layout);
     }
 
     private string make_clock_text (ChessClock? clock, Color color)
@@ -266,6 +278,7 @@ public class ChessWindow : Gtk.ApplicationWindow
         else
             time = clock.black_remaining_seconds;
 
+        // E2 80 8E is the left-to-right mark.
         if (time >= 60)
             return "%d∶\xE2\x80\x8E%02d".printf (time / 60, time % 60);
         else

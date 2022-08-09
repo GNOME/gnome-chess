@@ -24,6 +24,7 @@ chess_deps = [
   gtk,
   libadwaita,
   librsvg,
+  pangocairo,
   posix,
   libchess_dep,
   libengine_dep,

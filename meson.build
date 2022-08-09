@@ -35,6 +35,7 @@ gmodule = dependency('gmodule-2.0', version: '>=' + min_glib_version)
 gtk = dependency('gtk4')
 libadwaita = dependency('libadwaita-1', version: '>= 1.0.0.alpha.3')
 librsvg = dependency('librsvg-2.0', version: '>= 2.46.0')
+pangocairo = dependency('pangocairo')
 
 posix = meson.get_compiler('vala').find_library('posix')
 
