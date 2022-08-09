@@ -1,7 +1,7 @@
 project('gnome-chess', [ 'vala', 'c' ],
   version: '42.0',
   license: 'GPL3+',
-  meson_version: '>= 0.50',
+  meson_version: '>= 0.56',
 )
 application_id = 'org.gnome.Chess'
 gnome = import('gnome')
@@ -10,7 +10,7 @@ i18n = import('i18n')
 # Add our config VAPI
 add_project_arguments(
   [
-    '--vapidir', join_paths(meson.source_root(), 'src'),
+    '--vapidir', join_paths(meson.project_source_root(), 'src'),
     '--pkg', 'config',
   ],
   language: 'vala'
@@ -23,7 +23,7 @@ datadir = join_paths(get_option('prefix'), get_option('datadir'))
 pkgdatadir = join_paths(datadir, meson.project_name())
 sysconfdir = join_paths(get_option('prefix'), get_option('sysconfdir'))
 pkgsysconfdir = join_paths(sysconfdir, meson.project_name())
-po_dir = join_paths(meson.source_root(), 'po')
+po_dir = join_paths(meson.project_source_root(), 'po')
 bindir = join_paths(get_option('prefix'), get_option('bindir'))
 
 # Dependencies
