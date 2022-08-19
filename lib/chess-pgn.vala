@@ -262,7 +262,7 @@ public class PGN : Object
                 game.tags.insert ("X-GNOME-BlackTimeLeft", tag_value);
             break;
         case "X-GNOME-ClockType":
-            if (ClockType.string_to_enum (tag_value) == ClockType.INVALID)
+            if (ChessClockType.string_to_enum (tag_value) == ChessClockType.INVALID)
             {
                 warning (_("Invalid clock type in PGN: %s, using a simple clock."), tag_value);
                 game.tags.insert ("X-GNOME-ClockType", "simple");

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <template class="PreferencesWindow" parent="AdwPreferencesWindow">
+    <property name="search-enabled">false</property>
+    <property name="hide-on-close">true</property>
+    <property name="default_width">400</property>
+    <property name="default_height">380</property>
+    <child>
+      <object class="AdwPreferencesPage">
+        <child>
+          <object class="AdwPreferencesGroup">
+            <child>
+              <object class="AdwComboRow" id="board_orientation_combo">
+                <property name="title" translatable="yes">_Board Orientation</property>
+                <property name="use-underline">true</property>
+                <property name="model">
+                  <object class="AdwEnumListModel">
+                    <property name="enum-type">BoardOrientation</property>
+                  </object>
+                </property>
+                <property name="expression">
+                  <closure type="gchararray" function="board_orientation_display_name_cb" swapped="true" />
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwComboRow" id="move_format_combo">
+                <property name="title" translatable="yes">_Move Format</property>
+                <property name="use-underline">true</property>
+                <property name="model">
+                  <object class="AdwEnumListModel">
+                    <property name="enum-type">MoveFormat</property>
+                  </object>
+                </property>
+                <property name="expression">
+                  <closure type="gchararray" function="move_format_display_name_cb" swapped="true" />
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwComboRow" id="piece_style_combo">
+                <property name="title" translatable="yes">_Piece Style</property>
+                <property name="use-underline">true</property>
+                <property name="model">
+                  <object class="AdwEnumListModel">
+                    <property name="enum-type">PieceStyle</property>
+                  </object>
+                </property>
+                <property name="expression">
+                  <closure type="gchararray" function="piece_style_display_name_cb" swapped="true" />
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Board _Numbering</property>
+                <property name="use-underline">true</property>
+                <property name="activatable_widget">board_numbering_switch</property>
+                <child>
+                  <object class="GtkSwitch" id="board_numbering_switch">
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Move _Hints</property>
+                <property name="use-underline">true</property>
+                <property name="activatable_widget">move_hints_switch</property>
+                <child>
+                  <object class="GtkSwitch" id="move_hints_switch">
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

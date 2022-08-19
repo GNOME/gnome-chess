@@ -30,6 +30,7 @@ public const string QUIT_ACTION_NAME = "quit";
 public class ChessApplication : Adw.Application
 {
     private GLib.Settings settings;
+    private Preferences preferences;
 
     public unowned ChessWindow window
     {
@@ -46,7 +47,8 @@ public class ChessApplication : Adw.Application
         get { return view.scene; }
     }
 
-    private PreferencesDialog? preferences_dialog = null;
+    private NewGameWindow? new_game_window = null;
+    private PreferencesWindow? preferences_window = null;
     private Gtk.AboutDialog? about_dialog = null;
     private Gtk.FileChooserNative? open_dialog = null;
     private Gtk.FileChooserNative? save_dialog = null;
@@ -119,6 +121,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         base.startup ();
 
         settings = new Settings ("org.gnome.Chess");
+        preferences = new Preferences (settings);
 
         add_action_entries (action_entries, this);
         set_accels_for_action ("app." + NEW_GAME_ACTION_NAME,            {        "<Control>n"     });
@@ -137,16 +140,16 @@ Copyright © 2015–2016 Sahil Sareen""";
                                                                                   "<Control>w"     });
 
         window = new ChessWindow (this);
-        window.set_default_size (settings.get_int ("width"), settings.get_int ("height"));
-        if (settings.get_boolean ("maximized"))
+        window.set_default_size (settings.get_int (WIDTH_SETTINGS_KEY), settings.get_int (HEIGHT_SETTINGS_KEY));
+        if (settings.get_boolean (MAXIMIZED_SETTINGS_KEY))
             window.maximize ();
         add_window (window);
 
-        settings.bind ("show-move-hints", scene, "show-move-hints", SettingsBindFlags.GET);
-        settings.bind ("show-numbering", scene, "show-numbering", SettingsBindFlags.GET);
-        settings.bind ("piece-theme", scene, "theme-name", SettingsBindFlags.GET);
-        settings.bind ("move-format", scene, "move-format", SettingsBindFlags.GET);
-        settings.bind ("board-side", scene, "board-side", SettingsBindFlags.GET);
+        settings.bind (SHOW_MOVE_HINTS_SETTINGS_KEY, scene, "show-move-hints", SettingsBindFlags.GET);
+        settings.bind (SHOW_BOARD_NUMBERING_SETTINGS_KEY, scene, "show-numbering", SettingsBindFlags.GET);
+        settings.bind (PIECE_STYLE_SETTINGS_KEY, scene, "theme-name", SettingsBindFlags.GET);
+        settings.bind (MOVE_FORMAT_SETTINGS_KEY, scene, "move-format", SettingsBindFlags.GET);
+        settings.bind (BOARD_ORIENTATION_SETTINGS_KEY, scene, "board-side", SettingsBindFlags.GET);
 
         scene.is_human.connect ((p) => { return p == human_player; });
         scene.choose_promotion_type.connect (show_promotion_type_selector);
@@ -207,9 +210,9 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         /* Save window state */
         settings.delay ();
-        settings.set_int ("width", window.default_width);
-        settings.set_int ("height", window.default_height);
-        settings.set_boolean ("maximized", window.maximized);
+        settings.set_int (WIDTH_SETTINGS_KEY, window.default_width);
+        settings.set_int (HEIGHT_SETTINGS_KEY, window.default_height);
+        settings.set_boolean (MAXIMIZED_SETTINGS_KEY, window.maximized);
         settings.apply ();
 
         base.shutdown ();
@@ -275,7 +278,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         catch (Error e)
         {
             show_invalid_move_dialog (e.message);
-            start_new_game ();
+            configure_new_game ();
             return;
         }
 
@@ -396,16 +399,16 @@ Copyright © 2015–2016 Sahil Sareen""";
             timer_increment_adj_value = int.parse (pgn_game.timer_increment);
         else
         {
-            timer_increment_adj_value = settings.get_int ("timer-increment");
+            timer_increment_adj_value = settings.get_int (INCREMENT_SETTINGS_KEY);
             pgn_game.timer_increment = timer_increment_adj_value.to_string ();
         }
 
-        ClockType clock_type = ClockType.SIMPLE;
+        ChessClockType clock_type = ChessClockType.SIMPLE;
         if (pgn_game.clock_type != null)
-            clock_type = ClockType.string_to_enum (pgn_game.clock_type);
+            clock_type = ChessClockType.string_to_enum (pgn_game.clock_type);
         else
         {
-            clock_type = ClockType.string_to_enum (settings.get_string ("clock-type"));
+            clock_type = ChessClockType.string_to_enum (settings.get_string (CLOCK_TYPE_SETTINGS_KEY));
             pgn_game.clock_type = clock_type.to_string ();
         }
 
@@ -689,8 +692,6 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         /* Warning: this callback is invoked several times when loading a game. */
 
-        enable_action (NEW_GAME_ACTION_NAME);
-
         /* Need to save after each move */
         game_needs_saving = true;
 
@@ -755,7 +756,6 @@ Copyright © 2015–2016 Sahil Sareen""";
         else
         {
             game_needs_saving = false;
-            disable_action (NEW_GAME_ACTION_NAME);
             disable_action (SAVE_GAME_ACTION_NAME);
             disable_action (SAVE_GAME_AS_ACTION_NAME);
         }
@@ -837,9 +837,6 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         disable_action (RESIGN_ACTION_NAME);
         disable_action (PAUSE_RESUME_ACTION_NAME);
-
-        /* In case of engine desync before the first move, or after undo */
-        enable_action (NEW_GAME_ACTION_NAME);
 
         game_needs_saving = false;
 
@@ -1060,7 +1057,7 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         prompt_save_game (_("Save this game before starting a new one?"), (cancelled) => {
             if (!cancelled)
-                start_new_game ();
+                configure_new_game ();
         });
     }
 
@@ -1162,17 +1159,29 @@ Copyright © 2015–2016 Sahil Sareen""";
         scene.move_number = -1;
     }
 
-    private void preferences_cb ()
+    private void configure_new_game ()
     {
-        if (preferences_dialog != null)
+        if (new_game_window != null)
         {
-            preferences_dialog.show ();
+            new_game_window.show ();
             return;
         }
 
-        preferences_dialog = new PreferencesDialog (window, settings, ai_profiles);
-        preferences_dialog.response.connect (() => preferences_dialog.hide ());
-        preferences_dialog.show ();
+        new_game_window = new NewGameWindow (window, preferences, ai_profiles);
+        new_game_window.new_game_requested.connect (() => start_new_game ());
+        new_game_window.show ();
+    }
+
+    private void preferences_cb ()
+    {
+        if (preferences_window != null)
+        {
+            preferences_window.show ();
+            return;
+        }
+
+        preferences_window = new PreferencesWindow (window, preferences);
+        preferences_window.show ();
     }
 
     public void help_cb ()
@@ -1463,21 +1472,20 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         game_file = null;
 
-        disable_action (NEW_GAME_ACTION_NAME);
         disable_action (SAVE_GAME_AS_ACTION_NAME);
 
         pgn_game = new PGNGame ();
         var now = new DateTime.now_local ();
         pgn_game.date = now.format ("%Y.%m.%d");
         pgn_game.time = now.format ("%H:%M:%S");
-        var duration = settings.get_int ("duration");
+        var duration = settings.get_int (DURATION_SETTINGS_KEY);
         if (duration > 0)
         {
             pgn_game.time_control = duration.to_string ();
             pgn_game.white_time_left = duration.to_string ();
             pgn_game.black_time_left = duration.to_string ();
         }
-        var engine_name = settings.get_string ("opponent");
+        var engine_name = settings.get_string (OPPONENT_SETTINGS_KEY);
         if (engine_name == "")
         {
             if (ai_profiles != null)
@@ -1485,14 +1493,14 @@ Copyright © 2015–2016 Sahil Sareen""";
             else
                 engine_name = "human";
         }
-        var engine_level = settings.get_string ("difficulty");
+        var engine_level = settings.get_string (DIFFICULTY_SETTINGS_KEY);
         if (engine_name != null && engine_name != "human")
         {
-            var play_as = settings.get_string ("play-as");
+            var play_as = settings.get_string (PLAY_AS_SETTINGS_KEY);
 
             if (play_as == "alternate")
             {
-                var last_side = settings.get_string ("last-played-as");
+                var last_side = settings.get_string (LAST_PLAYED_AS_SETTINGS_KEY);
                 play_as = (last_side == "white" ? "black" : "white");
             }
 
@@ -1511,7 +1519,7 @@ Copyright © 2015–2016 Sahil Sareen""";
                 assert_not_reached ();
             }
 
-            settings.set_string ("last-played-as", play_as);
+            settings.set_string (LAST_PLAYED_AS_SETTINGS_KEY, play_as);
         }
 
         start_game ();
@@ -1519,8 +1527,6 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     private void load_game (File file)
     {
-        enable_action (NEW_GAME_ACTION_NAME);
-
         try
         {
             var pgn = new PGN.from_file (file);

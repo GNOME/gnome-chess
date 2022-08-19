@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <template class="NewGameWindow" parent="AdwPreferencesWindow">
+    <property name="title" translatable="yes">New Game</property>
+    <property name="hide-on-close">true</property>
+    <property name="modal">true</property>
+    <property name="search-enabled">false</property>
+    <property name="default_width">400</property>
+    <property name="default_height">550</property>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="AdwHeaderBar">
+            <property name="show-start-title-buttons">false</property>
+            <property name="show-end-title-buttons">false</property>
+            <child type="start">
+              <object class="GtkButton">
+                <property name="label" translatable="yes">_Cancel</property>
+                <property name="valign">center</property>
+                <property name="use-underline">true</property>
+                <signal name="clicked" handler="gtk_window_close" object="NewGameWindow" swapped="yes"/>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkButton">
+                <property name="label" translatable="yes">_Start</property>
+                <property name="valign">center</property>
+                <property name="use-underline">true</property>
+                <signal name="clicked" handler="start_game_cb" />
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesPage">
+            <child>
+              <object class="AdwPreferencesGroup">
+                <child>
+                  <object class="AdwComboRow" id="opponent_combo">
+                    <property name="title" translatable="yes">_Opposing Player</property>
+                    <property name="use-underline">true</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwComboRow" id="play_as_combo">
+                    <property name="title" translatable="yes">_Play As</property>
+                    <property name="use-underline">true</property>
+                    <property name="model">
+                      <object class="AdwEnumListModel">
+                        <property name="enum-type">PlayAs</property>
+                      </object>
+                    </property>
+                    <property name="expression">
+                      <closure type="gchararray" function="play_as_display_name_cb" swapped="true" />
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwComboRow" id="difficulty_combo">
+                    <property name="title" translatable="yes">_Difficulty</property>
+                    <property name="use-underline">true</property>
+                    <property name="model">
+                      <object class="AdwEnumListModel">
+                        <property name="enum-type">Difficulty</property>
+                      </object>
+                    </property>
+                    <property name="expression">
+                      <closure type="gchararray" function="difficulty_display_name_cb" swapped="true" />
+                    </property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup">
+                <property name="title">Time Limit</property>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">_Use Time Limit</property>
+                    <property name="use-underline">true</property>
+                    <property name="activatable_widget">time_limit_switch</property>
+                    <child>
+                      <object class="GtkSwitch" id="time_limit_switch">
+                        <property name="valign">center</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">_Minutes Per Side</property>
+                    <property name="use-underline">true</property>
+                    <property name="sensitive" bind-source="time_limit_switch" bind-property="active" bind-flags="default|sync-create" />
+                    <property name="activatable-widget">duration_spin</property>
+                    <child>
+                      <object class="GtkSpinButton" id="duration_spin">
+                        <property name="valign">center</property>
+                        <property name="adjustment">
+                          <object class="GtkAdjustment">
+                            <property name="lower">1</property>
+                            <property name="step-increment">1</property>
+                            <property name="upper">600</property>
+                          </object>
+                        </property>
+                        <property name="value">5.0</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">_Increment In Seconds</property>
+                    <property name="use-underline">true</property>
+                    <property name="sensitive" bind-source="time_limit_switch" bind-property="active" bind-flags="default|sync-create" />
+                    <property name="activatable-widget">increment_spin</property>
+                    <child>
+                      <object class="GtkSpinButton" id="increment_spin">
+                        <property name="valign">center</property>
+                        <property name="adjustment">
+                          <object class="GtkAdjustment">
+                            <property name="lower">0</property>
+                            <property name="step-increment">1</property>
+                            <property name="upper">600</property>
+                          </object>
+                        </property>
+                        <property name="value">0</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwComboRow" id="clock_type_combo" >
+                    <property name="title" translatable="yes">Clock _Type</property>
+                    <property name="use-underline">true</property>
+                    <property name="sensitive" bind-source="time_limit_switch" bind-property="active" bind-flags="default|sync-create" />
+                    <property name="model">
+                      <object class="AdwEnumListModel">
+                        <property name="enum-type">ClockType</property>
+                      </object>
+                    </property>
+                    <property name="expression">
+                      <closure type="gchararray" function="clock_type_display_name_cb" swapped="true" />
+                    </property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

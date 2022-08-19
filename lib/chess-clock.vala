@@ -11,7 +11,7 @@
  * license.
  */
 
-public enum ClockType
+public enum ChessClockType
 {
     SIMPLE,
     FISCHER,
@@ -33,7 +33,7 @@ public enum ClockType
         }
     }
 
-    public static ClockType string_to_enum (string s)
+    public static ChessClockType string_to_enum (string s)
     {
         switch (s)
         {
@@ -75,7 +75,7 @@ public class ChessClock : Object
         get { return black_initial_seconds + black_extra_seconds - black_seconds_used; }
     }
 
-    public ClockType clock_type { get; set; default = ClockType.SIMPLE; }
+    public ChessClockType clock_type { get; set; default = ChessClockType.SIMPLE; }
 
     private Color _active_color = Color.WHITE;
     public Color active_color
@@ -206,13 +206,13 @@ public class ChessClock : Object
         int white_move_used = 0, black_move_used = 0;
         switch (clock_type)
         {
-        case ClockType.FISCHER:
+        case ChessClockType.FISCHER:
             if (active_color == Color.WHITE)
                 white_extra_seconds += extra_seconds;
             else
                 black_extra_seconds += extra_seconds;
             break;
-        case ClockType.BRONSTEIN:
+        case ChessClockType.BRONSTEIN:
             white_move_used = white_seconds_used - white_prev_move_seconds;
             black_move_used = black_seconds_used - black_prev_move_seconds;
             if (active_color != Color.WHITE)
