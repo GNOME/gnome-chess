@@ -1,5 +1,5 @@
 # Hungarian translation for gnome-chess.
-# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2019, 2020 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2019, 2020, 2022 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-chess package.
 #
 # sakk szakkifejezés-ügyi kisokos: http://mek.oszk.hu/00000/00056/html/141.htm
@@ -11,26 +11,166 @@
 # Laszlo Dvornik <dvornik at gnome dot hu>, 2004.
 # Szabolcs Varga <shirokuma at shirokuma dot hu>, 2005.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015.
-# Balázs Úr <ur.balazs at fsf dot hu>, 2013, 2015, 2016, 2019, 2020.
+# Balázs Úr <ur.balazs at fsf dot hu>, 2013, 2015, 2016, 2019, 2020, 2022.
 # Balázs Meskó <mesko.balazs at fsf dot hu>, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2020-12-26 11:14+0000\n"
-"PO-Revision-Date: 2021-02-12 16:58+0100\n"
-"Last-Translator: Meskó Balázs <mesko.balazs@fsf.hu>\n"
+"POT-Creation-Date: 2022-08-20 12:24+0000\n"
+"PO-Revision-Date: 2022-09-01 01:55+0200\n"
+"Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Lokalize 19.12.3\n"
+
+#: data/org.gnome.Chess.appdata.xml.in:7
+msgid "GNOME Chess"
+msgstr "GNOME Sakk"
+
+#: data/org.gnome.Chess.appdata.xml.in:8 data/org.gnome.Chess.desktop.in:5
+msgid "Play the classic two-player board game of chess"
+msgstr "A klasszikus kétszemélyes sakk játék"
+
+#: data/org.gnome.Chess.appdata.xml.in:10
+msgid ""
+"GNOME Chess is a simple chess game. You can play against your computer at "
+"three different difficulty levels, or against a friend at your computer."
+msgstr ""
+"A GNOME sakk egy egyszerű sakk játék. Játszhat a számítógép ellen három "
+"különböző nehézségi szinten, vagy a sakkpartnere ellen a számítógépen."
+
+#: data/org.gnome.Chess.appdata.xml.in:14
+msgid ""
+"Computer chess enthusiasts will appreciate GNOME Chess’s compatibility with "
+"nearly all modern computer chess engines, and its ability to detect several "
+"popular engines automatically if installed."
+msgstr ""
+"A számítógépes sakk rajongói méltányolni fogják, hogy a GNOME Sakk közel az "
+"összes modern sakkmotorral kompatibilis, illetve hogy számos népszerű sakk "
+"motort automatikusan felismer, ha telepítve vannak."
+
+#: data/org.gnome.Chess.appdata.xml.in:68
+msgid "The GNOME Project"
+msgstr "A GNOME projekt"
+
+#: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
+#: src/gnome-chess.vala:1206 src/gnome-chess.vala:1570
+msgid "Chess"
+msgstr "Sakk"
+
+#: data/org.gnome.Chess.desktop.in:4
+msgid "Chess Game"
+msgstr "Sakkjáték"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Chess.desktop.in:7
+msgid "game;strategy;"
+msgstr "játék;stratégia;"
+
+#: data/org.gnome.Chess.gschema.xml:38
+msgid "The width of the window"
+msgstr "Az ablak szélessége"
+
+#: data/org.gnome.Chess.gschema.xml:39
+msgid "The width of the main window in pixels."
+msgstr "A főablak szélessége képpontokban."
+
+#: data/org.gnome.Chess.gschema.xml:43
+msgid "The height of the window"
+msgstr "Az ablak magassága"
+
+#: data/org.gnome.Chess.gschema.xml:44
+msgid "The height of the main window in pixels."
+msgstr "A főablak magassága képpontokban."
+
+#: data/org.gnome.Chess.gschema.xml:48 data/org.gnome.Chess.gschema.xml:49
+msgid "A flag to enable maximized mode"
+msgstr "A teljes méretű mód engedélyezése"
+
+#: data/org.gnome.Chess.gschema.xml:53 data/org.gnome.Chess.gschema.xml:54
+msgid "The piece theme to use"
+msgstr "A használandó figuratéma"
+
+#: data/org.gnome.Chess.gschema.xml:58 data/org.gnome.Chess.gschema.xml:59
+msgid "A flag to enable move hints"
+msgstr "Lépéstippek engedélyezése"
+
+#: data/org.gnome.Chess.gschema.xml:63 data/org.gnome.Chess.gschema.xml:64
+msgid "A flag to enable board numbering"
+msgstr "A tábla számozásának engedélyezése"
+
+#: data/org.gnome.Chess.gschema.xml:68 data/org.gnome.Chess.gschema.xml:69
+msgid "The directory to open the save game dialog in"
+msgstr "A mentés párbeszédablak megnyitása ebben a könyvtárban"
+
+#: data/org.gnome.Chess.gschema.xml:73 data/org.gnome.Chess.gschema.xml:74
+msgid "The directory to open the load game dialog in"
+msgstr "A megnyitás párbeszédablak megnyitása ebben a könyvtárban"
+
+#: data/org.gnome.Chess.gschema.xml:78 data/org.gnome.Chess.gschema.xml:79
+msgid "The format to display moves in"
+msgstr "Lépések megjelenítésének formátuma"
+
+#: data/org.gnome.Chess.gschema.xml:83 data/org.gnome.Chess.gschema.xml:84
+msgid "The side of the board that is in the foreground"
+msgstr "A tábla előtérben lévő oldala"
+
+#: data/org.gnome.Chess.gschema.xml:88 data/org.gnome.Chess.gschema.xml:89
+msgid "The duration of a game in seconds (0 for no limit)"
+msgstr "A játék hossza másodpercben (0 = nincs időkorlát)"
+
+#: data/org.gnome.Chess.gschema.xml:93 data/org.gnome.Chess.gschema.xml:94
+msgid "The type of clock (simple/fischer/bronstein)"
+msgstr "Az óra típusa (egyszerű/fischer/bronstein)"
+
+#: data/org.gnome.Chess.gschema.xml:98 data/org.gnome.Chess.gschema.xml:99
+msgid "The timer increment set corresponding to clock type (1 second minimum)"
+msgstr ""
+"Az óra növelésének beállítása a megfelelő óratípus szerint (minimum 1 "
+"másodperc)"
+
+#: data/org.gnome.Chess.gschema.xml:103 data/org.gnome.Chess.gschema.xml:104
+msgid "The board side to play as"
+msgstr "Az oldal ahol játszani fog"
+
+#: data/org.gnome.Chess.gschema.xml:108
+msgid "The last side the player played as"
+msgstr "A legutóbbi oldal ahol játszott"
+
+#: data/org.gnome.Chess.gschema.xml:109
+msgid ""
+"This is needed when play-as is set to alternate. This should only be set to "
+"black or white."
+msgstr ""
+"Ez akkor szükséges, ha a play-as kulcs váltakozóra van állítva. Sötétre vagy "
+"világosra lehet állítva."
+
+#: data/org.gnome.Chess.gschema.xml:113
+msgid "The opponent player"
+msgstr "Az ellenfél játékos"
+
+#: data/org.gnome.Chess.gschema.xml:114
+msgid ""
+"Can be 'human' (play against another human player), '' (use the first "
+"available chess engine) or the name of a specific engine to play against"
+msgstr ""
+"Lehetséges értékek: „human” (játék másik ember ellen), „” (az első elérhető "
+"sakkmotor használata), vagy egy adott sakkmotor neve, amely ellen játszani "
+"kíván."
+
+#: data/org.gnome.Chess.gschema.xml:118 data/org.gnome.Chess.gschema.xml:119
+msgid "Difficulty of the opponent chess engine"
+msgstr "Az ellenfél sakkmotor nehézsége"
 
 #: data/chess-window.ui:7
-msgid "_New Game"
-msgstr "Ú_j játék"
+#| msgid "_New Game"
+msgid "_New Game…"
+msgstr "Ú_j játék…"
 
 #: data/chess-window.ui:11
 msgid "_Open Game…"
@@ -63,11 +203,6 @@ msgstr "_Súgó"
 #: data/chess-window.ui:45
 msgid "_About Chess"
 msgstr "A Sakk _névjegye"
-
-#: data/chess-window.ui:59 data/org.gnome.Chess.desktop.in:3
-#: src/gnome-chess.vala:1198 src/gnome-chess.vala:1565
-msgid "Chess"
-msgstr "Sakk"
 
 #: data/chess-window.ui:67
 msgid "Undo your most recent move"
@@ -178,391 +313,78 @@ msgctxt "shortcut window"
 msgid "Show Keyboard Shortcuts"
 msgstr "Gyorsbillentyűk megjelenítése"
 
-#: data/org.gnome.Chess.appdata.xml.in:7
-msgid "GNOME Chess"
-msgstr "GNOME Sakk"
-
-#: data/org.gnome.Chess.appdata.xml.in:8 data/org.gnome.Chess.desktop.in:5
-msgid "Play the classic two-player board game of chess"
-msgstr "A klasszikus kétszemélyes sakk játék"
-
-#: data/org.gnome.Chess.appdata.xml.in:10
-msgid ""
-"GNOME Chess is a simple chess game. You can play against your computer at "
-"three different difficulty levels, or against a friend at your computer."
-msgstr ""
-"A GNOME sakk egy egyszerű sakk játék. Játszhat a számítógép ellen három "
-"különböző nehézségi szinten, vagy a sakkpartnere ellen a számítógépen."
-
-#: data/org.gnome.Chess.appdata.xml.in:14
-msgid ""
-"Computer chess enthusiasts will appreciate GNOME Chess’s compatibility with "
-"nearly all modern computer chess engines, and its ability to detect several "
-"popular engines automatically if installed."
-msgstr ""
-"A számítógépes sakk rajongói méltányolni fogják, hogy a GNOME Sakk közel az "
-"összes modern sakkmotorral kompatibilis, illetve hogy számos népszerű sakk "
-"motort automatikusan felismer, ha telepítve vannak."
-
-#: data/org.gnome.Chess.appdata.xml.in:52
-msgid "The GNOME Project"
-msgstr "A GNOME projekt"
-
-#: data/org.gnome.Chess.desktop.in:4
-msgid "Chess Game"
-msgstr "Sakkjáték"
-
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Chess.desktop.in:7
-msgid "game;strategy;"
-msgstr "játék;stratégia;"
-
-#: data/org.gnome.Chess.gschema.xml:38
-msgid "The width of the window"
-msgstr "Az ablak szélessége"
-
-#: data/org.gnome.Chess.gschema.xml:39
-msgid "The width of the main window in pixels."
-msgstr "A főablak szélessége képpontokban."
-
-#: data/org.gnome.Chess.gschema.xml:43
-msgid "The height of the window"
-msgstr "Az ablak magassága"
-
-#: data/org.gnome.Chess.gschema.xml:44
-msgid "The height of the main window in pixels."
-msgstr "A főablak magassága képpontokban."
-
-#: data/org.gnome.Chess.gschema.xml:48 data/org.gnome.Chess.gschema.xml:49
-msgid "A flag to enable maximized mode"
-msgstr "A teljes méretű mód engedélyezése"
-
-#: data/org.gnome.Chess.gschema.xml:53 data/org.gnome.Chess.gschema.xml:54
-msgid "The piece theme to use"
-msgstr "A használandó figuratéma"
-
-#: data/org.gnome.Chess.gschema.xml:58 data/org.gnome.Chess.gschema.xml:59
-msgid "A flag to enable move hints"
-msgstr "Lépéstippek engedélyezése"
-
-#: data/org.gnome.Chess.gschema.xml:63 data/org.gnome.Chess.gschema.xml:64
-msgid "A flag to enable board numbering"
-msgstr "A tábla számozásának engedélyezése"
-
-#: data/org.gnome.Chess.gschema.xml:68 data/org.gnome.Chess.gschema.xml:69
-msgid "The directory to open the save game dialog in"
-msgstr "A mentés párbeszédablak megnyitása ebben a könyvtárban"
-
-#: data/org.gnome.Chess.gschema.xml:73 data/org.gnome.Chess.gschema.xml:74
-msgid "The directory to open the load game dialog in"
-msgstr "A megnyitás párbeszédablak megnyitása ebben a könyvtárban"
-
-#: data/org.gnome.Chess.gschema.xml:78 data/org.gnome.Chess.gschema.xml:79
-msgid "The format to display moves in"
-msgstr "Lépések megjelenítésének formátuma"
-
-#: data/org.gnome.Chess.gschema.xml:83 data/org.gnome.Chess.gschema.xml:84
-msgid "The side of the board that is in the foreground"
-msgstr "A tábla előtérben lévő oldala"
-
-#: data/org.gnome.Chess.gschema.xml:88 data/org.gnome.Chess.gschema.xml:89
-msgid "The duration of a game in seconds (0 for no limit)"
-msgstr "A játék hossza másodpercben (0 = nincs időkorlát)"
-
-#: data/org.gnome.Chess.gschema.xml:93 data/org.gnome.Chess.gschema.xml:94
-msgid "The type of clock (simple/fischer/bronstein)"
-msgstr "Az óra típusa (egyszerű/fischer/bronstein)"
-
-#: data/org.gnome.Chess.gschema.xml:98 data/org.gnome.Chess.gschema.xml:99
-msgid "The timer increment set corresponding to clock type (1 second minimum)"
-msgstr ""
-"Az óra növelésének beállítása a megfelelő óratípus szerint (minimum 1 "
-"másodperc)"
-
-#: data/org.gnome.Chess.gschema.xml:103 data/org.gnome.Chess.gschema.xml:104
-msgid "The board side to play as"
-msgstr "Az oldal ahol játszani fog"
-
-#: data/org.gnome.Chess.gschema.xml:108
-msgid "The last side the player played as"
-msgstr "A legutóbbi oldal ahol játszott"
-
-#: data/org.gnome.Chess.gschema.xml:109
-msgid ""
-"This is needed when play-as is set to alternate. This should only be set to "
-"black or white."
-msgstr ""
-"Ez akkor szükséges, ha a play-as kulcs váltakozóra van állítva. Sötétre vagy "
-"világosra lehet állítva."
-
-#: data/org.gnome.Chess.gschema.xml:113
-msgid "The opponent player"
-msgstr "Az ellenfél játékos"
-
-#: data/org.gnome.Chess.gschema.xml:114
-msgid ""
-"Can be 'human' (play against another human player), '' (use the first "
-"available chess engine) or the name of a specific engine to play against"
-msgstr ""
-"Lehetséges értékek: „human” (játék másik ember ellen), „” (az első elérhető "
-"sakkmotor használata), vagy egy adott sakkmotor neve, amely ellen játszani "
-"kíván."
-
-#: data/org.gnome.Chess.gschema.xml:118 data/org.gnome.Chess.gschema.xml:119
-msgid "Difficulty of the opponent chess engine"
-msgstr "Az ellenfél sakkmotor nehézsége"
-
-#. Preferences dialog: Combo box entry for time limit
-#. Preferences dialog: Combo box entry for timer increment
-#: data/preferences.ui:11 data/preferences.ui:31
-msgctxt "custom_duration_units"
-msgid "minutes"
-msgstr "perc"
-
-#. Preferences dialog: Combo box entry for time limit
-#: data/preferences.ui:15
-msgctxt "custom_duration_units"
-msgid "hours"
-msgstr "óra"
-
-#. Preferences dialog: Combo box entry for timer increment
-#: data/preferences.ui:27
-msgctxt "custom_duration_units"
-msgid "seconds"
-msgstr "másodperc"
-
-#. Preferences dialog: Combo box entry for clock type
-#: data/preferences.ui:43
-msgctxt "custom_duration_units"
-msgid "Simple"
-msgstr "Egyszerű"
-
-#. Preferences dialog: Combo box entry for time limit. Fischer is a proper name.
-#: data/preferences.ui:47
-msgctxt "custom_duration_units"
-msgid "Fischer"
-msgstr "Fischer"
-
-#. Preferences dialog: Combo box entry for time limit. Bronstein is a proper name.
-#: data/preferences.ui:51
-msgctxt "custom_duration_units"
-msgid "Bronstein"
-msgstr "Bronstein"
-
-#. Preferences Dialog: Combo box entry for easy game difficulty
-#: data/preferences.ui:63
-msgctxt "difficulty"
-msgid "Easy"
-msgstr "Könnyű"
-
-#. Preferences Dialog: Combo box entry for normal game difficulty
-#: data/preferences.ui:67
-msgctxt "difficulty"
-msgid "Normal"
-msgstr "Normál"
-
-#. Preferences Dialog: Combo box entry for hard game difficulty
-#: data/preferences.ui:71
-msgctxt "difficulty"
-msgid "Hard"
-msgstr "Nehéz"
-
-#. Preferences Dialog: Combo box entry for no game timer
-#: data/preferences.ui:97
-msgid "No limit"
-msgstr "Nincs korlátozás"
-
-#. Preferences Dialog: Combo box entry for game timer of five minutes
-#: data/preferences.ui:101
-msgid "Five minutes"
-msgstr "Öt perc"
-
-#. Preferences Dialog: Combo box entry for game timer of ten minutes
-#: data/preferences.ui:105
-msgid "Ten minutes"
-msgstr "Tíz perc"
-
-#. Preferences Dialog: Combo box entry for game timer of thirty minutes
-#: data/preferences.ui:109
-msgid "Thirty minutes"
-msgstr "Harminc perc"
-
-#. Preferences Dialog: Combo box entry for game timer of one hour
-#: data/preferences.ui:113
-msgid "One hour"
-msgstr "Egy óra"
-
-#. Preferences Dialog: Combo box entry for game timer of two hours
-#: data/preferences.ui:117
-msgid "Two hours"
-msgstr "Két óra"
-
-#. Preferences Dialog: Combo box entry for game timer of three hours
-#: data/preferences.ui:121
-msgid "Three hours"
-msgstr "Három óra"
-
-#. Preferences Dialog: Combo box entry for custom game timer
-#: data/preferences.ui:125
-msgid "Custom"
-msgstr "Egyéni"
-
-#. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
-#: data/preferences.ui:137
-msgctxt "chess-move-format"
-msgid "Human"
-msgstr "Emberi"
-
-#. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
-#: data/preferences.ui:141
-msgctxt "chess-move-format"
-msgid "Standard Algebraic"
-msgstr "Szabványos algebrai"
-
-#. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
-#: data/preferences.ui:145
-msgctxt "chess-move-format"
-msgid "Figurine"
-msgstr "Figura"
-
-#. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
-#: data/preferences.ui:149
-msgctxt "chess-move-format"
-msgid "Long Algebraic"
-msgstr "Hosszú algebrai"
-
-#. Preferences Dialog: Combo box entry for human opponent
-#: data/preferences.ui:161
-msgctxt "chess-opponent"
-msgid "Human"
-msgstr "Ember"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the white side
-#: data/preferences.ui:173
-msgctxt "chess-side"
-msgid "White Side"
-msgstr "Világos oldal"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the black side
-#: data/preferences.ui:177
-msgctxt "chess-side"
-msgid "Black Side"
-msgstr "Sötét oldal"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
-#: data/preferences.ui:181
-msgctxt "chess-side"
-msgid "Human Side"
-msgstr "Emberi oldal"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
-#: data/preferences.ui:185
-msgctxt "chess-side"
-msgid "Current Player"
-msgstr "Jelenlegi játékos"
-
-#. Preferences Dialog: Combo box entry for simple theme
-#: data/preferences.ui:197
-msgid "Simple"
-msgstr "Egyszerű"
-
-#. Preferences Dialog: Combo box entry for fancy theme
-#: data/preferences.ui:201
-msgid "Fancy"
-msgstr "Szép"
-
-#. Preferences Dialog: Combo box entry for playing as white
-#: data/preferences.ui:213
-msgctxt "chess-player"
-msgid "White"
-msgstr "Világos"
-
-#. Preferences Dialog: Combo box entry for playing as black
-#: data/preferences.ui:217
-msgctxt "chess-player"
-msgid "Black"
-msgstr "Sötét"
-
-#. Preferences Dialog: Combo box entry for alterning between black and white
-#: data/preferences.ui:221
-msgctxt "chess-player"
-msgid "Alternate"
-msgstr "Váltakozó"
-
-#. Title for preferences dialog
-#: data/preferences.ui:228
-msgid "Preferences"
-msgstr "Beállítások"
-
-#. Preferences Dialog: Label before clock type (Fischer/Bronstein) combo box
-#: data/preferences.ui:252
-msgid "_Clock type:"
-msgstr "Ó_ratípus:"
-
-#. Preferences Dialog: Label before timer increment combo box
-#: data/preferences.ui:265
-msgid "Timer _increment:"
-msgstr "Óra _növelése:"
-
-#. Preferences Dialog: Label before player side (white/black) combo box
-#: data/preferences.ui:296
-msgid "_Play as:"
-msgstr "_Játék mint:"
-
-#. Preferences Dialog: Label before opposing player combo box
-#: data/preferences.ui:309
-msgid "_Opposing player:"
-msgstr "_Ellenfél:"
-
-#. Preferences Dialog: Label before difficulty level combo box
-#: data/preferences.ui:322
-msgid "_Difficulty:"
-msgstr "_Nehézség:"
-
-#. Preferences Dialog: Label before game timer settings
-#: data/preferences.ui:455
-msgid "_Time limit:"
-msgstr "I_dőkorlát:"
-
-#. Preferences dialog: Label to notify user that the settings are applied for the next game
-#: data/preferences.ui:499
-msgid "Changes will take effect for the next game."
-msgstr "A módosítások a következő játékban lépnek életbe."
-
-#. Preferences Dialog: Tab title for game preferences
-#: data/preferences.ui:514
-msgid "_Game"
-msgstr "_Játék"
-
-#. Preferences Dialog: Label before board orientation combo box
-#: data/preferences.ui:535
-msgid "Board _orientation:"
-msgstr "_Tábla tájolása:"
-
-#. Preferences Dialog: Label before move format combo box
-#: data/preferences.ui:548
-msgid "Move _format:"
-msgstr "Lépés _formátuma:"
-
-#. Preferences Dialog: Label before piece style combo box
-#: data/preferences.ui:561
-msgid "_Piece style:"
-msgstr "Fig_urastílus:"
-
-#. Preferences Dialog: Check box for selecting if board numbering is visible
-#: data/preferences.ui:625
-msgid "_Board numbering"
+#: data/new-game-window.ui:5
+#| msgid "_New Game"
+msgid "New Game"
+msgstr "Új játék"
+
+#: data/new-game-window.ui:20 src/gnome-chess.vala:969
+#: src/gnome-chess.vala:1300 src/gnome-chess.vala:1440
+msgid "_Cancel"
+msgstr "Mé_gse"
+
+#: data/new-game-window.ui:28
+#| msgid "Game Start"
+msgid "_Start"
+msgstr "_Indítás"
+
+#: data/new-game-window.ui:45
+#| msgid "_Opposing player:"
+msgid "_Opposing Player"
+msgstr "_Ellenfél játékos"
+
+#: data/new-game-window.ui:51
+#| msgid "_Play as:"
+msgid "_Play As"
+msgstr "_Játék mint"
+
+#: data/new-game-window.ui:65
+#| msgid "_Difficulty:"
+msgid "_Difficulty"
+msgstr "_Nehézség"
+
+#: data/new-game-window.ui:84
+#| msgid "_Time limit:"
+msgid "_Use Time Limit"
+msgstr "I_dőkorlát használata"
+
+#: data/new-game-window.ui:96
+msgid "_Minutes Per Side"
+msgstr "_Oldalanként percek"
+
+#: data/new-game-window.ui:117
+msgid "_Increment In Seconds"
+msgstr "_Növelés másodpercben"
+
+#: data/new-game-window.ui:138
+#| msgid "_Clock type:"
+msgid "Clock _Type"
+msgstr "Ó_ratípus"
+
+#: data/preferences-window.ui:15
+#| msgid "Board _orientation:"
+msgid "_Board Orientation"
+msgstr "_Tábla tájolása"
+
+#: data/preferences-window.ui:29
+#| msgid "Move _format:"
+msgid "_Move Format"
+msgstr "Lépés _formátuma"
+
+#: data/preferences-window.ui:43
+#| msgid "_Piece style:"
+msgid "_Piece Style"
+msgstr "Fig_urastílus"
+
+#: data/preferences-window.ui:57
+#| msgid "_Board numbering"
+msgid "Board _Numbering"
 msgstr "Tá_blaszámozás"
 
-#. Preferences Dialog: Check box for selecting if move hints are visible
-#: data/preferences.ui:636
-msgid "_Move hints"
+#: data/preferences-window.ui:69
+#| msgid "_Move hints"
+msgid "Move _Hints"
 msgstr "_Lépéstippek"
-
-#. Preferences Dialog: Title of appearance options tab
-#: data/preferences.ui:650
-msgid "_Appearance"
-msgstr "_Megjelenés"
 
 #: data/promotion-type-selector.ui:6
 msgid "Select Promotion Type"
@@ -605,469 +427,469 @@ msgstr "Érvénytelen óratípus a PGN-ben: %s, egyszerű óra használata."
 msgid "Invalid timer increment in PGN: %s, using a simple clock."
 msgstr "Érvénytelen időzítő a PGN-ben: %s, egyszerű óra használata."
 
-#: src/chess-view.vala:325
+#: src/chess-view.vala:319
 msgid "Paused"
 msgstr "Szüneteltetve"
 
-#: src/chess-window.vala:131
+#: src/chess-window.vala:129
 msgid "Unpause the game"
 msgstr "A játék folytatása"
 
-#: src/chess-window.vala:136
+#: src/chess-window.vala:134
 msgid "Pause the game"
 msgstr "A játék szüneteltetése"
 
 #. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
 #. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
-#: src/chess-window.vala:304
+#: src/chess-window.vala:315
 #, c-format
 msgid "White pawn moves from %1$s to %2$s"
 msgstr "Világos gyalog lép: %1$s → %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:306
+#: src/chess-window.vala:317
 #, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s"
 msgstr "Világos gyalog a(z) %1$s mezőn üti a sötét gyalogot a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:308
+#: src/chess-window.vala:319
 #, c-format
 msgid "White pawn at %1$s takes the black rook at %2$s"
 msgstr "Világos gyalog a(z) %1$s mezőn üti a sötét bástyát a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:310
+#: src/chess-window.vala:321
 #, c-format
 msgid "White pawn at %1$s takes the black knight at %2$s"
 msgstr "Világos gyalog a(z) %1$s mezőn üti a sötét huszárt a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:312
+#: src/chess-window.vala:323
 #, c-format
 msgid "White pawn at %1$s takes the black bishop at %2$s"
 msgstr "Világos gyalog a(z) %1$s mezőn üti a sötét futót a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:314
+#: src/chess-window.vala:325
 #, c-format
 msgid "White pawn at %1$s takes the black queen at %2$s"
 msgstr "Világos gyalog a(z) %1$s mezőn üti a sötét vezért a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
-#: src/chess-window.vala:316
+#: src/chess-window.vala:327
 #, c-format
 msgid "White rook moves from %1$s to %2$s"
 msgstr "Világos bástya lép: %1$s → %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:318
+#: src/chess-window.vala:329
 #, c-format
 msgid "White rook at %1$s takes the black pawn at %2$s"
 msgstr "Világos bástya a(z) %1$s mezőn üti a sötét gyalogot a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:320
+#: src/chess-window.vala:331
 #, c-format
 msgid "White rook at %1$s takes the black rook at %2$s"
 msgstr "Világos bástya a(z) %1$s mezőn üti a sötét bástyát a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:322
+#: src/chess-window.vala:333
 #, c-format
 msgid "White rook at %1$s takes the black knight at %2$s"
 msgstr "Világos bástya a(z) %1$s mezőn üti a sötét huszárt a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:324
+#: src/chess-window.vala:335
 #, c-format
 msgid "White rook at %1$s takes the black bishop at %2$s"
 msgstr "Világos bástya a(z) %1$s mezőn üti a sötét futót a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
-#: src/chess-window.vala:326
+#: src/chess-window.vala:337
 #, c-format
 msgid "White rook at %1$s takes the black queen at %2$s"
 msgstr "Világos bástya a(z) %1$s mezőn üti a sötét vezért a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
-#: src/chess-window.vala:328
+#: src/chess-window.vala:339
 #, c-format
 msgid "White knight moves from %1$s to %2$s"
 msgstr "Világos huszár lép: %1$s → %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:330
+#: src/chess-window.vala:341
 #, c-format
 msgid "White knight at %1$s takes the black pawn at %2$s"
 msgstr "Világos huszár a(z) %1$s mezőn üti a sötét gyalogot a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:332
+#: src/chess-window.vala:343
 #, c-format
 msgid "White knight at %1$s takes the black rook at %2$s"
 msgstr "Világos huszár a(z) %1$s mezőn üti a sötét bástyát a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:334
+#: src/chess-window.vala:345
 #, c-format
 msgid "White knight at %1$s takes the black knight at %2$s"
 msgstr "Világos huszár a(z) %1$s mezőn üti a sötét huszárt a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:336
+#: src/chess-window.vala:347
 #, c-format
 msgid "White knight at %1$s takes the black bishop at %2$s"
 msgstr "Világos huszár a(z) %1$s mezőn üti a sötét futót a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:338
+#: src/chess-window.vala:349
 #, c-format
 msgid "White knight at %1$s takes the black queen at %2$s"
 msgstr "Világos huszár a(z) %1$s mezőn üti a sötét vezért a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
-#: src/chess-window.vala:340
+#: src/chess-window.vala:351
 #, c-format
 msgid "White bishop moves from %1$s to %2$s"
 msgstr "Világos futó lép: %1$s → %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:342
+#: src/chess-window.vala:353
 #, c-format
 msgid "White bishop at %1$s takes the black pawn at %2$s"
 msgstr "Világos futó a(z) %1$s mezőn üti a sötét gyalogot a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:344
+#: src/chess-window.vala:355
 #, c-format
 msgid "White bishop at %1$s takes the black rook at %2$s"
 msgstr "Világos futó a(z) %1$s mezőn üti a sötét bástyát a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:346
+#: src/chess-window.vala:357
 #, c-format
 msgid "White bishop at %1$s takes the black knight at %2$s"
 msgstr "Világos futó a(z) %1$s mezőn üti a sötét huszárt a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:348
+#: src/chess-window.vala:359
 #, c-format
 msgid "White bishop at %1$s takes the black bishop at %2$s"
 msgstr "Világos futó a(z) %1$s mezőn üti a sötét futót a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:350
+#: src/chess-window.vala:361
 #, c-format
 msgid "White bishop at %1$s takes the black queen at %2$s"
 msgstr "Világos futó a(z) %1$s mezőn üti a sötét vezért a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
-#: src/chess-window.vala:352
+#: src/chess-window.vala:363
 #, c-format
 msgid "White queen moves from %1$s to %2$s"
 msgstr "Világos vezér lép: %1$s → %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:354
+#: src/chess-window.vala:365
 #, c-format
 msgid "White queen at %1$s takes the black pawn at %2$s"
 msgstr "Világos vezér a(z) %1$s mezőn üti a sötét gyalogot a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:356
+#: src/chess-window.vala:367
 #, c-format
 msgid "White queen at %1$s takes the black rook at %2$s"
 msgstr "Világos vezér a(z) %1$s mezőn üti a sötét bástyát a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:358
+#: src/chess-window.vala:369
 #, c-format
 msgid "White queen at %1$s takes the black knight at %2$s"
 msgstr "Világos vezér a(z) %1$s mezőn üti a sötét bástyát a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:360
+#: src/chess-window.vala:371
 #, c-format
 msgid "White queen at %1$s takes the black bishop at %2$s"
 msgstr "Világos vezér a(z) %1$s mezőn üti a sötét futót a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:362
+#: src/chess-window.vala:373
 #, c-format
 msgid "White queen at %1$s takes the black queen at %2$s"
 msgstr "Világos vezér a(z) %1$s mezőn üti a sötét vezért a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
-#: src/chess-window.vala:364
+#: src/chess-window.vala:375
 #, c-format
 msgid "White king moves from %1$s to %2$s"
 msgstr "Világos király lép: %1$s → %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:366
+#: src/chess-window.vala:377
 #, c-format
 msgid "White king at %1$s takes the black pawn at %2$s"
 msgstr "Világos király a(z) %1$s mezőn üti a sötét gyalogot a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:368
+#: src/chess-window.vala:379
 #, c-format
 msgid "White king at %1$s takes the black rook at %2$s"
 msgstr "Világos király a(z) %1$s mezőn üti a sötét bástyát a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:370
+#: src/chess-window.vala:381
 #, c-format
 msgid "White king at %1$s takes the black knight at %2$s"
 msgstr "Világos király a(z) %1$s mezőn üti a sötét huszárt a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:372
+#: src/chess-window.vala:383
 #, c-format
 msgid "White king at %1$s takes the black bishop at %2$s"
 msgstr "Világos király a(z) %1$s mezőn üti a sötét futót a(z) %2$s mezőn"
 
 #. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:374
+#: src/chess-window.vala:385
 #, c-format
 msgid "White king at %1$s takes the black queen at %2$s"
 msgstr "Világos király a(z) %1$s mezőn üti a sötét vezért a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
-#: src/chess-window.vala:376
+#: src/chess-window.vala:387
 #, c-format
 msgid "Black pawn moves from %1$s to %2$s"
 msgstr "Sötét gyalog lép: %1$s → %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:378
+#: src/chess-window.vala:389
 #, c-format
 msgid "Black pawn at %1$s takes the white pawn at %2$s"
 msgstr "Sötét gyalog a(z) %1$s mezőn üti a világos gyalogot a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:380
+#: src/chess-window.vala:391
 #, c-format
 msgid "Black pawn at %1$s takes the white rook at %2$s"
 msgstr "Sötét gyalog a(z) %1$s mezőn üti a világos bástyát a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:382
+#: src/chess-window.vala:393
 #, c-format
 msgid "Black pawn at %1$s takes the white knight at %2$s"
 msgstr "Sötét gyalog a(z) %1$s mezőn üti a világos huszárt a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:384
+#: src/chess-window.vala:395
 #, c-format
 msgid "Black pawn at %1$s takes the white bishop at %2$s"
 msgstr "Sötét gyalog a(z) %1$s mezőn üti a világos futót a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:386
+#: src/chess-window.vala:397
 #, c-format
 msgid "Black pawn at %1$s takes the white queen at %2$s"
 msgstr "Sötét gyalog a(z) %1$s mezőn üti a világos vezért a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
-#: src/chess-window.vala:388
+#: src/chess-window.vala:399
 #, c-format
 msgid "Black rook moves from %1$s to %2$s"
 msgstr "Sötét bástya lép: %1$s → %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:390
+#: src/chess-window.vala:401
 #, c-format
 msgid "Black rook at %1$s takes the white pawn at %2$s"
 msgstr "Sötét bástya a(z) %1$s mezőn üti a világos gyalogot a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:392
+#: src/chess-window.vala:403
 #, c-format
 msgid "Black rook at %1$s takes the white rook at %2$s"
 msgstr "Sötét bástya a(z) %1$s mezőn üti a világos bástyát a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:394
+#: src/chess-window.vala:405
 #, c-format
 msgid "Black rook at %1$s takes the white knight at %2$s"
 msgstr "Sötét bástya a(z) %1$s mezőn üti a világos huszárt a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:396
+#: src/chess-window.vala:407
 #, c-format
 msgid "Black rook at %1$s takes the white bishop at %2$s"
 msgstr "Sötét bástya a(z) %1$s mezőn üti a világos futót a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:398
+#: src/chess-window.vala:409
 #, c-format
 msgid "Black rook at %1$s takes the white queen at %2$s"
 msgstr "Sötét bástya a(z) %1$s mezőn üti a világos vezért a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
-#: src/chess-window.vala:400
+#: src/chess-window.vala:411
 #, c-format
 msgid "Black knight moves from %1$s to %2$s"
 msgstr "Sötét huszár lép: %1$s → %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:402
+#: src/chess-window.vala:413
 #, c-format
 msgid "Black knight at %1$s takes the white pawn at %2$s"
 msgstr "Sötét huszár a(z) %1$s mezőn üti a világos gyalogot a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:404
+#: src/chess-window.vala:415
 #, c-format
 msgid "Black knight at %1$s takes the white rook at %2$s"
 msgstr "Sötét huszár a(z) %1$s mezőn üti a világos bástyát a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:406
+#: src/chess-window.vala:417
 #, c-format
 msgid "Black knight at %1$s takes the white knight at %2$s"
 msgstr "Sötét huszár a(z) %1$s mezőn üti a világos huszárt a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:408
+#: src/chess-window.vala:419
 #, c-format
 msgid "Black knight at %1$s takes the white bishop at %2$s"
 msgstr "Sötét huszár a(z) %1$s mezőn üti a világos futót a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:410
+#: src/chess-window.vala:421
 #, c-format
 msgid "Black knight at %1$s takes the white queen at %2$s"
 msgstr "Sötét huszár a(z) %1$s mezőn üti a világos vezért a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
-#: src/chess-window.vala:412
+#: src/chess-window.vala:423
 #, c-format
 msgid "Black bishop moves from %1$s to %2$s"
 msgstr "Sötét futó lép: %1$s → %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:414
+#: src/chess-window.vala:425
 #, c-format
 msgid "Black bishop at %1$s takes the white pawn at %2$s"
 msgstr "Sötét futó a(z) %1$s mezőn üti a világos gyalogot a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:416
+#: src/chess-window.vala:427
 #, c-format
 msgid "Black bishop at %1$s takes the white rook at %2$s"
 msgstr "Sötét futó a(z) %1$s mezőn üti a világos bástyát a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:418
+#: src/chess-window.vala:429
 #, c-format
 msgid "Black bishop at %1$s takes the white knight at %2$s"
 msgstr "Sötét futó a(z) %1$s mezőn üti a világos huszárt a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:420
+#: src/chess-window.vala:431
 #, c-format
 msgid "Black bishop at %1$s takes the white bishop at %2$s"
 msgstr "Sötét futó a(z) %1$s mezőn üti a világos futót a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:422
+#: src/chess-window.vala:433
 #, c-format
 msgid "Black bishop at %1$s takes the white queen at %2$s"
 msgstr "Sötét futó a(z) %1$s mezőn üti a világos vezért a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
-#: src/chess-window.vala:424
+#: src/chess-window.vala:435
 #, c-format
 msgid "Black queen moves from %1$s to %2$s"
 msgstr "Sötét vezér lép: %1$s → %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:426
+#: src/chess-window.vala:437
 #, c-format
 msgid "Black queen at %1$s takes the white pawn at %2$s"
 msgstr "Sötét vezér a(z) %1$s mezőn üti a világos gyalogot a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:428
+#: src/chess-window.vala:439
 #, c-format
 msgid "Black queen at %1$s takes the white rook at %2$s"
 msgstr "Sötét vezér a(z) %1$s mezőn üti a világos bástyát a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:430
+#: src/chess-window.vala:441
 #, c-format
 msgid "Black queen at %1$s takes the white knight at %2$s"
 msgstr "Sötét vezér a(z) %1$s mezőn üti a világos huszárt a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:432
+#: src/chess-window.vala:443
 #, c-format
 msgid "Black queen at %1$s takes the white bishop at %2$s"
 msgstr "Sötét vezér a(z) %1$s mezőn üti a világos futót a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:434
+#: src/chess-window.vala:445
 #, c-format
 msgid "Black queen at %1$s takes the white queen at %2$s"
 msgstr "Sötét vezér a(z) %1$s mezőn üti a világos vezért a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
-#: src/chess-window.vala:436
+#: src/chess-window.vala:447
 #, c-format
 msgid "Black king moves from %1$s to %2$s"
 msgstr "Sötét király lép: %1$s → %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:438
+#: src/chess-window.vala:449
 #, c-format
 msgid "Black king at %1$s takes the white pawn at %2$s"
 msgstr "Sötét király a(z) %1$s mezőn üti a világos gyalogot a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:440
+#: src/chess-window.vala:451
 #, c-format
 msgid "Black king at %1$s takes the white rook at %2$s"
 msgstr "Sötét király a(z) %1$s mezőn üti a világos bástyát a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:442
+#: src/chess-window.vala:453
 #, c-format
 msgid "Black king at %1$s takes the white knight at %2$s"
 msgstr "Sötét király a(z) %1$s mezőn üti a világos huszárt a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:444
+#: src/chess-window.vala:455
 #, c-format
 msgid "Black king at %1$s takes the white bishop at %2$s"
 msgstr "Sötét király a(z) %1$s mezőn üti a világos futót a(z) %2$s mezőn"
 
 #. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
-#: src/chess-window.vala:446
+#: src/chess-window.vala:457
 #, c-format
 msgid "Black king at %1$s takes the white queen at %2$s"
 msgstr "Sötét király a(z) %1$s mezőn üti a világos vezért a(z) %2$s mezőn"
 
-#: src/chess-window.vala:455
+#: src/chess-window.vala:466
 msgid "White castles kingside"
 msgstr "Világos királyszárnyra sáncol"
 
-#: src/chess-window.vala:457
+#: src/chess-window.vala:468
 msgid "White castles queenside"
 msgstr "Világos vezérszárnyra sáncol"
 
-#: src/chess-window.vala:459
+#: src/chess-window.vala:470
 msgid "Black castles kingside"
 msgstr "Sötét királyszárnyra sáncol"
 
-#: src/chess-window.vala:461
+#: src/chess-window.vala:472
 msgid "Black castles queenside"
 msgstr "Sötét vezérszárnyra sáncol"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s en passant
-#: src/chess-window.vala:483
+#: src/chess-window.vala:494
 #, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s en passant"
 msgstr ""
@@ -1075,7 +897,7 @@ msgstr ""
 "mezőn"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s en passant
-#: src/chess-window.vala:487
+#: src/chess-window.vala:498
 #, c-format
 msgid "Black pawn at %1$s takes white pawn at %2$s en passant"
 msgstr ""
@@ -1083,195 +905,191 @@ msgstr ""
 "mezőn"
 
 #. Move History Combo: Go to the start of the game
-#: src/chess-window.vala:521
+#: src/chess-window.vala:532
 msgid "Game Start"
 msgstr "Játék indítása"
 
 #. Help string for command line --version flag
-#: src/gnome-chess.vala:93
+#: src/gnome-chess.vala:95
 msgid "Show release version"
 msgstr "Verziószám megjelenítése"
 
 #. May print when started on the command line; a PGN is a saved game file.
-#: src/gnome-chess.vala:172
+#: src/gnome-chess.vala:175
 msgid "GNOME Chess can only open one PGN at a time."
 msgstr "A GNOME Sakk egyszerre csak egy PGN-t tud megnyitni."
 
 #. Warning at start of game when no chess engine is installed.
-#: src/gnome-chess.vala:450
+#: src/gnome-chess.vala:452
 msgid ""
 "No chess engine is installed. You will not be able to play against the "
 "computer."
 msgstr "Nincs sakkmotor telepítve. Nem lesz képes a számítógép ellen játszani."
 
 #. Game status on White's turn when in check
-#: src/gnome-chess.vala:796
+#: src/gnome-chess.vala:795
 msgid "White is in Check"
 msgstr "Világos sakkban"
 
 #. Game status on Black's turn when in check
-#: src/gnome-chess.vala:799
+#: src/gnome-chess.vala:798
 msgid "Black is in Check"
 msgstr "Sötét sakkban"
 
 #. Game status on White's turn if White is human
-#: src/gnome-chess.vala:805
+#: src/gnome-chess.vala:804
 msgid "White to Move"
 msgstr "Világos lép"
 
 #. Game status on White's turn if White is a computer
-#: src/gnome-chess.vala:808
+#: src/gnome-chess.vala:807
 msgid "White is Thinking…"
 msgstr "Világos gondolkodik…"
 
 #. Game status on Black's turn if Black is human
-#: src/gnome-chess.vala:814
+#: src/gnome-chess.vala:813
 msgid "Black to Move"
 msgstr "Sötét lép"
 
 #. Game status on Black's turn if Black is a computer
-#: src/gnome-chess.vala:817
+#: src/gnome-chess.vala:816
 msgid "Black is Thinking…"
 msgstr "Sötét gondolkodik…"
 
 #. Game status when Black captures White's pawn en passant
-#: src/gnome-chess.vala:828
+#: src/gnome-chess.vala:827
 msgid ""
 "Black captured White's pawn <span font_style='italic'>en passant</span>."
 msgstr ""
 "Sötét <span font_style='italic'>en passant</span> üti a világos gyalogot."
 
 #. Game status when White captures Black's pawn en passant
-#: src/gnome-chess.vala:831
+#: src/gnome-chess.vala:830
 msgid ""
 "White captured Black's pawn <span font_style='italic'>en passant</span>."
 msgstr ""
 "Világos <span font_style='italic'>en passant</span> üti a sötét gyalogot."
 
 #. Game status when the white player wins
-#: src/gnome-chess.vala:852
+#: src/gnome-chess.vala:848
 msgid "White Wins"
 msgstr "A világos nyert"
 
 #. Game status when the black player wins
-#: src/gnome-chess.vala:857
+#: src/gnome-chess.vala:853
 msgid "Black Wins"
 msgstr "A sötét nyert"
 
 #. Game status when the game is drawn
-#: src/gnome-chess.vala:862
+#: src/gnome-chess.vala:858
 msgid "Game is Drawn"
 msgstr "Az eredmény döntetlen"
 
 #. Game status when something goes wrong with the engine.
-#: src/gnome-chess.vala:867
+#: src/gnome-chess.vala:863
 msgid "Oops!"
 msgstr "Hoppá!"
 
 #. Game status when Black is checkmated
-#: src/gnome-chess.vala:880
+#: src/gnome-chess.vala:876
 msgid "Black is in check and cannot move."
 msgstr "A sötét sakkban van, és nem léphet."
 
 #. Game status when White is checkmated
-#: src/gnome-chess.vala:883
+#: src/gnome-chess.vala:879
 msgid "White is in check and cannot move."
 msgstr "A világos sakkban van, és nem léphet."
 
 #. Game status when the game terminates due to a stalemate
-#: src/gnome-chess.vala:889
+#: src/gnome-chess.vala:885
 msgid "Player cannot move."
 msgstr "A játékos nem léphet."
 
 #. Game status when the game is drawn due to the fifty move rule
-#: src/gnome-chess.vala:893
+#: src/gnome-chess.vala:889
 msgid "No piece was taken or pawn moved in fifty moves."
 msgstr "Az utolsó ötven lépésben nem történt ütés, vagy gyaloggal lépés."
 
 #. Game status when the game is drawn due to the 75 move rule
-#: src/gnome-chess.vala:897
+#: src/gnome-chess.vala:893
 msgid "No piece was taken or pawn moved in 75 moves."
 msgstr "Az utolsó 75 lépésben nem történt ütés, vagy gyaloggal lépés."
 
 #. Game status when the game ends due to Black's clock stopping
-#: src/gnome-chess.vala:902
+#: src/gnome-chess.vala:898
 msgid "Black has run out of time."
 msgstr "A sötét ideje elfogyott."
 
 #. Game status when the game ends due to White's clock stopping
-#: src/gnome-chess.vala:905
+#: src/gnome-chess.vala:901
 msgid "White has run out of time."
 msgstr "A világos ideje elfogyott."
 
 #. Game status when the game is drawn due to the three-fold-repetition rule
-#: src/gnome-chess.vala:911
+#: src/gnome-chess.vala:907
 msgid "The same board state has occurred three times."
 msgstr "Ugyanaz a táblaállapot háromszor előfordult."
 
 #. Game status when the game is drawn due to the five-fold-repetition rule
-#: src/gnome-chess.vala:915
+#: src/gnome-chess.vala:911
 msgid "The same board state has occurred five times."
 msgstr "Ugyanaz a táblaállapot ötször előfordult."
 
 #. Game status when the game is drawn due to the insufficient material rule
-#: src/gnome-chess.vala:919
+#: src/gnome-chess.vala:915
 msgid "Neither player can checkmate."
 msgstr "Egyik játékos sem tud mattot adni."
 
 #. Game status when the game ends due to the black player resigning
-#: src/gnome-chess.vala:924
+#: src/gnome-chess.vala:920
 msgid "Black has resigned."
 msgstr "A sötét feladta."
 
 #. Game status when the game ends due to the white player resigning
-#: src/gnome-chess.vala:927
+#: src/gnome-chess.vala:923
 msgid "White has resigned."
 msgstr "A világos feladta."
 
 #. Game status when a game is abandoned
-#: src/gnome-chess.vala:933
+#: src/gnome-chess.vala:929
 msgid "The game has been abandoned."
 msgstr "A játékot félbehagyták."
 
 #. Game status when the game ends due to a player dying during the game.
-#: src/gnome-chess.vala:938
+#: src/gnome-chess.vala:934
 msgid "The game log says a player died!"
 msgstr "A játéknapló szerint a játékos meghalt!"
 
 #. Game status when something goes wrong with the engine.
-#: src/gnome-chess.vala:943
+#: src/gnome-chess.vala:939
 msgid "The computer player is confused. The game cannot continue."
 msgstr ""
 "A számítógépes játékost vezérlő program hibát jelez. A játék nem "
 "folytatódhat."
 
-#: src/gnome-chess.vala:973 src/gnome-chess.vala:1292 src/gnome-chess.vala:1432
-msgid "_Cancel"
-msgstr "Mé_gse"
-
-#: src/gnome-chess.vala:977
+#: src/gnome-chess.vala:973
 msgid "_Abandon game"
 msgstr "_Játék elhagyása"
 
-#: src/gnome-chess.vala:978
+#: src/gnome-chess.vala:974
 msgid "_Save game for later"
 msgstr "A játék _mentése"
 
-#: src/gnome-chess.vala:982
+#: src/gnome-chess.vala:978
 msgid "_Discard game"
 msgstr "_Játék eldobása"
 
-#: src/gnome-chess.vala:983
+#: src/gnome-chess.vala:979
 msgid "_Save game log"
 msgstr "Játéknapló _mentése"
 
 #. Title of claim draw dialog
-#: src/gnome-chess.vala:1024
+#: src/gnome-chess.vala:1020
 msgid "Would you like to claim a draw?"
 msgstr "Szeretne döntetlent ajánlani?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: src/gnome-chess.vala:1030
+#: src/gnome-chess.vala:1026
 msgid ""
 "You may claim a draw because fifty moves have passed without a capture or "
 "pawn advancement. (The computer player may still choose to claim a draw even "
@@ -1283,7 +1101,7 @@ msgstr ""
 "játékot)."
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: src/gnome-chess.vala:1035
+#: src/gnome-chess.vala:1031
 msgid ""
 "You may claim a draw because the current board position has occurred three "
 "times. (The computer player may still choose to claim a draw even if you "
@@ -1295,41 +1113,41 @@ msgstr ""
 
 #. Option in claim draw dialog
 #. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1043 src/gnome-chess.vala:1082
+#: src/gnome-chess.vala:1039 src/gnome-chess.vala:1078
 msgid "_Keep Playing"
 msgstr "Játék f_olytatása"
 
 #. Option in claim draw dialog
-#: src/gnome-chess.vala:1045
+#: src/gnome-chess.vala:1041
 msgid "_Claim Draw"
 msgstr "_Döntetlen"
 
-#: src/gnome-chess.vala:1062
+#: src/gnome-chess.vala:1058
 msgid "Save this game before starting a new one?"
 msgstr "Menti a játékot egy új elkezdése előtt?"
 
 #. Title of warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1077
+#: src/gnome-chess.vala:1073
 msgid "Are you sure you want to resign?"
 msgstr "Biztos, hogy fel szeretné adni?"
 
 #. Text on warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1080
+#: src/gnome-chess.vala:1076
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr ""
 "Ennek akkor van értelme, ha szeretné menteni a játékot a veresége "
 "rögzítéséhez."
 
 #. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1084
+#: src/gnome-chess.vala:1080
 msgid "_Resign"
 msgstr "_Feladás"
 
-#: src/gnome-chess.vala:1202
+#: src/gnome-chess.vala:1210
 msgid "A classic game of positional strategy"
 msgstr "Klasszikus stratégiai játék"
 
-#: src/gnome-chess.vala:1205
+#: src/gnome-chess.vala:1213
 msgid "translator-credits"
 msgstr ""
 "Bán Szabolcs <shooby at gnome dot hu>\n"
@@ -1341,86 +1159,156 @@ msgstr ""
 "Tímár András <timar at gnome dot hu>\n"
 "Varga Szabolcs <shirokuma at shirokuma dot hu>"
 
-#: src/gnome-chess.vala:1253
+#: src/gnome-chess.vala:1261
 msgid "This does not look like a valid PGN game."
 msgstr "Ez nem tűnik érvényes PGN játéknak."
 
-#: src/gnome-chess.vala:1254 src/gnome-chess.vala:1267
-#: src/gnome-chess.vala:1372
+#: src/gnome-chess.vala:1262 src/gnome-chess.vala:1275
+#: src/gnome-chess.vala:1380
 msgid "_OK"
 msgstr "_OK"
 
 #. Title of save game dialog
-#: src/gnome-chess.vala:1289
+#: src/gnome-chess.vala:1297
 msgid "Save Chess Game"
 msgstr "Sakkjátszma mentése"
 
-#: src/gnome-chess.vala:1291
+#: src/gnome-chess.vala:1299
 msgid "_Save"
 msgstr "M_entés"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1323
+#: src/gnome-chess.vala:1331
 msgid "Untitled Chess Game"
 msgstr "Névtelen sakkjátszma"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1329 src/gnome-chess.vala:1438
+#: src/gnome-chess.vala:1337 src/gnome-chess.vala:1446
 msgid "PGN files"
 msgstr "PGN fájlok"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1335 src/gnome-chess.vala:1444
+#: src/gnome-chess.vala:1343 src/gnome-chess.vala:1452
 msgid "All files"
 msgstr "Minden fájl"
 
-#: src/gnome-chess.vala:1370
+#: src/gnome-chess.vala:1378
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "A játék mentése sikertelen: %s"
 
-#: src/gnome-chess.vala:1422
+#: src/gnome-chess.vala:1430
 msgid "Save this game before loading another one?"
 msgstr "Menti a játékot egy másik betöltése előtt?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1429
+#: src/gnome-chess.vala:1437
 msgid "Load Chess Game"
 msgstr "Sakkjátszma betöltése"
 
-#: src/gnome-chess.vala:1431
+#: src/gnome-chess.vala:1439
 msgid "_Open"
 msgstr "_Megnyitás"
 
-#. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#. Preferences Dialog: Combo box entry for a custom clock type set in minutes
-#: src/preferences-dialog.vala:343 src/preferences-dialog.vala:384
-msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "perc"
-msgstr[1] "perc"
+#: src/preferences.vala:217
+msgctxt "chess-side"
+msgid "White Side"
+msgstr "Világos oldal"
 
-#. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: src/preferences-dialog.vala:347
-msgid "hour"
-msgid_plural "hours"
-msgstr[0] "óra"
-msgstr[1] "óra"
+#: src/preferences.vala:219
+msgctxt "chess-side"
+msgid "Black Side"
+msgstr "Sötét oldal"
 
-#. Preferences Dialog: Combo box entry for a custom clock type set in seconds
-#: src/preferences-dialog.vala:380
-msgid "second"
-msgid_plural "seconds"
-msgstr[0] "másodperc"
-msgstr[1] "másodperc"
+#: src/preferences.vala:221
+msgctxt "chess-side"
+msgid "Human Side"
+msgstr "Emberi oldal"
 
-#~ msgid "Black performed an en passant capture"
-#~ msgstr "Sötét en passant ütést végzett"
+#: src/preferences.vala:223
+msgctxt "chess-side"
+msgid "Current Player"
+msgstr "Jelenlegi játékos"
 
-#~ msgid "White performed an en passant capture"
-#~ msgstr "Világos en passant ütést végzett"
+#: src/preferences.vala:276
+msgctxt "chess-move-format"
+msgid "Human"
+msgstr "Emberi"
 
-#~ msgid "Oops! Something has gone wrong."
-#~ msgstr "Hopp! Valami elromlott."
+#: src/preferences.vala:278
+msgctxt "chess-move-format"
+msgid "Standard Algebraic"
+msgstr "Szabványos algebrai"
+
+#: src/preferences.vala:280
+msgctxt "chess-move-format"
+msgid "Long Algebraic"
+msgstr "Hosszú algebrai"
+
+#: src/preferences.vala:282
+msgctxt "chess-move-format"
+msgid "Figurine"
+msgstr "Figura"
+
+#: src/preferences.vala:333
+#| msgid "Simple"
+msgctxt "chess-piece-style"
+msgid "Simple"
+msgstr "Egyszerű"
+
+#: src/preferences.vala:335
+#| msgid "Fancy"
+msgctxt "chess-piece-style"
+msgid "Fancy"
+msgstr "Szép"
+
+#: src/preferences.vala:379
+msgctxt "chess-player"
+msgid "White"
+msgstr "Világos"
+
+#: src/preferences.vala:381
+msgctxt "chess-player"
+msgid "Black"
+msgstr "Sötét"
+
+#: src/preferences.vala:383
+msgctxt "chess-player"
+msgid "Alternate"
+msgstr "Váltakozó"
+
+#: src/preferences.vala:431
+msgctxt "difficulty"
+msgid "Easy"
+msgstr "Könnyű"
+
+#: src/preferences.vala:433
+msgctxt "difficulty"
+msgid "Normal"
+msgstr "Normál"
+
+#: src/preferences.vala:435
+msgctxt "difficulty"
+msgid "Hard"
+msgstr "Nehéz"
+
+#: src/preferences.vala:482
+#| msgctxt "custom_duration_units"
+#| msgid "Fischer"
+msgctxt "clock-type"
+msgid "Fischer"
+msgstr "Fischer"
+
+#: src/preferences.vala:484
+#| msgctxt "custom_duration_units"
+#| msgid "Bronstein"
+msgctxt "clock-type"
+msgid "Bronstein"
+msgstr "Bronstein"
+
+#: src/preferences.vala:527
+msgctxt "chess-opponent"
+msgid "Human"
+msgstr "Ember"
