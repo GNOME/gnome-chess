@@ -1,7 +1,7 @@
 project('gnome-chess', [ 'vala', 'c' ],
   version: '43.rc',
   license: 'GPL3+',
-  meson_version: '>= 0.56',
+  meson_version: '>= 0.59',
 )
 application_id = 'org.gnome.Chess'
 gnome = import('gnome')
@@ -53,7 +53,11 @@ conf.set_quoted('G_LOG_DOMAIN', meson.project_name())
 configure_file(output: 'config.h', configuration: conf)
 
 # Post-install scripts
-meson.add_install_script('meson_post_install.py')
+gnome.post_install(
+  glib_compile_schemas: true,
+  gtk_update_icon_cache: true,
+  update_desktop_database: true,
+)
 
 # Subfolders
 subdir('data')
