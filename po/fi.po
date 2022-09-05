@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2020-12-26 11:14+0000\n"
-"PO-Revision-Date: 2021-02-22 11:27+0200\n"
+"POT-Creation-Date: 2022-08-20 12:24+0000\n"
+"PO-Revision-Date: 2022-09-05 19:16+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -24,12 +24,149 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Launchpad-Export-Date: 2010-09-13 15:09+0000\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-POT-Import-Date: 2012-03-05 14:46:29+0000\n"
 
+#: data/org.gnome.Chess.appdata.xml.in:7
+msgid "GNOME Chess"
+msgstr "Gnomen Šakki"
+
+#: data/org.gnome.Chess.appdata.xml.in:8 data/org.gnome.Chess.desktop.in:5
+msgid "Play the classic two-player board game of chess"
+msgstr "Pelaa šakkia, klassista kahden pelaajan lautapeliä"
+
+#: data/org.gnome.Chess.appdata.xml.in:10
+msgid ""
+"GNOME Chess is a simple chess game. You can play against your computer at "
+"three different difficulty levels, or against a friend at your computer."
+msgstr ""
+"Gnomen Šakki on yksinkertainen šakkipeli. Voit pelata joko tietokonetta "
+"vastaan jollakin kolmesta vaikeustasosta tai ystävää vastaan tällä "
+"tietokoneella."
+
+#: data/org.gnome.Chess.appdata.xml.in:14
+msgid ""
+"Computer chess enthusiasts will appreciate GNOME Chess’s compatibility with "
+"nearly all modern computer chess engines, and its ability to detect several "
+"popular engines automatically if installed."
+msgstr ""
+"Tietokonešakin harrastajat arvostanevat Gnomen Šakin yhteensopivuutta lähes "
+"kaikkien nykyaikaisten tietokonešakkimoottoreiden kanssa, sekä sen kykyä "
+"tunnistaa monet suositut asennettuna olevat moottorit automaattisesti."
+
+#: data/org.gnome.Chess.appdata.xml.in:68
+msgid "The GNOME Project"
+msgstr "Gnome-projekti"
+
+#: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
+#: src/gnome-chess.vala:1206 src/gnome-chess.vala:1570
+msgid "Chess"
+msgstr "Šakki"
+
+#: data/org.gnome.Chess.desktop.in:4
+msgid "Chess Game"
+msgstr "Šakkipeli"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Chess.desktop.in:7
+msgid "game;strategy;"
+msgstr "game;strategy;peli;strategia;"
+
+#: data/org.gnome.Chess.gschema.xml:38
+msgid "The width of the window"
+msgstr "Ikkunan leveys"
+
+#: data/org.gnome.Chess.gschema.xml:39
+msgid "The width of the main window in pixels."
+msgstr "Pääikkunan leveys kuvapisteinä."
+
+#: data/org.gnome.Chess.gschema.xml:43
+msgid "The height of the window"
+msgstr "Ikkunan korkeus"
+
+#: data/org.gnome.Chess.gschema.xml:44
+msgid "The height of the main window in pixels."
+msgstr "Pääikkunan korkeus kuvapisteinä."
+
+#: data/org.gnome.Chess.gschema.xml:48 data/org.gnome.Chess.gschema.xml:49
+msgid "A flag to enable maximized mode"
+msgstr "Valitsin suurennetun tilan käyttöön"
+
+#: data/org.gnome.Chess.gschema.xml:53 data/org.gnome.Chess.gschema.xml:54
+msgid "The piece theme to use"
+msgstr "Käytettävä nappuloiden teema"
+
+#: data/org.gnome.Chess.gschema.xml:58 data/org.gnome.Chess.gschema.xml:59
+msgid "A flag to enable move hints"
+msgstr "Valitsin siirtovihjeiden käyttöön"
+
+#: data/org.gnome.Chess.gschema.xml:63 data/org.gnome.Chess.gschema.xml:64
+msgid "A flag to enable board numbering"
+msgstr "Valitsin lautojen numeroimiseksi"
+
+#: data/org.gnome.Chess.gschema.xml:68 data/org.gnome.Chess.gschema.xml:69
+msgid "The directory to open the save game dialog in"
+msgstr "Kansio, johon pelien tallennusikkuna avataan"
+
+#: data/org.gnome.Chess.gschema.xml:73 data/org.gnome.Chess.gschema.xml:74
+msgid "The directory to open the load game dialog in"
+msgstr "Kansio, johon pelien latausikkuna avataan"
+
+#: data/org.gnome.Chess.gschema.xml:78 data/org.gnome.Chess.gschema.xml:79
+msgid "The format to display moves in"
+msgstr "Muoto, jossa siirrot näytetään"
+
+#: data/org.gnome.Chess.gschema.xml:83 data/org.gnome.Chess.gschema.xml:84
+msgid "The side of the board that is in the foreground"
+msgstr "Laudan etualalla oleva puoli"
+
+#: data/org.gnome.Chess.gschema.xml:88 data/org.gnome.Chess.gschema.xml:89
+msgid "The duration of a game in seconds (0 for no limit)"
+msgstr "Pelin kesto sekunneissa (aseta 0, jos et halua rajoitusta)"
+
+#: data/org.gnome.Chess.gschema.xml:93 data/org.gnome.Chess.gschema.xml:94
+msgid "The type of clock (simple/fischer/bronstein)"
+msgstr "Kellon tyyppi (simple/fischer/bronstein)"
+
+#: data/org.gnome.Chess.gschema.xml:98 data/org.gnome.Chess.gschema.xml:99
+msgid "The timer increment set corresponding to clock type (1 second minimum)"
+msgstr "Aikalisä kellon tyyppiä vastaten (vähintään 1 sekunti)"
+
+#: data/org.gnome.Chess.gschema.xml:103 data/org.gnome.Chess.gschema.xml:104
+msgid "The board side to play as"
+msgstr "Laudan puoli, jolla pelataan"
+
+#: data/org.gnome.Chess.gschema.xml:108
+msgid "The last side the player played as"
+msgstr "Viimeisin puoli, jolla pelaaja pelasi"
+
+#: data/org.gnome.Chess.gschema.xml:109
+msgid ""
+"This is needed when play-as is set to alternate. This should only be set to "
+"black or white."
+msgstr ""
+"Tämä tarvitaan vain silloin, kun omaksi väriksi on valittu vaihtoehtoinen. "
+"Tämän arvoksi tulisi asettaa vain black (musta) tai white (valkoinen)."
+
+#: data/org.gnome.Chess.gschema.xml:113
+msgid "The opponent player"
+msgstr "Vastustajapelaaja"
+
+#: data/org.gnome.Chess.gschema.xml:114
+msgid ""
+"Can be 'human' (play against another human player), '' (use the first "
+"available chess engine) or the name of a specific engine to play against"
+msgstr ""
+"Voi olla 'human' (pelaa toista ihmispelaajaa vastaan), '' (käytä ensimmäistä "
+"saatavilla olevaa šakkimoottoria) tai tietyn šakkimoottorin nimi"
+
+#: data/org.gnome.Chess.gschema.xml:118 data/org.gnome.Chess.gschema.xml:119
+msgid "Difficulty of the opponent chess engine"
+msgstr "Vastustajan šakkimoottorin vaikeustaso"
+
 #: data/chess-window.ui:7
-msgid "_New Game"
-msgstr "_Uusi peli"
+msgid "_New Game…"
+msgstr "_Uusi peli…"
 
 #: data/chess-window.ui:11
 msgid "_Open Game…"
@@ -62,11 +199,6 @@ msgstr "_Ohje"
 #: data/chess-window.ui:45
 msgid "_About Chess"
 msgstr "_Tietoja - Šakki"
-
-#: data/chess-window.ui:59 data/org.gnome.Chess.desktop.in:3
-#: src/gnome-chess.vala:1198 src/gnome-chess.vala:1565
-msgid "Chess"
-msgstr "Šakki"
 
 #: data/chess-window.ui:67
 msgid "Undo your most recent move"
@@ -177,389 +309,66 @@ msgctxt "shortcut window"
 msgid "Show Keyboard Shortcuts"
 msgstr "Näytä pikanäppäimet"
 
-#: data/org.gnome.Chess.appdata.xml.in:7
-msgid "GNOME Chess"
-msgstr "Gnomen Šakki"
-
-#: data/org.gnome.Chess.appdata.xml.in:8 data/org.gnome.Chess.desktop.in:5
-msgid "Play the classic two-player board game of chess"
-msgstr "Pelaa šakkia, klassista kahden pelaajan lautapeliä"
-
-#: data/org.gnome.Chess.appdata.xml.in:10
-msgid ""
-"GNOME Chess is a simple chess game. You can play against your computer at "
-"three different difficulty levels, or against a friend at your computer."
-msgstr ""
-"Gnomen Šakki on yksinkertainen šakkipeli. Voit pelata joko tietokonetta "
-"vastaan jollakin kolmesta vaikeustasosta tai ystävää vastaan tällä "
-"tietokoneella."
-
-#: data/org.gnome.Chess.appdata.xml.in:14
-msgid ""
-"Computer chess enthusiasts will appreciate GNOME Chess’s compatibility with "
-"nearly all modern computer chess engines, and its ability to detect several "
-"popular engines automatically if installed."
-msgstr ""
-"Tietokonešakin harrastajat arvostanevat Gnomen Šakin yhteensopivuutta lähes "
-"kaikkien nykyaikaisten tietokonešakkimoottoreiden kanssa, sekä sen kykyä "
-"tunnistaa monet suositut asennettuna olevat moottorit automaattisesti."
-
-#: data/org.gnome.Chess.appdata.xml.in:52
-msgid "The GNOME Project"
-msgstr "Gnome-projekti"
-
-#: data/org.gnome.Chess.desktop.in:4
-msgid "Chess Game"
-msgstr "Šakkipeli"
-
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Chess.desktop.in:7
-msgid "game;strategy;"
-msgstr "game;strategy;peli;strategia;"
-
-#: data/org.gnome.Chess.gschema.xml:38
-msgid "The width of the window"
-msgstr "Ikkunan leveys"
-
-#: data/org.gnome.Chess.gschema.xml:39
-msgid "The width of the main window in pixels."
-msgstr "Pääikkunan leveys kuvapisteinä."
-
-#: data/org.gnome.Chess.gschema.xml:43
-msgid "The height of the window"
-msgstr "Ikkunan korkeus"
-
-#: data/org.gnome.Chess.gschema.xml:44
-msgid "The height of the main window in pixels."
-msgstr "Pääikkunan korkeus kuvapisteinä."
-
-#: data/org.gnome.Chess.gschema.xml:48 data/org.gnome.Chess.gschema.xml:49
-msgid "A flag to enable maximized mode"
-msgstr "Valitsin suurennetun tilan käyttöön"
-
-#: data/org.gnome.Chess.gschema.xml:53 data/org.gnome.Chess.gschema.xml:54
-msgid "The piece theme to use"
-msgstr "Käytettävä nappuloiden teema"
-
-#: data/org.gnome.Chess.gschema.xml:58 data/org.gnome.Chess.gschema.xml:59
-msgid "A flag to enable move hints"
-msgstr "Valitsin siirtovihjeiden käyttöön"
-
-#: data/org.gnome.Chess.gschema.xml:63 data/org.gnome.Chess.gschema.xml:64
-msgid "A flag to enable board numbering"
-msgstr "Valitsin lautojen numeroimiseksi"
-
-#: data/org.gnome.Chess.gschema.xml:68 data/org.gnome.Chess.gschema.xml:69
-msgid "The directory to open the save game dialog in"
-msgstr "Kansio, johon pelien tallennusikkuna avataan"
-
-#: data/org.gnome.Chess.gschema.xml:73 data/org.gnome.Chess.gschema.xml:74
-msgid "The directory to open the load game dialog in"
-msgstr "Kansio, johon pelien latausikkuna avataan"
-
-#: data/org.gnome.Chess.gschema.xml:78 data/org.gnome.Chess.gschema.xml:79
-msgid "The format to display moves in"
-msgstr "Muoto, jossa siirrot näytetään"
-
-#: data/org.gnome.Chess.gschema.xml:83 data/org.gnome.Chess.gschema.xml:84
-msgid "The side of the board that is in the foreground"
-msgstr "Laudan etualalla oleva puoli"
-
-#: data/org.gnome.Chess.gschema.xml:88 data/org.gnome.Chess.gschema.xml:89
-msgid "The duration of a game in seconds (0 for no limit)"
-msgstr "Pelin kesto sekunneissa (aseta 0, jos et halua rajoitusta)"
-
-#: data/org.gnome.Chess.gschema.xml:93 data/org.gnome.Chess.gschema.xml:94
-msgid "The type of clock (simple/fischer/bronstein)"
-msgstr "Kellon tyyppi (simple/fischer/bronstein)"
-
-#: data/org.gnome.Chess.gschema.xml:98 data/org.gnome.Chess.gschema.xml:99
-msgid "The timer increment set corresponding to clock type (1 second minimum)"
-msgstr "Aikalisä kellon tyyppiä vastaten (vähintään 1 sekunti)"
-
-#: data/org.gnome.Chess.gschema.xml:103 data/org.gnome.Chess.gschema.xml:104
-msgid "The board side to play as"
-msgstr "Laudan puoli, jolla pelataan"
-
-#: data/org.gnome.Chess.gschema.xml:108
-msgid "The last side the player played as"
-msgstr "Viimeisin puoli, jolla pelaaja pelasi"
-
-#: data/org.gnome.Chess.gschema.xml:109
-msgid ""
-"This is needed when play-as is set to alternate. This should only be set to "
-"black or white."
-msgstr ""
-"Tämä tarvitaan vain silloin, kun omaksi väriksi on valittu vaihtoehtoinen. "
-"Tämän arvoksi tulisi asettaa vain black (musta) tai white (valkoinen)."
-
-#: data/org.gnome.Chess.gschema.xml:113
-msgid "The opponent player"
-msgstr "Vastustajapelaaja"
-
-#: data/org.gnome.Chess.gschema.xml:114
-msgid ""
-"Can be 'human' (play against another human player), '' (use the first "
-"available chess engine) or the name of a specific engine to play against"
-msgstr ""
-"Voi olla 'human' (pelaa toista ihmispelaajaa vastaan), '' (käytä ensimmäistä "
-"saatavilla olevaa šakkimoottoria) tai tietyn šakkimoottorin nimi"
-
-#: data/org.gnome.Chess.gschema.xml:118 data/org.gnome.Chess.gschema.xml:119
-msgid "Difficulty of the opponent chess engine"
-msgstr "Vastustajan šakkimoottorin vaikeustaso"
-
-#. Preferences dialog: Combo box entry for time limit
-#. Preferences dialog: Combo box entry for timer increment
-#: data/preferences.ui:11 data/preferences.ui:31
-msgctxt "custom_duration_units"
-msgid "minutes"
-msgstr "minuuttia"
-
-#. Preferences dialog: Combo box entry for time limit
-#: data/preferences.ui:15
-msgctxt "custom_duration_units"
-msgid "hours"
-msgstr "tuntia"
-
-#. Preferences dialog: Combo box entry for timer increment
-#: data/preferences.ui:27
-msgctxt "custom_duration_units"
-msgid "seconds"
-msgstr "sekuntia"
-
-#. Preferences dialog: Combo box entry for clock type
-#: data/preferences.ui:43
-msgctxt "custom_duration_units"
-msgid "Simple"
-msgstr "Yksinkertainen"
-
-#. Preferences dialog: Combo box entry for time limit. Fischer is a proper name.
-#: data/preferences.ui:47
-msgctxt "custom_duration_units"
-msgid "Fischer"
-msgstr "Fischer"
-
-#. Preferences dialog: Combo box entry for time limit. Bronstein is a proper name.
-#: data/preferences.ui:51
-msgctxt "custom_duration_units"
-msgid "Bronstein"
-msgstr "Bronstein"
-
-#. Preferences Dialog: Combo box entry for easy game difficulty
-#: data/preferences.ui:63
-msgctxt "difficulty"
-msgid "Easy"
-msgstr "Helppo"
-
-#. Preferences Dialog: Combo box entry for normal game difficulty
-#: data/preferences.ui:67
-msgctxt "difficulty"
-msgid "Normal"
-msgstr "Normaali"
-
-#. Preferences Dialog: Combo box entry for hard game difficulty
-#: data/preferences.ui:71
-msgctxt "difficulty"
-msgid "Hard"
-msgstr "Vaikea"
-
-#. Preferences Dialog: Combo box entry for no game timer
-#: data/preferences.ui:97
-msgid "No limit"
-msgstr "Ei rajoitusta"
-
-#. Preferences Dialog: Combo box entry for game timer of five minutes
-#: data/preferences.ui:101
-msgid "Five minutes"
-msgstr "Viisi minuuttia"
-
-#. Preferences Dialog: Combo box entry for game timer of ten minutes
-#: data/preferences.ui:105
-msgid "Ten minutes"
-msgstr "10 minuuttia"
-
-#. Preferences Dialog: Combo box entry for game timer of thirty minutes
-#: data/preferences.ui:109
-msgid "Thirty minutes"
-msgstr "30 minuuttia"
-
-#. Preferences Dialog: Combo box entry for game timer of one hour
-#: data/preferences.ui:113
-msgid "One hour"
-msgstr "Yksi tunti"
-
-#. Preferences Dialog: Combo box entry for game timer of two hours
-#: data/preferences.ui:117
-msgid "Two hours"
-msgstr "Kaksi tuntia"
-
-#. Preferences Dialog: Combo box entry for game timer of three hours
-#: data/preferences.ui:121
-msgid "Three hours"
-msgstr "Kolme tuntia"
-
-#. Preferences Dialog: Combo box entry for custom game timer
-#: data/preferences.ui:125
-msgid "Custom"
-msgstr "Mukautettu"
-
-#. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
-#: data/preferences.ui:137
-msgctxt "chess-move-format"
-msgid "Human"
-msgstr "Ihminen"
-
-#. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
-#: data/preferences.ui:141
-msgctxt "chess-move-format"
-msgid "Standard Algebraic"
-msgstr "Lyhyt algebrallinen"
-
-#. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
-#: data/preferences.ui:145
-msgctxt "chess-move-format"
-msgid "Figurine"
-msgstr "Figuriini"
-
-#. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
-#: data/preferences.ui:149
-msgctxt "chess-move-format"
-msgid "Long Algebraic"
-msgstr "Pitkä algebrallinen"
-
-#. Preferences Dialog: Combo box entry for human opponent
-#: data/preferences.ui:161
-msgctxt "chess-opponent"
-msgid "Human"
-msgstr "Ihminen"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the white side
-#: data/preferences.ui:173
-msgctxt "chess-side"
-msgid "White Side"
-msgstr "Valkoinen puoli"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the black side
-#: data/preferences.ui:177
-msgctxt "chess-side"
-msgid "Black Side"
-msgstr "Musta puoli"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
-#: data/preferences.ui:181
-msgctxt "chess-side"
-msgid "Human Side"
-msgstr "Ihmisen puoli"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
-#: data/preferences.ui:185
-msgctxt "chess-side"
-msgid "Current Player"
-msgstr "Vuorossa oleva pelaaja"
-
-#. Preferences Dialog: Combo box entry for simple theme
-#: data/preferences.ui:197
-msgid "Simple"
-msgstr "Yksinkertainen"
-
-#. Preferences Dialog: Combo box entry for fancy theme
-#: data/preferences.ui:201
-msgid "Fancy"
-msgstr "Koristeellinen"
-
-#. Preferences Dialog: Combo box entry for playing as white
-#: data/preferences.ui:213
-msgctxt "chess-player"
-msgid "White"
-msgstr "Valkoinen"
-
-#. Preferences Dialog: Combo box entry for playing as black
-#: data/preferences.ui:217
-msgctxt "chess-player"
-msgid "Black"
-msgstr "Musta"
-
-#. Preferences Dialog: Combo box entry for alterning between black and white
-#: data/preferences.ui:221
-msgctxt "chess-player"
-msgid "Alternate"
-msgstr "Vaihtoehtoinen"
-
-#. Title for preferences dialog
-#: data/preferences.ui:228
-msgid "Preferences"
-msgstr "Asetukset"
-
-#. Preferences Dialog: Label before clock type (Fischer/Bronstein) combo box
-#: data/preferences.ui:252
-msgid "_Clock type:"
-msgstr "K_ellon tyyppi:"
-
-#. Preferences Dialog: Label before timer increment combo box
-#: data/preferences.ui:265
-msgid "Timer _increment:"
-msgstr "Aikalis_ä:"
-
-#. Preferences Dialog: Label before player side (white/black) combo box
-#: data/preferences.ui:296
-msgid "_Play as:"
-msgstr "Oma _väri:"
-
-#. Preferences Dialog: Label before opposing player combo box
-#: data/preferences.ui:309
-msgid "_Opposing player:"
-msgstr "_Vastustaja:"
-
-#. Preferences Dialog: Label before difficulty level combo box
-#: data/preferences.ui:322
-msgid "_Difficulty:"
-msgstr "_Vaikeustaso:"
-
-#. Preferences Dialog: Label before game timer settings
-#: data/preferences.ui:455
-msgid "_Time limit:"
-msgstr "_Aikaraja:"
-
-#. Preferences dialog: Label to notify user that the settings are applied for the next game
-#: data/preferences.ui:499
-msgid "Changes will take effect for the next game."
-msgstr "Muutokset tulevat voimaan seuraavassa pelissä."
-
-#. Preferences Dialog: Tab title for game preferences
-#: data/preferences.ui:514
-msgid "_Game"
-msgstr "_Peli"
-
-#. Preferences Dialog: Label before board orientation combo box
-#: data/preferences.ui:535
-msgid "Board _orientation:"
-msgstr "Laudan _suunta:"
-
-#. Preferences Dialog: Label before move format combo box
-#: data/preferences.ui:548
-msgid "Move _format:"
-msgstr "Siirto_tapa:"
-
-#. Preferences Dialog: Label before piece style combo box
-#: data/preferences.ui:561
-msgid "_Piece style:"
-msgstr "_Nappuloiden tyyli:"
-
-#. Preferences Dialog: Check box for selecting if board numbering is visible
-#: data/preferences.ui:625
-msgid "_Board numbering"
+#: data/new-game-window.ui:5
+msgid "New Game"
+msgstr "Uusi peli"
+
+#: data/new-game-window.ui:20 src/gnome-chess.vala:969
+#: src/gnome-chess.vala:1300 src/gnome-chess.vala:1440
+msgid "_Cancel"
+msgstr "_Peru"
+
+#: data/new-game-window.ui:28
+msgid "_Start"
+msgstr "_Aloita"
+
+#: data/new-game-window.ui:45
+msgid "_Opposing Player"
+msgstr "_Vastustaja"
+
+#: data/new-game-window.ui:51
+msgid "_Play As"
+msgstr "Oma _väri"
+
+#: data/new-game-window.ui:65
+msgid "_Difficulty"
+msgstr "_Vaikeustaso"
+
+#: data/new-game-window.ui:84
+msgid "_Use Time Limit"
+msgstr "_Käytä aikarajaa"
+
+#: data/new-game-window.ui:96
+msgid "_Minutes Per Side"
+msgstr "_Minuuttia per puoli"
+
+#: data/new-game-window.ui:117
+msgid "_Increment In Seconds"
+msgstr "_Lisäys sekunneissa"
+
+#: data/new-game-window.ui:138
+msgid "Clock _Type"
+msgstr "K_ellon tyyppi"
+
+#: data/preferences-window.ui:15
+msgid "_Board Orientation"
+msgstr "Laudan _suunta"
+
+#: data/preferences-window.ui:29
+msgid "_Move Format"
+msgstr "Siirto_tapa"
+
+#: data/preferences-window.ui:43
+msgid "_Piece Style"
+msgstr "_Nappuloiden tyyli"
+
+#: data/preferences-window.ui:57
+msgid "Board _Numbering"
 msgstr "Laudan _numerointi"
 
-#. Preferences Dialog: Check box for selecting if move hints are visible
-#: data/preferences.ui:636
-msgid "_Move hints"
+#: data/preferences-window.ui:69
+msgid "Move _Hints"
 msgstr "Siirto_vinkit"
-
-#. Preferences Dialog: Title of appearance options tab
-#: data/preferences.ui:650
-msgid "_Appearance"
-msgstr "_Ulkoasu"
 
 #: data/promotion-type-selector.ui:6
 msgid "Select Promotion Type"
@@ -603,472 +412,472 @@ msgid "Invalid timer increment in PGN: %s, using a simple clock."
 msgstr ""
 "Virheellinen ajastimen kasvu PGN:ssä: %s, käytetään yksinkertaista kelloa."
 
-#: src/chess-view.vala:325
+#: src/chess-view.vala:319
 msgid "Paused"
 msgstr "Pysäytetty"
 
-#: src/chess-window.vala:131
+#: src/chess-window.vala:129
 msgid "Unpause the game"
 msgstr "Jatka peliä"
 
-#: src/chess-window.vala:136
+#: src/chess-window.vala:134
 msgid "Pause the game"
 msgstr "Pysäytä peli"
 
 #. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
 #. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
-#: src/chess-window.vala:304
+#: src/chess-window.vala:315
 #, c-format
 msgid "White pawn moves from %1$s to %2$s"
 msgstr "Valkoinen sotilas siirtyy ruudusta %1$s ruutuun %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:306
+#: src/chess-window.vala:317
 #, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s"
 msgstr "Valkoinen sotilas ruudusta %1$s syö mustan sotilaan ruudussa %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:308
+#: src/chess-window.vala:319
 #, c-format
 msgid "White pawn at %1$s takes the black rook at %2$s"
 msgstr "Valkoinen sotilas ruudusta %1$s syö mustan tornin ruudussa %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:310
+#: src/chess-window.vala:321
 #, c-format
 msgid "White pawn at %1$s takes the black knight at %2$s"
 msgstr "Valkoinen sotilas ruudusta %1$s syö mustan hevosen ruudussa %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:312
+#: src/chess-window.vala:323
 #, c-format
 msgid "White pawn at %1$s takes the black bishop at %2$s"
 msgstr "Valkoinen sotilas ruudusta %1$s syö mustan lähetin ruudussa %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:314
+#: src/chess-window.vala:325
 #, c-format
 msgid "White pawn at %1$s takes the black queen at %2$s"
 msgstr "Valkoinen sotilas ruudusta %1$s syö mustan kuningattaren ruudussa %2$s"
 
 #. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
-#: src/chess-window.vala:316
+#: src/chess-window.vala:327
 #, c-format
 msgid "White rook moves from %1$s to %2$s"
 msgstr "Valkoinen torni siirtyy ruudusta %1$s ruutuun %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:318
+#: src/chess-window.vala:329
 #, c-format
 msgid "White rook at %1$s takes the black pawn at %2$s"
 msgstr "Valkoinen torni ruudusta %1$s syö mustan sotilaan ruudussa %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:320
+#: src/chess-window.vala:331
 #, c-format
 msgid "White rook at %1$s takes the black rook at %2$s"
 msgstr "Valkoinen torni ruudusta %1$s syö mustan tornin ruudussa %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:322
+#: src/chess-window.vala:333
 #, c-format
 msgid "White rook at %1$s takes the black knight at %2$s"
 msgstr "Valkoinen torni ruudusta %1$s syö mustan hevosen ruudussa %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:324
+#: src/chess-window.vala:335
 #, c-format
 msgid "White rook at %1$s takes the black bishop at %2$s"
 msgstr "Valkoinen torni ruudusta %1$s syö mustan lähetin ruudussa %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
-#: src/chess-window.vala:326
+#: src/chess-window.vala:337
 #, c-format
 msgid "White rook at %1$s takes the black queen at %2$s"
 msgstr "Valkoinen torni ruudusta %1$s syö mustan kuningattaren ruudussa %2$s"
 
 #. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
-#: src/chess-window.vala:328
+#: src/chess-window.vala:339
 #, c-format
 msgid "White knight moves from %1$s to %2$s"
 msgstr "Valkoinen hevonen siirtyy ruudusta %1$s ruutuun %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:330
+#: src/chess-window.vala:341
 #, c-format
 msgid "White knight at %1$s takes the black pawn at %2$s"
 msgstr "Valkoinen hevonen ruudusta %1$s syö mustan lähetin ruudussa %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:332
+#: src/chess-window.vala:343
 #, c-format
 msgid "White knight at %1$s takes the black rook at %2$s"
 msgstr "Valkoinen hevonen ruudusta %1$s syö mustan sotilaan ruudussa %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:334
+#: src/chess-window.vala:345
 #, c-format
 msgid "White knight at %1$s takes the black knight at %2$s"
 msgstr "Valkoinen hevonen ruudusta %1$s syö mustan hevosen ruudussa %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:336
+#: src/chess-window.vala:347
 #, c-format
 msgid "White knight at %1$s takes the black bishop at %2$s"
 msgstr "Valkoinen hevonen ruudusta %1$s syö mustan lähetin ruudussa %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:338
+#: src/chess-window.vala:349
 #, c-format
 msgid "White knight at %1$s takes the black queen at %2$s"
 msgstr "Valkoinen hevonen ruudusta %1$s syö mustan kuningattaren ruudussa %2$s"
 
 #. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
-#: src/chess-window.vala:340
+#: src/chess-window.vala:351
 #, c-format
 msgid "White bishop moves from %1$s to %2$s"
 msgstr "Valkoinen lähetti siirtyy ruudusta %1$s ruutuun %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:342
+#: src/chess-window.vala:353
 #, c-format
 msgid "White bishop at %1$s takes the black pawn at %2$s"
 msgstr "Valkoinen lähetti ruudusta %1$s syö mustan sotilaan ruudussa %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:344
+#: src/chess-window.vala:355
 #, c-format
 msgid "White bishop at %1$s takes the black rook at %2$s"
 msgstr "Valkoinen lähetti ruudusta %1$s syö mustan tornin ruudussa %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:346
+#: src/chess-window.vala:357
 #, c-format
 msgid "White bishop at %1$s takes the black knight at %2$s"
 msgstr "Valkoinen lähetti ruudusta %1$s syö mustan hevosen ruudussa %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:348
+#: src/chess-window.vala:359
 #, c-format
 msgid "White bishop at %1$s takes the black bishop at %2$s"
 msgstr "Valkoinen lähetti ruudusta %1$s syö mustan lähetin ruudussa %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:350
+#: src/chess-window.vala:361
 #, c-format
 msgid "White bishop at %1$s takes the black queen at %2$s"
 msgstr "Valkoinen lähetti ruudusta %1$s syö mustan kuningattaren ruudussa %2$s"
 
 #. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
-#: src/chess-window.vala:352
+#: src/chess-window.vala:363
 #, c-format
 msgid "White queen moves from %1$s to %2$s"
 msgstr "Valkoinen kuningatar siirtyy ruudusta %1$s ruutuun %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:354
+#: src/chess-window.vala:365
 #, c-format
 msgid "White queen at %1$s takes the black pawn at %2$s"
 msgstr "Valkoinen kuningatar ruudusta %1$s syö mustan sotilaan ruudussa %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:356
+#: src/chess-window.vala:367
 #, c-format
 msgid "White queen at %1$s takes the black rook at %2$s"
 msgstr "Valkoinen kuningatar ruudusta %1$s syö mustan tornin ruudussa %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:358
+#: src/chess-window.vala:369
 #, c-format
 msgid "White queen at %1$s takes the black knight at %2$s"
 msgstr "Valkoinen kuningatar ruudusta %1$s syö mustan hevosen ruudussa %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:360
+#: src/chess-window.vala:371
 #, c-format
 msgid "White queen at %1$s takes the black bishop at %2$s"
 msgstr "Valkoinen kuningatar ruudusta %1$s syö mustan lähetin ruudussa %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:362
+#: src/chess-window.vala:373
 #, c-format
 msgid "White queen at %1$s takes the black queen at %2$s"
 msgstr ""
 "Valkoinen kuningatar ruudusta %1$s syö mustan kuningattaren ruudussa %2$s"
 
 #. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
-#: src/chess-window.vala:364
+#: src/chess-window.vala:375
 #, c-format
 msgid "White king moves from %1$s to %2$s"
 msgstr "Valkoinen kuningas siirtyy ruudusta %1$s ruutuun %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:366
+#: src/chess-window.vala:377
 #, c-format
 msgid "White king at %1$s takes the black pawn at %2$s"
 msgstr "Valkoinen kuningas ruudusta %1$s syö mustan sotilaan ruudussa %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:368
+#: src/chess-window.vala:379
 #, c-format
 msgid "White king at %1$s takes the black rook at %2$s"
 msgstr "Valkoinen kuningas ruudusta %1$s syö mustan tornin ruudussa %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:370
+#: src/chess-window.vala:381
 #, c-format
 msgid "White king at %1$s takes the black knight at %2$s"
 msgstr "Valkoinen kuningas ruudusta %1$s syö mustan hevosen %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:372
+#: src/chess-window.vala:383
 #, c-format
 msgid "White king at %1$s takes the black bishop at %2$s"
 msgstr "Valkoinen kuningas ruudusta %1$s syö mustan lähetin ruudussa %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:374
+#: src/chess-window.vala:385
 #, c-format
 msgid "White king at %1$s takes the black queen at %2$s"
 msgstr ""
 "Valkoinen kuningas ruudusta %1$s syö mustan kuningattaren ruudussa %2$s"
 
 #. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
-#: src/chess-window.vala:376
+#: src/chess-window.vala:387
 #, c-format
 msgid "Black pawn moves from %1$s to %2$s"
 msgstr "Musta sotilas siirtyy ruudusta %1$s ruutuun %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:378
+#: src/chess-window.vala:389
 #, c-format
 msgid "Black pawn at %1$s takes the white pawn at %2$s"
 msgstr "Musta sotilas ruudusta %1$s syö valkoisen sotilaan ruudussa %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:380
+#: src/chess-window.vala:391
 #, c-format
 msgid "Black pawn at %1$s takes the white rook at %2$s"
 msgstr "Musta sotilas ruudusta %1$s syö valkoisen tornin ruudussa %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:382
+#: src/chess-window.vala:393
 #, c-format
 msgid "Black pawn at %1$s takes the white knight at %2$s"
 msgstr "Musta sotilas ruudusta %1$s syö valkoisen hevosen ruudussa %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:384
+#: src/chess-window.vala:395
 #, c-format
 msgid "Black pawn at %1$s takes the white bishop at %2$s"
 msgstr "Musta sotilas ruudusta %1$s syö valkoisen lähetin ruudussa %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:386
+#: src/chess-window.vala:397
 #, c-format
 msgid "Black pawn at %1$s takes the white queen at %2$s"
 msgstr "Musta sotilas ruudusta %1$s syö valkoisen kuningattaren ruudussa %2$s"
 
 #. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
-#: src/chess-window.vala:388
+#: src/chess-window.vala:399
 #, c-format
 msgid "Black rook moves from %1$s to %2$s"
 msgstr "Musta torni siirtyy ruudusta %1$s ruutuun %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:390
+#: src/chess-window.vala:401
 #, c-format
 msgid "Black rook at %1$s takes the white pawn at %2$s"
 msgstr "Musta torni ruudusta %1$s syö valkoisen sotilaan ruudussa %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:392
+#: src/chess-window.vala:403
 #, c-format
 msgid "Black rook at %1$s takes the white rook at %2$s"
 msgstr "Musta torni ruudusta %1$s syö valkoisen tornin ruudussa %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:394
+#: src/chess-window.vala:405
 #, c-format
 msgid "Black rook at %1$s takes the white knight at %2$s"
 msgstr "Musta torni ruudusta %1$s syö valkoisen hevosen ruudussa %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:396
+#: src/chess-window.vala:407
 #, c-format
 msgid "Black rook at %1$s takes the white bishop at %2$s"
 msgstr "Musta torni ruudusta %1$s syö valkoisen lähetin ruudussa %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:398
+#: src/chess-window.vala:409
 #, c-format
 msgid "Black rook at %1$s takes the white queen at %2$s"
 msgstr "Musta torni ruudusta %1$s syö valkoisen kuningattaren ruudussa %2$s"
 
 #. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
-#: src/chess-window.vala:400
+#: src/chess-window.vala:411
 #, c-format
 msgid "Black knight moves from %1$s to %2$s"
 msgstr "Musta hevonen siirtyy ruudusta %1$s ruutuun %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:402
+#: src/chess-window.vala:413
 #, c-format
 msgid "Black knight at %1$s takes the white pawn at %2$s"
 msgstr "Musta hevonen ruudusta %1$s syö valkoisen sotilaan ruudussa %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:404
+#: src/chess-window.vala:415
 #, c-format
 msgid "Black knight at %1$s takes the white rook at %2$s"
 msgstr "Musta hevonen ruudusta %1$s syö valkoisen tornin ruudussa %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:406
+#: src/chess-window.vala:417
 #, c-format
 msgid "Black knight at %1$s takes the white knight at %2$s"
 msgstr "Musta hevonen ruudusta %1$s syö valkoisen hevosen ruudussa %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:408
+#: src/chess-window.vala:419
 #, c-format
 msgid "Black knight at %1$s takes the white bishop at %2$s"
 msgstr "Musta hevonen ruudusta %1$s syö valkoisen lähetin ruudussa %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:410
+#: src/chess-window.vala:421
 #, c-format
 msgid "Black knight at %1$s takes the white queen at %2$s"
 msgstr "Musta hevonen ruudusta %1$s syö valkoisen kuningattaren ruudussa %2$s"
 
 #. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
-#: src/chess-window.vala:412
+#: src/chess-window.vala:423
 #, c-format
 msgid "Black bishop moves from %1$s to %2$s"
 msgstr "Musta lähetti siirtyy ruudusta %1$s ruutuun %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:414
+#: src/chess-window.vala:425
 #, c-format
 msgid "Black bishop at %1$s takes the white pawn at %2$s"
 msgstr "Musta lähetti ruudusta %1$s syö valkoisen sotilaan ruudussa %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:416
+#: src/chess-window.vala:427
 #, c-format
 msgid "Black bishop at %1$s takes the white rook at %2$s"
 msgstr "Musta lähetti ruudusta %1$s syö valkoisen tornin ruudussa %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:418
+#: src/chess-window.vala:429
 #, c-format
 msgid "Black bishop at %1$s takes the white knight at %2$s"
 msgstr "Musta lähetti ruudusta %1$s syö valkoisen hevosen ruudussa %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:420
+#: src/chess-window.vala:431
 #, c-format
 msgid "Black bishop at %1$s takes the white bishop at %2$s"
 msgstr "Musta lähetti ruudusta %1$s syö valkoisen lähetin ruudussa %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:422
+#: src/chess-window.vala:433
 #, c-format
 msgid "Black bishop at %1$s takes the white queen at %2$s"
 msgstr "Musta lähetti ruudusta %1$s syö valkoisen kuningattaren ruudussa %2$s"
 
 #. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
-#: src/chess-window.vala:424
+#: src/chess-window.vala:435
 #, c-format
 msgid "Black queen moves from %1$s to %2$s"
 msgstr "Musta kuningatar siirtyy ruudusta %1$s ruutuun %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:426
+#: src/chess-window.vala:437
 #, c-format
 msgid "Black queen at %1$s takes the white pawn at %2$s"
 msgstr "Musta kuningatar ruudusta %1$s syö valkoisen sotilaan ruudussa %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:428
+#: src/chess-window.vala:439
 #, c-format
 msgid "Black queen at %1$s takes the white rook at %2$s"
 msgstr "Musta kuningatar ruudusta %1$s syö valkoisen tornin ruudussa %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:430
+#: src/chess-window.vala:441
 #, c-format
 msgid "Black queen at %1$s takes the white knight at %2$s"
 msgstr "Musta kuningatar ruudusta %1$s syö valkoisen hevosen ruudussa %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:432
+#: src/chess-window.vala:443
 #, c-format
 msgid "Black queen at %1$s takes the white bishop at %2$s"
 msgstr "Musta kuningatar ruudusta %1$s syö valkoisen lähetin ruudussa %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:434
+#: src/chess-window.vala:445
 #, c-format
 msgid "Black queen at %1$s takes the white queen at %2$s"
 msgstr ""
 "Musta kuningatar ruudusta %1$s syö valkoisen kuningattaren ruudussa %2$s"
 
 #. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
-#: src/chess-window.vala:436
+#: src/chess-window.vala:447
 #, c-format
 msgid "Black king moves from %1$s to %2$s"
 msgstr "Musta kuningas siirtyy ruudusta %1$s ruutuun %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:438
+#: src/chess-window.vala:449
 #, c-format
 msgid "Black king at %1$s takes the white pawn at %2$s"
 msgstr "Musta kuningas ruudusta %1$s syö valkoisen sotilaan ruudussa %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:440
+#: src/chess-window.vala:451
 #, c-format
 msgid "Black king at %1$s takes the white rook at %2$s"
 msgstr "Musta kuningas ruudusta %1$s syö valkoisen tornin ruudussa %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:442
+#: src/chess-window.vala:453
 #, c-format
 msgid "Black king at %1$s takes the white knight at %2$s"
 msgstr "Musta kuningas ruudusta %1$s syö valkoisen hevosen ruudussa %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:444
+#: src/chess-window.vala:455
 #, c-format
 msgid "Black king at %1$s takes the white bishop at %2$s"
 msgstr "Musta kuningas ruudusta %1$s syö valkoisen lähetin ruudussa %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
-#: src/chess-window.vala:446
+#: src/chess-window.vala:457
 #, c-format
 msgid "Black king at %1$s takes the white queen at %2$s"
 msgstr "Musta kuningas ruudusta %1$s syö valkoisen kuningattaren ruudussa %2$s"
 
-#: src/chess-window.vala:455
+#: src/chess-window.vala:466
 msgid "White castles kingside"
 msgstr "Valkoinen linnoittautuu kuninkaan puolelle"
 
-#: src/chess-window.vala:457
+#: src/chess-window.vala:468
 msgid "White castles queenside"
 msgstr "Valkoinen linnoittautuu kuningattaren puolelle"
 
-#: src/chess-window.vala:459
+#: src/chess-window.vala:470
 msgid "Black castles kingside"
 msgstr "Musta linnoittautuu kuninkaan puolelle"
 
-#: src/chess-window.vala:461
+#: src/chess-window.vala:472
 msgid "Black castles queenside"
 msgstr "Musta linnoittautuu kuningattaren puolelle"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s en passant
-#: src/chess-window.vala:483
+#: src/chess-window.vala:494
 #, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s en passant"
 msgstr ""
@@ -1076,7 +885,7 @@ msgstr ""
 "ohestalyönnillä"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s en passant
-#: src/chess-window.vala:487
+#: src/chess-window.vala:498
 #, c-format
 msgid "Black pawn at %1$s takes white pawn at %2$s en passant"
 msgstr ""
@@ -1084,60 +893,59 @@ msgstr ""
 "ohestalyönnillä"
 
 #. Move History Combo: Go to the start of the game
-#: src/chess-window.vala:521
+#: src/chess-window.vala:532
 msgid "Game Start"
 msgstr "Pelin aloitus"
 
 #. Help string for command line --version flag
-#: src/gnome-chess.vala:93
+#: src/gnome-chess.vala:95
 msgid "Show release version"
 msgstr "Näytä julkaisuversio"
 
 #. May print when started on the command line; a PGN is a saved game file.
-#: src/gnome-chess.vala:172
+#: src/gnome-chess.vala:175
 msgid "GNOME Chess can only open one PGN at a time."
 msgstr "Gnomen Šakki voi avata vain yhden PGN-tiedoston kerrallaan."
 
 #. Warning at start of game when no chess engine is installed.
-#: src/gnome-chess.vala:450
+#: src/gnome-chess.vala:452
 msgid ""
 "No chess engine is installed. You will not be able to play against the "
 "computer."
 msgstr "Šakkimoottoria ei ole asennettu. Et voi pelata tietokonetta vastaan."
 
 #. Game status on White's turn when in check
-#: src/gnome-chess.vala:796
+#: src/gnome-chess.vala:795
 msgid "White is in Check"
 msgstr "Valkoinen on šakattu"
 
 #. Game status on Black's turn when in check
-#: src/gnome-chess.vala:799
+#: src/gnome-chess.vala:798
 msgid "Black is in Check"
 msgstr "Musta on šakattu"
 
 #. Game status on White's turn if White is human
-#: src/gnome-chess.vala:805
+#: src/gnome-chess.vala:804
 msgid "White to Move"
 msgstr "Valkoisen siirto"
 
 #. Game status on White's turn if White is a computer
-#: src/gnome-chess.vala:808
+#: src/gnome-chess.vala:807
 msgid "White is Thinking…"
 msgstr "Valkoinen miettii…"
 
 #. Game status on Black's turn if Black is human
-#: src/gnome-chess.vala:814
+#: src/gnome-chess.vala:813
 msgid "Black to Move"
 msgstr "Mustan siirto"
 
 #. Game status on Black's turn if Black is a computer
-#: src/gnome-chess.vala:817
+#: src/gnome-chess.vala:816
 msgid "Black is Thinking…"
 msgstr "Musta miettii…"
 
 #. Game status when Black captures White's pawn en passant
-#: src/gnome-chess.vala:828
-#| msgid "Black pawn captures white pawn en passant"
+#: src/gnome-chess.vala:827
 msgid ""
 "Black captured White's pawn <span font_style='italic'>en passant</span>."
 msgstr ""
@@ -1145,8 +953,7 @@ msgstr ""
 "span>."
 
 #. Game status when White captures Black's pawn en passant
-#: src/gnome-chess.vala:831
-#| msgid "White pawn captures black pawn en passant"
+#: src/gnome-chess.vala:830
 msgid ""
 "White captured Black's pawn <span font_style='italic'>en passant</span>."
 msgstr ""
@@ -1154,129 +961,125 @@ msgstr ""
 "span>."
 
 #. Game status when the white player wins
-#: src/gnome-chess.vala:852
+#: src/gnome-chess.vala:848
 msgid "White Wins"
 msgstr "Valkoinen voittaa"
 
 #. Game status when the black player wins
-#: src/gnome-chess.vala:857
+#: src/gnome-chess.vala:853
 msgid "Black Wins"
 msgstr "Musta voittaa"
 
 #. Game status when the game is drawn
-#: src/gnome-chess.vala:862
+#: src/gnome-chess.vala:858
 msgid "Game is Drawn"
 msgstr "Peli päättyi tasapeliin"
 
 #. Game status when something goes wrong with the engine.
-#: src/gnome-chess.vala:867
+#: src/gnome-chess.vala:863
 msgid "Oops!"
 msgstr "Hups!"
 
 #. Game status when Black is checkmated
-#: src/gnome-chess.vala:880
+#: src/gnome-chess.vala:876
 msgid "Black is in check and cannot move."
 msgstr "Musta on šakattu eikä voi siirtää."
 
 #. Game status when White is checkmated
-#: src/gnome-chess.vala:883
+#: src/gnome-chess.vala:879
 msgid "White is in check and cannot move."
 msgstr "Valkoinen on šakattu eikä voi siirtää."
 
 #. Game status when the game terminates due to a stalemate
-#: src/gnome-chess.vala:889
+#: src/gnome-chess.vala:885
 msgid "Player cannot move."
 msgstr "Pelaaja ei voi liikkua."
 
 #. Game status when the game is drawn due to the fifty move rule
-#: src/gnome-chess.vala:893
+#: src/gnome-chess.vala:889
 msgid "No piece was taken or pawn moved in fifty moves."
 msgstr ""
 "Nappuloita ei ole syöty tai sotilasta siirretty viimeisten 50 siirron aikana."
 
 #. Game status when the game is drawn due to the 75 move rule
-#: src/gnome-chess.vala:897
+#: src/gnome-chess.vala:893
 msgid "No piece was taken or pawn moved in 75 moves."
 msgstr ""
 "Nappuloita ei ole syöty tai sotilasta siirretty viimeisten 75 siirron aikana."
 
 #. Game status when the game ends due to Black's clock stopping
-#: src/gnome-chess.vala:902
+#: src/gnome-chess.vala:898
 msgid "Black has run out of time."
 msgstr "Mustalta loppui aika."
 
 #. Game status when the game ends due to White's clock stopping
-#: src/gnome-chess.vala:905
+#: src/gnome-chess.vala:901
 msgid "White has run out of time."
 msgstr "Valkoiselta loppui aika."
 
 #. Game status when the game is drawn due to the three-fold-repetition rule
-#: src/gnome-chess.vala:911
+#: src/gnome-chess.vala:907
 msgid "The same board state has occurred three times."
 msgstr "Samat asemat ovat toistuneet laudalla kolmesti."
 
 #. Game status when the game is drawn due to the five-fold-repetition rule
-#: src/gnome-chess.vala:915
+#: src/gnome-chess.vala:911
 msgid "The same board state has occurred five times."
 msgstr "Samat asemat ovat toistuneet laudalla viidesti."
 
 #. Game status when the game is drawn due to the insufficient material rule
-#: src/gnome-chess.vala:919
+#: src/gnome-chess.vala:915
 msgid "Neither player can checkmate."
 msgstr "Kumpikaan pelaaja ei voi tehdä šakkia ja mattia."
 
 #. Game status when the game ends due to the black player resigning
-#: src/gnome-chess.vala:924
+#: src/gnome-chess.vala:920
 msgid "Black has resigned."
 msgstr "Musta pelaaja luovutti."
 
 #. Game status when the game ends due to the white player resigning
-#: src/gnome-chess.vala:927
+#: src/gnome-chess.vala:923
 msgid "White has resigned."
 msgstr "Valkoinen pelaaja luovutti."
 
 #. Game status when a game is abandoned
-#: src/gnome-chess.vala:933
+#: src/gnome-chess.vala:929
 msgid "The game has been abandoned."
 msgstr "Peli on hylätty."
 
 #. Game status when the game ends due to a player dying during the game.
-#: src/gnome-chess.vala:938
+#: src/gnome-chess.vala:934
 msgid "The game log says a player died!"
 msgstr "Pelilokin mukaan pelaaja kuoli!"
 
 #. Game status when something goes wrong with the engine.
-#: src/gnome-chess.vala:943
+#: src/gnome-chess.vala:939
 msgid "The computer player is confused. The game cannot continue."
 msgstr "Tietokonepelaaja on hämillään. Peliä ei voi jatkaa."
 
-#: src/gnome-chess.vala:973 src/gnome-chess.vala:1292 src/gnome-chess.vala:1432
-msgid "_Cancel"
-msgstr "_Peru"
-
-#: src/gnome-chess.vala:977
+#: src/gnome-chess.vala:973
 msgid "_Abandon game"
 msgstr "_Hylkää peli"
 
-#: src/gnome-chess.vala:978
+#: src/gnome-chess.vala:974
 msgid "_Save game for later"
 msgstr "_Tallenna peli"
 
-#: src/gnome-chess.vala:982
+#: src/gnome-chess.vala:978
 msgid "_Discard game"
 msgstr "_Hylkää peli"
 
-#: src/gnome-chess.vala:983
+#: src/gnome-chess.vala:979
 msgid "_Save game log"
 msgstr "_Tallenna pelin loki"
 
 #. Title of claim draw dialog
-#: src/gnome-chess.vala:1024
+#: src/gnome-chess.vala:1020
 msgid "Would you like to claim a draw?"
 msgstr "Haluatko esittää tasapeliä?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: src/gnome-chess.vala:1030
+#: src/gnome-chess.vala:1026
 msgid ""
 "You may claim a draw because fifty moves have passed without a capture or "
 "pawn advancement. (The computer player may still choose to claim a draw even "
@@ -1287,7 +1090,7 @@ msgstr ""
 "tasapeliä vaikka päätät jatkaa pelaamista.)"
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: src/gnome-chess.vala:1035
+#: src/gnome-chess.vala:1031
 msgid ""
 "You may claim a draw because the current board position has occurred three "
 "times. (The computer player may still choose to claim a draw even if you "
@@ -1299,42 +1102,42 @@ msgstr ""
 
 #. Option in claim draw dialog
 #. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1043 src/gnome-chess.vala:1082
+#: src/gnome-chess.vala:1039 src/gnome-chess.vala:1078
 msgid "_Keep Playing"
 msgstr "_Jatka peliä"
 
 #. Option in claim draw dialog
-#: src/gnome-chess.vala:1045
+#: src/gnome-chess.vala:1041
 msgid "_Claim Draw"
 msgstr "_Esitä tasapeliä"
 
-#: src/gnome-chess.vala:1062
+#: src/gnome-chess.vala:1058
 msgid "Save this game before starting a new one?"
 msgstr "Tallennetaanko tämä peli ennen uuden aloittamista?"
 
 #. Title of warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1077
+#: src/gnome-chess.vala:1073
 msgid "Are you sure you want to resign?"
 msgstr "Haluatko varmasti luovuttaa?"
 
 #. Text on warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1080
+#: src/gnome-chess.vala:1076
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr "Tässä on järkeä, mikäli haluat tallentaa pelin tositteeksi häviöstäsi."
 
 #. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1084
+#: src/gnome-chess.vala:1080
 msgid "_Resign"
 msgstr "_Luovuta"
 
-#: src/gnome-chess.vala:1202
+#: src/gnome-chess.vala:1210
 msgid "A classic game of positional strategy"
 msgstr "Klassinen sijaintistrateginen peli"
 
-#: src/gnome-chess.vala:1205
+#: src/gnome-chess.vala:1213
 msgid "translator-credits"
 msgstr ""
-"Jiri Grönroos, 2010-2021\n"
+"Jiri Grönroos, 2010-2022\n"
 "Timo Jyrinki, 2008\n"
 "Ilkka Tuohela, 2006-2009\n"
 "Sami Pesonen, 2002-2005\n"
@@ -1352,80 +1155,223 @@ msgstr ""
 "  Timo Jyrinki https://launchpad.net/~timo-jyrinki\n"
 "  eGetin https://launchpad.net/~egetin"
 
-#: src/gnome-chess.vala:1253
+#: src/gnome-chess.vala:1261
 msgid "This does not look like a valid PGN game."
 msgstr "Tämä ei vaikuta kelvolliselta PGN-peliltä."
 
-#: src/gnome-chess.vala:1254 src/gnome-chess.vala:1267
-#: src/gnome-chess.vala:1372
+#: src/gnome-chess.vala:1262 src/gnome-chess.vala:1275
+#: src/gnome-chess.vala:1380
 msgid "_OK"
 msgstr "_OK"
 
 #. Title of save game dialog
-#: src/gnome-chess.vala:1289
+#: src/gnome-chess.vala:1297
 msgid "Save Chess Game"
 msgstr "Tallenna šakkipeli"
 
-#: src/gnome-chess.vala:1291
+#: src/gnome-chess.vala:1299
 msgid "_Save"
 msgstr "_Tallenna"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1323
+#: src/gnome-chess.vala:1331
 msgid "Untitled Chess Game"
 msgstr "Nimetön šakkipeli"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1329 src/gnome-chess.vala:1438
+#: src/gnome-chess.vala:1337 src/gnome-chess.vala:1446
 msgid "PGN files"
 msgstr "PGN-tiedostot"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1335 src/gnome-chess.vala:1444
+#: src/gnome-chess.vala:1343 src/gnome-chess.vala:1452
 msgid "All files"
 msgstr "Kaikki tiedostot"
 
-#: src/gnome-chess.vala:1370
+#: src/gnome-chess.vala:1378
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Pelin tallennus epäonnistui: %s"
 
-#: src/gnome-chess.vala:1422
+#: src/gnome-chess.vala:1430
 msgid "Save this game before loading another one?"
 msgstr "Tallennetaanko tämä peli ennen uuden lataamista?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1429
+#: src/gnome-chess.vala:1437
 msgid "Load Chess Game"
 msgstr "Lataa šakkipeli"
 
-#: src/gnome-chess.vala:1431
+#: src/gnome-chess.vala:1439
 msgid "_Open"
 msgstr "_Avaa"
 
-#. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#. Preferences Dialog: Combo box entry for a custom clock type set in minutes
-#: src/preferences-dialog.vala:343 src/preferences-dialog.vala:384
-msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "minuutti"
-msgstr[1] "minuuttia"
+#: src/preferences.vala:217
+msgctxt "chess-side"
+msgid "White Side"
+msgstr "Valkoinen puoli"
 
-#. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: src/preferences-dialog.vala:347
-msgid "hour"
-msgid_plural "hours"
-msgstr[0] "tunti"
-msgstr[1] "tuntia"
+#: src/preferences.vala:219
+msgctxt "chess-side"
+msgid "Black Side"
+msgstr "Musta puoli"
 
-#. Preferences Dialog: Combo box entry for a custom clock type set in seconds
-#: src/preferences-dialog.vala:380
-msgid "second"
-msgid_plural "seconds"
-msgstr[0] "sekunti"
-msgstr[1] "sekuntia"
+#: src/preferences.vala:221
+msgctxt "chess-side"
+msgid "Human Side"
+msgstr "Ihmisen puoli"
+
+#: src/preferences.vala:223
+msgctxt "chess-side"
+msgid "Current Player"
+msgstr "Vuorossa oleva pelaaja"
+
+#: src/preferences.vala:276
+msgctxt "chess-move-format"
+msgid "Human"
+msgstr "Ihminen"
+
+#: src/preferences.vala:278
+msgctxt "chess-move-format"
+msgid "Standard Algebraic"
+msgstr "Lyhyt algebrallinen"
+
+#: src/preferences.vala:280
+msgctxt "chess-move-format"
+msgid "Long Algebraic"
+msgstr "Pitkä algebrallinen"
+
+#: src/preferences.vala:282
+msgctxt "chess-move-format"
+msgid "Figurine"
+msgstr "Figuriini"
+
+#: src/preferences.vala:333
+msgctxt "chess-piece-style"
+msgid "Simple"
+msgstr "Yksinkertainen"
+
+#: src/preferences.vala:335
+msgctxt "chess-piece-style"
+msgid "Fancy"
+msgstr "Koristeellinen"
+
+#: src/preferences.vala:379
+msgctxt "chess-player"
+msgid "White"
+msgstr "Valkoinen"
+
+#: src/preferences.vala:381
+msgctxt "chess-player"
+msgid "Black"
+msgstr "Musta"
+
+#: src/preferences.vala:383
+msgctxt "chess-player"
+msgid "Alternate"
+msgstr "Vaihtoehtoinen"
+
+#: src/preferences.vala:431
+msgctxt "difficulty"
+msgid "Easy"
+msgstr "Helppo"
+
+#: src/preferences.vala:433
+msgctxt "difficulty"
+msgid "Normal"
+msgstr "Normaali"
+
+#: src/preferences.vala:435
+msgctxt "difficulty"
+msgid "Hard"
+msgstr "Vaikea"
+
+#: src/preferences.vala:482
+msgctxt "clock-type"
+msgid "Fischer"
+msgstr "Fischer"
+
+#: src/preferences.vala:484
+msgctxt "clock-type"
+msgid "Bronstein"
+msgstr "Bronstein"
+
+#: src/preferences.vala:527
+msgctxt "chess-opponent"
+msgid "Human"
+msgstr "Ihminen"
+
+#~ msgctxt "custom_duration_units"
+#~ msgid "minutes"
+#~ msgstr "minuuttia"
+
+#~ msgctxt "custom_duration_units"
+#~ msgid "hours"
+#~ msgstr "tuntia"
+
+#~ msgctxt "custom_duration_units"
+#~ msgid "seconds"
+#~ msgstr "sekuntia"
+
+#~ msgctxt "custom_duration_units"
+#~ msgid "Simple"
+#~ msgstr "Yksinkertainen"
+
+#~ msgid "No limit"
+#~ msgstr "Ei rajoitusta"
+
+#~ msgid "Five minutes"
+#~ msgstr "Viisi minuuttia"
+
+#~ msgid "Ten minutes"
+#~ msgstr "10 minuuttia"
+
+#~ msgid "Thirty minutes"
+#~ msgstr "30 minuuttia"
+
+#~ msgid "One hour"
+#~ msgstr "Yksi tunti"
+
+#~ msgid "Two hours"
+#~ msgstr "Kaksi tuntia"
+
+#~ msgid "Three hours"
+#~ msgstr "Kolme tuntia"
+
+#~ msgid "Custom"
+#~ msgstr "Mukautettu"
+
+#~ msgid "Preferences"
+#~ msgstr "Asetukset"
+
+#~ msgid "Timer _increment:"
+#~ msgstr "Aikalis_ä:"
+
+#~ msgid "Changes will take effect for the next game."
+#~ msgstr "Muutokset tulevat voimaan seuraavassa pelissä."
+
+#~ msgid "_Game"
+#~ msgstr "_Peli"
+
+#~ msgid "_Appearance"
+#~ msgstr "_Ulkoasu"
+
+#~ msgid "minute"
+#~ msgid_plural "minutes"
+#~ msgstr[0] "minuutti"
+#~ msgstr[1] "minuuttia"
+
+#~ msgid "hour"
+#~ msgid_plural "hours"
+#~ msgstr[0] "tunti"
+#~ msgstr[1] "tuntia"
+
+#~ msgid "second"
+#~ msgid_plural "seconds"
+#~ msgstr[0] "sekunti"
+#~ msgstr[1] "sekuntia"
 
 #~ msgid "Black performed an en passant capture"
 #~ msgstr "Musta suoritti ohestalyönnin"
