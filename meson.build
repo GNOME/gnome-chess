@@ -1,5 +1,5 @@
 project('gnome-chess', [ 'vala', 'c' ],
-  version: '44.0',
+  version: '43.0',
   license: 'GPL3+',
   meson_version: '>= 0.59',
 )
