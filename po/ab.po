@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2022-10-07 22:11+0000\n"
+"POT-Creation-Date: 2022-10-31 10:04+0000\n"
 "Last-Translator: Нанба Наала <naala-nanba@rambler.ru>\n"
 "Language-Team: Abkhazian <daniel.abzakh@gmail.com>\n"
 "Language: ab\n"
@@ -13,11 +13,11 @@ msgstr ""
 
 #: data/org.gnome.Chess.appdata.xml.in:7
 msgid "GNOME Chess"
-msgstr ""
+msgstr "Ашахматқәа GNOME"
 
 #: data/org.gnome.Chess.appdata.xml.in:8 data/org.gnome.Chess.desktop.in:5
 msgid "Play the classic two-player board game of chess"
-msgstr ""
+msgstr "Иклассику ашахматқәа рыхәмарра"
 
 #: data/org.gnome.Chess.appdata.xml.in:10
 msgid ""
@@ -39,16 +39,16 @@ msgstr "The GNOME Project"
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
 #: src/gnome-chess.vala:1206 src/gnome-chess.vala:1570
 msgid "Chess"
-msgstr ""
+msgstr "Ашахматқәа"
 
 #: data/org.gnome.Chess.desktop.in:4
 msgid "Chess Game"
-msgstr ""
+msgstr "Ашахматқәа рыхәмарра"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Chess.desktop.in:7
 msgid "game;strategy;"
-msgstr ""
+msgstr "ахәмарра;астратегиџ"
 
 #: data/org.gnome.Chess.gschema.xml:38
 msgid "The width of the window"
@@ -70,9 +70,77 @@ msgstr "Ихадоу аԥенџьыр аҳаракыра пиксельла"
 msgid "A flag to enable maximized mode"
 msgstr "Абираҟ ирҭбаау арежим аҿакразы"
 
+#: data/org.gnome.Chess.gschema.xml:53 data/org.gnome.Chess.gschema.xml:54
+msgid "The piece theme to use"
+msgstr "Афигурақәа ртема ахархәара"
+
+#: data/org.gnome.Chess.gschema.xml:58 data/org.gnome.Chess.gschema.xml:59
+msgid "A flag to enable move hints"
+msgstr "Абираҟ ирҭбаау арежим аҿакразы"
+
+#: data/org.gnome.Chess.gschema.xml:63 data/org.gnome.Chess.gschema.xml:64
+msgid "A flag to enable board numbering"
+msgstr "Абираҟ ирҭбаау арежим аҿакразы"
+
+#: data/org.gnome.Chess.gschema.xml:68 data/org.gnome.Chess.gschema.xml:69
+msgid "The directory to open the save game dialog in"
+msgstr "Аизакхьӡынҵа иахьаартхо ахәмарра аиқәырхаразы аиҿцәажәара"
+
+#: data/org.gnome.Chess.gschema.xml:73 data/org.gnome.Chess.gschema.xml:74
+msgid "The directory to open the load game dialog in"
+msgstr "Аизакхьӡынҵа иахьаартхо ахәмарра аартразы аиҿцәажәара"
+
+#: data/org.gnome.Chess.gschema.xml:78 data/org.gnome.Chess.gschema.xml:79
+msgid "The format to display moves in"
+msgstr "Аныҟәарақәа раарԥшра аформа"
+
 #: data/org.gnome.Chess.gschema.xml:83 data/org.gnome.Chess.gschema.xml:84
 msgid "The side of the board that is in the foreground"
 msgstr "Иааигәаны иҟоу аӷәы аган"
+
+#: data/org.gnome.Chess.gschema.xml:88 data/org.gnome.Chess.gschema.xml:89
+msgid "The duration of a game in seconds (0 for no limit)"
+msgstr "Ахәмарра ацара аамҭа секундала (0-иԥкым)"
+
+#: data/org.gnome.Chess.gschema.xml:93 data/org.gnome.Chess.gschema.xml:94
+msgid "The type of clock (simple/fischer/bronstein)"
+msgstr "Асааҭқәа рыхкы (имариоу/Фишер итәы/Бронштеин итәы)"
+
+#: data/org.gnome.Chess.gschema.xml:98 data/org.gnome.Chess.gschema.xml:99
+msgid "The timer increment set corresponding to clock type (1 second minimum)"
+msgstr ""
+
+#: data/org.gnome.Chess.gschema.xml:103 data/org.gnome.Chess.gschema.xml:104
+msgid "The board side to play as"
+msgstr "Иалшәха шәыззыхәмаруа аган"
+
+#: data/org.gnome.Chess.gschema.xml:108
+msgid "The last side the player played as"
+msgstr "Ахәмарҩ дыззыхәмаруаз аҵыхәтәантәи аган"
+
+#: data/org.gnome.Chess.gschema.xml:109
+msgid ""
+"This is needed when play-as is set to alternate. This should only be set to "
+"black or white."
+msgstr ""
+"Иаҭахуп, ацаԥха «play-as» ианамоу аҵакы «alternate».Иамазар ҟалоит аҵакы "
+"«black» (аиқәаҵәақәа) мамзар «white» (ашкәакәақәа)."
+
+#: data/org.gnome.Chess.gschema.xml:113
+msgid "The opponent player"
+msgstr "Аӷа"
+
+#: data/org.gnome.Chess.gschema.xml:114
+msgid ""
+"Can be 'human' (play against another human player), '' (use the first "
+"available chess engine) or the name of a specific engine to play against"
+msgstr ""
+"Иҟалар зылшо аҵакқәа: «human» (даҽаӡәы иҿагыланы ахәмарра), «» (раԥхьатәи "
+"зегь реиҳа иманшәалоу ашахмат рныҟәага) мамзар еилкаау арныҟәага ахьӡ."
+
+#: data/org.gnome.Chess.gschema.xml:118 data/org.gnome.Chess.gschema.xml:119
+msgid "Difficulty of the opponent chess engine"
+msgstr "Ашахматтә еиҭагага ахәмарра ауадаҩрақәа"
 
 #: data/chess-window.ui:7
 msgid "_New Game…"
@@ -92,7 +160,7 @@ msgstr "_Ахәмарра аиқәырхара абас еиԥш..."
 
 #: data/chess-window.ui:25
 msgid "_Resign Game"
-msgstr ""
+msgstr "Аҽрыҭара"
 
 #: data/chess-window.ui:31
 msgid "_Preferences"
@@ -246,7 +314,7 @@ msgstr "_Ауадаҩра"
 
 #: data/new-game-window.ui:84
 msgid "_Use Time Limit"
-msgstr ""
+msgstr "_Аамҭа аԥкра ахархәара"
 
 #: data/new-game-window.ui:96
 msgid "_Minutes Per Side"
@@ -254,39 +322,39 @@ msgstr "_минуҭ хәмарҩцыпхьаӡа"
 
 #: data/new-game-window.ui:117
 msgid "_Increment In Seconds"
-msgstr ""
+msgstr "_Аскундақәа рыцлара"
 
 #: data/new-game-window.ui:138
 msgid "Clock _Type"
-msgstr ""
+msgstr "_Асааҭқәа рыхкы"
 
 #: data/preferences-window.ui:15
 msgid "_Board Orientation"
-msgstr ""
+msgstr "Аӷәы аҭыԥыркра"
 
 #: data/preferences-window.ui:29
 msgid "_Move Format"
-msgstr ""
+msgstr "_Аныҟәарақәа рформат"
 
 #: data/preferences-window.ui:43
 msgid "_Piece Style"
-msgstr ""
+msgstr "_Афигурақәа рыстиль"
 
 #: data/preferences-window.ui:57
 msgid "Board _Numbering"
-msgstr ""
+msgstr "_Аҭыԥқәа ркоординатқәа"
 
 #: data/preferences-window.ui:69
 msgid "Move _Hints"
-msgstr ""
+msgstr "_Аныҟәарақәа рыҵаҳәара"
 
 #: data/promotion-type-selector.ui:6
 msgid "Select Promotion Type"
-msgstr ""
+msgstr "Анаскьаразы афигура алхра"
 
 #: data/promotion-type-selector.ui:30
 msgid "_Queen"
-msgstr ""
+msgstr "_Аферз"
 
 #: data/promotion-type-selector.ui:66
 msgid "_Knight"
@@ -298,7 +366,7 @@ msgstr "_Аслан"
 
 #: data/promotion-type-selector.ui:138
 msgid "_Bishop"
-msgstr ""
+msgstr "_Аслан"
 
 #. Message when the game cannot be loaded due to an invalid move in the file.
 #: lib/chess-game.vala:106
@@ -554,217 +622,217 @@ msgstr "Аҳ шкәакәа %1$s аферз еиқәаҵәа агоит %2$s а�
 #: src/chess-window.vala:387
 #, c-format
 msgid "Black pawn moves from %1$s to %2$s"
-msgstr ""
+msgstr "Апешка еиқәаҵәа ииасоит %1$s аҟынтә %2$s ахь"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
 #: src/chess-window.vala:389
 #, c-format
 msgid "Black pawn at %1$s takes the white pawn at %2$s"
-msgstr ""
+msgstr "Апешка еиқәаҵәа %1$s апешка шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
 #: src/chess-window.vala:391
 #, c-format
 msgid "Black pawn at %1$s takes the white rook at %2$s"
-msgstr ""
+msgstr "Апешка еиқәаҵәа %1$s абааш шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
 #: src/chess-window.vala:393
 #, c-format
 msgid "Black pawn at %1$s takes the white knight at %2$s"
-msgstr ""
+msgstr "Апешка еиқәаҵәа %1$s аҽы шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
 #: src/chess-window.vala:395
 #, c-format
 msgid "Black pawn at %1$s takes the white bishop at %2$s"
-msgstr ""
+msgstr "Апешка еиқәаҵәа %1$s аслан шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
 #: src/chess-window.vala:397
 #, c-format
 msgid "Black pawn at %1$s takes the white queen at %2$s"
-msgstr ""
+msgstr "Апешка еиқәаҵәа %1$s аферз шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
 #: src/chess-window.vala:399
 #, c-format
 msgid "Black rook moves from %1$s to %2$s"
-msgstr ""
+msgstr "Абааш еиқәаҵәа ииасоит %1$s аҟынтә %2$s ахь"
 
 #. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
 #: src/chess-window.vala:401
 #, c-format
 msgid "Black rook at %1$s takes the white pawn at %2$s"
-msgstr ""
+msgstr "Абааш еиқәаҵәа %1$s апешка шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
 #: src/chess-window.vala:403
 #, c-format
 msgid "Black rook at %1$s takes the white rook at %2$s"
-msgstr ""
+msgstr "Абааш еиқәаҵәа %1$s абааш шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
 #: src/chess-window.vala:405
 #, c-format
 msgid "Black rook at %1$s takes the white knight at %2$s"
-msgstr ""
+msgstr "Абааш еиқәаҵәа %1$s аҽы шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
 #: src/chess-window.vala:407
 #, c-format
 msgid "Black rook at %1$s takes the white bishop at %2$s"
-msgstr ""
+msgstr "Абааш еиқәаҵәа %1$s аслан шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
 #: src/chess-window.vala:409
 #, c-format
 msgid "Black rook at %1$s takes the white queen at %2$s"
-msgstr ""
+msgstr "Абааш еиқәаҵәа %1$s аферз шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
 #: src/chess-window.vala:411
 #, c-format
 msgid "Black knight moves from %1$s to %2$s"
-msgstr ""
+msgstr "Аҽы еиқәаҵәа %1$s аҟынтәи %2$s ахь ииасоит"
 
 #. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
 #: src/chess-window.vala:413
 #, c-format
 msgid "Black knight at %1$s takes the white pawn at %2$s"
-msgstr ""
+msgstr "Аҽы еиқәаҵәа %1$s апешка шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
 #: src/chess-window.vala:415
 #, c-format
 msgid "Black knight at %1$s takes the white rook at %2$s"
-msgstr ""
+msgstr "Аҽы еиқәаҵәа %1$s абааш шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
 #: src/chess-window.vala:417
 #, c-format
 msgid "Black knight at %1$s takes the white knight at %2$s"
-msgstr ""
+msgstr "Аҽы еиқәаҵәа %1$s аҽы шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
 #: src/chess-window.vala:419
 #, c-format
 msgid "Black knight at %1$s takes the white bishop at %2$s"
-msgstr ""
+msgstr "Аҽы еиқәаҵәа %1$s аслан шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
 #: src/chess-window.vala:421
 #, c-format
 msgid "Black knight at %1$s takes the white queen at %2$s"
-msgstr ""
+msgstr "Аҽы еиқәаҵәа %1$s аферз шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
 #: src/chess-window.vala:423
 #, c-format
 msgid "Black bishop moves from %1$s to %2$s"
-msgstr ""
+msgstr "Аслан еиқәаҵәа %1$s аҟынтәи %2$s ахь ииасоит"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
 #: src/chess-window.vala:425
 #, c-format
 msgid "Black bishop at %1$s takes the white pawn at %2$s"
-msgstr ""
+msgstr "Аслан еиқәаҵәа %1$s апешка шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
 #: src/chess-window.vala:427
 #, c-format
 msgid "Black bishop at %1$s takes the white rook at %2$s"
-msgstr ""
+msgstr "Аслан еиқәаҵәа %1$s абааш шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
 #: src/chess-window.vala:429
 #, c-format
 msgid "Black bishop at %1$s takes the white knight at %2$s"
-msgstr ""
+msgstr "Аслан еиқәаҵәа %1$s аҽы шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
 #: src/chess-window.vala:431
 #, c-format
 msgid "Black bishop at %1$s takes the white bishop at %2$s"
-msgstr ""
+msgstr "Аслан еиқәаҵәа %1$s аслан шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
 #: src/chess-window.vala:433
 #, c-format
 msgid "Black bishop at %1$s takes the white queen at %2$s"
-msgstr ""
+msgstr "Аслан еиқәаҵәа %1$s аферз шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
 #: src/chess-window.vala:435
 #, c-format
 msgid "Black queen moves from %1$s to %2$s"
-msgstr ""
+msgstr "Аферз еиқәаҵәа %1$s аҟынтәи %2$s ахь ииасоит"
 
 #. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
 #: src/chess-window.vala:437
 #, c-format
 msgid "Black queen at %1$s takes the white pawn at %2$s"
-msgstr ""
+msgstr "Аферз еиқәаҵәа %1$s апешка шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
 #: src/chess-window.vala:439
 #, c-format
 msgid "Black queen at %1$s takes the white rook at %2$s"
-msgstr ""
+msgstr "Аферз еиқәаҵәа %1$s абааш шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
 #: src/chess-window.vala:441
 #, c-format
 msgid "Black queen at %1$s takes the white knight at %2$s"
-msgstr ""
+msgstr "Аферз еиқәаҵәа %1$s аҽы шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
 #: src/chess-window.vala:443
 #, c-format
 msgid "Black queen at %1$s takes the white bishop at %2$s"
-msgstr ""
+msgstr "Аферз еиқәаҵәа %1$s аслан шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
 #: src/chess-window.vala:445
 #, c-format
 msgid "Black queen at %1$s takes the white queen at %2$s"
-msgstr ""
+msgstr "Аферз еиқәаҵәа %1$s аферз шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
 #: src/chess-window.vala:447
 #, c-format
 msgid "Black king moves from %1$s to %2$s"
-msgstr ""
+msgstr "Аҳ еиқәаҵәа %1$s аҟынтәи %2$s ахь ииасоит"
 
 #. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
 #: src/chess-window.vala:449
 #, c-format
 msgid "Black king at %1$s takes the white pawn at %2$s"
-msgstr ""
+msgstr "Аҳ еиқәаҵәа %1$s апешка шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
 #: src/chess-window.vala:451
 #, c-format
 msgid "Black king at %1$s takes the white rook at %2$s"
-msgstr ""
+msgstr "Аҳ еиқәаҵәа %1$s абааш шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
 #: src/chess-window.vala:453
 #, c-format
 msgid "Black king at %1$s takes the white knight at %2$s"
-msgstr ""
+msgstr "Аҳ еиқәаҵәа %1$s аҽы шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
 #: src/chess-window.vala:455
 #, c-format
 msgid "Black king at %1$s takes the white bishop at %2$s"
-msgstr ""
+msgstr "Аҳ еиқәаҵәа %1$s аслан шкәакәа агоит %2$s аҟны"
 
 #. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
 #: src/chess-window.vala:457
 #, c-format
 msgid "Black king at %1$s takes the white queen at %2$s"
-msgstr ""
+msgstr "Аҳ еиқәаҵәа %1$s аферз шкәакәа агоит %2$s аҟны"
 
 #: src/chess-window.vala:466
 msgid "White castles kingside"
@@ -776,11 +844,11 @@ msgstr "Ашкәакәақәа иау арокировка ҟарҵоит"
 
 #: src/chess-window.vala:470
 msgid "Black castles kingside"
-msgstr ""
+msgstr "Аиқәаҵәақәа икьаҿу арокировка ҟарҵоит"
 
 #: src/chess-window.vala:472
 msgid "Black castles queenside"
-msgstr ""
+msgstr "Аиқәаҵәақәа иау арокировка ҟарҵоит"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s en passant
 #: src/chess-window.vala:494
@@ -792,12 +860,12 @@ msgstr "Апешка шкәакәа %1$s апешка еиқәаҵәа агои�
 #: src/chess-window.vala:498
 #, c-format
 msgid "Black pawn at %1$s takes white pawn at %2$s en passant"
-msgstr ""
+msgstr "Апешка еиқәаҵәа %1$s апешка шкәакәа агоит %2$s аҟны абжьысраҟны"
 
 #. Move History Combo: Go to the start of the game
 #: src/chess-window.vala:532
 msgid "Game Start"
-msgstr ""
+msgstr "Ахәмарра алагара"
 
 #. Help string for command line --version flag
 #: src/gnome-chess.vala:95
@@ -807,14 +875,14 @@ msgstr "Аверсиа анумер арбара"
 #. May print when started on the command line; a PGN is a saved game file.
 #: src/gnome-chess.vala:175
 msgid "GNOME Chess can only open one PGN at a time."
-msgstr ""
+msgstr "Аԥшьы «Ашахматқәа GNOME» зныкала иааныртыр алшоит PNG заҵәык."
 
 #. Warning at start of game when no chess engine is installed.
 #: src/gnome-chess.vala:452
 msgid ""
 "No chess engine is installed. You will not be able to play against the "
 "computer."
-msgstr ""
+msgstr "Ашахмат арныҟәгага ԥшааӡам. Акомпиутер шәаҿагыланы шәзыхәмарӡом"
 
 #. Game status on White's turn when in check
 #: src/gnome-chess.vala:795
@@ -824,12 +892,12 @@ msgstr "Ашкәакәақәа шах аҵаҟа иҟоуп."
 #. Game status on Black's turn when in check
 #: src/gnome-chess.vala:798
 msgid "Black is in Check"
-msgstr ""
+msgstr "Аиқәаҵәақәа шах аҵаҟа иҟоуп"
 
 #. Game status on White's turn if White is human
 #: src/gnome-chess.vala:804
 msgid "White to Move"
-msgstr ""
+msgstr "Ашкәакәақәа рныҟәара"
 
 #. Game status on White's turn if White is a computer
 #: src/gnome-chess.vala:807
@@ -839,18 +907,20 @@ msgstr "Ашкәакәақәа хәыцоит…"
 #. Game status on Black's turn if Black is human
 #: src/gnome-chess.vala:813
 msgid "Black to Move"
-msgstr ""
+msgstr "Аиқәаҵәақәа рныҟәара"
 
 #. Game status on Black's turn if Black is a computer
 #: src/gnome-chess.vala:816
 msgid "Black is Thinking…"
-msgstr ""
+msgstr "Аиқәаҵәақәа хәыцоит..."
 
 #. Game status when Black captures White's pawn en passant
 #: src/gnome-chess.vala:827
 msgid ""
 "Black captured White's pawn <span font_style='italic'>en passant</span>."
 msgstr ""
+"Аиқәаҵәақәа ашкәакәақәа рпешка ргеит<span font_style='italic'>ацарҭаҟны</"
+"span>."
 
 #. Game status when White captures Black's pawn en passant
 #: src/gnome-chess.vala:830
@@ -867,12 +937,12 @@ msgstr "Ашкәакәақәа аиааира ргеит"
 #. Game status when the black player wins
 #: src/gnome-chess.vala:853
 msgid "Black Wins"
-msgstr ""
+msgstr "Аиқәаҵәақәа аиааира ргеит"
 
 #. Game status when the game is drawn
 #: src/gnome-chess.vala:858
 msgid "Game is Drawn"
-msgstr ""
+msgstr "Аиҭахара"
 
 #. Game status when something goes wrong with the engine.
 #: src/gnome-chess.vala:863
@@ -882,7 +952,7 @@ msgstr ""
 #. Game status when Black is checkmated
 #: src/gnome-chess.vala:876
 msgid "Black is in check and cannot move."
-msgstr ""
+msgstr "Аиқәаҵәақәа ашах аҵаҟа иҟоуп уи азы изныҟәаӡом"
 
 #. Game status when White is checkmated
 #: src/gnome-chess.vala:879
@@ -907,32 +977,32 @@ msgstr ""
 #. Game status when the game ends due to Black's clock stopping
 #: src/gnome-chess.vala:898
 msgid "Black has run out of time."
-msgstr ""
+msgstr "Аиқәаҵәақәа раамҭа нҵәеит"
 
 #. Game status when the game ends due to White's clock stopping
 #: src/gnome-chess.vala:901
 msgid "White has run out of time."
-msgstr ""
+msgstr "Ашкәакәақәа раамҭа нҵәеит"
 
 #. Game status when the game is drawn due to the three-fold-repetition rule
 #: src/gnome-chess.vala:907
 msgid "The same board state has occurred three times."
-msgstr ""
+msgstr "Хынтәны позициак аиҭаҟаҵара"
 
 #. Game status when the game is drawn due to the five-fold-repetition rule
 #: src/gnome-chess.vala:911
 msgid "The same board state has occurred five times."
-msgstr ""
+msgstr "Хәынтәны позициак аиҭаҟаҵара"
 
 #. Game status when the game is drawn due to the insufficient material rule
 #: src/gnome-chess.vala:915
 msgid "Neither player can checkmate."
-msgstr ""
+msgstr "Дазусҭазаалак ахәмарҩ мат изықәыргылаӡом."
 
 #. Game status when the game ends due to the black player resigning
 #: src/gnome-chess.vala:920
 msgid "Black has resigned."
-msgstr ""
+msgstr "Аиқәаҵәақәа ҭахеит."
 
 #. Game status when the game ends due to the white player resigning
 #: src/gnome-chess.vala:923
@@ -942,38 +1012,38 @@ msgstr "Ашкәакәақәа ҭахеит"
 #. Game status when a game is abandoned
 #: src/gnome-chess.vala:929
 msgid "The game has been abandoned."
-msgstr ""
+msgstr "Ахәмарра аанкылоуп."
 
 #. Game status when the game ends due to a player dying during the game.
 #: src/gnome-chess.vala:934
 msgid "The game log says a player died!"
-msgstr ""
+msgstr "Ахәмарра ажурнал ишәзаанацҳауеит ахәмарҩы дышԥсыз"
 
 #. Game status when something goes wrong with the engine.
 #: src/gnome-chess.vala:939
 msgid "The computer player is confused. The game cannot continue."
-msgstr ""
+msgstr "Акомпиутертә хәмарҩы дгачамкхеит.Ахәмарра ацҵара залшахом."
 
 #: src/gnome-chess.vala:973
 msgid "_Abandon game"
-msgstr ""
+msgstr "Ахәм_арра акажьра"
 
 #: src/gnome-chess.vala:974
 msgid "_Save game for later"
-msgstr ""
+msgstr "_Наҟ-наҟ ахәмарра аиқәырхара"
 
 #: src/gnome-chess.vala:978
 msgid "_Discard game"
-msgstr ""
+msgstr "Ахәмарра ак_ажьра"
 
 #: src/gnome-chess.vala:979
 msgid "_Save game log"
-msgstr ""
+msgstr "_Ахәмарра ажурнал аиқәырхара"
 
 #. Title of claim draw dialog
 #: src/gnome-chess.vala:1020
 msgid "Would you like to claim a draw?"
-msgstr ""
+msgstr "Уахынла иацышәҵар шәҭахума?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
 #: src/gnome-chess.vala:1026
@@ -995,31 +1065,31 @@ msgstr ""
 #. Option on warning dialog when player clicks resign
 #: src/gnome-chess.vala:1039 src/gnome-chess.vala:1078
 msgid "_Keep Playing"
-msgstr ""
+msgstr "_Ахәмарра ацҵара"
 
 #. Option in claim draw dialog
 #: src/gnome-chess.vala:1041
 msgid "_Claim Draw"
-msgstr ""
+msgstr "_Ахәмарра уахынла ацҵара"
 
 #: src/gnome-chess.vala:1058
 msgid "Save this game before starting a new one?"
-msgstr ""
+msgstr "Ахәмарра ҿыц шәалагаанӡа ари ахәмарра еиқәшәырхар шәҭахума?"
 
 #. Title of warning dialog when player clicks Resign
 #: src/gnome-chess.vala:1073
 msgid "Are you sure you want to resign?"
-msgstr ""
+msgstr "Агәраганы шәыҟоума шәыҽрышәҭарц шышәҭаху"
 
 #. Text on warning dialog when player clicks Resign
 #: src/gnome-chess.vala:1076
 msgid "This makes sense if you plan to save the game as a record of your loss."
-msgstr ""
+msgstr "Уи аҵакы амоуп, шәыззаҵахаз ахәмарра еиқәшәырхар шәҭахызар."
 
 #. Option on warning dialog when player clicks resign
 #: src/gnome-chess.vala:1080
 msgid "_Resign"
-msgstr ""
+msgstr "Аҽрыҭара"
 
 #: src/gnome-chess.vala:1210
 msgid "A classic game of positional strategy"
@@ -1041,7 +1111,7 @@ msgstr "_OK"
 #. Title of save game dialog
 #: src/gnome-chess.vala:1297
 msgid "Save Chess Game"
-msgstr ""
+msgstr "Ахәмарра аиқәырхара"
 
 #: src/gnome-chess.vala:1299
 msgid "_Save"
@@ -1056,7 +1126,7 @@ msgstr "Ихьӡыдоу ахәмарра"
 #. Load Game Dialog: Name of filter to show only PGN files
 #: src/gnome-chess.vala:1337 src/gnome-chess.vala:1446
 msgid "PGN files"
-msgstr ""
+msgstr "Афаилқәа PGN"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
@@ -1067,16 +1137,16 @@ msgstr "Афаилқәа зегьы"
 #: src/gnome-chess.vala:1378
 #, c-format
 msgid "Failed to save game: %s"
-msgstr ""
+msgstr "Ахәмарра аиқәырхара залымшахаӡеит: %s"
 
 #: src/gnome-chess.vala:1430
 msgid "Save this game before loading another one?"
-msgstr ""
+msgstr "Даҽа хәмаррак ҭажәгалаанӡа ари ахәмарра еиқәырхатәума?"
 
 #. Title of load game dialog
 #: src/gnome-chess.vala:1437
 msgid "Load Chess Game"
-msgstr ""
+msgstr "Ахәмарра аҭагалара"
 
 #: src/gnome-chess.vala:1439
 msgid "_Open"
@@ -1176,851 +1246,3 @@ msgstr ""
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr ""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#, fuzzy
