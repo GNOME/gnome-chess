@@ -12,7 +12,7 @@
 namespace BitBoard
 {
     /* Bitboard for each location */
-    public const int64 set_location_masks[] =
+    public const uint64 set_location_masks[] =
     {
         0x0000000000000001, 0x0000000000000002, 0x0000000000000004, 0x0000000000000008,
         0x0000000000000010, 0x0000000000000020, 0x0000000000000040, 0x0000000000000080,
@@ -33,7 +33,7 @@ namespace BitBoard
     };
 
     /* Mask to clear the given location */
-    public const int64 clear_location_masks[] =
+    public const uint64 clear_location_masks[] =
     {
         0xfffffffffffffffe, 0xfffffffffffffffd, 0xfffffffffffffffb, 0xfffffffffffffff7,
         0xffffffffffffffef, 0xffffffffffffffdf, 0xffffffffffffffbf, 0xffffffffffffff7f,
@@ -54,7 +54,7 @@ namespace BitBoard
     };
 
     /* Locations moved over for each move */
-    public const int64 over_masks[] =
+    public const uint64 over_masks[] =
     {
         0x0000000000000000, 0x0000000000000000, 0x0000000000000002, 0x0000000000000006,
         0x000000000000000e, 0x000000000000001e, 0x000000000000003e, 0x000000000000007e,
@@ -1083,7 +1083,7 @@ namespace BitBoard
     };
 
     /* Allowed moves for each piece */
-    public const int64 move_masks[] =
+    public const uint64 move_masks[] =
     {
         /* White Pawn */
         0x0000000000000300, 0x0000000000000700, 0x0000000000000e00, 0x0000000000001c00,
@@ -1291,7 +1291,7 @@ namespace BitBoard
         0x6c38000000000000, 0x5070000000000000, 0xa0e0000000000000, 0x40c0000000000000
     };
 
-    public string to_string (int64 mask)
+    public string to_string (uint64 mask)
     {
         var string = "+---+---+---+---+---+---+---+---+\n";
         int rowCount = 0;

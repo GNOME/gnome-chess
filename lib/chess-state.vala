@@ -36,7 +36,7 @@ public class ChessState : Object
     public ChessMove? last_move = null;
 
     /* Bitmap of all the pieces */
-    private int64 piece_masks[2];
+    private uint64 piece_masks[2];
 
     private ChessState.empty ()
     {
@@ -78,7 +78,7 @@ public class ChessState : Object
                 int index = get_index (rank, file);
                 ChessPiece piece = new ChessPiece (players[color], type);
                 board[index] = piece;
-                int64 mask = BitBoard.set_location_masks[index];
+                uint64 mask = BitBoard.set_location_masks[index];
                 piece_masks[color] |= mask;
                 file++;
             }
@@ -296,13 +296,13 @@ public class ChessState : Object
             return false;
 
         /* Check valid move */
-        int64 end_mask = BitBoard.set_location_masks[end];
-        int64 move_mask = BitBoard.move_masks[color * 64*6 + piece.type * 64 + start];
+        uint64 end_mask = BitBoard.set_location_masks[end];
+        uint64 move_mask = BitBoard.move_masks[color * 64*6 + piece.type * 64 + start];
         if ((end_mask & move_mask) == 0)
             return false;
 
         /* Check no pieces in the way */
-        int64 over_mask = BitBoard.over_masks[start * 64 + end];
+        uint64 over_mask = BitBoard.over_masks[start * 64 + end];
         if ((over_mask & (piece_masks[Color.WHITE] | piece_masks[Color.BLACK])) != 0)
             return false;
 
@@ -374,7 +374,7 @@ public class ChessState : Object
                     return false;
 
                 /* Check rook can move */
-                int64 rook_over_mask = BitBoard.over_masks[rook_start * 64 + rook_end];
+                uint64 rook_over_mask = BitBoard.over_masks[rook_start * 64 + rook_end];
                 if ((rook_over_mask & (piece_masks[Color.WHITE] | piece_masks[Color.BLACK])) != 0)
                     return false;
 
