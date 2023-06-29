@@ -3,6 +3,7 @@
     "runtime": "org.gnome.Platform",
     "runtime-version": "master",
     "sdk": "org.gnome.Sdk",
+    "sdk-extensions": [ "org.freedesktop.Sdk.Extension.vala-nightly" ],
     "command": "gnome-chess",
     "tags": ["nightly"],
     "desktop-file-name-prefix": "(Nightly) ",
@@ -15,6 +16,10 @@
         "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
         "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
     ],
+    "build-options": {
+        "prepend-path": "/usr/lib/sdk/vala-nightly/bin/",
+        "prepend-ld-library-path": "/usr/lib/sdk/vala-nightly/lib"
+    },
     "cleanup": ["/share/gnuchess", "/share/info", "/share/man"],
     "modules": [
         {
@@ -24,6 +29,22 @@
                     "type": "archive",
                     "url": "https://ftpmirror.gnu.org/chess/gnuchess-6.2.9.tar.gz",
                     "sha256": "ddfcc20bdd756900a9ab6c42c7daf90a2893bf7f19ce347420ce36baebc41890"
+                }
+            ]
+        },
+        {
+            "name": "libgee",
+            "buildsystem": "autotools",
+            "build-options": {
+                "env": {
+                    "ACLOCAL_PATH" : "/usr/lib/sdk/vala-nightly/share/aclocal"
+                }
+            },
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/libgee.git",
+                    "branch": "main"
                 }
             ]
         },
