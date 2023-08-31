@@ -5,13 +5,13 @@
 # Wanderlust <wanderlust@ukr.net>, 2009.
 # Nazarii Ritter <nazariy.ritter@gmail.com>, 2014.
 # Daniel Korostil <ted.korostiled@gmail.com>, 2015, 2016, 2017.
-# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2022.
+# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2022-08-20 12:24+0000\n"
-"PO-Revision-Date: 2022-08-20 22:04+0300\n"
+"POT-Creation-Date: 2023-08-30 02:27+0000\n"
+"PO-Revision-Date: 2023-08-31 22:37+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -49,7 +49,7 @@ msgstr ""
 "усіма сучасними комп'ютерними шаховими рушіями і їхню здатність "
 "автоматичного визначення декількох популярних рушіїв (якщо такі встановлено)."
 
-#: data/org.gnome.Chess.appdata.xml.in:68
+#: data/org.gnome.Chess.appdata.xml.in:72
 msgid "The GNOME Project"
 msgstr "Проект GNOME"
 
@@ -159,7 +159,6 @@ msgid "Difficulty of the opponent chess engine"
 msgstr "Складність шахового рушія суперника"
 
 #: data/chess-window.ui:7
-#| msgid "_New Game"
 msgid "_New Game…"
 msgstr "_Нова гра…"
 
@@ -305,7 +304,6 @@ msgid "Show Keyboard Shortcuts"
 msgstr "Показати клавіатурні скорочення"
 
 #: data/new-game-window.ui:5
-#| msgid "_New Game"
 msgid "New Game"
 msgstr "Нова гра"
 
@@ -315,27 +313,27 @@ msgid "_Cancel"
 msgstr "_Скасувати"
 
 #: data/new-game-window.ui:28
-#| msgid "Game Start"
 msgid "_Start"
 msgstr "По_чати"
 
 #: data/new-game-window.ui:45
-#| msgid "_Opposing player:"
 msgid "_Opposing Player"
 msgstr "Суп_ерник"
 
 #: data/new-game-window.ui:51
-#| msgid "_Play as:"
 msgid "_Play As"
 msgstr "Сторон_а гри"
 
 #: data/new-game-window.ui:65
-#| msgid "_Difficulty:"
 msgid "_Difficulty"
 msgstr "С_кладність"
 
+#: data/new-game-window.ui:81
+#| msgid "_Use Time Limit"
+msgid "Time Limit"
+msgstr "Обмеження часу"
+
 #: data/new-game-window.ui:84
-#| msgid "_Time limit:"
 msgid "_Use Time Limit"
 msgstr "О_бмеження часу"
 
@@ -348,32 +346,26 @@ msgid "_Increment In Seconds"
 msgstr "З_більшення у секундах"
 
 #: data/new-game-window.ui:138
-#| msgid "_Clock type:"
 msgid "Clock _Type"
 msgstr "Тип _годинника"
 
 #: data/preferences-window.ui:15
-#| msgid "Board _orientation:"
 msgid "_Board Orientation"
 msgstr "_Орієнтація дошки"
 
 #: data/preferences-window.ui:29
-#| msgid "Move _format:"
 msgid "_Move Format"
 msgstr "_Формат ходів"
 
 #: data/preferences-window.ui:43
-#| msgid "_Piece style:"
 msgid "_Piece Style"
 msgstr "Стил_ь фігур"
 
 #: data/preferences-window.ui:57
-#| msgid "_Board numbering"
 msgid "Board _Numbering"
 msgstr "Н_умерація полів"
 
 #: data/preferences-window.ui:69
-#| msgid "_Move hints"
 msgid "Move _Hints"
 msgstr "Підказки _ходів"
 
@@ -1238,13 +1230,11 @@ msgid "Figurine"
 msgstr "Фігурка"
 
 #: src/preferences.vala:333
-#| msgid "Simple"
 msgctxt "chess-piece-style"
 msgid "Simple"
 msgstr "Проста"
 
 #: src/preferences.vala:335
-#| msgid "Fancy"
 msgctxt "chess-piece-style"
 msgid "Fancy"
 msgstr "Химерна"
@@ -1280,15 +1270,11 @@ msgid "Hard"
 msgstr "Складно"
 
 #: src/preferences.vala:482
-#| msgctxt "custom_duration_units"
-#| msgid "Fischer"
 msgctxt "clock-type"
 msgid "Fischer"
 msgstr "Фішер"
 
 #: src/preferences.vala:484
-#| msgctxt "custom_duration_units"
-#| msgid "Bronstein"
 msgctxt "clock-type"
 msgid "Bronstein"
 msgstr "Бронштайн"
