@@ -4,14 +4,14 @@
 # Copyright (C) 2005 THE PACKAGE'S COPYRIGHT HOLDER
 # Gil 'Dolfin' Osher <dolfin@rpg.org.il>, 2002,2003
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2010.
-# Yosef Or Boczko <yoseforb@gmail.com>, 2014-2022.
+# Yosef Or Boczko <yoseforb@gmail.com>, 2014-2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games.HEAD.he\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2022-08-20 12:24+0000\n"
-"PO-Revision-Date: 2022-08-22 12:16+0300\n"
+"POT-Creation-Date: 2023-08-30 02:27+0000\n"
+"PO-Revision-Date: 2023-09-02 22:06+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 40.0\n"
+"X-Generator: Gtranslator 42.0\n"
 "X-Launchpad-Export-Date: 2008-01-13 04:36+0000\n"
 
 #: data/org.gnome.Chess.appdata.xml.in:7
@@ -48,7 +48,7 @@ msgstr ""
 "הממוחשבים החדישים, ואת היכולת שלו להבחין באופן אוטומטי במספר מנועים מפורסמים "
 "אם הם מותקנים."
 
-#: data/org.gnome.Chess.appdata.xml.in:68
+#: data/org.gnome.Chess.appdata.xml.in:72
 msgid "The GNOME Project"
 msgstr "מיזם GNOME"
 
@@ -159,7 +159,6 @@ msgid "Difficulty of the opponent chess engine"
 msgstr "Difficulty of the opponent chess engine"
 
 #: data/chess-window.ui:7
-#| msgid "_New Game"
 msgid "_New Game…"
 msgstr "_משחק חדש…"
 
@@ -305,7 +304,6 @@ msgid "Show Keyboard Shortcuts"
 msgstr "הצגת צירופי מקשים"
 
 #: data/new-game-window.ui:5
-#| msgid "_New Game"
 msgid "New Game"
 msgstr "משחק חדש"
 
@@ -315,27 +313,26 @@ msgid "_Cancel"
 msgstr "_ביטול"
 
 #: data/new-game-window.ui:28
-#| msgid "Game Start"
 msgid "_Start"
 msgstr "ה_תחלה"
 
 #: data/new-game-window.ui:45
-#| msgid "_Opposing player:"
 msgid "_Opposing Player"
 msgstr "השחקן ה_נגדי"
 
 #: data/new-game-window.ui:51
-#| msgid "_Play as:"
 msgid "_Play As"
 msgstr "_לשחק בתור"
 
 #: data/new-game-window.ui:65
-#| msgid "_Difficulty:"
 msgid "_Difficulty"
 msgstr "רמת קו_שי"
 
+#: data/new-game-window.ui:81
+msgid "Time Limit"
+msgstr "הגבלת זמן"
+
 #: data/new-game-window.ui:84
-#| msgid "_Time limit:"
 msgid "_Use Time Limit"
 msgstr "שימוש בהגבלת _זמן"
 
@@ -348,32 +345,26 @@ msgid "_Increment In Seconds"
 msgstr "_תוספת בשניות"
 
 #: data/new-game-window.ui:138
-#| msgid "_Clock type:"
 msgid "Clock _Type"
 msgstr "סוג _שעון"
 
 #: data/preferences-window.ui:15
-#| msgid "Board _orientation:"
 msgid "_Board Orientation"
 msgstr "_כיוון הלוח"
 
 #: data/preferences-window.ui:29
-#| msgid "Move _format:"
 msgid "_Move Format"
 msgstr "מבנה הה_עברה"
 
 #: data/preferences-window.ui:43
-#| msgid "_Piece style:"
 msgid "_Piece Style"
 msgstr "סגנון ה_חלקים"
 
 #: data/preferences-window.ui:57
-#| msgid "_Board numbering"
 msgid "Board _Numbering"
 msgstr "מספור ה_לוח"
 
 #: data/preferences-window.ui:69
-#| msgid "_Move hints"
 msgid "Move _Hints"
 msgstr "_רמזי מהלכים"
 
@@ -1236,13 +1227,11 @@ msgid "Figurine"
 msgstr "דמות"
 
 #: src/preferences.vala:333
-#| msgid "Simple"
 msgctxt "chess-piece-style"
 msgid "Simple"
 msgstr "פשוט"
 
 #: src/preferences.vala:335
-#| msgid "Fancy"
 msgctxt "chess-piece-style"
 msgid "Fancy"
 msgstr "מהודר"
@@ -1278,15 +1267,11 @@ msgid "Hard"
 msgstr "קשה"
 
 #: src/preferences.vala:482
-#| msgctxt "custom_duration_units"
-#| msgid "Fischer"
 msgctxt "clock-type"
 msgid "Fischer"
 msgstr "פישר"
 
 #: src/preferences.vala:484
-#| msgctxt "custom_duration_units"
-#| msgid "Bronstein"
 msgctxt "clock-type"
 msgid "Bronstein"
 msgstr "ברונשטיין"
