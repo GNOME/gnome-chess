@@ -19,9 +19,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games trunk\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2022-08-20 12:24+0000\n"
-"PO-Revision-Date: 2022-08-20 19:03+0300\n"
-"Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
+"POT-Creation-Date: 2023-09-07 10:34+0000\n"
+"PO-Revision-Date: 2023-09-07 21:27+1000\n"
+"Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: Русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/org.gnome.Chess.appdata.xml.in:7
 msgid "GNOME Chess"
@@ -58,7 +58,7 @@ msgstr ""
 "современными компьютерными шахматными движками, а также способность "
 "автоматически определять некоторые установленные популярные движки."
 
-#: data/org.gnome.Chess.appdata.xml.in:68
+#: data/org.gnome.Chess.appdata.xml.in:72
 msgid "The GNOME Project"
 msgstr "The GNOME Project"
 
@@ -210,23 +210,27 @@ msgstr "_О приложении Шахматы"
 msgid "Undo your most recent move"
 msgstr "Отменить последний ход"
 
+#: data/chess-window.ui:96
+msgid "Main Menu"
+msgstr "Главное меню"
+
 #. Tooltip on the show first move (i.e. game start) navigation button
-#: data/chess-window.ui:149
+#: data/chess-window.ui:151
 msgid "Rewind to the game start"
 msgstr "Вернуться к началу игры"
 
 #. Tooltip on the show previous move navigation button
-#: data/chess-window.ui:166
+#: data/chess-window.ui:168
 msgid "Show the previous move"
 msgstr "Показать предыдущий ход"
 
 #. Tooltip on the show next move navigation button
-#: data/chess-window.ui:183
+#: data/chess-window.ui:185
 msgid "Show the next move"
 msgstr "Показать следующий ход"
 
 #. Tooltip on the show current move navigation button
-#: data/chess-window.ui:200
+#: data/chess-window.ui:202
 msgid "Show the current move"
 msgstr "Показать текущий ход"
 
@@ -272,8 +276,8 @@ msgstr "Выход"
 
 #: data/help-overlay.ui:57
 msgctxt "shortcut window"
-msgid "Open menu"
-msgstr "Открыть меню"
+msgid "Open Main Menu"
+msgstr "Открыть главное меню"
 
 #: data/help-overlay.ui:64
 msgctxt "shortcut window"
@@ -339,6 +343,10 @@ msgstr "_Играть за"
 #: data/new-game-window.ui:65
 msgid "_Difficulty"
 msgstr "_Сложность"
+
+#: data/new-game-window.ui:81
+msgid "Time Limit"
+msgstr "Ограничение по времени"
 
 #: data/new-game-window.ui:84
 msgid "_Use Time Limit"
