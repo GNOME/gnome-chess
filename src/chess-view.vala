@@ -138,6 +138,13 @@ public class ChessView : Gtk.DrawingArea
                     c.set_source_rgb (0xba/255.0, 0xbd/255.0, 0xb6/255.0);
                 else
                     c.set_source_rgb (0xee/255.0, 0xee/255.0, 0xec/255.0);
+
+                if (!scene.animating && scene.game.is_king_under_attack_at_position (rank, file))
+                    c.set_source_rgb (0xd4/255.0, 0x97/255.0, 0x95/255.0);
+    
+                if (!scene.animating && scene.game.is_piece_at_position_threatening_check (rank, file))
+                    c.set_source_rgb (0xd4/255.0, 0x97/255.0, 0x95/255.0);
+                
                 c.fill ();
             }
         }

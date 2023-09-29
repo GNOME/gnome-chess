@@ -369,4 +369,32 @@ public class ChessGame : Object
             _clock.stop ();
         ended ();
     }
+
+    public bool is_king_under_attack_at_position (int rank, int file)
+    {
+        if (!current_state.is_in_check (current_player))
+            return false;
+
+        var piece = get_piece (rank, file);
+        if (piece == null || piece.type != PieceType.KING)
+            return false;
+
+        if (piece.player.color == Color.WHITE && current_player.color == Color.WHITE)
+            return true;
+
+        if (piece.player.color == Color.BLACK && current_player.color == Color.BLACK)
+            return true;
+
+        return false;
+    }
+
+    public bool is_piece_at_position_threatening_check (int rank, int file)
+    {
+        int threatening_rank, threatening_file;
+
+        if (current_state.get_position_threatening_king (current_player, out threatening_rank, out threatening_file) && threatening_rank == rank && threatening_file == file)
+            return true;
+
+        return false;
+    }
 }

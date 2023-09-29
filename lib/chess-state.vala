@@ -595,7 +595,7 @@ public class ChessState : Object
         return CheckState.NONE;
     }
 
-    public bool is_in_check (ChessPlayer player)
+    public bool get_position_threatening_king (ChessPlayer player, out int rank, out int file)
     {
         var opponent = player.color == Color.WHITE ? players[Color.BLACK] : players[Color.WHITE];
 
@@ -612,12 +612,22 @@ public class ChessState : Object
                                           get_rank (start), get_file (start),
                                           get_rank (king_index), get_file (king_index),
                                           PieceType.QUEEN, false, false))
-                        return true;
+                        {
+                            rank = get_rank (start);
+                            file = get_file (start);
+                            return true;
+                        }
                 }
             }
         }
 
         return false;
+    }
+
+    public bool is_in_check (ChessPlayer player)
+    {
+        int rank, file;
+        return get_position_threatening_king (player, out rank, out file);
     }
 
     private bool is_in_checkmate (ChessPlayer player)
