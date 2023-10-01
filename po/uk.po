@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2023-09-05 15:36+0000\n"
-"PO-Revision-Date: 2023-09-06 21:20+0300\n"
+"POT-Creation-Date: 2023-09-29 18:20+0000\n"
+"PO-Revision-Date: 2023-10-01 14:16+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -195,8 +195,10 @@ msgid "_About Chess"
 msgstr "_Про «Шахи»"
 
 #: data/chess-window.ui:67
-msgid "Undo your most recent move"
-msgstr "Повернути ваш останній хід"
+#| msgctxt "shortcut window"
+#| msgid "Undo move"
+msgid "Undo Move"
+msgstr "Скасувати хід"
 
 #: data/chess-window.ui:96
 msgid "Main Menu"
@@ -204,22 +206,26 @@ msgstr "Головне меню"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
 #: data/chess-window.ui:151
-msgid "Rewind to the game start"
+#| msgid "Rewind to the game start"
+msgid "Rewind to Game Start"
 msgstr "Перейти на початок гри"
 
 #. Tooltip on the show previous move navigation button
 #: data/chess-window.ui:168
-msgid "Show the previous move"
+#| msgid "Show the previous move"
+msgid "Show Previous Move"
 msgstr "Показати попередній хід"
 
 #. Tooltip on the show next move navigation button
 #: data/chess-window.ui:185
-msgid "Show the next move"
+#| msgid "Show the next move"
+msgid "Show Next Move"
 msgstr "Показати наступний хід"
 
 #. Tooltip on the show current move navigation button
 #: data/chess-window.ui:202
-msgid "Show the current move"
+#| msgid "Show the current move"
+msgid "Show Current Move"
 msgstr "Показати поточний хід"
 
 #: data/help-overlay.ui:11
@@ -228,33 +234,43 @@ msgid "General"
 msgstr "Загальне"
 
 #: data/help-overlay.ui:15
+#| msgctxt "shortcut window"
+#| msgid "Start a new game"
 msgctxt "shortcut window"
-msgid "Start a new game"
+msgid "Start New Game"
 msgstr "Розпочати нову гру"
 
 #: data/help-overlay.ui:21
+#| msgctxt "shortcut window"
+#| msgid "Open a saved game"
 msgctxt "shortcut window"
-msgid "Open a saved game"
+msgid "Open Saved Game"
 msgstr "Відкрити збережену гру"
 
 #: data/help-overlay.ui:27
+#| msgctxt "shortcut window"
+#| msgid "Pause the game"
 msgctxt "shortcut window"
-msgid "Pause the game"
+msgid "Pause Game"
 msgstr "Призупинити гру"
 
 #: data/help-overlay.ui:33
+#| msgid "_Save Game"
 msgctxt "shortcut window"
-msgid "Save the game"
+msgid "Save Game"
 msgstr "Зберегти гру"
 
 #: data/help-overlay.ui:39
+#| msgid "_Save Game As…"
 msgctxt "shortcut window"
-msgid "Save the game with a different name"
-msgstr "Зберегти поточну гру із використанням іншої назви"
+msgid "Save Game As…"
+msgstr "Зберегти гру як…"
 
 #: data/help-overlay.ui:45
+#| msgctxt "shortcut window"
+#| msgid "Undo move"
 msgctxt "shortcut window"
-msgid "Undo move"
+msgid "Undo Move"
 msgstr "Скасувати хід"
 
 #: data/help-overlay.ui:51
@@ -263,8 +279,6 @@ msgid "Quit"
 msgstr "Вийти"
 
 #: data/help-overlay.ui:57
-#| msgctxt "shortcut window"
-#| msgid "Open menu"
 msgctxt "shortcut window"
 msgid "Open Main Menu"
 msgstr "Відкрити головне меню"
@@ -275,23 +289,27 @@ msgid "History"
 msgstr "Журнал"
 
 #: data/help-overlay.ui:68
+#| msgid "Rewind to the game start"
 msgctxt "shortcut window"
-msgid "Rewind to the game start"
+msgid "Rewind to Game Start"
 msgstr "Перейти на початок гри"
 
 #: data/help-overlay.ui:74
+#| msgid "Show the previous move"
 msgctxt "shortcut window"
-msgid "Show the previous move"
+msgid "Show Previous Move"
 msgstr "Показати попередній хід"
 
 #: data/help-overlay.ui:80
+#| msgid "Show the next move"
 msgctxt "shortcut window"
-msgid "Show the next move"
+msgid "Show Next Move"
 msgstr "Показати наступний хід"
 
 #: data/help-overlay.ui:86
+#| msgid "Show the current move"
 msgctxt "shortcut window"
-msgid "Show the current move"
+msgid "Show Current Move"
 msgstr "Показати поточний хід"
 
 #: data/help-overlay.ui:93
@@ -417,7 +435,7 @@ msgid "Invalid timer increment in PGN: %s, using a simple clock."
 msgstr ""
 "Неправильний рух годинника у PGN: %s, використовується звичайний годинник."
 
-#: src/chess-view.vala:319
+#: src/chess-view.vala:326
 msgid "Paused"
 msgstr "Призупинено"
 
@@ -1288,6 +1306,33 @@ msgstr "Бронштайн"
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "Людина"
+
+#~ msgid "Undo your most recent move"
+#~ msgstr "Повернути ваш останній хід"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game"
+#~ msgstr "Зберегти гру"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game with a different name"
+#~ msgstr "Зберегти поточну гру із використанням іншої назви"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Rewind to the game start"
+#~ msgstr "Перейти на початок гри"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the previous move"
+#~ msgstr "Показати попередній хід"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the next move"
+#~ msgstr "Показати наступний хід"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the current move"
+#~ msgstr "Показати поточний хід"
 
 #~ msgctxt "custom_duration_units"
 #~ msgid "minutes"
