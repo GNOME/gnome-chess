@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2023-09-05 15:36+0000\n"
-"PO-Revision-Date: 2023-09-07 00:03+0300\n"
+"POT-Creation-Date: 2023-10-01 12:42+0000\n"
+"PO-Revision-Date: 2023-10-02 10:06+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/org.gnome.Chess.appdata.xml.in:7
 msgid "GNOME Chess"
@@ -202,8 +202,8 @@ msgid "_About Chess"
 msgstr "Satranç _Hakkında"
 
 #: data/chess-window.ui:67
-msgid "Undo your most recent move"
-msgstr "En son hamlenizi geri alın"
+msgid "Undo Move"
+msgstr "Hamleyi Geri Al"
 
 #: data/chess-window.ui:96
 msgid "Main Menu"
@@ -211,23 +211,23 @@ msgstr "Ana Menü"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
 #: data/chess-window.ui:151
-msgid "Rewind to the game start"
-msgstr "Oyun başlangıcına dön"
+msgid "Rewind to Game Start"
+msgstr "Oyun Başlangıcına Dön"
 
 #. Tooltip on the show previous move navigation button
 #: data/chess-window.ui:168
-msgid "Show the previous move"
-msgstr "Önceki hamleyi göster"
+msgid "Show Previous Move"
+msgstr "Önceki Hamleyi Göster"
 
 #. Tooltip on the show next move navigation button
 #: data/chess-window.ui:185
-msgid "Show the next move"
-msgstr "Sonraki hamleyi göster"
+msgid "Show Next Move"
+msgstr "Sonraki Hamleyi Göster"
 
 #. Tooltip on the show current move navigation button
 #: data/chess-window.ui:202
-msgid "Show the current move"
-msgstr "Geçerli hamleyi göster"
+msgid "Show Current Move"
+msgstr "Geçerli Hamleyi Göster"
 
 #: data/help-overlay.ui:11
 msgctxt "shortcut window"
@@ -236,33 +236,33 @@ msgstr "Genel"
 
 #: data/help-overlay.ui:15
 msgctxt "shortcut window"
-msgid "Start a new game"
-msgstr "Yeni oyun başlat"
+msgid "Start New Game"
+msgstr "Yeni Oyun Başlat"
 
 #: data/help-overlay.ui:21
 msgctxt "shortcut window"
-msgid "Open a saved game"
-msgstr "Kayıtlı oyunu aç"
+msgid "Open Saved Game"
+msgstr "Kayıtlı Oyunu Aç"
 
 #: data/help-overlay.ui:27
 msgctxt "shortcut window"
-msgid "Pause the game"
-msgstr "Oyunu duraklat"
+msgid "Pause Game"
+msgstr "Oyunu Duraklat"
 
 #: data/help-overlay.ui:33
 msgctxt "shortcut window"
-msgid "Save the game"
-msgstr "Oyunu kaydet"
+msgid "Save Game"
+msgstr "Oyunu Kaydet"
 
 #: data/help-overlay.ui:39
 msgctxt "shortcut window"
-msgid "Save the game with a different name"
-msgstr "Oyunu başka adla kaydet"
+msgid "Save Game As…"
+msgstr "Oyunu Farklı Kaydet…"
 
 #: data/help-overlay.ui:45
 msgctxt "shortcut window"
-msgid "Undo move"
-msgstr "Hamleyi geri al"
+msgid "Undo Move"
+msgstr "Hamleyi Geri Al"
 
 #: data/help-overlay.ui:51
 msgctxt "shortcut window"
@@ -281,23 +281,23 @@ msgstr "Geçmiş"
 
 #: data/help-overlay.ui:68
 msgctxt "shortcut window"
-msgid "Rewind to the game start"
-msgstr "Oyun başlangıcına dön"
+msgid "Rewind to Game Start"
+msgstr "Oyun Başlangıcına Dön"
 
 #: data/help-overlay.ui:74
 msgctxt "shortcut window"
-msgid "Show the previous move"
-msgstr "Önceki hamleyi göster"
+msgid "Show Previous Move"
+msgstr "Önceki Hamleyi Göster"
 
 #: data/help-overlay.ui:80
 msgctxt "shortcut window"
-msgid "Show the next move"
-msgstr "Sonraki hamleyi göster"
+msgid "Show Next Move"
+msgstr "Sonraki Hamleyi Göster"
 
 #: data/help-overlay.ui:86
 msgctxt "shortcut window"
-msgid "Show the current move"
-msgstr "Geçerli hamleyi göster"
+msgid "Show Current Move"
+msgstr "Geçerli Hamleyi Göster"
 
 #: data/help-overlay.ui:93
 msgctxt "shortcut window"
@@ -420,7 +420,7 @@ msgstr "PGNʼde geçersiz saat türü: %s, basit bir saat kullanılıyor."
 msgid "Invalid timer increment in PGN: %s, using a simple clock."
 msgstr "PGNʼde geçersiz zamanlayıcı artımı: %s, basit bir saat kullanılıyor."
 
-#: src/chess-view.vala:319
+#: src/chess-view.vala:326
 msgid "Paused"
 msgstr "Duraklatıldı"
 
@@ -1292,3 +1292,30 @@ msgstr "Bronstein"
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "İnsan"
+
+#~ msgid "Undo your most recent move"
+#~ msgstr "En son hamlenizi geri alın"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game"
+#~ msgstr "Oyunu kaydet"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game with a different name"
+#~ msgstr "Oyunu başka adla kaydet"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Rewind to the game start"
+#~ msgstr "Oyun başlangıcına dön"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the previous move"
+#~ msgstr "Önceki hamleyi göster"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the next move"
+#~ msgstr "Sonraki hamleyi göster"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the current move"
+#~ msgstr "Geçerli hamleyi göster"
