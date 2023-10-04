@@ -390,10 +390,17 @@ public class ChessGame : Object
 
     public bool is_piece_at_position_threatening_check (int rank, int file)
     {
-        int threatening_rank, threatening_file;
+        int[] threatening_rank, threatening_file;
 
-        if (current_state.get_position_threatening_king (current_player, out threatening_rank, out threatening_file) && threatening_rank == rank && threatening_file == file)
-            return true;
+        if (current_state.get_positions_threatening_king (current_player, out threatening_rank, out threatening_file))
+        {
+            assert (threatening_rank.length == threatening_file.length);
+            for (int i = 0; i < threatening_rank.length; i++)
+            {
+                if (threatening_rank[i] == rank && threatening_file[i] == file)
+                    return true;
+            }
+        }
 
         return false;
     }

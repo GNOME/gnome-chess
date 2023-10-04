@@ -595,9 +595,10 @@ public class ChessState : Object
         return CheckState.NONE;
     }
 
-    public bool get_position_threatening_king (ChessPlayer player, out int rank, out int file)
+    public bool get_positions_threatening_king (ChessPlayer player, out int[] rank, out int[] file)
     {
         var opponent = player.color == Color.WHITE ? players[Color.BLACK] : players[Color.WHITE];
+        bool found = false;
 
         /* Is in check if any piece can take the king */
         for (int king_index = 0; king_index < 64; king_index++)
@@ -606,6 +607,8 @@ public class ChessState : Object
             if (p != null && p.player == player && p.type == PieceType.KING)
             {
                 /* See if any enemy pieces can take the king */
+                int[] ranks = {};
+                int[] files = {};
                 for (int start = 0; start < 64; start++)
                 {
                     if (move_with_coords (opponent,
@@ -613,21 +616,24 @@ public class ChessState : Object
                                           get_rank (king_index), get_file (king_index),
                                           PieceType.QUEEN, false, false))
                         {
-                            rank = get_rank (start);
-                            file = get_file (start);
-                            return true;
+                            ranks += get_rank (start);
+                            files += get_file (start);
+                            found = true;
                         }
                 }
+
+                rank = ranks;
+                file = files;
             }
         }
 
-        return false;
+        return found;
     }
 
     public bool is_in_check (ChessPlayer player)
     {
-        int rank, file;
-        return get_position_threatening_king (player, out rank, out file);
+        int[] rank, file;
+        return get_positions_threatening_king (player, out rank, out file);
     }
 
     private bool is_in_checkmate (ChessPlayer player)
