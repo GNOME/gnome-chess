@@ -961,38 +961,41 @@ Copyright © 2015–2016 Sahil Sareen""";
             return;
         }
 
-        var prompt_save_game_dialog = new Gtk.MessageDialog (window,
-                                                             Gtk.DialogFlags.MODAL,
-                                                             Gtk.MessageType.QUESTION,
-                                                             Gtk.ButtonsType.NONE,
+        var prompt_save_game_dialog = new Adw.MessageDialog (window,
+                                                             _("Save Game?"),
                                                              prompt_text);
-        prompt_save_game_dialog.add_button (_("_Cancel"), Gtk.ResponseType.CANCEL);
+
+        prompt_save_game_dialog.add_response ("cancel", _("_Cancel"));
 
         if (game.result == ChessResult.IN_PROGRESS)
         {
-            prompt_save_game_dialog.add_button (_("_Abandon game"), Gtk.ResponseType.NO);
-            prompt_save_game_dialog.add_button (_("_Save game for later"), Gtk.ResponseType.YES);
+            prompt_save_game_dialog.add_responses ("no", _("_Abandon Game"),
+                                                   "yes", _("Save game for later"));
+            prompt_save_game_dialog.set_response_appearance ("no", Adw.ResponseAppearance.DESTRUCTIVE);
+            prompt_save_game_dialog.set_response_appearance ("yes", Adw.ResponseAppearance.SUGGESTED);
         }
         else
         {
-            prompt_save_game_dialog.add_button (_("_Discard game"), Gtk.ResponseType.NO);
-            prompt_save_game_dialog.add_button (_("_Save game log"), Gtk.ResponseType.YES);
+            prompt_save_game_dialog.add_responses ("no", _("_Discard Game"),
+                                                   "yes", _("Save game log"));
+            prompt_save_game_dialog.set_response_appearance ("no", Adw.ResponseAppearance.DESTRUCTIVE);
+            prompt_save_game_dialog.set_response_appearance ("yes", Adw.ResponseAppearance.SUGGESTED);
         }
 
-        prompt_save_game_dialog.response.connect ((response_id) => {
-            if (response_id == Gtk.ResponseType.CANCEL || response_id == Gtk.ResponseType.DELETE_EVENT)
+        prompt_save_game_dialog.response.connect ((dialog, response) => {
+            if (response == "cancel" || response == "close")
             {
                 callback (true);
             }
-            else if (response_id == Gtk.ResponseType.YES)
+            else if (response == "yes")
             {
                 present_save_dialog ((saved) => {
                     callback (!saved);
                 });
             }
-            else
+            else if (response == "no")
             {
-                warn_if_fail (response_id == Gtk.ResponseType.NO);
+                warn_if_fail (response == "no");
 
                 /* Remove completed game from history */
                 game_needs_saving = false;
@@ -1000,11 +1003,9 @@ Copyright © 2015–2016 Sahil Sareen""";
 
                 callback (false);
             }
-
-            prompt_save_game_dialog.destroy ();
         });
 
-        prompt_save_game_dialog.show ();
+        prompt_save_game_dialog.present ();
     }
 
     private void present_claim_draw_dialog ()
@@ -1012,12 +1013,9 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         game.pause (false);
 
-        var claim_draw_dialog = new Gtk.MessageDialog (window,
-                                                       Gtk.DialogFlags.MODAL,
-                                                       Gtk.MessageType.QUESTION,
-                                                       Gtk.ButtonsType.NONE,
-                                                       /* Title of claim draw dialog */
-                                                       _("Would you like to claim a draw?"));
+        var claim_draw_dialog = new Adw.MessageDialog (window,
+                                                       _("Would you like to claim a draw?"),
+                                                       "");
 
         string reason;
         if (game.is_fifty_move_rule_fulfilled ())
@@ -1033,29 +1031,26 @@ Copyright © 2015–2016 Sahil Sareen""";
         else
             assert_not_reached ();
 
-        claim_draw_dialog.secondary_text = reason;
+        claim_draw_dialog.body = reason;
 
-        claim_draw_dialog.add_buttons (/* Option in claim draw dialog */
-                                       _("_Keep Playing"), Gtk.ResponseType.REJECT,
-                                       /* Option in claim draw dialog */
-                                       _("_Claim Draw"), Gtk.ResponseType.ACCEPT,
-                                       null);
+        claim_draw_dialog.add_responses ("reject", _("_Keep Playing"),
+                                         "accept", _("_Claim Draw"));
+        claim_draw_dialog.set_response_appearance ("reject", Adw.ResponseAppearance.SUGGESTED);
+        claim_draw_dialog.set_response_appearance ("accept", Adw.ResponseAppearance.DESTRUCTIVE);
 
-        claim_draw_dialog.response.connect ((response_id) => {
+        claim_draw_dialog.response.connect ((dialog, response) => {
             game.unpause ();
 
-            if (response_id == Gtk.ResponseType.ACCEPT)
+            if (response == "accept")
                 game.current_player.claim_draw ();
-
-            claim_draw_dialog.destroy ();
         });
 
-        claim_draw_dialog.show ();
+        claim_draw_dialog.present ();
     }
 
     public void new_game_cb ()
     {
-        prompt_save_game (_("Save this game before starting a new one?"), (cancelled) => {
+        prompt_save_game (_("By starting a new game now, unsaved progress would be lost."), (cancelled) => {
             if (!cancelled)
                 configure_new_game ();
         });
@@ -1065,25 +1060,20 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         game.pause (false);
 
-        var resign_dialog = new Gtk.MessageDialog (window,
-                                                   Gtk.DialogFlags.MODAL,
-                                                   Gtk.MessageType.QUESTION,
-                                                   Gtk.ButtonsType.NONE,
-                                                   /* Title of warning dialog when player clicks Resign */
-                                                   _("Are you sure you want to resign?"));
-        resign_dialog.format_secondary_text (
-            /* Text on warning dialog when player clicks Resign */
-            _("This makes sense if you plan to save the game as a record of your loss."));
-        resign_dialog.add_buttons (/* Option on warning dialog when player clicks resign */
-                                   _("_Keep Playing"), Gtk.ResponseType.REJECT,
-                                   /* Option on warning dialog when player clicks resign */
-                                   _("_Resign"), Gtk.ResponseType.ACCEPT,
-                                   null);
+        var resign_dialog = new Adw.MessageDialog (window,
+                                                   _("Are you sure you want to resign?"),
+                                                   "");
+        /* Text on warning dialog when player clicks Resign */
+        resign_dialog.body = _("This makes sense if you plan to save the game as a record of your loss.");
+        resign_dialog.add_responses ("reject", _("_Keep Playing"),
+                                     "accept", _("_Resign"));
+        resign_dialog.set_response_appearance ("reject", Adw.ResponseAppearance.SUGGESTED);
+        resign_dialog.set_response_appearance ("accept", Adw.ResponseAppearance.DESTRUCTIVE);
 
-        resign_dialog.response.connect ((response_id) => {
+        resign_dialog.response.connect ((dialog, response) => {
             game.unpause ();
 
-            if (response_id == Gtk.ResponseType.ACCEPT)
+            if (response == "accept")
             {
                 if (human_player != null)
                     human_player.resign ();
@@ -1254,28 +1244,28 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     private void run_invalid_pgn_dialog ()
     {
-        var invalid_pgn_dialog = new Gtk.MessageDialog (window,
-                                                        Gtk.DialogFlags.MODAL,
-                                                        Gtk.MessageType.ERROR,
-                                                        Gtk.ButtonsType.NONE,
+        var invalid_pgn_dialog = new Adw.MessageDialog (window,
+                                                        _("Error Loading PGN File"),
                                                         _("This does not look like a valid PGN game."));
-        invalid_pgn_dialog.add_button (_("_OK"), Gtk.ResponseType.OK);
 
-        invalid_pgn_dialog.response.connect (() => invalid_pgn_dialog.destroy ());
-        invalid_pgn_dialog.show ();
+        invalid_pgn_dialog.add_response ("okay", _("_OK"));
+
+        invalid_pgn_dialog.response.connect ((dialog, response) => invalid_pgn_dialog.destroy ());
+
+        invalid_pgn_dialog.present ();
     }
 
     private void show_invalid_move_dialog (string error_message)
     {
-        var invalid_move_dialog = new Gtk.MessageDialog (window,
-                                                         Gtk.DialogFlags.MODAL,
-                                                         Gtk.MessageType.ERROR,
-                                                         Gtk.ButtonsType.NONE,
+        var invalid_move_dialog = new Adw.MessageDialog (window,
+                                                         _("Invalid Move"),
                                                          error_message);
-        invalid_move_dialog.add_button (_("_OK"), Gtk.ResponseType.OK);
 
-        invalid_move_dialog.response.connect (() => invalid_move_dialog.destroy ());
-        invalid_move_dialog.show ();
+        invalid_move_dialog.add_response ("okay", _("_OK"));
+
+        invalid_move_dialog.response.connect (( dialog, response) => invalid_move_dialog.destroy ());
+
+        invalid_move_dialog.present ();
     }
 
     private void update_pgn_time_remaining ()
@@ -1371,20 +1361,21 @@ Copyright © 2015–2016 Sahil Sareen""";
                 }
                 catch (Error e)
                 {
-                    var save_error_dialog = new Gtk.MessageDialog (window,
-                                                                   Gtk.DialogFlags.MODAL,
-                                                                   Gtk.MessageType.ERROR,
-                                                                   Gtk.ButtonsType.NONE,
-                                                                   _("Failed to save game: %s"),
-                                                                   e.message);
-                    save_error_dialog.add_button (_("_OK"), Gtk.ResponseType.OK);
-                    save_error_dialog.response.connect (() => {
+                    var save_error_dialog = new Adw.MessageDialog (window,
+                                                                   _("Save Error"),
+                                                                   "");
+
+                    save_error_dialog.format_body (_("Failed to save game: %s"), e.message);
+
+                    save_error_dialog.add_response ("ok", _("_OK"));
+
+                    save_error_dialog.response.connect(( dialog, response ) => {
                         save_error_dialog.destroy ();
                         if (callback != null)
                             callback (false);
                     });
 
-                    save_error_dialog.show ();
+                    save_error_dialog.present ();
                 }
             }
             else if (callback != null)
