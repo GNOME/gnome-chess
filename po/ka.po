@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Ekaterine Papava <papava.e@gtu.ge>, 2023
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2023-10-01 12:42+0000\n"
-"PO-Revision-Date: 2023-10-02 14:15+0200\n"
+"POT-Creation-Date: 2023-10-04 21:18+0000\n"
+"PO-Revision-Date: 2023-10-06 22:44+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -44,7 +44,7 @@ msgid "The GNOME Project"
 msgstr "პროექტი \"GNOME\""
 
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1206 src/gnome-chess.vala:1570
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
 msgid "Chess"
 msgstr "ჭადრაკი"
 
@@ -197,17 +197,17 @@ msgstr ""
 #. Tooltip on the show previous move navigation button
 #: data/chess-window.ui:168
 msgid "Show Previous Move"
-msgstr ""
+msgstr "წინა სვლის ჩვენება"
 
 #. Tooltip on the show next move navigation button
 #: data/chess-window.ui:185
 msgid "Show Next Move"
-msgstr ""
+msgstr "შემდეგი სვლის ჩვენება"
 
 #. Tooltip on the show current move navigation button
 #: data/chess-window.ui:202
 msgid "Show Current Move"
-msgstr ""
+msgstr "მიმდინარე სვლის ჩვენება"
 
 #: data/help-overlay.ui:11
 msgctxt "shortcut window"
@@ -267,22 +267,22 @@ msgstr ""
 #: data/help-overlay.ui:74
 msgctxt "shortcut window"
 msgid "Show Previous Move"
-msgstr ""
+msgstr "წინა სვლის ჩვენება"
 
 #: data/help-overlay.ui:80
 msgctxt "shortcut window"
 msgid "Show Next Move"
-msgstr ""
+msgstr "შემდეგი სვლის ჩვენება"
 
 #: data/help-overlay.ui:86
 msgctxt "shortcut window"
 msgid "Show Current Move"
-msgstr ""
+msgstr "მიმდინარე სვლის ჩვენება"
 
 #: data/help-overlay.ui:93
 msgctxt "shortcut window"
 msgid "Help"
-msgstr ""
+msgstr "დახმარება"
 
 #: data/help-overlay.ui:97
 msgctxt "shortcut window"
@@ -298,8 +298,8 @@ msgstr "კლავიატურის მალსახმობები�
 msgid "New Game"
 msgstr "დაიწყეთ ახალი თამაში"
 
-#: data/new-game-window.ui:20 src/gnome-chess.vala:969
-#: src/gnome-chess.vala:1300 src/gnome-chess.vala:1440
+#: data/new-game-window.ui:20 src/gnome-chess.vala:968
+#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
 msgid "_Cancel"
 msgstr "_შეწყვეტა"
 
@@ -365,11 +365,11 @@ msgstr ""
 
 #: data/promotion-type-selector.ui:30
 msgid "_Queen"
-msgstr ""
+msgstr "_დედოფალი"
 
 #: data/promotion-type-selector.ui:66
 msgid "_Knight"
-msgstr ""
+msgstr "_მხედარი"
 
 #: data/promotion-type-selector.ui:102
 msgid "_Rook"
@@ -1032,29 +1032,32 @@ msgstr ""
 msgid "The computer player is confused. The game cannot continue."
 msgstr ""
 
+#: src/gnome-chess.vala:965
+msgid "Save Game?"
+msgstr "შევინახო თამაში?"
+
+#: src/gnome-chess.vala:972
+msgid "_Abandon Game"
+msgstr "თამაშის _მიტოვება"
+
 #: src/gnome-chess.vala:973
-msgid "_Abandon game"
-msgstr ""
-
-#: src/gnome-chess.vala:974
-msgid "_Save game for later"
-msgstr ""
-
-#: src/gnome-chess.vala:978
-msgid "_Discard game"
+msgid "Save game for later"
 msgstr ""
 
 #: src/gnome-chess.vala:979
-msgid "_Save game log"
-msgstr ""
+msgid "_Discard Game"
+msgstr "თამაშის _გაუქმება"
 
-#. Title of claim draw dialog
-#: src/gnome-chess.vala:1020
+#: src/gnome-chess.vala:980
+msgid "Save game log"
+msgstr "თამაშის ჟურნალის შენახვა"
+
+#: src/gnome-chess.vala:1017
 msgid "Would you like to claim a draw?"
 msgstr ""
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: src/gnome-chess.vala:1026
+#: src/gnome-chess.vala:1024
 msgid ""
 "You may claim a draw because fifty moves have passed without a capture or "
 "pawn advancement. (The computer player may still choose to claim a draw even "
@@ -1062,101 +1065,108 @@ msgid ""
 msgstr ""
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: src/gnome-chess.vala:1031
+#: src/gnome-chess.vala:1029
 msgid ""
 "You may claim a draw because the current board position has occurred three "
 "times. (The computer player may still choose to claim a draw even if you "
 "choose to keep playing.)"
 msgstr ""
 
-#. Option in claim draw dialog
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1039 src/gnome-chess.vala:1078
+#: src/gnome-chess.vala:1036 src/gnome-chess.vala:1068
 msgid "_Keep Playing"
 msgstr ""
 
-#. Option in claim draw dialog
-#: src/gnome-chess.vala:1041
+#: src/gnome-chess.vala:1037
 msgid "_Claim Draw"
 msgstr ""
 
-#: src/gnome-chess.vala:1058
-msgid "Save this game before starting a new one?"
+#: src/gnome-chess.vala:1053
+msgid "By starting a new game now, unsaved progress would be lost."
 msgstr ""
 
-#. Title of warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1073
+#: src/gnome-chess.vala:1064
 msgid "Are you sure you want to resign?"
 msgstr ""
 
 #. Text on warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1076
+#: src/gnome-chess.vala:1067
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr ""
 
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1080
+#: src/gnome-chess.vala:1069
 msgid "_Resign"
 msgstr ""
 
-#: src/gnome-chess.vala:1210
+#: src/gnome-chess.vala:1200
 msgid "A classic game of positional strategy"
 msgstr ""
 
-#: src/gnome-chess.vala:1213
+#: src/gnome-chess.vala:1203
 msgid "translator-credits"
 msgstr "თარგმანი-შესრულებულია"
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1248
+msgid "Error Loading PGN File"
+msgstr ""
+
+#: src/gnome-chess.vala:1249
 msgid "This does not look like a valid PGN game."
 msgstr ""
 
-#: src/gnome-chess.vala:1262 src/gnome-chess.vala:1275
-#: src/gnome-chess.vala:1380
+#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
+#: src/gnome-chess.vala:1370
 msgid "_OK"
 msgstr "კარგი"
 
+#: src/gnome-chess.vala:1261
+msgid "Invalid Move"
+msgstr "არასწორი სვლა"
+
 #. Title of save game dialog
-#: src/gnome-chess.vala:1297
+#: src/gnome-chess.vala:1287
 msgid "Save Chess Game"
 msgstr ""
 
-#: src/gnome-chess.vala:1299
+#: src/gnome-chess.vala:1289
 msgid "_Save"
 msgstr "_შენახვა"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1331
+#: src/gnome-chess.vala:1321
 msgid "Untitled Chess Game"
 msgstr ""
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1337 src/gnome-chess.vala:1446
+#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
 msgid "PGN files"
 msgstr ""
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1343 src/gnome-chess.vala:1452
+#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
 msgid "All files"
 msgstr "ყველა ფაილი"
 
-#: src/gnome-chess.vala:1378
+#: src/gnome-chess.vala:1365
+msgid "Save Error"
+msgstr "შენახვის შეცდომა"
+
+#: src/gnome-chess.vala:1368
 #, c-format
 msgid "Failed to save game: %s"
 msgstr ""
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1421
 msgid "Save this game before loading another one?"
 msgstr ""
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1428
 msgid "Load Chess Game"
 msgstr ""
 
-#: src/gnome-chess.vala:1439
+#: src/gnome-chess.vala:1430
 msgid "_Open"
 msgstr "_გახსნა"
 
