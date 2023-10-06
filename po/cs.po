@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2023-09-05 15:36+0000\n"
-"PO-Revision-Date: 2023-09-08 01:14+0200\n"
+"POT-Creation-Date: 2023-10-04 21:18+0000\n"
+"PO-Revision-Date: 2023-10-07 01:28+0200\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -65,7 +65,7 @@ msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1206 src/gnome-chess.vala:1570
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
 msgid "Chess"
 msgstr "Šachy"
 
@@ -209,8 +209,8 @@ msgid "_About Chess"
 msgstr "O _aplikaci Šachy"
 
 #: data/chess-window.ui:67
-msgid "Undo your most recent move"
-msgstr "Vrátit zpět svůj poslední tah"
+msgid "Undo Move"
+msgstr "Tah zpět"
 
 #: data/chess-window.ui:96
 msgid "Main Menu"
@@ -218,22 +218,22 @@ msgstr "Hlavní nabídka"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
 #: data/chess-window.ui:151
-msgid "Rewind to the game start"
+msgid "Rewind to Game Start"
 msgstr "Vrátit se na začátek hry"
 
 #. Tooltip on the show previous move navigation button
 #: data/chess-window.ui:168
-msgid "Show the previous move"
+msgid "Show Previous Move"
 msgstr "Zobrazit předchozí tah"
 
 #. Tooltip on the show next move navigation button
 #: data/chess-window.ui:185
-msgid "Show the next move"
+msgid "Show Next Move"
 msgstr "Zobrazit následující tah"
 
 #. Tooltip on the show current move navigation button
 #: data/chess-window.ui:202
-msgid "Show the current move"
+msgid "Show Current Move"
 msgstr "Zobrazit aktuální tah"
 
 #: data/help-overlay.ui:11
@@ -243,32 +243,32 @@ msgstr "Obecné"
 
 #: data/help-overlay.ui:15
 msgctxt "shortcut window"
-msgid "Start a new game"
+msgid "Start New Game"
 msgstr "Začít novou hru"
 
 #: data/help-overlay.ui:21
 msgctxt "shortcut window"
-msgid "Open a saved game"
+msgid "Open Saved Game"
 msgstr "Otevřít uloženou hru"
 
 #: data/help-overlay.ui:27
 msgctxt "shortcut window"
-msgid "Pause the game"
+msgid "Pause Game"
 msgstr "Pozastavit hru"
 
 #: data/help-overlay.ui:33
 msgctxt "shortcut window"
-msgid "Save the game"
+msgid "Save Game"
 msgstr "Uložit hru"
 
 #: data/help-overlay.ui:39
 msgctxt "shortcut window"
-msgid "Save the game with a different name"
-msgstr "Uložit hru pod jiným názvem"
+msgid "Save Game As…"
+msgstr "Uložit hru jako…"
 
 #: data/help-overlay.ui:45
 msgctxt "shortcut window"
-msgid "Undo move"
+msgid "Undo Move"
 msgstr "Tah zpět"
 
 #: data/help-overlay.ui:51
@@ -288,22 +288,22 @@ msgstr "Historie"
 
 #: data/help-overlay.ui:68
 msgctxt "shortcut window"
-msgid "Rewind to the game start"
+msgid "Rewind to Game Start"
 msgstr "Vrátit se na začátek hry"
 
 #: data/help-overlay.ui:74
 msgctxt "shortcut window"
-msgid "Show the previous move"
+msgid "Show Previous Move"
 msgstr "Zobrazit předchozí tah"
 
 #: data/help-overlay.ui:80
 msgctxt "shortcut window"
-msgid "Show the next move"
+msgid "Show Next Move"
 msgstr "Zobrazit následující tah"
 
 #: data/help-overlay.ui:86
 msgctxt "shortcut window"
-msgid "Show the current move"
+msgid "Show Current Move"
 msgstr "Zobrazit aktuální tah"
 
 #: data/help-overlay.ui:93
@@ -325,8 +325,8 @@ msgstr "Zobrazit klávesové zkratky"
 msgid "New Game"
 msgstr "Nová hra"
 
-#: data/new-game-window.ui:20 src/gnome-chess.vala:969
-#: src/gnome-chess.vala:1300 src/gnome-chess.vala:1440
+#: data/new-game-window.ui:20 src/gnome-chess.vala:968
+#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
 msgid "_Cancel"
 msgstr "_Zrušit"
 
@@ -427,7 +427,7 @@ msgstr "Neplatný typ hodin v PGN: %s, použijí se jednoduché hodiny."
 msgid "Invalid timer increment in PGN: %s, using a simple clock."
 msgstr "Neplatné prodlužování času v PGN: %s, použijí se jednoduché hodiny."
 
-#: src/chess-view.vala:319
+#: src/chess-view.vala:326
 msgid "Paused"
 msgstr "Pozastaveno"
 
@@ -1063,29 +1063,32 @@ msgstr "Podle záznamu hry hráč zemřel!"
 msgid "The computer player is confused. The game cannot continue."
 msgstr "Počítačový hráč je zcela zmaten. Hra nemůže pokračovat."
 
-#: src/gnome-chess.vala:973
-msgid "_Abandon game"
+#: src/gnome-chess.vala:965
+msgid "Save Game?"
+msgstr "Uložit hru?"
+
+#: src/gnome-chess.vala:972
+msgid "_Abandon Game"
 msgstr "U_končit hru"
 
-#: src/gnome-chess.vala:974
-msgid "_Save game for later"
-msgstr "_Uložit hru na později"
-
-#: src/gnome-chess.vala:978
-msgid "_Discard game"
-msgstr "Zaho_dit hru"
+#: src/gnome-chess.vala:973
+msgid "Save game for later"
+msgstr "Uložit hru na později"
 
 #: src/gnome-chess.vala:979
-msgid "_Save game log"
-msgstr "_Uložit záznam hry"
+msgid "_Discard Game"
+msgstr "Zaho_dit hru"
 
-#. Title of claim draw dialog
-#: src/gnome-chess.vala:1020
+#: src/gnome-chess.vala:980
+msgid "Save game log"
+msgstr "Uložit záznam hry"
+
+#: src/gnome-chess.vala:1017
 msgid "Would you like to claim a draw?"
 msgstr "Chtěli byste požádat o remízu?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: src/gnome-chess.vala:1026
+#: src/gnome-chess.vala:1024
 msgid ""
 "You may claim a draw because fifty moves have passed without a capture or "
 "pawn advancement. (The computer player may still choose to claim a draw even "
@@ -1096,7 +1099,7 @@ msgstr ""
 "pro remízu i přesto, že vy se rozhodnete pokračovat ve hře.)"
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: src/gnome-chess.vala:1031
+#: src/gnome-chess.vala:1029
 msgid ""
 "You may claim a draw because the current board position has occurred three "
 "times. (The computer player may still choose to claim a draw even if you "
@@ -1106,96 +1109,103 @@ msgstr ""
 "stejné pozici, jak je teď. (Počítačový hráč se může rozhodnout pro remízu i "
 "přesto, že vy se rozhodnete pokračovat ve hře.)"
 
-#. Option in claim draw dialog
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1039 src/gnome-chess.vala:1078
+#: src/gnome-chess.vala:1036 src/gnome-chess.vala:1068
 msgid "_Keep Playing"
 msgstr "Po_kračovat ve hře"
 
-#. Option in claim draw dialog
-#: src/gnome-chess.vala:1041
+#: src/gnome-chess.vala:1037
 msgid "_Claim Draw"
 msgstr "_Požádat o remízu"
 
-#: src/gnome-chess.vala:1058
-msgid "Save this game before starting a new one?"
-msgstr "Uložit tuto hru před spuštěním nové?"
+#: src/gnome-chess.vala:1053
+msgid "By starting a new game now, unsaved progress would be lost."
+msgstr "Zahájením nové hry nyní dojde ke ztrátě neuloženého postupu."
 
-#. Title of warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1073
+#: src/gnome-chess.vala:1064
 msgid "Are you sure you want to resign?"
 msgstr "Opravdu chcete hru vzdát?"
 
 #. Text on warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1076
+#: src/gnome-chess.vala:1067
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr ""
 "To má smysl, pokud máte v úmyslu si hru uložit jako záznam postupu, který "
 "vedl k prohře."
 
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1080
+#: src/gnome-chess.vala:1069
 msgid "_Resign"
 msgstr "Vzdá_t"
 
-#: src/gnome-chess.vala:1210
+#: src/gnome-chess.vala:1200
 msgid "A classic game of positional strategy"
 msgstr "Klasická tahová strategie"
 
-#: src/gnome-chess.vala:1213
+#: src/gnome-chess.vala:1203
 msgid "translator-credits"
 msgstr "Marek Černocký <marek@manet.cz>"
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1248
+msgid "Error Loading PGN File"
+msgstr "Chyba při načítání souboru PGN"
+
+#: src/gnome-chess.vala:1249
 msgid "This does not look like a valid PGN game."
 msgstr "Nevypadá to jako platný zápis hry v PGN."
 
-#: src/gnome-chess.vala:1262 src/gnome-chess.vala:1275
-#: src/gnome-chess.vala:1380
+#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
+#: src/gnome-chess.vala:1370
 msgid "_OK"
 msgstr "_Budiž"
 
+#: src/gnome-chess.vala:1261
+msgid "Invalid Move"
+msgstr "Neplatný tah"
+
 #. Title of save game dialog
-#: src/gnome-chess.vala:1297
+#: src/gnome-chess.vala:1287
 msgid "Save Chess Game"
 msgstr "Uložit šachovou partii"
 
-#: src/gnome-chess.vala:1299
+#: src/gnome-chess.vala:1289
 msgid "_Save"
 msgstr "_Uložit"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1331
+#: src/gnome-chess.vala:1321
 msgid "Untitled Chess Game"
 msgstr "Nepojmenovaná šachová partie"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1337 src/gnome-chess.vala:1446
+#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
 msgid "PGN files"
 msgstr "Soubory PGN"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1343 src/gnome-chess.vala:1452
+#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
 msgid "All files"
 msgstr "Všechny soubory"
 
-#: src/gnome-chess.vala:1378
+#: src/gnome-chess.vala:1365
+msgid "Save Error"
+msgstr "Chyba uložení"
+
+#: src/gnome-chess.vala:1368
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Selhalo uložení hry: %s"
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1421
 msgid "Save this game before loading another one?"
 msgstr "Uložit tuto hru před načtením další?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1428
 msgid "Load Chess Game"
 msgstr "Načíst šachovou partii"
 
-#: src/gnome-chess.vala:1439
+#: src/gnome-chess.vala:1430
 msgid "_Open"
 msgstr "_Otevřít"
 
@@ -1293,3 +1303,33 @@ msgstr "Bronsteinovy"
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "Člověk"
+
+#~ msgid "Undo your most recent move"
+#~ msgstr "Vrátit zpět svůj poslední tah"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game"
+#~ msgstr "Uložit hru"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game with a different name"
+#~ msgstr "Uložit hru pod jiným názvem"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Rewind to the game start"
+#~ msgstr "Vrátit se na začátek hry"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the previous move"
+#~ msgstr "Zobrazit předchozí tah"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the next move"
+#~ msgstr "Zobrazit následující tah"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the current move"
+#~ msgstr "Zobrazit aktuální tah"
+
+#~ msgid "Save this game before starting a new one?"
+#~ msgstr "Uložit tuto hru před spuštěním nové?"
