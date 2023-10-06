@@ -8,22 +8,22 @@
 # Bin Li <libin.charles@gmail.com>, 2016.
 # Mingcong Bai <jeffbai@aosc.xyz>, 2018.
 # Dingzhong Chen <wsxy162@gmail.com>, 2018.
-# lumingzh <lumingzh@qq.com>, 2022.
+# lumingzh <lumingzh@qq.com>, 2022-2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2022-09-09 20:19+0000\n"
-"PO-Revision-Date: 2022-09-11 14:57-0400\n"
-"Last-Translator: Boyuan Yang <073plan@gmail.com>\n"
+"POT-Creation-Date: 2023-10-04 21:18+0000\n"
+"PO-Revision-Date: 2023-10-06 10:33+0800\n"
+"Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.1.1\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: Gtranslator 45.2\n"
 
 #: data/org.gnome.Chess.appdata.xml.in:7
 msgid "GNOME Chess"
@@ -49,12 +49,12 @@ msgid ""
 msgstr ""
 "GNOME 国际象棋与几乎所有的现代计算机象棋引擎兼容，也能自动检测常用的引擎。"
 
-#: data/org.gnome.Chess.appdata.xml.in:69
+#: data/org.gnome.Chess.appdata.xml.in:72
 msgid "The GNOME Project"
 msgstr "GNOME 项目"
 
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1206 src/gnome-chess.vala:1570
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
 msgid "Chess"
 msgstr "国际象棋"
 
@@ -194,28 +194,32 @@ msgid "_About Chess"
 msgstr "关于国际象棋(_A)"
 
 #: data/chess-window.ui:67
-msgid "Undo your most recent move"
-msgstr "撤销您最近的走子"
+msgid "Undo Move"
+msgstr "撤消移动"
+
+#: data/chess-window.ui:96
+msgid "Main Menu"
+msgstr "主菜单"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
-#: data/chess-window.ui:149
-msgid "Rewind to the game start"
-msgstr "定位到游戏开始"
+#: data/chess-window.ui:151
+msgid "Rewind to Game Start"
+msgstr "倒回游戏开始"
 
 #. Tooltip on the show previous move navigation button
-#: data/chess-window.ui:166
-msgid "Show the previous move"
-msgstr "显示上一着"
+#: data/chess-window.ui:168
+msgid "Show Previous Move"
+msgstr "显示上次走棋"
 
 #. Tooltip on the show next move navigation button
-#: data/chess-window.ui:183
-msgid "Show the next move"
-msgstr "显示下一着"
+#: data/chess-window.ui:185
+msgid "Show Next Move"
+msgstr "显示下次走棋"
 
 #. Tooltip on the show current move navigation button
-#: data/chess-window.ui:200
-msgid "Show the current move"
-msgstr "显示当前移动"
+#: data/chess-window.ui:202
+msgid "Show Current Move"
+msgstr "显示当前走棋"
 
 #: data/help-overlay.ui:11
 msgctxt "shortcut window"
@@ -224,32 +228,32 @@ msgstr "常规"
 
 #: data/help-overlay.ui:15
 msgctxt "shortcut window"
-msgid "Start a new game"
+msgid "Start New Game"
 msgstr "开始新游戏"
 
 #: data/help-overlay.ui:21
 msgctxt "shortcut window"
-msgid "Open a saved game"
+msgid "Open Saved Game"
 msgstr "打开已保存的游戏"
 
 #: data/help-overlay.ui:27
 msgctxt "shortcut window"
-msgid "Pause the game"
+msgid "Pause Game"
 msgstr "暂停游戏"
 
 #: data/help-overlay.ui:33
 msgctxt "shortcut window"
-msgid "Save the game"
+msgid "Save Game"
 msgstr "保存游戏"
 
 #: data/help-overlay.ui:39
 msgctxt "shortcut window"
-msgid "Save the game with a different name"
-msgstr "用另一个名称保存游戏"
+msgid "Save Game As…"
+msgstr "另存游戏为…"
 
 #: data/help-overlay.ui:45
 msgctxt "shortcut window"
-msgid "Undo move"
+msgid "Undo Move"
 msgstr "撤消移动"
 
 #: data/help-overlay.ui:51
@@ -259,8 +263,8 @@ msgstr "退出"
 
 #: data/help-overlay.ui:57
 msgctxt "shortcut window"
-msgid "Open menu"
-msgstr "打开菜单"
+msgid "Open Main Menu"
+msgstr "打开主菜单"
 
 #: data/help-overlay.ui:64
 msgctxt "shortcut window"
@@ -269,23 +273,23 @@ msgstr "历史"
 
 #: data/help-overlay.ui:68
 msgctxt "shortcut window"
-msgid "Rewind to the game start"
-msgstr "定位到游戏开始"
+msgid "Rewind to Game Start"
+msgstr "倒回游戏开始"
 
 #: data/help-overlay.ui:74
 msgctxt "shortcut window"
-msgid "Show the previous move"
-msgstr "显示上一着"
+msgid "Show Previous Move"
+msgstr "显示上次走棋"
 
 #: data/help-overlay.ui:80
 msgctxt "shortcut window"
-msgid "Show the next move"
-msgstr "显示下一着"
+msgid "Show Next Move"
+msgstr "显示下次走棋"
 
 #: data/help-overlay.ui:86
 msgctxt "shortcut window"
-msgid "Show the current move"
-msgstr "显示当前移动"
+msgid "Show Current Move"
+msgstr "显示当前走棋"
 
 #: data/help-overlay.ui:93
 msgctxt "shortcut window"
@@ -306,8 +310,8 @@ msgstr "显示键盘快捷键"
 msgid "New Game"
 msgstr "新游戏"
 
-#: data/new-game-window.ui:20 src/gnome-chess.vala:969
-#: src/gnome-chess.vala:1300 src/gnome-chess.vala:1440
+#: data/new-game-window.ui:20 src/gnome-chess.vala:968
+#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
 msgid "_Cancel"
 msgstr "取消(_C)"
 
@@ -326,6 +330,10 @@ msgstr "玩家(_P)"
 #: data/new-game-window.ui:65
 msgid "_Difficulty"
 msgstr "难度(_D)"
+
+#: data/new-game-window.ui:81
+msgid "Time Limit"
+msgstr "时间限制"
 
 #: data/new-game-window.ui:84
 msgid "_Use Time Limit"
@@ -404,7 +412,7 @@ msgstr "PGN 中无效的时钟类型: %s，将会使用简单时钟。"
 msgid "Invalid timer increment in PGN: %s, using a simple clock."
 msgstr "PGN 中无效的的计时器增量：%s，将会使用简单时钟。"
 
-#: src/chess-view.vala:319
+#: src/chess-view.vala:326
 msgid "Paused"
 msgstr "暂停"
 
@@ -1036,29 +1044,32 @@ msgstr "游戏日志显示有一名玩家已经死了！"
 msgid "The computer player is confused. The game cannot continue."
 msgstr "计算机棋手已经陷入混乱。游戏无法继续下去了。"
 
-#: src/gnome-chess.vala:973
-msgid "_Abandon game"
+#: src/gnome-chess.vala:965
+msgid "Save Game?"
+msgstr "保存游戏吗？"
+
+#: src/gnome-chess.vala:972
+msgid "_Abandon Game"
 msgstr "放弃游戏(_A)"
 
-#: src/gnome-chess.vala:974
-msgid "_Save game for later"
-msgstr "保存游戏以后再玩(_S)"
-
-#: src/gnome-chess.vala:978
-msgid "_Discard game"
-msgstr "放弃游戏(_D)"
+#: src/gnome-chess.vala:973
+msgid "Save game for later"
+msgstr "保存游戏以后再玩"
 
 #: src/gnome-chess.vala:979
-msgid "_Save game log"
-msgstr "保存游戏日志(_S)"
+msgid "_Discard Game"
+msgstr "丢弃游戏(_D)"
 
-#. Title of claim draw dialog
-#: src/gnome-chess.vala:1020
+#: src/gnome-chess.vala:980
+msgid "Save game log"
+msgstr "保存游戏日志"
+
+#: src/gnome-chess.vala:1017
 msgid "Would you like to claim a draw?"
 msgstr "您想要求和棋吗？"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: src/gnome-chess.vala:1026
+#: src/gnome-chess.vala:1024
 msgid ""
 "You may claim a draw because fifty moves have passed without a capture or "
 "pawn advancement. (The computer player may still choose to claim a draw even "
@@ -1068,7 +1079,7 @@ msgstr ""
 "算机玩家仍可以选择和棋。)"
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: src/gnome-chess.vala:1031
+#: src/gnome-chess.vala:1029
 msgid ""
 "You may claim a draw because the current board position has occurred three "
 "times. (The computer player may still choose to claim a draw even if you "
@@ -1077,41 +1088,36 @@ msgstr ""
 "您可以选择和棋，因为当前的棋盘位置已经出现了三次。 (即使您选择继续玩，计算机"
 "玩家仍可以选择和棋。)"
 
-#. Option in claim draw dialog
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1039 src/gnome-chess.vala:1078
+#: src/gnome-chess.vala:1036 src/gnome-chess.vala:1068
 msgid "_Keep Playing"
 msgstr "继续游戏(_K)"
 
-#. Option in claim draw dialog
-#: src/gnome-chess.vala:1041
+#: src/gnome-chess.vala:1037
 msgid "_Claim Draw"
 msgstr "要求和棋(_C)"
 
-#: src/gnome-chess.vala:1058
-msgid "Save this game before starting a new one?"
-msgstr "开始新游戏前保存当前游戏？"
+#: src/gnome-chess.vala:1053
+msgid "By starting a new game now, unsaved progress would be lost."
+msgstr "如果现在开始新游戏，未保存的进度将会丢失。"
 
-#. Title of warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1073
+#: src/gnome-chess.vala:1064
 msgid "Are you sure you want to resign?"
 msgstr "您真的想要认输吗？"
 
 #. Text on warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1076
+#: src/gnome-chess.vala:1067
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr "如果你打算保存，这将会留下你一次败局的记录。"
 
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1080
+#: src/gnome-chess.vala:1069
 msgid "_Resign"
 msgstr "认输(_R)"
 
-#: src/gnome-chess.vala:1210
+#: src/gnome-chess.vala:1200
 msgid "A classic game of positional strategy"
 msgstr "一个很古老的有关位置战略的游戏"
 
-#: src/gnome-chess.vala:1213
+#: src/gnome-chess.vala:1203
 msgid "translator-credits"
 msgstr ""
 "Yang Zhang <zyangmath@gmail.com>, 2007\n"
@@ -1126,58 +1132,70 @@ msgstr ""
 "Mingcong Bai <jeffbai@aosc.xyz>, 2018.\n"
 "Dingzhong Chen <wsxy162@gmail.com>, 2018.\n"
 "Weiyi Xu <xuweiyi0923@gmail.com>, 2020.\n"
-"lumingzh <lumingzh@qq.com>, 2022."
+"lumingzh <lumingzh@qq.com>, 2022-2023."
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1248
+msgid "Error Loading PGN File"
+msgstr "加载 PGN 文件时出错"
+
+#: src/gnome-chess.vala:1249
 msgid "This does not look like a valid PGN game."
 msgstr "这看起来不像有效的 PGN 游戏。"
 
-#: src/gnome-chess.vala:1262 src/gnome-chess.vala:1275
-#: src/gnome-chess.vala:1380
+#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
+#: src/gnome-chess.vala:1370
 msgid "_OK"
 msgstr "确认(_O)"
 
+#: src/gnome-chess.vala:1261
+msgid "Invalid Move"
+msgstr "无效走棋"
+
 #. Title of save game dialog
-#: src/gnome-chess.vala:1297
+#: src/gnome-chess.vala:1287
 msgid "Save Chess Game"
 msgstr "保存象棋游戏"
 
-#: src/gnome-chess.vala:1299
+#: src/gnome-chess.vala:1289
 msgid "_Save"
 msgstr "保存(_S)"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1331
+#: src/gnome-chess.vala:1321
 msgid "Untitled Chess Game"
 msgstr "未命名的国际象棋游戏"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1337 src/gnome-chess.vala:1446
+#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
 msgid "PGN files"
 msgstr "PGN 文件"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1343 src/gnome-chess.vala:1452
+#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
 msgid "All files"
 msgstr "所有文件"
 
-#: src/gnome-chess.vala:1378
+#: src/gnome-chess.vala:1365
+msgid "Save Error"
+msgstr "保存出错"
+
+#: src/gnome-chess.vala:1368
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "保存游戏失败：%s"
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1421
 msgid "Save this game before loading another one?"
 msgstr "载入另一游戏前保存当前游戏？"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1428
 msgid "Load Chess Game"
 msgstr "加载象棋游戏"
 
-#: src/gnome-chess.vala:1439
+#: src/gnome-chess.vala:1430
 msgid "_Open"
 msgstr "打开(_O)"
 
@@ -1275,6 +1293,44 @@ msgstr "布龙斯坦"
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "人类玩家"
+
+#~ msgid "Undo your most recent move"
+#~ msgstr "撤销您最近的走子"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Start a new game"
+#~ msgstr "开始新游戏"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game"
+#~ msgstr "保存游戏"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game with a different name"
+#~ msgstr "用另一个名称保存游戏"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Undo move"
+#~ msgstr "撤消移动"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Rewind to the game start"
+#~ msgstr "定位到游戏开始"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the previous move"
+#~ msgstr "显示上一着"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the next move"
+#~ msgstr "显示下一着"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the current move"
+#~ msgstr "显示当前移动"
+
+#~ msgid "Save this game before starting a new one?"
+#~ msgstr "开始新游戏前保存当前游戏？"
 
 #~ msgctxt "custom_duration_units"
 #~ msgid "minutes"
@@ -1494,9 +1550,6 @@ msgstr "人类玩家"
 
 #~ msgid "Chess - %1$s"
 #~ msgstr "国际象棋 - %1$s"
-
-#~ msgid "_Undo Move"
-#~ msgstr "撤消移动(_U)"
 
 #~ msgid "_Settings"
 #~ msgstr "设置(_S)"
@@ -2850,14 +2903,8 @@ msgstr "人类玩家"
 #~ msgid "Cancel current game?"
 #~ msgstr "结束当前游戏？"
 
-#~ msgid "Start New Game"
-#~ msgstr "开始新游戏"
-
 #~ msgid "Keep Current Game"
 #~ msgstr "保存当前游戏"
-
-#~ msgid "Main game:"
-#~ msgstr "主游戏："
 
 #~ msgid "Resizing and SVG support:"
 #~ msgstr "缩放和 SVG 支持："
@@ -3387,9 +3434,6 @@ msgstr "人类玩家"
 
 #~ msgid "The game was a draw."
 #~ msgstr "游戏平局。"
-
-#~ msgid "Invalid move."
-#~ msgstr "非法移动。"
 
 #~ msgid "Iagno Preferences"
 #~ msgstr "黑白棋首选项"
