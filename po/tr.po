@@ -16,16 +16,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2023-10-01 12:42+0000\n"
-"PO-Revision-Date: 2023-10-02 10:06+0300\n"
-"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
+"POT-Creation-Date: 2023-10-12 07:28+0000\n"
+"PO-Revision-Date: 2023-10-16 16:29+0300\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/org.gnome.Chess.appdata.xml.in:7
 msgid "GNOME Chess"
@@ -58,7 +58,7 @@ msgid "The GNOME Project"
 msgstr "GNOME Projesi"
 
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1206 src/gnome-chess.vala:1570
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
 msgid "Chess"
 msgstr "Satranç"
 
@@ -318,10 +318,10 @@ msgstr "Klavye Kısayollarını Göster"
 msgid "New Game"
 msgstr "Yeni Oyun"
 
-#: data/new-game-window.ui:20 src/gnome-chess.vala:969
-#: src/gnome-chess.vala:1300 src/gnome-chess.vala:1440
+#: data/new-game-window.ui:20 src/gnome-chess.vala:968
+#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
 msgid "_Cancel"
-msgstr "İptal _et"
+msgstr "İ_ptal"
 
 #: data/new-game-window.ui:28
 msgid "_Start"
@@ -1060,29 +1060,32 @@ msgstr "Oyun günlüğü bir oyuncunun öldüğünü söylüyor!"
 msgid "The computer player is confused. The game cannot continue."
 msgstr "Bilgisayar oyuncusunun kafası karıştı. Oyun süremiyor."
 
+#: src/gnome-chess.vala:965
+msgid "Save Game?"
+msgstr "Oyun Kaydedilsin Mi?"
+
+#: src/gnome-chess.vala:972
+msgid "_Abandon Game"
+msgstr "_Oyunu Yarıda Kes"
+
 #: src/gnome-chess.vala:973
-msgid "_Abandon game"
-msgstr "_Oyunu yarıda kes"
-
-#: src/gnome-chess.vala:974
-msgid "_Save game for later"
-msgstr "_Oyunu sonrası için kaydet"
-
-#: src/gnome-chess.vala:978
-msgid "_Discard game"
-msgstr "Oyunu _terk et"
+msgid "Save game for later"
+msgstr "Oyunu sonrası için kaydet"
 
 #: src/gnome-chess.vala:979
-msgid "_Save game log"
-msgstr "Oyun günlüğünü _kaydet"
+msgid "_Discard Game"
+msgstr "Oyunu _Gözden Çıkar"
 
-#. Title of claim draw dialog
-#: src/gnome-chess.vala:1020
+#: src/gnome-chess.vala:980
+msgid "Save game log"
+msgstr "Oyun günlüğünü kaydet"
+
+#: src/gnome-chess.vala:1017
 msgid "Would you like to claim a draw?"
 msgstr "Beraberlik için istekte bulunmak ister misiniz?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: src/gnome-chess.vala:1026
+#: src/gnome-chess.vala:1024
 msgid ""
 "You may claim a draw because fifty moves have passed without a capture or "
 "pawn advancement. (The computer player may still choose to claim a draw even "
@@ -1093,7 +1096,7 @@ msgstr ""
 "isteyebilir.)"
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: src/gnome-chess.vala:1031
+#: src/gnome-chess.vala:1029
 msgid ""
 "You may claim a draw because the current board position has occurred three "
 "times. (The computer player may still choose to claim a draw even if you "
@@ -1102,99 +1105,104 @@ msgstr ""
 "Beraberlik isteminde bulunabilirsiniz çünkü var olan kurulu konum üç kez "
 "oluştu. (Oyunu sürdürmeyi seçseniz de bilgisayar çekilmeyi isteyebilir.)"
 
-#. Option in claim draw dialog
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1039 src/gnome-chess.vala:1078
+#: src/gnome-chess.vala:1036 src/gnome-chess.vala:1068
 msgid "_Keep Playing"
 msgstr "Oynamayı _Sürdür"
 
-#. Option in claim draw dialog
-#: src/gnome-chess.vala:1041
+#: src/gnome-chess.vala:1037
 msgid "_Claim Draw"
 msgstr "_Beraberlik İste"
 
-#: src/gnome-chess.vala:1058
-msgid "Save this game before starting a new one?"
-msgstr "Yenisini başlatmadan önce bu oyun kaydedilsin mi?"
+#: src/gnome-chess.vala:1053
+msgid "By starting a new game now, unsaved progress would be lost."
+msgstr "Şimdi yeni oyun başlatırsanız kaydedilmemiş ilerleme yitecek."
 
-#. Title of warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1073
+#: src/gnome-chess.vala:1064
 msgid "Are you sure you want to resign?"
 msgstr "Oyundan çekilmek istediğinize emin misiniz?"
 
 #. Text on warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1076
+#: src/gnome-chess.vala:1067
 msgid "This makes sense if you plan to save the game as a record of your loss."
-msgstr ""
-"Eğer oyunu aleyhinize bir kayıp olarak kaydetmek istiyorsanız bu mantıklı "
-"olabilir."
+msgstr "Eğer oyunu aleyhinize kaydetmek istiyorsanız bu mantıklı olabilir."
 
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1080
+#: src/gnome-chess.vala:1069
 msgid "_Resign"
 msgstr "_Çekil"
 
-#: src/gnome-chess.vala:1210
+#: src/gnome-chess.vala:1200
 msgid "A classic game of positional strategy"
 msgstr "Klasik bir konumsal strateji oyunu"
 
-#: src/gnome-chess.vala:1213
+#: src/gnome-chess.vala:1203
 msgid "translator-credits"
 msgstr ""
 "Barış Çiçek <baris@teamforce.name.tr> \n"
 "Muhammet Kara <muhammetk@gmail.com>\n"
 "Emin Tufan Çetin <etcetin@gmail.com>"
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1248
+msgid "Error Loading PGN File"
+msgstr "PGN Dosyası Yüklenirken Hata"
+
+#: src/gnome-chess.vala:1249
 msgid "This does not look like a valid PGN game."
 msgstr "Bu geçerli bir PGN oyunu gibi görünmüyor."
 
-#: src/gnome-chess.vala:1262 src/gnome-chess.vala:1275
-#: src/gnome-chess.vala:1380
+#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
+#: src/gnome-chess.vala:1370
 msgid "_OK"
 msgstr "_Tamam"
 
+#: src/gnome-chess.vala:1261
+msgid "Invalid Move"
+msgstr "Geçersiz Hamle"
+
 #. Title of save game dialog
-#: src/gnome-chess.vala:1297
+#: src/gnome-chess.vala:1287
 msgid "Save Chess Game"
 msgstr "Satranç Oyununu Kaydet"
 
-#: src/gnome-chess.vala:1299
+#: src/gnome-chess.vala:1289
 msgid "_Save"
 msgstr "_Kaydet"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1331
+#: src/gnome-chess.vala:1321
 msgid "Untitled Chess Game"
 msgstr "Adsız Satranç Oyunu"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1337 src/gnome-chess.vala:1446
+#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
 msgid "PGN files"
 msgstr "PGN dosyaları"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1343 src/gnome-chess.vala:1452
+#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
 msgid "All files"
 msgstr "Tüm dosyalar"
 
-#: src/gnome-chess.vala:1378
+#: src/gnome-chess.vala:1365
+msgid "Save Error"
+msgstr "Kayıt Hatası"
+
+#: src/gnome-chess.vala:1368
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Oyun kaydedilemedi: %s"
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1421
 msgid "Save this game before loading another one?"
 msgstr "Başka oyun yüklenmeden önce bu oyun kaydedilsin mi?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1428
 msgid "Load Chess Game"
 msgstr "Satranç Oyununu Yükle"
 
-#: src/gnome-chess.vala:1439
+#: src/gnome-chess.vala:1430
 msgid "_Open"
 msgstr "_Aç"
 
@@ -1292,6 +1300,9 @@ msgstr "Bronstein"
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "İnsan"
+
+#~ msgid "Save this game before starting a new one?"
+#~ msgstr "Yenisini başlatmadan önce bu oyun kaydedilsin mi?"
 
 #~ msgid "Undo your most recent move"
 #~ msgstr "En son hamlenizi geri alın"
