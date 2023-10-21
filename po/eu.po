@@ -9,8 +9,8 @@
 msgid ""
 msgstr "Project-Id-Version: gnome-weather master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2023-09-28 21:03+0000\n"
-"PO-Revision-Date: 2023-10-12 19:00+0100\n"
+"POT-Creation-Date: 2023-10-12 07:28+0000\n"
+"PO-Revision-Date: 2023-10-21 19:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -45,7 +45,7 @@ msgid "The GNOME Project"
 msgstr "GNOME proiektua"
 
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1206 src/gnome-chess.vala:1570
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
 msgid "Chess"
 msgstr "Xakea"
 
@@ -183,27 +183,31 @@ msgid "_About Chess"
 msgstr "_Xake jokoari buruz"
 
 #: data/chess-window.ui:67
-msgid "Undo your most recent move"
-msgstr "Desegin zure azken mugimenduak"
+msgid "Undo Move"
+msgstr "Desegin mugimendua"
+
+#: data/chess-window.ui:96
+msgid "Main Menu"
+msgstr "Menu nagusia"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
-#: data/chess-window.ui:149
-msgid "Rewind to the game start"
-msgstr "Atzera egin, jokoaren hasieraraino"
+#: data/chess-window.ui:151
+msgid "Rewind to Game Start"
+msgstr "Atzera egin jokoaren hasieraraino"
 
 #. Tooltip on the show previous move navigation button
-#: data/chess-window.ui:166
-msgid "Show the previous move"
+#: data/chess-window.ui:168
+msgid "Show Previous Move"
 msgstr "Erakutsi aurreko mugimendua"
 
 #. Tooltip on the show next move navigation button
-#: data/chess-window.ui:183
-msgid "Show the next move"
+#: data/chess-window.ui:185
+msgid "Show Next Move"
 msgstr "Erakutsi hurrengo mugimendua"
 
 #. Tooltip on the show current move navigation button
-#: data/chess-window.ui:200
-msgid "Show the current move"
+#: data/chess-window.ui:202
+msgid "Show Current Move"
 msgstr "Erakutsi uneko mugimendua"
 
 #: data/help-overlay.ui:11
@@ -213,32 +217,32 @@ msgstr "Orokorra"
 
 #: data/help-overlay.ui:15
 msgctxt "shortcut window"
-msgid "Start a new game"
+msgid "Start New Game"
 msgstr "Hasi joko berria"
 
 #: data/help-overlay.ui:21
 msgctxt "shortcut window"
-msgid "Open a saved game"
-msgstr "Ireki gordetako jokoa."
+msgid "Open Saved Game"
+msgstr "Ireki gordetako jokoa"
 
 #: data/help-overlay.ui:27
 msgctxt "shortcut window"
-msgid "Pause the game"
+msgid "Pause Game"
 msgstr "Pausatu jokoa"
 
 #: data/help-overlay.ui:33
 msgctxt "shortcut window"
-msgid "Save the game"
+msgid "Save Game"
 msgstr "Gorde jokoa"
 
 #: data/help-overlay.ui:39
 msgctxt "shortcut window"
-msgid "Save the game with a different name"
-msgstr "Gorde jokoa beste izen batekin"
+msgid "Save Game As…"
+msgstr "Gorde jokoa honela…"
 
 #: data/help-overlay.ui:45
 msgctxt "shortcut window"
-msgid "Undo move"
+msgid "Undo Move"
 msgstr "Desegin mugimendua"
 
 #: data/help-overlay.ui:51
@@ -248,8 +252,8 @@ msgstr "Irten"
 
 #: data/help-overlay.ui:57
 msgctxt "shortcut window"
-msgid "Open menu"
-msgstr "Ireki menua"
+msgid "Open Main Menu"
+msgstr "Ireki menu nagusia"
 
 #: data/help-overlay.ui:64
 msgctxt "shortcut window"
@@ -258,22 +262,22 @@ msgstr "Historia"
 
 #: data/help-overlay.ui:68
 msgctxt "shortcut window"
-msgid "Rewind to the game start"
-msgstr "Atzera egin, jokoaren hasieraraino"
+msgid "Rewind to Game Start"
+msgstr "Atzera egin jokoaren hasieraraino"
 
 #: data/help-overlay.ui:74
 msgctxt "shortcut window"
-msgid "Show the previous move"
+msgid "Show Previous Move"
 msgstr "Erakutsi aurreko mugimendua"
 
 #: data/help-overlay.ui:80
 msgctxt "shortcut window"
-msgid "Show the next move"
+msgid "Show Next Move"
 msgstr "Erakutsi hurrengo mugimendua"
 
 #: data/help-overlay.ui:86
 msgctxt "shortcut window"
-msgid "Show the current move"
+msgid "Show Current Move"
 msgstr "Erakutsi uneko mugimendua"
 
 #: data/help-overlay.ui:93
@@ -295,8 +299,8 @@ msgstr "Erakutsi lasterbideak"
 msgid "New Game"
 msgstr "Joko berria"
 
-#: data/new-game-window.ui:20 src/gnome-chess.vala:969
-#: src/gnome-chess.vala:1300 src/gnome-chess.vala:1440
+#: data/new-game-window.ui:20 src/gnome-chess.vala:968
+#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
 msgid "_Cancel"
 msgstr "_Utzi"
 
@@ -397,7 +401,7 @@ msgstr "Ordulari mota baliogabea PGNan: %s ordulari xume gisa erabiltzen."
 msgid "Invalid timer increment in PGN: %s, using a simple clock."
 msgstr "Baliogabeko tenporizadorearen gehikuntza PGNan: %s, ordulari xumea erabiltzen."
 
-#: src/chess-view.vala:319
+#: src/chess-view.vala:326
 msgid "Paused"
 msgstr "Pausatuta"
 
@@ -1029,29 +1033,32 @@ msgstr "Jokalaria hil egin dela dio jokoaren egunkariak."
 msgid "The computer player is confused. The game cannot continue."
 msgstr "Ordenagailuaren jokalariak burua galdu du. Ezin da jokoa jarraitu."
 
+#: src/gnome-chess.vala:965
+msgid "Save Game?"
+msgstr "Gorde jokoa?"
+
+#: src/gnome-chess.vala:972
+msgid "_Abandon Game"
+msgstr "_Utzi jokoa bertan behera"
+
 #: src/gnome-chess.vala:973
-msgid "_Abandon game"
-msgstr "_Bertan behera utzi jokoa"
-
-#: src/gnome-chess.vala:974
-msgid "_Save game for later"
-msgstr "_Gorde jokoa"
-
-#: src/gnome-chess.vala:978
-msgid "_Discard game"
-msgstr "_Baztertu jokoa"
+msgid "Save game for later"
+msgstr "Gorde jokoa gerorako"
 
 #: src/gnome-chess.vala:979
-msgid "_Save game log"
-msgstr "_Gorde jokoaren erregistroa"
+msgid "_Discard Game"
+msgstr "_Baztertu jokoa"
 
-#. Title of claim draw dialog
-#: src/gnome-chess.vala:1020
+#: src/gnome-chess.vala:980
+msgid "Save game log"
+msgstr "Gorde jokoaren erregistroa"
+
+#: src/gnome-chess.vala:1017
 msgid "Would you like to claim a draw?"
 msgstr "Nahi duzu berdinketa eskatzea?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: src/gnome-chess.vala:1026
+#: src/gnome-chess.vala:1024
 msgid ""
 "You may claim a draw because fifty moves have passed without a capture or "
 "pawn advancement. (The computer player may still choose to claim a draw even "
@@ -1059,101 +1066,108 @@ msgid ""
 msgstr "Berdinketa eskatu dezakezu berrogeita hamar mugimendu egin direlako harrapaketa bat edo peioen aurrerapen bat gertatu gabe. (Ordenagailuko jokalariak berdinketa eska dezake zuk jokatzen jarraitu nahi duzula esan arren.)"
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: src/gnome-chess.vala:1031
+#: src/gnome-chess.vala:1029
 msgid ""
 "You may claim a draw because the current board position has occurred three "
 "times. (The computer player may still choose to claim a draw even if you "
 "choose to keep playing.)"
 msgstr "Berdinketa eskatu dezakezu taularen uneko posizioa hiru aldiz gertatu delako. (Ordenagailuko jokalariak berdinketa eska dezake zuk jokatzen jarraitu nahi duzula esan arren.)"
 
-#. Option in claim draw dialog
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1039 src/gnome-chess.vala:1078
+#: src/gnome-chess.vala:1036 src/gnome-chess.vala:1068
 msgid "_Keep Playing"
 msgstr "Ja_rraitu jokatzen"
 
-#. Option in claim draw dialog
-#: src/gnome-chess.vala:1041
+#: src/gnome-chess.vala:1037
 msgid "_Claim Draw"
 msgstr "Eskatu _berdinketa"
 
-#: src/gnome-chess.vala:1058
-msgid "Save this game before starting a new one?"
-msgstr "Gorde joko hau berri batekin hasi aurretik?"
+#: src/gnome-chess.vala:1053
+msgid "By starting a new game now, unsaved progress would be lost."
+msgstr "Joko berria hasten bada, gorde gabeko aurrerapena galduko da."
 
-#. Title of warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1073
+#: src/gnome-chess.vala:1064
 msgid "Are you sure you want to resign?"
 msgstr "Ziur zaude amore ematea nahi duzula?"
 
 #. Text on warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1076
+#: src/gnome-chess.vala:1067
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr "Honek zentzua dauka zuk jokoa galdu duzula bezala erregistratzea nahi baduzu."
 
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1080
+#: src/gnome-chess.vala:1069
 msgid "_Resign"
 msgstr "_Amore eman"
 
-#: src/gnome-chess.vala:1210
+#: src/gnome-chess.vala:1200
 msgid "A classic game of positional strategy"
 msgstr "Posizio estrategikoaren joko klasikoa"
 
-#: src/gnome-chess.vala:1213
+#: src/gnome-chess.vala:1203
 msgid "translator-credits"
 msgstr "translator-credits"
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1248
+msgid "Error Loading PGN File"
+msgstr "Errorea PGN fitxategia kargatzean"
+
+#: src/gnome-chess.vala:1249
 msgid "This does not look like a valid PGN game."
 msgstr "Honek ez dirudi baliozko PGN joko bat denik."
 
-#: src/gnome-chess.vala:1262 src/gnome-chess.vala:1275
-#: src/gnome-chess.vala:1380
+#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
+#: src/gnome-chess.vala:1370
 msgid "_OK"
 msgstr "_Ados"
 
+#: src/gnome-chess.vala:1261
+msgid "Invalid Move"
+msgstr "Mugimendu baliogabea"
+
 #. Title of save game dialog
-#: src/gnome-chess.vala:1297
+#: src/gnome-chess.vala:1287
 msgid "Save Chess Game"
 msgstr "Gorde xake-jokoa"
 
-#: src/gnome-chess.vala:1299
+#: src/gnome-chess.vala:1289
 msgid "_Save"
 msgstr "_Gorde"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1331
+#: src/gnome-chess.vala:1321
 msgid "Untitled Chess Game"
 msgstr "izenik gabeko xake-jokoa"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1337 src/gnome-chess.vala:1446
+#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
 msgid "PGN files"
 msgstr "PGN fitxategiak"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1343 src/gnome-chess.vala:1452
+#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
 msgid "All files"
 msgstr "Fitxategi denak"
 
-#: src/gnome-chess.vala:1378
+#: src/gnome-chess.vala:1365
+msgid "Save Error"
+msgstr "Errorea gordetzean"
+
+#: src/gnome-chess.vala:1368
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Ezin izan da jokoa gorde: %s"
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1421
 msgid "Save this game before loading another one?"
 msgstr "Gorde joko hau beste bat kargatu aurretik?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1428
 msgid "Load Chess Game"
 msgstr "Kargatu xake-jokoa"
 
-#: src/gnome-chess.vala:1439
+#: src/gnome-chess.vala:1430
 msgid "_Open"
 msgstr "_Ireki"
 
@@ -1251,6 +1265,36 @@ msgstr "Bronstein"
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "Gizakia"
+
+#~ msgid "Undo your most recent move"
+#~ msgstr "Desegin zure azken mugimenduak"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game"
+#~ msgstr "Gorde jokoa"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game with a different name"
+#~ msgstr "Gorde jokoa beste izen batekin"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Rewind to the game start"
+#~ msgstr "Atzera egin, jokoaren hasieraraino"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the previous move"
+#~ msgstr "Erakutsi aurreko mugimendua"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the next move"
+#~ msgstr "Erakutsi hurrengo mugimendua"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the current move"
+#~ msgstr "Erakutsi uneko mugimendua"
+
+#~ msgid "Save this game before starting a new one?"
+#~ msgstr "Gorde joko hau berri batekin hasi aurretik?"
 
 #~ msgctxt "custom_duration_units"
 #~ msgid "minutes"
