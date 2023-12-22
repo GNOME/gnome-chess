@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2023-09-05 15:36+0000\n"
-"PO-Revision-Date: 2023-09-05 20:19+0200\n"
+"POT-Creation-Date: 2023-10-22 16:04+0000\n"
+"PO-Revision-Date: 2023-10-27 18:56+0200\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -36,7 +36,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/org.gnome.Chess.appdata.xml.in:7
 msgid "GNOME Chess"
@@ -44,7 +44,7 @@ msgstr "GNOME Schach"
 
 #: data/org.gnome.Chess.appdata.xml.in:8 data/org.gnome.Chess.desktop.in:5
 msgid "Play the classic two-player board game of chess"
-msgstr "Das klassische 2-Spieler-Brettspiel Schach spielen"
+msgstr "Das klassische Zwei-Spieler-Brettspiel Schach spielen"
 
 #: data/org.gnome.Chess.appdata.xml.in:10
 msgid ""
@@ -69,7 +69,7 @@ msgid "The GNOME Project"
 msgstr "Das GNOME-Projekt"
 
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1206 src/gnome-chess.vala:1570
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
 msgid "Chess"
 msgstr "Schach"
 
@@ -212,8 +212,8 @@ msgid "_About Chess"
 msgstr "_Info zu Schach"
 
 #: data/chess-window.ui:67
-msgid "Undo your most recent move"
-msgstr "Ihren letzten Zug rückgängig machen"
+msgid "Undo Move"
+msgstr "Zug rückgängig machen"
 
 #: data/chess-window.ui:96
 msgid "Main Menu"
@@ -221,22 +221,22 @@ msgstr "Hauptmenü"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
 #: data/chess-window.ui:151
-msgid "Rewind to the game start"
+msgid "Rewind to Game Start"
 msgstr "Zurück zum Spielstart"
 
 #. Tooltip on the show previous move navigation button
 #: data/chess-window.ui:168
-msgid "Show the previous move"
+msgid "Show Previous Move"
 msgstr "Vorherigen Zug anzeigen"
 
 #. Tooltip on the show next move navigation button
 #: data/chess-window.ui:185
-msgid "Show the next move"
+msgid "Show Next Move"
 msgstr "Nächsten Zug anzeigen"
 
 #. Tooltip on the show current move navigation button
 #: data/chess-window.ui:202
-msgid "Show the current move"
+msgid "Show Current Move"
 msgstr "Aktuellen Zug anzeigen"
 
 #: data/help-overlay.ui:11
@@ -246,32 +246,32 @@ msgstr "Allgemein"
 
 #: data/help-overlay.ui:15
 msgctxt "shortcut window"
-msgid "Start a new game"
-msgstr "Eine neue Spielpartie beginnen"
+msgid "Start New Game"
+msgstr "Neues Spiel starten"
 
 #: data/help-overlay.ui:21
 msgctxt "shortcut window"
-msgid "Open a saved game"
-msgstr "Ein gespeichertes Spiel öffnen"
+msgid "Open Saved Game"
+msgstr "Gespeichertes Spiel öffnen"
 
 #: data/help-overlay.ui:27
 msgctxt "shortcut window"
-msgid "Pause the game"
-msgstr "Das Spiel pausieren"
+msgid "Pause Game"
+msgstr "Spiel pausieren / fortsetzen"
 
 #: data/help-overlay.ui:33
 msgctxt "shortcut window"
-msgid "Save the game"
-msgstr "Das Spiel speichern"
+msgid "Save Game"
+msgstr "Spiel speichern"
 
 #: data/help-overlay.ui:39
 msgctxt "shortcut window"
-msgid "Save the game with a different name"
-msgstr "Das Spiel unter einem anderen Namen speichern"
+msgid "Save Game As…"
+msgstr "Spiel speichern unter …"
 
 #: data/help-overlay.ui:45
 msgctxt "shortcut window"
-msgid "Undo move"
+msgid "Undo Move"
 msgstr "Zug rückgängig machen"
 
 #: data/help-overlay.ui:51
@@ -291,22 +291,22 @@ msgstr "Chronik"
 
 #: data/help-overlay.ui:68
 msgctxt "shortcut window"
-msgid "Rewind to the game start"
+msgid "Rewind to Game Start"
 msgstr "Zurück zum Spielstart"
 
 #: data/help-overlay.ui:74
 msgctxt "shortcut window"
-msgid "Show the previous move"
+msgid "Show Previous Move"
 msgstr "Vorherigen Zug anzeigen"
 
 #: data/help-overlay.ui:80
 msgctxt "shortcut window"
-msgid "Show the next move"
+msgid "Show Next Move"
 msgstr "Nächsten Zug anzeigen"
 
 #: data/help-overlay.ui:86
 msgctxt "shortcut window"
-msgid "Show the current move"
+msgid "Show Current Move"
 msgstr "Aktuellen Zug anzeigen"
 
 #: data/help-overlay.ui:93
@@ -328,8 +328,8 @@ msgstr "Tastenkürzel anzeigen"
 msgid "New Game"
 msgstr "Neues Spiel"
 
-#: data/new-game-window.ui:20 src/gnome-chess.vala:969
-#: src/gnome-chess.vala:1300 src/gnome-chess.vala:1440
+#: data/new-game-window.ui:20 src/gnome-chess.vala:968
+#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
 msgid "_Cancel"
 msgstr "A_bbrechen"
 
@@ -431,7 +431,7 @@ msgstr "Ungültiger Uhrentyp in PGN: %s. Einfache Uhr wird verwendet."
 msgid "Invalid timer increment in PGN: %s, using a simple clock."
 msgstr "Ungültiger Zählerschritt in PGN: %s. Einfache Uhr wird verwendet."
 
-#: src/chess-view.vala:319
+#: src/chess-view.vala:326
 msgid "Paused"
 msgstr "Pausiert"
 
@@ -1069,31 +1069,34 @@ msgstr ""
 "Mit dem Rechnergegner stimmt etwas nicht. Das Spiel kann nicht fortgesetzt "
 "werden."
 
+#: src/gnome-chess.vala:965
+msgid "Save Game?"
+msgstr "Spiel speichern?"
+
 # CHECK
+#: src/gnome-chess.vala:972
+msgid "_Abandon Game"
+msgstr "Spiel _verwerfen"
+
 #: src/gnome-chess.vala:973
-msgid "_Abandon game"
-msgstr "Spiel _verwerfen"
-
-#: src/gnome-chess.vala:974
-msgid "_Save game for later"
-msgstr "_Spiel für später speichern"
+msgid "Save game for later"
+msgstr "Spiel für später speichern"
 
 # CHECK
-#: src/gnome-chess.vala:978
-msgid "_Discard game"
+#: src/gnome-chess.vala:979
+msgid "_Discard Game"
 msgstr "Spiel _verwerfen"
 
-#: src/gnome-chess.vala:979
-msgid "_Save game log"
-msgstr "Spielverlauf _speichern"
+#: src/gnome-chess.vala:980
+msgid "Save game log"
+msgstr "Spielverlauf speichern"
 
-#. Title of claim draw dialog
-#: src/gnome-chess.vala:1020
+#: src/gnome-chess.vala:1017
 msgid "Would you like to claim a draw?"
 msgstr "Möchten Sie ein Remis reklamieren?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: src/gnome-chess.vala:1026
+#: src/gnome-chess.vala:1024
 msgid ""
 "You may claim a draw because fifty moves have passed without a capture or "
 "pawn advancement. (The computer player may still choose to claim a draw even "
@@ -1105,7 +1108,7 @@ msgstr ""
 "Remis reklamieren.)"
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: src/gnome-chess.vala:1031
+#: src/gnome-chess.vala:1029
 msgid ""
 "You may claim a draw because the current board position has occurred three "
 "times. (The computer player may still choose to claim a draw even if you "
@@ -1115,44 +1118,41 @@ msgstr ""
 "erreicht wurde. (Auch wenn Sie sich entscheiden, das Spiel fortzusetzen, "
 "kann der Rechnergegner immer noch ein Remis reklamieren.)"
 
-#. Option in claim draw dialog
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1039 src/gnome-chess.vala:1078
+#: src/gnome-chess.vala:1036 src/gnome-chess.vala:1068
 msgid "_Keep Playing"
 msgstr "_Weiter spielen"
 
 # CHECK
-#. Option in claim draw dialog
-#: src/gnome-chess.vala:1041
+#: src/gnome-chess.vala:1037
 msgid "_Claim Draw"
 msgstr "_Remis reklamieren"
 
-#: src/gnome-chess.vala:1058
-msgid "Save this game before starting a new one?"
-msgstr "Dieses Spiel vor Beginn eines neuen Spiels speichern?"
+#: src/gnome-chess.vala:1053
+msgid "By starting a new game now, unsaved progress would be lost."
+msgstr ""
+"Wenn Sie jetzt ein neues Spiel starten, würde der ungespeicherte Fortschritt "
+"verloren gehen."
 
-#. Title of warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1073
+#: src/gnome-chess.vala:1064
 msgid "Are you sure you want to resign?"
 msgstr "Sind Sie sicher, dass Sie aufgeben wollen?"
 
 #. Text on warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1076
+#: src/gnome-chess.vala:1067
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr ""
 "Dies ist sinnvoll, wenn Sie das Spiel als Aufzeichnung Ihrer Niederlage "
 "speichern wollen."
 
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1080
+#: src/gnome-chess.vala:1069
 msgid "_Resign"
 msgstr "A_ufgeben"
 
-#: src/gnome-chess.vala:1210
+#: src/gnome-chess.vala:1200
 msgid "A classic game of positional strategy"
 msgstr "Ein klassisches Spiel mit Positionsstrategie"
 
-#: src/gnome-chess.vala:1213
+#: src/gnome-chess.vala:1203
 msgid "translator-credits"
 msgstr ""
 "Karl Eichwalder <ke@suse.de>\n"
@@ -1175,56 +1175,68 @@ msgstr ""
 "Philipp Kiemle <philipp.kiemle@gmail.com>\n"
 "Jürgen Benvenuti <gastornis@posteo.org>"
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1248
+msgid "Error Loading PGN File"
+msgstr "Fehler beim Laden der PGN-Datei"
+
+#: src/gnome-chess.vala:1249
 msgid "This does not look like a valid PGN game."
 msgstr "Dies scheint keine Partie im gültigen PGN-Format zu sein."
 
-#: src/gnome-chess.vala:1262 src/gnome-chess.vala:1275
-#: src/gnome-chess.vala:1380
+#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
+#: src/gnome-chess.vala:1370
 msgid "_OK"
 msgstr "_OK"
 
+#: src/gnome-chess.vala:1261
+msgid "Invalid Move"
+msgstr "Ungültiger Zug"
+
 #. Title of save game dialog
-#: src/gnome-chess.vala:1297
+#: src/gnome-chess.vala:1287
 msgid "Save Chess Game"
 msgstr "Schach-Partie speichern"
 
-#: src/gnome-chess.vala:1299
+#: src/gnome-chess.vala:1289
 msgid "_Save"
 msgstr "_Speichern"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1331
+#: src/gnome-chess.vala:1321
 msgid "Untitled Chess Game"
 msgstr "Unbenannte Schachpartie"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1337 src/gnome-chess.vala:1446
+#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
 msgid "PGN files"
 msgstr "PGN-Dateien"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1343 src/gnome-chess.vala:1452
+#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
 msgid "All files"
 msgstr "Alle Dateien"
 
-#: src/gnome-chess.vala:1378
+#: src/gnome-chess.vala:1365
+msgid "Save Error"
+msgstr "Fehler beim Speichern"
+
+#: src/gnome-chess.vala:1368
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Das Spiel konnte nicht gespeichert werden: %s"
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1421
 msgid "Save this game before loading another one?"
 msgstr "Dieses Spiel vor dem Laden eines anderen Spiels speichern?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1428
 msgid "Load Chess Game"
 msgstr "Schach-Partie laden"
 
-#: src/gnome-chess.vala:1439
+#: src/gnome-chess.vala:1430
 msgid "_Open"
 msgstr "Ö_ffnen"
 
@@ -1322,6 +1334,36 @@ msgstr "Bronstein"
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "Mensch"
+
+#~ msgid "Undo your most recent move"
+#~ msgstr "Ihren letzten Zug rückgängig machen"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game"
+#~ msgstr "Das Spiel speichern"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game with a different name"
+#~ msgstr "Das Spiel unter einem anderen Namen speichern"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Rewind to the game start"
+#~ msgstr "Zurück zum Spielstart"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the previous move"
+#~ msgstr "Vorherigen Zug anzeigen"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the next move"
+#~ msgstr "Nächsten Zug anzeigen"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the current move"
+#~ msgstr "Aktuellen Zug anzeigen"
+
+#~ msgid "Save this game before starting a new one?"
+#~ msgstr "Dieses Spiel vor Beginn eines neuen Spiels speichern?"
 
 #~ msgctxt "custom_duration_units"
 #~ msgid "minutes"
