@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2022-08-20 12:24+0000\n"
-"PO-Revision-Date: 2022-09-05 22:56+0300\n"
+"POT-Creation-Date: 2023-09-28 21:03+0000\n"
+"PO-Revision-Date: 2024-02-05 23:15+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -23,8 +23,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"(n%100<10 || n%100>=20) ? 1 : 2)\n"
-"X-Generator: Gtranslator 40.0\n"
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/org.gnome.Chess.appdata.xml.in:7
 msgid "GNOME Chess"
@@ -53,7 +53,7 @@ msgstr ""
 "visais šiuolaikiniais kompiuterinių šachmatų varikliukais bei galimybė "
 "automatiškai aptikti kelis populiarius varikliukus, jei šie įdiegti."
 
-#: data/org.gnome.Chess.appdata.xml.in:68
+#: data/org.gnome.Chess.appdata.xml.in:72
 msgid "The GNOME Project"
 msgstr "GNOME projektas"
 
@@ -167,7 +167,6 @@ msgid "Difficulty of the opponent chess engine"
 msgstr "Priešininko - šachmatų variklio sudėtingumas"
 
 #: data/chess-window.ui:7
-#| msgid "_New Game"
 msgid "_New Game…"
 msgstr "_Naujas žaidimas…"
 
@@ -313,7 +312,6 @@ msgid "Show Keyboard Shortcuts"
 msgstr "Rodyti klaviatūros trumpinius"
 
 #: data/new-game-window.ui:5
-#| msgid "_New Game"
 msgid "New Game"
 msgstr "Naujas žaidimas"
 
@@ -323,27 +321,26 @@ msgid "_Cancel"
 msgstr "_Atsisakyti"
 
 #: data/new-game-window.ui:28
-#| msgid "Game Start"
 msgid "_Start"
 msgstr "_Pradėti"
 
 #: data/new-game-window.ui:45
-#| msgid "_Opposing player:"
 msgid "_Opposing Player"
 msgstr "_Priešininkas"
 
 #: data/new-game-window.ui:51
-#| msgid "_Play as:"
 msgid "_Play As"
 msgstr "Žaisti _kaip"
 
 #: data/new-game-window.ui:65
-#| msgid "_Difficulty:"
 msgid "_Difficulty"
 msgstr "_Sunkumas"
 
+#: data/new-game-window.ui:81
+msgid "Time Limit"
+msgstr "Laiko limitas"
+
 #: data/new-game-window.ui:84
-#| msgid "_Time limit:"
 msgid "_Use Time Limit"
 msgstr "_Laiko riba"
 
@@ -356,32 +353,26 @@ msgid "_Increment In Seconds"
 msgstr "_Didinti sekundėmis"
 
 #: data/new-game-window.ui:138
-#| msgid "_Clock type:"
 msgid "Clock _Type"
 msgstr "Laikrodžio _tipas"
 
 #: data/preferences-window.ui:15
-#| msgid "Board _orientation:"
 msgid "_Board Orientation"
 msgstr "Lentos _padėtis"
 
 #: data/preferences-window.ui:29
-#| msgid "Move _format:"
 msgid "_Move Format"
 msgstr "Ėjimo _formatas"
 
 #: data/preferences-window.ui:43
-#| msgid "_Piece style:"
 msgid "_Piece Style"
 msgstr "Figūrų _stilius"
 
 #: data/preferences-window.ui:57
-#| msgid "_Board numbering"
 msgid "Board _Numbering"
 msgstr "Lentos _numeracija"
 
 #: data/preferences-window.ui:69
-#| msgid "_Move hints"
 msgid "Move _Hints"
 msgstr "Ėjimo _patarimai"
 
@@ -1244,13 +1235,11 @@ msgid "Figurine"
 msgstr "Figūrėlė"
 
 #: src/preferences.vala:333
-#| msgid "Simple"
 msgctxt "chess-piece-style"
 msgid "Simple"
 msgstr "Paprasta"
 
 #: src/preferences.vala:335
-#| msgid "Fancy"
 msgctxt "chess-piece-style"
 msgid "Fancy"
 msgstr "Įmantru"
@@ -1286,15 +1275,11 @@ msgid "Hard"
 msgstr "Sunkus"
 
 #: src/preferences.vala:482
-#| msgctxt "custom_duration_units"
-#| msgid "Fischer"
 msgctxt "clock-type"
 msgid "Fischer"
 msgstr "Fišerio"
 
 #: src/preferences.vala:484
-#| msgctxt "custom_duration_units"
-#| msgid "Bronstein"
 msgctxt "clock-type"
 msgid "Bronstein"
 msgstr "Bronšteino"
