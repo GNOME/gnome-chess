@@ -4,14 +4,14 @@
 #
 # Peteris Krisjanis <peteris.krisjanis@os.lv>, 2002.
 # Raivis Dejus <orvils@gmail.com>, 2006, 2007.
-# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2010, 2011.
+# SPDX-FileCopyrightText: 2010, 2011, 2024 Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>
 # Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011, 2012, 2013, 2014, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: lv\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2022-08-20 12:24+0000\n"
-"PO-Revision-Date: 2022-09-06 22:39+0300\n"
+"POT-Creation-Date: 2023-12-01 14:44+0000\n"
+"PO-Revision-Date: 2024-03-02 19:42+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 :"
 " 2);\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 23.08.1\n"
 "X-Poedit-Language: Latvian\n"
 "X-Poedit-Country: LATVIA\n"
 
@@ -50,12 +50,8 @@ msgstr ""
 "visiem mūsdienu šaha dziņiem, un tā spēju automātiski noteikt uzinstalētos "
 "dziņus."
 
-#: data/org.gnome.Chess.appdata.xml.in:68
-msgid "The GNOME Project"
-msgstr "GNOME projekts"
-
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1206 src/gnome-chess.vala:1570
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
 msgid "Chess"
 msgstr "Šahs"
 
@@ -163,7 +159,6 @@ msgid "Difficulty of the opponent chess engine"
 msgstr "Grūtība pretinieka šaha dzinim"
 
 #: data/chess-window.ui:7
-#| msgid "_New Game"
 msgid "_New Game…"
 msgstr "Jau_na spēle…"
 
@@ -200,27 +195,37 @@ msgid "_About Chess"
 msgstr "P_ar šahu"
 
 #: data/chess-window.ui:67
-msgid "Undo your most recent move"
-msgstr "Atsaukt savu pēdējo gājienu"
+#| msgctxt "shortcut window"
+#| msgid "Undo move"
+msgid "Undo Move"
+msgstr "Atsaukt gājienu"
+
+#: data/chess-window.ui:96
+msgid "Main Menu"
+msgstr "Galvenā izvēlne"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
-#: data/chess-window.ui:149
-msgid "Rewind to the game start"
+#: data/chess-window.ui:151
+#| msgid "Rewind to the game start"
+msgid "Rewind to Game Start"
 msgstr "Pārtīt uz spēles sākumu"
 
 #. Tooltip on the show previous move navigation button
-#: data/chess-window.ui:166
-msgid "Show the previous move"
+#: data/chess-window.ui:168
+#| msgid "Show the previous move"
+msgid "Show Previous Move"
 msgstr "Parādīt iepriekšējo gājienu"
 
 #. Tooltip on the show next move navigation button
-#: data/chess-window.ui:183
-msgid "Show the next move"
+#: data/chess-window.ui:185
+#| msgid "Show the next move"
+msgid "Show Next Move"
 msgstr "Parādīt nākamo gājienu"
 
 #. Tooltip on the show current move navigation button
-#: data/chess-window.ui:200
-msgid "Show the current move"
+#: data/chess-window.ui:202
+#| msgid "Show the current move"
+msgid "Show Current Move"
 msgstr "Parādīt pašreizējo gājienu"
 
 #: data/help-overlay.ui:11
@@ -229,33 +234,43 @@ msgid "General"
 msgstr "Vispārīgi"
 
 #: data/help-overlay.ui:15
+#| msgctxt "shortcut window"
+#| msgid "Start a new game"
 msgctxt "shortcut window"
-msgid "Start a new game"
+msgid "Start New Game"
 msgstr "Sākt jaunu spēli"
 
 #: data/help-overlay.ui:21
+#| msgctxt "shortcut window"
+#| msgid "Open a saved game"
 msgctxt "shortcut window"
-msgid "Open a saved game"
+msgid "Open Saved Game"
 msgstr "Atvērt saglabātu spēli"
 
 #: data/help-overlay.ui:27
+#| msgctxt "shortcut window"
+#| msgid "Pause the game"
 msgctxt "shortcut window"
-msgid "Pause the game"
+msgid "Pause Game"
 msgstr "Pauzēt spēli"
 
 #: data/help-overlay.ui:33
+#| msgid "_Save Game"
 msgctxt "shortcut window"
-msgid "Save the game"
-msgstr "Saglabāt šo spēli"
+msgid "Save Game"
+msgstr "Saglabāt spēli"
 
 #: data/help-overlay.ui:39
+#| msgid "_Save Game As…"
 msgctxt "shortcut window"
-msgid "Save the game with a different name"
-msgstr "Saglabāt šo spēli ar citu nosaukumu"
+msgid "Save Game As…"
+msgstr "Saglabāt spēli kā…"
 
 #: data/help-overlay.ui:45
+#| msgctxt "shortcut window"
+#| msgid "Undo move"
 msgctxt "shortcut window"
-msgid "Undo move"
+msgid "Undo Move"
 msgstr "Atsaukt gājienu"
 
 #: data/help-overlay.ui:51
@@ -264,9 +279,11 @@ msgid "Quit"
 msgstr "Iziet"
 
 #: data/help-overlay.ui:57
+#| msgctxt "shortcut window"
+#| msgid "Open menu"
 msgctxt "shortcut window"
-msgid "Open menu"
-msgstr "Atvērt izvēlni"
+msgid "Open Main Menu"
+msgstr "Atvērt galveno izvēlni"
 
 #: data/help-overlay.ui:64
 msgctxt "shortcut window"
@@ -274,23 +291,27 @@ msgid "History"
 msgstr "Vēsture"
 
 #: data/help-overlay.ui:68
+#| msgid "Rewind to the game start"
 msgctxt "shortcut window"
-msgid "Rewind to the game start"
+msgid "Rewind to Game Start"
 msgstr "Pārtīt uz spēles sākumu"
 
 #: data/help-overlay.ui:74
+#| msgid "Show the previous move"
 msgctxt "shortcut window"
-msgid "Show the previous move"
+msgid "Show Previous Move"
 msgstr "Parādīt iepriekšējo gājienu"
 
 #: data/help-overlay.ui:80
+#| msgid "Show the next move"
 msgctxt "shortcut window"
-msgid "Show the next move"
+msgid "Show Next Move"
 msgstr "Parādīt nākamo gājienu"
 
 #: data/help-overlay.ui:86
+#| msgid "Show the current move"
 msgctxt "shortcut window"
-msgid "Show the current move"
+msgid "Show Current Move"
 msgstr "Parādīt pašreizējo gājienu"
 
 #: data/help-overlay.ui:93
@@ -309,37 +330,36 @@ msgid "Show Keyboard Shortcuts"
 msgstr "Rādīt tastatūras saīsnes"
 
 #: data/new-game-window.ui:5
-#| msgid "_New Game"
 msgid "New Game"
 msgstr "Jauna spēle"
 
-#: data/new-game-window.ui:20 src/gnome-chess.vala:969
-#: src/gnome-chess.vala:1300 src/gnome-chess.vala:1440
+#: data/new-game-window.ui:20 src/gnome-chess.vala:968
+#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
 msgid "_Cancel"
 msgstr "At_celt"
 
 #: data/new-game-window.ui:28
-#| msgid "Game Start"
 msgid "_Start"
 msgstr "_Sākt"
 
 #: data/new-game-window.ui:45
-#| msgid "_Opposing player:"
 msgid "_Opposing Player"
 msgstr "P_retinieks"
 
 #: data/new-game-window.ui:51
-#| msgid "_Play as:"
 msgid "_Play As"
 msgstr "S_pēlēt kā"
 
 #: data/new-game-window.ui:65
-#| msgid "_Difficulty:"
 msgid "_Difficulty"
 msgstr "_Grūtība"
 
+#: data/new-game-window.ui:81
+#| msgid "_Use Time Limit"
+msgid "Time Limit"
+msgstr "Laika ierobežojums"
+
 #: data/new-game-window.ui:84
-#| msgid "_Time limit:"
 msgid "_Use Time Limit"
 msgstr "Lietot laika ierobežojum_u"
 
@@ -352,32 +372,26 @@ msgid "_Increment In Seconds"
 msgstr "Pal_ielinājums sekundēs"
 
 #: data/new-game-window.ui:138
-#| msgid "_Clock type:"
 msgid "Clock _Type"
 msgstr "Pulks_teņa veids"
 
 #: data/preferences-window.ui:15
-#| msgid "Board _orientation:"
 msgid "_Board Orientation"
 msgstr "_Galdiņa novietojums"
 
 #: data/preferences-window.ui:29
-#| msgid "Move _format:"
 msgid "_Move Format"
 msgstr "Gājienu _formāts"
 
 #: data/preferences-window.ui:43
-#| msgid "_Piece style:"
 msgid "_Piece Style"
 msgstr "_Figūru stils"
 
 #: data/preferences-window.ui:57
-#| msgid "_Board numbering"
 msgid "Board _Numbering"
 msgstr "Gadiņa _numurēšana"
 
 #: data/preferences-window.ui:69
-#| msgid "_Move hints"
 msgid "Move _Hints"
 msgstr "_Gājienu padomi"
 
@@ -423,7 +437,7 @@ msgid "Invalid timer increment in PGN: %s, using a simple clock."
 msgstr ""
 "Nederīgs taimera pieaugums PGN datnē — %s, izmanto vienkāršu pulksteni."
 
-#: src/chess-view.vala:319
+#: src/chess-view.vala:326
 msgid "Paused"
 msgstr "Apturēts"
 
@@ -1058,29 +1072,37 @@ msgstr "Spēles žurnālā redzams, ka spēlētājs nomira!"
 msgid "The computer player is confused. The game cannot continue."
 msgstr "Datora spēlētājs ir apjucis. Spēle nevar turpināties."
 
-#: src/gnome-chess.vala:973
-msgid "_Abandon game"
+#: src/gnome-chess.vala:965
+#| msgid "_Save Game"
+msgid "Save Game?"
+msgstr "Saglabāt spēli?"
+
+#: src/gnome-chess.vala:972
+#| msgid "_Abandon game"
+msgid "_Abandon Game"
 msgstr "P_amest spēli"
 
-#: src/gnome-chess.vala:974
-msgid "_Save game for later"
-msgstr "_Saglabāt spēli vēlākam laikam"
-
-#: src/gnome-chess.vala:978
-msgid "_Discard game"
-msgstr "_Atmest spēli"
+#: src/gnome-chess.vala:973
+#| msgid "_Save game for later"
+msgid "Save game for later"
+msgstr "Saglabāt spēli vēlākam laikam"
 
 #: src/gnome-chess.vala:979
-msgid "_Save game log"
-msgstr "_Saglabāt spēles žurnālu"
+#| msgid "_Discard game"
+msgid "_Discard Game"
+msgstr "_Atmest spēli"
 
-#. Title of claim draw dialog
-#: src/gnome-chess.vala:1020
+#: src/gnome-chess.vala:980
+#| msgid "_Save game log"
+msgid "Save game log"
+msgstr "Saglabāt spēles žurnālu"
+
+#: src/gnome-chess.vala:1017
 msgid "Would you like to claim a draw?"
 msgstr "Vai vēlaties pieteikt neizšķirtu?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: src/gnome-chess.vala:1026
+#: src/gnome-chess.vala:1024
 msgid ""
 "You may claim a draw because fifty moves have passed without a capture or "
 "pawn advancement. (The computer player may still choose to claim a draw even "
@@ -1091,7 +1113,7 @@ msgstr ""
 "pieteikt neizšķirtu pat ja izvēlēsities turpināt spēlēt."
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: src/gnome-chess.vala:1031
+#: src/gnome-chess.vala:1029
 msgid ""
 "You may claim a draw because the current board position has occurred three "
 "times. (The computer player may still choose to claim a draw even if you "
@@ -1101,97 +1123,104 @@ msgstr ""
 "trīs reizes. Datora spēlētājs var izvēlēties pieteikt neizšķirtu pat ja "
 "izvēlēsities turpināt spēlēt."
 
-#. Option in claim draw dialog
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1039 src/gnome-chess.vala:1078
+#: src/gnome-chess.vala:1036 src/gnome-chess.vala:1068
 msgid "_Keep Playing"
 msgstr "_Turpināt spēlēt"
 
-#. Option in claim draw dialog
-#: src/gnome-chess.vala:1041
+#: src/gnome-chess.vala:1037
 msgid "_Claim Draw"
 msgstr "_Pieteikt neizšķiru"
 
-#: src/gnome-chess.vala:1058
-msgid "Save this game before starting a new one?"
-msgstr "Saglabāt šo spēli, pirms sākt jaunu?"
+#: src/gnome-chess.vala:1053
+msgid "By starting a new game now, unsaved progress would be lost."
+msgstr "Ja tagad sāksiet jaunu spēli, nesaglabātais progress tiks pazaudēts."
 
-#. Title of warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1073
+#: src/gnome-chess.vala:1064
 msgid "Are you sure you want to resign?"
 msgstr "Vai tiešām vēlaties padoties?"
 
 #. Text on warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1076
+#: src/gnome-chess.vala:1067
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr "Tam ir jēga, ja plānojat saglabāt spēli, kā sava zaudējuma protokolu."
 
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1080
+#: src/gnome-chess.vala:1069
 msgid "_Resign"
 msgstr "_Padoties"
 
-#: src/gnome-chess.vala:1210
+#: src/gnome-chess.vala:1200
 msgid "A classic game of positional strategy"
 msgstr "Klasiska pozīciju stratēģijas spēle."
 
-#: src/gnome-chess.vala:1213
+#: src/gnome-chess.vala:1203
 msgid "translator-credits"
 msgstr ""
 "Raivis Dejus <orvils@gmail.com>\n"
 "Sandra Zabarovska <sandra.zabarovska@gmail.com>\n"
 "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1248
+msgid "Error Loading PGN File"
+msgstr "Kļūda, ielādējot PGN datni"
+
+#: src/gnome-chess.vala:1249
 msgid "This does not look like a valid PGN game."
 msgstr "Tā neizskatās pēc derīgas PGN datnes."
 
-#: src/gnome-chess.vala:1262 src/gnome-chess.vala:1275
-#: src/gnome-chess.vala:1380
+#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
+#: src/gnome-chess.vala:1370
 msgid "_OK"
 msgstr "_Labi"
 
+#: src/gnome-chess.vala:1261
+msgid "Invalid Move"
+msgstr "Nederīgs gājiens"
+
 #. Title of save game dialog
-#: src/gnome-chess.vala:1297
+#: src/gnome-chess.vala:1287
 msgid "Save Chess Game"
 msgstr "Saglabāt šaha spēli"
 
-#: src/gnome-chess.vala:1299
+#: src/gnome-chess.vala:1289
 msgid "_Save"
 msgstr "_Saglabāt"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1331
+#: src/gnome-chess.vala:1321
 msgid "Untitled Chess Game"
 msgstr "Nenosaukta šaha spēle"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1337 src/gnome-chess.vala:1446
+#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
 msgid "PGN files"
 msgstr "PGN datnes"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1343 src/gnome-chess.vala:1452
+#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
 msgid "All files"
 msgstr "Visas datnes"
 
-#: src/gnome-chess.vala:1378
+#: src/gnome-chess.vala:1365
+msgid "Save Error"
+msgstr "Saglabāšanas kļūda"
+
+#: src/gnome-chess.vala:1368
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Neizdevās saglabāt spēli: %s"
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1421
 msgid "Save this game before loading another one?"
 msgstr "Saglabāt šo spēli, pirms ielādēt nākamo?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1428
 msgid "Load Chess Game"
 msgstr "Ielādē šaha spēli"
 
-#: src/gnome-chess.vala:1439
+#: src/gnome-chess.vala:1430
 msgid "_Open"
 msgstr "_Atvērt"
 
@@ -1236,13 +1265,11 @@ msgid "Figurine"
 msgstr "Figūru"
 
 #: src/preferences.vala:333
-#| msgid "Simple"
 msgctxt "chess-piece-style"
 msgid "Simple"
 msgstr "Vienkāršs"
 
 #: src/preferences.vala:335
-#| msgid "Fancy"
 msgctxt "chess-piece-style"
 msgid "Fancy"
 msgstr "Šiks"
@@ -1278,15 +1305,11 @@ msgid "Hard"
 msgstr "Grūts"
 
 #: src/preferences.vala:482
-#| msgctxt "custom_duration_units"
-#| msgid "Fischer"
 msgctxt "clock-type"
 msgid "Fischer"
 msgstr "Fišers"
 
 #: src/preferences.vala:484
-#| msgctxt "custom_duration_units"
-#| msgid "Bronstein"
 msgctxt "clock-type"
 msgid "Bronstein"
 msgstr "Bronšteins"
@@ -1295,6 +1318,39 @@ msgstr "Bronšteins"
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "Cilvēks"
+
+#~ msgid "The GNOME Project"
+#~ msgstr "GNOME projekts"
+
+#~ msgid "Undo your most recent move"
+#~ msgstr "Atsaukt savu pēdējo gājienu"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game"
+#~ msgstr "Saglabāt šo spēli"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game with a different name"
+#~ msgstr "Saglabāt šo spēli ar citu nosaukumu"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Rewind to the game start"
+#~ msgstr "Pārtīt uz spēles sākumu"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the previous move"
+#~ msgstr "Parādīt iepriekšējo gājienu"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the next move"
+#~ msgstr "Parādīt nākamo gājienu"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the current move"
+#~ msgstr "Parādīt pašreizējo gājienu"
+
+#~ msgid "Save this game before starting a new one?"
+#~ msgstr "Saglabāt šo spēli, pirms sākt jaunu?"
 
 #~ msgctxt "custom_duration_units"
 #~ msgid "minutes"
@@ -1405,3 +1461,4 @@ msgstr "Cilvēks"
 
 #~ msgid "Failed to open game"
 #~ msgstr "Neizdevās atvērt spēli"
+
