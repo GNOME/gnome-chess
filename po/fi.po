@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2023-09-09 12:15+0000\n"
-"PO-Revision-Date: 2023-09-14 22:17+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues/\n"
+"POT-Creation-Date: 2024-03-02 17:43+0000\n"
+"PO-Revision-Date: 2024-03-04 20:21+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Launchpad-Export-Date: 2010-09-13 15:09+0000\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-POT-Import-Date: 2012-03-05 14:46:29+0000\n"
 
 #: data/org.gnome.Chess.appdata.xml.in:7
@@ -54,12 +54,8 @@ msgstr ""
 "kaikkien nykyaikaisten tietokonešakkimoottoreiden kanssa, sekä sen kykyä "
 "tunnistaa monet suositut asennettuna olevat moottorit automaattisesti."
 
-#: data/org.gnome.Chess.appdata.xml.in:72
-msgid "The GNOME Project"
-msgstr "Gnome-projekti"
-
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1206 src/gnome-chess.vala:1570
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
 msgid "Chess"
 msgstr "Šakki"
 
@@ -201,8 +197,8 @@ msgid "_About Chess"
 msgstr "_Tietoja - Šakki"
 
 #: data/chess-window.ui:67
-msgid "Undo your most recent move"
-msgstr "Kumoa viimeisin siirtosi"
+msgid "Undo Move"
+msgstr "Kumoa siirto"
 
 #: data/chess-window.ui:96
 msgid "Main Menu"
@@ -210,23 +206,23 @@ msgstr "Päävalikko"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
 #: data/chess-window.ui:151
-msgid "Rewind to the game start"
+msgid "Rewind to Game Start"
 msgstr "Palaa takaisin pelin alkuun"
 
 #. Tooltip on the show previous move navigation button
 #: data/chess-window.ui:168
-msgid "Show the previous move"
+msgid "Show Previous Move"
 msgstr "Näytä edellinen siirto"
 
 #. Tooltip on the show next move navigation button
 #: data/chess-window.ui:185
-msgid "Show the next move"
+msgid "Show Next Move"
 msgstr "Näytä seuraava siirto"
 
 #. Tooltip on the show current move navigation button
 #: data/chess-window.ui:202
-msgid "Show the current move"
-msgstr "Näytä nykyinen peli"
+msgid "Show Current Move"
+msgstr "Näytä nykyinen siirto"
 
 #: data/help-overlay.ui:11
 msgctxt "shortcut window"
@@ -235,32 +231,32 @@ msgstr "Yleiset"
 
 #: data/help-overlay.ui:15
 msgctxt "shortcut window"
-msgid "Start a new game"
+msgid "Start New Game"
 msgstr "Aloita uusi peli"
 
 #: data/help-overlay.ui:21
 msgctxt "shortcut window"
-msgid "Open a saved game"
+msgid "Open Saved Game"
 msgstr "Avaa tallennettu peli"
 
 #: data/help-overlay.ui:27
 msgctxt "shortcut window"
-msgid "Pause the game"
+msgid "Pause Game"
 msgstr "Keskeytä peli"
 
 #: data/help-overlay.ui:33
 msgctxt "shortcut window"
-msgid "Save the game"
+msgid "Save Game"
 msgstr "Tallenna peli"
 
 #: data/help-overlay.ui:39
 msgctxt "shortcut window"
-msgid "Save the game with a different name"
-msgstr "Tallenna peli eri nimellä"
+msgid "Save Game As…"
+msgstr "Tallenna peli nimellä…"
 
 #: data/help-overlay.ui:45
 msgctxt "shortcut window"
-msgid "Undo move"
+msgid "Undo Move"
 msgstr "Kumoa siirto"
 
 #: data/help-overlay.ui:51
@@ -280,22 +276,22 @@ msgstr "Historia"
 
 #: data/help-overlay.ui:68
 msgctxt "shortcut window"
-msgid "Rewind to the game start"
-msgstr "Kelaa takaisin pelin alkuun"
+msgid "Rewind to Game Start"
+msgstr "Palaa takaisin pelin alkuun"
 
 #: data/help-overlay.ui:74
 msgctxt "shortcut window"
-msgid "Show the previous move"
+msgid "Show Previous Move"
 msgstr "Näytä edellinen siirto"
 
 #: data/help-overlay.ui:80
 msgctxt "shortcut window"
-msgid "Show the next move"
+msgid "Show Next Move"
 msgstr "Näytä seuraava siirto"
 
 #: data/help-overlay.ui:86
 msgctxt "shortcut window"
-msgid "Show the current move"
+msgid "Show Current Move"
 msgstr "Näytä nykyinen siirto"
 
 #: data/help-overlay.ui:93
@@ -317,8 +313,8 @@ msgstr "Näytä pikanäppäimet"
 msgid "New Game"
 msgstr "Uusi peli"
 
-#: data/new-game-window.ui:20 src/gnome-chess.vala:969
-#: src/gnome-chess.vala:1300 src/gnome-chess.vala:1440
+#: data/new-game-window.ui:20 src/gnome-chess.vala:968
+#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
 msgid "_Cancel"
 msgstr "_Peru"
 
@@ -420,7 +416,7 @@ msgid "Invalid timer increment in PGN: %s, using a simple clock."
 msgstr ""
 "Virheellinen ajastimen kasvu PGN:ssä: %s, käytetään yksinkertaista kelloa."
 
-#: src/chess-view.vala:319
+#: src/chess-view.vala:326
 msgid "Paused"
 msgstr "Pysäytetty"
 
@@ -1065,29 +1061,32 @@ msgstr "Pelilokin mukaan pelaaja kuoli!"
 msgid "The computer player is confused. The game cannot continue."
 msgstr "Tietokonepelaaja on hämillään. Peliä ei voi jatkaa."
 
+#: src/gnome-chess.vala:965
+msgid "Save Game?"
+msgstr "Tallennetaanko peli?"
+
+#: src/gnome-chess.vala:972
+msgid "_Abandon Game"
+msgstr "_Jätä peli"
+
 #: src/gnome-chess.vala:973
-msgid "_Abandon game"
-msgstr "_Hylkää peli"
-
-#: src/gnome-chess.vala:974
-msgid "_Save game for later"
-msgstr "_Tallenna peli"
-
-#: src/gnome-chess.vala:978
-msgid "_Discard game"
-msgstr "_Hylkää peli"
+msgid "Save game for later"
+msgstr "Tallenna peli myöhemmäksi"
 
 #: src/gnome-chess.vala:979
-msgid "_Save game log"
-msgstr "_Tallenna pelin loki"
+msgid "_Discard Game"
+msgstr "_Hylkää peli"
 
-#. Title of claim draw dialog
-#: src/gnome-chess.vala:1020
+#: src/gnome-chess.vala:980
+msgid "Save game log"
+msgstr "Tallenna peliloki"
+
+#: src/gnome-chess.vala:1017
 msgid "Would you like to claim a draw?"
 msgstr "Haluatko esittää tasapeliä?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: src/gnome-chess.vala:1026
+#: src/gnome-chess.vala:1024
 msgid ""
 "You may claim a draw because fifty moves have passed without a capture or "
 "pawn advancement. (The computer player may still choose to claim a draw even "
@@ -1098,7 +1097,7 @@ msgstr ""
 "tasapeliä vaikka päätät jatkaa pelaamista.)"
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: src/gnome-chess.vala:1031
+#: src/gnome-chess.vala:1029
 msgid ""
 "You may claim a draw because the current board position has occurred three "
 "times. (The computer player may still choose to claim a draw even if you "
@@ -1108,44 +1107,39 @@ msgstr ""
 "kolmesti. (Tietokonepelaaja voi silti esittää tasapeliä vaikka päätät jatkaa "
 "pelaamista.)"
 
-#. Option in claim draw dialog
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1039 src/gnome-chess.vala:1078
+#: src/gnome-chess.vala:1036 src/gnome-chess.vala:1068
 msgid "_Keep Playing"
 msgstr "_Jatka peliä"
 
-#. Option in claim draw dialog
-#: src/gnome-chess.vala:1041
+#: src/gnome-chess.vala:1037
 msgid "_Claim Draw"
 msgstr "_Esitä tasapeliä"
 
-#: src/gnome-chess.vala:1058
-msgid "Save this game before starting a new one?"
-msgstr "Tallennetaanko tämä peli ennen uuden aloittamista?"
+#: src/gnome-chess.vala:1053
+msgid "By starting a new game now, unsaved progress would be lost."
+msgstr "Jos aloitat uuden pelin nyt, tallentamaton edistyminen menetetään."
 
-#. Title of warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1073
+#: src/gnome-chess.vala:1064
 msgid "Are you sure you want to resign?"
 msgstr "Haluatko varmasti luovuttaa?"
 
 #. Text on warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1076
+#: src/gnome-chess.vala:1067
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr "Tässä on järkeä, mikäli haluat tallentaa pelin tositteeksi häviöstäsi."
 
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1080
+#: src/gnome-chess.vala:1069
 msgid "_Resign"
 msgstr "_Luovuta"
 
-#: src/gnome-chess.vala:1210
+#: src/gnome-chess.vala:1200
 msgid "A classic game of positional strategy"
 msgstr "Klassinen sijaintistrateginen peli"
 
-#: src/gnome-chess.vala:1213
+#: src/gnome-chess.vala:1203
 msgid "translator-credits"
 msgstr ""
-"Jiri Grönroos, 2010-2023\n"
+"Jiri Grönroos, 2010-2024\n"
 "Timo Jyrinki, 2008\n"
 "Ilkka Tuohela, 2006-2009\n"
 "Sami Pesonen, 2002-2005\n"
@@ -1163,56 +1157,68 @@ msgstr ""
 "  Timo Jyrinki https://launchpad.net/~timo-jyrinki\n"
 "  eGetin https://launchpad.net/~egetin"
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1248
+msgid "Error Loading PGN File"
+msgstr "Virhe ladatessa PGN-tiedostoa"
+
+#: src/gnome-chess.vala:1249
 msgid "This does not look like a valid PGN game."
 msgstr "Tämä ei vaikuta kelvolliselta PGN-peliltä."
 
-#: src/gnome-chess.vala:1262 src/gnome-chess.vala:1275
-#: src/gnome-chess.vala:1380
+#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
+#: src/gnome-chess.vala:1370
 msgid "_OK"
 msgstr "_OK"
 
+#: src/gnome-chess.vala:1261
+msgid "Invalid Move"
+msgstr "Virheellinen siirto"
+
 #. Title of save game dialog
-#: src/gnome-chess.vala:1297
+#: src/gnome-chess.vala:1287
 msgid "Save Chess Game"
 msgstr "Tallenna šakkipeli"
 
-#: src/gnome-chess.vala:1299
+#: src/gnome-chess.vala:1289
 msgid "_Save"
 msgstr "_Tallenna"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1331
+#: src/gnome-chess.vala:1321
 msgid "Untitled Chess Game"
 msgstr "Nimetön šakkipeli"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1337 src/gnome-chess.vala:1446
+#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
 msgid "PGN files"
 msgstr "PGN-tiedostot"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1343 src/gnome-chess.vala:1452
+#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
 msgid "All files"
 msgstr "Kaikki tiedostot"
 
-#: src/gnome-chess.vala:1378
+#: src/gnome-chess.vala:1365
+msgid "Save Error"
+msgstr "Tallennusvirhe"
+
+#: src/gnome-chess.vala:1368
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Pelin tallennus epäonnistui: %s"
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1421
 msgid "Save this game before loading another one?"
 msgstr "Tallennetaanko tämä peli ennen uuden lataamista?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1428
 msgid "Load Chess Game"
 msgstr "Lataa šakkipeli"
 
-#: src/gnome-chess.vala:1439
+#: src/gnome-chess.vala:1430
 msgid "_Open"
 msgstr "_Avaa"
 
@@ -1310,6 +1316,39 @@ msgstr "Bronstein"
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "Ihminen"
+
+#~ msgid "The GNOME Project"
+#~ msgstr "Gnome-projekti"
+
+#~ msgid "Undo your most recent move"
+#~ msgstr "Kumoa viimeisin siirtosi"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game"
+#~ msgstr "Tallenna peli"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game with a different name"
+#~ msgstr "Tallenna peli eri nimellä"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Rewind to the game start"
+#~ msgstr "Kelaa takaisin pelin alkuun"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the previous move"
+#~ msgstr "Näytä edellinen siirto"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the next move"
+#~ msgstr "Näytä seuraava siirto"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the current move"
+#~ msgstr "Näytä nykyinen siirto"
+
+#~ msgid "Save this game before starting a new one?"
+#~ msgstr "Tallennetaanko tämä peli ennen uuden aloittamista?"
 
 #~ msgctxt "custom_duration_units"
 #~ msgid "minutes"
