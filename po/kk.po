@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2022-08-20 12:24+0000\n"
-"PO-Revision-Date: 2022-09-18 12:31+0600\n"
+"POT-Creation-Date: 2023-12-01 14:44+0000\n"
+"PO-Revision-Date: 2024-03-08 09:48+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/org.gnome.Chess.appdata.xml.in:7
 msgid "GNOME Chess"
@@ -45,12 +45,8 @@ msgstr ""
 "бірнеше танымал қозғалтқыштарды автоматты түрде анықтау қабілетін бағалайтын "
 "болады."
 
-#: data/org.gnome.Chess.appdata.xml.in:68
-msgid "The GNOME Project"
-msgstr "GNOME жобасы"
-
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1206 src/gnome-chess.vala:1570
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
 msgid "Chess"
 msgstr "Шахмат"
 
@@ -136,8 +132,8 @@ msgid ""
 "This is needed when play-as is set to alternate. This should only be set to "
 "black or white."
 msgstr ""
-"\"play-as\" кілті \"alternate\" болған кезде талап етіледі. Оның мәні \"black"
-"\" (қаралар) немесе \"white\" (ақтар) болуы мүмкін."
+"\"play-as\" кілті \"alternate\" болған кезде талап етіледі. Оның мәні "
+"\"black\" (қаралар) немесе \"white\" (ақтар) болуы мүмкін."
 
 #: data/org.gnome.Chess.gschema.xml:113
 msgid "The opponent player"
@@ -193,27 +189,31 @@ msgid "_About Chess"
 msgstr "Шахмат ойыны тур_алы"
 
 #: data/chess-window.ui:67
-msgid "Undo your most recent move"
-msgstr "Ең соңғы әрекетіңізді болдырмау"
+msgid "Undo Move"
+msgstr "Жылжытуды болдырмау"
+
+#: data/chess-window.ui:96
+msgid "Main Menu"
+msgstr "Басты мәзір"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
-#: data/chess-window.ui:149
-msgid "Rewind to the game start"
+#: data/chess-window.ui:151
+msgid "Rewind to Game Start"
 msgstr "Ойын бастауына қайта оралу"
 
 #. Tooltip on the show previous move navigation button
-#: data/chess-window.ui:166
-msgid "Show the previous move"
+#: data/chess-window.ui:168
+msgid "Show Previous Move"
 msgstr "Алдыңғы жылжытуды көрсету"
 
 #. Tooltip on the show next move navigation button
-#: data/chess-window.ui:183
-msgid "Show the next move"
+#: data/chess-window.ui:185
+msgid "Show Next Move"
 msgstr "Келесі жылжытуды көрсету"
 
 #. Tooltip on the show current move navigation button
-#: data/chess-window.ui:200
-msgid "Show the current move"
+#: data/chess-window.ui:202
+msgid "Show Current Move"
 msgstr "Ағымдағы жылжытуды көрсету"
 
 #: data/help-overlay.ui:11
@@ -223,32 +223,32 @@ msgstr "Жалпы"
 
 #: data/help-overlay.ui:15
 msgctxt "shortcut window"
-msgid "Start a new game"
+msgid "Start New Game"
 msgstr "Жаңа ойынды бастау"
 
 #: data/help-overlay.ui:21
 msgctxt "shortcut window"
-msgid "Open a saved game"
+msgid "Open Saved Game"
 msgstr "Сақталған ойынды ашу"
 
 #: data/help-overlay.ui:27
 msgctxt "shortcut window"
-msgid "Pause the game"
+msgid "Pause Game"
 msgstr "Ойынды аялдату"
 
 #: data/help-overlay.ui:33
 msgctxt "shortcut window"
-msgid "Save the game"
+msgid "Save Game"
 msgstr "Ойынды сақтау"
 
 #: data/help-overlay.ui:39
 msgctxt "shortcut window"
-msgid "Save the game with a different name"
-msgstr "Ойынды басқа атаумен сақтау"
+msgid "Save Game As…"
+msgstr "Ойынды қалайша сақтау…"
 
 #: data/help-overlay.ui:45
 msgctxt "shortcut window"
-msgid "Undo move"
+msgid "Undo Move"
 msgstr "Жылжытуды болдырмау"
 
 #: data/help-overlay.ui:51
@@ -258,8 +258,8 @@ msgstr "Шығу"
 
 #: data/help-overlay.ui:57
 msgctxt "shortcut window"
-msgid "Open menu"
-msgstr "Мәзірді ашу"
+msgid "Open Main Menu"
+msgstr "Басты мәзірді ашу"
 
 #: data/help-overlay.ui:64
 msgctxt "shortcut window"
@@ -268,22 +268,22 @@ msgstr "Тарихы"
 
 #: data/help-overlay.ui:68
 msgctxt "shortcut window"
-msgid "Rewind to the game start"
+msgid "Rewind to Game Start"
 msgstr "Ойын бастауына қайта оралу"
 
 #: data/help-overlay.ui:74
 msgctxt "shortcut window"
-msgid "Show the previous move"
+msgid "Show Previous Move"
 msgstr "Алдыңғы жылжытуды көрсету"
 
 #: data/help-overlay.ui:80
 msgctxt "shortcut window"
-msgid "Show the next move"
+msgid "Show Next Move"
 msgstr "Келесі жылжытуды көрсету"
 
 #: data/help-overlay.ui:86
 msgctxt "shortcut window"
-msgid "Show the current move"
+msgid "Show Current Move"
 msgstr "Ағымдағы жылжытуды көрсету"
 
 #: data/help-overlay.ui:93
@@ -305,8 +305,8 @@ msgstr "Пернетақта жарлықтарын көрсету"
 msgid "New Game"
 msgstr "Жаңа ойын"
 
-#: data/new-game-window.ui:20 src/gnome-chess.vala:969
-#: src/gnome-chess.vala:1300 src/gnome-chess.vala:1440
+#: data/new-game-window.ui:20 src/gnome-chess.vala:968
+#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
 msgid "_Cancel"
 msgstr "Ба_с тарту"
 
@@ -325,6 +325,10 @@ msgstr "_Ретінде ойнау"
 #: data/new-game-window.ui:65
 msgid "_Difficulty"
 msgstr "Қиын_дық"
+
+#: data/new-game-window.ui:81
+msgid "Time Limit"
+msgstr "Уақыт шегі"
 
 #: data/new-game-window.ui:84
 msgid "_Use Time Limit"
@@ -406,7 +410,7 @@ msgstr ""
 "PGN ішіндегі жарамсыз таймер өсу қадамы: %s, қарапайым сағат түрі "
 "қолданылады."
 
-#: src/chess-view.vala:319
+#: src/chess-view.vala:326
 msgid "Paused"
 msgstr "Аялдатылған"
 
@@ -1041,29 +1045,32 @@ msgstr "Ойын журналы ойыншы ұтылды деп хабарла�
 msgid "The computer player is confused. The game cannot continue."
 msgstr "Компьютер ойыншысы абыржып қалды. Ойынды жалғастыру мүмкін емес."
 
-#: src/gnome-chess.vala:973
-msgid "_Abandon game"
+#: src/gnome-chess.vala:965
+msgid "Save Game?"
+msgstr "Ойынды сақтау керек пе?"
+
+#: src/gnome-chess.vala:972
+msgid "_Abandon Game"
 msgstr "Ойыннан б_ас тарту"
 
-#: src/gnome-chess.vala:974
-msgid "_Save game for later"
-msgstr "Ойынды кейінге _сақтау"
-
-#: src/gnome-chess.vala:978
-msgid "_Discard game"
-msgstr "Ойынды тай_дыру"
+#: src/gnome-chess.vala:973
+msgid "Save game for later"
+msgstr "Ойынды кейінге сақтау"
 
 #: src/gnome-chess.vala:979
-msgid "_Save game log"
-msgstr "Ойын журналын _сақтау"
+msgid "_Discard Game"
+msgstr "Ойынды тай_дыру"
 
-#. Title of claim draw dialog
-#: src/gnome-chess.vala:1020
+#: src/gnome-chess.vala:980
+msgid "Save game log"
+msgstr "Ойын журналын сақтау"
+
+#: src/gnome-chess.vala:1017
 msgid "Would you like to claim a draw?"
 msgstr "Тең ойынды ұсынуды қалайсыз ба?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: src/gnome-chess.vala:1026
+#: src/gnome-chess.vala:1024
 msgid ""
 "You may claim a draw because fifty moves have passed without a capture or "
 "pawn advancement. (The computer player may still choose to claim a draw even "
@@ -1074,7 +1081,7 @@ msgstr ""
 "ойынды ұсынуды шеше алады.)"
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: src/gnome-chess.vala:1031
+#: src/gnome-chess.vala:1029
 msgid ""
 "You may claim a draw because the current board position has occurred three "
 "times. (The computer player may still choose to claim a draw even if you "
@@ -1084,96 +1091,103 @@ msgstr ""
 "қайталанды. (Ойынды жалғастыруды шешсеңіз де, компьютерлік ойыншы тең ойынды "
 "ұсынуды шеше алады.)"
 
-#. Option in claim draw dialog
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1039 src/gnome-chess.vala:1078
+#: src/gnome-chess.vala:1036 src/gnome-chess.vala:1068
 msgid "_Keep Playing"
 msgstr "О_йнауды жалғастыру"
 
-#. Option in claim draw dialog
-#: src/gnome-chess.vala:1041
+#: src/gnome-chess.vala:1037
 msgid "_Claim Draw"
 msgstr "_Тең ойынды ұсыну"
 
-#: src/gnome-chess.vala:1058
-msgid "Save this game before starting a new one?"
-msgstr "Жаңа ойынды бастау алдында осы ойынды сақтау керек пе?"
+#: src/gnome-chess.vala:1053
+msgid "By starting a new game now, unsaved progress would be lost."
+msgstr "Жаңа ойынды бастасаңыз, сақталмаған прогресс жоғалады."
 
-#. Title of warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1073
+#: src/gnome-chess.vala:1064
 msgid "Are you sure you want to resign?"
 msgstr "Берілуді қалайсыз ба?"
 
 #. Text on warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1076
+#: src/gnome-chess.vala:1067
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr ""
 "Бұл тек ойынды ұтылған ойыныңыз ретінде сақтауды қалаған жағдайда мағынасы "
 "бар."
 
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1080
+#: src/gnome-chess.vala:1069
 msgid "_Resign"
 msgstr "Бе_рілу"
 
-#: src/gnome-chess.vala:1210
+#: src/gnome-chess.vala:1200
 msgid "A classic game of positional strategy"
 msgstr "Позициялық стратегияның классикалық ойыны"
 
-#: src/gnome-chess.vala:1213
+#: src/gnome-chess.vala:1203
 msgid "translator-credits"
 msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>"
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1248
+msgid "Error Loading PGN File"
+msgstr "PGN файлын жүктеу қатесі"
+
+#: src/gnome-chess.vala:1249
 msgid "This does not look like a valid PGN game."
 msgstr "Бұл дұрыс PGN ойыны сияқты болып көрінбейді."
 
-#: src/gnome-chess.vala:1262 src/gnome-chess.vala:1275
-#: src/gnome-chess.vala:1380
+#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
+#: src/gnome-chess.vala:1370
 msgid "_OK"
 msgstr "_ОК"
 
+#: src/gnome-chess.vala:1261
+msgid "Invalid Move"
+msgstr "Жарамсыз жылжыту"
+
 #. Title of save game dialog
-#: src/gnome-chess.vala:1297
+#: src/gnome-chess.vala:1287
 msgid "Save Chess Game"
 msgstr "Шахмат ойынын сақтау"
 
-#: src/gnome-chess.vala:1299
+#: src/gnome-chess.vala:1289
 msgid "_Save"
 msgstr "_Сақтау"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1331
+#: src/gnome-chess.vala:1321
 msgid "Untitled Chess Game"
 msgstr "Аталмаған шахмат ойыны"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1337 src/gnome-chess.vala:1446
+#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
 msgid "PGN files"
 msgstr "PGN файлдары"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1343 src/gnome-chess.vala:1452
+#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
 msgid "All files"
 msgstr "Барлық файлдар"
 
-#: src/gnome-chess.vala:1378
+#: src/gnome-chess.vala:1365
+msgid "Save Error"
+msgstr "Сақтау қатесі"
+
+#: src/gnome-chess.vala:1368
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Ойынды сақтау қатесі: %s"
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1421
 msgid "Save this game before loading another one?"
 msgstr "Жаңа ойынды жүктеу алдында осы ойынды сақтау керек пе?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1428
 msgid "Load Chess Game"
 msgstr "Шахмат ойынын жүктеу"
 
-#: src/gnome-chess.vala:1439
+#: src/gnome-chess.vala:1430
 msgid "_Open"
 msgstr "_Ашу"
 
@@ -1271,6 +1285,39 @@ msgstr "Бронштейн"
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "Адам"
+
+#~ msgid "The GNOME Project"
+#~ msgstr "GNOME жобасы"
+
+#~ msgid "Undo your most recent move"
+#~ msgstr "Ең соңғы әрекетіңізді болдырмау"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game"
+#~ msgstr "Ойынды сақтау"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game with a different name"
+#~ msgstr "Ойынды басқа атаумен сақтау"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Rewind to the game start"
+#~ msgstr "Ойын бастауына қайта оралу"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the previous move"
+#~ msgstr "Алдыңғы жылжытуды көрсету"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the next move"
+#~ msgstr "Келесі жылжытуды көрсету"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the current move"
+#~ msgstr "Ағымдағы жылжытуды көрсету"
+
+#~ msgid "Save this game before starting a new one?"
+#~ msgstr "Жаңа ойынды бастау алдында осы ойынды сақтау керек пе?"
 
 #~ msgctxt "custom_duration_units"
 #~ msgid "minutes"
