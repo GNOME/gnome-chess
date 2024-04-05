@@ -8,1074 +8,1452 @@
 # Rajesh Ranjan <rranjan@redhat.com>, 2005, 2006, 2007.
 # Ravishankar Shrivastava <raviratlami@aol.in>, 2009.
 # Rajesh Ranjan <rajesh672@gmail.com>, 2009, 2013.
+# Scrambled777 <weblate.scrambled777@simplelogin.com>, 2024.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games.master.hi\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"chess&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2013-01-28 23:19+0000\n"
-"PO-Revision-Date: 2013-03-25 15:35+0530\n"
-"Last-Translator: raj <raj>\n"
-"Language-Team: Hindi <kde-i18n-doc@kde.org>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
+"POT-Creation-Date: 2023-12-01 14:44+0000\n"
+"PO-Revision-Date: 2024-04-02 18:23+0530\n"
+"Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
+"Language-Team: Hindi\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.5\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Gtranslator 46.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. Title of the main window
-#: ../data/gnome-chess.desktop.in.in.h:1 ../src/gnome-chess.vala:363
+#: data/org.gnome.Chess.appdata.xml.in:7
+msgid "GNOME Chess"
+msgstr "GNOME Chess"
+
+#: data/org.gnome.Chess.appdata.xml.in:8 data/org.gnome.Chess.desktop.in:5
+msgid "Play the classic two-player board game of chess"
+msgstr "शतरंज का पारम्परिक दो-खिलाड़ी बिसात खेल खेलें"
+
+#: data/org.gnome.Chess.appdata.xml.in:10
+msgid ""
+"GNOME Chess is a simple chess game. You can play against your computer at "
+"three different difficulty levels, or against a friend at your computer."
+msgstr ""
+"GNOME शतरंज एक सरल शतरंज खेल है। आप अपने कंप्यूटर के विरुद्ध तीन अलग-अलग कठिनाई स्तरों "
+"पर, या अपने कंप्यूटर पर किसी मित्र के विरुद्ध खेल सकते हैं।"
+
+#: data/org.gnome.Chess.appdata.xml.in:14
+msgid ""
+"Computer chess enthusiasts will appreciate GNOME Chess’s compatibility with "
+"nearly all modern computer chess engines, and its ability to detect several "
+"popular engines automatically if installed."
+msgstr ""
+"कंप्यूटर शतरंज के शौकीन लगभग सभी आधुनिक कंप्यूटर शतरंज इंजनों के साथ GNOME शतरंज की अनुकूलता "
+"और स्थापित होने पर कई लोकप्रिय इंजनों का स्वचालित रूप से पता लगाने की इसकी क्षमता की "
+"सराहना करेंगे।"
+
+#: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
 msgid "Chess"
 msgstr "शतरंज"
 
-#: ../data/gnome-chess.desktop.in.in.h:2
-msgid "Play the classic two-player boardgame of chess"
-msgstr "शतरंज का क्लासिक दो खिलाडियो वाला बोर्डगेम खेलें"
+#: data/org.gnome.Chess.desktop.in:4
+msgid "Chess Game"
+msgstr "शतरंज का खेल"
 
-#: ../data/gnome-chess.desktop.in.in.h:3
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Chess.desktop.in:7
 msgid "game;strategy;"
-msgstr "game;strategy;"
+msgstr "game;strategy;खेल;रणनीति;"
 
-# #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
-# libgnomeui/gnome-app-helper.c:95 libgnomeui/gnome-app-helper.h:534
-#. Game menu name
-#: ../data/gnome-chess.ui.h:2
-msgid "_Game"
-msgstr "खेल (_G)"
-
-#. Undo move menu item
-#: ../data/gnome-chess.ui.h:4
-msgid "_Undo Move"
-msgstr "चाल वापस लें (_U)"
-
-#. Save menu item
-#: ../data/gnome-chess.ui.h:6
-msgid "_Resign"
-msgstr "स्तीफा (_R)"
-
-#. Claim draw menu item
-#: ../data/gnome-chess.ui.h:8
-msgid "Claim _Draw"
-msgstr "ड्रा क्लेम करें (_D)"
-
-#. Settings menu item
-#: ../data/gnome-chess.ui.h:10
-msgid "_Settings"
-msgstr "जमावट (_S)"
-
-#. Help menu item
-#: ../data/gnome-chess.ui.h:12
-msgid "_Help"
-msgstr "मदद (_H)"
-
-#. Help contents menu item
-#: ../data/gnome-chess.ui.h:14
-msgid "_Contents"
-msgstr "विषय सूची (_C)"
-
-#. Tooltip for start new game toolbar button
-#: ../data/gnome-chess.ui.h:16
-msgid "Start a new game"
-msgstr "एक नया खेल प्रारंभ करें"
-
-#. The New Game toolbar button
-#: ../data/gnome-chess.ui.h:18
-msgid "New Game"
-msgstr "नया खेल "
-
-#. The undo move toolbar button
-#: ../data/gnome-chess.ui.h:20
-msgid "Undo Move"
-msgstr "चाल वापस लें"
-
-#. The tooltip for the Resign toolbar button
-#: ../data/gnome-chess.ui.h:22
-msgid "Resign"
-msgstr "स्तीफा"
-
-#. Tooltip on the show first move (i.e. game start) navigation button
-#: ../data/gnome-chess.ui.h:24
-msgid "Rewind to the game start"
-msgstr "खेल आऱंभ को समेटें"
-
-#. Tooltip on the show previous move navigation button
-#: ../data/gnome-chess.ui.h:26
-msgid "Show the previous move"
-msgstr "पिछली चाल दिखाएँ"
-
-#. Tooltip on the show next move navigation button
-#: ../data/gnome-chess.ui.h:28
-msgid "Show the next move"
-msgstr "अगली चाल दिखाएँ"
-
-#. Tooltip on the show current move navigation button
-#: ../data/gnome-chess.ui.h:30
-msgid "Show the current move"
-msgstr "मौजूदा चाल दिखाएँ"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:1
+#: data/org.gnome.Chess.gschema.xml:38
 msgid "The width of the window"
 msgstr "विंडो की चौड़ाई"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:2
+#: data/org.gnome.Chess.gschema.xml:39
 msgid "The width of the main window in pixels."
-msgstr "पिक्सेल में मुख्य विंडो की चौड़ाई."
+msgstr "मुख्य विंडो की चौड़ाई पिक्सल में।"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:3
+#: data/org.gnome.Chess.gschema.xml:43
 msgid "The height of the window"
 msgstr "विंडो की ऊँचाई"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:4
+#: data/org.gnome.Chess.gschema.xml:44
 msgid "The height of the main window in pixels."
-msgstr "पिक्सेल में विंडो की ऊंचाई."
+msgstr "मुख्य विंडो की ऊंचाई पिक्सेल में।"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:5
+#: data/org.gnome.Chess.gschema.xml:48 data/org.gnome.Chess.gschema.xml:49
 msgid "A flag to enable maximized mode"
-msgstr "अधिकतम अवस्था समर्थ करने के लिए फ्लैग"
+msgstr "अधिकतम मोड सक्षम करने के लिए एक ध्वज"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:6
-msgid "A flag to enable fullscreen mode"
-msgstr "पूर्णस्क्रीन मोड समर्थ करने के लिए फ्लैग"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:7
-msgid "A flag to enable 3D mode"
-msgstr "3D मोड समर्थ करने के लिए फ्लैग"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:8
-msgid "A flag to smooth (anti-alias) the 3D display"
-msgstr "3डी प्रदर्शन को बढ़िया (एंटी-अलियास) बनाने के लिए फ्लैग"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:9
+#: data/org.gnome.Chess.gschema.xml:53 data/org.gnome.Chess.gschema.xml:54
 msgid "The piece theme to use"
-msgstr "पीस प्रसंग उपयोग में"
+msgstr "उपयोग हेतु मोहरे की थीम"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:10
+#: data/org.gnome.Chess.gschema.xml:58 data/org.gnome.Chess.gschema.xml:59
 msgid "A flag to enable move hints"
-msgstr "मूव संकेत समर्थ करने के लिए फ्लैग"
+msgstr "चाल संकेतों को सक्षम करने के लिए एक ध्वज"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:11
+#: data/org.gnome.Chess.gschema.xml:63 data/org.gnome.Chess.gschema.xml:64
 msgid "A flag to enable board numbering"
-msgstr "बोर्ड क्रमांकन समर्थ करने के लिए फ्लैग"
+msgstr "बिसात क्रमांकन सक्षम करने के लिए एक ध्वज"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:12
-msgid "A flag to enable the move history browser"
-msgstr "मूव इतिहास ब्रॉउजर समर्थ करने के लिए फ्लैग"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:13
-msgid "A flag to enable the toolbar"
-msgstr "टूलबार समर्थ करने के लिए फ्लैग"
-
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:14
+#: data/org.gnome.Chess.gschema.xml:68 data/org.gnome.Chess.gschema.xml:69
 msgid "The directory to open the save game dialog in"
-msgstr "निर्देशिका जिसमें सहेजे खेल संवाद को खोलना है"
+msgstr "खेल सहेजने का संवाद खोलने के लिए निर्देशिका"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:15
+#: data/org.gnome.Chess.gschema.xml:73 data/org.gnome.Chess.gschema.xml:74
 msgid "The directory to open the load game dialog in"
-msgstr "निर्देशिका जिसमें लोड खेल संवाद को खोलना है"
+msgstr "खेल लोड करने का संवाद खोलने के लिए निर्देशिका"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:16
+#: data/org.gnome.Chess.gschema.xml:78 data/org.gnome.Chess.gschema.xml:79
 msgid "The format to display moves in"
-msgstr "प्रारूप जिसमें मूव इन को दिखाना है"
+msgstr "चालों को इस प्रारूप में दिखाएं"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:17
+#: data/org.gnome.Chess.gschema.xml:83 data/org.gnome.Chess.gschema.xml:84
 msgid "The side of the board that is in the foreground"
-msgstr "विसात का किनारा जो कि आगे है"
+msgstr "बिसात का वह भाग जो अग्रभूमि में है"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:18
+#: data/org.gnome.Chess.gschema.xml:88 data/org.gnome.Chess.gschema.xml:89
 msgid "The duration of a game in seconds (0 for no limit)"
-msgstr "सेकेंड में खेल की अवधि (0 बिना किसी सीमा के लिए)"
+msgstr "खेल की अवधि सेकंड में (0 बिना सीमा के लिये)"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:19
-msgid "true if the human player is playing white"
-msgstr "सही यदि मानव खिलाड़ी सफ़ेद खेल रहा है"
+#: data/org.gnome.Chess.gschema.xml:93 data/org.gnome.Chess.gschema.xml:94
+msgid "The type of clock (simple/fischer/bronstein)"
+msgstr "घड़ी का प्रकार (सरल/फिशर/ब्रोंस्टीन)"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:20
+#: data/org.gnome.Chess.gschema.xml:98 data/org.gnome.Chess.gschema.xml:99
+msgid "The timer increment set corresponding to clock type (1 second minimum)"
+msgstr "घड़ी के प्रकार के अनुरूप टाइमर वृद्धि सेट (न्यूनतम 1 सेकंड)"
+
+#: data/org.gnome.Chess.gschema.xml:103 data/org.gnome.Chess.gschema.xml:104
+msgid "The board side to play as"
+msgstr "बिसात के किस पक्ष से खेलना है"
+
+#: data/org.gnome.Chess.gschema.xml:108
+msgid "The last side the player played as"
+msgstr "अंतिम पक्ष जिस तरफ से खिलाड़ी ने खेला"
+
+#: data/org.gnome.Chess.gschema.xml:109
+msgid ""
+"This is needed when play-as is set to alternate. This should only be set to "
+"black or white."
+msgstr ""
+"इसकी आवश्यकता तब होती है जब ऐसे-खेले को वैकल्पिक पर निर्धारित किया जाता है। इसे केवल "
+"काले या सफेद पर निर्धारित किया जाना चाहिए।"
+
+#: data/org.gnome.Chess.gschema.xml:113
 msgid "The opponent player"
-msgstr "विरोधी खिलाड़ी"
+msgstr "प्रतिद्वंद्वी खिलाड़ी"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:21
+#: data/org.gnome.Chess.gschema.xml:114
 msgid ""
 "Can be 'human' (play against another human player), '' (use the first "
 "available chess engine) or the name of a specific engine to play against"
 msgstr ""
-"'मानव' (play against another human player) हो सकता है, '' (use the first "
-"available chess engine) या विशेष इंजन जिसके खिलाफ खेलना है"
+"'मानव' हो सकता है (किसी अन्य मानव खिलाड़ी के विरुद्ध खेलें), '' (पहले उपलब्ध शतरंज इंजन "
+"का उपयोग करें) या विरुद्ध खेलने के लिए किसी विशिष्ट इंजन का नाम हो सकता है"
 
-#: ../data/org.gnome.gnome-chess.gschema.xml.in.h:22
+#: data/org.gnome.Chess.gschema.xml:118 data/org.gnome.Chess.gschema.xml:119
 msgid "Difficulty of the opponent chess engine"
-msgstr "विरोधी शतरंज इंजन की कठिनता"
+msgstr "प्रतिद्वंद्वी शतरंज इंजन की कठिनाई"
 
-#. Title for preferences dialog
-#: ../data/preferences.ui.h:2
-msgid "Preferences"
-msgstr "वरीयताएँ"
+#: data/chess-window.ui:7
+msgid "_New Game…"
+msgstr "नया खेल… (_N)"
+
+#: data/chess-window.ui:11
+msgid "_Open Game…"
+msgstr "खेल खोलें… (_O)"
+
+#: data/chess-window.ui:15
+msgid "_Save Game"
+msgstr "खेल सहेजें (_S)"
+
+#: data/chess-window.ui:19
+msgid "_Save Game As…"
+msgstr "खेल ऐसे सहेजें… (_S)"
+
+#: data/chess-window.ui:25
+msgid "_Resign Game"
+msgstr "खेल त्यागे (_R)"
+
+#: data/chess-window.ui:31
+msgid "_Preferences"
+msgstr "प्राथमिकताएँ (_P)"
+
+#: data/chess-window.ui:37
+msgid "_Keyboard Shortcuts"
+msgstr "कीबोर्ड शॉर्टकट (_K)"
+
+#: data/chess-window.ui:41
+msgid "_Help"
+msgstr "सहायता (_H)"
+
+#: data/chess-window.ui:45
+msgid "_About Chess"
+msgstr "Chess के बारे में (_A)"
+
+#: data/chess-window.ui:67
+msgid "Undo Move"
+msgstr "चाल पूर्ववत करें"
+
+#: data/chess-window.ui:96
+msgid "Main Menu"
+msgstr "मुख्य मेनू"
+
+#. Tooltip on the show first move (i.e. game start) navigation button
+#: data/chess-window.ui:151
+msgid "Rewind to Game Start"
+msgstr "खेल प्रारंभ तक रिवाइंड करें"
+
+#. Tooltip on the show previous move navigation button
+#: data/chess-window.ui:168
+msgid "Show Previous Move"
+msgstr "पिछली चाल दिखाएँ"
+
+#. Tooltip on the show next move navigation button
+#: data/chess-window.ui:185
+msgid "Show Next Move"
+msgstr "अगली चाल दिखाएँ"
+
+#. Tooltip on the show current move navigation button
+#: data/chess-window.ui:202
+msgid "Show Current Move"
+msgstr "वर्तमान चाल दिखाएँ"
+
+#: data/help-overlay.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "जनरल"
+
+#: data/help-overlay.ui:15
+msgctxt "shortcut window"
+msgid "Start New Game"
+msgstr "नया खेल प्रारंभ करें"
+
+#: data/help-overlay.ui:21
+msgctxt "shortcut window"
+msgid "Open Saved Game"
+msgstr "सहेजा गया खेल खोलें"
+
+#: data/help-overlay.ui:27
+msgctxt "shortcut window"
+msgid "Pause Game"
+msgstr "खेल रोकें"
+
+#: data/help-overlay.ui:33
+msgctxt "shortcut window"
+msgid "Save Game"
+msgstr "खेल सहेजें"
+
+#: data/help-overlay.ui:39
+msgctxt "shortcut window"
+msgid "Save Game As…"
+msgstr "खेल ऐसे सहेजें…"
+
+#: data/help-overlay.ui:45
+msgctxt "shortcut window"
+msgid "Undo Move"
+msgstr "चाल पूर्ववत करें"
+
+#: data/help-overlay.ui:51
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "छोड़ें"
+
+#: data/help-overlay.ui:57
+msgctxt "shortcut window"
+msgid "Open Main Menu"
+msgstr "मुख्य मेनू खोलें"
+
+# libgnomeui/gnome-app-helper.c:273
+#: data/help-overlay.ui:64
+msgctxt "shortcut window"
+msgid "History"
+msgstr "इतिहास"
+
+#: data/help-overlay.ui:68
+msgctxt "shortcut window"
+msgid "Rewind to Game Start"
+msgstr "खेल प्रारंभ तक रिवाइंड करें"
+
+#: data/help-overlay.ui:74
+msgctxt "shortcut window"
+msgid "Show Previous Move"
+msgstr "पिछली चाल दिखाएँ"
+
+#: data/help-overlay.ui:80
+msgctxt "shortcut window"
+msgid "Show Next Move"
+msgstr "अगली चाल दिखाएँ"
+
+#: data/help-overlay.ui:86
+msgctxt "shortcut window"
+msgid "Show Current Move"
+msgstr "वर्तमान चाल दिखाएँ"
+
+#: data/help-overlay.ui:93
+msgctxt "shortcut window"
+msgid "Help"
+msgstr "सहायता"
+
+#: data/help-overlay.ui:97
+msgctxt "shortcut window"
+msgid "Show Help"
+msgstr "सहायता दिखाएँ"
+
+#: data/help-overlay.ui:103
+msgctxt "shortcut window"
+msgid "Show Keyboard Shortcuts"
+msgstr "कीबोर्ड शॉर्टकट दिखाएं"
+
+#: data/new-game-window.ui:5
+msgid "New Game"
+msgstr "नया खेल "
+
+#: data/new-game-window.ui:20 src/gnome-chess.vala:968
+#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
+msgid "_Cancel"
+msgstr "रद्द (_C)"
+
+#: data/new-game-window.ui:28
+msgid "_Start"
+msgstr "प्रारंभ (_S)"
+
+#: data/new-game-window.ui:45
+msgid "_Opposing Player"
+msgstr "विरोधी खिलाड़ी (_O)"
 
 # #-#-#-#-#  libgnomeprint.gnome-2-2.hi.po (libgnomeprint VERSION)  #-#-#-#-#
 # libgnomeprint/gpa/gpa-media.c:343
-#. Preferences Dialog: Label before player side (white/black) combo box
-#: ../data/preferences.ui.h:4
-msgid "Play as:"
-msgstr "ऐसे खेल रहा है:"
+#: data/new-game-window.ui:51
+msgid "_Play As"
+msgstr "ऐसे खेलें (_P)"
 
-#. Preferences Dialog: Label before opposing player combo box
-#: ../data/preferences.ui.h:6
-msgid "Opposing Player:"
-msgstr "खेल का विरोध कर रहा है:"
+#: data/new-game-window.ui:65
+msgid "_Difficulty"
+msgstr "कठिनाई (_D)"
 
-#. Preferences Dialog: Label before promotion type combo box
-#: ../data/preferences.ui.h:8
-msgid "Difficulty:"
-msgstr "कठिनता:"
+#: data/new-game-window.ui:81
+msgid "Time Limit"
+msgstr "समय सीमा"
 
-#. New Game Dialog: Label before game timer settings
-#: ../data/preferences.ui.h:10
-msgid "Game Duration:"
-msgstr "खेल अवधि "
+#: data/new-game-window.ui:84
+msgid "_Use Time Limit"
+msgstr "समय सीमा का प्रयोग करें (_U)"
 
-#. Preferences dialog: Label to notify user that the settings are applied for the next game
-#: ../data/preferences.ui.h:12
-msgid "Changes will take effect for the next game."
-msgstr "अगले खेल के लिए बदलाव प्रभावी होंगे."
+#: data/new-game-window.ui:96
+msgid "_Minutes Per Side"
+msgstr "मिनट प्रति पक्ष (_M)"
 
-# #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
-# libgnomeui/gnome-app-helper.c:95 libgnomeui/gnome-app-helper.h:534
-#. Preferences Dialog: Tab title for game preferences
-#: ../data/preferences.ui.h:14
-msgid "Game"
-msgstr "खेल"
+#: data/new-game-window.ui:117
+msgid "_Increment In Seconds"
+msgstr "वृद्धि सेकंड में (_I)"
 
-#. Preferences Dialog: Check box for selecting if 3D view is available
-#: ../data/preferences.ui.h:16
-msgid "3_D Chess View"
-msgstr "3डी शतरंज दृश्य (_D)"
+#: data/new-game-window.ui:138
+msgid "Clock _Type"
+msgstr "घड़ी प्रकार (_T)"
 
-#. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
-#: ../data/preferences.ui.h:18
-msgid "_Smooth Display"
-msgstr "स्मूथ प्रदर्शन (_S)"
+#: data/preferences-window.ui:15
+msgid "_Board Orientation"
+msgstr "बिसात उन्मुखीकरण (_B)"
 
-#. Preferences Dialog: Label before piece style combo box
-#: ../data/preferences.ui.h:20
-msgid "Piece Style:"
-msgstr "पीस शैली:"
+#: data/preferences-window.ui:29
+msgid "_Move Format"
+msgstr "चाल प्रारूप (_M)"
 
-#. Preferences Dialog: Check box for selecting if toolbar is visible
-#: ../data/preferences.ui.h:22
-msgid "Show _Toolbar"
-msgstr "औजारपट्टी दिखायें (_T)"
+#: data/preferences-window.ui:43
+msgid "_Piece Style"
+msgstr "मोहरा शैली (_P)"
 
-# libgnomeui/gnome-app-helper.c:273
-#. Preferences Dialog: Check box for selecting if history browser is visible
-#: ../data/preferences.ui.h:24
-msgid "Show _History"
-msgstr "इतिहास दिखाएँ (_H)"
+#: data/preferences-window.ui:57
+msgid "Board _Numbering"
+msgstr "बिसात क्रमांकन (_N)"
 
-#. Preferences Dialog: Check box for selecting if move hints are visible
-#: ../data/preferences.ui.h:26
-msgid "_Move Hints"
-msgstr "चाल संकेत (_M)"
+#: data/preferences-window.ui:69
+msgid "Move _Hints"
+msgstr "चाल संकेत (_H)"
 
-#. Preferences Dialog: Check box for selecting if board numbering is visible
-#: ../data/preferences.ui.h:28
-msgid "_Board Numbering"
-msgstr "बोर्ड क्रमांकन (_B)"
+#: data/promotion-type-selector.ui:6
+msgid "Select Promotion Type"
+msgstr "पदोन्नति प्रकार चुनें"
 
-#. Preferences Dialog: Label before board orientation combo box
-#: ../data/preferences.ui.h:30
-msgid "Board Orientation:"
-msgstr "बिसात दिशा:"
+#: data/promotion-type-selector.ui:30
+msgid "_Queen"
+msgstr "वज़ीर (_Q)"
 
-#. Preferences Dialog: Label before move format combo box
-#: ../data/preferences.ui.h:32
-msgid "Move Format:"
-msgstr "चाल प्रारूप:"
+#: data/promotion-type-selector.ui:66
+msgid "_Knight"
+msgstr "घोड़ा (_K)"
 
-#. Preferences Dialog: Title of appearance options tab
-#: ../data/preferences.ui.h:34
-msgid "_Appearance"
-msgstr "प्रकटन"
+#: data/promotion-type-selector.ui:102
+msgid "_Rook"
+msgstr "हाथी (_R)"
 
-#. Preferences Dialog: Combo box entry for playing as white
-#: ../data/preferences.ui.h:36
+#: data/promotion-type-selector.ui:138
+msgid "_Bishop"
+msgstr "ऊंट (_B)"
+
+#. Message when the game cannot be loaded due to an invalid move in the file.
+#: lib/chess-game.vala:106
+#, c-format
+msgid "Failed to load PGN: move %s is invalid."
+msgstr "PNG लोड करने में विफल: स्थानांतरण %s अमान्य है।"
+
+#: lib/chess-pgn.vala:248 lib/chess-pgn.vala:253 lib/chess-pgn.vala:260
+#, c-format
+msgid "Invalid %s : %s in PGN, setting timer to infinity."
+msgstr "अमान्य %s : PGN में %s, टाइमर को अनंत पर निर्धारित किया जा रहा है।"
+
+#: lib/chess-pgn.vala:267
+#, c-format
+msgid "Invalid clock type in PGN: %s, using a simple clock."
+msgstr "PGN में अमान्य घड़ी प्रकार: %s, एक साधारण घड़ी का उपयोग करते हुए।"
+
+#: lib/chess-pgn.vala:274
+#, c-format
+msgid "Invalid timer increment in PGN: %s, using a simple clock."
+msgstr "PGN में अमान्य टाइमर वृद्धि: %s, एक साधारण घड़ी का उपयोग करते हुए।"
+
+#: src/chess-view.vala:326
+msgid "Paused"
+msgstr "विरामित"
+
+#: src/chess-window.vala:129
+msgid "Unpause the game"
+msgstr "खेल फिर शुरू करें"
+
+#: src/chess-window.vala:134
+msgid "Pause the game"
+msgstr "खेल रोकें"
+
+#. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
+#. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
+#: src/chess-window.vala:315
+#, c-format
+msgid "White pawn moves from %1$s to %2$s"
+msgstr "सफेद प्यादा %1$s से %2$s पर चला"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
+#: src/chess-window.vala:317
+#, c-format
+msgid "White pawn at %1$s takes the black pawn at %2$s"
+msgstr "%1$s पर सफेद प्यादे ने %2$s पर काला प्यादा मारा"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
+#: src/chess-window.vala:319
+#, c-format
+msgid "White pawn at %1$s takes the black rook at %2$s"
+msgstr "%1$s पर सफेद प्यादे ने %2$s पर काला हाथी मारा"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
+#: src/chess-window.vala:321
+#, c-format
+msgid "White pawn at %1$s takes the black knight at %2$s"
+msgstr "%1$s पर सफेद प्यादे ने %2$s पर काला घोड़ा मारा"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
+#: src/chess-window.vala:323
+#, c-format
+msgid "White pawn at %1$s takes the black bishop at %2$s"
+msgstr "%1$s पर सफेद प्यादे ने %2$s पर काला ऊंट मारा"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
+#: src/chess-window.vala:325
+#, c-format
+msgid "White pawn at %1$s takes the black queen at %2$s"
+msgstr "%1$s पर सफेद प्यादे ने %2$s पर काला वज़ीर मारा"
+
+#. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
+#: src/chess-window.vala:327
+#, c-format
+msgid "White rook moves from %1$s to %2$s"
+msgstr "सफेद हाथी %1$s से %2$s पर चला"
+
+#. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
+#: src/chess-window.vala:329
+#, c-format
+msgid "White rook at %1$s takes the black pawn at %2$s"
+msgstr "%1$s पर सफेद हाथी ने %2$s पर काला प्यादा मारा"
+
+#. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
+#: src/chess-window.vala:331
+#, c-format
+msgid "White rook at %1$s takes the black rook at %2$s"
+msgstr "%1$s पर सफेद हाथी ने %2$s पर काला हाथी मारा"
+
+#. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
+#: src/chess-window.vala:333
+#, c-format
+msgid "White rook at %1$s takes the black knight at %2$s"
+msgstr "%1$s पर सफेद हाथी ने %2$s पर काला घोड़ा मारा"
+
+#. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
+#: src/chess-window.vala:335
+#, c-format
+msgid "White rook at %1$s takes the black bishop at %2$s"
+msgstr "%1$s पर सफेद हाथी ने %2$s पर काला ऊंट मारा"
+
+#. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
+#: src/chess-window.vala:337
+#, c-format
+msgid "White rook at %1$s takes the black queen at %2$s"
+msgstr "%1$s पर सफेद हाथी ने %2$s पर काला वज़ीर मारा"
+
+#. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
+#: src/chess-window.vala:339
+#, c-format
+msgid "White knight moves from %1$s to %2$s"
+msgstr "सफेद घोड़ा %1$s से %2$s पर चला"
+
+#. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
+#: src/chess-window.vala:341
+#, c-format
+msgid "White knight at %1$s takes the black pawn at %2$s"
+msgstr "%1$s पर सफेद घोड़ा ने %2$s पर काला प्यादा मारा"
+
+#. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
+#: src/chess-window.vala:343
+#, c-format
+msgid "White knight at %1$s takes the black rook at %2$s"
+msgstr "%1$s पर सफेद घोड़ा ने %2$s पर काला हाथी मारा"
+
+#. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
+#: src/chess-window.vala:345
+#, c-format
+msgid "White knight at %1$s takes the black knight at %2$s"
+msgstr "%1$s पर सफेद घोड़ा ने %2$s पर काला घोड़ा मारा"
+
+#. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
+#: src/chess-window.vala:347
+#, c-format
+msgid "White knight at %1$s takes the black bishop at %2$s"
+msgstr "%1$s पर सफेद घोड़ा ने %2$s पर काला ऊंट मारा"
+
+#. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
+#: src/chess-window.vala:349
+#, c-format
+msgid "White knight at %1$s takes the black queen at %2$s"
+msgstr "%1$s पर सफेद घोड़ा ने %2$s पर काला वज़ीर मारा"
+
+#. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
+#: src/chess-window.vala:351
+#, c-format
+msgid "White bishop moves from %1$s to %2$s"
+msgstr "सफेद ऊंट %1$s से %2$s पर चला"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
+#: src/chess-window.vala:353
+#, c-format
+msgid "White bishop at %1$s takes the black pawn at %2$s"
+msgstr "%1$s पर सफेद ऊंट ने %2$s पर काला प्यादा मारा"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
+#: src/chess-window.vala:355
+#, c-format
+msgid "White bishop at %1$s takes the black rook at %2$s"
+msgstr "%1$s पर सफेद ऊंट ने %2$s पर काला हाथी मारा"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
+#: src/chess-window.vala:357
+#, c-format
+msgid "White bishop at %1$s takes the black knight at %2$s"
+msgstr "%1$s पर सफेद ऊंट ने %2$s पर काला घोड़ा मारा"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
+#: src/chess-window.vala:359
+#, c-format
+msgid "White bishop at %1$s takes the black bishop at %2$s"
+msgstr "%1$s पर सफेद ऊंट ने %2$s पर काला ऊंट मारा"
+
+#. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
+#: src/chess-window.vala:361
+#, c-format
+msgid "White bishop at %1$s takes the black queen at %2$s"
+msgstr "%1$s पर सफेद ऊंट ने %2$s पर काला वज़ीर मारा"
+
+#. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
+#: src/chess-window.vala:363
+#, c-format
+msgid "White queen moves from %1$s to %2$s"
+msgstr "सफेद वज़ीर %1$s से %2$s पर चला"
+
+#. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
+#: src/chess-window.vala:365
+#, c-format
+msgid "White queen at %1$s takes the black pawn at %2$s"
+msgstr "%1$s पर सफेद वज़ीर ने %2$s पर काला प्यादा मारा"
+
+#. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
+#: src/chess-window.vala:367
+#, c-format
+msgid "White queen at %1$s takes the black rook at %2$s"
+msgstr "%1$s पर सफेद वज़ीर ने %2$s पर काला हाथी मारा"
+
+#. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
+#: src/chess-window.vala:369
+#, c-format
+msgid "White queen at %1$s takes the black knight at %2$s"
+msgstr "%1$s पर सफेद वज़ीर ने %2$s पर काला घोड़ा मारा"
+
+#. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
+#: src/chess-window.vala:371
+#, c-format
+msgid "White queen at %1$s takes the black bishop at %2$s"
+msgstr "%1$s पर सफेद वज़ीर ने %2$s पर काला ऊंट मारा"
+
+#. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
+#: src/chess-window.vala:373
+#, c-format
+msgid "White queen at %1$s takes the black queen at %2$s"
+msgstr "%1$s पर सफेद वज़ीर ने %2$s पर काला वज़ीर मारा"
+
+#. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
+#: src/chess-window.vala:375
+#, c-format
+msgid "White king moves from %1$s to %2$s"
+msgstr "सफेद राजा %1$s से %2$s पर चला"
+
+#. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
+#: src/chess-window.vala:377
+#, c-format
+msgid "White king at %1$s takes the black pawn at %2$s"
+msgstr "%1$s पर सफेद राजा ने %2$s पर काला प्यादा मारा"
+
+#. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
+#: src/chess-window.vala:379
+#, c-format
+msgid "White king at %1$s takes the black rook at %2$s"
+msgstr "%1$s पर सफेद राजा ने %2$s पर काला हाथी मारा"
+
+#. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
+#: src/chess-window.vala:381
+#, c-format
+msgid "White king at %1$s takes the black knight at %2$s"
+msgstr "%1$s पर सफेद राजा ने %2$s पर काला घोड़ा मारा"
+
+#. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
+#: src/chess-window.vala:383
+#, c-format
+msgid "White king at %1$s takes the black bishop at %2$s"
+msgstr "%1$s पर सफेद राजा ने %2$s पर काला ऊंट मारा"
+
+#. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
+#: src/chess-window.vala:385
+#, c-format
+msgid "White king at %1$s takes the black queen at %2$s"
+msgstr "%1$s पर सफेद राजा ने %2$s पर काला वज़ीर मारा"
+
+#. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
+#: src/chess-window.vala:387
+#, c-format
+msgid "Black pawn moves from %1$s to %2$s"
+msgstr "काला प्यादा %1$s से %2$s पर चला"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
+#: src/chess-window.vala:389
+#, c-format
+msgid "Black pawn at %1$s takes the white pawn at %2$s"
+msgstr "%1$s पर काले प्यादे ने %2$s पर सफेद प्यादा मारा"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
+#: src/chess-window.vala:391
+#, c-format
+msgid "Black pawn at %1$s takes the white rook at %2$s"
+msgstr "%1$s पर काले प्यादे ने %2$s पर सफेद हाथी मारा"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
+#: src/chess-window.vala:393
+#, c-format
+msgid "Black pawn at %1$s takes the white knight at %2$s"
+msgstr "%1$s पर काले प्यादे ने %2$s पर सफेद घोड़ा मारा"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
+#: src/chess-window.vala:395
+#, c-format
+msgid "Black pawn at %1$s takes the white bishop at %2$s"
+msgstr "%1$s पर काले प्यादे ने %2$s पर सफेद ऊंट मारा"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
+#: src/chess-window.vala:397
+#, c-format
+msgid "Black pawn at %1$s takes the white queen at %2$s"
+msgstr "%1$s पर काले प्यादे ने %2$s पर सफेद वज़ीर मारा"
+
+#. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
+#: src/chess-window.vala:399
+#, c-format
+msgid "Black rook moves from %1$s to %2$s"
+msgstr "काला हाथी %1$s से %2$s पर चला"
+
+#. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
+#: src/chess-window.vala:401
+#, c-format
+msgid "Black rook at %1$s takes the white pawn at %2$s"
+msgstr "%1$s पर काले हाथी ने %2$s पर सफेद प्यादा मारा"
+
+#. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
+#: src/chess-window.vala:403
+#, c-format
+msgid "Black rook at %1$s takes the white rook at %2$s"
+msgstr "%1$s पर काले हाथी ने %2$s पर सफेद हाथी मारा"
+
+#. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
+#: src/chess-window.vala:405
+#, c-format
+msgid "Black rook at %1$s takes the white knight at %2$s"
+msgstr "%1$s पर काले हाथी ने %2$s पर सफेद घोड़ा मारा"
+
+#. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
+#: src/chess-window.vala:407
+#, c-format
+msgid "Black rook at %1$s takes the white bishop at %2$s"
+msgstr "%1$s पर काले हाथी ने %2$s पर सफेद ऊंट मारा"
+
+#. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
+#: src/chess-window.vala:409
+#, c-format
+msgid "Black rook at %1$s takes the white queen at %2$s"
+msgstr "%1$s पर काले हाथी ने %2$s पर सफेद वज़ीर मारा"
+
+#. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
+#: src/chess-window.vala:411
+#, c-format
+msgid "Black knight moves from %1$s to %2$s"
+msgstr "काला घोड़ा %1$s से %2$s पर चला"
+
+#. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
+#: src/chess-window.vala:413
+#, c-format
+msgid "Black knight at %1$s takes the white pawn at %2$s"
+msgstr "%1$s पर काले घोड़ा ने %2$s पर सफेद प्यादा मारा"
+
+#. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
+#: src/chess-window.vala:415
+#, c-format
+msgid "Black knight at %1$s takes the white rook at %2$s"
+msgstr "%1$s पर काले घोड़ा ने %2$s पर सफेद हाथी मारा"
+
+#. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
+#: src/chess-window.vala:417
+#, c-format
+msgid "Black knight at %1$s takes the white knight at %2$s"
+msgstr "%1$s पर काले घोड़ा ने %2$s पर सफेद घोड़ा मारा"
+
+#. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
+#: src/chess-window.vala:419
+#, c-format
+msgid "Black knight at %1$s takes the white bishop at %2$s"
+msgstr "%1$s पर काले घोड़ा ने %2$s पर सफेद ऊंट मारा"
+
+#. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
+#: src/chess-window.vala:421
+#, c-format
+msgid "Black knight at %1$s takes the white queen at %2$s"
+msgstr "%1$s पर काले घोड़ा ने %2$s पर सफेद वज़ीर मारा"
+
+#. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
+#: src/chess-window.vala:423
+#, c-format
+msgid "Black bishop moves from %1$s to %2$s"
+msgstr "काला ऊंट %1$s से %2$s पर चला"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
+#: src/chess-window.vala:425
+#, c-format
+msgid "Black bishop at %1$s takes the white pawn at %2$s"
+msgstr "%1$s पर काले ऊंट ने %2$s पर सफेद प्यादा मारा"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
+#: src/chess-window.vala:427
+#, c-format
+msgid "Black bishop at %1$s takes the white rook at %2$s"
+msgstr "%1$s पर काले ऊंट ने %2$s पर सफेद हाथी मारा"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
+#: src/chess-window.vala:429
+#, c-format
+msgid "Black bishop at %1$s takes the white knight at %2$s"
+msgstr "%1$s पर काले ऊंट ने %2$s पर सफेद घोड़ा मारा"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
+#: src/chess-window.vala:431
+#, c-format
+msgid "Black bishop at %1$s takes the white bishop at %2$s"
+msgstr "%1$s पर काले ऊंट ने %2$s पर सफेद ऊंट मारा"
+
+#. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
+#: src/chess-window.vala:433
+#, c-format
+msgid "Black bishop at %1$s takes the white queen at %2$s"
+msgstr "%1$s पर काले ऊंट ने %2$s पर सफेद वज़ीर मारा"
+
+#. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
+#: src/chess-window.vala:435
+#, c-format
+msgid "Black queen moves from %1$s to %2$s"
+msgstr "काला वज़ीर %1$s से %2$s पर चला"
+
+#. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
+#: src/chess-window.vala:437
+#, c-format
+msgid "Black queen at %1$s takes the white pawn at %2$s"
+msgstr "%1$s पर काले वज़ीर ने %2$s पर सफेद प्यादा मारा"
+
+#. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
+#: src/chess-window.vala:439
+#, c-format
+msgid "Black queen at %1$s takes the white rook at %2$s"
+msgstr "%1$s पर काले वज़ीर ने %2$s पर सफेद हाथी मारा"
+
+#. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
+#: src/chess-window.vala:441
+#, c-format
+msgid "Black queen at %1$s takes the white knight at %2$s"
+msgstr "%1$s पर काले वज़ीर ने %2$s पर सफेद घोड़ा मारा"
+
+#. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
+#: src/chess-window.vala:443
+#, c-format
+msgid "Black queen at %1$s takes the white bishop at %2$s"
+msgstr "%1$s पर काले वज़ीर ने %2$s पर सफेद ऊंट मारा"
+
+#. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
+#: src/chess-window.vala:445
+#, c-format
+msgid "Black queen at %1$s takes the white queen at %2$s"
+msgstr "%1$s पर काले वज़ीर ने %2$s पर सफेद वज़ीर मारा"
+
+#. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
+#: src/chess-window.vala:447
+#, c-format
+msgid "Black king moves from %1$s to %2$s"
+msgstr "काला राजा %1$s से %2$s पर चला"
+
+#. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
+#: src/chess-window.vala:449
+#, c-format
+msgid "Black king at %1$s takes the white pawn at %2$s"
+msgstr "%1$s पर काले राजा ने %2$s पर सफेद प्यादा मारा"
+
+#. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
+#: src/chess-window.vala:451
+#, c-format
+msgid "Black king at %1$s takes the white rook at %2$s"
+msgstr "%1$s पर काले राजा ने %2$s पर सफेद हाथी मारा"
+
+#. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
+#: src/chess-window.vala:453
+#, c-format
+msgid "Black king at %1$s takes the white knight at %2$s"
+msgstr "%1$s पर काले राजा ने %2$s पर सफेद घोड़ा मारा"
+
+#. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
+#: src/chess-window.vala:455
+#, c-format
+msgid "Black king at %1$s takes the white bishop at %2$s"
+msgstr "%1$s पर काले राजा ने %2$s पर सफेद ऊंट मारा"
+
+#. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
+#: src/chess-window.vala:457
+#, c-format
+msgid "Black king at %1$s takes the white queen at %2$s"
+msgstr "%1$s पर काले राजा ने %2$s पर सफेद वज़ीर मारा"
+
+#: src/chess-window.vala:466
+msgid "White castles kingside"
+msgstr "सफेद की कैसलिंग, राजा की तरफ"
+
+#: src/chess-window.vala:468
+msgid "White castles queenside"
+msgstr "सफेद की कैसलिंग, रानी की तरफ"
+
+#: src/chess-window.vala:470
+msgid "Black castles kingside"
+msgstr "काले की कैसलिंग, राजा की तरफ"
+
+#: src/chess-window.vala:472
+msgid "Black castles queenside"
+msgstr "काले की कैसलिंग, रानी की तरफ"
+
+#. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s en passant
+#: src/chess-window.vala:494
+#, c-format
+msgid "White pawn at %1$s takes the black pawn at %2$s en passant"
+msgstr "%1$s पर सफेद प्यादे ने %2$s पर काला प्यादा मारा"
+
+#. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s en passant
+#: src/chess-window.vala:498
+#, c-format
+msgid "Black pawn at %1$s takes white pawn at %2$s en passant"
+msgstr "%1$s पर काले प्यादे ने %2$s पर सफेद प्यादा मारा"
+
+#. Move History Combo: Go to the start of the game
+#: src/chess-window.vala:532
+msgid "Game Start"
+msgstr "खेल प्रारंभ"
+
+#. Help string for command line --version flag
+#: src/gnome-chess.vala:95
+msgid "Show release version"
+msgstr "रिलीज संस्करण दिखायें"
+
+#. May print when started on the command line; a PGN is a saved game file.
+#: src/gnome-chess.vala:175
+msgid "GNOME Chess can only open one PGN at a time."
+msgstr "GNOME Chess एक समय में केवल एक PGN खोल सकता है।"
+
+#. Warning at start of game when no chess engine is installed.
+#: src/gnome-chess.vala:452
+msgid ""
+"No chess engine is installed. You will not be able to play against the "
+"computer."
+msgstr "कोई शतरंज इंजन स्थापित नहीं है। आप कंप्यूटर के विरुद्ध नहीं खेल पाएंगे।"
+
+#. Game status on White's turn when in check
+#: src/gnome-chess.vala:795
+msgid "White is in Check"
+msgstr "सफेद शह में है"
+
+#. Game status on Black's turn when in check
+#: src/gnome-chess.vala:798
+msgid "Black is in Check"
+msgstr "काला शह में है"
+
+#  Players tab
+#  FIXME mnemonic doesn't seem to work
+#. Game status on White's turn if White is human
+#: src/gnome-chess.vala:804
+msgid "White to Move"
+msgstr "सफेद की चाल"
+
+#. Game status on White's turn if White is a computer
+#: src/gnome-chess.vala:807
+msgid "White is Thinking…"
+msgstr "सफेद सोच रहा है…"
+
+#  Players tab
+#  FIXME mnemonic doesn't seem to work
+#. Game status on Black's turn if Black is human
+#: src/gnome-chess.vala:813
+msgid "Black to Move"
+msgstr "काले की चाल"
+
+#. Game status on Black's turn if Black is a computer
+#: src/gnome-chess.vala:816
+msgid "Black is Thinking…"
+msgstr "काला सोच रहा है…"
+
+#. Game status when Black captures White's pawn en passant
+#: src/gnome-chess.vala:827
+msgid ""
+"Black captured White's pawn <span font_style='italic'>en passant</span>."
+msgstr ""
+"काले ने सफेद प्यादा को कब्ज़ा में लिया<span font_style='italic'>en passant</span>।"
+
+#. Game status when White captures Black's pawn en passant
+#: src/gnome-chess.vala:830
+msgid ""
+"White captured Black's pawn <span font_style='italic'>en passant</span>."
+msgstr ""
+"सफेद ने काले प्यादे को कब्ज़ा में लिया<span font_style='italic'>en passant</span>।"
+
+#  Players tab
+#  FIXME mnemonic doesn't seem to work
+#. Game status when the white player wins
+#: src/gnome-chess.vala:848
+msgid "White Wins"
+msgstr "सफेद जीता"
+
+#  Players tab
+#  FIXME mnemonic doesn't seem to work
+#. Game status when the black player wins
+#: src/gnome-chess.vala:853
+msgid "Black Wins"
+msgstr "काला जीता"
+
+#. Game status when the game is drawn
+#: src/gnome-chess.vala:858
+msgid "Game is Drawn"
+msgstr "खेल ड्रा हो गया है"
+
+#. Game status when something goes wrong with the engine.
+#: src/gnome-chess.vala:863
+msgid "Oops!"
+msgstr "उफ्फ़!"
+
+#. Game status when Black is checkmated
+#: src/gnome-chess.vala:876
+msgid "Black is in check and cannot move."
+msgstr "काला शह में है और चल नहीं सकता।"
+
+#. Game status when White is checkmated
+#: src/gnome-chess.vala:879
+msgid "White is in check and cannot move."
+msgstr "सफेद शह में है और चल नहीं सकता।"
+
+#. Game status when the game terminates due to a stalemate
+#: src/gnome-chess.vala:885
+msgid "Player cannot move."
+msgstr "खिलाड़ी चल नहीं सकता।"
+
+#. Game status when the game is drawn due to the fifty move rule
+#: src/gnome-chess.vala:889
+msgid "No piece was taken or pawn moved in fifty moves."
+msgstr "पचास चालों में ना ही कोई मोहरा लिया और ना ही प्यादे ने कोई चाल चली।"
+
+#. Game status when the game is drawn due to the 75 move rule
+#: src/gnome-chess.vala:893
+msgid "No piece was taken or pawn moved in 75 moves."
+msgstr "75 चालों में ना ही कोई मोहरा लिया और ना ही प्यादे ने कोई चाल चली।"
+
+#. Game status when the game ends due to Black's clock stopping
+#: src/gnome-chess.vala:898
+msgid "Black has run out of time."
+msgstr "काले का समय समाप्त हो गया है।"
+
+#. Game status when the game ends due to White's clock stopping
+#: src/gnome-chess.vala:901
+msgid "White has run out of time."
+msgstr "सफेद का समय समाप्त हो गया है।"
+
+#. Game status when the game is drawn due to the three-fold-repetition rule
+#: src/gnome-chess.vala:907
+msgid "The same board state has occurred three times."
+msgstr "वही बिसात स्थिति तीन बार उत्पन्न हुई है।"
+
+#. Game status when the game is drawn due to the five-fold-repetition rule
+#: src/gnome-chess.vala:911
+msgid "The same board state has occurred five times."
+msgstr "वही बिसात स्थिति पांच बार उत्पन्न हुई है।"
+
+#. Game status when the game is drawn due to the insufficient material rule
+#: src/gnome-chess.vala:915
+msgid "Neither player can checkmate."
+msgstr "कोई भी खिलाड़ी शह-मात नहीं दे सकता।"
+
+#. Game status when the game ends due to the black player resigning
+#: src/gnome-chess.vala:920
+msgid "Black has resigned."
+msgstr "काले ने त्याग दिया है।"
+
+#. Game status when the game ends due to the white player resigning
+#: src/gnome-chess.vala:923
+msgid "White has resigned."
+msgstr "सफेद ने त्याग दिया है।"
+
+#. Game status when a game is abandoned
+#: src/gnome-chess.vala:929
+msgid "The game has been abandoned."
+msgstr "खेल छोड़ दिया गया है।"
+
+#. Game status when the game ends due to a player dying during the game.
+#: src/gnome-chess.vala:934
+msgid "The game log says a player died!"
+msgstr "खेल लॉग कहता है कि खिलाड़ी की मृत्यु हो गई!"
+
+#. Game status when something goes wrong with the engine.
+#: src/gnome-chess.vala:939
+msgid "The computer player is confused. The game cannot continue."
+msgstr "कंप्यूटर खिलाड़ी उलझन में है। खेल जारी नहीं रह सकता।"
+
+#: src/gnome-chess.vala:965
+msgid "Save Game?"
+msgstr "खेल सहेजें?"
+
+#: src/gnome-chess.vala:972
+msgid "_Abandon Game"
+msgstr "खेल छोड़ें (_A)"
+
+#: src/gnome-chess.vala:973
+msgid "Save game for later"
+msgstr "खेल को बाद के लिए सहेजें"
+
+#: src/gnome-chess.vala:979
+msgid "_Discard Game"
+msgstr "खेल खारिज करें (_D)"
+
+#: src/gnome-chess.vala:980
+msgid "Save game log"
+msgstr "खेल के लॉग सहेजें"
+
+#: src/gnome-chess.vala:1017
+msgid "Would you like to claim a draw?"
+msgstr "क्या आप ड्रा का दावा करना चाहेंगे?"
+
+#. Message in claim draw dialog when triggered by fifty-move rule
+#: src/gnome-chess.vala:1024
+msgid ""
+"You may claim a draw because fifty moves have passed without a capture or "
+"pawn advancement. (The computer player may still choose to claim a draw even "
+"if you choose to keep playing.)"
+msgstr ""
+"आप ड्रा का दावा कर सकते हैं क्योंकि पचास चालें बिना किसी कब्जे या मोहरे की उन्नति के बीत "
+"चुकी हैं। (यदि आप खेलना जारी रखना चुनते हैं तो भी कंप्यूटर खिलाड़ी ड्रॉ का दावा करना चुन "
+"सकता है।)"
+
+#. Message in claim draw dialog when triggered by three-fold repetition
+#: src/gnome-chess.vala:1029
+msgid ""
+"You may claim a draw because the current board position has occurred three "
+"times. (The computer player may still choose to claim a draw even if you "
+"choose to keep playing.)"
+msgstr ""
+"आप ड्रा का दावा कर सकते हैं क्योंकि वर्तमान बिसात स्थिति तीन बार हो चुकी है। (यदि आप "
+"खेलना जारी रखना चुनते हैं तो भी कंप्यूटर खिलाड़ी ड्रॉ का दावा करना चुन सकता है।)"
+
+#: src/gnome-chess.vala:1036 src/gnome-chess.vala:1068
+msgid "_Keep Playing"
+msgstr "खेलते रहें (_K)"
+
+#: src/gnome-chess.vala:1037
+msgid "_Claim Draw"
+msgstr "ड्रा का दावा करें (_C)"
+
+#: src/gnome-chess.vala:1053
+msgid "By starting a new game now, unsaved progress would be lost."
+msgstr "अब नया खेल शुरू करने से, सहेजी न गई प्रगति खो जाएगी।"
+
+#: src/gnome-chess.vala:1064
+msgid "Are you sure you want to resign?"
+msgstr "क्या आप वाकई त्यागना चाहते हैं?"
+
+#. Text on warning dialog when player clicks Resign
+#: src/gnome-chess.vala:1067
+msgid "This makes sense if you plan to save the game as a record of your loss."
+msgstr ""
+"यदि आप खेल को अपने नुकसान के रिकॉर्ड के रूप में सहेजने की योजना बना रहे हैं तो यह समझ में "
+"आता है।"
+
+#: src/gnome-chess.vala:1069
+msgid "_Resign"
+msgstr "त्यागें (_R)"
+
+#: src/gnome-chess.vala:1200
+msgid "A classic game of positional strategy"
+msgstr "स्थितिगत रणनीति का एक पारम्परिक खेल"
+
+#: src/gnome-chess.vala:1203
+msgid "translator-credits"
+msgstr ""
+"G Karunakar <karunakar@freedomink.org>, 2003\n"
+"Ravishankar Shrivastava <raviratlami@yahoo.com>, 2004\n"
+"Rajesh Ranjan <rranjan@redhat.com>, 2005, 2006, 2007\n"
+"Ravishankar Shrivastava <raviratlami@aol.in>, 2009\n"
+"Rajesh Ranjan <rajesh672@gmail.com>, 2009, 2013\n"
+"Scrambled777 <weblate.scrambled777@simplelogin.com>, 2024"
+
+#: src/gnome-chess.vala:1248
+msgid "Error Loading PGN File"
+msgstr "PGN फाइल लोड करने में त्रुटि"
+
+#: src/gnome-chess.vala:1249
+msgid "This does not look like a valid PGN game."
+msgstr "यह वैध PGN खेल जैसा नहीं लगता।"
+
+#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
+#: src/gnome-chess.vala:1370
+msgid "_OK"
+msgstr "ठीक है (_O)"
+
+#: src/gnome-chess.vala:1261
+msgid "Invalid Move"
+msgstr "अमान्य चाल"
+
+#. Title of save game dialog
+#: src/gnome-chess.vala:1287
+msgid "Save Chess Game"
+msgstr "शतरंज का खेल सहेजें"
+
+#: src/gnome-chess.vala:1289
+msgid "_Save"
+msgstr "सहेजें (_S)"
+
+# #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-# libgnomeui/gnome-app-helper.c:253
+#. Default filename for the save game dialog
+#: src/gnome-chess.vala:1321
+msgid "Untitled Chess Game"
+msgstr "शीर्षकहीन शतरंज का खेल"
+
+#. Save Game Dialog: Name of filter to show only PGN files
+#. Load Game Dialog: Name of filter to show only PGN files
+#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
+msgid "PGN files"
+msgstr "PGN फाइलें"
+
+#. Save Game Dialog: Name of filter to show all files
+#. Load Game Dialog: Name of filter to show all files
+#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
+msgid "All files"
+msgstr "सभी फाइलें"
+
+#: src/gnome-chess.vala:1365
+msgid "Save Error"
+msgstr "त्रुटि सहेजें"
+
+#: src/gnome-chess.vala:1368
+#, c-format
+msgid "Failed to save game: %s"
+msgstr "खेल सहेजने में विफल: %s"
+
+#: src/gnome-chess.vala:1421
+msgid "Save this game before loading another one?"
+msgstr "क्या दूसरा खेल लोड करने से पहले इस खेल को सहेजें?"
+
+# #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-# libgnomeui/gnome-app-helper.c:253
+#. Title of load game dialog
+#: src/gnome-chess.vala:1428
+msgid "Load Chess Game"
+msgstr "शतरंज का खेल लोड करें"
+
+#: src/gnome-chess.vala:1430
+msgid "_Open"
+msgstr "खोलें (_O)"
+
+#  Players tab
+#  FIXME mnemonic doesn't seem to work
+#: src/preferences.vala:217
+msgctxt "chess-side"
+msgid "White Side"
+msgstr "सफेद पक्ष"
+
+#  Players tab
+#  FIXME mnemonic doesn't seem to work
+#: src/preferences.vala:219
+msgctxt "chess-side"
+msgid "Black Side"
+msgstr "काला पक्ष"
+
+#: src/preferences.vala:221
+msgctxt "chess-side"
+msgid "Human Side"
+msgstr "मानवीय पक्ष"
+
+#: src/preferences.vala:223
+msgctxt "chess-side"
+msgid "Current Player"
+msgstr "वर्तमान खिलाड़ी"
+
+#: src/preferences.vala:276
+msgctxt "chess-move-format"
+msgid "Human"
+msgstr "मानव"
+
+#: src/preferences.vala:278
+msgctxt "chess-move-format"
+msgid "Standard Algebraic"
+msgstr "मानक बीजगणितीय"
+
+#: src/preferences.vala:280
+msgctxt "chess-move-format"
+msgid "Long Algebraic"
+msgstr "दीर्घ बीजगणितीय"
+
+#: src/preferences.vala:282
+msgctxt "chess-move-format"
+msgid "Figurine"
+msgstr "मूर्ति"
+
+#: src/preferences.vala:333
+msgctxt "chess-piece-style"
+msgid "Simple"
+msgstr "सरल"
+
+#: src/preferences.vala:335
+msgctxt "chess-piece-style"
+msgid "Fancy"
+msgstr "फैंसी"
+
+#: src/preferences.vala:379
 msgctxt "chess-player"
 msgid "White"
 msgstr "सफेद"
 
-#. Preferences Dialog: Combo box entry for playing as black
-#: ../data/preferences.ui.h:38
+#: src/preferences.vala:381
 msgctxt "chess-player"
 msgid "Black"
 msgstr "काला"
 
-#. Preferences Dialog: Combo box entry for easy game difficulty
-#: ../data/preferences.ui.h:40
+#: src/preferences.vala:383
+msgctxt "chess-player"
+msgid "Alternate"
+msgstr "वैकल्पिक"
+
+#: src/preferences.vala:431
 msgctxt "difficulty"
 msgid "Easy"
 msgstr "आसान"
 
-#. Preferences Dialog: Combo box entry for normal game difficulty
-#: ../data/preferences.ui.h:42
+#: src/preferences.vala:433
 msgctxt "difficulty"
 msgid "Normal"
 msgstr "सामान्य"
 
-#. Preferences Dialog: Combo box entry for hard game difficulty
-#: ../data/preferences.ui.h:44
+#: src/preferences.vala:435
 msgctxt "difficulty"
 msgid "Hard"
 msgstr "कठिन"
 
-#. Preferences Dialog: Combo box entry for no game timer
-#: ../data/preferences.ui.h:46
-msgid "No limit"
-msgstr "कोई सीमा नहीं"
+#: src/preferences.vala:482
+msgctxt "clock-type"
+msgid "Fischer"
+msgstr "फिशर"
 
-#. Preferences Dialog: Combo box entry for game timer of one minute
-#: ../data/preferences.ui.h:48
-msgid "One minute"
-msgstr "एक मिनट"
+#: src/preferences.vala:484
+msgctxt "clock-type"
+msgid "Bronstein"
+msgstr "ब्रोंस्टीन"
 
-#. Preferences Dialog: Combo box entry for game timer of five minutes
-#: ../data/preferences.ui.h:50
-msgid "Five minutes"
-msgstr "पांच मिनट"
+#: src/preferences.vala:527
+msgctxt "chess-opponent"
+msgid "Human"
+msgstr "मानव"
 
-#. Preferences Dialog: Combo box entry for game timer of thirty minutes
-#: ../data/preferences.ui.h:52
-msgid "30 minutes"
-msgstr "30 मिनट"
+# #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
+# libgnomeui/gnome-app-helper.c:95 libgnomeui/gnome-app-helper.h:534
+#~ msgid "_Game"
+#~ msgstr "खेल (_G)"
 
-#. Preferences Dialog: Combo box entry for game timer of one hour
-#: ../data/preferences.ui.h:54
-msgid "One hour"
-msgstr "एक घंटा"
+#~ msgid "_Undo Move"
+#~ msgstr "चाल वापस लें (_U)"
+
+#~ msgid "_Settings"
+#~ msgstr "जमावट (_S)"
+
+#~ msgid "_Contents"
+#~ msgstr "विषय सूची (_C)"
+
+#~ msgid "Resign"
+#~ msgstr "स्तीफा"
+
+#~ msgid "A flag to enable fullscreen mode"
+#~ msgstr "पूर्णस्क्रीन मोड समर्थ करने के लिए फ्लैग"
+
+#~ msgid "A flag to enable 3D mode"
+#~ msgstr "3D मोड समर्थ करने के लिए फ्लैग"
+
+#~ msgid "A flag to smooth (anti-alias) the 3D display"
+#~ msgstr "3डी प्रदर्शन को बढ़िया (एंटी-अलियास) बनाने के लिए फ्लैग"
+
+#~ msgid "A flag to enable the move history browser"
+#~ msgstr "मूव इतिहास ब्रॉउजर समर्थ करने के लिए फ्लैग"
+
+#~ msgid "A flag to enable the toolbar"
+#~ msgstr "टूलबार समर्थ करने के लिए फ्लैग"
+
+#~ msgid "true if the human player is playing white"
+#~ msgstr "सही यदि मानव खिलाड़ी सफ़ेद खेल रहा है"
+
+#~ msgid "Game Duration:"
+#~ msgstr "खेल अवधि "
+
+#~ msgid "Changes will take effect for the next game."
+#~ msgstr "अगले खेल के लिए बदलाव प्रभावी होंगे."
+
+# #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
+# libgnomeui/gnome-app-helper.c:95 libgnomeui/gnome-app-helper.h:534
+#~ msgid "Game"
+#~ msgstr "खेल"
+
+#~ msgid "3_D Chess View"
+#~ msgstr "3डी शतरंज दृश्य (_D)"
+
+#~ msgid "_Smooth Display"
+#~ msgstr "स्मूथ प्रदर्शन (_S)"
+
+#~ msgid "Show _Toolbar"
+#~ msgstr "औजारपट्टी दिखायें (_T)"
+
+#~ msgid "_Appearance"
+#~ msgstr "प्रकटन"
+
+#~ msgid "No limit"
+#~ msgstr "कोई सीमा नहीं"
+
+#~ msgid "One minute"
+#~ msgstr "एक मिनट"
+
+#~ msgid "Five minutes"
+#~ msgstr "पांच मिनट"
+
+#~ msgid "30 minutes"
+#~ msgstr "30 मिनट"
+
+#~ msgid "One hour"
+#~ msgstr "एक घंटा"
 
 # #-#-#-#-#  gnome-applets.gnome-2-2.hi.po (gnome-applets 2.x)  #-#-#-#-#
 # libgnomeprint/gpa/gpa-media.c:241
 # #-#-#-#-#  libgnomeprint.gnome-2-2.hi.po (libgnomeprint VERSION)  #-#-#-#-#
 # libgnomeprint/gpa/gpa-media.c:241
-#. Preferences Dialog: Combo box entry for custom game timer
-#: ../data/preferences.ui.h:56
-msgid "Custom"
-msgstr "पसंदीदा"
-
-#. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
-#: ../data/preferences.ui.h:58
-msgctxt "chess-move-format"
-msgid "Human"
-msgstr "मनुष्य "
-
-#. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
-#: ../data/preferences.ui.h:60
-msgctxt "chess-move-format"
-msgid "Standard Algebraic"
-msgstr "मानक बीजीय"
-
-#. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
-#: ../data/preferences.ui.h:62
-msgctxt "chess-move-format"
-msgid "Figurine"
-msgstr "फिगरीन"
-
-#. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
-#: ../data/preferences.ui.h:64
-msgctxt "chess-move-format"
-msgid "Long Algebraic"
-msgstr "लंबा बीजीय"
-
-#. Preferences Dialog: Combo box entry for human opponent
-#: ../data/preferences.ui.h:66
-msgctxt "chess-opponent"
-msgid "Human"
-msgstr "मनुष्य "
-
-#  Players tab
-#  FIXME mnemonic doesn't seem to work
-#. Preferences Dialog: Combo box entry for setting the board orientation to the white side
-#: ../data/preferences.ui.h:68
-msgctxt "chess-side"
-msgid "White Side"
-msgstr "सफेद हिस्सा"
-
-#  Players tab
-#  FIXME mnemonic doesn't seem to work
-#. Preferences Dialog: Combo box entry for setting the board orientation to the black side
-#: ../data/preferences.ui.h:70
-msgctxt "chess-side"
-msgid "Black Side"
-msgstr "काला हिस्सा"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
-#: ../data/preferences.ui.h:72
-msgctxt "chess-side"
-msgid "Human Side"
-msgstr "मानवीय हिस्सा"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
-#: ../data/preferences.ui.h:74
-msgctxt "chess-side"
-msgid "Current Player"
-msgstr "मौज़ूदा खिलाड़ी"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)
-#: ../data/preferences.ui.h:76
-msgctxt "chess-side"
-msgid "Face to Face"
-msgstr "आमने सामने"
-
-#. Preferences Dialog: Combo box entry for simple theme
-#: ../data/preferences.ui.h:78
-msgid "Simple"
-msgstr "सरल"
-
-#. Preferences Dialog: Combo box entry for fancy theme
-#: ../data/preferences.ui.h:80
-msgid "Fancy"
-msgstr "फैंसी"
-
-#: ../data/promotion-type-selector.ui.h:1
-msgid "_Queen"
-msgstr "रानी (_Q)"
-
-#: ../data/promotion-type-selector.ui.h:2
-msgid "_Knight"
-msgstr "घोड़ा (_K)"
-
-#: ../data/promotion-type-selector.ui.h:3
-msgid "_Rook"
-msgstr "घोड़ा (_R)"
-
-#: ../data/promotion-type-selector.ui.h:4
-msgid "_Bishop"
-msgstr "वजीर (_B)"
-
-#: ../data/promotion-type-selector.ui.h:5
-msgid ""
-"Promotion is a chess rule describing the transformation of a pawn that "
-"reaches its eighth rank into the player's choice of a queen, knight, rook, "
-"or bishop of the same color. The new piece replaces the pawn on the same "
-"square and is part of the move. Every pawn that reaches its eighth rank must "
-"be promoted. Pawn promotion often decides the result of a chess endgame."
-msgstr ""
-" Promotion is a chess rule describing the transformation of a pawn that "
-"reaches its eighth rank into the player's choice of a queen, knight, rook, "
-"or bishop of the same color. The new piece replaces the pawn on the same "
-"square and is part of the move. Every pawn that reaches its eighth rank must "
-"be promoted. Pawn promotion often decides the result of a chess endgame."
-
-#: ../data/promotion-type-selector.ui.h:6
-msgid "Select Pawn Promotion Type"
-msgstr "प्यादा प्रमोशन किस्म चुनें:"
-
-#. Title of the window when explicitly loaded a file. The first argument is the
-#. * base name of the file (e.g. test.pgn), the second argument is the directory
-#. * (e.g. /home/fred)
-#: ../src/gnome-chess.vala:371
-#, c-format
-msgid "%1$s (%2$s) - Chess"
-msgstr "%1$s (%2$s) - शतरंज"
-
-#. Move History Combo: Go to the start of the game
-#: ../src/gnome-chess.vala:380
-msgid "Game Start"
-msgstr "खेल प्रारंभ"
-
-#. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
-#. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
-#: ../src/gnome-chess.vala:582
-#, c-format
-msgid "White pawn moves from %1$s to %2$s"
-msgstr "सफेद पैदल की चाल %1$s से %2$s"
-
-#. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:584
-#, c-format
-msgid "White pawn at %1$s takes the black pawn at %2$s"
-msgstr "सफेद पैदल की चाल %1$s ने काले पैदल को %2$s पर मारा"
-
-#. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:586
-#, c-format
-msgid "White pawn at %1$s takes the black rook at %2$s"
-msgstr "सफेद पैदल की चाल %1$s ने काले हाथी को %2$s पर मारा"
-
-#. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:588
-#, c-format
-msgid "White pawn at %1$s takes the black knight at %2$s"
-msgstr "सफेद पैदल की चाल %1$s ने काले घोड़े को %2$s पर मारा"
-
-#. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:590
-#, c-format
-msgid "White pawn at %1$s takes the black bishop at %2$s"
-msgstr "सफेद पैदल की चाल %1$s ने काले ऊंट को %2$s पर मारा"
-
-#. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:592
-#, c-format
-msgid "White pawn at %1$s takes the black queen at %2$s"
-msgstr "सफेद पैदल की चाल %1$s ने काले वजीर को %2$s पर मारा"
-
-#. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
-#: ../src/gnome-chess.vala:594
-#, c-format
-msgid "White rook moves from %1$s to %2$s"
-msgstr "सफेद हाथी की चाल %1$s से %2$s"
-
-#. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:596
-#, c-format
-msgid "White rook at %1$s takes the black pawn at %2$s"
-msgstr "सफेद हाथी की चाल %1$s ने काले पैदल को %2$s पर मारा"
-
-#. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:598
-#, c-format
-msgid "White rook at %1$s takes the black rook at %2$s"
-msgstr "सफेद हाथी की चाल %1$s ने काले हाथी को %2$s पर मारा"
-
-#. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:600
-#, c-format
-msgid "White rook at %1$s takes the black knight at %2$s"
-msgstr "सफेद हाथी की चाल %1$s ने काले घोड़े को %2$s पर मारा"
-
-#. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:602
-#, c-format
-msgid "White rook at %1$s takes the black bishop at %2$s"
-msgstr "सफेद हाथी की चाल %1$s ने काले ऊंट को %2$s पर मारा"
-
-#. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
-#: ../src/gnome-chess.vala:604
-#, c-format
-msgid "White rook at %1$s takes the black queen at %2$s"
-msgstr "सफेद हाथी की चाल %1$s ने काले वजीर को %2$s पर मारा"
-
-#. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
-#: ../src/gnome-chess.vala:606
-#, c-format
-msgid "White knight moves from %1$s to %2$s"
-msgstr "सफेद घोड़े की चाल %1$s से %2$s"
-
-#. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:608
-#, c-format
-msgid "White knight at %1$s takes the black pawn at %2$s"
-msgstr "सफेद घोड़े की चाल %1$s ने काले पैदल को %2$s पर मारा"
-
-#. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:610
-#, c-format
-msgid "White knight at %1$s takes the black rook at %2$s"
-msgstr "सफेद घोड़े की चाल %1$s ने काले हाथी को %2$s पर मारा"
-
-#. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:612
-#, c-format
-msgid "White knight at %1$s takes the black knight at %2$s"
-msgstr "सफेद घोड़े की चाल %1$s ने काले घोड़े को %2$s पर मारा"
-
-#. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:614
-#, c-format
-msgid "White knight at %1$s takes the black bishop at %2$s"
-msgstr "सफेद घोड़े की चाल %1$s ने काले ऊंट को %2$s पर मारा"
-
-#. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:616
-#, c-format
-msgid "White knight at %1$s takes the black queen at %2$s"
-msgstr "सफेद घोड़े की चाल %1$s ने काले वजीर को %2$s पर मारा"
-
-#. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
-#: ../src/gnome-chess.vala:618
-#, c-format
-msgid "White bishop moves from %1$s to %2$s"
-msgstr "सफेद ऊंट की चाल %1$s से %2$s"
-
-#. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:620
-#, c-format
-msgid "White bishop at %1$s takes the black pawn at %2$s"
-msgstr "सफेद ऊंट की चाल %1$s ने काले पैदल को %2$s पर मारा"
-
-#. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:622
-#, c-format
-msgid "White bishop at %1$s takes the black rook at %2$s"
-msgstr "सफेद ऊंट की चाल %1$s ने काले हाथी को %2$s पर मारा"
-
-#. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:624
-#, c-format
-msgid "White bishop at %1$s takes the black knight at %2$s"
-msgstr "सफेद ऊंट की चाल %1$s ने काले घोड़े को %2$s पर मारा"
-
-#. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:626
-#, c-format
-msgid "White bishop at %1$s takes the black bishop at %2$s"
-msgstr "सफेद ऊंट की चाल %1$s ने काले ऊंट को %2$s पर मारा"
-
-#. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:628
-#, c-format
-msgid "White bishop at %1$s takes the black queen at %2$s"
-msgstr "सफेद ऊंट की चाल %1$s ने काले वजीर को %2$s पर मारा"
-
-#. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
-#: ../src/gnome-chess.vala:630
-#, c-format
-msgid "White queen moves from %1$s to %2$s"
-msgstr "सफेद वजीर की चाल %1$s से %2$s"
-
-#. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:632
-#, c-format
-msgid "White queen at %1$s takes the black pawn at %2$s"
-msgstr "सफेद वजीर की चाल %1$s ने काले पैदल को %2$s पर मारा"
-
-#. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:634
-#, c-format
-msgid "White queen at %1$s takes the black rook at %2$s"
-msgstr "सफेद वजीर की चाल %1$s ने काले हाथी को %2$s पर मारा"
-
-#. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:636
-#, c-format
-msgid "White queen at %1$s takes the black knight at %2$s"
-msgstr "सफेद वजीर की चाल %1$s ने काले घोड़े को %2$s पर मारा"
-
-#. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:638
-#, c-format
-msgid "White queen at %1$s takes the black bishop at %2$s"
-msgstr "सफेद वजीर की चाल %1$s ने काले ऊंट को %2$s पर मारा"
-
-#. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:640
-#, c-format
-msgid "White queen at %1$s takes the black queen at %2$s"
-msgstr "सफेद वजीर की चाल %1$s ने काले वजीर को %2$s पर मारा"
-
-#. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
-#: ../src/gnome-chess.vala:642
-#, c-format
-msgid "White king moves from %1$s to %2$s"
-msgstr "सफेद राजा की चाल %1$s से %2$s"
-
-#. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:644
-#, c-format
-msgid "White king at %1$s takes the black pawn at %2$s"
-msgstr "सफेद राजा की चाल %1$s ने काले पैदल को %2$s पर मारा"
-
-#. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:646
-#, c-format
-msgid "White king at %1$s takes the black rook at %2$s"
-msgstr "सफेद राजा की चाल %1$s ने काले हाथी को %2$s पर मारा"
-
-#. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:648
-#, c-format
-msgid "White king at %1$s takes the black knight at %2$s"
-msgstr "सफेद राजा की चाल %1$s ने काले घोड़े को %2$s पर मारा"
-
-#. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:650
-#, c-format
-msgid "White king at %1$s takes the black bishop at %2$s"
-msgstr "सफेद राजा की चाल %1$s ने काले ऊंट को %2$s पर मारा"
-
-#. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:652
-#, c-format
-msgid "White king at %1$s takes the black queen at %2$s"
-msgstr "सफेद राजा की चाल %1$s ने काले वजीर को %2$s पर मारा"
-
-#. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
-#: ../src/gnome-chess.vala:654
-#, c-format
-msgid "Black pawn moves from %1$s to %2$s"
-msgstr "काला पैदल की चाल %1$s से %2$s"
-
-#. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:656
-#, c-format
-msgid "Black pawn at %1$s takes the white pawn at %2$s"
-msgstr "काला पैदल की चाल %1$s ने सफेद पैदल को %2$s पर मारा"
-
-#. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:658
-#, c-format
-msgid "Black pawn at %1$s takes the white rook at %2$s"
-msgstr "काला पैदल की चाल %1$s ने सफेद हाथी को %2$s पर मारा"
-
-#. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:660
-#, c-format
-msgid "Black pawn at %1$s takes the white knight at %2$s"
-msgstr "काला पैदल की चाल %1$s ने सफेद घोड़े को %2$s पर मारा"
-
-#. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:662
-#, c-format
-msgid "Black pawn at %1$s takes the white bishop at %2$s"
-msgstr "काला पैदल की चाल %1$s ने सफेद ऊंट को %2$s पर मारा"
-
-#. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:664
-#, c-format
-msgid "Black pawn at %1$s takes the white queen at %2$s"
-msgstr "काला पैदल की चाल %1$s ने सफेद वजीर को %2$s पर मारा"
-
-#. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
-#: ../src/gnome-chess.vala:666
-#, c-format
-msgid "Black rook moves from %1$s to %2$s"
-msgstr "काला हाथी की चाल %1$s से %2$s"
-
-#. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:668
-#, c-format
-msgid "Black rook at %1$s takes the white pawn at %2$s"
-msgstr "काले हाथी की चाल %1$s ने सफेद पैदल को %2$s पर मारा"
-
-#. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:670
-#, c-format
-msgid "Black rook at %1$s takes the white rook at %2$s"
-msgstr "काले हाथी की चाल %1$s ने सफेद हाथी को %2$s पर मारा"
-
-#. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:672
-#, c-format
-msgid "Black rook at %1$s takes the white knight at %2$s"
-msgstr "काले हाथी की चाल %1$s ने सफेद घोड़े को %2$s पर मारा"
-
-#. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:674
-#, c-format
-msgid "Black rook at %1$s takes the white bishop at %2$s"
-msgstr "काले हाथी की चाल %1$s ने सफेद ऊंट को %2$s पर मारा"
-
-#. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:676
-#, c-format
-msgid "Black rook at %1$s takes the white queen at %2$s"
-msgstr "काले हाथी की चाल %1$s ने सफेद वजीर को %2$s पर मारा"
-
-#. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
-#: ../src/gnome-chess.vala:678
-#, c-format
-msgid "Black knight moves from %1$s to %2$s"
-msgstr "काले घोड़े की चाल %1$s से %2$s"
-
-#. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:680
-#, c-format
-msgid "Black knight at %1$s takes the white pawn at %2$s"
-msgstr "काले घोड़े की चाल %1$s ने सफेद पैदल को %2$s पर मारा"
-
-#. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:682
-#, c-format
-msgid "Black knight at %1$s takes the white rook at %2$s"
-msgstr "काले घोड़े की चाल %1$s ने सफेद हाथी को %2$s पर मारा"
-
-#. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:684
-#, c-format
-msgid "Black knight at %1$s takes the white knight at %2$s"
-msgstr "काले घोड़े की चाल %1$s ने सफेद घोड़े को %2$s पर मारा"
-
-#. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:686
-#, c-format
-msgid "Black knight at %1$s takes the white bishop at %2$s"
-msgstr "काले घोड़े की चाल %1$s ने सफेद ऊंट को %2$s पर मारा"
-
-#. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:688
-#, c-format
-msgid "Black knight at %1$s takes the white queen at %2$s"
-msgstr "काले घोड़े की चाल %1$s ने सफेद वजीर को %2$s पर मारा"
-
-#. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
-#: ../src/gnome-chess.vala:690
-#, c-format
-msgid "Black bishop moves from %1$s to %2$s"
-msgstr "सफेद ऊंट की चाल %1$s से %2$s"
-
-#. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:692
-#, c-format
-msgid "Black bishop at %1$s takes the white pawn at %2$s"
-msgstr "काले ऊंट की चाल %1$s ने सफेद पैदल को %2$s पर मारा"
-
-#. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:694
-#, c-format
-msgid "Black bishop at %1$s takes the white rook at %2$s"
-msgstr "काले ऊंट की चाल %1$s ने सफेद हाथी को %2$s पर मारा"
-
-#. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:696
-#, c-format
-msgid "Black bishop at %1$s takes the white knight at %2$s"
-msgstr "काले ऊंट की चाल %1$s ने सफेद घोड़े को %2$s पर मारा"
-
-#. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:698
-#, c-format
-msgid "Black bishop at %1$s takes the white bishop at %2$s"
-msgstr "काले ऊंट की चाल %1$s ने सफेद ऊंट को %2$s पर मारा"
-
-#. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:700
-#, c-format
-msgid "Black bishop at %1$s takes the white queen at %2$s"
-msgstr "काले ऊंट की चाल %1$s ने सफेद वजीर को %2$s पर मारा"
-
-#. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
-#: ../src/gnome-chess.vala:702
-#, c-format
-msgid "Black queen moves from %1$s to %2$s"
-msgstr "काले वजीर की चाल %1$s से %2$s"
-
-#. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:704
-#, c-format
-msgid "Black queen at %1$s takes the white pawn at %2$s"
-msgstr "काले वजीर की चाल %1$s ने सफेद पैदल को %2$s पर मारा"
-
-#. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:706
-#, c-format
-msgid "Black queen at %1$s takes the white rook at %2$s"
-msgstr "काले वजीर की चाल %1$s ने सफेद हाथी को %2$s पर मारा"
-
-#. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:708
-#, c-format
-msgid "Black queen at %1$s takes the white knight at %2$s"
-msgstr "काले वजीर की चाल %1$s ने सफेद घोड़े को %2$s पर मारा"
-
-#. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:710
-#, c-format
-msgid "Black queen at %1$s takes the white bishop at %2$s"
-msgstr "काले वजीर की चाल %1$s ने सफेद ऊंट को %2$s पर मारा"
-
-#. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
-#: ../src/gnome-chess.vala:712
-#, c-format
-msgid "Black queen at %1$s takes the white queen at %2$s"
-msgstr "काले वजीर की चाल %1$s ने सफेद वजीर को %2$s पर मारा"
-
-#. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
-#: ../src/gnome-chess.vala:714
-#, c-format
-msgid "Black king moves from %1$s to %2$s"
-msgstr "काले राजा की चाल %1$s से %2$s"
-
-#. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
-#: ../src/gnome-chess.vala:716
-#, c-format
-msgid "Black king at %1$s takes the white pawn at %2$s"
-msgstr "काले राजा की चाल %1$s ने सफेद पैदल को %2$s पर मारा"
-
-#. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
-#: ../src/gnome-chess.vala:718
-#, c-format
-msgid "Black king at %1$s takes the white rook at %2$s"
-msgstr "काले राजा की चाल %1$s ने सफेद हाथी को %2$s पर मारा"
-
-#. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
-#: ../src/gnome-chess.vala:720
-#, c-format
-msgid "Black king at %1$s takes the white knight at %2$s"
-msgstr "काले राजा की चाल %1$s ने सफेद घोड़े को %2$s पर मारा"
-
-#. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
-#: ../src/gnome-chess.vala:722
-#, c-format
-msgid "Black king at %1$s takes the white bishop at %2$s"
-msgstr "काले राजा की चाल %1$s ने सफेद ऊंट को %2$s पर मारा"
-
-#. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
-#: ../src/gnome-chess.vala:724
-#, c-format
-msgid "Black king at %1$s takes the white queen at %2$s"
-msgstr "काले राजा की चाल %1$s ने सफेद वजीर को %2$s पर मारा"
-
-#  Players tab
-#  FIXME mnemonic doesn't seem to work
-#. Message display when the white player wins
-#: ../src/gnome-chess.vala:844
-msgid "White wins"
-msgstr "सफेद जीता"
-
-#  Players tab
-#  FIXME mnemonic doesn't seem to work
-#. Message display when the black player wins
-#: ../src/gnome-chess.vala:849
-msgid "Black wins"
-msgstr "काला जीता"
-
-#. Message display when the game is drawn
-#: ../src/gnome-chess.vala:854
-msgid "Game is drawn"
-msgstr "खेल लिया गया है"
-
-#. Message displayed when the game ends due to a player being checkmated
-#: ../src/gnome-chess.vala:866
-msgid "Opponent is in check and cannot move (checkmate)"
-msgstr "खिलाड़ी चेक में है व चाल नहीं चल सकता है (शह व मात)"
-
-#. Message displayed when the game terminates due to a stalemate
-#: ../src/gnome-chess.vala:870
-msgid "Opponent cannot move (stalemate)"
-msgstr "विरोधी चाल नहीं चल सकता है (स्टेलमेट)"
-
-#. Message displayed when the game is drawn due to the fifty move rule
-#: ../src/gnome-chess.vala:874
-msgid "No piece has been taken or pawn moved in the last fifty moves"
-msgstr "कोई टुकड़ा नहीं लिया गया है या प्यादे ने अंतिम पच्चास चाल में चला है"
-
-#. Message displayed when the game ends due to one player's clock stopping
-#: ../src/gnome-chess.vala:878
-msgid "Opponent has run out of time"
-msgstr "विरोधी का समय खत्म हो गया है"
-
-#. Message displayed when the game is drawn due to the three-fold-repitition rule
-#: ../src/gnome-chess.vala:882
-msgid "The same board state has occurred three times (three fold repetition)"
-msgstr "समान बोर्ड स्थिति तीन बार उत्पन्न हुई है (तितरफा दुहराव)"
-
-#. Message displayed when the game is drawn due to the insufficient material rule
-#: ../src/gnome-chess.vala:886
-msgid "Neither player can cause checkmate (insufficient material)"
-msgstr "कोई खिलाड़ी शह व मात का कारण नहीं बन सकता है (अपर्याप्त पदार्थ)"
-
-#. Message displayed when the game ends due to the black player resigning
-#: ../src/gnome-chess.vala:892
-msgid "The black player has resigned"
-msgstr "काले खिलाड़ी ने इस्तीफा दिया"
-
-#. Message displayed when the game ends due to the white player resigning
-#: ../src/gnome-chess.vala:897
-msgid "The white player has resigned"
-msgstr "सफेद खिलाड़ी ने इस्तीफा दिया"
-
-#. Message displayed when a game is abandoned
-#: ../src/gnome-chess.vala:902
-msgid "The game has been abandoned"
-msgstr "खेल छोड़ दिया गया"
-
-#. Message displayed when the game ends due to a player dying
-#: ../src/gnome-chess.vala:907
-msgid "One of the players has died"
-msgstr "एक खिलाड़ी मर गया"
-
-#: ../src/gnome-chess.vala:972
-msgid "Save this game before starting a new one?"
-msgstr "नया आरंभ करने के पहले इस खेल को सहेजें?"
-
-#: ../src/gnome-chess.vala:974
-msgid "_Abandon game"
-msgstr "खेल त्यागें (_A)"
-
-#: ../src/gnome-chess.vala:975
-msgid "_Save game for later"
-msgstr "बाद के लिये खेल सहेजें (_S)"
-
-#. Preferences Dialog: Combo box entry for a custom game timer set in seconds
-#: ../src/gnome-chess.vala:1363
-msgid "second"
-msgid_plural "seconds"
-msgstr[0] "सेकण्ड"
-msgstr[1] "सेकण्ड"
-
-#. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#: ../src/gnome-chess.vala:1367
-msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "मिनट"
-msgstr[1] "मिनट"
-
-#. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../src/gnome-chess.vala:1371
-msgid "hour"
-msgid_plural "hours"
-msgstr[0] "घंटा"
-msgstr[1] "घंटा"
-
-#: ../src/gnome-chess.vala:1486
-msgid ""
-"The 2D/3D chess game for GNOME. \n"
-"\n"
-"GNOME Chess is a part of GNOME Games."
-msgstr ""
-"ग्नोम के लिए 2डी/3डी शतरंज खेल. \n"
-"\n"
-"जीएल-चेस, ग्नोम खेल का एक हिस्सा है."
+#~ msgid "Custom"
+#~ msgstr "पसंदीदा"
+
+#~ msgctxt "chess-side"
+#~ msgid "Face to Face"
+#~ msgstr "आमने सामने"
+
+#~ msgid ""
+#~ "Promotion is a chess rule describing the transformation of a pawn that "
+#~ "reaches its eighth rank into the player's choice of a queen, knight, "
+#~ "rook, or bishop of the same color. The new piece replaces the pawn on the "
+#~ "same square and is part of the move. Every pawn that reaches its eighth "
+#~ "rank must be promoted. Pawn promotion often decides the result of a chess "
+#~ "endgame."
+#~ msgstr ""
+#~ " Promotion is a chess rule describing the transformation of a pawn that "
+#~ "reaches its eighth rank into the player's choice of a queen, knight, "
+#~ "rook, or bishop of the same color. The new piece replaces the pawn on the "
+#~ "same square and is part of the move. Every pawn that reaches its eighth "
+#~ "rank must be promoted. Pawn promotion often decides the result of a chess "
+#~ "endgame."
+
+#, c-format
+#~ msgid "%1$s (%2$s) - Chess"
+#~ msgstr "%1$s (%2$s) - शतरंज"
+
+#~ msgid "Opponent cannot move (stalemate)"
+#~ msgstr "विरोधी चाल नहीं चल सकता है (स्टेलमेट)"
+
+#~ msgid "One of the players has died"
+#~ msgstr "एक खिलाड़ी मर गया"
+
+#~ msgid "second"
+#~ msgid_plural "seconds"
+#~ msgstr[0] "सेकण्ड"
+#~ msgstr[1] "सेकण्ड"
+
+#~ msgid "minute"
+#~ msgid_plural "minutes"
+#~ msgstr[0] "मिनट"
+#~ msgstr[1] "मिनट"
+
+#~ msgid "hour"
+#~ msgid_plural "hours"
+#~ msgstr[0] "घंटा"
+#~ msgstr[1] "घंटा"
+
+#~ msgid ""
+#~ "The 2D/3D chess game for GNOME. \n"
+#~ "\n"
+#~ "GNOME Chess is a part of GNOME Games."
+#~ msgstr ""
+#~ "ग्नोम के लिए 2डी/3डी शतरंज खेल. \n"
+#~ "\n"
+#~ "जीएल-चेस, ग्नोम खेल का एक हिस्सा है."
 
 # libgnomeprintui/gnome-print-paper-selector.c:1453
-#: ../src/gnome-chess.vala:1491
-msgid "GNOME Games web site"
-msgstr "ग्नोम खेल वेबसाइट"
+#~ msgid "GNOME Games web site"
+#~ msgstr "ग्नोम खेल वेबसाइट"
 
-#. Title of save game dialog
-#: ../src/gnome-chess.vala:1545
-msgid "Save Chess Game"
-msgstr "शतरंज खेल सहेजें"
-
-#. Save Game Dialog: Name of filter to show only PGN files
-#. Load Game Dialog: Name of filter to show only PGN files
-#: ../src/gnome-chess.vala:1558 ../src/gnome-chess.vala:1626
-msgid "PGN files"
-msgstr "पीएनजी फ़ाइल"
-
-#. Save Game Dialog: Name of filter to show all files
-#. Load Game Dialog: Name of filter to show all files
-#: ../src/gnome-chess.vala:1565 ../src/gnome-chess.vala:1633
-msgid "All files"
-msgstr "सभी फ़ाइलें"
-
-#: ../src/gnome-chess.vala:1589
 #, c-format
-msgid "Failed to save game: %s"
-msgstr "खेल सहेजने में असमर्थ: %s"
+#~ msgid "Failed to open game: %s"
+#~ msgstr "खेल खेलने में असमर्थ: %s"
 
-# #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-# libgnomeui/gnome-app-helper.c:253
-#. Title of load game dialog
-#: ../src/gnome-chess.vala:1613
-msgid "Load Chess Game"
-msgstr "शतरंज खेल लोड करें"
+#~ msgid "[FILE] - Play Chess"
+#~ msgstr "[FILE] - शतरंज खेलें"
 
-#: ../src/gnome-chess.vala:1655
 #, c-format
-msgid "Failed to open game: %s"
-msgstr "खेल खेलने में असमर्थ: %s"
-
-#. Help string for command line --version flag
-#: ../src/gnome-chess.vala:1716
-msgid "Show release version"
-msgstr "रिलीज संस्करण दिखायें"
-
-#. Arguments and description for --help text
-#: ../src/gnome-chess.vala:1730
-msgid "[FILE] - Play Chess"
-msgstr "[FILE] - शतरंज खेलें"
-
-#. Text printed out when an unknown command-line argument provided
-#: ../src/gnome-chess.vala:1741
-#, c-format
-msgid "Run '%s --help' to see a full list of available command line options."
-msgstr "'%s --help' चलाएँ उपलब्ध कमांड लाइन विकल्प की पूरी सूची देखने के लिए."
+#~ msgid ""
+#~ "Run '%s --help' to see a full list of available command line options."
+#~ msgstr "'%s --help' चलाएँ उपलब्ध कमांड लाइन विकल्प की पूरी सूची देखने के लिए."
