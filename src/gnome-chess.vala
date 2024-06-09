@@ -49,7 +49,7 @@ public class ChessApplication : Adw.Application
 
     private NewGameWindow? new_game_window = null;
     private PreferencesWindow? preferences_window = null;
-    private Gtk.AboutDialog? about_dialog = null;
+    private Adw.AboutWindow? about_window = null;
     private Gtk.FileChooserNative? open_dialog = null;
     private Gtk.FileChooserNative? save_dialog = null;
     private ulong save_dialog_response_id = 0;
@@ -1184,27 +1184,25 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     public void about_cb ()
     {
-        if (about_dialog != null)
+        if (about_window != null)
         {
-            about_dialog.show ();
+            about_window.show ();
             return;
         }
 
-        about_dialog = new Gtk.AboutDialog ();
-        about_dialog.transient_for = window;
-        about_dialog.modal = true;
-        about_dialog.program_name = _("Chess");
-        about_dialog.version = VERSION;
-        about_dialog.copyright = copyrights;
-        about_dialog.license_type = Gtk.License.GPL_3_0;
-        about_dialog.comments = _("A classic game of positional strategy");
-        about_dialog.authors = authors;
-        about_dialog.artists = artists;
-        about_dialog.translator_credits = _("translator-credits");
-        about_dialog.website = "https://wiki.gnome.org/Apps/Chess";
-        about_dialog.logo_icon_name = "org.gnome.Chess";
-        about_dialog.hide_on_close = true;
-        about_dialog.show ();
+        about_window = new Adw.AboutWindow ();
+        about_window.transient_for = window;
+        about_window.modal = true;
+        about_window.application_name = _("Chess");
+        about_window.version = VERSION;
+        about_window.copyright = copyrights;
+        about_window.license_type = Gtk.License.GPL_3_0;
+        about_window.developers = authors;
+        about_window.artists = artists;
+        about_window.translator_credits = _("translator-credits");
+        about_window.application_icon = "org.gnome.Chess";
+        about_window.hide_on_close = true;
+        about_window.show ();
     }
 
     private void show_promotion_type_selector (owned ChessScene.PromotionTypeCompletionHandler handler)
