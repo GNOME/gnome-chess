@@ -7,8 +7,5 @@ GNOME Chess detects known third party chess engines for computer players.
 
 ## Useful links
 
-- Homepage: <https://wiki.gnome.org/Apps/Chess>
-- User manual: <https://help.gnome.org/users/gnome-chess/stable/>
 - Report issues: <https://gitlab.gnome.org/GNOME/gnome-chess/issues/>
 - Donate: <https://www.gnome.org/friends/>
-- Translate: <https://wiki.gnome.org/TranslationProject>
