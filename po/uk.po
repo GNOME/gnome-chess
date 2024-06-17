@@ -5,22 +5,22 @@
 # Wanderlust <wanderlust@ukr.net>, 2009.
 # Nazarii Ritter <nazariy.ritter@gmail.com>, 2014.
 # Daniel Korostil <ted.korostiled@gmail.com>, 2015, 2016, 2017.
-# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2022, 2023.
+# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2023-10-04 21:18+0000\n"
-"PO-Revision-Date: 2023-10-05 20:28+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues/\n"
+"POT-Creation-Date: 2024-06-16 22:41+0000\n"
+"PO-Revision-Date: 2024-06-17 08:44+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
-"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language-Team: Ukrainian\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 23.04.3\n"
 "X-Project-Style: gnome\n"
 
 #: data/org.gnome.Chess.appdata.xml.in:7
@@ -49,12 +49,8 @@ msgstr ""
 "усіма сучасними комп'ютерними шаховими рушіями і їхню здатність "
 "автоматичного визначення декількох популярних рушіїв (якщо такі встановлено)."
 
-#: data/org.gnome.Chess.appdata.xml.in:72
-msgid "The GNOME Project"
-msgstr "Проект GNOME"
-
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1559
 msgid "Chess"
 msgstr "Шахи"
 
@@ -288,9 +284,10 @@ msgid "Show Next Move"
 msgstr "Показати наступний хід"
 
 #: data/help-overlay.ui:86
+#| msgid "Show Next Move"
 msgctxt "shortcut window"
-msgid "Show Current Move"
-msgstr "Показати поточний хід"
+msgid "Show Last Move"
+msgstr "Показати останній хід"
 
 #: data/help-overlay.ui:93
 msgctxt "shortcut window"
@@ -312,7 +309,7 @@ msgid "New Game"
 msgstr "Нова гра"
 
 #: data/new-game-window.ui:20 src/gnome-chess.vala:968
-#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
+#: src/gnome-chess.vala:1288 src/gnome-chess.vala:1429
 msgid "_Cancel"
 msgstr "_Скасувати"
 
@@ -1052,28 +1049,22 @@ msgid "The computer player is confused. The game cannot continue."
 msgstr "Комп'ютер спантеличений. Гру неможливо продовжити."
 
 #: src/gnome-chess.vala:965
-#| msgctxt "shortcut window"
-#| msgid "Save Game"
 msgid "Save Game?"
 msgstr "Зберегти гру?"
 
 #: src/gnome-chess.vala:972
-#| msgid "_Abandon game"
 msgid "_Abandon Game"
 msgstr "Зали_шити гру"
 
 #: src/gnome-chess.vala:973
-#| msgid "_Save game for later"
 msgid "Save game for later"
 msgstr "Зберегти гру для продовження пізніше"
 
 #: src/gnome-chess.vala:979
-#| msgid "_Discard game"
 msgid "_Discard Game"
 msgstr "Від_мовитися від гри"
 
 #: src/gnome-chess.vala:980
-#| msgid "_Save game log"
 msgid "Save game log"
 msgstr "Зберегти журнал гри"
 
@@ -1131,11 +1122,7 @@ msgstr ""
 msgid "_Resign"
 msgstr "З_датися"
 
-#: src/gnome-chess.vala:1200
-msgid "A classic game of positional strategy"
-msgstr "Класична гра в позиційну стратегію"
-
-#: src/gnome-chess.vala:1203
+#: src/gnome-chess.vala:1202
 msgid "translator-credits"
 msgstr ""
 "Юрій Сирота\n"
@@ -1144,69 +1131,68 @@ msgstr ""
 ">Daniel Korostil <ted.korostiled@gmail.com>\n"
 "Назарій Ріттер <nazariy.ritter@gmail.com>"
 
-#: src/gnome-chess.vala:1248
+#: src/gnome-chess.vala:1246
 msgid "Error Loading PGN File"
 msgstr "Помилка під час завантаження файла PGN"
 
-#: src/gnome-chess.vala:1249
+#: src/gnome-chess.vala:1247
 msgid "This does not look like a valid PGN game."
 msgstr "Це не схоже на правильну гру PGN."
 
-#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
-#: src/gnome-chess.vala:1370
+#: src/gnome-chess.vala:1249 src/gnome-chess.vala:1262
+#: src/gnome-chess.vala:1368
 msgid "_OK"
 msgstr "_Гаразд"
 
-#: src/gnome-chess.vala:1261
-#| msgid "Undo Move"
+#: src/gnome-chess.vala:1259
 msgid "Invalid Move"
 msgstr "Некоректний хід"
 
 #. Title of save game dialog
-#: src/gnome-chess.vala:1287
+#: src/gnome-chess.vala:1285
 msgid "Save Chess Game"
 msgstr "Зберегти гру"
 
-#: src/gnome-chess.vala:1289
+#: src/gnome-chess.vala:1287
 msgid "_Save"
 msgstr "_Зберегти"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1321
+#: src/gnome-chess.vala:1319
 msgid "Untitled Chess Game"
 msgstr "Неназвана шахова гра"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1325 src/gnome-chess.vala:1435
 msgid "PGN files"
 msgstr "Файли PGN"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
+#: src/gnome-chess.vala:1331 src/gnome-chess.vala:1441
 msgid "All files"
 msgstr "Всі файли"
 
-#: src/gnome-chess.vala:1365
+#: src/gnome-chess.vala:1363
 msgid "Save Error"
 msgstr "Помилка збереження"
 
-#: src/gnome-chess.vala:1368
+#: src/gnome-chess.vala:1366
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Не вдалося зберегти гру: %s"
 
-#: src/gnome-chess.vala:1421
+#: src/gnome-chess.vala:1419
 msgid "Save this game before loading another one?"
 msgstr "Зберегти гру перед завантаженням іншої?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1428
+#: src/gnome-chess.vala:1426
 msgid "Load Chess Game"
 msgstr "Завантажити гру"
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1428
 msgid "_Open"
 msgstr "_Відкрити"
 
@@ -1304,6 +1290,16 @@ msgstr "Бронштайн"
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "Людина"
+
+#~ msgid "The GNOME Project"
+#~ msgstr "Проект GNOME"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show Current Move"
+#~ msgstr "Показати поточний хід"
+
+#~ msgid "A classic game of positional strategy"
+#~ msgstr "Класична гра в позиційну стратегію"
 
 #~ msgid "Save this game before starting a new one?"
 #~ msgstr "Зберегти цю гру перед початком нової?"
