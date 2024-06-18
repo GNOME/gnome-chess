@@ -11,7 +11,7 @@
  */
 
 [GtkTemplate (ui = "/org/gnome/Chess/ui/chess-window.ui")]
-public class ChessWindow : Gtk.ApplicationWindow
+public class ChessWindow : Adw.ApplicationWindow
 {
     public enum LayoutMode {
         NORMAL,

@@ -53,206 +53,209 @@
       <column type="gint"/>
     </columns>
   </object>
-  <template class="ChessWindow" parent="GtkApplicationWindow">
+  <template class="ChessWindow" parent="AdwApplicationWindow">
     <property name="can-focus">0</property>
     <property name="default-width">700</property>
     <property name="title" translatable="yes">Chess</property>
-    <child type="titlebar">
-      <object class="GtkHeaderBar">
-        <property name="can-focus">0</property>
-        <child>
-          <object class="GtkButton">
-            <property name="valign">center</property>
-            <property name="action-name">app.undo</property>
-            <property name="tooltip-text" translatable="yes">Undo Move</property>
-            <style>
-              <class name="image-button"/>
-            </style>
-            <child>
-              <object class="GtkImage">
-                <property name="can-focus">0</property>
-                <property name="icon-size">1</property>
-                <property name="icon-name">edit-undo-symbolic</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton" id="pause_resume_button">
-            <property name="valign">center</property>
-            <property name="action-name">app.pause-resume</property>
-            <style>
-              <class name="image-button"/>
-            </style>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-size">1</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child type="end">
-          <object class="GtkMenuButton">
-            <property name="tooltip-text" translatable="yes">Main Menu</property>
-            <property name="icon-name">open-menu-symbolic</property>
-            <property name="menu-model">app_menu</property>
-            <property name="primary">true</property>
-          </object>
-        </child>
-      </object>
-    </child>
     <child>
-      <object class="GtkBox" id="main_box">
-        <property name="can-focus">0</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">3</property>
-        <child>
-          <object class="GtkInfoBar" id="info_bar">
-            <property name="visible">0</property>
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
             <child>
-              <object class="GtkBox">
+              <object class="GtkButton">
+                <property name="valign">center</property>
+                <property name="action-name">app.undo</property>
+                <property name="tooltip-text" translatable="yes">Undo Move</property>
+                <style>
+                  <class name="image-button"/>
+                </style>
                 <child>
-                  <object class="GtkLabel" id="info_bar_label">
-                    <property name="hexpand">1</property>
-                    <property name="ellipsize">end</property>
-                    <property name="justify">center</property>
-                    <property name="use-markup">1</property>
+                  <object class="GtkImage">
+                    <property name="can-focus">0</property>
+                    <property name="icon-size">1</property>
+                    <property name="icon-name">edit-undo-symbolic</property>
                   </object>
                 </child>
               </object>
             </child>
+            <child>
+              <object class="GtkButton" id="pause_resume_button">
+                <property name="valign">center</property>
+                <property name="action-name">app.pause-resume</property>
+                <style>
+                  <class name="image-button"/>
+                </style>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-size">1</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkMenuButton">
+                <property name="tooltip-text" translatable="yes">Main Menu</property>
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="menu-model">app_menu</property>
+                <property name="primary">true</property>
+              </object>
+            </child>
           </object>
         </child>
-        <child>
-          <object class="GtkBox" id="navigation_box">
+        <property name="content">
+          <object class="GtkBox" id="main_box">
             <property name="can-focus">0</property>
-            <property name="spacing">6</property>
-            <property name="margin-start">6</property>
-            <property name="margin-end">6</property>
-            <property name="margin-top">6</property>
-            <property name="margin-bottom">6</property>
+            <property name="orientation">vertical</property>
+            <property name="spacing">3</property>
             <child>
-              <object class="GtkBox">
-                <property name="hexpand">1</property>
-                <property name="can-focus">0</property>
-                <property name="spacing">6</property>
+              <object class="GtkInfoBar" id="info_bar">
+                <property name="visible">0</property>
                 <child>
                   <object class="GtkBox">
-                    <property name="can-focus">0</property>
-                    <property name="homogeneous">1</property>
-                    <style>
-                      <class name="raised"/>
-                      <class name="linked"/>
-                    </style>
                     <child>
-                      <object class="GtkButton" id="first_move_button">
-			<property name="action-name">app.go-first</property>
-                        <property name="sensitive">0</property>
-                        <property name="tooltip-text" translatable="yes" comments="Tooltip on the show first move (i.e. game start) navigation button">Rewind to Game Start</property>
-                        <style>
-                          <class name="image-button"/>
-                        </style>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="can-focus">0</property>
-                            <property name="icon-size">1</property>
-                            <property name="icon-name">go-first-symbolic</property>
-                          </object>
-                        </child>
+                      <object class="GtkLabel" id="info_bar_label">
+                        <property name="hexpand">1</property>
+                        <property name="ellipsize">end</property>
+                        <property name="justify">center</property>
+                        <property name="use-markup">1</property>
                       </object>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="prev_move_button">
-			<property name="action-name">app.go-previous</property>
-                        <property name="sensitive">0</property>
-                        <property name="tooltip-text" translatable="yes" comments="Tooltip on the show previous move navigation button">Show Previous Move</property>
-                        <style>
-                          <class name="image-button"/>
-                        </style>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="can-focus">0</property>
-                            <property name="icon-size">1</property>
-                            <property name="icon-name">go-previous-symbolic</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="next_move_button">
-			<property name="action-name">app.go-next</property>
-                        <property name="sensitive">0</property>
-                        <property name="tooltip-text" translatable="yes" comments="Tooltip on the show next move navigation button">Show Next Move</property>
-                        <style>
-                          <class name="image-button"/>
-                        </style>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="can-focus">0</property>
-                            <property name="icon-size">1</property>
-                            <property name="icon-name">go-next-symbolic</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="last_move_button">
-			<property name="action-name">app.go-last</property>
-                        <property name="sensitive">0</property>
-                        <property name="tooltip-text" translatable="yes" comments="Tooltip on the show current move navigation button">Show Current Move</property>
-                        <style>
-                          <class name="image-button"/>
-                        </style>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="can-focus">0</property>
-                            <property name="icon-size">1</property>
-                            <property name="icon-name">go-last-symbolic</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkComboBox" id="history_combo">
-                    <property name="hexpand">1</property>
-                    <property name="can-focus">0</property>
-                    <property name="model">history_model</property>
-                    <signal name="changed" handler="history_combo_changed_cb" swapped="no"/>
-                    <child>
-                      <object class="GtkCellRendererText">
-                        <property name="ellipsize">PANGO_ELLIPSIZE_END</property>
-                      </object>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
                     </child>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="GtkBox" id="clock_box">
+              <object class="GtkBox" id="navigation_box">
                 <property name="can-focus">0</property>
                 <property name="spacing">6</property>
-                <property name="homogeneous">1</property>
+                <property name="margin-start">6</property>
+                <property name="margin-end">6</property>
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">6</property>
                 <child>
-                  <object class="GtkDrawingArea" id="white_time_label">
+                  <object class="GtkBox">
+                    <property name="hexpand">1</property>
                     <property name="can-focus">0</property>
-                    <property name="content-width">80</property>
+                    <property name="spacing">6</property>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="can-focus">0</property>
+                        <property name="homogeneous">1</property>
+                        <style>
+                          <class name="raised"/>
+                          <class name="linked"/>
+                        </style>
+                        <child>
+                          <object class="GtkButton" id="first_move_button">
+			    <property name="action-name">app.go-first</property>
+                            <property name="sensitive">0</property>
+                            <property name="tooltip-text" translatable="yes" comments="Tooltip on the show first move (i.e. game start) navigation button">Rewind to Game Start</property>
+                            <style>
+                              <class name="image-button"/>
+                            </style>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="can-focus">0</property>
+                                <property name="icon-size">1</property>
+                                <property name="icon-name">go-first-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="prev_move_button">
+			    <property name="action-name">app.go-previous</property>
+                            <property name="sensitive">0</property>
+                            <property name="tooltip-text" translatable="yes" comments="Tooltip on the show previous move navigation button">Show Previous Move</property>
+                            <style>
+                              <class name="image-button"/>
+                            </style>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="can-focus">0</property>
+                                <property name="icon-size">1</property>
+                                <property name="icon-name">go-previous-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="next_move_button">
+			    <property name="action-name">app.go-next</property>
+                            <property name="sensitive">0</property>
+                            <property name="tooltip-text" translatable="yes" comments="Tooltip on the show next move navigation button">Show Next Move</property>
+                            <style>
+                              <class name="image-button"/>
+                            </style>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="can-focus">0</property>
+                                <property name="icon-size">1</property>
+                                <property name="icon-name">go-next-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="last_move_button">
+			    <property name="action-name">app.go-last</property>
+                            <property name="sensitive">0</property>
+                            <property name="tooltip-text" translatable="yes" comments="Tooltip on the show current move navigation button">Show Current Move</property>
+                            <style>
+                              <class name="image-button"/>
+                            </style>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="can-focus">0</property>
+                                <property name="icon-size">1</property>
+                                <property name="icon-name">go-last-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkComboBox" id="history_combo">
+                        <property name="hexpand">1</property>
+                        <property name="can-focus">0</property>
+                        <property name="model">history_model</property>
+                        <signal name="changed" handler="history_combo_changed_cb" swapped="no"/>
+                        <child>
+                          <object class="GtkCellRendererText">
+                            <property name="ellipsize">PANGO_ELLIPSIZE_END</property>
+                          </object>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
                   </object>
                 </child>
                 <child>
-                  <object class="GtkDrawingArea" id="black_time_label">
+                  <object class="GtkBox" id="clock_box">
                     <property name="can-focus">0</property>
-                    <property name="content-width">80</property>
+                    <property name="spacing">6</property>
+                    <property name="homogeneous">1</property>
+                    <child>
+                      <object class="GtkDrawingArea" id="white_time_label">
+                        <property name="can-focus">0</property>
+                        <property name="content-width">80</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkDrawingArea" id="black_time_label">
+                        <property name="can-focus">0</property>
+                        <property name="content-width">80</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>
             </child>
           </object>
-        </child>
+        </property>
       </object>
     </child>
   </template>
