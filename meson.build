@@ -37,6 +37,8 @@ libadwaita = dependency('libadwaita-1', version: '>= 1.0.0.alpha.3')
 librsvg = dependency('librsvg-2.0', version: '>= 2.46.0')
 pangocairo = dependency('pangocairo')
 
+m = meson.get_compiler('c').find_library('m', required : false)
+
 posix = meson.get_compiler('vala').find_library('posix')
 
 # Configuration
