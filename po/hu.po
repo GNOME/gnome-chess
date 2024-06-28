@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues/\n"
-"POT-Creation-Date: 2024-02-05 21:16+0000\n"
-"PO-Revision-Date: 2024-02-19 23:23+0100\n"
+"POT-Creation-Date: 2024-06-16 22:41+0000\n"
+"PO-Revision-Date: 2024-06-28 15:26+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
@@ -55,7 +55,7 @@ msgstr ""
 "motort automatikusan felismer, ha telepítve vannak."
 
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1559
 msgid "Chess"
 msgstr "Sakk"
 
@@ -200,8 +200,6 @@ msgid "_About Chess"
 msgstr "A Sakk _névjegye"
 
 #: data/chess-window.ui:67
-#| msgctxt "shortcut window"
-#| msgid "Undo move"
 msgid "Undo Move"
 msgstr "Lépés visszavonása"
 
@@ -211,25 +209,21 @@ msgstr "Főmenü"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
 #: data/chess-window.ui:151
-#| msgid "Rewind to the game start"
 msgid "Rewind to Game Start"
 msgstr "Vissza a játék kezdetére"
 
 #. Tooltip on the show previous move navigation button
 #: data/chess-window.ui:168
-#| msgid "Show the previous move"
 msgid "Show Previous Move"
 msgstr "Előző lépés megjelenítése"
 
 #. Tooltip on the show next move navigation button
 #: data/chess-window.ui:185
-#| msgid "Show the next move"
 msgid "Show Next Move"
 msgstr "Következő lépés megjelenítése"
 
 #. Tooltip on the show current move navigation button
 #: data/chess-window.ui:202
-#| msgid "Show the current move"
 msgid "Show Current Move"
 msgstr "Jelenlegi lépés megjelenítése"
 
@@ -239,41 +233,31 @@ msgid "General"
 msgstr "Általános"
 
 #: data/help-overlay.ui:15
-#| msgctxt "shortcut window"
-#| msgid "Start a new game"
 msgctxt "shortcut window"
 msgid "Start New Game"
 msgstr "Új játék indítása"
 
 #: data/help-overlay.ui:21
-#| msgctxt "shortcut window"
-#| msgid "Open a saved game"
 msgctxt "shortcut window"
 msgid "Open Saved Game"
 msgstr "Mentett játék megnyitása"
 
 #: data/help-overlay.ui:27
-#| msgctxt "shortcut window"
-#| msgid "Pause the game"
 msgctxt "shortcut window"
 msgid "Pause Game"
 msgstr "Játék szüneteltetése"
 
 #: data/help-overlay.ui:33
-#| msgid "_Save Game"
 msgctxt "shortcut window"
 msgid "Save Game"
 msgstr "Játék mentése"
 
 #: data/help-overlay.ui:39
-#| msgid "_Save Game As…"
 msgctxt "shortcut window"
 msgid "Save Game As…"
 msgstr "Játék mentése másként…"
 
 #: data/help-overlay.ui:45
-#| msgctxt "shortcut window"
-#| msgid "Undo move"
 msgctxt "shortcut window"
 msgid "Undo Move"
 msgstr "Lépés visszavonása"
@@ -294,28 +278,25 @@ msgid "History"
 msgstr "Előzmények"
 
 #: data/help-overlay.ui:68
-#| msgid "Rewind to the game start"
 msgctxt "shortcut window"
 msgid "Rewind to Game Start"
 msgstr "Vissza a játék kezdetére"
 
 #: data/help-overlay.ui:74
-#| msgid "Show the previous move"
 msgctxt "shortcut window"
 msgid "Show Previous Move"
 msgstr "Előző lépés megjelenítése"
 
 #: data/help-overlay.ui:80
-#| msgid "Show the next move"
 msgctxt "shortcut window"
 msgid "Show Next Move"
 msgstr "Következő lépés megjelenítése"
 
 #: data/help-overlay.ui:86
-#| msgid "Show the current move"
+#| msgid "Show Next Move"
 msgctxt "shortcut window"
-msgid "Show Current Move"
-msgstr "Jelenlegi lépés megjelenítése"
+msgid "Show Last Move"
+msgstr "Utolsó lépés megjelenítése"
 
 #: data/help-overlay.ui:93
 msgctxt "shortcut window"
@@ -337,7 +318,7 @@ msgid "New Game"
 msgstr "Új játék"
 
 #: data/new-game-window.ui:20 src/gnome-chess.vala:968
-#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
+#: src/gnome-chess.vala:1288 src/gnome-chess.vala:1429
 msgid "_Cancel"
 msgstr "Mé_gse"
 
@@ -1079,27 +1060,22 @@ msgstr ""
 "folytatódhat."
 
 #: src/gnome-chess.vala:965
-#| msgid "_Save Game"
 msgid "Save Game?"
 msgstr "Menti a játékot?"
 
 #: src/gnome-chess.vala:972
-#| msgid "_Abandon game"
 msgid "_Abandon Game"
 msgstr "Játék el_hagyása"
 
 #: src/gnome-chess.vala:973
-#| msgid "_Save game for later"
 msgid "Save game for later"
 msgstr "Játék mentése későbbre"
 
 #: src/gnome-chess.vala:979
-#| msgid "_Discard game"
 msgid "_Discard Game"
 msgstr "Játék el_vetése"
 
 #: src/gnome-chess.vala:980
-#| msgid "_Save game log"
 msgid "Save game log"
 msgstr "Játéknapló mentése"
 
@@ -1157,11 +1133,7 @@ msgstr ""
 msgid "_Resign"
 msgstr "_Feladás"
 
-#: src/gnome-chess.vala:1200
-msgid "A classic game of positional strategy"
-msgstr "Klasszikus stratégiai játék"
-
-#: src/gnome-chess.vala:1203
+#: src/gnome-chess.vala:1202
 msgid "translator-credits"
 msgstr ""
 "Bán Szabolcs <shooby at gnome dot hu>\n"
@@ -1173,68 +1145,68 @@ msgstr ""
 "Tímár András <timar at gnome dot hu>\n"
 "Varga Szabolcs <shirokuma at shirokuma dot hu>"
 
-#: src/gnome-chess.vala:1248
+#: src/gnome-chess.vala:1246
 msgid "Error Loading PGN File"
 msgstr "Hiba a PGN-fájl betöltésekor"
 
-#: src/gnome-chess.vala:1249
+#: src/gnome-chess.vala:1247
 msgid "This does not look like a valid PGN game."
 msgstr "Ez nem tűnik érvényes PGN játéknak."
 
-#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
-#: src/gnome-chess.vala:1370
+#: src/gnome-chess.vala:1249 src/gnome-chess.vala:1262
+#: src/gnome-chess.vala:1368
 msgid "_OK"
 msgstr "_OK"
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1259
 msgid "Invalid Move"
 msgstr "Érvénytelen lépés"
 
 #. Title of save game dialog
-#: src/gnome-chess.vala:1287
+#: src/gnome-chess.vala:1285
 msgid "Save Chess Game"
 msgstr "Sakkjátszma mentése"
 
-#: src/gnome-chess.vala:1289
+#: src/gnome-chess.vala:1287
 msgid "_Save"
 msgstr "M_entés"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1321
+#: src/gnome-chess.vala:1319
 msgid "Untitled Chess Game"
 msgstr "Névtelen sakkjátszma"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1325 src/gnome-chess.vala:1435
 msgid "PGN files"
 msgstr "PGN-fájlok"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
+#: src/gnome-chess.vala:1331 src/gnome-chess.vala:1441
 msgid "All files"
 msgstr "Minden fájl"
 
-#: src/gnome-chess.vala:1365
+#: src/gnome-chess.vala:1363
 msgid "Save Error"
 msgstr "Mentési hiba"
 
-#: src/gnome-chess.vala:1368
+#: src/gnome-chess.vala:1366
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "A játék mentése sikertelen: %s"
 
-#: src/gnome-chess.vala:1421
+#: src/gnome-chess.vala:1419
 msgid "Save this game before loading another one?"
 msgstr "Menti a játékot egy másik betöltése előtt?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1428
+#: src/gnome-chess.vala:1426
 msgid "Load Chess Game"
 msgstr "Sakkjátszma betöltése"
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1428
 msgid "_Open"
 msgstr "_Megnyitás"
 
