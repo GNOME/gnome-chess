@@ -21,14 +21,14 @@
 # Mario Blättermann <mario.blaettermann@gmail.com>, 2010-2013, 2017, 2020.
 # Tim Sabsch <tim@sabsch.com>, 2018-2020.
 # Philipp Kiemle <philipp.kiemle@gmail.com>, 2021.
-# Jürgen Benvenuti <gastornis@posteo.org>, 2022, 2023.
+# Jürgen Benvenuti <gastornis@posteo.org>, 2022-2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2023-10-22 16:04+0000\n"
-"PO-Revision-Date: 2023-10-27 18:56+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues/\n"
+"POT-Creation-Date: 2024-06-16 22:41+0000\n"
+"PO-Revision-Date: 2024-06-28 15:53+0200\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -36,7 +36,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: data/org.gnome.Chess.appdata.xml.in:7
 msgid "GNOME Chess"
@@ -64,12 +64,8 @@ msgstr ""
 "modernen Schachprogrammen und die Fähigkeit, die installierten Programme "
 "automatisch zu erkennen, zu schätzen wissen."
 
-#: data/org.gnome.Chess.appdata.xml.in:72
-msgid "The GNOME Project"
-msgstr "Das GNOME-Projekt"
-
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1559
 msgid "Chess"
 msgstr "Schach"
 
@@ -306,8 +302,8 @@ msgstr "Nächsten Zug anzeigen"
 
 #: data/help-overlay.ui:86
 msgctxt "shortcut window"
-msgid "Show Current Move"
-msgstr "Aktuellen Zug anzeigen"
+msgid "Show Last Move"
+msgstr "Letzten Zug anzeigen"
 
 #: data/help-overlay.ui:93
 msgctxt "shortcut window"
@@ -329,7 +325,7 @@ msgid "New Game"
 msgstr "Neues Spiel"
 
 #: data/new-game-window.ui:20 src/gnome-chess.vala:968
-#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
+#: src/gnome-chess.vala:1288 src/gnome-chess.vala:1429
 msgid "_Cancel"
 msgstr "A_bbrechen"
 
@@ -1148,11 +1144,7 @@ msgstr ""
 msgid "_Resign"
 msgstr "A_ufgeben"
 
-#: src/gnome-chess.vala:1200
-msgid "A classic game of positional strategy"
-msgstr "Ein klassisches Spiel mit Positionsstrategie"
-
-#: src/gnome-chess.vala:1203
+#: src/gnome-chess.vala:1202
 msgid "translator-credits"
 msgstr ""
 "Karl Eichwalder <ke@suse.de>\n"
@@ -1175,68 +1167,68 @@ msgstr ""
 "Philipp Kiemle <philipp.kiemle@gmail.com>\n"
 "Jürgen Benvenuti <gastornis@posteo.org>"
 
-#: src/gnome-chess.vala:1248
+#: src/gnome-chess.vala:1246
 msgid "Error Loading PGN File"
 msgstr "Fehler beim Laden der PGN-Datei"
 
-#: src/gnome-chess.vala:1249
+#: src/gnome-chess.vala:1247
 msgid "This does not look like a valid PGN game."
 msgstr "Dies scheint keine Partie im gültigen PGN-Format zu sein."
 
-#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
-#: src/gnome-chess.vala:1370
+#: src/gnome-chess.vala:1249 src/gnome-chess.vala:1262
+#: src/gnome-chess.vala:1368
 msgid "_OK"
 msgstr "_OK"
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1259
 msgid "Invalid Move"
 msgstr "Ungültiger Zug"
 
 #. Title of save game dialog
-#: src/gnome-chess.vala:1287
+#: src/gnome-chess.vala:1285
 msgid "Save Chess Game"
 msgstr "Schach-Partie speichern"
 
-#: src/gnome-chess.vala:1289
+#: src/gnome-chess.vala:1287
 msgid "_Save"
 msgstr "_Speichern"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1321
+#: src/gnome-chess.vala:1319
 msgid "Untitled Chess Game"
 msgstr "Unbenannte Schachpartie"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1325 src/gnome-chess.vala:1435
 msgid "PGN files"
 msgstr "PGN-Dateien"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
+#: src/gnome-chess.vala:1331 src/gnome-chess.vala:1441
 msgid "All files"
 msgstr "Alle Dateien"
 
-#: src/gnome-chess.vala:1365
+#: src/gnome-chess.vala:1363
 msgid "Save Error"
 msgstr "Fehler beim Speichern"
 
-#: src/gnome-chess.vala:1368
+#: src/gnome-chess.vala:1366
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Das Spiel konnte nicht gespeichert werden: %s"
 
-#: src/gnome-chess.vala:1421
+#: src/gnome-chess.vala:1419
 msgid "Save this game before loading another one?"
 msgstr "Dieses Spiel vor dem Laden eines anderen Spiels speichern?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1428
+#: src/gnome-chess.vala:1426
 msgid "Load Chess Game"
 msgstr "Schach-Partie laden"
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1428
 msgid "_Open"
 msgstr "Ö_ffnen"
 
@@ -1334,6 +1326,16 @@ msgstr "Bronstein"
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "Mensch"
+
+#~ msgid "The GNOME Project"
+#~ msgstr "Das GNOME-Projekt"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show Current Move"
+#~ msgstr "Aktuellen Zug anzeigen"
+
+#~ msgid "A classic game of positional strategy"
+#~ msgstr "Ein klassisches Spiel mit Positionsstrategie"
 
 #~ msgid "Undo your most recent move"
 #~ msgstr "Ihren letzten Zug rückgängig machen"
