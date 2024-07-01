@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2023-10-04 21:18+0000\n"
-"PO-Revision-Date: 2023-10-07 01:28+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues/\n"
+"POT-Creation-Date: 2024-06-16 22:41+0000\n"
+"PO-Revision-Date: 2024-07-01 21:28+0200\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Project-Style: gnome\n"
 
 #: data/org.gnome.Chess.appdata.xml.in:7
@@ -60,12 +60,8 @@ msgstr ""
 "moderními počítačovými šachovými jádry a jeho schopnost automaticky "
 "vyhledat, že jsou některá z nich nainstalována."
 
-#: data/org.gnome.Chess.appdata.xml.in:72
-msgid "The GNOME Project"
-msgstr "Projekt GNOME"
-
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1559
 msgid "Chess"
 msgstr "Šachy"
 
@@ -303,8 +299,8 @@ msgstr "Zobrazit následující tah"
 
 #: data/help-overlay.ui:86
 msgctxt "shortcut window"
-msgid "Show Current Move"
-msgstr "Zobrazit aktuální tah"
+msgid "Show Last Move"
+msgstr "Zobrazit poslední tah"
 
 #: data/help-overlay.ui:93
 msgctxt "shortcut window"
@@ -326,7 +322,7 @@ msgid "New Game"
 msgstr "Nová hra"
 
 #: data/new-game-window.ui:20 src/gnome-chess.vala:968
-#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
+#: src/gnome-chess.vala:1288 src/gnome-chess.vala:1429
 msgid "_Cancel"
 msgstr "_Zrušit"
 
@@ -1136,76 +1132,72 @@ msgstr ""
 msgid "_Resign"
 msgstr "Vzdá_t"
 
-#: src/gnome-chess.vala:1200
-msgid "A classic game of positional strategy"
-msgstr "Klasická tahová strategie"
-
-#: src/gnome-chess.vala:1203
+#: src/gnome-chess.vala:1202
 msgid "translator-credits"
 msgstr "Marek Černocký <marek@manet.cz>"
 
-#: src/gnome-chess.vala:1248
+#: src/gnome-chess.vala:1246
 msgid "Error Loading PGN File"
 msgstr "Chyba při načítání souboru PGN"
 
-#: src/gnome-chess.vala:1249
+#: src/gnome-chess.vala:1247
 msgid "This does not look like a valid PGN game."
 msgstr "Nevypadá to jako platný zápis hry v PGN."
 
-#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
-#: src/gnome-chess.vala:1370
+#: src/gnome-chess.vala:1249 src/gnome-chess.vala:1262
+#: src/gnome-chess.vala:1368
 msgid "_OK"
 msgstr "_Budiž"
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1259
 msgid "Invalid Move"
 msgstr "Neplatný tah"
 
 #. Title of save game dialog
-#: src/gnome-chess.vala:1287
+#: src/gnome-chess.vala:1285
 msgid "Save Chess Game"
 msgstr "Uložit šachovou partii"
 
-#: src/gnome-chess.vala:1289
+#: src/gnome-chess.vala:1287
 msgid "_Save"
 msgstr "_Uložit"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1321
+#: src/gnome-chess.vala:1319
 msgid "Untitled Chess Game"
 msgstr "Nepojmenovaná šachová partie"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1325 src/gnome-chess.vala:1435
 msgid "PGN files"
 msgstr "Soubory PGN"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
+#: src/gnome-chess.vala:1331 src/gnome-chess.vala:1441
 msgid "All files"
 msgstr "Všechny soubory"
 
-#: src/gnome-chess.vala:1365
+#: src/gnome-chess.vala:1363
 msgid "Save Error"
 msgstr "Chyba uložení"
 
-#: src/gnome-chess.vala:1368
+#: src/gnome-chess.vala:1366
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Selhalo uložení hry: %s"
 
-#: src/gnome-chess.vala:1421
+#: src/gnome-chess.vala:1419
 msgid "Save this game before loading another one?"
 msgstr "Uložit tuto hru před načtením další?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1428
+#: src/gnome-chess.vala:1426
 msgid "Load Chess Game"
 msgstr "Načíst šachovou partii"
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1428
 msgid "_Open"
 msgstr "_Otevřít"
 
@@ -1303,6 +1295,16 @@ msgstr "Bronsteinovy"
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "Člověk"
+
+#~ msgid "The GNOME Project"
+#~ msgstr "Projekt GNOME"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show Current Move"
+#~ msgstr "Zobrazit aktuální tah"
+
+#~ msgid "A classic game of positional strategy"
+#~ msgstr "Klasická tahová strategie"
 
 #~ msgid "Undo your most recent move"
 #~ msgstr "Vrátit zpět svůj poslední tah"
