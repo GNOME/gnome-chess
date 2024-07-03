@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games trunk\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2023-10-12 07:28+0000\n"
-"PO-Revision-Date: 2023-10-19 11:13+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues/\n"
+"POT-Creation-Date: 2024-06-16 22:41+0000\n"
+"PO-Revision-Date: 2024-06-21 16:24+1000\n"
 "Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: Русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -58,12 +58,8 @@ msgstr ""
 "современными компьютерными шахматными движками, а также способность "
 "автоматически определять некоторые установленные популярные движки."
 
-#: data/org.gnome.Chess.appdata.xml.in:72
-msgid "The GNOME Project"
-msgstr "Проект GNOME"
-
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1559
 msgid "Chess"
 msgstr "Шахматы"
 
@@ -301,8 +297,8 @@ msgstr "Показать следующий ход"
 
 #: data/help-overlay.ui:86
 msgctxt "shortcut window"
-msgid "Show Current Move"
-msgstr "Показать текущий ход"
+msgid "Show Last Move"
+msgstr "Показать последний ход"
 
 #: data/help-overlay.ui:93
 msgctxt "shortcut window"
@@ -324,7 +320,7 @@ msgid "New Game"
 msgstr "Новая игра"
 
 #: data/new-game-window.ui:20 src/gnome-chess.vala:968
-#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
+#: src/gnome-chess.vala:1288 src/gnome-chess.vala:1429
 msgid "_Cancel"
 msgstr "_Отменить"
 
@@ -1135,78 +1131,74 @@ msgstr "Это имеет смысл, если вы хотите сохрани�
 msgid "_Resign"
 msgstr "Сд_аться"
 
-#: src/gnome-chess.vala:1200
-msgid "A classic game of positional strategy"
-msgstr "Классическая позиционная стратегия"
-
-#: src/gnome-chess.vala:1203
+#: src/gnome-chess.vala:1202
 msgid "translator-credits"
 msgstr ""
 "Юрий Мясоедов <ymyasoedov@yandex.ru>, 2013-2014.\n"
 "Станислав Соловей <whats_up@tut.by>, 2016-2018."
 
-#: src/gnome-chess.vala:1248
+#: src/gnome-chess.vala:1246
 msgid "Error Loading PGN File"
 msgstr "Ошибка при загрузке PGN-файла"
 
-#: src/gnome-chess.vala:1249
+#: src/gnome-chess.vala:1247
 msgid "This does not look like a valid PGN game."
 msgstr "Кажется, игра PGN некорректна."
 
-#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
-#: src/gnome-chess.vala:1370
+#: src/gnome-chess.vala:1249 src/gnome-chess.vala:1262
+#: src/gnome-chess.vala:1368
 msgid "_OK"
 msgstr "_OK"
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1259
 msgid "Invalid Move"
 msgstr "Неверный ход"
 
 #. Title of save game dialog
-#: src/gnome-chess.vala:1287
+#: src/gnome-chess.vala:1285
 msgid "Save Chess Game"
 msgstr "Сохранить игру"
 
-#: src/gnome-chess.vala:1289
+#: src/gnome-chess.vala:1287
 msgid "_Save"
 msgstr "_Сохранить"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1321
+#: src/gnome-chess.vala:1319
 msgid "Untitled Chess Game"
 msgstr "Безымянная игра"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1325 src/gnome-chess.vala:1435
 msgid "PGN files"
 msgstr "Файлы PGN"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
+#: src/gnome-chess.vala:1331 src/gnome-chess.vala:1441
 msgid "All files"
 msgstr "Все файлы"
 
-#: src/gnome-chess.vala:1365
+#: src/gnome-chess.vala:1363
 msgid "Save Error"
 msgstr "Ошибка сохранения"
 
-#: src/gnome-chess.vala:1368
+#: src/gnome-chess.vala:1366
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Не удалось сохранить игру: %s"
 
-#: src/gnome-chess.vala:1421
+#: src/gnome-chess.vala:1419
 msgid "Save this game before loading another one?"
 msgstr "Сохранить эту игру перед загрузкой другой?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1428
+#: src/gnome-chess.vala:1426
 msgid "Load Chess Game"
 msgstr "Загрузить игру"
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1428
 msgid "_Open"
 msgstr "_Открыть"
 
@@ -1304,6 +1296,16 @@ msgstr "Бронштейн"
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "Человек"
+
+#~ msgid "The GNOME Project"
+#~ msgstr "Проект GNOME"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show Current Move"
+#~ msgstr "Показать текущий ход"
+
+#~ msgid "A classic game of positional strategy"
+#~ msgstr "Классическая позиционная стратегия"
 
 #~ msgid "Undo your most recent move"
 #~ msgstr "Отменить последний ход"
