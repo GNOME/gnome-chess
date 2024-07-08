@@ -1,7 +1,7 @@
 /* -*- Mode: vala; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*-
  *
  * Copyright (C) 2010-2013 Robert Ancell
- * Copyright (C) 2013-2020 Michael Catanzaro
+ * Copyright (C) 2013-2024 Michael Catanzaro
  * Copyright (C) 2015-2016 Sahil Sareen
  *
  * This program is free software: you can redistribute it and/or modify it under
@@ -71,7 +71,7 @@ public class ChessApplication : Adw.Application
     private ChessEngine? opponent_engine = null;
     private uint engine_timeout_source = 0;
     private string copyrights = """Copyright © 2010–2013 Robert Ancell
-Copyright © 2013–2020 Michael Catanzaro
+Copyright © 2013–2024 Michael Catanzaro
 Copyright © 2015–2016 Sahil Sareen""";
 
     private const ActionEntry[] action_entries =
