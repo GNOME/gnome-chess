@@ -32,7 +32,7 @@ min_glib_version = '2.44.0'
 gio = dependency('gio-unix-2.0', version: '>=' + min_glib_version)
 glib = dependency('glib-2.0', version: '>=' + min_glib_version)
 gmodule = dependency('gmodule-2.0', version: '>=' + min_glib_version)
-gtk = dependency('gtk4')
+gtk = dependency('gtk4', version: '>= 4.10')
 libadwaita = dependency('libadwaita-1', version: '>= 1.5')
 librsvg = dependency('librsvg-2.0', version: '>= 2.46.0')
 pangocairo = dependency('pangocairo')
