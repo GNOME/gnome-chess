@@ -50,7 +50,7 @@ public class ChessApplication : Adw.Application
     private NewGameWindow? new_game_window = null;
     private PreferencesWindow? preferences_window = null;
     private Adw.AboutDialog? about_dialog = null;
-    private Gtk.FileChooserNative? open_dialog = null;
+    private Gtk.FileDialog? open_dialog = null;
     private Gtk.FileChooserNative? save_dialog = null;
     private ulong save_dialog_response_id = 0;
 
@@ -1419,11 +1419,9 @@ Copyright © 2015–2016 Sahil Sareen""";
 
             if (open_dialog == null)
             {
-                open_dialog = new Gtk.FileChooserNative (/* Title of load game dialog */
-                                                         _("Load Chess Game"),
-                                                         window, Gtk.FileChooserAction.OPEN,
-                                                         _("_Open"),
-                                                         _("_Cancel"));
+                open_dialog = new Gtk.FileDialog ();
+                /* Title of load game dialog */
+                open_dialog.title = _("Load Chess Game");
                 open_dialog.modal = true;
 
                 /* Filter out non PGN files by default */
@@ -1431,26 +1429,30 @@ Copyright © 2015–2016 Sahil Sareen""";
                 /* Load Game Dialog: Name of filter to show only PGN files */
                 pgn_filter.set_filter_name (_("PGN files"));
                 pgn_filter.add_pattern ("*.pgn");
-                open_dialog.add_filter (pgn_filter);
 
                 var all_filter = new Gtk.FileFilter ();
                 /* Load Game Dialog: Name of filter to show all files */
                 all_filter.set_filter_name (_("All files"));
                 all_filter.add_pattern ("*");
-                open_dialog.add_filter (all_filter);
 
-                open_dialog.response.connect ((response_id) => {
-                    if (response_id == Gtk.ResponseType.ACCEPT)
-                    {
-                        game_file = open_dialog.get_file ();
-                        load_game (game_file);
-                    }
-
-                    open_dialog.hide ();
-                });
+                var filters = new ListStore (typeof (Gtk.FileFilter));
+                filters.append (pgn_filter);
+                filters.append (all_filter);
+                open_dialog.filters = filters;
             }
 
-            open_dialog.show ();
+            open_dialog.open.begin (window, null, (object, result) => {
+                try
+                {
+                    game_file = open_dialog.open.end (result);
+                    load_game (game_file);
+                }
+                catch (Error e)
+                {
+                    if (!e.matches (Gtk.DialogError.quark (), Gtk.DialogError.DISMISSED))
+                        warning ("Failed to open game: %s", e.message);
+                }
+            });
         });
     }
 
