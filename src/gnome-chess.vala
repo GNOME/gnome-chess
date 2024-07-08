@@ -27,6 +27,12 @@ public const string HELP_ACTION_NAME = "help";
 public const string ABOUT_ACTION_NAME = "about";
 public const string QUIT_ACTION_NAME = "quit";
 
+// https://gitlab.gnome.org/GNOME/gtk/-/issues/6135
+namespace Workaround {
+    [CCode (cheader_filename = "gtk/gtk.h", cname = "gtk_show_uri")]
+    extern static void gtk_show_uri (Gtk.Window? parent, string uri, uint32 timestamp);
+}
+
 public class ChessApplication : Adw.Application
 {
     private GLib.Settings settings;
@@ -1167,7 +1173,7 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     public void help_cb ()
     {
-        Gtk.show_uri (window, "help:gnome-chess", Gdk.CURRENT_TIME);
+        Workaround.gtk_show_uri (window, "help:gnome-chess", Gdk.CURRENT_TIME);
     }
 
     private const string[] authors = { "Robert Ancell <robert.ancell@gmail.com>", "Michael Catanzaro <mcatanzaro@gnome.org>", null };
