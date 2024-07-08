@@ -51,8 +51,7 @@ public class ChessApplication : Adw.Application
     private PreferencesWindow? preferences_window = null;
     private Adw.AboutDialog? about_dialog = null;
     private Gtk.FileDialog? open_dialog = null;
-    private Gtk.FileChooserNative? save_dialog = null;
-    private ulong save_dialog_response_id = 0;
+    private Gtk.FileDialog? save_dialog = null;
 
     private PGNGame pgn_game;
     private ChessGame? game = null;
@@ -1278,11 +1277,9 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         if (save_dialog == null)
         {
-            save_dialog = new Gtk.FileChooserNative (/* Title of save game dialog */
-                                                     _("Save Chess Game"),
-                                                     window, Gtk.FileChooserAction.SAVE,
-                                                     _("_Save"),
-                                                     _("_Cancel"));
+            save_dialog = new Gtk.FileDialog ();
+            /* Title of save game dialog */
+            save_dialog.title = _("Save Chess Game");
 
             var set_file = false;
             if (game_file != null)
@@ -1298,21 +1295,14 @@ Copyright © 2015–2016 Sahil Sareen""";
                 var path = game_file.get_path ();
                 if (path != autosave_filename && !path.has_prefix ("/run"))
                 {
-                    try
-                    {
-                        save_dialog.set_file (game_file);
-                        set_file = true;
-                    }
-                    catch (Error e)
-                    {
-                        warning ("Failed to set file chooser default file: %s", e.message);
-                    }
+                    save_dialog.set_initial_file (game_file);
+                    set_file = true;
                 }
             }
 
             if (!set_file)
             {
-                save_dialog.set_current_name (/* Default filename for the save game dialog */
+                save_dialog.set_initial_name (/* Default filename for the save game dialog */
                                               _("Untitled Chess Game") + ".pgn");
             }
 
@@ -1321,67 +1311,52 @@ Copyright © 2015–2016 Sahil Sareen""";
             /* Save Game Dialog: Name of filter to show only PGN files */
             pgn_filter.set_filter_name (_("PGN files"));
             pgn_filter.add_pattern ("*.pgn");
-            save_dialog.add_filter (pgn_filter);
 
             var all_filter = new Gtk.FileFilter ();
             /* Save Game Dialog: Name of filter to show all files */
             all_filter.set_filter_name (_("All files"));
             all_filter.add_pattern ("*");
-            save_dialog.add_filter (all_filter);
 
-            save_dialog.modal = true;
+            var filters = new ListStore (typeof (Gtk.FileFilter));
+            filters.append (pgn_filter);
+            filters.append (all_filter);
+            save_dialog.filters = filters;
         }
 
-        /* We have to reconnect the signal each time we show the dialog to
-         * ensure we execute the current callback.
-         */
-        if (save_dialog_response_id != 0)
-            save_dialog.disconnect (save_dialog_response_id);
+        save_dialog.save.begin (window, null, (object, result) => {
+            update_pgn_time_remaining ();
 
-        save_dialog_response_id = save_dialog.response.connect ((response_id) => {
-            if (response_id == Gtk.ResponseType.ACCEPT)
+            try
             {
-                update_pgn_time_remaining ();
+                game_file = save_dialog.save.end (result);
+                pgn_game.write (game_file);
 
-                try
+                disable_action (SAVE_GAME_ACTION_NAME);
+                game_needs_saving = false;
+
+                if (callback != null)
+                    callback (true);
+            }
+            catch (Error e)
+            {
+                if (e.matches (Gtk.DialogError.quark (), Gtk.DialogError.DISMISSED))
                 {
-                    game_file = save_dialog.get_file ();
-                    pgn_game.write (game_file);
-
-                    disable_action (SAVE_GAME_ACTION_NAME);
-                    game_needs_saving = false;
-
                     if (callback != null)
-                        callback (true);
+                        callback (false);
+                    return;
                 }
-                catch (Error e)
-                {
-                    var save_error_dialog = new Adw.MessageDialog (window,
-                                                                   _("Save Error"),
-                                                                   "");
 
-                    save_error_dialog.format_body (_("Failed to save game: %s"), e.message);
-
-                    save_error_dialog.add_response ("ok", _("_OK"));
-
-                    save_error_dialog.response.connect(( dialog, response ) => {
-                        save_error_dialog.destroy ();
-                        if (callback != null)
-                            callback (false);
-                    });
-
-                    save_error_dialog.present ();
-                }
+                var save_error_dialog = new Adw.MessageDialog (window, _("Save Error"), "");
+                save_error_dialog.format_body (_("Failed to save game: %s"), e.message);
+                save_error_dialog.add_response ("ok", _("_OK"));
+                save_error_dialog.response.connect(( dialog, response ) => {
+                    save_error_dialog.destroy ();
+                    if (callback != null)
+                        callback (false);
+                });
+                save_error_dialog.present ();
             }
-            else if (callback != null)
-            {
-                callback (false);
-            }
-
-            save_dialog.hide ();
         });
-
-        save_dialog.show ();
     }
 
     public void save_game_cb ()
