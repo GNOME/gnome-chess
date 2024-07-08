@@ -67,8 +67,8 @@ public class PromotionTypeSelectorDialog : Gtk.Dialog
             var c = new Cairo.Context (s);
             h.render_document (c, Rsvg.Rectangle () { width = size, height = size, x = 0, y = 0 });
 
-            var p = Gdk.pixbuf_get_from_surface (s, 0, 0, size, size);
-            image.set_from_pixbuf (p);
+            var p = create_texture_for_surface (s);
+            image.set_from_paintable (p);
 
             image.height_request = size;
         }
@@ -76,6 +76,21 @@ public class PromotionTypeSelectorDialog : Gtk.Dialog
         {
             warning ("Failed to load piece image %s: %s", resource_path, e.message);
         }
+    }
+
+    private static Gdk.Texture create_texture_for_surface (Cairo.ImageSurface surface)
+        requires (surface.get_type () == Cairo.SurfaceType.IMAGE)
+        requires (surface.get_width () > 0)
+        requires (surface.get_height () > 0)
+        requires (BYTE_ORDER == ByteOrder.LITTLE_ENDIAN || BYTE_ORDER == ByteOrder.BIG_ENDIAN)
+    {
+        unowned uchar[] data = surface.get_data ();
+        data.length = surface.get_height () * surface.get_stride ();
+        return new Gdk.MemoryTexture (surface.get_width (),
+                                      surface.get_height (),
+                                      BYTE_ORDER == ByteOrder.LITTLE_ENDIAN ? Gdk.MemoryFormat.B8G8R8A8_PREMULTIPLIED : Gdk.MemoryFormat.A8R8G8B8_PREMULTIPLIED,
+                                      new Bytes (data),
+                                      surface.get_stride ());
     }
 
     [GtkCallback]
