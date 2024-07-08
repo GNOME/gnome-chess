@@ -615,11 +615,11 @@ public class ChessState : Object
                                           get_rank (start), get_file (start),
                                           get_rank (king_index), get_file (king_index),
                                           PieceType.QUEEN, false, false))
-                        {
-                            ranks += get_rank (start);
-                            files += get_file (start);
-                            found = true;
-                        }
+                    {
+                        ranks += get_rank (start);
+                        files += get_file (start);
+                        found = true;
+                    }
                 }
 
                 rank = ranks;
