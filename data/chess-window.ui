@@ -47,12 +47,6 @@
       </item>
     </section>
   </menu>
-  <object class="GtkListStore" id="history_model">
-    <columns>
-      <column type="gchararray"/>
-      <column type="gint"/>
-    </columns>
-  </object>
   <template class="ChessWindow" parent="AdwApplicationWindow">
     <property name="can-focus">0</property>
     <property name="default-width">700</property>
@@ -111,8 +105,8 @@
               <object class="AdwToastOverlay" id="toast_overlay"/>
             </child>
           </object>
-	</property>
-	<child type="bottom">
+        </property>
+        <child type="bottom">
           <object class="GtkBox" id="navigation_box">
             <property name="can-focus">0</property>
             <property name="spacing">6</property>
@@ -199,19 +193,13 @@
               </object>
             </child>
             <child>
-              <object class="GtkComboBox" id="history_combo">
+              <object class="GtkDropDown" id="history_dropdown">
                 <property name="hexpand">1</property>
                 <property name="can-focus">0</property>
-                <property name="model">history_model</property>
-                <signal name="changed" handler="history_combo_changed_cb" swapped="no"/>
-                <child>
-                  <object class="GtkCellRendererText">
-                    <property name="ellipsize">PANGO_ELLIPSIZE_END</property>
-                  </object>
-                  <attributes>
-                    <attribute name="text">0</attribute>
-                  </attributes>
-                </child>
+                <property name="model">
+                  <object class="GtkStringList" id="history_model"/>
+                </property>
+                <signal name="notify::selected" handler="history_dropdown_selection_changed_cb" swapped="no"/>
               </object>
             </child>
             <child>
@@ -234,7 +222,7 @@
               </object>
             </child>
           </object>
-	</child>
+        </child>
       </object>
     </child>
   </template>
@@ -243,7 +231,7 @@
     <widgets>
       <widget name="white_time_label"/>
       <widget name="black_time_label"/>
-      <widget name="history_combo"/>
+      <widget name="history_dropdown"/>
     </widgets>
   </object>
 </interface>

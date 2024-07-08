@@ -61,7 +61,9 @@ public class ChessWindow : Adw.ApplicationWindow
     [GtkChild]
     private unowned Gtk.Box navigation_box;
     [GtkChild]
-    private unowned Gtk.ComboBox history_combo;
+    private unowned Gtk.DropDown history_dropdown;
+    [GtkChild]
+    private unowned Gtk.StringList history_model;
     [GtkChild]
     private unowned Gtk.Box clock_box;
     [GtkChild]
@@ -164,22 +166,18 @@ public class ChessWindow : Adw.ApplicationWindow
         else
             app.disable_action (HISTORY_GO_LAST_ACTION_NAME);
 
-        history_combo.sensitive = !game.is_paused;
+        history_dropdown.sensitive = !game.is_paused;
 
         /* Set move text for all moves (it may have changed format) */
-        int i = n_moves;
+        int i = 0;
+        string[] moves = new string[n_moves];
         foreach (var state in game.move_stack)
         {
-            if (state.last_move != null)
-            {
-                Gtk.TreeIter iter;
-                if (history_combo.model.iter_nth_child (out iter, null, i))
-                    set_move_text (iter, state.last_move);
-            }
-            i--;
+            var move = state.last_move;
+            moves[i++] = move != null ? get_move_text (move) : null;
         }
 
-        history_combo.set_active (move_number);
+        history_dropdown.set_selected (move_number);
     }
 
     public void set_clock_visible (bool visible)
@@ -295,19 +293,19 @@ public class ChessWindow : Adw.ApplicationWindow
     }
 
     [GtkCallback]
-    private void history_combo_changed_cb (Gtk.ComboBox combo)
+    private void history_dropdown_selection_changed_cb ()
     {
-        Gtk.TreeIter iter;
-        if (!combo.get_active_iter (out iter))
+        var move_number = (int) history_dropdown.get_selected ();
+        if (move_number == Gtk.INVALID_LIST_POSITION)
             return;
-        int move_number;
-        combo.model.get (iter, 1, out move_number, -1);
+
         if (game == null || move_number == game.n_moves)
-            move_number = -1;
-        scene.move_number = move_number;
+            scene.move_number = -1;
+        else
+            scene.move_number = move_number;
     }
 
-    public void set_move_text (Gtk.TreeIter iter, ChessMove move)
+    public string get_move_text (ChessMove move)
     {
         /* Note there are no move formats for pieces taking kings and this is not allowed in Chess rules */
         const string human_descriptions[] = {/* Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4' */
@@ -515,21 +513,15 @@ public class ChessWindow : Adw.ApplicationWindow
             break;
         }
 
-        var model = (Gtk.ListStore) history_combo.model;
-        var label = "%u%c. %s".printf ((move.number + 1) / 2, move.number % 2 == 0 ? 'b' : 'a', move_text);
-        model.set (iter, 0, label, -1);
+        return "%u%c. %s".printf ((move.number + 1) / 2, move.number % 2 == 0 ? 'b' : 'a', move_text);
     }
 
     public void start_game ()
     {
-        var model = (Gtk.ListStore) history_combo.model;
-        model.clear ();
-        Gtk.TreeIter iter;
-        model.append (out iter);
-        model.set (iter, 0,
-                   /* Move History Combo: Go to the start of the game */
-                   _("Game Start"), 1, 0, -1);
-        history_combo.set_active_iter (iter);
+        /* Delete everything from history. */
+        history_model.splice (0, history_model.n_items, null);
+        history_model.append (_("Game Start"));
+        history_dropdown.set_selected (0);
 
         white_time_label.queue_draw ();
         black_time_label.queue_draw ();
@@ -548,31 +540,23 @@ public class ChessWindow : Adw.ApplicationWindow
         /* Automatically return view to the present */
         scene.move_number = -1;
 
-        var model = (Gtk.ListStore) history_combo.model;
-        Gtk.TreeIter iter;
-        model.append (out iter);
-        model.set (iter, 1, m.number, -1);
-        set_move_text (iter, m);
+        history_model.append (get_move_text (m));
 
         /* Follow the latest move */
         if (m.number == game.n_moves)
-            history_combo.set_active_iter (iter);
+            history_dropdown.set_selected (m.number);
     }
 
     public void undo ()
     {
         /* Remove from the history */
-        var model = (Gtk.ListStore) history_combo.model;
-        Gtk.TreeIter iter;
-        model.iter_nth_child (out iter, null, model.iter_n_children (null) - 1);
-        model.remove (ref iter);
+        history_model.remove (history_model.n_items - 1);
 
         /* Always undo from the most recent move */
         scene.move_number = -1;
 
         /* Go back one */
-        model.iter_nth_child (out iter, null, model.iter_n_children (null) - 1);
-        history_combo.set_active_iter (iter);
+        history_dropdown.set_selected (history_model.n_items - 1);
         view.queue_draw ();
     }
 
