@@ -1202,13 +1202,12 @@ Copyright © 2015–2016 Sahil Sareen""";
     private void show_promotion_type_selector (owned ChessScene.PromotionTypeCompletionHandler handler)
     {
         /* We cannot cache this dialog because it uses the piece color of the current player. */
-        var promotion_type_selector_dialog = new PromotionTypeSelectorDialog (window,
-                                                                              game.current_player.color,
+        var promotion_type_selector_dialog = new PromotionTypeSelectorDialog (game.current_player.color,
                                                                               scene.theme_name,
                                                                               window.layout_mode);
 
-        promotion_type_selector_dialog.response.connect ((response_id) => {
-            switch (response_id)
+        promotion_type_selector_dialog.piece_selected.connect ((selected_type) => {
+            switch (selected_type)
             {
             case PromotionTypeSelectorDialog.SelectedType.QUEEN:
                 handler (PieceType.QUEEN);
@@ -1227,11 +1226,11 @@ Copyright © 2015–2016 Sahil Sareen""";
                 break;
             }
 
-            promotion_type_selector_dialog.destroy ();
+            promotion_type_selector_dialog.close ();
             promotion_type_selector_dialog = null;
         });
 
-        promotion_type_selector_dialog.show ();
+        promotion_type_selector_dialog.present (window);
     }
 
     private void run_invalid_pgn_dialog ()

@@ -11,9 +11,9 @@
  */
 
 [GtkTemplate (ui = "/org/gnome/Chess/ui/promotion-type-selector.ui")]
-public class PromotionTypeSelectorDialog : Gtk.Dialog
+public class PromotionTypeSelectorDialog : Adw.Dialog
 {
-    enum SelectedType
+    public enum SelectedType
     {
         QUEEN,
         KNIGHT,
@@ -32,11 +32,10 @@ public class PromotionTypeSelectorDialog : Gtk.Dialog
     [GtkChild]
     private unowned Gtk.Image bishop_image;
 
-    public PromotionTypeSelectorDialog (Gtk.Window window, Color color, string theme, ChessWindow.LayoutMode layout_mode)
-    {
-        transient_for = window;
-        modal = true;
+    public signal void piece_selected (SelectedType type);
 
+    public PromotionTypeSelectorDialog (Color color, string theme, ChessWindow.LayoutMode layout_mode)
+    {
         if (layout_mode == ChessWindow.LayoutMode.NARROW)
             button_box.orientation = Gtk.Orientation.VERTICAL;
 
@@ -96,24 +95,24 @@ public class PromotionTypeSelectorDialog : Gtk.Dialog
     [GtkCallback]
     private void queen_selected_cb (Gtk.Button button)
     {
-        response (SelectedType.QUEEN);
+        piece_selected (SelectedType.QUEEN);
     }
 
     [GtkCallback]
     private void knight_selected_cb (Gtk.Button button)
     {
-        response (SelectedType.KNIGHT);
+        piece_selected (SelectedType.KNIGHT);
     }
 
     [GtkCallback]
     private void rook_selected_cb (Gtk.Button button)
     {
-        response (SelectedType.ROOK);
+        piece_selected (SelectedType.ROOK);
     }
 
     [GtkCallback]
     private void bishop_selected_cb (Gtk.Button button)
     {
-        response (SelectedType.BISHOP);
+        piece_selected (SelectedType.BISHOP);
     }
 }
