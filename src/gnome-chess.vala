@@ -53,8 +53,8 @@ public class ChessApplication : Adw.Application
         get { return view.scene; }
     }
 
-    private NewGameWindow? new_game_window = null;
-    private PreferencesWindow? preferences_window = null;
+    private NewGameDialog? new_game_dialog = null;
+    private PreferencesDialog? preferences_dialog = null;
     private Adw.AboutDialog? about_dialog = null;
     private Gtk.FileDialog? open_dialog = null;
     private Gtk.FileDialog? save_dialog = null;
@@ -1148,27 +1148,27 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     private void configure_new_game ()
     {
-        if (new_game_window != null)
+        if (new_game_dialog != null)
         {
-            new_game_window.show ();
+            new_game_dialog.present (window);
             return;
         }
 
-        new_game_window = new NewGameWindow (window, preferences, ai_profiles);
-        new_game_window.new_game_requested.connect (() => start_new_game ());
-        new_game_window.show ();
+        new_game_dialog = new NewGameDialog (preferences, ai_profiles);
+        new_game_dialog.new_game_requested.connect (() => start_new_game ());
+        new_game_dialog.present (window);
     }
 
     private void preferences_cb ()
     {
-        if (preferences_window != null)
+        if (preferences_dialog != null)
         {
-            preferences_window.show ();
+            preferences_dialog.present (window);
             return;
         }
 
-        preferences_window = new PreferencesWindow (window, preferences);
-        preferences_window.show ();
+        preferences_dialog = new PreferencesDialog (preferences);
+        preferences_dialog.present (window);
     }
 
     public void help_cb ()

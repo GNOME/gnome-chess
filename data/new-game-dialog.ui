@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk" version="4.0"/>
-  <template class="NewGameWindow" parent="AdwPreferencesWindow">
+  <template class="NewGameDialog" parent="AdwPreferencesDialog">
     <property name="title" translatable="yes">New Game</property>
-    <property name="hide-on-close">true</property>
-    <property name="modal">true</property>
     <property name="search-enabled">false</property>
-    <property name="default_width">400</property>
-    <property name="default_height">550</property>
+    <property name="content-width">400</property>
+    <property name="content-height">550</property>
     <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
@@ -20,7 +18,7 @@
                 <property name="label" translatable="yes">_Cancel</property>
                 <property name="valign">center</property>
                 <property name="use-underline">true</property>
-                <signal name="clicked" handler="gtk_window_close" object="NewGameWindow" swapped="yes"/>
+                <signal name="clicked" handler="adw_dialog_close" object="NewGameDialog" swapped="yes"/>
               </object>
             </child>
             <child type="end">

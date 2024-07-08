@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk" version="4.0"/>
-  <template class="PreferencesWindow" parent="AdwPreferencesWindow">
+  <template class="PreferencesDialog" parent="AdwPreferencesDialog">
     <property name="search-enabled">false</property>
-    <property name="hide-on-close">true</property>
-    <property name="default_width">400</property>
-    <property name="default_height">380</property>
+    <property name="content-width">400</property>
+    <property name="content-height">380</property>
     <child>
       <object class="AdwPreferencesPage">
         <child>

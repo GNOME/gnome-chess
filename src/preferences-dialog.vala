@@ -9,8 +9,8 @@
  * license.
  */
 
-[GtkTemplate (ui = "/org/gnome/Chess/ui/preferences-window.ui")]
-public class PreferencesWindow : Adw.PreferencesWindow
+[GtkTemplate (ui = "/org/gnome/Chess/ui/preferences-dialog.ui")]
+public class PreferencesDialog : Adw.PreferencesDialog
 {
     private Preferences preferences;
 
@@ -25,9 +25,8 @@ public class PreferencesWindow : Adw.PreferencesWindow
     [GtkChild]
     private unowned Gtk.Switch move_hints_switch;
 
-    public PreferencesWindow (Gtk.Window window, Preferences preferences)
+    public PreferencesDialog (Preferences preferences)
     {
-        transient_for = window;
         this.preferences = preferences;
 
         preferences.bind_property ("show-board-numbering", board_numbering_switch, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE, null, null);
@@ -36,14 +35,14 @@ public class PreferencesWindow : Adw.PreferencesWindow
         preferences.bind_property ("move-format", move_format_combo, "selected", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE, null, null);
         preferences.bind_property ("board-orientation", board_orientation_combo, "selected", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE, null, null);
     }
-    
+
     [GtkCallback]
     private string board_orientation_display_name_cb (Adw.EnumListItem item)
     {
         var value = (BoardOrientation) item.value;
         return value.display_name ();
     }
-    
+
     [GtkCallback]
     private string move_format_display_name_cb (Adw.EnumListItem item)
     {

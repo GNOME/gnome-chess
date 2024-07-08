@@ -9,8 +9,8 @@
  * license.
  */
 
-[GtkTemplate (ui = "/org/gnome/Chess/ui/new-game-window.ui")]
-public class NewGameWindow : Adw.PreferencesWindow
+[GtkTemplate (ui = "/org/gnome/Chess/ui/new-game-dialog.ui")]
+public class NewGameDialog : Adw.PreferencesDialog
 {
     private bool syncing_time_limit = false;
     private Preferences preferences;
@@ -34,10 +34,8 @@ public class NewGameWindow : Adw.PreferencesWindow
     [GtkChild]
     private unowned Gtk.Switch time_limit_switch;
 
-    public NewGameWindow (Gtk.Window window, Preferences preferences, List<AIProfile> ai_profiles)
+    public NewGameDialog (Preferences preferences, List<AIProfile> ai_profiles)
     {
-        transient_for = window;
-
         this.preferences = preferences;
         this.ai_profiles = ai_profiles;
         initialize_opponents (ai_profiles);
@@ -46,10 +44,10 @@ public class NewGameWindow : Adw.PreferencesWindow
         preferences.bind_property ("difficulty", difficulty_combo, "selected", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE, null, null);
 
         preferences.bind_property (
-            "opponent", 
-            opponent_combo, 
+            "opponent",
+            opponent_combo,
             "selected",
-            BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE, 
+            BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE,
             (binding, from_value, ref to_value) =>
             {
                 var opponent = (Opponent) from_value.get_object ();
@@ -104,21 +102,21 @@ public class NewGameWindow : Adw.PreferencesWindow
         close ();
         new_game_requested ();
     }
-    
+
     [GtkCallback]
     private string play_as_display_name_cb (Adw.EnumListItem item)
     {
         var value = (PlayAs) item.value;
         return value.display_name ();
     }
-    
+
     [GtkCallback]
     private string difficulty_display_name_cb (Adw.EnumListItem item)
     {
         var value = (Difficulty) item.value;
         return value.display_name ();
     }
-    
+
     [GtkCallback]
     private string clock_type_display_name_cb (Adw.EnumListItem item)
     {
@@ -191,7 +189,7 @@ public class NewGameWindow : Adw.PreferencesWindow
         {
             if (opponent.display_name == display_name)
                 return i;
-            i++; 
+            i++;
         }
         return 0;
     }
