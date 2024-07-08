@@ -118,7 +118,7 @@ public class ChessView : Gtk.DrawingArea
     {
         load_theme (c);
 
-        c.translate (get_allocated_width () / 2, get_allocated_height () / 2);
+        c.translate (get_width () / 2, get_height () / 2);
         c.rotate (Math.PI * scene.board_angle / 180.0);
 
         int board_size = (int) Math.ceil (square_size * 4 + border_size);
@@ -292,8 +292,8 @@ public class ChessView : Gtk.DrawingArea
         if (scene.game.result != ChessResult.IN_PROGRESS)
             return;
 
-        int file = (int) Math.floor ((event_x - 0.5 * get_allocated_width () + square_size * 4) / square_size);
-        int rank = 7 - (int) Math.floor ((event_y - 0.5 * get_allocated_height () + square_size * 4) / square_size);
+        int file = (int) Math.floor ((event_x - 0.5 * get_width () + square_size * 4) / square_size);
+        int rank = 7 - (int) Math.floor ((event_y - 0.5 * get_height () + square_size * 4) / square_size);
 
         // FIXME: Use proper Cairo rotation matrix
         if (scene.board_angle == 180.0)
@@ -321,7 +321,7 @@ public class ChessView : Gtk.DrawingArea
         c.paint ();
 
         c.select_font_face ("Sans", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
-        c.set_font_size (get_allocated_width () * 0.125);
+        c.set_font_size (get_width () * 0.125);
 
         var text = _("Paused");
         Cairo.TextExtents extents;

@@ -263,8 +263,8 @@ public class ChessWindow : Adw.ApplicationWindow
         layout.get_size (out layout_width, out layout_height);
         layout_width /= Pango.SCALE;
         layout_height /= Pango.SCALE;
-        c.move_to ((widget.get_allocated_width () - layout_width) / 2,
-                   (widget.get_allocated_height () - layout_height) / 2);
+        c.move_to ((widget.get_width () - layout_width) / 2,
+                   (widget.get_height () - layout_height) / 2);
         c.set_source_rgba (fg[0], fg[1], fg[2], alpha);
         Pango.cairo_show_layout (c, layout);
     }
