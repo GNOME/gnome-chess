@@ -1179,7 +1179,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         Gtk.show_uri (window, "help:gnome-chess", Gdk.CURRENT_TIME);
     }
 
-    private const string[] authors = { "Robert Ancell <robert.ancell@gmail.com>", null };
+    private const string[] authors = { "Robert Ancell <robert.ancell@gmail.com>", "Michael Catanzaro <mcatanzaro@gnome.org>", null };
     private const string[] artists = { "Max Froumentin", "Jakub Steiner", null };
 
     public void about_cb ()
