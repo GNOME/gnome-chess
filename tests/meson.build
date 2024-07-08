@@ -9,6 +9,7 @@ tests_vala_args = [
 
 tests_c_args = [
   '-include', 'config.h',
+  '-w'
 ]
 
 tests_deps = [

@@ -18,6 +18,7 @@ chess_vala_args = [
 
 chess_c_args = [
   '-include', 'config.h',
+  '-w'
 ]
 
 chess_deps = [

@@ -16,6 +16,7 @@ libchess_vala_args = [
 
 libchess_c_args = [
   '-include', 'config.h',
+  '-w'
 ]
 
 libchess_deps = [

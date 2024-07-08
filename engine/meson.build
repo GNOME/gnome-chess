@@ -11,6 +11,7 @@ libengine_vala_args = [
 
 libengine_c_args = [
   '-include', 'config.h',
+  '-w'
 ]
 
 libengine_deps = [
