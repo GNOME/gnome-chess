@@ -624,10 +624,15 @@ public class ChessState : Object
 
                 rank = ranks;
                 file = files;
+
+                return found;
             }
         }
 
-        return found;
+        /* There is no King. (Must be a test rather than a real game!) */
+        rank = {};
+        file = {};
+        return false;
     }
 
     public bool is_in_check (ChessPlayer player)
