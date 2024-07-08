@@ -57,9 +57,7 @@ public class ChessWindow : Adw.ApplicationWindow
     [GtkChild]
     private unowned Gtk.Box main_box;
     [GtkChild]
-    private unowned Gtk.InfoBar info_bar;
-    [GtkChild]
-    private unowned Gtk.Label info_bar_label;
+    private unowned Adw.Banner banner;
     [GtkChild]
     private unowned Gtk.Button pause_resume_button;
     [GtkChild]
@@ -81,7 +79,7 @@ public class ChessWindow : Adw.ApplicationWindow
         scene.changed.connect (() => update_history_panel ());
 
         view = new ChessView (scene);
-        main_box.insert_child_after (view, info_bar);
+        main_box.insert_child_after (view, banner);
 
         update_pause_resume_button ();
 
@@ -106,12 +104,12 @@ public class ChessWindow : Adw.ApplicationWindow
             layout_mode = LayoutMode.NORMAL;
     }
 
-    public void update_game_status (string? title = null, string? info = null)
+    public void update_game_status (string? title = null, string? info = "")
     {
         this.title = title != null ? title : app.compute_current_title ();
-        info_bar_label.label = info != null ? info : app.compute_status_info ();
+        banner.title = info != "" ? info : (app.compute_status_info () ?? "");
         /* Setting the label to null actually just sets it to an empty string. */
-        info_bar.visible = info_bar_label.label != "";
+        banner.revealed = banner.title != "";
     }
 
     public void update_pause_resume_button ()

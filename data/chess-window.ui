@@ -108,20 +108,8 @@
             <property name="orientation">vertical</property>
             <property name="spacing">3</property>
             <child>
-              <object class="GtkInfoBar" id="info_bar">
-                <property name="visible">0</property>
-                <child>
-                  <object class="GtkBox">
-                    <child>
-                      <object class="GtkLabel" id="info_bar_label">
-                        <property name="hexpand">1</property>
-                        <property name="ellipsize">end</property>
-                        <property name="justify">center</property>
-                        <property name="use-markup">1</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
+              <object class="AdwBanner" id="banner">
+                <property name="use-markup">1</property>
               </object>
             </child>
           </object>
