@@ -960,9 +960,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             return;
         }
 
-        var prompt_save_game_dialog = new Adw.MessageDialog (window,
-                                                             _("Save Game?"),
-                                                             prompt_text);
+        var prompt_save_game_dialog = new Adw.AlertDialog (_("Save Game?"), prompt_text);
 
         prompt_save_game_dialog.add_response ("cancel", _("_Cancel"));
 
@@ -1004,7 +1002,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             }
         });
 
-        prompt_save_game_dialog.present ();
+        prompt_save_game_dialog.present (window);
     }
 
     private void present_claim_draw_dialog ()
@@ -1012,9 +1010,7 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         game.pause (false);
 
-        var claim_draw_dialog = new Adw.MessageDialog (window,
-                                                       _("Would you like to claim a draw?"),
-                                                       "");
+        var claim_draw_dialog = new Adw.AlertDialog (_("Would you like to claim a draw?"), "");
 
         string reason;
         if (game.is_fifty_move_rule_fulfilled ())
@@ -1044,7 +1040,7 @@ Copyright © 2015–2016 Sahil Sareen""";
                 game.current_player.claim_draw ();
         });
 
-        claim_draw_dialog.present ();
+        claim_draw_dialog.present (window);
     }
 
     public void new_game_cb ()
@@ -1059,9 +1055,7 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         game.pause (false);
 
-        var resign_dialog = new Adw.MessageDialog (window,
-                                                   _("Are you sure you want to resign?"),
-                                                   "");
+        var resign_dialog = new Adw.AlertDialog (_("Are you sure you want to resign?"), "");
         /* Text on warning dialog when player clicks Resign */
         resign_dialog.body = _("This makes sense if you plan to save the game as a record of your loss.");
         resign_dialog.add_responses ("reject", _("_Keep Playing"),
@@ -1079,11 +1073,9 @@ Copyright © 2015–2016 Sahil Sareen""";
                 else
                     game.current_player.resign ();
             }
-
-            resign_dialog.destroy ();
         });
 
-        resign_dialog.show ();
+        resign_dialog.present (window);
     }
 
     public void undo_move_cb ()
@@ -1238,28 +1230,19 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     private void run_invalid_pgn_dialog ()
     {
-        var invalid_pgn_dialog = new Adw.MessageDialog (window,
-                                                        _("Error Loading PGN File"),
-                                                        _("This does not look like a valid PGN game."));
-
+        var invalid_pgn_dialog = new Adw.AlertDialog (_("Error Loading PGN File"),
+                                                      _("This does not look like a valid PGN game."));
         invalid_pgn_dialog.add_response ("okay", _("_OK"));
-
         invalid_pgn_dialog.response.connect ((dialog, response) => invalid_pgn_dialog.destroy ());
-
-        invalid_pgn_dialog.present ();
+        invalid_pgn_dialog.present (window);
     }
 
     private void show_invalid_move_dialog (string error_message)
     {
-        var invalid_move_dialog = new Adw.MessageDialog (window,
-                                                         _("Invalid Move"),
-                                                         error_message);
-
+        var invalid_move_dialog = new Adw.AlertDialog (_("Invalid Move"), error_message);
         invalid_move_dialog.add_response ("okay", _("_OK"));
-
         invalid_move_dialog.response.connect (( dialog, response) => invalid_move_dialog.destroy ());
-
-        invalid_move_dialog.present ();
+        invalid_move_dialog.present (window);
     }
 
     private void update_pgn_time_remaining ()
@@ -1346,15 +1329,14 @@ Copyright © 2015–2016 Sahil Sareen""";
                     return;
                 }
 
-                var save_error_dialog = new Adw.MessageDialog (window, _("Save Error"), "");
+                var save_error_dialog = new Adw.AlertDialog (_("Save Error"), "");
                 save_error_dialog.format_body (_("Failed to save game: %s"), e.message);
                 save_error_dialog.add_response ("ok", _("_OK"));
                 save_error_dialog.response.connect(( dialog, response ) => {
-                    save_error_dialog.destroy ();
                     if (callback != null)
                         callback (false);
                 });
-                save_error_dialog.present ();
+                save_error_dialog.present (window);
             }
         });
     }
