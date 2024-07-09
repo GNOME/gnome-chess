@@ -1,18 +1,18 @@
 # Swedish messages for gnome-chess.
-# Copyright © 1999-2023 Free Software Foundation, Inc.
+# Copyright © 1999-2024 Free Software Foundation, Inc.
 # Andreas Persenius <ndap@swipnet.se>, 1999.
 # Andreas Hyden <a.hyden@cyberpoint.se>
 # Martin Norbäck <d95mback@dtek.chalmers.se>, 2000.
 # Christian Rose <menthos@menthos.com>, 2000, 2001, 2002, 2003, 2004, 2005.
 # Daniel Nylander <po@danielnylander.se>, 2006, 2007, 2008, 2009, 2010, 2011, 2012.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2023-10-04 21:41+0000\n"
-"PO-Revision-Date: 2023-10-17 15:44+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues/\n"
+"POT-Creation-Date: 2024-07-08 21:50+0000\n"
+"PO-Revision-Date: 2024-06-18 00:41+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/org.gnome.Chess.appdata.xml.in:7
 msgid "GNOME Chess"
@@ -48,12 +48,8 @@ msgstr ""
 "med nästan alla moderna datorschackmotorer, och dess förmåga att upptäcka "
 "flera populära motorer automatiskt om de finns installerade."
 
-#: data/org.gnome.Chess.appdata.xml.in:72
-msgid "The GNOME Project"
-msgstr "GNOME-projektet"
-
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1559
 msgid "Chess"
 msgstr "Schack"
 
@@ -195,31 +191,31 @@ msgstr "_Hjälp"
 msgid "_About Chess"
 msgstr "_Om Schack"
 
-#: data/chess-window.ui:67
+#: data/chess-window.ui:68
 msgid "Undo Move"
 msgstr "Ångra drag"
 
-#: data/chess-window.ui:96
+#: data/chess-window.ui:97
 msgid "Main Menu"
 msgstr "Huvudmeny"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
-#: data/chess-window.ui:151
+#: data/chess-window.ui:149
 msgid "Rewind to Game Start"
 msgstr "Gå tillbaka till spelets start"
 
 #. Tooltip on the show previous move navigation button
-#: data/chess-window.ui:168
+#: data/chess-window.ui:166
 msgid "Show Previous Move"
 msgstr "Visa föregående drag"
 
 #. Tooltip on the show next move navigation button
-#: data/chess-window.ui:185
+#: data/chess-window.ui:183
 msgid "Show Next Move"
 msgstr "Visa nästa drag"
 
 #. Tooltip on the show current move navigation button
-#: data/chess-window.ui:202
+#: data/chess-window.ui:200
 msgid "Show Current Move"
 msgstr "Visa aktuellt drag"
 
@@ -290,8 +286,8 @@ msgstr "Visa nästa drag"
 
 #: data/help-overlay.ui:86
 msgctxt "shortcut window"
-msgid "Show Current Move"
-msgstr "Visa aktuellt drag"
+msgid "Show Last Move"
+msgstr "Visa senaste drag"
 
 #: data/help-overlay.ui:93
 msgctxt "shortcut window"
@@ -313,7 +309,7 @@ msgid "New Game"
 msgstr "Nytt spel"
 
 #: data/new-game-window.ui:20 src/gnome-chess.vala:968
-#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
+#: src/gnome-chess.vala:1288 src/gnome-chess.vala:1429
 msgid "_Cancel"
 msgstr "_Avbryt"
 
@@ -1121,11 +1117,7 @@ msgstr ""
 msgid "_Resign"
 msgstr "_Lämna spelet"
 
-#: src/gnome-chess.vala:1200
-msgid "A classic game of positional strategy"
-msgstr "Ett klassiskt positionsbaserat strategispel"
-
-#: src/gnome-chess.vala:1203
+#: src/gnome-chess.vala:1202
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander <po@danielnylander.se>\n"
@@ -1138,68 +1130,68 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
-#: src/gnome-chess.vala:1248
+#: src/gnome-chess.vala:1246
 msgid "Error Loading PGN File"
 msgstr "Fel vid inläsning av PGN-fil"
 
-#: src/gnome-chess.vala:1249
+#: src/gnome-chess.vala:1247
 msgid "This does not look like a valid PGN game."
 msgstr "Detta ser inte ut som ett giltigt PGN-spel."
 
-#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
-#: src/gnome-chess.vala:1370
+#: src/gnome-chess.vala:1249 src/gnome-chess.vala:1262
+#: src/gnome-chess.vala:1368
 msgid "_OK"
 msgstr "_OK"
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1259
 msgid "Invalid Move"
 msgstr "Ogiltigt drag"
 
 #. Title of save game dialog
-#: src/gnome-chess.vala:1287
+#: src/gnome-chess.vala:1285
 msgid "Save Chess Game"
 msgstr "Spara schackparti"
 
-#: src/gnome-chess.vala:1289
+#: src/gnome-chess.vala:1287
 msgid "_Save"
 msgstr "_Spara"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1321
+#: src/gnome-chess.vala:1319
 msgid "Untitled Chess Game"
 msgstr "Titellöst schackparti"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1325 src/gnome-chess.vala:1435
 msgid "PGN files"
 msgstr "PGN-filer"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
+#: src/gnome-chess.vala:1331 src/gnome-chess.vala:1441
 msgid "All files"
 msgstr "Alla filer"
 
-#: src/gnome-chess.vala:1365
+#: src/gnome-chess.vala:1363
 msgid "Save Error"
 msgstr "Fel vid sparning"
 
-#: src/gnome-chess.vala:1368
+#: src/gnome-chess.vala:1366
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Misslyckades med att spara spelet: %s"
 
-#: src/gnome-chess.vala:1421
+#: src/gnome-chess.vala:1419
 msgid "Save this game before loading another one?"
 msgstr "Spara detta spel innan ett nytt läses in?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1428
+#: src/gnome-chess.vala:1426
 msgid "Load Chess Game"
 msgstr "Läs in schackparti"
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1428
 msgid "_Open"
 msgstr "_Öppna"
 
@@ -1297,6 +1289,16 @@ msgstr "Bronstein"
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "Mänsklig"
+
+#~ msgid "The GNOME Project"
+#~ msgstr "GNOME-projektet"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show Current Move"
+#~ msgstr "Visa aktuellt drag"
+
+#~ msgid "A classic game of positional strategy"
+#~ msgstr "Ett klassiskt positionsbaserat strategispel"
 
 #~ msgid "Save this game before starting a new one?"
 #~ msgstr "Spara detta spel innan ett nytt påbörjas?"
