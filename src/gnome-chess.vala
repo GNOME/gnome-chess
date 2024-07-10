@@ -1258,8 +1258,9 @@ Copyright © 2015–2016 Sahil Sareen""";
         }
     }
 
+    /* Why is the callback owned? https://gitlab.gnome.org/GNOME/gnome-chess/-/issues/92#note_2164360 */
     private delegate void PresentSaveDialogCallback (bool saved);
-    private void present_save_dialog (PresentSaveDialogCallback? callback = null)
+    private void present_save_dialog (owned PresentSaveDialogCallback? callback = null)
     {
         if (save_dialog == null)
         {
