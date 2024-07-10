@@ -55,9 +55,7 @@ public class ChessWindow : Adw.ApplicationWindow
     private ChessApplication app;
 
     [GtkChild]
-    private unowned Gtk.Box main_box;
-    [GtkChild]
-    private unowned Adw.Banner banner;
+    private unowned Adw.ToastOverlay toast_overlay;
     [GtkChild]
     private unowned Gtk.Button pause_resume_button;
     [GtkChild]
@@ -79,7 +77,7 @@ public class ChessWindow : Adw.ApplicationWindow
         scene.changed.connect (() => update_history_panel ());
 
         view = new ChessView (scene);
-        main_box.insert_child_after (view, banner);
+        toast_overlay.set_child (view);
 
         update_pause_resume_button ();
 
@@ -104,12 +102,15 @@ public class ChessWindow : Adw.ApplicationWindow
             layout_mode = LayoutMode.NORMAL;
     }
 
-    public void update_game_status (string? title = null, string? info = "")
+    public void update_game_status (string? title = null, string? info = null)
     {
         this.title = title != null ? title : app.compute_current_title ();
-        banner.title = info != "" ? info : (app.compute_status_info () ?? "");
-        /* Setting the label to null actually just sets it to an empty string. */
-        banner.revealed = banner.title != "";
+
+        string toast = info;
+        if (toast == null)
+            toast = app.compute_status_info ();
+        if (toast != null)
+            toast_overlay.add_toast (new Adw.Toast (app.compute_status_info ()));
     }
 
     public void update_pause_resume_button ()
