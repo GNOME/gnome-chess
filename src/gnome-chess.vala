@@ -998,8 +998,6 @@ Copyright © 2015–2016 Sahil Sareen""";
             }
             else if (response == "no")
             {
-                warn_if_fail (response == "no");
-
                 /* Remove completed game from history */
                 game_needs_saving = false;
                 autosave ();
