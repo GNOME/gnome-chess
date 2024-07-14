@@ -110,7 +110,7 @@ public class ChessWindow : Adw.ApplicationWindow
         if (toast == null)
             toast = app.compute_status_info ();
         if (toast != null)
-            toast_overlay.add_toast (new Adw.Toast (app.compute_status_info ()));
+            toast_overlay.add_toast (new Adw.Toast (toast));
     }
 
     public void update_pause_resume_button ()
