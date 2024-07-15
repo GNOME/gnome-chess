@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Ekaterine Papava <papava.e@gtu.ge>, 2023
+# Ekaterine Papava <papava.e@gtu.ge>, 2023-2024
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2023-10-04 21:18+0000\n"
-"PO-Revision-Date: 2023-10-06 22:44+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues/\n"
+"POT-Creation-Date: 2024-07-08 21:50+0000\n"
+"PO-Revision-Date: 2024-07-15 06:03+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/org.gnome.Chess.appdata.xml.in:7
 msgid "GNOME Chess"
-msgstr ""
+msgstr "GNOME Chess"
 
 #: data/org.gnome.Chess.appdata.xml.in:8 data/org.gnome.Chess.desktop.in:5
 msgid "Play the classic two-player board game of chess"
@@ -39,12 +39,8 @@ msgid ""
 "popular engines automatically if installed."
 msgstr ""
 
-#: data/org.gnome.Chess.appdata.xml.in:72
-msgid "The GNOME Project"
-msgstr "პროექტი \"GNOME\""
-
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1559
 msgid "Chess"
 msgstr "ჭადრაკი"
 
@@ -181,31 +177,31 @@ msgstr "_დახმარება"
 msgid "_About Chess"
 msgstr ""
 
-#: data/chess-window.ui:67
+#: data/chess-window.ui:68
 msgid "Undo Move"
 msgstr "გადატანის გაუქმება"
 
-#: data/chess-window.ui:96
+#: data/chess-window.ui:97
 msgid "Main Menu"
 msgstr "მთავარი მენიუ"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
-#: data/chess-window.ui:151
+#: data/chess-window.ui:149
 msgid "Rewind to Game Start"
 msgstr ""
 
 #. Tooltip on the show previous move navigation button
-#: data/chess-window.ui:168
+#: data/chess-window.ui:166
 msgid "Show Previous Move"
 msgstr "წინა სვლის ჩვენება"
 
 #. Tooltip on the show next move navigation button
-#: data/chess-window.ui:185
+#: data/chess-window.ui:183
 msgid "Show Next Move"
 msgstr "შემდეგი სვლის ჩვენება"
 
 #. Tooltip on the show current move navigation button
-#: data/chess-window.ui:202
+#: data/chess-window.ui:200
 msgid "Show Current Move"
 msgstr "მიმდინარე სვლის ჩვენება"
 
@@ -276,8 +272,8 @@ msgstr "შემდეგი სვლის ჩვენება"
 
 #: data/help-overlay.ui:86
 msgctxt "shortcut window"
-msgid "Show Current Move"
-msgstr "მიმდინარე სვლის ჩვენება"
+msgid "Show Last Move"
+msgstr "ბოლო სვლის ჩვენება"
 
 #: data/help-overlay.ui:93
 msgctxt "shortcut window"
@@ -299,7 +295,7 @@ msgid "New Game"
 msgstr "დაიწყეთ ახალი თამაში"
 
 #: data/new-game-window.ui:20 src/gnome-chess.vala:968
-#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
+#: src/gnome-chess.vala:1288 src/gnome-chess.vala:1429
 msgid "_Cancel"
 msgstr "_შეწყვეტა"
 
@@ -321,7 +317,7 @@ msgstr ""
 
 #: data/new-game-window.ui:81
 msgid "Time Limit"
-msgstr ""
+msgstr "დროის ლიმიტი"
 
 #: data/new-game-window.ui:84
 msgid "_Use Time Limit"
@@ -1097,76 +1093,72 @@ msgstr ""
 msgid "_Resign"
 msgstr ""
 
-#: src/gnome-chess.vala:1200
-msgid "A classic game of positional strategy"
-msgstr ""
-
-#: src/gnome-chess.vala:1203
+#: src/gnome-chess.vala:1202
 msgid "translator-credits"
 msgstr "თარგმანი-შესრულებულია"
 
-#: src/gnome-chess.vala:1248
+#: src/gnome-chess.vala:1246
 msgid "Error Loading PGN File"
 msgstr ""
 
-#: src/gnome-chess.vala:1249
+#: src/gnome-chess.vala:1247
 msgid "This does not look like a valid PGN game."
 msgstr ""
 
-#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
-#: src/gnome-chess.vala:1370
+#: src/gnome-chess.vala:1249 src/gnome-chess.vala:1262
+#: src/gnome-chess.vala:1368
 msgid "_OK"
 msgstr "კარგი"
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1259
 msgid "Invalid Move"
 msgstr "არასწორი სვლა"
 
 #. Title of save game dialog
-#: src/gnome-chess.vala:1287
+#: src/gnome-chess.vala:1285
 msgid "Save Chess Game"
 msgstr ""
 
-#: src/gnome-chess.vala:1289
+#: src/gnome-chess.vala:1287
 msgid "_Save"
 msgstr "_შენახვა"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1321
+#: src/gnome-chess.vala:1319
 msgid "Untitled Chess Game"
 msgstr ""
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1325 src/gnome-chess.vala:1435
 msgid "PGN files"
 msgstr ""
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
+#: src/gnome-chess.vala:1331 src/gnome-chess.vala:1441
 msgid "All files"
 msgstr "ყველა ფაილი"
 
-#: src/gnome-chess.vala:1365
+#: src/gnome-chess.vala:1363
 msgid "Save Error"
 msgstr "შენახვის შეცდომა"
 
-#: src/gnome-chess.vala:1368
+#: src/gnome-chess.vala:1366
 #, c-format
 msgid "Failed to save game: %s"
 msgstr ""
 
-#: src/gnome-chess.vala:1421
+#: src/gnome-chess.vala:1419
 msgid "Save this game before loading another one?"
 msgstr ""
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1428
+#: src/gnome-chess.vala:1426
 msgid "Load Chess Game"
 msgstr ""
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1428
 msgid "_Open"
 msgstr "_გახსნა"
 
@@ -1264,6 +1256,13 @@ msgstr ""
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "ადამიანი"
+
+#~ msgid "The GNOME Project"
+#~ msgstr "პროექტი \"GNOME\""
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show Current Move"
+#~ msgstr "მიმდინარე სვლის ჩვენება"
 
 #~ msgctxt "custom_duration_units"
 #~ msgid "minutes"
