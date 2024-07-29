@@ -15,17 +15,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-chess\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2023-10-12 07:28+0000\n"
-"PO-Revision-Date: 2023-10-16 16:29+0300\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues/\n"
+"POT-Creation-Date: 2024-06-18 22:22+0000\n"
+"PO-Revision-Date: 2024-06-25 13:14+0300\n"
+"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.3\n"
 
 #: data/org.gnome.Chess.appdata.xml.in:7
 msgid "GNOME Chess"
@@ -53,12 +53,8 @@ msgstr ""
 "bilgisayar satranç motorları ile uyumluluğunu ve eğer kuruluysa birçok gözde "
 "satranç motorunu kendiliğinden algılama yeteneğini takdir edecektir."
 
-#: data/org.gnome.Chess.appdata.xml.in:72
-msgid "The GNOME Project"
-msgstr "GNOME Projesi"
-
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1559
 msgid "Chess"
 msgstr "Satranç"
 
@@ -69,7 +65,7 @@ msgstr "Satranç Oyunu"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Chess.desktop.in:7
 msgid "game;strategy;"
-msgstr "oyun;strateji;"
+msgstr "GNOME Chess;Chess;game;strategy;oyun;strateji;GNOME Satranç;Satranç;"
 
 #: data/org.gnome.Chess.gschema.xml:38
 msgid "The width of the window"
@@ -201,31 +197,31 @@ msgstr "_Yardım"
 msgid "_About Chess"
 msgstr "Satranç _Hakkında"
 
-#: data/chess-window.ui:67
+#: data/chess-window.ui:68
 msgid "Undo Move"
 msgstr "Hamleyi Geri Al"
 
-#: data/chess-window.ui:96
+#: data/chess-window.ui:97
 msgid "Main Menu"
 msgstr "Ana Menü"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
-#: data/chess-window.ui:151
+#: data/chess-window.ui:149
 msgid "Rewind to Game Start"
 msgstr "Oyun Başlangıcına Dön"
 
 #. Tooltip on the show previous move navigation button
-#: data/chess-window.ui:168
+#: data/chess-window.ui:166
 msgid "Show Previous Move"
 msgstr "Önceki Hamleyi Göster"
 
 #. Tooltip on the show next move navigation button
-#: data/chess-window.ui:185
+#: data/chess-window.ui:183
 msgid "Show Next Move"
 msgstr "Sonraki Hamleyi Göster"
 
 #. Tooltip on the show current move navigation button
-#: data/chess-window.ui:202
+#: data/chess-window.ui:200
 msgid "Show Current Move"
 msgstr "Geçerli Hamleyi Göster"
 
@@ -296,8 +292,8 @@ msgstr "Sonraki Hamleyi Göster"
 
 #: data/help-overlay.ui:86
 msgctxt "shortcut window"
-msgid "Show Current Move"
-msgstr "Geçerli Hamleyi Göster"
+msgid "Show Last Move"
+msgstr "Son Hamleyi Göster"
 
 #: data/help-overlay.ui:93
 msgctxt "shortcut window"
@@ -319,7 +315,7 @@ msgid "New Game"
 msgstr "Yeni Oyun"
 
 #: data/new-game-window.ui:20 src/gnome-chess.vala:968
-#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
+#: src/gnome-chess.vala:1288 src/gnome-chess.vala:1429
 msgid "_Cancel"
 msgstr "İ_ptal"
 
@@ -1130,79 +1126,75 @@ msgstr "Eğer oyunu aleyhinize kaydetmek istiyorsanız bu mantıklı olabilir."
 msgid "_Resign"
 msgstr "_Çekil"
 
-#: src/gnome-chess.vala:1200
-msgid "A classic game of positional strategy"
-msgstr "Klasik bir konumsal strateji oyunu"
-
-#: src/gnome-chess.vala:1203
+#: src/gnome-chess.vala:1202
 msgid "translator-credits"
 msgstr ""
 "Barış Çiçek <baris@teamforce.name.tr> \n"
 "Muhammet Kara <muhammetk@gmail.com>\n"
 "Emin Tufan Çetin <etcetin@gmail.com>"
 
-#: src/gnome-chess.vala:1248
+#: src/gnome-chess.vala:1246
 msgid "Error Loading PGN File"
 msgstr "PGN Dosyası Yüklenirken Hata"
 
-#: src/gnome-chess.vala:1249
+#: src/gnome-chess.vala:1247
 msgid "This does not look like a valid PGN game."
 msgstr "Bu geçerli bir PGN oyunu gibi görünmüyor."
 
-#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
-#: src/gnome-chess.vala:1370
+#: src/gnome-chess.vala:1249 src/gnome-chess.vala:1262
+#: src/gnome-chess.vala:1368
 msgid "_OK"
 msgstr "_Tamam"
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1259
 msgid "Invalid Move"
 msgstr "Geçersiz Hamle"
 
 #. Title of save game dialog
-#: src/gnome-chess.vala:1287
+#: src/gnome-chess.vala:1285
 msgid "Save Chess Game"
 msgstr "Satranç Oyununu Kaydet"
 
-#: src/gnome-chess.vala:1289
+#: src/gnome-chess.vala:1287
 msgid "_Save"
 msgstr "_Kaydet"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1321
+#: src/gnome-chess.vala:1319
 msgid "Untitled Chess Game"
 msgstr "Adsız Satranç Oyunu"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1325 src/gnome-chess.vala:1435
 msgid "PGN files"
 msgstr "PGN dosyaları"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
+#: src/gnome-chess.vala:1331 src/gnome-chess.vala:1441
 msgid "All files"
 msgstr "Tüm dosyalar"
 
-#: src/gnome-chess.vala:1365
+#: src/gnome-chess.vala:1363
 msgid "Save Error"
 msgstr "Kayıt Hatası"
 
-#: src/gnome-chess.vala:1368
+#: src/gnome-chess.vala:1366
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Oyun kaydedilemedi: %s"
 
-#: src/gnome-chess.vala:1421
+#: src/gnome-chess.vala:1419
 msgid "Save this game before loading another one?"
 msgstr "Başka oyun yüklenmeden önce bu oyun kaydedilsin mi?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1428
+#: src/gnome-chess.vala:1426
 msgid "Load Chess Game"
 msgstr "Satranç Oyununu Yükle"
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1428
 msgid "_Open"
 msgstr "_Aç"
 
@@ -1300,6 +1292,16 @@ msgstr "Bronstein"
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "İnsan"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show Current Move"
+#~ msgstr "Geçerli Hamleyi Göster"
+
+#~ msgid "A classic game of positional strategy"
+#~ msgstr "Klasik bir konumsal strateji oyunu"
+
+#~ msgid "The GNOME Project"
+#~ msgstr "GNOME Projesi"
 
 #~ msgid "Save this game before starting a new one?"
 #~ msgstr "Yenisini başlatmadan önce bu oyun kaydedilsin mi?"
