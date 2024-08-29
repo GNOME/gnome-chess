@@ -5,18 +5,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2022-10-13 08:46+0000\n"
-"PO-Revision-Date: 2022-10-26 21:41+0300\n"
-"Last-Translator: Launchpad translators\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues/\n"
+"POT-Creation-Date: 2024-08-24 13:35+0000\n"
+"PO-Revision-Date: 2024-08-29 12:45+0300\n"
+"Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Poedit 3.2\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Project-Style: gnome\n"
 
 #: data/org.gnome.Chess.appdata.xml.in:7
@@ -45,12 +45,8 @@ msgstr ""
 "усімі сучаснымі праграмнымі шахматнымі рухавікамі, а таксама яе здольнасць "
 "аўтаматычна апазнаць некаторыя папулярныя рухавікі, усталяваныя ў сістэме."
 
-#: data/org.gnome.Chess.appdata.xml.in:70
-msgid "The GNOME Project"
-msgstr "Праект GNOME"
-
 #: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1206 src/gnome-chess.vala:1570
+#: src/gnome-chess.vala:1189 src/gnome-chess.vala:1519
 msgid "Chess"
 msgstr "Шахматы"
 
@@ -158,7 +154,7 @@ msgstr "Узровень складанасці гульні саперніка"
 
 #: data/chess-window.ui:7
 msgid "_New Game…"
-msgstr "_Новая гульня"
+msgstr "_Новая гульня…"
 
 #: data/chess-window.ui:11
 msgid "_Open Game…"
@@ -192,28 +188,32 @@ msgstr "_Даведка"
 msgid "_About Chess"
 msgstr "_Пра Шахматы"
 
-#: data/chess-window.ui:67
-msgid "Undo your most recent move"
-msgstr "Адрабіць ваш апошні ход"
+#: data/chess-window.ui:68
+msgid "Undo Move"
+msgstr "Адрабіць ход"
+
+#: data/chess-window.ui:97
+msgid "Main Menu"
+msgstr "Галоўнае меню"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
-#: data/chess-window.ui:149
-msgid "Rewind to the game start"
+#: data/chess-window.ui:135
+msgid "Rewind to Game Start"
 msgstr "Вярнуцца да пачатку гульні"
 
 #. Tooltip on the show previous move navigation button
-#: data/chess-window.ui:166
-msgid "Show the previous move"
+#: data/chess-window.ui:152
+msgid "Show Previous Move"
 msgstr "Паказаць папярэдні ход"
 
 #. Tooltip on the show next move navigation button
-#: data/chess-window.ui:183
-msgid "Show the next move"
+#: data/chess-window.ui:169
+msgid "Show Next Move"
 msgstr "Паказаць наступны ход"
 
 #. Tooltip on the show current move navigation button
-#: data/chess-window.ui:200
-msgid "Show the current move"
+#: data/chess-window.ui:186
+msgid "Show Current Move"
 msgstr "Паказаць цяперашні ход"
 
 #: data/help-overlay.ui:11
@@ -223,32 +223,32 @@ msgstr "Агульныя"
 
 #: data/help-overlay.ui:15
 msgctxt "shortcut window"
-msgid "Start a new game"
+msgid "Start New Game"
 msgstr "Пачаць новую гульню"
 
 #: data/help-overlay.ui:21
 msgctxt "shortcut window"
-msgid "Open a saved game"
+msgid "Open Saved Game"
 msgstr "Адкрыць захаваную гульню"
 
 #: data/help-overlay.ui:27
 msgctxt "shortcut window"
-msgid "Pause the game"
+msgid "Pause Game"
 msgstr "Прыпыніць гульню"
 
 #: data/help-overlay.ui:33
 msgctxt "shortcut window"
-msgid "Save the game"
+msgid "Save Game"
 msgstr "Захаваць гульню"
 
 #: data/help-overlay.ui:39
 msgctxt "shortcut window"
-msgid "Save the game with a different name"
-msgstr "Захаваць гульню з іншай назвай"
+msgid "Save Game As…"
+msgstr "Захаваць гульню як…"
 
 #: data/help-overlay.ui:45
 msgctxt "shortcut window"
-msgid "Undo move"
+msgid "Undo Move"
 msgstr "Адрабіць ход"
 
 #: data/help-overlay.ui:51
@@ -258,8 +258,8 @@ msgstr "Выйсці"
 
 #: data/help-overlay.ui:57
 msgctxt "shortcut window"
-msgid "Open menu"
-msgstr "Адкрыць меню"
+msgid "Open Main Menu"
+msgstr "Адкрыць галоўнае меню"
 
 #: data/help-overlay.ui:64
 msgctxt "shortcut window"
@@ -268,23 +268,23 @@ msgstr "Гісторыя"
 
 #: data/help-overlay.ui:68
 msgctxt "shortcut window"
-msgid "Rewind to the game start"
+msgid "Rewind to Game Start"
 msgstr "Вярнуцца да пачатку гульні"
 
 #: data/help-overlay.ui:74
 msgctxt "shortcut window"
-msgid "Show the previous move"
+msgid "Show Previous Move"
 msgstr "Паказаць папярэдні ход"
 
 #: data/help-overlay.ui:80
 msgctxt "shortcut window"
-msgid "Show the next move"
+msgid "Show Next Move"
 msgstr "Паказаць наступны ход"
 
 #: data/help-overlay.ui:86
 msgctxt "shortcut window"
-msgid "Show the current move"
-msgstr "Паказаць цяперашні ход"
+msgid "Show Last Move"
+msgstr "Паказаць наступны ход"
 
 #: data/help-overlay.ui:93
 msgctxt "shortcut window"
@@ -301,64 +301,67 @@ msgctxt "shortcut window"
 msgid "Show Keyboard Shortcuts"
 msgstr "Паказаць спалучэнні клавіш"
 
-#: data/new-game-window.ui:5
+#: data/new-game-dialog.ui:5
 msgid "New Game"
 msgstr "Новая гульня"
 
-#: data/new-game-window.ui:20 src/gnome-chess.vala:969
-#: src/gnome-chess.vala:1300 src/gnome-chess.vala:1440
+#: data/new-game-dialog.ui:18 src/gnome-chess.vala:971
 msgid "_Cancel"
 msgstr "_Скасаваць"
 
-#: data/new-game-window.ui:28
+#: data/new-game-dialog.ui:26
 msgid "_Start"
 msgstr "_Пачаць"
 
-#: data/new-game-window.ui:45
+#: data/new-game-dialog.ui:43
 msgid "_Opposing Player"
 msgstr "_Сапернік"
 
-#: data/new-game-window.ui:51
+#: data/new-game-dialog.ui:49
 msgid "_Play As"
 msgstr "_Гуляць за"
 
-#: data/new-game-window.ui:65
+#: data/new-game-dialog.ui:63
 msgid "_Difficulty"
-msgstr "_Складанасць:"
+msgstr "_Складанасць"
 
-#: data/new-game-window.ui:84
-msgid "_Use Time Limit"
+#: data/new-game-dialog.ui:79
+msgid "Time Limit"
 msgstr "Абмежаванне часу"
 
-#: data/new-game-window.ui:96
+#: data/new-game-dialog.ui:82
+msgid "_Use Time Limit"
+msgstr "_Абмежаванне часу"
+
+#: data/new-game-dialog.ui:94
 msgid "_Minutes Per Side"
 msgstr "_Хвілін кожнаму боку"
 
-#: data/new-game-window.ui:117
+#: data/new-game-dialog.ui:115
 msgid "_Increment In Seconds"
 msgstr "_Дадатковы час у секундах"
 
-#: data/new-game-window.ui:138
+#: data/new-game-dialog.ui:136
 msgid "Clock _Type"
 msgstr "Тып _гадзінніка"
 
-#: data/preferences-window.ui:15
+#: data/preferences-dialog.ui:14
 msgid "_Board Orientation"
 msgstr "_Арыентацыя дошкі"
 
-#: data/preferences-window.ui:29
+#: data/preferences-dialog.ui:28
 msgid "_Move Format"
 msgstr "_Фармат апісання хадоў"
 
-#: data/preferences-window.ui:43
+#: data/preferences-dialog.ui:42
 msgid "_Piece Style"
 msgstr "Стыль _фігур"
 
-#: data/preferences-window.ui:57
+#: data/preferences-dialog.ui:56
 msgid "Board _Numbering"
 msgstr "_Нумарацыя дошкі"
 
-#: data/preferences-window.ui:69
+#: data/preferences-dialog.ui:68
 msgid "Move _Hints"
 msgstr "Падказкі _хадоў"
 
@@ -366,19 +369,19 @@ msgstr "Падказкі _хадоў"
 msgid "Select Promotion Type"
 msgstr "Выберыце тып пераўтварэнняў"
 
-#: data/promotion-type-selector.ui:30
+#: data/promotion-type-selector.ui:34
 msgid "_Queen"
 msgstr "_Ферзь"
 
-#: data/promotion-type-selector.ui:66
+#: data/promotion-type-selector.ui:70
 msgid "_Knight"
 msgstr "_Конь"
 
-#: data/promotion-type-selector.ui:102
+#: data/promotion-type-selector.ui:106
 msgid "_Rook"
 msgstr "_Ладдзя"
 
-#: data/promotion-type-selector.ui:138
+#: data/promotion-type-selector.ui:142
 msgid "_Bishop"
 msgstr "_Слон"
 
@@ -391,509 +394,509 @@ msgstr "Не ўдалося загрузіць PGN: ход %s хібны."
 #: lib/chess-pgn.vala:248 lib/chess-pgn.vala:253 lib/chess-pgn.vala:260
 #, c-format
 msgid "Invalid %s : %s in PGN, setting timer to infinity."
-msgstr "Хібны %s : %s у PGN, настаўляем таймер на бясконцасць."
+msgstr "Памылковы %s : %s у PGN, настаўляем таймер на бясконцасць."
 
 #: lib/chess-pgn.vala:267
 #, c-format
 msgid "Invalid clock type in PGN: %s, using a simple clock."
-msgstr "Хібны тып гадзінніка ў PGN: %s, выкарыстоўваем просты гадзіннік."
+msgstr "Памылковы тып гадзінніка ў PGN: %s, выкарыстоўваем просты гадзіннік."
 
 #: lib/chess-pgn.vala:274
 #, c-format
 msgid "Invalid timer increment in PGN: %s, using a simple clock."
 msgstr ""
-"Хібны дадатковы час таймера ў PGN: %s, выкарыстоўваем просты гадзіннік."
+"Памылковы дадатковы час таймера ў PGN: %s, выкарыстоўваем просты гадзіннік."
 
-#: src/chess-view.vala:319
+#: src/chess-view.vala:326
 msgid "Paused"
 msgstr "Паўза"
 
-#: src/chess-window.vala:129
+#: src/chess-window.vala:128
 msgid "Unpause the game"
 msgstr "Працягнуць гульню"
 
-#: src/chess-window.vala:134
+#: src/chess-window.vala:133
 msgid "Pause the game"
 msgstr "Прыпыніць гульню"
 
 #. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
 #. Human Move String: Description of a white pawn moving from %1$s to %2s, e.g. 'c2 to c4'
-#: src/chess-window.vala:315
+#: src/chess-window.vala:314
 #, c-format
 msgid "White pawn moves from %1$s to %2$s"
 msgstr "Белая пешка ходзіць з %1$s на %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:317
+#: src/chess-window.vala:316
 #, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s"
 msgstr "Белая пешка з %1$s б'е чорную пешку на %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:319
+#: src/chess-window.vala:318
 #, c-format
 msgid "White pawn at %1$s takes the black rook at %2$s"
 msgstr "Белая пешка з %1$s б'е чорную ладдзю на %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:321
+#: src/chess-window.vala:320
 #, c-format
 msgid "White pawn at %1$s takes the black knight at %2$s"
 msgstr "Белая пешка з %1$s б'е чорнага каня на %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:323
+#: src/chess-window.vala:322
 #, c-format
 msgid "White pawn at %1$s takes the black bishop at %2$s"
 msgstr "Белая пешка з %1$s б'е чорнага слана на %2$s"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:325
+#: src/chess-window.vala:324
 #, c-format
 msgid "White pawn at %1$s takes the black queen at %2$s"
 msgstr "Белая пешка з %1$s б'е чорнага ферзя на %2$s"
 
 #. Human Move String: Description of a white rook moving from %1$s to %2$s, e.g. 'a1 to a5'
-#: src/chess-window.vala:327
+#: src/chess-window.vala:326
 #, c-format
 msgid "White rook moves from %1$s to %2$s"
 msgstr "Белая ладдзя ходзіць з %1$s на %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:329
+#: src/chess-window.vala:328
 #, c-format
 msgid "White rook at %1$s takes the black pawn at %2$s"
 msgstr "Белая ладдзя з %1$s б'е чорную пешку на %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:331
+#: src/chess-window.vala:330
 #, c-format
 msgid "White rook at %1$s takes the black rook at %2$s"
 msgstr "Белая ладдзя з %1$s б'е чорную ладдзю на %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:333
+#: src/chess-window.vala:332
 #, c-format
 msgid "White rook at %1$s takes the black knight at %2$s"
 msgstr "Белая ладдзя з %1$s б'е чорнага каня на %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:335
+#: src/chess-window.vala:334
 #, c-format
 msgid "White rook at %1$s takes the black bishop at %2$s"
 msgstr "Белая ладдзя з %1$s б'е чорнага слана на %2$s"
 
 #. Human Move String: Description of a white rook at %1$s capturing a queen at %2$s"
-#: src/chess-window.vala:337
+#: src/chess-window.vala:336
 #, c-format
 msgid "White rook at %1$s takes the black queen at %2$s"
 msgstr "Белая ладдзя з %1$s б'е чорнага ферзя на %2$s"
 
 #. Human Move String: Description of a white knight moving from %1$s to %2$s, e.g. 'b1 to c3'
-#: src/chess-window.vala:339
+#: src/chess-window.vala:338
 #, c-format
 msgid "White knight moves from %1$s to %2$s"
 msgstr "Белы конь ходзіць з %1$s на %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:341
+#: src/chess-window.vala:340
 #, c-format
 msgid "White knight at %1$s takes the black pawn at %2$s"
 msgstr "Белы конь з %1$s б'е чорную пешку на %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:343
+#: src/chess-window.vala:342
 #, c-format
 msgid "White knight at %1$s takes the black rook at %2$s"
 msgstr "Белы конь з %1$s б'е чорную ладдзю на %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:345
+#: src/chess-window.vala:344
 #, c-format
 msgid "White knight at %1$s takes the black knight at %2$s"
 msgstr "Белы конь з %1$s б'е чорнага каня на %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:347
+#: src/chess-window.vala:346
 #, c-format
 msgid "White knight at %1$s takes the black bishop at %2$s"
 msgstr "Белы конь з %1$s б'е чорнага слана на %2$s"
 
 #. Human Move String: Description of a white knight at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:349
+#: src/chess-window.vala:348
 #, c-format
 msgid "White knight at %1$s takes the black queen at %2$s"
 msgstr "Белы конь з %1$s б'е чорнага ферзя на %2$s"
 
 #. Human Move String: Description of a white bishop moving from %1$s to %2$s, e.g. 'f1 to b5'
-#: src/chess-window.vala:351
+#: src/chess-window.vala:350
 #, c-format
 msgid "White bishop moves from %1$s to %2$s"
 msgstr "Белы слон ходзіць з %1$s на %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:353
+#: src/chess-window.vala:352
 #, c-format
 msgid "White bishop at %1$s takes the black pawn at %2$s"
 msgstr "Белы слон з %1$s б'е чорную пешку на %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:355
+#: src/chess-window.vala:354
 #, c-format
 msgid "White bishop at %1$s takes the black rook at %2$s"
 msgstr "Белы слон з %1$s б'е чорную ладдзю на %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:357
+#: src/chess-window.vala:356
 #, c-format
 msgid "White bishop at %1$s takes the black knight at %2$s"
 msgstr "Белы слон з %1$s б'е чорнага каня на %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:359
+#: src/chess-window.vala:358
 #, c-format
 msgid "White bishop at %1$s takes the black bishop at %2$s"
 msgstr "Белы слон з %1$s б'е чорнага слана на %2$s"
 
 #. Human Move String: Description of a white bishop at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:361
+#: src/chess-window.vala:360
 #, c-format
 msgid "White bishop at %1$s takes the black queen at %2$s"
 msgstr "Белы слон з %1$s б'е чорнага ферзя на %2$s"
 
 #. Human Move String: Description of a white queen moving from %1$s to %2$s, e.g. 'd1 to d4'
-#: src/chess-window.vala:363
+#: src/chess-window.vala:362
 #, c-format
 msgid "White queen moves from %1$s to %2$s"
 msgstr "Белы ферзь ходзіць з %1$s на %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:365
+#: src/chess-window.vala:364
 #, c-format
 msgid "White queen at %1$s takes the black pawn at %2$s"
 msgstr "Белы ферзь з %1$s б'е чорную пешку на %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:367
+#: src/chess-window.vala:366
 #, c-format
 msgid "White queen at %1$s takes the black rook at %2$s"
 msgstr "Белы ферзь з %1$s б'е чорную ладдзю на %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:369
+#: src/chess-window.vala:368
 #, c-format
 msgid "White queen at %1$s takes the black knight at %2$s"
 msgstr "Белы ферзь з %1$s б'е чорнага каня на %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:371
+#: src/chess-window.vala:370
 #, c-format
 msgid "White queen at %1$s takes the black bishop at %2$s"
 msgstr "Белы ферзь з %1$s б'е чорнага слана на %2$s"
 
 #. Human Move String: Description of a white queen at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:373
+#: src/chess-window.vala:372
 #, c-format
 msgid "White queen at %1$s takes the black queen at %2$s"
 msgstr "Белы ферзь з %1$s б'е чорнага ферзя на %2$s"
 
 #. Human Move String: Description of a white king moving from %1$s to %2$s, e.g. 'e1 to f1'
-#: src/chess-window.vala:375
+#: src/chess-window.vala:374
 #, c-format
 msgid "White king moves from %1$s to %2$s"
 msgstr "Белы кароль ходзіць з %1$s на %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:377
+#: src/chess-window.vala:376
 #, c-format
 msgid "White king at %1$s takes the black pawn at %2$s"
 msgstr "Белы кароль з %1$s б'е чорную пешку на %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:379
+#: src/chess-window.vala:378
 #, c-format
 msgid "White king at %1$s takes the black rook at %2$s"
 msgstr "Белы кароль з %1$s б'е чорную ладдзю на %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:381
+#: src/chess-window.vala:380
 #, c-format
 msgid "White king at %1$s takes the black knight at %2$s"
 msgstr "Белы кароль з %1$s б'е чорнага каня на %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:383
+#: src/chess-window.vala:382
 #, c-format
 msgid "White king at %1$s takes the black bishop at %2$s"
 msgstr "Белы кароль з %1$s б'е чорнага слана на %2$s"
 
 #. Human Move String: Description of a white king at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:385
+#: src/chess-window.vala:384
 #, c-format
 msgid "White king at %1$s takes the black queen at %2$s"
 msgstr "Белы кароль з %1$s б'е чорнага ферзя на %2$s"
 
 #. Human Move String: Description of a black pawn moving from %1$s to %2$s, e.g. 'c8 to c6'
-#: src/chess-window.vala:387
+#: src/chess-window.vala:386
 #, c-format
 msgid "Black pawn moves from %1$s to %2$s"
 msgstr "Чорная пешка ходзіць з %1$s на %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:389
+#: src/chess-window.vala:388
 #, c-format
 msgid "Black pawn at %1$s takes the white pawn at %2$s"
 msgstr "Чорная пешка з %1$s б'е белую пешку на %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:391
+#: src/chess-window.vala:390
 #, c-format
 msgid "Black pawn at %1$s takes the white rook at %2$s"
 msgstr "Чорная пешка з %1$s б'е белую ладдзю на %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:393
+#: src/chess-window.vala:392
 #, c-format
 msgid "Black pawn at %1$s takes the white knight at %2$s"
 msgstr "Чорная пешка з %1$s б'е белага каня на %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:395
+#: src/chess-window.vala:394
 #, c-format
 msgid "Black pawn at %1$s takes the white bishop at %2$s"
 msgstr "Чорная пешка з %1$s б'е белага слана на %2$s"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:397
+#: src/chess-window.vala:396
 #, c-format
 msgid "Black pawn at %1$s takes the white queen at %2$s"
 msgstr "Чорная пешка з %1$s б'е белага ферзя на %2$s"
 
 #. Human Move String: Description of a black rook moving from %1$s to %2$s, e.g. 'a8 to a4'
-#: src/chess-window.vala:399
+#: src/chess-window.vala:398
 #, c-format
 msgid "Black rook moves from %1$s to %2$s"
 msgstr "Чорная ладдзя ходзіць з %1$s на %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:401
+#: src/chess-window.vala:400
 #, c-format
 msgid "Black rook at %1$s takes the white pawn at %2$s"
 msgstr "Чорная ладдзя з %1$s б'е белую пешку на %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:403
+#: src/chess-window.vala:402
 #, c-format
 msgid "Black rook at %1$s takes the white rook at %2$s"
 msgstr "Чорная ладдзя з %1$s б'е белую ладдзю на %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:405
+#: src/chess-window.vala:404
 #, c-format
 msgid "Black rook at %1$s takes the white knight at %2$s"
 msgstr "Чорная ладдзя з %1$s б'е белага каня на %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:407
+#: src/chess-window.vala:406
 #, c-format
 msgid "Black rook at %1$s takes the white bishop at %2$s"
 msgstr "Чорная ладдзя з %1$s б'е белага слана на %2$s"
 
 #. Human Move String: Description of a black rook at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:409
+#: src/chess-window.vala:408
 #, c-format
 msgid "Black rook at %1$s takes the white queen at %2$s"
 msgstr "Чорная ладдзя з %1$s б'е белага ферзя на %2$s"
 
 #. Human Move String: Description of a black knight moving from %1$s to %2$s, e.g. 'b8 to c6'
-#: src/chess-window.vala:411
+#: src/chess-window.vala:410
 #, c-format
 msgid "Black knight moves from %1$s to %2$s"
 msgstr "Чорны конь ходзіць з %1$s на %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:413
+#: src/chess-window.vala:412
 #, c-format
 msgid "Black knight at %1$s takes the white pawn at %2$s"
 msgstr "Чорны конь з %1$s б'е белую пешку на %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:415
+#: src/chess-window.vala:414
 #, c-format
 msgid "Black knight at %1$s takes the white rook at %2$s"
 msgstr "Чорны конь з %1$s б'е белую ладдзю на %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:417
+#: src/chess-window.vala:416
 #, c-format
 msgid "Black knight at %1$s takes the white knight at %2$s"
 msgstr "Чорны конь з %1$s б'е белага каня на %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:419
+#: src/chess-window.vala:418
 #, c-format
 msgid "Black knight at %1$s takes the white bishop at %2$s"
 msgstr "Чорны конь з %1$s б'е белага слана на %2$s"
 
 #. Human Move String: Description of a black knight at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:421
+#: src/chess-window.vala:420
 #, c-format
 msgid "Black knight at %1$s takes the white queen at %2$s"
 msgstr "Чорны конь з %1$s б'е белага ферзя на %2$s"
 
 #. Human Move String: Description of a black bishop moving from %1$s to %2$s, e.g. 'f8 to b3'
-#: src/chess-window.vala:423
+#: src/chess-window.vala:422
 #, c-format
 msgid "Black bishop moves from %1$s to %2$s"
 msgstr "Чорны слон ходзіць з %1$s на %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:425
+#: src/chess-window.vala:424
 #, c-format
 msgid "Black bishop at %1$s takes the white pawn at %2$s"
 msgstr "Чорны слон з %1$s б'е белую пешку на %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:427
+#: src/chess-window.vala:426
 #, c-format
 msgid "Black bishop at %1$s takes the white rook at %2$s"
 msgstr "Чорны слон з %1$s б'е белую ладдзю на %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:429
+#: src/chess-window.vala:428
 #, c-format
 msgid "Black bishop at %1$s takes the white knight at %2$s"
 msgstr "Чорны слон з %1$s б'е белага каня на %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:431
+#: src/chess-window.vala:430
 #, c-format
 msgid "Black bishop at %1$s takes the white bishop at %2$s"
 msgstr "Чорны слон з %1$s б'е белага слана на %2$s"
 
 #. Human Move String: Description of a black bishop at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:433
+#: src/chess-window.vala:432
 #, c-format
 msgid "Black bishop at %1$s takes the white queen at %2$s"
 msgstr "Чорны слон з %1$s б'е белага ферзя на %2$s"
 
 #. Human Move String: Description of a black queen moving from %1$s to %2$s, e.g. 'd8 to d5'
-#: src/chess-window.vala:435
+#: src/chess-window.vala:434
 #, c-format
 msgid "Black queen moves from %1$s to %2$s"
 msgstr "Чорны ферзь ходзіць з %1$s на %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:437
+#: src/chess-window.vala:436
 #, c-format
 msgid "Black queen at %1$s takes the white pawn at %2$s"
 msgstr "Чорны ферзь з %1$s б'е белую пешку на %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:439
+#: src/chess-window.vala:438
 #, c-format
 msgid "Black queen at %1$s takes the white rook at %2$s"
 msgstr "Чорны ферзь з %1$s б'е белую ладдзю на %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:441
+#: src/chess-window.vala:440
 #, c-format
 msgid "Black queen at %1$s takes the white knight at %2$s"
 msgstr "Чорны ферзь з %1$s б'е белага каня на %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:443
+#: src/chess-window.vala:442
 #, c-format
 msgid "Black queen at %1$s takes the white bishop at %2$s"
 msgstr "Чорны ферзь з %1$s б'е белага слана на %2$s"
 
 #. Human Move String: Description of a black queen at %1$s capturing a queen at %2$s
-#: src/chess-window.vala:445
+#: src/chess-window.vala:444
 #, c-format
 msgid "Black queen at %1$s takes the white queen at %2$s"
 msgstr "Чорны ферзь з %1$s б'е белага ферзя на %2$s"
 
 #. Human Move String: Description of a black king moving from %1$s to %2$s, e.g. 'e8 to f8'
-#: src/chess-window.vala:447
+#: src/chess-window.vala:446
 #, c-format
 msgid "Black king moves from %1$s to %2$s"
 msgstr "Чорны кароль ходзіць з %1$s на %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a pawn at %2$s
-#: src/chess-window.vala:449
+#: src/chess-window.vala:448
 #, c-format
 msgid "Black king at %1$s takes the white pawn at %2$s"
 msgstr "Чорны кароль з %1$s б'е белую пешку на %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a rook at %2$s
-#: src/chess-window.vala:451
+#: src/chess-window.vala:450
 #, c-format
 msgid "Black king at %1$s takes the white rook at %2$s"
 msgstr "Чорны кароль з %1$s б'е белую ладдзю на %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a knight at %2$s
-#: src/chess-window.vala:453
+#: src/chess-window.vala:452
 #, c-format
 msgid "Black king at %1$s takes the white knight at %2$s"
 msgstr "Чорны кароль з %1$s б'е белага каня на %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a bishop at %2$s
-#: src/chess-window.vala:455
+#: src/chess-window.vala:454
 #, c-format
 msgid "Black king at %1$s takes the white bishop at %2$s"
 msgstr "Чорны кароль з %1$s б'е белага слана на %2$s"
 
 #. Human Move String: Description of a black king at %1$s capturing a queen at %2$s"
-#: src/chess-window.vala:457
+#: src/chess-window.vala:456
 #, c-format
 msgid "Black king at %1$s takes the white queen at %2$s"
 msgstr "Чорны кароль з %1$s б'е белага ферзя на %2$s"
 
-#: src/chess-window.vala:466
+#: src/chess-window.vala:465
 msgid "White castles kingside"
 msgstr "Белыя выконваюць ракіроўку з боку караля"
 
-#: src/chess-window.vala:468
+#: src/chess-window.vala:467
 msgid "White castles queenside"
 msgstr "Белыя выконваюць ракіроўку з боку ферзя"
 
-#: src/chess-window.vala:470
+#: src/chess-window.vala:469
 msgid "Black castles kingside"
 msgstr "Чорныя выконваюць ракіроўку з боку караля"
 
-#: src/chess-window.vala:472
+#: src/chess-window.vala:471
 msgid "Black castles queenside"
 msgstr "Чорныя выконваюць ракіроўку з боку ферзя"
 
 #. Human Move String: Description of a white pawn at %1$s capturing a pawn at %2$s en passant
-#: src/chess-window.vala:494
+#: src/chess-window.vala:493
 #, c-format
 msgid "White pawn at %1$s takes the black pawn at %2$s en passant"
 msgstr "Белая пешка з %1$s б'е чорную пешку на %2$s на праходзе"
 
 #. Human Move String: Description of a black pawn at %1$s capturing a pawn at %2$s en passant
-#: src/chess-window.vala:498
+#: src/chess-window.vala:497
 #, c-format
 msgid "Black pawn at %1$s takes white pawn at %2$s en passant"
 msgstr "Чорная пешка з %1$s б'е белую пешку на %2$s на праходзе"
 
 #. Move History Combo: Go to the start of the game
-#: src/chess-window.vala:532
+#: src/chess-window.vala:531
 msgid "Game Start"
 msgstr "Да пачатку гульні"
 
 #. Help string for command line --version flag
-#: src/gnome-chess.vala:95
+#: src/gnome-chess.vala:100
 msgid "Show release version"
 msgstr "Паказаць версію выдання"
 
 #. May print when started on the command line; a PGN is a saved game file.
-#: src/gnome-chess.vala:175
+#: src/gnome-chess.vala:180
 msgid "GNOME Chess can only open one PGN at a time."
 msgstr "Шахматы GNOME здольныя адкрыць толькі адзін PGN за раз."
 
 #. Warning at start of game when no chess engine is installed.
-#: src/gnome-chess.vala:452
+#: src/gnome-chess.vala:457
 msgid ""
 "No chess engine is installed. You will not be able to play against the "
 "computer."
@@ -902,167 +905,170 @@ msgstr ""
 "камп'ютара."
 
 #. Game status on White's turn when in check
-#: src/gnome-chess.vala:795
+#: src/gnome-chess.vala:800
 msgid "White is in Check"
 msgstr "Белыя, шах"
 
 #. Game status on Black's turn when in check
-#: src/gnome-chess.vala:798
+#: src/gnome-chess.vala:803
 msgid "Black is in Check"
 msgstr "Чорныя, шах"
 
 #. Game status on White's turn if White is human
-#: src/gnome-chess.vala:804
+#: src/gnome-chess.vala:809
 msgid "White to Move"
 msgstr "Ходзяць белыя"
 
 #. Game status on White's turn if White is a computer
-#: src/gnome-chess.vala:807
+#: src/gnome-chess.vala:812
 msgid "White is Thinking…"
 msgstr "Белыя думаюць…"
 
 #. Game status on Black's turn if Black is human
-#: src/gnome-chess.vala:813
+#: src/gnome-chess.vala:818
 msgid "Black to Move"
 msgstr "Ходзяць чорныя"
 
 #. Game status on Black's turn if Black is a computer
-#: src/gnome-chess.vala:816
+#: src/gnome-chess.vala:821
 msgid "Black is Thinking…"
 msgstr "Чорныя думаюць…"
 
 #. Game status when Black captures White's pawn en passant
-#: src/gnome-chess.vala:827
+#: src/gnome-chess.vala:832
 msgid ""
 "Black captured White's pawn <span font_style='italic'>en passant</span>."
 msgstr "Чорныя збілі белую пешку <span font_style='italic'>на праходзе</span>."
 
 #. Game status when White captures Black's pawn en passant
-#: src/gnome-chess.vala:830
+#: src/gnome-chess.vala:835
 msgid ""
 "White captured Black's pawn <span font_style='italic'>en passant</span>."
 msgstr "Белыя збілі чорную пешку <span font_style='italic'>на праходзе</span>."
 
 #. Game status when the white player wins
-#: src/gnome-chess.vala:848
+#: src/gnome-chess.vala:853
 msgid "White Wins"
 msgstr "Белыя перамаглі"
 
 #. Game status when the black player wins
-#: src/gnome-chess.vala:853
+#: src/gnome-chess.vala:858
 msgid "Black Wins"
 msgstr "Чорныя перамаглі"
 
 #. Game status when the game is drawn
-#: src/gnome-chess.vala:858
+#: src/gnome-chess.vala:863
 msgid "Game is Drawn"
 msgstr "Гульня нічыйная"
 
 #. Game status when something goes wrong with the engine.
-#: src/gnome-chess.vala:863
+#: src/gnome-chess.vala:868
 msgid "Oops!"
 msgstr "Вой!"
 
 #. Game status when Black is checkmated
-#: src/gnome-chess.vala:876
+#: src/gnome-chess.vala:881
 msgid "Black is in check and cannot move."
 msgstr "Чорным абвешчаны шах, але яны не могуць пахадзіць."
 
 #. Game status when White is checkmated
-#: src/gnome-chess.vala:879
+#: src/gnome-chess.vala:884
 msgid "White is in check and cannot move."
 msgstr "Белым абвешчаны шах, але яны не могуць пахадзіць."
 
 #. Game status when the game terminates due to a stalemate
-#: src/gnome-chess.vala:885
+#: src/gnome-chess.vala:890
 msgid "Player cannot move."
 msgstr "Гулец не можа пахадзіць."
 
 #. Game status when the game is drawn due to the fifty move rule
-#: src/gnome-chess.vala:889
+#: src/gnome-chess.vala:894
 msgid "No piece was taken or pawn moved in fifty moves."
 msgstr ""
 "У апошнія 50 хадоў ні адна фігура не была збіта і ні адна пешка не хадзіла."
 
 #. Game status when the game is drawn due to the 75 move rule
-#: src/gnome-chess.vala:893
+#: src/gnome-chess.vala:898
 msgid "No piece was taken or pawn moved in 75 moves."
 msgstr ""
 "У апошнія 75 хадоў ні адна фігура не была збіта і ні адна пешка не хадзіла."
 
 #. Game status when the game ends due to Black's clock stopping
-#: src/gnome-chess.vala:898
+#: src/gnome-chess.vala:903
 msgid "Black has run out of time."
 msgstr "Час чорных на ход вычарпаны."
 
 #. Game status when the game ends due to White's clock stopping
-#: src/gnome-chess.vala:901
+#: src/gnome-chess.vala:906
 msgid "White has run out of time."
 msgstr "Час белых на ход вычарпаны."
 
 #. Game status when the game is drawn due to the three-fold-repetition rule
-#: src/gnome-chess.vala:907
+#: src/gnome-chess.vala:912
 msgid "The same board state has occurred three times."
 msgstr "Адна і тая ж сітуацыя паўтараецца тройчы."
 
 #. Game status when the game is drawn due to the five-fold-repetition rule
-#: src/gnome-chess.vala:911
+#: src/gnome-chess.vala:916
 msgid "The same board state has occurred five times."
 msgstr "Адна і тая ж сітуацыя паўтараецца пяць разоў."
 
 #. Game status when the game is drawn due to the insufficient material rule
-#: src/gnome-chess.vala:915
+#: src/gnome-chess.vala:920
 msgid "Neither player can checkmate."
 msgstr "Ні адзін з гульцоў не можа абвесціць мат."
 
 #. Game status when the game ends due to the black player resigning
-#: src/gnome-chess.vala:920
+#: src/gnome-chess.vala:925
 msgid "Black has resigned."
 msgstr "Чорныя здаліся."
 
 #. Game status when the game ends due to the white player resigning
-#: src/gnome-chess.vala:923
+#: src/gnome-chess.vala:928
 msgid "White has resigned."
 msgstr "Белыя здаліся."
 
 #. Game status when a game is abandoned
-#: src/gnome-chess.vala:929
+#: src/gnome-chess.vala:934
 msgid "The game has been abandoned."
 msgstr "Гульня не захавана."
 
 #. Game status when the game ends due to a player dying during the game.
-#: src/gnome-chess.vala:934
+#: src/gnome-chess.vala:939
 msgid "The game log says a player died!"
 msgstr "Журнал гульні кажа, што гулец памёр!"
 
 #. Game status when something goes wrong with the engine.
-#: src/gnome-chess.vala:939
+#: src/gnome-chess.vala:944
 msgid "The computer player is confused. The game cannot continue."
 msgstr "Камп'ютарны гулец збянтэжаны. Немагчыма працягваць гульню."
 
-#: src/gnome-chess.vala:973
-msgid "_Abandon game"
-msgstr "_Не захоўваць гульню"
+#: src/gnome-chess.vala:969
+msgid "Save Game?"
+msgstr "Захаваць гульню?"
 
-#: src/gnome-chess.vala:974
-msgid "_Save game for later"
-msgstr "_Захаваць гульню на потым"
+#: src/gnome-chess.vala:975
+msgid "_Abandon Game"
+msgstr "Не захоўваць гульню"
 
-#: src/gnome-chess.vala:978
-msgid "_Discard game"
-msgstr "_Ануляваць гульню"
+#: src/gnome-chess.vala:976
+msgid "Save game for later"
+msgstr "Захаваць гульню на потым"
 
-#: src/gnome-chess.vala:979
-msgid "_Save game log"
-msgstr "_Захаваць журнал гульні"
+#: src/gnome-chess.vala:982
+msgid "_Discard Game"
+msgstr "Ануляваць гульню"
 
-#. Title of claim draw dialog
-#: src/gnome-chess.vala:1020
+#: src/gnome-chess.vala:983
+msgid "Save game log"
+msgstr "Захаваць журнал гульні"
+
+#: src/gnome-chess.vala:1017
 msgid "Would you like to claim a draw?"
 msgstr "Хочаце прапанаваць нічыю?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: src/gnome-chess.vala:1026
+#: src/gnome-chess.vala:1023
 msgid ""
 "You may claim a draw because fifty moves have passed without a capture or "
 "pawn advancement. (The computer player may still choose to claim a draw even "
@@ -1073,7 +1079,7 @@ msgstr ""
 "нічыю, нават калі вы захочаце працягваць гульню.)"
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: src/gnome-chess.vala:1031
+#: src/gnome-chess.vala:1028
 msgid ""
 "You may claim a draw because the current board position has occurred three "
 "times. (The computer player may still choose to claim a draw even if you "
@@ -1083,98 +1089,93 @@ msgstr ""
 "становішча фігур на дошцы. (Камп'ютар таксама можа аб'явіць нічыю, нават "
 "калі вы захочаце працягваць гульню.)"
 
-#. Option in claim draw dialog
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1039 src/gnome-chess.vala:1078
+#: src/gnome-chess.vala:1035 src/gnome-chess.vala:1065
 msgid "_Keep Playing"
 msgstr "_Працягваць гульню"
 
-#. Option in claim draw dialog
-#: src/gnome-chess.vala:1041
+#: src/gnome-chess.vala:1036
 msgid "_Claim Draw"
 msgstr "_Прапанаваць нічыю"
 
-#: src/gnome-chess.vala:1058
-msgid "Save this game before starting a new one?"
-msgstr "Захаваць гэту гульню перад пачаткам новай?"
+#: src/gnome-chess.vala:1052
+msgid "By starting a new game now, unsaved progress would be lost."
+msgstr "Калі цяпер пачаць новую гульню, незахаваныя дзеянні будуць страчаны."
 
-#. Title of warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1073
+#: src/gnome-chess.vala:1062
 msgid "Are you sure you want to resign?"
 msgstr "Сапраўды здацца?"
 
 #. Text on warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1076
+#: src/gnome-chess.vala:1064
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr "Гэта мае сэнс, калі вы жадаеце захаваць гульню як запіс пра пройгрыш."
 
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1080
+#: src/gnome-chess.vala:1066
 msgid "_Resign"
 msgstr "_Здацца"
 
-#: src/gnome-chess.vala:1210
-msgid "A classic game of positional strategy"
-msgstr "Класічная пазіцыйная стратэгія"
-
-#: src/gnome-chess.vala:1213
+#: src/gnome-chess.vala:1195
 msgid "translator-credits"
 msgstr ""
 "Ігар Грачышка <ihar.hrachyshka@gmail.com>\n"
 "Юрась Шумовіч <shumovichy@gmail.com>"
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1236
+msgid "Error Loading PGN File"
+msgstr "Памылка загрузкі фала PGN"
+
+#: src/gnome-chess.vala:1237
 msgid "This does not look like a valid PGN game."
 msgstr "Гэта не падобна да правільнай PGN гульні."
 
-#: src/gnome-chess.vala:1262 src/gnome-chess.vala:1275
-#: src/gnome-chess.vala:1380
+#: src/gnome-chess.vala:1238 src/gnome-chess.vala:1246
+#: src/gnome-chess.vala:1338
 msgid "_OK"
 msgstr "_Добра"
 
+#: src/gnome-chess.vala:1245
+msgid "Invalid Move"
+msgstr "Няправільны ход"
+
 #. Title of save game dialog
-#: src/gnome-chess.vala:1297
+#: src/gnome-chess.vala:1269
 msgid "Save Chess Game"
 msgstr "Захаванне шахматнай партыі"
 
-#: src/gnome-chess.vala:1299
-msgid "_Save"
-msgstr "_Захаваць"
-
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1331
+#: src/gnome-chess.vala:1293
 msgid "Untitled Chess Game"
 msgstr "Неназваная шахматная партыя"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1337 src/gnome-chess.vala:1446
+#: src/gnome-chess.vala:1299 src/gnome-chess.vala:1391
 msgid "PGN files"
 msgstr "Файлы PGN"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1343 src/gnome-chess.vala:1452
+#: src/gnome-chess.vala:1304 src/gnome-chess.vala:1396
 msgid "All files"
 msgstr "Усе файлы"
 
-#: src/gnome-chess.vala:1378
+#: src/gnome-chess.vala:1336
+msgid "Save Error"
+msgstr "Памылка захавання"
+
+#: src/gnome-chess.vala:1337
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Не ўдалося захаваць гульню: %s"
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1377
 msgid "Save this game before loading another one?"
 msgstr "Захаваць гэту гульню перад загрузкай іншай?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1385
 msgid "Load Chess Game"
 msgstr "Загрузка шахматнай партыі"
-
-#: src/gnome-chess.vala:1439
-msgid "_Open"
-msgstr "_Адкрыць"
 
 #: src/preferences.vala:217
 msgctxt "chess-side"
@@ -1271,6 +1272,48 @@ msgctxt "chess-opponent"
 msgid "Human"
 msgstr "Чалавек"
 
+#~ msgid "The GNOME Project"
+#~ msgstr "Праект GNOME"
+
+#~ msgid "Undo your most recent move"
+#~ msgstr "Адрабіць ваш апошні ход"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game"
+#~ msgstr "Захаваць гульню"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game with a different name"
+#~ msgstr "Захаваць гульню з іншай назвай"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Rewind to the game start"
+#~ msgstr "Вярнуцца да пачатку гульні"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the previous move"
+#~ msgstr "Паказаць папярэдні ход"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the next move"
+#~ msgstr "Паказаць наступны ход"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the current move"
+#~ msgstr "Паказаць цяперашні ход"
+
+#~ msgid "Save this game before starting a new one?"
+#~ msgstr "Захаваць гэту гульню перад пачаткам новай?"
+
+#~ msgid "A classic game of positional strategy"
+#~ msgstr "Класічная пазіцыйная стратэгія"
+
+#~ msgid "_Save"
+#~ msgstr "_Захаваць"
+
+#~ msgid "_Open"
+#~ msgstr "_Адкрыць"
+
 #~ msgid "_New Game"
 #~ msgstr "_Новая гульня"
 
@@ -1345,9 +1388,6 @@ msgstr "Чалавек"
 
 #~ msgid "_Difficulty:"
 #~ msgstr "_Складанасць:"
-
-#~ msgid "_Time limit:"
-#~ msgstr "Абмежаванне часу:"
 
 #~ msgid "Changes will take effect for the next game."
 #~ msgstr "Змены будуць ужыты для наступных гульняў."
