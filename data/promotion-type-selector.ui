@@ -2,7 +2,6 @@
 <interface>
   <requires lib="gtk" version="4.0"/>
   <template class="PromotionTypeSelectorDialog" parent="AdwDialog">
-    <property name="can-focus">0</property>
     <property name="title" translatable="yes">Select Promotion Type</property>
     <child>
       <object class="AdwToolbarView">
@@ -11,7 +10,6 @@
         </child>
         <property name="content">
           <object class="GtkBox" id="button_box">
-            <property name="can-focus">0</property>
             <property name="margin-start">6</property>
             <property name="margin-end">6</property>
             <property name="margin-top">6</property>
@@ -25,12 +23,10 @@
                 <signal name="clicked" handler="queen_selected_cb"/>
                 <child>
                   <object class="GtkGrid">
-                    <property name="can-focus">0</property>
                     <property name="halign">center</property>
                     <property name="valign">center</property>
                     <child>
                       <object class="GtkLabel">
-                        <property name="can-focus">0</property>
                         <property name="label" translatable="yes">_Queen</property>
                         <property name="use-underline">1</property>
                         <layout>
@@ -41,7 +37,6 @@
                     </child>
                     <child>
                       <object class="GtkImage" id="queen_image">
-                        <property name="can-focus">0</property>
                         <layout>
                           <property name="column">0</property>
                           <property name="row">0</property>
@@ -61,12 +56,10 @@
                 <signal name="clicked" handler="knight_selected_cb"/>
                 <child>
                   <object class="GtkGrid">
-                    <property name="can-focus">0</property>
                     <property name="halign">center</property>
                     <property name="valign">center</property>
                     <child>
                       <object class="GtkLabel">
-                        <property name="can-focus">0</property>
                         <property name="label" translatable="yes">_Knight</property>
                         <property name="use-underline">1</property>
                         <layout>
@@ -77,7 +70,6 @@
                     </child>
                     <child>
                       <object class="GtkImage" id="knight_image">
-                        <property name="can-focus">0</property>
                         <layout>
                           <property name="column">0</property>
                           <property name="row">0</property>
@@ -97,12 +89,10 @@
                 <signal name="clicked" handler="rook_selected_cb"/>
                 <child>
                   <object class="GtkGrid">
-                    <property name="can-focus">0</property>
                     <property name="halign">center</property>
                     <property name="valign">center</property>
                     <child>
                       <object class="GtkLabel">
-                        <property name="can-focus">0</property>
                         <property name="label" translatable="yes">_Rook</property>
                         <property name="use-underline">1</property>
                         <layout>
@@ -113,7 +103,6 @@
                     </child>
                     <child>
                       <object class="GtkImage" id="rook_image">
-                        <property name="can-focus">0</property>
                         <layout>
                           <property name="column">0</property>
                           <property name="row">0</property>
@@ -133,12 +122,10 @@
                 <signal name="clicked" handler="bishop_selected_cb"/>
                 <child>
                   <object class="GtkGrid">
-                    <property name="can-focus">0</property>
                     <property name="halign">center</property>
                     <property name="valign">center</property>
                     <child>
                       <object class="GtkLabel">
-                        <property name="can-focus">0</property>
                         <property name="label" translatable="yes">_Bishop</property>
                         <property name="use-underline">1</property>
                         <layout>
@@ -149,7 +136,6 @@
                     </child>
                     <child>
                       <object class="GtkImage" id="bishop_image">
-                        <property name="can-focus">0</property>
                         <layout>
                           <property name="column">0</property>
                           <property name="row">0</property>
