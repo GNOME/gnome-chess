@@ -48,7 +48,6 @@
     </section>
   </menu>
   <template class="ChessWindow" parent="AdwApplicationWindow">
-    <property name="can-focus">0</property>
     <property name="default-width">700</property>
     <property name="title" translatable="yes">Chess</property>
     <child>
@@ -65,7 +64,6 @@
                 </style>
                 <child>
                   <object class="GtkImage">
-                    <property name="can-focus">0</property>
                     <property name="icon-size">1</property>
                     <property name="icon-name">edit-undo-symbolic</property>
                   </object>
@@ -98,7 +96,6 @@
         </child>
         <property name="content">
           <object class="GtkBox" id="main_box">
-            <property name="can-focus">0</property>
             <property name="orientation">vertical</property>
             <property name="spacing">3</property>
             <child>
@@ -108,7 +105,6 @@
         </property>
         <child type="bottom">
           <object class="GtkBox" id="navigation_box">
-            <property name="can-focus">0</property>
             <property name="spacing">6</property>
             <property name="margin-start">6</property>
             <property name="margin-end">6</property>
@@ -116,7 +112,6 @@
             <property name="margin-bottom">6</property>
             <child>
               <object class="GtkBox">
-                <property name="can-focus">0</property>
                 <property name="homogeneous">1</property>
                 <style>
                   <class name="raised"/>
@@ -132,7 +127,6 @@
                     </style>
                     <child>
                       <object class="GtkImage">
-                        <property name="can-focus">0</property>
                         <property name="icon-size">1</property>
                         <property name="icon-name">go-first-symbolic</property>
                       </object>
@@ -149,7 +143,6 @@
                     </style>
                     <child>
                       <object class="GtkImage">
-                        <property name="can-focus">0</property>
                         <property name="icon-size">1</property>
                         <property name="icon-name">go-previous-symbolic</property>
                       </object>
@@ -166,7 +159,6 @@
                     </style>
                     <child>
                       <object class="GtkImage">
-                        <property name="can-focus">0</property>
                         <property name="icon-size">1</property>
                         <property name="icon-name">go-next-symbolic</property>
                       </object>
@@ -183,7 +175,6 @@
                     </style>
                     <child>
                       <object class="GtkImage">
-                        <property name="can-focus">0</property>
                         <property name="icon-size">1</property>
                         <property name="icon-name">go-last-symbolic</property>
                       </object>
@@ -195,7 +186,6 @@
             <child>
               <object class="GtkDropDown" id="history_dropdown">
                 <property name="hexpand">1</property>
-                <property name="can-focus">0</property>
                 <property name="model">
                   <object class="GtkStringList" id="history_model"/>
                 </property>
@@ -204,18 +194,15 @@
             </child>
             <child>
               <object class="GtkBox" id="clock_box">
-                <property name="can-focus">0</property>
                 <property name="spacing">6</property>
                 <property name="homogeneous">1</property>
                 <child>
                   <object class="GtkDrawingArea" id="white_time_label">
-                    <property name="can-focus">0</property>
                     <property name="content-width">80</property>
                   </object>
                 </child>
                 <child>
                   <object class="GtkDrawingArea" id="black_time_label">
-                    <property name="can-focus">0</property>
                     <property name="content-width">80</property>
                   </object>
                 </child>
