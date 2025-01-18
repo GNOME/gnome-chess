@@ -59,6 +59,15 @@ public class ChessWindow : Adw.ApplicationWindow
 
         white_time_label.set_draw_func (draw_white_time_label);
         black_time_label.set_draw_func (draw_black_time_label);
+
+        var list_factory = history_dropdown.get_factory ();
+        var button_factory = new Gtk.SignalListItemFactory ();
+
+        button_factory.setup.connect (history_dropdown_button_setup_cb);
+        button_factory.bind.connect (history_dropdown_button_bind_cb);
+
+        history_dropdown.set_factory (button_factory);
+        history_dropdown.set_list_factory (list_factory);
     }
 
     public void update_game_status (string? title = null, string? info = null)
@@ -247,6 +256,23 @@ public class ChessWindow : Adw.ApplicationWindow
     private void draw_black_time_label (Gtk.DrawingArea drawing_area, Cairo.Context c, int width, int height)
     {
         draw_time (drawing_area, c, width, height, make_clock_text (scene.game.clock, Color.BLACK), { 1.0, 1.0, 1.0 }, { 0.0, 0.0, 0.0 });
+    }
+
+    private void history_dropdown_button_setup_cb (Gtk.SignalListItemFactory factory, Object object) {
+        unowned var list_item = object as Gtk.ListItem;
+
+        list_item.child = new Gtk.Label (null) {
+            ellipsize = Pango.EllipsizeMode.END,
+            xalign = 0
+        };
+    }
+
+    private void history_dropdown_button_bind_cb (Gtk.SignalListItemFactory factory, Object object) {
+        unowned var list_item = object as Gtk.ListItem;
+        unowned var string_object = list_item.item as Gtk.StringObject;
+        unowned var label = list_item.child as Gtk.Label;
+
+        label.label = string_object.string;
     }
 
     [GtkCallback]
