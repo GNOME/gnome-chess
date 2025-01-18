@@ -22,8 +22,6 @@ public class PromotionTypeSelectorDialog : Adw.Dialog
     }
 
     [GtkChild]
-    private unowned Gtk.Box button_box;
-    [GtkChild]
     private unowned Gtk.Image queen_image;
     [GtkChild]
     private unowned Gtk.Image knight_image;
@@ -34,11 +32,8 @@ public class PromotionTypeSelectorDialog : Adw.Dialog
 
     public signal void piece_selected (SelectedType type);
 
-    public PromotionTypeSelectorDialog (Color color, string theme, ChessWindow.LayoutMode layout_mode)
+    public PromotionTypeSelectorDialog (Color color, string theme)
     {
-        if (layout_mode == ChessWindow.LayoutMode.NARROW)
-            button_box.orientation = Gtk.Orientation.VERTICAL;
-
         var color_string = color == Color.WHITE ? "white" : "black";
         var resource_path = Path.build_path ("/", "/org/gnome/Chess/pieces", theme, "%sQueen.svg".printf (color_string));
         set_piece_image (queen_image, resource_path);

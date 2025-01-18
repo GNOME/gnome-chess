@@ -13,30 +13,6 @@
 [GtkTemplate (ui = "/org/gnome/Chess/ui/chess-window.ui")]
 public class ChessWindow : Adw.ApplicationWindow
 {
-    public enum LayoutMode {
-        NORMAL,
-        NARROW
-    }
-
-    private LayoutMode _layout_mode = LayoutMode.NORMAL;
-    public LayoutMode layout_mode
-    {
-        get { return _layout_mode; }
-
-        private set
-        {
-            if (_layout_mode == value)
-                return;
-
-            _layout_mode = value;
-
-            Idle.add(() => {
-                navigation_box.set_orientation (value == LayoutMode.NORMAL ? Gtk.Orientation.HORIZONTAL : Gtk.Orientation.VERTICAL);
-                return Source.REMOVE;
-            });
-        }
-    }
-
     public ChessView view
     {
         get; private set;
@@ -58,8 +34,6 @@ public class ChessWindow : Adw.ApplicationWindow
     private unowned Adw.ToastOverlay toast_overlay;
     [GtkChild]
     private unowned Gtk.Button pause_resume_button;
-    [GtkChild]
-    private unowned Gtk.Box navigation_box;
     [GtkChild]
     private unowned Gtk.DropDown history_dropdown;
     [GtkChild]
@@ -85,23 +59,6 @@ public class ChessWindow : Adw.ApplicationWindow
 
         white_time_label.set_draw_func (draw_white_time_label);
         black_time_label.set_draw_func (draw_black_time_label);
-
-        notify["default-height"].connect (window_state_changed_cb);
-        notify["default-width"].connect (window_state_changed_cb);
-    }
-
-    private void window_state_changed_cb ()
-    {
-        if (fullscreened || maximized)
-            return;
-
-        if (default_width == 0 || default_height == 0)
-            return;
-
-        if (default_width <= 500 && layout_mode == LayoutMode.NORMAL)
-            layout_mode = LayoutMode.NARROW;
-        else if (default_width > 500 && layout_mode == LayoutMode.NARROW)
-            layout_mode = LayoutMode.NORMAL;
     }
 
     public void update_game_status (string? title = null, string? info = null)

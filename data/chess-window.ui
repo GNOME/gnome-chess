@@ -51,6 +51,12 @@
     <property name="default-width">700</property>
     <property name="title" translatable="yes">Chess</property>
     <child>
+      <object class="AdwBreakpoint">
+          <condition>max-width: 500px</condition>
+          <setter object="navigation_box" property="orientation">vertical</setter>
+      </object>
+    </child>
+    <child>
       <object class="AdwToolbarView">
         <child type="top">
           <object class="AdwHeaderBar">

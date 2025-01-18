@@ -3,21 +3,23 @@
   <requires lib="gtk" version="4.0"/>
   <template class="PromotionTypeSelectorDialog" parent="AdwDialog">
     <property name="title" translatable="yes">Select Promotion Type</property>
+    <property name="content-width">400</property>
+    <property name="content-height">160</property>
     <child>
       <object class="AdwToolbarView">
         <child type="top">
           <object class="AdwHeaderBar"/>
         </child>
         <property name="content">
-          <object class="GtkBox" id="button_box">
+          <object class="GtkBox">
+            <property name="hexpand">true</property>
+            <property name="homogeneous">true</property>
             <property name="margin-start">6</property>
             <property name="margin-end">6</property>
             <property name="margin-top">6</property>
             <property name="margin-bottom">6</property>
             <child>
               <object class="GtkButton">
-                <property name="width-request">100</property>
-                <property name="height-request">120</property>
                 <property name="receives-default">1</property>
                 <property name="use-underline">1</property>
                 <signal name="clicked" handler="queen_selected_cb"/>
@@ -49,8 +51,6 @@
             </child>
             <child>
               <object class="GtkButton">
-                <property name="width-request">100</property>
-                <property name="height-request">120</property>
                 <property name="receives-default">1</property>
                 <property name="use-underline">1</property>
                 <signal name="clicked" handler="knight_selected_cb"/>
@@ -82,8 +82,6 @@
             </child>
             <child>
               <object class="GtkButton">
-                <property name="width-request">100</property>
-                <property name="height-request">120</property>
                 <property name="receives-default">1</property>
                 <property name="use-underline">1</property>
                 <signal name="clicked" handler="rook_selected_cb"/>
@@ -115,8 +113,6 @@
             </child>
             <child>
               <object class="GtkButton">
-                <property name="width-request">100</property>
-                <property name="height-request">120</property>
                 <property name="receives-default">1</property>
                 <property name="use-underline">1</property>
                 <signal name="clicked" handler="bishop_selected_cb"/>

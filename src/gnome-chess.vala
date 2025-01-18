@@ -1201,8 +1201,7 @@ Copyright © 2015–2016 Sahil Sareen""";
     {
         /* We cannot cache this dialog because it uses the piece color of the current player. */
         var promotion_type_selector_dialog = new PromotionTypeSelectorDialog (game.current_player.color,
-                                                                              scene.theme_name,
-                                                                              window.layout_mode);
+                                                                              scene.theme_name);
 
         promotion_type_selector_dialog.piece_selected.connect ((selected_type) => {
             switch (selected_type)
