@@ -9,7 +9,7 @@ include:
 variables:
     BUNDLE: "chess-dev.flatpak"
     FLATPAK_MODULE: "gnome-chess"
-    TARBALL_ARTIFACT_PATH: TARBALL_ARTIFACT_PATH: ".flatpak-builder/build/${FLATPAK_MODULE}/_flatpak_build/meson-dist/${CI_PROJECT_NAME}-${CI_COMMIT_TAG}.tar.xz"
+    TARBALL_ARTIFACT_PATH: ".flatpak-builder/build/${FLATPAK_MODULE}/_flatpak_build/meson-dist/${CI_PROJECT_NAME}-${CI_COMMIT_TAG}.tar.xz"
 
 flatpak:
     variables:
