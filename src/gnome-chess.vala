@@ -143,7 +143,9 @@ Copyright © 2015–2016 Sahil Sareen""";
         set_accels_for_action ("app." + HELP_ACTION_NAME,                {                 "F1"    });
         set_accels_for_action ("app." + QUIT_ACTION_NAME,                {        "<Control>q",
                                                                                   "<Control>w"     });
+    }
 
+    private void create_window () {
         window = new ChessWindow (this);
         window.set_default_size (settings.get_int (WIDTH_SETTINGS_KEY), settings.get_int (HEIGHT_SETTINGS_KEY));
         if (settings.get_boolean (MAXIMIZED_SETTINGS_KEY))
@@ -170,6 +172,20 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         foreach (var profile in ai_profiles)
             debug ("Detected AI profile %s in %s", profile.name, profile.path);
+
+        var data_dir = File.new_for_path (Path.build_filename (Environment.get_user_data_dir (), "gnome-chess", null));
+        DirUtils.create_with_parents (data_dir.get_path (), 0755);
+
+        autosave_filename = data_dir.get_path () + "/autosave.pgn";
+
+        /* Load from history if no game requested */
+        if (game_file == null && FileUtils.test (autosave_filename, FileTest.EXISTS))
+            game_file = File.new_for_path (autosave_filename);
+
+        if (game_file == null)
+            start_new_game ();
+        else
+            load_game (game_file);
     }
 
     public override void open (File[] files, string hint)
@@ -186,39 +202,28 @@ Copyright © 2015–2016 Sahil Sareen""";
 
     public override void activate ()
     {
-        if (!window.visible)
-        {
-            var data_dir = File.new_for_path (Path.build_filename (Environment.get_user_data_dir (), "gnome-chess", null));
-            DirUtils.create_with_parents (data_dir.get_path (), 0755);
-
-            autosave_filename = data_dir.get_path () + "/autosave.pgn";
-
-            /* Load from history if no game requested */
-            if (game_file == null && FileUtils.test (autosave_filename, FileTest.EXISTS))
-                game_file = File.new_for_path (autosave_filename);
-
-            if (game_file == null)
-                start_new_game ();
-            else
-                load_game (game_file);
-        }
+        if (window == null)
+            create_window ();
 
         window.present ();
     }
 
     protected override void shutdown ()
     {
-        if (opponent_engine != null)
-            opponent_engine.stop ();
+        if (window != null)
+        {
+            if (opponent_engine != null)
+                opponent_engine.stop ();
 
-        autosave ();
+            autosave ();
 
-        /* Save window state */
-        settings.delay ();
-        settings.set_int (WIDTH_SETTINGS_KEY, window.default_width);
-        settings.set_int (HEIGHT_SETTINGS_KEY, window.default_height);
-        settings.set_boolean (MAXIMIZED_SETTINGS_KEY, window.maximized);
-        settings.apply ();
+            /* Save window state */
+            settings.delay ();
+            settings.set_int (WIDTH_SETTINGS_KEY, window.default_width);
+            settings.set_int (HEIGHT_SETTINGS_KEY, window.default_height);
+            settings.set_boolean (MAXIMIZED_SETTINGS_KEY, window.maximized);
+            settings.apply ();
+        }
 
         base.shutdown ();
     }
