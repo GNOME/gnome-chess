@@ -241,11 +241,10 @@ public class ChessWindow : Adw.ApplicationWindow
         else
             time = clock.black_remaining_seconds;
 
-        // E2 80 8E is the left-to-right mark.
         if (time >= 60)
-            return "%d∶\xE2\x80\x8E%02d".printf (time / 60, time % 60);
+            return "%d:%02d".printf (time / 60, time % 60);
         else
-            return "∶\xE2\x80\x8E%02d".printf (time);
+            return ":%02d".printf (time);
     }
 
     private void draw_white_time_label (Gtk.DrawingArea drawing_area, Cairo.Context c, int width, int height)
