@@ -46,10 +46,10 @@ configure_file(
   configuration: service_conf
 )
 
-# The appdata file
-appdata_file = i18n.merge_file(
-  input: '@0@.appdata.xml.in'.format(application_id),
-  output: '@0@.appdata.xml'.format(application_id),
+# The metainfo file
+metainfo_file = i18n.merge_file(
+  input: '@0@.metainfo.xml.in'.format(application_id),
+  output: '@0@.metainfo.xml'.format(application_id),
   type: 'xml',
   po_dir: po_dir,
   install: true,
@@ -58,12 +58,12 @@ appdata_file = i18n.merge_file(
 appstreamcli = find_program('appstreamcli', required: false)
 if appstreamcli.found()
   test(
-    'validate-appdata', appstreamcli,
+    'validate-metainfo', appstreamcli,
     args: [
-      'validate', '--no-net', appdata_file.full_path()
+      'validate', '--no-net', metainfo_file.full_path()
     ],
     depends: [
-      appdata_file
+      metainfo_file
     ],
   )
 endif
