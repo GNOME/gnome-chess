@@ -346,16 +346,12 @@ Copyright © 2015–2016 Sahil Sareen""";
             opponent = game.white;
             human_player = game.black;
             opponent_engine = get_engine (white_engine, white_level);
-            opponent.local_human = false;
-            human_player.local_human = true;
         }
         else if (black_engine != null)
         {
             opponent = game.black;
             human_player = game.white;
             opponent_engine = get_engine (black_engine, black_level);
-            opponent.local_human = false;
-            human_player.local_human = true;
         }
 
         /* Game saved vs. human, or game saved vs. engine but none installed */
@@ -367,6 +363,9 @@ Copyright © 2015–2016 Sahil Sareen""";
         }
         else
         {
+            opponent.local_human = false;
+            human_player.local_human = true;
+
             opponent_engine.moved.connect (engine_move_cb);
             opponent_engine.resigned.connect (engine_resigned_cb);
             opponent_engine.stopped_unexpectedly.connect (engine_stopped_unexpectedly_cb);
