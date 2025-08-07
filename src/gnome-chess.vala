@@ -1439,15 +1439,15 @@ Copyright © 2015–2016 Sahil Sareen""";
             pgn_game.white_time_left = duration.to_string ();
             pgn_game.black_time_left = duration.to_string ();
         }
+        var engine_level = settings.get_string (DIFFICULTY_SETTINGS_KEY);
         var engine_name = settings.get_string (OPPONENT_SETTINGS_KEY);
-        if (engine_name == "" || get_ai_profile (engine_name) == null)
+        if (engine_name != "human" && get_ai_profile (engine_name) == null)
         {
             if (ai_profiles != null)
                 engine_name = ai_profiles.data.name;
             else
                 engine_name = "human";
         }
-        var engine_level = settings.get_string (DIFFICULTY_SETTINGS_KEY);
         if (engine_name != null && engine_name != "human")
         {
             var play_as = settings.get_string (PLAY_AS_SETTINGS_KEY);
