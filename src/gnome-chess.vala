@@ -467,10 +467,10 @@ Copyright © 2015–2016 Sahil Sareen""";
 
         starting = false;
 
-        if (white_engine != null && game.current_player.color == Color.WHITE ||
-            black_engine != null && game.current_player.color == Color.BLACK)
+        if (opponent_engine != null &&
+            (white_engine != null && game.current_player.color == Color.WHITE ||
+             black_engine != null && game.current_player.color == Color.BLACK))
         {
-            assert (opponent_engine != null);
             update_engine_timeout ();
             opponent_engine.move ();
         }
