@@ -480,11 +480,8 @@ Copyright © 2015–2016 Sahil Sareen""";
             game.stop (game.result, ChessRule.UNKNOWN);
     }
 
-    private ChessEngine? get_engine (string name, string difficulty)
+    private AIProfile? get_ai_profile (string name)
     {
-        ChessEngine engine;
-        AIProfile? profile = null;
-
         if (name == "human")
             return null;
 
@@ -495,11 +492,15 @@ Copyright © 2015–2016 Sahil Sareen""";
         foreach (var p in ai_profiles)
         {
             if (name == "" || p.name == name)
-            {
-                profile = p;
-                break;
-            }
+                return p;
         }
+
+        return null;
+    }
+
+    private ChessEngine? get_engine (string name, string difficulty)
+    {
+        AIProfile? profile = get_ai_profile (name);
         if (profile == null)
         {
             warning ("Unknown AI profile %s", name);
@@ -529,6 +530,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             break;
         }
 
+        ChessEngine engine;
         if (profile.protocol == "cecp")
         {
             warn_if_fail (uci_go_options.length == 0);
@@ -1438,7 +1440,7 @@ Copyright © 2015–2016 Sahil Sareen""";
             pgn_game.black_time_left = duration.to_string ();
         }
         var engine_name = settings.get_string (OPPONENT_SETTINGS_KEY);
-        if (engine_name == "")
+        if (engine_name == "" || get_ai_profile (engine_name) == null)
         {
             if (ai_profiles != null)
                 engine_name = ai_profiles.data.name;
