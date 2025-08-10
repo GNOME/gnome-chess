@@ -151,13 +151,6 @@ public class ChessScene : Object
          set { _show_numbering = value; changed (); }
     }
 
-    private bool _show_move_hints = true;
-    public bool show_move_hints
-    {
-         get { return _show_move_hints; }
-         set { _show_move_hints = value; changed (); }
-    }
-
     private string _theme_name = "simple";
     public string theme_name
     {

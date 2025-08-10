@@ -13,7 +13,6 @@ public const string WIDTH_SETTINGS_KEY = "width";
 public const string HEIGHT_SETTINGS_KEY = "height";
 public const string MAXIMIZED_SETTINGS_KEY = "maximized";
 public const string PIECE_STYLE_SETTINGS_KEY = "piece-theme";
-public const string SHOW_MOVE_HINTS_SETTINGS_KEY = "show-move-hints";
 public const string SHOW_BOARD_NUMBERING_SETTINGS_KEY = "show-numbering";
 public const string MOVE_FORMAT_SETTINGS_KEY = "move-format";
 public const string BOARD_ORIENTATION_SETTINGS_KEY = "board-side";
@@ -33,7 +32,6 @@ public class Preferences : Object
     public MoveFormat move_format { get; set; }
     public PieceStyle piece_style { get; set; }
     public bool show_board_numbering { get; set; }
-    public bool show_move_hints { get; set; }
 
     public Opponent opponent { get; set; }
     public PlayAs play_as { get; set; }
@@ -47,7 +45,6 @@ public class Preferences : Object
         this.settings = settings;
 
         settings.bind (SHOW_BOARD_NUMBERING_SETTINGS_KEY, this, "show-board-numbering", SettingsBindFlags.DEFAULT);
-        settings.bind (SHOW_MOVE_HINTS_SETTINGS_KEY, this, "show-move-hints", SettingsBindFlags.DEFAULT);
 
         settings.bind_with_mapping (
             BOARD_ORIENTATION_SETTINGS_KEY, 

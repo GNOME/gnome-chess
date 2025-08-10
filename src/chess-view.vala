@@ -245,7 +245,7 @@ public class ChessView : Gtk.DrawingArea
             draw_piece (c,
                         model.is_selected ? selected_model_surface : model_surface,
 						model.is_selected ? selected_square_size : square_size,
-                        model.piece, model.under_threat && scene.show_move_hints ? 0.8 : 1.0);
+                        model.piece, model.under_threat ? 0.8 : 1.0);
 
             c.restore ();
         }
@@ -255,7 +255,7 @@ public class ChessView : Gtk.DrawingArea
         {
             for (int file = 0; file < 8; file++)
             {
-                if (scene.show_move_hints && scene.can_move (rank, file))
+                if (scene.can_move (rank, file))
                 {
                     c.save ();
                     c.translate ((file - 4) * square_size, (3 - rank) * square_size);

@@ -152,7 +152,6 @@ Copyright © 2015–2016 Sahil Sareen""";
             window.maximize ();
         add_window (window);
 
-        settings.bind (SHOW_MOVE_HINTS_SETTINGS_KEY, scene, "show-move-hints", SettingsBindFlags.GET);
         settings.bind (SHOW_BOARD_NUMBERING_SETTINGS_KEY, scene, "show-numbering", SettingsBindFlags.GET);
         settings.bind (PIECE_STYLE_SETTINGS_KEY, scene, "theme-name", SettingsBindFlags.GET);
         settings.bind (MOVE_FORMAT_SETTINGS_KEY, scene, "move-format", SettingsBindFlags.GET);
