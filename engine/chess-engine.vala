@@ -114,13 +114,18 @@ public abstract class ChessEngine : Object
 
     protected abstract void do_undo ();
 
-    protected abstract void request_move ();
+    protected abstract void request_move (ChessClock? clock, int timeout);
 
-    public void move ()
+    public void move (ChessClock? clock, int timeout)
     {
         pending_move_source_id = Timeout.add_seconds (delay_seconds, () => {
             pending_move_source_id = 0;
-            request_move ();
+            // The engine must move before timeout seconds is reached.
+            // We have already used up `delay_seconds`. And we want to allow
+            // 1 seconds of leeway to ensure there are no races, in case the
+            // engine decides to use *all* of its time, and also because
+            // Timeout.add_seconds is imprecise.
+            request_move (clock, int.max (timeout - (int)delay_seconds - 1, 0));
             return Source.REMOVE;
         });
     }

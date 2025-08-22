@@ -97,8 +97,10 @@ public class ChessEngineCECP : ChessEngine
     {
     }
 
-    public override void request_move ()
+    public override void request_move (ChessClock? clock, int timeout)
+        requires (timeout >= 0)
     {
+        write_line (@"st $timeout");
         write_line ("go");
     }
 

@@ -93,6 +93,8 @@ Copyright © 2015–2016 Sahil Sareen""";
         { QUIT_ACTION_NAME, quit_cb },
     };
 
+    private static int ENGINE_INACTIVITY_TIMEOUT = 33; /* in seconds */
+
     private const OptionEntry[] option_entries =
     {
         { "version", 'v', 0, OptionArg.NONE, null,
@@ -471,7 +473,7 @@ Copyright © 2015–2016 Sahil Sareen""";
              black_engine != null && game.current_player.color == Color.BLACK))
         {
             update_engine_timeout ();
-            opponent_engine.move ();
+            opponent_engine.move (game.clock, time_to_move ());
         }
 
         // If loading a completed saved game
@@ -689,13 +691,26 @@ Copyright © 2015–2016 Sahil Sareen""";
         if (pgn_game.white_ai != null && game.current_player.color == Color.WHITE ||
             pgn_game.black_ai != null && game.current_player.color == Color.BLACK)
         {
-            engine_timeout_source = Timeout.add_seconds (30, () => {
+            engine_timeout_source = Timeout.add_seconds (ENGINE_INACTIVITY_TIMEOUT, () => {
                 engine_timeout_source = 0;
-                warning ("Engine did not move for 30 seconds! Game over.");
+                warning (@"Engine did not move for $ENGINE_INACTIVITY_TIMEOUT seconds! Game over.");
                 engine_error_cb (opponent_engine);
                 return Source.REMOVE;
             });
         }
+    }
+
+    private int time_to_move ()
+    {
+        int timeout = ENGINE_INACTIVITY_TIMEOUT;
+        if (game.clock != null)
+        {
+            if (opponent.color == Color.WHITE)
+                timeout = int.min (timeout, game.clock.white_remaining_seconds);
+            else
+                timeout = int.min (timeout, game.clock.black_remaining_seconds);
+        }
+        return timeout;
     }
 
     private void game_move_cb (ChessGame game, ChessMove move)
@@ -735,7 +750,7 @@ Copyright © 2015–2016 Sahil Sareen""";
                 opponent_engine.report_move (move);
 
                 if (move.piece.color != opponent.color && started)
-                    opponent_engine.move ();
+                    opponent_engine.move (game.clock, time_to_move ());
             }
 
             return Source.REMOVE;

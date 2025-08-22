@@ -38,14 +38,25 @@ public class ChessEngineUCI : ChessEngine
         write_line ("ucinewgame");
     }
 
-    public override void request_move ()
+    public override void request_move (ChessClock? clock, int timeout)
+        requires (timeout >= 0)
     {
         if (moves != "")
             write_line ("position startpos moves" + moves);
         else
             write_line ("position startpos");
         waiting_for_move = true;
-        write_line ("go wtime 30000 btime 30000 %s".printf (go_options));
+
+        /* Attempt to inform the engine of time remaining... sort of. We also
+         * need to limit its thinking time to timeout, but UCI's movetime
+         * command specifies *exactly* how long the engine should think -- not
+         * what we want -- rather than a minimum amount of time. So we have to
+         * cap the actual time remaining at the move timeout.
+         */
+        if (clock != null)
+            write_line (@"go wtime $(int.min (timeout, clock.white_remaining_seconds) * 1000) btime $(int.min (timeout, clock.black_remaining_seconds) * 1000) $go_options");
+        else
+            write_line (@"go wtime $(timeout * 1000) btime $(timeout * 1000) $go_options");
     }
 
     public override void report_move (ChessMove move)
