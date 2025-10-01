@@ -169,7 +169,6 @@ public class NewGameDialog : Adw.PreferencesDialog
 
     private void initialize_opponents (List<AIProfile> ai_profiles)
     {
-        opponents.append (Opponent.human);
         foreach (var ai_profile in ai_profiles)
         {
             opponents.append (Opponent.from_ai_profile (ai_profile));
@@ -180,6 +179,12 @@ public class NewGameDialog : Adw.PreferencesDialog
             opponents_model.append(opponent.display_name);
         }
         opponent_combo.model = opponents_model;
+
+        // This has to be last to ensure the dialog works properly when the
+        // value of the setting has not been modified. The default value of the
+        // setting is an empty string, meaning "use first available engine."
+        // So the first AI profile should be the first element in the model.
+        opponents.append (Opponent.human);
     }
 
     private uint get_opponent_index (string display_name)
