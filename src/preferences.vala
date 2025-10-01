@@ -148,7 +148,7 @@ public class Preferences : Object
             SettingsBindFlags.DEFAULT, 
             (to_value, from_value, user_data) =>
             {
-                var value = Opponent.from_setting (from_value.get_string ()) ?? Opponent.human;
+                var value = Opponent.from_setting (from_value.get_string ());
                 to_value.set_object (value);
                 return true;
             },
@@ -526,9 +526,21 @@ public class Opponent : Object
         }
     }
 
+    private static Opponent _default_opponent;
+    public static Opponent default_opponent
+    {
+        get
+        {
+            if (_default_opponent == null)
+                _default_opponent = new Opponent ("", "");
+            return _default_opponent;
+        }
+    }
+
     public string name { get; private set; }
     public string display_name { get; private set; }
     public bool is_human { get { return name == HUMAN_NAME; } }
+    public bool is_default_opponent { get { return name == ""; } }
 
     public Opponent (string name, string display_name)
     {
@@ -541,12 +553,12 @@ public class Opponent : Object
         return name;
     }
 
-    public static Opponent? from_setting (string s)
+    public static Opponent from_setting (string s)
     {
         if (s == HUMAN_NAME)
             return human;
         else if (s == null || s.length == 0)
-            return null;
+            return default_opponent;
         return new Opponent (s, s);
     }
 

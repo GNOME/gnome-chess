@@ -51,7 +51,7 @@ public class NewGameDialog : Adw.PreferencesDialog
             (binding, from_value, ref to_value) =>
             {
                 var opponent = (Opponent) from_value.get_object ();
-                var position = get_opponent_index (opponent.display_name);
+                var position = get_opponent_index (opponent);
                 to_value.set_uint (position);
                 return true;
             },
@@ -182,13 +182,18 @@ public class NewGameDialog : Adw.PreferencesDialog
         opponent_combo.model = opponents_model;
     }
 
-    private uint get_opponent_index (string display_name)
+    private uint get_opponent_index (Opponent opponent)
     {
         var i = 0;
-        foreach (var opponent in opponents)
+        foreach (var o in opponents)
         {
-            if (opponent.display_name == display_name)
+            if (opponent.display_name == o.display_name)
                 return i;
+
+            // Default opponent means we should select the first available AI.
+            if (opponent.is_default_opponent && !o.is_human)
+                return i;
+
             i++;
         }
         return 0;
