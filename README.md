@@ -55,4 +55,4 @@ flatpak run org.gnome.Chess
 ## Useful links
 
 - Report issues: <https://gitlab.gnome.org/GNOME/gnome-chess/issues/>
-- Donate: <https://www.gnome.org/friends/>
+- Donate: <https://donate.gnome.org/>
