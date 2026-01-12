@@ -1,108 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk" version="4.0"/>
-  <object class="GtkShortcutsWindow" id="help_overlay">
-    <property name="modal">1</property>
+  <object class="AdwShortcutsDialog" id="shortcuts_dialog">
     <child>
-      <object class="GtkShortcutsSection">
-        <property name="max-height">8</property>
+      <object class="AdwShortcutsSection">
+        <property name="title" translatable="yes" context="shortcut window">General</property>
         <child>
-          <object class="GtkShortcutsGroup">
-            <property name="title" translatable="yes" context="shortcut window">General</property>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">&lt;Ctrl&gt;N</property>
-                <property name="title" translatable="yes" context="shortcut window">Start New Game</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">&lt;Ctrl&gt;O</property>
-                <property name="title" translatable="yes" context="shortcut window">Open Saved Game</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">&lt;Ctrl&gt;P Pause</property>
-                <property name="title" translatable="yes" context="shortcut window">Pause Game</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">&lt;Ctrl&gt;S</property>
-                <property name="title" translatable="yes" context="shortcut window">Save Game</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">&lt;Shift&gt;&lt;Ctrl&gt;S</property>
-                <property name="title" translatable="yes" context="shortcut window">Save Game As…</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">&lt;Ctrl&gt;Z</property>
-                <property name="title" translatable="yes" context="shortcut window">Undo Move</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">&lt;Ctrl&gt;Q</property>
-                <property name="title" translatable="yes" context="shortcut window">Quit</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">F10</property>
-                <property name="title" translatable="yes" context="shortcut window">Open Main Menu</property>
-              </object>
-            </child>
+          <object class="AdwShortcutsItem">
+            <property name="accelerator">&lt;Ctrl&gt;N</property>
+            <property name="title" translatable="yes" context="shortcut window">Start New Game</property>
           </object>
         </child>
         <child>
-          <object class="GtkShortcutsGroup">
-            <property name="title" translatable="yes" context="shortcut window">History</property>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">Up</property>
-                <property name="title" translatable="yes" context="shortcut window">Rewind to Game Start</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">Left</property>
-                <property name="title" translatable="yes" context="shortcut window">Show Previous Move</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">Right</property>
-                <property name="title" translatable="yes" context="shortcut window">Show Next Move</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">Down</property>
-                <property name="title" translatable="yes" context="shortcut window">Show Last Move</property>
-              </object>
-            </child>
+          <object class="AdwShortcutsItem">
+            <property name="accelerator">&lt;Ctrl&gt;O</property>
+            <property name="title" translatable="yes" context="shortcut window">Open Saved Game</property>
           </object>
         </child>
         <child>
-          <object class="GtkShortcutsGroup">
-            <property name="title" translatable="yes" context="shortcut window">Help</property>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">F1</property>
-                <property name="title" translatable="yes" context="shortcut window">Show Help</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">&lt;Primary&gt;question</property>
-                <property name="title" translatable="yes" context="shortcut window">Show Keyboard Shortcuts</property>
-              </object>
-            </child>
+          <object class="AdwShortcutsItem">
+            <property name="accelerator">&lt;Ctrl&gt;P Pause</property>
+            <property name="title" translatable="yes" context="shortcut window">Pause Game</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="accelerator">&lt;Ctrl&gt;S</property>
+            <property name="title" translatable="yes" context="shortcut window">Save Game</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="accelerator">&lt;Shift&gt;&lt;Ctrl&gt;S</property>
+            <property name="title" translatable="yes" context="shortcut window">Save Game As…</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="accelerator">&lt;Ctrl&gt;Z</property>
+            <property name="title" translatable="yes" context="shortcut window">Undo Move</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="accelerator">&lt;Ctrl&gt;Q</property>
+            <property name="title" translatable="yes" context="shortcut window">Quit</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="accelerator">F10</property>
+            <property name="title" translatable="yes" context="shortcut window">Open Main Menu</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwShortcutsSection">
+        <property name="title" translatable="yes" context="shortcut window">History</property>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="accelerator">Up</property>
+            <property name="title" translatable="yes" context="shortcut window">Rewind to Game Start</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="accelerator">Left</property>
+            <property name="title" translatable="yes" context="shortcut window">Show Previous Move</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="accelerator">Right</property>
+            <property name="title" translatable="yes" context="shortcut window">Show Next Move</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="accelerator">Down</property>
+            <property name="title" translatable="yes" context="shortcut window">Show Last Move</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwShortcutsSection">
+        <property name="title" translatable="yes" context="shortcut window">Help</property>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="accelerator">F1</property>
+            <property name="title" translatable="yes" context="shortcut window">Show Help</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="accelerator">&lt;Primary&gt;question</property>
+            <property name="title" translatable="yes" context="shortcut window">Show Keyboard Shortcuts</property>
           </object>
         </child>
       </object>
