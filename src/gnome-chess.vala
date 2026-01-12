@@ -138,6 +138,7 @@ Copyright © 2015–2016 Sahil Sareen""";
         set_accels_for_action ("app." + UNDO_MOVE_ACTION_NAME,           {        "<Control>z"     });
         set_accels_for_action ("app." + PAUSE_RESUME_ACTION_NAME,        {        "<Control>p",
                                                                                            "Pause" });
+        set_accels_for_action ("app." + PREFERENCES_ACTION_NAME,         {        "<Control>comma" });
         set_accels_for_action ("app." + HISTORY_GO_FIRST_ACTION_NAME,    {                 "Up"    });
         set_accels_for_action ("app." + HISTORY_GO_PREVIOUS_ACTION_NAME, {                 "Left"  });
         set_accels_for_action ("app." + HISTORY_GO_NEXT_ACTION_NAME,     {                 "Right" });
