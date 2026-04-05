@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Гномове игре\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues\n"
-"POT-Creation-Date: 2022-09-06 00:45+0000\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-chess/issues/\n"
+"POT-Creation-Date: 2024-06-16 00:55+0000\n"
 "PO-Revision-Date: 2022-09-06 09:28+0200\n"
 "Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
 "Language-Team: Serbian <gnome-sr@googlegroups.org>\n"
@@ -20,8 +20,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
-"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
+"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
 "X-Generator: Poedit 3.1.1\n"
 
@@ -29,7 +29,7 @@ msgstr ""
 msgid "GNOME Chess"
 msgstr "Гномов шах"
 
-#: data/org.gnome.Chess.appdata.xml.in:8 data/org.gnome.Chess.desktop.in:5
+#: data/org.gnome.Chess.appdata.xml.in:8 data/org.gnome.Chess.desktop.in:4
 msgid "Play the classic two-player board game of chess"
 msgstr "Играјте класичну шаховску игру на табли са два играча"
 
@@ -51,21 +51,17 @@ msgstr ""
 "савременим моторима машинског шаха, и његову способност да самостално "
 "открије неколико популарних мотора ако су инсталирани."
 
-#: data/org.gnome.Chess.appdata.xml.in:69
-msgid "The GNOME Project"
-msgstr "Гномов пројекат"
-
-#: data/org.gnome.Chess.desktop.in:3 data/chess-window.ui:59
-#: src/gnome-chess.vala:1206 src/gnome-chess.vala:1570
+#: data/org.gnome.Chess.desktop.in:2 data/chess-window.ui:59
+#: src/gnome-chess.vala:1196 src/gnome-chess.vala:1561
 msgid "Chess"
 msgstr "Шах"
 
-#: data/org.gnome.Chess.desktop.in:4
+#: data/org.gnome.Chess.desktop.in:3
 msgid "Chess Game"
 msgstr "Шаховска игра"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Chess.desktop.in:7
+#: data/org.gnome.Chess.desktop.in:6
 msgid "game;strategy;"
 msgstr "игра;стратегија;"
 
@@ -200,28 +196,32 @@ msgid "_About Chess"
 msgstr "_О Шаху"
 
 #: data/chess-window.ui:67
-msgid "Undo your most recent move"
-msgstr "Опозовите ваш последњи потез"
+msgid "Undo Move"
+msgstr "Опозови потез"
+
+#: data/chess-window.ui:96
+msgid "Main Menu"
+msgstr "Главни мени"
 
 #. Tooltip on the show first move (i.e. game start) navigation button
-#: data/chess-window.ui:149
-msgid "Rewind to the game start"
+#: data/chess-window.ui:151
+msgid "Rewind to Game Start"
 msgstr "Премотај на почетак игре"
 
 #. Tooltip on the show previous move navigation button
-#: data/chess-window.ui:166
-msgid "Show the previous move"
-msgstr "Прикажи претходни покрет"
+#: data/chess-window.ui:168
+msgid "Show Previous Move"
+msgstr "Прикажи претходни потез"
 
 #. Tooltip on the show next move navigation button
-#: data/chess-window.ui:183
-msgid "Show the next move"
-msgstr "Прикажи наредни покрет"
+#: data/chess-window.ui:185
+msgid "Show Next Move"
+msgstr "Прикажи следећи потез"
 
 #. Tooltip on the show current move navigation button
-#: data/chess-window.ui:200
-msgid "Show the current move"
-msgstr "Прикажи тренутни покрет"
+#: data/chess-window.ui:202
+msgid "Show Current Move"
+msgstr "Прикажи тренутни потез"
 
 #: data/help-overlay.ui:11
 msgctxt "shortcut window"
@@ -230,33 +230,33 @@ msgstr "Опште"
 
 #: data/help-overlay.ui:15
 msgctxt "shortcut window"
-msgid "Start a new game"
-msgstr "Почетак нове игре"
+msgid "Start New Game"
+msgstr "Започни нову игру"
 
 #: data/help-overlay.ui:21
 msgctxt "shortcut window"
-msgid "Open a saved game"
-msgstr "Отварање сачуване игре"
+msgid "Open Saved Game"
+msgstr "Отвори сачувану игру"
 
 #: data/help-overlay.ui:27
 msgctxt "shortcut window"
-msgid "Pause the game"
-msgstr "Заустављање игре"
+msgid "Pause Game"
+msgstr "Паузирај игру"
 
 #: data/help-overlay.ui:33
 msgctxt "shortcut window"
-msgid "Save the game"
-msgstr "Чување игре"
+msgid "Save Game"
+msgstr "Сачувај игру"
 
 #: data/help-overlay.ui:39
 msgctxt "shortcut window"
-msgid "Save the game with a different name"
-msgstr "Чување игре под другачијим називом"
+msgid "Save Game As…"
+msgstr "Сачувај игру као…"
 
 #: data/help-overlay.ui:45
 msgctxt "shortcut window"
-msgid "Undo move"
-msgstr "Опозивање потеза"
+msgid "Undo Move"
+msgstr "Опозови потез"
 
 #: data/help-overlay.ui:51
 msgctxt "shortcut window"
@@ -265,8 +265,8 @@ msgstr "Излазак"
 
 #: data/help-overlay.ui:57
 msgctxt "shortcut window"
-msgid "Open menu"
-msgstr "Отвори мени"
+msgid "Open Main Menu"
+msgstr "Отвори главни мени"
 
 #: data/help-overlay.ui:64
 msgctxt "shortcut window"
@@ -275,23 +275,23 @@ msgstr "Историјат"
 
 #: data/help-overlay.ui:68
 msgctxt "shortcut window"
-msgid "Rewind to the game start"
-msgstr "Премотавање на почетак игре"
+msgid "Rewind to Game Start"
+msgstr "Премотај на почетак игре"
 
 #: data/help-overlay.ui:74
 msgctxt "shortcut window"
-msgid "Show the previous move"
-msgstr "Приказ претходног потеза"
+msgid "Show Previous Move"
+msgstr "Прикажи претходни потез"
 
 #: data/help-overlay.ui:80
 msgctxt "shortcut window"
-msgid "Show the next move"
-msgstr "Приказ наредног потеза"
+msgid "Show Next Move"
+msgstr "Прикажи следећи потез"
 
 #: data/help-overlay.ui:86
 msgctxt "shortcut window"
-msgid "Show the current move"
-msgstr "Приказ тренутног потеза"
+msgid "Show Current Move"
+msgstr "Прикажи тренутни потез"
 
 #: data/help-overlay.ui:93
 msgctxt "shortcut window"
@@ -312,8 +312,8 @@ msgstr "Приказ пречица на тастатури"
 msgid "New Game"
 msgstr "Нова игра"
 
-#: data/new-game-window.ui:20 src/gnome-chess.vala:969
-#: src/gnome-chess.vala:1300 src/gnome-chess.vala:1440
+#: data/new-game-window.ui:20 src/gnome-chess.vala:968
+#: src/gnome-chess.vala:1290 src/gnome-chess.vala:1431
 msgid "_Cancel"
 msgstr "_Откажи"
 
@@ -332,6 +332,10 @@ msgstr "_Играј као"
 #: data/new-game-window.ui:65
 msgid "_Difficulty"
 msgstr "_Тежина"
+
+#: data/new-game-window.ui:81
+msgid "Time Limit"
+msgstr "Временско ограничење"
 
 #: data/new-game-window.ui:84
 msgid "_Use Time Limit"
@@ -413,7 +417,7 @@ msgstr ""
 "Неисправно повећање времена штоперице у ПГН-у: %s, почињем са коришћењем "
 "једноставног сата."
 
-#: src/chess-view.vala:319
+#: src/chess-view.vala:326
 msgid "Paused"
 msgstr "Заустављена"
 
@@ -1050,29 +1054,32 @@ msgstr "Дневник игре каже да је играч отегао па�
 msgid "The computer player is confused. The game cannot continue."
 msgstr "Машински играч је врло збуњен. Игра не може да се настави."
 
-#: src/gnome-chess.vala:973
-msgid "_Abandon game"
+#: src/gnome-chess.vala:965
+msgid "Save Game?"
+msgstr "Сачувати игру?"
+
+#: src/gnome-chess.vala:972
+msgid "_Abandon Game"
 msgstr "_Напусти игру"
 
-#: src/gnome-chess.vala:974
-msgid "_Save game for later"
-msgstr "_Сачувај игру за касније"
-
-#: src/gnome-chess.vala:978
-msgid "_Discard game"
-msgstr "_Одбаци игру"
+#: src/gnome-chess.vala:973
+msgid "Save game for later"
+msgstr "Сачувај игру за касније"
 
 #: src/gnome-chess.vala:979
-msgid "_Save game log"
-msgstr "_Сачувај дневник игре"
+msgid "_Discard Game"
+msgstr "_Одбаци игру"
 
-#. Title of claim draw dialog
-#: src/gnome-chess.vala:1020
+#: src/gnome-chess.vala:980
+msgid "Save game log"
+msgstr "Сачувај дневник игре"
+
+#: src/gnome-chess.vala:1017
 msgid "Would you like to claim a draw?"
 msgstr "Да ли бисте желели да захтевате реми?"
 
 #. Message in claim draw dialog when triggered by fifty-move rule
-#: src/gnome-chess.vala:1026
+#: src/gnome-chess.vala:1024
 msgid ""
 "You may claim a draw because fifty moves have passed without a capture or "
 "pawn advancement. (The computer player may still choose to claim a draw even "
@@ -1083,7 +1090,7 @@ msgstr ""
 "одаберете наставак игре.)"
 
 #. Message in claim draw dialog when triggered by three-fold repetition
-#: src/gnome-chess.vala:1031
+#: src/gnome-chess.vala:1029
 msgid ""
 "You may claim a draw because the current board position has occurred three "
 "times. (The computer player may still choose to claim a draw even if you "
@@ -1093,41 +1100,36 @@ msgstr ""
 "пута. (Рачунар ипак може одлучити да затражи нерешено иако одаберете "
 "наставак игре.)"
 
-#. Option in claim draw dialog
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1039 src/gnome-chess.vala:1078
+#: src/gnome-chess.vala:1036 src/gnome-chess.vala:1068
 msgid "_Keep Playing"
 msgstr "_Настављам игру"
 
-#. Option in claim draw dialog
-#: src/gnome-chess.vala:1041
+#: src/gnome-chess.vala:1037
 msgid "_Claim Draw"
 msgstr "Захтевам _реми"
 
-#: src/gnome-chess.vala:1058
-msgid "Save this game before starting a new one?"
-msgstr "Да сачувам ову игру пре почетка нове?"
+#: src/gnome-chess.vala:1053
+msgid "By starting a new game now, unsaved progress would be lost."
+msgstr "Ако сада покренете нову игру, несачувани напредак ће бити изгубљен."
 
-#. Title of warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1073
+#: src/gnome-chess.vala:1064
 msgid "Are you sure you want to resign?"
 msgstr "Да ли сте сигурни да желите да се предате?"
 
 #. Text on warning dialog when player clicks Resign
-#: src/gnome-chess.vala:1076
+#: src/gnome-chess.vala:1067
 msgid "This makes sense if you plan to save the game as a record of your loss."
 msgstr "Ово има смисла ако планирате да сачувате игру као запис вашег губитка."
 
-#. Option on warning dialog when player clicks resign
-#: src/gnome-chess.vala:1080
+#: src/gnome-chess.vala:1069
 msgid "_Resign"
 msgstr "_Предајем се"
 
-#: src/gnome-chess.vala:1210
+#: src/gnome-chess.vala:1200
 msgid "A classic game of positional strategy"
 msgstr "Класична игра стратегије положаја"
 
-#: src/gnome-chess.vala:1213
+#: src/gnome-chess.vala:1203
 msgid "translator-credits"
 msgstr ""
 "Душан Марјановић <madafaka@bsd.org.yu>\n"
@@ -1139,56 +1141,68 @@ msgstr ""
 "\n"
 "http://prevod.org — превод на српски језик"
 
-#: src/gnome-chess.vala:1261
+#: src/gnome-chess.vala:1248
+msgid "Error Loading PGN File"
+msgstr "Грешка при учитавању PGN датотеке"
+
+#: src/gnome-chess.vala:1249
 msgid "This does not look like a valid PGN game."
 msgstr "Ово не изгледа као исправна ПГН игра."
 
-#: src/gnome-chess.vala:1262 src/gnome-chess.vala:1275
-#: src/gnome-chess.vala:1380
+#: src/gnome-chess.vala:1251 src/gnome-chess.vala:1264
+#: src/gnome-chess.vala:1370
 msgid "_OK"
 msgstr "У _реду"
 
+#: src/gnome-chess.vala:1261
+msgid "Invalid Move"
+msgstr "Неисправан потез"
+
 #. Title of save game dialog
-#: src/gnome-chess.vala:1297
+#: src/gnome-chess.vala:1287
 msgid "Save Chess Game"
 msgstr "Сачувај шаховску партију"
 
-#: src/gnome-chess.vala:1299
+#: src/gnome-chess.vala:1289
 msgid "_Save"
 msgstr "_Сачувај"
 
 #. Default filename for the save game dialog
-#: src/gnome-chess.vala:1331
+#: src/gnome-chess.vala:1321
 msgid "Untitled Chess Game"
 msgstr "Неименована шаховска игра"
 
 #. Save Game Dialog: Name of filter to show only PGN files
 #. Load Game Dialog: Name of filter to show only PGN files
-#: src/gnome-chess.vala:1337 src/gnome-chess.vala:1446
+#: src/gnome-chess.vala:1327 src/gnome-chess.vala:1437
 msgid "PGN files"
 msgstr "ПНГ датотеке"
 
 #. Save Game Dialog: Name of filter to show all files
 #. Load Game Dialog: Name of filter to show all files
-#: src/gnome-chess.vala:1343 src/gnome-chess.vala:1452
+#: src/gnome-chess.vala:1333 src/gnome-chess.vala:1443
 msgid "All files"
 msgstr "Све датотеке"
 
-#: src/gnome-chess.vala:1378
+#: src/gnome-chess.vala:1365
+msgid "Save Error"
+msgstr "Грешка при чувању"
+
+#: src/gnome-chess.vala:1368
 #, c-format
 msgid "Failed to save game: %s"
 msgstr "Нисам успео да сачувам игру: %s"
 
-#: src/gnome-chess.vala:1430
+#: src/gnome-chess.vala:1421
 msgid "Save this game before loading another one?"
 msgstr "Да сачувам ову игру пре почетка нове?"
 
 #. Title of load game dialog
-#: src/gnome-chess.vala:1437
+#: src/gnome-chess.vala:1428
 msgid "Load Chess Game"
 msgstr "Учитај шаховску партију"
 
-#: src/gnome-chess.vala:1439
+#: src/gnome-chess.vala:1430
 msgid "_Open"
 msgstr "_Отвори"
 
@@ -1286,6 +1300,39 @@ msgstr "Бронштајн"
 msgctxt "chess-opponent"
 msgid "Human"
 msgstr "Човек"
+
+#~ msgid "The GNOME Project"
+#~ msgstr "Гномов пројекат"
+
+#~ msgid "Undo your most recent move"
+#~ msgstr "Опозовите ваш последњи потез"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game"
+#~ msgstr "Чување игре"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Save the game with a different name"
+#~ msgstr "Чување игре под другачијим називом"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Rewind to the game start"
+#~ msgstr "Премотавање на почетак игре"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the previous move"
+#~ msgstr "Приказ претходног потеза"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the next move"
+#~ msgstr "Приказ наредног потеза"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Show the current move"
+#~ msgstr "Приказ тренутног потеза"
+
+#~ msgid "Save this game before starting a new one?"
+#~ msgstr "Да сачувам ову игру пре почетка нове?"
 
 #~ msgctxt "custom_duration_units"
 #~ msgid "minutes"
